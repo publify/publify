@@ -9,6 +9,24 @@ ro:
       new: "Nou"
   admin:
     settings:
+      write:
+        write: "Publicare"
+        publish: "Publică"
+        trackbacks: "Retrolegături"
+        send_trackbacks: "Trimite retrolegături"
+        explain: "Cînd publici un articol, Publify poate trimite automat retrolegături site-urilor pe care le specifici. În cazul unui blog personal, această opțiune ar trebui dezactivată, ca să nu deconspire informații private. Dacă blogul e public, opțiunea aceasta poate rămîne activă."
+        urls_to_ping: "Site-uri de anunțat automat"
+        latitude_longitude: "Latitudine, longitudine"
+        display: "Afișează"
+        your_geoloc: "latitudinea și longitudinea ta"
+        example: "de pildă"
+        media: "Media"
+        image_thumbnail_size: "Image thumbnail size"
+        image_medium_size: "Image medium size"
+        avatar_size: "Avatar size"
+        publish_on_twitter: "Publish on Twitter"
+        twitter_consumer_key: "Twitter consumer key"
+        twitter_consumer_secret: "Twitter consumer secret"
       update_database:
         database_migration: "Actualizări ale bazei de date"
         information: "Informații"

@@ -9,6 +9,24 @@ he-IL:
       new: "New"
   admin:
     settings:
+      write:
+        write: "כתוב"
+        publish: "פרסם"
+        trackbacks: "עוקבים חזרה"
+        send_trackbacks: "שלח עוקבים-חזרה"
+        explain: "בעת פרסום במאמר, Publify יכולה לשלוח עוקבים-חזרה לאתרים אליהם אתה מקשר. מומלץ לבטל זאת לבלוגים פרטיים משום שמידע פרטי על האתרים אליהם אתה מקשר עלול לדלוף. לבלוגים ציבוריים, אין טעם לבטל זאת."
+        urls_to_ping: "כתובות לקישור אוטומטי"
+        latitude_longitude: "קו רוחב, קו אורך"
+        display: "תצוגה"
+        your_geoloc: "קווי הרוחב והאורך שלך"
+        example: "דוגמא"
+        media: "Media"
+        image_thumbnail_size: "Image thumbnail size"
+        image_medium_size: "Image medium size"
+        avatar_size: "Avatar size"
+        publish_on_twitter: "Publish on Twitter"
+        twitter_consumer_key: "Twitter consumer key"
+        twitter_consumer_secret: "Twitter consumer secret"
       update_database:
         database_migration: "עדכוני בסיס הנתונים"
         information: "מידע"

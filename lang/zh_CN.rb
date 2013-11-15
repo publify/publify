@@ -195,7 +195,6 @@ Localization.define("zh_CN") do |l|
   l.store "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Publify會自動回絕评论和引用，包含某些可靠的連結總數"
   l.store "Set to 0 to never reject comments", "設定0回絕不回絕的评论"
 
-  l.store "Display", "顯示"
   l.store "articles on my homepage by default", "預設的首頁文章"
   l.store "articles in my news feed by default", "預設的feed文章"
   l.store "Show full article on feed", "顯示全部feed文章"
@@ -204,17 +203,6 @@ Localization.define("zh_CN") do |l|
   l.store "Your database supports migrations", "你的資料庫支援移動"
   l.store "yes", "确认"
   l.store "no", "取消"
-
-  # app/views/admin/settings/write.html.erb
-  l.store "Send trackbacks", "引用發送"
-  l.store "When publishing articles, Publify can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", "當公開的文章或引用會洩漏你私人的資訊時，對於不公開的博客publify會終止連結。在公開的博客並無此選項"
-  l.store "URLs to ping automatically", "URL自動地Ping"
-  l.store "Latitude, Longitude", "緯度,經度"
-  l.store "your latitude and longitude", "你的緯度、經度"
-  l.store "example", "舉例"
-  l.store "Write", "寫入"
-
-  # app/views/admin/sidebar/_availables.html.erb
   l.store "You have no plugins installed", "你没有plugins可以安置"
 
   # app/views/admin/sidebar/_publish.html.erb
@@ -276,7 +264,6 @@ Localization.define("zh_CN") do |l|
 
   # app/views/articles/read.html.erb
   l.store "Leave a response", "離開一個回應"
-  l.store "Trackbacks", "引用"
   l.store "Use the following link to trackback from your own site", "從你所屬的網點用隨後的連結去引用"
   l.store "RSS feed for this post", "為本篇提供RSS"
   l.store "trackback uri", "引用URL"

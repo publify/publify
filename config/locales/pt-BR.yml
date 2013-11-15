@@ -9,6 +9,24 @@ pt-BR:
       new: "Nuevo"
   admin:
     settings:
+      write:
+        write: "Escribir"
+        publish: "Publicar"
+        trackbacks: "Trackbacks"
+        send_trackbacks: "Enviar trackbacks"
+        explain: "Cuando se publican art&iacute;culos, Publify puede enviar trackbacks a sitios enlazados. Esto deber&iacute;a deshabilitarse para blogs privados para que no se escape informaci&oacute;n privada a sitios que est&aacute;s comentando. Para blogs p&uacute;blicos, realmente no hay raz&oacute;n para deshabilitar esto."
+        urls_to_ping: "Enviar pings a URLs autom&aacute;ticamente"
+        latitude_longitude: "Latitud, Longitud"
+        display: "Mostrar"
+        your_geoloc: "tu latitud y longitud"
+        example: "ejemplo"
+        media: "Media"
+        image_thumbnail_size: "Image thumbnail size"
+        image_medium_size: "Image medium size"
+        avatar_size: "Avatar size"
+        publish_on_twitter: "Publish on Twitter"
+        twitter_consumer_key: "Twitter consumer key"
+        twitter_consumer_secret: "Twitter consumer secret"
       update_database:
         database_migration: "Migraci&oacute;n de la base de datos"
         information: "Informaci&oacute;n"

@@ -9,6 +9,24 @@ nl:
       new: "Nieuwe"
   admin:
     settings:
+      write:
+        write: "Schrijf"
+        publish: "Publiceer"
+        trackbacks: "Trackbacks"
+        send_trackbacks: "Verstuur trackbacks"
+        explain: "Wanneer je een artikel publiceert kan Publify een trackback sturen naar de sites waaraan je linkt. Dit zou voor priv&eacute;-blogs uit moeten staan, omdat het niet-publieke informatie 'lekt' naar sites die je bediscussieert. Voor publieke blogs is er geen goede reden om het uit te zetten."
+        urls_to_ping: "URLs to ping automatically"
+        latitude_longitude: "Latitude, Longitude"
+        display: "Toon"
+        your_geoloc: "your latitude and longitude"
+        example: "example"
+        media: "Media"
+        image_thumbnail_size: "Image thumbnail size"
+        image_medium_size: "Image medium size"
+        avatar_size: "Avatar size"
+        publish_on_twitter: "Publish on Twitter"
+        twitter_consumer_key: "Twitter consumer key"
+        twitter_consumer_secret: "Twitter consumer secret"
       update_database:
         database_migration: "Database migratie"
         information: "Informatie"

@@ -9,6 +9,24 @@ de:
       new: "Neuer"
   admin:
     settings:
+      write:
+        write: "Schreiben"
+        publish: "Veröffentlichen"
+        trackbacks: "Trackbacks"
+        send_trackbacks: "Trackbacks verschicken"
+        explain: "Publify kann Trackbacks zu anderen Websites schicken, zu denen Sie in veröffentlichten Artikeln verlinken. Das sollte für private Blogs deaktiviert werden, weil sonst nicht-öffentliche Informationen mit dem Trackback Ping nach außen zu den Seiten gehen, die Sie in Ihren Artikeln diskutieren. Für öffentliche Blogs jedoch besteht kein wirklicher Grund, das zu deaktivieren."
+        urls_to_ping: "Automatisch diese URLs anpingen"
+        latitude_longitude: "geografische Breite, Länge"
+        display: "Zeige"
+        your_geoloc: "Ihrer geografischen Breite und Länge"
+        example: "Beispiel"
+        media: "Media"
+        image_thumbnail_size: "Image thumbnail size"
+        image_medium_size: "Image medium size"
+        avatar_size: "Avatar size"
+        publish_on_twitter: "Publish on Twitter"
+        twitter_consumer_key: "Twitter consumer key"
+        twitter_consumer_secret: "Twitter consumer secret"
       update_database:
         database_migration: "Datenbank Migration"
         information: "Information"

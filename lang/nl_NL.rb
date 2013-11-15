@@ -211,7 +211,6 @@ Localization.define("nl_NL") do |l|
   l.store "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Publify zal automatisch commentaren en trackbacks verwijderen die meer dan een bepaald aantal links bevatten"
   l.store "Set to 0 to never reject comments", "Zet op 0 om commentaren nooit te weigeren"
   l.store "Publishing options", "Publicatie opties"
-  l.store "Display", "Toon"
   l.store "articles on my homepage by default", "artikelen op mijn startpagina"
   l.store "articles in my news feed by default", "artikelen in mijn news feed"
   l.store "Show full article on feed", "Toon volledig artikel in feed"
@@ -230,17 +229,6 @@ Localization.define("nl_NL") do |l|
   l.store "Your database supports migrations", "Je database ondersteunt migraties"
   l.store "yes", "ja"
   l.store "no", "nee"
-
-  # app/views/admin/settings/write.html.erb
-  l.store "Send trackbacks", "Verstuur trackbacks"
-  l.store "When publishing articles, Publify can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", "Wanneer je een artikel publiceert kan Publify een trackback sturen naar de sites waaraan je linkt. Dit zou voor priv&eacute;-blogs uit moeten staan, omdat het niet-publieke informatie 'lekt' naar sites die je bediscussieert. Voor publieke blogs is er geen goede reden om het uit te zetten."
-  l.store "URLs to ping automatically", ""
-  l.store "Latitude, Longitude", ""
-  l.store "your latitude and longitude", ""
-  l.store "example", ""
-  l.store "Write", "Schrijf"
-
-  # app/views/admin/sidebar/_publish.html.erb
   l.store "Changes published", "Wijzigingen gepubliceerd"
 
   # app/views/admin/sidebar/_target.html.erb
@@ -332,14 +320,10 @@ Localization.define("nl_NL") do |l|
   l.store "is about to say", "gaat zeggen"
   l.store "There are", "Er zijn"
   l.store "Leave a response", "Geef een reactie"
-  l.store "Trackbacks", "Trackbacks"
   l.store "Use the following link to trackback from your own site", "Gebruik de volgende link voor een trackback van jouw site"
   l.store "RSS feed for this post", "RSS feed voor dit bericht"
   l.store "trackback uri", "trackback uri"
   l.store "Comments are disabled", "Reacties zijn niet mogelijk"
-  l.store "Trackbacks are disabled", ""
-
-  # app/views/authors/show.html.erb
   l.store "Web site:", "Website:"
   l.store "MSN:", "MSN:"
   l.store "Yahoo:", "Yahoo:"

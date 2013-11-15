@@ -153,7 +153,6 @@ Localization.define("pt_BR") do |l|
 
   # app/views/admin/dashboard/_posts.html.erb
   l.store "Latest Posts", ""
-  l.store "No posts yet, why don't you start and write one", ""
   l.store "Limit to spam", "Limitar a spam"
   l.store "Are you sure you want to delete the page", "&iquest;Est&aacute;s seguro que deseas eliminar esta p&aacute;gina?"
   l.store "Delete this page", "Eliminar esta p&aacute;gina"
@@ -183,7 +182,6 @@ Localization.define("pt_BR") do |l|
   l.store "Max Links", "M&aacute;ximo n&uacute;mero de links"
   l.store "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Publify rechazar&aacute; autom&aacute;ticamente los comentarios y trackbacks que contengan m&aacute;s de un cierto n&uacute;mero de links en ellos"
   l.store "Set to 0 to never reject comments", "Introducir 0 para nunca rechazar comentarios"
-  l.store "Display", "Mostrar"
   l.store "articles on my homepage by default", "art&iacute;culos en mi p&aacute;gina de inicio por default"
   l.store "articles in my news feed by default", "art&iacute;culos en mi feed RSS"
   l.store "Show full article on feed", "Mostrar art&iacute;culo completo en el feed"
@@ -191,17 +189,6 @@ Localization.define("pt_BR") do |l|
   l.store "Your database supports migrations", "Tu base de datos soporta migraciones"
   l.store "yes", "s&iacute;"
   l.store "no", "no"
-
-  # app/views/admin/settings/write.html.erb
-  l.store "Send trackbacks", "Enviar trackbacks"
-  l.store "When publishing articles, Publify can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", "Cuando se publican art&iacute;culos, Publify puede enviar trackbacks a sitios enlazados. Esto deber&iacute;a deshabilitarse para blogs privados para que no se escape informaci&oacute;n privada a sitios que est&aacute;s comentando. Para blogs p&uacute;blicos, realmente no hay raz&oacute;n para deshabilitar esto."
-  l.store "URLs to ping automatically", "Enviar pings a URLs autom&aacute;ticamente"
-  l.store "Latitude, Longitude", "Latitud, Longitud"
-  l.store "your latitude and longitude", "tu latitud y longitud"
-  l.store "example", "ejemplo"
-  l.store "Write", "Escribir"
-
-  # app/views/admin/sidebar/_availables.html.erb
   l.store "You have no plugins installed", "No tienes plugins instalados"
 
   # app/views/admin/sidebar/_publish.html.erb
@@ -266,30 +253,11 @@ Localization.define("pt_BR") do |l|
   l.store "There are", "Hay"
 
   l.store "Leave a response", "Deja un comentario"
-  l.store "Trackbacks", ""
   l.store "Use the following link to trackback from your own site", "Usa el siguiente link para crear un trackback desde tu propio sitio"
   l.store "RSS feed for this post", "Feed RSS para este art&iacute;culo"
   l.store "trackback uri", "trackback uri"
   l.store "Comments are disabled", "Los comentarios est&aacute;n deshabilitados"
-  l.store "Trackbacks are disabled", ""
-
-  # themes/true-blue-3/views/articles/_article.html.erb
-  l.store "%%a, %%d %%b %%Y %%H:%%M", ""
-
-  l.store "If you liked this article you can %s", ""
-  l.store "add me to Twitter", ""
   l.store "Trackbacks for", "Trackbacks para"
-
-
-  # vendor/plugins/authors_sidebar/views/content.rhtml
-  l.store "Authors", ""
-
-  # vendor/plugins/xml_sidebar/views/content.rhtml
-  l.store "Syndicate", ""
-  l.store "Category %s", ""
-  l.store "Tag %s", ""
-
-  # Obsolete translations
   l.store "%d Articles", ["Art&iacute;culo", "%d Art&iacute;culos"]
   l.store "%d Categories", ["Categor&iacute;", "%d Categor&iacute;as"]
   l.store "%d Comments", ["Comentario", "%d Comentarios"]

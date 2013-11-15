@@ -17,19 +17,6 @@ Localization.define("lt_LT") do |l|
   l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", ""
   l.store "%%d. %%b", ""
   l.store "no trackbacks", "nėra dienoraščio nuorodų"
-  l.store "1 trackback", ""
-  l.store "%d trackbacks", ""
-
-  # app/helpers/content_helper.rb
-  l.store "Posted in", ""
-  l.store "no posts", ""
-  l.store "1 post", ""
-  l.store "%d posts", ""
-
-  l.store "it has been illegally reproduced and without proper authorization", ""
-
-  # app/models/blog.rb
-  l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", ""
   l.store "Reorder", "Rikiuoti"
   l.store "Sort alphabetically", "Rikiuoti pagal abėcėlę"
 
@@ -50,21 +37,6 @@ Localization.define("lt_LT") do |l|
   # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "Ar tikrai norite ištrinti šį straipsnį"
   l.store "Delete this article", "Trinti šį straipsnį"
-
-  # app/views/admin/content/index.html.erb
-
-  # app/views/admin/dashboard/_popular.html.erb
-  l.store "Most popular", ""
-  l.store "Nothing to show yet", ""
-
-  # app/views/admin/dashboard/_posts.html.erb
-  l.store "Latest Posts", ""
-  l.store "No posts yet, why don't you start and write one", ""
-  l.store "Oh no, nothing new", ""
-
-  l.store "Welcome back, %s!", ""
-  l.store "Total posts : %d", ""
-  l.store "Your posts : %d", ""
   l.store "Limit to spam", "Spamo limitas"
   l.store "Are you sure you want to delete the page", "Sind Sie sicher, diese Seite zu löschen"
   l.store "Delete this page", "Diese Seite löschen"
@@ -84,7 +56,6 @@ Localization.define("lt_LT") do |l|
   l.store "Enable spam protection", "Spamschutz aktivieren"
   l.store "Akismet Key", "Akismet Key"
   l.store "Publify can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", "Publify kann (optional) den %s Spam-Filterdienst verwenden. Sie müssen sich dort registriert und einen API Key erhalten haben, bevor Sie diesen Dienst nutzen können. Wenn Sie einen solchen Key haben, geben Sie ihn hier ein"
-  l.store "Disable trackbacks site-wide", ""
   l.store "This setting allows you to disable trackbacks for every article in your blog.  It won't remove existing trackbacks, but it will prevent any further attempt to add a trackback anywhere on your blog.", "Diese Option erlaubt es Ihnen, Trackbacks für alle Artikel im gesamten Blog zu deaktivieren. Dadurch werden zwar keine bereits existierenden Trackbacks entfernt, aber alle zukünftig irgendwo in Ihrem Blog eintreffenden Trackbacks werden abgewiesen."
   l.store "Disable comments after", "Kommentare abschalten nach"
   l.store "days", "Tagen"
@@ -92,7 +63,6 @@ Localization.define("lt_LT") do |l|
   l.store "Max Links", "Maximale Anzahl Links"
   l.store "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Publify kann automatisch Kommentare und Trackbacks abweisen, die mehr als eine bestimmte Anzahl von Links enthalten"
   l.store "Set to 0 to never reject comments", "Wert 0 bewirkt, dass Kommentare nie abgewiesen werden"
-  l.store "Display", "Rodyti"
   l.store "articles on my homepage by default", "straipsniai pradžioje pagal nutylėjimą"
   l.store "articles in my news feed by default", "straipsniai naujienų sraute pagal nutylėjimą"
   l.store "Show full article on feed", "Rodyti pilną straipsnį RSS sraute"
@@ -100,15 +70,6 @@ Localization.define("lt_LT") do |l|
   l.store "Your database supports migrations", "Ihre Datenbank unterstützt Migrationen"
   l.store "yes", "ja"
   l.store "no", "nein"
-
-  # app/views/admin/settings/write.html.erb
-  l.store "Send trackbacks", "Siųsti dienoraščių nuorodas"
-  l.store "When publishing articles, Publify can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", "Publikuojant straipsnius Publify gali siųsti dienoraščių nuorodas į puslapius, į kuriuos jūs rodote. Tai gali būti išjungta ant privačių dienoraščių, bet viešuose nėra priežasties išjungti šio nustatymo" # need fix
-  l.store "URLs to ping automatically", "URL adresai į kuriuos pranešti automatiškai"
-  l.store "Latitude, Longitude", "Geografinė platuma, ilguma"
-  l.store "your latitude and longitude", "Tavo geografinė platuma ir ilguma"
-  l.store "example", "Pavyzdys"
-  l.store "Write", "Rašyti"
 
   # app/views/admin/sidebar/_availables.html.erb
   l.store "You have no plugins installed", "Sie haben keine Plugins installiert"
@@ -162,63 +123,11 @@ Localization.define("lt_LT") do |l|
   l.store "is about to say", "pasakoja apie"
   l.store "There are", "Čia yra"
   l.store "Leave a response", "Palikti atsakymą"
-  l.store "Trackbacks", ""
   l.store "Use the following link to trackback from your own site", "Dienoraščio nuoroda (trackback)"
   l.store "RSS feed for this post", "šio įrašo RSS"
   l.store "trackback uri", "Trackback URI"
   l.store "Comments are disabled", "Komentavimas išjungtas"
-  l.store "Trackbacks are disabled", ""
-
-  # app/views/authors/show.html.erb
-  l.store "Web site:", ""
-  l.store "MSN:", ""
-  l.store "Yahoo:", ""
-  l.store "Jabber:", ""
-  l.store "AIM:", ""
-  l.store "Twitter:", ""
-  l.store "About %s", ""
-
-  # app/views/setup/index.html.erb
-  l.store "Welcome", ""
-
-  # app/views/shared/_confirm.html.erb
-  l.store "Congratulations!", ""
-  l.store "You have successfully signed up", ""
-  l.store "<strong>Login:</strong> %s", ""
-  l.store "Don't lose the mail sent at %s or you won't be able to login anymore", ""
-
-  # test/mocks/themes/typographic/layouts/default.html.erb
-  l.store "Powered by %s", ""
-  l.store "Designed by %s ", ""
-
-  l.store "Continue reading...", ""
-  l.store "This entry was posted on %s", ""
-  l.store "and %s", ""
-  l.store "You can follow any response to this entry through the %s", ""
-  l.store "Atom feed", ""
-  l.store "You can leave a %s", ""
-  l.store "or a %s from your own site", ""
-  l.store "trackback", ""
-  l.store "later", ""
-  l.store "Name %s", ""
-  l.store "enabled", ""
-  l.store "never displayed", ""
-  l.store "Website", ""
-  l.store "Textile enabled", ""
-  l.store "Markdown enabled", ""
-  l.store "required", ""
-  # themes/dirtylicious/layouts/default.html.erb
-  l.store "About", ""
-  l.store "Designed by %s ported to publify by %s ", ""
-
-  # themes/scribbish/layouts/default.html.erb
-  l.store "styled with %s", ""
-
-  # themes/true-blue-3/helpers/theme_helper.rb
-  l.store "You are here: ", ""
-  l.store "%%a, %%d %%b %%Y %%H:%%M", ""
   l.store "Trackbacks for", "Trackback für"
-
 
   l.store "Previous", ""
   l.store "Next", ""

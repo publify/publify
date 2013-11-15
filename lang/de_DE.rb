@@ -62,7 +62,6 @@ Localization.define("de_DE") do |l|
   l.store "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Publify kann automatisch Kommentare und Trackbacks abweisen, die mehr als eine bestimmte Anzahl von Links enthalten"
   l.store "Set to 0 to never reject comments", "Wert 0 bewirkt, dass Kommentare nie abgewiesen werden"
 
-  l.store "Display", "Zeige"
   l.store "articles on my homepage by default", "Artikel auf einmal auf meiner Homepage"
   l.store "articles in my news feed by default", "Artikel auf einmal in meinen RSS News Feeds"
   l.store "Show full article on feed", "Ganzen Artikel im RSS News Feed anzeigen"
@@ -70,16 +69,6 @@ Localization.define("de_DE") do |l|
   l.store "Your database supports migrations", "Ihre Datenbank unterstützt Migrationen"
   l.store "yes", "ja"
   l.store "no", "nein"
-
-  l.store "Send trackbacks", "Trackbacks verschicken"
-  l.store "When publishing articles, Publify can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", "Publify kann Trackbacks zu anderen Websites schicken, zu denen Sie in veröffentlichten Artikeln verlinken. Das sollte für private Blogs deaktiviert werden, weil sonst nicht-öffentliche Informationen mit dem Trackback Ping nach außen zu den Seiten gehen, die Sie in Ihren Artikeln diskutieren. Für öffentliche Blogs jedoch besteht kein wirklicher Grund, das zu deaktivieren."
-  l.store "URLs to ping automatically", "Automatisch diese URLs anpingen"
-  l.store "Latitude, Longitude", "geografische Breite, Länge"
-  l.store "your latitude and longitude", "Ihrer geografischen Breite und Länge"
-  l.store "example", "Beispiel"
-  l.store "Write", "Schreiben"
-
-  # app/views/admin/sidebar/_availables.html.erb
   l.store "You have no plugins installed", "Sie haben keine Plugins installiert"
 
   # app/views/admin/sidebar/_publish.html.erb
@@ -135,20 +124,11 @@ Localization.define("de_DE") do |l|
 
   # app/views/articles/read.html.erb
   l.store "Leave a response", "Einen Kommentar hinterlassen"
-  l.store "Trackbacks", ""
   l.store "Use the following link to trackback from your own site", "Verwenden Sie den folgenden Link zur Rückverlinkung von Ihrer eigenen Seite"
   l.store "RSS feed for this post", "RSS Feed für diesen Artikel"
   l.store "trackback uri", "Trackback URI"
   l.store "Comments are disabled", "Kommentare sind deaktiviert"
-  l.store "Trackbacks are disabled", ""
-
   l.store "Trackbacks for", "Trackback für"
-
-  l.store "Read all articles in %s", ""
-
-  l.store "Previous", ""
-
-  # vendor/plugins/archives_sidebar/views/content.rhtml
   l.store "Archives", "Archive"
 
   # vendor/plugins/authors_sidebar/views/content.rhtml

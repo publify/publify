@@ -130,7 +130,6 @@ Localization.define("it_IT") do |l|
 
   # app/views/admin/settings/index.html.erb
   l.store "Publishing options", ""
-  l.store "Display", "Mostra"
   l.store "articles on my homepage by default", "articoli nella homepage"
   l.store "articles in my news feed by default", "articoli nei miei rss feed"
   l.store "Show full article on feed", "Visualizza articolo completo su feed"
@@ -142,16 +141,6 @@ Localization.define("it_IT") do |l|
   l.store "Your database supports migrations", "Il tuo database supporta le migrazioni"
   l.store "yes", "si"
   l.store "no", "no"
-
-  # app/views/admin/settings/write.html.erb
-  l.store "Send trackbacks", "Invia trackbacks"
-  l.store "URLs to ping automatically", "Indirizzi da pingare automaticamente"
-  l.store "Latitude, Longitude", "Latitudine, Longitudine"
-  l.store "your latitude and longitude", "la tua latitudine e longitudine"
-  l.store "example", "esempio"
-  l.store "Write", "Scrivi"
-
-  # app/views/admin/sidebar/_availables.html.erb
   l.store "You have no plugins installed", "Non hai plugins installati"
 
   # app/views/admin/sidebar/_publish.html.erb
@@ -167,10 +156,8 @@ Localization.define("it_IT") do |l|
   l.store "Get more plugins", ""
   l.store "Sidebar", ""
   l.store "Publish changes", "Pubblica cambiamenti"
-  l.store "Displays links to monthly archives", ""
   l.store "Livesearch", ""
   l.store "Adds livesearch to your Publify blog", ""
-  l.store "This widget just displays links to Publify main site, this blog's admin and RSS.", ""
   l.store "Adds basic search sidebar in your Publify blog", ""
   l.store "Static", ""
   l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
@@ -183,19 +170,6 @@ Localization.define("it_IT") do |l|
   l.store "Send notification messages via email", "Invia notifiche via mail"
   l.store "Send notification messages when new articles are posted", "Invia notifiche quando viene pubblicato un nuovo articolo"
   l.store "Send notification messages when comments are posted", "Invia notifiche quando viene inserito un nuovo commento"
-  l.store "Contact options", ""
-  l.store "Your site", ""
-  l.store "Your MSN", ""
-  l.store "display MSN ID on public profile", ""
-  l.store "Your Yahoo ID", ""
-  l.store "display Yahoo! ID on public profile", ""
-  l.store "Your Jabber ID", ""
-  l.store "display Jabber ID on public profile", ""
-  l.store "Your AIM id", ""
-  l.store "display AIM ID on public profile", ""
-  l.store "Your Twitter username", ""
-  l.store "display Twitter on public profile", ""
-  l.store "Tell us more about you", ""
   l.store "Really delete user", "Veramente eliminare questo utente"
   l.store "Edit User", "Modifica utente"
   l.store "New User", "Nuovo utente"
@@ -220,67 +194,11 @@ Localization.define("it_IT") do |l|
   l.store "There are", "Ci sono"
 
   l.store "Leave a response", "Commenta"
-  l.store "Trackbacks", ""
   l.store "Use the following link to trackback from your own site", "Usa il link seguente per fare un trackback dal tuo sito"
   l.store "RSS feed for this post", "Feed RSS per questo post"
   l.store "trackback uri", "trackback urk"
   l.store "Comments are disabled", "Commenti disabilitati"
-  l.store "Trackbacks are disabled", ""
-
-  # app/views/authors/show.html.erb
-  l.store "Web site:", ""
-  l.store "MSN:", ""
-  l.store "Yahoo:", ""
-  l.store "Jabber:", ""
-  l.store "AIM:", ""
-  l.store "Twitter:", ""
-  l.store "About %s", ""
-
-  # app/views/setup/index.html.erb
-  l.store "Welcome", ""
-
-  # app/views/shared/_confirm.html.erb
-  l.store "Congratulations!", ""
-  l.store "You have successfully signed up", ""
-  l.store "<strong>Login:</strong> %s", ""
-  l.store "<strong>Password:</strong> %s", ""
-  l.store "Don't lose the mail sent at %s or you won't be able to login anymore", ""
-
-  l.store "Powered by %s", ""
-  l.store "Designed by %s ", ""
-
-  l.store "Continue reading...", ""
-  l.store "This entry was posted on %s", ""
-  l.store "and %s", ""
-  l.store "You can follow any response to this entry through the %s", ""
-  l.store "Atom feed", ""
-  l.store "You can leave a %s", ""
-  l.store "or a %s from your own site", ""
   l.store "Read full article", "Leggi articolo completo"
-  l.store "trackback", ""
-  l.store "later", ""
-  l.store "Name %s", ""
-  l.store "enabled", ""
-  l.store "never displayed", ""
-  l.store "Website", ""
-  l.store "Textile enabled", ""
-  l.store "Markdown enabled", ""
-  l.store "required", ""
-
-  l.store "About", ""
-  l.store "Designed by %s ported to publify by %s ", ""
-
-  l.store "styled with %s", ""
-
-  l.store "Meta", ""
-
-  # themes/true-blue-3/helpers/theme_helper.rb
-  l.store "You are here: ", ""
-  l.store "%%a, %%d %%b %%Y %%H:%%M", ""
-
-  l.store "Your website", ""
-
-  l.store "add me to Twitter", ""
   l.store "Trackbacks for", "Trackbacks per"
   # vendor/plugins/archives_sidebar/views/content.rhtml
   l.store "Archives", "Archivi"

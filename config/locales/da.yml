@@ -9,6 +9,24 @@ da:
       new: "Ny"
   admin:
     settings:
+      write:
+        write: "Skriv"
+        publish: "Udgiv"
+        trackbacks: "Trackbacks"
+        send_trackbacks: "Send trackbacks"
+        explain: "Når du udgiver artikler kan Publify sende trackbacks til de hjemmesider du linker til. Dette bør slåes fra for private blogs da det ellers kan lække privat information til hjemmesider du diskuterer. For offentlige blogs, er der ingen reel mening i at deaktivere dette."
+        urls_to_ping: "Webadresser der automatisk pinges"
+        latitude_longitude: "Breddegrad, længdegrad"
+        display: "Vis"
+        your_geoloc: "din breddegrad og længdegrad"
+        example: "for eksempel"
+        media: "Media"
+        image_thumbnail_size: "Image thumbnail size"
+        image_medium_size: "Image medium size"
+        avatar_size: "Avatar size"
+        publish_on_twitter: "Publish on Twitter"
+        twitter_consumer_key: "Twitter consumer key"
+        twitter_consumer_secret: "Twitter consumer secret"
       update_database:
         database_migration: "Database migration"
         information: "Information"

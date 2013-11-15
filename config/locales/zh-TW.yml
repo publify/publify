@@ -9,6 +9,24 @@ zh-TW:
       new: "New"
   admin:
     settings:
+      write:
+        write: "寫入"
+        publish: "公開"
+        trackbacks: "引用"
+        send_trackbacks: "引用發送"
+        explain: "當公開的文章或引用會洩漏你私人的資訊時，對於不公開的部落格publify會終止連結。在公開的部落格並無此選項"
+        urls_to_ping: "URL自動地Ping"
+        latitude_longitude: "緯度,經度"
+        display: "顯示"
+        your_geoloc: "你的緯度、經度"
+        example: "舉例"
+        media: "Media"
+        image_thumbnail_size: "Image thumbnail size"
+        image_medium_size: "Image medium size"
+        avatar_size: "Avatar size"
+        publish_on_twitter: "Publish on Twitter"
+        twitter_consumer_key: "Twitter consumer key"
+        twitter_consumer_secret: "Twitter consumer secret"
       update_database:
         database_migration: "資料庫移動"
         information: "資訊"

@@ -9,6 +9,24 @@ ja:
       new: "New"
   admin:
     settings:
+      write:
+        write: "新規作成"
+        publish: "公開"
+        trackbacks: "トラックバック"
+        send_trackbacks: "トラックバックを送信"
+        explain: "記事が公開されると、Publifyはリンクしたページへトラックバックを送信します。非公開ブログの場合は公開されたブログへ情報が漏れないようにこのチェックボックスを非選択にしてください。公開ブログの場合は非選択にする必要はありません。"
+        urls_to_ping: "自動的にPingを送信するURL"
+        latitude_longitude: "緯度、経度"
+        display: "表示"
+        your_geoloc: "あなたの緯度、経度"
+        example: "例"
+        media: "Media"
+        image_thumbnail_size: "Image thumbnail size"
+        image_medium_size: "Image medium size"
+        avatar_size: "Avatar size"
+        publish_on_twitter: "Publish on Twitter"
+        twitter_consumer_key: "Twitter consumer key"
+        twitter_consumer_secret: "Twitter consumer secret"
       update_database:
         database_migration: "データベースマイグレーション"
         information: "インフォメーション"

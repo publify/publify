@@ -101,27 +101,13 @@ Localization.define("da_DK") do |l|
   l.store "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them" #Need translate
   l.store "Set to 0 to never reject comments", "Sæt til 0 for at aldrig forkaste kommentarer"
 
-  # app/views/admin/settings/index.html.erb
-  l.store "Display", "Vis"
   l.store "articles on my homepage by default", "artikler på min hjemmeside som standard"
   l.store "articles in my news feed by default", "artikler i min nyhedsfeed som standard"
   l.store "Show full article on feed", "Vis hele artiklen i min feed"
-  l.store "Feedburner ID", ""
   l.store "New database version", "Ny database version"
   l.store "Your database supports migrations", "Din database understøtter migrations"
   l.store "yes", "ja"
   l.store "no", "nej"
-
-  # app/views/admin/settings/write.html.erb
-  l.store "Send trackbacks", "Send trackbacks"
-  l.store "When publishing articles, Publify can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", "Når du udgiver artikler kan Publify sende trackbacks til de hjemmesider du linker til. Dette bør slåes fra for private blogs da det ellers kan lække privat information til hjemmesider du diskuterer. For offentlige blogs, er der ingen reel mening i at deaktivere dette."
-  l.store "URLs to ping automatically", "Webadresser der automatisk pinges"
-  l.store "Latitude, Longitude", "Breddegrad, længdegrad"
-  l.store "your latitude and longitude", "din breddegrad og længdegrad"
-  l.store "example", "for eksempel"
-  l.store "Write", "Skriv"
-
-  # app/views/admin/sidebar/_availables.html.erb
   l.store "You have no plugins installed", "Du har ikke installeret nogen plugins"
 
   # app/views/admin/sidebar/_publish.html.erb
@@ -211,56 +197,16 @@ Localization.define("da_DK") do |l|
 
   # app/views/articles/read.html.erb
   l.store "Leave a response", "Skriv en kommentar"
-  l.store "Trackbacks", ""
   l.store "Use the following link to trackback from your own site", "Brug følgende link til lave trackback fra din egen side"
   l.store "RSS feed for this post", "RSS Feed for denne artikel"
   l.store "trackback uri", "Trackback URI"
   l.store "Comments are disabled", "Kommentarer er deaktiveret"
-  l.store "Trackbacks are disabled", ""
-
   l.store "later", "senere"
 
   # test/mocks/themes/typographic/views/articles/_comment_form.html.erb
   l.store "Leave a comment", "Skriv en kommentar"
   l.store "Name %s", "Navn %s"
   l.store "enabled", "aktiveret"
-  l.store "never displayed", ""
-  l.store "Website", ""
-  l.store "Textile enabled", ""
-  l.store "Markdown enabled", ""
-  l.store "required", ""
-
-  # test/mocks/themes/typographic/views/articles/_comment_list.html.erb
-  l.store "No comments", ""
-
-  # themes/dirtylicious/layouts/default.html.erb
-  l.store "About", ""
-  l.store "Designed by %s ported to publify by %s ", ""
-
-  # themes/scribbish/layouts/default.html.erb
-  l.store "styled with %s", ""
-
-  # themes/scribbish/views/articles/_article.html.erb
-  l.store "Meta", ""
-
-  l.store "You are here: ", ""
-
-  # themes/true-blue-3/views/articles/_article.html.erb
-  l.store "%%a, %%d %%b %%Y %%H:%%M", ""
-
-  # themes/true-blue-3/views/articles/_comment_form.html.erb
-  l.store "Your website", ""
-
-  # themes/true-blue-3/views/articles/read.html.erb
-  l.store "If you liked this article you can %s", ""
-  l.store "add me to Twitter", ""
-  l.store "Trackbacks for", "Trackbacks for"
-
-  l.store "Read all articles in %s", ""
-
-  l.store "Previous", ""
-
-  # vendor/plugins/archives_sidebar/views/content.rhtml
   l.store "Archives", "Arkiv"
 
   # vendor/plugins/authors_sidebar/views/content.rhtml

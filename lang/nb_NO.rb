@@ -190,7 +190,6 @@ Localization.define("nb_NO") do |l|
   l.store "Spam comments:", "Spam-kommentarer:"
   l.store "In your spam queue:", "I Spam-køen:"
 
-  l.store "Display", "Vis"
   l.store "All comments", "Alle kommentarer"
   l.store "Limit to ham", "Begrens til Ham"
   l.store "Limit to presumed ham", "Begrens til antatt Ham"
@@ -267,19 +266,6 @@ Localization.define("nb_NO") do |l|
   l.store "Your database supports migrations", "Din database støtter migrations"
   l.store "yes", "ja"
   l.store "no", "nei"
-
-  # app/views/admin/settings/write.html.erb
-  l.store "Send trackbacks", "Send trackbacks"
-  l.store "When publishing articles, Publify can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", "Når du publiserer artikler kan Publify sende trackbacks til de hjemmesider du lenker til. Dette bør deaktiveres for private blogger da det ellers kan lekke privat informasjion til hjemmesider du diskuterer. For offentlige blogger, er det ingen reell mening i å deaktivere dette."
-  l.store "URLs to ping automatically", "Nettadresser som skal pinges automatisk"
-  l.store "Latitude, Longitude", "Breddegrad, lengdegrad"
-  l.store "your latitude and longitude", "din breddegrad og lengdegrad"
-  l.store "example", "for eksempel"
-  l.store "Image thumbnail size", "Liten bildestørrelse"
-  l.store "Image medium size", "Mellomstor bildestørrelse"
-  l.store "Write", "Skriv"
-
-  # app/views/admin/sidebar/_publish.html.erb
   l.store "Changes published", "Endringer publisert"
 
   # app/views/admin/sidebar/_target.html.erb
@@ -293,16 +279,6 @@ Localization.define("nb_NO") do |l|
   l.store "Get more plugins", "Hent flere plugins"
   l.store "Sidebar", ""
   l.store "Publish changes", "Publiser endringer"
-  l.store "Displays links to monthly archives", ""
-  l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
-  l.store "Livesearch", ""
-  l.store "Adds livesearch to your Publify blog", ""
-  l.store "This widget just displays links to Publify main site, this blog's admin and RSS.", ""
-  l.store "Adds basic search sidebar in your Publify blog", ""
-  l.store "Static", ""
-  l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
-  l.store "RSS and Atom feeds", ""
-  l.store "XML Syndication", ""
   l.store "remove", "supprimer"
 
   l.store "Are you sure you want to delete the tag", "Er du sikker på at du vil slette denne taggen"
@@ -380,15 +356,9 @@ Localization.define("nb_NO") do |l|
   l.store "RSS feed for this post", "RSS-feed for denne artikkel"
   l.store "trackback uri", "Trackback URI"
   l.store "Comments are disabled", "Kommentarer er deaktiveret"
-  l.store "Trackbacks are disabled", ""
 
   # app/views/authors/show.html.erb
   l.store "Website:", "Hjemmeside:"
-  l.store "MSN:", ""
-  l.store "Yahoo:", ""
-  l.store "Jabber:", ""
-  l.store "AIM:", ""
-  l.store "Twitter:", ""
   l.store "About %s", "Om %s"
   l.store "This author has not published any article yet", "Forfatteren har ikke publisert noen artikler enda"
 

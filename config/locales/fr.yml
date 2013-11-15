@@ -9,6 +9,24 @@ fr:
       new: "Nouveau"
   admin:
     settings:
+      write:
+        write: "Écrire"
+        publish: "Publier"
+        trackbacks: "Rétroliens"
+        send_trackbacks: "Envoyer des rétroliens"
+        explain: "Quand vous publiez un billet sur Publify, vous pouvez envoyer un rétrolien aux sites que vous liez. Cette fonctionnalité devrait être désactivée pour les blogs privée puisqu'elle permet de donner des informations à leur sujet à des tiers. Ceci ne s'impose cependant pas pour un blog public."
+        urls_to_ping: "Sites à alerter automatiquement"
+        latitude_longitude: "Latitude, Longitude"
+        display: "Afficher"
+        your_geoloc: "vos coordonnées géographiques"
+        example: "exemple"
+        media: "Média"
+        image_thumbnail_size: "Taille des vignettes"
+        image_medium_size: "Taille des images réduites"
+        avatar_size: "Avatar size"
+        publish_on_twitter: "Publish on Twitter"
+        twitter_consumer_key: "Twitter consumer key"
+        twitter_consumer_secret: "Twitter consumer secret"
       update_database:
         database_migration: "Mise à jour de la base de données"
         information: "Informations"

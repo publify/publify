@@ -9,6 +9,24 @@ pl:
       new: "Nowy"
   admin:
     settings:
+      write:
+        write: "Pisanie"
+        publish: "Publish"
+        trackbacks: "Trackbacki"
+        send_trackbacks: "Wyślij trackbacki"
+        explain: "Publikując artykuły, Publify może powiadomić strony, do których podasz łącza. Opcja ta powinna być wyłączona w przypadku blogów osobistych, gdyż może doprowadzić do wycieku prywatnych informacji. W przypadku blogów publicznych wyłączenie tej opcji nie ma większego sensu."
+        urls_to_ping: "Automatycznie pingowane łącza"
+        latitude_longitude: "Szerokość geogr., długość geogr."
+        display: "Wyświetl"
+        your_geoloc: "Twoją szerokość i długość geograficzna"
+        example: "na przykład"
+        media: "Media"
+        image_thumbnail_size: "Image thumbnail size"
+        image_medium_size: "Image medium size"
+        avatar_size: "Avatar size"
+        publish_on_twitter: "Publish on Twitter"
+        twitter_consumer_key: "Twitter consumer key"
+        twitter_consumer_secret: "Twitter consumer secret"
       update_database:
         database_migration: "Migruj bazę danych"
         information: "Informacja"

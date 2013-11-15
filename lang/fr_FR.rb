@@ -205,7 +205,6 @@ Localization.define("fr_FR") do |l|
   l.store "ago", "il y a"
   l.store "Time format", "Afficher les heures"
   l.store "Publishing options", "Options de publication"
-  l.store "Display", "Afficher"
   l.store "articles on my homepage by default", "billet sur ma page d'accueil params par défaut"
   l.store "articles in my news feed by default", "billets dans mon flux RSS par défaut"
   l.store "Show only article excerpt on feed", "Tronquer les articles dans le flux RSS"
@@ -215,18 +214,6 @@ Localization.define("fr_FR") do |l|
   l.store "Your database supports migrations", "Votre base de données supporte la mise à jour"
   l.store "yes", "oui"
   l.store "no", "non"
-
-  # app/views/admin/settings/write.html.erb
-  l.store "Send trackbacks", "Envoyer des rétroliens"
-  l.store "When publishing articles, Publify can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", "Quand vous publiez un billet sur Publify, vous pouvez envoyer un rétrolien aux sites que vous liez. Cette fonctionnalité devrait être désactivée pour les blogs privée puisqu'elle permet de donner des informations à leur sujet à des tiers. Ceci ne s'impose cependant pas pour un blog public."
-  l.store "URLs to ping automatically", "Sites à alerter automatiquement"
-  l.store "Latitude, Longitude", "Latitude, Longitude"
-  l.store "your latitude and longitude", "vos coordonnées géographiques"
-  l.store "example", "exemple"
-  l.store "Media", "Média"
-  l.store "Image thumbnail size", "Taille des vignettes"
-  l.store "Image medium size", "Taille des images réduites"
-  l.store "Write", "Écrire"
 
   # app/views/admin/shared/destroy.html.erb
   l.store "Changes published", "Modifications publiées"
@@ -337,7 +324,6 @@ Localization.define("fr_FR") do |l|
   l.store "is about to say", "va dire"
   l.store "There are", "Il y a"
   l.store "Leave a response", "Réagir à ce billet"
-  l.store "Trackbacks", "Rétroliens"
   l.store "Use the following link to trackback from your own site", "Utilisez le lien ci-dessous pour envoyer un rétrolien depuis votre site"
   l.store "RSS feed for this post", "Flux RSS de ce billet"
   l.store "trackback uri", "URL de rétrolien"
@@ -427,7 +413,6 @@ Localization.define("fr_FR") do |l|
   l.store "You can leave a %s", "Vous pouvez déposer un %s"
   l.store "or a %s from your own site", "ou un %s depuis votre site"
   l.store "Read full article", "Lire l'article complet"
-  l.store "trackback", "rétrolien"
 
   # themes/standard_issue/views/articles/_comment_form.html.erb
   l.store "Name %s", "Votre nom %s"

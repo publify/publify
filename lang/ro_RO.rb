@@ -51,14 +51,6 @@ Localization.define("ro_RO") do |l|
   l.store "Delete this file from the webserver?", "Ștergi acest fișier de pe server?"
   l.store "File Uploads", "Încărcări de fișiere"
   l.store "Browse", ""
-  l.store "Displays links to monthly archives", ""
-  l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
-  l.store "This widget just displays links to Publify main site, this blog's admin and RSS.", ""
-  l.store "Show pages for this blog", ""
-  l.store "Static", ""
-  l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
-  l.store "RSS and Atom feeds", ""
-  l.store "XML Syndication", ""
   l.store "remove", "supprimer"
   l.store "Enable comments by default", "Implicit comentariile să fie active"
   l.store "Enable Trackbacks by default", "Implicit retrolegăturile să fie active"
@@ -78,7 +70,6 @@ Localization.define("ro_RO") do |l|
   l.store "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Publify va respinge automat comentarii și retrolegături care conțin mai mult decît un anumit număr de legături"
   l.store "Set to 0 to never reject comments", "Comentariile nu vor fi respinse niciodată dacă alegi valoarea 0"
 
-  l.store "Display", "Afișează"
   l.store "articles on my homepage by default", "articole implicit în pagina principală"
   l.store "articles in my news feed by default", "articole implicit în RSS"
   l.store "Show full article on feed", "Include articole complete în RSS"
@@ -88,17 +79,6 @@ Localization.define("ro_RO") do |l|
   l.store "Your database supports migrations", "Baza de date poate fi actualizată"
   l.store "yes", "da"
   l.store "no", "nu"
-
-  # app/views/admin/settings/write.html.erb
-  l.store "Send trackbacks", "Trimite retrolegături"
-  l.store "When publishing articles, Publify can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.", "Cînd publici un articol, Publify poate trimite automat retrolegături site-urilor pe care le specifici. În cazul unui blog personal, această opțiune ar trebui dezactivată, ca să nu deconspire informații private. Dacă blogul e public, opțiunea aceasta poate rămîne activă."
-  l.store "URLs to ping automatically", "Site-uri de anunțat automat"
-  l.store "Latitude, Longitude", "Latitudine, longitudine"
-  l.store "your latitude and longitude", "latitudinea și longitudinea ta"
-  l.store "example", "de pildă"
-  l.store "Write", "Publicare"
-
-  # app/views/admin/sidebar/_availables.html.erb
   l.store "You have no plugins installed", "Niciun plugin instalat"
 
   # app/views/admin/sidebar/_publish.html.erb
@@ -156,13 +136,10 @@ Localization.define("ro_RO") do |l|
 
   # app/views/articles/read.html.erb
   l.store "Leave a response", "Comentează"
-  l.store "Trackbacks", ""
   l.store "Use the following link to trackback from your own site", "Folosește link-ul următor pentru a realiza o retrolegătură de la site-ul tău"
   l.store "RSS feed for this post", "Flux RSS pentru acest articol"
   l.store "trackback uri", "URL pentru retrolegătură"
   l.store "Comments are disabled", "Comentariile sînt dezactivate"
-  l.store "Trackbacks are disabled", ""
-
   l.store "Trackbacks for", "Retrolegături pentru"
 
   l.store "Read all articles in %s", ""

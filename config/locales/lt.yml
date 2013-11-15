@@ -9,6 +9,24 @@ lt:
       new: "Neuer"
   admin:
     settings:
+      write:
+        write: "Rašyti"
+        publish: "Publikuoti"
+        trackbacks: "Trackbacks"
+        send_trackbacks: "Siųsti dienoraščių nuorodas"
+        explain: "Publikuojant straipsnius Publify gali siųsti dienoraščių nuorodas į puslapius, į kuriuos jūs rodote. Tai gali būti išjungta ant privačių dienoraščių, bet viešuose nėra priežasties išjungti šio nustatymo"
+        urls_to_ping: "URL adresai į kuriuos pranešti automatiškai"
+        latitude_longitude: "Geografinė platuma, ilguma"
+        display: "Rodyti"
+        your_geoloc: "Tavo geografinė platuma ir ilguma"
+        example: "Pavyzdys"
+        media: "Media"
+        image_thumbnail_size: "Image thumbnail size"
+        image_medium_size: "Image medium size"
+        avatar_size: "Avatar size"
+        publish_on_twitter: "Publish on Twitter"
+        twitter_consumer_key: "Twitter consumer key"
+        twitter_consumer_secret: "Twitter consumer secret"
       update_database:
         database_migration: "Datenbank Migration"
         information: "Information"
@@ -144,7 +162,7 @@ lt:
         author: "Author"
         date: "Date"
       form:
-        publish: "Publish"
+        publish: "Publikuoti"
         title: "Title"
         images: "Images"
         publish_settings: "Publish settings"
@@ -271,7 +289,7 @@ lt:
         filter: "Filter"
       form:
         public: "Public"
-        publish: "Publish"
+        publish: "Publikuoti"
         title: "Title"
         images: "Images"
         excerpt: "Excerpt"

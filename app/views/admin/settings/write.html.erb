@@ -1,57 +1,57 @@
 <%- content_for :page_heading do %>
 <h2>
   <i class="glyphicon glyphicon-large glyphicon-cog"></i>
-  <%= _("Write") %>
+  <%= t(".write") %>
 </h2>
 <% end %>
 
-<%= form_tag :action => 'update' do %>
+<%= form_tag action: 'update' do %>
 
 <fieldset class='form-horizontal'>
-  <legend><%= _("Publish")%></legend>
+  <legend><%= t(".publish")%></legend>
   <div class='form-group'>
-    <label class='control-label col-sm-2'><%= _("Trackbacks") %></label>
+    <label class='control-label col-sm-2'><%= t(".trackbacks") %></label>
     <div class="col-sm-5">
       <div class='checkbox'>
         <label for="setting_send_outbound_pings">
           <%= check_box(:setting, :send_outbound_pings) %>
-          <%= _("Send trackbacks")%>
-        </label>      
-        <small class='help-block'><%= _("When publishing articles, Publify can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.")%></small>
+          <%= t(".send_trackbacks")%>
+        </label>
+        <small class='help-block'><%= t(".explain") %></small>
       </div>
     </div>
   </div>
   <div class='form-group'>
-    <label class='control-label col-sm-2' for="setting_ping_urls"><%= _("URLs to ping automatically")%></label>
+    <label class='control-label col-sm-2' for="setting_ping_urls"><%= t(".urls_to_ping")%></label>
     <div class='col-sm-5'>
       <%= text_area(:setting, :ping_urls, :rows => 4, :class => 'form-control') %>
     </div>
   </div>
   <div class='form-group'>
-    <label class='control-label col-sm-2' for="setting_geourl_location"><%= _("Latitude, Longitude")%></label>
+    <label class='control-label col-sm-2' for="setting_geourl_location"><%= t(".latitude_longitude")%></label>
     <div class='col-sm-5'>
       <%= text_field(:setting, :geourl_location, { :class => 'form-control'})%>
-      <span class='help-block'><%= _("Display")%> <a href="http://geourl.org"><%= _("your latitude and longitude")%></a> (<%= _("example")%>: <tt>47.774,-122.201</tt>)</span>
+      <span class='help-block'><%= t(".display")%> <a href="http://geourl.org"><%= t(".your_geoloc")%></a> (<%= t(".example")%>: <tt>47.774,-122.201</tt>)</span>
     </div>
   </div>
 </fieldset>
 
 <fieldset class='form-horizontal'>
-  <legend><%= _("Media")%></legend>
+  <legend><%= t(".media")%></legend>
   <div class='form-group'>
-    <label class='control-label col-sm-2' for="setting_image_thumb_size"><%= _("Image thumbnail size")%></label>
+    <label class='control-label col-sm-2' for="setting_image_thumb_size"><%= t(".image_thumbnail_size")%></label>
     <div class='col-sm-1'>
       <%= text_field(:setting, :image_thumb_size, { :class => 'form-control'})%>
     </div>
   </div>
   <div class='form-group'>
-    <label class='control-label col-sm-2' for="setting_image_medium_size"><%= _("Image medium size")%></label>
+    <label class='control-label col-sm-2' for="setting_image_medium_size"><%= t(".image_medium_size")%></label>
     <div class='col-sm-1'>
       <%= text_field(:setting, :image_medium_size, { :class => 'form-control'})%>
     </div>
   </div>
   <div class='form-group'>
-    <label class='control-label col-sm-2' for="image_avatar_size"><%= _("Avatar size")%></label>
+    <label class='control-label col-sm-2' for="image_avatar_size"><%= t(".avatar_size")%></label>
     <div class='col-sm-1'>
       <%= text_field(:setting, :image_avatar_size, { :class => 'form-control'})%>
     </div>
@@ -59,16 +59,16 @@
 </fieldset>
 
 <fieldset class='form-horizontal'>
-  <legend><%= _("Publish on Twitter")%></legend>
+  <legend><%= t(".publish_on_twitter")%></legend>
   <%= twitter_disabled_message(this_blog, current_user) %>
   <div class='form-group'>
-    <label class='control-label col-sm-2' for="setting_twitter_consumer_key"><%= _("Twitter consumer key")%></label>
+    <label class='control-label col-sm-2' for="setting_twitter_consumer_key"><%= t(".twitter_consumer_key")%></label>
     <div class='col-sm-5'>
       <%= text_field(:setting, :twitter_consumer_key, { :class => 'form-control'})%>
     </div>
   </div>
   <div class='form-group'>
-    <label class='control-label col-sm-2' for="setting_twitter_consumer_secret"><%= _("Twitter consumer secret")%></label>
+    <label class='control-label col-sm-2' for="setting_twitter_consumer_secret"><%= t(".twitter_consumer_secret")%></label>
     <div class='col-sm-5'>
       <%= text_field(:setting, :twitter_consumer_secret, { :class => 'form-control'})%>
     </div>
