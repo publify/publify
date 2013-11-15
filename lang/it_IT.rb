@@ -116,9 +116,6 @@ Localization.define("it_IT") do |l|
   l.store "Enable gravatars", "Abilita gravatars"
   l.store "Show your email address", "Mostra il tuo indirizzo mail"
   l.store "Notifications", ""
-  l.store "Publify can notify you when new articles or comments are posted", "Il blog puo' notificarti l'inserimento di un nuovo articolo e/o commento"
-  l.store "Source Email", "Indirizzo mittente mail"
-  l.store "Email address used by Publify to send notifications", "Indirizzo email usato dal blog per inviare le notifiche"
   l.store "Enabling spam protection will make Publify compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "Abilitando la protezione contro lo spam fa si che il blog compari gli IP di chi invia i commenti e anche il loro contenuto con una blacklist remota. E' una buona difesa contro gli spam robot"
   l.store "Enable spam protection", "Abilita la protezione spam"
   l.store "Akismet Key", "Chiave Akismet"
@@ -132,14 +129,6 @@ Localization.define("it_IT") do |l|
   l.store "Set to 0 to never reject comments", "Inserisci 0 per accettare sempre i commenti."
 
   # app/views/admin/settings/index.html.erb
-  l.store "Your blog", "Tuo blog "
-  l.store "Blog name", "Nome blog"
-  l.store "Blog subtitle", "Sottotitolo del blog"
-  l.store "Blog URL", "Indirizzo Blog"
-  l.store "Language", "Lingua"
-  l.store "Allow users to register", ""
-  l.store "You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin.", ""
-  l.store "Items to display in admin lists", ""
   l.store "Publishing options", ""
   l.store "Display", "Mostra"
   l.store "articles on my homepage by default", "articoli nella homepage"
@@ -198,17 +187,6 @@ Localization.define("it_IT") do |l|
   l.store "Display name", "Nome visualizzato"
   l.store "Active theme", "Tema Attivo"
   l.store "Choose a theme", "Seleziona un tema"
-  l.store "Use this theme", ""
-
-  # app/views/admin/users/_form.html.erb
-  l.store "Account settings", ""
-  l.store "Password confirmation", ""
-  l.store "Active", ""
-  l.store "Inactive", ""
-  l.store "Profile settings", ""
-  l.store "Firstname", ""
-  l.store "Nickname", ""
-  l.store "Editor", ""
   l.store "Send notification messages via email", "Invia notifiche via mail"
   l.store "Send notification messages when new articles are posted", "Invia notifiche quando viene pubblicato un nuovo articolo"
   l.store "Send notification messages when comments are posted", "Invia notifiche quando viene inserito un nuovo commento"
@@ -225,20 +203,9 @@ Localization.define("it_IT") do |l|
   l.store "Your Twitter username", ""
   l.store "display Twitter on public profile", ""
   l.store "Tell us more about you", ""
-
-  # app/views/admin/users/destroy.html.erb
   l.store "Really delete user", "Veramente eliminare questo utente"
-  l.store "Yes", ""
-  l.store "Users", ""
-
-  # app/views/admin/users/edit.html.erb
   l.store "Edit User", "Modifica utente"
-
-  # app/views/admin/users/index.html.erb
   l.store "New User", "Nuovo utente"
-  l.store "State", ""
-  l.store "%s user", ""
-  # app/views/admin/users/new.html.erb
   l.store "Add User", "Aggiungi Utente"
 
   l.store "Posted by", "Scritto da"
@@ -415,7 +382,6 @@ Localization.define("it_IT") do |l|
   l.store "Extended Content", "Contenuto esteso"
   l.store "Feedback Search", "Ricerca feedback"
   l.store "Filters", "Filtri"
-  l.store "General Settings", "Configurazione generale"
   l.store "HTML was cleared", "l'HTML cancellato"
   l.store "IP", "IP"
   l.store "Jabber", "Jabber"

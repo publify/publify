@@ -112,10 +112,6 @@ Localization.define("ja_JP") do |l|
   l.store "Comments filter", "コメントフィルター"
   l.store "Enable gravatars", "Gravatarを有効にする"
   l.store "Show your email address", "メールアドレスを表示"
-  l.store "Notifications", ""
-  l.store "Publify can notify you when new articles or comments are posted", "新しい記事やコメントが投稿された場合に通知を送ることができます"
-  l.store "Source Email", "メールアドレス"
-  l.store "Email address used by Publify to send notifications", "通知の送信先メールアドレス"
   l.store "Enabling spam protection will make Publify compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "スパムプロテクションを有効にすると、投稿者のIPアドレスおよびその投稿内容をローカル、リモート両方のブラックリストと比較します"
   l.store "Enable spam protection", "スパムプロテクションを有効にする"
   l.store "Akismet Key", "Akismetキー"
@@ -130,20 +126,10 @@ Localization.define("ja_JP") do |l|
   l.store "Set to 0 to never reject comments", "コメントを拒否しない場合は0を設定してください"
 
   # app/views/admin/settings/index.html.erb
-  l.store "Your blog", "あなたのブログ"
-  l.store "Blog name", "ブログ名"
-  l.store "Blog subtitle", "ブログサブタイトル"
-  l.store "Blog URL", "ブログURL"
-  l.store "Language", "言語"
-  l.store "Allow users to register", "ユーザーに登録させる"
-  l.store "You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin.", "ユーザーがこのブログに登録するのを許可できます。デフォルトでユーザーは自分自身のプロフィールを編集する以外の権限を持たないcontributorとして登録されます。ユーザーに登録させたくない場合は、管理者であるあなた自らがユーザーを追加することができます。"
-  l.store "Items to display in admin lists", "管理リストに表示する行数"
-  l.store "Publishing options", ""
   l.store "Display", "表示"
   l.store "articles on my homepage by default", "ホームページのデフォルト記事数"
   l.store "articles in my news feed by default", "RSSフィードのデフォルト記事数"
   l.store "Show full article on feed", "記事の全文をフィードに表示"
-  l.store "Feedburner ID", ""
 
   # app/views/admin/settings/seo.html.erb
   l.store "Format of permalink", "パーマリンクの書式"
@@ -239,24 +225,15 @@ Localization.define("ja_JP") do |l|
   l.store "Your Twitter username", "あなたのTwitter ID"
   l.store "display Twitter on public profile", "公開プロフィールにTwitter IDを表示"
   l.store "Tell us more about you", "補足事項"
-
-  # app/views/admin/users/destroy.html.erb
   l.store "Really delete user", "本当にユーザーを削除"
   l.store "Yes", "はい"
-  l.store "Users", "ユーザー"
-
-  # app/views/admin/users/edit.html.erb
   l.store "Edit User", "ユーザー編集"
-
-  # app/views/admin/users/index.html.erb
   l.store "New User", "新規ユーザー"
   l.store "Comments", "コメント"
   l.store "State", "状態"
   l.store "%s user", "%s"
   l.store "Add User", "ユーザーの追加"
   l.store "Posted by", "投稿者"
-  l.store "Continue reading", ""
-
   l.store "said", "発言"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "このコメントはモデレーターの確認が必要です。モデレーターが確認後にコメントが表示されます。"
 

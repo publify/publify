@@ -183,15 +183,10 @@ Localization.define("zh_CN") do |l|
   l.store "Comments filter", "篩選评论"
   l.store "Enable gravatars", "可以顯示留言大頭貼"
   l.store "Show your email address", "秀出你的email位址"
-  l.store "Notifications", ""
-  l.store "Publify can notify you when new articles or comments are posted", "當新的文章或评论被貼上時publify會通知你"
-  l.store "Source Email", "原始email"
-  l.store "Email address used by Publify to send notifications", "email位址使用publify發出通知"
   l.store "Enabling spam protection will make Publify compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "publify會根據張貼者IP的位址內容還有黑名單來有效防止垃圾郵件。好的防禦可以抑制垃圾郵寄"
   l.store "Enable spam protection", "有效防止垃圾郵件"
   l.store "Akismet Key", "Akismet鍵"
   l.store "Publify can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", "Publify隨意的使用 %s 篩選垃圾郵件服務。"
-  l.store "Disable trackbacks site-wide", ""
   l.store "This setting allows you to disable trackbacks for every article in your blog.  It won't remove existing trackbacks, but it will prevent any further attempt to add a trackback anywhere on your blog.", "此設定可以讓你博客裡的文章停止引用，這個舉動並不會刪除存在的引用，但是會阻止將來你要試圖增加的引用"
   l.store "Disable comments after", "在失效的评论之後"
   l.store "days", "日期"
@@ -200,14 +195,6 @@ Localization.define("zh_CN") do |l|
   l.store "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Publify會自動回絕评论和引用，包含某些可靠的連結總數"
   l.store "Set to 0 to never reject comments", "設定0回絕不回絕的评论"
 
-  l.store "Your blog", "你的博客"
-  l.store "Blog name", "博客名稱"
-  l.store "Blog subtitle", "副標題"
-  l.store "Blog URL", "博客URL"
-  l.store "Language", "言語"
-  l.store "You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin.", ""
-  l.store "Items to display in admin lists", ""
-  l.store "Publishing options", ""
   l.store "Display", "顯示"
   l.store "articles on my homepage by default", "預設的首頁文章"
   l.store "articles in my news feed by default", "預設的feed文章"
@@ -265,51 +252,14 @@ Localization.define("zh_CN") do |l|
   l.store "Display name", "暱稱"
   l.store "Active theme", "執行中主題"
   l.store "Choose a theme", "選擇主題"
-  l.store "Use this theme", ""
-
-  # app/views/admin/users/_form.html.erb
-  l.store "Account settings", ""
-  l.store "Password confirmation", ""
-  l.store "Active", ""
-  l.store "Inactive", ""
-  l.store "Profile settings", ""
-  l.store "Firstname", ""
-  l.store "Nickname", ""
-  l.store "Editor", ""
   l.store "Send notification messages via email", "經由email發出通知訊息"
   l.store "Send notification messages when new articles are posted", "新的文章貼上時發出通知訊息"
   l.store "Send notification messages when comments are posted", "新的評錀貼上時發出通知訊息"
-  l.store "Contact options", ""
-  l.store "Your site", ""
-  l.store "Your MSN", ""
-  l.store "Your Yahoo ID", ""
-  l.store "Your Jabber ID", ""
-  l.store "Your AIM id", ""
-  l.store "Your Twitter username", ""
-  l.store "Tell us more about you", ""
-
-  # app/views/admin/users/destroy.html.erb
   l.store "Really delete user", "確定刪除使用者"
-  l.store "Yes", ""
-  l.store "Users", "使用者"
-
-  # app/views/admin/users/edit.html.erb
   l.store "Edit User", "修改使用者"
-
   l.store "New User", "新的使用者"
   l.store "Comments", "评论"
-  l.store "State", ""
-  l.store "%s user", ""
-  l.store "Manage users", ""
-
-  # app/views/admin/users/new.html.erb
-  l.store "Add User", ""
-
-  # app/views/articles/_article.html.erb
   l.store "Posted by", "貼上"
-  l.store "Continue reading", ""
-
-  # app/views/articles/_comment.html.erb
   l.store "said", "發言"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "這篇评论被標示為版主所允許的。他不會在博客顯示直到版主承認他。"
 
@@ -428,7 +378,6 @@ Localization.define("zh_CN") do |l|
   l.store "Extended Content", "擴增內容"
   l.store "Feedback Search", "信息反饋搜尋"
   l.store "Filters", "篩選器"
-  l.store "General Settings", "一般設定"
   l.store "HTML was cleared", "HTML已清除"
   l.store "IP", "IP"
   l.store "Jabber", "Jabber"

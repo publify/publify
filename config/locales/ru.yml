@@ -4,7 +4,25 @@ ru:
       truncate: "Truncate"
       next: "Next"
       last: "Last"
+  layouts:
+    administration:
+      new: "New"
   admin:
+    settings:
+      index:
+        general_settings: "Главные настройки"
+        your_blog: "Ваш блог"
+        blog_name: "Имя блога"
+        blog_subtitle: "Подзаголовок блога"
+        blog_url: "URL блога"
+        language: "Язык"
+        users: "Users"
+        allow_users_to_register: "Разрешить пользователям регистрироваться"
+        explain_allow_users_to_register: "Вы можете разрешить пользователям регистрироваться в вашем блоге. По умолчанию они регистрируются как контрибьюторы, то есть получают непривелигированные учетные записи, которые не имеют никаких прав — только профиль на сайте. Если вы не хотите давать пользователям возможность регистрироваться, вы можете добавлять их вручную в разделе «пользователи» панели администратора"
+        publify_notify_new_articles_or_comments: "Publify can notify you when new articles or comments are posted"
+        source_email: "Source Email"
+        email_address_used_to_notify: "Email address used by Publify to send notifications"
+        items_to_display_in_admin_lists: "Элементы для отображения в администраторских списках"
     seo:
       titles:
         title_settings: "Title settings"
@@ -281,6 +299,9 @@ ru:
       sidebar_plugins: "Боковые плагины"
       logged_in_as: "Logged in as %{login}"
       new_article: "Новый пост"
+      new_page: "New Page"
+      new_media: "New Media"
+      new_note : "New Note"
       profile: "Profile"
       logout: "Log out &raquo;"
       home: "Home"

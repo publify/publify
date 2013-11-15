@@ -4,7 +4,25 @@ pt-BR:
       truncate: "Reduzir"
       next: "Próximo"
       last: "Anterior"
+  layouts:
+    administration:
+      new: "Nuevo"
   admin:
+    settings:
+      index:
+        general_settings: "Preferencias generales"
+        your_blog: "tu blog"
+        blog_name: "Nombre del blog"
+        blog_subtitle: "Subt&iacute;tulo del blog"
+        blog_url: "URL del blog"
+        language: "Idioma"
+        users: "Usuarios"
+        allow_users_to_register: "Allow users to register"
+        explain_allow_users_to_register: "You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin."
+        publify_notify_new_articles_or_comments: "Publify puede notificarte cuando nuevos art&iacute;culos o comentarios sean a&ntilde;adidos"
+        source_email: "Email remitente"
+        email_address_used_to_notify: "Direcci&oacute;n de email usada por Publify para enviar notificaciones"
+        items_to_display_in_admin_lists: "Items to display in admin lists"
     seo:
       titles:
         title_settings: "Title settings"
@@ -108,7 +126,7 @@ pt-BR:
     pages:
       index:
         manage_pages: "Administrar P&aacute;ginas"
-        new_page: "New Page"
+        new_page: "Nueva P&aacute;gina"
         title: "Título"
         permalink: "Link permanente"
         author: "Autor"
@@ -281,6 +299,9 @@ pt-BR:
       sidebar_plugins: "Plugins da Sidebar"
       logged_in_as: "Bem vindo(a), %{login}"
       new_article: "Novo Artigo"
+      new_page: "Nueva P&aacute;gina"
+      new_media: "New Media"
+      new_note : "New Note"
       profile: "Perfil"
       logout: "Sair &raquo;"
       home: "Início"

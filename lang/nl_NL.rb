@@ -57,12 +57,7 @@ Localization.define("nl_NL") do |l|
   l.store "You are not authorized to open this file", "U bent niet geautoriseerd om dit bestand te openen"
   l.store "File saved successfully", "Bestand succesvol opgeslagen"
   l.store "Unable to write file", "Kon het bestand niet schrijven"
-
-  # app/controllers/admin/users_controller.rb
   l.store "User was successfully created.", "Gebruiker succesvol aangemaakt."
-
-  # app/controllers/application_controller.rb
-  l.store "Localization.rtl", ""
   l.store "No posts found...", "Geen berichten gevonden..."
   l.store "Archives for", "Archieven voor"
   l.store "Archives for ", "Archieven voor "
@@ -203,9 +198,6 @@ Localization.define("nl_NL") do |l|
   l.store "Enable gravatars", "Enable gravatars"
   l.store "Show your email address", "Toon je e-mail adres"
   l.store "Notifications", "Notificaties"
-  l.store "Publify can notify you when new articles or comments are posted", "Publify can je notificeren wanneer nieuwe artikelen of commentaren gepost worden"
-  l.store "Source Email", "Bron e-mail"
-  l.store "Email address used by Publify to send notifications", "E-mail adres dat Publify gebruikt om notificaties te versturen"
   l.store "Enabling spam protection will make Publify compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "Het aanzetten van spambescherming zorgt dat publify het IP-adres en de inhoud van reacties vergelijkt met lokale en centrale zwarte lijsten. Een goede bescherming tegen spam robots"
   l.store "Enable spam protection", "Gebruik spam-bescherming"
   l.store "Akismet Key", "Akismet sleutel"
@@ -218,23 +210,12 @@ Localization.define("nl_NL") do |l|
   l.store "Max Links", "Max links"
   l.store "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Publify zal automatisch commentaren en trackbacks verwijderen die meer dan een bepaald aantal links bevatten"
   l.store "Set to 0 to never reject comments", "Zet op 0 om commentaren nooit te weigeren"
-
-  # app/views/admin/settings/index.html.erb
-  l.store "Your blog", "Je blog"
-  l.store "Blog name", "Blog naam"
-  l.store "Blog subtitle", "Blog ondertitel"
-  l.store "Blog URL", "Blog URL"
-  l.store "Language", "Taal"
-  l.store "Allow users to register", "Sta gebruikers toe zich te registreren"
-  l.store "You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin.", "Je kunt gebruikers toestaan zich te registreren bij je blog. Standaard zullen ze contributors worden, een soort account zonder rechten behalve het hebben van een profiel op de site. Als je niet wilt dat gebruikers zich registreren kun je ze altijd zelf toevoegen in het gebruikers deel."
-  l.store "Items to display in admin lists", ""
   l.store "Publishing options", "Publicatie opties"
   l.store "Display", "Toon"
   l.store "articles on my homepage by default", "artikelen op mijn startpagina"
   l.store "articles in my news feed by default", "artikelen in mijn news feed"
   l.store "Show full article on feed", "Toon volledig artikel in feed"
   l.store "Feedburner ID", "Feedburner ID"
-  l.store "General settings", "Algemene instellingen"
   l.store "You can use your Google Feedburner account instead of Publify feed URL. To enable this, fill this form with your Feedburner ID.", "Je kunt je Google Feedburner account gebruiken in plaats van de Publify feed URL. Vul daartoe in dit formulier je Feedburner ID in."
 
   # app/views/admin/settings/seo.html.erb
@@ -307,9 +288,6 @@ Localization.define("nl_NL") do |l|
   # app/views/admin/themes/index.html.erb
   l.store "Active theme", "Actieve thema's"
   l.store "Choose a theme", "Kies een thema"
-  l.store "Use this theme", ""
-
-  # app/views/admin/users/_form.html.erb
   l.store "Account settings", "Account instellingen"
   l.store "Password confirmation", "Bevestig wachtwoord"
   l.store "User's status", "Status van de gebruiker"
@@ -337,21 +315,12 @@ Localization.define("nl_NL") do |l|
   l.store "Your Twitter username", "Je Twitter gebruikersnaam"
   l.store "display Twitter on public profile", "toon twitter op publiek profiel"
   l.store "Tell us more about you", "Vertel ons meer over jezelf"
-
-  # app/views/admin/users/destroy.html.erb
   l.store "Really delete user", "Gebruiker echt verwijderen"
   l.store "Yes", "Ja"
-  l.store "Users", "Gebruikers"
-
-  # app/views/admin/users/edit.html.erb
   l.store "Edit User", "Gebruiker wijzigen"
-
-  # app/views/admin/users/index.html.erb
   l.store "New User", "Nieuwe gebruikers"
   l.store "Comments", "Reacties"
   l.store "%s user", "%s gebruiker"
-
-  # app/views/admin/users/new.html.erb
   l.store "Add User", "Gebruiker toevoegen"
   l.store "Posted by", "Geplaatst door"
   l.store "Continue reading", "Verder lezen"

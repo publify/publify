@@ -1,26 +1,14 @@
-# coding: utf-8
-# Translation by Edgar J. Suarez
-
 Localization.define("es_MX") do |l|
-
-  # app/controllers/accounts_controller.rb
-  l.store "Login successful", ""
-  l.store "Login unsuccessful", ""
-  l.store "An email has been successfully sent to your address with your new password", ""
   l.store "All categories", "Todos las categorias"
   l.store "All authors", "Todos los autores"
   l.store "All published dates", "Todos los fechas"
-  l.store "There are no %s yet. Why don't you start and create one?", ""
   l.store "Edit", "Editar"
   l.store "no trackbacks", "no hay trackbacks"
   l.store "Reorder", "Reorganizar"
   l.store "Sort alphabetically", "Ordenar alfab&eacute;ticamente"
-
-  # app/views/admin/categories/destroy.html.erb
   l.store "Are you sure you want to delete the category ", "&iquest;Est&aacute;s seguro que quieres eliminar esta categor&iacute;a?"
   l.store "Delete this category", "Eliminar esta categor&iacute;a"
 
-  # app/views/admin/categories/new.html.erb
   l.store "%s Category", ""
 
   # app/views/admin/categories/reorder.html.erb
@@ -70,9 +58,6 @@ Localization.define("es_MX") do |l|
   l.store "Comments filter", "Filtro de comentarios"
   l.store "Enable gravatars", "Habilitar gravatars"
   l.store "Show your email address", "Mostrar tu direcci&oacute;n de email"
-  l.store "Notifications", ""
-  l.store "Publify can notify you when new articles or comments are posted", "Publify puede notificarte cuando nuevos art&iacute;culos o comentarios sean a&ntilde;adidos"
-  l.store "Source Email", "Email remitente"
   l.store "Enabling spam protection will make Publify compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "Habilitando la protecci&oacute;n anti-spam har&aacute; que publify compare la direcci&oacute;n IP del usuario as&iacute; como el contenido de sus comentarios contra una lista negra remota o local. Es una buena defensa contra los robots de spam"
   l.store "Enable spam protection", "Habilitar protecci&oacute;n anti-spam"
   l.store "Akismet Key", "Clave de Akismet (API key)"
@@ -85,16 +70,6 @@ Localization.define("es_MX") do |l|
   l.store "Max Links", "M&aacute;ximo n&uacute;mero de links"
   l.store "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Publify rechazar&aacute; autom&aacute;ticamente los comentarios y trackbacks que contengan m&aacute;s de un cierto n&uacute;mero de links en ellos"
   l.store "Set to 0 to never reject comments", "Introducir 0 para nunca rechazar comentarios"
-
-  # app/views/admin/settings/index.html.erb
-  l.store "Your blog", "Tu sitio"
-  l.store "Blog name", "Nombre del blog"
-  l.store "Blog subtitle", "Subt&iacute;tulo del blog"
-  l.store "Blog URL", "URL del blog"
-  l.store "Language", "Idioma" #Need translate
-  l.store "Allow users to register", ""
-  l.store "Items to display in admin lists", ""
-  l.store "Publishing options", ""
   l.store "Display", "Mostrar"
   l.store "articles on my homepage by default", "art&iacute;culos en mi p&aacute;gina de inicio por default"
   l.store "articles in my news feed by default", "art&iacute;culos en mi feed RSS"
@@ -171,7 +146,6 @@ Localization.define("es_MX") do |l|
   l.store "Choose a theme", "Escoge un tema"
   l.store "Use this theme", ""
 
-  # app/views/admin/users/_form.html.erb
   l.store "Account settings", ""
   l.store "Password confirmation", "Confirmar Contrase&ntilde;a"
   l.store "User's status", ""
@@ -199,24 +173,8 @@ Localization.define("es_MX") do |l|
   l.store "display Twitter on public profile", ""
   l.store "Tell us more about you", ""
 
-  # app/views/admin/users/destroy.html.erb
-  l.store "Really delete user", "&iquest;Realmente desea eliminar este usuario?"
-  l.store "Yes", ""
-  l.store "Users", ""
-
-  # app/views/admin/users/edit.html.erb
   l.store "Edit User", "Editar usuario"
-
-  # app/views/admin/users/index.html.erb
   l.store "New User", "Nuevo Usuario"
-  l.store "State", ""
-  l.store "%s user", ""
-  l.store "Manage users", ""
-
-  # app/views/admin/users/new.html.erb
-  l.store "Add User", ""
-
-  # app/views/articles/_article.html.erb
   l.store "Posted by", "Publicado por"
   l.store "said", "dijo"
   l.store "Your name", "Tu nombre"
@@ -378,7 +336,6 @@ Localization.define("es_MX") do |l|
   l.store "Extended Content", "Contenido Extendido"
   l.store "Feedback Search", "B&uacute;squeda de comentarios"
   l.store "Filters", "Filtros"
-  l.store "General Settings", "Preferencias generales"
   l.store "IP", "Direcci&oacute;n IP"
   l.store "Jabber", "Jabber"
   l.store "Jabber account", "Cuenta de Jabber"

@@ -88,10 +88,6 @@ Localization.define("da_DK") do |l|
   l.store "Comments filter", "Kommentarfilter"
   l.store "Enable gravatars", "Vis gravatars"
   l.store "Show your email address", "Vis din e-mail addresse"
-  l.store "Notifications", ""
-  l.store "Publify can notify you when new articles or comments are posted", "Publify kan give dig besked, når nye artikler eller kommentarer er indsendt"
-  l.store "Source Email", "Afsender e-mail"
-  l.store "Email address used by Publify to send notifications", "E-mail adresse der bruges af Publify til at sende meddelelser"
   l.store "Enabling spam protection will make Publify compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "Enabling spam protection will make publify compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots" #Need translate
   l.store "Enable spam protection", "Aktiver spam beskyttelse"
   l.store "Akismet Key", "Akismet nøgle"
@@ -106,14 +102,6 @@ Localization.define("da_DK") do |l|
   l.store "Set to 0 to never reject comments", "Sæt til 0 for at aldrig forkaste kommentarer"
 
   # app/views/admin/settings/index.html.erb
-  l.store "Your blog", "Din Blog"
-  l.store "Blog name", "Blog titel"
-  l.store "Blog subtitle", "Blog undertitel"
-  l.store "Blog URL", "Blogadresse"
-  l.store "Language", "Sprog"
-  l.store "You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin.", ""
-  l.store "Items to display in admin lists", ""
-  l.store "Publishing options", ""
   l.store "Display", "Vis"
   l.store "articles on my homepage by default", "artikler på min hjemmeside som standard"
   l.store "articles in my news feed by default", "artikler i min nyhedsfeed som standard"
@@ -172,10 +160,6 @@ Localization.define("da_DK") do |l|
   l.store "Display name", "Vis navn"
   l.store "Active theme", "Aktiv tema"
   l.store "Choose a theme", "Vælg et tema"
-  l.store "Use this theme", ""
-
-  # app/views/admin/users/_form.html.erb
-  l.store "Account settings", ""
   l.store "Password confirmation", "Gentag kodeord"
   l.store "Profile", "Profil"
   l.store "Active", ""
@@ -202,25 +186,10 @@ Localization.define("da_DK") do |l|
   l.store "Your Twitter username", "Dit Twitter brugernavn"
   l.store "display Twitter on public profile", "Vis twitter på din profil"
   l.store "Tell us more about you", "Fortæl lidt mere om dig"
-
-  # app/views/admin/users/destroy.html.erb
   l.store "Really delete user", "Vil du virkelig slette brugeren"
-  l.store "Yes", ""
-  l.store "Users", ""
-
-  # app/views/admin/users/edit.html.erb
   l.store "Edit User", "Rediger bruger"
-
-  # app/views/admin/users/index.html.erb
   l.store "New User", "Ny bruger"
   l.store "Comments", "Kommentarer"
-  l.store "State", ""
-  l.store "%s user", ""
-
-  # app/views/admin/users/new.html.erb
-  l.store "Add User", ""
-
-  # app/views/articles/_article.html.erb
   l.store "Posted by", "Skrevet af"
   l.store "Continue reading", ""
 
@@ -306,10 +275,6 @@ Localization.define("da_DK") do |l|
 
   # vendor/plugins/xml_sidebar/views/content.rhtml
   l.store "Syndicate", "Syndikat"
-  l.store "Category %s", ""
-  l.store "Tag %s", ""
-
-  # Obsolete translations
   l.store "%d Categories", ["Kategori", "%d kategorier"]
   l.store "%d Comments", "%d Kommentarer"
   l.store "%d Users", ["Bruger", "%d Brugere"]
@@ -375,7 +340,6 @@ Localization.define("da_DK") do |l|
   l.store "Extended Content", "Udvidet indhold"
   l.store "Feedback Search", "Søg i feedback"
   l.store "Filters", "Filtre"
-  l.store "General Settings", "Generelle Indstillinger"
   l.store "IP", "IP-adresse"
   l.store "Jabber", "Jabber"
   l.store "Jabber account", "Jabber konto"

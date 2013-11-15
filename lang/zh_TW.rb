@@ -101,10 +101,6 @@ Localization.define("zh_TW") do |l|
   l.store "Comments filter", "篩選評論"
   l.store "Enable gravatars", "可以顯示留言大頭貼"
   l.store "Show your email address", "秀出你的email位址"
-  l.store "Notifications", ""
-  l.store "Publify can notify you when new articles or comments are posted", "當新的文章或評論被貼上時publify會通知你"
-  l.store "Source Email", "原始email"
-  l.store "Email address used by Publify to send notifications", "email位址使用publify發出通知"
   l.store "Enabling spam protection will make Publify compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "publify會根據張貼者IP的位址內容還有黑名單來有效防止垃圾郵件。好的防禦可以抑制垃圾郵寄"
   l.store "Enable spam protection", "有效防止垃圾郵件"
   l.store "Akismet Key", "Akismet鍵"
@@ -117,15 +113,6 @@ Localization.define("zh_TW") do |l|
   l.store "Max Links", "最大的連結值"
   l.store "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Publify會自動回絕評論和引用，包含某些可靠的連結總數"
   l.store "Set to 0 to never reject comments", "設定0回絕不回絕的評論"
-
-  # app/views/admin/settings/index.html.erb
-  l.store "Your blog", "你的部落格"
-  l.store "Blog name", "部落格名稱"
-  l.store "Blog subtitle", "副標題"
-  l.store "Blog URL", "部落格URL"
-  l.store "Language", "言語"
-  l.store "Items to display in admin lists", ""
-  l.store "Publishing options", ""
   l.store "Display", "顯示"
   l.store "articles on my homepage by default", "預設的首頁文章"
   l.store "articles in my news feed by default", "預設的feed文章"
@@ -184,43 +171,13 @@ Localization.define("zh_TW") do |l|
   l.store "Display name", "暱稱"
   l.store "Active theme", "執行中主題"
   l.store "Choose a theme", "選擇主題"
-  l.store "Use this theme", ""
-
-  # app/views/admin/users/_form.html.erb
-  l.store "Account settings", ""
-  l.store "Profile", ""
-  l.store "Active", ""
-  l.store "Inactive", ""
-  l.store "Profile settings", ""
-  l.store "Firstname", ""
-  l.store "Nickname", ""
-  l.store "Editor", ""
   l.store "Send notification messages via email", "經由email發出通知訊息"
   l.store "Send notification messages when new articles are posted", "新的文章貼上時發出通知訊息"
   l.store "Send notification messages when comments are posted", "新的評錀貼上時發出通知訊息"
-  l.store "Contact options", ""
-  l.store "Your site", ""
-  l.store "Your MSN", ""
-  l.store "Your Yahoo ID", ""
-  l.store "Your Jabber ID", ""
-  l.store "Your AIM id", ""
-  l.store "Your Twitter username", ""
-  l.store "Tell us more about you", ""
-
-  # app/views/admin/users/destroy.html.erb
   l.store "Really delete user", "確定刪除使用者"
-  l.store "Yes", ""
-  l.store "Users", "使用者"
-
-  # app/views/admin/users/edit.html.erb
   l.store "Edit User", "修改使用者"
-
-  # app/views/admin/users/index.html.erb
   l.store "New User", "新的使用者"
   l.store "Comments", "評論"
-  l.store "State", ""
-  l.store "%s user", ""
-  # app/views/articles/_article.html.erb
   l.store "Posted by", "貼上"
 
   # app/views/articles/_comment.html.erb
@@ -350,7 +307,6 @@ Localization.define("zh_TW") do |l|
   l.store "Extended Content", "擴增內容"
   l.store "Feedback Search", "信息反饋搜尋"
   l.store "Filters", "篩選器"
-  l.store "General Settings", "一般設定"
   l.store "HTML was cleared", "HTML已清除"
   l.store "IP", "IP"
   l.store "Jabber", "Jabber"
@@ -469,5 +425,4 @@ Localization.define("zh_TW") do |l|
   l.store "seperate with spaces", "空間區分"
   l.store "via email", "經由email"
   l.store "with %s Famfamfam iconset %s", "%s 個Famfamfam iconset %s"
-  l.store "your blog", "你的部落格"
 end

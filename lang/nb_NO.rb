@@ -252,17 +252,6 @@ Localization.define("nb_NO") do |l|
   l.store "Feedback settings", "Feedback-innstillinger"
 
   # app/views/admin/settings/index.html.erb
-  l.store "Your blog", "Din blogg"
-  l.store "Blog name", "Bloggtittel"
-  l.store "Blog subtitle", "Undertittel for blogg"
-  l.store "Blog URL", "Bloggadresse"
-  l.store "Language", "Språk"
-  l.store "Allow users to register", "Tillat brukere å registrere seg"
-  l.store "You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin.", "Du kan tillate brukere å registrere seg på bloggen din. Som standard vil de registreres som bidragsytere, et upriviligert kontonivå som kun gir dem en egen profil på websiden. Dersom du ikke ønsker at brukere skal kunne registrere seg, så kan du legge dem til selv under brukerkontoer."
-  l.store "Publify can notify you when new articles or comments are posted", "Publify kan gi deg beskjed når nye artikler eller kommentarer er mottatt"
-  l.store "Source Email", "Epostavsender"
-  l.store "Email address used by Publify to send notifications", "Epostadresse som brukes av Publify til å sende beskjeder"
-  l.store "Items to display in admin lists", "Enheter å vise i adminlisten"
   l.store "Date format", "Datoformat"
   l.store "ago", "siden"
   l.store "Time format", "Klokkeformat"
@@ -369,12 +358,7 @@ Localization.define("nb_NO") do |l|
   # app/views/admin/users/destroy.html.erb
   l.store "Really delete user", "Vil du virkelig slette brukeren"
   l.store "Yes", "Ja"
-  l.store "Users", "Brukere"
-
-  # app/views/admin/users/edit.html.erb
   l.store "Edit User", "Rediger bruker"
-
-  # app/views/admin/users/index.html.erb
   l.store "New User", "Ny bruker"
   l.store "Comments", "Kommentarer"
   l.store "State", "Tilstand"
@@ -576,7 +560,6 @@ Localization.define("nb_NO") do |l|
   l.store "Extended Content", "Utvidet innhold"
   l.store "Feedback Search", "Søk i feedback"
   l.store "Filters", "Filtre"
-  l.store "General Settings", "Generelle innstillinger"
   l.store "Google verification link", "Verifiseringslenke for Google"
   l.store "IP", "IP-adresse"
   l.store "If you are reading this article elsewhere than", "Dersom du leser denne artikkelen et annet sted enn"

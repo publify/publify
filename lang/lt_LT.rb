@@ -80,10 +80,6 @@ Localization.define("lt_LT") do |l|
   l.store "Comments filter", "Komentarų filtras"
   l.store "Enable gravatars", "Gratavare aktivieren"
   l.store "Show your email address", "Ihre Email Adresse anzeigen"
-  l.store "Notifications", ""
-  l.store "Publify can notify you when new articles or comments are posted", "Publify kann Sie benachrichtigen, wenn neue Artikel oder Kommentare angelegt werden"
-  l.store "Source Email", "Email Adresse"
-  l.store "Email address used by Publify to send notifications", "Email Adresse, die Publify beim Versenden von Benachrichtigungen verwenden soll"
   l.store "Enabling spam protection will make Publify compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "Bei Aktivierung des Spamschutzes wird Publify sowohl die IP Adresse des Autors als auch den Inhalt seiner Veröffentlichung gegen lokale und entfernte Blacklisten vergleichen. Gute Abwehr von Spambots"
   l.store "Enable spam protection", "Spamschutz aktivieren"
   l.store "Akismet Key", "Akismet Key"
@@ -96,17 +92,6 @@ Localization.define("lt_LT") do |l|
   l.store "Max Links", "Maximale Anzahl Links"
   l.store "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Publify kann automatisch Kommentare und Trackbacks abweisen, die mehr als eine bestimmte Anzahl von Links enthalten"
   l.store "Set to 0 to never reject comments", "Wert 0 bewirkt, dass Kommentare nie abgewiesen werden"
-
-  # app/views/admin/settings/index.html.erb
-  l.store "Your blog", "Tavo dienoraščio adresas"
-  l.store "Blog name", "Dienoraščio pavadinimas"
-  l.store "Blog subtitle", "Dienoraščio subpavadinimas" #
-  l.store "Blog URL", "Dienoraščio adresas"
-  l.store "Language", "Kalba"
-  l.store "Allow users to register", ""
-  l.store "You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin.", ""
-  l.store "Items to display in admin lists", ""
-  l.store "Publishing options", ""
   l.store "Display", "Rodyti"
   l.store "articles on my homepage by default", "straipsniai pradžioje pagal nutylėjimą"
   l.store "articles in my news feed by default", "straipsniai naujienų sraute pagal nutylėjimą"
@@ -158,42 +143,12 @@ Localization.define("lt_LT") do |l|
   l.store "Display name", "Rodomas vardas"
   l.store "Active theme", "Aktives Motiv"
   l.store "Choose a theme", "Motiv auswählen"
-  # app/views/admin/users/_form.html.erb
-  l.store "Account settings", ""
-  l.store "Active", ""
-  l.store "Inactive", ""
-  l.store "Profile settings", ""
-  l.store "Firstname", ""
-  l.store "Nickname", ""
-  l.store "Editor", ""
   l.store "Send notification messages via email", "Benachrichtigung via Email schicken"
   l.store "Send notification messages when new articles are posted", "Benachrichtigung schicken, wenn neue Artikel veröffentlicht werden"
   l.store "Send notification messages when comments are posted", "Benachrichtigung schicken, wenn neue Kommentare eintreffen"
-  l.store "Contact options", ""
-  l.store "Your site", ""
-  l.store "Your MSN", ""
-  l.store "Your Yahoo ID", ""
-  l.store "Your Jabber ID", ""
-  l.store "Your AIM id", ""
-  l.store "Your Twitter username", ""
-  l.store "Tell us more about you", ""
-
-  # app/views/admin/users/destroy.html.erb
   l.store "Really delete user", "Benutzer wirklich löschen"
-  l.store "Yes", ""
-  l.store "Users", ""
-
-  # app/views/admin/users/edit.html.erb
   l.store "Edit User", "Benutzer bearbeiten"
-
-  # app/views/admin/users/index.html.erb
   l.store "New User", "Neuer Benutzer"
-  l.store "State", ""
-  l.store "%s user", ""
-
-  # app/views/admin/users/new.html.erb
-  l.store "Add User", ""
-
   l.store "Posted by", "Parašė"
   l.store "Continue reading", ""
 
@@ -355,7 +310,6 @@ Localization.define("lt_LT") do |l|
   l.store "Extended Content", "Išplėstas turinys"
   l.store "Feedback Search", "Atsiliepimų paieška"
   l.store "Filters", "Filter"
-  l.store "General Settings", "Pagrindiniai nustatymai"
   l.store "IP", "IP adresas"
   l.store "Jabber", "Jabber"
   l.store "Jabber account", "Jabber Account"

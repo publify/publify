@@ -203,17 +203,6 @@ Localization.define("fr_FR") do |l|
   l.store "Feedback settings", "Paramètres des commentaires"
 
   # app/views/admin/settings/index.html.erb
-  l.store "Your blog", "Votre blog "
-  l.store "Blog name", "Titre du blog"
-  l.store "Blog subtitle", "Sous-titre du blog"
-  l.store "Blog URL", "Adresse du blog"
-  l.store "Language", "Langue"
-  l.store "Allow users to register", "Autoriser les utilisateurs à s'enregistrer"
-  l.store "You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin.", "Vous pouvez permettre aux utilisateurs de s'enregistrer sur votre blog. Par défaut, ils seront enregistrés come contributeurs. Cet utilisateur a un niveau faible sans droit mais qui possède sont propre profile sur le site. Si vous ne voulez pas que les utilisateurs s'enregistrent, vous pouvez les ajouter vous même dans la partie d'administration des utilisateurs."
-  l.store "Publify can notify you when new articles or comments are posted", "Publify peut vous alerter quand de nouveaux articles et commentaires sont publiés"
-  l.store "Source Email", "Adresse courriel source"
-  l.store "Email address used by Publify to send notifications", "Adresse courriel utilisée par Publify pour l'envoi d'alertes"
-  l.store "Items to display in admin lists", "Nombre d'éléments à afficher dans les listes"
   l.store "Date format", "Afficher les dates"
   l.store "ago", "il y a"
   l.store "Time format", "Afficher les heures"
@@ -337,7 +326,6 @@ Localization.define("fr_FR") do |l|
   l.store "Comments", "Commentaires"
   l.store "State", "État"
   l.store "%s user", "%s"
-  l.store "Users", "Utilisateurs"
   l.store "Manage users", "Gérer les utilisateurs"
 
   # app/views/admin/users/new.html.erb
@@ -580,7 +568,6 @@ Localization.define("fr_FR") do |l|
   l.store "Metadata was successfully removed.", "Les métadonnées ont été supprimées avec succès."
   l.store "Mon", "Lun"
   l.store "Monday", "Lundi"
-  l.store "New Redirect", ""
   l.store "No", "Non"
   l.store "Not published by Apple", "Donnée non publiée par Apple"
   l.store "Notification", "Notifications"

@@ -4,7 +4,25 @@ it:
       truncate: "Truncate"
       next: "Next"
       last: "Last"
+  layouts:
+    administration:
+      new: "Nuovo"
   admin:
+    settings:
+      index:
+        general_settings: "Configurazione generale"
+        your_blog: "Tuo blog "
+        blog_name: "Nome blog"
+        blog_subtitle: "Sottotitolo del blog"
+        blog_url: "Indirizzo Blog"
+        language: "Lingua"
+        users: "Utenti"
+        allow_users_to_register: "Allow users to register"
+        explain_allow_users_to_register: "You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin."
+        publify_notify_new_articles_or_comments: "Il blog puo' notificarti l'inserimento di un nuovo articolo e/o commento"
+        source_email: "Indirizzo mittente mail"
+        email_address_used_to_notify: "Indirizzo email usato dal blog per inviare le notifiche"
+        items_to_display_in_admin_lists: "Items to display in admin lists"
     seo:
       titles:
         title_settings: "Title settings"
@@ -281,6 +299,9 @@ it:
       sidebar_plugins: "Sidebar plugins"
       logged_in_as: "Benvenuto, %{login}"
       new_article: "New Article"
+      new_page: "New Page"
+      new_media: "New Media"
+      new_note : "New Note"
       profile: "Profilo"
       logout: "Esci &raquo;"
       home: "Home"

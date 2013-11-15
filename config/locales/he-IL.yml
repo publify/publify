@@ -4,7 +4,25 @@ he-IL:
       truncate: "Truncate"
       next: "Next"
       last: "Last"
+  layouts:
+    administration:
+      new: "New"
   admin:
+    settings:
+      index:
+        general_settings: "General settings"
+        your_blog: "הבלוג שלך"
+        blog_name: "שם הבלוג"
+        blog_subtitle: "כותרת משנה"
+        blog_url: "כתובת הבלוג"
+        language: "שפה"
+        users: "משתמשים"
+        allow_users_to_register: "אפשר למשתמשים להירשם"
+        explain_allow_users_to_register: "תוכל לאפשר למשתמשים להירשם לבלוג שלך. כברירת מחדל, הם יירשמו כתורמים - חשבון שאינו נותן הרשאות מיוחדות אלא רק את הזכות להחזיק  חשבון באתר. אם אינך רוצה שהמשתמשים יוכלו להירשם בעצמם, תוכל להוסיף אותם בעצמך כחללק מדף זה"
+        publify_notify_new_articles_or_comments: "Publify יכולה לעדכן אותך בעת שמאמרים חדשים או תגובות נשלחות."
+        source_email: "דואל המקור"
+        email_address_used_to_notify: "כתובת הדואל שתשמש את Publify לשלוח עדכונים"
+        items_to_display_in_admin_lists: "Items to display in admin lists"
     seo:
       titles:
         title_settings: "Title settings"
@@ -281,6 +299,9 @@ he-IL:
       sidebar_plugins: "Sidebar plugins"
       logged_in_as: "Logged in as %{login}"
       new_article: "New Article"
+      new_page: "New Page"
+      new_media: "New Media"
+      new_note : "New Note"
       profile: "דיוקן"
       logout: "Log out &raquo;"
       home: "בית"

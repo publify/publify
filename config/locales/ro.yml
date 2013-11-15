@@ -4,7 +4,25 @@ ro:
       truncate: "Truncate"
       next: "Next"
       last: "Last"
+  layouts:
+    administration:
+      new: "Nou"
   admin:
+    settings:
+      index:
+        general_settings: "Setări generale"
+        your_blog: "Site"
+        blog_name: "Numele blogului"
+        blog_subtitle: "Subtitlul blogului"
+        blog_url: "Adresa blogului"
+        language: "Language"
+        users: "Users"
+        allow_users_to_register: "Allow users to register"
+        explain_allow_users_to_register: "You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin."
+        publify_notify_new_articles_or_comments: "Publify te poate alerta la publicarea de noi articole sau comentarii"
+        source_email: "Expeditor email"
+        email_address_used_to_notify: "Adresa email folosită de Publify pentru a trimite alerte prin email"
+        items_to_display_in_admin_lists: "Items to display in admin lists"
     seo:
       titles:
         title_settings: "Title settings"
@@ -281,6 +299,9 @@ ro:
       sidebar_plugins: "Sidebar plugins"
       logged_in_as: "Logged in as %{login}"
       new_article: "New Article"
+      new_page: "New Page"
+      new_media: "New Media"
+      new_note : "New Note"
       profile: "Profile"
       logout: "Log out &raquo;"
       home: "Home"

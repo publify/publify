@@ -4,7 +4,25 @@ pl:
       truncate: "Truncate"
       next: "Następne"
       last: "Last"
+  layouts:
+    administration:
+      new: "Nowy"
   admin:
+    settings:
+      index:
+        general_settings: "Ustawienia ogólne"
+        your_blog: "Twój blog"
+        blog_name: "Nazwa bloga"
+        blog_subtitle: "Podtytuł bloga"
+        blog_url: "Adres URL bloga"
+        language: "Język"
+        users: "Users"
+        allow_users_to_register: "Allow users to register"
+        explain_allow_users_to_register: "You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin."
+        publify_notify_new_articles_or_comments: "Publify może wysyłać powiadomienia o nowych artykułach bądź komentarzach"
+        source_email: "Źródłowy adres email"
+        email_address_used_to_notify: "Adres email używany przez Publify do wysyłania powiadomień"
+        items_to_display_in_admin_lists: "Items to display in admin lists"
     seo:
       titles:
         title_settings: "Title settings"
@@ -281,6 +299,9 @@ pl:
       sidebar_plugins: "Sidebar plugins"
       logged_in_as: "Logged in as %{login}"
       new_article: "New Article"
+      new_page: "New Page"
+      new_media: "New Media"
+      new_note : "New Note"
       profile: "Profile"
       logout: "Wyloguj &raquo;"
       home: "Home"

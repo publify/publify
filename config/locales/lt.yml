@@ -4,7 +4,25 @@ lt:
       truncate: "Truncate"
       next: "Next"
       last: "Last"
+  layouts:
+    administration:
+      new: "Neuer"
   admin:
+    settings:
+      index:
+        general_settings: "Pagrindiniai nustatymai"
+        your_blog: "Tavo dienoraščio adresas"
+        blog_name: "Dienoraščio pavadinimas"
+        blog_subtitle: "Dienoraščio subpavadinimas"
+        blog_url: "Dienoraščio adresas"
+        language: "Kalba"
+        users: "Users"
+        allow_users_to_register: "Allow users to register"
+        explain_allow_users_to_register: "You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin."
+        publify_notify_new_articles_or_comments: "Publify kann Sie benachrichtigen, wenn neue Artikel oder Kommentare angelegt werden"
+        source_email: "Email Adresse"
+        email_address_used_to_notify: "Email Adresse, die Publify beim Versenden von Benachrichtigungen verwenden soll"
+        items_to_display_in_admin_lists: "Items to display in admin lists"
     seo:
       titles:
         title_settings: "Title settings"
@@ -497,6 +515,9 @@ lt:
       sidebar_plugins: "Sidebar plugins"
       logged_in_as: "Sveiki, %{login}"
       new_article: "New Article"
+      new_page: "New Page"
+      new_media: "New Media"
+      new_note : "New Note"
       profile: "Profile"
       logout: "Atsijungti &raquo;"
       home: "Home"

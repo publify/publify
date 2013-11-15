@@ -4,7 +4,25 @@ nb-NO:
       truncate: "Truncate"
       next: "Neste"
       last: "Last"
+  layouts:
+    administration:
+      new: "Ny"
   admin:
+    settings:
+      index:
+        general_settings: "Generelle innstillinger"
+        your_blog: "Din blogg"
+        blog_name: "Bloggtittel"
+        blog_subtitle: "Undertittel for blogg"
+        blog_url: "Bloggadresse"
+        language: "Språk"
+        users: "Brukere"
+        allow_users_to_register: "Tillat brukere å registrere seg"
+        explain_allow_users_to_register: "Du kan tillate brukere å registrere seg på bloggen din. Som standard vil de registreres som bidragsytere, et upriviligert kontonivå som kun gir dem en egen profil på websiden. Dersom du ikke ønsker at brukere skal kunne registrere seg, så kan du legge dem til selv under brukerkontoer."
+        publify_notify_new_articles_or_comments: "Publify kan gi deg beskjed når nye artikler eller kommentarer er mottatt"
+        source_email: "Epostavsender"
+        email_address_used_to_notify: "Epostadresse som brukes av Publify til å sende beskjeder"
+        items_to_display_in_admin_lists: "Enheter å vise i adminlisten"
     seo:
       titles:
         title_settings: "Tittelinnstillinger"
@@ -280,7 +298,10 @@ nb-NO:
       in_page_plugins: "In page plugins"
       sidebar_plugins: "Sidebar plugins"
       logged_in_as: "Logged in as %{login}"
-      new_article: "New Article"
+      new_article: "Ny artikkel"
+      new_page: "Ny side"
+      new_media: "New Media"
+      new_note : "New Note"
       profile: "Profil"
       logout: "Logg ut &raquo;"
       home: "Hjem"

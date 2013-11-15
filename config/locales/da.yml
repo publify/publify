@@ -4,7 +4,25 @@ da:
       truncate: "Truncate"
       next: "Next"
       last: "Last"
+  layouts:
+    administration:
+      new: "Ny"
   admin:
+    settings:
+      index:
+        general_settings: "Generelle Indstillinger"
+        your_blog: "Din Blog"
+        blog_name:  "Blog titel"
+        blog_subtitle: "Blog undertitel"
+        blog_url: "Blogadresse"
+        language: "Sprog"
+        users: "Brugere"
+        allow_users_to_register: "Allow users to register"
+        explain_allow_users_to_register: "You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin."
+        publify_notify_new_articles_or_comments: "Publify kan give dig besked, når nye artikler eller kommentarer er indsendt"
+        source_email: "Afsender e-mail"
+        email_address_used_to_notify: "E-mail adresse der bruges af Publify til at sende meddelelser"
+        items_to_display_in_admin_lists: "Items to display in admin lists"
     seo:
       titles:
         title_settings: "Title settings"
@@ -108,7 +126,7 @@ da:
     pages:
       index:
         manage_pages: "Administrer sider"
-        new_page: "New Page"
+        new_page: "ny Side"
         title: "Titel"
         permalink: "Permanent link"
         author: "Forfatter"
@@ -227,7 +245,7 @@ da:
     content:
       index:
         published: "Offentliggjort"
-        new_article: "New article"
+        new_article: "Ny Artikel"
         all_articles: "All articles"
         manage_articles: "Administrer artikler"
         withdrawn: "Withdrawn"
@@ -280,7 +298,10 @@ da:
       in_page_plugins: "In page plugins"
       sidebar_plugins: "Sidebar plugins"
       logged_in_as: "Logged in as %{login}"
-      new_article: "New Article"
+      new_article: "Ny Artikel"
+      new_page: "Ny Side"
+      new_media: "New Media"
+      new_note : "New Note"
       profile: "Profile"
       logout: "Log ud &raquo;"
       home: "Home"

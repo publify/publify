@@ -110,10 +110,6 @@ Localization.define("pl_PL") do |l|
   l.store "Comments filter", "Filtr komentarzy"
   l.store "Enable gravatars", "Włącz gravatary"
   l.store "Show your email address", "Pokaż swój adres email"
-  l.store "Notifications", ""
-  l.store "Publify can notify you when new articles or comments are posted", "Publify może wysyłać powiadomienia o nowych artykułach bądź komentarzach"
-  l.store "Source Email", "Źródłowy adres email"
-  l.store "Email address used by Publify to send notifications", "Adres email używany przez Publify do wysyłania powiadomień"
   l.store "Enabling spam protection will make Publify compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "Włączenie ochrony przed spamem sprawi, iż Publify będzie porównywać adresy IP nadawców oraz treść ich postów z lokalnymi i zdalnymi czarnymi listami. To dobra obrona przed spam botami."
   l.store "Enable spam protection", "Włącz ochronę przed spamem"
   l.store "Akismet Key", "Klucz Akismet"
@@ -128,14 +124,6 @@ Localization.define("pl_PL") do |l|
   l.store "Set to 0 to never reject comments", "Ustaw 0 by komentarze były zawsze akceptowane"
 
   # app/views/admin/settings/index.html.erb
-  l.store "Your blog", "Twój blog"
-  l.store "Blog name", "Nazwa bloga"
-  l.store "Blog subtitle", "Podtytuł bloga"
-  l.store "Blog URL", "Adres URL bloga"
-  l.store "Language", "Język"
-  l.store "You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin.", ""
-  l.store "Items to display in admin lists", ""
-  l.store "Publishing options", ""
   l.store "Display", "Wyświetl"
   l.store "articles on my homepage by default", "domyślnie artykułów na stronie głównej"
   l.store "articles in my news feed by default", "domyślnie artykułów w subskrypcji RSS"
@@ -194,44 +182,12 @@ Localization.define("pl_PL") do |l|
   l.store "remove", "supprimer"
   l.store "Display name", "Wyświetlana nazwa"
   l.store "Active theme", "Temat aktywny"
-  l.store "Choose a theme", ""
-  l.store "Use this theme", ""
-
-  # app/views/admin/users/_form.html.erb
-  l.store "Account settings", ""
-  l.store "Active", ""
-  l.store "Inactive", ""
-  l.store "Profile settings", ""
-  l.store "Firstname", ""
-  l.store "Nickname", ""
-  l.store "Editor", ""
   l.store "Send notification messages via email", "Wysyłaj powiadomienia emailem"
   l.store "Send notification messages when new articles are posted", "Wysyłaj powiadomienia o nowych artykułach"
   l.store "Send notification messages when comments are posted", "Wysyłaj powiadomienia o nowych komentarzach"
-  l.store "Contact options", ""
-  l.store "Your site", ""
-  l.store "Your MSN", ""
-  l.store "Your Yahoo ID", ""
-  l.store "Your Jabber ID", ""
-  l.store "Your AIM id", ""
-  l.store "Your Twitter username", ""
-  l.store "Tell us more about you", ""
-
-  # app/views/admin/users/destroy.html.erb
   l.store "Really delete user", "Na pewno usunąć użytkownika"
-  l.store "Yes", ""
-  l.store "Users", ""
-
-  # app/views/admin/users/edit.html.erb
   l.store "Edit User", "Zmień dane użytkownika"
-
-  # app/views/admin/users/index.html.erb
   l.store "New User", "Nowy użytkownik"
-  l.store "State", ""
-  l.store "%s user", ""
-
-  # app/views/admin/users/new.html.erb
-  l.store "Add User", ""
   l.store "Posted by", "Opublikowane przez"
   l.store "Continue reading", "Czytaj dalej"
 
@@ -315,10 +271,6 @@ Localization.define("pl_PL") do |l|
 
   # vendor/plugins/xml_sidebar/views/content.rhtml
   l.store "Syndicate", "Subskrypcje"
-  l.store "Category %s", ""
-  l.store "Tag %s", ""
-
-  # Obsolete translations
   l.store "%d categories", "%d kategorie"
   l.store "%d tags", "%d tagi"
   l.store "%d users", "%d użytkownicy"
@@ -401,7 +353,6 @@ Localization.define("pl_PL") do |l|
   l.store "Feedback Search", "Przeszukaj komentarze"
   l.store "Files", "Pliki"
   l.store "Filters", "Filtry"
-  l.store "General Settings", "Ustawienia ogólne"
   l.store "HTML was cleared", "HTML opróżniono"
   l.store "IP", "Adres IP"
   l.store "Jabber", "Jabber"

@@ -66,15 +66,10 @@ Localization.define("ro_RO") do |l|
   l.store "Comments filter", "Filtru pentru comentarii"
   l.store "Enable gravatars", "Activează gravataruri"
   l.store "Show your email address", "Arată adresa ta de email"
-  l.store "Notifications", ""
-  l.store "Publify can notify you when new articles or comments are posted", "Publify te poate alerta la publicarea de noi articole sau comentarii"
-  l.store "Source Email", "Expeditor email"
-  l.store "Email address used by Publify to send notifications", "Adresa email folosită de Publify pentru a trimite alerte prin email"
   l.store "Enabling spam protection will make Publify compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "La activarea protecției anti-spam, Publify va compara adresa IP a utilizatorului care publică un articol, cît și conținutul articolului publicat, cu niște liste negre locale sau din altă parte. Reprezintă o bună apărare împotriva unui spam bot "
   l.store "Enable spam protection", "Activează protecția anti-spam"
   l.store "Akismet Key", "Cheia Akismet"
   l.store "Publify can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", "Opțional, Publify poate folosi serviciul %s de filtrare spam. Trebuie să te înregistrezi la Akismet și să primești o cheie API pentru a putea folosi acest serviciu. Dacă ai deja o cheie Akismet, introdu-o aici"
-  l.store "Disable trackbacks site-wide", ""
   l.store "This setting allows you to disable trackbacks for every article in your blog.  It won't remove existing trackbacks, but it will prevent any further attempt to add a trackback anywhere on your blog.", "Această opțiune va dezactiva trimiterea de retrolegături de acum înainte. Retrolegăturile existente vor rămîne în site-uri, dar alte retrolegături nu vor mai fi posibile nicăieri in blog."
   l.store "Disable comments after", "Dezactivează comentariile după "
   l.store "days", "zile"
@@ -83,14 +78,6 @@ Localization.define("ro_RO") do |l|
   l.store "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Publify va respinge automat comentarii și retrolegături care conțin mai mult decît un anumit număr de legături"
   l.store "Set to 0 to never reject comments", "Comentariile nu vor fi respinse niciodată dacă alegi valoarea 0"
 
-  l.store "Your blog", "Site"
-  l.store "Blog name", "Numele blogului"
-  l.store "Blog subtitle", "Subtitlul blogului"
-  l.store "Blog URL", "Adresa blogului"
-  l.store "Language", "Language" #Need translate
-  l.store "You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin.", ""
-  l.store "Items to display in admin lists", ""
-  l.store "Publishing options", ""
   l.store "Display", "Afișează"
   l.store "articles on my homepage by default", "articole implicit în pagina principală"
   l.store "articles in my news feed by default", "articole implicit în RSS"
@@ -137,10 +124,6 @@ Localization.define("ro_RO") do |l|
   l.store "Display name", "Numele real"
   l.store "Active theme", "Tema activă"
   l.store "Choose a theme", "Alege o temă"
-  l.store "Use this theme", ""
-
-  # app/views/admin/users/_form.html.erb
-  l.store "Account settings", ""
   l.store "Password confirmation", "Confirmă parola"
   l.store "Profile", ""
   l.store "Active", ""
@@ -152,34 +135,10 @@ Localization.define("ro_RO") do |l|
   l.store "Send notification messages via email", "Alerte prin email"
   l.store "Send notification messages when new articles are posted", "Alerte la publicarea de articole noi"
   l.store "Send notification messages when comments are posted", "Alerte la publicarea de comentarii noi"
-  l.store "Contact options", ""
-  l.store "Your site", ""
-  l.store "Your MSN", ""
-  l.store "Your Yahoo ID", ""
-  l.store "Your Jabber ID", ""
-  l.store "Your AIM id", ""
-  l.store "Your Twitter username", ""
-  l.store "Tell us more about you", ""
-
-  # app/views/admin/users/destroy.html.erb
   l.store "Really delete user", "Ești sigur că dorești să ștergi acest utilizator"
-  l.store "Yes", ""
-  l.store "Users", ""
-
-  # app/views/admin/users/edit.html.erb
   l.store "Edit User", "Editează un utilizator"
-
   l.store "New User", "Utilizator nou"
-  l.store "State", ""
-  l.store "%s user", ""
-
-  # app/views/admin/users/new.html.erb
-  l.store "Add User", ""
-
-  # app/views/articles/_article.html.erb
   l.store "Posted by", "Publicat de"
-  l.store "Continue reading", ""
-
   # app/views/articles/_comment.html.erb
   l.store "said", "a scris"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "Acest comentariu a fost marcat pentru moderare. El nu va apărea în blog înainte de a fi aprobat."
@@ -290,7 +249,6 @@ Localization.define("ro_RO") do |l|
   l.store "Extended Content", "Conținutul extins"
   l.store "Feedback Search", "Caută prin comentarii"
   l.store "Filters", "Filtre"
-  l.store "General Settings", "Setări generale"
   l.store "IP", "Adresa IP"
   l.store "Jabber", "Jabber"
   l.store "Jabber account", "Cont Jabber"

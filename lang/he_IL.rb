@@ -154,10 +154,6 @@ Localization.define("he_IL") do |l|
   l.store "Comments filter", "מסנן התגובות"
   l.store "Enable gravatars", "אפשר דמויות"
   l.store "Show your email address", "הצג את כתובת הדואל שלך"
-  l.store "Notifications", ""
-  l.store "Publify can notify you when new articles or comments are posted", "Publify יכולה לעדכן אותך בעת שמאמרים חדשים או תגובות נשלחות."
-  l.store "Source Email", "דואל המקור"
-  l.store "Email address used by Publify to send notifications", "כתובת הדואל שתשמש את Publify לשלוח עדכונים"
   l.store "Enabling spam protection will make Publify compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "אפשור הגנת ספאם תגרום ל-Publify להשוות כתובות ה-IP של השולחים ואת תוכן השליחה כנגד רשימות שחורות מקומיות או מרוחקות - הגנה טובה כנגד רובוטי ספאם."
   l.store "Enable spam protection", "אפשר הגנת ספאם"
   l.store "Akismet Key", "מפתח Akismet"
@@ -170,17 +166,6 @@ Localization.define("he_IL") do |l|
   l.store "Max Links", "מקסימום קישורים"
   l.store "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Publify תדחה אוטומטית תגובות ועוקבים-חזרה המכילים את כמות הקישורים מסויימת"
   l.store "Set to 0 to never reject comments", "הגדר כ-0 כדי לא לדחות תגובות לעולם"
-
-  # app/views/admin/settings/index.html.erb
-  l.store "Your blog", "הבלוג שלך"
-  l.store "Blog name", "שם הבלוג"
-  l.store "Blog subtitle", "כותרת משנה"
-  l.store "Blog URL", "כתובת הבלוג"
-  l.store "Language", "שפה"
-  l.store "Allow users to register", "אפשר למשתמשים להירשם"
-  l.store "You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin.", "תוכל לאפשר למשתמשים להירשם לבלוג שלך. כברירת מחדל, הם יירשמו כתורמים - חשבון שאינו נותן הרשאות מיוחדות אלא רק את הזכות להחזיק  חשבון באתר. אם אינך רוצה שהמשתמשים יוכלו להירשם בעצמם, תוכל להוסיף אותם בעצמך כחללק מדף זה"
-  l.store "Items to display in admin lists", ""
-  l.store "Publishing options", ""
   l.store "Display", "תצוגה"
   l.store "articles on my homepage by default", "כתבות בדף הבית שלי"
   l.store "articles in my news feed by default", "כתבות במזין החדשות שלי"
@@ -272,21 +257,12 @@ Localization.define("he_IL") do |l|
   l.store "Your Twitter username", ""
   l.store "display Twitter on public profile", ""
   l.store "Tell us more about you", ""
-
-  # app/views/admin/users/destroy.html.erb
   l.store "Really delete user", "האם אתה בטוח שברונך למחוק משתמש זה?"
   l.store "Yes", "כן"
-  l.store "Users", "משתמשים"
-
-  # app/views/admin/users/edit.html.erb
   l.store "Edit User", "ערוך משתמש"
   l.store "Comments", "תגובות"
   l.store "Add User", "הוסף משתמש"
-
   l.store "Posted by", "נכתב על ידי"
-  l.store "Continue reading", ""
-
-  l.store "said", "a dit"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "תגובה זו הועברה לביקורת. היא לא תופיע בבלוג עד אשר הכותב יאשר אותה"
 
   l.store "Your name", "השם שלך"
@@ -377,18 +353,6 @@ Localization.define("he_IL") do |l|
 
   l.store "Meta", "פרטים"
   l.store "permalink", "קישור קבוע"
-
-  # themes/true-blue-3/helpers/theme_helper.rb
-  l.store "You are here: ", ""
-
-  l.store "%%a, %%d %%b %%Y %%H:%%M", ""
-
-  l.store "later:", ""
-
-  l.store "Email address", ""
-  l.store "Your website", ""
-
-  l.store "add me to Twitter", ""
   l.store "Trackbacks for", "עוקבי חזרה עבור"
   l.store "Archives", "ארכיון"
 

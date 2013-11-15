@@ -4,7 +4,25 @@ zh-CN:
       truncate: "Truncate"
       next: "Next"
       last: "Last"
+  layouts:
+    administration:
+      new: "New"
   admin:
+    settings:
+      index:
+        general_settings: "一般設定"
+        your_blog: "你的博客"
+        blog_name: "博客名稱"
+        blog_subtitle: "副標題"
+        blog_url: "博客URL"
+        language: "言語"
+        users: "使用者"
+        allow_users_to_register: "Allow users to register"
+        explain_allow_users_to_register: "You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin."
+        publify_notify_new_articles_or_comments: "當新的文章或评论被貼上時publify會通知你"
+        source_email: "原始email"
+        email_address_used_to_notify: "email位址使用publify發出通知"
+        items_to_display_in_admin_lists: "Items to display in admin lists"
     seo:
       titles:
         title_settings: "Title settings"
@@ -280,7 +298,10 @@ zh-CN:
       in_page_plugins: "In page plugins"
       sidebar_plugins: "Sidebar plugins"
       logged_in_as: "Logged in as %{login}"
-      new_article: "New Article"
+      new_article: "新文章"
+      new_page: "新页面"
+      new_media: "New Media"
+      new_note : "New Note"
       profile: "Profile"
       logout: "登出 &raquo;"
       home: "首页"

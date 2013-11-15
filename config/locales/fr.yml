@@ -4,7 +4,25 @@ fr:
       truncate: "Truncate"
       next: "Suivant"
       last: "Last"
+  layouts:
+    administration:
+      new: "Nouveau"
   admin:
+    settings:
+      index:
+        general_settings: "General settings"
+        your_blog: "Votre blog "
+        blog_name: "Titre du blog"
+        blog_subtitle: "Sous-titre du blog"
+        blog_url: "Adresse du blog"
+        language: "Langue"
+        users: "Utilisateurs"
+        allow_users_to_register: "Autoriser les utilisateurs à s'enregistrer"
+        explain_allow_users_to_register: "Vous pouvez permettre aux utilisateurs de s'enregistrer sur votre blog. Par défaut, ils seront enregistrés come contributeurs. Cet utilisateur a un niveau faible sans droit mais qui possède sont propre profile sur le site. Si vous ne voulez pas que les utilisateurs s'enregistrent, vous pouvez les ajouter vous même dans la partie d'administration des utilisateurs."
+        publify_notify_new_articles_or_comments: "Publify peut vous alerter quand de nouveaux articles et commentaires sont publiés"
+        source_email: "Adresse courriel source"
+        email_address_used_to_notify: "Adresse courriel utilisée par Publify pour l'envoi d'alertes"
+        items_to_display_in_admin_lists: "Nombre d'éléments à afficher dans les listes"
     seo:
       titles:
         title_settings: "Paramétrage des titres"
@@ -284,6 +302,9 @@ fr:
       sidebar_plugins: "Widgets"
       logged_in_as: "Salutations, %{login}"
       new_article: "Nouvel article"
+      new_page: "Nouvelle Page"
+      new_media: "Nouveau Média"
+      new_note : "Nouvelle Note"
       profile: "Profil"
       logout: "Déconnexion &raquo;"
       home: "Tableau de bord"
