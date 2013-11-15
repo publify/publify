@@ -9,6 +9,18 @@ he-IL:
       new: "New"
   admin:
     settings:
+      update_database:
+        database_migration: "עדכוני בסיס הנתונים"
+        information: "מידע"
+        current_database_version: "גרסת בסיס הנתונים הנוכחית"
+        you_are_up_to_date: "בסיס הנתונים שלך מעודכן !"
+        migrations: "Migrations"
+        migration_pending:
+          one: "There is one migration pending."
+          other: "There are %{count} migrations pending."
+        needed_migrations: "עדכונים נדרשים"
+        update_database_now: "עדכן את בסיס הנתונים"
+        may_take_a_moment: "ייתכן כי ייקח זמן מה"
       index:
         general_settings: "General settings"
         your_blog: "הבלוג שלך"

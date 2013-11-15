@@ -138,15 +138,8 @@ Localization.define("it_IT") do |l|
 
   # app/views/admin/settings/seo.html.erb
   l.store "Search Engine Optimisation", "Ottimizzazione motori di ricerca"
-  l.store "Information", "Informazioni"
-  l.store "Current database version", "Versione corrente del database"
   l.store "New database version", "Nuova versione del database"
   l.store "Your database supports migrations", "Il tuo database supporta le migrazioni"
-  l.store "Needed migrations", "Necessarie migrazioni"
-  l.store "You are up to date!", "Aggiornato!"
-  l.store "Update database now", "Aggiorna il tuo database ora"
-  l.store "may take a moment", "attendi alcuni istanti"
-  l.store "Database migration", "Migrazione del database"
   l.store "yes", "si"
   l.store "no", "no"
 

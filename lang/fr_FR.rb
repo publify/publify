@@ -201,8 +201,6 @@ Localization.define("fr_FR") do |l|
   l.store "Enable reCaptcha", "Utiliser reCaptcha"
   l.store "Remember to set your reCaptcha keys inside config/initializers/recaptcha.rb", "N'oubliez pas de mettre votre clé d'activation dans config/initializers/recaptcha.rb"
   l.store "Feedback settings", "Paramètres des commentaires"
-
-  # app/views/admin/settings/index.html.erb
   l.store "Date format", "Afficher les dates"
   l.store "ago", "il y a"
   l.store "Time format", "Afficher les heures"
@@ -213,17 +211,8 @@ Localization.define("fr_FR") do |l|
   l.store "Show only article excerpt on feed", "Tronquer les articles dans le flux RSS"
   l.store "Feedburner ID", "Identifiant Feedburner"
   l.store "You can use your Google Feedburner account instead of Publify feed URL. To enable this, fill this form with your Feedburner ID.", "Vous pouvez utiliser votre compte Google Feedburner plutôt que votre adresse de flux Publify. Pour l'autoriser, remplissez ce formulaire avec votre identifiant Feedburner."
-
-  # app/views/admin/settings/update_database.html.erb
-  l.store "Information", "Informations"
-  l.store "Current database version", "Version actuelle de la base"
   l.store "New database version", "Nouvelle version de la base"
   l.store "Your database supports migrations", "Votre base de données supporte la mise à jour"
-  l.store "Needed migrations", "Mise à jour nécessaire"
-  l.store "You are up to date!", "Vous êtes à jour !"
-  l.store "Update database now", "Mettez votre base à jour"
-  l.store "may take a moment", "cela peut prendre un moment"
-  l.store "Database migration", "Mise à jour de la base de données"
   l.store "yes", "oui"
   l.store "no", "non"
 

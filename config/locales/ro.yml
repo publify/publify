@@ -9,6 +9,18 @@ ro:
       new: "Nou"
   admin:
     settings:
+      update_database:
+        database_migration: "Actualizări ale bazei de date"
+        information: "Informații"
+        current_database_version: "Versiunea curentă a bazei de date"
+        you_are_up_to_date: "Baza de date este la zi!"
+        migrations: "Migrations"
+        migration_pending:
+          one: "There is one migration pending."
+          other: "There are %{count} migrations pending."
+        needed_migrations: "Actualizări necesare"
+        update_database_now: "Actualizează baza de date acum"
+        may_take_a_moment: "ar putea să dureze puțin"
       index:
         general_settings: "Setări generale"
         your_blog: "Site"

@@ -9,6 +9,18 @@ en:
       new: "New"
   admin:
     settings:
+      update_database:
+        database_migration: "Database migration"
+        information: "Information"
+        current_database_version: "Current database version"
+        you_are_up_to_date: "You are up to date!"
+        migrations: "Migrations"
+        migration_pending:
+          one: "There is one migration pending."
+          other: "There are %{count} migrations pending."
+        needed_migrations: "Needed migrations"
+        update_database_now: "Update database now"
+        may_take_a_moment: "may take a moment"
       index:
         general_settings: "General settings"
         your_blog: "Your blog"

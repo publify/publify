@@ -263,15 +263,8 @@ Localization.define("nb_NO") do |l|
   l.store "You can use your Google Feedburner account instead of Publify feed URL. To enable this, fill this form with your Feedburner ID.", "Du kan bruke din Gooogle Feedburner-konto istedet for Publify feed URL. For å aktivere dette, fyll ut dette skjemaet med din Feedburner ID."
 
   # app/views/admin/settings/update_database.html.erb
-  l.store "Information", "Informasjon"
-  l.store "Current database version", "Nåværende databaseversjon"
   l.store "New database version", "Ny databaseversjon"
   l.store "Your database supports migrations", "Din database støtter migrations"
-  l.store "Needed migrations", "Manglende migrations"
-  l.store "You are up to date!", "Du er oppdatert!"
-  l.store "Update database now", "Oppdater database nå"
-  l.store "may take a moment", "kan vare et øyeblikk"
-  l.store "Database migration", "Databasemigreringer"
   l.store "yes", "ja"
   l.store "no", "nei"
 

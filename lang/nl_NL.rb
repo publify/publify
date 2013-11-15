@@ -226,15 +226,8 @@ Localization.define("nl_NL") do |l|
   l.store "Search Engine Optimization", "Zoekmachine optimalisatie"
 
   # app/views/admin/settings/update_database.html.erb
-  l.store "Information", "Informatie"
-  l.store "Current database version", "Huidige database versie"
   l.store "New database version", "Nieuwe database versie"
   l.store "Your database supports migrations", "Je database ondersteunt migraties"
-  l.store "Needed migrations", "Benodigde migraties"
-  l.store "You are up to date!", "Je bent bij de tijd!"
-  l.store "Update database now", "Werk database nu bij"
-  l.store "may take a moment", "kan even duren"
-  l.store "Database migration", "Database migratie"
   l.store "yes", "ja"
   l.store "no", "nee"
 

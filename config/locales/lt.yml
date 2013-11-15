@@ -9,6 +9,18 @@ lt:
       new: "Neuer"
   admin:
     settings:
+      update_database:
+        database_migration: "Datenbank Migration"
+        information: "Information"
+        current_database_version: "Aktuelle Datenbank Version"
+        you_are_up_to_date: "Sie sind auf dem aktuellsten Stand!"
+        migrations: "Migrations"
+        migration_pending:
+          one: "There is one migration pending."
+          other: "There are %{count} migrations pending."
+        needed_migrations: "Migrationen sind notwendig"
+        update_database_now: "Update der Datenbank jetzt"
+        may_take_a_moment: "dauert einen Moment"
       index:
         general_settings: "Pagrindiniai nustatymai"
         your_blog: "Tavo dienoraščio adresas"

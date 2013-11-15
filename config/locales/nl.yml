@@ -9,6 +9,18 @@ nl:
       new: "Nieuwe"
   admin:
     settings:
+      update_database:
+        database_migration: "Database migratie"
+        information: "Informatie"
+        current_database_version: "Huidige database versie"
+        you_are_up_to_date: "Je bent bij de tijd!"
+        migrations: "Migrations"
+        migration_pending:
+          one: "There is one migration pending."
+          other: "There are %{count} migrations pending."
+        needed_migrations: "Benodigde migraties"
+        update_database_now: "Werk database nu bij"
+        may_take_a_moment: "kan even duren"
       index:
         general_settings: "Algemene instellingen"
         your_blog: "Je blog"

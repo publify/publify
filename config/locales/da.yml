@@ -9,6 +9,18 @@ da:
       new: "Ny"
   admin:
     settings:
+      update_database:
+        database_migration: "Database migration"
+        information: "Information"
+        current_database_version: "Nuværende database version"
+        you_are_up_to_date: "Du er up to date!"
+        migrations: "Migrations"
+        migration_pending:
+          one: "There is one migration pending."
+          other: "There are %{count} migrations pending."
+        needed_migrations: "Manglende migrations"
+        update_database_now: "Updatér database nu"
+        may_take_a_moment: "Det varer et øjeblik"
       index:
         general_settings: "Generelle Indstillinger"
         your_blog: "Din Blog"

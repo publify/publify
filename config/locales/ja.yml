@@ -9,6 +9,18 @@ ja:
       new: "New"
   admin:
     settings:
+      update_database:
+        database_migration: "データベースマイグレーション"
+        information: "インフォメーション"
+        current_database_version: "現在のデータベースのバージョン"
+        you_are_up_to_date: "最新です!"
+        migrations: "Migrations"
+        migration_pending:
+          one: "There is one migration pending."
+          other: "There are %{count} migrations pending."
+        needed_migrations: "マイグレーションが必要です"
+        update_database_now: "データベースを今すぐ更新"
+        may_take_a_moment: "少しお待ちください"
       index:
         general_settings: "General settings"
         your_blog: "あなたのブログ"

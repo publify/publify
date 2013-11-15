@@ -9,6 +9,18 @@ fr:
       new: "Nouveau"
   admin:
     settings:
+      update_database:
+        database_migration: "Mise à jour de la base de données"
+        information: "Informations"
+        current_database_version: "Version actuelle de la base"
+        you_are_up_to_date: "Vous êtes à jour !"
+        migrations: "Migrations"
+        migration_pending:
+          one: "There is one migration pending."
+          other: "There are %{count} migrations pending."
+        needed_migrations: "Mise à jour nécessaire"
+        update_database_now: "Mettez votre base à jour"
+        may_take_a_moment: "cela peut prendre un moment"
       index:
         general_settings: "General settings"
         your_blog: "Votre blog "

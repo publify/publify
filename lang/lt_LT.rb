@@ -96,15 +96,8 @@ Localization.define("lt_LT") do |l|
   l.store "articles on my homepage by default", "straipsniai pradžioje pagal nutylėjimą"
   l.store "articles in my news feed by default", "straipsniai naujienų sraute pagal nutylėjimą"
   l.store "Show full article on feed", "Rodyti pilną straipsnį RSS sraute"
-  l.store "Information", "Information"
-  l.store "Current database version", "Aktuelle Datenbank Version"
   l.store "New database version", "Neue Datenbank Version"
   l.store "Your database supports migrations", "Ihre Datenbank unterstützt Migrationen"
-  l.store "Needed migrations", "Migrationen sind notwendig"
-  l.store "You are up to date!", "Sie sind auf dem aktuellsten Stand!"
-  l.store "Update database now", "Update der Datenbank jetzt"
-  l.store "may take a moment", "dauert einen Moment"
-  l.store "Database migration", "Datenbank Migration"
   l.store "yes", "ja"
   l.store "no", "nein"
 
@@ -167,9 +160,7 @@ Localization.define("lt_LT") do |l|
   l.store "posted in", ""
 
   l.store "is about to say", "pasakoja apie"
-
   l.store "There are", "Čia yra"
-
   l.store "Leave a response", "Palikti atsakymą"
   l.store "Trackbacks", ""
   l.store "Use the following link to trackback from your own site", "Dienoraščio nuoroda (trackback)"

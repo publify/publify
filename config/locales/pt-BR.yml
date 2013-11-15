@@ -9,6 +9,18 @@ pt-BR:
       new: "Nuevo"
   admin:
     settings:
+      update_database:
+        database_migration: "Migraci&oacute;n de la base de datos"
+        information: "Informaci&oacute;n"
+        current_database_version: "Versi&oacute;n actual de la base de datos"
+        you_are_up_to_date: "Est&aacute;s al d&iacute;a!"
+        migrations: "Migrations"
+        migration_pending:
+          one: "There is one migration pending."
+          other: "There are %{count} migrations pending."
+        needed_migrations: "Migraciones necesarias"
+        update_database_now: "Actualizar la base de datos ahora"
+        may_take_a_moment: "puede tomar un momento"
       index:
         general_settings: "Preferencias generales"
         your_blog: "tu blog"

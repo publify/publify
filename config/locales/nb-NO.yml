@@ -9,6 +9,18 @@ nb-NO:
       new: "Ny"
   admin:
     settings:
+      update_database:
+        database_migration: "Databasemigreringer"
+        information: "Informasjon"
+        current_database_version: "Nåværende databaseversjon"
+        you_are_up_to_date: "Du er oppdatert!"
+        migrations: "Migrations"
+        migration_pending:
+          one: "There is one migration pending."
+          other: "There are %{count} migrations pending."
+        needed_migrations: "Manglende migrations"
+        update_database_now: "Oppdater database nå"
+        may_take_a_moment: "kan vare et øyeblikk"
       index:
         general_settings: "Generelle innstillinger"
         your_blog: "Din blogg"
