@@ -53,14 +53,19 @@ class Note < Content
     end
   end
 
-  def twitter_message_max_length
-    140 - (7 + TWITTER_LINK_LENGTH)
+  def truncate(message, length)
+    if message[length + 1] == ' '
+      message[0..length]
+    else
+      message[0..(message[0..length].rindex(' ') - 1)]
+    end
   end
 
   def twitter_message
     base_message = self.body.strip_html
-    if too_long?(base_message)
-      "#{base_message[0..twitter_message_max_length]}... (#{self.redirects.first.to_url})"
+    if too_long?("#{base_message} (#{short_link})")
+      max_length = 140 - "... (#{redirects.first.to_url})".length - 1
+      "#{truncate(base_message, max_length)}... (#{self.redirects.first.to_url})"
     else
       "#{base_message} (#{short_link})"
     end
@@ -139,6 +144,6 @@ class Note < Content
       end
       message = message.gsub(uri, payload)
     end
-    message.length > twitter_message_max_length
+    message.length > 140
   end
 end

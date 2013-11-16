@@ -115,22 +115,35 @@ describe Note do
 
       context "with a short message with short HTTP url" do
         let(:tweet) { "A message with a short URL http://foo.com" }
-        it { expect(note.twitter_message).to start_with(tweet) }
+        it { expect(note.twitter_message).to eq("#{tweet} (#{note.short_link})") }
       end
 
       context "with a short message much more than 114 char" do
-        let(:tweet) { "A very big(10) message with lot of text (40)inside just to try the shortener and (80)the new link that publify must construct(124)" }
-        it { expect(note.twitter_message).to start_with(tweet[0..note.twitter_message_max_length]) }
-        it { expect(note.twitter_message).to_not include(tweet[113..-1]) }
+        let(:tweet) { "A very big(10) message with lot of text (40)inside just to try the shortener and (80)the new link that publify must create and add at the end" }
+        let(:expected_tweet) { "A very big(10) message with lot of text (40)inside just to try the shortener and (80)the new link that publify... (#{note.redirects.first.to_url})" }
+        it { expect(note.twitter_message).to eq(expected_tweet) }
+        it { expect(note.twitter_message.length).to eq(140) }
         it { expect(note.twitter_message).to end_with(" (#{note.redirects.first.to_url})") }
       end
 
       context "with a bug message" do
         let(:tweet) { "\"JSFuck is an esoteric and educational programming style based on the atomic parts of JavaScript. It uses only six different characters to write and execute code.\" http://www.jsfuck.com/ " }
+        let(:expected_tweet) { "\"JSFuck is an esoteric and educational programming style based on the atomic parts of JavaScript. It uses only... (#{note.redirects.first.to_url})" }
 
-        it { expect(note.twitter_message).to start_with(tweet[0..note.twitter_message_max_length]) }
+        it { expect(note.twitter_message).to eq(expected_tweet) }
+        it { expect(note.twitter_message.length).to eq(140) }
         it { expect(note.twitter_message).to end_with(" (#{note.redirects.first.to_url})") }
       end
+
+      context "don't cut word" do
+        let(:tweet) { "Le #mobprogramming c'est un peu comme faire un dojo sur une journée entière (ça permet sûrement de faire des petites journées ;-))" }
+        let(:expected_tweet) { "Le #mobprogramming c'est un peu comme faire un dojo sur une journée entière (ça permet sûrement de faire des... (#{note.redirects.first.to_url})" }
+
+        it { expect(note.twitter_message).to eq(expected_tweet) }
+        it { expect(note.twitter_message.length).to eq(138) }
+        it { expect(note.twitter_message).to end_with(" (#{note.redirects.first.to_url})") }
+      end
+
     end
   end
 
