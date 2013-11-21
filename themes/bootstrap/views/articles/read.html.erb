@@ -5,7 +5,7 @@
 
   <%= render 'articles/meta', article: @article %>
 
-    <% if @article.user.twitter %>
+    <% if @article.user.twitter.present? %>
     <div class='well'>
       <%= _("If you liked this article you can %s", link_to(_("add me to Twitter"), "http://twitter.com/#{@article.user.twitter}"))%>
     </div>
