@@ -93,7 +93,7 @@ Localization.define("ru_RU") do |l|
   l.store "Items to display in admin lists", "Элементы для отображения в администраторских списках"
   l.store "Show full article on feed", "Показывать полные версии статей в ленте"
   l.store "Feedburner ID", ""
-  l.store "General settings", "Главные настройки"
+  l.store "General settings", "Основные настройки"
   l.store "You can use your Google Feedburner account instead of Publify feed URL. To enable this, fill this form with your Feedburner ID.", "Вы можете использовать учетную запись сервиса Google Feedburner вместо использования URL’а, которые дает Publify. Для этого введите в форму свой Feedburner ID."
 
   # app/views/articles/_comment_box.html.erb
