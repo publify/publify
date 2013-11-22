@@ -26,7 +26,7 @@
     <div id="editor">
       <i class='glyphicon glyphicon-picture'></i> 
       <span id='image-link'>
-        <a href="#" onclick="Element.toggle('carousel-wrapper'); return false"><%= t('.images')%></a>
+        <%= toggle_element('carousel-wrapper', t('.images')) %>
       </span>
       <div id='quicktags'>
         <script type="text/javascript">edToolbar('article_body_and_extended', '<%= @article.text_filter %>');</script>
@@ -53,16 +53,16 @@
         <div class='control-group'>
           <p>
             <%= t(".status") %>: <strong><%= _(@article.state.to_s.downcase) %></strong>
-            <a href="#" class="extoggle status"><%= t('.change')%></a>
+            <%= toggle_element('status') %>
           </p>
-          <div id='status' style='display: block;'>
+          <div id='status' class='collapse'>
             <label for="article_published" class='checkbox'>
               <%= check_box 'article', 'published'  %>
               <%= t(".published") %>
             </label>
             <p>
-              <span class='btn btn-mini'>
-                <a href="#" class="extoggle status">OK</a>
+              <span class='btn btn-mini btn-default'>
+                <%= toggle_element('status', t('.ok')) %>
               </span>
             </p>
           </div>
@@ -73,9 +73,9 @@
         <div class='control-group'>
           <p>
             <%= t(".allowed_comments_and_trackbacks", allow_comment: content_tag(:strong, get_feedback_status(@article.allow_comments)), allow_trackback: content_tag(:strong, get_feedback_status(@article.allow_pings))) %>
-            <a href="#" class="extoggle conversation" ><%= t('.change')%></a>
+            <%= toggle_element('conversation') %>
           </p>
-          <div id='conversation' style='display: block'>
+          <div id='conversation' class='collapse'>
             <label for="article_allow_pings" class='checkbox'>
               <%= check_box 'article', 'allow_pings' %>
               <%= t(".allow_trackbacks") %>
@@ -85,8 +85,8 @@
               <%= t(".allow_comments") %>
             </label>
             <p>
-              <span class='btn btn-mini'>
-                <a href="#" class="extoggle conversation"><%= t('.ok')%></a>
+              <span class='btn btn-mini btn-default'>
+                <%= toggle_element('conversation', t('.ok')) %>
               </span>
             </p>
           </div>
@@ -97,13 +97,13 @@
         <div class='control-group'>
           <p>
             <%= t(".published") %> <strong><%= publish_now_or_already_published @article %></strong>
-            <a href="#" class="extoggle publish" ><%= t('.change')%></a>
+            <%= toggle_element('publish') %>
           </p>
-          <div id='publish' class='input-append' style='display: block;'>
+          <div id='publish' class='collapse'>
             <%= text_field 'article', 'published_at', :class => "datepicker" %>
             <p>
-              <span class="btn btn-mini">
-                <a href="#" class="extoggle status"><%= t('.ok')%></a>
+              <span class="btn btn-mini btn-default">
+                <%= toggle_element('publish', t('.ok')) %>
               </span>
             </p>
           </div>
@@ -114,10 +114,17 @@
         <div class='control-group'>
           <p>
             <%= t(".visibility") %>: <strong><%= @article.password.nil? || @article.password.empty? ? t(".public") : t(".protected") %></strong>
-            <a href="#" class="extoggle visibility" ><%= t('.change')%></a>
+            <%= toggle_element('visibility') %>
           </p>
-          <div id='visibility' style='display: block'>
+          <div id='visibility' class='collapse'>
             <label for="article_password"><%= t(".password") %></label>
+            <%= text_field 'article', 'published_at', :class => "form-control" %>
+            <p>
+              <span class="btn btn-mini btn-default">
+                <%= toggle_element('visibility', t('.ok')) %>
+              </span>
+            </p>
+            
           </div>
         </div>
         <!-- End of password block -->

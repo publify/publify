@@ -1,21 +1,25 @@
 <div>
-  <i class='icon icon-question-sign'></i> <%= link_to(_("Show help on Publify macros") + " (+/-)", :remote => true) %>
-  <table class='table table-striped' id='macros' style='display: none'>
-    <thead>
-      <tr>
-        <th><%= _("Name") %></th>
-        <th><%= _("Description") %></th>
-        <th><%= _("Tag") %></th>
-      </tr>
-    </thead>
-    <tbody>
-    <% for macro in @macros.sort_by { |f| f.short_name } %>
-      <tr>
-        <td><%= macro_help_popup(macro, macro.display_name) %></td>
-        <td><%= h(macro.description) %></td>
-        <td><code>&lt;<%= h(macro.short_name) %>&gt;</code></td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
+  <i class='icon icon-question-sign'></i> 
+  <%= toggle_element('macros', _("Show help on Publify macros") + " (+/-)") %>
+  <div id='macros' class='collapse'>
+    <table class='table table-striped'>
+      <thead>
+        <tr>
+          <th><%= _("Name") %></th>
+          <th><%= _("Description") %></th>
+          <th><%= _("Tag") %></th>
+        </tr>
+      </thead>
+      <tbody>
+      <% for macro in @macros.sort_by { |f| f.short_name } %>
+        <tr>
+          <td><%= macro_help_popup(macro, macro.display_name) %></td>
+          <td><%= h(macro.description) %></td>
+          <td><code>&lt;<%= h(macro.short_name) %>&gt;</code></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    
+  </div>
 </div>

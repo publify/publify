@@ -1,4 +1,4 @@
-<div id="carousel-wrapper" <%= 'style="display: none;"' %>>
+<div id="carousel-wrapper" class="collapse">
     <div id="carousel-content">
       <% images.each do |image| %>
         <div class="slide">
@@ -7,9 +7,7 @@
       <% end %>
     </div>
 </div>
-<!--
-<a href="javascript:" class="carousel-control" rel="next">Next</a>
--->
+
 <script type='text/javascript'>
 new Carousel('carousel-wrapper', $$('#carousel-content .slide'), $$('a.carousel-control', 'a.carousel-jumper'), {duration: 0.4, circular: false});
 </script>
