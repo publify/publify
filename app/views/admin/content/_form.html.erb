@@ -4,9 +4,9 @@
 <div id="article_keywords_auto_complete" class="auto_complete"></div>
 
 <div class='row'>
-  <div class='col-md-10 col-md-offset-2'>
-    <%= link_to(t('.cancel'), {action: 'index'}, {class: 'btn btn-danger'}) %>
+  <div class='col-md-12'>
     <div class='pull-right'>
+      <%= link_to(t('.cancel'), {action: 'index'}, {class: 'btn btn-default'}) %>
       <span id='preview_link'>
         <%= link_to(t(".preview"), {controller: '/articles', action: 'preview', id: @article.id}, {target: 'new', class: 'btn btn-default'}) if @article.id %>
       </span>
@@ -44,6 +44,7 @@
         <div id='simple_editor'>
           <%= text_area('article', 'body_and_extended', {:class => 'form-control ', :height => '360px', placeholder: t('.type_your_post'), :"data-widearea" => "enable"}) %>
           <script type="text/javascript">
+          
                wideArea();
           </script>
         </div>
