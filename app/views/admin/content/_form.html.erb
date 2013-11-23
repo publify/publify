@@ -42,7 +42,10 @@
           -->
 
         <div id='simple_editor'>
-          <%= text_area('article', 'body_and_extended', {:class => 'form-control', :height => '360px', placeholder: t('.type_your_post')}) %>
+          <%= text_area('article', 'body_and_extended', {:class => 'form-control ', :height => '360px', placeholder: t('.type_your_post'), :"data-widearea" => "enable"}) %>
+          <script type="text/javascript">
+               wideArea();
+          </script>
         </div>
       </div> <!-- End of editor -->
       
