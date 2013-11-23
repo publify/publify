@@ -3,7 +3,7 @@ require 'base64'
 module Admin; end
 
 class Admin::ContentController < Admin::BaseController
-  layout "administration", except: [:show, :autosave]
+  layout :get_layout
 
   cache_sweeper :blog_sweeper
 
@@ -177,5 +177,16 @@ class Admin::ContentController < Admin::BaseController
     @article.save_attachments!(params[:attachments])
     @article.state = "draft" if @article.draft
     @article.text_filter ||= current_user.default_text_filter
+  end
+  
+  def get_layout
+    case action_name
+    when "new", "edit", "create"
+      "editor"
+    when "show", "autosave"
+      nil
+    else
+      "administration"
+    end
   end
 end

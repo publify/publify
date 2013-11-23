@@ -311,6 +311,7 @@ fr:
         categories: "Catégories"
         tags: "Labels"
         tags_explaination: "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;."
+        type_your_post: "Tapez votre texte"
       categories:
         new_category: "Nouvelle catégorie"
     categories:

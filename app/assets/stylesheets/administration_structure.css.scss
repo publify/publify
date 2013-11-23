@@ -202,3 +202,29 @@ a.delete:focus {
 .btn-action {
   padding: 4px;
 }
+
+#article_title {
+  font-size: 3em;
+  border: none;
+  font-weight: 500;
+  line-height: 1.1;
+  height: 1.5em;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  -webkit-transition: none;
+          transition: none;
+          padding-left: 0;
+}
+
+#article_body_and_extended {
+  font-size: 1.8em;
+  border: none;
+  font-weight: 500;
+  line-height: 1.4;
+  height: 2.2em;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  -webkit-transition: none;
+          transition: none;
+          padding-left: 0;
+}

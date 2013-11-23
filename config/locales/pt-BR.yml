@@ -308,6 +308,7 @@ pt-BR:
         categories: "Categorias"
         tags: "Tags"
         tags_explaination: "Separe as tags com vírgulas. Use áspas duplas (&quot;) em palavras compostas, ex: opera-house."
+        type_your_post: "Type your post"
       categories:
         new_category: "Nova Categoria"
     categories:
