@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <title><%= this_blog.blog_name %> – <%= controller.controller_name %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="imagetoolbar" content="no" />
+  <%= stylesheet_link_tag 'publify_admin', 'widearea' %>
+  <%= javascript_include_tag 'publify_admin', 'widearea' %>
+  <style type="text/css">
+    #carousel-content .slide { width: <%= this_blog.image_thumb_size %>; }
+    @font-face {
+      font-family: 'Open Sans';
+      font-style: normal;
+      font-weight: 400;
+      src: local('Open Sans'), local('OpenSans'), url(<%= File.join(this_blog.base_url, 'stylesheets', 'fonts', 'open-sans.woff') %>) format('woff');
+    }
+    @font-face {
+      font-family: 'Open Sans';
+      font-style: normal;
+      font-weight: 700;
+      src: local('Open Sans Bold'), local('OpenSans-Bold'), url(<%= File.join(this_blog.base_url, 'stylesheets', 'fonts', 'open-sans-bold.woff') %>) format('woff');
+    }
+  </style>
+
+</head>
+<body>
+  <div id='main'>
+    <div class='row'>
+      <div class='col-md-12'>
+        <%= render_the_flash %>
+        <%= yield  %>
+      </div>
+    </div>  
+  </div>
+</body>
+</html>

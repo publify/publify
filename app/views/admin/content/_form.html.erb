@@ -4,48 +4,65 @@
 <div id="article_keywords_auto_complete" class="auto_complete"></div>
 
 <div class='row'>
-  <div class='col-md-8 col-md-offset-2'>
-    <h2 class='page-header'>
-      <i class="glyphicon glyphicon-large glyphicon-pencil"></i>
-      <%= _("#{controller.action_name.to_s.capitalize} article") %>
-      <span class='pull-right'>
-        <span id='preview_link'>
-          <%= link_to(t(".preview"), {controller: '/articles', action: 'preview', id: @article.id}, {target: 'new', class: 'btn btn-default'}) if @article.id %>
-        </span>
-        <input id='save_draft' type="submit" value="<%= t('.save_as_draft') %>" name="article[draft]" class='btn btn-default' />
-        <!-- Button trigger modal -->
-        <button class="btn btn-success" data-toggle="modal" data-target="#publishOptions">
-          <%= t('.publish') %>
-        </button>
+  <div class='col-md-12'>
+    <div class='pull-right'>
+      <%= link_to(t('.cancel'), {action: 'index'}, {class: 'btn btn-default'}) %>
+      <span id='preview_link'>
+        <%= link_to(t(".preview"), {controller: '/articles', action: 'preview', id: @article.id}, {target: 'new', class: 'btn btn-default'}) if @article.id %>
       </span>
-    </h2>
-
-    <%= error_messages_for 'article' %>
+      <input id='save_draft' type="submit" value="<%= t('.save_as_draft') %>" name="article[draft]" class='btn btn-default' />
+      <!-- Button trigger modal -->
+      <button class="btn btn-success" data-toggle="modal" data-target="#publishOptions">
+        <%= t('.publish') %>
+      </button>    
+    </div>  
+  </div>
+  
+</div>
+<div class='row'>
+  <div class='col-md-8 col-md-offset-2' style='padding-top: 20px'>
+    <%= error_messages_for 'article' %>    
     
-    <div class='well'>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-md-2' id='quicktags-block'>
+    <div id='quicktags' style='padding-top: 10px;' class='pull-right'>
+      <script type="text/javascript">edToolbar('article_body_and_extended', '<%= @article.text_filter %>');</script>
+      <%#= render 'admin/shared/macros' %>
+      
+    </div>
+    
+  </div>
+  <div class='col-md-8'>
       <div>
         <%= text_field 'article', 'title', :class => 'form-control', :placeholder => t('.title') %>
       </div>
-      <%= render('images', { :images => @images}) unless @images.empty? %>
+      <%#= render('images', { :images => @images}) unless @images.empty? %>
   
       <div id="editor">
+        <!--
         <i class='glyphicon glyphicon-picture'></i> 
         <span id='image-link'>
           <%= toggle_element('carousel-wrapper', t('.images')) %>
         </span>
-        <div id='quicktags'>
-          <script type="text/javascript">edToolbar('article_body_and_extended', '<%= @article.text_filter %>');</script>
-        </div>
+          -->
 
         <div id='simple_editor'>
-          <%= text_area('article', 'body_and_extended', {:class => 'form-control', :height => '360px'}) %>
-          <%= render 'admin/shared/macros' %>
+          <%= text_area('article', 'body_and_extended', {:class => 'form-control ', :height => '360px', placeholder: t('.type_your_post'), :"data-widearea" => "enable"}) %>
+          <script type="text/javascript">
+          if (document.getElementById('article_id').value == "") {
+            wideArea().clearData("#article_body_and_extended");;
+          } else {
+            adaptiveheight($("#article_body_and_extended"));
+          }
+          wideArea();
+          </script>
         </div>
       </div> <!-- End of editor -->
       
-      <div class='separator'></div>
     </div>
-  </div>
+
 
 <!-- Modal -->
 <div class="modal fade" id="publishOptions" tabindex="-1" role="dialog" aria-labelledby="publishOptions" aria-hidden="true">

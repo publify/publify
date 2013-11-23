@@ -171,6 +171,7 @@ ja:
         article_filter: "記事フィルター"
         permanent_link: "Permanent link"
         page_with_action_name: "%{action} page"
+        type_your_post: "Type your post"
     feedback:
       index:
         feedback: "フィードバック"
@@ -308,6 +309,7 @@ ja:
         categories: "カテゴリ"
         tags: "タグ"
         tags_explaination: "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;."
+        type_your_post: "Type your post"
       categories:
         new_category: "New Category"
     categories:

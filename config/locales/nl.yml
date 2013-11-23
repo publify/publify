@@ -171,6 +171,7 @@ nl:
         article_filter: "Artikel filter"
         permanent_link: "Permanente link"
         page_with_action_name: "%{action} page"
+        type_your_post: "Type your post"
     feedback:
       index:
         feedback: "Feedback"
@@ -308,6 +309,7 @@ nl:
         categories: "Categoriën"
         tags: "Trefwoorden"
         tags_explaination: "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;."
+        type_your_post: "Type your post"
       categories:
         new_category: "Nieuwe categorie"
     categories:

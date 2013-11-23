@@ -171,6 +171,7 @@ pt-BR:
         article_filter: "Filtro de artigo"
         permanent_link: "Permanent link"
         page_with_action_name: "%{action} page"
+        type_your_post: "Type your post"
     feedback:
       index:
         feedback: "Feedback"
@@ -308,6 +309,7 @@ pt-BR:
         categories: "Categorias"
         tags: "Tags"
         tags_explaination: "Separe as tags com vírgulas. Use áspas duplas (&quot;) em palavras compostas, ex: opera-house."
+        type_your_post: "Type your post"
       categories:
         new_category: "Nova Categoria"
     categories:

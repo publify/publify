@@ -171,6 +171,7 @@ nb-NO:
         article_filter: "artikkelfilter"
         permanent_link: "Permanent lenke"
         page_with_action_name: "%{action} page"
+        type_your_post: "Type your post"
     feedback:
       index:
         feedback: "Diskusjon"
@@ -308,6 +309,7 @@ nb-NO:
         categories: "Kategorier"
         tags: "Tags"
         tags_explaination: "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;."
+        type_your_post: "Type your post"
       categories:
         new_category: "Ny kategori"
     categories:

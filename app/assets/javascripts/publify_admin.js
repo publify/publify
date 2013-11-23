@@ -8,4 +8,6 @@
 //= require_self
 //= require gritter
 //= require quicktags
+//= require admin_publify
+
 // Front javascript manifest

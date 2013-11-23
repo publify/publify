@@ -211,7 +211,7 @@ function edSpell(which) {
 function edToolbar(which, textfilter) {
   get_buttons(textfilter);
         
-	document.write('<div id="ed_toolbar_' + which + '" class="btn-toolbar"><div class="btn-group">');
+	document.write('<div id="ed_toolbar_' + which + '" class="btn-toolbar"><div class="btn-group-vertical">');
 	for (i = 0; i < extendedStart; i++) {
 		edShowButton(which, edButtons[i], i);
 	}
