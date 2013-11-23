@@ -227,3 +227,15 @@ a.delete:focus {
           transition: none;
           padding-left: 0;
 }
+
+#quicktags {
+  display: none;
+}
+
+#quicktags-block:hover #quicktags {
+  display: block;
+}
+
+#quicktags-block {
+  min-height: 400px;
+}

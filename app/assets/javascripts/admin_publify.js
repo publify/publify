@@ -21,7 +21,6 @@ i=0;
 j=0;
 
 $(document).ready(function() {
-  adaptiveheight($("#article_body_and_extended"));
   $("#article_body_and_extended").keyup(function (e) { adaptiveheight(this); });
   $('.autosave').each(function(e){autosave_request(e)});
   $('#article_form .new_category').each(function(cat_link){ cat_link.click(bind_new_category_overlay); });
