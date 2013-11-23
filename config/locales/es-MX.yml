@@ -292,8 +292,6 @@ es-MX:
         publish: "Publicar"
         title: "T&iacute;tulo"
         images: "Images"
-        excerpt: "Excerpt"
-        excerpt_explaination: "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself"
         publish_settings: "Publish settings"
         status: "Estado"
         published: "Publicado"

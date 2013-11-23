@@ -292,8 +292,6 @@ de:
         publish: "Veröffentlichen"
         title: "Titel"
         images: "Images"
-        excerpt: "Excerpt"
-        excerpt_explaination: "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself"
         publish_settings: "Publish settings"
         status: "Status"
         published: "Veröffentlicht"

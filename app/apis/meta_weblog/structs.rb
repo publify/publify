@@ -8,7 +8,6 @@ module MetaWeblog::Structs
     member :permaLink,          :string
     member :categories,         [:string]
     member :mt_text_more,       :string
-    member :mt_excerpt,         :string
     member :mt_keywords,        :string
     member :mt_allow_comments,  :int
     member :mt_allow_pings,     :int

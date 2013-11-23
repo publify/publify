@@ -292,8 +292,6 @@ nl:
         publish: "Publiceer"
         title: "Titel"
         images: "Afbeeldingen"
-        excerpt: "Uittreksel"
-        excerpt_explaination: "Uittreksels zijn een samenvatting van een post die alleen op de homepage staat, maar niet in de post zelf staan"
         publish_settings: "Publicatie instellingen"
         status: "Status"
         published: "Gepubliceerd"
