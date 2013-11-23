@@ -292,8 +292,6 @@ he-IL:
         publish: "פרסם"
         title: "כותרת"
         images: "Images"
-        excerpt: "Excerpt"
-        excerpt_explaination: "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself"
         publish_settings: "Publish settings"
         status: "מצב"
         published: "פורסם"

@@ -292,8 +292,6 @@ zh-CN:
         publish: "发布"
         title: "标题"
         images: "Images"
-        excerpt: "摘要"
-        excerpt_explaination: "摘要对文章的总结，只会显示在首页，不会出现在文章正文。"
         publish_settings: "发布设定"
         status: "状态"
         published: "已发表"

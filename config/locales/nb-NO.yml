@@ -292,8 +292,6 @@ nb-NO:
         publish: "Publiser"
         title: "Tittel"
         images: "Bilder"
-        excerpt: "Utdrag"
-        excerpt_explaination: "Utdrag er oppsummeringer som vises på bloggsiden, men ikke i artikkelen"
         publish_settings: "Publiseringsinnstillinger"
         status: "Status"
         published: "Publisert"

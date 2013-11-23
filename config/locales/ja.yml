@@ -292,8 +292,6 @@ ja:
         publish: "公開"
         title: "タイトル"
         images: "Images"
-        excerpt: "要約"
-        excerpt_explaination: "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself"
         publish_settings: "Publish settings"
         status: "ステータス"
         published: "公開済み"

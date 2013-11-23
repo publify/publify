@@ -292,8 +292,6 @@ pl:
         publish: "Publikuj"
         title: "Tytuł"
         images: "Grafika"
-        excerpt: "Excerpt"
-        excerpt_explaination: "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself"
         publish_settings: "Publish settings"
         status: "Stan"
         published: "Opublikowane"

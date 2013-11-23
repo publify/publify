@@ -295,8 +295,6 @@ fr:
         publish: "Publier"
         title: "Titre"
         images: "Images"
-        excerpt: "Extrait"
-        excerpt_explaination: "Les résumés vous permettent d'afficher un texte descriptif de votre article à la place de ce dernier sur la page d'accueil de votre blog"
         publish_settings: "Paramètres de publication"
         status: "État"
         published: "Publié"

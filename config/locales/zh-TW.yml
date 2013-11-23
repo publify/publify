@@ -292,8 +292,6 @@ zh-TW:
         publish: "公開"
         title: "標題"
         images: "Images"
-        excerpt: "Excerpt"
-        excerpt_explaination: "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself"
         publish_settings: "Publish settings"
         status: "身分"
         published: "已公開的"

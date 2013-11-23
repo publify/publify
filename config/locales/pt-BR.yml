@@ -292,8 +292,6 @@ pt-BR:
         publish: "Publicar"
         title: "Título"
         images: "Imagens"
-        excerpt: "Trecho"
-        excerpt_explaination: "Trechos são resumos de postagens que são exibidos apenas na página inicial"
         publish_settings: "Configurações de publicação"
         status: "Estado"
         published: "Publicado"
