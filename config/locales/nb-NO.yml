@@ -171,6 +171,7 @@ nb-NO:
         article_filter: "artikkelfilter"
         permanent_link: "Permanent lenke"
         page_with_action_name: "%{action} page"
+        type_your_post: "Type your post"
     feedback:
       index:
         feedback: "Diskusjon"

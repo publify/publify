@@ -203,7 +203,8 @@ a.delete:focus {
   padding: 4px;
 }
 
-#article_title {
+#article_title,
+#page_title {
   font-size: 2.3em;
   border: none;
   font-weight: 500;
@@ -216,7 +217,8 @@ a.delete:focus {
           padding-left: 0;
 }
 
-#article_body_and_extended {
+#article_body_and_extended,
+#page_body {
   font-size: 1.3em;
   border: none; 
   line-height: 1.4;

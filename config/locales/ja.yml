@@ -171,6 +171,7 @@ ja:
         article_filter: "記事フィルター"
         permanent_link: "Permanent link"
         page_with_action_name: "%{action} page"
+        type_your_post: "Type your post"
     feedback:
       index:
         feedback: "フィードバック"

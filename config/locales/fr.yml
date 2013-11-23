@@ -171,6 +171,7 @@ fr:
         article_filter: "Mise en forme des billets"
         permanent_link: "Lien permanent"
         page_with_action_name: "%{action} page"
+        type_your_post: "Tapez votre texte"
     feedback:
       index:
         feedback: "Commentaires"

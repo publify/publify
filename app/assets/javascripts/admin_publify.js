@@ -22,11 +22,11 @@ j=0;
 
 $(document).ready(function() {
   $("#article_body_and_extended").keyup(function (e) { adaptiveheight(this); });
+  $("#page_body").keyup(function (e) { adaptiveheight(this); });
   $('.autosave').each(function(e){autosave_request(e)});
   $('#article_form .new_category').each(function(cat_link){ cat_link.click(bind_new_category_overlay); });
   $('.merge_link').each(function(merge_link){ merge_link.click(bind_merge_link); });
 });
-
 
 function adaptiveheight(a) {
     $(a).height(0);
