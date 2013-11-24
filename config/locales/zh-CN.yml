@@ -246,12 +246,15 @@ zh-CN:
           other: "%{count}条评论"
         approved_count:
           zero: "no approved"
+          one: "1 approved"
           other: "%{count} approved"
         unconfirmed_count:
           zero: "no unconfirmed"
+          one: "1 unconfirmed"
           other: "%{count} unconfirmed"
         spam_count:
           zero: "no spam"
+          one: "1 spam"
           other: "%{count} spam"
       overview:
         dashboard_explain: "这里給你一個快速的概览，让你知道你的博客发生什么事情了。也许你想要%{available_actions}"
