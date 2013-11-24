@@ -246,12 +246,15 @@ pt-BR:
           other: "%{count} comentários"
         approved_count:
           zero: "nenhum aprovado"
+          one: "1 aprovado"
           other: "%{count} aprovado"
         unconfirmed_count:
           zero: "não confirmado"
+          one: "1 confirmado"
           other: "%{count} não confirmado"
         spam_count:
           zero: "nenhum spam"
+          one: "1 spam"
           other: "%{count} spam"
       overview:
         dashboard_explain: "Aqui você tem uma visão rápida sobre o que acontece no seu Publify e também o que você pode fazer. Talvez você queira %{available_actions}"

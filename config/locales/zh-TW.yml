@@ -246,12 +246,15 @@ zh-TW:
           other: "%{count} comments"
         approved_count:
           zero: "no approved"
+          one: "1 approved"
           other: "%{count} approved"
         unconfirmed_count:
           zero: "no unconfirmed"
+          one: "1 unconfirmed"
           other: "%{count} unconfirmed"
         spam_count:
           zero: "no spam"
+          one: "1 spam"
           other: "%{count} spam"
       overview:
         dashboard_explain: "這個地方給你一個快速的綜覽，讓你知道你的部落格發生甚麼事情了。也許你想要%{available_actions}"
