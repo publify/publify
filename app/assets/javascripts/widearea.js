@@ -421,6 +421,8 @@
     } else if (document.detachEvent) { //IE
       document.detachEvent('onkeydown', this._onKeyDown);
     }
+    
+    adaptiveheight(smallTextArea);
   }
 
   /**
