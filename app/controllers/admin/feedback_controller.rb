@@ -143,7 +143,7 @@ class Admin::FeedbackController < Admin::BaseController
     items = Feedback.find(ids)
     @unexpired = true
 
-    bulkop = params[:bulkop_top].empty? ? params[:bulkop_bottom] : params[:bulkop_top]
+    bulkop = (params[:bulkop_top]||{}).empty? ? params[:bulkop_bottom] : params[:bulkop_top]
     case bulkop
     when 'Delete Checked Items'
       count = 0
