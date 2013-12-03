@@ -1,44 +1,44 @@
 <%= error_messages_for 'user' %>
 
 <fieldset class='form-horizontal'>
-  <legend><%= _("Account settings")%></legend>
-  <div class='form-group'>
-    <label class='control-label col-sm-2' for="user_login"><%= _("Login")%></label>
-    <div class="col-sm-4">
-      <%= text_field('user', 'login', {:class => 'form-control'}) %>
+  <legend><%= t('.account_settings')%></legend>
+  <div class='control-group'>
+    <label class='control-label' for="user_login"><%= t('.login')%></label>
+    <div class='controls'>
+      <%= text_field('user', 'login', {:class => 'span5'}) %>
     </div>
   </div>
-  <div class='form-group'>
-    <label class='control-label col-sm-2' for="user_password"><%= _("Password")%></label>
-    <div class='col-sm-4'>
-      <%= password_field('user', 'password', {:class => 'form-control'}) %>
+  <div class='control-group'>
+    <label class='control-label' for="user_password"><%= t('.password')%></label>
+    <div class='controls'>
+      <%= password_field('user', 'password', {:class => 'span5'}) %>
     </div>
   </div>
-  <div class='form-group'>
-    <label class='control-label col-sm-2' for="user_password_confirmation"><%= _("Password confirmation")%></label>
-    <div class='col-sm-4'>
-      <%= password_field('user', 'password_confirmation', {:class => 'form-control'})  %>
+  <div class='control-group'>
+    <label class='control-label' for="user_password_confirmation"><%= t('.password_confirmation')%></label>
+    <div class='controls'>
+      <%= password_field('user', 'password_confirmation', {:class => 'span5'})  %>
     </div>
   </div>
-  <div class='form-group'>
-    <label class='control-label col-sm-2' for="user_email"><%= _("Email")%></label>
-    <div class='col-sm-4'>
-      <%= text_field('user', 'email', {:class => 'form-control'})  %>
+  <div class='control-group'>
+    <label class='control-label' for="user_email"><%= t('.email')%></label>
+    <div class='controls'>
+      <%= text_field('user', 'email', {:class => 'span5'})  %>
     </div>
   </div>
   <% if controller.controller_name == 'users' %>
-  <div class='form-group'>
-    <label class='control-label col-sm-2' for="user_profile"><%= _("Profile")%></label>
-    <div class='col-sm-4'>
+  <div class='control-group'>
+    <label class='control-label' for="user_profile"><%= t('.profile')%></label>
+    <div class='controls'>
       <%=  select("user", "profile_id", @profiles.collect {|p| [ _(p.nicename), p.id ] }, { :include_blank => false }) %>
     </div>
   </div>
-  <div class='form-group'>
-    <label class='control-label col-sm-2' for="user_state"><%= _("User's status")%></label>
-    <div class='col-sm-4'>
+  <div class='control-group'>
+    <label class='control-label' for="user_state"><%= t('.user_status')%></label>
+    <div class='controls'>
       <select name="user[state]">
-        <option value="active" <%= 'selected' if @user.state == 'active' %>><%= _("Active")%></option>
-        <option value="inactive" <%= 'selected' if @user.state == 'inactive'%>><%= _("Inactive")%></option>
+        <option value="active" <%= 'selected' if @user.state == 'active' %>><%= t('.active')%></option>
+        <option value="inactive" <%= 'selected' if @user.state == 'inactive'%>><%= t('.inactive')%></option>
       </select>
     </div>
   </div>
@@ -46,38 +46,38 @@
 </fieldset>
 
 <fieldset class='form-horizontal'>
-  <legend><%= _("Profile settings")%></legend>
-  <div class='form-group'>
-    <label class='control-label col-sm-2' for="user_firstname"><%= _("Firstname") %></label>
-    <div class='col-sm-4'>
-      <%= text_field('user', 'firstname', {:class => 'form-control'}) %>
+  <legend><%= t('.profile_settings')%></legend>
+  <div class='control-group'>
+    <label class='control-label' for="user_firstname"><%= t('.firstname') %></label>
+    <div class='controls'>
+      <%= text_field('user', 'firstname', {:class => 'span5'}) %>
     </div>
   </div>
-  <div class='form-group'>
-    <label class='control-label col-sm-2' for="user_lastname"><%= _("Lastname") %></label>
-    <div class='col-sm-4'>
-      <%= text_field('user', 'lastname', {:class => 'form-control'}) %>
+  <div class='control-group'>
+    <label class='control-label' for="user_lastname"><%= t('.lastname') %></label>
+    <div class='controls'>
+      <%= text_field('user', 'lastname', {:class => 'span5'}) %>
     </div>
   </div>
-  <div class='form-group'>
-    <label class='control-label col-sm-2' for="user_nickname"><%= _("Nickname") %></label>
-    <div class='col-sm-4'>
-      <%= text_field('user', 'nickname', {:class => 'form-control'}) %>
+  <div class='control-group'>
+    <label class='control-label' for="user_nickname"><%= t('.nickname') %></label>
+    <div class='controls'>
+      <%= text_field('user', 'nickname', {:class => 'span5'}) %>
     </div>
   </div>
   <% unless @user.login.nil? %>
-  <div class='form-group'>
-    <label class='control-label col-sm-2' for="user_name"><%= _("Display Name")%></label>
-    <div class='col-sm-4'>
+  <div class='control-group'>
+    <label class='control-label' for="user_name"><%= t('.display_name')%></label>
+    <div class='controls'>
       <select name="user[name]" id="user_name">
         <%= options_for_select(@user.display_names, @user.name) %>
       </select>
     </div>
   </div>
   <% end %>
-  <div class='form-group'>
-    <label class='control-label col-sm-2' for="text_filter"><%= _("Article filter")%></label>
-    <div class='col-sm-4'>
+  <div class='control-group'>
+    <label class='control-label' for="text_filter"><%= t('.article_filter')%></label>
+    <div class='controls'>
       <select name="user[text_filter_id]" id="text_filter">
         <%= options_for_select text_filter_options_with_id, @user.text_filter.id %>
       </select>
@@ -87,34 +87,34 @@
 
 <% unless controller.controller_name == 'users'%>
 <fieldset class='form-horizontal'>
-  <legend><%= _("Avatar") %></legend>
-  <p><%= display_user_avatar(current_user, 'thumb') %> <%= _("Your current avatar") %></p>
-  <div class='form-group'>
-    <label class='control-label col-sm-2' for="avatar"><%= _("Upload your image")%></label>
-    <div class='col-sm-4'>
+  <legend><%= t('.avatar') %></legend>
+  <p><%= display_user_avatar(current_user, 'thumb') %> <%= t('.avatar_current') %></p>
+  <div class='control-group'>
+    <label class='control-label' for="avatar"><%= t('.upload')%></label>
+    <div class='controls'>
       <%= file_field('user', 'filename', {:class => 'input-file'}) -%>
-      <p class='help-block'><%= _("Upload a .jpg, .png or .gif file") %></p>
+      <p class='help-block'><%= t('.upload_file') %></p>
     </div>
   </div>
 </fieldset>
 <% end %>
 
 <fieldset class='form-horizontal'>
-  <legend><%= _("Notifications")%></legend>
-  <div class='form-group'>
-    <label class='control-label col-sm-2'><%= _("Notifications") %></label>
-    <div class='col-sm-4'>
+  <legend><%= t('.notification_settings')%></legend>
+  <div class='control-group'>
+    <label class='control-label'><%= t('.notifications') %></label>
+    <div class='controls'>
       <label class='checkbox' for="user_notify_via_email">
         <%= check_box 'user', 'notify_via_email'  %>
-        <%= _("Send notification messages via email")%>?
+        <%= t('.notification_email')%>
       </label>
       <label class='checkbox' for="user_notify_on_new_articles">
         <%= check_box 'user', 'notify_on_new_articles'  %>
-        <%= _("Send notification messages when new articles are posted")%>?
+        <%= t('.notification_article')%>
       </label>
       <label class='checkbox' for="user_notify_on_comments">
         <%= check_box 'user', 'notify_on_comments'  %>
-        <%= _("Send notification messages when comments are posted")%>?
+        <%= t('.notification_comment')%>
       </label>
     </div>
   </div>
@@ -123,78 +123,78 @@
 <% unless controller.controller_name == 'users'%>
 
 <fieldset class='form-horizontal'>
-  <legend><%= _("Publish on Twitter")%></legend>
+  <legend><%= t('.twitter')%></legend>
   <%= twitter_disabled_message(this_blog, current_user) %>
-  <div class='form-group'>
-    <label class='control-label col-sm-2' for="user_twitter_account"><%= _("Twitter account")%></label>
-    <div class='col-sm-4'>
-      <%= text_field('user', 'twitter_account', {class: 'form-control', disabled: twitter_available?(this_blog, current_user)}) %>
+  <div class='control-group'>
+    <label class='control-label' for="user_twitter_account"><%= t('.twitter_account')%></label>
+    <div class='controls'>
+      <%= text_field('user', 'twitter_account', {class: 'span5', disabled: twitter_available?(this_blog, current_user)}) %>
       <p class='help-block'>The Twitter account you want to post with</p>
     </div>
   </div>
-  <div class='form-group'>
-    <label class='control-label col-sm-2' for="user_twitter_oauth_token"><%= _("Twitter oauth token")%></label>
-    <div class='col-sm-4'>
-      <%= text_field('user', 'twitter_oauth_token', {class: 'form-control', disabled: twitter_available?(this_blog, current_user)}) %>
+  <div class='control-group'>
+    <label class='control-label' for="user_twitter_oauth_token"><%= t('.twitter_oauth')%></label>
+    <div class='controls'>
+      <%= text_field('user', 'twitter_oauth_token', {class: 'span5', disabled: twitter_available?(this_blog, current_user)}) %>
     </div>
   </div>
-  <div class='form-group'>
-    <label class='control-label col-sm-2' for="user_twitter_oauth_token_secret"><%= _("Twitter oauth secret")%></label>
-    <div class='col-sm-4'>
-      <%= text_field('user', 'twitter_oauth_token_secret', {class: 'form-control', disabled: twitter_available?(this_blog, current_user)}) %>
+  <div class='control-group'>
+    <label class='control-label' for="user_twitter_oauth_token_secret"><%= t('.twitter_oauth_secret')%></label>
+    <div class='controls'>
+      <%= text_field('user', 'twitter_oauth_token_secret', {class: 'span5', disabled: twitter_available?(this_blog, current_user)}) %>
     </div>
   </div>
 </fieldset>
 
 
 <fieldset class='form-horizontal'>
-  <legend><%= _("Contact options")%></legend>
-  <div class='alert alert-info'><%= _("These information will be displayed on your %s", link_to(_("author page"), :controller => '/authors', :action => 'show', :id => current_user.login)) %></div>
-  <div class='form-group'>
-    <label class='control-label col-sm-2' for="user_url"><%= _("Your site")%></label>
-    <div class='col-sm-4'>
-      <%= text_field('user', 'url', {:class => 'form-control'}) %>
-    </div>
-    </div>
-    <div class='form-group'>
-      <label class='control-label col-sm-2' for="user_msn"><%= _("Your MSN")%></label>
-      <div class='col-sm-4'>
-        <%= text_field('user', 'msn', {:class => 'form-control'}) %>
+  <legend><%= t('.contact_settings')%></legend>
+  <div class='alert alert-info'><%= t('.contact_explain', link: link_to(t('.author_page'), :controller => '/authors', :action => 'show', :id => current_user.login)) %></div>
+  <div class='control-group'>
+    <div class='control-group'>
+      <label class='control-label' for="user_description"><%= t('.about')%></label>
+      <div class='controls'>
+        <%= text_area('user', 'description', {:class => 'span5', :rows => 5}) %>
       </div>
     </div>
-    <div class='form-group'>
-      <label class='control-label col-sm-2' for="user_yahoo"><%= _("Your Yahoo ID")%></label>
-      <div class='col-sm-4'>
-        <%= text_field('user', 'yahoo', {:class => 'form-control'}) %>
+    <label class='control-label' for="user_url"><%= t('.website')%></label>
+    <div class='controls'>
+      <%= text_field('user', 'url', {:class => 'span5'}) %>
+    </div>
+    </div>
+    <div class='control-group'>
+      <label class='control-label' for="user_msn"><%= t('.msn')%></label>
+      <div class='controls'>
+        <%= text_field('user', 'msn', {:class => 'span5'}) %>
       </div>
     </div>
-    <div class='form-group'>
-      <label class='control-label col-sm-2' for="user_jabber"><%= _("Your Jabber ID")%></label>
-      <div class='col-sm-4'>
-        <%= text_field('user', 'jabber', {:class => 'form-control'}) %>
+    <div class='control-group'>
+      <label class='control-label' for="user_yahoo"><%= t('.yahoo')%></label>
+      <div class='controls'>
+        <%= text_field('user', 'yahoo', {:class => 'span5'}) %>
       </div>
     </div>
-    <div class='form-group'>
-      <label class='control-label col-sm-2' for="user_aim"><%= _("Your AIM id")%></label>
-      <div class='col-sm-4'>
-        <%= text_field('user', 'aim', {:class => 'form-control'}) %>
+    <div class='control-group'>
+      <label class='control-label' for="user_jabber"><%= t('.jabber')%></label>
+      <div class='controls'>
+        <%= text_field('user', 'jabber', {:class => 'span5'}) %>
       </div>
     </div>
-    <div class='form-group'>
-      <label class='control-label col-sm-2' for="user_twitter"><%= _("Your Twitter username")%></label>
-      <div class='col-sm-4'>
-        <%= text_field('user', 'twitter', {:class => 'form-control'}) %>
+    <div class='control-group'>
+      <label class='control-label' for="user_aim"><%= t('.aim')%></label>
+      <div class='controls'>
+        <%= text_field('user', 'aim', {:class => 'span5'}) %>
       </div>
     </div>
-    <div class='form-group'>
-      <label class='control-label col-sm-2' for="user_description"><%= _("Tell us more about you")%></label>
-      <div class='col-sm-4'>
-        <%= text_area('user', 'description', {:class => 'form-control', :rows => 5}) %>
+    <div class='control-group'>
+      <label class='control-label' for="user_twitter"><%= t('.twitter')%></label>
+      <div class='controls'>
+        <%= text_field('user', 'twitter', {:class => 'span5'}) %>
       </div>
     </div>
   </fieldset>
   <% end %>
 
-  <div class='form-group'>
+  <div class='form-actions'>
     <%= cancel_or_save %>
   </div>
