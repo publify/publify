@@ -74,7 +74,6 @@ AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
 
   map.project_module :media, nil do |project|
     project.menu    "Media Library",  { :controller => "admin/resources", :action => "index" }
-    project.submenu    "Browse",  { :controller => "admin/resources", :action => "index" }
   end
 
   map.project_module :themes, nil do |project|
@@ -100,7 +99,6 @@ AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
 
   map.project_module :notes, nil do |project|
     project.menu "Notes",      { :controller => "admin/notes", :action => "index" }
-    project.submenu "All notes",     { :controller => "admin/notes", :action => "new" }
   end
 
   map.project_module :seo, nil do |project|

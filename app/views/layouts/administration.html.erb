@@ -103,15 +103,19 @@
     <div class="collapse navbar-collapse" id="sidebar-bottom">
       <ul class='nav navbar-nav'>
         <% for pm in current_user.project_modules %>
-        <li class='dropdown'>
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            <%= _(pm.menus.first.name) %>
-            <b class="caret"></b>
-          </a>
-          <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-            <%= subtabs_for(pm.name.to_sym)%>
-          </ul>
-        </li>
+          <% if AccessControl.submenus_for(current_user.profile_label, pm.name.to_sym).size == 0 %>
+            <%= tab_for(pm) %>
+          <% else %>
+          <li class='dropdown'>
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+              <%= _(pm.menu_name) %>
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+              <%= subtabs_for(pm.name.to_sym)%>
+            </ul>
+          </li>
+          <%end %>
         <% end %>
       </ul>
     </div>
