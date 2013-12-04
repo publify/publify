@@ -110,6 +110,14 @@ module AccessControl
       @controllers, @menus, @submenus = [], [], []
       @controllers << controller
     end
+    
+    def menu_name
+      menus.first.name
+    end
+  
+    def menu_url
+      menus.first.url
+    end
 
     def menu(name, url, options={})
       url = set_controller_from_url(url)
