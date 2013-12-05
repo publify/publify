@@ -83,7 +83,6 @@ Localization.define("nb_NO") do |l|
   # app/controllers/admin/settings_controller.rb
   l.store "Please review and save the settings before continuing", "Vennligst les igjennom og lagre innstillingene før du fortsetter"
 
-  # app/controllers/admin/sidebar_controller.rb
   l.store "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually", "Noe gikk galt. Kanskje en av dine sidekolonner mangler og du burde reinstallere den eller fjerne den manuelt"
 
   # app/controllers/admin/tags_controller.rb
@@ -268,19 +267,10 @@ Localization.define("nb_NO") do |l|
   l.store "no", "nei"
   l.store "Changes published", "Endringer publisert"
 
-  # app/views/admin/sidebar/_target.html.erb
   l.store "Drag some plugins here to fill your sidebar", "Dra og slipp plugins hit for å populere sidebar"
 
-  # app/views/admin/sidebar/index.html.erb
-  l.store "Drag and drop to change the sidebar items displayed on this blog. To remove items from the sidebar just click 'remove'. Changes are saved immediately, but not activated until you click the 'Publish changes' button", "Dra og slipp for at Dra og slipp innholdsendreen der vises på denne blog. Du kan fjerne elementer fra oversiktsoversikten bare ved at klikke fjern. endringer gemmes med det samme, men ikke aktiveret, før du klikker på 'Offentliggør' knappen."
-  l.store "Available Items", "Tilgjengelige enheter"
   l.store "You have no plugins installed", "Du har ikke installert noen plugins"
-  l.store "Active Sidebar items", "Aktive sidebar-enheter"
   l.store "Get more plugins", "Hent flere plugins"
-  l.store "Sidebar", ""
-  l.store "Publish changes", "Publiser endringer"
-  l.store "remove", "supprimer"
-
   l.store "Are you sure you want to delete the tag", "Er du sikker på at du vil slette denne taggen"
   l.store "Delete this tag", "Slett denne taggen"
 
@@ -426,19 +416,9 @@ Localization.define("nb_NO") do |l|
   l.store "Search results for:", "Søkeresultater for:"
   l.store "Read all articles in %s", "Les alle artikler i %s"
   l.store "Previous", "Forrige"
-
-  # vendor/plugins/archives_sidebar/app/views/archives_sidebar/_content.html.erb
   l.store "Archives", "Arkiv"
-
-  # vendor/plugins/authors_sidebar/app/views/authors_sidebar/_content.html.erb
   l.store "Authors", "Forfattere"
-
-  # vendor/plugins/meta_sidebar/app/views/meta_sidebar/_content.html.erb
-  l.store "RSS Feed", ""
-  l.store "Admin", ""
   l.store "Powered by Publify", "Bloggen bruker Publify"
-
-  # vendor/plugins/xml_sidebar/app/views/xml_sidebar/_content.html.erb
   l.store "Syndicate", "Syndikat"
   l.store "Category %s", "Kategori %s"
   l.store "Tag %s", ""

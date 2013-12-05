@@ -1,12 +1,11 @@
 <%- content_for :page_heading do %>
-  <i class="icon-large icon-sidebar"></i><h2 class="page-title"><%= _("Sidebar") %></h2>
+  <i class="icon-large icon-sidebar"></i><h2 class="page-title"><%= t(".sidebar") %></h2>
 <% end %>
 
-<p class='help-block'><%= _("Drag and drop to change the sidebar items displayed on this blog. To remove items from the sidebar just click 'remove'. Changes are saved immediately, but not activated until you click the 'Publish changes' button")%>.</p>
+<p class='help-block'><%= t(".explain_how_its_work") %></p>
 <%= form_tag(:url => {:action=>'publish', :method => :post }, :remote => true, :class => 'spinner') do %>
-
-<div class='form-actions'>
-	<%= cancel_or_save(_('Publish changes'))%>
+  <div class='form-actions'>
+  <%= cancel_or_save(t('.publish_changes'))%>
 </div>
 
 <div id="messages">&nbsp;</div>
@@ -14,12 +13,12 @@
 <div id="sidebar-config" class='row'>
   <div id="available" class='col-md-6'>
     <div class='well'>
-      <h3><%= _("Available Items")%></h3>
+      <h3><%= t(".available_items")%></h3>
       <div id="available_box">
-      <% if @available.blank? %>
-        <p class='alert-message warning'><%= _("You have no plugins installed")%>.</p>
+        <% if @available.blank? %>
+          <p class='alert-message warning'><%= t(".you_have_no_plugins_installed")%>.</p>
       <% else %>
-        <%= render :partial => 'available', :collection => @available %>
+          <%= render :partial => 'available', :collection => @available %>
       <% end %>
       </div>      
     </div>
@@ -28,32 +27,32 @@
   <div id="cnt-active" class='col-md-6'>
     <div class='well'>
       <h3 id="hdr-active">
-        <%= _("Active Sidebar items")%>
+        <%= t(".active_sidebar_items")%>
         <%= image_tag "spinner-blue.gif", :id => 'update_spinner',
-        :style => 'display:none;' -%>
+          :style => 'display:none;' -%>
       </h3>
-      <div id="active">
-        <% if @active.blank? %>
-        <%= render :partial => 'target' %>
+        <div id="active">
+          <% if @active.blank? %>
+            <%= render :partial => 'target' %>
         <% else %>
-        <%= render :partial => 'active', :collection => @active %>
+            <%= render :partial => 'active', :collection => @active %>
         <% end %>
-        <%#= sortable_element "active", :url => {:action => 'set_active'},
-        :tag => 'div',
-        :handle => 'handle', :containment => ['active','available_box'],
-        :loading => "new Element.show('update_spinner')" %>
+          <%#= sortable_element "active", :url => {:action => 'set_active'},
+            :tag => 'div',
+            :handle => 'handle', :containment => ['active','available_box'],
+            :loading => "new Element.show('update_spinner')" %>
+        </div>
+        </div>
       </div>
+
     </div>
-  </div>
+    <div class='form-group'>
+      <%= cancel_or_save(t('.publish_changes'))%>
+    </div>
 
-</div>
-<div class='form-group'>
-  <%= cancel_or_save(_('Publish changes'))%>
-</div>
+  <% end %>
 
-<% end %>
-
-<div class='alert alert-info'>
-  <p><%= _("You can download and install sidebar plugins from our official %s. All you have to do is upload the theme directory in your vendor/plugins directory.", "<a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>#{_("plugin repository")}</a>") %></p>  
-</div>
+    <div class='alert alert-info'>
+      <p><%= t(".download_more_plugins") %></p>  
+    </div>
 

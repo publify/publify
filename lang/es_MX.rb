@@ -80,59 +80,12 @@ Localization.define("es_MX") do |l|
   l.store "You have no plugins installed", "No tienes plugins instalados"
   l.store "Changes published", "Cambios publicados"
 
-  # app/views/admin/sidebar/_target.html.erb
   l.store "Drag some plugins here to fill your sidebar", "Arrastra algunos plugins aqu&iacute; para llenar tu barra lateral"
-
-  # app/views/admin/sidebar/index.html.erb
-  l.store "Available Items", "Items disponibles"
-  l.store "Active Sidebar items", "Items activos de la barra lateral"
-  l.store "Get more plugins", ""
-  l.store "Sidebar", ""
-  l.store "Publish changes", "Publicar cambios"
-  l.store "Displays links to monthly archives", ""
-  l.store "Livesearch", ""
-  l.store "Adds livesearch to your Publify blog", ""
-  l.store "This widget just displays links to Publify main site, this blog's admin and RSS.", ""
-  l.store "Adds basic search sidebar in your Publify blog", ""
-  l.store "Static", ""
-  l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
-  l.store "Show most popular tags for this blog", ""
-  l.store "RSS and Atom feeds", ""
-  l.store "XML Syndication", ""
   l.store "remove", "supprimer"
-
-  # app/views/admin/tags/_form.html.erb
   l.store "Display name", "Nombre para mostrar"
-
-  # app/views/admin/tags/destroy.html.erb
-  l.store "Delete this tag", ""
-
-  # app/views/admin/tags/edit.html.erb
-  l.store "Editing ", ""
-  l.store "Back to tags list", ""
-
-  # app/views/admin/tags/index.html.erb
-  l.store "Display Name", ""
-  l.store "Manage tags", ""
-
-  # app/views/admin/themes/catalogue.html.erb
-  l.store "Sorry the theme catalogue is not available", ""
-  l.store "Theme catalogue", ""
-
-  # app/views/admin/themes/index.html.erb
   l.store "Active theme", "Tema activo"
   l.store "Choose a theme", "Escoge un tema"
-  l.store "Use this theme", ""
-
-  l.store "Account settings", ""
   l.store "Password confirmation", "Confirmar Contrase&ntilde;a"
-  l.store "User's status", ""
-  l.store "Active", ""
-  l.store "Inactive", ""
-  l.store "Profile settings", ""
-  l.store "Firstname", ""
-  l.store "Nickname", ""
-  l.store "Editor", ""
   l.store "Send notification messages via email", "Enviar notificaciones por email"
   l.store "Send notification messages when new articles are posted", "Enviar notificaciones cuando un nuevo art&iacute;culo sea publicado"
   l.store "Send notification messages when comments are posted", "Enviar notificaciones cuando un nuevo comentario sea publicado"

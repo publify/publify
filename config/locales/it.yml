@@ -8,6 +8,14 @@ it:
     administration:
       new: "Nuovo"
   admin:
+    sidebar:
+      index:
+        sidebar: "Sidebar"
+        explain_how_its_works: "Trascina e rilascia per cambiare gli elementi visualizzati nella sidebar del tuo blog. Per rimuorverli clicca su annulla Cambiamenti perche' comunque non sono salvati automaticamente ma devi cliccare il bottone 'Pubblica'"
+        publish_changes: "Pubblica cambiamenti"
+        available_items: "Elementi disponibili"
+        active_sidebar_items: "Attiva elementi Sidebar"
+        download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
     settings:
       write:
         write: "Scrivi"

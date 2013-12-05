@@ -8,6 +8,14 @@ ja:
     administration:
       new: "New"
   admin:
+    sidebar:
+      index:
+        sidebar: "サイドバー"
+        explain_how_its_works: "ブログに表示するサイドバー項目をドラッグ＆ドロップで変更してください。サイドバーから項目を削除した場合はすぐに変更が保存されますが、「公開」ボタンを押すまでは有効になりません。"
+        publish_changes: "変更を公開"
+        available_items: "利用可能な項目"
+        active_sidebar_items: "有効なサイドバー項目"
+        download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
     settings:
       write:
         write: "新規作成"

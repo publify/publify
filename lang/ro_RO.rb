@@ -86,25 +86,10 @@ Localization.define("ro_RO") do |l|
 
   # app/views/admin/sidebar/_target.html.erb
   l.store "Drag some plugins here to fill your sidebar", "Trage plugin-uri aici pentru a popula bara laterală"
-
-  l.store "Drag and drop to change the sidebar items displayed on this blog. To remove items from the sidebar just click 'remove'. Changes are saved immediately, but not activated until you click the 'Publish changes' button", "Trage și lasă obiecte pe bara laterală pentru a o modifica în blog. Pentru a șterge obiecte din bara laterală, apasă pe 'șterge'. Modificările se salvează imediat, dar nu vor fi activate pînă cînd apeși butonul 'publică'"
-  l.store "Available Items", "Obiecte disponibile"
-  l.store "Active Sidebar items", "Obiecte utilizate"
-  l.store "Get more plugins", ""
-  l.store "Sidebar", ""
-  l.store "Publish changes", "Publică modificările"
-
   l.store "Display name", "Numele real"
   l.store "Active theme", "Tema activă"
   l.store "Choose a theme", "Alege o temă"
   l.store "Password confirmation", "Confirmă parola"
-  l.store "Profile", ""
-  l.store "Active", ""
-  l.store "Inactive", ""
-  l.store "Profile settings", ""
-  l.store "Firstname", ""
-  l.store "Nickname", ""
-  l.store "Editor", ""
   l.store "Send notification messages via email", "Alerte prin email"
   l.store "Send notification messages when new articles are posted", "Alerte la publicarea de articole noi"
   l.store "Send notification messages when comments are posted", "Alerte la publicarea de comentarii noi"

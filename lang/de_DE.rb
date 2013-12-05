@@ -76,15 +76,6 @@ Localization.define("de_DE") do |l|
 
   # app/views/admin/sidebar/_target.html.erb
   l.store "Drag some plugins here to fill your sidebar", "Ziehen Sie Plugins hierher, um sie in die Seitenleiste aufzunehmen"
-
-  l.store "Drag and drop to change the sidebar items displayed on this blog. To remove items from the sidebar just click 'remove'. Changes are saved immediately, but not activated until you click the 'Publish changes' button", "Verwenden Sie Drag&Drop, um die Einträge der Seitenleiste ihres Blogs zu ändern. Um Einträge zu löschen, klicken Sie auf 'remove'. Änderungen sind hier sofort sichtbar, werden aber erst permanent aktiviert, wenn Sie 'Änderungen veröffentlichen' klicken."
-  l.store "Available Items", "Verfügbare Einträge"
-  l.store "Active Sidebar items", "Aktive Einträge der Seitenleiste"
-  l.store "Get more plugins", ""
-  l.store "Sidebar", ""
-  l.store "Publish changes", "Änderungen veröffentlichen"
-  l.store "remove", "supprimer"
-
   l.store "Display name", "Anzeigename"
   l.store "Active theme", "Aktives Motiv"
   l.store "Choose a theme", "Motiv auswählen"
@@ -98,8 +89,6 @@ Localization.define("de_DE") do |l|
   l.store "Continue reading", "Weiter lesen"
   l.store "said", "sagte"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "Dieser Kommentar wurde für die Moderatorfreigabe markiert. Er wird erst nach Freigabe durch den Moderator in diesem Blog erscheinen"
-
-  # app/views/articles/_comment_box.html.erb
   l.store "Your name", "Mein Name"
   l.store "Your email", "Meine Email"
   l.store "Your message", "Meine Nachricht"

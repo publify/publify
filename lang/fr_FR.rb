@@ -217,20 +217,9 @@ Localization.define("fr_FR") do |l|
 
   # app/views/admin/shared/destroy.html.erb
   l.store "Changes published", "Modifications publiées"
-
-  # app/views/admin/sidebar/_target.html.erb
   l.store "Drag some plugins here to fill your sidebar", "Déplacez des plugins dans cet espace afin de remplir votre sidebar"
-
-  # app/views/admin/sidebar/index.html.erb
-  l.store "Drag and drop to change the sidebar items displayed on this blog. To remove items from the sidebar just click 'remove'. Changes are saved immediately, but not activated until you click the 'Publish changes' button", "Glissez / déplacez des éléments pour changer la sidebar de votre blog. Pour supprimer un élément de votre sidebar, cliquez simplement sur 'supprimer'. Les changements sont effectués immédiatement, mais ne seront pas actifs tant que vous n'aurez pas cliqué sur le bouton 'Publier'."
-  l.store "Available Items", "Éléments disponibles"
   l.store "You have no plugins installed", "Aucun plugin n'est disponible"
-  l.store "Active Sidebar items", "Éléments utilisés"
   l.store "Get more plugins", "Télécharger d'autres plugins"
-  l.store "You can download and install sidebar plugins from our official %s. All you have to do is upload the theme directory in your vendor/plugins directory.", ""
-  l.store "plugin repository", "catalogue de greffons"
-  l.store "Sidebar", "Plugins"
-  l.store "Publish changes", "Publier les modifications"
   l.store "Adds sidebar links to any Amazon.com books linked in the body of the page", "Ajoute des liens vers les articles amazon liés dans l'article ou la page"
   l.store "Displays links to monthly archives", "Affiche des liens vers les archives mensuelles"
   l.store "Displays a list of authors ordered by name with links to their articles and profile", "Affiche la liste des auteurs par ordre alphabétique avec un lien vers leur profil"

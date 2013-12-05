@@ -135,27 +135,7 @@ Localization.define("pl_PL") do |l|
   l.store "no", "nie"
   l.store "You have no plugins installed", "Brak zainstalowanych wtyczek"
   l.store "Changes published", "Opublikowane zmiany"
-
-  # app/views/admin/sidebar/_target.html.erb
   l.store "Drag some plugins here to fill your sidebar", "Przeciągnij i upuść wtyczki na pasek boczny"
-
-  # app/views/admin/sidebar/index.html.erb
-  l.store "Drag and drop to change the sidebar items displayed on this blog. To remove items from the sidebar just click 'remove'. Changes are saved immediately, but not activated until you click the 'Publish changes' button", "Przeciągnij i upuść pozycje, które mają być wyświetlone na blogu. By usunąć pozycję naciśnij *Usuń*. Zmiany są zapisywane od razu, lecz nie są aktywne do momentu kliknięcia 'Publikuj zmiany'"
-  l.store "Available Items", "Dostępne elementy"
-  l.store "Active Sidebar items", "Aktywne elementy paska"
-  l.store "Get more plugins", ""
-  l.store "Sidebar", ""
-  l.store "Publish changes", "Publikuj zmiany"
-  l.store "Displays links to monthly archives", ""
-  l.store "Livesearch", ""
-  l.store "Adds livesearch to your Publify blog", ""
-  l.store "This widget just displays links to Publify main site, this blog's admin and RSS.", ""
-  l.store "Adds basic search sidebar in your Publify blog", ""
-  l.store "Static", ""
-  l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
-  l.store "RSS and Atom feeds", ""
-  l.store "XML Syndication", ""
-  l.store "remove", "supprimer"
   l.store "Display name", "Wyświetlana nazwa"
   l.store "Active theme", "Temat aktywny"
   l.store "Send notification messages via email", "Wysyłaj powiadomienia emailem"
@@ -189,14 +169,7 @@ Localization.define("pl_PL") do |l|
   l.store "Comments are disabled", "Komentarze wyłączone"
   l.store "Trackbacks for", "Trackbacki do"
   l.store "Previous", "Poprzednie"
-
-  # vendor/plugins/archives_sidebar/views/content.rhtml
   l.store "Archives", "Archiwa"
-
-  # vendor/plugins/authors_sidebar/views/content.rhtml
-  l.store "Authors", ""
-
-  # vendor/plugins/xml_sidebar/views/content.rhtml
   l.store "Syndicate", "Subskrypcje"
   l.store "%d categories", "%d kategorie"
   l.store "%d tags", "%d tagi"

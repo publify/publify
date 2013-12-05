@@ -8,6 +8,14 @@ pl:
     administration:
       new: "Nowy"
   admin:
+    sidebar:
+      index:
+        sidebar: "Sidebar"
+        explain_how_its_works: "Przeciągnij i upuść pozycje, które mają być wyświetlone na blogu. By usunąć pozycję naciśnij *Usuń*. Zmiany są zapisywane od razu, lecz nie są aktywne do momentu kliknięcia 'Publikuj zmiany'"
+        publish_changes: "Publikuj zmiany"
+        available_items: "Dostępne elementy"
+        active_sidebar_items: "Aktywne elementy paska"
+        download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
     settings:
       write:
         write: "Pisanie"

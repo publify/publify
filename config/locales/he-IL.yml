@@ -8,6 +8,14 @@ he-IL:
     administration:
       new: "New"
   admin:
+    sidebar:
+      index:
+        sidebar: "תיבת צד"
+        explain_how_its_works: "גרור והשלך כדי לשנות את פריטי תיבת הצד המוצגת בבלוג שלך. כדי להסיר פריטים מתיבת הצד, לחץ על הסר. השינויים נשמרים מיידית אבל לא מופעלים עד שתלחץ על הכפתור 'פרסם'."
+        publish_changes: "פרסם שינויים"
+        available_items: "פריטים זמינים"
+        active_sidebar_items: "הפעל פריטי תיבת צד"
+        download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
     settings:
       write:
         write: "כתוב"

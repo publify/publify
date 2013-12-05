@@ -47,8 +47,6 @@ Localization.define("nl_NL") do |l|
   # app/controllers/admin/settings_controller.rb
   l.store "Please review and save the settings before continuing", "Controleer de instellingen en sla ze op voor je verder gaat"
   l.store "config updated.", "configuratie bijgewerkt"
-
-  # app/controllers/admin/sidebar_controller.rb
   l.store "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually", "Het lijkt er op dat er iets fout ging. Misschien ontbreken sommige zijbalken en moet je ze opnieuw installeren of handmatig verwijderen"
   l.store "Tag was successfully updated.", "Tag was succesvol bijgewerkt."
 
@@ -230,30 +228,9 @@ Localization.define("nl_NL") do |l|
   l.store "yes", "ja"
   l.store "no", "nee"
   l.store "Changes published", "Wijzigingen gepubliceerd"
-
-  # app/views/admin/sidebar/_target.html.erb
   l.store "Drag some plugins here to fill your sidebar", "Sleep wat plugins naar hier om de zijbalk te vullen"
-
-  # app/views/admin/sidebar/index.html.erb
-  l.store "Drag and drop to change the sidebar items displayed on this blog. To remove items from the sidebar just click 'remove'. Changes are saved immediately, but not activated until you click the 'Publish changes' button", "Sleep dingen heen en weer om de zijbalk van dit blog aan te passen. Om dingen te verwijderen klik je op verwijderen  Wijzigen worden automatisch opgeslagen, maar niet geactiveerd totdat je de 'Publiceer' knop klikt"
-  l.store "Available Items", "Beschikbare dingen"
   l.store "You have no plugins installed", "Je hebt geen plugins ge&iuml;installeerd"
-  l.store "Active Sidebar items", "Actieve zijbalk dingen"
   l.store "Get more plugins", "Haal meer thema's op"
-  l.store "Sidebar", "Zijbalk"
-  l.store "Publish changes", "Publiceer wijzigingen"
-  l.store "Displays links to monthly archives", ""
-  l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
-  l.store "Livesearch", ""
-  l.store "Adds livesearch to your Publify blog", ""
-  l.store "This widget just displays links to Publify main site, this blog's admin and RSS.", ""
-  l.store "Adds basic search sidebar in your Publify blog", ""
-  l.store "Static", ""
-  l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
-  l.store "RSS and Atom feeds", ""
-  l.store "XML Syndication", ""
-  l.store "remove", "supprimer"
-
   l.store "Display name", "Schermnaam"
   l.store "Are you sure you want to delete the tag", "Weet je zeker dat je deze tag wilt verwijderen?"
   l.store "Delete this tag", "Verwijder deze tag"

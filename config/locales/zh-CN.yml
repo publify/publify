@@ -8,6 +8,14 @@ zh-CN:
     administration:
       new: "New"
   admin:
+    sidebar:
+      index:
+        sidebar: "Sidebar"
+        explain_how_its_works: "在這個博客顯示拖曳改變的sidebar選項。從sidebar選項移除會立即存檔，但是不會執行直到你輸入<公開>鍵"
+        publish_changes: "公開變更"
+        available_items: "可用的項目"
+        active_sidebar_items: "有效的側邊欄項目"
+        download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
     settings:
       write:
         write: "寫入"

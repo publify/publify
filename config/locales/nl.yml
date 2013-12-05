@@ -8,6 +8,14 @@ nl:
     administration:
       new: "Nieuwe"
   admin:
+    sidebar:
+      index:
+        sidebar: "Zijbalk"
+        explain_how_its_works: "Sleep dingen heen en weer om de zijbalk van dit blog aan te passen. Om dingen te verwijderen klik je op verwijderen  Wijzigen worden automatisch opgeslagen, maar niet geactiveerd totdat je de 'Publiceer' knop klikt"
+        publish_changes: "Publiceer wijzigingen"
+        available_items: "Beschikbare dingen"
+        active_sidebar_items: "Actieve zijbalk dingen"
+        download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
     settings:
       write:
         write: "Schrijf"

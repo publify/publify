@@ -51,8 +51,6 @@ Localization.define("pt_BR") do |l|
   # app/controllers/admin/settings_controller.rb
   l.store "Please review and save the settings before continuing", "Por favor, reveja e salve as configurações antes de continuar"
   l.store "config updated.", "Config atualizada."
-
-  # app/controllers/admin/sidebar_controller.rb
   l.store "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually", "Parece que algo deu errado. Talvez esteja faltando alguma sidebar e você precise reinstalar ou remove-las manualmente"
 
   # app/controllers/admin/tags_controller.rb
@@ -190,32 +188,8 @@ Localization.define("pt_BR") do |l|
   l.store "yes", "s&iacute;"
   l.store "no", "no"
   l.store "You have no plugins installed", "No tienes plugins instalados"
-
-  # app/views/admin/sidebar/_publish.html.erb
   l.store "Changes published", "Cambios publicados"
-
-  # app/views/admin/sidebar/_target.html.erb
   l.store "Drag some plugins here to fill your sidebar", "Arrastra algunos plugins aqu&iacute; para llenar tu barra lateral"
-
-  # app/views/admin/sidebar/index.html.erb
-  l.store "Available Items", "Items disponibles"
-  l.store "Active Sidebar items", "Items activos de la barra lateral"
-  l.store "Get more plugins", ""
-  l.store "Sidebar", ""
-  l.store "Publish changes", "Publicar cambios"
-  l.store "Displays links to monthly archives", ""
-  l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
-  l.store "Livesearch", ""
-  l.store "Adds livesearch to your Publify blog", ""
-  l.store "This widget just displays links to Publify main site, this blog's admin and RSS.", ""
-  l.store "Show pages for this blog", ""
-  l.store "Adds basic search sidebar in your Publify blog", ""
-  l.store "Static", ""
-  l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
-  l.store "RSS and Atom feeds", ""
-  l.store "XML Syndication", ""
-  l.store "remove", "supprimer"
-
   l.store "Display name", "Nombre para mostrar"
   l.store "Active theme", "Tema activo"
   l.store "Choose a theme", "Escoge un tema"

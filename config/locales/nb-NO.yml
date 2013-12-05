@@ -8,6 +8,14 @@ nb-NO:
     administration:
       new: "Ny"
   admin:
+    sidebar:
+      index:
+        sidebar: "Sidebar"
+        explain_how_its_works: "Dra og slipp for at Dra og slipp innholdsendreen der vises på denne blog. Du kan fjerne elementer fra oversiktsoversikten bare ved at klikke fjern. endringer gemmes med det samme, men ikke aktiveret, før du klikker på 'Offentliggør' knappen."
+        publish_changes: "Publiser endringer"
+        available_items: "Tilgjengelige enheter"
+        active_sidebar_items: "Aktive sidebar-enheter"
+        download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
     settings:
       write:
         write: "Skriv"

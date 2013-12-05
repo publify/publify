@@ -30,7 +30,6 @@ Localization.define("it_IT") do |l|
   l.store "Please review and save the settings before continuing", ""
   l.store "config updated.", "Configurazione aggiornata."
 
-  # app/controllers/admin/sidebar_controller.rb
   l.store "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually", ""
   l.store "Store", "Salva"
   l.store "All categories", "Tutte le categorie"
@@ -142,28 +141,8 @@ Localization.define("it_IT") do |l|
   l.store "yes", "si"
   l.store "no", "no"
   l.store "You have no plugins installed", "Non hai plugins installati"
-
-  # app/views/admin/sidebar/_publish.html.erb
   l.store "Changes published", "Modifiche pubblicate"
-
-  # app/views/admin/sidebar/_target.html.erb
   l.store "Drag some plugins here to fill your sidebar", "Trascina alcuni plugins qui per popolare la tua sidebar"
-
-  # app/views/admin/sidebar/index.html.erb
-  l.store "Drag and drop to change the sidebar items displayed on this blog. To remove items from the sidebar just click 'remove'. Changes are saved immediately, but not activated until you click the 'Publish changes' button", "Trascina e rilascia per cambiare gli elementi visualizzati nella sidebar del tuo blog. Per rimuorverli clicca su annulla Cambiamenti perche' comunque non sono salvati automaticamente ma devi cliccare il bottone 'Pubblica'"
-  l.store "Available Items", "Elementi disponibili"
-  l.store "Active Sidebar items", "Attiva elementi Sidebar"
-  l.store "Get more plugins", ""
-  l.store "Sidebar", ""
-  l.store "Publish changes", "Pubblica cambiamenti"
-  l.store "Livesearch", ""
-  l.store "Adds livesearch to your Publify blog", ""
-  l.store "Adds basic search sidebar in your Publify blog", ""
-  l.store "Static", ""
-  l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
-  l.store "RSS and Atom feeds", ""
-  l.store "XML Syndication", ""
-  l.store "remove", "supprimer"
   l.store "Display name", "Nome visualizzato"
   l.store "Active theme", "Tema Attivo"
   l.store "Choose a theme", "Seleziona un tema"

@@ -182,22 +182,6 @@ Localization.define("he_IL") do |l|
 
   # app/views/admin/sidebar/_target.html.erb
   l.store "Drag some plugins here to fill your sidebar", "גרור חלק מהתוספים כדי למלא את תיבת הצד"
-
-  # app/views/admin/sidebar/index.html.erb
-  l.store "Drag and drop to change the sidebar items displayed on this blog. To remove items from the sidebar just click 'remove'. Changes are saved immediately, but not activated until you click the 'Publish changes' button", "גרור והשלך כדי לשנות את פריטי תיבת הצד המוצגת בבלוג שלך. כדי להסיר פריטים מתיבת הצד, לחץ על הסר. השינויים נשמרים מיידית אבל לא מופעלים עד שתלחץ על הכפתור 'פרסם'."
-  l.store "Available Items", "פריטים זמינים"
-  l.store "Active Sidebar items", "הפעל פריטי תיבת צד"
-  l.store "Get more plugins", ""
-  l.store "Sidebar", "תיבת צד"
-  l.store "Publish changes", "פרסם שינויים"
-  l.store "Livesearch", ""
-  l.store "Adds livesearch to your Publify blog", ""
-  l.store "Adds basic search sidebar in your Publify blog", ""
-  l.store "Static", ""
-  l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
-  l.store "RSS and Atom feeds", ""
-  l.store "XML Syndication", ""
-  l.store "remove", "supprimer"
   l.store "Display name", "שם התצוגה"
   l.store "Are you sure you want to delete the tag", "האם אתה בטוח שרצונך למחוק תווית זו ?"
   l.store "Delete this tag", "מחק תוויות זו"
@@ -205,12 +189,6 @@ Localization.define("he_IL") do |l|
   l.store "Back to tags list", "חזרה לרשימת התוויות"
   l.store "Display Name", "שם תצוגה"
   l.store "Manage tags", "נהל תוויות"
-
-  # app/views/admin/themes/catalogue.html.erb
-  l.store "Sorry the theme catalogue is not available", ""
-  l.store "Theme catalogue", ""
-
-  # app/views/admin/themes/index.html.erb
   l.store "Active theme", "עיצוב פעיל"
   l.store "Choose a theme", "בחר עיצוב"
   l.store "Use this theme", ""

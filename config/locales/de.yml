@@ -8,6 +8,14 @@ de:
     administration:
       new: "Neuer"
   admin:
+    sidebar:
+      index:
+        sidebar: "Sidebar"
+        explain_how_its_works: "Verwenden Sie Drag&Drop, um die Einträge der Seitenleiste ihres Blogs zu ändern. Um Einträge zu löschen, klicken Sie auf 'remove'. Änderungen sind hier sofort sichtbar, werden aber erst permanent aktiviert, wenn Sie 'Änderungen veröffentlichen' klicken."
+        publish_changes: "Änderungen veröffentlichen"
+        available_items: "Verfügbare Einträge"
+        active_sidebar_items: "Aktive Einträge der Seitenleiste"
+        download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
     settings:
       write:
         write: "Schreiben"

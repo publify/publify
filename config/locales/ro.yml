@@ -8,6 +8,14 @@ ro:
     administration:
       new: "Nou"
   admin:
+    sidebar:
+      index:
+        sidebar: "Sidebar"
+        explain_how_its_works: "Trage și lasă obiecte pe bara laterală pentru a o modifica în blog. Pentru a șterge obiecte din bara laterală, apasă pe 'șterge'. Modificările se salvează imediat, dar nu vor fi activate pînă cînd apeși butonul 'publică'"
+        publish_changes: "Publică modificările"
+        available_items: "Obiecte disponibile"
+        active_sidebar_items: "Obiecte utilizate"
+        download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
     settings:
       write:
         write: "Publicare"

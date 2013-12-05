@@ -138,30 +138,9 @@ Localization.define("ja_JP") do |l|
   l.store "yes", "はい"
   l.store "no", "いいえ"
   l.store "You have no plugins installed", "プラグインがインストールされていません"
-
-  # app/views/admin/sidebar/_publish.html.erb
   l.store "Changes published", "変更して公開"
-
-  # app/views/admin/sidebar/_target.html.erb
   l.store "Drag some plugins here to fill your sidebar", "サイドバーで利用するプラグインをドラッグしてください"
-
-  # app/views/admin/sidebar/index.html.erb
-  l.store "Drag and drop to change the sidebar items displayed on this blog. To remove items from the sidebar just click 'remove'. Changes are saved immediately, but not activated until you click the 'Publish changes' button", "ブログに表示するサイドバー項目をドラッグ＆ドロップで変更してください。サイドバーから項目を削除した場合はすぐに変更が保存されますが、「公開」ボタンを押すまでは有効になりません。"
-  l.store "Available Items", "利用可能な項目"
-  l.store "Active Sidebar items", "有効なサイドバー項目"
   l.store "Get more plugins", "他のプラグインの入手"
-  l.store "Sidebar", "サイドバー"
-  l.store "Publish changes", "変更を公開"
-  l.store "Displays links to monthly archives", ""
-  l.store "Livesearch", ""
-  l.store "Adds livesearch to your Publify blog", ""
-  l.store "This widget just displays links to Publify main site, this blog's admin and RSS.", ""
-  l.store "Adds basic search sidebar in your Publify blog", ""
-  l.store "Static", ""
-  l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
-  l.store "RSS and Atom feeds", ""
-  l.store "XML Syndication", ""
-  l.store "remove", "supprimer"
   l.store "Display name", "表示名"
   l.store "Manage tags", "タグの管理"
 

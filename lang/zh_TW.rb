@@ -113,27 +113,6 @@ Localization.define("zh_TW") do |l|
 
   # app/views/admin/sidebar/_target.html.erb
   l.store "Drag some plugins here to fill your sidebar", "拖曳一些plugins填滿你的sidebar"
-
-  # app/views/admin/sidebar/index.html.erb
-  l.store "Drag and drop to change the sidebar items displayed on this blog. To remove items from the sidebar just click 'remove'. Changes are saved immediately, but not activated until you click the 'Publish changes' button", "在這個部落格顯示拖曳改變的sidebar選項。從sidebar選項移除會立即存檔，但是不會執行直到你輸入<公開>鍵"
-  l.store "Available Items", "可用的項目"
-  l.store "Active Sidebar items", "有效的側邊欄項目"
-  l.store "Get more plugins", ""
-  l.store "Sidebar", ""
-  l.store "Publish changes", "公開變更"
-  l.store "Displays links to monthly archives", ""
-  l.store "Displays a list of authors ordered by name with links to their articles and profile", ""
-  l.store "Livesearch", ""
-  l.store "Adds livesearch to your Publify blog", ""
-  l.store "This widget just displays links to Publify main site, this blog's admin and RSS.", ""
-  l.store "Show pages for this blog", ""
-  l.store "Adds basic search sidebar in your Publify blog", ""
-  l.store "Static", ""
-  l.store "Static content, like links to other sites, advertisements, or blog meta-information", ""
-  l.store "RSS and Atom feeds", ""
-  l.store "XML Syndication", ""
-  l.store "remove", "supprimer"
-
   l.store "Display name", "暱稱"
   l.store "Active theme", "執行中主題"
   l.store "Choose a theme", "選擇主題"
