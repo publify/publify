@@ -10,5 +10,6 @@
 //= require tagmanager
 //= require typeahead
 //= require admin_publify
+//= require sidebar
 
 // Front javascript manifest
