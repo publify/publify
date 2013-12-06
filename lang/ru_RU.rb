@@ -60,8 +60,6 @@ Localization.define("ru_RU") do |l|
   l.store "SmartyPants", "SmartyPants"
   l.store "Visual", "Визуально"
   l.store "Edit article", "Редактировать пост"
-
-  # app/views/admin/dashboard/_comments.html.erb
   l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", "По соображениям безопасности вам следует перезапустить ваше Publify-приложение. Приятного блогерства!"
   l.store "Latest Comments", "Последние комментарии"
 
@@ -100,11 +98,7 @@ Localization.define("ru_RU") do |l|
   l.store "Your email", "Ваш email"
   l.store "Your message", "Ваше сообщение"
   l.store "Preview comment", "Предпросмотр комментария"
-
-  # app/views/articles/_comment_list.html.erb
   l.store "No comments", "Нет комментариев"
-
-  # app/views/articles/read.html.erb
   l.store "Leave a response", "Оставить отзыв"
   l.store "Comments are disabled", "Комментарии выключены"
 

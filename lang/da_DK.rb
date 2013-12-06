@@ -75,32 +75,13 @@ Localization.define("da_DK") do |l|
 
   # app/views/admin/profiles/index.html.erb
   l.store "Your profile", "Din profil"
-
-  # app/views/admin/resources/_mime_edit.html.erb
   l.store "Previous page", "Forrige side"
   l.store "Next page", "Næste side"
   l.store "Are you sure you want to delete this file", "Er du sikker på du vil slette denne fil"
   l.store "Delete this file from the webserver?", "Slet denne fil fra webserveren?"
   l.store "File Uploads", "Fil Uploads"
-  l.store "Enable comments by default", "Aktiver kommentarer som standard"
-  l.store "Enable Trackbacks by default", "Aktiver Trackbacks som standard"
-  l.store "Enable feedback moderation", "Aktiver feedback moderation"
-  l.store "Comments filter", "Kommentarfilter"
   l.store "Enable gravatars", "Vis gravatars"
   l.store "Show your email address", "Vis din e-mail addresse"
-  l.store "Enabling spam protection will make Publify compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "Enabling spam protection will make publify compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots" #Need translate
-  l.store "Enable spam protection", "Aktiver spam beskyttelse"
-  l.store "Akismet Key", "Akismet nøgle"
-  l.store "Publify can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", "Publify can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here" #Need translate
-  l.store "Disable trackbacks site-wide", ""
-  l.store "This setting allows you to disable trackbacks for every article in your blog.  It won't remove existing trackbacks, but it will prevent any further attempt to add a trackback anywhere on your blog.", "Denne indstilling giver dig mulighed for at deaktivere Trackbacks for hver artikel i din blog. Det vil ikke fjerne eksisterende Trackbacks, men det vil forhindre yderligere forsøg på at tilføje Trackbacks overalt på din blog."
-  l.store "Disable comments after", "Deaktiver kommentarer efter"
-  l.store "days", "dage"
-  l.store "Set to 0 to never disable comments", "Sæt til 0 for at aldrig deaktivere kommentarer"
-  l.store "Max Links", "Max Links"
-  l.store "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them" #Need translate
-  l.store "Set to 0 to never reject comments", "Sæt til 0 for at aldrig forkaste kommentarer"
-
   l.store "articles on my homepage by default", "artikler på min hjemmeside som standard"
   l.store "articles in my news feed by default", "artikler i min nyhedsfeed som standard"
   l.store "Show full article on feed", "Vis hele artiklen i min feed"
@@ -163,14 +144,8 @@ Localization.define("da_DK") do |l|
   l.store "Your message", "Din besked"
   l.store "Comment Markup Help", "Hjælp med kommentar markup"
   l.store "Preview comment", "Vis kommentar eksempel"
-  # app/views/articles/_trackback.html.erb
   l.store "From", "Fra"
-
-  # app/views/articles/archives.html.erb
   l.store "No articles found", "Fandt ingen artikler"
-  l.store "posted in", ""
-
-  # app/views/articles/comment_preview.html.erb
   l.store "is about to say", "vil gerne sige"
 
   # app/views/articles/groupings.html.erb
@@ -329,7 +304,6 @@ Localization.define("da_DK") do |l|
   l.store "Show this pattern", "Vis mønster"
   l.store "Show this user", "Vis denne bruger"
   l.store "Spam Protection", "Spambeskyttelse"
-  l.store "Spam protection", "Spam beskyttelse"
   l.store "Statistics", "Statistik"
   l.store "String", "Tekststreng"
   l.store "Subtitle", "Undertitel"
@@ -357,7 +331,6 @@ Localization.define("da_DK") do |l|
   l.store "XML Syndication", "XML Syndikat"
   l.store "You are now logged out of the system", "Du er nu logget af systemet"
   l.store "You can add it to the following categories", "Du kan tilføje følgende kategorier"
-  l.store "You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it", "Du kan slå feedback moderation til for hele bloggen. Hvis du gør dette kommer kommentarer og trackbacks først frem når du har godkendt dem"
   l.store "You can optionally disable non-Ajax comments. Publify will always use Ajax for comment submission if Javascript is enabled, so non-Ajax comments are either from spammers or users without Javascript.", "You can optionally disable non-Ajax comments. Publify will always use Ajax for comment submission if Javascript is enabled, so non-Ajax comments are either from spammers or users without Javascript." #Need translate
   l.store "add new", "tilføj ny"
   l.store "by", "af"

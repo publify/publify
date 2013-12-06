@@ -26,13 +26,6 @@ Localization.define("de_DE") do |l|
   # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "Sind Sie sicher, diesen Artikel zu löschen"
   l.store "Delete this article", "Diesen Artikel löschen"
-
-
-  # app/views/admin/dashboard/_posts.html.erb
-  l.store "Latest Posts", ""
-
-  # app/views/admin/dashboard/_publify_dev.html.erb
-  l.store "Oh no, nothing new", ""
   l.store "Limit to spam", "Einschränken auf Spam"
   l.store "Are you sure you want to delete the page", "Sind Sie sicher, diese Seite zu löschen"
   l.store "Delete this page", "Diese Seite löschen"
@@ -43,24 +36,8 @@ Localization.define("de_DE") do |l|
   l.store "Are you sure you want to delete this file", "Sind Sie sicher, diese Datei zu löschen"
   l.store "Delete this file from the webserver?", "Diese Datei vom Webserver löschen?"
   l.store "File Uploads", "Dateianhänge"
-  l.store "Enable comments by default", "Kommentare per default erlauben"
-  l.store "Enable Trackbacks by default", "Trackbacks per default aktivieren"
-  l.store "Enable feedback moderation", "Moderation von Kommentaren aktivieren"
-  l.store "Comments filter", "Textfilter für Kommentar"
   l.store "Enable gravatars", "Gratavare aktivieren"
   l.store "Show your email address", "Ihre Email Adresse anzeigen"
-  l.store "Enabling spam protection will make Publify compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots", "Bei Aktivierung des Spamschutzes wird Publify sowohl die IP Adresse des Autors als auch den Inhalt seiner Veröffentlichung gegen lokale und entfernte Blacklisten vergleichen. Gute Abwehr von Spambots"
-  l.store "Enable spam protection", "Spamschutz aktivieren"
-  l.store "Akismet Key", "Akismet Key"
-  l.store "Publify can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", "Publify kann (optional) den %s Spam-Filterdienst verwenden. Sie müssen sich dort registriert und einen API Key erhalten haben, bevor Sie diesen Dienst nutzen können. Wenn Sie einen solchen Key haben, geben Sie ihn hier ein"
-  l.store "Disable trackbacks site-wide", ""
-  l.store "This setting allows you to disable trackbacks for every article in your blog.  It won't remove existing trackbacks, but it will prevent any further attempt to add a trackback anywhere on your blog.", "Diese Option erlaubt es Ihnen, Trackbacks für alle Artikel im gesamten Blog zu deaktivieren. Dadurch werden zwar keine bereits existierenden Trackbacks entfernt, aber alle zukünftig irgendwo in Ihrem Blog eintreffenden Trackbacks werden abgewiesen."
-  l.store "Disable comments after", "Kommentare abschalten nach"
-  l.store "days", "Tagen"
-  l.store "Set to 0 to never disable comments", "Wert 0 bewirkt, dass die Möglichkeit für Kommentare immer bestehen bleibt"
-  l.store "Max Links", "Maximale Anzahl Links"
-  l.store "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them", "Publify kann automatisch Kommentare und Trackbacks abweisen, die mehr als eine bestimmte Anzahl von Links enthalten"
-  l.store "Set to 0 to never reject comments", "Wert 0 bewirkt, dass Kommentare nie abgewiesen werden"
 
   l.store "articles on my homepage by default", "Artikel auf einmal auf meiner Homepage"
   l.store "articles in my news feed by default", "Artikel auf einmal in meinen RSS News Feeds"
@@ -259,7 +236,6 @@ Localization.define("de_DE") do |l|
   l.store "Show this pattern", "Muster anzeigen"
   l.store "Show this user", "Diesen Benutzer anzeigen"
   l.store "Spam Protection", "Spamschutz"
-  l.store "Spam protection", "Spamschutz"
   l.store "String", "Zeichenkette"
   l.store "Subtitle", "Untertitel"
   l.store "Summary", "Zusammenfassung"
@@ -284,7 +260,6 @@ Localization.define("de_DE") do |l|
   l.store "XML Syndication", "XML Syndikat"
   l.store "You are now logged out of the system", "Sie sind nun vom System abgemeldet"
   l.store "You can add it to the following categories", "Sie können ihn zu den folgenden Kategorien hinzufügen"
-  l.store "You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it", "Sie können die Moderation von Kommentaren auf der gesamten Website aktivieren. Dann erscheinen keine Kommentare oder Trackbacks in Ihrem Blog, die sie nicht überprüft haben"
   l.store "You can optionally disable non-Ajax comments. Publify will always use Ajax for comment submission if Javascript is enabled, so non-Ajax comments are either from spammers or users without Javascript.", "Sie können optional non-Ajax Kommentare verbieten. Publify verwendet immer Ajax für die Übertragung von Kommentaren, sofern Javascript eingeschaltet ist. non-Ajax Kommentare stamme somit entweder von Spammern oder von Anwendern ohne aktiviertes Javascript."
   l.store "by", "bei"
   l.store "on", "über"
