@@ -84,7 +84,7 @@ da:
         language: "Sprog"
         users: "Brugere"
         allow_users_to_register: "Allow users to register"
-        explain_allow_users_to_register: "You can allow users to register to your blog. By default, they will register as contributors, an unpriviledged account level which grant them no rights but own a profile on the site. If you don't want users to register, you can thus add them by yourself in the users part of this admin."
+        explain_allow_users_to_register: "This will allow users to register themselves as contributors, an unprivileged account level which grants them no rights beyond owning a profile on the site. If you don't want users to register, you can add them via <em>Manage users</em> under <em>Settings</em>."
         publify_notify_new_articles_or_comments: "Publify kan give dig besked, når nye artikler eller kommentarer er indsendt"
         source_email: "Afsender e-mail"
         email_address_used_to_notify: "E-mail adresse der bruges af Publify til at sende meddelelser"
