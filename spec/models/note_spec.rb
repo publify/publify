@@ -123,7 +123,6 @@ describe Note do
         let(:expected_tweet) { "A very big(10) message with lot of text (40)inside just to try the shortener and (80)the new link that publify... (#{note.redirects.first.to_url})" }
         it { expect(note.twitter_message).to eq(expected_tweet) }
         it { expect(note.twitter_message.length).to eq(140) }
-        it { expect(note.twitter_message).to end_with(" (#{note.redirects.first.to_url})") }
       end
 
       context "with a bug message" do
@@ -132,7 +131,6 @@ describe Note do
 
         it { expect(note.twitter_message).to eq(expected_tweet) }
         it { expect(note.twitter_message.length).to eq(140) }
-        it { expect(note.twitter_message).to end_with(" (#{note.redirects.first.to_url})") }
       end
 
       context "don't cut word" do
@@ -141,8 +139,16 @@ describe Note do
 
         it { expect(note.twitter_message).to eq(expected_tweet) }
         it { expect(note.twitter_message.length).to eq(138) }
-        it { expect(note.twitter_message).to end_with(" (#{note.redirects.first.to_url})") }
       end
+
+      context "shortner host is count as an url for twitter" do
+        let(:tweet) { "RT @stephaneducasse http://pharocloud.com is so cool. I love love such idea and I wish them success. Excellent work." }
+        let(:expected_tweet) { "RT @stephaneducasse http://pharocloud.com is so cool. I love love such idea and I wish them success. Excellent... (#{note.redirects.first.to_url})" }
+
+        it { expect(note.twitter_message).to eq(expected_tweet) }
+        it { expect(note.twitter_message.length).to eq(140) }
+      end
+
 
     end
   end

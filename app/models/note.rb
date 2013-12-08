@@ -124,23 +124,27 @@ class Note < Content
   def short_link
     path = self.redirects.first.from_path
     blog = Blog.default
-    prefix = blog.custom_url_shortener.present? ? blog.custom_url_shortener : blog.base_url
     prefix.sub!(/^https?\:\/\//, '')
     "#{prefix} #{path}"
+  end
+
+  def prefix
+    blog.custom_url_shortener.present? ? blog.custom_url_shortener : blog.base_url
   end
 
   private
 
   def too_long?(message)
     uris = URI.extract(message, ['http', 'https', 'ftp'])
+    uris << prefix
     uris.each do |uri|
       case uri.split(":")[0]
-      when "http"
-        payload = "-" * TWITTER_HTTP_URL_LENGTH
       when "https"
         payload = "-" * TWITTER_HTTPS_URL_LENGTH
       when "ftp"
         payload = "-" * TWITTER_FTP_URL_LEGTH
+      else
+        payload = "-" * TWITTER_HTTP_URL_LENGTH
       end
       message = message.gsub(uri, payload)
     end
