@@ -226,17 +226,8 @@ Localization.define("nb_NO") do |l|
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", "Din robots.txt er ikke skrivbar. Publify vil ikke kunne skrive til den"
   l.store "Titles", "Titler"
   l.store "Show your email address", "Vis din epostadresse"
-  l.store "Date format", "Datoformat"
-  l.store "ago", "siden"
-  l.store "Time format", "Klokkeformat"
-  l.store "Publishing options", "Publiseringsvalg"
-  l.store "articles on my homepage by default", "artikler på min hjemmeside som standard"
   l.store "articles in my news feed by default", "artikler i min nyhetsfeed som standard"
-  l.store "Show only article excerpt on feed", "Vis bare artikkelens utdrag i feed"
-  l.store "Feedburner ID", "Feedburner ID"
   l.store "You can use your Google Feedburner account instead of Publify feed URL. To enable this, fill this form with your Feedburner ID.", "Du kan bruke din Gooogle Feedburner-konto istedet for Publify feed URL. For å aktivere dette, fyll ut dette skjemaet med din Feedburner ID."
-
-  # app/views/admin/settings/update_database.html.erb
   l.store "New database version", "Ny databaseversjon"
   l.store "Your database supports migrations", "Din database støtter migrations"
   l.store "yes", "ja"

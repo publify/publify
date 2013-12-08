@@ -161,17 +161,8 @@ Localization.define("fr_FR") do |l|
 
   l.store "Previous page", "Page précédente"
   l.store "Next page", "Page suivante"
-
-  # app/views/admin/settings/errors.html.erb
   l.store "Show your email address", "Afficher votre adresse courriel"
-  l.store "Date format", "Afficher les dates"
-  l.store "ago", "il y a"
-  l.store "Time format", "Afficher les heures"
-  l.store "Publishing options", "Options de publication"
-  l.store "articles on my homepage by default", "billet sur ma page d'accueil params par défaut"
   l.store "articles in my news feed by default", "billets dans mon flux RSS par défaut"
-  l.store "Show only article excerpt on feed", "Tronquer les articles dans le flux RSS"
-  l.store "Feedburner ID", "Identifiant Feedburner"
   l.store "You can use your Google Feedburner account instead of Publify feed URL. To enable this, fill this form with your Feedburner ID.", "Vous pouvez utiliser votre compte Google Feedburner plutôt que votre adresse de flux Publify. Pour l'autoriser, remplissez ce formulaire avec votre identifiant Feedburner."
   l.store "New database version", "Nouvelle version de la base"
   l.store "Your database supports migrations", "Votre base de données supporte la mise à jour"
@@ -199,11 +190,6 @@ Localization.define("fr_FR") do |l|
   l.store "XML Syndication", "Syndication XML"
   l.store "remove", "supprimer"
   l.store "Customize sidebar", "Modifiez les plugins"
-
-  # app/views/admin/tags/edit.html.erb
-  l.store "Editing tag ", ""
-
-  # app/views/admin/tags/index.html.erb
   l.store "Display Name", "Nom affiché"
   l.store "Manage tags", "Labels"
 
@@ -258,9 +244,7 @@ Localization.define("fr_FR") do |l|
   # app/views/admin/users/new.html.erb
   l.store "Add User", "Ajouter un utilisateur"
   l.store "Posted by", "Publié par"
-  # app/view/admin/
   l.store "All notes", "Toutes les notes"
-  l.store "Statuses", "Notes"
   l.store "Continue reading", "Lire plus"
   l.store "Oops, something wrong happened, the comment could not be saved", "Oops, quelque chose s'est mal déroulé. Votre commentaire n'a donc pu être enregistré."
   l.store "Your name", "Votre nom "
