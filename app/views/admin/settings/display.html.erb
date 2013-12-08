@@ -1,36 +1,36 @@
 <%- content_for :page_heading do %>
   <h2>
     <i class="glyphicon glyphicon-large glyphicon-cog"></i>
-    <%= _("Display settings") %>
+    <%= t('.display_settings') %>
   </h2>
 <% end %>
 
 <%= form_tag :action => 'update' do %>
 
 <fieldset class='form-horizontal'>
-  <legend><%= _("Publishing options")%></legend>
+  <legend><%= t('.publishing_options')%></legend>
   <div class='form-group'>
-    <label class='control-label col-sm-2' for="setting_limit_article_display"><%= _("Display")%> </label>
+    <label class='control-label col-sm-2' for="setting_limit_article_display"><%= t('.display')%> </label>
     <div class='col-sm-1'>
       <%= text_field(:setting, :limit_article_display, {:size => 4, :class => 'form-control'})%>
     </div>
     <div class='pull-left'>
-      <span class='help-block'><%= _("articles on my homepage by default")%></span>
+      <span class='help-block'><%= t('.default_article_show')%></span>
     </div>
   </div>
   <div class='form-group'>
-    <label class='control-label col-sm-2'><%= _("Statuses") %></label>
+    <label class='control-label col-sm-2'><%= t('.statuses') %></label>
     <div class='col-sm-5'>
       <div class='checkbox'>
         <label>
           <%= check_box(:setting, :statuses_in_timeline) %>
-          <%= _("Display statuses in the main feed")%>            
+          <%= t('.status_main_feed')%>            
         </label>
       </div>
     </div>
   </div>
   <div class='form-group'>
-    <label class='control-label col-sm-2'><%= _("Date format")%></label>
+    <label class='control-label col-sm-2'><%= t('.date_format')%></label>
     <div class='col-sm-5'>
       <div class='radio'>
           <label for="setting_date_format_dmy">
@@ -67,7 +67,7 @@
       <div class='radio'>
         <label for="setting_date_format_4">
           <%= radio_button(:setting, :date_format, 'setting_date_format_distance_of_time_in_words' )%>
-          <%= distance_of_time_in_words(Time.now, Time.now - 2.days) %> <%= _("ago") %>
+          <%= distance_of_time_in_words(Time.now, Time.now - 2.days) %> <%= t('.ago') %>
         </label>
       </div>
     </div>
@@ -82,7 +82,7 @@
   </div>
 
   <div class='form-group'>
-    <label class='control-label col-sm-2'><%= _("Time format")%></label>
+    <label class='control-label col-sm-2'><%= t('.time_format')%></label>
       <div class='col-sm-5'>
         <div class='radio'>
           <label for="setting_time_format_hhm">
@@ -109,41 +109,41 @@
       </div>
     </div>
     <div class='form-group'>
-      <label class='control-label col-sm-2' for="setting_custom_url_shortener"><%= _("Custom URL shortener domain")%></label>
+      <label class='control-label col-sm-2' for="setting_custom_url_shortener"><%= t('.custom_url')%></label>
       <div class='col-sm-5'>
         <%= text_field(:setting, :custom_url_shortener, { :class => 'form-control'})%>
-        <small class='help block'><%= _("You may want to use a custom domain for URL shortening, here's where it happens.") %></small>
+        <small class='help block'><%= t('.custom_url_help') %></small>
       </div>
     </div>
   </fieldset>
 
   <fieldset class='form-horizontal'>
-    <legend><%= _("RSS feed")%></legend>
+    <legend><%= t('.feed_settings')%></legend>
     <div class='form-group'>
-      <label class='control-label col-sm-2' for="setting_limit_rss_display"><%= _("Display")%> </label>
+      <label class='control-label col-sm-2' for="setting_limit_rss_display"><%= t('.display')%> </label>
       <div class='col-sm-1'>
         <%= text_field(:setting, :limit_rss_display, {:size => 4, :class => 'form-control'})%>        
       </div>
       <div class='pull-left'>
-          <span class='help-block'><%= _("articles in my news feed by default")%>.</span>
+          <span class='help-block'><%= t('.default_feed_show')%></span>
       </div>
     </div>
     <div class='form-group'>
-      <label class='control-label col-sm-2'><%= _("Articles") %></label>
+      <label class='control-label col-sm-2'><%= t('.feed_articles') %></label>
       <div class='col-sm-5'>
         <div class='checkbox'>
           <label for="setting_hide_extended_on_rss">
             <%= check_box(:setting, :hide_extended_on_rss) %>
-            <%= _("Show only article excerpt on feed")%>
+            <%= t('.feed_excerpts_only')%>
           </label>
         </div>        
       </div>
     </div>
     <div class='form-group'>
-      <label class='control-label col-sm-2' for="setting_feedburner_url"><%= _("Feedburner ID")%></label>
+      <label class='control-label col-sm-2' for="setting_feedburner_url"><%= t('.feedburner_id')%></label>
       <div class='col-sm-5'>
         <%= text_field(:setting, :feedburner_url, :class => 'form-control')%>
-        <small class='help-block'><%= _('You can use your Google Feedburner account instead of Publify feed URL. To enable this, fill this form with your Feedburner ID.') %></small>
+        <small class='help-block'><%= t('.feedburner_help') %></small>
       </div>
     </div>
   </fieldset>
