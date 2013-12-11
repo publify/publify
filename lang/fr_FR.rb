@@ -155,9 +155,6 @@ Localization.define("fr_FR") do |l|
   l.store "From", "De"
   l.store "Leave empty to shorten a link", "Laissez vide pour créer un lien court"
   l.store "To", "Vers"
-
-  l.store "Previous page", "Page précédente"
-  l.store "Next page", "Page suivante"
   l.store "Show your email address", "Afficher votre adresse courriel"
   l.store "articles in my news feed by default", "billets dans mon flux RSS par défaut"
   l.store "You can use your Google Feedburner account instead of Publify feed URL. To enable this, fill this form with your Feedburner ID.", "Vous pouvez utiliser votre compte Google Feedburner plutôt que votre adresse de flux Publify. Pour l'autoriser, remplissez ce formulaire avec votre identifiant Feedburner."
@@ -251,7 +248,6 @@ Localization.define("fr_FR") do |l|
   l.store "leave url/email", "laissez votre url/courriel"
   l.store "No comments", "Pas de commentaires"
   l.store "No articles found", "Aucun article ne correspond à la recherche"
-  l.store "posted in", "publié dans"
   l.store "is about to say", "va dire"
   l.store "There are", "Il y a"
   l.store "Leave a response", "Réagir à ce billet"
@@ -261,14 +257,7 @@ Localization.define("fr_FR") do |l|
   l.store "Comments are disabled", "Les commentaires sont désactivés"
   l.store "Trackbacks are disabled", "Les rétroliens sont désactivés"
 
-  l.store "Web site:", "Site web:"
-  l.store "MSN:", "MSN :"
-  l.store "Yahoo:", "Yahoo :"
-  l.store "Jabber:", "Jabber :"
-  l.store "AIM:", "AIM :"
-  l.store "Twitter:", "Twitter :"
   l.store "About %s", "À propos de %s"
-  l.store "This author has not published any article yet", "Cet utilisateur n'a publié aucun article"
 
   # app/views/comments/_comment.html.erb
   l.store "said", "a dit"

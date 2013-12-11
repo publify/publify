@@ -98,11 +98,6 @@ Localization.define("it_IT") do |l|
   l.store "Search Comments and Trackbacks that contain", "Cerca commenti o trackback che contengono"
   l.store "Are you sure you want to delete the page", "Sei sicuro di voler eliminare questa pagina"
   l.store "Delete this page", "Elimina questa pagina"
-
-  # app/views/admin/resources/_mime_edit.html.erb
-
-  l.store "Previous page", "Pagina precedente"
-  l.store "Next page", "Pagina successiva"
   l.store "File", "File"
   l.store "Are you sure you want to delete this file", "Sei sicuro di voler eliminare questo file"
   l.store "Delete this file from the webserver?", "Eliminare questo file dal webserver ?"
@@ -141,14 +136,9 @@ Localization.define("it_IT") do |l|
   l.store "Comment Markup Help", "Aiuto sul markup dei comemnti"
   l.store "Preview comment", "Anteprima commento"
   l.store "From", "Da"
-
   l.store "No articles found", "Nessun articolo trovato"
-  l.store "posted in", ""
-
   l.store "is about to say", "sta per dire"
-
   l.store "There are", "Ci sono"
-
   l.store "Leave a response", "Commenta"
   l.store "Use the following link to trackback from your own site", "Usa il link seguente per fare un trackback dal tuo sito"
   l.store "RSS feed for this post", "Feed RSS per questo post"
@@ -251,7 +241,6 @@ Localization.define("it_IT") do |l|
   l.store "Filters", "Filtri"
   l.store "HTML was cleared", "l'HTML cancellato"
   l.store "IP", "IP"
-  l.store "Jabber", "Jabber"
   l.store "Jabber account", "Account Jabber"
   l.store "Key Words", "Parole chiave"
   l.store "Last Comments", "Ultimi commenti"

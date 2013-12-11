@@ -8,18 +8,9 @@ Localization.define("da_DK") do |l|
   l.store "Edit", "Rediger"
   l.store "Unpublished", "Ikke offentliggjort"
   l.store "Back to overview", "Tilbage til oversigten"
-  l.store "Tag", "Tag"
-  l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", ""
-  l.store "%%d. %%b", ""
   l.store "no trackbacks", "ingen trackbacks"
   l.store "1 trackback", "1 trackback"
   l.store "%d trackbacks", "%d trackbacks"
-  l.store "Posted in", "Offentliggjort i"
-  l.store "If you are reading this article elsewhere than", ""
-  l.store "it has been illegally reproduced and without proper authorization", ""
-
-  # app/models/blog.rb
-  l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", ""
   l.store "Reorder", "Arranger"
   l.store "Sort alphabetically", "Sortér alfabetisk"
 
@@ -72,11 +63,7 @@ Localization.define("da_DK") do |l|
 
   # app/views/admin/pages/index.html.erb
   l.store "Manage pages", "Administrer sider"
-
-  # app/views/admin/profiles/index.html.erb
   l.store "Your profile", "Din profil"
-  l.store "Previous page", "Forrige side"
-  l.store "Next page", "Næste side"
   l.store "Are you sure you want to delete this file", "Er du sikker på du vil slette denne fil"
   l.store "Delete this file from the webserver?", "Slet denne fil fra webserveren?"
   l.store "File Uploads", "Fil Uploads"

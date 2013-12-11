@@ -14,13 +14,6 @@ Localization.define("ro_RO") do |l|
   l.store "There are no %s yet. Why don't you start and create one?", ""
   l.store "Edit", "Editare"
   l.store "no trackbacks", "fără retrolegături"
-
-  # app/helpers/content_helper.rb
-  l.store "Posted in", ""
-  l.store "no posts", ""
-  l.store "1 post", ""
-  l.store "%d posts", ""
-
   l.store "Reorder", "Ordonează"
   l.store "Sort alphabetically", "Ordonează alfabetic"
 
@@ -45,8 +38,6 @@ Localization.define("ro_RO") do |l|
   l.store "Limit to spam", "Doar spam"
   l.store "Are you sure you want to delete the page", "Ești sigur că dorești să ștergi această pagină"
   l.store "Delete this page", "Șterge această pagină"
-  l.store "Previous page", "Pagina anterioară"
-  l.store "Next page", "Pagina următoare"
   l.store "Are you sure you want to delete this file", "Ești sigur că dorești să ștergi acest fișier"
   l.store "Delete this file from the webserver?", "Ștergi acest fișier de pe server?"
   l.store "File Uploads", "Încărcări de fișiere"
@@ -95,15 +86,8 @@ Localization.define("ro_RO") do |l|
 
   # app/views/articles/archives.html.erb
   l.store "No articles found", "Niciun articol nu a fost găsit"
-  l.store "posted in", ""
-
-  # app/views/articles/comment_preview.html.erb
   l.store "is about to say", "vrea să scrie"
-
-  # app/views/articles/groupings.html.erb
   l.store "There are", "Sînt"
-
-  # app/views/articles/read.html.erb
   l.store "Leave a response", "Comentează"
   l.store "Use the following link to trackback from your own site", "Folosește link-ul următor pentru a realiza o retrolegătură de la site-ul tău"
   l.store "RSS feed for this post", "Flux RSS pentru acest articol"

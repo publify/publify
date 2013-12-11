@@ -29,10 +29,6 @@ Localization.define("de_DE") do |l|
   l.store "Limit to spam", "Einschränken auf Spam"
   l.store "Are you sure you want to delete the page", "Sind Sie sicher, diese Seite zu löschen"
   l.store "Delete this page", "Diese Seite löschen"
-
-  l.store "Previous page", "Vorherige Seite"
-  l.store "Next page", "Nächste Seite"
-
   l.store "Are you sure you want to delete this file", "Sind Sie sicher, diese Datei zu löschen"
   l.store "Delete this file from the webserver?", "Diese Datei vom Webserver löschen?"
   l.store "File Uploads", "Dateianhänge"
@@ -77,18 +73,9 @@ Localization.define("de_DE") do |l|
 
   # app/views/articles/_trackback.html.erb
   l.store "From", "Von"
-
-  # app/views/articles/archives.html.erb
   l.store "No articles found", "Keine Artikel gefunden"
-  l.store "posted in", ""
-
-  # app/views/articles/comment_preview.html.erb
   l.store "is about to say", "will sagen"
-
-  # app/views/articles/groupings.html.erb
   l.store "There are", "Es gibt"
-
-  # app/views/articles/read.html.erb
   l.store "Leave a response", "Einen Kommentar hinterlassen"
   l.store "Use the following link to trackback from your own site", "Verwenden Sie den folgenden Link zur Rückverlinkung von Ihrer eigenen Seite"
   l.store "RSS feed for this post", "RSS Feed für diesen Artikel"
@@ -174,7 +161,6 @@ Localization.define("de_DE") do |l|
   l.store "Feedback Search", "Suche"
   l.store "Filters", "Filter"
   l.store "IP", "IP-Adresse"
-  l.store "Jabber", "Jabber"
   l.store "Jabber account", "Jabber Account"
   l.store "Jabber account to use when sending Jabber notifications", "Jabber Account für das Senden von Jabber Benachrichtigungen"
   l.store "Jabber password", "Jabber Passwort"

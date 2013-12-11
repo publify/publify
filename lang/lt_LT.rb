@@ -5,17 +5,7 @@ Localization.define("lt_LT") do |l|
   l.store "All published dates", "Visos laika"
   l.store "There are no %s yet. Why don't you start and create one?", ""
   l.store "Edit", "Redaguoti"
-  l.store "Show", ""
-  l.store "Unpublished", ""
   l.store "Back to overview", "Atgal į peržiūrą"
-  l.store "Tag", ""
-
-  l.store "Show conversation", ""
-  l.store "Flag as %s", ""
-
-  # app/helpers/application_helper.rb
-  l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", ""
-  l.store "%%d. %%b", ""
   l.store "no trackbacks", "nėra dienoraščio nuorodų"
   l.store "Reorder", "Rikiuoti"
   l.store "Sort alphabetically", "Rikiuoti pagal abėcėlę"
@@ -40,8 +30,6 @@ Localization.define("lt_LT") do |l|
   l.store "Limit to spam", "Spamo limitas"
   l.store "Are you sure you want to delete the page", "Sind Sie sicher, diese Seite zu löschen"
   l.store "Delete this page", "Diese Seite löschen"
-  l.store "Previous page", "Buvęs puslapis" # reikia kitaip kazkaip
-  l.store "Next page", "Sekantis puslapis"
   l.store "Are you sure you want to delete this file", "Sind Sie sicher, diese Datei zu löschen"
   l.store "Delete this file from the webserver?", "Diese Datei vom Webserver löschen?"
   l.store "File Uploads", "Dateianhänge"
@@ -83,12 +71,8 @@ Localization.define("lt_LT") do |l|
   l.store "Your message", "Tavo žinutė"
   l.store "Comment Markup Help", "Komentaro sintaksės žymėjimo pagalba"
   l.store "Preview comment", "Peržiūrėti komentarą"
-
   l.store "From", "Nuo"
-
   l.store "No articles found", "Straipsnių nėra"
-  l.store "posted in", ""
-
   l.store "is about to say", "pasakoja apie"
   l.store "There are", "Čia yra"
   l.store "Leave a response", "Palikti atsakymą"
@@ -97,22 +81,8 @@ Localization.define("lt_LT") do |l|
   l.store "trackback uri", "Trackback URI"
   l.store "Comments are disabled", "Komentavimas išjungtas"
   l.store "Trackbacks for", "Trackback für"
-
-  l.store "Previous", ""
-  l.store "Next", ""
-
-  # vendor/plugins/archives_sidebar/views/content.rhtml
   l.store "Archives", "Archyvas"
-
-  # vendor/plugins/authors_sidebar/views/content.rhtml
-  l.store "Authors", ""
-
-  # vendor/plugins/xml_sidebar/views/content.rhtml
   l.store "Syndicate", "Syndikat"
-  l.store "Category %s", ""
-  l.store "Tag %s", ""
-
-  # Obsolete translations
   l.store "%d Articles", ["Straipsnis", "%d Straipsniai"]
   l.store "%d Categories", ["Kategorija", "%d Kategorijos"]
   l.store "%d Comments", ["Komentaras", "%d Komentarai"]
@@ -180,7 +150,6 @@ Localization.define("lt_LT") do |l|
   l.store "Feedback Search", "Atsiliepimų paieška"
   l.store "Filters", "Filter"
   l.store "IP", "IP adresas"
-  l.store "Jabber", "Jabber"
   l.store "Jabber account", "Jabber Account"
   l.store "Jabber account to use when sending Jabber notifications", "Jabber Account für das Senden von Jabber Benachrichtigungen"
   l.store "Jabber password", "Jabber Passwort"
