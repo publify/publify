@@ -170,8 +170,6 @@ Localization.define("zh_CN") do |l|
   l.store "Limit to spam", "限制垃圾郵件"
   l.store "Are you sure you want to delete the page", "你確定要刪除此頁？"
   l.store "Delete this page", "刪除此頁"
-  l.store "Previous page", "前一頁"
-  l.store "Next page", "下一頁"
   l.store "File", "檔案"
   l.store "Are you sure you want to delete this file", "你確定要刪除此檔案？"
   l.store "Delete this file from the webserver?", "從網路伺服器刪除此檔案？"
@@ -214,19 +212,9 @@ Localization.define("zh_CN") do |l|
   l.store "Your message", "你的訊息"
   l.store "Comment Markup Help", "评论顯示協助"
   l.store "Preview comment", "預覽评论"
-  l.store "From", "From"
-
-  # app/views/articles/archives.html.erb
   l.store "No articles found", "没有找到任何文章"
-  l.store "posted in", "发表在"
-
-  # app/views/articles/comment_preview.html.erb
   l.store "is about to say", "这是关于~~"
-
-  # app/views/articles/groupings.html.erb
   l.store "There are", "有"
-
-  # app/views/articles/read.html.erb
   l.store "Leave a response", "離開一個回應"
   l.store "Use the following link to trackback from your own site", "從你所屬的網點用隨後的連結去引用"
   l.store "RSS feed for this post", "為本篇提供RSS"
@@ -245,9 +233,6 @@ Localization.define("zh_CN") do |l|
   # vendor/plugins/xml_sidebar/views/content.rhtml
   l.store "Syndicate", "整合發表"
   l.store "Category %s", ""
-  l.store "Tag %s", ""
-
-  # Obsolete translations
   l.store "A new message was posted to ", "一個新的訊息已被貼上"
   l.store "AIM Presence", "AIM存在"
   l.store "AIM Status", "AIM身分"

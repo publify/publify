@@ -7,6 +7,19 @@ fr:
   layouts:
     administration:
       new: "Nouveau"
+  authors:
+    show:
+      contact_information: "Contact information"
+      web_site: "Site web:"
+      jabber: "Jabber :"
+      msn: "MSN :"
+      yahoo: "Yahoo :"
+      aim: "AIM :"
+      twitter: "Twitter :"
+      this_author_has_not_published_any_article_yet: "Cet utilisateur n'a publié aucun article"
+      posted_in: "publié dans"
+      next_page: "Page suivante"
+      previous_page: "Page précédente"
   admin:
     sidebar:
       index:
@@ -465,3 +478,7 @@ fr:
     formats:
       default: "%d/%m/%Y %H:%M"
       short: "%d/%m/%y"
+      letters_month_with_year: "%B %Y"
+  date:
+    month_names: [~, Janvier, Février, Mars, Avril, Mai, Juin, Juillet, Août, Septembre, Octobre, Novembre, Décembre]
+    abbr_month_names: [~, jan, fév, mars, avr, mai, juin, juil, août, sep, oct, nov, déc]

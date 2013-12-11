@@ -27,8 +27,6 @@ Localization.define("es_MX") do |l|
   l.store "Delete this article", "Eliminar este art&iacute;culo"
   l.store "Are you sure you want to delete the page", "&iquest;Est&aacute;s seguro que deseas eliminar esta p&aacute;gina?"
   l.store "Delete this page", "Eliminar esta p&aacute;gina"
-  l.store "Previous page", "P&aacute;gina anterior"
-  l.store "Next page", "P&aacute;gina siguiente"
   l.store "Are you sure you want to delete this file", "&iquest;Est&aacute;s seguro que deseas eliminar este archivo?"
   l.store "Delete this file from the webserver?", "&iquest;Eliminar este archivo del servidor?"
   l.store "File Uploads", "Archivos subidos"
@@ -52,21 +50,6 @@ Localization.define("es_MX") do |l|
   l.store "Send notification messages via email", "Enviar notificaciones por email"
   l.store "Send notification messages when new articles are posted", "Enviar notificaciones cuando un nuevo art&iacute;culo sea publicado"
   l.store "Send notification messages when comments are posted", "Enviar notificaciones cuando un nuevo comentario sea publicado"
-  l.store "Contact options", ""
-  l.store "Your site", ""
-  l.store "display URL on public profile", ""
-  l.store "Your MSN", ""
-  l.store "display MSN ID on public profile", ""
-  l.store "Your Yahoo ID", ""
-  l.store "display Yahoo! ID on public profile", ""
-  l.store "Your Jabber ID", ""
-  l.store "display Jabber ID on public profile", ""
-  l.store "Your AIM id", ""
-  l.store "display AIM ID on public profile", ""
-  l.store "Your Twitter username", ""
-  l.store "display Twitter on public profile", ""
-  l.store "Tell us more about you", ""
-
   l.store "Edit User", "Editar usuario"
   l.store "New User", "Nuevo Usuario"
   l.store "Posted by", "Publicado por"
@@ -83,9 +66,6 @@ Localization.define("es_MX") do |l|
   l.store "From", "De"
   # app/views/articles/archives.html.erb
   l.store "No articles found", "No se encontraron art&iacute;culos"
-  l.store "posted in", ""
-
-  # app/views/articles/comment_preview.html.erb
   l.store "is about to say", "est&aacute; a punto de decir"
 
   # app/views/articles/groupings.html.erb
@@ -98,14 +78,6 @@ Localization.define("es_MX") do |l|
   l.store "trackback uri", "trackback uri"
   l.store "Comments are disabled", "Los comentarios est&aacute;n deshabilitados"
   l.store "Trackbacks are disabled", ""
-
-  # app/views/authors/show.html.erb
-  l.store "Web site:", ""
-  l.store "MSN:", ""
-  l.store "Yahoo:", ""
-  l.store "Jabber:", ""
-  l.store "AIM:", ""
-  l.store "Twitter:", ""
   l.store "About %s", ""
 
   # app/views/comments/show.html.erb

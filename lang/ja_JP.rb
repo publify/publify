@@ -42,15 +42,6 @@ Localization.define("ja_JP") do |l|
   l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", Proc.new { |date| sprintf(date.strftime("%Y-%m-%d %H:%M:%S GMT")) }
   l.store "%%d. %%b", Proc.new { |date| sprintf(date.strftime("%m/%d")) }
   l.store "no trackbacks", "トラックバックなし"
-  l.store "Posted in", "カテゴリ"
-  l.store "no posts", ""
-  l.store "1 post", ""
-  l.store "%d posts", ""
-
-  # app/models/article.rb
-  l.store "direct link to this article", ""
-  l.store "If you are reading this article elsewhere than", ""
-  l.store "it has been illegally reproduced and without proper authorization", ""
   l.store "Unclassified", "未分類"
   l.store "Just Presumed Ham", "承認と推定"
   l.store "Ham?", "承認?"
@@ -95,8 +86,6 @@ Localization.define("ja_JP") do |l|
   l.store "Are you sure you want to delete the page", "本当にこのページを削除してよろしいですか？"
   l.store "Delete this page", "このページを削除"
   l.store "Your profile", "あなたのプロフィール"
-  l.store "Previous page", "前のページ"
-  l.store "Next page", "次のページ"
   l.store "File", "ファイル"
   l.store "Are you sure you want to delete this file", "本当にこのファイルを削除してよろしいですか？"
   l.store "Delete this file from the webserver?", "webサーバーからこのファイルを削除しますか？"

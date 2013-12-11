@@ -141,8 +141,6 @@ Localization.define("he_IL") do |l|
   l.store "Search Comments and Trackbacks that contain", "חפש תגובות או עוקבים-חזרה המכילים"
   l.store "Are you sure you want to delete the page", "האם אתה בטוח שברצונך למחוק דף זה ?"
   l.store "Delete this page", "מחק דף זה"
-  l.store "Previous page", "הדף הקודם"
-  l.store "Next page", "הדף הבא"
   l.store "File", "קובץ"
   l.store "Are you sure you want to delete this file", "האם אתה בטוח שברצונך למחוק קובץ זה ?"
   l.store "Delete this file from the webserver?", "למחוק קובץ זה מהשרת"

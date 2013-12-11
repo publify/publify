@@ -101,16 +101,8 @@ Localization.define("ru_RU") do |l|
   l.store "No comments", "Нет комментариев"
   l.store "Leave a response", "Оставить отзыв"
   l.store "Comments are disabled", "Комментарии выключены"
-
-  # app/views/authors/show.html.erb
-  l.store "Web site:", "Веб-сайт:"
   l.store "About %s", "Об авторе %s"
-  l.store "This author has not published any article yet", "Этот автор еще ничего не публиковал"
-
-  # themes/true-blue-3/views/articles/_article.html.erb
   l.store "Published on", "Опубликовано"
-
-  # themes/true-blue-3/views/articles/_comment_form.html.erb
   l.store "Email address", "Электронная почта"
   l.store "Your website", "Веб-сайт"
 end

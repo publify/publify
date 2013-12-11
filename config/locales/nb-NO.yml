@@ -7,6 +7,19 @@ nb-NO:
   layouts:
     administration:
       new: "Ny"
+  authors:
+    show:
+      contact_information: "Contact information"
+      web_site: "Hjemmeside:"
+      jabber: "Jabber:"
+      msn: "MSN:"
+      yahoo: "Yahoo:"
+      aim: "AIM:"
+      twitter: "Twitter:"
+      this_author_has_not_published_any_article_yet: "Forfatteren har ikke publisert noen artikler enda"
+      posted_in: "posted in"
+      next_page: "Neste side"
+      previous_page: "Forrige side"
   admin:
     sidebar:
       index:
@@ -465,3 +478,7 @@ nb-NO:
     formats:
       default: "%m/%d/%Y %H:%M"
       short: "%m/%d/%y"
+      letters_month_with_year: "%m %Y"
+  date:
+    month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]
+    abbr_month_names: [~, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]

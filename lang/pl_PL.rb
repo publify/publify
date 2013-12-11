@@ -37,22 +37,11 @@ Localization.define("pl_PL") do |l|
   l.store "no trackbacks", "brak trackbacków"
   l.store "1 trackback", "1 trackback"
   l.store "%d trackbacks", "%d trackbacki"
-
-  # app/helpers/content_helper.rb
-  l.store "Posted in", ""
-  l.store "no posts", ""
-  l.store "1 post", ""
-  l.store "%d posts", ""
-
   l.store "Reorder", "Zmień porządek"
   l.store "Sort alphabetically", "Sortuj alfabetycznie"
-
   l.store "Are you sure you want to delete the category ", "Czy na pewno chcesz skasować kategorię "
   l.store "Delete this category", "Usuń tą kategorię"
-
   l.store "(Done)", "(Zakończono)"
-
-  # app/views/admin/content/_attachment.html.erb
   l.store "Remove", "Skasuj"
   l.store "Currently this article has the following resources", "Artykuł ma dołączone następujące zasoby"
   l.store "You can associate the following resources", "Możesz przypisać do artykułu następujące zasoby"
@@ -86,16 +75,6 @@ Localization.define("pl_PL") do |l|
   l.store "Url", "Strona web"
   l.store "Are you sure you want to delete the page", "Czy na pewno chcesz usunąć tą stronę"
   l.store "Delete this page", "Usuń tą stronę"
-
-  # app/views/admin/profiles/index.html.erb
-  l.store "Your profile", ""
-
-  # app/views/admin/resources/_mime_edit.html.erb
-
-  l.store "Previous page", "Poprzednia strona"
-  l.store "Next page", "Następna strona"
-
-  # app/views/admin/resources/_upload.html.erb
   l.store "File", "Plik"
   l.store "Are you sure you want to delete this file", "Czy na pewno chcesz skasować ten plik"
   l.store "Delete this file from the webserver?", "Skasować ten plik z serwera?"
@@ -140,11 +119,8 @@ Localization.define("pl_PL") do |l|
   l.store "Preview comment", "Obejrzyj komentarz"
   l.store "From", "Z"
   l.store "No articles found", "Brak artykułów"
-  l.store "posted in", ""
-
   l.store "is about to say", "zaraz powie"
   l.store "There are", "Istnieje"
-
   l.store "Leave a response", "Skomentuj"
   l.store "Use the following link to trackback from your own site", "Użyj następującego trackbacka na swojej stronie"
   l.store "RSS feed for this post", "Subskrypcja RSS dla tego wpisu"

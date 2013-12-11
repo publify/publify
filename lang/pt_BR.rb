@@ -89,21 +89,9 @@ Localization.define("pt_BR") do |l|
 
   l.store "Show conversation", "Exibir conversa"
   l.store "Flag as %s", "Marcar como %s"
-
-  # app/helpers/application_helper.rb
-  l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", ""
-  l.store "%%d. %%b", ""
   l.store "no trackbacks", "sem trackbacks"
-  l.store "1 trackback", ""
   l.store "%d trackbacks", "%d trackbacks"
-
-  # app/helpers/content_helper.rb
-  l.store "Posted in", "Postado em"
   l.store "no posts", "Sem posts"
-  l.store "1 post", ""
-  l.store "%d posts", ""
-
-  # app/models/article.rb
   l.store "Original article writen by", "Artigo original escrito por"
   l.store "and published on", "e publicado em"
   l.store "direct link to this article", "link direto para esse artigo"
@@ -145,9 +133,6 @@ Localization.define("pt_BR") do |l|
   l.store "Limit to spam", "Limitar a spam"
   l.store "Are you sure you want to delete the page", "&iquest;Est&aacute;s seguro que deseas eliminar esta p&aacute;gina?"
   l.store "Delete this page", "Eliminar esta p&aacute;gina"
-  l.store "Your profile", ""
-  l.store "Previous page", "P&aacute;gina anterior"
-  l.store "Next page", "P&aacute;gina siguiente"
   l.store "Are you sure you want to delete this file", "&iquest;Est&aacute;s seguro que deseas eliminar este archivo?"
   l.store "Delete this file from the webserver?", "&iquest;Eliminar este archivo del servidor?"
   l.store "File Uploads", "Archivos subidos"
@@ -193,13 +178,8 @@ Localization.define("pt_BR") do |l|
 
   # app/views/articles/archives.html.erb
   l.store "No articles found", "No se encontraron art&iacute;culos"
-  l.store "posted in", ""
-
   l.store "is about to say", "est&aacute; a punto de decir"
-
-  # app/views/articles/groupings.html.erb
   l.store "There are", "Hay"
-
   l.store "Leave a response", "Deja un comentario"
   l.store "Use the following link to trackback from your own site", "Usa el siguiente link para crear un trackback desde tu propio sitio"
   l.store "RSS feed for this post", "Feed RSS para este art&iacute;culo"

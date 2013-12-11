@@ -208,14 +208,10 @@ Localization.define("nb_NO") do |l|
   l.store "from %s to %s", "fra %s til %s"
   l.store "Delete this redirection", "Slett denne omdirigeringen"
   l.store "Redirects", "Omdirigeringer"
-
-  # app/views/admin/redirects/index.html.erb
   l.store "New Redirect", "Ny omdirigering"
   l.store "From", "Fra"
   l.store "To", "Til"
   l.store "%s Redirect", "%s omdirigering"
-  l.store "Previous page", "Forrige side"
-  l.store "Next page", "Neste side"
   l.store "File", "Fil"
   l.store "Are you sure you want to delete this file", "Er du sikker på du vil slette denne filen"
   l.store "Delete this file from the webserver?", "Slett denne filen fra webtjeneren?"
@@ -298,7 +294,6 @@ Localization.define("nb_NO") do |l|
   l.store "leave url/email", "legg igjen URL/epost"
   l.store "No comments", "Ingen kommentarer"
   l.store "No articles found", "Fant ingen artikler"
-  l.store "posted in", "postet i"
   l.store "is about to say", "vil snart si"
   l.store "There are", "Det er"
   l.store "Leave a response", "Skriv en kommentar"
@@ -306,18 +301,10 @@ Localization.define("nb_NO") do |l|
   l.store "RSS feed for this post", "RSS-feed for denne artikkel"
   l.store "trackback uri", "Trackback URI"
   l.store "Comments are disabled", "Kommentarer er deaktiveret"
-
-  # app/views/authors/show.html.erb
-  l.store "Website:", "Hjemmeside:"
   l.store "About %s", "Om %s"
-  l.store "This author has not published any article yet", "Forfatteren har ikke publisert noen artikler enda"
-
   l.store "said", "sa"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "Denne kommentaren har blitt flagget for godkjenning av moderator. Den vil ikke bli vist på bloggen før moderatoren godkjenner den."
-
   l.store "This comment has been flagged for moderator approval.", "Denne kommentaren har blitt flagget for godkjenning av moderator."
-
-  # app/views/setup/index.html.erb
   l.store "Welcome", "Velkommen"
   l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Publify will take care of everything else", "Velkommen til din %s bloggoppsett. Bare fyll inn bloggtittel og epostadressen din, så vil Publify ta seg av resten"
 
@@ -468,7 +455,6 @@ Localization.define("nb_NO") do |l|
   l.store "If you are reading this article elsewhere than", "Dersom du leser denne artikkelen et annet sted enn"
   l.store "Index categories", "Indekskategorier"
   l.store "Index tags", "Indekstagger"
-  l.store "Jabber", "Jabber"
   l.store "Jabber account", "Jabber-konto"
   l.store "Jabber account to use when sending Jabber notifications", "Jabber-konto som skal brukes når du sender Jabber-meldinger"
   l.store "Jabber password", "Jabber passord"

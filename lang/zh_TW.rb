@@ -68,12 +68,6 @@ Localization.define("zh_TW") do |l|
   # app/views/admin/pages/destroy.html.erb
   l.store "Are you sure you want to delete the page", "你確定要刪除此頁？"
   l.store "Delete this page", "刪除此頁"
-
-  # app/views/admin/profiles/index.html.erb
-  l.store "Your profile", ""
-
-  l.store "Previous page", "前一頁"
-  l.store "Next page", "下一頁"
   l.store "File", "檔案"
   l.store "Are you sure you want to delete this file", "你確定要刪除此檔案？"
   l.store "Delete this file from the webserver?", "從網路伺服器刪除此檔案？"
@@ -120,12 +114,7 @@ Localization.define("zh_TW") do |l|
 
   # app/views/articles/archives.html.erb
   l.store "No articles found", "沒有找到任何文章"
-  l.store "posted in", ""
-
-  # app/views/articles/comment_preview.html.erb
   l.store "is about to say", "這是關於~~"
-
-  # app/views/articles/groupings.html.erb
   l.store "There are", "有"
 
   l.store "Leave a response", "離開一個回應"
@@ -223,7 +212,6 @@ Localization.define("zh_TW") do |l|
   l.store "Filters", "篩選器"
   l.store "HTML was cleared", "HTML已清除"
   l.store "IP", "IP"
-  l.store "Jabber", "Jabber"
   l.store "Jabber account", "Jabber帳目"
   l.store "Jabber account to use when sending Jabber notifications", "當發出jabber通知時使用jabber帳目"
   l.store "Jabber password", "Jabber密碼"
