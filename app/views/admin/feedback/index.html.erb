@@ -8,17 +8,16 @@
 <%= form_tag({action: 'index'}, method: :get, class: 'form-inline') do %>
   <p>
     <%= link_to(t(".all"), {controller: 'admin/feedback', action: :index}, {class: 'label label-default'}) %>
-    <%= link_to(t(".unapproved_comments"), {controller: 'admin/feedback', action: :index, confirmed: 'f'}, {class: 'label label-info'}) %>
-    <%= link_to(t(".presumed_ham"), {controller: 'admin/feedback', action: :index, presumed_ham: 'f'}, {class: 'label label-primary'}) %>
-    <%= link_to(t(".ham"), {controller: 'admin/feedback', action: :index, ham: 'f'}, {class: 'label label-success'}) %>
-    <%= link_to(t(".presumed_spam"), {controller: 'admin/feedback', action: :index, published: 'f'}, {class: 'label label-warning'}) %>
-    <%= link_to(t(".spam"), {controller: 'admin/feedback', action: :index, spam: 'f'}, {class: 'label label-danger'}) %>
+    <%= link_to(t(".unapproved_comments"), {controller: 'admin/feedback', action: :index, only: 'unapproved'}, {class: 'label label-info'}) %>
+    <%= link_to(t(".presumed_ham"), {controller: 'admin/feedback', action: :index, only: 'presumed_ham'}, {class: 'label label-primary'}) %>
+    <%= link_to(t(".ham"), {controller: 'admin/feedback', action: :index, only: 'ham'}, {class: 'label label-success'}) %>
+    <%= link_to(t(".presumed_spam"), {controller: 'admin/feedback', action: :index, only: 'presumed_spam'}, {class: 'label label-warning'}) %>
+    <%= link_to(t(".spam"), {controller: 'admin/feedback', action: :index, only: 'spam'}, {class: 'label label-danger'}) %>
   </p>
 <% end %>
 
 <%= form_tag({:action => 'bulkops'}, {class: 'form-inline'}) do %>
 
-  <%= hidden_field_tag "search", params[:search]%>
   <%= hidden_field_tag "page", params[:page]%>
 
   <%= render 'button', { :position => 'top' } %>          

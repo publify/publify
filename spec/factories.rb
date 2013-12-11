@@ -244,16 +244,44 @@ http://alsoping.example.com/rpc/ping"
     published_at '2005-01-01 02:00:00'
     guid
     state 'ham'
-  end
 
-  factory :spam_comment, :parent => :comment do |c|
-    c.state 'spam'
-    c.published false
-  end
+    factory :unconfirmed_comment do |c|
+      c.state 'presumed_ham'
+      c.status_confirmed false
+      c.published false
+    end
 
-  factory :ham_comment, :parent => :comment do |c|
-    c.state 'ham'
-    c.published false
+    factory :published_comment do |c|
+      c.state 'ham'
+      c.status_confirmed true
+      c.published true
+    end
+
+    factory :not_published_comment do |c|
+      c.state 'spam'
+      c.status_confirmed true
+      c.published false
+    end
+
+    factory :ham_comment do |c|
+      c.state 'ham'
+      c.published false
+    end
+
+    factory :presumed_ham_comment do |c|
+      c.state 'presumed_ham'
+      c.published false
+    end
+
+    factory :presumed_spam_comment do |c|
+      c.state 'presumed_spam'
+      c.published false
+    end
+
+    factory :spam_comment do |c|
+      c.state 'spam'
+      c.published false
+    end
   end
 
   factory :page do
