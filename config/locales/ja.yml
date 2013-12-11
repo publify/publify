@@ -211,6 +211,10 @@ ja:
         content_type: "コンテンツタイプ"
         file_size: "ファイルサイズ"
         date: "日付"
+        are_you_sure: "Are you sure?"
+        thumbnail: "Thumbnail"
+        medium_size: "Medium size"
+        original_size: "Original size"
     post_types:
       new:
         post_types: "Post Types"

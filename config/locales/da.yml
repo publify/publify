@@ -211,6 +211,10 @@ da:
         content_type: "Indholdstype (Content Type)"
         file_size: "Filstørrelse"
         date: "Dato"
+        are_you_sure: "Are you sure?"
+        thumbnail: "Thumbnail"
+        medium_size: "Medium size"
+        original_size: "Original size"
     post_types:
       new:
         post_types: "Post Types"

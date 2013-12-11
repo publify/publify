@@ -211,6 +211,10 @@ ru:
         content_type: "Content Type"
         file_size: "File Size"
         date: "Дата"
+        are_you_sure: "Вы уверены?"
+        thumbnail: "Thumbnail"
+        medium_size: "Medium size"
+        original_size: "Original size"
     post_types:
       new:
         post_types: "Post Types"

@@ -211,6 +211,10 @@ zh-CN:
         content_type: "內容類型"
         file_size: "檔案大小"
         date: "日期"
+        are_you_sure: "你确认？"
+        thumbnail: "Thumbnail"
+        medium_size: "Medium size"
+        original_size: "Original size"
     post_types:
       new:
         post_types: "Post Types"

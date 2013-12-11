@@ -211,6 +211,10 @@ nb-NO:
         content_type: "Innholdstype (Content Type)"
         file_size: "Filstørrelse"
         date: "Dato"
+        are_you_sure: "Er du sikker?"
+        thumbnail: "Thumbnail"
+        medium_size: "Mellomstor"
+        original_size: "Opprinnelig størrelse"
     post_types:
       new:
         post_types: "Post Types"

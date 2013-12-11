@@ -16,7 +16,6 @@ Localization.define("ru_RU") do |l|
 
   # app/helpers/admin/base_helper.rb
   l.store "delete", "удалить"
-  l.store "Are you sure?", "Вы уверены?"
   l.store "All categories", "Все категории"
   l.store "All authors", "Все авторы"
   l.store "Short url:", "Короткий URL:"

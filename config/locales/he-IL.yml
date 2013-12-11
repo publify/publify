@@ -211,6 +211,10 @@ he-IL:
         content_type: "סוג התוכן"
         file_size: "גודל הקובץ"
         date: "תאריך"
+        are_you_sure: "האם אתה בטוח? "
+        thumbnail: "Thumbnail"
+        medium_size: "Medium size"
+        original_size: "Original size"
     post_types:
       new:
         post_types: "Post Types"

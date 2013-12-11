@@ -211,6 +211,10 @@ pl:
         content_type: "Typ treści"
         file_size: "Rozmiar pliku"
         date: "Data"
+        are_you_sure: "Are you sure?"
+        thumbnail: "Thumbnail"
+        medium_size: "Medium size"
+        original_size: "Original size"
     post_types:
       new:
         post_types: "Post Types"

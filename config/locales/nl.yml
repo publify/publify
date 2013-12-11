@@ -211,6 +211,10 @@ nl:
         content_type: "Content Type"
         file_size: "Bestandsgrootte"
         date: "Datum"
+        are_you_sure: "Weet je het zeker?"
+        thumbnail: "Voorafbeelding"
+        medium_size: "Medium size"
+        original_size: "Original size"
     post_types:
       new:
         post_types: "Post Types"

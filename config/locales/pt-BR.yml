@@ -211,6 +211,10 @@ pt-BR:
         content_type: "Content Type"
         file_size: "Tama&ntilde;o del Archivo"
         date: "Date"
+        are_you_sure: "Você tem certeza?"
+        thumbnail: "Thumbnail"
+        medium_size: "Medium size"
+        original_size: "Original size"
     post_types:
       new:
         post_types: "Post Types"

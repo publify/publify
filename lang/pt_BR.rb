@@ -71,7 +71,6 @@ Localization.define("pt_BR") do |l|
   l.store "Store", "Salvar"
   l.store "delete", "deletar"
   l.store "Delete content", "Deletar conteúdo?"
-  l.store "Are you sure?", "Você tem certeza?"
   l.store "Please select", "Por favor selecione"
   l.store "All categories", "Todas as categorias"
   l.store "All authors", "Todos os authores"

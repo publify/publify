@@ -80,7 +80,6 @@ Localization.define("zh_CN") do |l|
   l.store "Store", "保存"
   l.store "delete", "删除"
   l.store "Delete content", "删除内容"
-  l.store "Are you sure?", "你确认？"
   l.store "Please select", "请选择"
   l.store "All categories", "所有类别"
   l.store "All authors", "所有作家"

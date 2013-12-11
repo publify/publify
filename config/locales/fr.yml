@@ -211,6 +211,10 @@ fr:
         content_type: "Type de contenu"
         file_size: "Taille du fichier"
         date: "Date"
+        are_you_sure: "Êtes-vous certain ?"
+        thumbnail: "Thumbnail"
+        medium_size: "Medium size"
+        original_size: "Original size"
     post_types:
       new:
         post_types: "Modèles d'articles"
