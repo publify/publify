@@ -480,5 +480,5 @@ fr:
       short: "%d/%m/%y"
       letters_month_with_year: "%B %Y"
   date:
-    month_names: [~, Janvier, Février, Mars, Avril, Mai, Juin, Juillet, Août, Septembre, Octobre, Novembre, Décembre]
+    month_names: [~, Janvier, Février, Mars, Avril, Mai, Juin, Juillet, Août, Septembre, Octobre, "Novembre", Décembre]
     abbr_month_names: [~, jan, fév, mars, avr, mai, juin, juil, août, sep, oct, nov, déc]
