@@ -110,6 +110,49 @@ describe Admin::FeedbackController do
 
     end
 
+    describe 'article action' do
+
+      def should_success_with_article_view(response)
+        response.should be_success
+        response.should render_template('article')
+      end
+
+      it 'should see all feedback on one article' do
+        article = FactoryGirl.create(:article)
+        FactoryGirl.create(:comment, :article => article)
+        FactoryGirl.create(:comment, :article => article)
+        get :article, :id => article.id
+        should_success_with_article_view(response)
+        assigns(:article).should == article
+        assigns(:feedback).size.should == 2
+      end
+
+      it 'should see only spam feedback on one article' do
+        article = FactoryGirl.create(:article)
+        FactoryGirl.create(:comment, :state => 'spam', :article => article)
+        get :article, :id => article.id, :spam => 'y'
+        should_success_with_article_view(response)
+        assigns(:article).should == article
+        assigns(:feedback).size.should == 1
+      end
+
+      it 'should see only ham feedback on one article' do
+        article = FactoryGirl.create(:article)
+        comment = FactoryGirl.create(:comment, :article => article)
+        get :article, :id => article.id, :ham => 'y'
+        should_success_with_article_view(response)
+        assigns(:article).should == article
+        assigns(:feedback).size.should == 1
+      end
+
+      it 'should redirect_to index if bad article id' do
+        lambda{
+          get :article, :id => 102302
+        }.should raise_error(ActiveRecord::RecordNotFound)
+      end
+
+    end
+
     describe 'create action' do
 
       def base_comment(options = {})
@@ -283,7 +326,7 @@ describe Admin::FeedbackController do
       it "delete all spam" do
         Feedback.delete_all
         comment = FactoryGirl.create(:comment, state: :spam)
-        post :bulkops, bulkop_top: Admin::FeedbackController::DELETE_ALL_SPAM
+        post :bulkops, bulkop_top: 'Delete all spam'
         Feedback.count.should == 0
       end
 
@@ -293,79 +336,79 @@ describe Admin::FeedbackController do
         FactoryGirl.create(:comment, state: :spam)
         FactoryGirl.create(:comment, state: :presumed_ham)
         FactoryGirl.create(:comment, state: :ham)
-        post :bulkops, bulkop_top: Admin::FeedbackController::DELETE_ALL_SPAM
+        post :bulkops, bulkop_top: 'Delete all spam'
         Feedback.count.should == 3
       end
 
       it "mark presumed spam comments as spam" do
         comment = FactoryGirl.create(:comment, state: :presumed_spam)
-        post :bulkops, bulkop_top: Admin::FeedbackController::MARK_AS_SPAM, feedback_check: {comment.id.to_s => "on"}
+        post :bulkops, bulkop_top: 'Mark Checked Items as Spam', feedback_check: {comment.id.to_s => "on"}
         Feedback.find(comment.id).should be_spam
       end
 
       it "mark confirmed spam comments as spam" do
         comment = FactoryGirl.create(:comment, state: :spam)
-        post :bulkops, bulkop_top: Admin::FeedbackController::MARK_AS_SPAM, feedback_check: {comment.id.to_s => "on"}
+        post :bulkops, bulkop_top: 'Mark Checked Items as Spam', feedback_check: {comment.id.to_s => "on"}
         Feedback.find(comment.id).should be_spam
       end
 
       it "mark presumed ham comments as spam" do
         comment = FactoryGirl.create(:comment, state: :presumed_ham)
-        post :bulkops, bulkop_top: Admin::FeedbackController::MARK_AS_SPAM, feedback_check: {comment.id.to_s => "on"}
+        post :bulkops, bulkop_top: 'Mark Checked Items as Spam', feedback_check: {comment.id.to_s => "on"}
         Feedback.find(comment.id).should be_spam
       end
 
       it "mark ham comments as spam" do
         comment = FactoryGirl.create(:comment, state: :ham)
-        post :bulkops, bulkop_top: Admin::FeedbackController::MARK_AS_SPAM, feedback_check: {comment.id.to_s => "on"}
+        post :bulkops, bulkop_top: 'Mark Checked Items as Spam', feedback_check: {comment.id.to_s => "on"}
         Feedback.find(comment.id).should be_spam
       end
 
       it "mark presumed spam comments as ham" do
         comment = FactoryGirl.create(:comment, state: :presumed_spam)
-        post :bulkops, bulkop_top: Admin::FeedbackController::MARK_AS_HAM, feedback_check: {comment.id.to_s => "on"}
+        post :bulkops, bulkop_top: 'Mark Checked Items as Ham', feedback_check: {comment.id.to_s => "on"}
         Feedback.find(comment.id).should be_ham
       end
 
       it "mark confirmed spam comments as ham" do
         comment = FactoryGirl.create(:comment, state: :spam)
-        post :bulkops, bulkop_top: Admin::FeedbackController::MARK_AS_HAM, feedback_check: {comment.id.to_s => "on"}
+        post :bulkops, bulkop_top: 'Mark Checked Items as Ham', feedback_check: {comment.id.to_s => "on"}
         Feedback.find(comment.id).should be_ham
       end
 
       it "mark presumed ham comments as ham" do
         comment = FactoryGirl.create(:comment, state: :presumed_ham)
-        post :bulkops, bulkop_top: Admin::FeedbackController::MARK_AS_HAM, feedback_check: {comment.id.to_s => "on"}
+        post :bulkops, bulkop_top: 'Mark Checked Items as Ham', feedback_check: {comment.id.to_s => "on"}
         Feedback.find(comment.id).should be_ham
       end
 
       it "mark ham comments as ham" do
         comment = FactoryGirl.create(:comment, state: :ham)
-        post :bulkops, bulkop_top: Admin::FeedbackController::MARK_AS_HAM, feedback_check: {comment.id.to_s => "on"}
+        post :bulkops, bulkop_top: 'Mark Checked Items as Ham', feedback_check: {comment.id.to_s => "on"}
         Feedback.find(comment.id).should be_ham
       end
 
       it "confirms presumed spam comments as spam" do
         comment = FactoryGirl.create(:comment, state: :presumed_spam)
-        post :bulkops, bulkop_top: Admin::FeedbackController::CONFIRM_CLASSIFICATION, feedback_check: {comment.id.to_s => "on"}
+        post :bulkops, bulkop_top: 'Confirm Classification of Checked Items', feedback_check: {comment.id.to_s => "on"}
         Feedback.find(comment.id).should be_spam
       end
 
       it "confirms confirmed spam comments as spam" do
         comment = FactoryGirl.create(:comment, state: :spam)
-        post :bulkops, bulkop_top: Admin::FeedbackController::CONFIRM_CLASSIFICATION, feedback_check: {comment.id.to_s => "on"}
+        post :bulkops, bulkop_top: 'Confirm Classification of Checked Items', feedback_check: {comment.id.to_s => "on"}
         Feedback.find(comment.id).should be_spam
       end
 
       it "confirms presumed ham comments as ham" do
         comment = FactoryGirl.create(:comment, state: :presumed_ham)
-        post :bulkops, bulkop_top: Admin::FeedbackController::CONFIRM_CLASSIFICATION, feedback_check: {comment.id.to_s => "on"}
+        post :bulkops, bulkop_top: 'Confirm Classification of Checked Items', feedback_check: {comment.id.to_s => "on"}
         Feedback.find(comment.id).should be_ham
       end
 
       it "confirms ham comments as ham" do
         comment = FactoryGirl.create(:comment, state: :ham)
-        post :bulkops, bulkop_top: Admin::FeedbackController::CONFIRM_CLASSIFICATION, feedback_check: {comment.id.to_s => "on"}
+        post :bulkops, bulkop_top: 'Confirm Classification of Checked Items', feedback_check: {comment.id.to_s => "on"}
         Feedback.find(comment.id).should be_ham
       end
 
