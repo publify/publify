@@ -201,6 +201,12 @@ pl:
         action_or_other: "%{first_action} lub %{second_action}"
         cancel: "Anuluj"
         delete: "Usuń"
+    tags:
+      new:
+        articles: "Artykułów"
+        display_name: "Wyświetlana nazwa"
+        manage_tags: "Zarządzaj tagów"
+        name: "nazwa"
     resources:
       index:
         media_library: "Media Library"

@@ -201,6 +201,12 @@ he-IL:
         action_or_other: "%{first_action} או %{second_action}"
         cancel: "בטל"
         delete: "מחק"
+    tags:
+      new:
+        articles: "כתבות"
+        display_name: "שם התצוגה"
+        manage_tags: "נהל תוויות"
+        name: "השם"
     resources:
       index:
         media_library: "Media Library"

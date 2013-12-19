@@ -201,6 +201,12 @@ ru:
         action_or_other: "%{first_action} или %{second_action}"
         cancel: "Отменить"
         delete: "Удалить"
+    tags:
+      new:
+        articles: "Articles"
+        display_name: "Display Name"
+        manage_tags: "Manage Tags"
+        name: "Name"
     resources:
       index:
         media_library: "Media Library"

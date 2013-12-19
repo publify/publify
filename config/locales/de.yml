@@ -201,6 +201,12 @@ de:
         action_or_other: "%{first_action} oder %{second_action}"
         cancel: "Cancel"
         delete: "Löschen"
+    tags:
+      new:
+        articles: "Artikeln"
+        display_name: "Anzeigename"
+        manage_tags: "Etikett verwalten"
+        name: "Name"
     resources:
       index:
         media_library: "Media Library"
