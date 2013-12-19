@@ -201,6 +201,12 @@ ro:
         action_or_other: "%{first_action} sau %{second_action}"
         cancel: "Anulare"
         delete: "Delete"
+    tags:
+      new:
+        articles: "Articol"
+        display_name: "Numele real"
+        manage_tags: "Manage Tags"
+        name: "Nume"
     resources:
       index:
         media_library: "Media Library"

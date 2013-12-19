@@ -163,7 +163,7 @@ en:
         title_only: "Title only"
         custom: "Custom"
         sample: "Here are some examples to get you started."
-        you_can_custom_your_url_structure: "You can custom your URL structure using the following tags:"
+        you_can_custom_your_url_structure: "You can customize your URL structure using the following tags:"
         your_article_slug: "your article slug. <strong>Using this slug is mandatory</strong>."
         your_article_year: "your article year of publication."
         your_article_month: "your article month of publication."
@@ -201,6 +201,12 @@ en:
         action_or_other: "%{first_action} or %{second_action}"
         cancel: "Cancel"
         delete: "Delete"
+    tags:
+      new:
+        articles: "Articles"
+        display_name: "Display Name"
+        manage_tags: "Manage Tags"
+        name: "Name"
     resources:
       index:
         media_library: "Media Library"

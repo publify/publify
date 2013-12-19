@@ -201,6 +201,12 @@ da:
         action_or_other: "%{first_action} eller %{second_action}"
         cancel: "Anuller"
         delete: "Slet"
+    tags:
+      new:
+        articles: "Artikler"
+        display_name: "Vis navn"
+        manage_tags: "Administrer Tags"
+        name: "Navn"
     resources:
       index:
         media_library: "Media Library"

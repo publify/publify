@@ -201,6 +201,12 @@ es-MX:
         action_or_other: "%{first_action} o %{second_action}"
         cancel: "Cancelar"
         delete: "Eliminar"
+    tags:
+      new:
+        articles: "Artículos"
+        display_name: "Nombre para mostrar"
+        manage_tags: "Administrar tags"
+        name: "Nombre"
     resources:
       index:
         media_library: "Media Library"

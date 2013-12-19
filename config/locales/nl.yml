@@ -201,6 +201,12 @@ nl:
         action_or_other: "%{first_action} of %{second_action}"
         cancel: "Terug"
         delete: "Verwijderen"
+    tags:
+      new:
+        articles: "Artikelen"
+        display_name: "Toon naam"
+        manage_tags: "Beheer tags"
+        name: "Naam"
     resources:
       index:
         media_library: "Media Library"

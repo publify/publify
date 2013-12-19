@@ -201,6 +201,12 @@ ja:
         action_or_other: "%{first_action} または %{second_action}"
         cancel: "キャンセル"
         delete: "削除"
+    tags:
+      new:
+        articles: "記事"
+        display_name: "表示名"
+        manage_tags: "タグの管理"
+        name: "名"
     resources:
       index:
         media_library: "Media Library"

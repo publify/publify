@@ -201,6 +201,12 @@ lt:
         action_or_other: "%{first_action} arba %{second_action}"
         cancel: "Baigti"
         delete: "Trinti"
+    tags:
+      new:
+        articles: "Straipsniai"
+        display_name: "Rodomas vardas"
+        manage_tags: "Valdyti žymės"
+        name: "Vardas"
     resources:
       index:
         media_library: "Media Library"

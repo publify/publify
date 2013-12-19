@@ -201,6 +201,12 @@ zh-TW:
         action_or_other: "%{first_action} 或 %{second_action}"
         cancel: "取消"
         delete: "刪除"
+    tags:
+      new:
+        articles: "文章"
+        display_name: "暱稱"
+        manage_tags: "Tags管理"
+        name: "名稱"
     resources:
       index:
         media_library: "Media Library"
