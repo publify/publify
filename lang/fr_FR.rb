@@ -332,75 +332,33 @@ Localization.define("fr_FR") do |l|
   l.store "You can leave a %s", "Vous pouvez déposer un %s"
   l.store "or a %s from your own site", "ou un %s depuis votre site"
   l.store "Read full article", "Lire l'article complet"
-
-  # themes/standard_issue/views/articles/_comment_form.html.erb
   l.store "Name %s", "Votre nom %s"
   l.store "never displayed", "jamais affiché"
   l.store "Website", "Votre site"
   l.store "required", "obligatoire"
-
-  # themes/true-blue-3/helpers/theme_helper.rb
-  l.store "You are here: ", "Vous êtes ici&nbsp;: "
-
-  # themes/true-blue-3/views/articles/_article.html.erb
-  l.store "%%a, %%d %%b %%Y %%H:%%M", ""
-
-  # themes/typographic/views/layouts/default.html.erb
   l.store "Designed by %s ", "Design par %s"
-
-  # vendor/plugins/archives_sidebar/app/views/archives_sidebar/_content.html.erb
   l.store "Archives", "Archives"
-
   l.store "Authors", "Auteurs"
-
-  # vendor/plugins/meta_sidebar/app/views/meta_sidebar/_content.html.erb
-  l.store "RSS Feed", ""
-  l.store "Admin", ""
-  l.store "Powered by Publify", ""
-
-  # vendor/plugins/xml_sidebar/app/views/xml_sidebar/_content.html.erb
   l.store "Syndicate", "Suivre ce blog"
   l.store "Category %s", "Catégorie %s"
   l.store "Tag %s", "Label %s"
-
-  # Obsolete translations
-  l.store " made a link to you saying ", " a fait un lien vers vous disant "
   l.store "%d posts", "%d articles"
-  l.store "%s", ""
-  l.store "%s Post Type", ""
-  l.store "%s Redirect", ""
   l.store "(Done)", "(Terminé)"
-  l.store "(leave url/email &#187;)", "(laissez votre url/email &#187;)"
-  l.store ", Articles for ", ", articles pour "
   l.store "1 post", "1 article"
   l.store "Add MetaData", "Ajouter des métadonnées"
   l.store "All comments", "Tous les commentaires"
-  l.store "Allow non-ajax comments", "Autoriser l'envoi de commentaires sans AJAX"
-  l.store "Apr", "avr"
-  l.store "April", "avril"
   l.store "Archives for", "Archives de"
   l.store "Archives for ", "Archives de"
-  l.store "Are you sure you want to delete the category ", "Êtes vous certain de vouloir supprimer cette catégorie "
-  l.store "Are you sure you want to delete the page", "Voulez-vous vraiment effacer cette page"
-  l.store "Are you sure you want to delete the tag", "Êtes-vous certain de vouloir supprimer le label"
-  l.store "Are you sure you want to delete this item?", "Êtes vous certain de vouloir supprimer cette entrée ?"
   l.store "Article Types", "Modèles d'articles"
-  l.store "Aug", "août"
-  l.store "August", "août"
   l.store "Back to overview", "Revenir à la liste"
   l.store "Back to tags list", "Revenir à la liste des labels"
-  l.store "Blacklist Pattern could not be created.", "Cette entrée n'a pas pu être créée"
-  l.store "Blacklist Pattern could not be updated.", "Cette entrée n'a pas pu être mise à jour"
-  l.store "Blacklist Pattern was successfully created.", "Cette entrée a été créée avec succès"
   l.store "Blacklist Patterns", "Liste noire"
-  l.store "BlacklistPattern was successfully updated.", "Cette entrée a été mise à jour avec succès"
   l.store "Blog settings", "Configuration du blog"
   l.store "By %s on %s", "Par %s le %s"
   l.store "Category", "Catégorie"
   l.store "Comment Excerpt", "Extrait du commentaire"
   l.store "Comments for", "Commentaires pour"
   l.store "Comments for %s (%s)", "Commentaires sur l'article %s (%s)"
-  l.store "Confirm Classification of Checked Items", "Confirmer la classification des commentaires"
   l.store "Contact options", "Options de contact"
   l.store "Continue reading...", "Lire la suite..."
   l.store "Copyright Information", "Informations sur le copyright"
@@ -409,14 +367,12 @@ Localization.define("fr_FR") do |l|
   l.store "File", "Fichier"
   l.store "Ham?", "Désirable?"
   l.store "IP", "Adresse IP"
-  l.store "If you are reading this article elsewhere than", "Si vous lisez cet article ailleurs que sur"
   l.store "Just Marked As Ham", "Marqué comme désirable"
   l.store "Just Marked As Spam", "Marqué comme spam"
   l.store "Just Presumed Ham", "Marqué commme supposé désirable"
   l.store "Login %s", "Identifiant %s"
   l.store "Mandatory", "Obligatoire"
   l.store "Metadata", "Métadonnées"
-  l.store "No", "Non"
   l.store "Notification", "Notifications"
   l.store "Options", "Options"
   l.store "Password %s", "Mot de passe %"
@@ -436,8 +392,10 @@ Localization.define("fr_FR") do |l|
   l.store "published", "publié"
   l.store "save", "Sauver"
   l.store "your blog", "votre blog"
-  l.store "Yes", "Oui"
   l.store "for", "pour"
+
+  l.store "Yes", "Oui"
+  l.store "No", "Non"
 
   l.store "Mon", "Lun"
   l.store "Monday", "Lundi"
@@ -454,6 +412,10 @@ Localization.define("fr_FR") do |l|
   l.store "Sun", "Dim"
   l.store "Sunday", "Dimanche"
 
+  l.store "Apr", "avr"
+  l.store "April", "avril"
+  l.store "Aug", "août"
+  l.store "August", "août"
   l.store "Dec", "déc"
   l.store "December", "décembre"
 
