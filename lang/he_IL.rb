@@ -7,10 +7,6 @@ Localization.define("he_IL") do |l|
   l.store "An email has been successfully sent to your address with your new password", ""
   l.store "Oops, something wrong just happened", ""
   l.store "Successfully logged out", "התנתקת מהמערכת בהצלחה"
-  l.store "login", ""
-  l.store "signup", ""
-  l.store "Recover your password", ""
-  # app/controllers/admin/content_controller.rb
   l.store "Error, you are not allowed to perform this action", "שגיאה, אינך רשאי לבצע פעולה זו"
   l.store "Preview", "תצוגה מקדימה"
   l.store "Article was successfully created", "הכתבה נוצרה בהצלחה "
@@ -28,11 +24,7 @@ Localization.define("he_IL") do |l|
 
   l.store "Page was successfully created.", "הדף נוצר בהצלחה."
   l.store "Page was successfully updated.", "הדף עודכן בהצלחה."
-
-  # app/controllers/admin/profiles_controller.rb
   l.store "User was successfully updated.", "המשתמש עודכן בהצלחה."
-
-  # app/controllers/admin/resources_controller.rb
   l.store "Error occurred while updating Content Type.", "שגיאה בעת עדכון סוג התוכן."
   l.store "complete", "מלא"
   l.store "File uploaded: ", " :הקובץ הועלה"
@@ -40,22 +32,13 @@ Localization.define("he_IL") do |l|
   l.store "Metadata was successfully updated.", "מידע-העל עודכן בהצלחה."
   l.store "Not all metadata was defined correctly.", "לא כל מידע-העל הוגדר נכון."
   l.store "Content Type was successfully updated.", "סוג התוכן עודכן בהצלחה."
-
-  # app/controllers/admin/settings_controller.rb
   l.store "Please review and save the settings before continuing", "אנא בדוק ושמור את השינויים לפני שתמשיך"
   l.store "config updated.", "ההגדרה עודכנה."
-
-  # app/controllers/admin/sidebar_controller.rb
   l.store "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually", ""
   l.store "Tag was successfully updated.", "התוית עודכנה בהצלחה."
-
-  # app/controllers/admin/themes_controller.rb
-  l.store "Theme changed successfully", ""
   l.store "You are not authorized to open this file", "אינך רשאי לפתוח קובץ זה"
   l.store "File saved successfully", "הקובץ נשמר בהצלחה"
   l.store "Unable to write file", "שגיאה בעת כתיבת הקובץ"
-
-  # app/controllers/admin/users_controller.rb
   l.store "User was successfully created.", "המשתמש נוצר בהצלחה."
 
   # app/controllers/application_controller.rb
@@ -67,14 +50,7 @@ Localization.define("he_IL") do |l|
   l.store "Unpublished", "לא פורסם"
   l.store "Back to overview", "עבור לסקירה"
   l.store "Tag", "תוית"
-
-  # app/helpers/admin/content_helper.rb
   l.store "Destroy this draft", "מחוק טיוטה זו"
-
-  l.store "Show conversation", ""
-  l.store "Flag as %s", ""
-
-  # app/helpers/application_helper.rb
   l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", "%%a, %%d %%b %%Y %%H:%%M:%%S GMT"
   l.store "%%d. %%b", "%%d. %%b"
   l.store "no trackbacks", "אין עוקבים-חזרה"
@@ -106,27 +82,19 @@ Localization.define("he_IL") do |l|
   l.store "Are you sure you want to delete the category ", "האם אתה בטוח שברצונך למחוק את הקטגורייה ?"
   l.store "Delete this category", "מחק קטגורייה זו"
   l.store "(Done)", "(בוצע)"
-
-  # app/views/admin/content/_attachment.html.erb
   l.store "Remove", "הסר"
   l.store "Currently this article has the following resources", "כרגע לכתבה שייכים המשאבים הבאים"
   l.store "You can associate the following resources", "תוכל לשייך אליה את המשאבים הבאים"
   l.store "Really delete attachment", "האם אתה בטוח שברצונך למחוק את הקובץ הצורף"
   l.store "Add another attachment", "הוסף קובץ-מצורף"
-
-  # app/views/admin/content/_form.html.erb
   l.store "Uploads", "העלאות"
   l.store "Post settings", "הגדרות כתבה"
   l.store "Publish at", "פורסם בתאריך"
-
-  # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "האם אתה בטוח שברצונך למחוק כתבה זו"
   l.store "Delete this article", "מחק כתבה זו"
   l.store "Most popular", "הכי פופלריים"
   l.store "Nothing to show yet", "אין מה להציג כרגע"
   l.store "No posts yet, why don't you start and write one", "אין כתבות עדיין, למה שלא תתחיל לכתוב כתבה חדשה"
-
-  # app/views/admin/dashboard/_welcome.html.erb
   l.store "Welcome back, %s!", "ברוך הבא, %s!"
   l.store "Total posts : %d", "כתבות: %d"
   l.store "Your posts : %d", "הכתבות שלך: %d"
@@ -152,11 +120,7 @@ Localization.define("he_IL") do |l|
   l.store "yes", "כן"
   l.store "no", "לא"
   l.store "You have no plugins installed", "אין תוספים מותקנים"
-
-  # app/views/admin/sidebar/_publish.html.erb
   l.store "Changes published", "השינויים פורסמו"
-
-  # app/views/admin/sidebar/_target.html.erb
   l.store "Drag some plugins here to fill your sidebar", "גרור חלק מהתוספים כדי למלא את תיבת הצד"
   l.store "Display name", "שם התצוגה"
   l.store "Are you sure you want to delete the tag", "האם אתה בטוח שרצונך למחוק תווית זו ?"
@@ -167,10 +131,6 @@ Localization.define("he_IL") do |l|
   l.store "Manage tags", "נהל תוויות"
   l.store "Active theme", "עיצוב פעיל"
   l.store "Choose a theme", "בחר עיצוב"
-  l.store "Use this theme", ""
-
-  # app/views/admin/users/_form.html.erb
-  l.store "Account settings", ""
   l.store "Password confirmation", "אימות סיסמה"
   l.store "Editor", "עורך"
   l.store "Send notification messages via email", "שלח עדכונים באמצאות הדואל"
@@ -208,25 +168,8 @@ Localization.define("he_IL") do |l|
   l.store "trackback uri", "כתובת העוקב-חזרה"
   l.store "Comments are disabled", "התגובות מבוטלות"
   l.store "This comment has been flagged for moderator approval.", "התגובה הזו ממתינה לאישור"
-
-  # app/views/setup/index.html.erb
-  l.store "Welcome", ""
-  l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Publify will take care of everything else", ""
-
-  # app/views/shared/_confirm.html.erb
-  l.store "Congratulations!", ""
-  l.store "You have successfully signed up", ""
-  l.store "<strong>Login:</strong> %s", ""
-  l.store "<strong>Password:</strong> %s", ""
-  l.store "Don't lose the mail sent at %s or you won't be able to login anymore", ""
-
-  # app/views/shared/_search.html.erb
-  l.store "Live Search", ""
-
-  # test/mocks/themes/typographic/layouts/default.html.erb
   l.store "Powered by %s", "מופעל על ידי %s"
   l.store "Designed by %s ", "עוצב על ידי %s"
-
   l.store "Continue reading...", "המשך לקרוא..."
   l.store "This entry was posted on %s", "כתבה זו פורסמה בתאריך %s"
   l.store "and %s", "ו-%s"

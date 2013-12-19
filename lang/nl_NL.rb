@@ -295,17 +295,7 @@ Localization.define("nl_NL") do |l|
   # app/views/setup/index.html.erb
   l.store "Welcome", "Welkom"
   l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Publify will take care of everything else", "Welkom bij je %s blog setup. Vul een titel voor je blog in, en een e-mailadres, en Publify zorgt voor de rest"
-
-  # app/views/shared/_confirm.html.erb
   l.store "Congratulations!", "Gefeliciteerd!"
-  l.store "You have successfully signed up", "Je bent succesvol aangemeld"
-  l.store "<strong>Login:</strong> %s", "<strong>Inlognaam:</strong> %s"
-  l.store "<strong>Password:</strong> %s", "<strong>Wachtwoord:</strong> %s"
-  l.store "Don't lose the mail sent at %s or you won't be able to login anymore", "Verlies de e-mail verzonden naar %s, want anders kun je niet meer inloggen"
-
-  # app/views/shared/_search.html.erb
-  l.store "Live Search", ""
-
   # test/mocks/themes/typographic/layouts/default.html.erb
   l.store "Powered by %s", "Powered by %s"
   l.store "Designed by %s ", "Ontworpen door %s"

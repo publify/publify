@@ -1,21 +1,6 @@
 # coding: utf-8
 Localization.define("it_IT") do |l|
-
-  # app/controllers/accounts_controller.rb
-  l.store "Login successful", ""
-  l.store "Login unsuccessful", ""
-  l.store "Oops, something wrong just happened", ""
   l.store "Successfully logged out", "Sei correttamente uscito"
-  l.store "login", ""
-  l.store "signup", ""
-  l.store "Recover your password", ""
-  # app/controllers/admin/content_controller.rb
-  l.store "Error, you are not allowed to perform this action", ""
-  l.store "Preview", ""
-
-  l.store "Deleted", ""
-  l.store "Not found", ""
-  l.store "Deleted %d item(s)", ""
   l.store "Confirmed classification of %s item(s)", "Conferma classificazione di %s elementi"
   l.store "Not implemented", "Non implementato"
   l.store "Error occurred while updating Content Type.", "Si e' verificato un errore mentre aggiornavo il tipo di contenuto."

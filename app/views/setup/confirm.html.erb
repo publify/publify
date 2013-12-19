@@ -1,7 +1,9 @@
-<p><%= _("You have successfully signed up") %></p>  
-<p><%= _("<strong>Login:</strong> %s", current_user.login)%></p>
-<p><%= _("<strong>Password:</strong> %s", session[:tmppass]) %></p>
-<div class='alert alert-warning'><%= _("Don't lose the mail sent at %s or you won't be able to login anymore", current_user.email)%></div>
+<p><%= t(".you_have_successfully_signed_up") %></p>  
+<p><%= t(".login", user: current_user.login)%></p>
+<p><%= t(".password", pass: session[:tmppass]) %></p>
+<div class='alert alert-warning'>
+  <%= t(".dont_lose_the_mail_sent", email: current_user.email)%>
+</div>
 
 <%- content_for :account_links do %>
   <%= t(".proceed_to", link: link_to(t(".admin"), controller: 'admin/dashboard')) %>

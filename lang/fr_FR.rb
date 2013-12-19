@@ -81,9 +81,6 @@ Localization.define("fr_FR") do |l|
 
   # app/controllers/admin/users_controller.rb
   l.store "User was successfully created.", "L'utilisateur a été créé avec succès."
-
-  # app/controllers/application_controller.rb
-  l.store "Localization.rtl", ""
   l.store "No posts found...", "Aucun article n'a été trouvé"
   l.store "page", "page"
   l.store "Store", "Stocker"
@@ -99,31 +96,19 @@ Localization.define("fr_FR") do |l|
   l.store "Show", "Affichage"
   l.store "Show help on Publify macros", "Afficher l'aide sur les macros Publify"
   l.store "Update settings", "Mettre les paramètres à jour"
-  l.store "Back to list", ""
   l.store "Tag", "Label"
-
-  # app/helpers/admin/categories_helper.rb
   l.store "no articles", "aucun article"
   l.store "1 article", "1 article"
   l.store "%d articles", "%d articles"
-
-  # app/helpers/admin/content_helper.rb
   l.store "Destroy this draft", "Supprimer ce brouillon"
-  l.store "Article type", ""
   l.store "Show conversation", "Afficher le fil"
   l.store "Flag as %s", "Marquer comme %s"
-
-  l.store "%%d. %%b", ""
-  l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", ""
   l.store "%d comments", "%d commentaires"
   l.store "no comments", "aucun commentaire"
   l.store "1 comment", "1 commentaire"
   l.store "no trackbacks", "aucun rétrolien"
   l.store "1 trackback", "1 rétrolien"
   l.store "%d trackbacks", "%d rétroliens"
-
-  # app/models/blog.rb
-  l.store "You need a permalink format with an identifier : %%title%%", ""
   l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", "Ne peut pas se terminer par .rss ou .atom. Cette extension est réservée aux flux de syndication"
 
   l.store "public", "publique"
@@ -268,63 +253,30 @@ Localization.define("fr_FR") do |l|
   # app/views/errors/404.html.erb
   l.store "Page not found", "Page non trouvée"
   l.store "The page you are looking for has moved or does not exist.", "La page que vous cherchez a été déplacée ou n'existe pas"
-
-  # app/views/setup/index.html.erb
   l.store "Welcome", "Bienvenue"
-  l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Publify will take care of everything else", ""
-
-  # app/views/shared/_confirm.html.erb
-  l.store "Congratulations!", "Félicitations !"
-  l.store "You have successfully signed up", "Vous vous êtes inscrit avec succès"
-  l.store "<strong>Login:</strong> %s", "<strong>Identifiant&nbsp;:</strong> %s"
-  l.store "<strong>Password:</strong> %s", "<strong>Mot de passe&nbsp;:</strong> %s"
-  l.store "Don't lose the mail sent at %s or you won't be able to login anymore", "Ne perdez pas l'email que nous venons de vous envoyer à l'adresse %s ou vous ne pourrez plus vous connecter à l'application"
 
   # app/views/shared/_search.html.erb
   l.store "Live Search", "Recherche instantanée"
-
-  # themes/bootstrap/helpers/theme_helper.rb
   l.store "%d comment", "%d commentaires"
-
-  l.store "under", ""
-
-  # themes/bootstrap/views/articles/_comment_form.html.erb
   l.store "Email address", "Adresse mail"
   l.store "Your website", "Votre site"
   l.store "comment", "commentaire"
-
-  # themes/bootstrap/views/articles/read.html.erb
   l.store "If you liked this article you can %s", "Si vous avez aimé cet article, vous pouvez %s"
   l.store "add me to Twitter", "me suivre sur Twitter"
   l.store "Trackbacks for", "Rétroliens pour"
-
-  # themes/bootstrap/views/articles/search.html.erb
   l.store "Search results for:", "Résultats de la recherche sur&nbsp;:"
-
-  # themes/bootstrap/views/categories/index.html.erb
   l.store "Read all articles in %s", "Tous les articles dans %s sont lus"
 
   l.store "Previous", "Précédent"
-
   l.store "Leave a comment", "laisser un commentaire"
-
-  # themes/dirtylicious/views/layouts/default.html.erb
   l.store "About", "À propos de"
   l.store "Designed by %s ported to publify by %s ", "Design par %s porté sous Publify par %s"
   l.store "Powered by %s", "Propulsé par %s"
-
-  # themes/scribbish/views/articles/_article.html.erb
   l.store "Meta", "Méta"
   l.store "permalink", "lien permanent"
-
-  # themes/scribbish/views/articles/_comment_form.html.erb
   l.store "Textile enabled", "Textile activé"
   l.store "Markdown enabled", "Markdown activé"
-
-  # themes/scribbish/views/layouts/default.html.erb
   l.store "styled with %s", "stylé avec %s"
-
-  # themes/standard_issue/views/articles/_article.html.erb
   l.store "This entry was posted on %s", "Ce billet a été posté le %s"
   l.store "and %s", "et %s"
   l.store "You can follow any response to this entry through the %s", "Vous pouvez suivre la discussion autour de cet article via le %s"

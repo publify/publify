@@ -121,14 +121,9 @@ Localization.define("ja_JP") do |l|
   # app/views/admin/themes/index.html.erb
   l.store "Active theme", "現在のテーマ"
   l.store "Choose a theme", "テーマの選択"
-  l.store "Use this theme", ""
-
-  # app/views/admin/users/_form.html.erb
-  l.store "Account settings", ""
   l.store "Password confirmation", "パスワード（確認用）"
   l.store "Active", "有効"
   l.store "Inactive", "無効"
-  l.store "Profile settings", ""
   l.store "Firstname", "姓"
   l.store "Lastname", "名"
   l.store "Nickname", "ニックネーム"

@@ -77,29 +77,7 @@ Localization.define("es_MX") do |l|
   l.store "RSS feed for this post", "Feed RSS para este art&iacute;culo"
   l.store "trackback uri", "trackback uri"
   l.store "Comments are disabled", "Los comentarios est&aacute;n deshabilitados"
-  l.store "Trackbacks are disabled", ""
-  l.store "About %s", ""
-
-  # app/views/comments/show.html.erb
-  l.store "This comment has been flagged for moderator approval.", ""
-
-  # app/views/setup/index.html.erb
-  l.store "Welcome", ""
-
-  # app/views/shared/_confirm.html.erb
-  l.store "Congratulations!", ""
-  l.store "You have successfully signed up", ""
-  l.store "<strong>Login:</strong> %s", ""
-  l.store "<strong>Password:</strong> %s", ""
-  l.store "Don't lose the mail sent at %s or you won't be able to login anymore", ""
   l.store "Trackbacks for", "Trackbacks para"
-
-  # vendor/plugins/xml_sidebar/views/content.rhtml
-  l.store "Syndicate", ""
-  l.store "Category %s", ""
-  l.store "Tag %s", ""
-
-  # Obsolete translations
   l.store "%d Articles", ["Art&iacute;culo", "%d Art&iacute;culos"]
   l.store "%d Categories", ["Categor&iacute;", "%d Categor&iacute;as"]
   l.store "%d Comments", ["Comentario", "%d Comentarios"]

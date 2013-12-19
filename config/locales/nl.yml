@@ -20,6 +20,14 @@ nl:
       posted_in: "postet i"
       next_page: "Next page"
       previous_page: "Previous page"
+  setup:
+    confirm:
+      you_have_successfully_signed_up: "Je bent succesvol aangemeld"
+      login: "Inlognaam: %{user}"
+      password: "Wachtwoord: %{pass}"
+      dont_lose_the_mail_sent: "Verlies de e-mail verzonden naar %{email}, want anders kun je niet meer inloggen"
+      proceed_to: "Ga door naar %{link}"
+      admin: "admin"
   admin:
     sidebar:
       index:

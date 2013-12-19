@@ -304,17 +304,7 @@ Localization.define("nb_NO") do |l|
   l.store "Welcome", "Velkommen"
   l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Publify will take care of everything else", "Velkommen til din %s bloggoppsett. Bare fyll inn bloggtittel og epostadressen din, så vil Publify ta seg av resten"
 
-  # app/views/shared/_confirm.html.erb
   l.store "Congratulations!", "Gratulerer!"
-  l.store "You have successfully signed up", "Du er nå registrert"
-  l.store "<strong>Login:</strong> %s", "<strong>Logg inn:</strong> %s"
-  l.store "<strong>Password:</strong> %s", "<strong>Passord:</strong> %s"
-  l.store "Don't lose the mail sent at %s or you won't be able to login anymore", "Ikke mist eposten som ble sendt %s. Uten passordet vil du ikke kunne logge inn senere"
-
-  # app/views/shared/_search.html.erb
-  l.store "Live Search", ""
-
-  # test/mocks/themes/typographic/layouts/default.html.erb
   l.store "Powered by %s", "Bloggen bruker %s"
   l.store "Designed by %s ", "Utformet av %s"
   l.store "Continue reading...", "Fortsett å lese..."

@@ -20,6 +20,14 @@ nb-NO:
       posted_in: "posted in"
       next_page: "Neste side"
       previous_page: "Forrige side"
+  setup:
+    confirm:
+      you_have_successfully_signed_up: "Du er nå registrert"
+      login: "Logg inn: %{user}"
+      password: "Passord: %{pass}"
+      dont_lose_the_mail_sent: "Ikke mist eposten som ble sendt %{email}. Uten passordet vil du ikke kunne logge inn senere"
+      proceed_to: "Fortsett til %{link}"
+      admin: "admin"
   admin:
     sidebar:
       index:

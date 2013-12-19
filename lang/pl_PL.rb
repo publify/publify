@@ -3,14 +3,6 @@
 # additional localization Szymon (jeznet) Jeż <szymon@jez.net.pl>
 
 Localization.define("pl_PL") do |l|
-
-  # app/controllers/accounts_controller.rb
-  l.store "Login successful", ""
-  l.store "Login unsuccessful", ""
-  l.store "Oops, something wrong just happened", ""
-  l.store "Successfully logged out", ""
-  l.store "login", ""
-  l.store "signup", ""
   l.store "Error occurred while updating Content Type.", "Wystąpił błąd w trakcie aktualizacji typu zawartości."
   l.store "complete", "zakończony"
   l.store "File uploaded: ", "Załadowany plik: "

@@ -20,6 +20,14 @@ zh-CN:
       posted_in: "发表在"
       next_page: "下一頁"
       previous_page: "前一頁"
+  setup:
+    confirm:
+      you_have_successfully_signed_up: "You have successfully signed up"
+      login: "Login: %{user}"
+      password: "Password: %{pass}"
+      dont_lose_the_mail_sent: "Don't lose the mail sent at %{email} or you won't be able to login anymore"
+      proceed_to: "Proceed to %{link}"
+      admin: "admin"
   admin:
     sidebar:
       index:

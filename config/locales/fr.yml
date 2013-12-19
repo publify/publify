@@ -20,6 +20,14 @@ fr:
       posted_in: "publié dans"
       next_page: "Page suivante"
       previous_page: "Page précédente"
+  setup:
+    confirm:
+      you_have_successfully_signed_up: "Vous vous êtes inscrit avec succès"
+      login: "Identifiant&nbsp;: %{user}"
+      password: "Mot de passe&nbsp;: %{pass}"
+      dont_lose_the_mail_sent: "Ne perdez pas l'email que nous venons de vous envoyer à l'adresse %{email} ou vous ne pourrez plus vous connecter à l'application"
+      proceed_to: "Proceed to %{link}"
+      admin: "admin"
   admin:
     sidebar:
       index:

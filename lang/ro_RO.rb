@@ -1,13 +1,5 @@
 # coding: utf-8
 Localization.define("ro_RO") do |l|
-
-  # app/controllers/accounts_controller.rb
-  l.store "Login successful", ""
-  l.store "Login unsuccessful", ""
-  l.store "Oops, something wrong just happened", ""
-  l.store "Successfully logged out", ""
-  l.store "login", ""
-  l.store "signup", ""
   l.store "All categories", "toate categoriile"
   l.store "All authors", "toate autorii"
   l.store "All published dates", "toate timp"

@@ -39,8 +39,6 @@ Localization.define("ru_RU") do |l|
   l.store "If you are reading this article elsewhere than", "Если вы увидите эту статью где-то еще кроме"
   l.store "it has been illegally reproduced and without proper authorization", " — это может быть незаконным воспроизведением без разрешения"
 
-
-  # app/views/accounts/login.html.erb
   l.store "password", "пароль"
   l.store "Submit", "Войти"
 

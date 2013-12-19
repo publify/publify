@@ -1,13 +1,5 @@
 # coding: utf-8
 Localization.define("zh_TW") do |l|
-
-  # app/controllers/accounts_controller.rb
-  l.store "Login successful", ""
-  l.store "Login unsuccessful", ""
-  l.store "Oops, something wrong just happened", ""
-  l.store "Successfully logged out", ""
-  l.store "login", ""
-  l.store "signup", ""
   l.store "Error occurred while updating Content Type.", "當更新內容類型時發生錯誤"
   l.store "complete", "完成"
   l.store "File uploaded: ", "檔案上傳: "

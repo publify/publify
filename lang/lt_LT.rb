@@ -42,11 +42,7 @@ Localization.define("lt_LT") do |l|
   l.store "Your database supports migrations", "Ihre Datenbank unterstützt Migrationen"
   l.store "yes", "ja"
   l.store "no", "nein"
-
-  # app/views/admin/sidebar/_availables.html.erb
   l.store "You have no plugins installed", "Sie haben keine Plugins installiert"
-
-  # app/views/admin/sidebar/_publish.html.erb
   l.store "Changes published", "Änderungen veröffentlicht"
 
   # app/views/admin/sidebar/_target.html.erb
