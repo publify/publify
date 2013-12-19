@@ -1,6 +1,12 @@
 class Admin::FeedbackController < Admin::BaseController
   cache_sweeper :blog_sweeper
 
+  DELETE_ALL_SPAM = 'delete_all_spam'
+  DELETE_SELECTED = 'delete_checked_items'
+  CONFIRM_CLASSIFICATION = 'confirm_classification_of_checked_items'
+  MARK_AS_SPAM = 'mark_checked_items_as_spam'
+  MARK_AS_HAM = 'mark_checked_items_as_ham'
+
   def index
     scoped_feedback = Feedback.scoped
 
@@ -114,7 +120,7 @@ class Admin::FeedbackController < Admin::BaseController
 
     bulkop = (params[:bulkop_top]||{}).empty? ? params[:bulkop_bottom] : params[:bulkop_top]
     case bulkop
-    when 'Delete Checked Items'
+    when DELETE_SELECTED
       count = 0
       ids.each do |id|
         count += Feedback.delete(id) ## XXX Should this be #destroy?
@@ -126,17 +132,20 @@ class Admin::FeedbackController < Admin::BaseController
         flush_cache
         return
       end
-    when 'Mark Checked Items as Ham'
+    when MARK_AS_HAM
       update_feedback(items, :mark_as_ham!)
       flash[:notice]= _("Marked %d item(s) as Ham",ids.size)
-    when 'Mark Checked Items as Spam'
+    when MARK_AS_SPAM
       update_feedback(items, :mark_as_spam!)
       flash[:notice]= _("Marked %d item(s) as Spam",ids.size)
-    when 'Confirm Classification of Checked Items'
+    when CONFIRM_CLASSIFICATION
       update_feedback(items, :confirm_classification!)
       flash[:notice] = _("Confirmed classification of %s item(s)",ids.size)
-    when 'Delete all spam'
-      delete_all_spam
+    when DELETE_ALL_SPAM
+      if request.post?
+        Feedback.delete_all(['state = ?', 'spam'])
+        flash[:notice] = _("All spam have been deleted")
+      end
     else
       flash[:notice] = _("Not implemented")
     end
@@ -149,13 +158,6 @@ class Admin::FeedbackController < Admin::BaseController
   end
 
   protected
-
-  def delete_all_spam
-    if request.post?
-      Feedback.delete_all(['state = ?', 'spam'])
-      flash[:notice] = _("All spam have been deleted")
-    end
-  end
 
   def update_feedback(items, method)
     items.each do |value|
