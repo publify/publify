@@ -1,12 +1,12 @@
-en:
+fr:
   gflash:
     titles:
       notice: "Notice"
       success: "Success"
       warning: "Warning"
-      error: "Error"
+      error: "Erreur"
       progress: "Progress"
     admin:
       tags:
         edit:
-          success: "Tag was successfully updated"
+          success: "Le label a été mis à jour avec succès" 
