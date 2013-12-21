@@ -10,3 +10,8 @@ it:
       tags:
         edit:
           success: "Tag was successfully updated" 
+      users:
+        new:
+          success: "User was successfully created"
+        edit:
+          success: "User was successfully updated"

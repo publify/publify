@@ -10,3 +10,8 @@ nb-NO:
       tags:
         edit:
           success: "Tag oppdatert" 
+      users:
+        new:
+          success: "Bruker opprettet"
+        edit:
+          success: "Bruker oppdatert"

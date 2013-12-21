@@ -9,4 +9,9 @@ pt-BR:
     admin:
       tags:
         edit:
-          success: "Tag atualizada com sucesso" 
+          success: "Tag atualizada com sucesso"
+      users:
+        new:
+          success: "Usuário criado com sucesso"
+        edit:
+          success: "Usuário atualizado com sucesso"
