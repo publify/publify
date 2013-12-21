@@ -1,4 +1,4 @@
-en:
+pl:
   gflash:
     titles:
       notice: "Notice"
@@ -9,4 +9,4 @@ en:
     admin:
       tags:
         edit:
-          success: "Tag was successfully updated"
+          success: "Tag was successfully updated" 
