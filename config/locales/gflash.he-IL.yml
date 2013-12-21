@@ -10,3 +10,8 @@ he-IL:
       tags:
         edit:
           success: "התוית עודכנה בהצלחה." 
+      users:
+        new:
+          success: "המשתמש נוצר בהצלחה."
+        edit:
+          success: "המשתמש עודכן בהצלחה."

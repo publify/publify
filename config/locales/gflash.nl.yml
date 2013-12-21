@@ -9,4 +9,9 @@ nl:
     admin:
       tags:
         edit:
-          success: "Tag was succesvol bijgewerkt." 
+          success: "Tag was succesvol bijgewerkt."
+      users:
+        new:
+          success: "Gebruiker succesvol aangemaakt."
+        edit:
+          success: "Gebruiker is succesvol bijgewerkt."

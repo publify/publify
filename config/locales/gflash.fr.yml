@@ -9,4 +9,9 @@ fr:
     admin:
       tags:
         edit:
-          success: "Le label a été mis à jour avec succès" 
+          success: "Le label a été mis à jour avec succès"
+      users:
+        new:
+          success: "L'utilisateur a été créé avec succès."
+        edit:
+          success: "L'utilisateur a été mis à jour avec succès."

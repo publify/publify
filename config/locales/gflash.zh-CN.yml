@@ -10,3 +10,8 @@ zh-CN:
       tags:
         edit:
           success: "Tag已经更新" 
+      users:
+        new:
+          success: "用户创建成功"
+        edit:
+          success: "用户创建成功"
