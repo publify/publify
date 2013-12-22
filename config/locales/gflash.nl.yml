@@ -10,6 +10,9 @@ nl:
       tags:
         edit:
           success: "Tag was succesvol bijgewerkt."
+      themes:
+        switchto:
+          success: "Thema succesvol aangepast"
       users:
         new:
           success: "Gebruiker succesvol aangemaakt."

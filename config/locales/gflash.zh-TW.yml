@@ -10,6 +10,9 @@ zh-TW:
       tags:
         edit:
           success: "Tag was successfully updated"
+      themes:
+        switchto:
+          success: "Theme selection updated"
       users:
         new:
           success: "User was successfully created"

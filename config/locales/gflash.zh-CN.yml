@@ -10,6 +10,9 @@ zh-CN:
       tags:
         edit:
           success: "Tag已经更新" 
+      themes:
+        switchto:
+          success: "主题切换成功"
       users:
         new:
           success: "用户创建成功"

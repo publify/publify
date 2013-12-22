@@ -89,7 +89,6 @@ Localization.define("nb_NO") do |l|
   l.store "Tag was successfully updated.", "Tag oppdatert"
 
   # app/controllers/admin/themes_controller.rb
-  l.store "Theme changed successfully", "Tema endret"
   l.store "You are not authorized to open this file", "Du har ikke tillatelse til å åpne denne filen"
   l.store "File does not exist", "Filen finnes ikke"
   l.store "File saved successfully", "Fil lagret"

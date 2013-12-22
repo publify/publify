@@ -10,6 +10,9 @@ pt-BR:
       tags:
         edit:
           success: "Tag atualizada com sucesso"
+      themes:
+        switchto:
+          success: "Tema alterado com sucesso"
       users:
         new:
           success: "Usuário criado com sucesso"

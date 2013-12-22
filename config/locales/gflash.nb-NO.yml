@@ -10,6 +10,9 @@ nb-NO:
       tags:
         edit:
           success: "Tag oppdatert" 
+      themes:
+        switchto:
+          success: "Tema endret"
       users:
         new:
           success: "Bruker opprettet"

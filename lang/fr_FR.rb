@@ -76,9 +76,6 @@ Localization.define("fr_FR") do |l|
   # app/controllers/admin/tags_controller.rb
   l.store "Tag was successfully updated.", "Le label a été mis à jour avec succès"
 
-  # app/controllers/admin/themes_controller.rb
-  l.store "Theme changed successfully", "Le thème a été changé avec succès"
-
   # app/controllers/admin/users_controller.rb
   l.store "User was successfully created.", "L'utilisateur a été créé avec succès."
   l.store "No posts found...", "Aucun article n'a été trouvé"

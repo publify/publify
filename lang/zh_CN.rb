@@ -55,7 +55,6 @@ Localization.define("zh_CN") do |l|
   l.store "Tag was successfully updated.", "Tag已经更新"
 
   # app/controllers/admin/themes_controller.rb
-  l.store "Theme changed successfully", "主题切换成功"
   l.store "You are not authorized to open this file", "你没有权限打开这个文件"
   l.store "File saved successfully", "文件保存成功"
   l.store "Unable to write file", "无法写入文件"

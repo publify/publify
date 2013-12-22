@@ -57,7 +57,6 @@ Localization.define("pt_BR") do |l|
   l.store "Tag was successfully updated.", "Tag atualizada com sucesso"
 
   # app/controllers/admin/themes_controller.rb
-  l.store "Theme changed successfully", "Tema alterado com sucesso"
   l.store "You are not authorized to open this file", "Você não está autorizado a abrir esse arquivo"
   l.store "File saved successfully", "Arquivo salvo com sucesso"
   l.store "Unable to write file", "Incapaz de escrever no arquivo"

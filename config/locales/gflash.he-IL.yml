@@ -10,6 +10,9 @@ he-IL:
       tags:
         edit:
           success: "התוית עודכנה בהצלחה." 
+      themes:
+        switchto:
+          success: "Theme selection updated"
       users:
         new:
           success: "המשתמש נוצר בהצלחה."

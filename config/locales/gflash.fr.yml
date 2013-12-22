@@ -10,6 +10,9 @@ fr:
       tags:
         edit:
           success: "Le label a été mis à jour avec succès"
+      themes:
+        switchto:
+          success: "Le thème a été changé avec succès"
       users:
         new:
           success: "L'utilisateur a été créé avec succès."
