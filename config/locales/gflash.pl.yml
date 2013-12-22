@@ -11,6 +11,9 @@ pl:
         index:
           success: "Bufor opróżniono"
           error: "Cache could not be cleared"
+      profiles:
+        index:
+          success: "User details updated"
       tags:
         edit:
           success: "Tag was successfully updated"

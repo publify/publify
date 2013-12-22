@@ -11,6 +11,9 @@ fr:
         index:
           success: "Le cache a été vidé avec succès"
           error: "Oops, un problème s'est produit et le cache n'a pas pu être vidé correctement"
+      profiles:
+        index:
+          success: "L'utilisateur a été mis à jour avec succès"
       tags:
         edit:
           success: "Le label a été mis à jour avec succès"

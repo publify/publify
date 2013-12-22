@@ -11,6 +11,9 @@ nl:
         index:
           success: "Cache has been sweeped"
           error: "Cache could not be cleared"
+      profiles:
+        index:
+          success: "Gebruiker is succesvol bijgewerkt"
       tags:
         edit:
           success: "Tag was succesvol bijgewerkt."

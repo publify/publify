@@ -33,9 +33,6 @@ Localization.define("zh_CN") do |l|
   l.store "Page was successfully created.", "页面创建成功"
   l.store "Page was successfully updated.", "页面更新成功"
 
-  # app/controllers/admin/profiles_controller.rb
-  l.store "User was successfully updated.", "用户创建成功"
-
   # app/controllers/admin/resources_controller.rb
   l.store "Error occurred while updating Content Type.", "当更新内容类型时发生错误"
   l.store "complete", "完成"

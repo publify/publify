@@ -11,6 +11,9 @@ ja:
         index:
           success: "キャッシュはクリアされました"
           error: "Cache could not be cleared"
+      profiles:
+        index:
+          success: "プロフィールが更新されました"
       tags:
         edit:
           success: "Tag was successfully updated" 

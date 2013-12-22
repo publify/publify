@@ -11,6 +11,9 @@ nb-NO:
         index:
           success: "Cache er kostet rent (sweeped)"
           error: "Cache kunne ikke rengjøres"
+      profiles:
+        index:
+          success: "Bruker oppdatert"
       tags:
         edit:
           success: "Tag oppdatert" 

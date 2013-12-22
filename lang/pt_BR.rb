@@ -36,9 +36,6 @@ Localization.define("pt_BR") do |l|
   l.store "Page was successfully created.", "Página criada com sucesso"
   l.store "Page was successfully updated.", "Página atualizada com sucesso"
 
-  # app/controllers/admin/profiles_controller.rb
-  l.store "User was successfully updated.", "Usuário atualizado com sucesso"
-
   # app/controllers/admin/resources_controller.rb
   l.store "Error occurred while updating Content Type.", "Ocorreu um erro ao tentar atualizar o Content Type."
   l.store "complete", "completo"

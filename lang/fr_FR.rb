@@ -47,9 +47,6 @@ Localization.define("fr_FR") do |l|
   l.store "Post Type was successfully saved.", "Le type d'article a été sauvé avec succès"
   l.store "Post Type could not be saved.", "Le type d'article n'a pas pu être sauvé"
 
-  # app/controllers/admin/profiles_controller.rb
-  l.store "User was successfully updated.", "L'utilisateur a été mis à jour avec succès."
-
   # app/controllers/admin/redirects_controller.rb
   l.store "Redirection was successfully deleted.", "La redirection a été supprimée avec succès."
   l.store "Redirection was successfully saved.", "La redirection a été enregistrée avec succès."

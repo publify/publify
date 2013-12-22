@@ -11,6 +11,9 @@ he-IL:
         index:
           success: "המטמון נוקה"
           error: "Cache could not be cleared"
+      profiles:
+        index:
+          success: "המשתמש עודכן בהצלחה"
       tags:
         edit:
           success: "התוית עודכנה בהצלחה." 

@@ -21,9 +21,6 @@ Localization.define("ja_JP") do |l|
   l.store "Page was successfully created.", "ページが作成されました"
   l.store "Page was successfully updated.", "ページが更新されました"
 
-  # app/controllers/admin/profiles_controller.rb
-  l.store "User was successfully updated.", "プロフィールが更新されました"
-
   # app/controllers/admin/resources_controller.rb
   l.store "Error occurred while updating Content Type.", "コンテントタイプを更新中にエラーが発生しました"
   l.store "complete", "完了"
