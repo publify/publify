@@ -18,8 +18,6 @@ Localization.define("ja_JP") do |l|
   l.store "Marked %d item(s) as Ham", ""
   l.store "Confirmed classification of %s item(s)", ""
   l.store "Not implemented", ""
-  l.store "Page was successfully created.", "ページが作成されました"
-  l.store "Page was successfully updated.", "ページが更新されました"
 
   # app/controllers/admin/resources_controller.rb
   l.store "Error occurred while updating Content Type.", "コンテントタイプを更新中にエラーが発生しました"

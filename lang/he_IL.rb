@@ -22,8 +22,6 @@ Localization.define("he_IL") do |l|
   l.store "Comment was successfully created.", "התגובה נוצרה בהצלחה."
   l.store "Comment was successfully updated.", "התגובה עודכנה בהצלחה."
 
-  l.store "Page was successfully created.", "הדף נוצר בהצלחה."
-  l.store "Page was successfully updated.", "הדף עודכן בהצלחה."
   l.store "User was successfully updated.", "המשתמש עודכן בהצלחה."
   l.store "Error occurred while updating Content Type.", "שגיאה בעת עדכון סוג התוכן."
   l.store "complete", "מלא"

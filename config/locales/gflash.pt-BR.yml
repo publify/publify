@@ -11,6 +11,11 @@ pt-BR:
         index:
           success: "Cache has been sweeped"
           error: "Cache could not be cleared"
+      pages:
+        new:
+          success: "Página criada com sucesso"
+        edit:
+          success: "Página atualizada com sucesso"
       profiles:
         index:
           success: "Usuário atualizado com sucesso"

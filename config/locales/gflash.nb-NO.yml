@@ -11,6 +11,11 @@ nb-NO:
         index:
           success: "Cache er kostet rent (sweeped)"
           error: "Cache kunne ikke rengjøres"
+      pages:
+        new:
+          success: "Side opprettet"
+        edit:
+          success: "Side oppdatert"
       profiles:
         index:
           success: "Bruker oppdatert"

@@ -11,6 +11,11 @@ he-IL:
         index:
           success: "המטמון נוקה"
           error: "Cache could not be cleared"
+      pages:
+        new:
+          success: "הדף נוצר בהצלחה"
+        edit:
+          success: "הדף עודכן בהצלחה"
       profiles:
         index:
           success: "המשתמש עודכן בהצלחה"

@@ -22,7 +22,7 @@ class Admin::PagesController < Admin::BaseController
     if request.post?
       @page.published_at = Time.now
       if @page.save
-        flash[:notice] = _('Page was successfully created.')
+        gflash :success
         redirect_to :action => 'index'
       end
     end
@@ -33,7 +33,7 @@ class Admin::PagesController < Admin::BaseController
     @page.attributes = params[:page]
     @page.text_filter ||= default_textfilter
     if request.post? and @page.save
-      flash[:notice] = _('Page was successfully updated.')
+      gflash :success
       redirect_to :action => 'index'
     end
   end

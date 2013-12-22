@@ -29,10 +29,6 @@ Localization.define("zh_CN") do |l|
   l.store "Comment was successfully created.", "评论创建成功"
   l.store "Comment was successfully updated.", "评论更新成功"
 
-  # app/controllers/admin/pages_controller.rb
-  l.store "Page was successfully created.", "页面创建成功"
-  l.store "Page was successfully updated.", "页面更新成功"
-
   # app/controllers/admin/resources_controller.rb
   l.store "Error occurred while updating Content Type.", "当更新内容类型时发生错误"
   l.store "complete", "完成"

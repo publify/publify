@@ -11,6 +11,11 @@ ja:
         index:
           success: "キャッシュはクリアされました"
           error: "Cache could not be cleared"
+      pages:
+        new:
+          success: "ページが作成されました"
+        edit:
+          success: "ページが更新されました"
       profiles:
         index:
           success: "プロフィールが更新されました"

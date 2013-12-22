@@ -55,9 +55,6 @@ Localization.define("nb_NO") do |l|
   l.store "Comment was successfully created.", "Kommentar opprettet"
   l.store "Comment was successfully updated.", "Kommentar oppdatert"
 
-  l.store "Page was successfully created.", "Side opprettet"
-  l.store "Page was successfully updated.", "Side oppdatert"
-
   # app/controllers/admin/redirects_controller.rb
   l.store "Redirection was successfully deleted.", "Omdirigering slettet"
   l.store "Redirection was successfully saved.", "Omdirigering lagret"

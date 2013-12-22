@@ -39,10 +39,6 @@ Localization.define("fr_FR") do |l|
   l.store "Comment was successfully created.", "Commentaire créé avec succès."
   l.store "Comment was successfully updated.", "Commentaire mis à jour avec succès."
 
-  # app/controllers/admin/pages_controller.rb
-  l.store "Page was successfully created.", "Cette page a été créée avec succès"
-  l.store "Page was successfully updated.", "Cette page a été mise à jour avec succès"
-
   # app/controllers/admin/post_types_controller.rb
   l.store "Post Type was successfully saved.", "Le type d'article a été sauvé avec succès"
   l.store "Post Type could not be saved.", "Le type d'article n'a pas pu être sauvé"

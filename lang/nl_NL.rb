@@ -29,9 +29,6 @@ Localization.define("nl_NL") do |l|
   l.store "Comment was successfully created.", "Commentaar is succesvol aangemaakt."
   l.store "Comment was successfully updated.", "Commentaar is succesvol bijgewerkt."
 
-  l.store "Page was successfully created.", "Pagina is succesvol aangemaakt."
-  l.store "Page was successfully updated.", "Pagina is succesvol bijgewerkt."
-
   # app/controllers/admin/resources_controller.rb
   l.store "Error occurred while updating Content Type.", "Er trad een fout op bij het bijwerken van het Content Type"
   l.store "complete", "compleet"

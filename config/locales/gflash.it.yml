@@ -11,6 +11,11 @@ it:
         index:
           success: "Cache pulita"
           error: "Cache could not be cleared"
+      pages:
+        new:
+          success: "New page created"
+        edit:
+          success: "Page has been updated"
       profiles:
         index:
           success: "User details updated"
