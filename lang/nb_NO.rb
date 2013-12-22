@@ -26,10 +26,6 @@ Localization.define("nb_NO") do |l|
   l.store "signup", "Registrer"
   l.store "Recover your password", "Gjenopprett passord"
 
-  # app/controllers/admin/cache_controller.rb
-  l.store "Cache was successfully sweeped", "Cache er kostet rent (sweeped)"
-  l.store "Oops, something wrong happened. Cache could not be cleaned", "Ojsann, noe galt hendte. Cache kunne ikke rengjøres"
-
   # app/controllers/admin/categories_controller.rb
   l.store "Category was successfully saved.", "Kategori lagret"
   l.store "Category could not be saved.", "Kan ikke lagre kategori"

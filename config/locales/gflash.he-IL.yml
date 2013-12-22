@@ -7,6 +7,10 @@ he-IL:
       error: "Error"
       progress: "Progress"
     admin:
+      cache:
+        index:
+          success: "המטמון נוקה"
+          error: "Cache could not be cleared"
       tags:
         edit:
           success: "התוית עודכנה בהצלחה." 

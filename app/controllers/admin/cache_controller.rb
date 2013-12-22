@@ -10,9 +10,9 @@ class Admin::CacheController < Admin::BaseController
     if request.post?
       begin
         PageCache.sweep_all
-        flash.now[:notice] = _("Cache was successfully sweeped")
+        gflash :success
       rescue
-        flash.now[:error] = _("Oops, something wrong happened. Cache could not be cleaned")
+        gflash :error
       end
     end
 

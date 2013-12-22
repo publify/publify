@@ -7,6 +7,10 @@ zh-CN:
       error: "Error"
       progress: "Progress"
     admin:
+      cache:
+        index:
+          success: "cache已清除"
+          error: "Cache could not be cleared"
       tags:
         edit:
           success: "Tag已经更新" 

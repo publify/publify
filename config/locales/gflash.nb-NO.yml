@@ -7,6 +7,10 @@ nb-NO:
       error: "Error"
       progress: "Progress"
     admin:
+      cache:
+        index:
+          success: "Cache er kostet rent (sweeped)"
+          error: "Cache kunne ikke rengjøres"
       tags:
         edit:
           success: "Tag oppdatert" 

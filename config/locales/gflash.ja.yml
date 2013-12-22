@@ -7,6 +7,10 @@ ja:
       error: "Error"
       progress: "Progress"
     admin:
+      cache:
+        index:
+          success: "キャッシュはクリアされました"
+          error: "Cache could not be cleared"
       tags:
         edit:
           success: "Tag was successfully updated" 

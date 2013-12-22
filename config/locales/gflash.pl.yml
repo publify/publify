@@ -7,6 +7,10 @@ pl:
       error: "Error"
       progress: "Progress"
     admin:
+      cache:
+        index:
+          success: "Bufor opróżniono"
+          error: "Cache could not be cleared"
       tags:
         edit:
           success: "Tag was successfully updated"

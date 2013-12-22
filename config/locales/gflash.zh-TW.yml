@@ -7,6 +7,10 @@ zh-TW:
       error: "Error"
       progress: "Progress"
     admin:
+      cache:
+        index:
+          success: "Cache has been sweeped"
+          error: "Cache could not be cleared"
       tags:
         edit:
           success: "Tag was successfully updated"

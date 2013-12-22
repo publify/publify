@@ -8,8 +8,6 @@ Localization.define("fr_FR") do |l|
   l.store "login", "identifiant"
   l.store "signup", "s'identifier"
   l.store "Recover your password", "Récupération d'un mot de passe perdu"
-  l.store "Cache was successfully sweeped", "Le cache a été vidé avec succès"
-  l.store "Oops, something wrong happened. Cache could not be cleaned", "Oops, un problème s'est produit et le cache n'a pas pu être vidé correctement"
 
   # app/controllers/admin/categories_controller.rb
   l.store "Category was successfully saved.", "La catégorie a été enregistrée avec succès"

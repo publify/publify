@@ -7,6 +7,10 @@ fr:
       error: "Erreur"
       progress: "Progress"
     admin:
+      cache:
+        index:
+          success: "Le cache a été vidé avec succès"
+          error: "Oops, un problème s'est produit et le cache n'a pas pu être vidé correctement"
       tags:
         edit:
           success: "Le label a été mis à jour avec succès"
