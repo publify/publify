@@ -19,6 +19,12 @@ zh-CN:
       profiles:
         index:
           success: "用户创建成功"
+      resources:
+        upload:
+          success: "文件上传"
+          warning: "No file selected"
+        destroy:
+          notice: "删除"
       tags:
         edit:
           success: "Tag已经更新" 

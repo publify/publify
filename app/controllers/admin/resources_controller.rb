@@ -4,16 +4,20 @@ class Admin::ResourcesController < Admin::BaseController
   cache_sweeper :blog_sweeper
 
   def upload
-    file = params[:upload][:filename]
+    if ! params[:upload].blank?
+      file = params[:upload][:filename]
 
-    unless file.content_type
-      mime = 'text/plain'
+      unless file.content_type
+        mime = 'text/plain'
+      else
+        mime = file.content_type.chomp
+      end
+      @up = Resource.create(:upload => file, :mime => mime, :created_at => Time.now)
+      gflash :success
     else
-      mime = file.content_type.chomp
+      gflash :warning
     end
-    @up = Resource.create(:upload => file, :mime => mime, :created_at => Time.now)
 
-    flash[:notice] = _("File successfully uploaded")
     redirect_to :action => "index"
   end
 
@@ -36,6 +40,7 @@ class Admin::ResourcesController < Admin::BaseController
       return(render 'admin/shared/destroy') unless request.post?
 
       @record.destroy
+      gflash :notice
       redirect_to :action => 'index'
     rescue
       raise

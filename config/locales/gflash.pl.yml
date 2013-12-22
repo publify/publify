@@ -19,6 +19,12 @@ pl:
       profiles:
         index:
           success: "User details updated"
+      resources:
+        upload:
+          success: "Załadowany plik"
+          warning: "Nie można załadować"
+        destroy:
+          notice: "File has been deleted"
       tags:
         edit:
           success: "Tag was successfully updated"

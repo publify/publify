@@ -19,6 +19,12 @@ fr:
       profiles:
         index:
           success: "L'utilisateur a été mis à jour avec succès"
+      resources:
+        upload:
+          success: "Fichier envoyé"
+          warning: "impossible d'envoyer"
+        destroy:
+          notice: "Supprimé"
       tags:
         edit:
           success: "Le label a été mis à jour avec succès"

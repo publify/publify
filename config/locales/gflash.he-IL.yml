@@ -19,6 +19,12 @@ he-IL:
       profiles:
         index:
           success: "המשתמש עודכן בהצלחה"
+      resources:
+        upload:
+          success: "הקובץ הועלה"
+          warning: "לא מסוגל להעלות"
+        destroy:
+          notice: "נמחקה"
       tags:
         edit:
           success: "התוית עודכנה בהצלחה." 

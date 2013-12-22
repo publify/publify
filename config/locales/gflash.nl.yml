@@ -19,6 +19,12 @@ nl:
       profiles:
         index:
           success: "Gebruiker is succesvol bijgewerkt"
+      resources:
+        upload:
+          success: "Bestand geupload"
+          warning: "Kon niet uploaden"
+        destroy:
+          notice: "Verwijderd"
       tags:
         edit:
           success: "Tag was succesvol bijgewerkt."

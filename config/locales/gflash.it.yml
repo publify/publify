@@ -19,6 +19,12 @@ it:
       profiles:
         index:
           success: "User details updated"
+      resources:
+        upload:
+          success: "File inviata"
+          warning: "Impossibile inviare"
+        destroy:
+          notice: "File has been deleted"
       tags:
         edit:
           success: "Tag was successfully updated" 
