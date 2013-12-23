@@ -16,6 +16,16 @@ pt-BR:
       logout:
         notice: "Deslogado com sucesso"
     admin:
+      content:
+        create:
+          success: "Artigo criado com sucesso"
+        update:
+          success: "Artigo atualizado com sucesso"
+          error: "Erro, você não tem permissão para executar essa tarefa"
+        edit:
+          error: "Erro, você não tem permissão para executar essa tarefa"
+        autosave:
+          success: "Article was successfully saved"
       settings:
         update:
           success: "Config atualizada."

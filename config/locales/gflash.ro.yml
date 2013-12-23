@@ -16,6 +16,16 @@ ro:
       logout:
         notice: "Successfully logged out"
     admin:
+      content:
+        create:
+          success: "Article was successfully created"
+        update:
+          success: "Article was successfully updated"
+          error: "Error, you are not allowed to perform this action"
+        edit:
+          error: "Error, you are not allowed to perform this action"
+        autosave:
+          success: "Article was successfully saved"
       settings:
         update:
           success: "Config updated."

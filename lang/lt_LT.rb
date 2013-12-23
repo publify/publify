@@ -8,13 +8,9 @@ Localization.define("lt_LT") do |l|
   l.store "no trackbacks", "nėra dienoraščio nuorodų"
   l.store "Reorder", "Rikiuoti"
   l.store "Sort alphabetically", "Rikiuoti pagal abėcėlę"
-
   l.store "Are you sure you want to delete the category ", "Ar tikrai nori ištrinti šią kategoriją : "
   l.store "Delete this category", "Trinti šią kategoriją"
-
   l.store "(Done)", "(Baigta)"
-
-  # app/views/admin/content/_attachment.html.erb
   l.store "Remove", "Pašalinti"
   l.store "Currently this article has the following resources", "Šiuo metu straipsnis turi šiuos resursus"
   l.store "You can associate the following resources", "Jūs galite susieti su šiais resursais"

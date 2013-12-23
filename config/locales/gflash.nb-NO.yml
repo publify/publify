@@ -16,6 +16,16 @@ nb-NO:
       logout:
         notice: "Logget ut"
     admin:
+      content:
+        create:
+          success: "Artikkel opprettet"
+        update:
+          success: "Artikkel oppdatert"
+          error: "Du har ikke tillatelse til å utføre denne handlingen"
+        edit:
+          error: "Du har ikke tillatelse til å utføre denne handlingen"
+        autosave:
+          success: "Article was successfully saved"
       settings:
         update:
           success: "Innstillinger oppdatert"

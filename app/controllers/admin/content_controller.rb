@@ -36,7 +36,7 @@ class Admin::ContentController < Admin::BaseController
 
     if @article.save
       update_categories_for_article
-      set_the_flash
+      gflash :success
       redirect_to action: 'index'
     else
       @article.keywords = Tag.collection_to_string @article.tags
@@ -73,7 +73,7 @@ class Admin::ContentController < Admin::BaseController
         Article.where(parent_id: @article.id).map(&:destroy)
       end
       update_categories_for_article
-      set_the_flash
+      gflash :success
       redirect_to :action => 'index'
     else
       @article.keywords = Tag.collection_to_string @article.tags
@@ -108,7 +108,7 @@ class Admin::ContentController < Admin::BaseController
     end
 
     if @article.save
-      gflash :success => _("Article was successfully saved")
+      gflash :success
       @must_update_calendar = (params[:article][:published_at] and params[:article][:published_at].to_time.to_i < Time.now.to_time.to_i and @article.parent_id.nil?)
       respond_to do |format|
         format.js
@@ -129,17 +129,6 @@ class Admin::ContentController < Admin::BaseController
   end
 
   attr_accessor :resources, :categories, :resource, :category
-
-  def set_the_flash
-    case params[:action]
-    when 'create'
-      flash[:notice] = _('Article was successfully created')
-    when 'update'
-      flash[:notice] = _('Article was successfully updated.')
-    else
-      raise "I don't know how to tidy up action: #{params[:action]}"
-    end
-  end
 
   private
 
@@ -164,7 +153,7 @@ class Admin::ContentController < Admin::BaseController
     if article.access_by? current_user
       return true
     else
-      flash[:error] = _("Error, you are not allowed to perform this action")
+      gflash :error
       redirect_to action: 'index'
       return false
     end

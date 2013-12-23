@@ -5,11 +5,7 @@ Localization.define("pt_BR") do |l|
   l.store "login", "entrar"
   l.store "signup", "registrar"
   l.store "Recover your password", "recupere sua senha"
-  l.store "Error, you are not allowed to perform this action", "Erro, você não tem permissão para executar essa tarefa"
   l.store "Preview", "visualizar"
-  l.store "Article was successfully created", "Artigo criado com sucesso"
-  l.store "Article was successfully updated.", "Artigo atualizado com sucesso"
-
   l.store "Deleted", "Deletado"
   l.store "Not found", "Não encontrado"
   l.store "Deleted %d item(s)", "%d iten(s) deletados"

@@ -12,7 +12,6 @@ Localization.define("da_DK") do |l|
   l.store "%d trackbacks", "%d trackbacks"
   l.store "Reorder", "Arranger"
   l.store "Sort alphabetically", "Sortér alfabetisk"
-
   l.store "Are you sure you want to delete the category ", "Er du sikker på du vil slette kategorien: "
   l.store "Delete this category", "Slet denne kategori"
 

@@ -3,13 +3,7 @@ Localization.define("fr_FR") do |l|
   l.store "login", "identifiant"
   l.store "signup", "s'identifier"
   l.store "Recover your password", "Récupération d'un mot de passe perdu"
-  l.store "Error, you are not allowed to perform this action", "Erreur, vous n'avez pas les droits requis pour effectuer cette action"
-  l.store "This article was deleted successfully", "Cet article a été supprimé avec succès"
   l.store "Preview", "Prévisualiser "
-  l.store "Article was successfully created", "Cet article a été créé avec succès"
-  l.store "Article was successfully updated.", "Cet article a été mis à jour avec succès"
-
-  # app/controllers/admin/dashboard_controller.rb
   l.store "Error: can't generate secret token. Security is at risk. Please, change %s content", "Erreur : nous n'avons pas pu générer le jeton secret. La sécurité de votre blog est à risque. Veuillez changer le contenu du fichier %s."
   l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", "Pour des raisons de sécurité, merci de redémarrer votre blog Publify. Bonne expérience de blogging !"
   l.store "You are late from at least one major version of Publify. You should upgrade immediately. Download and install %s", "Vous avez au moins une version majeure de Publify de retard. Vous devriez immédiatement vous mettre à jour. Téléchargez et installez %s"

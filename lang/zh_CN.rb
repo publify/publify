@@ -2,11 +2,7 @@
 Localization.define("zh_CN") do |l|
   l.store "login", "登录"
   l.store "signup", "注册"
-  l.store "Error, you are not allowed to perform this action", "错误，不允许进行此操作"
   l.store "Preview", "预览"
-  l.store "Article was successfully created", "文章创建成功"
-  l.store "Article was successfully updated.", "文章更新成功"
-
   l.store "Deleted", "删除"
   l.store "Not found", "不存在"
   l.store "Deleted %d item(s)", "删除%d项"
@@ -15,8 +11,6 @@ Localization.define("zh_CN") do |l|
   l.store "All spam have been deleted", "所有垃圾信息已经呗删除"
   l.store "Comment was successfully created.", "评论创建成功"
   l.store "Comment was successfully updated.", "评论更新成功"
-
-  # app/controllers/admin/resources_controller.rb
   l.store "Error occurred while updating Content Type.", "当更新内容类型时发生错误"
   l.store "complete", "完成"
   l.store "File uploaded: ", "文件上传: "

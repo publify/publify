@@ -2,12 +2,6 @@
 Localization.define("ja_JP") do |l|
   l.store "login", "ログイン"
   l.store "signup", "サインアップ"
-  l.store "Error, you are not allowed to perform this action", "あなたのアカウントではこの操作は許可されていません"
-  l.store "Article was successfully created", "記事を作成しました"
-  l.store "Article was successfully updated.", "記事が更新されました"
-
-
-  # app/controllers/admin/resources_controller.rb
   l.store "Error occurred while updating Content Type.", "コンテントタイプを更新中にエラーが発生しました"
   l.store "complete", "完了"
   l.store "File uploaded: ", "アップロードするファイル: "

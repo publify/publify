@@ -7,8 +7,6 @@ Localization.define("zh_TW") do |l|
   l.store "Metadata was successfully updated.", "Metadata已成功更新"
   l.store "Not all metadata was defined correctly.", "並非所有Metadata已被正確定義"
   l.store "Content Type was successfully updated.", "內容類型已被成功更新"
-
-  # app/controllers/admin/settings_controller.rb
   l.store "Please review and save the settings before continuing", ""
   l.store "Edit", "修改"
   l.store "Back to overview", "回到概覽"

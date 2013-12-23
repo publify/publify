@@ -16,6 +16,16 @@ nl:
       logout:
         notice: "Succesvol uitgelogd"
     admin:
+      content:
+        create:
+          success: "Artikel is succesvol gemaakt"
+        update:
+          success: "Artikel is succesvol bijgewerkt."
+          error: "Fout, je mag dit niet doen"
+        edit:
+          error: "Fout, je mag dit niet doen"
+        autosave:
+          success: "Article was successfully saved"
       settings:
         update:
           success: "configuratie bijgewerkt"

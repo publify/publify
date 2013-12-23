@@ -16,6 +16,16 @@ fr:
       logout:
         notice: "Vous êtes maintenant déconnecté"
     admin:
+      content:
+        create:
+          success: "Cet article a été créé avec succès"
+        update:
+          success: "Cet article a été mis à jour avec succès"
+          error: "Erreur, vous n'avez pas les droits requis pour effectuer cette action"
+        edit:
+          error: "Erreur, vous n'avez pas les droits requis pour effectuer cette action"
+        autosave:
+          success: "Article was successfully saved"
       settings:
         update:
           success: "Configuration mise à jour."

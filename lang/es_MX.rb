@@ -8,19 +8,12 @@ Localization.define("es_MX") do |l|
   l.store "Sort alphabetically", "Ordenar alfab&eacute;ticamente"
   l.store "Are you sure you want to delete the category ", "&iquest;Est&aacute;s seguro que quieres eliminar esta categor&iacute;a?"
   l.store "Delete this category", "Eliminar esta categor&iacute;a"
-
-
-  # app/views/admin/categories/reorder.html.erb
   l.store "(Done)", "(Hecho)"
-
-  # app/views/admin/content/_attachment.html.erb
   l.store "Remove", "Remover"
   l.store "Currently this article has the following resources", "Este art&iacute;culo tiene los siguientes recursos"
   l.store "You can associate the following resources", "Puedes asociarlo con los siguientes recursos"
   l.store "Really delete attachment", "&iquest;Realmente deseas borrar este archivo?"
   l.store "Add another attachment", "Agregar Otro Archivo"
-
-  # app/views/admin/content/_form.html.erb
   l.store "Publish at", "Publicado el"
   l.store "Are you sure you want to delete this article", "&iquest;Est&aacute;s seguro que deseas borrar este art&iacute;culo?"
   l.store "Delete this article", "Eliminar este art&iacute;culo"

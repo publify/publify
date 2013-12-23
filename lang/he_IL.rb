@@ -1,9 +1,6 @@
 # coding: utf-8
 Localization.define("he_IL") do |l|
-  l.store "Error, you are not allowed to perform this action", "שגיאה, אינך רשאי לבצע פעולה זו"
   l.store "Preview", "תצוגה מקדימה"
-  l.store "Article was successfully created", "הכתבה נוצרה בהצלחה "
-  l.store "Article was successfully updated.", "הכתבה עודכנה בהצלחה."
   l.store "Deleted", "נמחקה"
   l.store "Not found", "לא נמצאה"
   l.store "Deleted %d item(s)", "נמחקו %d פריטים"
@@ -194,7 +191,6 @@ Localization.define("he_IL") do |l|
   l.store "Allow non-ajax comments", "אפשר תגובות ללא Ajax"
   l.store "Are you sure you want to delete this filter", "האם אתה בטוח שברצונך למחוק מסנן זה?"
   l.store "Are you sure you want to delete this item?", "האם אתה בטוח שברצונך למחוק פריט זה ?"
-  l.store "Article was successfully saved at ", "הכתבה נשמרה בהצלחה"
   l.store "Blacklist", "רשימה שחורה"
   l.store "BlacklistPattern was successfully created.", "התבנית נוצרה בהצלחה."
   l.store "BlacklistPattern was successfully updated.", "התבנית עודכנה בהצלחה."

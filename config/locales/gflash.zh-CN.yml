@@ -16,6 +16,16 @@ zh-CN:
       logout:
         notice: "成功登出"
     admin:
+      content:
+        create:
+          success: "文章创建成功"
+        update:
+          success: "文章更新成功"
+          error: "错误，不允许进行此操作"
+        edit:
+          error: "错误，不允许进行此操作"
+        autosave:
+          success: "Article was successfully saved"
       settings:
         update:
           success: "更新配置"

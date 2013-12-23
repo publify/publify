@@ -18,13 +18,7 @@ Localization.define("nb_NO") do |l|
   l.store "login", "Logg inn"
   l.store "signup", "Registrer"
   l.store "Recover your password", "Gjenopprett passord"
-  l.store "Error, you are not allowed to perform this action", "Du har ikke tillatelse til å utføre denne handlingen"
-  l.store "This article was deleted successfully", "Artikkelen er slettet"
   l.store "Preview", "Forhåndsvisning"
-  l.store "Article was successfully created", "Artikkel opprettet"
-  l.store "Article was successfully updated.", "Artikkel oppdatert"
-
-  # app/controllers/admin/dashboard_controller.rb
   l.store "You are late from at least one major version of Publify. You should upgrade immediately. Download and install %s", "Du bruker en gammel versjon av Publify. Du bør oppgradere snarest. Last ned og installer %s"
   l.store "the latest Publify version", "den siste versjonan av Publify"
   l.store "There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to %s ?", "Det finnes en ny versjon av Publify som kan inneholde viktige feilrettelser. Hva med å oppgradere til %s?"

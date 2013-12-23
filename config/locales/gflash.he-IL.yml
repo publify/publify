@@ -16,6 +16,16 @@ he-IL:
       logout:
         notice: "התנתקת מהמערכת בהצלחה"
     admin:
+      content:
+        create:
+          success: "הכתבה נוצרה בהצלחה "
+        update:
+          success: "הכתבה עודכנה בהצלחה."
+          error: "שגיאה, אינך רשאי לבצע פעולה זו"
+        edit:
+          error: "שגיאה, אינך רשאי לבצע פעולה זו"
+        autosave:
+          success: "הכתבה נשמרה בהצלחה"
       settings:
         update:
           success: "ההגדרה עודכנה."

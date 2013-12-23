@@ -16,6 +16,16 @@ ja:
       logout:
         notice: "ログアウトしました"
     admin:
+      content:
+        create:
+          success: "記事を作成しました"
+        update:
+          success: "記事が更新されました"
+          error: "あなたのアカウントではこの操作は許可されていません"
+        edit:
+          error: "あなたのアカウントではこの操作は許可されていません"
+        autosave:
+          success: "Article was successfully saved"
       settings:
         update:
           success: "設定は更新されました"
