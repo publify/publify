@@ -1,10 +1,5 @@
 #coding: utf-8
 Localization.define("fr_FR") do |l|
-  l.store "Login successful", "Connexion réussie"
-  l.store "Login unsuccessful", "Échec de la connexion"
-  l.store "An email has been successfully sent to your address with your new password", "Un courrier vous a été envoyé avec votre nouveau mot de passe"
-  l.store "Oops, something wrong just happened", "Désolé, une erreur vient de se produire"
-  l.store "Successfully logged out", "Vous êtes maintenant déconnecté"
   l.store "login", "identifiant"
   l.store "signup", "s'identifier"
   l.store "Recover your password", "Récupération d'un mot de passe perdu"
@@ -291,8 +286,6 @@ Localization.define("fr_FR") do |l|
   l.store "Archives for ", "Archives de"
   l.store "Article Types", "Modèles d'articles"
   l.store "Back to overview", "Revenir à la liste"
-  l.store "Back to tags list", "Revenir à la liste des labels"
-  l.store "Blacklist Patterns", "Liste noire"
   l.store "Blog settings", "Configuration du blog"
   l.store "By %s on %s", "Par %s le %s"
   l.store "Category", "Catégorie"
@@ -300,7 +293,6 @@ Localization.define("fr_FR") do |l|
   l.store "Comments for", "Commentaires pour"
   l.store "Comments for %s (%s)", "Commentaires sur l'article %s (%s)"
   l.store "Contact options", "Options de contact"
-  l.store "Content Type was successfully updated.", "Le type du contenu a été mis à jour avec succès."
   l.store "Continue reading...", "Lire la suite..."
   l.store "Copyright Information", "Informations sur le copyright"
   l.store "Display name", "Nom affiché sur le site"

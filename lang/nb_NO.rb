@@ -15,18 +15,9 @@ Localization.define("nb_NO") do |l|
   l.store "pl_PL", "Polsk"
   l.store "ro_RO", "Rumensk"
   l.store "zh_TW", "Kinesisk"
-
-  # app/controllers/accounts_controller.rb
-  l.store "Login successful", "Logget inn"
-  l.store "Login unsuccessful", "Feil under innlogging"
-  l.store "An email has been successfully sent to your address with your new password", "En epost er sendt til din adresse med ditt nye passord"
-  l.store "Oops, something wrong just happened", "Ojsann, noe gikk galt"
-  l.store "Successfully logged out", "Logget ut"
   l.store "login", "Logg inn"
   l.store "signup", "Registrer"
   l.store "Recover your password", "Gjenopprett passord"
-
-  # app/controllers/admin/categories_controller.rb
   l.store "Category was successfully saved.", "Kategori lagret"
   l.store "Category could not be saved.", "Kan ikke lagre kategori"
 
@@ -38,7 +29,6 @@ Localization.define("nb_NO") do |l|
   l.store "Article was successfully updated.", "Artikkel oppdatert"
 
   # app/controllers/admin/dashboard_controller.rb
-  l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", ""
   l.store "You are late from at least one major version of Publify. You should upgrade immediately. Download and install %s", "Du bruker en gammel versjon av Publify. Du bør oppgradere snarest. Last ned og installer %s"
   l.store "the latest Publify version", "den siste versjonan av Publify"
   l.store "There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to %s ?", "Det finnes en ny versjon av Publify som kan inneholde viktige feilrettelser. Hva med å oppgradere til %s?"
@@ -88,7 +78,6 @@ Localization.define("nb_NO") do |l|
   l.store "User was successfully created.", "Bruker opprettet"
 
   # app/controllers/application_controller.rb
-  l.store "Localization.rtl", ""
   l.store "No posts found...", "Ingen poster."
   # app/controllers/grouping_controller.rb
   l.store "page", "side"
@@ -116,8 +105,6 @@ Localization.define("nb_NO") do |l|
   l.store "Flag as %s", "Flagg som %s"
 
   # app/helpers/application_helper.rb
-  l.store "%%d. %%b", ""
-  l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", ""
   l.store "no trackbacks", "ingen trackbacks"
   l.store "1 trackback", "1 trackback"
   l.store "%d trackbacks", "%d trackbacks"
@@ -184,7 +171,6 @@ Localization.define("nb_NO") do |l|
   l.store "Limit to spam", "Begrens til Spam"
   l.store "Are you sure you want to delete this %s", "Er du sikker på at du vil slette denne %s?"
   l.store "Delete this feedback", "Slett feedback"
-  l.store "%s", ""
   l.store "Search Comments and Trackbacks that contain", "Søk etter kommentarer og Trackbacks som inneholder"
   l.store "Page settings", "Sideinnstillinger"
   l.store "Are you sure you want to delete the page", "Er du sikker på du vil slette denne siden"
@@ -300,12 +286,10 @@ Localization.define("nb_NO") do |l|
   l.store "This entry was posted on %s", "Denne artikkelen ble publisert %s"
   l.store "and %s", "og %s"
   l.store "You can follow any response to this entry through the %s", "Du kan følge alle svar til denne artikkelen via %s"
-  l.store "Atom feed", ""
   l.store "You can leave a %s", "Du kan legge igjen en %s"
   l.store "or a %s from your own site", "eller en %s fra din egen hjemmeside"
   l.store "Read full article", "Les hele artikkelen"
   l.store "comment", "kommentar"
-  l.store "trackback", ""
 
   l.store "Leave a comment", "Skriv en kommentar"
   l.store "Name %s", "Navn %s"
@@ -343,9 +327,6 @@ Localization.define("nb_NO") do |l|
   l.store "Powered by Publify", "Bloggen bruker Publify"
   l.store "Syndicate", "Syndikat"
   l.store "Category %s", "Kategori %s"
-  l.store "Tag %s", ""
-
-  # Obsolete translations
   l.store " made a link to you saying ", " har lenket til deg, og skrevet "
   l.store "%d Categories", ["Kategori", "%d kategorier"]
   l.store "%d Comments", "%d Kommentarer"
@@ -372,10 +353,8 @@ Localization.define("nb_NO") do |l|
   l.store "Articles in", "Artikler i"
   l.store "Attachments", "Vedlegg"
   l.store "Back to overview", "Tilbake til oversikten"
-  l.store "Back to tags list", "Tilbake til listen over tags"
   l.store "Back to the blog", "Tilbage til bloggen"
   l.store "Blacklist", "Svarteliste"
-  l.store "Blacklist Patterns", "Svartelistemønstre"
   l.store "Blog settings", "Blogginnstillinger"
   l.store "Body", "Tekst"
   l.store "By %s on %s", "Fra %s på %s"
@@ -483,7 +462,6 @@ Localization.define("nb_NO") do |l|
   l.store "Rebuild cached HTML", "Gjenoppbygg HTML-cache"
   l.store "Recent comments", "Nylige kommentarer"
   l.store "Recent trackbacks", "Nylige trackbacks"
-  l.store "Regex", ""
   l.store "Remove iTunes Metadata", "Slett iTunes Metadata"
   l.store "Resource MetaData", "Resursmetadata"
   l.store "Resource Settings", "Innstillinger for ressurser"

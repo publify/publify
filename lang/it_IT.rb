@@ -1,6 +1,5 @@
 # coding: utf-8
 Localization.define("it_IT") do |l|
-  l.store "Successfully logged out", "Sei correttamente uscito"
   l.store "Confirmed classification of %s item(s)", "Conferma classificazione di %s elementi"
   l.store "Not implemented", "Non implementato"
   l.store "Error occurred while updating Content Type.", "Si e' verificato un errore mentre aggiornavo il tipo di contenuto."
@@ -12,46 +11,31 @@ Localization.define("it_IT") do |l|
   l.store "Content Type was successfully updated.", "Il tipo di contenuto e' stato correttamente aggiornato."
 
   # app/controllers/admin/settings_controller.rb
-  l.store "Please review and save the settings before continuing", ""
   l.store "config updated.", "Configurazione aggiornata."
 
-  l.store "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually", ""
   l.store "Store", "Salva"
   l.store "All categories", "Tutte le categorie"
   l.store "All authors", "Tutte le autori"
   l.store "All published dates", "Tutte le date"
-  l.store "There are no %s yet. Why don't you start and create one?", ""
   l.store "Edit", "Modifica"
   l.store "Back to overview", "Torna al sommario"
 
   # app/helpers/admin/content_helper.rb
 
-  l.store "Show conversation", ""
-  l.store "Flag as %s", ""
 
   # app/helpers/application_helper.rb
-  l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", ""
-  l.store "%%d. %%b", ""
   l.store "no trackbacks", "nessun trackback"
-  l.store "1 trackback", ""
-  l.store "%d trackbacks", ""
 
   # app/models/article.rb
-  l.store "direct link to this article", ""
-  l.store "If you are reading this article elsewhere than", ""
-  l.store "it has been illegally reproduced and without proper authorization", ""
 
   # app/models/blog.rb
-  l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", ""
 
-  l.store "Unclassified", ""
   l.store "Reorder", "Riordina"
   l.store "Sort alphabetically", "Ordina alfabeticamente"
 
   l.store "Are you sure you want to delete the category ", "Sei sicuro di voler eliminare questa categoria "
   l.store "Delete this category", "Elimina questa categoria"
 
-  l.store "%s Category", ""
 
   l.store "(Done)", "(Termina)"
 
@@ -70,15 +54,11 @@ Localization.define("it_IT") do |l|
   l.store "Delete this article", "Elimina articolo"
 
 
-  l.store "Error: can't generate secret token. Security is at risk. Please, change %s content", ""
 
   # app/views/admin/dashboard/_popular.html.erb
   l.store "Most popular", "I più popolari"
-  l.store "Nothing to show yet", ""
 
   # app/views/admin/dashboard/_posts.html.erb
-  l.store "Latest Posts", ""
-  l.store "No posts yet, why don't you start and write one", ""
   l.store "Limit to spam", "Limita a spam"
   l.store "Search Comments and Trackbacks that contain", "Cerca commenti o trackback che contengono"
   l.store "Are you sure you want to delete the page", "Sei sicuro di voler eliminare questa pagina"
@@ -112,7 +92,6 @@ Localization.define("it_IT") do |l|
   l.store "Add User", "Aggiungi Utente"
 
   l.store "Posted by", "Scritto da"
-  l.store "Continue reading", ""
 
   l.store "said", "dice"
   l.store "Your name", "Tuo nome "
@@ -135,12 +114,9 @@ Localization.define("it_IT") do |l|
   l.store "Archives", "Archivi"
 
   # vendor/plugins/authors_sidebar/views/content.rhtml
-  l.store "Authors", ""
 
   # vendor/plugins/xml_sidebar/views/content.rhtml
   l.store "Syndicate", "Syndicate"
-  l.store "Category %s", ""
-  l.store "Tag %s", ""
 
   # Obsolete translations
   l.store "%d Articles", ["Categoria", "%d Categorie"]
@@ -170,7 +146,6 @@ Localization.define("it_IT") do |l|
   l.store "Attachments", "Allegati"
   l.store "Basic settings", "Configurazione base"
   l.store "Blacklist", "Blacklist"
-  l.store "Blacklist Patterns", "Lista nera"
   l.store "Blog advanced settings", "Settaggi avanzati del blog"
   l.store "Blog settings", "Configurazione blog"
   l.store "Body", "Messaggio"

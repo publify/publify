@@ -3,7 +3,6 @@ Localization.define("ro_RO") do |l|
   l.store "All categories", "toate categoriile"
   l.store "All authors", "toate autorii"
   l.store "All published dates", "toate timp"
-  l.store "There are no %s yet. Why don't you start and create one?", ""
   l.store "Edit", "Editare"
   l.store "no trackbacks", "fără retrolegături"
   l.store "Reorder", "Ordonează"
@@ -33,15 +32,12 @@ Localization.define("ro_RO") do |l|
   l.store "Are you sure you want to delete this file", "Ești sigur că dorești să ștergi acest fișier"
   l.store "Delete this file from the webserver?", "Ștergi acest fișier de pe server?"
   l.store "File Uploads", "Încărcări de fișiere"
-  l.store "Browse", ""
   l.store "remove", "supprimer"
   l.store "Enable gravatars", "Activează gravataruri"
   l.store "Show your email address", "Arată adresa ta de email"
   l.store "articles on my homepage by default", "articole implicit în pagina principală"
   l.store "articles in my news feed by default", "articole implicit în RSS"
   l.store "Show full article on feed", "Include articole complete în RSS"
-  l.store "Feedburner ID", ""
-  l.store "You can use your Google Feedburner account instead of Publify feed URL. To enable this, fill this form with your Feedburner ID.", ""
   l.store "New database version", "Versiunea nouă a bazei de date"
   l.store "Your database supports migrations", "Baza de date poate fi actualizată"
   l.store "yes", "da"
@@ -86,18 +82,6 @@ Localization.define("ro_RO") do |l|
   l.store "trackback uri", "URL pentru retrolegătură"
   l.store "Comments are disabled", "Comentariile sînt dezactivate"
   l.store "Trackbacks for", "Retrolegături pentru"
-
-  l.store "Read all articles in %s", ""
-
-  # vendor/plugins/authors_sidebar/views/content.rhtml
-  l.store "Authors", ""
-
-  # vendor/plugins/xml_sidebar/views/content.rhtml
-  l.store "Syndicate", ""
-  l.store "Category %s", ""
-  l.store "Tag %s", ""
-
-  # Obsolete translations
   l.store "%d Articles", ["Articol", "%d Articole"]
   l.store "%d Categories", ["Categorie", "%d Categorii"]
   l.store "%d Comments", ["Comentariu", "%d Comentarii"]
@@ -121,7 +105,6 @@ Localization.define("ro_RO") do |l|
   l.store "Attachments", "Atașamente"
   l.store "Back to the blog", "Înapoi la blog"
   l.store "Blacklist", "Lista neagră"
-  l.store "Blacklist Patterns", "Lista neagră"
   l.store "Blog settings", "Setările blogului"
   l.store "Body", "Conținut"
   l.store "Category title", "Numele categoriei"

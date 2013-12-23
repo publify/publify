@@ -68,10 +68,6 @@ Localization.define("de_DE") do |l|
   l.store "Comment Markup Help", "Hilfe zu Kommentar Markup"
   l.store "Preview comment", "Kommentar Vorschau"
 
-  # app/views/articles/_comment_failed.html.erb
-  l.store "Oops, something wrong happened, the comment could not be saved", ""
-
-  # app/views/articles/_trackback.html.erb
   l.store "From", "Von"
   l.store "No articles found", "Keine Artikel gefunden"
   l.store "is about to say", "will sagen"
@@ -85,12 +81,9 @@ Localization.define("de_DE") do |l|
   l.store "Archives", "Archive"
 
   # vendor/plugins/authors_sidebar/views/content.rhtml
-  l.store "Authors", ""
 
   # vendor/plugins/xml_sidebar/views/content.rhtml
   l.store "Syndicate", "Syndikat"
-  l.store "Category %s", ""
-  l.store "Tag %s", ""
 
   # Obsolete translations
   l.store "%d Articles", ["Artikel", "%d Artikel"]
@@ -117,7 +110,6 @@ Localization.define("de_DE") do |l|
   l.store "Attachments", "Anhänge"
   l.store "Back to the blog", "Zurück zum Blog"
   l.store "Blacklist", "Blacklist"
-  l.store "Blacklist Patterns", "Blacklist Muster"
   l.store "Blog settings", "Blog Einstellungen"
   l.store "Body", "Text"
   l.store "Category title", "Name der Kategorie"

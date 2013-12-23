@@ -1,23 +1,11 @@
 # coding: utf-8
 Localization.define("ja_JP") do |l|
-
-  # app/controllers/accounts_controller.rb
-  l.store "Login successful", "ログインしました"
-  l.store "Login unsuccessful", "ログインに失敗しました"
-  l.store "Oops, something wrong just happened", ""
-  l.store "Successfully logged out", "ログアウトしました"
   l.store "login", "ログイン"
   l.store "signup", "サインアップ"
-  # app/controllers/admin/content_controller.rb
   l.store "Error, you are not allowed to perform this action", "あなたのアカウントではこの操作は許可されていません"
-  l.store "Preview", ""
   l.store "Article was successfully created", "記事を作成しました"
   l.store "Article was successfully updated.", "記事が更新されました"
 
-  l.store "Not found", ""
-  l.store "Marked %d item(s) as Ham", ""
-  l.store "Confirmed classification of %s item(s)", ""
-  l.store "Not implemented", ""
 
   # app/controllers/admin/resources_controller.rb
   l.store "Error occurred while updating Content Type.", "コンテントタイプを更新中にエラーが発生しました"
@@ -30,7 +18,6 @@ Localization.define("ja_JP") do |l|
   l.store "config updated.", "設定は更新されました"
   l.store "delete", "削除"
   l.store "Please select", "選択してください"
-  l.store "There are no %s yet. Why don't you start and create one?", ""
   l.store "Edit", "編集"
   l.store "Show help on Publify macros", "Publifyマクロのヘルプを表示"
   l.store "Back to overview", "オーバービューに戻る"
@@ -110,7 +97,6 @@ Localization.define("ja_JP") do |l|
   l.store "Manage tags", "タグの管理"
 
   # app/views/admin/themes/catalogue.html.erb
-  l.store "Sorry the theme catalogue is not available", ""
   l.store "Theme catalogue", "テーマカタログ"
 
   # app/views/admin/themes/index.html.erb
@@ -126,7 +112,6 @@ Localization.define("ja_JP") do |l|
   l.store "Send notification messages via email", "メールで通知を送信"
   l.store "Send notification messages when new articles are posted", "新しい記事が投稿された際に通知メッセージを送る"
   l.store "Send notification messages when comments are posted", "コメントが投稿された際に通知メッセージを送る"
-  l.store "Contact options", ""
   l.store "Your site", "あなたのホームページ"
   l.store "display URL on public profile", "公開プロフィールにURLを表示"
   l.store "Your MSN", "あなたのMSN ID"
@@ -171,8 +156,6 @@ Localization.define("ja_JP") do |l|
   l.store "Archives", "アーカイブ"
   l.store "Authors", "作者"
   l.store "Syndicate", "シンジゲート"
-  l.store "Category %s", ""
-  l.store "Tag %s", ""
   l.store "A new message was posted to ", "〜へ新しいメッセージを投稿しました"
   l.store "Action", "アクション"
   l.store "Activate", "有効にする"
@@ -186,7 +169,6 @@ Localization.define("ja_JP") do |l|
   l.store "Articles in", "記事"
   l.store "Attachments", "添付"
   l.store "Blacklist", "ブラックリスト"
-  l.store "Blacklist Patterns", "ブラックリストパターン"
   l.store "Blog settings", "ブログ設定"
   l.store "Cache was cleared", "キャッシュはクリアされました"
   l.store "Category", "カテゴリ"

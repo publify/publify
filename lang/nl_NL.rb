@@ -1,11 +1,5 @@
 # coding: utf-8
 Localization.define("nl_NL") do |l|
-  # app/controllers/accounts_controller.rb
-  l.store "Login successful", "Login geslaagd"
-  l.store "Login unsuccessful", "Login mislukt"
-  l.store "An email has been successfully sent to your address with your new password", "Er is je met succes een e-mail gestuurd met uw nieuwe wachtwoord"
-  l.store "Oops, something wrong just happened", "Oeps, er is net iets misgegaan"
-  l.store "Successfully logged out", "Succesvol uitgelogd"
   l.store "login", "inloggen"
   l.store "signup", "aanmelden"
   l.store "Recover your password", "Herstel uw wachtwoord"
@@ -134,16 +128,9 @@ Localization.define("nl_NL") do |l|
   # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "Weet je zeker dat je dit artikel wilt verwijderen?"
   l.store "Delete this article", "Verwijder dit artikel"
-
-  # app/views/admin/content/index.html.erb
   l.store "Search articles that contain ...", "Zoek artikelen met ..."
-
-  l.store "Error: can't generate secret token. Security is at risk. Please, change %s content", ""
-  l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", ""
   l.store "Latest Comments", "Laatste reacties"
   l.store "By %s on %s", "door %s op %s"
-
-  # app/views/admin/dashboard/_popular.html.erb
   l.store "Most popular", "Meest populair"
   l.store "Nothing to show yet", "Nog niets te zien"
 
@@ -208,8 +195,6 @@ Localization.define("nl_NL") do |l|
   l.store "Are you sure you want to delete the tag", "Weet je zeker dat je deze tag wilt verwijderen?"
   l.store "Delete this tag", "Verwijder deze tag"
   l.store "Editing ", "Wijzigen"
-  l.store "Back to tags list", "Terug naar de lijst van tags"
-  l.store "Display Name", ""
   l.store "Manage tags", "Beheer tags"
 
   # app/views/admin/themes/catalogue.html.erb
@@ -260,7 +245,6 @@ Localization.define("nl_NL") do |l|
   l.store "Your name", "Jouw naam"
   l.store "Your email", "Jouw e-mail"
   l.store "Your message", "Jouw bericht"
-  l.store "Comment Markup Help", ""
   l.store "Preview comment", "Bekijk reactie"
   l.store "leave url/email", "plaats url/e-mail"
   l.store "Oops, something wrong happened, the comment could not be saved", "Er is iets mis gegaan en je reactie is niet bewaard"
@@ -321,27 +305,13 @@ Localization.define("nl_NL") do |l|
   l.store "Designed by %s ported to publify by %s ", "Ontworpen door %s geport naar publify door %s "
 
   # themes/scribbish/layouts/default.html.erb
-  l.store "styled with %s", ""
   l.store "You are here: ", "Je bent hier: "
-  l.store "%d comment", ""
   l.store "later:", "later:"
   l.store "Email address", "E-mailadres"
   l.store "Your website", "Je website"
   l.store "Previous", "Vorige"
-
-  # vendor/plugins/archives_sidebar/views/content.rhtml
   l.store "Archives", "Archieven"
-
-  # vendor/plugins/authors_sidebar/views/content.rhtml
   l.store "Authors", "Auteurs"
-
-  # vendor/plugins/xml_sidebar/views/content.rhtml
-  l.store "Syndicate", ""
-  l.store "Category %s", ""
-  l.store "Tag %s", ""
-
-  # Obsolete translations
-  l.store "Blacklist Patterns", "Blacklist patronen"
   l.store "Choose password", "Kies wachtwoord"
   l.store "Confirm Classification of Checked Items", "Bevestig classificatie van aangevinkte reacties"
   l.store "Editing pattern", "Wijzig patroon"

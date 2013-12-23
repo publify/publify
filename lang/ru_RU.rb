@@ -1,20 +1,10 @@
 # coding: utf-8
 Localization.define("ru_RU") do |l|
-  # Available languages
   l.store "en_US", "Английский (американский)"
   l.store "ru_RU", "Русский"
-
-  # app/controllers/accounts_controller.rb
-  l.store "Login successful", "Вход успешный"
-  l.store "Login unsuccessful", "Не получилось зайти"
-  l.store "An email has been successfully sent to your address with your new password", "Письмо с паролем было выслано на ваш адрес"
-  l.store "Oops, something wrong just happened", "Упс, произошло что-то нехорошее"
-  l.store "Successfully logged out", "Вы успешно вышли"
   l.store "login", "логин"
   l.store "signup", "войти"
   l.store "Recover your password", "Восстановление пароля"
-
-  # app/helpers/admin/base_helper.rb
   l.store "delete", "удалить"
   l.store "All categories", "Все категории"
   l.store "All authors", "Все авторы"

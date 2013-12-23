@@ -9,7 +9,6 @@ Localization.define("es_MX") do |l|
   l.store "Are you sure you want to delete the category ", "&iquest;Est&aacute;s seguro que quieres eliminar esta categor&iacute;a?"
   l.store "Delete this category", "Eliminar esta categor&iacute;a"
 
-  l.store "%s Category", ""
 
   # app/views/admin/categories/reorder.html.erb
   l.store "(Done)", "(Hecho)"
@@ -59,10 +58,8 @@ Localization.define("es_MX") do |l|
   l.store "Your message", "Tu comentario"
   l.store "Comment Markup Help", "Ayuda del marcado"
   l.store "Preview comment", "Previsualizar comentario"
-  l.store "leave url/email", ""
 
   # app/views/articles/_comment_failed.html.erb
-  l.store "Oops, something wrong happened, the comment could not be saved", ""
   l.store "From", "De"
   # app/views/articles/archives.html.erb
   l.store "No articles found", "No se encontraron art&iacute;culos"
@@ -100,7 +97,6 @@ Localization.define("es_MX") do |l|
   l.store "Attachments", "Archivos adjuntos"
   l.store "Back to the blog", "Regresar al blog"
   l.store "Blacklist", "Lista negra"
-  l.store "Blacklist Patterns", "Lista negra"
   l.store "Blog settings", "Preferencias del Blog"
   l.store "Body", "Comentario"
   l.store "Category title", "T&iacute;tulo de la categor&iacute;a"
@@ -215,7 +211,6 @@ Localization.define("es_MX") do |l|
   l.store "Textfilter", "Filtro de texto"
   l.store "The below settings act as defaults when you choose to publish an enclosure with iTunes metadata", "Las preferencias debajo son tomadas como predeterminadas cuando publicas contenido protegido con metadata de iTunes"
   l.store "Things you can do", "Cosas que puedes hacer"
-  l.store "This option let you choose between the simple admin interface or the complete one, displaying much more options and therefore more complicated to use. For advanced users only!", ""
   l.store "Type", "Tipo"
   l.store "Publify admin", "Administrar Publify"
   l.store "Upload a new File", "Subir un nuevo archivo"

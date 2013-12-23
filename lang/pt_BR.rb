@@ -2,13 +2,6 @@
 # Translation by Edgar J. Suarez
 
 Localization.define("pt_BR") do |l|
-
-  # app/controllers/accounts_controller.rb
-  l.store "Login successful", "Logado com sucesso"
-  l.store "Login unsuccessful", "Falha ao tentar se logar"
-  l.store "An email has been successfully sent to your address with your new password", "Sua nova senha foi enviada com sucesso para o seu e-mail"
-  l.store "Oops, something wrong just happened", "Opps, alguma coisa errada acaba de acontecer"
-  l.store "Successfully logged out", "Deslogado com sucesso"
   l.store "login", "entrar"
   l.store "signup", "registrar"
   l.store "Recover your password", "recupere sua senha"
@@ -144,12 +137,6 @@ Localization.define("pt_BR") do |l|
   l.store "Active theme", "Tema activo"
   l.store "Choose a theme", "Escoge un tema"
   l.store "Password confirmation", "Confirmar Contrase&ntilde;a"
-  l.store "Active", ""
-  l.store "Inactive", ""
-  l.store "Profile settings", ""
-  l.store "Firstname", ""
-  l.store "Nickname", ""
-  l.store "Editor", ""
   l.store "Send notification messages via email", "Enviar notificaciones por email"
   l.store "Send notification messages when new articles are posted", "Enviar notificaciones cuando un nuevo art&iacute;culo sea publicado"
   l.store "Send notification messages when comments are posted", "Enviar notificaciones cuando un nuevo comentario sea publicado"
@@ -199,7 +186,6 @@ Localization.define("pt_BR") do |l|
   l.store "Attachments", "Archivos adjuntos"
   l.store "Back to the blog", "Regresar al blog"
   l.store "Blacklist", "Lista negra"
-  l.store "Blacklist Patterns", "Lista negra"
   l.store "Blog settings", "Preferencias del Blog"
   l.store "Body", "Comentario"
   l.store "Category title", "T&iacute;tulo de la categor&iacute;a"
@@ -314,7 +300,6 @@ Localization.define("pt_BR") do |l|
   l.store "Textfilter", "Filtro de texto"
   l.store "The below settings act as defaults when you choose to publish an enclosure with iTunes metadata", "Las preferencias debajo son tomadas como predeterminadas cuando publicas contenido protegido con metadata de iTunes"
   l.store "Things you can do", "Cosas que puedes hacer"
-  l.store "This option let you choose between the simple admin interface or the complete one, displaying much more options and therefore more complicated to use. For advanced users only!", ""
   l.store "Type", "Tipo"
   l.store "Publify admin", "Administrar Publify"
   l.store "Upload a new File", "Subir un nuevo archivo"

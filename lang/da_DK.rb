@@ -4,7 +4,6 @@ Localization.define("da_DK") do |l|
   l.store "All categories", "Alle kategorier"
   l.store "All authors", "Alle forfattere"
   l.store "All published dates", "Alle datoer"
-  l.store "There are no %s yet. Why don't you start and create one?", ""
   l.store "Edit", "Rediger"
   l.store "Unpublished", "Ikke offentliggjort"
   l.store "Back to overview", "Tilbage til oversigten"
@@ -41,16 +40,13 @@ Localization.define("da_DK") do |l|
   l.store "By %s on %s", "Fra %s på %s"
 
   # app/views/admin/dashboard/_popular.html.erb
-  l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", ""
   l.store "Most popular", "Mest populære"
   l.store "Nothing to show yet", "Intet at vise endnu"
 
   # app/views/admin/dashboard/_posts.html.erb
-  l.store "Latest Posts", ""
   l.store "No posts yet, why don't you start and write one", "Der er ingen artikler endnu, du kan evt. starte med at skrive en"
 
   # app/views/admin/dashboard/_publify_dev.html.erb
-  l.store "Oh no, nothing new", ""
 
   # app/views/admin/dashboard/_welcome.html.erb
   l.store "Welcome back, %s!", "Velkommen tilbage, %s!"
@@ -90,13 +86,9 @@ Localization.define("da_DK") do |l|
   l.store "Choose a theme", "Vælg et tema"
   l.store "Password confirmation", "Gentag kodeord"
   l.store "Profile", "Profil"
-  l.store "Active", ""
-  l.store "Inactive", ""
-  l.store "Profile settings", ""
   l.store "Firstname", "Fornavn"
   l.store "Lastname", "Efternavn"
   l.store "Nickname", "Kælenavn"
-  l.store "Editor", ""
   l.store "Send notification messages via email", "Send meddelelser via e-mail"
   l.store "Send notification messages when new articles are posted", "Send meddelelser når ny artikler bliver udgivet"
   l.store "Send notification messages when comments are posted", "Send meddelelser når der er nye kommentarer"
@@ -119,7 +111,6 @@ Localization.define("da_DK") do |l|
   l.store "New User", "Ny bruger"
   l.store "Comments", "Kommentarer"
   l.store "Posted by", "Skrevet af"
-  l.store "Continue reading", ""
 
   # app/views/articles/_comment.html.erb
   l.store "said", "sagde"
@@ -153,7 +144,6 @@ Localization.define("da_DK") do |l|
   l.store "Archives", "Arkiv"
 
   # vendor/plugins/authors_sidebar/views/content.rhtml
-  l.store "Authors", ""
 
   # vendor/plugins/xml_sidebar/views/content.rhtml
   l.store "Syndicate", "Syndikat"
@@ -178,7 +168,6 @@ Localization.define("da_DK") do |l|
   l.store "Attachments", "Vedhæftet"
   l.store "Back to the blog", "Tilbage til Bloggen"
   l.store "Blacklist", "Blacklist"
-  l.store "Blacklist Patterns", "Blacklist mønstre"
   l.store "Blog settings", "Blog indstillinger"
   l.store "Body", "Tekst"
   l.store "Category title", "Kategorititel"

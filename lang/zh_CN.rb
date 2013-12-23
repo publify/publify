@@ -1,19 +1,9 @@
 # coding: utf-8
 Localization.define("zh_CN") do |l|
-
-  # app/controllers/accounts_controller.rb
-  l.store "Login successful", "登录成功"
-  l.store "Login unsuccessful", "登录不成功"
-  l.store "An email has been successfully sent to your address with your new password", "你的新密码已经发送到你的email邮箱当中"
-  l.store "Oops, something wrong just happened", "噢，发生了一些错误"
-  l.store "Successfully logged out", "成功登出"
   l.store "login", "登录"
   l.store "signup", "注册"
-  l.store "Recover your password", ""
   l.store "Category was successfully saved.", "成功保存分类"
   l.store "Category could not be saved.", "无法保存分类"
-
-  # app/controllers/admin/content_controller.rb
   l.store "Error, you are not allowed to perform this action", "错误，不允许进行此操作"
   l.store "Preview", "预览"
   l.store "Article was successfully created", "文章创建成功"
@@ -23,7 +13,6 @@ Localization.define("zh_CN") do |l|
   l.store "Not found", "不存在"
   l.store "Deleted %d item(s)", "删除%d项"
   l.store "Marked %d item(s) as Spam", "标记%d项为垃圾信息"
-  l.store "Confirmed classification of %s item(s)", ""
   l.store "Not implemented", "未实现"
   l.store "All spam have been deleted", "所有垃圾信息已经呗删除"
   l.store "Comment was successfully created.", "评论创建成功"
@@ -56,17 +45,14 @@ Localization.define("zh_CN") do |l|
   l.store "User was successfully created.", "用户创建成功"
 
   # app/controllers/application_controller.rb
-  l.store "Localization.rtl", ""
 
   # app/controllers/articles_controller.rb
   l.store "No posts found...", "没有文章"
   l.store "Archives for", "归档为"
   l.store "Archives for ", "归档为"
-  l.store ", Articles for ", ""
 
   # app/controllers/grouping_controller.rb
   l.store "page", "页面"
-  l.store "everything about", ""
 
   # app/helpers/admin/base_helper.rb
   l.store "Store", "保存"
@@ -82,7 +68,6 @@ Localization.define("zh_CN") do |l|
   l.store "Unpublished", "未发表"
   l.store "Show help on Publify macros", "显示Publify宏的帮助"
   l.store "Back to overview", "回到概览"
-  l.store "Tag", ""
 
   # app/helpers/admin/content_helper.rb
   l.store "Destroy this draft", "删除草稿"
@@ -91,8 +76,6 @@ Localization.define("zh_CN") do |l|
   l.store "Flag as %s", "标记为%s"
 
   # app/helpers/application_helper.rb
-  l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", ""
-  l.store "%%d. %%b", ""
   l.store "no trackbacks", "没有引用"
   l.store "1 trackback", "一条引用"
   l.store "%d trackbacks", "%d条引用"
@@ -104,12 +87,8 @@ Localization.define("zh_CN") do |l|
   l.store "%d posts", "%d篇文章"
 
   # app/models/article.rb
-  l.store "direct link to this article", ""
-  l.store "If you are reading this article elsewhere than", ""
-  l.store "it has been illegally reproduced and without proper authorization", ""
 
   # app/models/blog.rb
-  l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", ""
   l.store "Sort alphabetically", "依字母顺序排序"
 
   l.store "Are you sure you want to delete the category ", "确认删除此分类？"
@@ -136,7 +115,6 @@ Localization.define("zh_CN") do |l|
   l.store "Search articles that contain ...", "搜索包含内容的文章 ..."
 
   # app/views/admin/dashboard/_comments.html.erb
-  l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", ""
   l.store "Latest Comments", "最近评论"
   l.store "By %s on %s", "%s在%s"
 
@@ -213,17 +191,14 @@ Localization.define("zh_CN") do |l|
   l.store "Comments are disabled", "评论停用"
   l.store "About", "关于"
   # themes/scribbish/layouts/default.html.erb
-  l.store "styled with %s", ""
 
   l.store "Trackbacks for", "作為引用"
   l.store "Archives", "归档"
 
   # vendor/plugins/authors_sidebar/views/content.rhtml
-  l.store "Authors", ""
 
   # vendor/plugins/xml_sidebar/views/content.rhtml
   l.store "Syndicate", "整合發表"
-  l.store "Category %s", ""
   l.store "A new message was posted to ", "一個新的訊息已被貼上"
   l.store "AIM Presence", "AIM存在"
   l.store "AIM Status", "AIM身分"
@@ -246,7 +221,6 @@ Localization.define("zh_CN") do |l|
   l.store "Back to the blog", "回到博客"
   l.store "Basic settings", "基本設定"
   l.store "Blacklist", "列入黑名單"
-  l.store "Blacklist Patterns", "黑名單樣式"
   l.store "Blog advanced settings", "博客進階設定"
   l.store "Blog settings", "博客設定"
   l.store "Body", "本文主體"

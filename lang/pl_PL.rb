@@ -14,18 +14,8 @@ Localization.define("pl_PL") do |l|
   l.store "All categories", "Wszystkie kategorie"
   l.store "All authors", "Wszystkie autorzy"
   l.store "All published dates", "Wszystkie daty"
-  l.store "There are no %s yet. Why don't you start and create one?", ""
   l.store "Edit", "Zmień"
-  l.store "Unpublished", ""
   l.store "Back to overview", "Wróć do podglądu"
-  l.store "Tag", ""
-
-  l.store "Show conversation", ""
-  l.store "Flag as %s", ""
-
-  # app/helpers/application_helper.rb
-  l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", ""
-  l.store "%%d. %%b", ""
   l.store "no trackbacks", "brak trackbacków"
   l.store "1 trackback", "1 trackback"
   l.store "%d trackbacks", "%d trackbacki"
@@ -56,9 +46,6 @@ Localization.define("pl_PL") do |l|
   # app/views/admin/dashboard/_posts.html.erb
   l.store "Latest Posts", "Ostatnie Wpisy"
   l.store "Latest news from the Publify development blog", "Najnowsze wieści z bloga developerskiego Publify"
-  l.store "Oh no, nothing new", ""
-
-  # app/views/admin/dashboard/_welcome.html.erb
   l.store "Welcome back, %s!", "Witamy spowrotem, %s!"
   l.store "Total posts : %d", "Liczba wszystkich wpisów: %d"
   l.store "Your posts : %d", "Twoje wpisy: %d"
@@ -78,10 +65,6 @@ Localization.define("pl_PL") do |l|
   l.store "articles on my homepage by default", "domyślnie artykułów na stronie głównej"
   l.store "articles in my news feed by default", "domyślnie artykułów w subskrypcji RSS"
   l.store "Show full article on feed", "Pokaż pełną treść artykułu w subskrypcji RSS"
-  l.store "Feedburner ID", ""
-  l.store "You can use your Google Feedburner account instead of Publify feed URL. To enable this, fill this form with your Feedburner ID.", ""
-
-  # app/views/admin/settings/seo.html.erb
   l.store "Search Engine Optimisation", "Optymalizacja silnika wyszukiwania"
   l.store "New database version", "Nowa wersja bazy danych"
   l.store "Your database supports migrations", "Twoja baza danych wspiera migracje"
@@ -150,7 +133,6 @@ Localization.define("pl_PL") do |l|
   l.store "Back to the blog", "Wróć do bloga"
   l.store "Basic settings", "Ustawienia podstawowe"
   l.store "Blacklist", "Czarna lista"
-  l.store "Blacklist Patterns", "Czarna lista"
   l.store "Blog advanced settings", "Ustawienia zaawansowane bloga"
   l.store "Blog settings", "Ustawienia bloga"
   l.store "Body", "Treść"

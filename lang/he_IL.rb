@@ -1,17 +1,9 @@
 # coding: utf-8
 Localization.define("he_IL") do |l|
-
-  # app/controllers/accounts_controller.rb
-  l.store "Login successful", "ההתחברות הצליחה"
-  l.store "Login unsuccessful", "ההתחברות נכשלה"
-  l.store "An email has been successfully sent to your address with your new password", ""
-  l.store "Oops, something wrong just happened", ""
-  l.store "Successfully logged out", "התנתקת מהמערכת בהצלחה"
   l.store "Error, you are not allowed to perform this action", "שגיאה, אינך רשאי לבצע פעולה זו"
   l.store "Preview", "תצוגה מקדימה"
   l.store "Article was successfully created", "הכתבה נוצרה בהצלחה "
   l.store "Article was successfully updated.", "הכתבה עודכנה בהצלחה."
-
   l.store "Deleted", "נמחקה"
   l.store "Not found", "לא נמצאה"
   l.store "Deleted %d item(s)", "נמחקו %d פריטים"
@@ -32,7 +24,6 @@ Localization.define("he_IL") do |l|
   l.store "Content Type was successfully updated.", "סוג התוכן עודכן בהצלחה."
   l.store "Please review and save the settings before continuing", "אנא בדוק ושמור את השינויים לפני שתמשיך"
   l.store "config updated.", "ההגדרה עודכנה."
-  l.store "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually", ""
   l.store "Tag was successfully updated.", "התוית עודכנה בהצלחה."
   l.store "You are not authorized to open this file", "אינך רשאי לפתוח קובץ זה"
   l.store "File saved successfully", "הקובץ נשמר בהצלחה"
@@ -60,14 +51,6 @@ Localization.define("he_IL") do |l|
   l.store "no posts", "אין כתבות"
   l.store "1 post", "כתבה 1"
   l.store "%d posts", "%d כתבות"
-
-  l.store "and published on", ""
-  l.store "it has been illegally reproduced and without proper authorization", ""
-
-  # app/models/blog.rb
-  l.store "You need a permalink format with an identifier : %%month%%, %%year%%, %%day%%, %%title%%", ""
-  l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", ""
-
   l.store "Unclassified", "לא סווג"
   l.store "Just Presumed Ham", "כנראה לא-ספאם"
   l.store "Ham?", "לא-ספאם ?"
@@ -124,7 +107,6 @@ Localization.define("he_IL") do |l|
   l.store "Are you sure you want to delete the tag", "האם אתה בטוח שרצונך למחוק תווית זו ?"
   l.store "Delete this tag", "מחק תוויות זו"
   l.store "Editing ", "עורך"
-  l.store "Back to tags list", "חזרה לרשימת התוויות"
   l.store "Display Name", "שם תצוגה"
   l.store "Manage tags", "נהל תוויות"
   l.store "Active theme", "עיצוב פעיל"
@@ -203,17 +185,7 @@ Localization.define("he_IL") do |l|
   l.store "permalink", "קישור קבוע"
   l.store "Trackbacks for", "עוקבי חזרה עבור"
   l.store "Archives", "ארכיון"
-
-  # vendor/plugins/authors_sidebar/views/content.rhtml
-  l.store "Authors", ""
-
-  # vendor/plugins/xml_sidebar/views/content.rhtml
   l.store "Syndicate", "עדכן"
-  l.store "Category %s", ""
-  l.store "Tag %s", ""
-
-  # Obsolete translations
-  l.store "", ""
   l.store " Administration", "ניהול"
   l.store " Signup", "הירשם"
   l.store "(this will be shown publically if supplied)", "(זה יוצג בבלוג אם יינתן)"
@@ -225,7 +197,6 @@ Localization.define("he_IL") do |l|
   l.store "Are you sure you want to delete this item?", "האם אתה בטוח שברצונך למחוק פריט זה ?"
   l.store "Article was successfully saved at ", "הכתבה נשמרה בהצלחה"
   l.store "Blacklist", "רשימה שחורה"
-  l.store "Blacklist Patterns", "תבניות הרשימה השחורה"
   l.store "BlacklistPattern was successfully created.", "התבנית נוצרה בהצלחה."
   l.store "BlacklistPattern was successfully updated.", "התבנית עודכנה בהצלחה."
   l.store "Blog publisher", "כותב"
