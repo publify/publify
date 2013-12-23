@@ -29,12 +29,6 @@ Localization.define("nl_NL") do |l|
   l.store "Comment was successfully created.", "Commentaar is succesvol aangemaakt."
   l.store "Comment was successfully updated.", "Commentaar is succesvol bijgewerkt."
 
-  l.store "Page was successfully created.", "Pagina is succesvol aangemaakt."
-  l.store "Page was successfully updated.", "Pagina is succesvol bijgewerkt."
-
-  # app/controllers/admin/profiles_controller.rb
-  l.store "User was successfully updated.", "Gebruiker is succesvol bijgewerkt."
-
   # app/controllers/admin/resources_controller.rb
   l.store "Error occurred while updating Content Type.", "Er trad een fout op bij het bijwerken van het Content Type"
   l.store "complete", "compleet"
@@ -51,7 +45,6 @@ Localization.define("nl_NL") do |l|
   l.store "Tag was successfully updated.", "Tag was succesvol bijgewerkt."
 
   # app/controllers/admin/themes_controller.rb
-  l.store "Theme changed successfully", "Thema succesvol aangepast"
   l.store "You are not authorized to open this file", "U bent niet geautoriseerd om dit bestand te openen"
   l.store "File saved successfully", "Bestand succesvol opgeslagen"
   l.store "Unable to write file", "Kon het bestand niet schrijven"

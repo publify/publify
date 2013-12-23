@@ -29,13 +29,6 @@ Localization.define("zh_CN") do |l|
   l.store "Comment was successfully created.", "评论创建成功"
   l.store "Comment was successfully updated.", "评论更新成功"
 
-  # app/controllers/admin/pages_controller.rb
-  l.store "Page was successfully created.", "页面创建成功"
-  l.store "Page was successfully updated.", "页面更新成功"
-
-  # app/controllers/admin/profiles_controller.rb
-  l.store "User was successfully updated.", "用户创建成功"
-
   # app/controllers/admin/resources_controller.rb
   l.store "Error occurred while updating Content Type.", "当更新内容类型时发生错误"
   l.store "complete", "完成"
@@ -55,7 +48,6 @@ Localization.define("zh_CN") do |l|
   l.store "Tag was successfully updated.", "Tag已经更新"
 
   # app/controllers/admin/themes_controller.rb
-  l.store "Theme changed successfully", "主题切换成功"
   l.store "You are not authorized to open this file", "你没有权限打开这个文件"
   l.store "File saved successfully", "文件保存成功"
   l.store "Unable to write file", "无法写入文件"

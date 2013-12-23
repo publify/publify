@@ -12,7 +12,7 @@ class Admin::ProfilesController < Admin::BaseController
       
       if @user.save
         current_user = @user
-        flash[:notice] = _('User was successfully updated.')
+        gflash :success
       end
     end
   end

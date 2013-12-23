@@ -7,9 +7,30 @@ he-IL:
       error: "Error"
       progress: "Progress"
     admin:
+      cache:
+        index:
+          success: "המטמון נוקה"
+          error: "Cache could not be cleared"
+      pages:
+        new:
+          success: "הדף נוצר בהצלחה"
+        edit:
+          success: "הדף עודכן בהצלחה"
+      profiles:
+        index:
+          success: "המשתמש עודכן בהצלחה"
+      resources:
+        upload:
+          success: "הקובץ הועלה"
+          warning: "לא מסוגל להעלות"
+        destroy:
+          notice: "נמחקה"
       tags:
         edit:
           success: "התוית עודכנה בהצלחה." 
+      themes:
+        switchto:
+          success: "Theme selection updated"
       users:
         new:
           success: "המשתמש נוצר בהצלחה."

@@ -8,8 +8,6 @@ Localization.define("fr_FR") do |l|
   l.store "login", "identifiant"
   l.store "signup", "s'identifier"
   l.store "Recover your password", "Récupération d'un mot de passe perdu"
-  l.store "Cache was successfully sweeped", "Le cache a été vidé avec succès"
-  l.store "Oops, something wrong happened. Cache could not be cleaned", "Oops, un problème s'est produit et le cache n'a pas pu être vidé correctement"
 
   # app/controllers/admin/categories_controller.rb
   l.store "Category was successfully saved.", "La catégorie a été enregistrée avec succès"
@@ -41,16 +39,9 @@ Localization.define("fr_FR") do |l|
   l.store "Comment was successfully created.", "Commentaire créé avec succès."
   l.store "Comment was successfully updated.", "Commentaire mis à jour avec succès."
 
-  # app/controllers/admin/pages_controller.rb
-  l.store "Page was successfully created.", "Cette page a été créée avec succès"
-  l.store "Page was successfully updated.", "Cette page a été mise à jour avec succès"
-
   # app/controllers/admin/post_types_controller.rb
   l.store "Post Type was successfully saved.", "Le type d'article a été sauvé avec succès"
   l.store "Post Type could not be saved.", "Le type d'article n'a pas pu être sauvé"
-
-  # app/controllers/admin/profiles_controller.rb
-  l.store "User was successfully updated.", "L'utilisateur a été mis à jour avec succès."
 
   # app/controllers/admin/redirects_controller.rb
   l.store "Redirection was successfully deleted.", "La redirection a été supprimée avec succès."
@@ -75,9 +66,6 @@ Localization.define("fr_FR") do |l|
 
   # app/controllers/admin/tags_controller.rb
   l.store "Tag was successfully updated.", "Le label a été mis à jour avec succès"
-
-  # app/controllers/admin/themes_controller.rb
-  l.store "Theme changed successfully", "Le thème a été changé avec succès"
 
   # app/controllers/admin/users_controller.rb
   l.store "User was successfully created.", "L'utilisateur a été créé avec succès."

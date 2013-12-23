@@ -7,9 +7,30 @@ pt-BR:
       error: "Error"
       progress: "Progress"
     admin:
+      cache:
+        index:
+          success: "Cache has been sweeped"
+          error: "Cache could not be cleared"
+      pages:
+        new:
+          success: "Página criada com sucesso"
+        edit:
+          success: "Página atualizada com sucesso"
+      profiles:
+        index:
+          success: "Usuário atualizado com sucesso"
+      resources:
+        upload:
+          success: "Arquivo enviado"
+          warning: "Incapaz de fazer enviar o arquivo"
+        destroy:
+          notice: "Deletado"
       tags:
         edit:
           success: "Tag atualizada com sucesso"
+      themes:
+        switchto:
+          success: "Tema alterado com sucesso"
       users:
         new:
           success: "Usuário criado com sucesso"

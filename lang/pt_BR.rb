@@ -32,13 +32,6 @@ Localization.define("pt_BR") do |l|
   l.store "Comment was successfully created.", "Comentário criado com sucesso"
   l.store "Comment was successfully updated.", "Comentário atualizado com sucesso"
 
-  # app/controllers/admin/pages_controller.rb
-  l.store "Page was successfully created.", "Página criada com sucesso"
-  l.store "Page was successfully updated.", "Página atualizada com sucesso"
-
-  # app/controllers/admin/profiles_controller.rb
-  l.store "User was successfully updated.", "Usuário atualizado com sucesso"
-
   # app/controllers/admin/resources_controller.rb
   l.store "Error occurred while updating Content Type.", "Ocorreu um erro ao tentar atualizar o Content Type."
   l.store "complete", "completo"
@@ -57,7 +50,6 @@ Localization.define("pt_BR") do |l|
   l.store "Tag was successfully updated.", "Tag atualizada com sucesso"
 
   # app/controllers/admin/themes_controller.rb
-  l.store "Theme changed successfully", "Tema alterado com sucesso"
   l.store "You are not authorized to open this file", "Você não está autorizado a abrir esse arquivo"
   l.store "File saved successfully", "Arquivo salvo com sucesso"
   l.store "Unable to write file", "Incapaz de escrever no arquivo"

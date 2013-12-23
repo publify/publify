@@ -7,9 +7,30 @@ zh-TW:
       error: "Error"
       progress: "Progress"
     admin:
+      cache:
+        index:
+          success: "Cache has been sweeped"
+          error: "Cache could not be cleared"
+      pages:
+        new:
+          success: "New page created"
+        edit:
+          success: "Page has been updated"
+      profiles:
+        index:
+          success: "User details updated"
+      resources:
+        upload:
+          success: "檔案上傳"
+          warning: "不能被上傳"
+        destroy:
+          notice: "File has been deleted"
       tags:
         edit:
           success: "Tag was successfully updated"
+      themes:
+        switchto:
+          success: "Theme selection updated"
       users:
         new:
           success: "User was successfully created"

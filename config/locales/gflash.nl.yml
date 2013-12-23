@@ -7,9 +7,30 @@ nl:
       error: "Error"
       progress: "Progress"
     admin:
+      cache:
+        index:
+          success: "Cache has been sweeped"
+          error: "Cache could not be cleared"
+      pages:
+        new:
+          success: "Pagina is succesvol aangemaakt"
+        edit:
+          success: "Pagina is succesvol bijgewerkt"
+      profiles:
+        index:
+          success: "Gebruiker is succesvol bijgewerkt"
+      resources:
+        upload:
+          success: "Bestand geupload"
+          warning: "Kon niet uploaden"
+        destroy:
+          notice: "Verwijderd"
       tags:
         edit:
           success: "Tag was succesvol bijgewerkt."
+      themes:
+        switchto:
+          success: "Thema succesvol aangepast"
       users:
         new:
           success: "Gebruiker succesvol aangemaakt."

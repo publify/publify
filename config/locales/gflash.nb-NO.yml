@@ -7,9 +7,30 @@ nb-NO:
       error: "Error"
       progress: "Progress"
     admin:
+      cache:
+        index:
+          success: "Cache er kostet rent (sweeped)"
+          error: "Cache kunne ikke rengjøres"
+      pages:
+        new:
+          success: "Side opprettet"
+        edit:
+          success: "Side oppdatert"
+      profiles:
+        index:
+          success: "Bruker oppdatert"
+      resources:
+        upload:
+          success: "Lastet opp fil"
+          warning: "Kan ikke laste opp"
+        destroy:
+          notice: "Slettet"
       tags:
         edit:
           success: "Tag oppdatert" 
+      themes:
+        switchto:
+          success: "Tema endret"
       users:
         new:
           success: "Bruker opprettet"

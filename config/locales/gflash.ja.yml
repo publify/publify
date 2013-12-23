@@ -7,9 +7,30 @@ ja:
       error: "Error"
       progress: "Progress"
     admin:
+      cache:
+        index:
+          success: "キャッシュはクリアされました"
+          error: "Cache could not be cleared"
+      pages:
+        new:
+          success: "ページが作成されました"
+        edit:
+          success: "ページが更新されました"
+      profiles:
+        index:
+          success: "プロフィールが更新されました"
+      resources:
+        upload:
+          success: "アップロードするファイル"
+          warning: "アップロードできません"
+        destroy:
+          notice: "File has been deleted"
       tags:
         edit:
           success: "Tag was successfully updated" 
+      themes:
+        switchto:
+          success: "Theme selection updated"
       users:
         new:
           success: "User was successfully created"

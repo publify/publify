@@ -26,10 +26,6 @@ Localization.define("nb_NO") do |l|
   l.store "signup", "Registrer"
   l.store "Recover your password", "Gjenopprett passord"
 
-  # app/controllers/admin/cache_controller.rb
-  l.store "Cache was successfully sweeped", "Cache er kostet rent (sweeped)"
-  l.store "Oops, something wrong happened. Cache could not be cleaned", "Ojsann, noe galt hendte. Cache kunne ikke rengjøres"
-
   # app/controllers/admin/categories_controller.rb
   l.store "Category was successfully saved.", "Kategori lagret"
   l.store "Category could not be saved.", "Kan ikke lagre kategori"
@@ -59,12 +55,6 @@ Localization.define("nb_NO") do |l|
   l.store "Comment was successfully created.", "Kommentar opprettet"
   l.store "Comment was successfully updated.", "Kommentar oppdatert"
 
-  l.store "Page was successfully created.", "Side opprettet"
-  l.store "Page was successfully updated.", "Side oppdatert"
-
-  # app/controllers/admin/profiles_controller.rb
-  l.store "User was successfully updated.", "Bruker oppdatert"
-
   # app/controllers/admin/redirects_controller.rb
   l.store "Redirection was successfully deleted.", "Omdirigering slettet"
   l.store "Redirection was successfully saved.", "Omdirigering lagret"
@@ -89,7 +79,6 @@ Localization.define("nb_NO") do |l|
   l.store "Tag was successfully updated.", "Tag oppdatert"
 
   # app/controllers/admin/themes_controller.rb
-  l.store "Theme changed successfully", "Tema endret"
   l.store "You are not authorized to open this file", "Du har ikke tillatelse til å åpne denne filen"
   l.store "File does not exist", "Filen finnes ikke"
   l.store "File saved successfully", "Fil lagret"

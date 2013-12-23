@@ -7,9 +7,30 @@ fr:
       error: "Erreur"
       progress: "Progress"
     admin:
+      cache:
+        index:
+          success: "Le cache a été vidé avec succès"
+          error: "Oops, un problème s'est produit et le cache n'a pas pu être vidé correctement"
+      pages:
+        new:
+          success: "Cette page a été créée avec succès"
+        edit:
+          success: "Cette page a été mise à jour avec succès"
+      profiles:
+        index:
+          success: "L'utilisateur a été mis à jour avec succès"
+      resources:
+        upload:
+          success: "Fichier envoyé"
+          warning: "impossible d'envoyer"
+        destroy:
+          notice: "Supprimé"
       tags:
         edit:
           success: "Le label a été mis à jour avec succès"
+      themes:
+        switchto:
+          success: "Le thème a été changé avec succès"
       users:
         new:
           success: "L'utilisateur a été créé avec succès."
