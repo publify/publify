@@ -58,15 +58,10 @@ describe Admin::PagesController do
       it "test_create" do
         post :new, :page => { :name => "new_page", :title => "New Page Title",
                               :body => "Emphasis _mine_, arguments *strong*" }
-
         new_page = Page.find(:first, :order => "id DESC")
-
         assert_equal "new_page", new_page.name
-
         assert_response :redirect, :action => "show", :id => new_page.id
-
-        # XXX: The flash is currently being made available improperly to tests (scoop)
-        assert_not_nil gflash
+        assert_not_nil flash
       end
 
       it 'should create a published page with a redirect' do
