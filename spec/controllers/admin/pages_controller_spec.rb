@@ -66,7 +66,7 @@ describe Admin::PagesController do
         assert_response :redirect, :action => "show", :id => new_page.id
 
         # XXX: The flash is currently being made available improperly to tests (scoop)
-        assert_equal "Page was successfully created.", flash[:notice]
+        assert_not_nil gflash
       end
 
       it 'should create a published page with a redirect' do
