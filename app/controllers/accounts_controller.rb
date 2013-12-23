@@ -75,24 +75,23 @@ class AccountsController < ApplicationController
   private
 
   def verify_users
-    redirect_to(:controller => "accounts", :action => "signup") if User.count == 0
+    redirect_to(controller: "accounts", action: "signup") if User.count == 0
     true
   end
 
   def verify_config
-    redirect_to :controller => "setup", :action => "index" if  ! this_blog.configured?
+    redirect_to controller: "setup", action: "index" unless this_blog.configured?
   end
 
   def redirect_if_already_logged_in
     if session[:user_id] && session[:user_id] == self.current_user.id
-      redirect_back_or_default :controller => "admin/dashboard", :action => "index"
+      redirect_back_or_default controller: "admin/dashboard", action: "index"
       return
     end
   end
 
   def successful_login
     session[:user_id] = self.current_user.id
-
     if params[:remember_me] == "1"
       self.current_user.remember_me unless self.current_user.remember_token?
       cookies[:auth_token] = {

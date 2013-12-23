@@ -56,7 +56,7 @@ class Admin::PagesController < Admin::BaseController
   def set_images
     @images = Resource.images.by_created_at.page(1).per(10)
   end
-  
+
   def get_layout
     case action_name
     when "new", "edit", "create"
@@ -67,5 +67,5 @@ class Admin::PagesController < Admin::BaseController
       "administration"
     end
   end
-  
+
 end

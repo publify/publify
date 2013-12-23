@@ -363,35 +363,24 @@ describe AccountsController do
     end
   end
 
-  describe 'when user has lost their password' do
-    before(:each) do
-      FactoryGirl.create(:blog)
-      @user = FactoryGirl.create(:user)
-      @user.profile = Profile.find_by_label('admin')
+  describe :recover_password do
+    let!(:blog) { create(:blog) }
+    let!(:user) { create(:user_admin) }
+
+    context "simply get" do
+      before(:each) { get :recover_password }
+      it { expect(response).to render_template('recover_password') }
     end
 
-    describe 'when GET' do
-      before { get 'recover_password' }
-
-      specify { response.should render_template('recover_password') }
+    context "post" do
+      before(:each) { post :recover_password, user: {login: user.login} }
+      it { expect(response).to redirect_to(action: 'login') }
     end
 
-    describe 'when a known login or email is POSTed' do
-      before do
-        post 'recover_password', {:user => {:login => @user.login}}
-      end
-      specify { response.should redirect_to(:action => 'login') }
-    end
-
-    describe 'when an unknown login or email is POSTed' do
-      before do
-        post 'recover_password', {:user => {:login => 'foobar'}}
-      end
-
-      specify { response.should render_template('recover_password') }
-      it "should display an error" do
-        request.flash[:error].should_not be_empty
-      end
+    context "post with an unknown login" do
+      before(:each) { post :recover_password, user: {login: 'foobar'} }
+      it { expect(response).to render_template('recover_password') }
+      it { expect(session[:gflash][:error]).to eq([I18n.t('gflash.accounts.recover_password.error')]) }
     end
   end
 end
