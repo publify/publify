@@ -52,19 +52,9 @@ Localization.define("nb_NO") do |l|
   l.store "Unable to upload", "Kan ikke laste opp"
   l.store "Metadata was successfully updated.", "Metadata oppdatert"
   l.store "Not all metadata was defined correctly.", "Noe metadata var definert feil"
-
-  # app/controllers/admin/seo_controller.rb
-  l.store "config updated.", "Innstillinger oppdatert"
-
-  # app/controllers/admin/settings_controller.rb
   l.store "Please review and save the settings before continuing", "Vennligst les igjennom og lagre innstillingene før du fortsetter"
-
   l.store "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually", "Noe gikk galt. Kanskje en av dine sidekolonner mangler og du burde reinstallere den eller fjerne den manuelt"
-
-  # app/controllers/admin/tags_controller.rb
   l.store "Tag was successfully updated.", "Tag oppdatert"
-
-  # app/controllers/admin/themes_controller.rb
   l.store "You are not authorized to open this file", "Du har ikke tillatelse til å åpne denne filen"
   l.store "File does not exist", "Filen finnes ikke"
   l.store "File saved successfully", "Fil lagret"

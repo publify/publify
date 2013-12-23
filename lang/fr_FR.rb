@@ -36,18 +36,11 @@ Localization.define("fr_FR") do |l|
   l.store "Redirection was successfully deleted.", "La redirection a été supprimée avec succès."
   l.store "Redirection was successfully saved.", "La redirection a été enregistrée avec succès."
   l.store "Redirection could not be saved.", "La redirection n'a pas pu être enregistrée."
-
-  # app/controllers/admin/resources_controller.rb
   l.store "complete", "fini"
   l.store "File uploaded: ", "Fichier envoyé: "
   l.store "Unable to upload", "impossible d'envoyer"
   l.store "Metadata was successfully updated.", "Les métadonnées ont été mises à jour avec succès."
   l.store "Not all metadata was defined correctly.", "Quelques métadonnées n'ont pas été définies correctement."
-
-  # app/controllers/admin/seo_controller.rb
-  l.store "config updated.", "Configuration mise à jour."
-
-  # app/controllers/admin/settings_controller.rb
   l.store "Please review and save the settings before continuing", "SVP vérifiez et enregistrez votre configuration avant de continuer"
 
   # app/controllers/admin/sidebar_controller.rb

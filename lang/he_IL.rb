@@ -23,7 +23,6 @@ Localization.define("he_IL") do |l|
   l.store "Not all metadata was defined correctly.", "לא כל מידע-העל הוגדר נכון."
   l.store "Content Type was successfully updated.", "סוג התוכן עודכן בהצלחה."
   l.store "Please review and save the settings before continuing", "אנא בדוק ושמור את השינויים לפני שתמשיך"
-  l.store "config updated.", "ההגדרה עודכנה."
   l.store "Tag was successfully updated.", "התוית עודכנה בהצלחה."
   l.store "You are not authorized to open this file", "אינך רשאי לפתוח קובץ זה"
   l.store "File saved successfully", "הקובץ נשמר בהצלחה"

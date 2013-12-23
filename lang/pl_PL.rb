@@ -10,7 +10,6 @@ Localization.define("pl_PL") do |l|
   l.store "Metadata was successfully updated.", "Metadane zostały pomyślnie zaktualizowane."
   l.store "Not all metadata was defined correctly.", "Nie wszystkie metadane zostały poprawnie zdefiniowane."
   l.store "Content Type was successfully updated.", "Typ zawartości został pomyślnie zaktualizowany."
-  l.store "config updated.", "konfiguracja zaktualizowana."
   l.store "All categories", "Wszystkie kategorie"
   l.store "All authors", "Wszystkie autorzy"
   l.store "All published dates", "Wszystkie daty"

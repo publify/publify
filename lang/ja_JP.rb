@@ -15,7 +15,6 @@ Localization.define("ja_JP") do |l|
   l.store "Metadata was successfully updated.", "メタデータは正常に更新されました"
   l.store "Not all metadata was defined correctly.", "いくつかのメタデータが正しく反映されませんでした"
   l.store "Content Type was successfully updated.", "コンテントタイプは正常に更新されました"
-  l.store "config updated.", "設定は更新されました"
   l.store "delete", "削除"
   l.store "Please select", "選択してください"
   l.store "Edit", "編集"

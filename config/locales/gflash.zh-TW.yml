@@ -16,6 +16,12 @@ zh-TW:
       logout:
         notice: "Successfully logged out"
     admin:
+      settings:
+        update:
+          success: "更新設定"
+      seo:
+        update:
+          success: "更新設定"
       cache:
         index:
           success: "Cache has been sweeped"

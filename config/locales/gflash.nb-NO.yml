@@ -16,6 +16,12 @@ nb-NO:
       logout:
         notice: "Logget ut"
     admin:
+      settings:
+        update:
+          success: "Innstillinger oppdatert"
+      seo:
+        update:
+          success: "Innstillinger oppdatert"
       cache:
         index:
           success: "Cache er kostet rent (sweeped)"

@@ -16,6 +16,12 @@ nl:
       logout:
         notice: "Succesvol uitgelogd"
     admin:
+      settings:
+        update:
+          success: "configuratie bijgewerkt"
+      seo:
+        update:
+          success: "configuratie bijgewerkt"
       cache:
         index:
           success: "Cache has been sweeped"

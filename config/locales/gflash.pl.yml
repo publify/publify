@@ -16,6 +16,12 @@ pl:
       logout:
         notice: "Successfully logged out"
     admin:
+      settings:
+        update:
+          success: "konfiguracja zaktualizowana."
+      seo:
+        update:
+          success: "konfiguracja zaktualizowana."
       cache:
         index:
           success: "Bufor opróżniono"

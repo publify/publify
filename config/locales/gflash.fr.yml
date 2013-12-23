@@ -16,6 +16,12 @@ fr:
       logout:
         notice: "Vous êtes maintenant déconnecté"
     admin:
+      settings:
+        update:
+          success: "Configuration mise à jour."
+      seo:
+        update:
+          success: "Configuration mise à jour."
       cache:
         index:
           success: "Le cache a été vidé avec succès"

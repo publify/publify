@@ -16,6 +16,12 @@ it:
       logout:
         notice: "Sei correttamente uscito"
     admin:
+      settings:
+        update:
+          success: "Configurazione aggiornata."
+      seo:
+        update:
+          success: "Configurazione aggiornata."
       cache:
         index:
           success: "Cache pulita"

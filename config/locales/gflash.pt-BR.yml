@@ -16,6 +16,12 @@ pt-BR:
       logout:
         notice: "Deslogado com sucesso"
     admin:
+      settings:
+        update:
+          success: "Config atualizada."
+      seo:
+        update:
+          success: "Config atualizada."
       cache:
         index:
           success: "Cache has been sweeped"

@@ -10,7 +10,6 @@ Localization.define("zh_TW") do |l|
 
   # app/controllers/admin/settings_controller.rb
   l.store "Please review and save the settings before continuing", ""
-  l.store "config updated.", "更新設定"
   l.store "Edit", "修改"
   l.store "Back to overview", "回到概覽"
   l.store "no trackbacks", "沒有引用"

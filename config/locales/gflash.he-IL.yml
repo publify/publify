@@ -16,6 +16,12 @@ he-IL:
       logout:
         notice: "התנתקת מהמערכת בהצלחה"
     admin:
+      settings:
+        update:
+          success: "ההגדרה עודכנה."
+      seo:
+        update:
+          success: "ההגדרה עודכנה."
       cache:
         index:
           success: "המטמון נוקה"

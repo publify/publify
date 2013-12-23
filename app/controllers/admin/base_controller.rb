@@ -16,11 +16,11 @@ class Admin::BaseController < ApplicationController
     end
   end
 
-  def update_settings_with!(params)
+  def update_settings_with!(settings_param)
     Blog.transaction do
-      params[:setting].each { |k,v| this_blog.send("#{k.to_s}=", v) }
+      settings_param.each { |k,v| this_blog.send("#{k.to_s}=", v) }
       this_blog.save
-      flash[:notice] = _('config updated.')
+      gflash :success
     end
   end
 

@@ -19,7 +19,7 @@ class Admin::SettingsController < Admin::BaseController
 
   def update
     if request.post?
-      update_settings_with!(params)
+      update_settings_with!(params[:setting])
       redirect_to action: params[:from]
     end
   rescue ActiveRecord::RecordInvalid

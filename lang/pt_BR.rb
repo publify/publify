@@ -29,16 +29,9 @@ Localization.define("pt_BR") do |l|
   l.store "Metadata was successfully updated.", "Metadata atualizado com sucesso"
   l.store "Not all metadata was defined correctly.", "Nem todos os metadatas foram definidos corretamente"
   l.store "Content Type was successfully updated.", "Content Type foi atualizado com sucesso"
-
-  # app/controllers/admin/settings_controller.rb
   l.store "Please review and save the settings before continuing", "Por favor, reveja e salve as configurações antes de continuar"
-  l.store "config updated.", "Config atualizada."
   l.store "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually", "Parece que algo deu errado. Talvez esteja faltando alguma sidebar e você precise reinstalar ou remove-las manualmente"
-
-  # app/controllers/admin/tags_controller.rb
   l.store "Tag was successfully updated.", "Tag atualizada com sucesso"
-
-  # app/controllers/admin/themes_controller.rb
   l.store "You are not authorized to open this file", "Você não está autorizado a abrir esse arquivo"
   l.store "File saved successfully", "Arquivo salvo com sucesso"
   l.store "Unable to write file", "Incapaz de escrever no arquivo"

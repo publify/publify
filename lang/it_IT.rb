@@ -10,26 +10,13 @@ Localization.define("it_IT") do |l|
   l.store "Not all metadata was defined correctly.", "Non tutti i metadata sono stati definiti correttamente."
   l.store "Content Type was successfully updated.", "Il tipo di contenuto e' stato correttamente aggiornato."
 
-  # app/controllers/admin/settings_controller.rb
-  l.store "config updated.", "Configurazione aggiornata."
-
   l.store "Store", "Salva"
   l.store "All categories", "Tutte le categorie"
   l.store "All authors", "Tutte le autori"
   l.store "All published dates", "Tutte le date"
   l.store "Edit", "Modifica"
   l.store "Back to overview", "Torna al sommario"
-
-  # app/helpers/admin/content_helper.rb
-
-
-  # app/helpers/application_helper.rb
   l.store "no trackbacks", "nessun trackback"
-
-  # app/models/article.rb
-
-  # app/models/blog.rb
-
   l.store "Reorder", "Riordina"
   l.store "Sort alphabetically", "Ordina alfabeticamente"
 

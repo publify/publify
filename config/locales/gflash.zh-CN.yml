@@ -16,6 +16,12 @@ zh-CN:
       logout:
         notice: "成功登出"
     admin:
+      settings:
+        update:
+          success: "更新配置"
+      seo:
+        update:
+          success: "更新配置"
       cache:
         index:
           success: "cache已清除"

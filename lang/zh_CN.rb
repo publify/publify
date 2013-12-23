@@ -24,12 +24,7 @@ Localization.define("zh_CN") do |l|
   l.store "Metadata was successfully updated.", "Metadata已成功更新"
   l.store "Not all metadata was defined correctly.", "并非所有Metadata已被正确定义"
   l.store "Content Type was successfully updated.", "內容类型已被成功更新"
-
-  # app/controllers/admin/settings_controller.rb
   l.store "Please review and save the settings before continuing", "在继续前请确认和保存配置"
-  l.store "config updated.", "更新配置"
-
-  # app/controllers/admin/sidebar_controller.rb
   l.store "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually", "有错误发生，可能是一些侧边栏丢失，请尝试重新安装或者手动卸载。"
 
   l.store "Tag was successfully updated.", "Tag已经更新"

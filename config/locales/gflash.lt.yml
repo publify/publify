@@ -16,6 +16,12 @@ lt:
       logout:
         notice: "Successfully logged out"
     admin:
+      settings:
+        update:
+          success: "Config updated."
+      seo:
+        update:
+          success: "Config updated."
       cache:
         index:
           success: "Cache has been sweeped"

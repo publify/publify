@@ -16,6 +16,12 @@ ja:
       logout:
         notice: "ログアウトしました"
     admin:
+      settings:
+        update:
+          success: "設定は更新されました"
+      seo:
+        update:
+          success: "設定は更新されました"
       cache:
         index:
           success: "キャッシュはクリアされました"
