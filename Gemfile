@@ -50,8 +50,6 @@ gem 'twitter', '~> 5.2.0'
 
 gem "jquery-rails", "~> 3.0.4"
 gem "jquery-ui-rails", "~> 4.0.4"
-
-# Growler replacement
 gem "gritter", "~> 1.0.3"
 
 gem 'rails_autolink', '~> 1.1.0'
@@ -72,7 +70,6 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.14'
   gem 'simplecov', :require => false
   gem 'pry-rails'
-	# gem 'feedzirra' # required for blogger import
 end
 
 # Install gems from each theme

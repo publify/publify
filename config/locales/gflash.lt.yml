@@ -6,6 +6,15 @@ lt:
       warning: "Warning"
       error: "Error"
       progress: "Progress"
+    accounts:
+      login:
+        success: "Login successful"
+        error: "Login unsuccessful"
+      recover_password: 
+        notice: "An email has been successfully sent to your address with your new password"
+        error: "Oops, something wrong just happened"
+      logout:
+        notice: "Successfully logged out"
     admin:
       cache:
         index:

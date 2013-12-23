@@ -6,6 +6,15 @@ ru:
       warning: "предупреждение"
       error: "ошибка"
       progress: "прогресс"
+    accounts:
+      login:
+        success: "Вход успешный"
+        error: "Не получилось зайти"
+      recover_password: 
+        notice: "Письмо с паролем было выслано на ваш адрес"
+        error: "Упс, произошло что-то нехорошее"
+      logout:
+        notice: "Вы успешно вышли"
     admin:
       cache:
         index:

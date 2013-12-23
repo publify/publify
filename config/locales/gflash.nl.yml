@@ -6,6 +6,15 @@ nl:
       warning: "Warning"
       error: "Error"
       progress: "Progress"
+    accounts:
+      login:
+        success: "Login geslaagd"
+        error: "Login mislukt"
+      recover_password: 
+        notice: "Er is je met succes een e-mail gestuurd met uw nieuwe wachtwoord"
+        error: "Oeps, er is net iets misgegaan"
+      logout:
+        notice: "Succesvol uitgelogd"
     admin:
       cache:
         index:

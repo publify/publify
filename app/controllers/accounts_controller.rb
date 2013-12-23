@@ -13,24 +13,22 @@ class AccountsController < ApplicationController
   end
 
   def login
-    @page_title = "#{this_blog.blog_name} - #{_('login')}"
-
     return unless request.post?
-
+    @page_title = "#{this_blog.blog_name} - #{_('login')}"
     self.current_user = User.authenticate(params[:user][:login], params[:user][:password])
-
     if logged_in?
       successful_login
     else
-      unsuccessful_login
+      gflash :error
+      @login = params[:user][:login]
     end
   end
 
   def signup
     @page_title = "#{this_blog.blog_name} - #{_('signup')}"
-    unless User.count.zero? or this_blog.allow_signup == 1
-      redirect_to :action => 'login'
-      return
+      unless User.count.zero? or this_blog.allow_signup == 1
+        redirect_to :action => 'login'
+        return
     end
 
     @user = User.new(params[:user])
@@ -50,22 +48,22 @@ class AccountsController < ApplicationController
   end
 
   def recover_password
-    @page_title = "#{this_blog.blog_name} - #{_('Recover your password')}"
     return unless request.post?
+    @page_title = "#{this_blog.blog_name} - #{_('Recover your password')}"
     @user = User.where("login = ? or email = ?", params[:user][:login], params[:user][:login]).first
 
     if @user
       @user.generate_password!
       @user.save
-      flash[:notice] = _("An email has been successfully sent to your address with your new password")
-      redirect_to :action => 'login'
+      gflash :notice
+      redirect_to action: 'login'
     else
-      flash[:error] = _("Oops, something wrong just happened")
+      gflash :error
     end
   end
 
   def logout
-    flash[:notice]  = _("Successfully logged out")
+    gflash :notice
     self.current_user.forget_me
     self.current_user = nil
     session[:user_id] = nil
@@ -106,12 +104,7 @@ class AccountsController < ApplicationController
     add_to_cookies(:publify_user_profile, self.current_user.profile_label, '/')
 
     self.current_user.update_connection_time
-    flash[:notice]  = _("Login successful")
-    redirect_back_or_default :controller => "admin/dashboard", :action => "index"
-  end
-
-  def unsuccessful_login
-    flash.now[:error]  = _("Login unsuccessful")
-    @login = params[:user][:login]
+    gflash :success
+    redirect_back_or_default controller: "admin/dashboard", action: "index"
   end
 end

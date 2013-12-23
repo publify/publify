@@ -6,6 +6,15 @@ he-IL:
       warning: "Warning"
       error: "Error"
       progress: "Progress"
+    accounts:
+      login:
+        success: "ההתחברות הצליחה"
+        error: "ההתחברות נכשלה"
+      recover_password: 
+        notice: "An email has been successfully sent to your address with your new password"
+        error: "Oops, something wrong just happened"
+      logout:
+        notice: "התנתקת מהמערכת בהצלחה"
     admin:
       cache:
         index:

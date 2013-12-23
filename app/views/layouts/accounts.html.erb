@@ -7,8 +7,10 @@
   <title><%= @page_title %></title>
   <meta http-equiv="imagetoolbar" content="no" />
   <%= stylesheet_link_tag "accounts", "bootstrap" %>
+  <%= javascript_include_tag 'publify_admin' %>
 </head>
 <body>
+  <%= gflash %>
   <div class="container">
     <div class="row">
       <div class="col-md-4 col-md-offset-4">
