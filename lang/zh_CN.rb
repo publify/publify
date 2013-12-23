@@ -2,8 +2,6 @@
 Localization.define("zh_CN") do |l|
   l.store "login", "登录"
   l.store "signup", "注册"
-  l.store "Category was successfully saved.", "成功保存分类"
-  l.store "Category could not be saved.", "无法保存分类"
   l.store "Error, you are not allowed to perform this action", "错误，不允许进行此操作"
   l.store "Preview", "预览"
   l.store "Article was successfully created", "文章创建成功"

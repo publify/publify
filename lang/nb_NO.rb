@@ -18,10 +18,6 @@ Localization.define("nb_NO") do |l|
   l.store "login", "Logg inn"
   l.store "signup", "Registrer"
   l.store "Recover your password", "Gjenopprett passord"
-  l.store "Category was successfully saved.", "Kategori lagret"
-  l.store "Category could not be saved.", "Kan ikke lagre kategori"
-
-  # app/controllers/admin/content_controller.rb
   l.store "Error, you are not allowed to perform this action", "Du har ikke tillatelse til å utføre denne handlingen"
   l.store "This article was deleted successfully", "Artikkelen er slettet"
   l.store "Preview", "Forhåndsvisning"

@@ -3,15 +3,10 @@ Localization.define("nl_NL") do |l|
   l.store "login", "inloggen"
   l.store "signup", "aanmelden"
   l.store "Recover your password", "Herstel uw wachtwoord"
-  l.store "Category was successfully saved.", "Categorie succesvol opgeslagen."
-  l.store "Category could not be saved.", "Categorie kon niet opgeslagen worden."
-
-  # app/controllers/admin/content_controller.rb
   l.store "Error, you are not allowed to perform this action", "Fout, je mag dit niet doen"
   l.store "Preview", "Bekijk"
   l.store "Article was successfully created", "Artikel is succesvol gemaakt"
   l.store "Article was successfully updated.", "Artikel is succesvol bijgewerkt."
-
   l.store "Deleted", "Verwijderd"
   l.store "Not found", "Niet gevonden"
   l.store "Deleted %d item(s)", "%d items verwijderd"

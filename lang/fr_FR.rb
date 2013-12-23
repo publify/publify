@@ -3,12 +3,6 @@ Localization.define("fr_FR") do |l|
   l.store "login", "identifiant"
   l.store "signup", "s'identifier"
   l.store "Recover your password", "Récupération d'un mot de passe perdu"
-
-  # app/controllers/admin/categories_controller.rb
-  l.store "Category was successfully saved.", "La catégorie a été enregistrée avec succès"
-  l.store "Category could not be saved.", "La catégorie n'a pas pu être sauvée"
-
-  # app/controllers/admin/content_controller.rb
   l.store "Error, you are not allowed to perform this action", "Erreur, vous n'avez pas les droits requis pour effectuer cette action"
   l.store "This article was deleted successfully", "Cet article a été supprimé avec succès"
   l.store "Preview", "Prévisualiser "

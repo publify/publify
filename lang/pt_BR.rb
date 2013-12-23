@@ -5,10 +5,6 @@ Localization.define("pt_BR") do |l|
   l.store "login", "entrar"
   l.store "signup", "registrar"
   l.store "Recover your password", "recupere sua senha"
-  l.store "Category was successfully saved.", "Categoria salva com sucesso"
-  l.store "Category could not be saved.", "Categoria não pode ser salva"
-
-  # app/controllers/admin/content_controller.rb
   l.store "Error, you are not allowed to perform this action", "Erro, você não tem permissão para executar essa tarefa"
   l.store "Preview", "visualizar"
   l.store "Article was successfully created", "Artigo criado com sucesso"
