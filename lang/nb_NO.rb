@@ -1,6 +1,5 @@
 # coding: utf-8
 Localization.define("nb_NO") do |l|
-  # Available languages
   l.store "da_DK", "Dansk"
   l.store "de_DE", "Tysk"
   l.store "en_US", "Engelsk (Amerikansk)"
@@ -19,10 +18,6 @@ Localization.define("nb_NO") do |l|
   l.store "signup", "Registrer"
   l.store "Recover your password", "Gjenopprett passord"
   l.store "Preview", "Forhåndsvisning"
-  l.store "You are late from at least one major version of Publify. You should upgrade immediately. Download and install %s", "Du bruker en gammel versjon av Publify. Du bør oppgradere snarest. Last ned og installer %s"
-  l.store "the latest Publify version", "den siste versjonan av Publify"
-  l.store "There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to %s ?", "Det finnes en ny versjon av Publify som kan inneholde viktige feilrettelser. Hva med å oppgradere til %s?"
-  l.store "There's a new version of Publify available. Why don't you upgrade to %s ?", "Det finnes en ny versjon av Publify. Hva med å oppgradere til %s?"
 
   l.store "Deleted", "Slettet"
   l.store "Not found", "Ikke funnet"

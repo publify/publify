@@ -4,11 +4,6 @@ Localization.define("fr_FR") do |l|
   l.store "signup", "s'identifier"
   l.store "Recover your password", "Récupération d'un mot de passe perdu"
   l.store "Preview", "Prévisualiser "
-  l.store "You are late from at least one major version of Publify. You should upgrade immediately. Download and install %s", "Vous avez au moins une version majeure de Publify de retard. Vous devriez immédiatement vous mettre à jour. Téléchargez et installez %s"
-  l.store "the latest Publify version", "la dernière version de Publify"
-  l.store "There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to %s ?", "Une nouvelle version de Publify est disponible. Celle-ci contient probablement d'importants correctifs. Pourquoi ne téléchargeriez-vous pas %s"
-  l.store "There's a new version of Publify available. Why don't you upgrade to %s ?", "Une nouvelle version de Publify est disponible. Pouquoi n'installeriez-vous pas %s"
-
   l.store "Deleted", "Supprimé"
   l.store "Not found", "Introuvable"
   l.store "Deleted %d item(s)", "%d commentaires ont été supprimés"

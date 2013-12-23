@@ -44,11 +44,11 @@ class Admin::DashboardController < Admin::BaseController
     end
 
     if version[0].to_i > TYPO_MAJOR.to_i
-      flash.now[:error] = _("You are late from at least one major version of Publify. You should upgrade immediately. Download and install %s", "<a href='http://publify.co/stable.tgz'>#{_("the latest Publify version")}</a>").html_safe
+      gflash :error
     elsif version[1].to_i > TYPO_SUB.to_i
-      flash.now[:warning] = _("There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to %s ?", "<a href='http://publify.co/stable.tgz'>#{_("the latest Publify version")}</a>").html_safe
+      gflash :warning
     elsif version[2].to_i > TYPO_MINOR.to_i
-      flash.now[:notice] = _("There's a new version of Publify available. Why don't you upgrade to %s ?", "<a href='http://publify.co/stable.tgz'>#{_("the latest Publify version")}</a>").html_safe
+      gflash :notice
     end
   end
 
@@ -65,7 +65,6 @@ class Admin::DashboardController < Admin::BaseController
     url = "http://blog.publify.co/articles.rss"
     parse(url)[0..2]
   end
-
 
   def parse(url)
     open(url) do |http|

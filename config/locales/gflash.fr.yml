@@ -16,6 +16,11 @@ fr:
       logout:
         notice: "Vous êtes maintenant déconnecté"
     admin:
+      dashboard:
+        index:
+          error: "Vous avez au moins une version majeure de Publify de retard. Vous devriez immédiatement vous mettre à jour. Téléchargez et installez <a href='http://publify.co/stable.tgz'>la dernière version de Publify</a>"
+          warning: "Une nouvelle version de Publify est disponible. Celle-ci contient probablement d'importants correctifs. Pourquoi ne téléchargeriez-vous pas <a href='http://publify.co/stable.tgz'>la dernière version de Publify</a> ?"
+          notice: "Une nouvelle version de Publify est disponible. Pouquoi n'installeriez-vous pas <a href='http://publify.co/stable.tgz'>la dernière version de Publify</a> ?"
       content:
         create:
           success: "Cet article a été créé avec succès"

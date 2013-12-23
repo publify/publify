@@ -16,6 +16,11 @@ nb-NO:
       logout:
         notice: "Logget ut"
     admin:
+      dashboard:
+        index:
+          error: "Du bruker en gammel versjon av Publify. Du bør oppgradere snarest. Last ned og installer <a href='http://publify.co/stable.tgz'>den siste versjonan av Publify</a>"
+          warning: "Det finnes en ny versjon av Publify som kan inneholde viktige feilrettelser. Hva med å oppgradere til <a href='http://publify.co/stable.tgz'>den siste versjonan av Publify</a> ?"
+          notice: "Det finnes en ny versjon av Publify. Hva med å oppgradere til <a href='http://publify.co/stable.tgz'>den siste versjonan av Publify</a> ?"
       content:
         create:
           success: "Artikkel opprettet"
