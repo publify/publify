@@ -2,12 +2,7 @@
 Localization.define("zh_TW") do |l|
   l.store "Error occurred while updating Content Type.", "當更新內容類型時發生錯誤"
   l.store "complete", "完成"
-  l.store "File uploaded: ", "檔案上傳: "
-  l.store "Unable to upload", "不能被上傳"
-  l.store "Metadata was successfully updated.", "Metadata已成功更新"
-  l.store "Not all metadata was defined correctly.", "並非所有Metadata已被正確定義"
   l.store "Content Type was successfully updated.", "內容類型已被成功更新"
-  l.store "Please review and save the settings before continuing", ""
   l.store "Edit", "修改"
   l.store "Back to overview", "回到概覽"
   l.store "no trackbacks", "沒有引用"
@@ -22,39 +17,20 @@ Localization.define("zh_TW") do |l|
   l.store "Add another attachment", "新增其他附件"
   l.store "Uploads", "上載"
   l.store "Publish at", "公開"
-
-  # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "確定刪除本篇文章？"
   l.store "Delete this article", "刪除本篇文章"
-
-  # app/views/admin/content/index.html.erb
-
-  # app/views/admin/dashboard/_comments.html.erb
-  l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", ""
   l.store "Latest Comments", "最近評論"
-  l.store "By %s on %s", ""
-
-  # app/views/admin/dashboard/_popular.html.erb
   l.store "Most popular", "最受歡迎"
   l.store "Nothing to show yet", "還沒有東西"
-
-  # app/views/admin/dashboard/_posts.html.erb
-  l.store "Latest Posts", ""
   l.store "No posts yet, why don't you start and write one", "你還沒有發文"
-
-  # app/views/admin/dashboard/_publify_dev.html.erb
   l.store "Latest news from the Publify development blog", "Publify開發部落格的最新消息"
   l.store "Oh no, nothing new", "沒有新訊息"
-
-  # app/views/admin/dashboard/_welcome.html.erb
   l.store "Welcome back, %s!", "歡迎回來， %s！"
   l.store "Total posts : %d", "發文總計：%d"
   l.store "Your posts : %d", "你的發文：%d"
   l.store "Total comments : %d", "評論總計：%d"
   l.store "Spam comments : %d", "垃圾評論：%d"
   l.store "Limit to spam", "限制垃圾郵件"
-
-  # app/views/admin/pages/destroy.html.erb
   l.store "Are you sure you want to delete the page", "你確定要刪除此頁？"
   l.store "Delete this page", "刪除此頁"
   l.store "File", "檔案"
@@ -81,9 +57,6 @@ Localization.define("zh_TW") do |l|
   l.store "Display name", "暱稱"
   l.store "Active theme", "執行中主題"
   l.store "Choose a theme", "選擇主題"
-  l.store "Send notification messages via email", "經由email發出通知訊息"
-  l.store "Send notification messages when new articles are posted", "新的文章貼上時發出通知訊息"
-  l.store "Send notification messages when comments are posted", "新的評錀貼上時發出通知訊息"
   l.store "Really delete user", "確定刪除使用者"
   l.store "Edit User", "修改使用者"
   l.store "New User", "新的使用者"
@@ -112,19 +85,8 @@ Localization.define("zh_TW") do |l|
   l.store "trackback uri", "引用URL"
   l.store "Comments are disabled", "評論停用"
   l.store "Trackbacks for", "作為引用"
-
-  # vendor/plugins/archives_sidebar/views/content.rhtml
   l.store "Archives", "歸檔"
-
-  # vendor/plugins/authors_sidebar/views/content.rhtml
-  l.store "Authors", ""
-
-  # vendor/plugins/xml_sidebar/views/content.rhtml
   l.store "Syndicate", "整合發表"
-  l.store "Category %s", ""
-  l.store "Tag %s", ""
-
-  # Obsolete translations
   l.store "A new message was posted to ", "一個新的訊息已被貼上"
   l.store "AIM Presence", "AIM存在"
   l.store "AIM Status", "AIM身分"

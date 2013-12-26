@@ -68,14 +68,8 @@ Localization.define("da_DK") do |l|
   l.store "yes", "ja"
   l.store "no", "nej"
   l.store "You have no plugins installed", "Du har ikke installeret nogen plugins"
-
-  # app/views/admin/sidebar/_publish.html.erb
   l.store "Changes published", "Ændringer er udgivet"
-
-  # app/views/admin/sidebar/_target.html.erb
   l.store "Drag some plugins here to fill your sidebar", "Træk plugins herover for at fylde din sidebar"
-
-  # app/views/admin/sidebar/index.html.erb
   l.store "Display name", "Vis navn"
   l.store "Active theme", "Aktiv tema"
   l.store "Choose a theme", "Vælg et tema"
@@ -84,9 +78,6 @@ Localization.define("da_DK") do |l|
   l.store "Firstname", "Fornavn"
   l.store "Lastname", "Efternavn"
   l.store "Nickname", "Kælenavn"
-  l.store "Send notification messages via email", "Send meddelelser via e-mail"
-  l.store "Send notification messages when new articles are posted", "Send meddelelser når ny artikler bliver udgivet"
-  l.store "Send notification messages when comments are posted", "Send meddelelser når der er nye kommentarer"
   l.store "Contact options", "Kontakt information"
   l.store "Your site", "Din hjemmeside"
   l.store "display URL on public profile", "Vis hjemmeside på din profil"

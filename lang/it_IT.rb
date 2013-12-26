@@ -2,10 +2,6 @@
 Localization.define("it_IT") do |l|
   l.store "Error occurred while updating Content Type.", "Si e' verificato un errore mentre aggiornavo il tipo di contenuto."
   l.store "complete", "completato"
-  l.store "File uploaded: ", "File inviata: "
-  l.store "Unable to upload", "Impossibile inviare"
-  l.store "Metadata was successfully updated.", "I metadata sono stati correttamente aggiornati."
-  l.store "Not all metadata was defined correctly.", "Non tutti i metadata sono stati definiti correttamente."
   l.store "Content Type was successfully updated.", "Il tipo di contenuto e' stato correttamente aggiornato."
   l.store "Store", "Salva"
   l.store "All categories", "Tutte le categorie"
@@ -18,30 +14,16 @@ Localization.define("it_IT") do |l|
   l.store "Sort alphabetically", "Ordina alfabeticamente"
   l.store "Are you sure you want to delete the category ", "Sei sicuro di voler eliminare questa categoria "
   l.store "Delete this category", "Elimina questa categoria"
-
-
   l.store "(Done)", "(Termina)"
-
-  # app/views/admin/content/_attachment.html.erb
   l.store "Remove", "Elimina"
   l.store "Currently this article has the following resources", "Questo articolo ha le seguenti risorse"
   l.store "You can associate the following resources", "Puoi associare le seguenti risorse"
   l.store "Really delete attachment", "Vuoi realmente eliminare l'allegato"
   l.store "Add another attachment", "Aggiungi un'altro allegato"
-
-  # app/views/admin/content/_form.html.erb
   l.store "Publish at", "Pubblicato il"
-
-  # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "Sei sicuro di voler eliminare questo articolo"
   l.store "Delete this article", "Elimina articolo"
-
-
-
-  # app/views/admin/dashboard/_popular.html.erb
   l.store "Most popular", "I più popolari"
-
-  # app/views/admin/dashboard/_posts.html.erb
   l.store "Limit to spam", "Limita a spam"
   l.store "Search Comments and Trackbacks that contain", "Cerca commenti o trackback che contengono"
   l.store "Are you sure you want to delete the page", "Sei sicuro di voler eliminare questa pagina"
@@ -66,9 +48,6 @@ Localization.define("it_IT") do |l|
   l.store "Display name", "Nome visualizzato"
   l.store "Active theme", "Tema Attivo"
   l.store "Choose a theme", "Seleziona un tema"
-  l.store "Send notification messages via email", "Invia notifiche via mail"
-  l.store "Send notification messages when new articles are posted", "Invia notifiche quando viene pubblicato un nuovo articolo"
-  l.store "Send notification messages when comments are posted", "Invia notifiche quando viene inserito un nuovo commento"
   l.store "Really delete user", "Veramente eliminare questo utente"
   l.store "Edit User", "Modifica utente"
   l.store "New User", "Nuovo utente"

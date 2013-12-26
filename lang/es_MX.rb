@@ -39,9 +39,6 @@ Localization.define("es_MX") do |l|
   l.store "Active theme", "Tema activo"
   l.store "Choose a theme", "Escoge un tema"
   l.store "Password confirmation", "Confirmar Contrase&ntilde;a"
-  l.store "Send notification messages via email", "Enviar notificaciones por email"
-  l.store "Send notification messages when new articles are posted", "Enviar notificaciones cuando un nuevo art&iacute;culo sea publicado"
-  l.store "Send notification messages when comments are posted", "Enviar notificaciones cuando un nuevo comentario sea publicado"
   l.store "Edit User", "Editar usuario"
   l.store "New User", "Nuevo Usuario"
   l.store "Posted by", "Publicado por"
@@ -51,17 +48,10 @@ Localization.define("es_MX") do |l|
   l.store "Your message", "Tu comentario"
   l.store "Comment Markup Help", "Ayuda del marcado"
   l.store "Preview comment", "Previsualizar comentario"
-
-  # app/views/articles/_comment_failed.html.erb
   l.store "From", "De"
-  # app/views/articles/archives.html.erb
   l.store "No articles found", "No se encontraron art&iacute;culos"
   l.store "is about to say", "est&aacute; a punto de decir"
-
-  # app/views/articles/groupings.html.erb
   l.store "There are", "Hay"
-
-  # app/views/articles/read.html.erb
   l.store "Leave a response", "Deja un comentario"
   l.store "Use the following link to trackback from your own site", "Usa el siguiente link para crear un trackback desde tu propio sitio"
   l.store "RSS feed for this post", "Feed RSS para este art&iacute;culo"

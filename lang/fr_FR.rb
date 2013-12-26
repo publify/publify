@@ -5,13 +5,8 @@ Localization.define("fr_FR") do |l|
   l.store "Recover your password", "Récupération d'un mot de passe perdu"
   l.store "Preview", "Prévisualiser "
   l.store "complete", "fini"
-  l.store "File uploaded: ", "Fichier envoyé: "
-  l.store "Unable to upload", "impossible d'envoyer"
-  l.store "Metadata was successfully updated.", "Les métadonnées ont été mises à jour avec succès."
-  l.store "Not all metadata was defined correctly.", "Quelques métadonnées n'ont pas été définies correctement."
   l.store "Please review and save the settings before continuing", "SVP vérifiez et enregistrez votre configuration avant de continuer"
   l.store "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually", "Une erreur s'est produite. Un ou plusieurs plugins sont probablement manquants ou en erreur. Peut-être devriez-vous les supprimer ou les réinstaller"
-  l.store "Tag was successfully updated.", "Le label a été mis à jour avec succès"
   l.store "User was successfully created.", "L'utilisateur a été créé avec succès."
   l.store "No posts found...", "Aucun article n'a été trouvé"
   l.store "page", "page"
@@ -73,42 +68,26 @@ Localization.define("fr_FR") do |l|
   l.store "To", "Vers"
   l.store "Show your email address", "Afficher votre adresse courriel"
   l.store "articles in my news feed by default", "billets dans mon flux RSS par défaut"
-  l.store "You can use your Google Feedburner account instead of Publify feed URL. To enable this, fill this form with your Feedburner ID.", "Vous pouvez utiliser votre compte Google Feedburner plutôt que votre adresse de flux Publify. Pour l'autoriser, remplissez ce formulaire avec votre identifiant Feedburner."
   l.store "New database version", "Nouvelle version de la base"
   l.store "Your database supports migrations", "Votre base de données supporte la mise à jour"
   l.store "yes", "oui"
   l.store "no", "non"
-
-  # app/views/admin/shared/destroy.html.erb
   l.store "Drag some plugins here to fill your sidebar", "Déplacez des plugins dans cet espace afin de remplir votre sidebar"
   l.store "You have no plugins installed", "Aucun plugin n'est disponible"
   l.store "Get more plugins", "Télécharger d'autres plugins"
-  l.store "Adds sidebar links to any Amazon.com books linked in the body of the page", "Ajoute des liens vers les articles amazon liés dans l'article ou la page"
-  l.store "Displays links to monthly archives", "Affiche des liens vers les archives mensuelles"
-  l.store "Displays a list of authors ordered by name with links to their articles and profile", "Affiche la liste des auteurs par ordre alphabétique avec un lien vers leur profil"
   l.store "Livesearch", "Recherche dynamique"
-  l.store "Adds livesearch to your Publify blog", "Ajoute une recherche dynamique à votre blog"
-  l.store "This widget just displays links to Publify main site, this blog's admin and RSS.", "Ce lien affiche juste un lien vers le site de Publify, l'administration de ce blog et son flux RSS"
   l.store "Page", "Page"
-  l.store "Show pages for this blog", "Affiche la liste des pages de ce blog"
-  l.store "Adds basic search sidebar in your Publify blog", "Ajoute un champ de recherche basic"
   l.store "Static", "Contenu statique"
-  l.store "Static content, like links to other sites, advertisements, or blog meta-information", "Contenu statique, comme des liens, de la publicité ou toute autre information"
-  l.store "Show most popular tags for this blog", "Affiche les tags les plus populaires"
   l.store "RSS and Atom feeds", "Flux RSS et Atom"
   l.store "XML Syndication", "Syndication XML"
   l.store "remove", "supprimer"
   l.store "Customize sidebar", "Modifiez les plugins"
   l.store "Display Name", "Nom affiché"
   l.store "Manage tags", "Labels"
-
-  # app/views/admin/themes/index.html.erb
   l.store "Active theme", "Thème actif"
   l.store "Choose a theme", "Sélectionnez un thème"
   l.store "Choose theme", "Sélectionnez un thème"
   l.store "Use this theme", "Choisir ce thème"
-
-  # app/views/admin/users/_form.html.erb
   l.store "Account settings", "Paramètres du compte"
   l.store "Password confirmation", "Confirmation du mot de passe"
   l.store "User's status", "Statut de l'utilisateur"
@@ -120,9 +99,6 @@ Localization.define("fr_FR") do |l|
   l.store "Nickname", "Surnom"
   l.store "Editor", "Éditeur"
   l.store "Notifications", "Notifications"
-  l.store "Send notification messages via email", "Envoi de notification des messages par email"
-  l.store "Send notification messages when new articles are posted", "Envoi de notification de messages quand de nouveaux articles sont postés"
-  l.store "Send notification messages when comments are posted", "Envoi de notification de messages quand des commentaires sont postés"
   l.store "Contact options", "Paramètres de contact"
   l.store "Your site", "Votre site"
   l.store "display URL on public profile", "Afficher votre site sur votre profil public"
@@ -140,17 +116,11 @@ Localization.define("fr_FR") do |l|
   l.store "Publify administrator", "Administrateur"
   l.store "Blog publisher", "Rédacteur"
   l.store "Contributor", "Contributeur"
-
-  # app/views/admin/users/edit.html.erb
   l.store "Edit User", "Modifier un utilisateur"
-
-  # app/views/admin/users/index.html.erb
   l.store "New User", "Nouvel utilisateur"
   l.store "State", "État"
   l.store "%s user", "%s"
   l.store "Manage users", "Gérer les utilisateurs"
-
-  # app/views/admin/users/new.html.erb
   l.store "Add User", "Ajouter un utilisateur"
   l.store "Posted by", "Publié par"
   l.store "All notes", "Toutes les notes"
@@ -172,22 +142,13 @@ Localization.define("fr_FR") do |l|
   l.store "trackback uri", "URL de rétrolien"
   l.store "Comments are disabled", "Les commentaires sont désactivés"
   l.store "Trackbacks are disabled", "Les rétroliens sont désactivés"
-
   l.store "About %s", "À propos de %s"
-
-  # app/views/comments/_comment.html.erb
   l.store "said", "a dit"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "Ce commentaire a été envoyé à la modération. Il ne sera affiché qu'une fois approuvé par un modérateur"
-
-  # app/views/comments/show.html.erb
   l.store "This comment has been flagged for moderator approval.", "Ce commentaire est en attente de modération"
-
-  # app/views/errors/404.html.erb
   l.store "Page not found", "Page non trouvée"
   l.store "The page you are looking for has moved or does not exist.", "La page que vous cherchez a été déplacée ou n'existe pas"
   l.store "Welcome", "Bienvenue"
-
-  # app/views/shared/_search.html.erb
   l.store "Live Search", "Recherche instantanée"
   l.store "%d comment", "%d commentaires"
   l.store "Email address", "Adresse mail"

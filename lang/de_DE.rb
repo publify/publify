@@ -40,18 +40,11 @@ Localization.define("de_DE") do |l|
   l.store "yes", "ja"
   l.store "no", "nein"
   l.store "You have no plugins installed", "Sie haben keine Plugins installiert"
-
-  # app/views/admin/sidebar/_publish.html.erb
   l.store "Changes published", "Änderungen veröffentlicht"
-
-  # app/views/admin/sidebar/_target.html.erb
   l.store "Drag some plugins here to fill your sidebar", "Ziehen Sie Plugins hierher, um sie in die Seitenleiste aufzunehmen"
   l.store "Display name", "Anzeigename"
   l.store "Active theme", "Aktives Motiv"
   l.store "Choose a theme", "Motiv auswählen"
-  l.store "Send notification messages via email", "Benachrichtigung via Email schicken"
-  l.store "Send notification messages when new articles are posted", "Benachrichtigung schicken, wenn neue Artikel veröffentlicht werden"
-  l.store "Send notification messages when comments are posted", "Benachrichtigung schicken, wenn neue Kommentare eintreffen"
   l.store "Really delete user", "Benutzer wirklich löschen"
   l.store "Edit User", "Benutzer bearbeiten"
   l.store "New User", "Neuer Benutzer"

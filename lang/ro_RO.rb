@@ -39,36 +39,24 @@ Localization.define("ro_RO") do |l|
   l.store "yes", "da"
   l.store "no", "nu"
   l.store "You have no plugins installed", "Niciun plugin instalat"
-
-  # app/views/admin/sidebar/_publish.html.erb
   l.store "Changes published", "Schimbările au fost publicate"
-
-  # app/views/admin/sidebar/_target.html.erb
   l.store "Drag some plugins here to fill your sidebar", "Trage plugin-uri aici pentru a popula bara laterală"
   l.store "Display name", "Numele real"
   l.store "Active theme", "Tema activă"
   l.store "Choose a theme", "Alege o temă"
   l.store "Password confirmation", "Confirmă parola"
-  l.store "Send notification messages via email", "Alerte prin email"
-  l.store "Send notification messages when new articles are posted", "Alerte la publicarea de articole noi"
-  l.store "Send notification messages when comments are posted", "Alerte la publicarea de comentarii noi"
   l.store "Really delete user", "Ești sigur că dorești să ștergi acest utilizator"
   l.store "Edit User", "Editează un utilizator"
   l.store "New User", "Utilizator nou"
   l.store "Posted by", "Publicat de"
-  # app/views/articles/_comment.html.erb
   l.store "said", "a scris"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "Acest comentariu a fost marcat pentru moderare. El nu va apărea în blog înainte de a fi aprobat."
-
-  # app/views/articles/_comment_box.html.erb
   l.store "Your name", "Nume"
   l.store "Your email", "Email"
   l.store "Your message", "Comentariu"
   l.store "Comment Markup Help", "Ajutor la marcare"
   l.store "Preview comment", "Previzualizare"
   l.store "From", "De la"
-
-  # app/views/articles/archives.html.erb
   l.store "No articles found", "Niciun articol nu a fost găsit"
   l.store "is about to say", "vrea să scrie"
   l.store "There are", "Sînt"

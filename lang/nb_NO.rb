@@ -19,22 +19,13 @@ Localization.define("nb_NO") do |l|
   l.store "Recover your password", "Gjenopprett passord"
   l.store "Preview", "Forhåndsvisning"
   l.store "complete", "ferdig"
-  l.store "File uploaded: ", "Lastet opp fil: "
-  l.store "Unable to upload", "Kan ikke laste opp"
-  l.store "Metadata was successfully updated.", "Metadata oppdatert"
-  l.store "Not all metadata was defined correctly.", "Noe metadata var definert feil"
   l.store "Please review and save the settings before continuing", "Vennligst les igjennom og lagre innstillingene før du fortsetter"
   l.store "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually", "Noe gikk galt. Kanskje en av dine sidekolonner mangler og du burde reinstallere den eller fjerne den manuelt"
-  l.store "Tag was successfully updated.", "Tag oppdatert"
   l.store "You are not authorized to open this file", "Du har ikke tillatelse til å åpne denne filen"
   l.store "File does not exist", "Filen finnes ikke"
   l.store "File saved successfully", "Fil lagret"
   l.store "Unable to write file", "Kan ikke skrive til filen"
-
-  # app/controllers/admin/users_controller.rb
   l.store "User was successfully created.", "Bruker opprettet"
-
-  # app/controllers/application_controller.rb
   l.store "No posts found...", "Ingen poster."
   # app/controllers/grouping_controller.rb
   l.store "page", "side"
@@ -151,26 +142,19 @@ Localization.define("nb_NO") do |l|
   l.store "Titles", "Titler"
   l.store "Show your email address", "Vis din epostadresse"
   l.store "articles in my news feed by default", "artikler i min nyhetsfeed som standard"
-  l.store "You can use your Google Feedburner account instead of Publify feed URL. To enable this, fill this form with your Feedburner ID.", "Du kan bruke din Gooogle Feedburner-konto istedet for Publify feed URL. For å aktivere dette, fyll ut dette skjemaet med din Feedburner ID."
   l.store "New database version", "Ny databaseversjon"
   l.store "Your database supports migrations", "Din database støtter migrations"
   l.store "yes", "ja"
   l.store "no", "nei"
   l.store "Changes published", "Endringer publisert"
-
   l.store "Drag some plugins here to fill your sidebar", "Dra og slipp plugins hit for å populere sidebar"
-
   l.store "You have no plugins installed", "Du har ikke installert noen plugins"
   l.store "Get more plugins", "Hent flere plugins"
   l.store "Are you sure you want to delete the tag", "Er du sikker på at du vil slette denne taggen"
   l.store "Delete this tag", "Slett denne taggen"
-
   l.store "Editing ", "Redigerer"
-
   l.store "Display Name", "Visningsnavn"
   l.store "Manage tags", "Behandle tags"
-
-  # app/views/admin/themes/catalogue.html.erb
   l.store "Sorry the theme catalogue is not available", "Beklager, men temakatalogen er ikke tilgjengelig"
   l.store "Theme catalogue", "Temakatalog"
   l.store "Active theme", "Aktivt tema"
@@ -187,9 +171,6 @@ Localization.define("nb_NO") do |l|
   l.store "Nickname", "Nick"
   l.store "Editor", "Tekstbehandler"
   l.store "Notifications", "Beskjeder"
-  l.store "Send notification messages via email", "Send beskjeder via epost"
-  l.store "Send notification messages when new articles are posted", "Send beskjeder når nye artikler blir publisert"
-  l.store "Send notification messages when comments are posted", "Send beskjeder når det kommer nye kommentarer"
   l.store "Contact options", "Kontaktinformasjon"
   l.store "Your site", "Din hjemmeside"
   l.store "display URL on public profile", "Vis hjemmeside på din profil"
