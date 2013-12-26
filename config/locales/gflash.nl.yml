@@ -16,6 +16,9 @@ nl:
       logout:
         notice: "Succesvol uitgelogd"
     admin:
+      redirects:
+        destroy:
+          success: 'Redirection was successfully deleted.'
       feedback:
         bulkops:
           error: "Niet geimplementeerd"

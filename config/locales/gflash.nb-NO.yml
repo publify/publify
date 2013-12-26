@@ -16,6 +16,9 @@ nb-NO:
       logout:
         notice: "Logget ut"
     admin:
+      redirects:
+        destroy:
+          success: "Omdirigering slettet"
       feedback:
         bulkops:
           error: "Ikke implementert"

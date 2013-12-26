@@ -16,6 +16,9 @@ en:
       logout:
         notice: "Successfully logged out"
     admin:
+      redirects:
+        destroy:
+          success: 'Redirection was successfully deleted.'
       feedback:
         bulkops:
           error: "Not implemented"

@@ -16,6 +16,9 @@ pt-BR:
       logout:
         notice: "Deslogado com sucesso"
     admin:
+      redirects:
+        destroy:
+          success: 'Redirection was successfully deleted.'
       feedback:
         bulkops:
           error: "Não implementado"

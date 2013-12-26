@@ -16,6 +16,9 @@ fr:
       logout:
         notice: "Vous êtes maintenant déconnecté"
     admin:
+      redirects:
+        destroy:
+          success: "La redirection a été supprimée avec succès."
       feedback:
         bulkops:
           error: "Non implémenté"

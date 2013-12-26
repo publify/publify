@@ -16,6 +16,9 @@ ru:
       logout:
         notice: "Вы успешно вышли"
     admin:
+      redirects:
+        destroy:
+          success: 'Redirection was successfully deleted.'
       feedback:
         bulkops:
           error: "Not implemented"

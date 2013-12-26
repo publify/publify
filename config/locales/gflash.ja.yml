@@ -16,6 +16,9 @@ ja:
       logout:
         notice: "ログアウトしました"
     admin:
+      redirects:
+        destroy:
+          success: 'Redirection was successfully deleted.'
       feedback:
         bulkops:
           error: "Not implemented"

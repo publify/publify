@@ -16,6 +16,9 @@ it:
       logout:
         notice: "Sei correttamente uscito"
     admin:
+      redirects:
+        destroy:
+          success: 'Redirection was successfully deleted.'
       feedback:
         bulkops:
           error: "Non implementato"

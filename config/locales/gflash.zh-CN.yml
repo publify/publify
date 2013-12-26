@@ -16,6 +16,9 @@ zh-CN:
       logout:
         notice: "成功登出"
     admin:
+      redirects:
+        destroy:
+          success: 'Redirection was successfully deleted.'
       feedback:
         bulkops:
           error: "未实现"
