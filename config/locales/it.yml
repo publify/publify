@@ -258,6 +258,17 @@ it:
         page_with_action_name: "%{action} page"
         type_your_post: "Type your post"
     feedback:
+      bulkops:
+        success_mark_as_ham: 
+          zero: "No item selected to mark as Ham"
+          one: "Marked 1 item as Ham"
+          other: "Marked %{count} items as Ham"
+        success_mark_as_spam: 
+          zero: "No item selected to mark as Spam"
+          one: "Marked 1 item as Spam"
+          other: "Marked %{count} items as Spam"
+        success_classification: "Conferma classificazione di %{count} elementi"
+        success_deleted: "Deleted %{count} item(s)"
       index:
         feedback: "Commenti"
         all: "All"

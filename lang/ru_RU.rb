@@ -18,11 +18,7 @@ Localization.define("ru_RU") do |l|
   l.store "Update settings", "Обновить настройки"
   l.store "Back to list", "Назад к списку"
   l.store "Tag", "Тег"
-
-  # app/helpers/admin/content_helper.rb
   l.store "Destroy this draft", "Удалить этот черновик"
-
-  # app/models/article.rb
   l.store "Original article writen by", "Автор оригинальной статьи —"
   l.store "and published on", " — и она опубликована"
   l.store "direct link to this article", "прямая ссылка на эту статью"

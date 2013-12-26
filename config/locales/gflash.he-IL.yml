@@ -16,6 +16,17 @@ he-IL:
       logout:
         notice: "התנתקת מהמערכת בהצלחה"
     admin:
+      feedback:
+        bulkops:
+          error: "לא מיושם"
+          success_deleted_spam: "All spam have been deleted"
+        update:
+          success: "התגובה עודכנה בהצלחה."
+        create:
+          success: "התגובה נוצרה בהצלחה."
+        destroy:
+          success: "נמחקה"
+          error: "לא נמצאה"
       dashboard:
         index:
           error: "You are late from at least one major version of Publify. You should upgrade immediately. Download and install <a href='http://publify.co/stable.tgz'>the latest Publify version</a>"

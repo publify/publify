@@ -4,22 +4,8 @@ Localization.define("fr_FR") do |l|
   l.store "signup", "s'identifier"
   l.store "Recover your password", "Récupération d'un mot de passe perdu"
   l.store "Preview", "Prévisualiser "
-  l.store "Deleted", "Supprimé"
-  l.store "Not found", "Introuvable"
-  l.store "Deleted %d item(s)", "%d commentaires ont été supprimés"
-  l.store "Marked %d item(s) as Ham", "%d commentaires ont été validés"
-  l.store "Marked %d item(s) as Spam", "%d commentaires ont été marqués comme spam"
-  l.store "Confirmed classification of %s item(s)", "La classification de %d commentaires a été validée"
-  l.store "Not implemented", "Non implémenté"
-  l.store "All spam have been deleted", "Tout le spam a été supprimé"
-  l.store "Comment was successfully created.", "Commentaire créé avec succès."
-  l.store "Comment was successfully updated.", "Commentaire mis à jour avec succès."
-
-  # app/controllers/admin/post_types_controller.rb
   l.store "Post Type was successfully saved.", "Le type d'article a été sauvé avec succès"
   l.store "Post Type could not be saved.", "Le type d'article n'a pas pu être sauvé"
-
-  # app/controllers/admin/redirects_controller.rb
   l.store "Redirection was successfully deleted.", "La redirection a été supprimée avec succès."
   l.store "Redirection was successfully saved.", "La redirection a été enregistrée avec succès."
   l.store "Redirection could not be saved.", "La redirection n'a pas pu être enregistrée."
@@ -29,14 +15,8 @@ Localization.define("fr_FR") do |l|
   l.store "Metadata was successfully updated.", "Les métadonnées ont été mises à jour avec succès."
   l.store "Not all metadata was defined correctly.", "Quelques métadonnées n'ont pas été définies correctement."
   l.store "Please review and save the settings before continuing", "SVP vérifiez et enregistrez votre configuration avant de continuer"
-
-  # app/controllers/admin/sidebar_controller.rb
   l.store "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually", "Une erreur s'est produite. Un ou plusieurs plugins sont probablement manquants ou en erreur. Peut-être devriez-vous les supprimer ou les réinstaller"
-
-  # app/controllers/admin/tags_controller.rb
   l.store "Tag was successfully updated.", "Le label a été mis à jour avec succès"
-
-  # app/controllers/admin/users_controller.rb
   l.store "User was successfully created.", "L'utilisateur a été créé avec succès."
   l.store "No posts found...", "Aucun article n'a été trouvé"
   l.store "page", "page"

@@ -10,10 +10,7 @@ Localization.define("de_DE") do |l|
   l.store "Sort alphabetically", "Alphabetisch sortieren"
   l.store "Are you sure you want to delete the category ", "Sind Sie sicher, die Kategorie zu löschen: "
   l.store "Delete this category", "Kategorie löschen"
-
   l.store "(Done)", "(Fertig)"
-
-  # app/views/admin/content/_attachment.html.erb
   l.store "Remove", "Löschen"
   l.store "Currently this article has the following resources", "Aktuell sind folgende Ressourcen dem Artikel zugeordnet"
   l.store "You can associate the following resources", "Sie können folgende Ressourcen zuordnen"

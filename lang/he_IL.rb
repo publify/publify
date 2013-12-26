@@ -1,16 +1,6 @@
 # coding: utf-8
 Localization.define("he_IL") do |l|
   l.store "Preview", "תצוגה מקדימה"
-  l.store "Deleted", "נמחקה"
-  l.store "Not found", "לא נמצאה"
-  l.store "Deleted %d item(s)", "נמחקו %d פריטים"
-  l.store "Marked %d item(s) as Ham", "סומנו %d פריטים כלא ספאם"
-  l.store "Marked %d item(s) as Spam", "סומנו %d פריטים כספאם"
-  l.store "Confirmed classification of %s item(s)", "אומת הסיווג של %d פריטים."
-  l.store "Not implemented", "לא מיושם"
-  l.store "Comment was successfully created.", "התגובה נוצרה בהצלחה."
-  l.store "Comment was successfully updated.", "התגובה עודכנה בהצלחה."
-
   l.store "User was successfully updated.", "המשתמש עודכן בהצלחה."
   l.store "Error occurred while updating Content Type.", "שגיאה בעת עדכון סוג התוכן."
   l.store "complete", "מלא"

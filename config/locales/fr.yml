@@ -258,6 +258,17 @@ fr:
         page_with_action_name: "%{action} page"
         type_your_post: "Tapez votre texte"
     feedback:
+      bulkops:
+        success_mark_as_ham: 
+          zero: "No item selected to mark as Ham"
+          one: "Marked 1 item as Ham"
+          other: "Marked %{count} items as Ham"
+        success_mark_as_spam: 
+          zero: "No item selected to mark as Spam"
+          one: "Marked 1 item as Spam"
+          other: "Marked %{count} items as Spam"
+        success_classification: "Confirmed classification of %{count} item(s)"
+        success_deleted: "Deleted %{count} item(s)"
       index:
         feedback: "Commentaires"
         all: "Tous"
@@ -284,6 +295,9 @@ fr:
         your_comment: "Your comment"
         action_or_other: "%{first_action} ou %{second_action}"
         cancel: "Annuler"
+        save: "Sauver"
+      edit:
+        action_or_other: "%{first_action} or %{second_action}"
         save: "Sauver"
       button:
         select_action: "Choisir de..."

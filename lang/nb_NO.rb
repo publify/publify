@@ -18,24 +18,9 @@ Localization.define("nb_NO") do |l|
   l.store "signup", "Registrer"
   l.store "Recover your password", "Gjenopprett passord"
   l.store "Preview", "Forhåndsvisning"
-
-  l.store "Deleted", "Slettet"
-  l.store "Not found", "Ikke funnet"
-  l.store "Deleted %d item(s)", "Slettet %d enheter"
-  l.store "Marked %d item(s) as Ham", "Markerte %d enhet(er) som Ham"
-  l.store "Marked %d item(s) as Spam", "Markerte %d enhet(er) som Spam"
-  l.store "Confirmed classification of %s item(s)", "Bekreftet klassifisering av %s enhet(er)"
-  l.store "Not implemented", "Ikke implementert"
-  l.store "All spam have been deleted", "All spam er slettet"
-  l.store "Comment was successfully created.", "Kommentar opprettet"
-  l.store "Comment was successfully updated.", "Kommentar oppdatert"
-
-  # app/controllers/admin/redirects_controller.rb
   l.store "Redirection was successfully deleted.", "Omdirigering slettet"
   l.store "Redirection was successfully saved.", "Omdirigering lagret"
   l.store "Redirection could not be saved.", "Omdirigering kan ikke lagres"
-
-  # app/controllers/admin/resources_controller.rb
   l.store "complete", "ferdig"
   l.store "File uploaded: ", "Lastet opp fil: "
   l.store "Unable to upload", "Kan ikke laste opp"

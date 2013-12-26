@@ -16,10 +16,7 @@ Localization.define("lt_LT") do |l|
   l.store "You can associate the following resources", "Jūs galite susieti su šiais resursais"
   l.store "Really delete attachment", "Ištrinti prikabintus failus"
   l.store "Add another attachment", "Prikabinti kitą failą"
-
   l.store "Publish at", "Publikuotas"
-
-  # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "Ar tikrai norite ištrinti šį straipsnį"
   l.store "Delete this article", "Trinti šį straipsnį"
   l.store "Limit to spam", "Spamo limitas"

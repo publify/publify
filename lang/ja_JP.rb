@@ -28,8 +28,6 @@ Localization.define("ja_JP") do |l|
   l.store "Are you sure you want to delete the category ", "このカテゴリを削除してもよろしいですか？ "
   l.store "Delete this category", "このカテゴリを削除"
   l.store "(Done)", "(完了)"
-
-  # app/views/admin/content/_attachment.html.erb
   l.store "Remove", "削除"
   l.store "Currently this article has the following resources", "現在この記事には以下のリソースが含まれています"
   l.store "You can associate the following resources", "以下のリソースを整理することができます"

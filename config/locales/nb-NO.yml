@@ -258,6 +258,17 @@ nb-NO:
         page_with_action_name: "%{action} page"
         type_your_post: "Type your post"
     feedback:
+      bulkops:
+        success_mark_as_ham: 
+          zero: "No item selected to mark as Ham"
+          one: "Markerte 1 enhet som Ham"
+          other: "Markerte %{count} enheter som Ham"
+        success_mark_as_spam: 
+          zero: "No item selected to mark as Spam"
+          one: "Markerte 1 enhet som Spam"
+          other: "Markerte %{count} enheter som Spam"
+        success_classification: "Bekreftet klassifisering av %{count} enhet(er)"
+        success_deleted: "Slettet %{count} enheter"
       index:
         feedback: "Diskusjon"
         all: "All"

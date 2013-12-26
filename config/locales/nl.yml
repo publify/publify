@@ -258,6 +258,17 @@ nl:
         page_with_action_name: "%{action} page"
         type_your_post: "Type your post"
     feedback:
+      bulkops:
+        success_mark_as_ham: 
+          zero: "No item selected to mark as Ham"
+          one: "1 Item gemarkeerd als Ham"
+          other: "%{count} Items gemarkeerd als Ham"
+        success_mark_as_spam: 
+          zero: "No item selected to mark as Spam"
+          one: "1 Item gemarkeerd als Spam"
+          other: "%{count} Items gemarkeerd als Spam"
+        success_classification: "Classificatie van %{count} item(s) bevestigd"
+        success_deleted: "%{count} items verwijderd"
       index:
         feedback: "Feedback"
         all: "All"

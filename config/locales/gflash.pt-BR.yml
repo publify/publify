@@ -16,6 +16,17 @@ pt-BR:
       logout:
         notice: "Deslogado com sucesso"
     admin:
+      feedback:
+        bulkops:
+          error: "Não implementado"
+          success_deleted_spam: "Todos os spans foram deletados"
+        update:
+          success: "Comentário atualizado com sucesso"
+        create:
+          success: "Comentário criado com sucesso"
+        destroy:
+          success: "Deletado"
+          error: "Não encontrado"
       dashboard:
         index:
           error: "You are late from at least one major version of Publify. You should upgrade immediately. Download and install <a href='http://publify.co/stable.tgz'>the latest Publify version</a>"

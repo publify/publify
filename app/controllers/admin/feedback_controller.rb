@@ -11,7 +11,7 @@ class Admin::FeedbackController < Admin::BaseController
     if params[:page].blank? || params[:page] == "0"
       params.delete(:page)
     end
-
+    
     @feedback = scoped_feedback.paginated(params[:page], this_blog.admin_display_elements)
   end
 
@@ -20,7 +20,7 @@ class Admin::FeedbackController < Admin::BaseController
 
     unless @record.article.user_id == current_user.id
       unless current_user.admin?
-        return redirect_to :controller => 'admin/feedback', :action => :index
+        return redirect_to controller: 'admin/feedback', action: :index
       end
     end
 
@@ -28,11 +28,11 @@ class Admin::FeedbackController < Admin::BaseController
 
     begin
       @record.destroy
-      flash[:notice] = _("Deleted")
+      gflash :success
     rescue ActiveRecord::RecordNotFound
-      flash[:notice] = _("Not found")
+      gflash :error
     end
-    redirect_to :action => 'article', :id => @record.article.id
+    redirect_to action: 'article', id: @record.article.id
   end
 
   def create
@@ -44,7 +44,7 @@ class Admin::FeedbackController < Admin::BaseController
       # We should probably wave a spam filter over this, but for now, just mark it as published.
       @comment.mark_as_ham
       @comment.save!
-      flash[:notice] = _('Comment was successfully created.')
+      gflash :success
     end
     redirect_to :action => 'article', :id => @article.id
   end
@@ -66,7 +66,7 @@ class Admin::FeedbackController < Admin::BaseController
     end
     comment.attributes = params[:comment]
     if request.post? and comment.save
-      flash[:notice] = _('Comment was successfully updated.')
+      gflash :success
       redirect_to action: 'article', id: comment.article.id
     else
       redirect_to action: 'edit', id: comment.id
@@ -113,13 +113,14 @@ class Admin::FeedbackController < Admin::BaseController
     @unexpired = true
 
     bulkop = (params[:bulkop_top]||{}).empty? ? params[:bulkop_bottom] : params[:bulkop_top]
+
     case bulkop
     when 'Delete Checked Items'
       count = 0
       ids.each do |id|
-        count += Feedback.delete(id) ## XXX Should this be #destroy?
+        count += Feedback.delete(id)
       end
-      flash[:notice] = _("Deleted %d item(s)",count)
+      gflash success_deleted: I18n.t('admin.feedback.bulkops.success_deleted', count: count)
 
       items.each do |i|
         i.invalidates_cache? or next
@@ -128,34 +129,30 @@ class Admin::FeedbackController < Admin::BaseController
       end
     when 'Mark Checked Items as Ham'
       update_feedback(items, :mark_as_ham!)
-      flash[:notice]= _("Marked %d item(s) as Ham",ids.size)
+      gflash success_mark_as_ham:  I18n.t('admin.feedback.bulkops.success_mark_as_ham', count: ids.size)
     when 'Mark Checked Items as Spam'
       update_feedback(items, :mark_as_spam!)
-      flash[:notice]= _("Marked %d item(s) as Spam",ids.size)
+      gflash success_mark_as_spam:  I18n.t('admin.feedback.bulkops.success_mark_as_spam', count: ids.size)
     when 'Confirm Classification of Checked Items'
       update_feedback(items, :confirm_classification!)
-      flash[:notice] = _("Confirmed classification of %s item(s)",ids.size)
+      gflash success_classification: I18n.t('admin.feedback.bulkops.success_classification', count: ids.size)
     when 'Delete all spam'
-      delete_all_spam
+      if request.post?
+        Feedback.delete_all(['state = ?', 'spam'])
+        gflash :success_deleted_spam
+      end
     else
-      flash[:notice] = _("Not implemented")
+      gflash :error
     end
 
     if params[:article_id]
-      redirect_to :action => 'article', :id => params[:article_id], :confirmed => params[:confirmed], :published => params[:published]
+      redirect_to action: 'article', id: params[:article_id], confirmed: params[:confirmed], published: params[:published]
     else
-      redirect_to :action => 'index', :page => params[:page], :search => params[:search], :confirmed => params[:confirmed], :published => params[:published]
+      redirect_to action: 'index', page: params[:page], search: params[:search], confirmed: params[:confirmed], published: params[:published]
     end
   end
 
   protected
-
-  def delete_all_spam
-    if request.post?
-      Feedback.delete_all(['state = ?', 'spam'])
-      flash[:notice] = _("All spam have been deleted")
-    end
-  end
 
   def update_feedback(items, method)
     items.each do |value|

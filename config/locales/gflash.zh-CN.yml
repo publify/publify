@@ -16,6 +16,17 @@ zh-CN:
       logout:
         notice: "成功登出"
     admin:
+      feedback:
+        bulkops:
+          error: "未实现"
+          success_deleted_spam: "所有垃圾信息已经呗删除"
+        update:
+          success: "评论更新成功"
+        create:
+          success: "评论创建成功"
+        destroy:
+          success: "删除"
+          error: "不存在"
       dashboard:
         index:
           error: "You are late from at least one major version of Publify. You should upgrade immediately. Download and install <a href='http://publify.co/stable.tgz'>the latest Publify version</a>"

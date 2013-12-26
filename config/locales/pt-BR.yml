@@ -258,6 +258,17 @@ pt-BR:
         page_with_action_name: "%{action} page"
         type_your_post: "Type your post"
     feedback:
+      bulkops:
+        success_mark_as_ham: 
+          zero: "No item selected to mark as Ham"
+          one: "Marked 1 item as Ham"
+          other: "%{count} itens marcados como Ham"
+        success_mark_as_spam: 
+          zero: "No item selected to mark as Spam"
+          one: "Marked 1 item as Spam"
+          other: "%{count} itens marcados como Spam"
+        success_classification: "Confirmado a classificação de %{count} iten(s)"
+        success_deleted: "%{count} iten(s) deletados"
       index:
         feedback: "Feedback"
         all: "All"

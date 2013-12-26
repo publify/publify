@@ -1,7 +1,5 @@
 # coding: utf-8
 Localization.define("it_IT") do |l|
-  l.store "Confirmed classification of %s item(s)", "Conferma classificazione di %s elementi"
-  l.store "Not implemented", "Non implementato"
   l.store "Error occurred while updating Content Type.", "Si e' verificato un errore mentre aggiornavo il tipo di contenuto."
   l.store "complete", "completato"
   l.store "File uploaded: ", "File inviata: "
@@ -9,7 +7,6 @@ Localization.define("it_IT") do |l|
   l.store "Metadata was successfully updated.", "I metadata sono stati correttamente aggiornati."
   l.store "Not all metadata was defined correctly.", "Non tutti i metadata sono stati definiti correttamente."
   l.store "Content Type was successfully updated.", "Il tipo di contenuto e' stato correttamente aggiornato."
-
   l.store "Store", "Salva"
   l.store "All categories", "Tutte le categorie"
   l.store "All authors", "Tutte le autori"
@@ -19,7 +16,6 @@ Localization.define("it_IT") do |l|
   l.store "no trackbacks", "nessun trackback"
   l.store "Reorder", "Riordina"
   l.store "Sort alphabetically", "Ordina alfabeticamente"
-
   l.store "Are you sure you want to delete the category ", "Sei sicuro di voler eliminare questa categoria "
   l.store "Delete this category", "Elimina questa categoria"
 

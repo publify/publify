@@ -16,6 +16,17 @@ nb-NO:
       logout:
         notice: "Logget ut"
     admin:
+      feedback:
+        bulkops:
+          error: "Ikke implementert"
+          success_deleted_spam: "All spam er slettet"
+        update:
+          success: "Kommentar oppdatert"
+        create:
+          success: "Kommentar opprettet"
+        destroy:
+          success: "Slettet"
+          error: "Ikke funnet"
       dashboard:
         index:
           error: "Du bruker en gammel versjon av Publify. Du bør oppgradere snarest. Last ned og installer <a href='http://publify.co/stable.tgz'>den siste versjonan av Publify</a>"

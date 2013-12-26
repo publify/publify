@@ -258,6 +258,17 @@ he-IL:
         page_with_action_name: "%{action} page"
         type_your_post: "Type your post"
     feedback:
+      bulkops:
+        success_mark_as_ham: 
+          zero: "No item selected to mark as Ham"
+          one: "Marked 1 item as Ham"
+          other: "סומנו %{count} פריטים כלא ספאם"
+        success_mark_as_spam: 
+          zero: "No item selected to mark as Spam"
+          one: "Marked 1 item as Spam"
+          other: "סומנו %{count} פריטים כספאם"
+        success_classification: "אומת הסיווג של %{count} פריטים."
+        success_deleted: "נמחקו %{count} פריטים"
       index:
         feedback: "משוב"
         all: "All"

@@ -6,18 +6,6 @@ Localization.define("pt_BR") do |l|
   l.store "signup", "registrar"
   l.store "Recover your password", "recupere sua senha"
   l.store "Preview", "visualizar"
-  l.store "Deleted", "Deletado"
-  l.store "Not found", "Não encontrado"
-  l.store "Deleted %d item(s)", "%d iten(s) deletados"
-  l.store "Marked %d item(s) as Ham", "%d itens marcados como Ham"
-  l.store "Marked %d item(s) as Spam", "%d itens marcados como Spam"
-  l.store "Confirmed classification of %s item(s)", "Confirmado a classificação de %s iten(s)"
-  l.store "Not implemented", "Não implementado"
-  l.store "All spam have been deleted", "Todos os spans foram deletados"
-  l.store "Comment was successfully created.", "Comentário criado com sucesso"
-  l.store "Comment was successfully updated.", "Comentário atualizado com sucesso"
-
-  # app/controllers/admin/resources_controller.rb
   l.store "Error occurred while updating Content Type.", "Ocorreu um erro ao tentar atualizar o Content Type."
   l.store "complete", "completo"
   l.store "File uploaded: ", "Arquivo enviado"

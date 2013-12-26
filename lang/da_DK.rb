@@ -14,10 +14,7 @@ Localization.define("da_DK") do |l|
   l.store "Sort alphabetically", "Sortér alfabetisk"
   l.store "Are you sure you want to delete the category ", "Er du sikker på du vil slette kategorien: "
   l.store "Delete this category", "Slet denne kategori"
-
   l.store "(Done)", "(Færdig)"
-
-  # app/views/admin/content/_attachment.html.erb
   l.store "Remove", "Slet"
   l.store "Currently this article has the following resources", "Artiklen har følgende ressourcer"
   l.store "You can associate the following resources", "Du kan associere den med følgende ressourcer"
@@ -34,7 +31,6 @@ Localization.define("da_DK") do |l|
   # app/views/admin/content/index.html.erb
   l.store "Search articles that contain ...", "Søg efter artikler der indeholder..."
 
-  # app/views/admin/dashboard/_comments.html.erb
   l.store "Latest Comments", "Seneste kommentarer"
   l.store "By %s on %s", "Fra %s på %s"
 
@@ -110,12 +106,8 @@ Localization.define("da_DK") do |l|
   l.store "New User", "Ny bruger"
   l.store "Comments", "Kommentarer"
   l.store "Posted by", "Skrevet af"
-
-  # app/views/articles/_comment.html.erb
   l.store "said", "sagde"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "Denne kommentar er blevet markeret som krævende godkendelse. Den vil ikke blive vist før forfatteren godkender den."
-
-  # app/views/articles/_comment_box.html.erb
   l.store "Your name", "Dit Navn"
   l.store "Your email", "Din email"
   l.store "Your message", "Din besked"
@@ -135,16 +127,10 @@ Localization.define("da_DK") do |l|
   l.store "trackback uri", "Trackback URI"
   l.store "Comments are disabled", "Kommentarer er deaktiveret"
   l.store "later", "senere"
-
-  # test/mocks/themes/typographic/views/articles/_comment_form.html.erb
   l.store "Leave a comment", "Skriv en kommentar"
   l.store "Name %s", "Navn %s"
   l.store "enabled", "aktiveret"
   l.store "Archives", "Arkiv"
-
-  # vendor/plugins/authors_sidebar/views/content.rhtml
-
-  # vendor/plugins/xml_sidebar/views/content.rhtml
   l.store "Syndicate", "Syndikat"
   l.store "%d Categories", ["Kategori", "%d kategorier"]
   l.store "%d Comments", "%d Kommentarer"

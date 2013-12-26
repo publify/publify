@@ -10,12 +10,23 @@ fr:
       login:
         success: "Connexion réussie"
         error: "Échec de la connexion"
-      recover_password: 
+      recover_password:
         notice: "Un courrier vous a été envoyé avec votre nouveau mot de passe"
         error: "Désolé, une erreur vient de se produire"
       logout:
         notice: "Vous êtes maintenant déconnecté"
     admin:
+      feedback:
+        bulkops:
+          error: "Non implémenté"
+          success_deleted_spam: "Tout le spam a été supprimé"
+        update:
+          success: "Commentaire mis à jour avec succès."
+        create:
+          success: "Commentaire créé avec succès."
+        destroy:
+          success: "Supprimé"
+          error: "Introuvable"
       dashboard:
         index:
           error: "Vous avez au moins une version majeure de Publify de retard. Vous devriez immédiatement vous mettre à jour. Téléchargez et installez <a href='http://publify.co/stable.tgz'>la dernière version de Publify</a>"

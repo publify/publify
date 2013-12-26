@@ -7,13 +7,9 @@ Localization.define("ro_RO") do |l|
   l.store "no trackbacks", "fără retrolegături"
   l.store "Reorder", "Ordonează"
   l.store "Sort alphabetically", "Ordonează alfabetic"
-
   l.store "Are you sure you want to delete the category ", "Ești sigur că dorești să ștergi această categorie"
   l.store "Delete this category", "Șterge această categorie"
-
   l.store "(Done)", "(Gata)"
-
-  # app/views/admin/content/_attachment.html.erb
   l.store "Remove", "Șterge"
   l.store "Currently this article has the following resources", "Resursele disponibile acestui articol sînt"
   l.store "You can associate the following resources", "Puteți asocia următoarele resurse"

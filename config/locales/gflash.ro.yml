@@ -16,6 +16,17 @@ ro:
       logout:
         notice: "Successfully logged out"
     admin:
+      feedback:
+        bulkops:
+          error: "Not implemented"
+          success_deleted_spam: "All spam have been deleted"
+        update:
+          success: "Comment was successfully updated."
+        create:
+          success: "Comment was successfully created."
+        destroy:
+          success: "Deleted"
+          error: "Not found"
       dashboard:
         index:
           error: "You are late from at least one major version of Publify. You should upgrade immediately. Download and install <a href='http://publify.co/stable.tgz'>the latest Publify version</a>"

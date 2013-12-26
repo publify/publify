@@ -16,6 +16,17 @@ nl:
       logout:
         notice: "Succesvol uitgelogd"
     admin:
+      feedback:
+        bulkops:
+          error: "Niet geimplementeerd"
+          success_deleted_spam: "Alle spam is verwijderd"
+        update:
+          success: "Commentaar is succesvol bijgewerkt."
+        create:
+          success: "Commentaar is succesvol aangemaakt."
+        destroy:
+          success: "Verwijderd"
+          error: "Niet gevonden"
       dashboard:
         index:
           error: "You are late from at least one major version of Publify. You should upgrade immediately. Download and install <a href='http://publify.co/stable.tgz'>the latest Publify version</a>"
