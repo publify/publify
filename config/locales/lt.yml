@@ -121,7 +121,7 @@ lt:
         blog_subtitle: "Dienoraščio subpavadinimas"
         blog_url: "Dienoraščio adresas"
         language: "Kalba"
-        users: "Users"
+        users: "Vartotojai"
         allow_users_to_register: "Allow users to register"
         explain_allow_users_to_register: "This will allow users to register themselves as contributors, an unprivileged account level which grants them no rights beyond owning a profile on the site. If you don't want users to register, you can add them via <em>Manage users</em> under <em>Settings</em>."
         publify_notify_new_articles_or_comments: "Publify kann Sie benachrichtigen, wenn neue Artikel oder Kommentare angelegt werden"
@@ -134,7 +134,7 @@ lt:
         home: "Home"
         title_template: "Title template"
         description_template: "Description template"
-        articles: "Articles"
+        articles: "Straipsniai"
         pages: "Seiten"
         paginated_archives: "Paginated archives"
         dated_archives: "Dated archives"
@@ -232,7 +232,7 @@ lt:
     post_types:
       new:
         post_types: "Post Types"
-        name: "Name"
+        name: "Vardas"
         description: "Description"
         template_name: "Template name"
         default: "Default"
@@ -290,7 +290,7 @@ lt:
         comment: "Comment"
         add_a_comment: "Add a comment"
         author: "Author"
-        email: "Email"
+        email: "El. pašto adresas"
         url: "Url"
         your_comment: "Your comment"
         action_or_other: "%{first_action} arba %{second_action}"
@@ -413,7 +413,7 @@ lt:
     categories:
       new:
         categories: "Categories"
-        name: "Name"
+        name: "Vardas"
         keywords: "Keywords"
         permalink: "Permalink"
         explaination: "Your category slug. Leave empty if you don't know what to put here"
@@ -444,7 +444,7 @@ lt:
     create_account: "Create an account"
     lost_my_password: "I've lost my password"
     login:
-      login: "Login"
+      login: "Prisijungimas"
       password: "Password"
       remember_me: "Remember me"
       sign_in: "Sign in"
@@ -456,7 +456,7 @@ lt:
       reset_my_password: "Reset my password"
     signup:
       username: "Username"
-      email: "Email"
+      email: "El. pašto adresas"
       signup: "Signup"
     post_types:
       new:
@@ -659,12 +659,23 @@ lt:
            along with your content. These files are deleted when a new article
            is created. You can, at any time, delete these files yourself."
     users:
+      index:
+        login: "Prisijungimas"
+        users: "Vartotojai"
+        new_user: "Neuer Benutzer"
+        name: "Vardas"
+        email: "El. pašto adresas"
+        profile: "Profile"
+        articles: "Straipsniai"
+        comments: "Komentarai"
+        state: "State"
+        user_state: "%{state} user"
       form:
         account_settings: "Account Settings"
-        login: "Login"
+        login: "Prisijungimas"
         password: "Password"
         password_confirmation: "Password confirmation"
-        email: "Email"
+        email: "El. pašto adresas"
         profile: "Profile"
         status: "Status"
         active: "Active"

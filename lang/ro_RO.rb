@@ -47,7 +47,6 @@ Localization.define("ro_RO") do |l|
   l.store "Password confirmation", "Confirmă parola"
   l.store "Really delete user", "Ești sigur că dorești să ștergi acest utilizator"
   l.store "Edit User", "Editează un utilizator"
-  l.store "New User", "Utilizator nou"
   l.store "Posted by", "Publicat de"
   l.store "said", "a scris"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "Acest comentariu a fost marcat pentru moderare. El nu va apărea în blog înainte de a fi aprobat."

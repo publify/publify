@@ -72,7 +72,6 @@ Localization.define("pl_PL") do |l|
   l.store "Active theme", "Temat aktywny"
   l.store "Really delete user", "Na pewno usunąć użytkownika"
   l.store "Edit User", "Zmień dane użytkownika"
-  l.store "New User", "Nowy użytkownik"
   l.store "Posted by", "Opublikowane przez"
   l.store "Continue reading", "Czytaj dalej"
 
@@ -99,7 +98,6 @@ Localization.define("pl_PL") do |l|
   l.store "Syndicate", "Subskrypcje"
   l.store "%d categories", "%d kategorie"
   l.store "%d tags", "%d tagi"
-  l.store "%d users", "%d użytkownicy"
   l.store "1 category", "kategoria"
   l.store "1 tag", "1 tag"
   l.store "1 user", "użytkownik"

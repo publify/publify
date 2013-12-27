@@ -1,6 +1,5 @@
 # coding: utf-8
 Localization.define("zh_CN") do |l|
-  l.store "login", "登录"
   l.store "signup", "注册"
   l.store "Preview", "预览"
   l.store "Error occurred while updating Content Type.", "当更新内容类型时发生错误"
@@ -125,20 +124,13 @@ Localization.define("zh_CN") do |l|
   l.store "yes", "确认"
   l.store "no", "取消"
   l.store "You have no plugins installed", "你没有plugins可以安置"
-
-  # app/views/admin/sidebar/_publish.html.erb
   l.store "Changes published", "公開變更"
-
-  # app/views/admin/sidebar/_target.html.erb
   l.store "Drag some plugins here to fill your sidebar", "拖曳一些plugins填滿你的sidebar"
-
   l.store "Display name", "暱稱"
   l.store "Active theme", "執行中主題"
   l.store "Choose a theme", "選擇主題"
   l.store "Really delete user", "確定刪除使用者"
   l.store "Edit User", "修改使用者"
-  l.store "New User", "新的使用者"
-  l.store "Comments", "评论"
   l.store "Posted by", "貼上"
   l.store "said", "發言"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "這篇评论被標示為版主所允許的。他不會在博客顯示直到版主承認他。"

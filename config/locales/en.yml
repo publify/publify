@@ -446,6 +446,17 @@ en:
         cache: "Cache"
         explanations: "To save on resources, Publify generates static files along with your content. These files are deleted when a new article is created. You can, at any time, delete these files yourself."
     users:
+      index:
+        login: "login"
+        users: "Users"
+        new_user: "New User"
+        name: "Name"
+        email: "Email"
+        profile: "Profile"
+        articles: "Articles" 
+        comments: "Comments"
+        state: "State"
+        user_state: "%{state} user"
       form:
         account_settings: "Account Settings"
         login: "Login"

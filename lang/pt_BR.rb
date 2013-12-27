@@ -2,7 +2,6 @@
 # Translation by Edgar J. Suarez
 
 Localization.define("pt_BR") do |l|
-  l.store "login", "entrar"
   l.store "signup", "registrar"
   l.store "Recover your password", "recupere sua senha"
   l.store "Preview", "visualizar"
@@ -107,10 +106,7 @@ Localization.define("pt_BR") do |l|
   l.store "Password confirmation", "Confirmar Contrase&ntilde;a"
   l.store "Really delete user", "&iquest;Realmente desea eliminar este usuario?"
   l.store "Edit User", "Editar usuario"
-  l.store "New User", "Nuevo Usuario"
   l.store "Posted by", "Publicado por"
-
-  # app/views/articles/_comment.html.erb
   l.store "said", "dijo"
   l.store "Your name", "Tu nombre"
   l.store "Your email", "Tu email"

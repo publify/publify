@@ -59,7 +59,7 @@ ro:
       feedback:
         feedback_settings: "Feedback settings"
         feedback: "Feedback"
-        comments: "Comments"
+        comments: "Comentarii"
         enable_comments_by_default: "Implicit comentariile să fie active"
         enable_feedback_moderation: "Activează moderarea comentariilor"
         explain_feedback_moderation: "You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it."
@@ -121,7 +121,7 @@ ro:
         blog_subtitle: "Subtitlul blogului"
         blog_url: "Adresa blogului"
         language: "Language"
-        users: "Users"
+        users: "Utilizatori"
         allow_users_to_register: "Allow users to register"
         explain_allow_users_to_register: "This will allow users to register themselves as contributors, an unprivileged account level which grants them no rights beyond owning a profile on the site. If you don't want users to register, you can add them via <em>Manage users</em> under <em>Settings</em>."
         publify_notify_new_articles_or_comments: "Publify te poate alerta la publicarea de noi articole sau comentarii"
@@ -445,6 +445,17 @@ ro:
            along with your content. These files are deleted when a new article
            is created. You can, at any time, delete these files yourself."
     users:
+      index:
+        login: "login"
+        users: "Utilizatori"
+        new_user: "Utilizator nou"
+        name: "Nume"
+        email: "Email"
+        profile: "Profile"
+        articles: "Articol"
+        comments: "Comentarii"
+        state: "State"
+        user_state: "%{state} user"
       form:
         account_settings: "Account Settings"
         login: "Login"

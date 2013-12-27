@@ -446,6 +446,17 @@ fr:
         cache: "Cache"
         explanations: "Afin d'économiser des ressources, Publify génère des fichiers statiques avec votre contenu. Ces fichiers sont supprimés lors d'une nouvelle publication. Vous pouvez cependant les effacer vous même."
     users:
+      index:
+        login: "identifiant"
+        users: "Utilisateurs"
+        new_user: "Nouvel utilisateur"
+        name: "Nom"
+        email: "Email"
+        profile: "Profile"
+        articles: "Articles" 
+        comments: "Commentaires"
+        state: "État"
+        user_state: "%{state}"
       form:
         account_settings: "Account Settings"
         login: "Login"

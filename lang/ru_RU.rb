@@ -2,7 +2,6 @@
 Localization.define("ru_RU") do |l|
   l.store "en_US", "Английский (американский)"
   l.store "ru_RU", "Русский"
-  l.store "login", "логин"
   l.store "signup", "войти"
   l.store "Recover your password", "Восстановление пароля"
   l.store "delete", "удалить"

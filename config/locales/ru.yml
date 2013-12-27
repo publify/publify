@@ -59,7 +59,7 @@ ru:
       feedback:
         feedback_settings: "Feedback settings"
         feedback: "Комментарии"
-        comments: "Comments"
+        comments: "комментариев"
         enable_comments_by_default: "Enable comments by default"
         enable_feedback_moderation: "Enable feedback moderation"
         explain_feedback_moderation: "You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it."
@@ -214,7 +214,7 @@ ru:
         articles: "Articles"
         display_name: "Display Name"
         manage_tags: "Manage Tags"
-        name: "Name"
+        name: "Имя"
     resources:
       index:
         media_library: "Media Library"
@@ -431,7 +431,7 @@ ru:
       new_page: "New Page"
       new_media: "New Media"
       new_note : "New Note"
-      profile: "Profile"
+      profile: "профиль"
       logout: "Log out &raquo;"
       home: "Home"
       dashboard: "Дайджест"
@@ -443,13 +443,24 @@ ru:
         cache: "Cache"
         explanations: "To save on resources, Publify generates static files along with your content. These files are deleted when a new article is created. You can, at any time, delete these files yourself."
     users:
+      index:
+        login: "логин"
+        users: "Users"
+        new_user: "New User"
+        name: "Имя"
+        email: "Email"
+        profile: "профиль"
+        articles: "Articles" 
+        comments: "комментариев"
+        state: "State"
+        user_state: "%{state} user"
       form:
         account_settings: "Account Settings"
-        login: "Login"
+        login: "Логин"
         password: "Password"
         password_confirmation: "Password confirmation"
         email: "Email"
-        profile: "Profile"
+        profile: "профиль"
         status: "Status"
         active: "Active"
         inactive: "Inactive"

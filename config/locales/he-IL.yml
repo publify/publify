@@ -59,7 +59,7 @@ he-IL:
       feedback:
         feedback_settings: "Feedback settings"
         feedback: "משוב"
-        comments: "Comments"
+        comments: "תגובות"
         enable_comments_by_default: "אפשר תגובות כברירת מחדל"
         enable_feedback_moderation: "אפשר ביקורת על המשוב"
         explain_feedback_moderation: "תוכל לאפשר ביקורת על המשוב בכל האתר. אם תבצע זאת, לא תוצג שום תגובה או עוקב-חזרה בבלוג שלך אלא אם תאשר אותה."
@@ -445,13 +445,24 @@ he-IL:
            along with your content. These files are deleted when a new article
            is created. You can, at any time, delete these files yourself."
     users:
+      index:
+        login: "התחבר"
+        users: "משתמשים"
+        new_user: "New User"
+        name: "השם"
+        email: "דואל"
+        profile: "דיוקן"
+        articles: "כתבות"
+        comments: "תגובות"
+        state: "State"
+        user_state: "%{state} user"
       form:
         account_settings: "Account Settings"
-        login: "Login"
+        login: "התחבר"
         password: "Password"
         password_confirmation: "Password confirmation"
-        email: "Email"
-        profile: "Profile"
+        email: "דואל"
+        profile: "דיוקן"
         status: "Status"
         active: "Active"
         inactive: "Inactive"

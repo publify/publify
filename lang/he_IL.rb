@@ -97,7 +97,6 @@ Localization.define("he_IL") do |l|
   l.store "Really delete user", "האם אתה בטוח שברונך למחוק משתמש זה?"
   l.store "Yes", "כן"
   l.store "Edit User", "ערוך משתמש"
-  l.store "Comments", "תגובות"
   l.store "Add User", "הוסף משתמש"
   l.store "Posted by", "נכתב על ידי"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "תגובה זו הועברה לביקורת. היא לא תופיע בבלוג עד אשר הכותב יאשר אותה"

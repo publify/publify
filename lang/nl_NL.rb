@@ -1,6 +1,5 @@
 # coding: utf-8
 Localization.define("nl_NL") do |l|
-  l.store "login", "inloggen"
   l.store "signup", "aanmelden"
   l.store "Recover your password", "Herstel uw wachtwoord"
   l.store "Preview", "Bekijk"
@@ -196,9 +195,6 @@ Localization.define("nl_NL") do |l|
   l.store "Really delete user", "Gebruiker echt verwijderen"
   l.store "Yes", "Ja"
   l.store "Edit User", "Gebruiker wijzigen"
-  l.store "New User", "Nieuwe gebruikers"
-  l.store "Comments", "Reacties"
-  l.store "%s user", "%s gebruiker"
   l.store "Add User", "Gebruiker toevoegen"
   l.store "Posted by", "Geplaatst door"
   l.store "Continue reading", "Verder lezen"

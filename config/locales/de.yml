@@ -134,7 +134,7 @@ de:
         home: "Home"
         title_template: "Title template"
         description_template: "Description template"
-        articles: "Articles"
+        articles: "Artikeln"
         pages: "Seiten"
         paginated_archives: "Paginated archives"
         dated_archives: "Dated archives"
@@ -445,6 +445,17 @@ de:
            along with your content. These files are deleted when a new article
            is created. You can, at any time, delete these files yourself."
     users:
+      index:
+        login: "login"
+        users: "Benutzer"
+        new_user: "Neuer Benutzer"
+        name: "Name"
+        email: "Email"
+        profile: "Profile"
+        articles: "Artikeln"
+        comments: "Kommentare"
+        state: "State"
+        user_state: "%{state} user"
       form:
         account_settings: "Account Settings"
         login: "Login"

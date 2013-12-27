@@ -42,7 +42,6 @@ Localization.define("lt_LT") do |l|
   l.store "Choose a theme", "Motiv auswählen"
   l.store "Really delete user", "Benutzer wirklich löschen"
   l.store "Edit User", "Benutzer bearbeiten"
-  l.store "New User", "Neuer Benutzer"
   l.store "Posted by", "Parašė"
   l.store "said", "pasakė"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "Komentaras laukia moderatoriaus patvirtinimo" # sutrumpinua, man rodos logiskaiu

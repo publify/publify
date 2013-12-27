@@ -40,7 +40,6 @@ Localization.define("es_MX") do |l|
   l.store "Choose a theme", "Escoge un tema"
   l.store "Password confirmation", "Confirmar Contrase&ntilde;a"
   l.store "Edit User", "Editar usuario"
-  l.store "New User", "Nuevo Usuario"
   l.store "Posted by", "Publicado por"
   l.store "said", "dijo"
   l.store "Your name", "Tu nombre"

@@ -23,7 +23,7 @@ pt-BR:
   setup:
     confirm:
       you_have_successfully_signed_up: "You have successfully signed up"
-      login: "Login: %{user}"
+      login: "Entrar: %{user}"
       password: "Password: %{pass}"
       dont_lose_the_mail_sent: "Don't lose the mail sent at %{email} or you won't be able to login anymore"
       proceed_to: "Proceed to %{link}"
@@ -59,7 +59,7 @@ pt-BR:
       feedback:
         feedback_settings: "Feedback settings"
         feedback: "Feedback"
-        comments: "Comments"
+        comments: "Comentarios"
         enable_comments_by_default: "Habilitar comentarios por default"
         enable_feedback_moderation: "Habilitar moderaci&oacute;n de comentarios y trackbacks"
         explain_feedback_moderation: "You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it."
@@ -134,7 +134,7 @@ pt-BR:
         home: "Início"
         title_template: "Title template"
         description_template: "Description template"
-        articles: "Articles"
+        articles: "Artículos"
         pages: "P&aacute;ginas"
         paginated_archives: "Paginated archives"
         dated_archives: "Dated archives"
@@ -443,13 +443,24 @@ pt-BR:
         cache: "Cache"
         explanations: "Para economizar recursos, Publify gera arquivos estáticos juntamente com o seu conteúdo. Esses arquivos são apagados automaticamente quando um novo artigo é criado. Você pode, a qualquer momento, excluir esses arquivos."
     users:
+      index:
+        login: "entrar"
+        users: "Usuarios"
+        new_user: "Nuevo Usuario"
+        name: "Nombre"
+        email: "Email"
+        profile: "Perfil"
+        articles: "Artículos"
+        comments: "Comentarios"
+        state: "State"
+        user_state: "%{state} user"
       form:
         account_settings: "Account Settings"
-        login: "Login"
+        login: "Entrar"
         password: "Password"
         password_confirmation: "Password confirmation"
         email: "Email"
-        profile: "Profile"
+        profile: "Perfil"
         status: "Status"
         active: "Active"
         inactive: "Inactive"
@@ -489,7 +500,7 @@ pt-BR:
     create_account: "Criar conta"
     lost_my_password: "Perdi minha senha"
     login:
-      login: "Login"
+      login: "Entrar"
       password: "Senha"
       remember_me: "Lembrar-me"
       sign_in: "Entrar"

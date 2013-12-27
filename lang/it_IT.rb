@@ -50,11 +50,8 @@ Localization.define("it_IT") do |l|
   l.store "Choose a theme", "Seleziona un tema"
   l.store "Really delete user", "Veramente eliminare questo utente"
   l.store "Edit User", "Modifica utente"
-  l.store "New User", "Nuovo utente"
   l.store "Add User", "Aggiungi Utente"
-
   l.store "Posted by", "Scritto da"
-
   l.store "said", "dice"
   l.store "Your name", "Tuo nome "
   l.store "Your email", "Tua email"

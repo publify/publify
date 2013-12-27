@@ -59,7 +59,6 @@ Localization.define("zh_TW") do |l|
   l.store "Choose a theme", "選擇主題"
   l.store "Really delete user", "確定刪除使用者"
   l.store "Edit User", "修改使用者"
-  l.store "New User", "新的使用者"
   l.store "Posted by", "貼上"
 
   # app/views/articles/_comment.html.erb

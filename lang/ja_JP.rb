@@ -1,6 +1,5 @@
 # coding: utf-8
 Localization.define("ja_JP") do |l|
-  l.store "login", "ログイン"
   l.store "signup", "サインアップ"
   l.store "Error occurred while updating Content Type.", "コンテントタイプを更新中にエラーが発生しました"
   l.store "complete", "完了"
@@ -112,10 +111,6 @@ Localization.define("ja_JP") do |l|
   l.store "Really delete user", "本当にユーザーを削除"
   l.store "Yes", "はい"
   l.store "Edit User", "ユーザー編集"
-  l.store "New User", "新規ユーザー"
-  l.store "Comments", "コメント"
-  l.store "State", "状態"
-  l.store "%s user", "%s"
   l.store "Add User", "ユーザーの追加"
   l.store "Posted by", "投稿者"
   l.store "said", "発言"

@@ -1,6 +1,5 @@
 #coding: utf-8
 Localization.define("fr_FR") do |l|
-  l.store "login", "identifiant"
   l.store "signup", "s'identifier"
   l.store "Recover your password", "Récupération d'un mot de passe perdu"
   l.store "Preview", "Prévisualiser "
@@ -117,9 +116,6 @@ Localization.define("fr_FR") do |l|
   l.store "Blog publisher", "Rédacteur"
   l.store "Contributor", "Contributeur"
   l.store "Edit User", "Modifier un utilisateur"
-  l.store "New User", "Nouvel utilisateur"
-  l.store "State", "État"
-  l.store "%s user", "%s"
   l.store "Manage users", "Gérer les utilisateurs"
   l.store "Add User", "Ajouter un utilisateur"
   l.store "Posted by", "Publié par"

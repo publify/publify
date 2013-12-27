@@ -47,7 +47,6 @@ Localization.define("de_DE") do |l|
   l.store "Choose a theme", "Motiv auswählen"
   l.store "Really delete user", "Benutzer wirklich löschen"
   l.store "Edit User", "Benutzer bearbeiten"
-  l.store "New User", "Neuer Benutzer"
   l.store "Posted by", "Angelegt von"
   l.store "Continue reading", "Weiter lesen"
   l.store "said", "sagte"
@@ -69,13 +68,7 @@ Localization.define("de_DE") do |l|
   l.store "Comments are disabled", "Kommentare sind deaktiviert"
   l.store "Trackbacks for", "Trackback für"
   l.store "Archives", "Archive"
-
-  # vendor/plugins/authors_sidebar/views/content.rhtml
-
-  # vendor/plugins/xml_sidebar/views/content.rhtml
   l.store "Syndicate", "Syndikat"
-
-  # Obsolete translations
   l.store "%d Articles", ["Artikel", "%d Artikel"]
   l.store "%d Categories", ["Kategorie", "%d Kategorien"]
   l.store "%d Comments", ["Kommentar", "%d Kommentare"]

@@ -59,7 +59,7 @@ zh-CN:
       feedback:
         feedback_settings: "Feedback settings"
         feedback: "回应"
-        comments: "Comments"
+        comments: "评论"
         enable_comments_by_default: "預設為可以回應"
         enable_feedback_moderation: "適度可以反饋"
         explain_feedback_moderation: "你可以設定網點範圍有限度的反饋。這麼做將不會有任何评论引用出現在你的博客，除非你使之生效"
@@ -443,9 +443,20 @@ zh-CN:
         cache: "儲存"
         explanations: "To save on resources, Publify generates static files along with your content. These files are deleted when a new article is created. You can, at any time, delete these files yourself."
     users:
+      index:
+        login: "登录"
+        users: "使用者"
+        new_user: "新的使用者"
+        name: "名字"
+        email: "Email"
+        profile: "Profile"
+        articles: "文章"
+        comments: "评论"
+        state: "State"
+        user_state: "%{state} user"
       form:
         account_settings: "Account Settings"
-        login: "Login"
+        login: "登录"
         password: "Password"
         password_confirmation: "Password confirmation"
         email: "Email"
