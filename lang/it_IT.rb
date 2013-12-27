@@ -8,7 +8,6 @@ Localization.define("it_IT") do |l|
   l.store "All authors", "Tutte le autori"
   l.store "All published dates", "Tutte le date"
   l.store "Edit", "Modifica"
-  l.store "Back to overview", "Torna al sommario"
   l.store "no trackbacks", "nessun trackback"
   l.store "Reorder", "Riordina"
   l.store "Sort alphabetically", "Ordina alfabeticamente"
@@ -23,7 +22,6 @@ Localization.define("it_IT") do |l|
   l.store "Publish at", "Pubblicato il"
   l.store "Are you sure you want to delete this article", "Sei sicuro di voler eliminare questo articolo"
   l.store "Delete this article", "Elimina articolo"
-  l.store "Most popular", "I più popolari"
   l.store "Limit to spam", "Limita a spam"
   l.store "Search Comments and Trackbacks that contain", "Cerca commenti o trackback che contengono"
   l.store "Are you sure you want to delete the page", "Sei sicuro di voler eliminare questa pagina"
@@ -33,16 +31,12 @@ Localization.define("it_IT") do |l|
   l.store "Delete this file from the webserver?", "Eliminare questo file dal webserver ?"
   l.store "File Uploads", "Invia file"
   l.store "Enable gravatars", "Abilita gravatars"
-  l.store "Show your email address", "Mostra il tuo indirizzo mail"
   l.store "articles on my homepage by default", "articoli nella homepage"
-  l.store "articles in my news feed by default", "articoli nei miei rss feed"
   l.store "Show full article on feed", "Visualizza articolo completo su feed"
   l.store "Search Engine Optimisation", "Ottimizzazione motori di ricerca"
   l.store "New database version", "Nuova versione del database"
-  l.store "Your database supports migrations", "Il tuo database supporta le migrazioni"
   l.store "yes", "si"
   l.store "no", "no"
-  l.store "You have no plugins installed", "Non hai plugins installati"
   l.store "Changes published", "Modifiche pubblicate"
   l.store "Drag some plugins here to fill your sidebar", "Trascina alcuni plugins qui per popolare la tua sidebar"
   l.store "Display name", "Nome visualizzato"
@@ -69,15 +63,8 @@ Localization.define("it_IT") do |l|
   l.store "Comments are disabled", "Commenti disabilitati"
   l.store "Read full article", "Leggi articolo completo"
   l.store "Trackbacks for", "Trackbacks per"
-  # vendor/plugins/archives_sidebar/views/content.rhtml
   l.store "Archives", "Archivi"
-
-  # vendor/plugins/authors_sidebar/views/content.rhtml
-
-  # vendor/plugins/xml_sidebar/views/content.rhtml
   l.store "Syndicate", "Syndicate"
-
-  # Obsolete translations
   l.store "%d Articles", ["Categoria", "%d Categorie"]
   l.store "%d Categories", ["Categoria", "%d Categorie"]
   l.store "%d Comments", ["Commento", "%d Commenti"]
@@ -89,7 +76,6 @@ Localization.define("it_IT") do |l|
   l.store "AIM Status", "Stato AIM"
   l.store "Action", "Azioni"
   l.store "Activate", "Attiva"
-  l.store "Add MetaData", "Aggiungi MetaData"
   l.store "Add category", "Aggiungi categoria"
   l.store "Add new user", "Aggiungi nuovo utente"
   l.store "Add pattern", "Aggiungi modello"
@@ -117,11 +103,9 @@ Localization.define("it_IT") do |l|
   l.store "Change you blog presentation", "Cambiare l'aspetto del tuo blog"
   l.store "Choose password", "Password"
   l.store "Choose theme", "Scegli un tema"
-  l.store "Comment Excerpt", "Contenuto commento"
   l.store "Comments and Trackbacks for", "Commenti e trackbacks per"
   l.store "Confirm Classification of Checked Items", "Conferma classificazione degli elementi selezionati"
   l.store "Confirm password", "Conferma password"
-  l.store "Copyright Information", "Informazioni sul Copyright"
   l.store "Create new Blacklist", "Aggiungi nuova lista nera"
   l.store "Create new category", "Crea una nuova categoria"
   l.store "Create new page", "Crea una nuova pagina"
@@ -264,7 +248,6 @@ Localization.define("it_IT") do |l|
   l.store "Write a Page", "Scrivi un pagina"
   l.store "Write a post", "Scrivere Articoli"
   l.store "Write an Article", "Scrivi un articolo"
-  l.store "XML Syndication", "XML Syndication"
   l.store "You are now logged out of the system", "Sei uscito dall'amministrazione"
   l.store "You can add it to the following categories", "Puoi aggiungerlo alle seguenti categorie"
   l.store "You can optionally disable non-Ajax comments. Publify will always use Ajax for comment submission if Javascript is enabled, so non-Ajax comments are either from spammers or users without Javascript.", "Puoi disabilitare i commenti non Ajax. Il blog usera' Ajax per l'invio dei commenti se i Javascript sono abilitati, in questo modo i commenti non Ajax saranno bloccati dagli spammer e dagli utenti senza javascript."

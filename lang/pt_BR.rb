@@ -32,18 +32,12 @@ Localization.define("pt_BR") do |l|
   l.store "Show", "Exibir"
   l.store "Unpublished", "Despublicado"
   l.store "Show help on Publify macros", "Exibir ajuda no Publify macros"
-  l.store "Back to overview", "Voltar para o overview"
   l.store "Tag", "Tag"
-
-  # app/helpers/admin/content_helper.rb
   l.store "Destroy this draft", "Excluir esse rascunho"
-
   l.store "Show conversation", "Exibir conversa"
-  l.store "Flag as %s", "Marcar como %s"
   l.store "no trackbacks", "sem trackbacks"
   l.store "%d trackbacks", "%d trackbacks"
   l.store "no posts", "Sem posts"
-  l.store "Original article writen by", "Artigo original escrito por"
   l.store "and published on", "e publicado em"
   l.store "direct link to this article", "link direto para esse artigo"
   l.store "If you are reading this article elsewhere than", "Se você está lendo este artigo em outro lugar que"
@@ -75,10 +69,7 @@ Localization.define("pt_BR") do |l|
   l.store "You can associate the following resources", "Você pode associar os seguintes recursos"
   l.store "Really delete attachment", "Realmente deletar attachment"
   l.store "Add another attachment", "Adicionar outro attachment"
-
   l.store "Publish at", "Publicado el"
-
-  # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "&iquest;Est&aacute;s seguro que deseas borrar este art&iacute;culo?"
   l.store "Delete this article", "Eliminar este art&iacute;culo"
   l.store "Limit to spam", "Limitar a spam"
@@ -88,16 +79,12 @@ Localization.define("pt_BR") do |l|
   l.store "Delete this file from the webserver?", "&iquest;Eliminar este archivo del servidor?"
   l.store "File Uploads", "Archivos subidos"
   l.store "Enable gravatars", "Habilitar gravatars"
-  l.store "Show your email address", "Mostrar tu direcci&oacute;n de email"
   l.store "This setting allows you to disable trackbacks for every article in your blog.  It won't remove existing trackbacks, but it will prevent any further attempt to add a trackback anywhere on your blog.", "Esta opci&oacute;n te permite deshabilitar trackbacks para cada art&iacute;culo en tu blog. Esto no remover&aacute; trackbacks existentes, pero impedir&aacute; cualquier intento futuro para a&ntilde;adir una trackback en cualquier parte de tu blog."
   l.store "articles on my homepage by default", "art&iacute;culos en mi p&aacute;gina de inicio por default"
-  l.store "articles in my news feed by default", "art&iacute;culos en mi feed RSS"
   l.store "Show full article on feed", "Mostrar art&iacute;culo completo en el feed"
   l.store "New database version", "Nueva versi&oacute;n de la base de datos"
-  l.store "Your database supports migrations", "Tu base de datos soporta migraciones"
   l.store "yes", "s&iacute;"
   l.store "no", "no"
-  l.store "You have no plugins installed", "No tienes plugins instalados"
   l.store "Changes published", "Cambios publicados"
   l.store "Drag some plugins here to fill your sidebar", "Arrastra algunos plugins aqu&iacute; para llenar tu barra lateral"
   l.store "Display name", "Nombre para mostrar"
@@ -114,8 +101,6 @@ Localization.define("pt_BR") do |l|
   l.store "Comment Markup Help", "Ayuda del marcado"
   l.store "Preview comment", "Previsualizar comentario"
   l.store "From", "De"
-
-  # app/views/articles/archives.html.erb
   l.store "No articles found", "No se encontraron art&iacute;culos"
   l.store "is about to say", "est&aacute; a punto de decir"
   l.store "There are", "Hay"
@@ -132,7 +117,6 @@ Localization.define("pt_BR") do |l|
   l.store "%d Users", ["Usuario", "%d Usuarios"]
   l.store "Action", "Acci&oacute;n"
   l.store "Activate", "Activar"
-  l.store "Add MetaData", "Agregar metadata"
   l.store "Add category", "Agregar categor&iacute;a"
   l.store "Add new user", "Agregar un nuevo usuario"
   l.store "Add pattern", "Agregar patr&oacute;n"
@@ -153,7 +137,6 @@ Localization.define("pt_BR") do |l|
   l.store "Choose password", "Escoge una contrase&ntilde;a"
   l.store "Comments and Trackbacks for", "Comentarios y Trackbacks para"
   l.store "Confirm password", "Confirma tu contrase&ntilde;a"
-  l.store "Copyright Information", "Copyright"
   l.store "Create new Blacklist", "Crearea unei noi liste negre"
   l.store "Create new category", "Crear nueva categor&iacute;a"
   l.store "Create new page", "Crear una nueva p&aacute;gina"

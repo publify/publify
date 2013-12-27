@@ -10,7 +10,6 @@ Localization.define("pl_PL") do |l|
   l.store "All authors", "Wszystkie autorzy"
   l.store "All published dates", "Wszystkie daty"
   l.store "Edit", "Zmień"
-  l.store "Back to overview", "Wróć do podglądu"
   l.store "no trackbacks", "brak trackbacków"
   l.store "1 trackback", "1 trackback"
   l.store "%d trackbacks", "%d trackbacki"
@@ -24,21 +23,11 @@ Localization.define("pl_PL") do |l|
   l.store "You can associate the following resources", "Możesz przypisać do artykułu następujące zasoby"
   l.store "Really delete attachment", "Na pewno skasować?"
   l.store "Add another attachment", "Dodaj kolejny załącznik"
-
   l.store "Uploads", "Załadowane zasoby"
   l.store "Publish at", "Opublikowane dnia"
-
-  # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "Czy na pewno chcesz usunąć ten artykuł"
   l.store "Delete this article", "Usuń artykuł"
   l.store "Latest Comments", "Ostatnie komentarze"
-  l.store "By %s on %s", "Przez %s odnośnie %s"
-
-  # app/views/admin/dashboard/_popular.html.erb
-  l.store "Most popular", "Najpopularniejsze"
-  l.store "Nothing to show yet", "Nie ma jeszcze nic do pokazania"
-
-  # app/views/admin/dashboard/_posts.html.erb
   l.store "Latest Posts", "Ostatnie Wpisy"
   l.store "Latest news from the Publify development blog", "Najnowsze wieści z bloga developerskiego Publify"
   l.store "Welcome back, %s!", "Witamy spowrotem, %s!"
@@ -54,18 +43,12 @@ Localization.define("pl_PL") do |l|
   l.store "Delete this file from the webserver?", "Skasować ten plik z serwera?"
   l.store "File Uploads", "Wysłane pliki"
   l.store "Enable gravatars", "Włącz gravatary"
-  l.store "Show your email address", "Pokaż swój adres email"
-
-  # app/views/admin/settings/index.html.erb
   l.store "articles on my homepage by default", "domyślnie artykułów na stronie głównej"
-  l.store "articles in my news feed by default", "domyślnie artykułów w subskrypcji RSS"
   l.store "Show full article on feed", "Pokaż pełną treść artykułu w subskrypcji RSS"
   l.store "Search Engine Optimisation", "Optymalizacja silnika wyszukiwania"
   l.store "New database version", "Nowa wersja bazy danych"
-  l.store "Your database supports migrations", "Twoja baza danych wspiera migracje"
   l.store "yes", "tak"
   l.store "no", "nie"
-  l.store "You have no plugins installed", "Brak zainstalowanych wtyczek"
   l.store "Changes published", "Opublikowane zmiany"
   l.store "Drag some plugins here to fill your sidebar", "Przeciągnij i upuść wtyczki na pasek boczny"
   l.store "Display name", "Wyświetlana nazwa"
@@ -106,7 +89,6 @@ Localization.define("pl_PL") do |l|
   l.store "AIM Status", "Status AIM"
   l.store "Action", "Akcje"
   l.store "Activate", "Aktywuj"
-  l.store "Add MetaData", "Dodaj metadane"
   l.store "Add category", "Dodaj kategorię"
   l.store "Add new user", "Dodaj nowego użytkownika"
   l.store "Add pattern", "Dodaj wzorzec"
@@ -137,7 +119,6 @@ Localization.define("pl_PL") do |l|
   l.store "Choose theme", "Wybierz temat"
   l.store "Comments and Trackbacks for", "Komentarze i trackbacki do"
   l.store "Confirm password", "Potwierdź hasło"
-  l.store "Copyright Information", "Informacje o prawach (copyright)"
   l.store "Create new Blacklist", "Utwórz nową czarną listę"
   l.store "Create new category", "Utwórz nową kategorię"
   l.store "Create new page", "Utwórz nową stronę"
@@ -277,7 +258,6 @@ Localization.define("pl_PL") do |l|
   l.store "Write Post", "Utworzyć wpis"
   l.store "Write a Page", "Utwórz stronę"
   l.store "Write an Article", "Utwórz artykuł"
-  l.store "XML Syndication", "Subskrypcja XML"
   l.store "You are now logged out of the system", "Wylogowano z systemu"
   l.store "You can add it to the following categories", "Możesz dodać go do następujących kategorii"
   l.store "You can optionally disable non-Ajax comments. Publify will always use Ajax for comment submission if Javascript is enabled, so non-Ajax comments are either from spammers or users without Javascript.", "Można opcjonalnie wyłączyć nie-Ajaxowe komentarze. Publify zawsze używa technologii Ajax do przesyłania komentarzy - o ile Javascript jest włączony. Przeważnie komentarze nie-Ajaxowe pochodzą od spamerów lub użytkowników bez Javascript."

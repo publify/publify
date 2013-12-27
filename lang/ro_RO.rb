@@ -15,11 +15,7 @@ Localization.define("ro_RO") do |l|
   l.store "You can associate the following resources", "Puteți asocia următoarele resurse"
   l.store "Really delete attachment", "Ești sigur că dorești să ștergi atașamentul"
   l.store "Add another attachment", "Adaugă un nou atașament"
-
-  # app/views/admin/content/_form.html.erb
   l.store "Publish at", "Publică la"
-
-  # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "Ești sigur că dorești ștergerea acestui articol"
   l.store "Delete this article", "Șterge acest articol"
   l.store "Limit to spam", "Doar spam"
@@ -30,15 +26,11 @@ Localization.define("ro_RO") do |l|
   l.store "File Uploads", "Încărcări de fișiere"
   l.store "remove", "supprimer"
   l.store "Enable gravatars", "Activează gravataruri"
-  l.store "Show your email address", "Arată adresa ta de email"
   l.store "articles on my homepage by default", "articole implicit în pagina principală"
-  l.store "articles in my news feed by default", "articole implicit în RSS"
   l.store "Show full article on feed", "Include articole complete în RSS"
   l.store "New database version", "Versiunea nouă a bazei de date"
-  l.store "Your database supports migrations", "Baza de date poate fi actualizată"
   l.store "yes", "da"
   l.store "no", "nu"
-  l.store "You have no plugins installed", "Niciun plugin instalat"
   l.store "Changes published", "Schimbările au fost publicate"
   l.store "Drag some plugins here to fill your sidebar", "Trage plugin-uri aici pentru a popula bara laterală"
   l.store "Display name", "Numele real"
@@ -73,7 +65,6 @@ Localization.define("ro_RO") do |l|
   l.store "%d Users", ["Utilizator", "%d Utilizatori"]
   l.store "Action", "Acțiuni"
   l.store "Activate", "Activează"
-  l.store "Add MetaData", "Adaugă metainformații"
   l.store "Add category", "Adaugă o categorie"
   l.store "Add new user", "Adaugă un utilizator nou"
   l.store "Add pattern", "Adăugare model"
@@ -94,7 +85,6 @@ Localization.define("ro_RO") do |l|
   l.store "Choose password", "Parola"
   l.store "Comments and Trackbacks for", "Comentarii și retrolegături pentru"
   l.store "Confirm password", "Confirmați parola"
-  l.store "Copyright Information", "Drepturi"
   l.store "Create new Blacklist", "Crearea unei noi liste negre"
   l.store "Create new category", "Creează o categorie nouă"
   l.store "Create new page", "Creează o pagină nouă"

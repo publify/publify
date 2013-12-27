@@ -6,7 +6,6 @@ Localization.define("da_DK") do |l|
   l.store "All published dates", "Alle datoer"
   l.store "Edit", "Rediger"
   l.store "Unpublished", "Ikke offentliggjort"
-  l.store "Back to overview", "Tilbage til oversigten"
   l.store "no trackbacks", "ingen trackbacks"
   l.store "1 trackback", "1 trackback"
   l.store "%d trackbacks", "%d trackbacks"
@@ -20,30 +19,13 @@ Localization.define("da_DK") do |l|
   l.store "You can associate the following resources", "Du kan associere den med følgende ressourcer"
   l.store "Really delete attachment", "Vil du virkelig slette vedhæftet fil"
   l.store "Add another attachment", "Vedhæft en fil mere"
-
   l.store "Uploads", "Filer"
   l.store "Publish at", "Offentliggjort den"
-
-  # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "Er du sikker på du vil slette denne artikel"
   l.store "Delete this article", "Slet denne artikel"
-
-  # app/views/admin/content/index.html.erb
   l.store "Search articles that contain ...", "Søg efter artikler der indeholder..."
-
   l.store "Latest Comments", "Seneste kommentarer"
-  l.store "By %s on %s", "Fra %s på %s"
-
-  # app/views/admin/dashboard/_popular.html.erb
-  l.store "Most popular", "Mest populære"
-  l.store "Nothing to show yet", "Intet at vise endnu"
-
-  # app/views/admin/dashboard/_posts.html.erb
   l.store "No posts yet, why don't you start and write one", "Der er ingen artikler endnu, du kan evt. starte med at skrive en"
-
-  # app/views/admin/dashboard/_publify_dev.html.erb
-
-  # app/views/admin/dashboard/_welcome.html.erb
   l.store "Welcome back, %s!", "Velkommen tilbage, %s!"
   l.store "Total posts : %d", "Total artikler : %d"
   l.store "Your posts : %d", "Dine artikler : %d"
@@ -51,23 +33,17 @@ Localization.define("da_DK") do |l|
   l.store "Spam comments : %d", "Spam kommentarer : %d"
   l.store "Are you sure you want to delete the page", "Er du sikker på du vil slette denne side"
   l.store "Delete this page", "Slet denne side"
-
-  # app/views/admin/pages/index.html.erb
   l.store "Manage pages", "Administrer sider"
   l.store "Your profile", "Din profil"
   l.store "Are you sure you want to delete this file", "Er du sikker på du vil slette denne fil"
   l.store "Delete this file from the webserver?", "Slet denne fil fra webserveren?"
   l.store "File Uploads", "Fil Uploads"
   l.store "Enable gravatars", "Vis gravatars"
-  l.store "Show your email address", "Vis din e-mail addresse"
   l.store "articles on my homepage by default", "artikler på min hjemmeside som standard"
-  l.store "articles in my news feed by default", "artikler i min nyhedsfeed som standard"
   l.store "Show full article on feed", "Vis hele artiklen i min feed"
   l.store "New database version", "Ny database version"
-  l.store "Your database supports migrations", "Din database understøtter migrations"
   l.store "yes", "ja"
   l.store "no", "nej"
-  l.store "You have no plugins installed", "Du har ikke installeret nogen plugins"
   l.store "Changes published", "Ændringer er udgivet"
   l.store "Drag some plugins here to fill your sidebar", "Træk plugins herover for at fylde din sidebar"
   l.store "Display name", "Vis navn"
@@ -77,20 +53,7 @@ Localization.define("da_DK") do |l|
   l.store "Firstname", "Fornavn"
   l.store "Lastname", "Efternavn"
   l.store "Nickname", "Kælenavn"
-  l.store "Contact options", "Kontakt information"
   l.store "Your site", "Din hjemmeside"
-  l.store "display URL on public profile", "Vis hjemmeside på din profil"
-  l.store "Your MSN", "Dit MSN ID"
-  l.store "display MSN ID on public profile", "Vis dit MSN ID på din profil"
-  l.store "Your Yahoo ID", "Dit Yahoo ID"
-  l.store "display Yahoo! ID on public profile", "Vis dit Yahoo ID på din profil"
-  l.store "Your Jabber ID", "Dit Jabber ID"
-  l.store "display Jabber ID on public profile", "Vis dit Jabber ID på din profil"
-  l.store "Your AIM id", "Dit AIM ID"
-  l.store "display AIM ID on public profile", "Vis dit AIM ID på din profil"
-  l.store "Your Twitter username", "Dit Twitter brugernavn"
-  l.store "display Twitter on public profile", "Vis twitter på din profil"
-  l.store "Tell us more about you", "Fortæl lidt mere om dig"
   l.store "Really delete user", "Vil du virkelig slette brugeren"
   l.store "Edit User", "Rediger bruger"
   l.store "Posted by", "Skrevet af"
@@ -126,7 +89,6 @@ Localization.define("da_DK") do |l|
   l.store "AIM Presence", "AIM Presence"
   l.store "Action", "Aktion"
   l.store "Activate", "Aktiver"
-  l.store "Add MetaData", "Tilføj MetaData"
   l.store "Add category", "Tilføj kategori"
   l.store "Add new user", "Tilføj ny user"
   l.store "Add pattern", "Tilføj mønster"
@@ -148,7 +110,6 @@ Localization.define("da_DK") do |l|
   l.store "Comments and Trackbacks for", "Kommentarer og trackbacks for"
   l.store "Confirm password", "Gentag kodeord"
   l.store "Continue reading &raquo;", "L&aelig;s videre &raquo;"
-  l.store "Copyright Information", "Copyright information"
   l.store "Create new Blacklist", "Opret ny blacklist"
   l.store "Create new category", "Opret ny kategori"
   l.store "Create new page", "Opret ny side"
@@ -277,7 +238,6 @@ Localization.define("da_DK") do |l|
   l.store "Which settings group would you like to edit", "Hvilke indstillinger vil du gerne redigere"
   l.store "Write a Page", "Skriv en side"
   l.store "Write an Article", "Skriv en artikkel"
-  l.store "XML Syndication", "XML Syndikat"
   l.store "You are now logged out of the system", "Du er nu logget af systemet"
   l.store "You can add it to the following categories", "Du kan tilføje følgende kategorier"
   l.store "You can optionally disable non-Ajax comments. Publify will always use Ajax for comment submission if Javascript is enabled, so non-Ajax comments are either from spammers or users without Javascript.", "You can optionally disable non-Ajax comments. Publify will always use Ajax for comment submission if Javascript is enabled, so non-Ajax comments are either from spammers or users without Javascript." #Need translate

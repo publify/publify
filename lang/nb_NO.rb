@@ -44,22 +44,13 @@ Localization.define("nb_NO") do |l|
   l.store "Show help on Publify macros", "Vis hjelp i Publify makroer"
   l.store "Update settings", "Oppdater innstillinger"
   l.store "Back to list", "Tilbake til listen"
-
-  # app/helpers/admin/content_helper.rb
   l.store "Destroy this draft", "Slett dette utkastet"
-
   l.store "Show conversation", "Vis samtale"
-  l.store "Flag as %s", "Flagg som %s"
-
-  # app/helpers/application_helper.rb
   l.store "no trackbacks", "ingen trackbacks"
   l.store "1 trackback", "1 trackback"
   l.store "%d trackbacks", "%d trackbacks"
-
-  # app/models/blog.rb
   l.store "You need a permalink format with an identifier : %%title%%", "Du må bruke et permalenkeformat med identifikator: %%title%%"
   l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", "Kan ikke slutte på .rss eller .atom. Disse er reserverte for feed-URLer"
-
   l.store "Unclassified", "Uklassifisert"
   l.store "Just Presumed Ham", "Kun antatt Ham"
   l.store "Ham?", "Ham?"
@@ -68,49 +59,28 @@ Localization.define("nb_NO") do |l|
   l.store "Just Marked As Spam", "Kun markert som Spam"
   l.store "Reorder", "Arranger"
   l.store "Sort alphabetically", "Sorter alfabetisk"
-
   l.store "Are you sure you want to delete the category ", "Er du sikker på du vil slette kategorien: "
   l.store "Delete this category", "Slett denne kategorien"
-
   l.store "%s Category", "%s kategori"
-
   l.store "(Done)", "(Ferdig)"
-
-  # app/views/admin/content/_attachment.html.erb
   l.store "Remove", "Slett"
   l.store "Currently this article has the following resources", "Artiklen har følgende ressourser"
   l.store "You can associate the following resources", "Du kan koble til følgende ressourser"
   l.store "Really delete attachment", "Vil du virkelig slette vedlagt fil"
   l.store "Add another attachment", "Vedlegg enda en fil"
-
-  # app/views/admin/content/_form.html.erb
   l.store "Uploads", "Opplastede filer"
   l.store "Post settings", "Postinnstillinger"
   l.store "Publish at", "Offentliggjort den"
   l.store "Are you sure you want to delete this article", "Er du sikker på du vil slette denne artikkelen"
   l.store "Delete this article", "Slett denne artikkelen"
   l.store "Latest Comments", "Siste kommentarer"
-
-  # app/views/admin/dashboard/_popular.html.erb
-  l.store "Most popular", "Mest populære"
-  l.store "Nothing to show yet", "Ingenting å vise enda"
-
-  # app/views/admin/dashboard/_posts.html.erb
   l.store "Latest Posts", "Siste poster"
   l.store "No posts yet, why don't you start and write one", "Det finnes ingen artikler enda. Hvorfor ikke skrive en"
-
-  # app/views/admin/dashboard/_publify_dev.html.erb
   l.store "Latest news from the Publify development blog", "Siste nytt fra utviklingsbloggen til Publify"
   l.store "Oh no, nothing new", "Dessverre, ingenting nytt"
-
-  # app/views/admin/dashboard/_welcome.html.erb
   l.store "Welcome back, %s!", "Velkommen tilbake, %s!"
   l.store "Total posts:", "Antall artikler:"
-  l.store "Your posts:", "Dine artikler:"
   l.store "Total comments:", "Antall kommentarer:"
-  l.store "Spam comments:", "Spam-kommentarer:"
-  l.store "In your spam queue:", "I Spam-køen:"
-
   l.store "All comments", "Alle kommentarer"
   l.store "Limit to ham", "Begrens til Ham"
   l.store "Limit to presumed ham", "Begrens til antatt Ham"
@@ -119,12 +89,9 @@ Localization.define("nb_NO") do |l|
   l.store "Are you sure you want to delete this %s", "Er du sikker på at du vil slette denne %s?"
   l.store "Delete this feedback", "Slett feedback"
   l.store "Search Comments and Trackbacks that contain", "Søk etter kommentarer og Trackbacks som inneholder"
-  l.store "Page settings", "Sideinnstillinger"
   l.store "Are you sure you want to delete the page", "Er du sikker på du vil slette denne siden"
   l.store "Delete this page", "Slett denne side"
   l.store "Your profile", "Din profil"
-
-  # app/views/admin/redirects/destroy.html.erb
   l.store "Are you sure you want to delete the redirection ", "Er du sikker på at du vil slette omdirigeringen "
   l.store "from %s to %s", "fra %s til %s"
   l.store "Delete this redirection", "Slett denne omdirigeringen"
@@ -139,15 +106,11 @@ Localization.define("nb_NO") do |l|
   l.store "File Uploads", "Opplastede filer"
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", "Din robots.txt er ikke skrivbar. Publify vil ikke kunne skrive til den"
   l.store "Titles", "Titler"
-  l.store "Show your email address", "Vis din epostadresse"
-  l.store "articles in my news feed by default", "artikler i min nyhetsfeed som standard"
   l.store "New database version", "Ny databaseversjon"
-  l.store "Your database supports migrations", "Din database støtter migrations"
   l.store "yes", "ja"
   l.store "no", "nei"
   l.store "Changes published", "Endringer publisert"
   l.store "Drag some plugins here to fill your sidebar", "Dra og slipp plugins hit for å populere sidebar"
-  l.store "You have no plugins installed", "Du har ikke installert noen plugins"
   l.store "Get more plugins", "Hent flere plugins"
   l.store "Are you sure you want to delete the tag", "Er du sikker på at du vil slette denne taggen"
   l.store "Delete this tag", "Slett denne taggen"
@@ -161,7 +124,6 @@ Localization.define("nb_NO") do |l|
   l.store "Use this theme", "Velg dette temaet"
   l.store "Account settings", "Kontoinnstillinger"
   l.store "Password confirmation", "Gjenta passord"
-  l.store "User's status", "Brukerens status"
   l.store "Active", "Aktiv"
   l.store "Inactive", "Inaktiv"
   l.store "Profile settings", "Profilinnstillinger"
@@ -170,20 +132,7 @@ Localization.define("nb_NO") do |l|
   l.store "Nickname", "Nick"
   l.store "Editor", "Tekstbehandler"
   l.store "Notifications", "Beskjeder"
-  l.store "Contact options", "Kontaktinformasjon"
   l.store "Your site", "Din hjemmeside"
-  l.store "display URL on public profile", "Vis hjemmeside på din profil"
-  l.store "Your MSN", "Din MSN ID"
-  l.store "display MSN ID on public profile", "Vis din MSN ID på din profil"
-  l.store "Your Yahoo ID", "Din Yahoo ID"
-  l.store "display Yahoo! ID on public profile", "Vis din Yahoo ID på din profil"
-  l.store "Your Jabber ID", "Din Jabber ID"
-  l.store "display Jabber ID on public profile", "Vis dit Jabber ID på din profil"
-  l.store "Your AIM id", "Dit AIM ID"
-  l.store "display AIM ID on public profile", "Vis dit AIM ID på din profil"
-  l.store "Your Twitter username", "Ditt Twitter-brukernavn"
-  l.store "display Twitter on public profile", "Vis Twitter på din profil"
-  l.store "Tell us more about you", "Fortell litt mer om deg selv"
   l.store "Really delete user", "Vil du virkelig slette brukeren"
   l.store "Yes", "Ja"
   l.store "Edit User", "Rediger bruker"
@@ -240,11 +189,6 @@ Localization.define("nb_NO") do |l|
   # themes/dirtylicious/views/layouts/default.html.erb
   l.store "About", "Om"
   l.store "Designed by %s ported to publify by %s ", "Utformet av %s portert til Publify av %s "
-
-  # themes/scribbish/views/layouts/default.html.erb
-  l.store "styled with %s", "utformed med %s"
-
-  # themes/true-blue-3/helpers/theme_helper.rb
   l.store "You are here: ", "Du er her: "
   l.store "%d comment", "%d kommentar"
   l.store "Published on", "Publisert den"
@@ -260,7 +204,6 @@ Localization.define("nb_NO") do |l|
   l.store "Authors", "Forfattere"
   l.store "Powered by Publify", "Bloggen bruker Publify"
   l.store "Syndicate", "Syndikat"
-  l.store "Category %s", "Kategori %s"
   l.store " made a link to you saying ", " har lenket til deg, og skrevet "
   l.store "%d Categories", ["Kategori", "%d kategorier"]
   l.store "%d Comments", "%d Kommentarer"
@@ -271,7 +214,6 @@ Localization.define("nb_NO") do |l|
   l.store "AIM Presence", "AIM Presence"
   l.store "Action", "Handling"
   l.store "Activate", "Aktiver"
-  l.store "Add MetaData", "Legg til metadata"
   l.store "Add category", "Legg til kategori"
   l.store "Add new user", "Legg til ny bruker"
   l.store "Add pattern", "Legg til nytt mønster"
@@ -286,12 +228,10 @@ Localization.define("nb_NO") do |l|
   l.store "Article Options", "artikkelegenskaper"
   l.store "Articles in", "Artikler i"
   l.store "Attachments", "Vedlegg"
-  l.store "Back to overview", "Tilbake til oversikten"
   l.store "Back to the blog", "Tilbage til bloggen"
   l.store "Blacklist", "Svarteliste"
   l.store "Blog settings", "Blogginnstillinger"
   l.store "Body", "Tekst"
-  l.store "By %s on %s", "Fra %s på %s"
   l.store "Category title", "Kategorititel"
   l.store "Choose password", "Kodeord"
   l.store "Comments and Trackbacks for", "Kommentarer og trackbacks for"
@@ -299,7 +239,6 @@ Localization.define("nb_NO") do |l|
   l.store "Confirm password", "Gjenta passord"
   l.store "Content Type was successfully updated.", "Innholdstype (Content Type) oppdatert"
   l.store "Continue reading &raquo;", "Fortsett å lese &raquo;"
-  l.store "Copyright Information", "Åndsverksinformasjon"
   l.store "Create new Blacklist", "opprett ny svarteliste"
   l.store "Create new category", "opprett ny kategori"
   l.store "Create new page", "opprett ny side"
@@ -376,7 +315,6 @@ Localization.define("nb_NO") do |l|
   l.store "Older posts", "Eldre artikler"
   l.store "Oops, something wrong happened. Have you filled out message and name?", "Ojsann, noe gikk galt. Har du fylt ut beskjed og navn?"
   l.store "Optional Name", "Alternativt navn"
-  l.store "Original article writen by", "Opprinnelig artikkel skrevet av"
   l.store "Page", "Side"
   l.store "Page Body", "Sideinnhold"
   l.store "Page Options", "Sideinstillinger"
@@ -448,7 +386,6 @@ Localization.define("nb_NO") do |l|
   l.store "Which settings group would you like to edit", "Hvilke innstillinger vil du gerne redigere"
   l.store "Write a Page", "Skriv en side"
   l.store "Write an Article", "Skriv en artikkel"
-  l.store "XML Syndication", "XML Syndikat"
   l.store "You are now logged out of the system", "Du er nu logget af systemet"
   l.store "You can add it to the following categories", "Du kan tilføje følgende kategorier"
   l.store "You can optionally disable non-Ajax comments. Publify will always use Ajax for comment submission if Javascript is enabled, so non-Ajax comments are either from spammers or users without Javascript.", "Du kan valgfritt deaktivere non-AJAX-kommentarer. Publify vil alltid bruke AJAX for kommentarinnsending dersom Javascript er aktivert, slik at non-AJAX-kommentarer enten kommer fra brukere uten Javascript eller fra spammere.."

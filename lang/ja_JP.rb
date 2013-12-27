@@ -8,7 +8,6 @@ Localization.define("ja_JP") do |l|
   l.store "Please select", "選択してください"
   l.store "Edit", "編集"
   l.store "Show help on Publify macros", "Publifyマクロのヘルプを表示"
-  l.store "Back to overview", "オーバービューに戻る"
   l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", Proc.new { |date| sprintf(date.strftime("%Y-%m-%d %H:%M:%S GMT")) }
   l.store "%%d. %%b", Proc.new { |date| sprintf(date.strftime("%m/%d")) }
   l.store "no trackbacks", "トラックバックなし"
@@ -28,19 +27,12 @@ Localization.define("ja_JP") do |l|
   l.store "You can associate the following resources", "以下のリソースを整理することができます"
   l.store "Really delete attachment", "本当に添付ファイルを削除してもよろしいですか？"
   l.store "Add another attachment", "添付ファイルを追加"
-
   l.store "Uploads", "アップロード"
   l.store "Post settings", "投稿設定"
   l.store "Publish at", "公開日"
-
-  # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "本当にこの記事を削除してよろしいですか？"
   l.store "Delete this article", "この記事を削除"
-
   l.store "Search articles that contain ...", "以下の語句を含む記事を検索"
-
-  # app/views/admin/dashboard/_popular.html.erb
-  l.store "Most popular", "人気記事"
   l.store "Welcome back, %s!", "お帰りなさいませ、%s 様"
   l.store "Total posts : %d", "総投稿数"
   l.store "Your posts : %d", "あなたの投稿数"
@@ -50,7 +42,6 @@ Localization.define("ja_JP") do |l|
   l.store "Limit to ham", "有効コメント"
   l.store "Limit to spam", "スパムコメント"
   l.store "Search Comments and Trackbacks that contain", "以下の語句を含むコメントおよびトラックバックを検索"
-  l.store "Page settings", "ページ設定"
   l.store "Are you sure you want to delete the page", "本当にこのページを削除してよろしいですか？"
   l.store "Delete this page", "このページを削除"
   l.store "Your profile", "あなたのプロフィール"
@@ -59,12 +50,8 @@ Localization.define("ja_JP") do |l|
   l.store "Delete this file from the webserver?", "webサーバーからこのファイルを削除しますか？"
   l.store "File Uploads", "ファイルアップロード"
   l.store "Enable gravatars", "Gravatarを有効にする"
-  l.store "Show your email address", "メールアドレスを表示"
   l.store "articles on my homepage by default", "ホームページのデフォルト記事数"
-  l.store "articles in my news feed by default", "RSSフィードのデフォルト記事数"
   l.store "Show full article on feed", "記事の全文をフィードに表示"
-
-  # app/views/admin/settings/seo.html.erb
   l.store "Format of permalink", "パーマリンクの書式"
   l.store "Index categories", "カテゴリのインデックス"
   l.store "Unchecking this box will add <code>noindex, follow</code> meta tags in every category page, removing them from search engines and preventing duplicate content issues", "このボックスのチェックを外すと、全てのカテゴリのページに<code>noindex, follow</code>のMETAタグを付与します。すると検索エンジンからそれらのページが削除され、コンテンツ重複の防止になります"
@@ -72,20 +59,14 @@ Localization.define("ja_JP") do |l|
   l.store "Unchecking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues", "このボックスのチェックを外すと、全てのタグのページに<code>noindex, follow</code>のMETAタグを付与します。すると検索エンジンからそれらのページが削除され、コンテンツ重複の防止になります"
   l.store "Search Engine Optimization", "検索エンジン最適化"
   l.store "New database version", "新しいデータベースのバージョン"
-  l.store "Your database supports migrations", "あなたのデータベースはマイグレーションをサポートしています"
   l.store "yes", "はい"
   l.store "no", "いいえ"
-  l.store "You have no plugins installed", "プラグインがインストールされていません"
   l.store "Changes published", "変更して公開"
   l.store "Drag some plugins here to fill your sidebar", "サイドバーで利用するプラグインをドラッグしてください"
   l.store "Get more plugins", "他のプラグインの入手"
   l.store "Display name", "表示名"
   l.store "Manage tags", "タグの管理"
-
-  # app/views/admin/themes/catalogue.html.erb
   l.store "Theme catalogue", "テーマカタログ"
-
-  # app/views/admin/themes/index.html.erb
   l.store "Active theme", "現在のテーマ"
   l.store "Choose a theme", "テーマの選択"
   l.store "Password confirmation", "パスワード（確認用）"
@@ -96,18 +77,6 @@ Localization.define("ja_JP") do |l|
   l.store "Nickname", "ニックネーム"
   l.store "Editor", "エディタ"
   l.store "Your site", "あなたのホームページ"
-  l.store "display URL on public profile", "公開プロフィールにURLを表示"
-  l.store "Your MSN", "あなたのMSN ID"
-  l.store "display MSN ID on public profile", "公開プロフィールにMSN IDを表示"
-  l.store "Your Yahoo ID", "あなたのYahoo ID"
-  l.store "display Yahoo! ID on public profile", "公開プロフィールにYahoo! IDを表示"
-  l.store "Your Jabber ID", "あなたのJabber ID"
-  l.store "display Jabber ID on public profile", "公開プロフィールにJabber IDを表示"
-  l.store "Your AIM id", "あなたのAIM ID"
-  l.store "display AIM ID on public profile", "公開プロフィールにAIM IDを表示"
-  l.store "Your Twitter username", "あなたのTwitter ID"
-  l.store "display Twitter on public profile", "公開プロフィールにTwitter IDを表示"
-  l.store "Tell us more about you", "補足事項"
   l.store "Really delete user", "本当にユーザーを削除"
   l.store "Yes", "はい"
   l.store "Edit User", "ユーザー編集"
@@ -138,7 +107,6 @@ Localization.define("ja_JP") do |l|
   l.store "A new message was posted to ", "〜へ新しいメッセージを投稿しました"
   l.store "Action", "アクション"
   l.store "Activate", "有効にする"
-  l.store "Add MetaData", "メタデータ追加"
   l.store "Add category", "カテゴリ追加"
   l.store "Add new user", "新しいユーザーを追加"
   l.store "Add pattern", "パターン追加"
@@ -156,11 +124,8 @@ Localization.define("ja_JP") do |l|
   l.store "Category was successfully updated.", "カテゴリは正常に更新されました。"
   l.store "Change you blog presentation", "プログの説明を変更してください。"
   l.store "Choose password", "パスワード"
-  l.store "Comment Excerpt", "コメント抜粋"
   l.store "Confirm Classification of Checked Items", "チェックした行の分類を認める"
   l.store "Confirm password", "パスワード再入力"
-  l.store "Contact options", "連絡オプション"
-  l.store "Copyright Information", "著作権情報"
   l.store "Create new Blacklist", "新しいブラックリスト作成"
   l.store "Create new category", "新規カテゴリ追加"
   l.store "Create new page", "新しいページを作成"

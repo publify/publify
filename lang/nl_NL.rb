@@ -16,12 +16,8 @@ Localization.define("nl_NL") do |l|
   l.store "Archives for", "Archieven voor"
   l.store "Archives for ", "Archieven voor "
   l.store ", Articles for ", ", Berichten voor "
-
-  # app/controllers/grouping_controller.rb
   l.store "page", "pagina"
   l.store "everything about", "alles over"
-
-  # app/helpers/admin/base_helper.rb
   l.store "Store", "Opslaan"
   l.store "delete", "verwijderen"
   l.store "Delete content", "Verwijder inhoud"
@@ -31,40 +27,25 @@ Localization.define("nl_NL") do |l|
   l.store "Show", "Tonen"
   l.store "Unpublished", "Niet gepubliceerd"
   l.store "Show help on Publify macros", "Toon help voor Publify macro's"
-  l.store "Back to overview", "Terug naar overzicht"
   l.store "Tag", "Tag"
-
-  # app/helpers/admin/content_helper.rb
   l.store "Destroy this draft", "Verwijder dit concept"
-
   l.store "Show conversation", "Toon conversatie"
-  l.store "Flag as %s", "Markeer als %s"
-
-  # app/helpers/application_helper.rb
   l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", "%%a, %%d %%b %%Y %%H:%%M:%%S GMT"
   l.store "%%d. %%b", "%%d. %%b"
   l.store "1 comment", "één reactie"
   l.store "no trackbacks", "geen trackbacks"
   l.store "1 trackback", "één trackback"
   l.store "%d trackbacks", "%d trackbacks"
-
-  # app/helpers/content_helper.rb
   l.store "Posted in", "Geplaatst in"
   l.store "no posts", "geen berichten"
   l.store "1 post", "één bericht"
   l.store "%d posts", "%d berichten"
-
-  # app/models/article.rb
-  l.store "Original article writen by", "Origineel artikel geschreven door"
   l.store "and published on", "en gepubliceerd op"
   l.store "direct link to this article", "directe link naar dit arikel"
   l.store "If you are reading this article elsewhere than", "Als je dit artikel ergens anders leest dan"
   l.store "it has been illegally reproduced and without proper authorization", "is het illegaal en zonder de juiste toestemming gekopieerd"
-
-  # app/models/blog.rb
   l.store "You need a permalink format with an identifier : %%month%%, %%year%%, %%day%%, %%title%%", "Je hebt een permalink formaat nodig met een identifier: %%month%%, %%year%%, %%day%%, %%title%%"
   l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", "Mag niet eindigen met .rss of .atom. Die zijn gereserveerd voor feed URLs"
-
   l.store "Unclassified", "Niet geclassificeerd"
   l.store "Just Presumed Ham", "Zojuist aangenomen dat dit Ham is"
   l.store "Ham?", "Ham?"
@@ -79,39 +60,23 @@ Localization.define("nl_NL") do |l|
   l.store "Delete this category", "Verwijder deze categorie"
   l.store "%s Category", "%s Categorie"
   l.store "(Done)", "(Gedaan)"
-
-  # app/views/admin/content/_attachment.html.erb
   l.store "Remove", "Verwijder"
   l.store "Currently this article has the following resources", "Momenteel heeft dit artikel de volgende bronnen"
   l.store "You can associate the following resources", "Je kunt de volgende bronnen koppelen"
   l.store "Really delete attachment", "Bijlage echt verwijderen"
   l.store "Add another attachment", "Voeg een andere bijlage toe"
-
   l.store "Drafts", "Concepten"
-
-  # app/views/admin/content/_form.html.erb
   l.store "Uploads", "Uploads"
   l.store "Post settings", "Post instellingen"
   l.store "Publish at", "Publiceren op"
-
-  # app/views/admin/content/destroy.html.erb
   l.store "Are you sure you want to delete this article", "Weet je zeker dat je dit artikel wilt verwijderen?"
   l.store "Delete this article", "Verwijder dit artikel"
   l.store "Search articles that contain ...", "Zoek artikelen met ..."
   l.store "Latest Comments", "Laatste reacties"
-  l.store "By %s on %s", "door %s op %s"
-  l.store "Most popular", "Meest populair"
-  l.store "Nothing to show yet", "Nog niets te zien"
-
-  # app/views/admin/dashboard/_posts.html.erb
   l.store "Latest Posts", "Laatste berichten"
   l.store "No posts yet, why don't you start and write one", "Nog geen berichten, waarom begin je er niet een te schrijven"
-
-  # app/views/admin/dashboard/_publify_dev.html.erb
   l.store "Latest news from the Publify development blog", "Laatste neiuws van het Publify ontwikkel blog"
   l.store "Oh no, nothing new", "Oh nee, geen nieuws"
-
-  # app/views/admin/dashboard/_welcome.html.erb
   l.store "Welcome back, %s!", "Welkom terug, %s!"
   l.store "Total posts : %d", "Aantal berichten : %d"
   l.store "Your posts : %d", "Jouw berichten : %d"
@@ -122,11 +87,9 @@ Localization.define("nl_NL") do |l|
   l.store "Limit to spam", "Alleen spam"
   l.store "Comments for", "Commentaren voor"
   l.store "Search Comments and Trackbacks that contain", "Zoek commentaren en trackbacks die bevatten"
-  l.store "Page settings", "Pagina instellingen"
   l.store "Are you sure you want to delete the page", "Weet je zeker dat je deze pagina wilt verwijderen"
   l.store "Delete this page", "Verwijder deze pagina"
   l.store "Your profile", "Je profiel"
-
   l.store "Previous page", "Vorige pagina"
   l.store "Next page", "Volgende pagina"
   l.store "File", "Bestand"
@@ -135,11 +98,9 @@ Localization.define("nl_NL") do |l|
   l.store "File Uploads", "Bestand Uploads"
   l.store "Update settings", "Werk instellingen bij"
   l.store "Enable gravatars", "Enable gravatars"
-  l.store "Show your email address", "Toon je e-mail adres"
   l.store "Notifications", "Notificaties"
   l.store "Publishing options", "Publicatie opties"
   l.store "articles on my homepage by default", "artikelen op mijn startpagina"
-  l.store "articles in my news feed by default", "artikelen in mijn news feed"
   l.store "Show full article on feed", "Toon volledig artikel in feed"
   l.store "Feedburner ID", "Feedburner ID"
   l.store "Search Engine Optimisation", "Zoekmachine optimalisatie"
@@ -148,29 +109,22 @@ Localization.define("nl_NL") do |l|
   l.store "You robots.txt file is not writeable. Publify won't be able to write it", "Je robots.txt bestand is niet schrijfbaar. Publify kan het niet wijzigen"
   l.store "Search Engine Optimization", "Zoekmachine optimalisatie"
   l.store "New database version", "Nieuwe database versie"
-  l.store "Your database supports migrations", "Je database ondersteunt migraties"
   l.store "yes", "ja"
   l.store "no", "nee"
   l.store "Changes published", "Wijzigingen gepubliceerd"
   l.store "Drag some plugins here to fill your sidebar", "Sleep wat plugins naar hier om de zijbalk te vullen"
-  l.store "You have no plugins installed", "Je hebt geen plugins ge&iuml;installeerd"
   l.store "Get more plugins", "Haal meer thema's op"
   l.store "Display name", "Schermnaam"
   l.store "Are you sure you want to delete the tag", "Weet je zeker dat je deze tag wilt verwijderen?"
   l.store "Delete this tag", "Verwijder deze tag"
   l.store "Editing ", "Wijzigen"
   l.store "Manage tags", "Beheer tags"
-
-  # app/views/admin/themes/catalogue.html.erb
   l.store "Sorry the theme catalogue is not available", "Sorry, de thema catalogus is niet beschikbaar"
   l.store "Theme catalogue", "Thema catalogus"
-
-  # app/views/admin/themes/index.html.erb
   l.store "Active theme", "Actieve thema's"
   l.store "Choose a theme", "Kies een thema"
   l.store "Account settings", "Account instellingen"
   l.store "Password confirmation", "Bevestig wachtwoord"
-  l.store "User's status", "Status van de gebruiker"
   l.store "Active", "Actief"
   l.store "Inactive", "Inactief"
   l.store "Profile settings", "Profiel instellingen"
@@ -178,20 +132,7 @@ Localization.define("nl_NL") do |l|
   l.store "Lastname", "Achternaam"
   l.store "Nickname", "Bijnaam"
   l.store "Editor", "Editor"
-  l.store "Contact options", "Contact opties"
   l.store "Your site", "Je site"
-  l.store "display URL on public profile", "toon URL op publiek profiel"
-  l.store "Your MSN", "Je msn"
-  l.store "display MSN ID on public profile", "toon MSN op publiek profiel"
-  l.store "Your Yahoo ID", "Je Yahoo ID"
-  l.store "display Yahoo! ID on public profile", "toon Yahoo! ID op publiek profiel"
-  l.store "Your Jabber ID", "Je Jabber ID"
-  l.store "display Jabber ID on public profile", "toon Jabber ID op publiek profiel"
-  l.store "Your AIM id", "Je AIM id"
-  l.store "display AIM ID on public profile", "toon AIM ID op publiek profiel"
-  l.store "Your Twitter username", "Je Twitter gebruikersnaam"
-  l.store "display Twitter on public profile", "toon twitter op publiek profiel"
-  l.store "Tell us more about you", "Vertel ons meer over jezelf"
   l.store "Really delete user", "Gebruiker echt verwijderen"
   l.store "Yes", "Ja"
   l.store "Edit User", "Gebruiker wijzigen"

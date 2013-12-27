@@ -10,21 +10,11 @@ Localization.define("zh_CN") do |l|
   l.store "You are not authorized to open this file", "你没有权限打开这个文件"
   l.store "File saved successfully", "文件保存成功"
   l.store "Unable to write file", "无法写入文件"
-
-  # app/controllers/admin/users_controller.rb
   l.store "User was successfully created.", "用户创建成功"
-
-  # app/controllers/application_controller.rb
-
-  # app/controllers/articles_controller.rb
   l.store "No posts found...", "没有文章"
   l.store "Archives for", "归档为"
   l.store "Archives for ", "归档为"
-
-  # app/controllers/grouping_controller.rb
   l.store "page", "页面"
-
-  # app/helpers/admin/base_helper.rb
   l.store "Store", "保存"
   l.store "delete", "删除"
   l.store "Delete content", "删除内容"
@@ -37,70 +27,37 @@ Localization.define("zh_CN") do |l|
   l.store "Show", "显示"
   l.store "Unpublished", "未发表"
   l.store "Show help on Publify macros", "显示Publify宏的帮助"
-  l.store "Back to overview", "回到概览"
-
-  # app/helpers/admin/content_helper.rb
   l.store "Destroy this draft", "删除草稿"
-
   l.store "Show conversation", "显示对话"
-  l.store "Flag as %s", "标记为%s"
-
-  # app/helpers/application_helper.rb
   l.store "no trackbacks", "没有引用"
   l.store "1 trackback", "一条引用"
   l.store "%d trackbacks", "%d条引用"
-
-  # app/helpers/content_helper.rb
   l.store "Posted in", "发表在"
   l.store "no posts", "没有文章"
   l.store "1 post", "一篇文章"
   l.store "%d posts", "%d篇文章"
-
-  # app/models/article.rb
-
-  # app/models/blog.rb
   l.store "Sort alphabetically", "依字母顺序排序"
-
   l.store "Are you sure you want to delete the category ", "确认删除此分类？"
   l.store "Delete this category", "删除分类"
   l.store "%s Category", "分类%s"
-
   l.store "(Done)", "(完成)"
-
-  # app/views/admin/content/_attachment.html.erb
   l.store "Remove", "移除"
   l.store "Currently this article has the following resources", "此文章附带了以下资源"
   l.store "You can associate the following resources", "你可以联结下列资源"
   l.store "Really delete attachment", "确定删除附件？"
   l.store "Add another attachment", "新增其他附件"
-
   l.store "Drafts", "草稿"
-
-  # app/views/admin/content/_form.html.erb
   l.store "Uploads", "上传"
   l.store "Post settings", "发布设定"
   l.store "Publish at", "公开"
   l.store "Are you sure you want to delete this article", "确定删除本篇文章？"
   l.store "Delete this article", "删除本篇文章"
   l.store "Search articles that contain ...", "搜索包含内容的文章 ..."
-
-  # app/views/admin/dashboard/_comments.html.erb
   l.store "Latest Comments", "最近评论"
-  l.store "By %s on %s", "%s在%s"
-
-  # app/views/admin/dashboard/_popular.html.erb
-  l.store "Most popular", "最受欢迎"
-  l.store "Nothing to show yet", "还没有东西"
-
-  # app/views/admin/dashboard/_posts.html.erb
   l.store "Latest Posts", "最近发表"
   l.store "No posts yet, why don't you start and write one", "你还没有发表文章"
-
-  # app/views/admin/dashboard/_publify_dev.html.erb
   l.store "Latest news from the Publify development blog", "Publify开发博客的最新消息"
   l.store "Oh no, nothing new", "没有新消息"
-
-  # app/views/admin/dashboard/_welcome.html.erb
   l.store "Welcome back, %s!", "欢迎回來， %s！"
   l.store "Total posts : %d", "博文总计：%d"
   l.store "Your posts : %d", "你的文章：%d"
@@ -114,16 +71,12 @@ Localization.define("zh_CN") do |l|
   l.store "Delete this file from the webserver?", "從網路伺服器刪除此檔案？"
   l.store "File Uploads", "檔案上載"
   l.store "Enable gravatars", "可以顯示留言大頭貼"
-  l.store "Show your email address", "秀出你的email位址"
   l.store "articles on my homepage by default", "預設的首頁文章"
-  l.store "articles in my news feed by default", "預設的feed文章"
   l.store "Show full article on feed", "顯示全部feed文章"
   l.store "Search Engine Optimisation", "SEO"
   l.store "New database version", "新資料庫版本"
-  l.store "Your database supports migrations", "你的資料庫支援移動"
   l.store "yes", "确认"
   l.store "no", "取消"
-  l.store "You have no plugins installed", "你没有plugins可以安置"
   l.store "Changes published", "公開變更"
   l.store "Drag some plugins here to fill your sidebar", "拖曳一些plugins填滿你的sidebar"
   l.store "Display name", "暱稱"
@@ -150,21 +103,14 @@ Localization.define("zh_CN") do |l|
   l.store "trackback uri", "引用URL"
   l.store "Comments are disabled", "评论停用"
   l.store "About", "关于"
-  # themes/scribbish/layouts/default.html.erb
-
   l.store "Trackbacks for", "作為引用"
   l.store "Archives", "归档"
-
-  # vendor/plugins/authors_sidebar/views/content.rhtml
-
-  # vendor/plugins/xml_sidebar/views/content.rhtml
   l.store "Syndicate", "整合發表"
   l.store "A new message was posted to ", "一個新的訊息已被貼上"
   l.store "AIM Presence", "AIM存在"
   l.store "AIM Status", "AIM身分"
   l.store "Action", "開始行動"
   l.store "Activate", "執行中"
-  l.store "Add MetaData", "新增MetaData"
   l.store "Add category", "新增分类"
   l.store "Add new user", "新增使用者"
   l.store "Add pattern", "新增樣式"
@@ -194,7 +140,6 @@ Localization.define("zh_CN") do |l|
   l.store "Choose password", "密码"
   l.store "Comments and Trackbacks for", "作為评论和引用"
   l.store "Confirm password", "密码确认"
-  l.store "Copyright Information", "著作權資訊"
   l.store "Create new Blacklist", "建立黑名單"
   l.store "Create new category", "增加新的分类"
   l.store "Create new page", "設計新的一頁"
@@ -339,13 +284,11 @@ Localization.define("zh_CN") do |l|
   l.store "Write Post", "寫博客"
   l.store "Write a Page", "編寫本頁"
   l.store "Write an Article", "編寫文章"
-  l.store "XML Syndication", "XML簡易整合"
   l.store "You are now logged out of the system", "您已經登出系統"
   l.store "You can add it to the following categories", "你可以新增至以下分类中"
   l.store "You can optionally disable non-Ajax comments. Publify will always use Ajax for comment submission if Javascript is enabled, so non-Ajax comments are either from spammers or users without Javascript.", "你可以隨意地讓non-Ajax评论無效。如果Javascript是有效的，對於提交评论publify會使用ajax，所以non-Ajax的评论是因為使用者或spammper没有使用Javascript。"
   l.store "add new", "新增"
   l.store "by", "by"
-  l.store "by %s on %s", "由%s在%s"
   l.store "no ", "no "
   l.store "on", "の"
   l.store "seperate with spaces", "空間區分"
