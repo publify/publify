@@ -1,7 +1,4 @@
 Localization.define("es_MX") do |l|
-  l.store "All categories", "Todos las categorias"
-  l.store "All authors", "Todos los autores"
-  l.store "All published dates", "Todos los fechas"
   l.store "Edit", "Editar"
   l.store "no trackbacks", "no hay trackbacks"
   l.store "Reorder", "Reorganizar"
@@ -34,7 +31,6 @@ Localization.define("es_MX") do |l|
   l.store "Display name", "Nombre para mostrar"
   l.store "Active theme", "Tema activo"
   l.store "Choose a theme", "Escoge un tema"
-  l.store "Password confirmation", "Confirmar Contrase&ntilde;a"
   l.store "Edit User", "Editar usuario"
   l.store "Posted by", "Publicado por"
   l.store "said", "dijo"
@@ -149,7 +145,6 @@ Localization.define("es_MX") do |l|
   l.store "Page Body", "Cuerpo de la P&aacute;gina"
   l.store "Page Options", "Opciones de la p&aacute;gina"
   l.store "Parameters", "Par&aacute;metros"
-  l.store "Password Confirmation", "Confirmar Contrase&ntilde;a"
   l.store "Pattern", "Patr&oacute;n"
   l.store "Pictures from", "Im&aacute;genes de"
   l.store "Post title", "T&iacute;tulo del art&iacute;culo"

@@ -1,8 +1,5 @@
 # coding: utf-8
 Localization.define("ro_RO") do |l|
-  l.store "All categories", "toate categoriile"
-  l.store "All authors", "toate autorii"
-  l.store "All published dates", "toate timp"
   l.store "Edit", "Editare"
   l.store "no trackbacks", "fără retrolegături"
   l.store "Reorder", "Ordonează"
@@ -36,8 +33,6 @@ Localization.define("ro_RO") do |l|
   l.store "Display name", "Numele real"
   l.store "Active theme", "Tema activă"
   l.store "Choose a theme", "Alege o temă"
-  l.store "Password confirmation", "Confirmă parola"
-  l.store "Really delete user", "Ești sigur că dorești să ștergi acest utilizator"
   l.store "Edit User", "Editează un utilizator"
   l.store "Posted by", "Publicat de"
   l.store "said", "a scris"
@@ -154,7 +149,6 @@ Localization.define("ro_RO") do |l|
   l.store "Page Body", "Conținutul paginii"
   l.store "Page Options", "Opțiuni ale paginii"
   l.store "Parameters", "Parametri"
-  l.store "Password Confirmation", "Confirmă parola"
   l.store "Pattern", "Model"
   l.store "Pictures from", "Imagini de la"
   l.store "Post title", "Titlul articolului"

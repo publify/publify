@@ -1,8 +1,5 @@
 # coding: utf-8
 Localization.define("de_DE") do |l|
-  l.store "All categories", "Alle kategorien"
-  l.store "All authors", "Alle autoren"
-  l.store "All published dates", "Alle termine"
   l.store "Edit", "Bearbeiten"
   l.store "no trackbacks", "keine Trackbacks"
   l.store "Reorder", "Sortieren"
@@ -35,7 +32,6 @@ Localization.define("de_DE") do |l|
   l.store "Display name", "Anzeigename"
   l.store "Active theme", "Aktives Motiv"
   l.store "Choose a theme", "Motiv auswählen"
-  l.store "Really delete user", "Benutzer wirklich löschen"
   l.store "Edit User", "Benutzer bearbeiten"
   l.store "Posted by", "Angelegt von"
   l.store "Continue reading", "Weiter lesen"
@@ -156,7 +152,6 @@ Localization.define("de_DE") do |l|
   l.store "Page Body", "Seiteninhalt"
   l.store "Page Options", "Seiten Optionen"
   l.store "Parameters", "Parameter"
-  l.store "Password Confirmation", "Passwort bestätigen"
   l.store "Pattern", "Muster"
   l.store "Pictures from", "Bilder von"
   l.store "Post title", "Titel des Artikels"

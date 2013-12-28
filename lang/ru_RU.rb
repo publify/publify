@@ -5,8 +5,6 @@ Localization.define("ru_RU") do |l|
   l.store "signup", "войти"
   l.store "Recover your password", "Восстановление пароля"
   l.store "delete", "удалить"
-  l.store "All categories", "Все категории"
-  l.store "All authors", "Все авторы"
   l.store "Short url:", "Короткий URL:"
   l.store "Edit", "Редактировать"
   l.store "Unpublished", "Не опубликован"

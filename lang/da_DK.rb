@@ -1,9 +1,5 @@
 # coding: utf-8
 Localization.define("da_DK") do |l|
-  l.store "Please select", "Vælg venligst"
-  l.store "All categories", "Alle kategorier"
-  l.store "All authors", "Alle forfattere"
-  l.store "All published dates", "Alle datoer"
   l.store "Edit", "Rediger"
   l.store "Unpublished", "Ikke offentliggjort"
   l.store "no trackbacks", "ingen trackbacks"
@@ -49,12 +45,10 @@ Localization.define("da_DK") do |l|
   l.store "Display name", "Vis navn"
   l.store "Active theme", "Aktiv tema"
   l.store "Choose a theme", "Vælg et tema"
-  l.store "Password confirmation", "Gentag kodeord"
   l.store "Firstname", "Fornavn"
   l.store "Lastname", "Efternavn"
   l.store "Nickname", "Kælenavn"
   l.store "Your site", "Din hjemmeside"
-  l.store "Really delete user", "Vil du virkelig slette brugeren"
   l.store "Edit User", "Rediger bruger"
   l.store "Posted by", "Skrevet af"
   l.store "said", "sagde"

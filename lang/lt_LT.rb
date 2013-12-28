@@ -1,8 +1,5 @@
 # coding: utf-8
 Localization.define("lt_LT") do |l|
-  l.store "All categories", "Visos kategorijios"
-  l.store "All authors", "Visos autoriai"
-  l.store "All published dates", "Visos laika"
   l.store "Edit", "Redaguoti"
   l.store "no trackbacks", "nėra dienoraščio nuorodų"
   l.store "Reorder", "Rikiuoti"
@@ -35,7 +32,6 @@ Localization.define("lt_LT") do |l|
   l.store "Display name", "Rodomas vardas"
   l.store "Active theme", "Aktives Motiv"
   l.store "Choose a theme", "Motiv auswählen"
-  l.store "Really delete user", "Benutzer wirklich löschen"
   l.store "Edit User", "Benutzer bearbeiten"
   l.store "Posted by", "Parašė"
   l.store "said", "pasakė"
@@ -155,7 +151,6 @@ Localization.define("lt_LT") do |l|
   l.store "Page Body", "Seiteninhalt"
   l.store "Page Options", "Seiten Optionen"
   l.store "Parameters", "Parameter"
-  l.store "Password Confirmation", "Passwort bestätigen"
   l.store "Pattern", "Šablonas" # pavyzdys forma ?
   l.store "Pictures from", "Paveiksliukai iš"
   l.store "Post title", "Žinutės pavadinimas"
