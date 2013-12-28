@@ -1,6 +1,5 @@
 # coding: utf-8
 Localization.define("zh_CN") do |l|
-  l.store "signup", "注册"
   l.store "Preview", "预览"
   l.store "Error occurred while updating Content Type.", "当更新内容类型时发生错误"
   l.store "complete", "完成"

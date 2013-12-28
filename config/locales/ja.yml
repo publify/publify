@@ -502,6 +502,7 @@ ja:
     create_account: "Create an account"
     lost_my_password: "I've lost my password"
     login:
+      title: "ログイン"
       login: "ログイン"
       password: "パスワード"
       remember_me: "ログイン状態を持続"
@@ -510,9 +511,11 @@ ja:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
     recover_password:
+      title: "Recover your password"
       username_or_email: "Username or email"
       reset_my_password: "Reset my password"
     signup:
+      title: "サインアップ"
       username: "ユーザー名"
       email: "メールアドレス"
       signup: "サインアップ"

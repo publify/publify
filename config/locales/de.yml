@@ -502,6 +502,7 @@ de:
     create_account: "Create an account"
     lost_my_password: "I've lost my password"
     login:
+      title: "Login"
       login: "Login"
       password: "Passwort"
       remember_me: "Remember me"
@@ -510,9 +511,11 @@ de:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
     recover_password:
+      title: "Recover your password"
       username_or_email: "Username or email"
       reset_my_password: "Reset my password"
     signup:
+      title: "Registrieren"
       username: "Benutzername"
       email: "Email"
       signup: "Registrieren"

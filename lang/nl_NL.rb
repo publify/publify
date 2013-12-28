@@ -1,7 +1,5 @@
 # coding: utf-8
 Localization.define("nl_NL") do |l|
-  l.store "signup", "aanmelden"
-  l.store "Recover your password", "Herstel uw wachtwoord"
   l.store "Preview", "Bekijk"
   l.store "Error occurred while updating Content Type.", "Er trad een fout op bij het bijwerken van het Content Type"
   l.store "complete", "compleet"

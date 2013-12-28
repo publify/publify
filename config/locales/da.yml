@@ -500,6 +500,7 @@ da:
     create_account: "Create an account"
     lost_my_password: "I've lost my password"
     login:
+      title: "Log ind"
       login: "Log ind"
       password: "Kodeord"
       remember_me: "Remember me"
@@ -508,9 +509,11 @@ da:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
     recover_password:
+      title: "Recover your password"
       username_or_email: "Username or email"
       reset_my_password: "Reset my password"
     signup:
+      title: "Tilmelding"
       username: "Brugernavn"
       email: "Email"
       signup: "Tilmelding"

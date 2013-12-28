@@ -500,6 +500,7 @@ zh-CN:
     create_account: "创建帐号"
     lost_my_password: "忘记密码"
     login:
+      title: "登录"
       login: "登录"
       password: "密码"
       remember_me: "记住用户"
@@ -508,9 +509,11 @@ zh-CN:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
     recover_password:
+      title: "Recover your password"
       username_or_email: "用户名或邮箱"
       reset_my_password: "Reset my password"
     signup:
+      title: "注册"
       username: "用户名"
       email: "Email"
       signup: "注册"

@@ -500,6 +500,7 @@ nb-NO:
     create_account: "Opprett konto"
     lost_my_password: "Jeg har mistet passordet mitt"
     login:
+      title: "Logg inn"
       login: "Logg inn"
       password: "Passord"
       remember_me: "Husk meg"
@@ -508,9 +509,11 @@ nb-NO:
       proceed_to: "Fortsett til %{link}"
       admin: "admin"
     recover_password:
+      title: "Gjenopprett passord"
       username_or_email: "Brukernavn eller epost"
       reset_my_password: "Nullstill passordet mitt"
     signup:
+      title: "Registrer"
       username: "Brukernavn"
       email: "Epost"
       signup: "Registrer"

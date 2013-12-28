@@ -500,6 +500,7 @@ pt-BR:
     create_account: "Criar conta"
     lost_my_password: "Perdi minha senha"
     login:
+      title: "Entrar"
       login: "Entrar"
       password: "Senha"
       remember_me: "Lembrar-me"
@@ -508,9 +509,11 @@ pt-BR:
       proceed_to: "Continuar para %{link}"
       admin: "admin"
     recover_password:
+      title: "Recupere sua senha"
       username_or_email: "Usuário ou Email"
       reset_my_password: "Redefinir senha"
     signup:
+      title: "Registrar"
       username: "Usuário"
       email: "Email"
       signup: "Registrar"

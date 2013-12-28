@@ -500,6 +500,7 @@ nl:
     create_account: "Maak een account aan"
     lost_my_password: "Ik ben mijn wachtwoord kwijt"
     login:
+      title: "inloggen"
       login: "inloggen"
       password: "Wachtwoord"
       remember_me: "Onthoud me"
@@ -508,9 +509,11 @@ nl:
       proceed_to: "Ga door naar %{link}"
       admin: "admin"
     recover_password:
+      title: "Herstel uw wachtwoord"
       username_or_email: "Gebruikersnaam of e-mail"
       reset_my_password: "Reset my password"
     signup:
+      title: "aanmelden"
       username: "Gebruikersnaam"
       email: "E-mail"
       signup: "Meld aan"

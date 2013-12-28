@@ -14,8 +14,6 @@ Localization.define("nb_NO") do |l|
   l.store "pl_PL", "Polsk"
   l.store "ro_RO", "Rumensk"
   l.store "zh_TW", "Kinesisk"
-  l.store "signup", "Registrer"
-  l.store "Recover your password", "Gjenopprett passord"
   l.store "Preview", "Forhåndsvisning"
   l.store "complete", "ferdig"
   l.store "Please review and save the settings before continuing", "Vennligst les igjennom og lagre innstillingene før du fortsetter"

@@ -1,9 +1,5 @@
 # coding: utf-8
 Localization.define("ru_RU") do |l|
-  l.store "en_US", "Английский (американский)"
-  l.store "ru_RU", "Русский"
-  l.store "signup", "войти"
-  l.store "Recover your password", "Восстановление пароля"
   l.store "delete", "удалить"
   l.store "Short url:", "Короткий URL:"
   l.store "Edit", "Редактировать"
@@ -67,4 +63,7 @@ Localization.define("ru_RU") do |l|
   l.store "Published on", "Опубликовано"
   l.store "Email address", "Электронная почта"
   l.store "Your website", "Веб-сайт"
+
+  l.store "en_US", "Английский (американский)"
+  l.store "ru_RU", "Русский"
 end

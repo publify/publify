@@ -500,6 +500,7 @@ ru:
     create_account: "Create an account"
     lost_my_password: "Я потерял свой пароль"
     login:
+      title: "Логин"
       login: "Логин"
       password: "Пароль"
       remember_me: "Запомнить меня"
@@ -508,12 +509,14 @@ ru:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
     recover_password:
+      title: "Восстановление пароля"
       username_or_email: "Имя пользователи или email"
       reset_my_password: "Reset my password"
     signup:
+      title: "войти"
       username: "Username"
       email: "Email"
-      signup: "Signup"
+      signup: "войти"
   time:
     formats:
       default: "%m/%d/%Y %H:%M"

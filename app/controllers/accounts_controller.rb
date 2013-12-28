@@ -1,20 +1,19 @@
 class AccountsController < ApplicationController
 
   before_filter :verify_config
-  before_filter :verify_users, :only => [:login, :recover_password]
-  before_filter :redirect_if_already_logged_in, :only => :login
+  before_filter :verify_users, only: [:login, :recover_password]
+  before_filter :redirect_if_already_logged_in, only: :login
 
   def index
     if User.count.zero?
-      redirect_to :action => 'signup'
+      redirect_to action: 'signup'
     else
-      redirect_to :action => 'login'
+      redirect_to action: 'login'
     end
   end
 
   def login
     return unless request.post?
-    @page_title = "#{this_blog.blog_name} - #{_('login')}"
     self.current_user = User.authenticate(params[:user][:login], params[:user][:password])
     if logged_in?
       successful_login
@@ -25,10 +24,9 @@ class AccountsController < ApplicationController
   end
 
   def signup
-    @page_title = "#{this_blog.blog_name} - #{_('signup')}"
-      unless User.count.zero? or this_blog.allow_signup == 1
-        redirect_to :action => 'login'
-        return
+    unless User.count.zero? or this_blog.allow_signup == 1
+      redirect_to :action => 'login'
+      return
     end
 
     @user = User.new(params[:user])
@@ -49,7 +47,6 @@ class AccountsController < ApplicationController
 
   def recover_password
     return unless request.post?
-    @page_title = "#{this_blog.blog_name} - #{_('Recover your password')}"
     @user = User.where("login = ? or email = ?", params[:user][:login], params[:user][:login]).first
 
     if @user

@@ -1,5 +1,9 @@
+<%- content_for :page_title do %>
+  <%= "#{this_blog.blog_name} - #{t('.title')}" %>
+<%- end %>
+
 <%= form_tag action: "login" do %>
-<fieldset>
+  <fieldset>
   <div class="form-group">
     <%= text_field(:user, :login, {class: 'form-control', placeholder: t(".login"), autofocus: 'autofocus'})%>
   </div>

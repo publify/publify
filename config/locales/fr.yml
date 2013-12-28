@@ -503,6 +503,7 @@ fr:
     create_account: "Créer un compte"
     lost_my_password: "J'ai perdu mon mot de passe"
     login:
+      title: "Identifiant"
       login: "Identifiant"
       password: "Mot de passe"
       sign_in: "S'identifier"
@@ -511,9 +512,11 @@ fr:
       proceed_to: "Allez sur %{link}"
       admin: "l'administration"
     recover_password:
+      title: "Récupération d'un mot de passe perdu"
       username_or_email: "Identifiant ou email"
       reset_my_password: "Me renvoyer un mot de passe"
     signup:
+      title: "s'identifier"
       username: "Identifiant"
       email: "Email"
       signup: "S'inscrire"

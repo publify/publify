@@ -2,8 +2,6 @@
 # Translation by Edgar J. Suarez
 
 Localization.define("pt_BR") do |l|
-  l.store "signup", "registrar"
-  l.store "Recover your password", "recupere sua senha"
   l.store "Preview", "visualizar"
   l.store "Error occurred while updating Content Type.", "Ocorreu um erro ao tentar atualizar o Content Type."
   l.store "complete", "completo"

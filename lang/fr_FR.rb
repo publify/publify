@@ -1,7 +1,5 @@
 #coding: utf-8
 Localization.define("fr_FR") do |l|
-  l.store "signup", "s'identifier"
-  l.store "Recover your password", "Récupération d'un mot de passe perdu"
   l.store "Preview", "Prévisualiser "
   l.store "complete", "fini"
   l.store "Please review and save the settings before continuing", "SVP vérifiez et enregistrez votre configuration avant de continuer"
