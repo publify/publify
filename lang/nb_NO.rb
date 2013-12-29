@@ -14,7 +14,6 @@ Localization.define("nb_NO") do |l|
   l.store "pl_PL", "Polsk"
   l.store "ro_RO", "Rumensk"
   l.store "zh_TW", "Kinesisk"
-  l.store "Preview", "Forhåndsvisning"
   l.store "complete", "ferdig"
   l.store "Please review and save the settings before continuing", "Vennligst les igjennom og lagre innstillingene før du fortsetter"
   l.store "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually", "Noe gikk galt. Kanskje en av dine sidekolonner mangler og du burde reinstallere den eller fjerne den manuelt"

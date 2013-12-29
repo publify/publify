@@ -95,15 +95,7 @@ module Admin::BaseHelper
     date.strftime('%d/%m/%Y %H:%M')
   end
 
-  def link_to_published(item, show=_("Show"), preview=_("Preview"))
-    return link_to_permalink(item, show, nil, 'published') if item.published
-
-    type = controller.controller_name == 'content' ? "" : "_page"
-
-    link_to(preview, {:controller => '/articles', :action => "preview#{type}", :id => item.id}, {:class => 'unpublished', :target => '_new'})
-  end
-
-  def published_or_not(item)
+ def published_or_not(item)
     return content_tag(:span, t(".published"), class: 'label label-success') if item.state.to_s.downcase == 'published'
     return content_tag(:span, t(".draft"), class: 'label label-info') if item.state.to_s.downcase == 'draft'
     return content_tag(:span, t(".withdrawn"), class: 'label label-important') if item.state.to_s.downcase == 'withdrawn'

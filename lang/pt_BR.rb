@@ -1,8 +1,6 @@
 # coding: utf-8
 # Translation by Edgar J. Suarez
-
 Localization.define("pt_BR") do |l|
-  l.store "Preview", "visualizar"
   l.store "Error occurred while updating Content Type.", "Ocorreu um erro ao tentar atualizar o Content Type."
   l.store "complete", "completo"
   l.store "Content Type was successfully updated.", "Content Type foi atualizado com sucesso"

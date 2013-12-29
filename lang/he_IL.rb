@@ -1,6 +1,5 @@
 # coding: utf-8
 Localization.define("he_IL") do |l|
-  l.store "Preview", "תצוגה מקדימה"
   l.store "User was successfully updated.", "המשתמש עודכן בהצלחה."
   l.store "Error occurred while updating Content Type.", "שגיאה בעת עדכון סוג התוכן."
   l.store "complete", "מלא"
