@@ -14,8 +14,6 @@ Localization.define("nb_NO") do |l|
   l.store "pl_PL", "Polsk"
   l.store "ro_RO", "Rumensk"
   l.store "zh_TW", "Kinesisk"
-  l.store "Please review and save the settings before continuing", "Vennligst les igjennom og lagre innstillingene før du fortsetter"
-  l.store "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually", "Noe gikk galt. Kanskje en av dine sidekolonner mangler og du burde reinstallere den eller fjerne den manuelt"
   l.store "You are not authorized to open this file", "Du har ikke tillatelse til å åpne denne filen"
   l.store "File does not exist", "Filen finnes ikke"
   l.store "File saved successfully", "Fil lagret"

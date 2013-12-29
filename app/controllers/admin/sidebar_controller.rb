@@ -4,14 +4,6 @@ class Admin::SidebarController < Admin::BaseController
     # Reset the staged position based on the active position.
     Sidebar.delete_all('active_position is null')
     flash_sidebars
-    begin
-      @active = Sidebar.find(:all, :order => 'active_position ASC') unless @active
-    rescue => e
-      logger.error e
-      # Avoiding the view to crash
-      @active = []
-      flash[:error] = _("It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually")
-    end
   end
 
   def set_active
@@ -90,7 +82,7 @@ class Admin::SidebarController < Admin::BaseController
         logger.error e
         # Avoiding the view to crash
         @active = []
-        flash[:error] = _("It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually")
+        gflash :error
       end
     end
     flash[:sidebars]

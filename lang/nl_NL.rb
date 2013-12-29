@@ -2,8 +2,6 @@
 Localization.define("nl_NL") do |l|
   l.store "Error occurred while updating Content Type.", "Er trad een fout op bij het bijwerken van het Content Type"
   l.store "Content Type was successfully updated.", "Content Type was succesvol bijgewerkt"
-  l.store "Please review and save the settings before continuing", "Controleer de instellingen en sla ze op voor je verder gaat"
-  l.store "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually", "Het lijkt er op dat er iets fout ging. Misschien ontbreken sommige zijbalken en moet je ze opnieuw installeren of handmatig verwijderen"
   l.store "You are not authorized to open this file", "U bent niet geautoriseerd om dit bestand te openen"
   l.store "File saved successfully", "Bestand succesvol opgeslagen"
   l.store "Unable to write file", "Kon het bestand niet schrijven"

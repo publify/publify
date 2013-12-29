@@ -1,6 +1,5 @@
 #coding: utf-8
 Localization.define("fr_FR") do |l|
-  l.store "Please review and save the settings before continuing", "SVP vérifiez et enregistrez votre configuration avant de continuer"
   l.store "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually", "Une erreur s'est produite. Un ou plusieurs plugins sont probablement manquants ou en erreur. Peut-être devriez-vous les supprimer ou les réinstaller"
   l.store "No posts found...", "Aucun article n'a été trouvé"
   l.store "page", "page"
