@@ -2,7 +2,6 @@
 Localization.define("he_IL") do |l|
   l.store "User was successfully updated.", "המשתמש עודכן בהצלחה."
   l.store "Error occurred while updating Content Type.", "שגיאה בעת עדכון סוג התוכן."
-  l.store "complete", "מלא"
   l.store "Content Type was successfully updated.", "סוג התוכן עודכן בהצלחה."
   l.store "Please review and save the settings before continuing", "אנא בדוק ושמור את השינויים לפני שתמשיך"
   l.store "You are not authorized to open this file", "אינך רשאי לפתוח קובץ זה"

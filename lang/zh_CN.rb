@@ -1,7 +1,6 @@
 # coding: utf-8
 Localization.define("zh_CN") do |l|
   l.store "Error occurred while updating Content Type.", "当更新内容类型时发生错误"
-  l.store "complete", "完成"
   l.store "Content Type was successfully updated.", "內容类型已被成功更新"
   l.store "Please review and save the settings before continuing", "在继续前请确认和保存配置"
   l.store "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually", "有错误发生，可能是一些侧边栏丢失，请尝试重新安装或者手动卸载。"

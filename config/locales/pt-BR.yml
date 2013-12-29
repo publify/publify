@@ -441,7 +441,7 @@ pt-BR:
         stats: "Atualmente existem %{files_count} arquivos em cache para uma quantidade total de %{size} Kb."
         sweep_cache: "Limpar cache"
         cache: "Cache"
-        explanations: "Para economizar recursos, Publify gera arquivos estáticos juntamente com o seu conteúdo. Esses arquivos são apagados automaticamente quando um novo artigo é criado. Você pode, a qualquer momento, excluir esses arquivos."
+        explaination: "Para economizar recursos, Publify gera arquivos estáticos juntamente com o seu conteúdo. Esses arquivos são apagados automaticamente quando um novo artigo é criado. Você pode, a qualquer momento, excluir esses arquivos."
     users:
       index:
         login: "entrar"

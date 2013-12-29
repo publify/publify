@@ -1,7 +1,6 @@
 # coding: utf-8
 Localization.define("zh_TW") do |l|
   l.store "Error occurred while updating Content Type.", "當更新內容類型時發生錯誤"
-  l.store "complete", "完成"
   l.store "Content Type was successfully updated.", "內容類型已被成功更新"
   l.store "Edit", "修改"
   l.store "no trackbacks", "沒有引用"

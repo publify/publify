@@ -1,7 +1,6 @@
 # coding: utf-8
 Localization.define("it_IT") do |l|
   l.store "Error occurred while updating Content Type.", "Si e' verificato un errore mentre aggiornavo il tipo di contenuto."
-  l.store "complete", "completato"
   l.store "Content Type was successfully updated.", "Il tipo di contenuto e' stato correttamente aggiornato."
   l.store "Store", "Salva"
   l.store "Edit", "Modifica"

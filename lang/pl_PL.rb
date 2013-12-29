@@ -4,7 +4,6 @@
 
 Localization.define("pl_PL") do |l|
   l.store "Error occurred while updating Content Type.", "Wystąpił błąd w trakcie aktualizacji typu zawartości."
-  l.store "complete", "zakończony"
   l.store "Content Type was successfully updated.", "Typ zawartości został pomyślnie zaktualizowany."
   l.store "Edit", "Zmień"
   l.store "no trackbacks", "brak trackbacków"

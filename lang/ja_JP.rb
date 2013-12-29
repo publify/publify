@@ -1,7 +1,6 @@
 # coding: utf-8
 Localization.define("ja_JP") do |l|
   l.store "Error occurred while updating Content Type.", "コンテントタイプを更新中にエラーが発生しました"
-  l.store "complete", "完了"
   l.store "Content Type was successfully updated.", "コンテントタイプは正常に更新されました"
   l.store "delete", "削除"
   l.store "Edit", "編集"
