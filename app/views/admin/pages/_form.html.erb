@@ -27,6 +27,9 @@
   <div class='col-md-8'>
     <div>
       <%= text_field 'page', 'title', :class => 'form-control', :placeholder => t('.title')  %>
+      <h1 id='page-title-placeholder' contenteditable='true'>
+        Your title here
+      </h1>
     </div>
 
     <%#= render('images', { :images => @images}) unless @images.empty? %>
@@ -40,6 +43,9 @@
       -->
       <div id='simple_editor'>
         <%= text_area('page', 'body', {:class => 'form-control ', :height => '300px', :rows => '20', placeholder: t('.type_your_post')}) %>
+        <div id='page-body-placeholder' contenteditable='true'>
+          Type your content
+        </div>
         <%#= render 'admin/shared/macros' %>
       </div>
     </div>

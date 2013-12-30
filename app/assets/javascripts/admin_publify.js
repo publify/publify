@@ -23,12 +23,13 @@ $(document).ready(function() {
   $('.merge_link').each(function(merge_link){ merge_link.click(bind_merge_link); });
   $('#article_form').each(function(){load_article_form();})
   $('#article_form').submit(function(){submit_article_form()});
-  
+  $('#page_form').each(function(){load_page_form();})
+  $('#page_form').submit(function(){submit_page_form()});
 });
 
 function load_article_form() {
   $('#article-title-placeholder').text($('#article_title').val());
-  $('#article-body-placeholder').html($('#article_body_and_extended').text());
+  $('#article-body-placeholder').text($('#article_body_and_extended').text());
   $('#article_title').hide();
   $('#article_body_and_extended').hide();  
 }
@@ -36,4 +37,16 @@ function load_article_form() {
 function submit_article_form() {
   $('#article_title').val($('#article-title-placeholder').text());
   $('#article_body_and_extended').text($('#article-body-placeholder').html());
+}
+
+function load_page_form() {
+  $('#page-title-placeholder').text($('#page_title').val());
+  $('#page-body-placeholder').text($('#page_body').text());
+  $('#page_title').hide();
+  $('#page_body').hide();  
+}
+
+function submit_page_form() {
+  $('#page_title').val($('#page-title-placeholder').text());
+  $('#page_body').text($('#page-body-placeholder').text());
 }
