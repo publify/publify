@@ -39,18 +39,8 @@
       </span>      
       -->
       <div id='simple_editor'>
-        <%= text_area('page', 'body', {:class => 'form-control ', :height => '300px', :rows => '20', placeholder: t('.type_your_post'), :"data-widearea" => "enable"}) %>
+        <%= text_area('page', 'body', {:class => 'form-control ', :height => '300px', :rows => '20', placeholder: t('.type_your_post')}) %>
         <%#= render 'admin/shared/macros' %>
-        <script type="text/javascript">
-        if (document.getElementById('page_body').value == "") {
-          wideArea().clearData("#page_body");;
-        } else {
-          adaptiveheight($("#page_body"));
-        }
-        
-        wideArea();
-        </script>
-        
       </div>
     </div>
   </div>

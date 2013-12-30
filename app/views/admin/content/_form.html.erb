@@ -49,15 +49,7 @@
           -->
 
         <div id='simple_editor'>
-          <%= text_area('article', 'body_and_extended', {:class => 'form-control ', :height => '360px', placeholder: t('.type_your_post'), :"data-widearea" => "enable"}) %>
-          <script type="text/javascript">
-          if (document.getElementById('article_id').value == "") {
-            wideArea().clearData("#article_body_and_extended");;
-          } else {
-            adaptiveheight($("#article_body_and_extended"));
-          }
-          wideArea();
-          </script>
+          <%= text_area('article', 'body_and_extended', {:class => 'form-control ', :height => '360px', placeholder: t('.type_your_post')}) %>
         </div>
       </div> <!-- End of editor -->
       

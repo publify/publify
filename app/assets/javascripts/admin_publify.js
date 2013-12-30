@@ -17,33 +17,8 @@ function autosave_request(e) {
   });
 }
 
-i=0;
-j=0;
-
 $(document).ready(function() {
-  $("#article_body_and_extended").keyup(function (e) { adaptiveheight(this); });
-  $("#page_body").keyup(function (e) { adaptiveheight(this); });
-  $('.autosave').each(function(e){autosave_request(e)});
-  $('#article_form .new_category').each(function(cat_link){ cat_link.click(bind_new_category_overlay); });
+//  $('.autosave').each(function(e){autosave_request(e)});
+//  $('#article_form .new_category').each(function(cat_link){ cat_link.click(bind_new_category_overlay); });
   $('.merge_link').each(function(merge_link){ merge_link.click(bind_merge_link); });
 });
-
-function adaptiveheight(a) {
-    $(a).height(0);
-    var scrollval = $(a)[0].scrollHeight;
-    $(a).height(scrollval);
-    if (parseInt(a.style.height) > $(window).height()) {
-        if(j==0){
-            max=a.selectionEnd;
-        }
-        j++;
-        var i =a.selectionEnd;
-        console.log(i);
-        if(i >=max){
-            $(document).scrollTop(parseInt(a.style.height));
-        }else{
-            $(document).scrollTop(0);
-        }
-    }
-}
-
