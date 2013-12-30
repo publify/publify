@@ -37,6 +37,9 @@
   <div class='col-md-8'>
       <div>
         <%= text_field 'article', 'title', :class => 'form-control', :placeholder => t('.title') %>
+        <h1 id='article-title-placeholder' contenteditable='true'>
+          Your title here
+        </h1>
       </div>
       <%#= render('images', { :images => @images}) unless @images.empty? %>
   
@@ -49,6 +52,9 @@
           -->
 
         <div id='simple_editor'>
+          <div id='article-body-placeholder' contenteditable='true'>
+            Type your content
+          </div>
           <%= text_area('article', 'body_and_extended', {:class => 'form-control ', :height => '360px', placeholder: t('.type_your_post')}) %>
         </div>
       </div> <!-- End of editor -->

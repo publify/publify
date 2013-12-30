@@ -206,28 +206,17 @@ a.delete:focus {
 #article_title,
 #page_title {
   font-size: 2.3em;
-  border: none;
   font-weight: 500;
   line-height: 1.1;
   height: 1.5em;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-  -webkit-transition: none;
-          transition: none;
-          padding-left: 0;
+
 }
 
 #article_body_and_extended,
-#page_body {
+#page_body,
+#article-body-placeholder {
   font-size: 1.3em;
-  border: none; 
   line-height: 1.4;
-  height: 2.2em;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-  -webkit-transition: none;
-          transition: none;
-          padding-left: 0;
 }
 
 #quicktags {
