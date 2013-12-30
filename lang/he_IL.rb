@@ -157,8 +157,6 @@ Localization.define("he_IL") do |l|
   l.store "Change your blog presentation", "לשנות את עיצוב הבלוג"
   l.store "Choose caching methode", "בחר את שיטת המטמון"
   l.store "Choose password", "בחר סיסמה"
-  l.store "Choose theme", "בחר עיצוב"
-  l.store "Choose themes", "בחר עיצובים"
   l.store "Comments and Trackbacks for", "תגובות ועוקבים-חזרה עבור"
   l.store "Comments for %s (%s)", "תגובות עבור %s (%s)"
   l.store "Confirm Classification of Checked Items", "אמת סיווג של פריטים"
