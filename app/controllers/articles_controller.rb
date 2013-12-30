@@ -3,12 +3,10 @@ class ArticlesController < ContentController
   before_filter :auto_discovery_feed, :only => [:show, :index]
   before_filter :verify_config
 
-  layout :theme_layout, :except => [:comment_preview, :trackback]
+  layout :theme_layout, except: [:comment_preview, :trackback]
 
   cache_sweeper :blog_sweeper
-  caches_page :index, :read, :archives, :view_page, :redirect, :if => Proc.new {|c|
-    c.request.query_string == ''
-  }
+  caches_page :index, :read, :archives, :view_page, :redirect, if: Proc.new {|c| c.request.query_string == ''}
 
   helper :'admin/base'
 
@@ -52,7 +50,7 @@ class ArticlesController < ContentController
 
   def search
     @articles = this_blog.articles_matching(params[:q], page: params[:page], per_page: this_blog.per_page(params[:format]) )
-    return error(_("No posts found..."), :status => 200) if @articles.empty?
+    return error! if @articles.empty?
     @page_title = this_blog.search_title_template.to_title(@articles, this_blog, params)
     @description = this_blog.search_desc_template.to_title(@articles, this_blog, params)
     respond_to do |format|
@@ -177,7 +175,7 @@ class ArticlesController < ContentController
       format.xml  { render_feedback_feed('atom') }
     end
   rescue ActiveRecord::RecordNotFound
-    error("Post not found...")
+    error!
   end
 
   def render_articles_feed format
@@ -193,8 +191,8 @@ class ArticlesController < ContentController
     render "feedback_#{format}_feed", :layout => false
   end
 
-  def render_paginated_index(on_empty = _("No posts found..."))
-    return error(on_empty, :status => 200) if @articles.empty?
+  def render_paginated_index
+    return error! if @articles.empty?
     if this_blog.feedburner_url.empty?
       auto_discovery_feed(:only_path => false)
     else
@@ -213,6 +211,11 @@ class ArticlesController < ContentController
       from = from.gsub(/\.atom$/,'')
     end
     from
+  end
+
+  def error!
+    @message = I18n.t("errors.no_posts_found")
+    render 'articles/error', status: 200
   end
 
 end
