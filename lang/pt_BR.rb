@@ -3,12 +3,6 @@
 Localization.define("pt_BR") do |l|
   l.store "Error occurred while updating Content Type.", "Ocorreu um erro ao tentar atualizar o Content Type."
   l.store "Content Type was successfully updated.", "Content Type foi atualizado com sucesso"
-  l.store "You are not authorized to open this file", "Você não está autorizado a abrir esse arquivo"
-  l.store "File saved successfully", "Arquivo salvo com sucesso"
-  l.store "Unable to write file", "Incapaz de escrever no arquivo"
-  l.store "No posts found...", "Nenhum post encontrado..."
-  l.store "Archives for", "Arquivos de"
-  l.store "Archives for ", "Arquivos de"
   l.store ", Articles for ", "Artigos de"
   l.store "page", "página"
   l.store "everything about", "tudo sobre"
@@ -43,19 +37,11 @@ Localization.define("pt_BR") do |l|
 
   l.store "Are you sure you want to delete the category", "Tem certeza que deseja deletar essa categoria?"
   l.store "Delete this category", "Eliminar esta categoria"
-
   l.store "%s Category", "%s Categoria"
-
   l.store "(Done)", "(Feito)"
-
-  # app/views/admin/content/_attachment.html.erb
   l.store "Remove", "Remover"
-  l.store "Currently this article has the following resources", "Esse arquivo tem os seguintes recursos"
-  l.store "You can associate the following resources", "Você pode associar os seguintes recursos"
-  l.store "Really delete attachment", "Realmente deletar attachment"
   l.store "Add another attachment", "Adicionar outro attachment"
   l.store "Publish at", "Publicado el"
-  l.store "Are you sure you want to delete this article", "&iquest;Est&aacute;s seguro que deseas borrar este art&iacute;culo?"
   l.store "Delete this article", "Eliminar este art&iacute;culo"
   l.store "Limit to spam", "Limitar a spam"
   l.store "Are you sure you want to delete the page", "&iquest;Est&aacute;s seguro que deseas eliminar esta p&aacute;gina?"
@@ -174,7 +160,6 @@ Localization.define("pt_BR") do |l|
   l.store "Markup type", "Tipo de marcado"
   l.store "MetaData", "Metadata"
   l.store "Not published by Apple", "No publicado por Apple"
-  l.store "Notification", "Notificaci&oacute;n"
   l.store "Notified", "Notificado"
   l.store "Notify on new articles", "Notificar para nuevos art&iacute;culos"
   l.store "Notify on new comments", "Notificar para nuevos comentarios"
@@ -204,8 +189,6 @@ Localization.define("pt_BR") do |l|
   l.store "Resource MetaData", "Metadata"
   l.store "Resource Settings", "Preferencias de recursos"
   l.store "Save Settings", "Guardar preferencias"
-  l.store "See help text for this filter", "Ver ayuda para este filtro"
-  l.store "Set iTunes metadata for this enclosure", "Introduce la metada de iTunes para este contenido"
   l.store "Setting for channel", "Utilizado para el canal"
   l.store "Settings", "Configuraci&oacute;n"
   l.store "Show Help", "Mostrar Ayuda"
