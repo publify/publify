@@ -1,4 +1,7 @@
 fr:
+  errors:
+    render_sidebar: "Une erreur s'est produite. Un ou plusieurs plugins sont probablement manquants ou en erreur. Peut-être devriez-vous les supprimer ou les réinstaller"
+    no_posts_found: "Aucun article n'a été trouvé"
   views:
     pagination:
       truncate: "Truncate"

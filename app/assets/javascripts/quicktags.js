@@ -363,7 +363,7 @@ function edInsertPublifyCode(which, i, defaultValue) {
 	if (!edCheckOpenTags(which, i)) {
 		var code = prompt('Choose language' ,defaultValue);
 		if (code) {
-			edButtons[i].tagStart = '<typo:code lang="' + code + '">\n';
+			edButtons[i].tagStart = '<publify:code lang="' + code + '">\n';
 			edInsertTag(which, i);
 		}
 	}
