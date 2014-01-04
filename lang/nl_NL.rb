@@ -3,7 +3,6 @@ Localization.define("nl_NL") do |l|
   l.store "Error occurred while updating Content Type.", "Er trad een fout op bij het bijwerken van het Content Type"
   l.store "Content Type was successfully updated.", "Content Type was succesvol bijgewerkt"
   l.store ", Articles for ", ", Berichten voor "
-  l.store "page", "pagina"
   l.store "everything about", "alles over"
   l.store "Store", "Opslaan"
   l.store "delete", "verwijderen"

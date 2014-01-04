@@ -23,7 +23,6 @@ class GroupingController < ContentController
     @page_title = self.controller_name.capitalize
     @keywords = ""
     @description = "#{_(self.class.to_s.sub(/Controller$/,''))} #{'for'} #{this_blog.blog_name}"
-    @description << "#{_('page')} #{params[:page]}" if params[:page]
   end
 
   def show

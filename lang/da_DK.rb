@@ -159,7 +159,6 @@ Localization.define("da_DK") do |l|
   l.store "Older posts", "Ældre artikler"
   l.store "Oops, something wrong happened. Have you filled out message and name?", "Hov der gik noget galt, har du udfyldt besked og dit navn?"
   l.store "Optional Name", "Optional Name" #Need translate
-  l.store "Page", "Side"
   l.store "Page Body", "Sideindhold"
   l.store "Page Options", "Side instillinger"
   l.store "Parameters", "Parametre"

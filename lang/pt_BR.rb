@@ -4,7 +4,6 @@ Localization.define("pt_BR") do |l|
   l.store "Error occurred while updating Content Type.", "Ocorreu um erro ao tentar atualizar o Content Type."
   l.store "Content Type was successfully updated.", "Content Type foi atualizado com sucesso"
   l.store ", Articles for ", "Artigos de"
-  l.store "page", "página"
   l.store "everything about", "tudo sobre"
   l.store "Store", "Salvar"
   l.store "delete", "deletar"

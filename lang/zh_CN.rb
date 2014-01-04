@@ -2,7 +2,6 @@
 Localization.define("zh_CN") do |l|
   l.store "Error occurred while updating Content Type.", "当更新内容类型时发生错误"
   l.store "Content Type was successfully updated.", "內容类型已被成功更新"
-  l.store "page", "页面"
   l.store "Store", "保存"
   l.store "delete", "删除"
   l.store "Delete content", "删除内容"

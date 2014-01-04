@@ -1,6 +1,5 @@
 #coding: utf-8
 Localization.define("fr_FR") do |l|
-  l.store "page", "page"
   l.store "Store", "Stocker"
   l.store "delete", "supprimer"
   l.store "Delete content", "Supprimer le contenu"
@@ -46,7 +45,6 @@ Localization.define("fr_FR") do |l|
   l.store "yes", "oui"
   l.store "no", "non"
   l.store "Drag some plugins here to fill your sidebar", "Déplacez des plugins dans cet espace afin de remplir votre sidebar"
-  l.store "Page", "Page"
   l.store "Static", "Contenu statique"
   l.store "remove", "supprimer"
   l.store "Display Name", "Nom affiché"

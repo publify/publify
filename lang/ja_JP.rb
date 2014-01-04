@@ -174,7 +174,6 @@ Localization.define("ja_JP") do |l|
   l.store "Older posts", "古い記事"
   l.store "Optional Name", "オプション名"
   l.store "Options", "オプション"
-  l.store "Page", "ページ"
   l.store "Parameters", "パラメーター"
   l.store "Pattern", "パターン"
   l.store "Personal information", "個人情報"
