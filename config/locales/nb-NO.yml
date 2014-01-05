@@ -32,6 +32,11 @@ nb-NO:
       proceed_to: "Fortsett til %{link}"
       admin: "admin"
   admin:
+    themes:
+      index:
+        choose_a_theme: "Velg et tema"
+        use_this_theme: "Velg dette temaet"
+        active_theme: "%{name} - Aktivt tema"
     profiles:
       index:
         your_profile: "Din profil"

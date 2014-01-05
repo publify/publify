@@ -43,8 +43,6 @@ Localization.define("he_IL") do |l|
   l.store "Are you sure you want to delete the tag", "האם אתה בטוח שרצונך למחוק תווית זו ?"
   l.store "Delete this tag", "מחק תוויות זו"
   l.store "Display Name", "שם תצוגה"
-  l.store "Active theme", "עיצוב פעיל"
-  l.store "Choose a theme", "בחר עיצוב"
   l.store "Editor", "עורך"
   l.store "Yes", "כן"
   l.store "Edit User", "ערוך משתמש"

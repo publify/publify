@@ -32,6 +32,11 @@ pt-BR:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
   admin:
+    themes:
+      index:
+        choose_a_theme: "Escoge un tema"
+        use_this_theme: "Use this theme"
+        active_theme: "%{name} - Tema activo"
     profiles:
       index:
         your_profile: "Your profile"

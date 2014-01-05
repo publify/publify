@@ -32,6 +32,11 @@ fr:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
   admin:
+    themes:
+      index:
+        choose_a_theme: "Sélectionnez un thème"
+        use_this_theme: "Choisir ce thème"
+        active_theme: "%{name} - Thème actif"
     profiles:
       index:
         your_profile: "Votre profil"

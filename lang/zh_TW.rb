@@ -21,8 +21,6 @@ Localization.define("zh_TW") do |l|
   l.store "Changes published", "公開變更"
   l.store "Drag some plugins here to fill your sidebar", "拖曳一些plugins填滿你的sidebar"
   l.store "Display name", "暱稱"
-  l.store "Active theme", "執行中主題"
-  l.store "Choose a theme", "選擇主題"
   l.store "Edit User", "修改使用者"
   l.store "Posted by", "貼上"
   l.store "said", "發言"

@@ -23,8 +23,6 @@ Localization.define("da_DK") do |l|
   l.store "Changes published", "Ændringer er udgivet"
   l.store "Drag some plugins here to fill your sidebar", "Træk plugins herover for at fylde din sidebar"
   l.store "Display name", "Vis navn"
-  l.store "Active theme", "Aktiv tema"
-  l.store "Choose a theme", "Vælg et tema"
   l.store "Your site", "Din hjemmeside"
   l.store "Edit User", "Rediger bruger"
   l.store "Posted by", "Skrevet af"

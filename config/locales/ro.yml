@@ -32,6 +32,11 @@ ro:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
   admin:
+    themes:
+      index:
+        choose_a_theme: "Alege o temă"
+        use_this_theme: "Use this theme"
+        active_theme: "%{name} - Tema activă"
     profiles:
       index:
         your_profile: "Your profile"

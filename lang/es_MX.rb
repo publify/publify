@@ -15,8 +15,6 @@ Localization.define("es_MX") do |l|
   l.store "Drag some plugins here to fill your sidebar", "Arrastra algunos plugins aqu&iacute; para llenar tu barra lateral"
   l.store "remove", "supprimer"
   l.store "Display name", "Nombre para mostrar"
-  l.store "Active theme", "Tema activo"
-  l.store "Choose a theme", "Escoge un tema"
   l.store "Edit User", "Editar usuario"
   l.store "Posted by", "Publicado por"
   l.store "said", "dijo"

@@ -32,6 +32,11 @@ da:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
   admin:
+    themes:
+      index:
+        choose_a_theme: "Vælg et tema"
+        use_this_theme: "Use this theme"
+        active_theme: "%{name} - Aktiv tema"
     profiles:
       index:
         your_profile: "Din profil"

@@ -32,6 +32,11 @@ de:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
   admin:
+    themes:
+      index:
+        choose_a_theme: "Motiv auswählen"
+        use_this_theme: "Use this theme"
+        active_theme: "%{name} - Aktives Motiv"
     profiles:
       index:
         your_profile: "Your profile"

@@ -68,8 +68,6 @@ Localization.define("nl_NL") do |l|
   l.store "Delete this tag", "Verwijder deze tag"
   l.store "Sorry the theme catalogue is not available", "Sorry, de thema catalogus is niet beschikbaar"
   l.store "Theme catalogue", "Thema catalogus"
-  l.store "Active theme", "Actieve thema's"
-  l.store "Choose a theme", "Kies een thema"
   l.store "Active", "Actief"
   l.store "Inactive", "Inactief"
   l.store "Editor", "Editor"

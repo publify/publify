@@ -32,6 +32,11 @@ nl:
       proceed_to: "Ga door naar %{link}"
       admin: "admin"
   admin:
+    themes:
+      index:
+        choose_a_theme: "Kies een thema"
+        use_this_theme: "Use this theme"
+        active_theme: "%{name} - Actieve thema's"
     profiles:
       index:
         your_profile: "Je profiel"

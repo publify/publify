@@ -17,8 +17,6 @@ Localization.define("ro_RO") do |l|
   l.store "Changes published", "Schimbările au fost publicate"
   l.store "Drag some plugins here to fill your sidebar", "Trage plugin-uri aici pentru a popula bara laterală"
   l.store "Display name", "Numele real"
-  l.store "Active theme", "Tema activă"
-  l.store "Choose a theme", "Alege o temă"
   l.store "Edit User", "Editează un utilizator"
   l.store "Posted by", "Publicat de"
   l.store "said", "a scris"

@@ -32,6 +32,11 @@ zh-CN:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
   admin:
+    themes:
+      index:
+        choose_a_theme: "選擇主題"
+        use_this_theme: "Use this theme"
+        active_theme: "%{name} - 執行中主題"
     profiles:
       index:
         your_profile: "Your profile"

@@ -16,8 +16,6 @@ Localization.define("lt_LT") do |l|
   l.store "Changes published", "Änderungen veröffentlicht"
   l.store "Drag some plugins here to fill your sidebar", "Ziehen Sie Plugins hierher, um sie in die Seitenleiste aufzunehmen"
   l.store "Display name", "Rodomas vardas"
-  l.store "Active theme", "Aktives Motiv"
-  l.store "Choose a theme", "Motiv auswählen"
   l.store "Edit User", "Benutzer bearbeiten"
   l.store "Posted by", "Parašė"
   l.store "said", "pasakė"

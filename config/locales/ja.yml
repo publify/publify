@@ -32,6 +32,11 @@ ja:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
   admin:
+    themes:
+      index:
+        choose_a_theme: "テーマの選択"
+        use_this_theme: "Use this theme"
+        active_theme: "%{name} - 現在のテーマ"
     profiles:
       index:
         your_profile: "あなたのプロフィール"
