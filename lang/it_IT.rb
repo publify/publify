@@ -22,7 +22,6 @@ Localization.define("it_IT") do |l|
   l.store "Your message", "Tuo messaggio"
   l.store "Comment Markup Help", "Aiuto sul markup dei comemnti"
   l.store "Preview comment", "Anteprima commento"
-  l.store "From", "Da"
   l.store "No articles found", "Nessun articolo trovato"
   l.store "is about to say", "sta per dire"
   l.store "There are", "Ci sono"

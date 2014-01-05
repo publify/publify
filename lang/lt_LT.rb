@@ -22,7 +22,6 @@ Localization.define("lt_LT") do |l|
   l.store "Your message", "Tavo žinutė"
   l.store "Comment Markup Help", "Komentaro sintaksės žymėjimo pagalba"
   l.store "Preview comment", "Peržiūrėti komentarą"
-  l.store "From", "Nuo"
   l.store "No articles found", "Straipsnių nėra"
   l.store "is about to say", "pasakoja apie"
   l.store "There are", "Čia yra"

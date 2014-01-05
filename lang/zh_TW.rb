@@ -26,13 +26,9 @@ Localization.define("zh_TW") do |l|
   l.store "Your message", "你的訊息"
   l.store "Comment Markup Help", "評論顯示協助"
   l.store "Preview comment", "預覽評論"
-  l.store "From", "From"
-
-  # app/views/articles/archives.html.erb
   l.store "No articles found", "沒有找到任何文章"
   l.store "is about to say", "這是關於~~"
   l.store "There are", "有"
-
   l.store "Leave a response", "離開一個回應"
   l.store "Use the following link to trackback from your own site", "從你所屬的網點用隨後的連結去引用"
   l.store "RSS feed for this post", "為本篇提供RSS"

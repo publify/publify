@@ -35,7 +35,6 @@ Localization.define("pl_PL") do |l|
   l.store "Your message", "Treść"
   l.store "Comment Markup Help", "Pomoc języka formatowania"
   l.store "Preview comment", "Obejrzyj komentarz"
-  l.store "From", "Z"
   l.store "No articles found", "Brak artykułów"
   l.store "is about to say", "zaraz powie"
   l.store "There are", "Istnieje"

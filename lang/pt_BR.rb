@@ -42,7 +42,6 @@ Localization.define("pt_BR") do |l|
   l.store "Your message", "Tu comentario"
   l.store "Comment Markup Help", "Ayuda del marcado"
   l.store "Preview comment", "Previsualizar comentario"
-  l.store "From", "De"
   l.store "No articles found", "No se encontraron art&iacute;culos"
   l.store "is about to say", "est&aacute; a punto de decir"
   l.store "There are", "Hay"

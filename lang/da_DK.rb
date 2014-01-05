@@ -27,7 +27,6 @@ Localization.define("da_DK") do |l|
   l.store "Your message", "Din besked"
   l.store "Comment Markup Help", "Hjælp med kommentar markup"
   l.store "Preview comment", "Vis kommentar eksempel"
-  l.store "From", "Fra"
   l.store "No articles found", "Fandt ingen artikler"
   l.store "is about to say", "vil gerne sige"
   l.store "There are", "Der er"

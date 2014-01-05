@@ -75,7 +75,6 @@ Localization.define("nl_NL") do |l|
   l.store "Preview comment", "Bekijk reactie"
   l.store "leave url/email", "plaats url/e-mail"
   l.store "Oops, something wrong happened, the comment could not be saved", "Er is iets mis gegaan en je reactie is niet bewaard"
-  l.store "From", "Van"
   l.store "No articles found", "Geen artikelen gevonden"
   l.store "posted in", "geplaatst in"
   l.store "is about to say", "gaat zeggen"

@@ -32,6 +32,12 @@ da:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
   admin:
+    redirects:
+      new:
+        redirects: "Redirects"
+        from: "Fra"
+        to: "To"
+        leave_empty_to_shorten_a_link: "Leave empty to shorten a link"
     themes:
       index:
         choose_a_theme: "Vælg et tema"

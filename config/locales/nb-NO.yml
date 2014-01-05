@@ -32,6 +32,12 @@ nb-NO:
       proceed_to: "Fortsett til %{link}"
       admin: "admin"
   admin:
+    redirects:
+      new:
+        redirects: "Omdirigeringer"
+        from: "Fra"
+        to: "Til"
+        leave_empty_to_shorten_a_link: "Leave empty to shorten a link"
     themes:
       index:
         choose_a_theme: "Velg et tema"

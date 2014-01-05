@@ -21,8 +21,6 @@ Localization.define("de_DE") do |l|
   l.store "Your message", "Meine Nachricht"
   l.store "Comment Markup Help", "Hilfe zu Kommentar Markup"
   l.store "Preview comment", "Kommentar Vorschau"
-
-  l.store "From", "Von"
   l.store "No articles found", "Keine Artikel gefunden"
   l.store "is about to say", "will sagen"
   l.store "There are", "Es gibt"

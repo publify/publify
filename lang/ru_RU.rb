@@ -26,7 +26,6 @@ Localization.define("ru_RU") do |l|
   l.store "Latest Posts", "Последние посты"
   l.store "Welcome back, %s!", "Добро пожаловать снова, %s!"
   l.store "Your posts : %d", "Ваших постов: %d"
-  l.store "Redirects", "Перенаправления"
   l.store "Titles", "Заголовки"
   l.store "Your name", "Ваше имя"
   l.store "Your email", "Ваш email"

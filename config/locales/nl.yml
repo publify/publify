@@ -32,6 +32,12 @@ nl:
       proceed_to: "Ga door naar %{link}"
       admin: "admin"
   admin:
+    redirects:
+      new:
+        redirects: "Redirects"
+        from: "Van"
+        to: "To"
+        leave_empty_to_shorten_a_link: "Leave empty to shorten a link"
     themes:
       index:
         choose_a_theme: "Kies een thema"

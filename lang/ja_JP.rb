@@ -45,7 +45,6 @@ Localization.define("ja_JP") do |l|
   l.store "Your message", "メッセージ"
   l.store "Comment Markup Help", "コメントのマークアップヘルプ"
   l.store "Preview comment", "前のコメント"
-  l.store "From", "From"
   l.store "No articles found", "記事が見つかりませんでした"
   l.store "is about to say", "〜について言う"
   l.store "There are", "ここに"

@@ -22,7 +22,6 @@ Localization.define("ro_RO") do |l|
   l.store "Your message", "Comentariu"
   l.store "Comment Markup Help", "Ajutor la marcare"
   l.store "Preview comment", "Previzualizare"
-  l.store "From", "De la"
   l.store "No articles found", "Niciun articol nu a fost găsit"
   l.store "is about to say", "vrea să scrie"
   l.store "There are", "Sînt"

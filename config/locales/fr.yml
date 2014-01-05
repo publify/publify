@@ -32,6 +32,12 @@ fr:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
   admin:
+    redirects:
+      new:
+        redirects: "Redirections"
+        from: "De"
+        to: "Vers"
+        leave_empty_to_shorten_a_link: "Laissez vide pour créer un lien court"
     themes:
       index:
         choose_a_theme: "Sélectionnez un thème"
