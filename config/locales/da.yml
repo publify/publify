@@ -32,6 +32,9 @@ da:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
   admin:
+    profiles:
+      index:
+        your_profile: "Din profil"
     sidebar:
       index:
         sidebar: "Sidebar"

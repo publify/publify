@@ -32,6 +32,9 @@ nl:
       proceed_to: "Ga door naar %{link}"
       admin: "admin"
   admin:
+    profiles:
+      index:
+        your_profile: "Je profiel"
     sidebar:
       index:
         sidebar: "Zijbalk"

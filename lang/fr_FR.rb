@@ -36,7 +36,6 @@ Localization.define("fr_FR") do |l|
   l.store "Welcome back, %s!", "Bienvenue, %s !"
   l.store "Total comments:", "Nombre total de commentaires :"
   l.store "unconfirmed", "non validés"
-  l.store "Your profile", "Votre profil"
   l.store "Redirects", "Redirections"
   l.store "From", "De"
   l.store "Leave empty to shorten a link", "Laissez vide pour créer un lien court"

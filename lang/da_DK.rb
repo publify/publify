@@ -23,7 +23,6 @@ Localization.define("da_DK") do |l|
   l.store "Are you sure you want to delete the page", "Er du sikker på du vil slette denne side"
   l.store "Delete this page", "Slet denne side"
   l.store "Manage pages", "Administrer sider"
-  l.store "Your profile", "Din profil"
   l.store "Are you sure you want to delete this file", "Er du sikker på du vil slette denne fil"
   l.store "Delete this file from the webserver?", "Slet denne fil fra webserveren?"
   l.store "File Uploads", "Fil Uploads"

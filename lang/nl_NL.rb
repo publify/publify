@@ -65,7 +65,6 @@ Localization.define("nl_NL") do |l|
   l.store "Search Comments and Trackbacks that contain", "Zoek commentaren en trackbacks die bevatten"
   l.store "Are you sure you want to delete the page", "Weet je zeker dat je deze pagina wilt verwijderen"
   l.store "Delete this page", "Verwijder deze pagina"
-  l.store "Your profile", "Je profiel"
   l.store "Previous page", "Vorige pagina"
   l.store "Next page", "Volgende pagina"
   l.store "File", "Bestand"

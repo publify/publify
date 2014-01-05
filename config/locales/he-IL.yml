@@ -32,6 +32,9 @@ he-IL:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
   admin:
+    profiles:
+      index:
+        your_profile: "Your profile"
     sidebar:
       index:
         sidebar: "תיבת צד"

@@ -39,7 +39,6 @@ Localization.define("ru_RU") do |l|
   l.store "from %s to %s", "от %s на %s"
   l.store "Delete this redirection", "Удалить это перенаправление"
   l.store "Redirects", "Перенаправления"
-  l.store "Your profile", "Ваш профиль"
   l.store "Titles", "Заголовки"
   l.store "Show full article on feed", "Показывать полные версии статей в ленте"
   l.store "Your name", "Ваше имя"

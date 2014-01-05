@@ -64,7 +64,6 @@ Localization.define("nb_NO") do |l|
   l.store "Search Comments and Trackbacks that contain", "Søk etter kommentarer og Trackbacks som inneholder"
   l.store "Are you sure you want to delete the page", "Er du sikker på du vil slette denne siden"
   l.store "Delete this page", "Slett denne side"
-  l.store "Your profile", "Din profil"
   l.store "Are you sure you want to delete the redirection ", "Er du sikker på at du vil slette omdirigeringen "
   l.store "from %s to %s", "fra %s til %s"
   l.store "Delete this redirection", "Slett denne omdirigeringen"

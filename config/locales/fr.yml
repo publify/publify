@@ -32,6 +32,9 @@ fr:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
   admin:
+    profiles:
+      index:
+        your_profile: "Votre profil"
     sidebar:
       index:
         sidebar: "Plugins"

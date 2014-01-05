@@ -32,6 +32,9 @@ nb-NO:
       proceed_to: "Fortsett til %{link}"
       admin: "admin"
   admin:
+    profiles:
+      index:
+        your_profile: "Din profil"
     sidebar:
       index:
         sidebar: "Sidebar"
