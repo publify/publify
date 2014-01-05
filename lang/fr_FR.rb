@@ -55,7 +55,6 @@ Localization.define("fr_FR") do |l|
   l.store "Contributor", "Contributeur"
   l.store "Edit User", "Modifier un utilisateur"
   l.store "Manage users", "Gérer les utilisateurs"
-  l.store "Add User", "Ajouter un utilisateur"
   l.store "Posted by", "Publié par"
   l.store "Continue reading", "Lire plus"
   l.store "Oops, something wrong happened, the comment could not be saved", "Oops, quelque chose s'est mal déroulé. Votre commentaire n'a donc pu être enregistré."

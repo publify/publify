@@ -74,7 +74,6 @@ Localization.define("nl_NL") do |l|
   l.store "Your site", "Je site"
   l.store "Yes", "Ja"
   l.store "Edit User", "Gebruiker wijzigen"
-  l.store "Add User", "Gebruiker toevoegen"
   l.store "Posted by", "Geplaatst door"
   l.store "Continue reading", "Verder lezen"
   l.store "said", "zei"

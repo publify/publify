@@ -458,6 +458,8 @@ nb-NO:
         cache: "Cache"
         explaination: "For å lagre resurser cacher Publify innholdet i statiske filer. Cachen slettes hver gang noe publiseres. Du kan også velge å slette cachen selv."
     users:
+      new:
+        add_user: "Legg til bruker"
       index:
         login: "Logg inn"
         users: "Brukere"

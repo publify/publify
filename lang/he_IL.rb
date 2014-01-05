@@ -46,7 +46,6 @@ Localization.define("he_IL") do |l|
   l.store "Editor", "עורך"
   l.store "Yes", "כן"
   l.store "Edit User", "ערוך משתמש"
-  l.store "Add User", "הוסף משתמש"
   l.store "Posted by", "נכתב על ידי"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "תגובה זו הועברה לביקורת. היא לא תופיע בבלוג עד אשר הכותב יאשר אותה"
 
