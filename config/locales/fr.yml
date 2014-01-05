@@ -305,6 +305,7 @@ fr:
       edit:
         action_or_other: "%{first_action} or %{second_action}"
         save: "Sauver"
+        comments_for: "Commentaires sur l'article %{article_link}"
       button:
         select_action: "Choisir de..."
         delete_checked_items: "Supprimer les commentaires sélectionnés"

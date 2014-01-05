@@ -2,7 +2,7 @@
   
   <h2 class="page-title">
     <i class="glyphicon glyphicon-large glyphicon-comment"></i>
-    <%= _("Comments for %s", link_to(h(@comment.article.title), :controller => '/admin/content', :action => 'edit', :id => @comment.article.id).html_safe).html_safe %>
+    <%= t(".comments_for", article_link: link_to(h(@comment.article.title), controller: '/admin/content', action: 'edit', id: @comment.article.id).html_safe) %>
   </h2>
 <% end %>
 

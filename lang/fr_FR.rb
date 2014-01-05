@@ -127,8 +127,6 @@ Localization.define("fr_FR") do |l|
   l.store "All comments", "Tous les commentaires"
   l.store "Blog settings", "Configuration du blog"
   l.store "Category", "Catégorie"
-  l.store "Comments for", "Commentaires pour"
-  l.store "Comments for %s (%s)", "Commentaires sur l'article %s (%s)"
   l.store "Continue reading...", "Lire la suite..."
   l.store "Display name", "Nom affiché sur le site"
   l.store "Duration", "Durée"

@@ -302,6 +302,10 @@ nl:
         action_or_other: "%{first_action} of %{second_action}"
         cancel: "Terug"
         save: "Bewaar"
+      edit:
+        action_or_other: "%{first_action} of %{second_action}"
+        save: "Bewaar"
+        comments_for: "Commentaren voor %{article_link}"
       button:
         select_action: "Kies actie"
         delete_checked_items: "Verwijder aangevinkte reacties"

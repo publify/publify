@@ -302,6 +302,10 @@ zh-CN:
         action_or_other: "%{first_action} 或 %{second_action}"
         cancel: "取消"
         save: "保存"
+      edit:
+        action_or_other: "%{first_action} 或 %{second_action}"
+        save: "保存"
+        comments_for: "Comments for %{article_link}"
       button:
         select_action: "Select action"
         delete_checked_items: "Delete Checked Items"

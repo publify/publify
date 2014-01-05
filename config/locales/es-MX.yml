@@ -302,6 +302,10 @@ es-MX:
         action_or_other: "%{first_action} o %{second_action}"
         cancel: "Cancelar"
         save: "Guardar"
+      edit:
+        action_or_other: "%{first_action} o %{second_action}"
+        save: "Guardar"
+        comments_for: "Comments for %{article_link}"
       button:
         select_action: "Select action"
         delete_checked_items: "Delete Checked Items"

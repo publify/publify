@@ -302,6 +302,10 @@ ru:
         action_or_other: "%{first_action} или %{second_action}"
         cancel: "Отменить"
         save: "Сохранить"
+      edit:
+        action_or_other: "%{first_action} или %{second_action}"
+        save: "Сохранить"
+        comments_for: "Comments for %{article_link}"
       button:
         select_action: "Select action"
         delete_checked_items: "Delete Checked Items"

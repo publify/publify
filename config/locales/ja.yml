@@ -302,6 +302,10 @@ ja:
         action_or_other: "%{first_action} または %{second_action}"
         cancel: "キャンセル"
         save: "保存"
+      edit:
+        action_or_other: "%{first_action} または %{second_action}"
+        save: "保存"
+        comments_for: "Comments for %{article_link}"
       button:
         select_action: "Select action"
         delete_checked_items: "チェックした行を削除"

@@ -61,7 +61,6 @@ Localization.define("nl_NL") do |l|
   l.store "All comments", "Alle commentaren"
   l.store "Limit to ham", "Alleen ham"
   l.store "Limit to spam", "Alleen spam"
-  l.store "Comments for", "Commentaren voor"
   l.store "Search Comments and Trackbacks that contain", "Zoek commentaren en trackbacks die bevatten"
   l.store "Are you sure you want to delete the page", "Weet je zeker dat je deze pagina wilt verwijderen"
   l.store "Delete this page", "Verwijder deze pagina"

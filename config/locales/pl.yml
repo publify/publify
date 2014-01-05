@@ -302,6 +302,10 @@ pl:
         action_or_other: "%{first_action} lub %{second_action}"
         cancel: "Anuluj"
         save: "Zapisz"
+      edit:
+        action_or_other: "%{first_action} lub %{second_action}"
+        save: "Zapisz"
+        comments_for: "Comments for %{article_link}"
       button:
         select_action: "Select action"
         delete_checked_items: "Delete Checked Items"

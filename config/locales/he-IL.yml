@@ -302,6 +302,10 @@ he-IL:
         action_or_other: "%{first_action} או %{second_action}"
         cancel: "בטל"
         save: "שמור"
+      edit:
+        action_or_other: "%{first_action} או %{second_action}"
+        save: "שמור"
+        comments_for: "תגובות עבור %s"
       button:
         select_action: "Select action"
         delete_checked_items: "מחק פריטים שסומנו"

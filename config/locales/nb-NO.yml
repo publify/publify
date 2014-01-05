@@ -302,6 +302,10 @@ nb-NO:
         action_or_other: "%{first_action} eller %{second_action}"
         cancel: "Annuller"
         save: "Lagre"
+      edit:
+        action_or_other: "%{first_action} eller %{second_action}"
+        save: "Lagre"
+        comments_for: "Kommentarer for %{article_link}"
       button:
         select_action: "Velg handling"
         delete_checked_items: "Slett markerte enheter"

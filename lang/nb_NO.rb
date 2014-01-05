@@ -195,7 +195,6 @@ Localization.define("nb_NO") do |l|
   l.store "Category title", "Kategorititel"
   l.store "Choose password", "Kodeord"
   l.store "Comments and Trackbacks for", "Kommentarer og trackbacks for"
-  l.store "Comments for", "Kommentarer for"
   l.store "Confirm password", "Gjenta passord"
   l.store "Content Type was successfully updated.", "Innholdstype (Content Type) oppdatert"
   l.store "Continue reading &raquo;", "Fortsett å lese &raquo;"
