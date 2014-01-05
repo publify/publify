@@ -32,6 +32,14 @@ es-MX:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
   admin:
+    themes:
+      index:
+        choose_a_theme: "Escoge un tema"
+        use_this_theme: "Use this theme"
+        active_theme: "%{name} - Tema activo"
+    profiles:
+      index:
+        your_profile: "Your profile"
     sidebar:
       index:
         sidebar: "Sidebar"
@@ -299,6 +307,10 @@ es-MX:
         action_or_other: "%{first_action} o %{second_action}"
         cancel: "Cancelar"
         save: "Guardar"
+      edit:
+        action_or_other: "%{first_action} o %{second_action}"
+        save: "Guardar"
+        comments_for: "Comments for %{article_link}"
       button:
         select_action: "Select action"
         delete_checked_items: "Delete Checked Items"
@@ -446,6 +458,10 @@ es-MX:
         cache: "Cach&eacute;"
         explaination: "To save on resources, Publify generates static files along with your content. These files are deleted when a new article is created. You can, at any time, delete these files yourself."
     users:
+      edit:
+        edit_user: "Editar usuario"
+      new:
+        add_user: "Add User"
       index:
         login: "login"
         users: "Usuarios"
@@ -458,6 +474,7 @@ es-MX:
         state: "State"
         user_state: "%{state} user"
       form:
+        user_status: "User Status"
         account_settings: "Account Settings"
         login: "Login"
         password: "Password"

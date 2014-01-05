@@ -32,6 +32,14 @@ he-IL:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
   admin:
+    themes:
+      index:
+        choose_a_theme: "בחר עיצוב"
+        use_this_theme: "Use this theme"
+        active_theme: "%{name} - עיצוב פעיל"
+    profiles:
+      index:
+        your_profile: "Your profile"
     sidebar:
       index:
         sidebar: "תיבת צד"
@@ -299,6 +307,10 @@ he-IL:
         action_or_other: "%{first_action} או %{second_action}"
         cancel: "בטל"
         save: "שמור"
+      edit:
+        action_or_other: "%{first_action} או %{second_action}"
+        save: "שמור"
+        comments_for: "תגובות עבור %s"
       button:
         select_action: "Select action"
         delete_checked_items: "מחק פריטים שסומנו"
@@ -444,10 +456,12 @@ he-IL:
         stats: "There are currently %{files_count} files in cache for a total amount of %{size} Kb"
         sweep_cache: "Sweep cache"
         cache: "Cache"
-        explaination: "To save on resources, Publify generates static files
-           along with your content. These files are deleted when a new article
-           is created. You can, at any time, delete these files yourself."
+        explaination: "To save on resources, Publify generates static files along with your content. These files are deleted when a new article is created. You can, at any time, delete these files yourself."
     users:
+      edit:
+        edit_user: "ערוך משתמש"
+      new:
+        add_user: "הוסף משתמש"
       index:
         login: "התחבר"
         users: "משתמשים"
@@ -460,13 +474,14 @@ he-IL:
         state: "State"
         user_state: "%{state} user"
       form:
+        user_status: "User Status"
         account_settings: "Account Settings"
         login: "התחבר"
         password: "Password"
         password_confirmation: "Password confirmation"
         email: "דואל"
         profile: "דיוקן"
-        status: "Status"
+        status: "מצב"
         active: "Active"
         inactive: "Inactive"
         profile_settings: "Profile Settings"

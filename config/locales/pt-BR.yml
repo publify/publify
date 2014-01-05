@@ -32,6 +32,14 @@ pt-BR:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
   admin:
+    themes:
+      index:
+        choose_a_theme: "Escoge un tema"
+        use_this_theme: "Use this theme"
+        active_theme: "%{name} - Tema activo"
+    profiles:
+      index:
+        your_profile: "Your profile"
     sidebar:
       index:
         sidebar: "Sidebar"
@@ -299,6 +307,10 @@ pt-BR:
         action_or_other: "%{first_action} ou %{second_action}"
         cancel: "Cancelar"
         save: "Salvar"
+      edit:
+        action_or_other: "%{first_action} ou %{second_action}"
+        save: "Salvar"
+        comments_for: "Comments for %{article_link}"
       button:
         select_action: "Select action"
         delete_checked_items: "Delete Checked Items"
@@ -446,6 +458,10 @@ pt-BR:
         cache: "Cache"
         explaination: "Para economizar recursos, Publify gera arquivos estáticos juntamente com o seu conteúdo. Esses arquivos são apagados automaticamente quando um novo artigo é criado. Você pode, a qualquer momento, excluir esses arquivos."
     users:
+      edit:
+        edit_user: "Editar usuario"
+      new:
+        add_user: "Add User"
       index:
         login: "entrar"
         users: "Usuarios"
@@ -458,6 +474,7 @@ pt-BR:
         state: "State"
         user_state: "%{state} user"
       form:
+        user_status: "User Status"
         account_settings: "Account Settings"
         login: "Entrar"
         password: "Password"

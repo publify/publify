@@ -32,6 +32,14 @@ nb-NO:
       proceed_to: "Fortsett til %{link}"
       admin: "admin"
   admin:
+    themes:
+      index:
+        choose_a_theme: "Velg et tema"
+        use_this_theme: "Velg dette temaet"
+        active_theme: "%{name} - Aktivt tema"
+    profiles:
+      index:
+        your_profile: "Din profil"
     sidebar:
       index:
         sidebar: "Sidebar"
@@ -299,6 +307,10 @@ nb-NO:
         action_or_other: "%{first_action} eller %{second_action}"
         cancel: "Annuller"
         save: "Lagre"
+      edit:
+        action_or_other: "%{first_action} eller %{second_action}"
+        save: "Lagre"
+        comments_for: "Kommentarer for %{article_link}"
       button:
         select_action: "Velg handling"
         delete_checked_items: "Slett markerte enheter"
@@ -446,6 +458,10 @@ nb-NO:
         cache: "Cache"
         explaination: "For å lagre resurser cacher Publify innholdet i statiske filer. Cachen slettes hver gang noe publiseres. Du kan også velge å slette cachen selv."
     users:
+      edit:
+        edit_user: "Rediger bruker"
+      new:
+        add_user: "Legg til bruker"
       index:
         login: "Logg inn"
         users: "Brukere"
@@ -458,6 +474,7 @@ nb-NO:
         state: "Tilstand"
         user_state: "%{state} bruker"
       form:
+        user_status: "User Status"
         account_settings: "Account Settings"
         login: "Logg inn"
         password: "Password"

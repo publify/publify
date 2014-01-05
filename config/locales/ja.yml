@@ -32,6 +32,14 @@ ja:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
   admin:
+    themes:
+      index:
+        choose_a_theme: "テーマの選択"
+        use_this_theme: "Use this theme"
+        active_theme: "%{name} - 現在のテーマ"
+    profiles:
+      index:
+        your_profile: "あなたのプロフィール"
     sidebar:
       index:
         sidebar: "サイドバー"
@@ -299,6 +307,10 @@ ja:
         action_or_other: "%{first_action} または %{second_action}"
         cancel: "キャンセル"
         save: "保存"
+      edit:
+        action_or_other: "%{first_action} または %{second_action}"
+        save: "保存"
+        comments_for: "Comments for %{article_link}"
       button:
         select_action: "Select action"
         delete_checked_items: "チェックした行を削除"
@@ -446,6 +458,10 @@ ja:
         cache: "キャッシュ"
         explaination: "To save on resources, Publify generates static files along with your content. These files are deleted when a new article is created. You can, at any time, delete these files yourself."
     users:
+      edit:
+        edit_user: "ユーザー編集"
+      new:
+        add_user: "ユーザーの追加"
       index:
         login: "ログイン"
         users: "ユーザー"
@@ -458,6 +474,7 @@ ja:
         state: "状態"
         user_state: "%{state}"
       form:
+        user_status: "User Status"
         account_settings: "Account Settings"
         login: "ログイン"
         password: "Password"

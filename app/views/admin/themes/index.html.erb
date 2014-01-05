@@ -1,39 +1,27 @@
 <%- content_for :page_heading do %>
-  
   <h2>
-    <i class="glyphicon icon-large glyphicon-picture"></i>
-    <%= _("Choose a theme") %>
-  </h2>
+  <i class="glyphicon icon-large glyphicon-picture"></i>
+  <%= t(".choose_a_theme") %>
+</h2>
 <% end %>
-
-<%- i = 0 %>
 
 <%- for theme in @themes %>
-  <% preview_url = url_for(action: 'preview', theme: theme.name) %>
-  <% switch_url = url_for(action: 'switchto', theme: theme.name) %>
-  <% if i == 0 %>
-    <div class='row'>
-    <% end %>
-
-    <div class='col-md-6'>
-      <% if theme.path == @active.path -%>
-        <div class='well'>
-          <h3><%= "#{theme.name} - #{_("Active theme")}" %></h3>
-          <%= image_tag(preview_url, class: 'img-responsive img-thumbnail') %>
-          <%= theme.description_html %>
-        </div>
-      <% else -%>
-        <div class=''>
-          <h3><%= link_to(theme.name, switch_url, title: _("Use this theme")) %></h3>
-          <%= link_to(image_tag(preview_url, class: 'img-thumbnail'), switch_url, title: _("Use this theme")) %>
-          <%= theme.description_html %>
-          <p><%= link_to(_("Use this theme"), switch_url, class: 'btn btn-info') %></p>
-        </div>
-      <% end -%>
+  <%- preview_url = url_for(action: 'preview', theme: theme.name) %>
+  <%- switch_url = url_for(action: 'switchto', theme: theme.name) %>
+  <div class='col-md-6'>
+    <% if theme.path == @active.path -%>
+      <div class='well'>
+      <h3><%= t(".active_theme", name: theme.name) %></h3>
+      <%= image_tag(preview_url, class: 'img-responsive img-thumbnail') %>
+      <%= theme.description_html %>
     </div>
-
-    <% if i == 1 %>
+  <%- else %>
+      <div>
+      <h3><%= link_to(theme.name, switch_url, title: t(".use_this_theme")) %></h3>
+      <%= link_to(image_tag(preview_url, class: 'img-thumbnail'), switch_url, title: t(".use_this_theme")) %>
+      <%= theme.description_html %>
+      <p><%= link_to(t(".use_this_theme"), switch_url, class: 'btn btn-info') %></p>
     </div>
-  <% end %>
-  <% i = (i == 0) ? 1 : 0%>
-<% end %>
+  <%- end %>
+  </div>
+<%- end %>

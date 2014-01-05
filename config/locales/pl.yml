@@ -32,6 +32,14 @@ pl:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
   admin:
+    themes:
+      index:
+        choose_a_theme: "Choose a theme"
+        use_this_theme: "Use this theme"
+        active_theme: "%{name} - Temat aktywny"
+    profiles:
+      index:
+        your_profile: "Your profile"
     sidebar:
       index:
         sidebar: "Sidebar"
@@ -299,6 +307,10 @@ pl:
         action_or_other: "%{first_action} lub %{second_action}"
         cancel: "Anuluj"
         save: "Zapisz"
+      edit:
+        action_or_other: "%{first_action} lub %{second_action}"
+        save: "Zapisz"
+        comments_for: "Comments for %{article_link}"
       button:
         select_action: "Select action"
         delete_checked_items: "Delete Checked Items"
@@ -446,6 +458,10 @@ pl:
         cache: "Bufor"
         explaination: "To save on resources, Publify generates static files along with your content. These files are deleted when a new article is created. You can, at any time, delete these files yourself."
     users:
+      edit:
+        edit_user: "Zmień dane użytkownika"
+      new:
+        add_user: "Add User"
       index:
         login: "login"
         users: "Użytkownicy"
@@ -458,6 +474,7 @@ pl:
         state: "State"
         user_state: "%{state} użytkownicy"
       form:
+        user_status: "User Status"
         account_settings: "Account Settings"
         login: "Login"
         password: "Password"

@@ -32,6 +32,14 @@ en:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
   admin:
+    themes:
+      index:
+        choose_a_theme: "Choose a theme"
+        use_this_theme: "Use this theme"
+        active_theme: "%{name} - Active theme"
+    profiles:
+      index:
+        your_profile: "Your profile"
     sidebar:
       index:
         sidebar: "Sidebar"
@@ -302,6 +310,7 @@ en:
       edit:
         action_or_other: "%{first_action} or %{second_action}"
         save: "Save"
+        comments_for: "Comments for %{article_link}"
       button:
         select_action: "Select action"
         delete_checked_items: "Delete Checked Items"
@@ -449,6 +458,10 @@ en:
         cache: "Cache"
         explaination: "To save on resources, Publify generates static files along with your content. These files are deleted when a new article is created. You can, at any time, delete these files yourself."
     users:
+      edit:
+        edit_user: "Edit User"
+      new:
+        add_user: "Add User"
       index:
         login: "login"
         users: "Users"
@@ -461,6 +474,7 @@ en:
         state: "State"
         user_state: "%{state} user"
       form:
+        user_status: "User Status"
         account_settings: "Account Settings"
         login: "Login"
         password: "Password"

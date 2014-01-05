@@ -32,6 +32,14 @@ fr:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
   admin:
+    themes:
+      index:
+        choose_a_theme: "Sélectionnez un thème"
+        use_this_theme: "Choisir ce thème"
+        active_theme: "%{name} - Thème actif"
+    profiles:
+      index:
+        your_profile: "Votre profil"
     sidebar:
       index:
         sidebar: "Plugins"
@@ -302,6 +310,7 @@ fr:
       edit:
         action_or_other: "%{first_action} or %{second_action}"
         save: "Sauver"
+        comments_for: "Commentaires sur l'article %{article_link}"
       button:
         select_action: "Choisir de..."
         delete_checked_items: "Supprimer les commentaires sélectionnés"
@@ -449,6 +458,10 @@ fr:
         cache: "Cache"
         explaination: "Afin d'économiser des ressources, Publify génère des fichiers statiques avec votre contenu. Ces fichiers sont supprimés lors d'une nouvelle publication. Vous pouvez cependant les effacer vous même."
     users:
+      edit:
+        edit_user: "Modifier un utilisateur"
+      new:
+        add_user: "Ajouter un utilisateur"
       index:
         login: "identifiant"
         users: "Utilisateurs"
@@ -461,6 +474,7 @@ fr:
         state: "État"
         user_state: "%{state}"
       form:
+        user_status: "User Status"
         account_settings: "Account Settings"
         login: "Login"
         password: "Password"
