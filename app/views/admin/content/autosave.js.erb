@@ -1,0 +1,5 @@
+$('#autosave').html('<%= hidden_field_tag('article[id]', @article.id) %>');
+$('#preview_link').replaceWith('<%= link_to('Preview', {:controller => '/articles', :action => 'preview', :id => @article.id}, {:target => 'new', :class => 'btn btn-default'}); %>');
+<% if @article.state.to_s.downcase == "draft" %>
+  $("#article_published_at").val(<% Time.now() %>);
+<% end %>
