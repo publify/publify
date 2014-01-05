@@ -24,7 +24,6 @@ Localization.define("da_DK") do |l|
   l.store "Drag some plugins here to fill your sidebar", "Træk plugins herover for at fylde din sidebar"
   l.store "Display name", "Vis navn"
   l.store "Your site", "Din hjemmeside"
-  l.store "Edit User", "Rediger bruger"
   l.store "Posted by", "Skrevet af"
   l.store "said", "sagde"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "Denne kommentar er blevet markeret som krævende godkendelse. Den vil ikke blive vist før forfatteren godkender den."

@@ -53,7 +53,6 @@ Localization.define("fr_FR") do |l|
   l.store "Publify administrator", "Administrateur"
   l.store "Blog publisher", "Rédacteur"
   l.store "Contributor", "Contributeur"
-  l.store "Edit User", "Modifier un utilisateur"
   l.store "Manage users", "Gérer les utilisateurs"
   l.store "Posted by", "Publié par"
   l.store "Continue reading", "Lire plus"

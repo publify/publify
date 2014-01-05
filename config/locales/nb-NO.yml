@@ -458,6 +458,8 @@ nb-NO:
         cache: "Cache"
         explaination: "For å lagre resurser cacher Publify innholdet i statiske filer. Cachen slettes hver gang noe publiseres. Du kan også velge å slette cachen selv."
     users:
+      edit:
+        edit_user: "Rediger bruker"
       new:
         add_user: "Legg til bruker"
       index:
@@ -472,6 +474,7 @@ nb-NO:
         state: "Tilstand"
         user_state: "%{state} bruker"
       form:
+        user_status: "User Status"
         account_settings: "Account Settings"
         login: "Logg inn"
         password: "Password"

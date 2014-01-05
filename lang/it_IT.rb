@@ -18,7 +18,6 @@ Localization.define("it_IT") do |l|
   l.store "Changes published", "Modifiche pubblicate"
   l.store "Drag some plugins here to fill your sidebar", "Trascina alcuni plugins qui per popolare la tua sidebar"
   l.store "Display name", "Nome visualizzato"
-  l.store "Edit User", "Modifica utente"
   l.store "Posted by", "Scritto da"
   l.store "said", "dice"
   l.store "Your name", "Tuo nome "

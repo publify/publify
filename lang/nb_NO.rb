@@ -81,7 +81,6 @@ Localization.define("nb_NO") do |l|
   l.store "Editor", "Tekstbehandler"
   l.store "Your site", "Din hjemmeside"
   l.store "Yes", "Ja"
-  l.store "Edit User", "Rediger bruker"
   l.store "Posted by", "Skrevet av"
   l.store "Continue reading", "Fortsett å lese"
   l.store "Oops, something wrong happened, the comment could not be saved", "Ojsann, noe galt skjedde. Kommentaren ble ikke lagret"

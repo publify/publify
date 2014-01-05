@@ -458,6 +458,8 @@ pt-BR:
         cache: "Cache"
         explaination: "Para economizar recursos, Publify gera arquivos estáticos juntamente com o seu conteúdo. Esses arquivos são apagados automaticamente quando um novo artigo é criado. Você pode, a qualquer momento, excluir esses arquivos."
     users:
+      edit:
+        edit_user: "Editar usuario"
       new:
         add_user: "Add User"
       index:
@@ -472,6 +474,7 @@ pt-BR:
         state: "State"
         user_state: "%{state} user"
       form:
+        user_status: "User Status"
         account_settings: "Account Settings"
         login: "Entrar"
         password: "Password"

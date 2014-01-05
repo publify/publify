@@ -458,6 +458,8 @@ es-MX:
         cache: "Cach&eacute;"
         explaination: "To save on resources, Publify generates static files along with your content. These files are deleted when a new article is created. You can, at any time, delete these files yourself."
     users:
+      edit:
+        edit_user: "Editar usuario"
       new:
         add_user: "Add User"
       index:
@@ -472,6 +474,7 @@ es-MX:
         state: "State"
         user_state: "%{state} user"
       form:
+        user_status: "User Status"
         account_settings: "Account Settings"
         login: "Login"
         password: "Password"

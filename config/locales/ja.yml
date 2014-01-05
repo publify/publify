@@ -458,6 +458,8 @@ ja:
         cache: "キャッシュ"
         explaination: "To save on resources, Publify generates static files along with your content. These files are deleted when a new article is created. You can, at any time, delete these files yourself."
     users:
+      edit:
+        edit_user: "ユーザー編集"
       new:
         add_user: "ユーザーの追加"
       index:
@@ -472,6 +474,7 @@ ja:
         state: "状態"
         user_state: "%{state}"
       form:
+        user_status: "User Status"
         account_settings: "Account Settings"
         login: "ログイン"
         password: "Password"

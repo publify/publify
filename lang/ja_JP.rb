@@ -42,7 +42,6 @@ Localization.define("ja_JP") do |l|
   l.store "Editor", "エディタ"
   l.store "Your site", "あなたのホームページ"
   l.store "Yes", "はい"
-  l.store "Edit User", "ユーザー編集"
   l.store "Posted by", "投稿者"
   l.store "said", "発言"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "このコメントはモデレーターの確認が必要です。モデレーターが確認後にコメントが表示されます。"

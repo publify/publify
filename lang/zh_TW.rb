@@ -21,7 +21,6 @@ Localization.define("zh_TW") do |l|
   l.store "Changes published", "公開變更"
   l.store "Drag some plugins here to fill your sidebar", "拖曳一些plugins填滿你的sidebar"
   l.store "Display name", "暱稱"
-  l.store "Edit User", "修改使用者"
   l.store "Posted by", "貼上"
   l.store "said", "發言"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "這篇評論被標示為版主所允許的。他不會在部落格顯示直到版主承認他。"

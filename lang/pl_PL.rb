@@ -27,7 +27,6 @@ Localization.define("pl_PL") do |l|
   l.store "Changes published", "Opublikowane zmiany"
   l.store "Drag some plugins here to fill your sidebar", "Przeciągnij i upuść wtyczki na pasek boczny"
   l.store "Display name", "Wyświetlana nazwa"
-  l.store "Edit User", "Zmień dane użytkownika"
   l.store "Posted by", "Opublikowane przez"
   l.store "Continue reading", "Czytaj dalej"
 
