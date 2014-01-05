@@ -264,6 +264,7 @@ en:
         author: "Author"
         date: "Date"
       form:
+        change: "Change"
         publish: "Publish"
         title: "Title"
         images: "Images"

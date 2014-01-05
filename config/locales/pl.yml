@@ -264,6 +264,7 @@ pl:
         author: "Author"
         date: "Data"
       form:
+        change: "Change"
         publish: "Publikuj"
         title: "Tytuł"
         images: "Grafika"

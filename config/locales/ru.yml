@@ -264,6 +264,7 @@ ru:
         author: "Автор"
         date: "Дата"
       form:
+        change: "Change"
         publish: "Опубликовать"
         title: "Заголовок"
         images: "Images"

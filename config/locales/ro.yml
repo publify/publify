@@ -264,6 +264,7 @@ ro:
         author: "Autor"
         date: "Date"
       form:
+        change: "Change"
         publish: "Publică"
         title: "Titlu"
         images: "Images"

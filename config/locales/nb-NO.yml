@@ -264,6 +264,7 @@ nb-NO:
         author: "Forfatter"
         date: "Dato"
       form:
+        change: "Change"
         publish: "Publiser"
         title: "Tittel"
         images: "Bilder"

@@ -264,6 +264,7 @@ it:
         author: "Autore"
         date: "Date"
       form:
+        change: "Change"
         publish: "Pubblica"
         title: "Titolo"
         images: "Images"

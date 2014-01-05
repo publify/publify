@@ -264,6 +264,7 @@ pt-BR:
         author: "Autor"
         date: "Date"
       form:
+        change: "Trocar"
         publish: "Publicar"
         title: "Título"
         images: "Imagens"

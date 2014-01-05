@@ -264,6 +264,7 @@ he-IL:
         author: "כותב"
         date: "תאריך"
       form:
+        change: "Change"
         publish: "פרסם"
         title: "כותרת"
         images: "Images"

@@ -264,6 +264,7 @@ nl:
         author: "Auteur"
         date: "Datum"
       form:
+        change: "Change"
         publish: "Publiceer"
         title: "Titel"
         images: "Afbeeldingen"

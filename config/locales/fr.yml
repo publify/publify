@@ -264,6 +264,7 @@ fr:
         author: "Auteur"
         date: "Date"
       form:
+        change: "Modifier"
         publish: "Publier"
         title: "Titre"
         images: "Images"

@@ -264,6 +264,7 @@ es-MX:
         author: "Autor"
         date: "Date"
       form:
+        change: "Change"
         publish: "Publicar"
         title: "T&iacute;tulo"
         images: "Images"

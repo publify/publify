@@ -264,6 +264,7 @@ lt:
         author: "Author"
         date: "Date"
       form:
+        change: "Change"
         publish: "Publikuoti"
         title: "Title"
         images: "Images"

@@ -264,6 +264,7 @@ ja:
         author: "投稿者"
         date: "日付"
       form:
+        change: "Change"
         publish: "公開"
         title: "タイトル"
         images: "Images"

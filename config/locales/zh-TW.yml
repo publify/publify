@@ -264,6 +264,7 @@ zh-TW:
         author: "作者"
         date: "Date"
       form:
+        change: "Change"
         publish: "公開"
         title: "標題"
         images: "Images"

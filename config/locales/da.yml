@@ -264,6 +264,7 @@ da:
         author: "Forfatter"
         date: "Dato"
       form:
+        change: "Change"
         publish: "Udgiv"
         title: "Titel"
         images: "Images"

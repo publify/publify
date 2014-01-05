@@ -264,6 +264,7 @@ zh-CN:
         author: "作者"
         date: "日期"
       form:
+        change: "Change"
         publish: "发布"
         title: "标题"
         images: "Images"
