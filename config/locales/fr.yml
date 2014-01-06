@@ -1,4 +1,12 @@
 fr:
+  profile:
+    admin: "Administrateur"
+    publisher: "Rédacteur"
+    contributor: "Contributeur"
+  user:
+    status:
+      active: "Active"
+      inactive: "Inactive"
   errors:
     render_sidebar: "Une erreur s'est produite. Un ou plusieurs plugins sont probablement manquants ou en erreur. Peut-être devriez-vous les supprimer ou les réinstaller"
     no_posts_found: "Aucun article n'a été trouvé"
@@ -494,8 +502,6 @@ fr:
         email: "Email"
         profile: "Profile"
         status: "Status"
-        active: "Active"
-        inactive: "Inactive"
         profile_settings: "Profile Settings"
         firstname: "First name"
         lastname: "Last name"

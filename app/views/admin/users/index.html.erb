@@ -29,10 +29,10 @@
       </td>
       <td> <%= user.nickname %></td>
       <td><%= mail_to user.email, user.email%></td>
-      <td><%= _(user.profile.nicename) %></td>
+      <td><%= t("profile.#{user.profile.label}") %></td>
       <td><%= Article.where("user_id = #{user.id}").count %></td>
       <td><%= Comment.where("user_id = #{user.id}").count %></td>
-      <td><%= t(".user_state", state: _("#{user.state.capitalize}")) %></td>
+      <td><%= t("user.status.#{user.state}") %></td>
     </tr>
   <% end -%>
   <%= display_pagination(@users, 7)%>

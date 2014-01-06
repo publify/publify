@@ -37,8 +37,9 @@
     <label class='control-label' for="user_state"><%= t('.user_status')%></label>
     <div class='controls'>
       <select name="user[state]">
-        <option value="active" <%= 'selected' if @user.state == 'active' %>><%= t('.active')%></option>
-        <option value="inactive" <%= 'selected' if @user.state == 'inactive'%>><%= t('.inactive')%></option>
+        <%- User::STATUS.each do |state| %>
+          <option value="<%= state %>" <%= 'selected' if @user.state == state %>><%= t("user.status.#{state}")%></option>
+      <%- end %>
       </select>
     </div>
   </div>

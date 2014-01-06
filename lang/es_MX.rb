@@ -80,7 +80,6 @@ Localization.define("es_MX") do |l|
   l.store "Summary", "Resumen"
   l.store "Textfilter", "Filtro de texto"
   l.store "Type", "Tipo"
-  l.store "Publify admin", "Administrar Publify"
   l.store "Uploaded", "Subido"
   l.store "Write a Page", "Escribir una p&aacute;gina"
   l.store "Write an Article", "Escribir un ar&iacute;culo"

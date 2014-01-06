@@ -116,7 +116,6 @@ Localization.define("pl_PL") do |l|
   l.store "Summary", "Streszczenie"
   l.store "Textfilter", "Filtr tekstu"
   l.store "Type", "Typ"
-  l.store "Publify admin", "administracja Publify"
   l.store "Uploaded", "Załadowany"
   l.store "View", "Obejrzyj"
   l.store "What can you do ?", "Co możesz zrobić?"

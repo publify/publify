@@ -1,4 +1,12 @@
 en:
+  profile:
+    admin: "Publify administrator"
+    publisher: "Blog publisher"
+    contributor: "Contributor"
+  user:
+    status:
+      active: "Active"
+      inactive: "Inactive"
   errors:
     render_sidebar: "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually"
     no_posts_found: "No posts found..."
@@ -484,7 +492,6 @@ en:
         articles: "Articles"
         comments: "Comments"
         state: "State"
-        user_state: "%{state} user"
       form:
         user_status: "User Status"
         account_settings: "Account Settings"
@@ -494,8 +501,6 @@ en:
         email: "Email"
         profile: "Profile"
         status: "Status"
-        active: "Active"
-        inactive: "Inactive"
         profile_settings: "Profile Settings"
         firstname: "First name"
         lastname: "Last name"

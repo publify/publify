@@ -51,8 +51,6 @@ Localization.define("nl_NL") do |l|
   l.store "no", "nee"
   l.store "Drag some plugins here to fill your sidebar", "Sleep wat plugins naar hier om de zijbalk te vullen"
   l.store "Are you sure you want to delete the tag", "Weet je zeker dat je deze tag wilt verwijderen?"
-  l.store "Active", "Actief"
-  l.store "Inactive", "Inactief"
   l.store "Editor", "Editor"
   l.store "Yes", "Ja"
   l.store "Posted by", "Geplaatst door"
