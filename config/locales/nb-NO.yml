@@ -394,6 +394,8 @@ nb-NO:
       comment:
         no_comments_yet: "Ingen kommentarer"
         by: "Av"
+      comments:
+        latest_comments: "Siste kommentarer"
     content:
       index:
         published: "Publisert"

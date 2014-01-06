@@ -394,6 +394,8 @@ zh-TW:
       comment:
         no_comments_yet: "沒有任何評論"
         by: "By"
+      comments:
+        latest_comments: "最近評論"
     content:
       index:
         published: "已公開的"

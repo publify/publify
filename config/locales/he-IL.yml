@@ -394,6 +394,8 @@ he-IL:
       comment:
         no_comments_yet: "עדיין ללא תגובות"
         by: "על ידי"
+      comments:
+        latest_comments: "Latest Comments"
     content:
       index:
         published: "פורסם"

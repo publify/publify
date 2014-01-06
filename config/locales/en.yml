@@ -277,11 +277,11 @@ en:
         type_your_post: "Type your post"
     feedback:
       bulkops:
-        success_mark_as_ham: 
+        success_mark_as_ham:
           zero: "No item selected to mark as Ham"
           one: "Marked 1 item as Ham"
           other: "Marked %{count} items as Ham"
-        success_mark_as_spam: 
+        success_mark_as_spam:
           zero: "No item selected to mark as Spam"
           one: "Marked 1 item as Spam"
           other: "Marked %{count} items as Spam"
@@ -394,6 +394,8 @@ en:
       comment:
         no_comments_yet: "No comments yet"
         by: "By"
+      comments:
+        latest_comments: "Latest Comments"
     content:
       index:
         published: "Published"
@@ -476,7 +478,7 @@ en:
         name: "Name"
         email: "Email"
         profile: "Profile"
-        articles: "Articles" 
+        articles: "Articles"
         comments: "Comments"
         state: "State"
         user_state: "%{state} user"

@@ -394,6 +394,8 @@ pt-BR:
       comment:
         no_comments_yet: "Nenhum comentário ainda"
         by: "Por"
+      comments:
+        latest_comments: "Latest Comments"
     content:
       index:
         published: "Publicado"

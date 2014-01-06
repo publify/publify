@@ -394,6 +394,8 @@ nl:
       comment:
         no_comments_yet: "Nog geen reacties"
         by: "Door"
+      comments:
+        latest_comments: "Laatste reacties"
     content:
       index:
         published: "Gepubliceerd"

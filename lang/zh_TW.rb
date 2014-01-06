@@ -7,7 +7,6 @@ Localization.define("zh_TW") do |l|
   l.store "Remove", "移除"
   l.store "Uploads", "上載"
   l.store "Publish at", "公開"
-  l.store "Latest Comments", "最近評論"
   l.store "Welcome back, %s!", "歡迎回來， %s！"
   l.store "Your posts : %d", "你的發文：%d"
   l.store "Limit to spam", "限制垃圾郵件"

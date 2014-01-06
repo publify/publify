@@ -394,6 +394,8 @@ zh-CN:
       comment:
         no_comments_yet: "没有任何评论"
         by: "By"
+      comments:
+        latest_comments: "最近评论"
     content:
       index:
         published: "已发表"

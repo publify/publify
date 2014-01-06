@@ -31,7 +31,6 @@ Localization.define("fr_FR") do |l|
   l.store "None", "Aucun"
   l.store "SmartyPants", "SmartyPants"
   l.store "Visual", "Éditeur riche"
-  l.store "Latest Comments", "Derniers commentaires"
   l.store "Welcome back, %s!", "Bienvenue, %s !"
   l.store "Total comments:", "Nombre total de commentaires :"
   l.store "unconfirmed", "non validés"

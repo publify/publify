@@ -12,7 +12,6 @@ Localization.define("pl_PL") do |l|
   l.store "Remove", "Skasuj"
   l.store "Uploads", "Załadowane zasoby"
   l.store "Publish at", "Opublikowane dnia"
-  l.store "Latest Comments", "Ostatnie komentarze"
   l.store "Latest Posts", "Ostatnie Wpisy"
   l.store "Welcome back, %s!", "Witamy spowrotem, %s!"
   l.store "Your posts : %d", "Twoje wpisy: %d"

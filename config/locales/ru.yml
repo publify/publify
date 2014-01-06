@@ -394,6 +394,8 @@ ru:
       comment:
         no_comments_yet: "Пока нет комментариев"
         by: "By"
+      comments:
+        latest_comments: "Последние комментарии"
     content:
       index:
         published: "Опубликован"

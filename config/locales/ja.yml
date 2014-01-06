@@ -394,6 +394,8 @@ ja:
       comment:
         no_comments_yet: "まだコメントはありません"
         by: "By"
+      comments:
+        latest_comments: "Latest Comments"
     content:
       index:
         published: "公開済み"

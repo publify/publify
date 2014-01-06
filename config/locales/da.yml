@@ -394,6 +394,8 @@ da:
       comment:
         no_comments_yet: "Der er ingen kommentarer endnu"
         by: "By"
+      comments:
+        latest_comments: "Seneste kommentarer"
     content:
       index:
         published: "Offentliggjort"

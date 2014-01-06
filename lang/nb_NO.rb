@@ -42,7 +42,6 @@ Localization.define("nb_NO") do |l|
   l.store "Remove", "Slett"
   l.store "Uploads", "Opplastede filer"
   l.store "Publish at", "Offentliggjort den"
-  l.store "Latest Comments", "Siste kommentarer"
   l.store "Latest Posts", "Siste poster"
   l.store "Welcome back, %s!", "Velkommen tilbake, %s!"
   l.store "Total comments:", "Antall kommentarer:"

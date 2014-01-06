@@ -38,7 +38,6 @@ Localization.define("nl_NL") do |l|
   l.store "Drafts", "Concepten"
   l.store "Uploads", "Uploads"
   l.store "Publish at", "Publiceren op"
-  l.store "Latest Comments", "Laatste reacties"
   l.store "Latest Posts", "Laatste berichten"
   l.store "Welcome back, %s!", "Welkom terug, %s!"
   l.store "Your posts : %d", "Jouw berichten : %d"

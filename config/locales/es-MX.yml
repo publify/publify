@@ -394,6 +394,8 @@ es-MX:
       comment:
         no_comments_yet: "No comments yet"
         by: "By"
+      comments:
+        latest_comments: "Latest Comments"
     content:
       index:
         published: "Publicado"

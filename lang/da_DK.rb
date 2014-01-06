@@ -9,7 +9,6 @@ Localization.define("da_DK") do |l|
   l.store "Remove", "Slet"
   l.store "Uploads", "Filer"
   l.store "Publish at", "Offentliggjort den"
-  l.store "Latest Comments", "Seneste kommentarer"
   l.store "Welcome back, %s!", "Velkommen tilbage, %s!"
   l.store "Your posts : %d", "Dine artikler : %d"
   l.store "Manage pages", "Administrer sider"

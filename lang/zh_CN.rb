@@ -20,7 +20,6 @@ Localization.define("zh_CN") do |l|
   l.store "Drafts", "草稿"
   l.store "Uploads", "上传"
   l.store "Publish at", "公开"
-  l.store "Latest Comments", "最近评论"
   l.store "Latest Posts", "最近发表"
   l.store "Welcome back, %s!", "欢迎回來， %s！"
   l.store "Your posts : %d", "你的文章：%d"

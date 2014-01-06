@@ -394,6 +394,8 @@ fr:
       comment:
         no_comments_yet: "Aucun commentaire pour l'instant"
         by: "Par"
+      comments:
+        latest_comments: "Derniers commentaires"
     content:
       index:
         published: "Publié"
