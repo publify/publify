@@ -232,6 +232,9 @@ en:
         display_name: "Display Name"
         manage_tags: "Manage Tags"
         name: "Name"
+        cancel: "Cancel"
+        save: "Save"
+        or: "or"
     resources:
       index:
         media_library: "Media Library"

@@ -232,6 +232,9 @@ nb-NO:
         display_name: "Visningsnavn"
         manage_tags: "Administrer tags"
         name: "Navn"
+        cancel: "Annuller"
+        save: "Lagre"
+        or: "or"
     resources:
       index:
         media_library: "Media Library"

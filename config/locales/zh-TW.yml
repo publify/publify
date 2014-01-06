@@ -232,6 +232,9 @@ zh-TW:
         display_name: "暱稱"
         manage_tags: "Tags管理"
         name: "名稱"
+        cancel: "取消"
+        save: "存檔"
+        or: "or"
     resources:
       index:
         media_library: "Media Library"

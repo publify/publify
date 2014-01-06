@@ -232,6 +232,9 @@ de:
         display_name: "Anzeigename"
         manage_tags: "Etikett verwalten"
         name: "Name"
+        cancel: "Abbrechen"
+        save: "Speichern"
+        or: "or"
     resources:
       index:
         media_library: "Media Library"

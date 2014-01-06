@@ -232,6 +232,9 @@ lt:
         display_name: "Rodomas vardas"
         manage_tags: "Valdyti žymės"
         name: "Vardas"
+        cancel: "Baigti"
+        save: "Saugoti"
+        or: "or"
     resources:
       index:
         media_library: "Media Library"
@@ -313,10 +316,10 @@ lt:
         your_comment: "Your comment"
         action_or_other: "%{first_action} arba %{second_action}"
         cancel: "Baigti"
-        save: "Save"
+        save: "Saugoti"
       edit:
         action_or_other: "%{first_action} arba %{second_action}"
-        save: "Save"
+        save: "Saugoti"
         comments_for: "Comments for %{article_link}"
       button:
         select_action: "Select action"

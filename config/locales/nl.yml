@@ -232,6 +232,9 @@ nl:
         display_name: "Toon naam"
         manage_tags: "Beheer tags"
         name: "Naam"
+        cancel: "Terug"
+        save: "Bewaar"
+        or: "or"
     resources:
       index:
         media_library: "Media Library"

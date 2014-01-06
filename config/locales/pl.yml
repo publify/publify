@@ -232,6 +232,9 @@ pl:
         display_name: "Wyświetlana nazwa"
         manage_tags: "Zarządzaj tagów"
         name: "nazwa"
+        cancel: "Anuluj"
+        save: "Zapisz"
+        or: "or"
     resources:
       index:
         media_library: "Media Library"

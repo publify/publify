@@ -232,6 +232,9 @@ it:
         display_name: "Nome visualizzato"
         manage_tags: "Gestisci tags"
         name: "Nome"
+        cancel: "Annulla"
+        save: "Salva"
+        or: "or"
     resources:
       index:
         media_library: "Media Library"

@@ -232,6 +232,9 @@ ro:
         display_name: "Numele real"
         manage_tags: "Manage Tags"
         name: "Nume"
+        cancel: "Anulare"
+        save: "Salvează"
+        or: "or"
     resources:
       index:
         media_library: "Media Library"

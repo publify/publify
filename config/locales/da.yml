@@ -232,6 +232,9 @@ da:
         display_name: "Vis navn"
         manage_tags: "Administrer Tags"
         name: "Navn"
+        cancel: "Anuller"
+        save: "Gem"
+        or: "or"
     resources:
       index:
         media_library: "Media Library"

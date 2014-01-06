@@ -232,6 +232,9 @@ pt-BR:
         display_name: "Nombre para mostrar"
         manage_tags: "Administrar tags"
         name: "Nombre"
+        cancel: "Cancelar"
+        save: "Salvar"
+        or: "or"
     resources:
       index:
         media_library: "Media Library"

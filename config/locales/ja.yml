@@ -232,6 +232,9 @@ ja:
         display_name: "表示名"
         manage_tags: "タグの管理"
         name: "名前"
+        cancel: "キャンセル"
+        save: "保存"
+        or: "or"
     resources:
       index:
         media_library: "Media Library"

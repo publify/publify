@@ -232,6 +232,9 @@ fr:
         display_name: "Nom affiché"
         manage_tags: "Labels"
         name: "Nom"
+        cancel: "Annuler"
+        save: "Sauver"
+        or: "ou"
     resources:
       index:
         media_library: "Bibliothèque de média"

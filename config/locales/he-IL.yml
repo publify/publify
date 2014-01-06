@@ -232,6 +232,9 @@ he-IL:
         display_name: "שם התצוגה"
         manage_tags: "נהל תוויות"
         name: "השם"
+        cancel: "בטל"
+        save: "שמור"
+        or: "or"
     resources:
       index:
         media_library: "Media Library"
