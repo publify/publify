@@ -210,7 +210,7 @@ describe Admin::ContentController do
     end
 
     it 'should create an article linked to the current user' do
-      post :create, 'article' => base_article
+      post :create, article: base_article
       new_article = Article.last
       assert_equal @user, new_article.user
     end
@@ -328,9 +328,9 @@ describe Admin::ContentController do
 
   describe 'with admin connection' do
     before(:each) do
-      user = create(:user_admin)
+      @user = create(:user_admin, text_filter: create(:markdown))
       @article = create(:article)
-      request.session = { :user => user.id }
+      request.session = { :user => @user.id }
     end
 
     it_should_behave_like 'index action'
