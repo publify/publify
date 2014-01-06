@@ -340,6 +340,8 @@ ru:
         this_comment_by_was_flagged_as_spam: "This comment by %{author} was flagged as spam, %{cancel_link}?"
         cancel: "Отменить"
     dashboard:
+      index:
+        welcome_back: "Добро пожаловать снова, %{user_name}!"
       drafts:
         your_drafts: "Your drafts"
         no_drafts_yet: "No drafts yet, why don't you start and write one"

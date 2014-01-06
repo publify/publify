@@ -16,7 +16,6 @@ Localization.define("ja_JP") do |l|
   l.store "Remove", "削除"
   l.store "Uploads", "アップロード"
   l.store "Publish at", "公開日"
-  l.store "Welcome back, %s!", "お帰りなさいませ、%s 様"
   l.store "Your posts : %d", "あなたの投稿数"
   l.store "Limit to ham", "有効コメント"
   l.store "Limit to spam", "スパムコメント"

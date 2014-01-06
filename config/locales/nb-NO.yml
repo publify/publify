@@ -340,6 +340,8 @@ nb-NO:
         this_comment_by_was_flagged_as_spam: "Denne kommentaren av %{author} er flagget som Spam, %{cancel_link}?"
         cancel: "Annuller"
     dashboard:
+      index:
+        welcome_back: "Velkommen tilbake, %{user_name}!"
       drafts:
         your_drafts: "Your drafts"
         no_drafts_yet: "No drafts yet, why don't you start and write one"

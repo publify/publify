@@ -288,11 +288,11 @@ zh-CN:
         type_your_post: "Type your post"
     feedback:
       bulkops:
-        success_mark_as_ham: 
+        success_mark_as_ham:
           zero: "No item selected to mark as Ham"
           one: "Marked 1 item as Ham"
           other: "Marked %{count} items as Ham"
-        success_mark_as_spam: 
+        success_mark_as_spam:
           zero: "No item selected to mark as Spam"
           one: "Marked 1 item as Spam"
           other: "标记%{count}项为垃圾信息"
@@ -340,6 +340,8 @@ zh-CN:
         this_comment_by_was_flagged_as_spam: "This comment by %{author} was flagged as spam, %{cancel_link}?"
         cancel: "取消"
     dashboard:
+      index:
+        welcome_back: "欢迎回來， %{user_name}！"
       drafts:
         your_drafts: "Your drafts"
         no_drafts_yet: "No drafts yet, why don't you start and write one"

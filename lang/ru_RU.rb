@@ -21,7 +21,6 @@ Localization.define("ru_RU") do |l|
   l.store "SmartyPants", "SmartyPants"
   l.store "Visual", "Визуально"
   l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", "По соображениям безопасности вам следует перезапустить ваше Publify-приложение. Приятного блогерства!"
-  l.store "Welcome back, %s!", "Добро пожаловать снова, %s!"
   l.store "Your posts : %d", "Ваших постов: %d"
   l.store "Your name", "Ваше имя"
   l.store "Your email", "Ваш email"

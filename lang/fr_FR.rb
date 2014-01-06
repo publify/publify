@@ -28,7 +28,6 @@ Localization.define("fr_FR") do |l|
   l.store "None", "Aucun"
   l.store "SmartyPants", "SmartyPants"
   l.store "Visual", "Éditeur riche"
-  l.store "Welcome back, %s!", "Bienvenue, %s !"
   l.store "unconfirmed", "non validés"
   l.store "New database version", "Nouvelle version de la base"
   l.store "yes", "oui"

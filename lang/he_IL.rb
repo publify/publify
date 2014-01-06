@@ -24,7 +24,6 @@ Localization.define("he_IL") do |l|
   l.store "Remove", "הסר"
   l.store "Uploads", "העלאות"
   l.store "Publish at", "פורסם בתאריך"
-  l.store "Welcome back, %s!", "ברוך הבא, %s!"
   l.store "Your posts : %d", "הכתבות שלך: %d"
   l.store "File", "קובץ"
   l.store "New database version", "גירסת בסיס הנתונים החדשה"

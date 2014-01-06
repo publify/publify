@@ -17,7 +17,6 @@ Localization.define("zh_CN") do |l|
   l.store "Drafts", "草稿"
   l.store "Uploads", "上传"
   l.store "Publish at", "公开"
-  l.store "Welcome back, %s!", "欢迎回來， %s！"
   l.store "Your posts : %d", "你的文章：%d"
   l.store "Limit to spam", "限制垃圾郵件"
   l.store "File", "檔案"

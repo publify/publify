@@ -340,6 +340,8 @@ fr:
         this_comment_by_was_flagged_as_spam: "Ce commentaire de %{author} a été marqué comme spam, %{cancel_link} ?"
         cancel: "Annuler"
     dashboard:
+      index:
+        welcome_back: "Bienvenue, %{user_name} !"
       drafts:
         your_drafts: "Vos brouillons"
         no_drafts_yet: "Pas de brouillons, pourquoi ne pas en écrire un"
