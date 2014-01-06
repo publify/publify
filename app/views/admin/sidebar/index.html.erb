@@ -5,7 +5,9 @@
 <p class='help-block'><%= t(".explain_how_its_work") %></p>
 <%= form_tag(:url => {:action=>'publish', :method => :post }, :remote => true, :class => 'spinner') do %>
   <div class='form-actions'>
-  <%= cancel_or_save(t('.publish_changes'))%>
+  <%= link_to(_("Cancel"), {action: 'index'}, class: 'btn') %>
+  <%= _("or") %>
+  <%= submit_tag(t('.publish_changes'), class: 'btn btn-success') %>
 </div>
 
 <div id="messages">&nbsp;</div>
@@ -47,7 +49,9 @@
 
     </div>
     <div class='form-group'>
-      <%= cancel_or_save(t('.publish_changes'))%>
+      <%= link_to(_("Cancel"), {action: 'index'}, class: 'btn') %>
+      <%= _("or") %>
+      <%= submit_tag(t('.publish_changes'), class: 'btn btn-success') %>
     </div>
 
   <% end %>

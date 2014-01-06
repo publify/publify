@@ -17,14 +17,6 @@ module Admin::BaseHelper
     output
   end
 
-  def cancel(url = {:action => 'index'})
-    link_to _("Cancel"), url, :class => 'btn'
-  end
-
-  def save(val = _("Store"))
-    submit_tag(val, :class => 'btn btn-success')
-  end
-
   def link_to_edit(label, record, controller = controller.controller_name)
     link_to label, {:controller => controller, :action => 'edit', :id => record.id}, :class => 'edit'
   end
@@ -68,10 +60,6 @@ module Admin::BaseHelper
     content_tag(:tr) do
       content_tag(:td, _("There are no %s yet. Why don't you start and create one?", _(controller.controller_name)), { colspan: cols})
     end
-  end
-
-  def cancel_or_save(message=_("Save"))
-    "#{cancel} #{_("or")} #{save(message)}"
   end
 
   def get_short_url(item)

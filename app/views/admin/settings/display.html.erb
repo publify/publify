@@ -148,5 +148,9 @@
     </div>
   </fieldset>
   <%= hidden_field_tag 'from', 'display' %>
-  <%= save_settings %>
+  <div class='form-group'>
+    <%= link_to(_("Cancel"), {action: 'index'}, class: 'btn') %>
+    <%= _("or") %>
+    <%= submit_tag(_("Update settings"), class: 'btn btn-success') %>
+  </div>
 <% end %>

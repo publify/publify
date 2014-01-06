@@ -196,5 +196,7 @@
   <% end %>
 
   <div class='form-actions'>
-    <%= cancel_or_save %>
+    <%= link_to(_("Cancel"), {action: 'index'}, class: 'btn') %>
+    <%= _("or") %>
+    <%= submit_tag(_("Save"), class: 'btn btn-success') %>
   </div>

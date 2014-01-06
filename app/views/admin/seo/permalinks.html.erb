@@ -49,7 +49,11 @@
   <li><code>%day%</code>: <%= t(".your_article_day") %></li>
 </ul>
 
-<%= save_settings %>
+  <div class='form-group'>
+    <%= link_to(_("Cancel"), {action: 'index'}, class: 'btn') %>
+    <%= _("or") %>
+    <%= submit_tag(_("Update settings"), class: 'btn btn-success') %>
+  </div>
 <%= hidden_field_tag 'from', 'permalinks' %>
 <% end %>
 

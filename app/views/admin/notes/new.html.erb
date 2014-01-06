@@ -42,7 +42,9 @@
           <%= text_field 'note', 'published_at', {:class => 'form-control datepicker'} %>  
         </div>
         <div class='form-group'>
-          <%= cancel_or_save( _("Publish")) %>
+          <%= link_to(_("Cancel"), {action: 'index'}, class: 'btn') %>
+          <%= _("or") %>
+          <%= submit_tag(_("Publish"), class: 'btn btn-success') %>
         </div>
       </fieldset>
     </div>
