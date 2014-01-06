@@ -5,7 +5,6 @@ Localization.define("nb_NO") do |l|
   l.store "Short url:", "Kort URL:"
   l.store "Edit", "Rediger"
   l.store "Show", "Vis"
-  l.store "Show help on Publify macros", "Vis hjelp i Publify makroer"
   l.store "Update settings", "Oppdater innstillinger"
   l.store "Back to list", "Tilbake til listen"
   l.store "no trackbacks", "ingen trackbacks"

@@ -1,7 +1,6 @@
 # coding: utf-8
 Localization.define("ja_JP") do |l|
   l.store "Edit", "編集"
-  l.store "Show help on Publify macros", "Publifyマクロのヘルプを表示"
   l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", Proc.new { |date| sprintf(date.strftime("%Y-%m-%d %H:%M:%S GMT")) }
   l.store "%%d. %%b", Proc.new { |date| sprintf(date.strftime("%m/%d")) }
   l.store "no trackbacks", "トラックバックなし"
@@ -33,7 +32,6 @@ Localization.define("ja_JP") do |l|
   l.store "Posted by", "投稿者"
   l.store "said", "発言"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "このコメントはモデレーターの確認が必要です。モデレーターが確認後にコメントが表示されます。"
-
   l.store "Your name", "あなたの名前"
   l.store "Your email", "あなたのemail"
   l.store "Your message", "メッセージ"

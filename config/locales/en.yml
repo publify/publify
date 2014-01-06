@@ -229,6 +229,11 @@ en:
         explain_moderate_feedback: "You may want to moderate feedback when turning this on"
         explain_rss_description: "You can use the following tags: %author% (author name), %blog_url% (this blog URL), %blog_name% (this blog title) and %permalink_url% (a link to the article you want to protect)"
     shared:
+      macros:
+        show_help_on_publify_macros: "Show help on Publify macros"
+        name: "Name"
+        description: "Description"
+        tag: "Tag"
       destroy:
         are_you_sure: "Are you sure you want to delete this %{element}"
         action_or_other: "%{first_action} or %{second_action}"
@@ -275,6 +280,7 @@ en:
         author: "Author"
         date: "Date"
       form:
+        cancel: "Cancel"
         change: "Change"
         publish: "Publish"
         title: "Title"

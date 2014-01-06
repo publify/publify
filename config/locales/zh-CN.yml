@@ -229,6 +229,11 @@ zh-CN:
         explain_moderate_feedback: "You may want to moderate feedback when turning this on"
         explain_rss_description: "You can use the following tags: %author% (author name), %blog_url% (this blog URL), %blog_name% (this blog title) and %permalink_url% (a link to the article you want to protect)"
     shared:
+      macros:
+        show_help_on_publify_macros: "显示Publify宏的帮助"
+        name: "名稱"
+        description: "说明"
+        tag: "Tag"
       destroy:
         are_you_sure: "Are you sure you want to delete this %{element}"
         action_or_other: "%{first_action} 或 %{second_action}"
@@ -275,6 +280,7 @@ zh-CN:
         author: "作者"
         date: "日期"
       form:
+        cancel: "取消"
         change: "Change"
         publish: "发布"
         title: "标题"

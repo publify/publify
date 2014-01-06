@@ -229,6 +229,11 @@ ja:
         explain_moderate_feedback: "You may want to moderate feedback when turning this on"
         explain_rss_description: "You can use the following tags: %author% (author name), %blog_url% (this blog URL), %blog_name% (this blog title) and %permalink_url% (a link to the article you want to protect)"
     shared:
+      macros:
+        show_help_on_publify_macros: "Publifyマクロのヘルプを表示"
+        name: "名前"
+        description: "説明"
+        tag: "Tag"
       destroy:
         are_you_sure: "Are you sure you want to delete this %{element}"
         action_or_other: "%{first_action} または %{second_action}"
@@ -275,6 +280,7 @@ ja:
         author: "投稿者"
         date: "日付"
       form:
+        cancel: "キャンセル"
         change: "Change"
         publish: "公開"
         title: "タイトル"

@@ -229,6 +229,11 @@ fr:
         explain_moderate_feedback: "Si vous activez cette option, peut-être devriez-vous également activer la modération des commentaires."
         explain_rss_description: "You can use the following tags: %author% (author name), %blog_url% (this blog URL), %blog_name% (this blog title) and %permalink_url% (a link to the article you want to protect)"
     shared:
+      macros:
+        show_help_on_publify_macros: "Afficher l'aide sur les macros Publify"
+        name: "Name"
+        description: "Description"
+        tag: "Label"
       destroy:
         are_you_sure: "Êtes-vous certain de vouloir supprimer ce %{element}"
         action_or_other: "%{first_action} ou %{second_action}"
@@ -275,6 +280,7 @@ fr:
         author: "Auteur"
         date: "Date"
       form:
+        cancel: "Annuler"
         change: "Modifier"
         publish: "Publier"
         title: "Titre"

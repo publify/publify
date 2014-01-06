@@ -3,7 +3,6 @@ Localization.define("he_IL") do |l|
   l.store "User was successfully updated.", "המשתמש עודכן בהצלחה."
   l.store "Localization.rtl", "1"
   l.store "Edit", "ערוך"
-  l.store "Tag", "תוית"
   l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", "%%a, %%d %%b %%Y %%H:%%M:%%S GMT"
   l.store "%%d. %%b", "%%d. %%b"
   l.store "no trackbacks", "אין עוקבים-חזרה"

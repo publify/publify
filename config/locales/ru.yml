@@ -229,6 +229,11 @@ ru:
         explain_moderate_feedback: "You may want to moderate feedback when turning this on"
         explain_rss_description: "You can use the following tags: %author% (author name), %blog_url% (this blog URL), %blog_name% (this blog title) and %permalink_url% (a link to the article you want to protect)"
     shared:
+      macros:
+        show_help_on_publify_macros: "Показать помощь по Publify-макросам"
+        name: "Имя"
+        description: "Описание"
+        tag: "Тег"
       destroy:
         are_you_sure: "Вы уверены, что хотите удалить %{element}?"
         action_or_other: "%{first_action} или %{second_action}"
@@ -275,6 +280,7 @@ ru:
         author: "Автор"
         date: "Дата"
       form:
+        cancel: "Отменить"
         change: "Change"
         publish: "Опубликовать"
         title: "Заголовок"

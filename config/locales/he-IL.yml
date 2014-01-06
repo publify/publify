@@ -229,6 +229,11 @@ he-IL:
         explain_moderate_feedback: "You may want to moderate feedback when turning this on"
         explain_rss_description: "You can use the following tags: %author% (author name), %blog_url% (this blog URL), %blog_name% (this blog title) and %permalink_url% (a link to the article you want to protect)"
     shared:
+      macros:
+        show_help_on_publify_macros: "Show help on Publify macros"
+        name: "השם"
+        description: "תיאור"
+        tag: "תוית"
       destroy:
         are_you_sure: "האם אתה בטוח שברצונך למחוק את %{element} הזו?"
         action_or_other: "%{first_action} או %{second_action}"
@@ -275,6 +280,7 @@ he-IL:
         author: "כותב"
         date: "תאריך"
       form:
+        cancel: "בטל"
         change: "Change"
         publish: "פרסם"
         title: "כותרת"

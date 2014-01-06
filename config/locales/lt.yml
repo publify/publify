@@ -229,6 +229,11 @@ lt:
         explain_moderate_feedback: "You may want to moderate feedback when turning this on"
         explain_rss_description: "You can use the following tags: %author% (author name), %blog_url% (this blog URL), %blog_name% (this blog title) and %permalink_url% (a link to the article you want to protect)"
     shared:
+      macros:
+        show_help_on_publify_macros: "Show help on Publify macros"
+        name: "Vardas"
+        description: "Beschreibung"
+        tag: "Tag"
       destroy:
         are_you_sure: "Ar jūs tikrai nori ištrinti šį %{element}?"
         action_or_other: "%{first_action} arba %{second_action}"
@@ -261,7 +266,7 @@ lt:
       new:
         post_types: "Post Types"
         name: "Vardas"
-        description: "Description"
+        description: "Beschreibung"
         template_name: "Template name"
         default: "Default"
         publify_default_post_type: "Publify default post type"
@@ -275,6 +280,7 @@ lt:
         author: "Author"
         date: "Date"
       form:
+        cancel: "Baigti"
         change: "Change"
         publish: "Publikuoti"
         title: "Title"
@@ -454,7 +460,7 @@ lt:
         keywords: "Keywords"
         permalink: "Permalink"
         explaination: "Your category slug. Leave empty if you don't know what to put here"
-        description: "Description"
+        description: "Beschreibung"
         title: "Title"
     menu:
       help: "Help"

@@ -3,8 +3,6 @@ Localization.define("nl_NL") do |l|
   l.store "There are no %s yet. Why don't you start and create one?", "Er zijn nog geen %s. Waarom begin je er niet een te maken?"
   l.store "Edit", "Bewerken"
   l.store "Show", "Tonen"
-  l.store "Show help on Publify macros", "Toon help voor Publify macro's"
-  l.store "Tag", "Tag"
   l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", "%%a, %%d %%b %%Y %%H:%%M:%%S GMT"
   l.store "%%d. %%b", "%%d. %%b"
   l.store "1 comment", "één reactie"

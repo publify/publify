@@ -4,8 +4,6 @@ Localization.define("pt_BR") do |l|
   l.store "There are no %s yet. Why don't you start and create one?", "Não existem %s ainda. Por que você não inicia e cria um?"
   l.store "Edit", "Editar"
   l.store "Show", "Exibir"
-  l.store "Show help on Publify macros", "Exibir ajuda no Publify macros"
-  l.store "Tag", "Tag"
   l.store "no trackbacks", "sem trackbacks"
   l.store "%d trackbacks", "%d trackbacks"
   l.store "no posts", "Sem posts"

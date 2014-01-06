@@ -4,10 +4,8 @@ Localization.define("ru_RU") do |l|
   l.store "Edit", "Редактировать"
   l.store "There are no %s yet. Why don't you start and create one?", "Ничего нет. Почему бы не начать и не добавить?" # XXX
   l.store "Show", "Показать"
-  l.store "Show help on Publify macros", "Показать помощь по Publify-макросам"
   l.store "Update settings", "Обновить настройки"
   l.store "Back to list", "Назад к списку"
-  l.store "Tag", "Тег"
   l.store "and published on", " — и она опубликована"
   l.store "direct link to this article", "прямая ссылка на эту статью"
   l.store "it has been illegally reproduced and without proper authorization", " — это может быть незаконным воспроизведением без разрешения"

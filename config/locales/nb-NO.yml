@@ -229,6 +229,11 @@ nb-NO:
         explain_moderate_feedback: "Kanskje du ønsker å moderere feedbacks når du slår på denne"
         explain_rss_description: "You can use the following tags: %author% (author name), %blog_url% (this blog URL), %blog_name% (this blog title) and %permalink_url% (a link to the article you want to protect)"
     shared:
+      macros:
+        show_help_on_publify_macros: "Vis hjelp i Publify makroer"
+        name: "Navn"
+        description: "Beskrivelse"
+        tag: "Tag"
       destroy:
         are_you_sure: "Er du sikker på at du vil slette denne %{element}?"
         action_or_other: "%{first_action} eller %{second_action}"
@@ -275,6 +280,7 @@ nb-NO:
         author: "Forfatter"
         date: "Dato"
       form:
+        cancel: "Annuller"
         change: "Change"
         publish: "Publiser"
         title: "Tittel"
