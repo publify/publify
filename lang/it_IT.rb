@@ -1,6 +1,5 @@
 # coding: utf-8
 Localization.define("it_IT") do |l|
-  l.store "Store", "Salva"
   l.store "Edit", "Modifica"
   l.store "no trackbacks", "nessun trackback"
   l.store "Reorder", "Riordina"
@@ -9,12 +8,10 @@ Localization.define("it_IT") do |l|
   l.store "Publish at", "Pubblicato il"
   l.store "Limit to spam", "Limita a spam"
   l.store "File", "File"
-  l.store "File Uploads", "Invia file"
   l.store "New database version", "Nuova versione del database"
   l.store "yes", "si"
   l.store "no", "no"
   l.store "Drag some plugins here to fill your sidebar", "Trascina alcuni plugins qui per popolare la tua sidebar"
-  l.store "Display name", "Nome visualizzato"
   l.store "Posted by", "Scritto da"
   l.store "said", "dice"
   l.store "Your name", "Tuo nome "
@@ -33,7 +30,6 @@ Localization.define("it_IT") do |l|
   l.store "Read full article", "Leggi articolo completo"
   l.store "Trackbacks for", "Trackbacks per"
   l.store "Archives", "Archivi"
-  l.store "Syndicate", "Syndicate"
   l.store "%d Articles", ["Categoria", "%d Categorie"]
   l.store "%d Categories", ["Categoria", "%d Categorie"]
   l.store "%d Comments", ["Commento", "%d Commenti"]
@@ -65,17 +61,11 @@ Localization.define("it_IT") do |l|
   l.store "Category was successfully created.", "Categoria correttamente creata"
   l.store "Category was successfully updated.", "Categoria correttamente aggiornata"
   l.store "Change you blog presentation", "Cambiare l'aspetto del tuo blog"
-  l.store "Choose password", "Password"
   l.store "Confirm Classification of Checked Items", "Conferma classificazione degli elementi selezionati"
-  l.store "Confirm password", "Conferma password"
-  l.store "Delete this filter", "Elimina questo filtro"
   l.store "Deleted %s item(s)", "Eliminati %s elementi"
   l.store "Design", "Temi"
   l.store "Desired login", "Nome utente"
-  l.store "Discuss", "Discussione"
-  l.store "Duration", "Durata"
   l.store "Enable plugins", "Aggiungere plugins"
-  l.store "Explicit", "Contenuto esplicito"
   l.store "Filters", "Filtri"
   l.store "HTML was cleared", "l'HTML cancellato"
   l.store "IP", "IP"

@@ -7,12 +7,10 @@ Localization.define("lt_LT") do |l|
   l.store "Remove", "Pašalinti"
   l.store "Publish at", "Publikuotas"
   l.store "Limit to spam", "Spamo limitas"
-  l.store "File Uploads", "Dateianhänge"
   l.store "New database version", "Neue Datenbank Version"
   l.store "yes", "ja"
   l.store "no", "nein"
   l.store "Drag some plugins here to fill your sidebar", "Ziehen Sie Plugins hierher, um sie in die Seitenleiste aufzunehmen"
-  l.store "Display name", "Rodomas vardas"
   l.store "Posted by", "Parašė"
   l.store "said", "pasakė"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "Komentaras laukia moderatoriaus patvirtinimo" # sutrumpinua, man rodos logiskaiu
@@ -32,7 +30,6 @@ Localization.define("lt_LT") do |l|
   l.store "Comments are disabled", "Komentavimas išjungtas"
   l.store "Trackbacks for", "Trackback für"
   l.store "Archives", "Archyvas"
-  l.store "Syndicate", "Syndikat"
   l.store "%d Articles", ["Straipsnis", "%d Straipsniai"]
   l.store "%d Categories", ["Kategorija", "%d Kategorijos"]
   l.store "%d Comments", ["Komentaras", "%d Komentarai"]
@@ -54,14 +51,8 @@ Localization.define("lt_LT") do |l|
   l.store "Blacklist", "Juodasis sąrašas"
   l.store "Body", "Tekstas"
   l.store "Category title", "kategorijos pavadinimas"
-  l.store "Choose password", "Pasirinkite slaptažodį"
-  l.store "Confirm password", "Pakartokite slaptažodį"
-  l.store "Delete this filter", "Diesen Textfilter löschen"
   l.store "Design", "Dizainas"
   l.store "Desired login", "Trokštamas prisijungimo vardas"
-  l.store "Discuss", "Diskusijos"
-  l.store "Duration", "Dauer"
-  l.store "Explicit", "Explizit"
   l.store "Filters", "Filter"
   l.store "IP", "IP adresas"
   l.store "Jabber account", "Jabber Account"

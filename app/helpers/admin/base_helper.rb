@@ -27,11 +27,6 @@ module Admin::BaseHelper
     end
   end
 
-  def link_to_destroy(record, controller = controller.controller_name)
-    link_to image_tag('admin/delete.png', :alt => _("delete"), :title => _("Delete content")),
-      :controller => controller, :action => 'destroy', :id => record.id
-  end
-
   def text_filter_options
     TextFilter.all.collect do |filter|
       [ _(filter.description), filter ]

@@ -1,6 +1,5 @@
 # coding: utf-8
 Localization.define("ru_RU") do |l|
-  l.store "delete", "удалить"
   l.store "Short url:", "Короткий URL:"
   l.store "Edit", "Редактировать"
   l.store "There are no %s yet. Why don't you start and create one?", "Ничего нет. Почему бы не начать и не добавить?" # XXX
@@ -22,10 +21,8 @@ Localization.define("ru_RU") do |l|
   l.store "SmartyPants", "SmartyPants"
   l.store "Visual", "Визуально"
   l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", "По соображениям безопасности вам следует перезапустить ваше Publify-приложение. Приятного блогерства!"
-  l.store "Latest Posts", "Последние посты"
   l.store "Welcome back, %s!", "Добро пожаловать снова, %s!"
   l.store "Your posts : %d", "Ваших постов: %d"
-  l.store "Titles", "Заголовки"
   l.store "Your name", "Ваше имя"
   l.store "Your email", "Ваш email"
   l.store "Your message", "Ваше сообщение"

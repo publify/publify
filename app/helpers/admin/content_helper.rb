@@ -1,12 +1,4 @@
 module Admin::ContentHelper
-  def link_to_destroy_draft(record, controller = controller.controller_name)
-    return unless record.state.to_s.downcase == "draft"
-    link_to(_("Destroy this draft"),
-      { controller: controller, action: 'destroy', id: record.id },
-        data: { confirm: _("Are you sure?")},
-        method: :post, class: 'btn danger' )
-  end
-
   def auto_complete_result(entries, field, phrase = nil)
     return unless entries
     items = entries.map { |entry| content_tag("li", phrase ? highlight(entry[field], phrase) : h(entry[field])) }
