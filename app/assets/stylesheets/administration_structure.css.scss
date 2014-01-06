@@ -222,6 +222,7 @@ a.delete:focus {
 
 #quicktags {
   display: none;
+  padding-top: 10px;
 }
 
 #quicktags-block:hover #quicktags {
@@ -230,4 +231,8 @@ a.delete:focus {
 
 #quicktags-block {
   min-height: 400px;
+}
+
+#error-message-article {
+  padding-top: 20px;
 }
