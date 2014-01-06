@@ -494,6 +494,9 @@ pl:
         state: "State"
         user_state: "%{state} użytkownicy"
       form:
+        cancel: "Anuluj"
+        save: "Zapisz"
+        or: "or"
         user_status: "User Status"
         account_settings: "Account Settings"
         login: "Login"

@@ -494,6 +494,9 @@ nl:
         state: "State"
         user_state: "%{state} gebruiker"
       form:
+        cancel: "Terug"
+        save: "Bewaar"
+        or: "or"
         user_status: "User Status"
         account_settings: "Account Settings"
         login: "inloggen"

@@ -493,6 +493,9 @@ en:
         comments: "Comments"
         state: "State"
       form:
+        cancel: "Cancel"
+        or: "or"
+        save: "Save"
         user_status: "User Status"
         account_settings: "Account Settings"
         login: "Login"

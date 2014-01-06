@@ -711,6 +711,9 @@ lt:
         state: "State"
         user_state: "%{state} user"
       form:
+        cancel: "Baigti"
+        save: "Saugoti"
+        or: "or"
         user_status: "User Status"
         account_settings: "Account Settings"
         login: "Prisijungimas"

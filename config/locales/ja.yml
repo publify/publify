@@ -494,6 +494,9 @@ ja:
         state: "状態"
         user_state: "%{state}"
       form:
+        cancel: "キャンセル"
+        save: "保存"
+        or: "or"
         user_status: "User Status"
         account_settings: "Account Settings"
         login: "ログイン"

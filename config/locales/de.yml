@@ -232,7 +232,7 @@ de:
       destroy:
         are_you_sure: "Are you sure you want to delete this %{element}"
         action_or_other: "%{first_action} oder %{second_action}"
-        cancel: "Cancel"
+        cancel: "Abbrechen"
         delete: "Löschen"
     tags:
       new:
@@ -494,6 +494,9 @@ de:
         state: "State"
         user_state: "%{state} user"
       form:
+        cancel: "Abbrechen"
+        save: "Speichern"
+        or: "or"
         user_status: "User Status"
         account_settings: "Account Settings"
         login: "Login"

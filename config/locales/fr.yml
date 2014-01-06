@@ -494,6 +494,9 @@ fr:
         state: "État"
         user_state: "%{state}"
       form:
+        cancel: "Annuler"
+        save: "Sauver"
+        or: "ou"
         user_status: "User Status"
         account_settings: "Account Settings"
         login: "Login"

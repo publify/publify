@@ -494,6 +494,9 @@ nb-NO:
         state: "Tilstand"
         user_state: "%{state} bruker"
       form:
+        cancel: "Annuller"
+        save: "Lagre"
+        or: "or"
         user_status: "User Status"
         account_settings: "Account Settings"
         login: "Logg inn"

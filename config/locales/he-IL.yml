@@ -494,6 +494,9 @@ he-IL:
         state: "State"
         user_state: "%{state} user"
       form:
+        cancel: "בטל"
+        save: "שמור"
+        or: "or"
         user_status: "User Status"
         account_settings: "Account Settings"
         login: "התחבר"

@@ -494,6 +494,9 @@ da:
         state: "State"
         user_state: "%{state} user"
       form:
+        cancel: "Anuller"
+        save: "Gem"
+        or: "or"
         user_status: "User Status"
         account_settings: "Account Settings"
         login: "Log ind"

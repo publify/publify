@@ -494,6 +494,9 @@ pt-BR:
         state: "State"
         user_state: "%{state} user"
       form:
+        cancel: "Cancelar"
+        save: "Salvar"
+        or: "or"
         user_status: "User Status"
         account_settings: "Account Settings"
         login: "Entrar"

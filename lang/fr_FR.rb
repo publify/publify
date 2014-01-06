@@ -125,7 +125,6 @@ Localization.define("fr_FR") do |l|
   l.store "enabled", "activés"
   l.store "example", "par exemple"
   l.store "published", "publié"
-  l.store "save", "Sauver"
   l.store "your blog", "votre blog"
   l.store "for", "pour"
 

@@ -494,6 +494,9 @@ zh-CN:
         state: "State"
         user_state: "%{state} user"
       form:
+        cancel: "取消"
+        save: "保存"
+        or: "or"
         user_status: "User Status"
         account_settings: "Account Settings"
         login: "登录"

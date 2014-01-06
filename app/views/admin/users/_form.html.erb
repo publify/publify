@@ -30,7 +30,7 @@
   <div class='control-group'>
     <label class='control-label' for="user_profile"><%= t('.profile')%></label>
     <div class='controls'>
-      <%=  select("user", "profile_id", @profiles.collect {|p| [ _(p.nicename), p.id ] }, { :include_blank => false }) %>
+      <%= select("user", "profile_id", @profiles.collect {|p| [t("profile.#{p.label}"), p.id ] }, { include_blank: false }) %>
     </div>
   </div>
   <div class='control-group'>
@@ -197,7 +197,7 @@
   <% end %>
 
   <div class='form-actions'>
-    <%= link_to(_("Cancel"), {action: 'index'}, class: 'btn') %>
-    <%= _("or") %>
-    <%= submit_tag(_("Save"), class: 'btn btn-success') %>
+    <%= link_to(t(".cancel"), {action: 'index'}, class: 'btn') %>
+    <%= t(".or") %>
+    <%= submit_tag(t(".save"), class: 'btn btn-success') %>
   </div>

@@ -494,6 +494,9 @@ es-MX:
         state: "State"
         user_state: "%{state} user"
       form:
+        cancel: "Cancelar"
+        save: "Guardar"
+        or: "or"
         user_status: "User Status"
         account_settings: "Account Settings"
         login: "Login"

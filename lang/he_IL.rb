@@ -150,7 +150,6 @@ Localization.define("he_IL") do |l|
   l.store "log in", "התחבר"
   l.store "log out", "התנתק"
   l.store "on", "על"
-  l.store "save", "שמור"
   l.store "show", "הצג"
   l.store "your blog", "הבלוג שלך"
 end
