@@ -42,6 +42,9 @@ he-IL:
   admin:
     redirects:
       new:
+        cancel: "בטל"
+        save: "שמור"
+        or: "or"
         redirects: "Redirects"
         from: "מאת"
         to: "To"
@@ -57,6 +60,8 @@ he-IL:
     sidebar:
       index:
         sidebar: "תיבת צד"
+        cancel: "בטל"
+        or: "or"
         explain_how_its_works: "גרור והשלך כדי לשנות את פריטי תיבת הצד המוצגת בבלוג שלך. כדי להסיר פריטים מתיבת הצד, לחץ על הסר. השינויים נשמרים מיידית אבל לא מופעלים עד שתלחץ על הכפתור 'פרסם'."
         publish_changes: "פרסם שינויים"
         available_items: "פריטים זמינים"
@@ -64,6 +69,9 @@ he-IL:
         download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
     settings:
       display:
+        cancel: "בטל"
+        or: "or"
+        update_settings: "Update settings"
         ago: "ago"
         custom_url: "Custom URL shortener domain"
         custom_url_help: "If you have a custom domain for URL shortening, enter it here."
@@ -82,6 +90,9 @@ he-IL:
         statuses: "Statuses"
         time_format: "Time format"
       feedback:
+        cancel: "בטל"
+        or: "or"
+        update_settings: "Update settings"
         feedback_settings: "Feedback settings"
         feedback: "משוב"
         comments: "תגובות"
@@ -110,6 +121,9 @@ he-IL:
         enable_recaptcha: "Enable reCaptcha"
         remember_to_set_your_recaptcha: "Remember to set your reCaptcha keys inside config/initializers/recaptcha.rb"
       write:
+        cancel: "בטל"
+        or: "or"
+        update_settings: "Update settings"
         write: "כתוב"
         publish: "פרסם"
         trackbacks: "עוקבים חזרה"
@@ -140,6 +154,9 @@ he-IL:
         update_database_now: "עדכן את בסיס הנתונים"
         may_take_a_moment: "ייתכן כי ייקח זמן מה"
       index:
+        cancel: "בטל"
+        or: "or"
+        update_settings: "Update settings"
         general_settings: "General settings"
         your_blog: "הבלוג שלך"
         blog_name: "שם הבלוג"
@@ -155,6 +172,9 @@ he-IL:
         items_to_display_in_admin_lists: "Items to display in admin lists"
     seo:
       titles:
+        cancel: "בטל"
+        or: "or"
+        update_settings: "Update settings"
         title_settings: "Title settings"
         home: "בית"
         title_template: "Title template"
@@ -188,6 +208,9 @@ he-IL:
         replaced_by_the_archive_date: "Replaced by the archive date"
         replaced_by_the_content_body: "Replaced by the content body"
       permalinks:
+        cancel: "בטל"
+        or: "or"
+        update_settings: "Update settings"
         explain: "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links."
         permalinks: "Permalinks"
         permalink_format: "Permalink format"
@@ -202,6 +225,9 @@ he-IL:
         your_article_month: "your article month of publication."
         your_article_day: "your article day of publication."
       index:
+        cancel: "בטל"
+        or: "or"
+        update_settings: "Update settings"
         global_settings: "Global settings"
         general_settings: "הגדרות כלליות"
         meta_keywords: "Meta keywords"
@@ -264,6 +290,9 @@ he-IL:
         original_size: "Original size"
     post_types:
       new:
+        cancel: "בטל"
+        save: "שמור"
+        or: "or"
         post_types: "Post Types"
         name: "שם"
         description: "תיאור"
@@ -456,6 +485,9 @@ he-IL:
         new_category: "New Category"
     categories:
       new:
+        cancel: "בטל"
+        save: "שמור"
+        or: "or"
         categories: "קטגוריות"
         name: "שם"
         keywords: "Keywords"

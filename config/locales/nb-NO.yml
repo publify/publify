@@ -42,6 +42,9 @@ nb-NO:
   admin:
     redirects:
       new:
+        cancel: "Annuller"
+        save: "Lagre"
+        or: "or"
         redirects: "Omdirigeringer"
         from: "Fra"
         to: "Til"
@@ -57,6 +60,8 @@ nb-NO:
     sidebar:
       index:
         sidebar: "Sidebar"
+        or: "or"
+        cancel: "Annuller"
         explain_how_its_works: "Dra og slipp for at Dra og slipp innholdsendreen der vises på denne blog. Du kan fjerne elementer fra oversiktsoversikten bare ved at klikke fjern. endringer gemmes med det samme, men ikke aktiveret, før du klikker på 'Offentliggør' knappen."
         publish_changes: "Publiser endringer"
         available_items: "Tilgjengelige enheter"
@@ -64,6 +69,9 @@ nb-NO:
         download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
     settings:
       display:
+        cancel: "Annuller"
+        or: "or"
+        update_settings: "Oppdater innstillinger"
         ago: "siden"
         custom_url: "Custom URL shortener domain"
         custom_url_help: "If you have a custom domain for URL shortening, enter it here."
@@ -82,6 +90,9 @@ nb-NO:
         statuses: "Statuses"
         time_format: "Klokkeformat"
       feedback:
+        cancel: "Annuller"
+        or: "or"
+        update_settings: "Oppdater innstillinger"
         feedback_settings: "Feedback-innstillinger"
         feedback: "Diskusjon"
         comments: "Kommentarer"
@@ -110,6 +121,9 @@ nb-NO:
         enable_recaptcha: "Aktiver reCaptcha"
         remember_to_set_your_recaptcha: "Husk å sette reCaptcha-nøklene dine i filen config/initializers/recaptcha.rb"
       write:
+        cancel: "Annuller"
+        or: "or"
+        update_settings: "Oppdater innstillinger"
         write: "Skriv"
         publish: "Publiser"
         trackbacks: "Trackbacks"
@@ -140,6 +154,9 @@ nb-NO:
         update_database_now: "Oppdater database nå"
         may_take_a_moment: "kan vare et øyeblikk"
       index:
+        cancel: "Annuller"
+        or: "or"
+        update_settings: "Oppdater innstillinger"
         general_settings: "Generelle innstillinger"
         your_blog: "Din blogg"
         blog_name: "Bloggtittel"
@@ -155,6 +172,9 @@ nb-NO:
         items_to_display_in_admin_lists: "Enheter å vise i adminlisten"
     seo:
       titles:
+        cancel: "Annuller"
+        or: "or"
+        update_settings: "Oppdater innstillinger"
         title_settings: "Tittelinnstillinger"
         home: "Hjem"
         title_template: "Mønster for tittel"
@@ -188,6 +208,9 @@ nb-NO:
         replaced_by_the_archive_date: "Erstattet av arkivdato"
         replaced_by_the_content_body: "Replaced by the content body"
       permalinks:
+        cancel: "Annuller"
+        or: "or"
+        update_settings: "Oppdater innstillinger"
         explain: "Publify tilbyr deg muligheten til å opprette en tilpasset URL-struktur for dine permalenker og arkiver. Dette kan forbedre estetikken, brukervennligheten og foroverkompatibiliteten til dine lenker."
         permalinks: "Permalenker"
         permalink_format: "Permalinkformat"
@@ -202,6 +225,9 @@ nb-NO:
         your_article_month: "din artikkels publiseringmåned"
         your_article_day: "din artikkels publiseringsdag"
       index:
+        cancel: "Annuller"
+        or: "or"
+        update_settings: "Oppdater innstillinger"
         global_settings: "Globale innstillinger"
         general_settings: "Generelle innstillinger"
         meta_keywords: "Metanøkkelord"
@@ -264,6 +290,9 @@ nb-NO:
         original_size: "Opprinnelig størrelse"
     post_types:
       new:
+        cancel: "Annuller"
+        save: "Lagre"
+        or: "or"
         post_types: "Post Types"
         name: "Navn"
         description: "Beskrivelse"
@@ -456,6 +485,9 @@ nb-NO:
         new_category: "Ny kategori"
     categories:
       new:
+        cancel: "Annuller"
+        save: "Lagre"
+        or: "or"
         categories: "Kategorier"
         name: "Navn"
         keywords: "Nøkkelord"

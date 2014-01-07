@@ -42,6 +42,9 @@ pt-BR:
   admin:
     redirects:
       new:
+        cancel: "Cancelar"
+        save: "Salvar"
+        or: "or"
         redirects: "Redirects"
         from: "De"
         to: "To"
@@ -57,6 +60,8 @@ pt-BR:
     sidebar:
       index:
         sidebar: "Sidebar"
+        or: "or"
+        cancel: "Cancelar"
         explain_how_its_works: "Drag and drop to change the sidebar items displayed on this blog. To remove items from the sidebar just click 'remove'. Changes are saved immediately, but not activated until you click the 'Publish changes' button"
         publish_changes: "Publicar cambios"
         available_items: "Items disponibles"
@@ -64,6 +69,9 @@ pt-BR:
         download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
     settings:
       display:
+        cancel: "Cancelar"
+        or: "or"
+        update_settings: "Update settings"
         ago: "ago"
         custom_url: "Custom URL shortener domain"
         custom_url_help: "If you have a custom domain for URL shortening, enter it here."
@@ -82,6 +90,9 @@ pt-BR:
         statuses: "Statuses"
         time_format: "Time format"
       feedback:
+        cancel: "Cancelar"
+        or: "or"
+        update_settings: "Update settings"
         feedback_settings: "Feedback settings"
         feedback: "Feedback"
         comments: "Comentarios"
@@ -110,6 +121,9 @@ pt-BR:
         enable_recaptcha: "Enable reCaptcha"
         remember_to_set_your_recaptcha: "Remember to set your reCaptcha keys inside config/initializers/recaptcha.rb"
       write:
+        cancel: "Cancelar"
+        or: "or"
+        update_settings: "Update settings"
         write: "Escribir"
         publish: "Publicar"
         trackbacks: "Trackbacks"
@@ -140,6 +154,9 @@ pt-BR:
         update_database_now: "Actualizar la base de datos ahora"
         may_take_a_moment: "puede tomar un momento"
       index:
+        cancel: "Cancelar"
+        or: "or"
+        update_settings: "Update settings"
         general_settings: "Preferencias generales"
         your_blog: "tu blog"
         blog_name: "Nombre del blog"
@@ -155,6 +172,9 @@ pt-BR:
         items_to_display_in_admin_lists: "Items to display in admin lists"
     seo:
       titles:
+        cancel: "Cancelar"
+        or: "or"
+        update_settings: "Update settings"
         title_settings: "Title settings"
         home: "Início"
         title_template: "Title template"
@@ -188,6 +208,9 @@ pt-BR:
         replaced_by_the_archive_date: "Replaced by the archive date"
         replaced_by_the_content_body: "Replaced by the content body"
       permalinks:
+        cancel: "Cancelar"
+        or: "or"
+        update_settings: "Update settings"
         explain: "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links."
         permalinks: "Permalinks"
         permalink_format: "Permalink format"
@@ -202,6 +225,9 @@ pt-BR:
         your_article_month: "your article month of publication."
         your_article_day: "your article day of publication."
       index:
+        cancel: "Cancelar"
+        or: "or"
+        update_settings: "Update settings"
         global_settings: "Global settings"
         general_settings: "Preferencias generales"
         meta_keywords: "Meta keywords"
@@ -264,6 +290,9 @@ pt-BR:
         original_size: "Original size"
     post_types:
       new:
+        cancel: "Cancelar"
+        save: "Salvar"
+        or: "or"
         post_types: "Post Types"
         name: "Nome"
         description: "Descrição"
@@ -294,11 +323,11 @@ pt-BR:
         type_your_post: "Type your post"
     feedback:
       bulkops:
-        success_mark_as_ham: 
+        success_mark_as_ham:
           zero: "No item selected to mark as Ham"
           one: "Marked 1 item as Ham"
           other: "%{count} itens marcados como Ham"
-        success_mark_as_spam: 
+        success_mark_as_spam:
           zero: "No item selected to mark as Spam"
           one: "Marked 1 item as Spam"
           other: "%{count} itens marcados como Spam"
@@ -456,6 +485,9 @@ pt-BR:
         new_category: "Nova Categoria"
     categories:
       new:
+        cancel: "Cancelar"
+        save: "Salvar"
+        or: "or"
         categories: "Categorias"
         name: "Nome"
         keywords: "Palavras chave"

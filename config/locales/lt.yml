@@ -42,6 +42,9 @@ lt:
   admin:
     redirects:
       new:
+        cancel: "Baigti"
+        save: "Saugoti"
+        or: "or"
         redirects: "Redirects"
         from: "Nuo"
         to: "To"
@@ -57,6 +60,8 @@ lt:
     sidebar:
       index:
         sidebar: "Sidebar"
+        or: "or"
+        cancel: "Baigti"
         explain_how_its_works: "Verwenden Sie Drag&Drop, um die Einträge der Seitenleiste ihres Blogs zu ändern. Um Einträge zu löschen, klicken Sie auf 'remove'. Änderungen sind hier sofort sichtbar, werden aber erst permanent aktiviert, wenn Sie 'Änderungen veröffentlichen' klicken."
         publish_changes: "Änderungen veröffentlichen"
         available_items: "Verfügbare Einträge"
@@ -64,6 +69,9 @@ lt:
         download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
     settings:
       display:
+        cancel: "Baigti"
+        or: "or"
+        update_settings: "Update settings"
         ago: "ago"
         custom_url: "Custom URL shortener domain"
         custom_url_help: "If you have a custom domain for URL shortening, enter it here."
@@ -82,6 +90,9 @@ lt:
         statuses: "Statuses"
         time_format: "Time format"
       feedback:
+        cancel: "Baigti"
+        or: "or"
+        update_settings: "Update settings"
         feedback_settings: "Feedback settings"
         feedback: "Feedback"
         comments: "Comments"
@@ -110,6 +121,9 @@ lt:
         enable_recaptcha: "Enable reCaptcha"
         remember_to_set_your_recaptcha: "Remember to set your reCaptcha keys inside config/initializers/recaptcha.rb"
       write:
+        cancel: "Baigti"
+        or: "or"
+        update_settings: "Update settings"
         write: "Rašyti"
         publish: "Publikuoti"
         trackbacks: "Trackbacks"
@@ -140,6 +154,9 @@ lt:
         update_database_now: "Update der Datenbank jetzt"
         may_take_a_moment: "dauert einen Moment"
       index:
+        cancel: "Baigti"
+        or: "or"
+        update_settings: "Update settings"
         general_settings: "Pagrindiniai nustatymai"
         your_blog: "Tavo dienoraščio adresas"
         blog_name: "Dienoraščio pavadinimas"
@@ -155,6 +172,9 @@ lt:
         items_to_display_in_admin_lists: "Items to display in admin lists"
     seo:
       titles:
+        cancel: "Baigti"
+        or: "or"
+        update_settings: "Update settings"
         title_settings: "Title settings"
         home: "Home"
         title_template: "Title template"
@@ -188,6 +208,9 @@ lt:
         replaced_by_the_archive_date: "Replaced by the archive date"
         replaced_by_the_content_body: "Replaced by the content body"
       permalinks:
+        cancel: "Baigti"
+        or: "or"
+        update_settings: "Update settings"
         explain: "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links."
         permalinks: "Permalinks"
         permalink_format: "Permalink format"
@@ -202,6 +225,9 @@ lt:
         your_article_month: "your article month of publication."
         your_article_day: "your article day of publication."
       index:
+        cancel: "Baigti"
+        or: "or"
+        update_settings: "Update settings"
         global_settings: "Global settings"
         general_settings: "Pagrindiniai nustatymai"
         meta_keywords: "Meta keywords"
@@ -264,6 +290,9 @@ lt:
         original_size: "Original size"
     post_types:
       new:
+        cancel: "Baigti"
+        save: "Saugoti"
+        or: "or"
         post_types: "Post Types"
         name: "Vardas"
         description: "Beschreibung"
@@ -456,6 +485,9 @@ lt:
     categories:
       new:
         categories: "Categories"
+        cancel: "Baigti"
+        save: "Saugoti"
+        or: "or"
         name: "Vardas"
         keywords: "Keywords"
         permalink: "Permalink"

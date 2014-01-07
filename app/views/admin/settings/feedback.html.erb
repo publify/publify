@@ -117,8 +117,8 @@
 
   <%= hidden_field_tag 'from', 'feedback' %>
   <div class='form-group'>
-    <%= link_to(_("Cancel"), {action: 'index'}, class: 'btn') %>
-    <%= _("or") %>
-    <%= submit_tag(_("Update settings"), class: 'btn btn-success') %>
+    <%= link_to(t(".cancel"), {action: 'index'}, class: 'btn') %>
+    <%= t(".or") %>
+    <%= submit_tag(t(".update_settings"), class: 'btn btn-success') %>
   </div>
 <% end %>

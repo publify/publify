@@ -38,7 +38,6 @@ Localization.define("nl_NL") do |l|
   l.store "Previous page", "Vorige pagina"
   l.store "Next page", "Volgende pagina"
   l.store "File", "Bestand"
-  l.store "Update settings", "Werk instellingen bij"
   l.store "Publishing options", "Publicatie opties"
   l.store "Feedburner ID", "Feedburner ID"
   l.store "Format of permalink", "Formaat van permalink"

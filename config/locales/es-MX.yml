@@ -42,6 +42,9 @@ es-MX:
   admin:
     redirects:
       new:
+        cancel: "Cancelar"
+        save: "Guardar"
+        or: "or"
         redirects: "Redirects"
         from: "De"
         to: "To"
@@ -57,6 +60,8 @@ es-MX:
     sidebar:
       index:
         sidebar: "Sidebar"
+        or: "or"
+        cancel: "Cancelar"
         explain_how_its_works: "Drag and drop to change the sidebar items displayed on this blog. To remove items from the sidebar just click 'remove'. Changes are saved immediately, but not activated until you click the 'Publicar cambios' button"
         publish_changes: "Publicar cambios"
         available_items: "Items disponibles"
@@ -64,6 +69,9 @@ es-MX:
         download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
     settings:
       display:
+        cancel: "Cancelar"
+        or: "or"
+        update_settings: "Update settings"
         ago: "ago"
         custom_url: "Custom URL shortener domain"
         custom_url_help: "If you have a custom domain for URL shortening, enter it here."
@@ -82,6 +90,9 @@ es-MX:
         statuses: "Statuses"
         time_format: "Time format"
       feedback:
+        cancel: "Cancelar"
+        or: "or"
+        update_settings: "Update settings"
         feedback_settings: "Feedback settings"
         feedback: "Feedback"
         comments: "Comments"
@@ -110,6 +121,9 @@ es-MX:
         enable_recaptcha: "Enable reCaptcha"
         remember_to_set_your_recaptcha: "Remember to set your reCaptcha keys inside config/initializers/recaptcha.rb"
       write:
+        cancel: "Cancelar"
+        or: "or"
+        update_settings: "Update settings"
         write: "Escribir"
         publish: "Publicar"
         trackbacks: "Trackbacks"
@@ -140,6 +154,9 @@ es-MX:
         update_database_now: "Actualizar la base de datos ahora"
         may_take_a_moment: "puede tomar un momento"
       index:
+        cancel: "Cancelar"
+        or: "or"
+        update_settings: "Update settings"
         general_settings: "Preferencias generales"
         your_blog: "Tu sitio"
         blog_name: "Nombre del blog"
@@ -155,6 +172,9 @@ es-MX:
         items_to_display_in_admin_lists: "Items to display in admin lists"
     seo:
       titles:
+        cancel: "Cancelar"
+        or: "or"
+        update_settings: "Update settings"
         title_settings: "Title settings"
         home: "Home"
         title_template: "Title template"
@@ -188,6 +208,9 @@ es-MX:
         replaced_by_the_archive_date: "Replaced by the archive date"
         replaced_by_the_content_body: "Replaced by the content body"
       permalinks:
+        cancel: "Cancelar"
+        or: "or"
+        update_settings: "Update settings"
         explain: "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links."
         permalinks: "Permalinks"
         permalink_format: "Permalink format"
@@ -202,6 +225,9 @@ es-MX:
         your_article_month: "your article month of publication."
         your_article_day: "your article day of publication."
       index:
+        cancel: "Cancelar"
+        or: "or"
+        update_settings: "Update settings"
         global_settings: "Global settings"
         general_settings: "Preferencias generales"
         meta_keywords: "Meta keywords"
@@ -264,6 +290,9 @@ es-MX:
         original_size: "Original size"
     post_types:
       new:
+        cancel: "Cancelar"
+        save: "Guardar"
+        or: "or"
         post_types: "Post Types"
         name: "Nombre"
         description: "Descripci&oacute;n"
@@ -456,6 +485,9 @@ es-MX:
         new_category: "New Category"
     categories:
       new:
+        cancel: "Cancelar"
+        save: "Guardar"
+        or: "or"
         categories: "Categories"
         name: "Nombre"
         keywords: "Keywords"

@@ -42,6 +42,9 @@ fr:
   admin:
     redirects:
       new:
+        cancel: "Annuler"
+        save: "Sauver"
+        or: "ou"
         redirects: "Redirections"
         from: "De"
         to: "Vers"
@@ -57,6 +60,8 @@ fr:
     sidebar:
       index:
         sidebar: "Plugins"
+        or: "ou"
+        cancel: "Annuler"
         explain_how_its_works: "Glissez / déplacez des éléments pour changer la sidebar de votre blog. Pour supprimer un élément de votre sidebar, cliquez simplement sur 'supprimer'. Les changements sont effectués immédiatement, mais ne seront pas actifs tant que vous n'aurez pas cliqué sur le bouton 'Publier'."
         publish_changes: "Publier les modifications"
         available_items: "Éléments disponibles"
@@ -64,6 +69,9 @@ fr:
         download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
     settings:
       display:
+        cancel: "Annuler"
+        or: "ou"
+        update_settings: "Mettre les paramètres à jour"
         ago: "il y a"
         custom_url: "Custom URL shortener domain"
         custom_url_help: "If you have a custom domain for URL shortening, enter it here."
@@ -82,6 +90,9 @@ fr:
         statuses: "Notes"
         time_format: "Afficher les heures"
       feedback:
+        cancel: "Annuler"
+        or: "ou"
+        update_settings: "Mettre les paramètres à jour"
         feedback_settings: "Paramètres des commentaires"
         feedback: "Commentaires"
         comments: "Commentaires"
@@ -110,6 +121,9 @@ fr:
         enable_recaptcha: "Utiliser reCaptcha"
         remember_to_set_your_recaptcha: "N'oubliez pas de mettre votre clé d'activation dans config/initializers/recaptcha.rb"
       write:
+        cancel: "Annuler"
+        or: "ou"
+        update_settings: "Mettre les paramètres à jour"
         write: "Écrire"
         publish: "Publier"
         trackbacks: "Rétroliens"
@@ -140,6 +154,9 @@ fr:
         update_database_now: "Mettez votre base à jour"
         may_take_a_moment: "cela peut prendre un moment"
       index:
+        cancel: "Annuler"
+        or: "ou"
+        update_settings: "Mettre les paramètres à jour"
         general_settings: "General settings"
         your_blog: "Votre blog "
         blog_name: "Titre du blog"
@@ -155,6 +172,9 @@ fr:
         items_to_display_in_admin_lists: "Nombre d'éléments à afficher dans les listes"
     seo:
       titles:
+        cancel: "Annuler"
+        or: "ou"
+        update_settings: "Mettre les paramètres à jour"
         title_settings: "Paramétrage des titres"
         home: "Home"
         title_template: "Titre"
@@ -188,6 +208,9 @@ fr:
         replaced_by_the_archive_date: "Remplacé par la date de l'archive"
         replaced_by_the_content_body: "Replaced by the content body"
       permalinks:
+        cancel: "Annuler"
+        or: "ou"
+        update_settings: "Mettre les paramètres à jour"
         explain: "Les exemples ci-dessous vous aideront à démarrerPublify vous offre la possibilité de créer une structure d'URL personnalisée pour vos liens permanents et vos archives. Cela peut vous permettre d'améliorer l'esthétique, l'utilisabilité et la viralité de vos liens."
         permalinks: "Permaliens"
         permalink_format: "Format des permaliens"
@@ -202,6 +225,9 @@ fr:
         your_article_month: "Le mois de publication de votre article."
         your_article_day: "Le jour de publication de votre article."
       index:
+        cancel: "Annuler"
+        or: "ou"
+        update_settings: "Mettre les paramètres à jour"
         global_settings: "Options générales"
         general_settings: "Options générales"
         meta_keywords: "Meta mots-clés"
@@ -264,6 +290,9 @@ fr:
         original_size: "Original size"
     post_types:
       new:
+        cancel: "Annuler"
+        save: "Sauver"
+        or: "ou"
         post_types: "Modèles d'articles"
         name: "Nom"
         description: "Description"
@@ -456,6 +485,9 @@ fr:
         new_category: "Nouvelle catégorie"
     categories:
       new:
+        cancel: "Annuler"
+        save: "Sauver"
+        or: "ou"
         categories: "Catégories"
         name: "Nom"
         keywords: "Mots clés"

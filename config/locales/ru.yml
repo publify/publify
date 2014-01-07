@@ -42,6 +42,9 @@ ru:
   admin:
     redirects:
       new:
+        cancel: "Отменить"
+        save: "Сохранить"
+        or: "or"
         redirects: "Перенаправления"
         from: "From"
         to: "To"
@@ -57,6 +60,8 @@ ru:
     sidebar:
       index:
         sidebar: "Sidebar"
+        or: "or"
+        cancel: "Отменить"
         explain_how_its_works: "Drag and drop to change the sidebar items displayed on this blog. To remove items from the sidebar just click 'remove'. Changes are saved immediately, but not activated until you click the 'Publish changes' button"
         publish_changes: "Publish changes"
         available_items: "Available Items"
@@ -64,6 +69,9 @@ ru:
         download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
     settings:
       display:
+        cancel: "Отменить"
+        or: "or"
+        update_settings: "Обновить настройки"
         ago: "ago"
         custom_url: "Custom URL shortener domain"
         custom_url_help: "If you have a custom domain for URL shortening, enter it here."
@@ -82,6 +90,9 @@ ru:
         statuses: "Statuses"
         time_format: "Time format"
       feedback:
+        cancel: "Отменить"
+        or: "or"
+        update_settings: "Обновить настройки"
         feedback_settings: "Feedback settings"
         feedback: "Комментарии"
         comments: "комментариев"
@@ -110,6 +121,9 @@ ru:
         enable_recaptcha: "Enable reCaptcha"
         remember_to_set_your_recaptcha: "Remember to set your reCaptcha keys inside config/initializers/recaptcha.rb"
       write:
+        cancel: "Отменить"
+        or: "or"
+        update_settings: "Обновить настройки"
         write: "Write"
         publish: "Опубликовать"
         trackbacks: "Trackbacks"
@@ -140,6 +154,9 @@ ru:
         update_database_now: "Update database now"
         may_take_a_moment: "may take a moment"
       index:
+        cancel: "Отменить"
+        or: "or"
+        update_settings: "Обновить настройки"
         general_settings: "Главные настройки"
         your_blog: "Ваш блог"
         blog_name: "Имя блога"
@@ -155,6 +172,9 @@ ru:
         items_to_display_in_admin_lists: "Элементы для отображения в администраторских списках"
     seo:
       titles:
+        cancel: "Отменить"
+        or: "or"
+        update_settings: "Обновить настройки"
         title_settings: "Title settings"
         home: "Home"
         title_template: "Title template"
@@ -188,6 +208,9 @@ ru:
         replaced_by_the_archive_date: "Replaced by the archive date"
         replaced_by_the_content_body: "Replaced by the content body"
       permalinks:
+        cancel: "Отменить"
+        or: "or"
+        update_settings: "Обновить настройки"
         explain: "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links."
         permalinks: "Постоянные ссылки"
         permalink_format: "Permalink format"
@@ -202,6 +225,9 @@ ru:
         your_article_month: "your article month of publication."
         your_article_day: "your article day of publication."
       index:
+        cancel: "Отменить"
+        or: "or"
+        update_settings: "Обновить настройки"
         global_settings: "Global settings"
         general_settings: "Основные настройки"
         meta_keywords: "Meta keywords"
@@ -264,6 +290,9 @@ ru:
         original_size: "Original size"
     post_types:
       new:
+        cancel: "Отменить"
+        save: "Сохранить"
+        or: "or"
         post_types: "Post Types"
         name: "Имя"
         description: "Описание"
@@ -294,11 +323,11 @@ ru:
         type_your_post: "Type your post"
     feedback:
       bulkops:
-        success_mark_as_ham: 
+        success_mark_as_ham:
           zero: "No item selected to mark as Ham"
           one: "Marked 1 item as Ham"
           other: "Marked %{count} items as Ham"
-        success_mark_as_spam: 
+        success_mark_as_spam:
           zero: "No item selected to mark as Spam"
           one: "Marked 1 item as Spam"
           other: "Marked %{count} items as Spam"
@@ -456,6 +485,9 @@ ru:
         new_category: "Новая категория"
     categories:
       new:
+        cancel: "Отменить"
+        save: "Сохранить"
+        or: "or"
         categories: "Категории"
         name: "Имя"
         keywords: "Ключевые слова"
@@ -497,7 +529,7 @@ ru:
         name: "Имя"
         email: "Email"
         profile: "профиль"
-        articles: "Articles" 
+        articles: "Articles"
         comments: "комментариев"
         state: "State"
         user_state: "%{state} user"

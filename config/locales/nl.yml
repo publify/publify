@@ -42,6 +42,9 @@ nl:
   admin:
     redirects:
       new:
+        cancel: "Terug"
+        save: "Bewaar"
+        or: "or"
         redirects: "Redirects"
         from: "Van"
         to: "To"
@@ -57,6 +60,8 @@ nl:
     sidebar:
       index:
         sidebar: "Zijbalk"
+        or: "or"
+        cancel: "Terug"
         explain_how_its_works: "Sleep dingen heen en weer om de zijbalk van dit blog aan te passen. Om dingen te verwijderen klik je op verwijderen  Wijzigen worden automatisch opgeslagen, maar niet geactiveerd totdat je de 'Publiceer' knop klikt"
         publish_changes: "Publiceer wijzigingen"
         available_items: "Beschikbare dingen"
@@ -64,6 +69,9 @@ nl:
         download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
     settings:
       display:
+        cancel: "Terug"
+        or: "or"
+        update_settings: "Werk instellingen bij"
         ago: "ago"
         custom_url: "Custom URL shortener domain"
         custom_url_help: "If you have a custom domain for URL shortening, enter it here."
@@ -82,6 +90,9 @@ nl:
         statuses: "Statuses"
         time_format: "Time format"
       feedback:
+        cancel: "Terug"
+        or: "or"
+        update_settings: "Werk instellingen bij"
         feedback_settings: "Feedback settings"
         feedback: "Feedback"
         comments: "Reacties"
@@ -110,6 +121,9 @@ nl:
         enable_recaptcha: "Enable reCaptcha"
         remember_to_set_your_recaptcha: "Remember to set your reCaptcha keys inside config/initializers/recaptcha.rb"
       write:
+        cancel: "Terug"
+        or: "or"
+        update_settings: "Werk instellingen bij"
         write: "Schrijf"
         publish: "Publiceer"
         trackbacks: "Trackbacks"
@@ -140,6 +154,9 @@ nl:
         update_database_now: "Werk database nu bij"
         may_take_a_moment: "kan even duren"
       index:
+        cancel: "Terug"
+        or: "or"
+        update_settings: "Werk instellingen bij"
         general_settings: "Algemene instellingen"
         your_blog: "Je blog"
         blog_name: "Blog naam"
@@ -155,6 +172,9 @@ nl:
         items_to_display_in_admin_lists: "Items to display in admin lists"
     seo:
       titles:
+        cancel: "Terug"
+        or: "or"
+        update_settings: "Werk instellingen bij"
         title_settings: "Title settings"
         home: "Begin"
         title_template: "Title template"
@@ -188,6 +208,9 @@ nl:
         replaced_by_the_archive_date: "Replaced by the archive date"
         replaced_by_the_content_body: "Replaced by the content body"
       permalinks:
+        cancel: "Terug"
+        or: "or"
+        update_settings: "Werk instellingen bij"
         explain: "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links."
         permalinks: "Permalinks"
         permalink_format: "Permalink format"
@@ -202,6 +225,9 @@ nl:
         your_article_month: "your article month of publication."
         your_article_day: "your article day of publication."
       index:
+        cancel: "Terug"
+        or: "or"
+        update_settings: "Werk instellingen bij"
         global_settings: "Global settings"
         general_settings: "General settings"
         meta_keywords: "Meta-kewords"
@@ -264,6 +290,9 @@ nl:
         original_size: "Original size"
     post_types:
       new:
+        cancel: "Terug"
+        save: "Bewaar"
+        or: "or"
         post_types: "Post Types"
         name: "Naam"
         description: "Omschrijving"
@@ -456,6 +485,9 @@ nl:
         new_category: "Nieuwe categorie"
     categories:
       new:
+        cancel: "Terug"
+        save: "Bewaar"
+        or: "or"
         categories: "Categoriën"
         name: "Naam"
         keywords: "Trefwoorden"

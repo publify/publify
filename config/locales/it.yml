@@ -42,6 +42,9 @@ it:
   admin:
     redirects:
       new:
+        cancel: "Annulla"
+        save: "Salva"
+        or: "or"
         redirects: "Redirects"
         from: "Da"
         to: "To"
@@ -57,6 +60,8 @@ it:
     sidebar:
       index:
         sidebar: "Sidebar"
+        cancel: "Annulla"
+        or: "or"
         explain_how_its_works: "Trascina e rilascia per cambiare gli elementi visualizzati nella sidebar del tuo blog. Per rimuorverli clicca su annulla Cambiamenti perche' comunque non sono salvati automaticamente ma devi cliccare il bottone 'Pubblica'"
         publish_changes: "Pubblica cambiamenti"
         available_items: "Elementi disponibili"
@@ -64,6 +69,9 @@ it:
         download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
     settings:
       display:
+        cancel: "Annulla"
+        or: "or"
+        update_settings: "Update settings"
         ago: "ago"
         custom_url: "Custom URL shortener domain"
         custom_url_help: "If you have a custom domain for URL shortening, enter it here."
@@ -82,6 +90,9 @@ it:
         statuses: "Statuses"
         time_format: "Time format"
       feedback:
+        cancel: "Annulla"
+        or: "or"
+        update_settings: "Update settings"
         feedback_settings: "Feedback settings"
         feedback: "Commenti"
         comments: "Comments"
@@ -110,6 +121,9 @@ it:
         enable_recaptcha: "Enable reCaptcha"
         remember_to_set_your_recaptcha: "Remember to set your reCaptcha keys inside config/initializers/recaptcha.rb"
       write:
+        cancel: "Annulla"
+        or: "or"
+        update_settings: "Update settings"
         write: "Scrivi"
         publish: "Pubblica"
         trackbacks: "Trackbacks"
@@ -140,6 +154,9 @@ it:
         update_database_now: "Aggiorna il tuo database ora"
         may_take_a_moment: "attendi alcuni istanti"
       index:
+        cancel: "Annulla"
+        or: "or"
+        update_settings: "Update settings"
         general_settings: "Configurazione generale"
         your_blog: "Tuo blog "
         blog_name: "Nome blog"
@@ -155,6 +172,9 @@ it:
         items_to_display_in_admin_lists: "Items to display in admin lists"
     seo:
       titles:
+        cancel: "Annulla"
+        or: "or"
+        update_settings: "Update settings"
         title_settings: "Title settings"
         home: "Home"
         title_template: "Title template"
@@ -188,6 +208,9 @@ it:
         replaced_by_the_archive_date: "Replaced by the archive date"
         replaced_by_the_content_body: "Replaced by the content body"
       permalinks:
+        cancel: "Annulla"
+        or: "or"
+        update_settings: "Update settings"
         explain: "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links."
         permalinks: "Permalinks"
         permalink_format: "Permalink format"
@@ -202,6 +225,9 @@ it:
         your_article_month: "your article month of publication."
         your_article_day: "your article day of publication."
       index:
+        cancel: "Annulla"
+        or: "or"
+        update_settings: "Update settings"
         global_settings: "Global settings"
         general_settings: "Configurazione generale"
         meta_keywords: "Meta keywords"
@@ -264,6 +290,9 @@ it:
         original_size: "Original size"
     post_types:
       new:
+        cancel: "Annulla"
+        save: "Salva"
+        or: "or"
         post_types: "Post Types"
         name: "Nome"
         description: "Descrizione"
@@ -456,6 +485,9 @@ it:
         new_category: "New Category"
     categories:
       new:
+        cancel: "Annulla"
+        save: "Salva"
+        or: "or"
         categories: "Categories"
         name: "Nome"
         keywords: "Keywords"

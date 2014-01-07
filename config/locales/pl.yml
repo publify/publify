@@ -42,6 +42,9 @@ pl:
   admin:
     redirects:
       new:
+        cancel: "Anuluj"
+        save: "Zapisz"
+        or: "or"
         redirects: "Redirects"
         from: "Z"
         to: "To"
@@ -57,6 +60,8 @@ pl:
     sidebar:
       index:
         sidebar: "Sidebar"
+        or: "or"
+        cancel: "Anuluj"
         explain_how_its_works: "Przeciągnij i upuść pozycje, które mają być wyświetlone na blogu. By usunąć pozycję naciśnij *Usuń*. Zmiany są zapisywane od razu, lecz nie są aktywne do momentu kliknięcia 'Publikuj zmiany'"
         publish_changes: "Publikuj zmiany"
         available_items: "Dostępne elementy"
@@ -64,6 +69,9 @@ pl:
         download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
     settings:
       display:
+        cancel: "Anuluj"
+        or: "or"
+        update_settings: "Update settings"
         ago: "ago"
         custom_url: "Custom URL shortener domain"
         custom_url_help: "If you have a custom domain for URL shortening, enter it here."
@@ -82,6 +90,9 @@ pl:
         statuses: "Statuses"
         time_format: "Time format"
       feedback:
+        cancel: "Anuluj"
+        or: "or"
+        update_settings: "Update settings"
         feedback_settings: "Feedback settings"
         feedback: "Komentarze"
         comments: "Comments"
@@ -110,6 +121,9 @@ pl:
         enable_recaptcha: "Enable reCaptcha"
         remember_to_set_your_recaptcha: "Remember to set your reCaptcha keys inside config/initializers/recaptcha.rb"
       write:
+        cancel: "Anuluj"
+        or: "or"
+        update_settings: "Update settings"
         write: "Pisanie"
         publish: "Publish"
         trackbacks: "Trackbacki"
@@ -140,6 +154,9 @@ pl:
         update_database_now: "Aktualizuj bazę danych"
         may_take_a_moment: "może zająć dłuższą chwilę"
       index:
+        cancel: "Anuluj"
+        or: "or"
+        update_settings: "Update settings"
         general_settings: "Ustawienia ogólne"
         your_blog: "Twój blog"
         blog_name: "Nazwa bloga"
@@ -155,6 +172,9 @@ pl:
         items_to_display_in_admin_lists: "Items to display in admin lists"
     seo:
       titles:
+        cancel: "Anuluj"
+        or: "or"
+        update_settings: "Update settings"
         title_settings: "Title settings"
         home: "Home"
         title_template: "Title template"
@@ -188,6 +208,9 @@ pl:
         replaced_by_the_archive_date: "Replaced by the archive date"
         replaced_by_the_content_body: "Replaced by the content body"
       permalinks:
+        cancel: "Anuluj"
+        or: "or"
+        update_settings: "Update settings"
         explain: "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links."
         permalinks: "Permalinks"
         permalink_format: "Permalink format"
@@ -202,6 +225,9 @@ pl:
         your_article_month: "your article month of publication."
         your_article_day: "your article day of publication."
       index:
+        cancel: "Anuluj"
+        or: "or"
+        update_settings: "Update settings"
         global_settings: "Global settings"
         general_settings: "Ustawienia ogólne"
         meta_keywords: "Meta keywords"
@@ -264,6 +290,9 @@ pl:
         original_size: "Original size"
     post_types:
       new:
+        cancel: "Anuluj"
+        save: "Zapisz"
+        or: "or"
         post_types: "Post Types"
         name: "Nazwa"
         description: "Opis"
@@ -294,11 +323,11 @@ pl:
         type_your_post: "Type your post"
     feedback:
       bulkops:
-        success_mark_as_ham: 
+        success_mark_as_ham:
           zero: "No item selected to mark as Ham"
           one: "Marked 1 item as Ham"
           other: "Marked %{count} items as Ham"
-        success_mark_as_spam: 
+        success_mark_as_spam:
           zero: "No item selected to mark as Spam"
           one: "Marked 1 item as Spam"
           other: "Marked %{count} items as Spam"
@@ -456,6 +485,9 @@ pl:
         new_category: "Utwórz nową kategorię"
     categories:
       new:
+        cancel: "Anuluj"
+        save: "Zapisz"
+        or: "or"
         categories: "Categories"
         name: "Nazwa"
         keywords: "Keywords"

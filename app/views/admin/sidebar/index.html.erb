@@ -1,12 +1,14 @@
 <%- content_for :page_heading do %>
-  <i class="icon-large icon-sidebar"></i><h2 class="page-title"><%= t(".sidebar") %></h2>
-<% end %>
+  <i class="icon-large icon-sidebar"></i>
+  <h2 class="page-title"><%= t(".sidebar") %></h2>
+<%- end %>
 
-<p class='help-block'><%= t(".explain_how_its_work") %></p>
+<p class='help-block'><%= t(".explain_how_its_works") %></p>
+
 <%= form_tag(:url => {:action=>'publish', :method => :post }, :remote => true, :class => 'spinner') do %>
   <div class='form-actions'>
-  <%= link_to(_("Cancel"), {action: 'index'}, class: 'btn') %>
-  <%= _("or") %>
+  <%= link_to(t(".cancel"), {action: 'index'}, class: 'btn') %>
+  <%= t(".or") %>
   <%= submit_tag(t('.publish_changes'), class: 'btn btn-success') %>
 </div>
 
@@ -49,8 +51,8 @@
 
     </div>
     <div class='form-group'>
-      <%= link_to(_("Cancel"), {action: 'index'}, class: 'btn') %>
-      <%= _("or") %>
+      <%= link_to(t(".cancel"), {action: 'index'}, class: 'btn') %>
+      <%= t(".or") %>
       <%= submit_tag(t('.publish_changes'), class: 'btn btn-success') %>
     </div>
 

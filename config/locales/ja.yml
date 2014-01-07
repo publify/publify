@@ -42,6 +42,9 @@ ja:
   admin:
     redirects:
       new:
+        cancel: "キャンセル"
+        save: "保存"
+        or: "or"
         redirects: "Redirects"
         from: "From"
         to: "To"
@@ -57,6 +60,8 @@ ja:
     sidebar:
       index:
         sidebar: "サイドバー"
+        or: "or"
+        cancel: "キャンセル"
         explain_how_its_works: "ブログに表示するサイドバー項目をドラッグ＆ドロップで変更してください。サイドバーから項目を削除した場合はすぐに変更が保存されますが、「公開」ボタンを押すまでは有効になりません。"
         publish_changes: "変更を公開"
         available_items: "利用可能な項目"
@@ -64,6 +69,9 @@ ja:
         download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
     settings:
       display:
+        cancel: "キャンセル"
+        or: "or"
+        update_settings: "Update settings"
         ago: "ago"
         custom_url: "Custom URL shortener domain"
         custom_url_help: "If you have a custom domain for URL shortening, enter it here."
@@ -82,6 +90,9 @@ ja:
         statuses: "Statuses"
         time_format: "Time format"
       feedback:
+        cancel: "キャンセル"
+        or: "or"
+        update_settings: "Update settings"
         feedback_settings: "Feedback settings"
         feedback: "Feedback"
         comments: "コメント"
@@ -110,6 +121,9 @@ ja:
         enable_recaptcha: "Enable reCaptcha"
         remember_to_set_your_recaptcha: "Remember to set your reCaptcha keys inside config/initializers/recaptcha.rb"
       write:
+        cancel: "キャンセル"
+        or: "or"
+        update_settings: "Update settings"
         write: "新規作成"
         publish: "公開"
         trackbacks: "トラックバック"
@@ -140,6 +154,9 @@ ja:
         update_database_now: "データベースを今すぐ更新"
         may_take_a_moment: "少しお待ちください"
       index:
+        cancel: "キャンセル"
+        or: "or"
+        update_settings: "Update settings"
         general_settings: "General settings"
         your_blog: "あなたのブログ"
         blog_name: "ブログ名"
@@ -155,6 +172,9 @@ ja:
         items_to_display_in_admin_lists: "管理リストに表示する行数"
     seo:
       titles:
+        cancel: "キャンセル"
+        or: "or"
+        update_settings: "Update settings"
         title_settings: "Title settings"
         home: "Home"
         title_template: "Title template"
@@ -188,6 +208,9 @@ ja:
         replaced_by_the_archive_date: "Replaced by the archive date"
         replaced_by_the_content_body: "Replaced by the content body"
       permalinks:
+        cancel: "キャンセル"
+        or: "or"
+        update_settings: "Update settings"
         explain: "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links."
         permalinks: "Permalinks"
         permalink_format: "Permalink format"
@@ -202,6 +225,9 @@ ja:
         your_article_month: "your article month of publication."
         your_article_day: "your article day of publication."
       index:
+        cancel: "キャンセル"
+        or: "or"
+        update_settings: "Update settings"
         global_settings: "Global settings"
         general_settings: "一般設定"
         meta_keywords: "METAタグKeywords"
@@ -264,6 +290,9 @@ ja:
         original_size: "Original size"
     post_types:
       new:
+        cancel: "キャンセル"
+        save: "保存"
+        or: "or"
         post_types: "Post Types"
         name: "名前"
         description: "説明"
@@ -456,6 +485,9 @@ ja:
         new_category: "New Category"
     categories:
       new:
+        cancel: "キャンセル"
+        save: "保存"
+        or: "or"
         categories: "カテゴリ"
         name: "名前"
         keywords: "Keywords"
