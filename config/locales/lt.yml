@@ -40,6 +40,20 @@ lt:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
   admin:
+    notes:
+      new:
+        notes: "Notes"
+        compose_new_note: "Compose new note"
+        publish_settings: "Publish settings"
+        posse_to_twitter: "POSSE to twitter"
+        in_reply_to: "In reply to"
+        tweet_id_like: "Tweet id like 123456"
+        permanent_link: "Permanent link"
+        published: "Publikuotas"
+        publish_at: "Publikuotas"
+        cancel: "Baigti"
+        or: "or"
+        publish: "Publikuoti"
     redirects:
       new:
         cancel: "Baigti"
@@ -446,7 +460,7 @@ lt:
         latest_comments: "Latest Comments"
     content:
       index:
-        published: "Published"
+        published: "Publikuotas"
         new_article: "New article"
         all_articles: "All articles"
         manage_articles: "Manage articles"
@@ -466,7 +480,7 @@ lt:
         images: "Images"
         publish_settings: "Publish settings"
         status: "Status"
-        published: "Published"
+        published: "Publikuotas"
         allowed_comments_and_trackbacks: "Comments are %{allow_comment} and trackbacks are %{allow_trackback}"
         change: "Change"
         allow_trackbacks: "Allow trackbacks"

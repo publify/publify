@@ -111,7 +111,6 @@ Localization.define("fr_FR") do |l|
   l.store "Password %s", "Mot de passe %"
   l.store "Posted in", "Publié sous"
   l.store "Posts", "Articles"
-  l.store "Publish at", "Publié le"
   l.store "Read", "Lire"
   l.store "Regex", "Expression rationnelle"
   l.store "Settings", "Configuration"
@@ -120,7 +119,6 @@ Localization.define("fr_FR") do |l|
   l.store "Type", "Type"
   l.store "enabled", "activés"
   l.store "example", "par exemple"
-  l.store "published", "publié"
   l.store "your blog", "votre blog"
   l.store "for", "pour"
 

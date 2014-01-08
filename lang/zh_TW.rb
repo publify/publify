@@ -6,7 +6,6 @@ Localization.define("zh_TW") do |l|
   l.store "Delete this category", "刪除分類"
   l.store "Remove", "移除"
   l.store "Uploads", "上載"
-  l.store "Publish at", "公開"
   l.store "Your posts : %d", "你的發文：%d"
   l.store "Limit to spam", "限制垃圾郵件"
   l.store "File", "檔案"

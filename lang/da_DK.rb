@@ -8,7 +8,6 @@ Localization.define("da_DK") do |l|
   l.store "Delete this category", "Slet denne kategori"
   l.store "Remove", "Slet"
   l.store "Uploads", "Filer"
-  l.store "Publish at", "Offentliggjort den"
   l.store "Your posts : %d", "Dine artikler : %d"
   l.store "Manage pages", "Administrer sider"
   l.store "New database version", "Ny database version"

@@ -12,7 +12,6 @@ Localization.define("ru_RU") do |l|
   l.store "Submit", "Войти"
   l.store "Delete this category", "Удалить эту категорию"
   l.store "Uploads", "Загрузки"
-  l.store "Publish at", "Опубликован"
   l.store "disabled", "выключены"
   l.store "None", "Нет"
   l.store "SmartyPants", "SmartyPants"

@@ -5,7 +5,6 @@ Localization.define("it_IT") do |l|
   l.store "Reorder", "Riordina"
   l.store "Delete this category", "Elimina questa categoria"
   l.store "Remove", "Elimina"
-  l.store "Publish at", "Pubblicato il"
   l.store "Limit to spam", "Limita a spam"
   l.store "File", "File"
   l.store "New database version", "Nuova versione del database"

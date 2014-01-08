@@ -40,6 +40,20 @@ en:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
   admin:
+    notes:
+      new:
+        notes: "Notes"
+        compose_new_note: "Compose new note"
+        publish_settings: "Publish settings"
+        posse_to_twitter: "POSSE to twitter"
+        in_reply_to: "In reply to"
+        tweet_id_like: "Tweet id like 123456"
+        permanent_link: "Permanent link"
+        published: "published"
+        publish_at: "Publish at"
+        cancel: "Cancel"
+        or: "or"
+        publish: "Publish"
     redirects:
       new:
         cancel: "Cancel"

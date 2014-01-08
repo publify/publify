@@ -40,6 +40,20 @@ zh-CN:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
   admin:
+    notes:
+      new:
+        notes: "Notes"
+        compose_new_note: "Compose new note"
+        publish_settings: "发布设定"
+        posse_to_twitter: "POSSE to twitter"
+        in_reply_to: "In reply to"
+        tweet_id_like: "Tweet id like 123456"
+        permanent_link: "Permanent link"
+        published: "已发表"
+        publish_at: "公开"
+        cancel: "取消"
+        or: "or"
+        publish: "发布"
     redirects:
       new:
         cancel: "取消"

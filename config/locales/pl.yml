@@ -40,6 +40,20 @@ pl:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
   admin:
+    notes:
+      new:
+        notes: "Notes"
+        compose_new_note: "Compose new note"
+        publish_settings: "Publish settings"
+        posse_to_twitter: "POSSE to twitter"
+        in_reply_to: "In reply to"
+        tweet_id_like: "Tweet id like 123456"
+        permanent_link: "Permanent link"
+        published: "Opublikowane"
+        publish_at: "Opublikowane dnia"
+        cancel: "Anuluj"
+        or: "or"
+        publish: "Publikuj"
     redirects:
       new:
         cancel: "Anuluj"
@@ -125,7 +139,7 @@ pl:
         or: "or"
         update_settings: "Update settings"
         write: "Pisanie"
-        publish: "Publish"
+        publish: "Publikuj"
         trackbacks: "Trackbacki"
         send_trackbacks: "Wyślij trackbacki"
         explain: "Publikując artykuły, Publify może powiadomić strony, do których podasz łącza. Opcja ta powinna być wyłączona w przypadku blogów osobistych, gdyż może doprowadzić do wycieku prywatnych informacji. W przypadku blogów publicznych wyłączenie tej opcji nie ma większego sensu."

@@ -40,6 +40,20 @@ pt-BR:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
   admin:
+    notes:
+      new:
+        notes: "Notes"
+        compose_new_note: "Compose new note"
+        publish_settings: "Configurações de publicação"
+        posse_to_twitter: "POSSE to twitter"
+        in_reply_to: "In reply to"
+        tweet_id_like: "Tweet id like 123456"
+        permanent_link: "Permanent link"
+        published: "Publicado"
+        publish_at: "Publicado el"
+        cancel: "Cancelar"
+        or: "or"
+        publish: "Publicar"
     redirects:
       new:
         cancel: "Cancelar"

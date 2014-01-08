@@ -5,7 +5,6 @@ Localization.define("ro_RO") do |l|
   l.store "Reorder", "Ordonează"
   l.store "Delete this category", "Șterge această categorie"
   l.store "Remove", "Șterge"
-  l.store "Publish at", "Publică la"
   l.store "Limit to spam", "Doar spam"
   l.store "remove", "supprimer"
   l.store "New database version", "Versiunea nouă a bazei de date"

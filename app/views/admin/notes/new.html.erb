@@ -1,7 +1,7 @@
 <%- content_for :page_heading do %>
   <h2>
     <i class="glyphicon glyphicon-large glyphicon-th-list"></i>
-    <%= _("Notes") %>
+    <%= t(".notes") %>
   </h2>
   
 <% end %>
@@ -11,40 +11,40 @@
     <%= form_tag :action=>"edit", :id => @note.id do %>
       <input type="hidden" name="note[text_filter]" id="note_textfilter" value="<%= current_user.text_filter_name %>" />
       <div class='form-group'>
-        <%= text_area(:note, :body, {class: 'form-control', rows: '7', placeholder: _("Compose new note")}) %>  
+        <%= text_area(:note, :body, {class: 'form-control', rows: '7', placeholder: t(".compose_new_note")}) %>  
       </div>
 
       <fieldset class="hidden-phone">
-        <legend><%= _("Publish settings") %></legend>
+        <legend><%= t(".publish_settings") %></legend>
         <%= twitter_disabled_message(this_blog, current_user) %>
         <div class="checkbox">
           <label for="push_to_twitter">
             <%= check_box_tag 'push_to_twitter', true, @note.twitter_id.blank?, {disabled: !twitter_available?(this_blog, current_user)}  %>
-            <%= _("POSSE to Twitter")%>
+            <%= t(".posse_to_twitter")%>
           </label>
         </div>
         <div class="form-group">
-          <label for="note_in_reply_to_status_id"><%= _("In reply to")%></label>
-          <%= text_field 'note', 'in_reply_to_status_id', :class => 'form-control', :placeholder => _("tweet id like 123456"), disabled: !twitter_available?(this_blog, current_user) %>
+          <label for="note_in_reply_to_status_id"><%= t(".in_reply_to")%></label>
+          <%= text_field 'note', 'in_reply_to_status_id', :class => 'form-control', :placeholder => t(".tweet_id_like"), disabled: !twitter_available?(this_blog, current_user) %>
         </div>
         <div class='form-group'>
-          <label for="note_permalink"><%= _("Permanent link")%></label>
+          <label for="note_permalink"><%= t(".permanent_link")%></label>
           <%= text_field 'note', 'permalink', :class => 'form-control' %>
         </div>
         <div class='checkbox'>
           <label for='note_published'>
             <%= check_box 'note', 'published'  %>
-            <%= _("Published") %>
+            <%= t(".published") %>
           </label>
         </div>
         <div class='form-group'>
-          <label for='note_published_at'><%= _("Publish at") %></label>
+          <label for='note_published_at'><%= t(".publish_at") %></label>
           <%= text_field 'note', 'published_at', {:class => 'form-control datepicker'} %>  
         </div>
         <div class='form-group'>
-          <%= link_to(_("Cancel"), {action: 'index'}, class: 'btn') %>
-          <%= _("or") %>
-          <%= submit_tag(_("Publish"), class: 'btn btn-success') %>
+          <%= link_to(t(".cancel"), {action: 'index'}, class: 'btn') %>
+          <%= t(".or") %>
+          <%= submit_tag(t(".publish"), class: 'btn btn-success') %>
         </div>
       </fieldset>
     </div>

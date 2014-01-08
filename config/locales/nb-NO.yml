@@ -40,6 +40,20 @@ nb-NO:
       proceed_to: "Fortsett til %{link}"
       admin: "admin"
   admin:
+    notes:
+      new:
+        notes: "Notes"
+        compose_new_note: "Compose new note"
+        publish_settings: "Publiseringsinnstillinger"
+        posse_to_twitter: "POSSE to twitter"
+        in_reply_to: "In reply to"
+        tweet_id_like: "Tweet id like 123456"
+        permanent_link: "Permanent lenke"
+        published: "Publisert"
+        publish_at: "Offentliggjort den"
+        cancel: "Annuller"
+        or: "or"
+        publish: "Publiser"
     redirects:
       new:
         cancel: "Annuller"

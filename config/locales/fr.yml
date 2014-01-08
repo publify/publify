@@ -40,6 +40,20 @@ fr:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
   admin:
+    notes:
+      new:
+        notes: "Notes"
+        compose_new_note: "Compose new note"
+        publish_settings: "Paramètres de publication"
+        posse_to_twitter: "POSSE to twitter"
+        in_reply_to: "In reply to"
+        tweet_id_like: "Tweet id (ex: 123456)"
+        permanent_link: "Lien permanent"
+        published: "Publié"
+        publish_at: "Publié le"
+        cancel: "Annuler"
+        or: "ou"
+        publish: "Publier"
     redirects:
       new:
         cancel: "Annuler"

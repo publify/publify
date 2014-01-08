@@ -40,6 +40,20 @@ nl:
       proceed_to: "Ga door naar %{link}"
       admin: "admin"
   admin:
+    notes:
+      new:
+        notes: "Notes"
+        compose_new_note: "Compose new note"
+        publish_settings: "Publicatie instellingen"
+        posse_to_twitter: "POSSE to twitter"
+        in_reply_to: "In reply to"
+        tweet_id_like: "Tweet id like 123456"
+        permanent_link: "Permanente link"
+        published: "Gepubliceerd"
+        publish_at: "Publiceren op"
+        cancel: "Terug"
+        or: "or"
+        publish: "Publiceer"
     redirects:
       new:
         cancel: "Terug"

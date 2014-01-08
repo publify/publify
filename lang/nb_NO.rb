@@ -22,7 +22,6 @@ Localization.define("nb_NO") do |l|
   l.store "%s Category", "%s kategori"
   l.store "Remove", "Slett"
   l.store "Uploads", "Opplastede filer"
-  l.store "Publish at", "Offentliggjort den"
   l.store "Limit to ham", "Begrens til Ham"
   l.store "Limit to presumed ham", "Begrens til antatt Ham"
   l.store "Limit to presumed spam", "Begrens til antatt Spam"

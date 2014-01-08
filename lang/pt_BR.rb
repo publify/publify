@@ -21,7 +21,6 @@ Localization.define("pt_BR") do |l|
   l.store "Delete this category", "Eliminar esta categoria"
   l.store "%s Category", "%s Categoria"
   l.store "Remove", "Remover"
-  l.store "Publish at", "Publicado el"
   l.store "Limit to spam", "Limitar a spam"
   l.store "New database version", "Nueva versi&oacute;n de la base de datos"
   l.store "yes", "s&iacute;"

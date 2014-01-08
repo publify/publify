@@ -11,7 +11,6 @@ Localization.define("pl_PL") do |l|
   l.store "Delete this category", "Usuń tą kategorię"
   l.store "Remove", "Skasuj"
   l.store "Uploads", "Załadowane zasoby"
-  l.store "Publish at", "Opublikowane dnia"
   l.store "Your posts : %d", "Twoje wpisy: %d"
   l.store "Url", "Strona web"
   l.store "File", "Plik"
