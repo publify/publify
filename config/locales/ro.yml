@@ -16,6 +16,11 @@ ro:
         zero: "no comentarii"
         one: "1 comentariu"
         other: "%{count} comentarii"
+    comment_counter:
+      comments:
+        zero: "no comentarii"
+        one: "1 comentariu"
+        other: "%{count} comentarii"
   profile:
     admin: "Publify administrator"
     publisher: "Blog publisher"

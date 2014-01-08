@@ -16,6 +16,11 @@ de:
         zero: "no kommentare"
         one: "1 kommentar"
         other: "%{count} kommentare"
+    comment_counter:
+      comments:
+        zero: "no kommentare"
+        one: "1 kommentar"
+        other: "%{count} kommentare"
   profile:
     admin: "Publify administrator"
     publisher: "Blog publisher"

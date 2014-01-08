@@ -16,6 +16,11 @@ pl:
         zero: "no comments"
         one: "1 comment"
         other: "%{count} comments"
+    comment_counter:
+      comments:
+        zero: "no comments"
+        one: "1 comment"
+        other: "%{count} comments"
   profile:
     admin: "administracja Publify"
     publisher: "Blog publisher"

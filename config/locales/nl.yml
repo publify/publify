@@ -16,6 +16,11 @@ nl:
         zero: "Geen reacties"
         one: "1 comment"
         other: "%{count} comments"
+    comment_counter:
+      comments:
+        zero: "Geen reacties"
+        one: "1 comment"
+        other: "%{count} comments"
   profile:
     admin: "Publify administrator"
     publisher: "Blog publisher"

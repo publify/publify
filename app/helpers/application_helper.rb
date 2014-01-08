@@ -10,16 +10,6 @@ module ApplicationHelper
 
   include SidebarHelper
 
-  # Basic english pluralizer.
-  # Axe?
-  def pluralize(size, zero, one , many )
-    case size
-    when 0 then zero
-    when 1 then one
-    else        sprintf(many, size)
-    end
-  end
-
   # Produce a link to the permalink_url of 'item'.
   def link_to_permalink(item, title, anchor=nil, style=nil, nofollow=nil, only_path=false)
     options = {}

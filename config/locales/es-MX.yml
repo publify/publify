@@ -16,6 +16,11 @@ es-MX:
         zero: "no Comentarios"
         one: "1 Comentario"
         other: "%{count} Comentarios"
+    comment_counter:
+      comments:
+        zero: "no Comentarios"
+        one: "1 Comentario"
+        other: "%{count} Comentarios"
   profile:
     admin: "Publify administrator"
     publisher: "Blog publisher"

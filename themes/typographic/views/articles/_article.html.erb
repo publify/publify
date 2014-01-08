@@ -23,9 +23,11 @@
   </div>
   <% else %>
 	<p class="links">
-		<%= link_to_permalink(article, _("Read full article"), nil, 'more') if controller.action_name != 'permalink' %>
-		<%= link_to_permalink(article,pluralize(article.published_comments.size, _('no comments') , _('1 comment'), __('%d comments')),'comments', 'comments') %>
-	</p>
-  <% end %>
-  <br style="clear: left;" />
-</div>
+        <%= link_to_permalink(article, _("Read full article"), nil, 'more') if controller.action_name != 'permalink' %>
+
+
+        <%= link_to t('.comments', count: article.published_comments.size), article.permalink_url('comments') %>
+        </p>
+      <% end %>
+        <br style="clear: left;" />
+      </div>

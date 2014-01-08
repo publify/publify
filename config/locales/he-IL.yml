@@ -16,6 +16,11 @@ he-IL:
         zero: "ללא תגובות"
         one: "1 comment"
         other: "%{count} comments"
+    comment_counter:
+      comments:
+        zero: "ללא תגובות"
+        one: "1 comment"
+        other: "%{count} comments"
   profile:
     admin: "מנהל"
     publisher: "כותב"

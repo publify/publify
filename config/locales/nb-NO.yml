@@ -16,6 +16,11 @@ nb-NO:
         zero: "Ingen kommentarer"
         one: "1 comment"
         other: "%{count} Kommentarer"
+    comment_counter:
+      comments:
+        zero: "Ingen kommentarer"
+        one: "1 comment"
+        other: "%{count} Kommentarer"
   profile:
     admin: "Publify administrator"
     publisher: "Blog publisher"

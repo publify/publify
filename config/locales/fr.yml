@@ -16,6 +16,11 @@ fr:
         zero: "aucun commentaire"
         one: "1 commentaire"
         other: "%{count} commentaires"
+    comment_counter:
+      comments:
+        zero: "aucun commentaire"
+        one: "1 commentaire"
+        other: "%{count} commentaires"
   profile:
     admin: "Administrateur"
     publisher: "Rédacteur"

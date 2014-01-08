@@ -16,6 +16,11 @@ pt-BR:
         zero: "no comentarios"
         one: "1 comentario"
         other: "%{count} comentarios"
+    comment_count:
+      comments:
+        zero: "no comentarios"
+        one: "1 comentario"
+        other: "%{count} comentarios"
   profile:
     admin: "Publify administrator"
     publisher: "Blog publisher"
