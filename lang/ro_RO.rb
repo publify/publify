@@ -25,7 +25,6 @@ Localization.define("ro_RO") do |l|
   l.store "Trackbacks for", "Retrolegături pentru"
   l.store "%d Articles", ["Articol", "%d Articole"]
   l.store "%d Categories", ["Categorie", "%d Categorii"]
-  l.store "%d Comments", ["Comentariu", "%d Comentarii"]
   l.store "%d Tags", ["Cuvînt cheie", "%d Cuvinte cheie"]
   l.store "%d Trackbacks", ["Retrolegătură", "%d Retrolegături"]
   l.store "%d Users", ["Utilizator", "%d Utilizatori"]
@@ -37,7 +36,6 @@ Localization.define("ro_RO") do |l|
   l.store "Article Attachments", "Atașamentele articolului"
   l.store "Article Body", "Corpul articolului"
   l.store "Article Content", "Conținutul articolului"
-  l.store "Article Options", "Opțiunile articolului"
   l.store "Articles in", "Articole în"
   l.store "Attachments", "Atașamente"
   l.store "Back to the blog", "Înapoi la blog"
@@ -49,15 +47,11 @@ Localization.define("ro_RO") do |l|
   l.store "Filters", "Filtre"
   l.store "IP", "Adresa IP"
   l.store "Jabber", "Jabber"
-  l.store "Jabber account", "Cont Jabber"
-  l.store "Jabber password", "Parola Jabber"
-  l.store "Last updated", "Ultima modificare"
   l.store "Location", "Adresa"
   l.store "Logoff", "Ieșire"
   l.store "Macros", "Macro-uri"
   l.store "Manage", "Articole"
   l.store "Markup", "Marcaj"
-  l.store "Markup type", "Tip de marcaj"
   l.store "MetaData", "Metainformații"
   l.store "Notified", "Alertă trimisă"
   l.store "Offline", "Offline"
@@ -66,14 +60,12 @@ Localization.define("ro_RO") do |l|
   l.store "Pattern", "Model"
   l.store "Post title", "Titlul articolului"
   l.store "Posted at", "Data publicării"
-  l.store "Posted date", "Publicat la"
   l.store "Read", "Afișare"
   l.store "Read more", "Citește mai departe"
   l.store "Regex", "Expresie regulată"
   l.store "Setting for channel", "Setări de canal"
   l.store "Settings", "Configurare"
   l.store "Show Help", "Ajutor"
-  l.store "Spam Protection", "Protecție anti-spam"
   l.store "String", "Șir de caractere"
   l.store "Summary", "Rezumat"
   l.store "Textfilter", "Filtru de text"

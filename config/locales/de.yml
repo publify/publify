@@ -11,6 +11,11 @@ de:
       your_message: "Meine Nachricht"
       comment_markup_help: "Hilfe zu Kommentar Markup"
       preview_comment: "Kommentar Vorschau"
+    article_links:
+      comments:
+        zero: "no kommentare"
+        one: "1 kommentar"
+        other: "%{count} kommentare"
   profile:
     admin: "Publify administrator"
     publisher: "Blog publisher"

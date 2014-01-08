@@ -26,7 +26,6 @@ Localization.define("de_DE") do |l|
   l.store "Archives", "Archive"
   l.store "%d Articles", ["Artikel", "%d Artikel"]
   l.store "%d Categories", ["Kategorie", "%d Kategorien"]
-  l.store "%d Comments", ["Kommentar", "%d Kommentare"]
   l.store "%d Tags", ["Tag", "%d Tags"]
   l.store "%d Trackbacks", ["Trackback", "%d Trackbacks"]
   l.store "%d Users", ["Benutzer", "%d Benutzer"]
@@ -38,7 +37,6 @@ Localization.define("de_DE") do |l|
   l.store "Article Attachments", "Artikel Anhänge"
   l.store "Article Body", "Artikel"
   l.store "Article Content", "Artikel Inhalt"
-  l.store "Article Options", "Artikel Optionen"
   l.store "Articles in", "Artikel in"
   l.store "Attachments", "Anhänge"
   l.store "Back to the blog", "Zurück zum Blog"
@@ -49,15 +47,11 @@ Localization.define("de_DE") do |l|
   l.store "Desired login", "Benutzername"
   l.store "Filters", "Filter"
   l.store "IP", "IP-Adresse"
-  l.store "Jabber account", "Jabber Account"
-  l.store "Jabber password", "Jabber Passwort"
-  l.store "Last updated", "Zuletzt aktualisiert"
   l.store "Location", "Adresse"
   l.store "Logoff", "Logoff"
   l.store "Macros", "Makros"
   l.store "Manage", "Verwalten"
   l.store "Markup", "Markup"
-  l.store "Markup type", "Markup Typ"
   l.store "MetaData", "Metadaten"
   l.store "Notified", "Benachrichtigt"
   l.store "Offline", "Offline"
@@ -66,13 +60,11 @@ Localization.define("de_DE") do |l|
   l.store "Pattern", "Muster"
   l.store "Post title", "Titel des Artikels"
   l.store "Posted at", "Veröffentlicht am"
-  l.store "Posted date", "Angelegt am"
   l.store "Read", "Lesen"
   l.store "Regex", "Regulärer Ausdruck"
   l.store "Setting for channel", "Kanaloptionen"
   l.store "Settings", "Einstellungen"
   l.store "Show Help", "Hilfe"
-  l.store "Spam Protection", "Spamschutz"
   l.store "String", "Zeichenkette"
   l.store "Summary", "Zusammenfassung"
   l.store "Textfilter", "Textfilter"

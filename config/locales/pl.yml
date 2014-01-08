@@ -11,6 +11,11 @@ pl:
       your_message: "Treść"
       comment_markup_help: "Pomoc języka formatowania"
       preview_comment: "Obejrzyj komentarz"
+    article_links:
+      comments:
+        zero: "no comments"
+        one: "1 comment"
+        other: "%{count} comments"
   profile:
     admin: "administracja Publify"
     publisher: "Blog publisher"

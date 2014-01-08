@@ -11,6 +11,11 @@ zh-CN:
       your_message: "你的訊息"
       comment_markup_help: "评论顯示協助"
       preview_comment: "預覽评论"
+    article_links:
+      comments:
+        zero: "no comments"
+        one: "1 comment"
+        other: "%{count} comments"
   profile:
     admin: "Publify administrator"
     publisher: "Blog publisher"

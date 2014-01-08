@@ -11,6 +11,11 @@ he-IL:
       your_message: "התגובה שלך"
       comment_markup_help: "עזרה על שפת הטקסט"
       preview_comment: "תצוגה מקדימה של התגובה"
+    article_links:
+      comments:
+        zero: "ללא תגובות"
+        one: "1 comment"
+        other: "%{count} comments"
   profile:
     admin: "מנהל"
     publisher: "כותב"

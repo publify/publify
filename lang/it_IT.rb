@@ -26,7 +26,6 @@ Localization.define("it_IT") do |l|
   l.store "Archives", "Archivi"
   l.store "%d Articles", ["Categoria", "%d Categorie"]
   l.store "%d Categories", ["Categoria", "%d Categorie"]
-  l.store "%d Comments", ["Commento", "%d Commenti"]
   l.store "%d Tags", ["Tag", "%d Tags"]
   l.store "%d Trackbacks", ["Trackback", "%d Trackbacks"]
   l.store "%d Users", ["Utente", "%d Utenti"]
@@ -41,7 +40,6 @@ Localization.define("it_IT") do |l|
   l.store "Article Attachments", "Allegati articolo"
   l.store "Article Body", "Contenuto articolo"
   l.store "Article Content", "Contenuto Articolo"
-  l.store "Article Options", "Opzioni articolo"
   l.store "Articles in", "Articoli in"
   l.store "Attachments", "Allegati"
   l.store "Basic settings", "Configurazione base"
@@ -61,18 +59,12 @@ Localization.define("it_IT") do |l|
   l.store "Desired login", "Nome utente"
   l.store "Enable plugins", "Aggiungere plugins"
   l.store "Filters", "Filtri"
-  l.store "HTML was cleared", "l'HTML cancellato"
   l.store "IP", "IP"
-  l.store "Jabber account", "Account Jabber"
-  l.store "Last Comments", "Ultimi commenti"
-  l.store "Last posts", "Ultimi articoli"
-  l.store "Last updated", "Ultimo aggiornamento"
   l.store "Location", "Link permanente"
   l.store "Logoff", "Esci"
   l.store "Macros", "Macros"
   l.store "Manage", "Gestisci"
   l.store "Markup", "Markup"
-  l.store "Markup type", "Tipo di markup"
   l.store "MetaData", "MetaData"
   l.store "New post", "Nuovo post"
   l.store "Notified", "Notificato"
@@ -85,7 +77,6 @@ Localization.define("it_IT") do |l|
   l.store "Post", "Contenuto"
   l.store "Post title", "Titolo articolo"
   l.store "Posted at", "Data pubblicazione"
-  l.store "Posted date", "Data di inserimento"
   l.store "Posts", "Articoli"
   l.store "Read", "Mostra"
   l.store "Read more", "Continua"
@@ -93,8 +84,6 @@ Localization.define("it_IT") do |l|
   l.store "Setting for channel", "Configurazione per il canale"
   l.store "Settings", "Configurazione"
   l.store "Show Help", "Mostra l'aiuto"
-  l.store "Spam Protection", "Protezione spam"
-  l.store "Spam protection", "Protezione contro lo spam"
   l.store "String", "Stringa"
   l.store "Summary", "Riassunto"
   l.store "Textfilter", "Formato testo"

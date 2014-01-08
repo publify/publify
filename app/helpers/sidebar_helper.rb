@@ -30,9 +30,7 @@ module SidebarHelper
       new_root = File.join(this_blog.current_theme.path, "views", new_root)
       view_root = new_root if File.exists?(File.join(new_root, "content.rhtml"))
     end
-    render_to_string(:file => "#{view_root}/content.rhtml",
-                     :locals => sidebar.to_locals_hash,
-                     :layout => false)
+    render_to_string(:file => "#{view_root}/content.rhtml", :locals => sidebar.to_locals_hash, :layout => false)
   end
 
   def articles?
@@ -47,4 +45,7 @@ module SidebarHelper
     not Comment.first.nil?
   end
 
+  def render_to_string(*args, &block)
+    controller.send(:render_to_string, *args, &block)
+  end
 end

@@ -11,6 +11,11 @@ lt:
       your_message: "Tavo žinutė"
       comment_markup_help: "Komentaro sintaksės žymėjimo pagalba"
       preview_comment: "Peržiūrėti komentarą"
+    article_links:
+      comments:
+        zero: "no comments"
+        one: "1 Komentaras"
+        other: "%{count} Komentarai"
   profile:
     admin: "Publify administrator"
     publisher: "Blog publisher"

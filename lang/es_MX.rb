@@ -22,7 +22,6 @@ Localization.define("es_MX") do |l|
   l.store "Trackbacks for", "Trackbacks para"
   l.store "%d Articles", ["Art&iacute;culo", "%d Art&iacute;culos"]
   l.store "%d Categories", ["Categor&iacute;", "%d Categor&iacute;as"]
-  l.store "%d Comments", ["Comentario", "%d Comentarios"]
   l.store "%d Trackbacks", ["Trackback", "%d Trackbacks"]
   l.store "%d Users", ["Usuario", "%d Usuarios"]
   l.store "Action", "Acci&oacute;n"
@@ -33,7 +32,6 @@ Localization.define("es_MX") do |l|
   l.store "Article Attachments", "Archivos adjuntos"
   l.store "Article Body", "Cuerpo del Art&iacute;culo"
   l.store "Article Content", "Contenido del Art&iacute;culo"
-  l.store "Article Options", "Opciones del Art&iacute;culo"
   l.store "Articles in", "Art&iacute;culos en"
   l.store "Attachments", "Archivos adjuntos"
   l.store "Back to the blog", "Regresar al blog"
@@ -45,15 +43,11 @@ Localization.define("es_MX") do |l|
   l.store "Filters", "Filtros"
   l.store "IP", "Direcci&oacute;n IP"
   l.store "Jabber", "Jabber"
-  l.store "Jabber account", "Cuenta de Jabber"
-  l.store "Jabber password", "Contrase&ntilde;a de Jabber"
-  l.store "Last updated", "&Uacute;ltima actualizaci&oacute;n"
   l.store "Location", "Ubicaci&oacute;n"
   l.store "Logoff", "Salir"
   l.store "Macros", "Macros"
   l.store "Manage", "Administrar"
   l.store "Markup", "Marcado"
-  l.store "Markup type", "Tipo de marcado"
   l.store "MetaData", "Metadata"
   l.store "Notified", "Notificado"
   l.store "Offline", "Offline"
@@ -62,14 +56,12 @@ Localization.define("es_MX") do |l|
   l.store "Pattern", "Patr&oacute;n"
   l.store "Post title", "T&iacute;tulo del art&iacute;culo"
   l.store "Posted at", "Publicado el"
-  l.store "Posted date", "Fecha de publicaci&oacute;n"
   l.store "Read", "Leer"
   l.store "Read more", "Leer m&aacute;s"
   l.store "Regex", "Expresi&oacute;n regular"
   l.store "Setting for channel", "Utilizado para el canal"
   l.store "Settings", "Configuraci&oacute;n"
   l.store "Show Help", "Mostrar Ayuda"
-  l.store "Spam Protection", "Protecci&oacute;n anti-spam"
   l.store "String", "Cadena"
   l.store "Summary", "Resumen"
   l.store "Textfilter", "Filtro de texto"

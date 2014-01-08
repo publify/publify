@@ -11,6 +11,11 @@ it:
       your_message: "Tuo messaggio"
       comment_markup_help: "Aiuto sul markup dei comemnti"
       preview_comment: "Anteprima commento"
+    article_links:
+      comments:
+        zero: "no comments"
+        one: "1 Commento"
+        other: "%{count} Commenti"
   profile:
     admin: "Publify administrator"
     publisher: "Blog publisher"

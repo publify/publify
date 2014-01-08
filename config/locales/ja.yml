@@ -11,6 +11,11 @@ ja:
       your_message: "メッセージ"
       comment_markup_help: "コメントのマークアップヘルプ"
       preview_comment: "前のコメント"
+    article_links:
+      comments:
+        zero: "no comments"
+        one: "1 comment"
+        other: "%{count} comments"
   profile:
     admin: "Publify administrator"
     publisher: "Blog publisher"

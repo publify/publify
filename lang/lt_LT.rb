@@ -25,7 +25,6 @@ Localization.define("lt_LT") do |l|
   l.store "Archives", "Archyvas"
   l.store "%d Articles", ["Straipsnis", "%d Straipsniai"]
   l.store "%d Categories", ["Kategorija", "%d Kategorijos"]
-  l.store "%d Comments", ["Komentaras", "%d Komentarai"]
   l.store "%d Tags", ["Žymė", "%d Žymės"]
   l.store "%d Trackbacks", ["dienoraščio nuoroda", "%d dienoraščių nuorodos"]
   l.store "%d Users", ["Vartotojas", "%d Vartotojai"]
@@ -37,7 +36,6 @@ Localization.define("lt_LT") do |l|
   l.store "Article Attachments", "Straipsnio prikabinti failai"
   l.store "Article Body", "Straipsnio tekstas" #straipsnio kūnas niekur nesako, reikia tinkamesnio
   l.store "Article Content", "Straipsnio turinys"
-  l.store "Article Options", "Straipsnio nustatymai"
   l.store "Articles in", "Straipsniai"
   l.store "Attachments", "Prikabinta"
   l.store "Back to the blog", "Grįžti į dienoraštį"
@@ -48,15 +46,11 @@ Localization.define("lt_LT") do |l|
   l.store "Desired login", "Trokštamas prisijungimo vardas"
   l.store "Filters", "Filter"
   l.store "IP", "IP adresas"
-  l.store "Jabber account", "Jabber Account"
-  l.store "Jabber password", "Jabber Passwort"
-  l.store "Last updated", "Paskutinis atnaujinimas"
   l.store "Location", "Adresse"
   l.store "Logoff", "Atsijungti"
   l.store "Macros", "Makros"
   l.store "Manage", "Valdyti"
   l.store "Markup", "Markup"
-  l.store "Markup type", "Markup Typ"
   l.store "MetaData", "Metadaten"
   l.store "Notified", "Benachrichtigt"
   l.store "Offline", "Nepasiekiamas"
@@ -65,14 +59,12 @@ Localization.define("lt_LT") do |l|
   l.store "Pattern", "Šablonas" # pavyzdys forma ?
   l.store "Post title", "Žinutės pavadinimas"
   l.store "Posted at", "publikuota"
-  l.store "Posted date", "Publikavimo data"
   l.store "Read", "Skaityti"
   l.store "Read more", "Plačiau"
   l.store "Regex", "Reguliarioji išraiška" # kvailai skamba bet kaip kitaip ?
   l.store "Setting for channel", "Kanaloptionen"
   l.store "Settings", "Nustatymai"
   l.store "Show Help", "Hilfe"
-  l.store "Spam Protection", "Spamo apsauga"
   l.store "String", "Eilutė"
   l.store "Summary", "Zusammenfassung"
   l.store "Textfilter", "Teksto filtras"

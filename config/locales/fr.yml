@@ -11,6 +11,11 @@ fr:
       your_message: "Votre commentaire"
       comment_markup_help: "Aide sur le balisage des commentaires"
       preview_comment: "Prévisualiser le commentaire" 
+    article_links:
+      comments:
+        zero: "aucun commentaire"
+        one: "1 commentaire"
+        other: "%{count} commentaires"
   profile:
     admin: "Administrateur"
     publisher: "Rédacteur"

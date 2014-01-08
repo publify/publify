@@ -11,6 +11,11 @@ da:
       your_message: "Din besked"
       comment_markup_help: "Hjælp med kommentar markup"
       preview_comment: "Vis kommentar eksempel"
+    article_links:
+      comments:
+        zero: "no kommentarer"
+        one: "1 comment"
+        other: "%{count} kommentarer"
   profile:
     admin: "Publify administrator"
     publisher: "Blog publisher"

@@ -11,6 +11,11 @@ nl:
       your_message: "Jouw bericht"
       comment_markup_help: "Comment Markup Help"
       preview_comment: "Bekijk reactie"
+    article_links:
+      comments:
+        zero: "Geen reacties"
+        one: "1 comment"
+        other: "%{count} comments"
   profile:
     admin: "Publify administrator"
     publisher: "Blog publisher"

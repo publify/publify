@@ -11,6 +11,11 @@ es-MX:
       your_message: "Tu comentario"
       comment_markup_help: "Ayuda del marcado"
       preview_comment: "Previsualizar comentario"
+    article_links:
+      comments:
+        zero: "no Comentarios"
+        one: "1 Comentario"
+        other: "%{count} Comentarios"
   profile:
     admin: "Publify administrator"
     publisher: "Blog publisher"

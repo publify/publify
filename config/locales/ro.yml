@@ -11,6 +11,11 @@ ro:
       your_message: "Comentariu"
       comment_markup_help: "Ajutor la marcare"
       preview_comment: "Previzualizare"
+    article_links:
+      comments:
+        zero: "no comentarii"
+        one: "1 comentariu"
+        other: "%{count} comentarii"
   profile:
     admin: "Publify administrator"
     publisher: "Blog publisher"

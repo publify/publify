@@ -11,6 +11,11 @@ ru:
       your_message: "Ваше сообщение"
       comment_markup_help: "Помощь по разметке"
       preview_comment: "Предпросмотр комментария"
+    article_links:
+      comments:
+        zero: "Нет комментариев"
+        one: "1 comment"
+        other: "%{count} comments"
   profile:
     admin: "Publify administrator"
     publisher: "Blog publisher"
