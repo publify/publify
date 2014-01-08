@@ -13,12 +13,6 @@ Localization.define("lt_LT") do |l|
   l.store "Posted by", "Parašė"
   l.store "said", "pasakė"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "Komentaras laukia moderatoriaus patvirtinimo" # sutrumpinua, man rodos logiskaiu
-
-  l.store "Your name", "Tavo vardas"
-  l.store "Your email", "Tavo el. pašto adresas"
-  l.store "Your message", "Tavo žinutė"
-  l.store "Comment Markup Help", "Komentaro sintaksės žymėjimo pagalba"
-  l.store "Preview comment", "Peržiūrėti komentarą"
   l.store "No articles found", "Straipsnių nėra"
   l.store "is about to say", "pasakoja apie"
   l.store "There are", "Čia yra"
@@ -89,5 +83,4 @@ Localization.define("lt_LT") do |l|
   l.store "Write an Article", "Kurti straipsnį"
   l.store "by", "bei"
   l.store "on", "įjungta"
-  l.store "your blog", "Tavo dienoraštis"
 end

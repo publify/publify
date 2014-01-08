@@ -1,4 +1,16 @@
 pl:
+  articles:
+    comment_form:
+      comment: "comment"
+      email_address: "Email address"
+      your_website: "Your website"
+      leave_url_email: "leave url/email"
+      your_name: "Twoja nazwa"
+      your_blog: "Twój blog"
+      your_email: "Twój email"
+      your_message: "Treść"
+      comment_markup_help: "Pomoc języka formatowania"
+      preview_comment: "Obejrzyj komentarz"
   profile:
     admin: "administracja Publify"
     publisher: "Blog publisher"

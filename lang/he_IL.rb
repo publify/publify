@@ -33,12 +33,6 @@ Localization.define("he_IL") do |l|
   l.store "Yes", "כן"
   l.store "Posted by", "נכתב על ידי"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "תגובה זו הועברה לביקורת. היא לא תופיע בבלוג עד אשר הכותב יאשר אותה"
-  l.store "Your name", "השם שלך"
-  l.store "Your email", "הדואל שלך"
-  l.store "Your message", "התגובה שלך"
-  l.store "Comment Markup Help", "עזרה על שפת הטקסט"
-  l.store "Preview comment", "תצוגה מקדימה של התגובה"
-  l.store "leave url/email", "השאר כתובת/דואל"
   l.store "Oops, something wrong happened, the comment could not be saved", "אופס, משהו השתבש, התגובה אינה יכולה להישמר"
   l.store "No articles found", "לא נמצאו כתבות"
   l.store "posted in", "נשלח ב-"
@@ -148,5 +142,4 @@ Localization.define("he_IL") do |l|
   l.store "log out", "התנתק"
   l.store "on", "על"
   l.store "show", "הצג"
-  l.store "your blog", "הבלוג שלך"
 end

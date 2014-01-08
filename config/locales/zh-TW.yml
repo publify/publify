@@ -1,4 +1,16 @@
 zh-TW:
+  articles:
+    comment_form:
+      comment: "comment"
+      email_address: "Email address"
+      your_website: "Your website"
+      leave_url_email: "leave url/email"
+      your_name: "你的名稱"
+      your_blog: "your blog"
+      your_email: "你的email"
+      your_message: "你的訊息"
+      comment_markup_help: "評論顯示協助"
+      preview_comment: "預覽評論"
   profile:
     admin: "Publify administrator"
     publisher: "Blog publisher"

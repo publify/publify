@@ -13,11 +13,6 @@ Localization.define("it_IT") do |l|
   l.store "Drag some plugins here to fill your sidebar", "Trascina alcuni plugins qui per popolare la tua sidebar"
   l.store "Posted by", "Scritto da"
   l.store "said", "dice"
-  l.store "Your name", "Tuo nome "
-  l.store "Your email", "Tua email"
-  l.store "Your message", "Tuo messaggio"
-  l.store "Comment Markup Help", "Aiuto sul markup dei comemnti"
-  l.store "Preview comment", "Anteprima commento"
   l.store "No articles found", "Nessun articolo trovato"
   l.store "is about to say", "sta per dire"
   l.store "There are", "Ci sono"
@@ -117,5 +112,4 @@ Localization.define("it_IT") do |l|
   l.store "by", "da"
   l.store "no ", "no "
   l.store "on", "su"
-  l.store "your blog", "il tuo blog"
 end

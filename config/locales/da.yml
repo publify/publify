@@ -1,4 +1,16 @@
 da:
+  articles:
+    comment_form:
+      comment: "comment"
+      email_address: "Email address"
+      your_website: "Your website"
+      leave_url_email: "leave url/email"
+      your_name: "Dit Navn"
+      your_blog: "your blog"
+      your_email: "Din email"
+      your_message: "Din besked"
+      comment_markup_help: "Hjælp med kommentar markup"
+      preview_comment: "Vis kommentar eksempel"
   profile:
     admin: "Publify administrator"
     publisher: "Blog publisher"

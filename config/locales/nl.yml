@@ -1,4 +1,16 @@
 nl:
+  articles:
+    comment_form:
+      comment: "reactie"
+      email_address: "E-mailadres"
+      your_website: "Je website"
+      leave_url_email: "plaats url/e-mail"
+      your_name: "Jouw naam"
+      your_blog: "your blog"
+      your_email: "Jouw e-mail"
+      your_message: "Jouw bericht"
+      comment_markup_help: "Comment Markup Help"
+      preview_comment: "Bekijk reactie"
   profile:
     admin: "Publify administrator"
     publisher: "Blog publisher"

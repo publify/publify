@@ -31,11 +31,6 @@ Localization.define("ja_JP") do |l|
   l.store "Posted by", "投稿者"
   l.store "said", "発言"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "このコメントはモデレーターの確認が必要です。モデレーターが確認後にコメントが表示されます。"
-  l.store "Your name", "あなたの名前"
-  l.store "Your email", "あなたのemail"
-  l.store "Your message", "メッセージ"
-  l.store "Comment Markup Help", "コメントのマークアップヘルプ"
-  l.store "Preview comment", "前のコメント"
   l.store "No articles found", "記事が見つかりませんでした"
   l.store "is about to say", "〜について言う"
   l.store "There are", "ここに"
@@ -121,5 +116,4 @@ Localization.define("ja_JP") do |l|
   l.store "by", "by"
   l.store "no ", "no "
   l.store "on", "の"
-  l.store "your blog", "ブログ"
 end

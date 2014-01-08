@@ -1,4 +1,16 @@
 nb-NO:
+  articles:
+    comment_form:
+      comment: "kommentar"
+      email_address: "Epostadresse"
+      your_website: "Din hjemmeside"
+      leave_url_email: "legg igjen URL/epost"
+      your_name: "Ditt navn"
+      your_blog: "your blog"
+      your_email: "Din epost"
+      your_message: "Din beskjed"
+      comment_markup_help: "Hjelp med markup for kommentar"
+      preview_comment: "Vis eksempel på kommentar"
   profile:
     admin: "Publify administrator"
     publisher: "Blog publisher"

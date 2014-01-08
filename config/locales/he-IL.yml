@@ -1,4 +1,16 @@
 he-IL:
+  articles:
+    comment_form:
+      comment: "comment"
+      email_address: "Email address"
+      your_website: "Your website"
+      leave_url_email: "השאר כתובת/דואל"
+      your_name: "השם שלך"
+      your_blog: "הבלוג שלך"
+      your_email: "הדואל שלך"
+      your_message: "התגובה שלך"
+      comment_markup_help: "עזרה על שפת הטקסט"
+      preview_comment: "תצוגה מקדימה של התגובה"
   profile:
     admin: "מנהל"
     publisher: "כותב"

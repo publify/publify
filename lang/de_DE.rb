@@ -14,11 +14,6 @@ Localization.define("de_DE") do |l|
   l.store "Continue reading", "Weiter lesen"
   l.store "said", "sagte"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "Dieser Kommentar wurde für die Moderatorfreigabe markiert. Er wird erst nach Freigabe durch den Moderator in diesem Blog erscheinen"
-  l.store "Your name", "Mein Name"
-  l.store "Your email", "Meine Email"
-  l.store "Your message", "Meine Nachricht"
-  l.store "Comment Markup Help", "Hilfe zu Kommentar Markup"
-  l.store "Preview comment", "Kommentar Vorschau"
   l.store "No articles found", "Keine Artikel gefunden"
   l.store "is about to say", "will sagen"
   l.store "There are", "Es gibt"
@@ -87,5 +82,4 @@ Localization.define("de_DE") do |l|
   l.store "Write an Article", "Einen Artikel schreiben"
   l.store "by", "bei"
   l.store "on", "über"
-  l.store "your blog", "Ihr Blog"
 end

@@ -24,11 +24,6 @@ Localization.define("pl_PL") do |l|
   l.store "said", "powiedział"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "Ten komentarz oczekuje na akceptację.  Nie ukaże się do czasu zaakceptowania przez autora."
 
-  l.store "Your name", "Twoja nazwa"
-  l.store "Your email", "Twój email"
-  l.store "Your message", "Treść"
-  l.store "Comment Markup Help", "Pomoc języka formatowania"
-  l.store "Preview comment", "Obejrzyj komentarz"
   l.store "No articles found", "Brak artykułów"
   l.store "is about to say", "zaraz powie"
   l.store "There are", "Istnieje"
@@ -129,5 +124,4 @@ Localization.define("pl_PL") do |l|
   l.store "no tags", "brak tagów"
   l.store "no users", "brak użytkowników"
   l.store "on", "na"
-  l.store "your blog", "Twój blog"
 end

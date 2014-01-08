@@ -25,11 +25,6 @@ Localization.define("zh_CN") do |l|
   l.store "Posted by", "貼上"
   l.store "said", "發言"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "這篇评论被標示為版主所允許的。他不會在博客顯示直到版主承認他。"
-  l.store "Your name", "你的名稱"
-  l.store "Your email", "你的email"
-  l.store "Your message", "你的訊息"
-  l.store "Comment Markup Help", "评论顯示協助"
-  l.store "Preview comment", "預覽评论"
   l.store "No articles found", "没有找到任何文章"
   l.store "is about to say", "这是关于~~"
   l.store "There are", "有"
@@ -124,5 +119,4 @@ Localization.define("zh_CN") do |l|
   l.store "by", "by"
   l.store "no ", "no "
   l.store "on", "の"
-  l.store "your blog", "你的博客"
 end

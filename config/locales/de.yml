@@ -1,4 +1,16 @@
 de:
+  articles:
+    comment_form:
+      comment: "comment"
+      email_address: "Email address"
+      your_website: "Your website"
+      leave_url_email: "leave url/email"
+      your_name: "Mein Name"
+      your_blog: "Ihr Blog"
+      your_email: "Meine Email"
+      your_message: "Meine Nachricht"
+      comment_markup_help: "Hilfe zu Kommentar Markup"
+      preview_comment: "Kommentar Vorschau"
   profile:
     admin: "Publify administrator"
     publisher: "Blog publisher"

@@ -14,11 +14,6 @@ Localization.define("ro_RO") do |l|
   l.store "Posted by", "Publicat de"
   l.store "said", "a scris"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "Acest comentariu a fost marcat pentru moderare. El nu va apărea în blog înainte de a fi aprobat."
-  l.store "Your name", "Nume"
-  l.store "Your email", "Email"
-  l.store "Your message", "Comentariu"
-  l.store "Comment Markup Help", "Ajutor la marcare"
-  l.store "Preview comment", "Previzualizare"
   l.store "No articles found", "Niciun articol nu a fost găsit"
   l.store "is about to say", "vrea să scrie"
   l.store "There are", "Sînt"
@@ -89,5 +84,4 @@ Localization.define("ro_RO") do |l|
   l.store "Write an Article", "Scrie un articol"
   l.store "by", "de"
   l.store "on", "la"
-  l.store "your blog", "blog-ul tău"
 end

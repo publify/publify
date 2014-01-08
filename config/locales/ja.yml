@@ -1,4 +1,16 @@
 ja:
+  articles:
+    comment_form:
+      comment: "comment"
+      email_address: "Email address"
+      your_website: "Your website"
+      leave_url_email: "leave url/email"
+      your_name: "あなたの名前"
+      your_blog: "ブログ"
+      your_email: "あなたのemail"
+      your_message: "メッセージ"
+      comment_markup_help: "コメントのマークアップヘルプ"
+      preview_comment: "前のコメント"
   profile:
     admin: "Publify administrator"
     publisher: "Blog publisher"

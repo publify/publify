@@ -1,4 +1,16 @@
 ru:
+  articles:
+    comment_form:
+      comment: "comment"
+      email_address: "Электронная почта"
+      your_website: "Веб-сайт"
+      leave_url_email: "leave url/email"
+      your_name: "Ваше имя"
+      your_blog: "your blog"
+      your_email: "Ваш email"
+      your_message: "Ваше сообщение"
+      comment_markup_help: "Помощь по разметке"
+      preview_comment: "Предпросмотр комментария"
   profile:
     admin: "Publify administrator"
     publisher: "Blog publisher"

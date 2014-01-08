@@ -1,4 +1,16 @@
 pt-BR:
+  articles:
+    comment_form:
+      comment: "comment"
+      email_address: "Email address"
+      your_website: "Your website"
+      leave_url_email: "leave url/email"
+      your_name: "Tu nombre"
+      your_blog: "your blog"
+      your_email: "Tu email"
+      your_message: "Tu comentario"
+      comment_markup_help: "Ayuda del marcado"
+      preview_comment: "Previsualizar comentario"
   profile:
     admin: "Publify administrator"
     publisher: "Blog publisher"

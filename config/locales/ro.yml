@@ -1,4 +1,16 @@
 ro:
+  articles:
+    comment_form:
+      comment: "comment"
+      email_address: "Email address"
+      your_website: "Your website"
+      leave_url_email: "leave url/email"
+      your_name: "Nume"
+      your_blog: "blog-ul tău"
+      your_email: "Email"
+      your_message: "Comentariu"
+      comment_markup_help: "Ajutor la marcare"
+      preview_comment: "Previzualizare"
   profile:
     admin: "Publify administrator"
     publisher: "Blog publisher"

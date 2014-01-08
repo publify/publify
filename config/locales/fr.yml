@@ -1,4 +1,16 @@
 fr:
+  articles:
+    comment_form:
+      comment: "commentaire"
+      email_address: "Adresse mail"
+      your_website: "Votre site"
+      leave_url_email: "laissez votre url/courriel"
+      your_name: "Votre nom "
+      your_blog: "votre blog"
+      your_email: "Votre courriel"
+      your_message: "Votre commentaire"
+      comment_markup_help: "Aide sur le balisage des commentaires"
+      preview_comment: "Prévisualiser le commentaire" 
   profile:
     admin: "Administrateur"
     publisher: "Rédacteur"

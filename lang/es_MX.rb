@@ -11,11 +11,6 @@ Localization.define("es_MX") do |l|
   l.store "remove", "supprimer"
   l.store "Posted by", "Publicado por"
   l.store "said", "dijo"
-  l.store "Your name", "Tu nombre"
-  l.store "Your email", "Tu email"
-  l.store "Your message", "Tu comentario"
-  l.store "Comment Markup Help", "Ayuda del marcado"
-  l.store "Preview comment", "Previsualizar comentario"
   l.store "No articles found", "No se encontraron art&iacute;culos"
   l.store "is about to say", "est&aacute; a punto de decir"
   l.store "There are", "Hay"
@@ -84,5 +79,4 @@ Localization.define("es_MX") do |l|
   l.store "Write an Article", "Escribir un ar&iacute;culo"
   l.store "by", "por"
   l.store "on", "en"
-  l.store "your blog", "tu blog"
 end
