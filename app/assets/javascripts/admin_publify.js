@@ -12,7 +12,6 @@ var typewatch = (function(){
 function autosave_request(e) {
   $('#article_form').keyup(function() {
     typewatch(function() {
-      submit_article_form();
       $.ajax({
         type: "POST",
         url: '/admin/content/autosave',
@@ -21,48 +20,20 @@ function autosave_request(e) {
   });
 }
 
+function set_widerea(element) {
+  if ($("#article_body_and_extended").val() == "") {
+    wideArea().clearData("#article_body_and_extended");
+  }
+
+  wideArea("#editor");
+
+}
+
 $(document).ready(function() {
   $('#article_form').each(function(e){autosave_request(e)});
+  $('#article_form').each(function(e){set_widerea($('#article_body_and_extended'))});
 //  $('#article_form .new_category').each(function(cat_link){ cat_link.click(bind_new_category_overlay); });
   $('.merge_link').each(function(merge_link){ merge_link.click(bind_merge_link); });
-  $('#article_form').each(function(){load_article_form();})
-  $('#article_form').submit(function(){submit_article_form()});
   $('#page_form').each(function(){load_page_form();})
   $('#page_form').submit(function(){submit_page_form()});
 });
-
-function load_article_form() {
-  if ($('#article_title').val() != "") {
-    $('#article-title-placeholder').text($('#article_title').val());
-  }
-  
-  if ($('#article_body_and_extended').text() != "") {
-    $('#article-body-placeholder').text($('#article_body_and_extended').text());
-  }
-  
-  $('#article_title').hide();
-  $('#article_body_and_extended').hide();  
-}
-
-function submit_article_form() {
-  $('#article_title').val($('#article-title-placeholder').text());
-  $('#article_body_and_extended').text($('#article-body-placeholder').html());
-}
-
-function load_page_form() {
-  if ($('#page_title').val() != "") {
-    $('#page-title-placeholder').text($('#page_title').val());
-  }
-  
-  if ($('#page_body').text() != "") {
-    $('#page-body-placeholder').text($('#page_body').text());    
-  }
-  
-  $('#page_title').hide();
-  $('#page_body').hide();  
-}
-
-function submit_page_form() {
-  $('#page_title').val($('#page-title-placeholder').text());
-  $('#page_body').text($('#page-body-placeholder').text());
-}

@@ -32,21 +32,12 @@
       <%#= render 'admin/shared/macros' %>
     </div>
   </div>
+  
   <div class='col-md-8'>
-    <%= text_field 'article', 'title', :class => 'form-control', :placeholder => t('.title') %>
-    <h1 id='article-title-placeholder' contenteditable='true'>
-      Your title here
-    </h1>
-    
+    <%= text_field 'article', 'title', :class => 'form-control', :placeholder => t('.title') %>  
     <div id="editor">
-      <div id='simple_editor'>
-        <div id='article-body-placeholder' contenteditable='true'>
-          Type your content
-        </div>
-        <%= text_area('article', 'body_and_extended', {:class => 'form-control ', :height => '360px', placeholder: t('.type_your_post')}) %>
-      </div>
-      <%#= render 'admin/shared/macros' %>
-      
+      <%= text_area('article', 'body_and_extended', {:class => 'form-control ', :height => '360px', placeholder: t('.type_your_post'), :"data-widearea" => "enable"}) %>
+      <%#= render 'admin/shared/macros' %>      
     </div> <!-- End of editor -->
   </div>
 </div>

@@ -209,16 +209,26 @@ a.delete:focus {
   font-weight: 500;
   line-height: 1.1;
   height: 1.5em;
-
+  border: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-transition: none;
+  transition: none;
+  padding-left: 0;
 }
 
 #article_body_and_extended,
-#page_body,
-#article-body-placeholder,
-#page-body-placeholder {
+#page_body {
   font-size: 1.3em;
   line-height: 1.4;
+  border: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-transition: none;
+  transition: none;
+  padding-left: 0;
 }
+
 
 #quicktags {
   display: none;
