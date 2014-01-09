@@ -20,7 +20,4 @@ Localization.define("ru_RU") do |l|
   l.store "Leave a response", "Оставить отзыв"
   l.store "Comments are disabled", "Комментарии выключены"
   l.store "Published on", "Опубликовано"
-
-  l.store "en_US", "Английский (американский)"
-  l.store "ru_RU", "Русский"
 end

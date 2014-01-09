@@ -32,7 +32,8 @@
       <label class='control-label col-sm-2' for="setting_lang"><%= t(".language")%></label>
       <div class='col-sm-5'>
         <select name="setting[lang]" id='setting_lang' class='form-control'>
-          <%= fetch_langs %>
+          <%- langs = Hash[Publify::Lang::LIST.map{|l| [t("langs.#{l}"), l]}]%>
+          <%= options_for_select(langs, this_blog.lang) %>
         </select>
       </div>
     </div>

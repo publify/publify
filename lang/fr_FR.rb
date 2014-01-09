@@ -128,18 +128,4 @@ Localization.define("fr_FR") do |l|
   l.store "August", "août"
   l.store "Dec", "déc"
   l.store "December", "décembre"
-
-  l.store "da_DK", "Danois"
-  l.store "de_DE", "Allemand"
-  l.store "en_US", "Anglais (Américain)"
-  l.store "es_MX", "Espagnol (Mexicain)"
-  l.store "fr_FR", "Français"
-  l.store "he_IL", "Hébreux"
-  l.store "it_IT", "Italien"
-  l.store "ja_JP", "Japonais"
-  l.store "lt_LT", "Lituanien"
-  l.store "nl_NL", "Hollandais"
-  l.store "pl_PL", "Polonais"
-  l.store "ro_RO", "Roumain"
-  l.store "zh_TW", "Chinois"
 end
