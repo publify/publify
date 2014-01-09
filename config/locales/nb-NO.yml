@@ -496,6 +496,12 @@ nb-NO:
         publication_date: "Publication date"
         filter: "Filtrer"
       form:
+        article_type: "Article type"
+        now: "now"
+        preview: "Preview"
+        save: "Lagre"
+        default: "Default"
+        cancel: "Annuller"
         allow_comments_status:
           zero: "disabled"
           one: "aktivert"

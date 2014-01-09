@@ -496,6 +496,12 @@ zh-TW:
         publication_date: "Publication date"
         filter: "Filter"
       form:
+        article_type: "Article type"
+        now: "now"
+        preview: "Preview"
+        cancel: "取消"
+        save: "存檔"
+        default: "Default"
         allow_comments_status:
           zero: "disabled"
           one: "enabled"

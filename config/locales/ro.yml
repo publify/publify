@@ -496,6 +496,12 @@ ro:
         publication_date: "Publication date"
         filter: "Filter"
       form:
+        article_type: "Article type"
+        now: "now"
+        preview: "Preview"
+        save: "Salvează"
+        default: "Default"
+        cancel: "Anulare"
         allow_comments_status:
           zero: "disabled"
           one: "enabled"

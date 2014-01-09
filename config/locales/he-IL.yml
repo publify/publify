@@ -496,6 +496,12 @@ he-IL:
         publication_date: "Publication date"
         filter: "סנן"
       form:
+        article_type: "Article type"
+        now: "now"
+        preview: "Preview"
+        save: "שמור"
+        default: "Default"
+        cancel: "בטל"
         allow_comments_status:
           zero: "disabled"
           one: "מאופשר"

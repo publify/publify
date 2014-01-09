@@ -496,6 +496,12 @@ pl:
         publication_date: "Publication date"
         filter: "Filter"
       form:
+        article_type: "Article type"
+        now: "now"
+        preview: "Preview"
+        save: "Zapisz"
+        default: "Default"
+        cancel: "Anuluj"
         allow_comments_status:
           zero: "disabled"
           one: "enabled"

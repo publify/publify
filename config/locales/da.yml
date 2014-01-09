@@ -496,6 +496,12 @@ da:
         publication_date: "Publication date"
         filter: "Filtrer"
       form:
+        article_type: "Article type"
+        now: "now"
+        preview: "Preview"
+        cancel: "Anuller"
+        save: "Gem"
+        default: "Default"
         allow_comments_status:
           zero: "disabled"
           one: "aktiveret"

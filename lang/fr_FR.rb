@@ -13,7 +13,6 @@ Localization.define("fr_FR") do |l|
   l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", "Ne peut pas se terminer par .rss ou .atom. Cette extension est réservée aux flux de syndication"
   l.store "public", "publique"
   l.store "protected", "protégée"
-  l.store "now", "maintenant"
   l.store "Uploads", "Pièces jointes"
   l.store "Markdown", "Markdown"
   l.store "Texttile", "Texttile"

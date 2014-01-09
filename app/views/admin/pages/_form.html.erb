@@ -7,7 +7,7 @@
       <%= link_to(t('.cancel'), {action: 'index'}, {class: 'btn btn-default'}) %>
       <!-- Button trigger modal -->
       <button class="btn btn-success" data-toggle="modal" data-target="#publish">
-        <%= publish_or_save %>
+        <%= controller.action_name == "new" ? t(".publish") : t(".save") %>
       </button>    
     </span>
   </div>

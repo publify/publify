@@ -496,6 +496,12 @@ lt:
         publication_date: "Publication date"
         filter: "Filter"
       form:
+        article_type: "Article type"
+        now: "now"
+        preview: "Preview"
+        save: "Saugoti"
+        default: "Default"
+        cancel: "Baigti"
         allow_comments_status:
           zero: "disabled"
           one: "enabled"

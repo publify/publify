@@ -496,6 +496,12 @@ es-MX:
         publication_date: "Publication date"
         filter: "Filter"
       form:
+        article_type: "Article type"
+        now: "now"
+        preview: "Preview"
+        save: "Guardar"
+        default: "Default"
+        cancel: "Cancelar"
         allow_comments_status:
           zero: "disabled"
           one: "enabled"

@@ -496,6 +496,12 @@ ja:
         publication_date: "Publication date"
         filter: "フィルター"
       form:
+        article_type: "Article type"
+        now: "now"
+        preview: "Preview"
+        save: "保存"
+        default: "Default"
+        cancel: "キャンセル"
         allow_comments_status:
           zero: "disabled"
           one: "enabled"

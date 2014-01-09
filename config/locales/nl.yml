@@ -496,6 +496,12 @@ nl:
         publication_date: "Publication date"
         filter: "Filter"
       form:
+        article_type: "Article type"
+        now: "now"
+        preview: "Preview"
+        save: "Bewaar"
+        default: "Default"
+        cancel: "Terug"
         allow_comments_status:
           zero: "disabled"
           one: "aangezet"

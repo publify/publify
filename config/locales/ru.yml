@@ -496,6 +496,12 @@ ru:
         publication_date: "Дата публикации"
         filter: "Фильтровать"
       form:
+        article_type: "Article type"
+        now: "now"
+        preview: "Preview"
+        save: "Сохранить"
+        default: "Default"
+        cancel: "Отменить"
         allow_comments_status:
           zero: "выключены"
           one: "enabled"

@@ -496,6 +496,12 @@ zh-CN:
         publication_date: "Publication date"
         filter: "筛选"
       form:
+        article_type: "Article type"
+        now: "now"
+        preview: "Preview"
+        save: "保存"
+        default: "Default"
+        cancel: "取消"
         allow_comments_status:
           zero: "disabled"
           one: "enabled"

@@ -496,6 +496,12 @@ pt-BR:
         publication_date: "Data de Publicação"
         filter: "Filtro"
       form:
+        article_type: "Article type"
+        now: "now"
+        preview: "Preview"
+        save: "Salvar"
+        default: "Default"
+        cancel: "Cancelar"
         allow_comments_status:
           zero: "disabled"
           one: "enabled"
