@@ -496,6 +496,12 @@ nb-NO:
         publication_date: "Publication date"
         filter: "Filtrer"
       form:
+        allow_comments_status:
+          zero: "disabled"
+          one: "aktivert"
+        allow_pings_status:
+          zero: "disabled"
+          one: "aktivert"
         public: "Public"
         publish: "Publiser"
         title: "Tittel"

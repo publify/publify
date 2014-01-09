@@ -15,7 +15,6 @@ Localization.define("fr_FR") do |l|
   l.store "protected", "protégée"
   l.store "now", "maintenant"
   l.store "Uploads", "Pièces jointes"
-  l.store "disabled", "désactivés"
   l.store "Markdown", "Markdown"
   l.store "Texttile", "Texttile"
   l.store "None", "Aucun"
@@ -103,7 +102,6 @@ Localization.define("fr_FR") do |l|
   l.store "String", "Chaîne de caractères"
   l.store "Summary", "Résumé"
   l.store "Type", "Type"
-  l.store "enabled", "activés"
   l.store "example", "par exemple"
   l.store "for", "pour"
 

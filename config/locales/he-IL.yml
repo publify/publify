@@ -496,6 +496,12 @@ he-IL:
         publication_date: "Publication date"
         filter: "סנן"
       form:
+        allow_comments_status:
+          zero: "disabled"
+          one: "מאופשר"
+        allow_pings_status:
+          zero: "disabled"
+          one: "מאופשר"
         public: "Public"
         publish: "פרסם"
         title: "כותרת"

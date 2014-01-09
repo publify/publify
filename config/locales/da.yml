@@ -496,6 +496,12 @@ da:
         publication_date: "Publication date"
         filter: "Filtrer"
       form:
+        allow_comments_status:
+          zero: "disabled"
+          one: "aktiveret"
+        allow_pings_status:
+          zero: "disabled"
+          one: "aktiveret"
         public: "Public"
         publish: "Udgiv"
         title: "Titel"

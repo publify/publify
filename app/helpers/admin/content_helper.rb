@@ -1,7 +1,7 @@
 module Admin::ContentHelper
-  def auto_complete_result(entries, field, phrase = nil)
+  def auto_complete_result(entries, field)
     return unless entries
-    items = entries.map { |entry| content_tag("li", phrase ? highlight(entry[field], phrase) : h(entry[field])) }
+    items = entries.map { |entry| content_tag("li", h(entry[field])) }
     content_tag("ul", items.uniq.join.html_safe, {:class => 'unstyled', :id => 'autocomplete'})
   end
 
@@ -30,10 +30,6 @@ module Admin::ContentHelper
     javascript_tag(function)
   end
 
-  def get_feedback_status(status)
-    status ? _("enabled") : _("disabled")
-  end
-  
   def get_post_types
     post_types = @post_types || []
     if post_types.size.zero?

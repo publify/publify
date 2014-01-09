@@ -27,7 +27,6 @@ Localization.define("da_DK") do |l|
   l.store "later", "senere"
   l.store "Leave a comment", "Skriv en kommentar"
   l.store "Name %s", "Navn %s"
-  l.store "enabled", "aktiveret"
   l.store "Archives", "Arkiv"
   l.store "%d Categories", ["Kategori", "%d kategorier"]
   l.store "%d Users", ["Bruger", "%d Brugere"]

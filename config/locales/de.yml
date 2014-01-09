@@ -496,6 +496,12 @@ de:
         publication_date: "Publication date"
         filter: "Filter"
       form:
+        allow_comments_status:
+          zero: "disabled"
+          one: "enabled"
+        allow_pings_status:
+          zero: "disabled"
+          one: "enabled"
         public: "Public"
         publish: "Veröffentlichen"
         title: "Titel"

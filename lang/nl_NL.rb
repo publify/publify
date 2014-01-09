@@ -85,7 +85,6 @@ Localization.define("nl_NL") do |l|
   l.store "later", "later"
   l.store "Leave a comment", "Geef een reactie"
   l.store "Name %s", "Naam %s"
-  l.store "enabled", "aangezet"
   l.store "never displayed", "wordt niet getoond"
   l.store "Website", "Website"
   l.store "Textile enabled", "Textile beschikbaar"

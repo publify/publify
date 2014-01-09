@@ -66,7 +66,6 @@ Localization.define("nb_NO") do |l|
   l.store "Read full article", "Les hele artikkelen"
   l.store "Leave a comment", "Skriv en kommentar"
   l.store "Name %s", "Navn %s"
-  l.store "enabled", "aktivert"
   l.store "never displayed", "aldri vist"
   l.store "Website", "Hjemmeside"
   l.store "Textile enabled", "Textile aktivert"

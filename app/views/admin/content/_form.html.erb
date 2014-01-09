@@ -115,7 +115,7 @@
             <!-- Start of feedback settings -->
             <div class='control-group'>
               <p>
-                <%= t(".allowed_comments_and_trackbacks", allow_comment: content_tag(:strong, get_feedback_status(@article.allow_comments)), allow_trackback: content_tag(:strong, get_feedback_status(@article.allow_pings))) %>
+              <%= t(".allowed_comments_and_trackbacks", allow_comment: content_tag(:strong, t(".allow_comments_status", count: @article.allow_comments ? 1 : 0)), allow_trackback: content_tag(:strong, t('.allow_pings_status', count: @article.allow_pings ? 1 : 0))) %>
                 <%= toggle_element('conversation') %>
               </p>
               <div id='conversation' class='collapse'>

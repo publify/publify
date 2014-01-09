@@ -496,6 +496,12 @@ fr:
         publication_date: "Publié le"
         filter: "Filtrer"
       form:
+        allow_comments_status:
+          zero: "désactivés"
+          one: "activés"
+        allow_pings_status:
+          zero: "désactivés"
+          one: "activés"
         public: "Public"
         publish: "Publier"
         title: "Titre"

@@ -57,7 +57,6 @@ Localization.define("he_IL") do |l|
   l.store "later", "אחר כך"
   l.store "Leave a comment", "הגב"
   l.store "Name %s", "שם %s"
-  l.store "enabled", "מאופשר"
   l.store "never displayed", "אל תציג לעולפ"
   l.store "Website", "אתר"
   l.store "Textile enabled", "Textile מאופשר"
