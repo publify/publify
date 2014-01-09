@@ -8,7 +8,6 @@ var typewatch = (function(){
   }  
 })();
 
-
 function autosave_request(e) {
   $('#article_form').keyup(function() {
     typewatch(function() {
@@ -21,19 +20,16 @@ function autosave_request(e) {
 }
 
 function set_widerea(element) {
-  if ($("#article_body_and_extended").val() == "") {
-    wideArea().clearData("#article_body_and_extended");
+  if ($(element).val() == "") {
+    wideArea().clearData(element);
   }
 
-  wideArea("#editor");
-
+  wideArea();
 }
 
 $(document).ready(function() {
   $('#article_form').each(function(e){autosave_request(e)});
   $('#article_form').each(function(e){set_widerea($('#article_body_and_extended'))});
-//  $('#article_form .new_category').each(function(cat_link){ cat_link.click(bind_new_category_overlay); });
+  $('#page_form').each(function(e){set_widerea($('#page_body'))});
   $('.merge_link').each(function(merge_link){ merge_link.click(bind_merge_link); });
-  $('#page_form').each(function(){load_page_form();})
-  $('#page_form').submit(function(){submit_page_form()});
 });
