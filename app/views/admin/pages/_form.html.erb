@@ -12,6 +12,7 @@
     </span>
   </div>
 </div>
+
 <div class='row'>
   <div class='col-md-8 col-md-offset-2' style='padding-top: 20px'>
     <%= error_messages_for 'page' %>
@@ -20,34 +21,17 @@
 
 <div class='row'>
   <div class='col-md-2' id='quicktags-block'>
-    <div id='quicktags' style='padding-top: 10px;' class='pull-right'>
+    <div id='quicktags' class='pull-right'>
       <script type="text/javascript">edToolbar('page_body', '<%= @page.text_filter %>');</script>
     </div>
   </div>
+  
   <div class='col-md-8'>
-    <div>
-      <%= text_field 'page', 'title', :class => 'form-control', :placeholder => t('.title')  %>
-      <h1 id='page-title-placeholder' contenteditable='true'>
-        Your title here
-      </h1>
-    </div>
-
-    <%#= render('images', { :images => @images}) unless @images.empty? %>
+    <%= text_field 'page', 'title', :class => 'form-control', :placeholder => t('.title')  %>
 
     <div id='editor'>
-      <!--
-      <i class='glyphicon glyphicon-picture'></i> 
-      <span id='image-link'>
-        <%= toggle_element('carousel-wrapper', t('.images')) %>
-      </span>      
-      -->
-      <div id='simple_editor'>
-        <%= text_area('page', 'body', {:class => 'form-control ', :height => '300px', :rows => '20', placeholder: t('.type_your_post')}) %>
-        <div id='page-body-placeholder' contenteditable='true'>
-          Type your content
-        </div>
-        <%#= render 'admin/shared/macros' %>
-      </div>
+      <%= text_area('page', 'body', {:class => 'form-control ', :height => '300px', :rows => '20', placeholder: t('.type_your_post'), :"data-widearea" => "enable"}) %>
+      <%#= render 'admin/shared/macros' %>
     </div>
   </div>
 </div>
