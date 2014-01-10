@@ -74,12 +74,29 @@
             <%= select :article, :post_type, post_types.map {|pt| [pt.name, pt.permalink]}, {include_blank: t('.default')} %>
             </div>
           <%- end %>
-
+          
             <!-- Start of publish settings -->
             <div class='well'>
               <fieldset>
                 <legend><%= t(".publish_settings") %></legend>
-
+                <!-- Start of permalink box -->
+                <div class='control-group'>
+                  <p>
+                  <%= t(".permalink") %>: 
+                  <%= toggle_element('permalink') %>
+                  </p>
+                  <div id='permalink' class='collapse'>
+                    <div class='form-group'>
+                      <%= text_field 'article', 'permalink', {:autocomplete => 'off', :class => 'form-control'} %>
+                    </div>
+                    <p>
+                      <span class='btn btn-mini btn-default'>
+                        <%= toggle_element('permalink', t('.ok')) %>
+                      </span>
+                    </p>
+                  </div>
+                </div>
+                <!-- End of permalink box -->
                 <!-- Start of status -->
                 <div class='control-group'>
                   <p>
