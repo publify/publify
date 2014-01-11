@@ -34,8 +34,8 @@ class Admin::UsersController < Admin::BaseController
   def destroy
     @record = User.find(params[:id])
     return(render 'admin/shared/destroy') unless request.post?
-
-    @record.destroy if User.count > 1
+    
+    @record.destroy if User.where("profile_id = ? and id != ?", Profile.find_by_label('admin'), @record.id).count > 1
     redirect_to :action => 'index'
   end
 
