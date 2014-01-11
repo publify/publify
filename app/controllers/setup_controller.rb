@@ -32,7 +32,7 @@ class SetupController < ApplicationController
       create_first_page @user
     end
     
-    redirect_to :action => 'confirm'
+    redirect_to controller: "accounts", action: "confirm"
   end
 
   private

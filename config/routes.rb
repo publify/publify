@@ -67,7 +67,6 @@ Rails.application.routes.draw do
 
   # SetupController
   match '/setup', :to => 'setup#index', :format => false
-  match '/setup/confirm', :to => 'setup#confirm', :format => false
 
   # CategoriesController (imitate inflected_resource)
   resources :categories, :except => [:show, :update, :destroy, :edit]

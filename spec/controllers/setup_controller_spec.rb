@@ -22,7 +22,8 @@ describe SetupController do
         post 'index', {:setting => {:blog_name => 'Foo', :email => 'foo@bar.net'}}
       end
 
-      specify { response.should redirect_to(:action => 'confirm') }
+      specify { response.should redirect_to(controller: "accounts",
+                                            action: 'confirm') }
 
       it "should correctly initialize blog and users" do
         Blog.default.blog_name.should == 'Foo'
