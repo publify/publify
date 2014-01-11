@@ -8,8 +8,8 @@
 #     map.permission "backend/base"
 #     # Module Permission
 #     map.project_module :accounts, "backend/accounts" do |project|
-#       project.menu :list, { :action => :index }, :class => "icon-no-group"
-#       project.menu :new,  { :action => :new }, :class => "icon-new"
+#       project.menu :list, { action: => :index }, :class => "icon-no-group"
+#       project.menu :new,  { action: => :new }, :class => "icon-new"
 #     end
 #
 #   end
@@ -30,7 +30,7 @@
 #   # => [:administrator, :manager, :customer]
 #
 #   Publify::AccessControl.project_modules(:customer)
-#   # => [#<Publify::AccessControl::ProjectModule:0x254a9c8 @controller="backend/accounts", @name=:accounts, @menus=[#<Publify::AccessControl::Menu:0x254a928 @url={:action=>:index}, @name=:list, @options={:class=>"icon-no-group"}>, #<Publify::AccessControl::Menu:0x254a8d8 @url={:action=>:new}, @name=:new, @options={:class=>"icon-new"}>]>, #<Publify::AccessControl::ProjectModule:0x254a84c @controller="frontend/store", @name=:store, @menus=[#<Publify::AccessControl::Menu:0x254a7d4 @url={:cart=>:add}, @name=:add, @options={}>, #<Publify::AccessControl::Menu:0x254a798 @url={:cart=>:list}, @name=:list, @options={}>]>]
+#   # => [#<Publify::AccessControl::ProjectModule:0x254a9c8 @controller="backend/accounts", @name=:accounts, @menus=[#<Publify::AccessControl::Menu:0x254a928 @url={action:=>:index}, @name=:list, @options={:class=>"icon-no-group"}>, #<Publify::AccessControl::Menu:0x254a8d8 @url={action:=>:new}, @name=:new, @options={:class=>"icon-new"}>]>, #<Publify::AccessControl::ProjectModule:0x254a84c @controller="frontend/store", @name=:store, @menus=[#<Publify::AccessControl::Menu:0x254a7d4 @url={:cart=>:add}, @name=:add, @options={}>, #<Publify::AccessControl::Menu:0x254a798 @url={:cart=>:list}, @name=:list, @options={}>]>]
 #
 #   Publify::AccessControl.allowed_controllers(:customer)
 #   => ["backend/base", "backend/accounts", "frontend/cart", "frontend/store"]
@@ -42,7 +42,7 @@
 #
 # For example, whe can decide that an Account with role :customers can see only, the module project :store.
 
-AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
+AccessControl.map require: [ :admin, :publisher, :contributor ]  do |map|
   map.permission "admin/base"
   map.permission "admin/cache"
   map.permission "admin/dashboard"
@@ -56,55 +56,54 @@ AccessControl.map :require => [ :admin, :publisher, :contributor ]  do |map|
   map.permission "articles"
 
   map.project_module :articles, nil do |project|
-    project.menu    "Articles",       { :controller => "admin/content", :action => "index" }
-    project.submenu "All Articles",   { :controller => "admin/content", :action => "index" }
-    project.submenu "New Article",    { :controller => "admin/content", :action => "new" }
-    project.submenu "Feedback",       { :controller => "admin/feedback", :action => "index" }
-    project.submenu "Categories",     { :controller => "admin/categories", :action => "new" }
-    project.submenu "Tags",           { :controller => "admin/tags", :action => "index" }
-    project.submenu "Article Types",  { :controller => "admin/post_types", :action => "new" }
-    project.submenu "Redirects",      { :controller => "admin/redirects", :action => "new" }
+    project.menu    "Articles",       { controller: "admin/content", action: "index" }
+    project.submenu "All Articles",   { controller: "admin/content", action: "index" }
+    project.submenu "New Article",    { controller: "admin/content", action: "new" }
+    project.submenu "Feedback",       { controller: "admin/feedback", action: "index" }
+    project.submenu "Tags",           { controller: "admin/tags", action: "index" }
+    project.submenu "Article Types",  { controller: "admin/post_types", action: "new" }
+    project.submenu "Redirects",      { controller: "admin/redirects", action: "new" }
   end
 
   map.project_module :pages, nil do |project|
-    project.menu "Pages",         { :controller => "admin/pages", :action => "index" }
-    project.submenu "All Pages",  { :controller => "admin/pages", :action => "index" }
-    project.submenu "New Page",   { :controller => "admin/pages", :action => "new" }
+    project.menu    "Pages",      { controller: "admin/pages", action: "index" }
+    project.submenu "All Pages",  { controller: "admin/pages", action: "index" }
+    project.submenu "New Page",   { controller: "admin/pages", action: "new" }
   end
 
   map.project_module :media, nil do |project|
-    project.menu    "Media Library",  { :controller => "admin/resources", :action => "index" }
+    project.menu "Media Library", { controller: "admin/resources", action: "index" }
   end
 
   map.project_module :themes, nil do |project|
-    project.menu    "Design",             { :controller => "admin/themes", :action => "index"  }
-    project.submenu "Choose theme",       { :controller => "admin/themes", :action => "index"  }
-    project.submenu "Customize sidebar",  { :controller => "admin/sidebar", :action => "index" }
+    project.menu    "Design",             { controller: "admin/themes", action: "index"  }
+    project.submenu "Choose theme",       { controller: "admin/themes", action: "index"  }
+    project.submenu "Customize sidebar",  { controller: "admin/sidebar", action: "index" }
 
     AccessControl.search_plugins_directory.each do |plugin|
       project.submenu AccessControl.get_plugin_litteral_name(plugin),
-        { :controller => "admin/#{AccessControl.get_plugin_controller_name(plugin)}", :action => "index" }
+        { controller: "admin/#{AccessControl.get_plugin_controller_name(plugin)}", action: "index" }
     end
   end
 
   map.project_module :settings, nil do |project|
-    project.menu    "Settings",         { :controller => "admin/settings",    :action => "index" }
-    project.submenu "General settings", { :controller => "admin/settings",    :action => "index" }
-    project.submenu "Write",            { :controller => "admin/settings",    :action => "write" }
-    project.submenu "Display",          { :controller => "admin/settings",    :action => "display" }
-    project.submenu "Feedback",         { :controller => "admin/settings",    :action => "feedback" }
-    project.submenu "Cache",            { :controller => "admin/cache",       :action => "index" }
-    project.submenu "Manage users",     { :controller => "admin/users",       :action => "index" }
+    project.menu    "Settings",         { controller: "admin/settings",    action: "index" }
+    project.submenu "General settings", { controller: "admin/settings",    action: "index" }
+    project.submenu "Write",            { controller: "admin/settings",    action: "write" }
+    project.submenu "Display",          { controller: "admin/settings",    action: "display" }
+    project.submenu "Feedback",         { controller: "admin/settings",    action: "feedback" }
+    project.submenu "Cache",            { controller: "admin/cache",       action: "index" }
+    project.submenu "Manage users",     { controller: "admin/users",       action: "index" }
   end
 
   map.project_module :notes, nil do |project|
-    project.menu "Notes",      { :controller => "admin/notes", :action => "index" }
+    project.menu "Notes", { controller: "admin/notes", action: "index" }
   end
 
   map.project_module :seo, nil do |project|
-    project.menu    "SEO",  { :controller => "admin/seo", :action => "index" }
-    project.submenu "Global SEO settings",  { :controller => "admin/seo", :action => "index" }    
-    project.submenu "Permalinks",           { :controller => "admin/seo", :action => "permalinks" }
-    project.submenu "Titles",               { :controller => "admin/seo", :action => "titles" }
+    project.menu    "SEO",  { controller: "admin/seo", action: "index" }
+    project.submenu "Global SEO settings",  { controller: "admin/seo", action: "index" }    
+    project.submenu "Permalinks",           { controller: "admin/seo", action: "permalinks" }
+    project.submenu "Titles",               { controller: "admin/seo", action: "titles" }
   end
 end
