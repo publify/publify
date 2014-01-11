@@ -2,10 +2,6 @@ class MetaWeblog::Service < PublifyWebService
   web_service_api MetaWeblog::Api
   before_invocation :authenticate
 
-  def getCategories(blogid, username, password)
-    Category.find(:all).collect { |c| c.name }
-  end
-
   def getPost(postid, username, password)
     article = Article.find(postid)
 
@@ -36,12 +32,6 @@ class MetaWeblog::Service < PublifyWebService
       raise article.errors.full_messages * ", "
     end
 
-    if struct['categories']
-      Category.find(:all).each do |c|
-        article.categories << c if struct['categories'].include?(c.name)
-      end
-    end
-
     article.id.to_s
   end
 
@@ -65,13 +55,6 @@ class MetaWeblog::Service < PublifyWebService
     article.keywords       = struct['mt_keywords']       || ''
     article.text_filter    = TextFilter.find_by_name(struct['mt_convert_breaks'] || this_blog.text_filter)
 
-    if struct['categories']
-      article.categorizations.clear
-      Category.find(:all).each do |c|
-        article.categories << c if struct['categories'].include?(c.name)
-      end
-    end
-
     ::Rails.logger.info(struct['mt_tb_ping_urls'])
     article.save
     true
@@ -91,7 +74,6 @@ class MetaWeblog::Service < PublifyWebService
       :url               => article.permalink_url,
       :link              => article.permalink_url,
       :permaLink         => article.permalink_url,
-      :categories        => article.categories.collect { |c| c.name },
       :mt_text_more      => article.extended.to_s,
       :mt_keywords       => article.tags.collect { |p| p.name }.join(', '),
       :mt_allow_comments => article.allow_comments? ? 1 : 0,

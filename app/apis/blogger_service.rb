@@ -65,7 +65,7 @@ class BloggerService < PublifyWebService
   end
 
   def newPost(appkey, blogid, username, password, content, publish)
-    title, categories, body = content.match(%r{^<title>(.+?)</title>(?:<category>(.+?)</category>)?(.+)$}mi).captures rescue nil
+    title, body = content.match(%r{^<title>(.+?)</title>?(.+)$}mi).captures rescue nil
 
     article = Article.new
     article.body           = body || content || ''
@@ -78,12 +78,6 @@ class BloggerService < PublifyWebService
     article.allow_pings    = this_blog.default_allow_pings
     article.text_filter    = this_blog.text_filter
     article.save
-
-    if categories
-      categories.split(",").each do |c|
-        article.categories << Category.find_by_name(c.strip) rescue nil
-      end
-    end
 
     article.id
   end

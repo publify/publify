@@ -83,10 +83,7 @@ class GroupingController < ContentController
   end
 
   def show_page_title_for grouping, page
-    if grouping_name.singularize == 'Category'
-      @page_title   = this_blog.category_title_template.to_title(@grouping, this_blog, params)
-      @description = this_blog.category_title_template.to_title(@grouping, this_blog, params)
-    elsif grouping_name.singularize == 'Tag'
+    if grouping_name.singularize == 'Tag'
       @page_title   = this_blog.tag_title_template.to_title(@grouping, this_blog, params)
       @description = this_blog.tag_title_template.to_title(@grouping, this_blog, params)
     end

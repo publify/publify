@@ -35,7 +35,6 @@ class Admin::ContentController < Admin::BaseController
     update_article_attributes
 
     if @article.save
-      update_categories_for_article
       gflash :success
       redirect_to action: 'index'
     else
@@ -72,7 +71,6 @@ class Admin::ContentController < Admin::BaseController
       unless @article.draft
         Article.where(parent_id: @article.id).map(&:destroy)
       end
-      update_categories_for_article
       gflash :success
       redirect_to :action => 'index'
     else
@@ -130,7 +128,7 @@ class Admin::ContentController < Admin::BaseController
     end
   end
 
-  attr_accessor :resources, :categories, :resource, :category
+  attr_accessor :resources, :resource
 
   private
 
@@ -139,15 +137,6 @@ class Admin::ContentController < Admin::BaseController
     @images = Resource.images_by_created_at.page(params[:page]).per(10)
     @resources = Resource.without_images_by_filename
     @macros = TextFilter.macro_filters
-  end
-
-  def update_categories_for_article
-    @article.categorizations.clear
-    if params[:categories]
-      Category.find(params[:categories]).each do |cat|
-        @article.categories << cat
-      end
-    end
   end
 
   def access_granted?(article_id)

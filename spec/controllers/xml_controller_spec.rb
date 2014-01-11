@@ -29,11 +29,6 @@ describe XmlController do
         assert_moved_permanently_to trackbacks_url(:format => :rss)
       end
 
-      it "redirects category feed to Category RSS feed" do
-        get :feed, :type => 'category', :id => 'personal'
-        assert_moved_permanently_to(category_url('personal', :format => 'rss'))
-      end
-
       it "redirects tag feed to Tag RSS feed" do
         get :feed, :type => 'tag', :id => 'foo'
         assert_moved_permanently_to(tag_url('foo', :format=>'rss'))
@@ -56,11 +51,6 @@ describe XmlController do
         assert_moved_permanently_to trackbacks_url(:format => :rss)
       end
 
-      it "redirects category feed to category RSS feed" do
-        get :feed, :format => 'rss20', :type => 'category', :id => 'personal'
-        assert_moved_permanently_to(category_url('personal', :format => 'rss'))
-      end
-
       it "redirects tag feed to tag RSS feed" do
         get :feed, :format => 'rss20', :type => 'tag', :id => 'foo'
         assert_moved_permanently_to(tag_url('foo', :format=>'rss'))
@@ -81,11 +71,6 @@ describe XmlController do
       it "redirects trackbacks feed to TrackbacksController Atom feed" do
         get :feed, :format => 'atom10', :type => 'trackbacks'
         assert_moved_permanently_to trackbacks_url(:format => :atom)
-      end
-
-      it "redirects category feed to category Atom feed" do
-        get :feed, :format => 'atom10', :type => 'category', :id => 'personal'
-        assert_moved_permanently_to category_url('personal', :format => 'atom')
       end
 
       it "redirects tag feed to tag Atom feed" do
@@ -184,7 +169,7 @@ describe XmlController do
   # TODO: make this more robust
   describe "#feed with googlesitemap format" do
     before do
-      FactoryGirl.create(:category)
+      FactoryGirl.create(:tag)
       get :feed, :format => 'googlesitemap', :type => 'sitemap'
     end
 

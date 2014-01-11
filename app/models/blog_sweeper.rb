@@ -1,5 +1,5 @@
 class BlogSweeper < ActionController::Caching::Sweeper
-  observe Category, Blog, User, Article, Page, Categorization, Comment, Trackback, Note
+  observe Blog, User, Article, Page, Comment, Trackback, Note, Tag
 
   def pending_sweeps
     @pending_sweeps ||= Set.new
@@ -49,7 +49,7 @@ class BlogSweeper < ActionController::Caching::Sweeper
       if record.invalidates_cache?(destroying)
         pending_sweeps << :sweep_articles << :sweep_pages
       end
-    when Category, Categorization
+    when Tag
       pending_sweeps << :sweep_articles << :sweep_pages
     when Blog, User, Comment, Trackback
       pending_sweeps << :sweep_all << :sweep_theme

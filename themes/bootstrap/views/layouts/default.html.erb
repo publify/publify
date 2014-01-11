@@ -34,7 +34,6 @@
               <dic class='span1'></dic>
               <ul class='nav'>
                 <li><%= link_to(_('Home'), this_blog.base_url)%></li>
-                <li><%= link_to(_('Articles'), {:controller => 'categories'})%></li>
                 <li><%= link_to(_('Statuses'), {:controller => 'notes'}) %></li>
                 <%- Page.published.each do |page| %>
                   <li><%= link_to_permalink(page, page.title) %></li>

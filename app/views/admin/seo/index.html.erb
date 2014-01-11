@@ -56,13 +56,6 @@
     <label class='control-label col-sm-2'><%= t(".indexing") %></label>
     <div class='col-sm-5'>
       <div class='checkbox'>
-        <label for="setting_unindex_categories">
-          <%= check_box(:setting, :unindex_categories)%>
-          <%= t(".do_not_index_categories")%>
-        </label>
-        <small class='help-block'><%= t(".explain_category_index") %></small>
-      </div>
-      <div class='checkbox'>
         <label for="setting_unindex_tags">
           <%= check_box(:setting, :unindex_tags)%>
           <%= t(".do_not_index_tags")%>
