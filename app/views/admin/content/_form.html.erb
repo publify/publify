@@ -53,10 +53,6 @@
       </div>
       <div class="modal-body">
         <div class='well'>
-          <h4><%= t(".categories") %></h4>
-          <%= render 'categories' %>
-        </div>
-        <div class='well'>
           <h4><%= t(".tags") %></h4>
           <div class='form-group'>
             <%= text_field 'article', 'keywords', {:autocomplete => 'off', :class => 'form-control'} %>

@@ -31,13 +31,13 @@ describe Blog do
         [true, false].each do |only_path|
           describe "blog.url_for" do
             describe "with a hash argument and only_path = #{only_path}" do
-              subject { @blog.url_for(:controller => 'categories', :action => 'show', :id => 1, :only_path => only_path) }
-              it { should == "#{only_path ? sub_url : @base_url}/category/1" }
+              subject { @blog.url_for(:controller => 'tags', :action => 'show', :id => 1, :only_path => only_path) }
+              it { should == "#{only_path ? sub_url : @base_url}/tag/1" }
             end
 
             describe "with a string argument and only_path = #{only_path}" do
-              subject { @blog.url_for('category/1', :only_path => only_path) }
-              it { should == "#{only_path ? sub_url : @base_url}/category/1" }
+              subject { @blog.url_for('tag/1', :only_path => only_path) }
+              it { should == "#{only_path ? sub_url : @base_url}/tag/1" }
             end
           end
         end

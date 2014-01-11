@@ -176,7 +176,7 @@ describe Admin::ContentController do
     it 'should create article with no comments' do
       post(:create,
            'article' => base_article({:allow_comments => '0'}),
-           'categories' => [create(:category).id])
+           'tags' => [create(:tag).id])
       assigns(:article).should_not be_allow_comments
       assigns(:article).should be_allow_pings
       assigns(:article).should be_published
@@ -203,7 +203,7 @@ describe Admin::ContentController do
     end
 
     it 'should create article with no pings' do
-      post(:create, 'article' => {:allow_pings => '0', 'title' => 'my Title'}, 'categories' => [create(:category).id])
+      post(:create, 'article' => {:allow_pings => '0', 'title' => 'my Title'}, 'tags' => [create(:tag).id])
       assigns(:article).should be_allow_comments
       assigns(:article).should_not be_allow_pings
       assigns(:article).should be_published
@@ -241,13 +241,6 @@ describe Admin::ContentController do
       ensure
         ActionMailer::Base.perform_deliveries = false
       end
-    end
-
-    it 'should create an article in a category' do
-      category = create(:category)
-      post :create, 'article' => base_article, 'categories' => [category.id]
-      new_article = Article.last
-      assert_equal [category], new_article.categories
     end
 
     it 'should create an article with tags' do

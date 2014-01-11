@@ -1,8 +1,4 @@
 class MetaWeblog::Api < ActionWebService::API::Base
-  api_method :getCategories,
-    :expects => [ {:blogid => :string}, {:username => :string}, {:password => :string} ],
-    :returns => [[:string]]
-
   api_method :getPost,
     :expects => [ {:postid => :string}, {:username => :string}, {:password => :string} ],
     :returns => [MetaWeblog::Structs::Article]

@@ -9,7 +9,6 @@
     <%- end %>
     <%= show_actions article %>
   </td>
-  <td><%= article.categories.map { |c| link_to h(c.name), {:controller => 'content', :action => 'index', "search[category]" => c.id}}.join(", ") %></td>
   <td>
     <%= author_link(article)%><br />
     <small><%= format_date article.published_at %></small>

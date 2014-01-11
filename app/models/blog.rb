@@ -87,8 +87,6 @@ class Blog < ActiveRecord::Base
   setting :page_desc_template,         :string, "%excerpt%"
   setting :paginated_title_template,   :string, "%blog_name% | %blog_subtitle% %page%"
   setting :paginated_desc_template,    :string, "%blog_name% | %blog_subtitle% | %meta_keywords% %page%"
-  setting :category_title_template,    :string, "Category: %name% | %blog_name% %page%"
-  setting :category_desc_template,     :string, "%name% | %description% | %blog_subtitle% %page%"
   setting :tag_title_template,         :string, "Tag: %name% | %blog_name% %page%"
   setting :tag_desc_template,          :string, "%name% | %blog_name% | %blog_subtitle% %page%"
   setting :author_title_template,      :string, "%author% | %blog_name%"

@@ -75,33 +75,6 @@ describe BackendController do
       assert_equal "<p>new post body for post without title but with a lenghty body</p>", new_post.html(:body)
     end
 
-    it "test_blogger_new_post_with_categories" do
-      hard_cat = FactoryGirl.create(:category, :name => 'Hardware')
-      soft_cat = FactoryGirl.create(:category, :name => 'Software')
-      args = [ 'foo', '1', 'henri', 'whatever',
-        '<title>new post title</title><category>Software,
-        Hardware</category>new post body', 1]
-
-      result = invoke_layered :blogger, :newPost, *args
-      assert_not_nil result
-      new_post = Article.find(result)
-      assert_equal "new post title", new_post.title
-      assert_equal "new post body", new_post.body
-      assert_equal [soft_cat, hard_cat].sort_by(&:id), new_post.categories.sort_by { |c| c.id }
-      assert new_post.published?
-    end
-
-    it "test_blogger_new_post_with_non_existing_categories" do
-      hard_cat = FactoryGirl.create(:category, :name => 'Hardware')
-      args = [ 'foo', '1', 'henri', 'whatever',
-        '<title>new post title</title><category>Idontexist,
-        Hardware</category>new post body', 1]
-      result = invoke_layered :blogger, :newPost, *args
-      assert_not_nil result
-      new_post = Article.find(result)
-      assert_equal [hard_cat], new_post.categories
-    end
-
     it "test_blogger_fail_authentication" do
       args = [ 'foo', 'henri', 'using a wrong password' ]
       # This will be a little more useful with the upstream changes in [1093]
@@ -110,13 +83,6 @@ describe BackendController do
   end
 
   describe "when called through the MetaWeblog API" do
-
-    it "test_meta_weblog_get_categories" do
-      FactoryGirl.create(:category, :name => 'Software')
-      args = [ 1, 'henri', 'whatever' ]
-      result = invoke_layered :metaWeblog, :getCategories, *args
-      assert_equal 'Software', result.first
-    end
 
     it "test_meta_weblog_get_post" do
       article = FactoryGirl.create(:article)
@@ -175,18 +141,6 @@ describe BackendController do
         assert_equal @article.published_at, new_article.published_at.utc
       end
 
-      it "should set categories if specified" do
-        FactoryGirl.create(:category, :name => 'foo')
-        FactoryGirl.create(:category, :name => 'bar')
-        FactoryGirl.create(:category, :name => 'baz')
-        @dto.categories = ['bar']
-
-        args = [ @art_id, 'henri', 'whatever', @dto, 1 ]
-
-        invoke_layered :metaWeblog, :editPost, *args
-
-        Article.find(@art_id).categories.map(&:name).should == ['bar']
-      end
     end
 
     # TODO: Work out what the correct response is when a post can't be saved...
@@ -233,24 +187,6 @@ describe BackendController do
       assert result
       new_post = Article.find(result)
       new_post.should_not be_published
-    end
-
-    it "should set categories if specified in new post" do
-      FactoryGirl.create(:category, :name => 'foo')
-      FactoryGirl.create(:category, :name => 'bar')
-      FactoryGirl.create(:category, :name => 'baz')
-
-      dto = MetaWeblog::Structs::Article.new(
-        :description => "Some text",
-        :title => "A Title",
-        :categories => ["foo", "baz"]
-      )
-
-      args = [ 1, 'henri', 'whatever', dto, 0 ]
-
-      result = invoke_layered :metaWeblog, :newPost, *args
-      new_post = Article.find(result)
-      new_post.categories.map(&:name).sort.should == ["baz", "foo"]
     end
 
     it "test_meta_weblog_edit_unpublished_post_with_old_creation_date" do
@@ -310,25 +246,6 @@ describe BackendController do
   end
 
   describe "when called through the Movable Type API" do
-    it "test_mt_get_category_list" do
-      FactoryGirl.create(:category, :name => 'Software')
-      args = [ 1, 'henri', 'whatever' ]
-      result = invoke_layered :mt, :getCategoryList, *args
-      assert result.map { |c| c['categoryName'] }.include?('Software')
-    end
-
-    it "test_mt_get_post_categories" do
-      art_id = FactoryGirl.create(:article).id
-      article = Article.find(art_id)
-      article.categories << FactoryGirl.create(:category)
-
-      args = [ art_id, 'henri', 'whatever' ]
-
-      result = invoke_layered :mt, :getPostCategories, *args
-      assert_equal Set.new(result.collect {|v| v['categoryName']}),
-        Set.new(article.categories.collect(&:name))
-    end
-
     it "test_mt_get_recent_post_titles" do
       article = FactoryGirl.create(:article, :created_at => Time.now - 1.day,
         :allow_pings => true, :published => true)
@@ -339,30 +256,6 @@ describe BackendController do
       assert_equal result.first['title'], article.title
     end
 
-    it "test_mt_set_post_categories" do
-      article = FactoryGirl.create(:article)
-      art_id = article.id
-      cat = FactoryGirl.create(:category)
-      args = [ art_id, 'henri', 'whatever',
-        [MovableTypeStructs::CategoryPerPost.new('categoryName' => 'personal',
-                                                 'categoryId' => cat.id, 'isPrimary' => 1)] ]
-
-      result = invoke_layered :mt, :setPostCategories, *args
-      article.reload
-      assert_equal [cat], article.categories
-
-      soft_cat = FactoryGirl.create(:category, :name => 'soft_cat')
-      hard_cat = FactoryGirl.create(:category, :name => 'hard_cat')
-      args = [ art_id, 'henri', 'whatever',
-        [MovableTypeStructs::CategoryPerPost.new('categoryName' => 'Software',
-                                                 'categoryId' => soft_cat.id, 'isPrimary' => 1),
-                                                 MovableTypeStructs::CategoryPerPost.new('categoryName' => 'Hardware',
-                                                                                         'categoryId' => hard_cat.id, 'isPrimary' => 0) ]]
-
-      result = invoke_layered :mt, :setPostCategories, *args
-      assert article.reload.categories.include?(hard_cat)
-    end
-
     it "test_mt_supported_text_filters" do
       result = invoke_layered :mt, :supportedTextFilters
       assert result.map {|f| f['label']}.include?('Markdown')
@@ -371,7 +264,7 @@ describe BackendController do
 
     it "test_mt_supported_methods" do
       result = invoke_layered :mt, :supportedMethods
-      assert_equal 8, result.size
+      assert_equal 5, result.size
       assert result.include?("publishPost")
     end
 

@@ -48,7 +48,6 @@ channel > docs,
 language,
 lastBuildDate,
 ttl,
-guid,
-category {
+guid {
 display: none;
 }

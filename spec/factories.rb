@@ -10,7 +10,6 @@ FactoryGirl.define do
   sequence :guid do |n|; "deadbeef#{n}" ; end
   sequence :label do |n|; "lab_#{n}" ; end
   sequence :file_name do |f|; "file_name_#{f}" ; end
-  sequence :category do |n|; "c_#{n}" ; end
   sequence :time do |n|; DateTime.new(2012,3,26,19,56) - n ; end
 
   factory :user do
@@ -63,7 +62,6 @@ FactoryGirl.define do
     permalink 'a-big-article'
     published_at DateTime.new(2005,1,1,2,0,0)
     user
-    categories []
     tags []
     published_comments []
     published_trackbacks []
@@ -202,12 +200,6 @@ http://alsoping.example.com/rpc/ping"
 
     factory :profile_contributor do
     end
-  end
-
-  factory :category do |c|
-    c.name {FactoryGirl.generate(:category)}
-    c.permalink {FactoryGirl.generate(:category)}
-    c.position 1
   end
 
   factory :tag do |tag|

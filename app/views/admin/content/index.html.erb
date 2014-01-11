@@ -24,9 +24,6 @@
     <div class="panel-heading">
       <div class='pull-right'>
         <div class='form-group'>
-          <%= select_tag('search[category]', options_from_collection_for_select(Category.all, 'id', 'name'), {prompt: t(".select_a_category"), :class => 'form-control'}) %>
-        </div>
-        <div class='form-group'>
           <%= select_tag('search[user_id]', options_from_collection_for_select(User.all, 'id', 'name'), {prompt: t(".select_an_author"), :class => 'form-control'}) %>
         </div>
         <div class='form-group'>

@@ -119,10 +119,6 @@ class ArticlesController < ContentController
     @comment = Comment.new(params[:comment])
   end
 
-  def category
-    redirect_to categories_path, status: 301
-  end
-
   def tag
     redirect_to tags_path, status: 301
   end
@@ -164,7 +160,7 @@ class ArticlesController < ContentController
     @comment      = Comment.new
     @page_title   = this_blog.article_title_template.to_title(@article, this_blog, params)
     @description = this_blog.article_desc_template.to_title(@article, this_blog, params)
-    groupings = @article.categories + @article.tags
+    groupings = @article.tags
     @keywords = groupings.map { |g| g.name }.join(", ")
 
     auto_discovery_feed

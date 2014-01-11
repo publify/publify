@@ -6,11 +6,6 @@ describe ArticlesController do
 
   before(:each) { create :user }
 
-  it "should redirect category to /categories" do
-    get 'category'
-    response.should redirect_to(categories_path)
-  end
-
   it "should redirect tag to /tags" do
     get 'tag'
     response.should redirect_to(tags_path)
@@ -619,14 +614,7 @@ describe ArticlesController, "assigned keywords" do
   context "with blog permalin to /%title%.html" do
     let!(:blog) { create(:blog, permalink_format: '/%title%.html') }
 
-    it 'article with categories should have meta keywords' do
-      category = create(:category)
-      article = create(:article, categories: [category])
-      get :redirect, from: "#{article.permalink}.html"
-      assigns(:keywords).should == category.name
-    end
-
-    it 'article with neither categories nor tags should not have meta keywords' do
+    it 'article without tags should not have meta keywords' do
       article = create(:article)
       get :redirect, :from => "#{article.permalink}.html"
       assigns(:keywords).should == ""

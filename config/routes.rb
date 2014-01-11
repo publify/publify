@@ -63,16 +63,10 @@ Rails.application.routes.draw do
   match 'check_password', :to => 'articles#check_password', :format => false
   match 'articles/markup_help/:id', :to => 'articles#markup_help', :format => false
   match 'articles/tag', :to => 'articles#tag', :format => false
-  match 'articles/category', :to => 'articles#category', :format => false
 
   # SetupController
   match '/setup', :to => 'setup#index', :format => false
   match '/setup/confirm', :to => 'setup#confirm', :format => false
-
-  # CategoriesController (imitate inflected_resource)
-  resources :categories, :except => [:show, :update, :destroy, :edit]
-  resources :categories, :path => 'category', :only => [:show, :edit, :update, :destroy]
-  match '/category/:id/page/:page', :to => 'categories#show', :format => false
 
   # TagsController (imitate inflected_resource)
   resources :tags, :except => [:show, :update, :destroy, :edit]

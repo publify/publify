@@ -102,7 +102,6 @@ def stub_full_article(time=Time.now)
                  :created_at => time, :updated_at => time,
                  :title => "Foo Bar", :permalink => 'foo-bar',
                  :guid => time.hash)
-  a.stub(:categories) { [FactoryGirl.build(:category)] }
   a.stub(:published_comments) { [] }
   a.stub(:resources) { [FactoryGirl.build(:resource)] }
   a.stub(:tags) { [FactoryGirl.build(:tag)] }
