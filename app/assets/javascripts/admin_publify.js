@@ -20,7 +20,7 @@ function autosave_request(e) {
 }
 
 function set_widerea(element) {
-  if ($(element).val() == "") {
+  if ($("#article_id").value() == "") {
     wideArea().clearData(element);
   }
 
