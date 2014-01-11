@@ -29,7 +29,7 @@
   <%= gflash %>
   <nav class='navbar navbar-default navbar-inverse navbar-fixed-top' role="navigation">
     <div class="navbar-header">
-      <%= link_to this_blog.blog_name.html_safe, this_blog.base_url, { class: 'navbar-brand' } %>
+      <%= link_to content_tag(:span, '', class: 'glyphicon glyphicon-home'), {controller: 'admin/dashboard'}, {class: "navbar-brand"} %>      
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#sidebar-top">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
@@ -39,32 +39,23 @@
     </div>
     <div class="collapse navbar-collapse" id="sidebar-top">
       <ul class='nav navbar-nav'>
-        <li class='dropdown'>
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            <%= t(".new")%>
-            <b class="caret"></b>
-          </a>
-          <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-            <li><%= link_to(t("admin.menu.new_article"), {controller: 'content', action: 'new'}) %></li>
-            <li><%= link_to(t("admin.menu.new_page"), {controller: 'pages', actions: 'new'}) %></li>
-            <li><%= link_to(t("admin.menu.new_media"), {controller: 'resources', action: 'index'}) %></li>
-            <li><%= link_to(t("admin.menu.new_note"), {controller: 'notes'}) %></li>
-          </ul>
-        </li>
+        <% for pm in current_user.project_modules %>
+          <% if AccessControl.submenus_for(current_user.profile_label, pm.name.to_sym).size == 0 %>
+            <%= tab_for(pm) %>
+          <% else %>
+          <li class='dropdown'>
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+              <%= _(pm.menu_name) %>
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+              <%= subtabs_for(pm.name.to_sym)%>
+            </ul>
+          </li>
+          <%end %>
+        <% end %>
       </ul>
       <ul class='nav navbar-nav pull-right'>        
-        <li class='dropdown'>
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            <%= t("admin.menu.help")%>
-            <b class="caret"></b>
-          </a>
-          <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-            <li><%= link_to t("admin.menu.documentation"), "https://github.com/fdv/publify/wiki" %></li>
-            <li><%= link_to t("admin.menu.report_a_bug"), "https://github.com/fdv/publify/issues" %></li>
-            <li><%= link_to t("admin.menu.in_page_plugins"), "https://github.com/fdv/publify/wiki/In-Page-Plugins" %></li>
-            <li><%= link_to t("admin.menu.sidebar_plugins"), "https://github.com/fdv/publify/wiki/Sidebar-plugins" %></li>
-          </ul>
-        </li>
         <li class='dropdown'>
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">
             <%= t("admin.menu.logged_in_as", login: current_user.display_name) %>
@@ -72,7 +63,27 @@
           </a>
           <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
             <li><%= link_to t("admin.menu.profile"), { :controller => 'admin/profiles', :action => 'index'}  %></li>
+            <li role="presentation" class="divider"></li>
+            <li><%= link_to t("admin.menu.documentation"), "https://github.com/fdv/publify/wiki" %></li>
+            <li><%= link_to t("admin.menu.report_a_bug"), "https://github.com/fdv/publify/issues" %></li>
+            <li><%= link_to t("admin.menu.in_page_plugins"), "https://github.com/fdv/publify/wiki/In-Page-Plugins" %></li>
+            <li><%= link_to t("admin.menu.sidebar_plugins"), "https://github.com/fdv/publify/wiki/Sidebar-plugins" %></li>
+            <li role="presentation" class="divider"></li>
             <li><%= link_to t("admin.menu.logout").html_safe, {:controller => "/accounts", :action=>"logout"} %></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class='nav navbar-nav pull-right'>
+        <li class='dropdown'>
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+              <%= t(".new")%>
+              <b class="caret"></b>
+            </a>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+            <li><%= link_to(t("admin.menu.new_article"), {controller: 'content', action: 'new'}) %></li>
+            <li><%= link_to(t("admin.menu.new_page"), {controller: 'pages', actions: 'new'}) %></li>
+            <li><%= link_to(t("admin.menu.new_media"), {controller: 'resources', action: 'index'}) %></li>
+            <li><%= link_to(t("admin.menu.new_note"), {controller: 'notes'}) %></li>
           </ul>
         </li>
       </ul>
@@ -91,36 +102,7 @@
       </div>
     </div>  
   </div>
-  <nav  class='navbar navbar-default navbar-fixed-bottom' role="navigation">
-    <div class="navbar-header">
-      <%= link_to content_tag(:span, '', class: 'glyphicon glyphicon-home'), {controller: 'admin/dashboard'}, {class: "navbar-brand"} %>      
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#sidebar-bottom">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
-    <div class="collapse navbar-collapse" id="sidebar-bottom">
-      <ul class='nav navbar-nav'>
-        <% for pm in current_user.project_modules %>
-          <% if AccessControl.submenus_for(current_user.profile_label, pm.name.to_sym).size == 0 %>
-            <%= tab_for(pm) %>
-          <% else %>
-          <li class='dropdown'>
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-              <%= _(pm.menu_name) %>
-              <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-              <%= subtabs_for(pm.name.to_sym)%>
-            </ul>
-          </li>
-          <%end %>
-        <% end %>
-      </ul>
-    </div>
-  </nav>
+
   <footer class='clearfix'>
   <div class='span12'>
     <%= link_to(this_blog.blog_name, this_blog.base_url) %> <%= t("admin.menu.powered_by")%> Publify <%=h PUBLIFY_VERSION %> – Icons courtesy of <a href='http://glyphicons.com/'>Glyphicons</a>
