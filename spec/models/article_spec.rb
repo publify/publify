@@ -734,15 +734,6 @@ describe Article do
       let!(:draft_article) { create(:article, state: 'draft', created_at: now + 20.days) }
       it { expect(subject).to eq([draft_article, last_draft_article, article]) }
     end
-
-    context "with two articles in two catageory" do
-      let(:show_category) { create(:category, name: 'show') }
-      let(:not_show_category) { create(:category, name: 'not_show') }
-      let(:params) { {category: show_category.id } }
-      let!(:article) { create(:article, categories: [show_category]) }
-      let!(:bad_category_article) { create(:article, categories: [not_show_category]) }
-      it { expect(subject).to eq([article]) }
-    end
   end
 
   describe ".allow_comments?" do

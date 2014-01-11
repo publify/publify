@@ -118,10 +118,6 @@ class Article < Content
       scoped = scoped.send(params[:state])
     end
 
-    if params[:category] && params[:category].to_i > 0
-      scoped = scoped.category(params[:category])
-    end
-
     scoped.order('created_at DESC')
   end
 
