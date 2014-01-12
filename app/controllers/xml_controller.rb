@@ -23,7 +23,7 @@ class XmlController < ApplicationController
       redirect_to admin_comments_url(format: @format), status: :moved_permanently
     when 'article'
       redirect_to Article.find(params[:id]).feed_url(@format), status: :moved_permanently
-    when 'category', 'tag', 'author'
+    when 'tag', 'author'
       redirect_to self.send("#{params[:type]}_url", params[:id], format: @format), status: :moved_permanently
     when 'trackbacks'
       redirect_to trackbacks_url(format: @format), status: :moved_permanently
@@ -37,7 +37,6 @@ class XmlController < ApplicationController
 
       @items += Article.find_already_published(1000)
       @items += Page.find_already_published(1000)
-      @items += Category.find_all_with_article_counters unless this_blog.unindex_categories
       @items += Tag.find_all_with_article_counters unless this_blog.unindex_tags
 
       respond_to do |format|

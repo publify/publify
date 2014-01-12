@@ -1,0 +1,85 @@
+nl:
+  gflash:
+    titles:
+      notice: "Notice"
+      success: "Success"
+      warning: "Warning"
+      error: "Error"
+      progress: "Progress"
+    accounts:
+      login:
+        success: "Login geslaagd"
+        error: "Login mislukt"
+      recover_password: 
+        notice: "Er is je met succes een e-mail gestuurd met uw nieuwe wachtwoord"
+        error: "Oeps, er is net iets misgegaan"
+      logout:
+        notice: "Succesvol uitgelogd"
+    admin:
+      sidebar:
+        index:
+          error: "Het lijkt er op dat er iets fout ging. Misschien ontbreken sommige zijbalken en moet je ze opnieuw installeren of handmatig verwijderen"
+      redirects:
+        destroy:
+          success: 'Redirection was successfully deleted.'
+      feedback:
+        bulkops:
+          error: "Niet geimplementeerd"
+          success_deleted_spam: "Alle spam is verwijderd"
+        update:
+          success: "Commentaar is succesvol bijgewerkt."
+        create:
+          success: "Commentaar is succesvol aangemaakt."
+        destroy:
+          success: "Verwijderd"
+          error: "Niet gevonden"
+      dashboard:
+        index:
+          error: "You are late from at least one major version of Publify. You should upgrade immediately. Download and install <a href='http://publify.co/stable.tgz'>the latest Publify version</a>"
+          warning: "There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
+          notice: "There's a new version of Publify available. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
+      content:
+        create:
+          success: "Artikel is succesvol gemaakt"
+        update:
+          success: "Artikel is succesvol bijgewerkt."
+          error: "Fout, je mag dit niet doen"
+        edit:
+          error: "Fout, je mag dit niet doen"
+        autosave:
+          success: "Article was successfully saved"
+      settings:
+        update:
+          success: "configuratie bijgewerkt"
+      seo:
+        update:
+          success: "configuratie bijgewerkt"
+      cache:
+        index:
+          success: "Cache has been sweeped"
+          error: "Cache could not be cleared"
+      pages:
+        new:
+          success: "Pagina is succesvol aangemaakt"
+        edit:
+          success: "Pagina is succesvol bijgewerkt"
+      profiles:
+        index:
+          success: "Gebruiker is succesvol bijgewerkt"
+      resources:
+        upload:
+          success: "Bestand geupload"
+          warning: "Kon niet uploaden"
+        destroy:
+          notice: "Verwijderd"
+      tags:
+        edit:
+          success: "Tag was succesvol bijgewerkt."
+      themes:
+        switchto:
+          success: "Thema succesvol aangepast"
+      users:
+        new:
+          success: "Gebruiker succesvol aangemaakt."
+        edit:
+          success: "Gebruiker is succesvol bijgewerkt."

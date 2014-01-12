@@ -1,7 +1,0 @@
-<h1 class='page-header'><%= link_to @grouping.name, @grouping.permalink_url %></h1>
-<div class='hfeed'>
-  <%= render :partial => 'article', :collection => @articles %>  
-</div>
-<div id='paginate'>
-  <%= paginate @articles, { :previous_label => _('Previous'), :next_label => _('Next')  } %>
-</div>

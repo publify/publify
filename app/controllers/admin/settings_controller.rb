@@ -12,14 +12,9 @@ class Admin::SettingsController < Admin::BaseController
   def feedback; load_settings end
   def display; load_settings end
 
-  def redirect
-    flash[:notice] = _("Please review and save the settings before continuing")
-    redirect_to :action => "index"
-  end
-
   def update
     if request.post?
-      update_settings_with!(params)
+      update_settings_with!(params[:setting])
       redirect_to action: params[:from]
     end
   rescue ActiveRecord::RecordInvalid

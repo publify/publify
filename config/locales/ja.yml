@@ -1,12 +1,216 @@
 ja:
+  articles:
+    comment_form:
+      comment: "comment"
+      email_address: "Email address"
+      your_website: "Your website"
+      leave_url_email: "leave url/email"
+      your_name: "あなたの名前"
+      your_blog: "ブログ"
+      your_email: "あなたのemail"
+      your_message: "メッセージ"
+      comment_markup_help: "コメントのマークアップヘルプ"
+      preview_comment: "前のコメント"
+    article_links:
+      comments:
+        zero: "no comments"
+        one: "1 comment"
+        other: "%{count} comments"
+    comment_counter:
+      comments:
+        zero: "no comments"
+        one: "1 comment"
+        other: "%{count} comments"
+  profile:
+    admin: "Publify administrator"
+    publisher: "Blog publisher"
+    contributor: "Contributor"
+  user:
+    status:
+      active: "Active"
+      inactive: "Inactive"
+  errors:
+    render_sidebar: "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually"
+    no_posts_found: "No posts found..."
   views:
     pagination:
       truncate: "Truncate"
       next: "Next"
       last: "Last"
+  layouts:
+    administration:
+      new: "New"
+  authors:
+    show:
+      contact_information: "Contact information"
+      web_site: "Web site:"
+      jabber: "Jabber:"
+      msn: "MSN:"
+      yahoo: "Yahoo:"
+      aim: "AIM:"
+      twitter: "Twitter:"
+      this_author_has_not_published_any_article_yet: "This author has not published any article yet"
+      posted_in: "カテゴリ"
+      next_page: "次のページ"
+      previous_page: "前のページ"
+  setup:
+    confirm:
+      you_have_successfully_signed_up: "You have successfully signed up"
+      login: "Login: %{user}"
+      password: "Password: %{pass}"
+      dont_lose_the_mail_sent: "Don't lose the mail sent at %{email} or you won't be able to login anymore"
+      proceed_to: "Proceed to %{link}"
+      admin: "admin"
   admin:
+    notes:
+      new:
+        notes: "Notes"
+        compose_new_note: "Compose new note"
+        publish_settings: "Publish settings"
+        posse_to_twitter: "POSSE to twitter"
+        in_reply_to: "In reply to"
+        tweet_id_like: "Tweet id like 123456"
+        permanent_link: "Permanent link"
+        published: "公開済み"
+        publish_at: "公開日"
+        cancel: "キャンセル"
+        or: "or"
+        publish: "公開"
+    redirects:
+      new:
+        cancel: "キャンセル"
+        save: "保存"
+        or: "or"
+        redirects: "Redirects"
+        from: "From"
+        to: "To"
+        leave_empty_to_shorten_a_link: "Leave empty to shorten a link"
+    themes:
+      index:
+        choose_a_theme: "テーマの選択"
+        use_this_theme: "Use this theme"
+        active_theme: "%{name} - 現在のテーマ"
+    profiles:
+      index:
+        your_profile: "あなたのプロフィール"
+    sidebar:
+      index:
+        sidebar: "サイドバー"
+        or: "or"
+        cancel: "キャンセル"
+        explain_how_its_works: "ブログに表示するサイドバー項目をドラッグ＆ドロップで変更してください。サイドバーから項目を削除した場合はすぐに変更が保存されますが、「公開」ボタンを押すまでは有効になりません。"
+        publish_changes: "変更を公開"
+        available_items: "利用可能な項目"
+        active_sidebar_items: "有効なサイドバー項目"
+        download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
+    settings:
+      display:
+        cancel: "キャンセル"
+        or: "or"
+        update_settings: "Update settings"
+        ago: "ago"
+        custom_url: "Custom URL shortener domain"
+        custom_url_help: "If you have a custom domain for URL shortening, enter it here."
+        date_format: "Date format"
+        default_article_show: "articles on the homepage"
+        default_feed_show: "most recent articles in feed"
+        display: "Display"
+        display_settings: "Display Settings"
+        feed_articles: "Article excerpts"
+        feed_settings: "RSS Feed Settings"
+        feed_excerpts_only: "Show only article excerpts in feed"
+        feedburner_help: "Enter your FeedBurner ID if you wish to use your Google FeedBurner account instead of using the Publify feed URL."
+        feedburner_id: "FeedBurner ID"
+        publishing_options: "Publishing Options"
+        status_main_feed: "Display statuses in the main feed"
+        statuses: "Statuses"
+        time_format: "Time format"
+      feedback:
+        cancel: "キャンセル"
+        or: "or"
+        update_settings: "Update settings"
+        feedback_settings: "Feedback settings"
+        feedback: "Feedback"
+        comments: "コメント"
+        enable_comments_by_default: "デフォルトでコメントを有効にする"
+        enable_feedback_moderation: "フィードバック承認機能を有効にする"
+        explain_feedback_moderation: "サイト全体のフィードバック承認機能を有効にすることができます。有効にするとコメントやトラックバックは承認されるまで表示されません。"
+        trackbacks: "Trackbacks"
+        enable_trackbacks_by_default: "デフォルトでトラックバックを許可する"
+        disable_trackbacks_sitewide: "Disable trackbacks site-wide"
+        explain_disable_trackbacks: "この設定はすでにあるトラックバックを削除しませんが、新しく追加しようとするトラックバックを防ぐことができます。"
+        comments_filter: "コメントフィルター"
+        avatars_provider: "Avatars provider"
+        spam: "Spam"
+        spam_protection: "Spam protection"
+        enable_spam_protection: "スパムプロテクションを有効にする"
+        explain_spam_protection: "スパムプロテクションを有効にすると、投稿者のIPアドレスおよびその投稿内容をローカル、リモート両方のブラックリストと比較します"
+        askimet_key: "Akismetキー"
+        explain_spamfiltering: "Publifyはオプションで<a href='http://akismet.com'>Akismet</a>スパムフィルタリングサービスを利用できます。これらのサービスを使用するにはAkismetに登録し、APIキーを取得する必要があります。すでにAkismetキーをお持ちであればここに入力してください"
+        disable_comments_after: "右の期間以後のコメントを不許可にする"
+        days: "日"
+        set_to_0_to_never_disable_comments: "コメントを不許可にしない場合は0を設定してください"
+        max_links: "最大のリンク数"
+        explain_reject_comments: "Publifyは指定された数のリンクが含まれているコメントやトラックバックを自動的に拒否します"
+        set_to_0_to_never_reject_comments: "コメントを拒否しない場合は0を設定してください"
+        captcha: "Captcha"
+        enable_recaptcha: "Enable reCaptcha"
+        remember_to_set_your_recaptcha: "Remember to set your reCaptcha keys inside config/initializers/recaptcha.rb"
+      write:
+        cancel: "キャンセル"
+        or: "or"
+        update_settings: "Update settings"
+        write: "新規作成"
+        publish: "公開"
+        trackbacks: "トラックバック"
+        send_trackbacks: "トラックバックを送信"
+        explain: "記事が公開されると、Publifyはリンクしたページへトラックバックを送信します。非公開ブログの場合は公開されたブログへ情報が漏れないようにこのチェックボックスを非選択にしてください。公開ブログの場合は非選択にする必要はありません。"
+        urls_to_ping: "自動的にPingを送信するURL"
+        latitude_longitude: "緯度、経度"
+        display: "表示"
+        your_geoloc: "あなたの緯度、経度"
+        example: "例"
+        media: "Media"
+        image_thumbnail_size: "Image thumbnail size"
+        image_medium_size: "Image medium size"
+        avatar_size: "Avatar size"
+        publish_on_twitter: "Publish on Twitter"
+        twitter_consumer_key: "Twitter consumer key"
+        twitter_consumer_secret: "Twitter consumer secret"
+      update_database:
+        database_migration: "データベースマイグレーション"
+        information: "インフォメーション"
+        current_database_version: "現在のデータベースのバージョン"
+        you_are_up_to_date: "最新です!"
+        migrations: "Migrations"
+        migration_pending:
+          one: "There is one migration pending."
+          other: "There are %{count} migrations pending."
+        needed_migrations: "マイグレーションが必要です"
+        update_database_now: "データベースを今すぐ更新"
+        may_take_a_moment: "少しお待ちください"
+      index:
+        cancel: "キャンセル"
+        or: "or"
+        update_settings: "Update settings"
+        general_settings: "General settings"
+        your_blog: "あなたのブログ"
+        blog_name: "ブログ名"
+        blog_subtitle: "ブログサブタイトル"
+        blog_url: "ブログURL"
+        language: "言語"
+        users: "ユーザー"
+        allow_users_to_register: "ユーザーに登録させる"
+        explain_allow_users_to_register: "ユーザーがこのブログに登録するのを許可できます。デフォルトでユーザーは自分自身のプロフィールを編集する以外の権限を持たないcontributorとして登録されます。ユーザーに登録させたくない場合は、管理者であるあなた自らがユーザーを追加することができます。"
+        publify_notify_new_articles_or_comments: "新しい記事やコメントが投稿された場合に通知を送ることができます"
+        source_email: "メールアドレス"
+        email_address_used_to_notify: "通知の送信先メールアドレス"
+        items_to_display_in_admin_lists: "管理リストに表示する行数"
     seo:
       titles:
+        cancel: "キャンセル"
+        or: "or"
+        update_settings: "Update settings"
         title_settings: "Title settings"
         home: "Home"
         title_template: "Title template"
@@ -40,6 +244,9 @@ ja:
         replaced_by_the_archive_date: "Replaced by the archive date"
         replaced_by_the_content_body: "Replaced by the content body"
       permalinks:
+        cancel: "キャンセル"
+        or: "or"
+        update_settings: "Update settings"
         explain: "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links."
         permalinks: "Permalinks"
         permalink_format: "Permalink format"
@@ -54,6 +261,9 @@ ja:
         your_article_month: "your article month of publication."
         your_article_day: "your article day of publication."
       index:
+        cancel: "キャンセル"
+        or: "or"
+        update_settings: "Update settings"
         global_settings: "Global settings"
         general_settings: "一般設定"
         meta_keywords: "METAタグKeywords"
@@ -81,11 +291,25 @@ ja:
         explain_moderate_feedback: "You may want to moderate feedback when turning this on"
         explain_rss_description: "You can use the following tags: %author% (author name), %blog_url% (this blog URL), %blog_name% (this blog title) and %permalink_url% (a link to the article you want to protect)"
     shared:
+      macros:
+        show_help_on_publify_macros: "Publifyマクロのヘルプを表示"
+        name: "名前"
+        description: "説明"
+        tag: "Tag"
       destroy:
         are_you_sure: "Are you sure you want to delete this %{element}"
         action_or_other: "%{first_action} または %{second_action}"
         cancel: "キャンセル"
         delete: "削除"
+    tags:
+      new:
+        articles: "記事"
+        display_name: "表示名"
+        manage_tags: "タグの管理"
+        name: "名前"
+        cancel: "キャンセル"
+        save: "保存"
+        or: "or"
     resources:
       index:
         media_library: "Media Library"
@@ -96,8 +320,15 @@ ja:
         content_type: "コンテンツタイプ"
         file_size: "ファイルサイズ"
         date: "日付"
+        are_you_sure: "Are you sure?"
+        thumbnail: "Thumbnail"
+        medium_size: "Medium size"
+        original_size: "Original size"
     post_types:
       new:
+        cancel: "キャンセル"
+        save: "保存"
+        or: "or"
         post_types: "Post Types"
         name: "名前"
         description: "説明"
@@ -114,6 +345,8 @@ ja:
         author: "投稿者"
         date: "日付"
       form:
+        cancel: "キャンセル"
+        change: "Change"
         publish: "公開"
         title: "タイトル"
         images: "Images"
@@ -123,7 +356,19 @@ ja:
         article_filter: "記事フィルター"
         permanent_link: "Permanent link"
         page_with_action_name: "%{action} page"
+        type_your_post: "Type your post"
     feedback:
+      bulkops:
+        success_mark_as_ham: 
+          zero: "No item selected to mark as Ham"
+          one: "Marked 1 item as Ham"
+          other: "Marked %{count} items as Ham"
+        success_mark_as_spam: 
+          zero: "No item selected to mark as Spam"
+          one: "Marked 1 item as Spam"
+          other: "Marked %{count} items as Spam"
+        success_classification: "Confirmed classification of %{count} item(s)"
+        success_deleted: "Deleted %{count} item(s)"
       index:
         feedback: "フィードバック"
         all: "All"
@@ -151,6 +396,10 @@ ja:
         action_or_other: "%{first_action} または %{second_action}"
         cancel: "キャンセル"
         save: "保存"
+      edit:
+        action_or_other: "%{first_action} または %{second_action}"
+        save: "保存"
+        comments_for: "Comments for %{article_link}"
       button:
         select_action: "Select action"
         delete_checked_items: "チェックした行を削除"
@@ -162,6 +411,8 @@ ja:
         this_comment_by_was_flagged_as_spam: "This comment by %{author} was flagged as spam, %{cancel_link}?"
         cancel: "キャンセル"
     dashboard:
+      index:
+        welcome_back: "お帰りなさいませ、%{user_name} 様"
       drafts:
         your_drafts: "Your drafts"
         no_drafts_yet: "No drafts yet, why don't you start and write one"
@@ -197,12 +448,15 @@ ja:
           other: "%{count} comments"
         approved_count:
           zero: "no approved"
+          one: "1 approved"
           other: "%{count} approved"
         unconfirmed_count:
           zero: "no unconfirmed"
+          one: "1 unconfirmed"
           other: "%{count} unconfirmed"
         spam_count:
           zero: "no spam"
+          one: "1 spam"
           other: "%{count} spam"
       overview:
         dashboard_explain: "This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %{available_actions}"
@@ -224,6 +478,8 @@ ja:
       comment:
         no_comments_yet: "まだコメントはありません"
         by: "By"
+      comments:
+        latest_comments: "Latest Comments"
     content:
       index:
         published: "公開済み"
@@ -240,12 +496,22 @@ ja:
         publication_date: "Publication date"
         filter: "フィルター"
       form:
+        article_type: "Article type"
+        now: "now"
+        preview: "Preview"
+        save: "保存"
+        default: "Default"
+        cancel: "キャンセル"
+        allow_comments_status:
+          zero: "disabled"
+          one: "enabled"
+        allow_pings_status:
+          zero: "disabled"
+          one: "enabled"
         public: "Public"
         publish: "公開"
         title: "タイトル"
         images: "Images"
-        excerpt: "要約"
-        excerpt_explaination: "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself"
         publish_settings: "Publish settings"
         status: "ステータス"
         published: "公開済み"
@@ -262,10 +528,14 @@ ja:
         categories: "カテゴリ"
         tags: "タグ"
         tags_explaination: "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;."
+        type_your_post: "Type your post"
       categories:
         new_category: "New Category"
     categories:
       new:
+        cancel: "キャンセル"
+        save: "保存"
+        or: "or"
         categories: "カテゴリ"
         name: "名前"
         keywords: "Keywords"
@@ -281,6 +551,9 @@ ja:
       sidebar_plugins: "Sidebar plugins"
       logged_in_as: "Logged in as %{login}"
       new_article: "New Article"
+      new_page: "New Page"
+      new_media: "New Media"
+      new_note : "New Note"
       profile: "プロフィール"
       logout: "ログアウト &raquo;"
       home: "Home"
@@ -291,15 +564,72 @@ ja:
         stats: "ページキャッシュに%{files_count}個の記事があります"
         sweep_cache: "キャッシュをクリア"
         cache: "キャッシュ"
-        explanations: "To save on resources, Publify generates static files
-           along with your content. These files are deleted when a new article
-           is created. You can, at any time, delete these files yourself."
+        explaination: "To save on resources, Publify generates static files along with your content. These files are deleted when a new article is created. You can, at any time, delete these files yourself."
+    users:
+      edit:
+        edit_user: "ユーザー編集"
+      new:
+        add_user: "ユーザーの追加"
+      index:
+        login: "ログイン"
+        users: "ユーザー"
+        new_user: "新規ユーザー"
+        name: "名前"
+        email: "メールアドレス"
+        profile: "プロフィール"
+        articles: "記事"
+        comments: "コメント"
+        state: "状態"
+        user_state: "%{state}"
+      form:
+        cancel: "キャンセル"
+        save: "保存"
+        or: "or"
+        user_status: "User Status"
+        account_settings: "Account Settings"
+        login: "ログイン"
+        password: "Password"
+        password_confirmation: "Password confirmation"
+        email: "メールアドレス"
+        profile: "プロフィール"
+        status: "Status"
+        profile_settings: "Profile Settings"
+        firstname: "First name"
+        lastname: "Last name"
+        nickname: "Nickname"
+        display_name: "Display name"
+        article_filter: "Article filter"
+        avatar: "Avatar Settings"
+        avatar_current: "Current avatar"
+        upload: "Upload your profile image"
+        upload_file: "Upload a .jpg, .png or .gif file"
+        notification_settings: "Notifications"
+        notifications: "Send notification messages"
+        notification_email: "via email"
+        notification_article: "when new article is posted"
+        notification_comment: "when new comment is posted"
+        twitter_settings: "Twitter Settings"
+        twitter_account: "Twitter username"
+        twitter_help: "Twitter account you want to post with"
+        twitter_oauth: "Twitter OAuth token"
+        twitter_oauth_secret: "Twitter OAuth secret"
+        contact_settings: "Contact Settings"
+        contact_explain: "This information will be displayed on your %{link}"
+        author_page: "author page"
+        about: "Biography"
+        website: "Website"
+        msn: "MSN Messenger ID"
+        yahoo: "Yahoo! Messenger ID"
+        jabber: "Jabber ID"
+        aim: "AIM screen name"
+        twitter: "Twitter username"
   accounts:
     back_to: "&larr; Back to %{place}"
     back_to_login: "Back to login"
     create_account: "Create an account"
     lost_my_password: "I've lost my password"
     login:
+      title: "ログイン"
       login: "ログイン"
       password: "パスワード"
       remember_me: "ログイン状態を持続"
@@ -308,13 +638,37 @@ ja:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
     recover_password:
+      title: "Recover your password"
       username_or_email: "Username or email"
       reset_my_password: "Reset my password"
     signup:
+      title: "サインアップ"
       username: "ユーザー名"
       email: "メールアドレス"
       signup: "サインアップ"
+  langs:
+    da_DK: "Danish"
+    de_DE: "German"
+    en_US: "English (US)"
+    es_MX: "Spanish (Mexican)"
+    fr_FR: "French"
+    he_IL: "Hebrew"
+    it_IT: "Italian"
+    ja_JP: "Japanese"
+    lt_LT: "Lithuanian"
+    nb_NO: "Norwegian"
+    nl_NL: "Nederland"
+    pl_PL: "Polish"
+    ro_RO: "Romanian"
+    ru_RU: "Russian"
+    zh_TW: "Chinese"
+    zh_CN: "Simple Chinese"
+    pt_BR: "Portuguese (Brazilian)"
   time:
     formats:
       default: "%m/%d/%Y %H:%M"
       short: "%m/%d/%y"
+      letters_month_with_year: "%m %Y"
+  date:
+    month_names: [~, "1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"]
+    abbr_month_names: [~, "1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"]

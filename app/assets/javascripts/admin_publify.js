@@ -1,11 +1,6 @@
-//= require jquery
-//= require jquery_ujs
-//= require quicktags
-//= require_self
-//= require_tree .
 
 /* typewatch() borrowed from http://stackoverflow.com/questions/2219924/idiomatic-jquery-delayed-event-only-after-a-short-pause-in-typing-e-g-timew  */
-var typewatch = (function(){
+var typewatch = (function(){  
   var timer = 0;
   return function(callback, ms){
     clearTimeout (timer);
@@ -14,14 +9,27 @@ var typewatch = (function(){
 })();
 
 function autosave_request(e) {
-  e.find('textarea').keyup(function() {
+  $('#article_form').keyup(function() {
     typewatch(function() {
-      e.up('form.autosave').ajax('/admin/content/autosave', e.serialize());
-    }
-  }));
+      $.ajax({
+        type: "POST",
+        url: '/admin/content/autosave',
+        data: $("#article_form").serialize()});
+    }, 1000)
+  });
 }
+
+function set_widerea(element) {
+  if ($("#article_id").value() == "") {
+    wideArea().clearData(element);
+  }
+
+  wideArea();
+}
+
 $(document).ready(function() {
-  $('.autosave').each(function(e){autosave_request(e)});
-  $('#article_form .new_category').each(function(cat_link){ cat_link.click(bind_new_category_overlay); });
+  $('#article_form').each(function(e){autosave_request(e)});
+  $('#article_form').each(function(e){set_widerea($('#article_body_and_extended'))});
+  $('#page_form').each(function(e){set_widerea($('#page_body'))});
   $('.merge_link').each(function(merge_link){ merge_link.click(bind_merge_link); });
-})
+});

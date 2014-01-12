@@ -6,7 +6,7 @@ class Admin::PagesController < Admin::BaseController
   before_filter :set_images, only: [:new, :edit]
   before_filter :set_macro, only: [:new, :edit]
 
-  layout "administration", :except => 'show'
+  layout :get_layout
   cache_sweeper :blog_sweeper
 
   def index
@@ -22,7 +22,7 @@ class Admin::PagesController < Admin::BaseController
     if request.post?
       @page.published_at = Time.now
       if @page.save
-        flash[:notice] = _('Page was successfully created.')
+        gflash :success
         redirect_to :action => 'index'
       end
     end
@@ -33,7 +33,7 @@ class Admin::PagesController < Admin::BaseController
     @page.attributes = params[:page]
     @page.text_filter ||= default_textfilter
     if request.post? and @page.save
-      flash[:notice] = _('Page was successfully updated.')
+      gflash :success
       redirect_to :action => 'index'
     end
   end
@@ -56,4 +56,16 @@ class Admin::PagesController < Admin::BaseController
   def set_images
     @images = Resource.images.by_created_at.page(1).per(10)
   end
+
+  def get_layout
+    case action_name
+    when "new", "edit", "create"
+      "editor"
+    when "show"
+      nil
+    else
+      "administration"
+    end
+  end
+
 end

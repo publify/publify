@@ -1,17 +1,221 @@
 lt:
+  articles:
+    comment_form:
+      comment: "comment"
+      email_address: "Email address"
+      your_website: "Your website"
+      leave_url_email: "leave url/email"
+      your_name: "Tavo vardas"
+      your_blog: "Tavo dienoraštis"
+      your_email: "Tavo el. pašto adresas"
+      your_message: "Tavo žinutė"
+      comment_markup_help: "Komentaro sintaksės žymėjimo pagalba"
+      preview_comment: "Peržiūrėti komentarą"
+    article_links:
+      comments:
+        zero: "no comments"
+        one: "1 Komentaras"
+        other: "%{count} Komentarai"
+    comment_counter:
+      comments:
+        zero: "no comments"
+        one: "1 Komentaras"
+        other: "%{count} Komentarai"
+  profile:
+    admin: "Publify administrator"
+    publisher: "Blog publisher"
+    contributor: "Contributor"
+  user:
+    status:
+      active: "Active"
+      inactive: "Inactive"
+  errors:
+    render_sidebar: "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually"
+    no_posts_found: "No posts found..."
   views:
     pagination:
       truncate: "Truncate"
       next: "Next"
       last: "Last"
+  layouts:
+    administration:
+      new: "Neuer"
+  authors:
+    show:
+      contact_information: "Contact information"
+      web_site: "Web site:"
+      jabber: "Jabber:"
+      msn: "MSN:"
+      yahoo: "Yahoo:"
+      aim: "AIM:"
+      twitter: "Twitter:"
+      this_author_has_not_published_any_article_yet: "This author has not published any article yet"
+      posted_in: "posted in"
+      next_page: "Sekantis puslapis"
+      previous_page: "Buvęs puslapis"
+  setup:
+    confirm:
+      you_have_successfully_signed_up: "You have successfully signed up"
+      login: "Login: %{user}"
+      password: "Password: %{pass}"
+      dont_lose_the_mail_sent: "Don't lose the mail sent at %{email} or you won't be able to login anymore"
+      proceed_to: "Proceed to %{link}"
+      admin: "admin"
   admin:
+    notes:
+      new:
+        notes: "Notes"
+        compose_new_note: "Compose new note"
+        publish_settings: "Publish settings"
+        posse_to_twitter: "POSSE to twitter"
+        in_reply_to: "In reply to"
+        tweet_id_like: "Tweet id like 123456"
+        permanent_link: "Permanent link"
+        published: "Publikuotas"
+        publish_at: "Publikuotas"
+        cancel: "Baigti"
+        or: "or"
+        publish: "Publikuoti"
+    redirects:
+      new:
+        cancel: "Baigti"
+        save: "Saugoti"
+        or: "or"
+        redirects: "Redirects"
+        from: "Nuo"
+        to: "To"
+        leave_empty_to_shorten_a_link: "Leave empty to shorten a link"
+    themes:
+      index:
+        choose_a_theme: "Motiv auswählen"
+        use_this_theme: "Use this theme"
+        active_theme: "%{name} - Aktives Motiv"
+    profiles:
+      index:
+        your_profile: "Your profile"
+    sidebar:
+      index:
+        sidebar: "Sidebar"
+        or: "or"
+        cancel: "Baigti"
+        explain_how_its_works: "Verwenden Sie Drag&Drop, um die Einträge der Seitenleiste ihres Blogs zu ändern. Um Einträge zu löschen, klicken Sie auf 'remove'. Änderungen sind hier sofort sichtbar, werden aber erst permanent aktiviert, wenn Sie 'Änderungen veröffentlichen' klicken."
+        publish_changes: "Änderungen veröffentlichen"
+        available_items: "Verfügbare Einträge"
+        active_sidebar_items: "Aktive Einträge der Seitenleiste"
+        download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
+    settings:
+      display:
+        cancel: "Baigti"
+        or: "or"
+        update_settings: "Update settings"
+        ago: "ago"
+        custom_url: "Custom URL shortener domain"
+        custom_url_help: "If you have a custom domain for URL shortening, enter it here."
+        date_format: "Date format"
+        default_article_show: "articles on the homepage"
+        default_feed_show: "most recent articles in feed"
+        display: "Display"
+        display_settings: "Display Settings"
+        feed_articles: "Article excerpts"
+        feed_settings: "RSS Feed Settings"
+        feed_excerpts_only: "Show only article excerpts in feed"
+        feedburner_help: "Enter your FeedBurner ID if you wish to use your Google FeedBurner account instead of using the Publify feed URL."
+        feedburner_id: "FeedBurner ID"
+        publishing_options: "Publishing Options"
+        status_main_feed: "Display statuses in the main feed"
+        statuses: "Statuses"
+        time_format: "Time format"
+      feedback:
+        cancel: "Baigti"
+        or: "or"
+        update_settings: "Update settings"
+        feedback_settings: "Feedback settings"
+        feedback: "Feedback"
+        comments: "Comments"
+        enable_comments_by_default: "Kommentare per default erlauben"
+        enable_feedback_moderation: "Moderation von Kommentaren aktivieren"
+        explain_feedback_moderation: "You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it."
+        trackbacks: "Trackbacks"
+        enable_trackbacks_by_default: "Trackbacks per default aktivieren"
+        disable_trackbacks_sitewide: "Disable trackbacks site-wide"
+        explain_disable_trackbacks: "Diese Option erlaubt es Ihnen, Trackbacks für alle Artikel im gesamten Blog zu deaktivieren. Dadurch werden zwar keine bereits existierenden Trackbacks entfernt, aber alle zukünftig irgendwo in Ihrem Blog eintreffenden Trackbacks werden abgewiesen."
+        comments_filter: "Komentarų filtras"
+        avatars_provider: "Avatars provider"
+        spam: "Spam"
+        spam_protection: "Spamschutz"
+        enable_spam_protection: "Spamschutz aktivieren"
+        explain_spam_protection: "Bei Aktivierung des Spamschutzes wird Publify sowohl die IP Adresse des Autors als auch den Inhalt seiner Veröffentlichung gegen lokale und entfernte Blacklisten vergleichen. Gute Abwehr von Spambots"
+        askimet_key: "Akismet Key"
+        explain_spamfiltering: "Publify kann (optional) den <a href='http://akismet.com'>Akismet</a> Spam-Filterdienst verwenden. Sie müssen sich dort registriert und einen API Key erhalten haben, bevor Sie diesen Dienst nutzen können. Wenn Sie einen solchen Key haben, geben Sie ihn hier ein"
+        disable_comments_after: "Kommentare abschalten nach"
+        days: "Tagen"
+        set_to_0_to_never_disable_comments: "Wert 0 bewirkt, dass die Möglichkeit für Kommentare immer bestehen bleibt"
+        max_links: "Maximale Anzahl Links"
+        explain_reject_comments: "Publify kann automatisch Kommentare und Trackbacks abweisen, die mehr als eine bestimmte Anzahl von Links enthalten"
+        set_to_0_to_never_reject_comments: "Wert 0 bewirkt, dass Kommentare nie abgewiesen werden"
+        captcha: "Captcha"
+        enable_recaptcha: "Enable reCaptcha"
+        remember_to_set_your_recaptcha: "Remember to set your reCaptcha keys inside config/initializers/recaptcha.rb"
+      write:
+        cancel: "Baigti"
+        or: "or"
+        update_settings: "Update settings"
+        write: "Rašyti"
+        publish: "Publikuoti"
+        trackbacks: "Trackbacks"
+        send_trackbacks: "Siųsti dienoraščių nuorodas"
+        explain: "Publikuojant straipsnius Publify gali siųsti dienoraščių nuorodas į puslapius, į kuriuos jūs rodote. Tai gali būti išjungta ant privačių dienoraščių, bet viešuose nėra priežasties išjungti šio nustatymo"
+        urls_to_ping: "URL adresai į kuriuos pranešti automatiškai"
+        latitude_longitude: "Geografinė platuma, ilguma"
+        display: "Rodyti"
+        your_geoloc: "Tavo geografinė platuma ir ilguma"
+        example: "Pavyzdys"
+        media: "Media"
+        image_thumbnail_size: "Image thumbnail size"
+        image_medium_size: "Image medium size"
+        avatar_size: "Avatar size"
+        publish_on_twitter: "Publish on Twitter"
+        twitter_consumer_key: "Twitter consumer key"
+        twitter_consumer_secret: "Twitter consumer secret"
+      update_database:
+        database_migration: "Datenbank Migration"
+        information: "Information"
+        current_database_version: "Aktuelle Datenbank Version"
+        you_are_up_to_date: "Sie sind auf dem aktuellsten Stand!"
+        migrations: "Migrations"
+        migration_pending:
+          one: "There is one migration pending."
+          other: "There are %{count} migrations pending."
+        needed_migrations: "Migrationen sind notwendig"
+        update_database_now: "Update der Datenbank jetzt"
+        may_take_a_moment: "dauert einen Moment"
+      index:
+        cancel: "Baigti"
+        or: "or"
+        update_settings: "Update settings"
+        general_settings: "Pagrindiniai nustatymai"
+        your_blog: "Tavo dienoraščio adresas"
+        blog_name: "Dienoraščio pavadinimas"
+        blog_subtitle: "Dienoraščio subpavadinimas"
+        blog_url: "Dienoraščio adresas"
+        language: "Kalba"
+        users: "Vartotojai"
+        allow_users_to_register: "Allow users to register"
+        explain_allow_users_to_register: "This will allow users to register themselves as contributors, an unprivileged account level which grants them no rights beyond owning a profile on the site. If you don't want users to register, you can add them via <em>Manage users</em> under <em>Settings</em>."
+        publify_notify_new_articles_or_comments: "Publify kann Sie benachrichtigen, wenn neue Artikel oder Kommentare angelegt werden"
+        source_email: "Email Adresse"
+        email_address_used_to_notify: "Email Adresse, die Publify beim Versenden von Benachrichtigungen verwenden soll"
+        items_to_display_in_admin_lists: "Items to display in admin lists"
     seo:
       titles:
+        cancel: "Baigti"
+        or: "or"
+        update_settings: "Update settings"
         title_settings: "Title settings"
         home: "Home"
         title_template: "Title template"
         description_template: "Description template"
-        articles: "Articles"
+        articles: "Straipsniai"
         pages: "Seiten"
         paginated_archives: "Paginated archives"
         dated_archives: "Dated archives"
@@ -40,6 +244,9 @@ lt:
         replaced_by_the_archive_date: "Replaced by the archive date"
         replaced_by_the_content_body: "Replaced by the content body"
       permalinks:
+        cancel: "Baigti"
+        or: "or"
+        update_settings: "Update settings"
         explain: "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links."
         permalinks: "Permalinks"
         permalink_format: "Permalink format"
@@ -54,6 +261,9 @@ lt:
         your_article_month: "your article month of publication."
         your_article_day: "your article day of publication."
       index:
+        cancel: "Baigti"
+        or: "or"
+        update_settings: "Update settings"
         global_settings: "Global settings"
         general_settings: "Pagrindiniai nustatymai"
         meta_keywords: "Meta keywords"
@@ -81,11 +291,25 @@ lt:
         explain_moderate_feedback: "You may want to moderate feedback when turning this on"
         explain_rss_description: "You can use the following tags: %author% (author name), %blog_url% (this blog URL), %blog_name% (this blog title) and %permalink_url% (a link to the article you want to protect)"
     shared:
+      macros:
+        show_help_on_publify_macros: "Show help on Publify macros"
+        name: "Vardas"
+        description: "Beschreibung"
+        tag: "Tag"
       destroy:
         are_you_sure: "Ar jūs tikrai nori ištrinti šį %{element}?"
         action_or_other: "%{first_action} arba %{second_action}"
         cancel: "Baigti"
         delete: "Trinti"
+    tags:
+      new:
+        articles: "Straipsniai"
+        display_name: "Rodomas vardas"
+        manage_tags: "Valdyti žymės"
+        name: "Vardas"
+        cancel: "Baigti"
+        save: "Saugoti"
+        or: "or"
     resources:
       index:
         media_library: "Media Library"
@@ -96,11 +320,18 @@ lt:
         content_type: "Content Type"
         file_size: "Dateigröße"
         date: "Date"
+        are_you_sure: "Are you sure?"
+        thumbnail: "Thumbnail"
+        medium_size: "Medium size"
+        original_size: "Original size"
     post_types:
       new:
+        cancel: "Baigti"
+        save: "Saugoti"
+        or: "or"
         post_types: "Post Types"
-        name: "Name"
-        description: "Description"
+        name: "Vardas"
+        description: "Beschreibung"
         template_name: "Template name"
         default: "Default"
         publify_default_post_type: "Publify default post type"
@@ -114,7 +345,9 @@ lt:
         author: "Author"
         date: "Date"
       form:
-        publish: "Publish"
+        cancel: "Baigti"
+        change: "Change"
+        publish: "Publikuoti"
         title: "Title"
         images: "Images"
         publish_settings: "Publish settings"
@@ -123,7 +356,19 @@ lt:
         article_filter: "Article filter"
         permanent_link: "Permanent link"
         page_with_action_name: "%{action} page"
+        type_your_post: "Type your post"
     feedback:
+      bulkops:
+        success_mark_as_ham: 
+          zero: "No item selected to mark as Ham"
+          one: "Marked 1 item as Ham"
+          other: "Marked %{count} items as Ham"
+        success_mark_as_spam: 
+          zero: "No item selected to mark as Spam"
+          one: "Marked 1 item as Spam"
+          other: "Marked %{count} items as Spam"
+        success_classification: "Confirmed classification of %{count} item(s)"
+        success_deleted: "Deleted %{count} item(s)"
       index:
         feedback: "Feedback"
         all: "All"
@@ -145,12 +390,16 @@ lt:
         comment: "Comment"
         add_a_comment: "Add a comment"
         author: "Author"
-        email: "Email"
+        email: "El. pašto adresas"
         url: "Url"
         your_comment: "Your comment"
         action_or_other: "%{first_action} arba %{second_action}"
         cancel: "Baigti"
-        save: "Save"
+        save: "Saugoti"
+      edit:
+        action_or_other: "%{first_action} arba %{second_action}"
+        save: "Saugoti"
+        comments_for: "Comments for %{article_link}"
       button:
         select_action: "Select action"
         delete_checked_items: "Delete Checked Items"
@@ -162,6 +411,8 @@ lt:
         this_comment_by_was_flagged_as_spam: "This comment by %{author} was flagged as spam, %{cancel_link}?"
         cancel: "Baigti"
     dashboard:
+      index:
+        welcome_back: "Welcome back, %{user_name}!"
       drafts:
         your_drafts: "Your drafts"
         no_drafts_yet: "No drafts yet, why don't you start and write one"
@@ -197,12 +448,15 @@ lt:
           other: "%{count} comments"
         approved_count:
           zero: "no approved"
+          one: "1 approved"
           other: "%{count} approved"
         unconfirmed_count:
           zero: "no unconfirmed"
+          one: "1 unconfirmed"
           other: "%{count} unconfirmed"
         spam_count:
           zero: "no spam"
+          one: "1 spam"
           other: "%{count} spam"
       overview:
         dashboard_explain: "This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %{available_actions}"
@@ -224,9 +478,11 @@ lt:
       comment:
         no_comments_yet: "No comments yet"
         by: "By"
+      comments:
+        latest_comments: "Latest Comments"
     content:
       index:
-        published: "Published"
+        published: "Publikuotas"
         new_article: "New article"
         all_articles: "All articles"
         manage_articles: "Manage articles"
@@ -240,15 +496,25 @@ lt:
         publication_date: "Publication date"
         filter: "Filter"
       form:
+        article_type: "Article type"
+        now: "now"
+        preview: "Preview"
+        save: "Saugoti"
+        default: "Default"
+        cancel: "Baigti"
+        allow_comments_status:
+          zero: "disabled"
+          one: "enabled"
+        allow_pings_status:
+          zero: "disabled"
+          one: "enabled"
         public: "Public"
-        publish: "Publish"
+        publish: "Publikuoti"
         title: "Title"
         images: "Images"
-        excerpt: "Excerpt"
-        excerpt_explaination: "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself"
         publish_settings: "Publish settings"
         status: "Status"
-        published: "Published"
+        published: "Publikuotas"
         allowed_comments_and_trackbacks: "Comments are %{allow_comment} and trackbacks are %{allow_trackback}"
         change: "Change"
         allow_trackbacks: "Allow trackbacks"
@@ -267,11 +533,14 @@ lt:
     categories:
       new:
         categories: "Categories"
-        name: "Name"
+        cancel: "Baigti"
+        save: "Saugoti"
+        or: "or"
+        name: "Vardas"
         keywords: "Keywords"
         permalink: "Permalink"
         explaination: "Your category slug. Leave empty if you don't know what to put here"
-        description: "Description"
+        description: "Beschreibung"
         title: "Title"
     menu:
       help: "Help"
@@ -291,14 +560,15 @@ lt:
         stats: "There are currently %{files_count} files in cache for a total amount of %{size} Kb"
         sweep_cache: "Sweep cache"
         cache: "Cache"
-        explanations: "To save on resources, Publify generates static files along with your content. These files are deleted when a new article is created. You can, at any time, delete these files yourself."
+        explaination: "To save on resources, Publify generates static files along with your content. These files are deleted when a new article is created. You can, at any time, delete these files yourself."
   accounts:
     back_to: "&larr; Back to %{place}"
     back_to_login: "Back to login"
     create_account: "Create an account"
     lost_my_password: "I've lost my password"
     login:
-      login: "Login"
+      title: "Prisijungimas"
+      login: "Prisijungimas"
       password: "Password"
       remember_me: "Remember me"
       sign_in: "Sign in"
@@ -306,11 +576,13 @@ lt:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
     recover_password:
+      title: "Recover your password"
       username_or_email: "Username or email"
       reset_my_password: "Reset my password"
     signup:
+      title: "Signup"
       username: "Username"
-      email: "Email"
+      email: "El. pašto adresas"
       signup: "Signup"
     post_types:
       new:
@@ -460,8 +732,6 @@ lt:
         publish: "Publikuoti"
         title: "Pavadinimas"
         images: "Images"
-        excerpt: "Excerpt"
-        excerpt_explaination: "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself"
         publish_settings: "Publish settings"
         status: "Statusas"
         published: "Publikuotas"
@@ -478,6 +748,7 @@ lt:
         categories: "Categories"
         tags: "Žymės"
         tags_explaination: "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;."
+        type_your_post: "Type your post"
       categories:
         new_category: "New Category"
     categories:
@@ -497,6 +768,9 @@ lt:
       sidebar_plugins: "Sidebar plugins"
       logged_in_as: "Sveiki, %{login}"
       new_article: "New Article"
+      new_page: "New Page"
+      new_media: "New Media"
+      new_note : "New Note"
       profile: "Profile"
       logout: "Atsijungti &raquo;"
       home: "Home"
@@ -507,9 +781,65 @@ lt:
         stats: "Es sind %{files_count} Einträge im Cache"
         sweep_cache: "Sweep cache"
         cache: "Cache"
-        explanations: "To save on resources, Publify generates static files
-           along with your content. These files are deleted when a new article
-           is created. You can, at any time, delete these files yourself."
+        explanations: "To save on resources, Publify generates static files along with your content. These files are deleted when a new article is created. You can, at any time, delete these files yourself."
+    users:
+      edit:
+        edit_user: "Benutzer bearbeiten"
+      new:
+        add_user: "Add User"
+      index:
+        login: "Prisijungimas"
+        users: "Vartotojai"
+        new_user: "Neuer Benutzer"
+        name: "Vardas"
+        email: "El. pašto adresas"
+        profile: "Profile"
+        articles: "Straipsniai"
+        comments: "Komentarai"
+        state: "State"
+        user_state: "%{state} user"
+      form:
+        cancel: "Baigti"
+        save: "Saugoti"
+        or: "or"
+        user_status: "User Status"
+        account_settings: "Account Settings"
+        login: "Prisijungimas"
+        password: "Password"
+        password_confirmation: "Password confirmation"
+        email: "El. pašto adresas"
+        profile: "Profile"
+        status: "Status"
+        profile_settings: "Profile Settings"
+        firstname: "First name"
+        lastname: "Last name"
+        nickname: "Nickname"
+        display_name: "Display name"
+        article_filter: "Article filter"
+        avatar: "Avatar Settings"
+        avatar_current: "Current avatar"
+        upload: "Upload your profile image"
+        upload_file: "Upload a .jpg, .png or .gif file"
+        notification_settings: "Notifications"
+        notifications: "Send notification messages"
+        notification_email: "via email"
+        notification_article: "when new article is posted"
+        notification_comment: "when new comment is posted"
+        twitter_settings: "Twitter Settings"
+        twitter_account: "Twitter username"
+        twitter_help: "Twitter account you want to post with"
+        twitter_oauth: "Twitter OAuth token"
+        twitter_oauth_secret: "Twitter OAuth secret"
+        contact_settings: "Contact Settings"
+        contact_explain: "This information will be displayed on your %{link}"
+        author_page: "author page"
+        about: "Biography"
+        website: "Website"
+        msn: "MSN Messenger ID"
+        yahoo: "Yahoo! Messenger ID"
+        jabber: "Jabber ID"
+        aim: "AIM screen name"
+        twitter: "Twitter username"
   accounts:
     back_to: "&larr; Back to %{place}"
     back_to_login: "Back to login"
@@ -530,7 +860,29 @@ lt:
       username: "Vartotojo vardas"
       email: "El. pašto adresas"
       signup: "Registracija"
+  langs:
+    da_DK: "Danish"
+    de_DE: "German"
+    en_US: "English (US)"
+    es_MX: "Spanish (Mexican)"
+    fr_FR: "French"
+    he_IL: "Hebrew"
+    it_IT: "Italian"
+    ja_JP: "Japanese"
+    lt_LT: "Lithuanian"
+    nb_NO: "Norwegian"
+    nl_NL: "Nederland"
+    pl_PL: "Polish"
+    ro_RO: "Romanian"
+    ru_RU: "Russian"
+    zh_TW: "Chinese"
+    zh_CN: "Simple Chinese"
+    pt_BR: "Portuguese (Brazilian)"
   time:
     formats:
       default: "%m/%d/%Y %H:%M"
       short: "%m/%d/%y"
+      letters_month_with_year: "%m %Y"
+  date:
+    month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]
+    abbr_month_names: [~, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]

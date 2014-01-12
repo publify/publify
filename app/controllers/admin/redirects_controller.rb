@@ -9,7 +9,7 @@ class Admin::RedirectsController < Admin::BaseController
     return(render 'admin/shared/destroy') unless request.post?
 
     @record.destroy
-    flash[:notice] = _('Redirection was successfully deleted.')
+    gflash :success
     redirect_to :action => 'index'
   end
 

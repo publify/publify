@@ -7,16 +7,13 @@ feed.entry item, :id => "urn:uuid:#{item.guid}", :url => item.permalink_url do |
   end
 
   if item.is_a?(Note)
-    entry.title item.body, "type"=>"html"
+    entry.title truncate(item.html(:body).strip_html, length: 80, separator: ' ', omissions: '...'), "type"=>"html"
   else
     entry.title item.title, "type"=>"html"
   end
 
   if item.is_a?(Article)
 
-    item.categories.each do |category|
-      entry.category "term" => category.permalink, "label" => category.name, "scheme" => category.permalink_url
-    end
     item.tags.each do |tag|
       entry.category "term" => tag.display_name, "scheme" => tag.permalink_url
     end

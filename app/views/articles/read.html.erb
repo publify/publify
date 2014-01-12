@@ -20,9 +20,9 @@
         :class => "admintools", :style => "display: none", :id => "admin_article") %>
   <%= render @article %>
 </div>
-<p class="meta">
-  <%= article_links @article %>
-</p>
+
+<%= render 'article_links', article: @article %>
+
 <% if @article.allow_comments? or @article.published_comments.size > 0 -%>
   <a name="comments"></a><h4 class="blueblk"><%= _('Comments') %></h4>
   <% unless @article.comments_closed? -%>

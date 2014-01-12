@@ -10,7 +10,6 @@ FactoryGirl.define do
   sequence :guid do |n|; "deadbeef#{n}" ; end
   sequence :label do |n|; "lab_#{n}" ; end
   sequence :file_name do |f|; "file_name_#{f}" ; end
-  sequence :category do |n|; "c_#{n}" ; end
   sequence :time do |n|; DateTime.new(2012,3,26,19,56) - n ; end
 
   factory :user do
@@ -63,7 +62,6 @@ FactoryGirl.define do
     permalink 'a-big-article'
     published_at DateTime.new(2005,1,1,2,0,0)
     user
-    categories []
     tags []
     published_comments []
     published_trackbacks []
@@ -204,12 +202,6 @@ http://alsoping.example.com/rpc/ping"
     end
   end
 
-  factory :category do |c|
-    c.name {FactoryGirl.generate(:category)}
-    c.permalink {FactoryGirl.generate(:category)}
-    c.position 1
-  end
-
   factory :tag do |tag|
     tag.name {FactoryGirl.generate(:name)}
     tag.display_name { |a| a.name }
@@ -244,16 +236,44 @@ http://alsoping.example.com/rpc/ping"
     published_at '2005-01-01 02:00:00'
     guid
     state 'ham'
-  end
 
-  factory :spam_comment, :parent => :comment do |c|
-    c.state 'spam'
-    c.published false
-  end
+    factory :unconfirmed_comment do |c|
+      c.state 'presumed_ham'
+      c.status_confirmed false
+      c.published false
+    end
 
-  factory :ham_comment, :parent => :comment do |c|
-    c.state 'ham'
-    c.published false
+    factory :published_comment do |c|
+      c.state 'ham'
+      c.status_confirmed true
+      c.published true
+    end
+
+    factory :not_published_comment do |c|
+      c.state 'spam'
+      c.status_confirmed true
+      c.published false
+    end
+
+    factory :ham_comment do |c|
+      c.state 'ham'
+      c.published false
+    end
+
+    factory :presumed_ham_comment do |c|
+      c.state 'presumed_ham'
+      c.published false
+    end
+
+    factory :presumed_spam_comment do |c|
+      c.state 'presumed_spam'
+      c.published false
+    end
+
+    factory :spam_comment do |c|
+      c.state 'spam'
+      c.published false
+    end
   end
 
   factory :page do

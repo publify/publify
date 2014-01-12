@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
 
   serialize :settings, Hash
 
+  STATUS = ['active', 'inactive']
+
   attr_accessor :filename
 
   # Settings

@@ -3,7 +3,7 @@ require 'base64'
 module Admin; end
 
 class Admin::ContentController < Admin::BaseController
-  layout "administration", except: [:show, :autosave]
+  layout :get_layout
 
   cache_sweeper :blog_sweeper
 
@@ -35,8 +35,7 @@ class Admin::ContentController < Admin::BaseController
     update_article_attributes
 
     if @article.save
-      update_categories_for_article
-      set_the_flash
+      gflash :success
       redirect_to action: 'index'
     else
       @article.keywords = Tag.collection_to_string @article.tags
@@ -72,8 +71,7 @@ class Admin::ContentController < Admin::BaseController
       unless @article.draft
         Article.where(parent_id: @article.id).map(&:destroy)
       end
-      update_categories_for_article
-      set_the_flash
+      gflash :success
       redirect_to :action => 'index'
     else
       @article.keywords = Tag.collection_to_string @article.tags
@@ -87,6 +85,8 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def autosave
+    return false unless request.xhr?
+    
     id = params[:article][:id] || params[:id]
 
     article_factory = Article::Factory.new(this_blog, current_user)
@@ -108,7 +108,7 @@ class Admin::ContentController < Admin::BaseController
     end
 
     if @article.save
-      gflash :success => _("Article was successfully saved")
+      gflash :success
       @must_update_calendar = (params[:article][:published_at] and params[:article][:published_at].to_time.to_i < Time.now.to_time.to_i and @article.parent_id.nil?)
       respond_to do |format|
         format.js
@@ -128,18 +128,7 @@ class Admin::ContentController < Admin::BaseController
     end
   end
 
-  attr_accessor :resources, :categories, :resource, :category
-
-  def set_the_flash
-    case params[:action]
-    when 'create'
-      flash[:notice] = _('Article was successfully created')
-    when 'update'
-      flash[:notice] = _('Article was successfully updated.')
-    else
-      raise "I don't know how to tidy up action: #{params[:action]}"
-    end
-  end
+  attr_accessor :resources, :resource
 
   private
 
@@ -150,21 +139,12 @@ class Admin::ContentController < Admin::BaseController
     @macros = TextFilter.macro_filters
   end
 
-  def update_categories_for_article
-    @article.categorizations.clear
-    if params[:categories]
-      Category.find(params[:categories]).each do |cat|
-        @article.categories << cat
-      end
-    end
-  end
-
   def access_granted?(article_id)
     article = Article.find(article_id)
     if article.access_by? current_user
       return true
     else
-      flash[:error] = _("Error, you are not allowed to perform this action")
+      gflash :error
       redirect_to action: 'index'
       return false
     end
@@ -177,5 +157,16 @@ class Admin::ContentController < Admin::BaseController
     @article.save_attachments!(params[:attachments])
     @article.state = "draft" if @article.draft
     @article.text_filter ||= current_user.default_text_filter
+  end
+  
+  def get_layout
+    case action_name
+    when "new", "edit", "create"
+      "editor"
+    when "show", "autosave"
+      nil
+    else
+      "administration"
+    end
   end
 end

@@ -1,17 +1,221 @@
 it:
+  articles:
+    comment_form:
+      comment: "comment"
+      email_address: "Email address"
+      your_website: "Your website"
+      leave_url_email: "leave url/email"
+      your_name: "Tuo nome "
+      your_blog: "il tuo blog"
+      your_email: "Tua email"
+      your_message: "Tuo messaggio"
+      comment_markup_help: "Aiuto sul markup dei comemnti"
+      preview_comment: "Anteprima commento"
+    article_links:
+      comments:
+        zero: "no comments"
+        one: "1 Commento"
+        other: "%{count} Commenti"
+    comment_counter:
+      comments:
+        zero: "no comments"
+        one: "1 Commento"
+        other: "%{count} Commenti"
+  profile:
+    admin: "Publify administrator"
+    publisher: "Blog publisher"
+    contributor: "Contributor"
+  user:
+    status:
+      active: "Active"
+      inactive: "Inactive"
+  errors:
+    render_sidebar: "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually"
+    no_posts_found: "No posts found..."
   views:
     pagination:
       truncate: "Truncate"
       next: "Next"
       last: "Last"
+  layouts:
+    administration:
+      new: "Nuovo"
+  authors:
+    show:
+      contact_information: "Contact information"
+      web_site: "Web site:"
+      jabber: "Jabber:"
+      msn: "MSN:"
+      yahoo: "Yahoo:"
+      aim: "AIM:"
+      twitter: "Twitter:"
+      this_author_has_not_published_any_article_yet: "This author has not published any article yet"
+      posted_in: "posted in"
+      next_page: "Pagina successiva"
+      previous_page: "Pagina precedente"
+  setup:
+    confirm:
+      you_have_successfully_signed_up: "You have successfully signed up"
+      login: "Login: %{user}"
+      password: "Password: %{pass}"
+      dont_lose_the_mail_sent: "Don't lose the mail sent at %{email} or you won't be able to login anymore"
+      proceed_to: "Proceed to %{link}"
+      admin: "admin"
   admin:
+    notes:
+      new:
+        notes: "Notes"
+        compose_new_note: "Compose new note"
+        publish_settings: "Publish settings"
+        posse_to_twitter: "POSSE to twitter"
+        in_reply_to: "In reply to"
+        tweet_id_like: "Tweet id like 123456"
+        permanent_link: "Permanent link"
+        published: "Pubblicato"
+        publish_at: "Pubblicato il"
+        cancel: "Annulla"
+        or: "or"
+        publish: "Pubblica"
+    redirects:
+      new:
+        cancel: "Annulla"
+        save: "Salva"
+        or: "or"
+        redirects: "Redirects"
+        from: "Da"
+        to: "To"
+        leave_empty_to_shorten_a_link: "Leave empty to shorten a link"
+    themes:
+      index:
+        choose_a_theme: "Seleziona un tema"
+        use_this_theme: "Use this theme"
+        active_theme: "%{name} - Tema Attivo"
+    profiles:
+      index:
+        your_profile: "Your profile"
+    sidebar:
+      index:
+        sidebar: "Sidebar"
+        cancel: "Annulla"
+        or: "or"
+        explain_how_its_works: "Trascina e rilascia per cambiare gli elementi visualizzati nella sidebar del tuo blog. Per rimuorverli clicca su annulla Cambiamenti perche' comunque non sono salvati automaticamente ma devi cliccare il bottone 'Pubblica'"
+        publish_changes: "Pubblica cambiamenti"
+        available_items: "Elementi disponibili"
+        active_sidebar_items: "Attiva elementi Sidebar"
+        download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
+    settings:
+      display:
+        cancel: "Annulla"
+        or: "or"
+        update_settings: "Update settings"
+        ago: "ago"
+        custom_url: "Custom URL shortener domain"
+        custom_url_help: "If you have a custom domain for URL shortening, enter it here."
+        date_format: "Date format"
+        default_article_show: "articles on the homepage"
+        default_feed_show: "most recent articles in feed"
+        display: "Display"
+        display_settings: "Display Settings"
+        feed_articles: "Article excerpts"
+        feed_settings: "RSS Feed Settings"
+        feed_excerpts_only: "Show only article excerpts in feed"
+        feedburner_help: "Enter your FeedBurner ID if you wish to use your Google FeedBurner account instead of using the Publify feed URL."
+        feedburner_id: "FeedBurner ID"
+        publishing_options: "Publishing Options"
+        status_main_feed: "Display statuses in the main feed"
+        statuses: "Statuses"
+        time_format: "Time format"
+      feedback:
+        cancel: "Annulla"
+        or: "or"
+        update_settings: "Update settings"
+        feedback_settings: "Feedback settings"
+        feedback: "Commenti"
+        comments: "Comments"
+        enable_comments_by_default: "Abilita commenti di defaault"
+        enable_feedback_moderation: "Abilita la moderazione dei feedback"
+        explain_feedback_moderation: "Puoi abilitare in modo globale la moderazione dei feedback. Se fai cio', nessun commento o trackback apparira' sul tuo blog se tu non lo autorizzi."
+        trackbacks: "Trackbacks"
+        enable_trackbacks_by_default: "Abilita Trackbacks come default"
+        disable_trackbacks_sitewide: "Disable trackbacks site-wide"
+        explain_disable_trackbacks: "This setting allows you to disable trackbacks for every article in your blog.  It won't remove existing trackbacks, but it will prevent any further attempt to add a trackback anywhere on your blog."
+        comments_filter: "Filtra commenti"
+        avatars_provider: "Avatars provider"
+        spam: "Spam"
+        spam_protection: "Spam protection"
+        enable_spam_protection: "Abilita la protezione spam"
+        explain_spam_protection: "Abilitando la protezione contro lo spam fa si che il blog compari gli IP di chi invia i commenti e anche il loro contenuto con una blacklist remota. E' una buona difesa contro gli spam robot"
+        askimet_key: "Chiave Akismet"
+        explain_spamfiltering: "Publify can (optionally) use the <a href='http://akismet.com'>Akismet</a> spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here"
+        disable_comments_after: "Disabilita commenti dopo "
+        days: "giorni"
+        set_to_0_to_never_disable_comments: "Usa 0 per non disabilitare mai i commenti"
+        max_links: "Max Links"
+        explain_reject_comments: "Il blog cancellera' automaticamente commenti e trackbacks che contengono un certo numero di link"
+        set_to_0_to_never_reject_comments: "Inserisci 0 per accettare sempre i commenti."
+        captcha: "Captcha"
+        enable_recaptcha: "Enable reCaptcha"
+        remember_to_set_your_recaptcha: "Remember to set your reCaptcha keys inside config/initializers/recaptcha.rb"
+      write:
+        cancel: "Annulla"
+        or: "or"
+        update_settings: "Update settings"
+        write: "Scrivi"
+        publish: "Pubblica"
+        trackbacks: "Trackbacks"
+        send_trackbacks: "Invia trackbacks"
+        explain: "When publishing articles, Publify can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this."
+        urls_to_ping: "Indirizzi da pingare automaticamente"
+        latitude_longitude: "Latitudine, Longitudine"
+        display: "Mostra"
+        your_geoloc: "la tua latitudine e longitudine"
+        example: "esempio"
+        media: "Media"
+        image_thumbnail_size: "Image thumbnail size"
+        image_medium_size: "Image medium size"
+        avatar_size: "Avatar size"
+        publish_on_twitter: "Publish on Twitter"
+        twitter_consumer_key: "Twitter consumer key"
+        twitter_consumer_secret: "Twitter consumer secret"
+      update_database:
+        database_migration: "Migrazione del database"
+        information: "Informazioni"
+        current_database_version: "Versione corrente del database"
+        you_are_up_to_date: "Aggiornato!"
+        migrations: "Migrations"
+        migration_pending:
+          one: "There is one migration pending."
+          other: "There are %{count} migrations pending."
+        needed_migrations: "Necessarie migrazioni"
+        update_database_now: "Aggiorna il tuo database ora"
+        may_take_a_moment: "attendi alcuni istanti"
+      index:
+        cancel: "Annulla"
+        or: "or"
+        update_settings: "Update settings"
+        general_settings: "Configurazione generale"
+        your_blog: "Tuo blog "
+        blog_name: "Nome blog"
+        blog_subtitle: "Sottotitolo del blog"
+        blog_url: "Indirizzo Blog"
+        language: "Lingua"
+        users: "Utenti"
+        allow_users_to_register: "Allow users to register"
+        explain_allow_users_to_register: "This will allow users to register themselves as contributors, an unprivileged account level which grants them no rights beyond owning a profile on the site. If you don't want users to register, you can add them via <em>Manage users</em> under <em>Settings</em>."
+        publify_notify_new_articles_or_comments: "Il blog puo' notificarti l'inserimento di un nuovo articolo e/o commento"
+        source_email: "Indirizzo mittente mail"
+        email_address_used_to_notify: "Indirizzo email usato dal blog per inviare le notifiche"
+        items_to_display_in_admin_lists: "Items to display in admin lists"
     seo:
       titles:
+        cancel: "Annulla"
+        or: "or"
+        update_settings: "Update settings"
         title_settings: "Title settings"
         home: "Home"
         title_template: "Title template"
         description_template: "Description template"
-        articles: "Articles"
+        articles: "Articoli"
         pages: "Pagine"
         paginated_archives: "Paginated archives"
         dated_archives: "Dated archives"
@@ -40,6 +244,9 @@ it:
         replaced_by_the_archive_date: "Replaced by the archive date"
         replaced_by_the_content_body: "Replaced by the content body"
       permalinks:
+        cancel: "Annulla"
+        or: "or"
+        update_settings: "Update settings"
         explain: "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links."
         permalinks: "Permalinks"
         permalink_format: "Permalink format"
@@ -54,6 +261,9 @@ it:
         your_article_month: "your article month of publication."
         your_article_day: "your article day of publication."
       index:
+        cancel: "Annulla"
+        or: "or"
+        update_settings: "Update settings"
         global_settings: "Global settings"
         general_settings: "Configurazione generale"
         meta_keywords: "Meta keywords"
@@ -81,11 +291,25 @@ it:
         explain_moderate_feedback: "You may want to moderate feedback when turning this on"
         explain_rss_description: "You can use the following tags: %author% (author name), %blog_url% (this blog URL), %blog_name% (this blog title) and %permalink_url% (a link to the article you want to protect)"
     shared:
+      macros:
+        show_help_on_publify_macros: "Show help on Publify macros"
+        name: "Nome"
+        description: "Descrizione"
+        tag: "Tag"
       destroy:
         are_you_sure: "Sei sicuro di voler eliminare questo %{element}?"
         action_or_other: "%{first_action} o %{second_action}"
         cancel: "Annulla"
         delete: "Elimina"
+    tags:
+      new:
+        articles: "Articoli"
+        display_name: "Nome visualizzato"
+        manage_tags: "Gestisci tags"
+        name: "Nome"
+        cancel: "Annulla"
+        save: "Salva"
+        or: "or"
     resources:
       index:
         media_library: "Media Library"
@@ -96,8 +320,15 @@ it:
         content_type: "Tipo di contenuto"
         file_size: "Dimensione"
         date: "Date"
+        are_you_sure: "Are you sure?"
+        thumbnail: "Thumbnail"
+        medium_size: "Medium size"
+        original_size: "Original size"
     post_types:
       new:
+        cancel: "Annulla"
+        save: "Salva"
+        or: "or"
         post_types: "Post Types"
         name: "Nome"
         description: "Descrizione"
@@ -114,6 +345,8 @@ it:
         author: "Autore"
         date: "Date"
       form:
+        cancel: "Annulla"
+        change: "Change"
         publish: "Pubblica"
         title: "Titolo"
         images: "Images"
@@ -123,9 +356,21 @@ it:
         article_filter: "Filtra articolo"
         permanent_link: "Permanent link"
         page_with_action_name: "%{action} page"
+        type_your_post: "Type your post"
     feedback:
+      bulkops:
+        success_mark_as_ham: 
+          zero: "No item selected to mark as Ham"
+          one: "Marked 1 item as Ham"
+          other: "Marked %{count} items as Ham"
+        success_mark_as_spam: 
+          zero: "No item selected to mark as Spam"
+          one: "Marked 1 item as Spam"
+          other: "Marked %{count} items as Spam"
+        success_classification: "Conferma classificazione di %{count} elementi"
+        success_deleted: "Deleted %{count} item(s)"
       index:
-        feedback: "Feedback"
+        feedback: "Commenti"
         all: "All"
         unapproved_comments: "Unapproved comments"
         ham: "Ham"
@@ -151,6 +396,10 @@ it:
         action_or_other: "%{first_action} o %{second_action}"
         cancel: "Annulla"
         save: "Salva"
+      edit:
+        action_or_other: "%{first_action} o %{second_action}"
+        save: "Salva"
+        comments_for: "Comments for %{article_link}"
       button:
         select_action: "Select action"
         delete_checked_items: "Elimina gli elementi selezionati"
@@ -162,6 +411,8 @@ it:
         this_comment_by_was_flagged_as_spam: "This comment by %{author} was flagged as spam, %{cancel_link}?"
         cancel: "Annulla"
     dashboard:
+      index:
+        welcome_back: "Welcome back, %{user_name}!"
       drafts:
         your_drafts: "Your drafts"
         no_drafts_yet: "No drafts yet, why don't you start and write one"
@@ -197,12 +448,15 @@ it:
           other: "%{count} commento"
         approved_count:
           zero: "no approved"
+          one: "1 approved"
           other: "%{count} approved"
         unconfirmed_count:
           zero: "no unconfirmed"
+          one: "1 unconfirmed"
           other: "%{count} unconfirmed"
         spam_count:
           zero: "no spam"
+          one: "1 spam"
           other: "%{count} spam"
       overview:
         dashboard_explain: "This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %{available_actions}"
@@ -224,6 +478,8 @@ it:
       comment:
         no_comments_yet: "Nessun commento"
         by: "By"
+      comments:
+        latest_comments: "Latest Comments"
     content:
       index:
         published: "Pubblicato"
@@ -240,12 +496,22 @@ it:
         publication_date: "Publication date"
         filter: "Filter"
       form:
+        article_type: "Article type"
+        now: "now"
+        preview: "Preview"
+        save: "Salva"
+        default: "Default"
+        cancel: "Annulla"
+        allow_comments_status:
+          zero: "disabled"
+          one: "enabled"
+        allow_pings_status:
+          zero: "disabled"
+          one: "enabled"
         public: "Public"
         publish: "Pubblica"
         title: "Titolo"
         images: "Images"
-        excerpt: "Excerpt"
-        excerpt_explaination: "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself"
         publish_settings: "Publish settings"
         status: "Stato"
         published: "Pubblicato"
@@ -262,10 +528,14 @@ it:
         categories: "Categories"
         tags: "Tags"
         tags_explaination: "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;."
+        type_your_post: "Type your post"
       categories:
         new_category: "New Category"
     categories:
       new:
+        cancel: "Annulla"
+        save: "Salva"
+        or: "or"
         categories: "Categories"
         name: "Nome"
         keywords: "Keywords"
@@ -281,6 +551,9 @@ it:
       sidebar_plugins: "Sidebar plugins"
       logged_in_as: "Benvenuto, %{login}"
       new_article: "New Article"
+      new_page: "New Page"
+      new_media: "New Media"
+      new_note : "New Note"
       profile: "Profilo"
       logout: "Esci &raquo;"
       home: "Home"
@@ -291,15 +564,72 @@ it:
         stats: "There are currently %{files_count} files in cache for a total amount of %{size} Kb"
         sweep_cache: "Sweep cache"
         cache: "Cache"
-        explanations: "To save on resources, Publify generates static files
-           along with your content. These files are deleted when a new article
-           is created. You can, at any time, delete these files yourself."
+        explaination: "To save on resources, Publify generates static files along with your content. These files are deleted when a new article is created. You can, at any time, delete these files yourself."
+    users:
+      edit:
+        edit_user: "Modifica utente"
+      new:
+        add_user: "Aggiungi Utente"
+      index:
+        login: "login"
+        users: "Utenti"
+        new_user: "Nuovo utente"
+        name: "Nome"
+        email: "Email"
+        profile: "Profilo"
+        articles: "Articoli"
+        comments: "Commenti"
+        state: "State"
+        user_state: "%{state} user"
+      form:
+        cancel: "Annulla"
+        save: "Salva"
+        or: "or"
+        user_status: "User Status"
+        account_settings: "Account Settings"
+        login: "Login"
+        password: "Password"
+        password_confirmation: "Password confirmation"
+        email: "Email"
+        profile: "Profilo"
+        status: "Status"
+        profile_settings: "Profile Settings"
+        firstname: "First name"
+        lastname: "Last name"
+        nickname: "Nickname"
+        display_name: "Display name"
+        article_filter: "Article filter"
+        avatar: "Avatar Settings"
+        avatar_current: "Current avatar"
+        upload: "Upload your profile image"
+        upload_file: "Upload a .jpg, .png or .gif file"
+        notification_settings: "Notifications"
+        notifications: "Send notification messages"
+        notification_email: "via email"
+        notification_article: "when new article is posted"
+        notification_comment: "when new comment is posted"
+        twitter_settings: "Twitter Settings"
+        twitter_account: "Twitter username"
+        twitter_help: "Twitter account you want to post with"
+        twitter_oauth: "Twitter OAuth token"
+        twitter_oauth_secret: "Twitter OAuth secret"
+        contact_settings: "Contact Settings"
+        contact_explain: "This information will be displayed on your %{link}"
+        author_page: "author page"
+        about: "Biography"
+        website: "Website"
+        msn: "MSN Messenger ID"
+        yahoo: "Yahoo! Messenger ID"
+        jabber: "Jabber ID"
+        aim: "AIM screen name"
+        twitter: "Twitter username"
   accounts:
     back_to: "&larr; Torna al %{place}"
     back_to_login: "Back to login"
     create_account: "Create an account"
     lost_my_password: "I've lost my password"
     login:
+      title: "Login"
       login: "Login"
       password: "Password"
       remember_me: "Remember me"
@@ -308,13 +638,37 @@ it:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
     recover_password:
+      title: "Recover your password"
       username_or_email: "Username or email"
       reset_my_password: "Reset my password"
     signup:
+      title: "Iscrizione"
       username: "Nome Utente"
       email: "Email"
       signup: "Iscrizione"
+  langs:
+    da_DK: "Danish"
+    de_DE: "German"
+    en_US: "English (US)"
+    es_MX: "Spanish (Mexican)"
+    fr_FR: "French"
+    he_IL: "Hebrew"
+    it_IT: "Italian"
+    ja_JP: "Japanese"
+    lt_LT: "Lithuanian"
+    nb_NO: "Norwegian"
+    nl_NL: "Nederland"
+    pl_PL: "Polish"
+    ro_RO: "Romanian"
+    ru_RU: "Russian"
+    zh_TW: "Chinese"
+    zh_CN: "Simple Chinese"
+    pt_BR: "Portuguese (Brazilian)"
   time:
     formats:
       default: "%m/%d/%Y %H:%M"
       short: "%m/%d/%y"
+      letters_month_with_year: "%m %Y"
+  date:
+    month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]
+    abbr_month_names: [~, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]

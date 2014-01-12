@@ -10,41 +10,18 @@ module ApplicationHelper
 
   include SidebarHelper
 
-  # Basic english pluralizer.
-  # Axe?
-  def pluralize(size, zero, one , many )
-    case size
-    when 0 then zero
-    when 1 then one
-    else        sprintf(many, size)
-    end
-  end
-
   # Produce a link to the permalink_url of 'item'.
   def link_to_permalink(item, title, anchor=nil, style=nil, nofollow=nil, only_path=false)
     options = {}
     options[:class] = style if style
     options[:rel] = "nofollow" if nofollow
-
     link_to title, item.permalink_url(anchor,only_path), options
-  end
-
-  # The '5 comments' link from the bottom of articles
-  def comments_link(article)
-    comment_count = article.published_comments.size
-    # FIXME Why using own pluralize metchod when the Localize._ provides the same funciotnality, but better? (by simply calling _('%d comments', comment_count) and using the en translation: l.store "%d comments", ["No nomments", "1 comment", "%d comments"])
-    link_to_permalink(article,pluralize(comment_count, _('no comments'), _('1 comment'), _('%d comments', comment_count)),'comments', nil, nil, true)
   end
 
   def avatar_tag(options = {})
     avatar_class = this_blog.plugin_avatar.constantize
     return '' unless avatar_class.respond_to?(:get_avatar)
     avatar_class.get_avatar(options)
-  end
-
-  def trackbacks_link(article)
-    trackbacks_count = article.published_trackbacks.size
-    link_to_permalink(article,pluralize(trackbacks_count, _('no trackbacks'), _('1 trackback'), _('%d trackbacks',trackbacks_count)),'trackbacks')
   end
 
   def meta_tag(name, value)
@@ -154,9 +131,9 @@ module ApplicationHelper
 
   def render_the_flash
     return unless flash[:notice] or flash[:error] or flash[:warning]
-    the_class = flash[:error] ? 'error' : 'success'
+    the_class = flash[:error] ? 'danger' : 'success'
 
-    html = "<div class='alert alert-#{the_class}'>"
+    html = "<div style='margin-top: 20px' class='alert alert-#{the_class}'>"
     html << "<a class='close' href='#'>×</a>"
     html << render_flash rescue nil
     html << "</div>"

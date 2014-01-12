@@ -1,0 +1,9 @@
+<p class="meta">
+  <%= _("Posted in") + " " + article.categories.map { |c| link_to h(c.name), c.permalink_url(nil, true), :rel => 'tag'}.join(", ") if article.categories.any? %>
+
+  <%= _("Tags") + " " + article.tags.map { |tag| link_to tag.display_name, tag.permalink_url(nil, true), rel: "tag"}.sort.join(", ") if article.tags.any? %>
+
+  <%= link_to(t('.comments', count: article.published_comments.size), article.permalink_url('comments', true)) if article.allow_comments? %> 
+  
+  <%= link_to(t('.trackbacks', count: article.published_trackbacks.size), article.permalink_url('trackbacks', true)) if article.allow_pings? %> 
+</p>

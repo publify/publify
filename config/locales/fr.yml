@@ -1,12 +1,216 @@
 fr:
+  articles:
+    comment_form:
+      comment: "commentaire"
+      email_address: "Adresse mail"
+      your_website: "Votre site"
+      leave_url_email: "laissez votre url/courriel"
+      your_name: "Votre nom "
+      your_blog: "votre blog"
+      your_email: "Votre courriel"
+      your_message: "Votre commentaire"
+      comment_markup_help: "Aide sur le balisage des commentaires"
+      preview_comment: "Prévisualiser le commentaire" 
+    article_links:
+      comments:
+        zero: "aucun commentaire"
+        one: "1 commentaire"
+        other: "%{count} commentaires"
+    comment_counter:
+      comments:
+        zero: "aucun commentaire"
+        one: "1 commentaire"
+        other: "%{count} commentaires"
+  profile:
+    admin: "Administrateur"
+    publisher: "Rédacteur"
+    contributor: "Contributeur"
+  user:
+    status:
+      active: "Active"
+      inactive: "Inactive"
+  errors:
+    render_sidebar: "Une erreur s'est produite. Un ou plusieurs plugins sont probablement manquants ou en erreur. Peut-être devriez-vous les supprimer ou les réinstaller"
+    no_posts_found: "Aucun article n'a été trouvé"
   views:
     pagination:
       truncate: "Truncate"
       next: "Suivant"
       last: "Last"
+  layouts:
+    administration:
+      new: "Nouveau"
+  authors:
+    show:
+      contact_information: "Contact information"
+      web_site: "Site web:"
+      jabber: "Jabber :"
+      msn: "MSN :"
+      yahoo: "Yahoo :"
+      aim: "AIM :"
+      twitter: "Twitter :"
+      this_author_has_not_published_any_article_yet: "Cet utilisateur n'a publié aucun article"
+      posted_in: "publié dans"
+      next_page: "Page suivante"
+      previous_page: "Page précédente"
+  setup:
+    confirm:
+      you_have_successfully_signed_up: "Vous vous êtes inscrit avec succès"
+      login: "Identifiant&nbsp;: %{user}"
+      password: "Mot de passe&nbsp;: %{pass}"
+      dont_lose_the_mail_sent: "Ne perdez pas l'email que nous venons de vous envoyer à l'adresse %{email} ou vous ne pourrez plus vous connecter à l'application"
+      proceed_to: "Proceed to %{link}"
+      admin: "admin"
   admin:
+    notes:
+      new:
+        notes: "Notes"
+        compose_new_note: "Compose new note"
+        publish_settings: "Paramètres de publication"
+        posse_to_twitter: "POSSE to twitter"
+        in_reply_to: "In reply to"
+        tweet_id_like: "Tweet id (ex: 123456)"
+        permanent_link: "Lien permanent"
+        published: "Publié"
+        publish_at: "Publié le"
+        cancel: "Annuler"
+        or: "ou"
+        publish: "Publier"
+    redirects:
+      new:
+        cancel: "Annuler"
+        save: "Sauver"
+        or: "ou"
+        redirects: "Redirections"
+        from: "De"
+        to: "Vers"
+        leave_empty_to_shorten_a_link: "Laissez vide pour créer un lien court"
+    themes:
+      index:
+        choose_a_theme: "Sélectionnez un thème"
+        use_this_theme: "Choisir ce thème"
+        active_theme: "%{name} - Thème actif"
+    profiles:
+      index:
+        your_profile: "Votre profil"
+    sidebar:
+      index:
+        sidebar: "Plugins"
+        or: "ou"
+        cancel: "Annuler"
+        explain_how_its_works: "Glissez / déplacez des éléments pour changer la sidebar de votre blog. Pour supprimer un élément de votre sidebar, cliquez simplement sur 'supprimer'. Les changements sont effectués immédiatement, mais ne seront pas actifs tant que vous n'aurez pas cliqué sur le bouton 'Publier'."
+        publish_changes: "Publier les modifications"
+        available_items: "Éléments disponibles"
+        active_sidebar_items: "Éléments utilisés"
+        download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
+    settings:
+      display:
+        cancel: "Annuler"
+        or: "ou"
+        update_settings: "Mettre les paramètres à jour"
+        ago: "il y a"
+        custom_url: "Custom URL shortener domain"
+        custom_url_help: "If you have a custom domain for URL shortening, enter it here."
+        date_format: "Afficher les dates"
+        default_article_show: "billet sur ma page d'accueil params"
+        default_feed_show: "most recent articles in feed"
+        display: "Display"
+        display_settings: "Display Settings"
+        feed_articles: "Article excerpts"
+        feed_settings: "RSS Feed Settings"
+        feed_excerpts_only: "Tronquer les articles dans le flux RSS"
+        feedburner_help: "Enter your FeedBurner ID if you wish to use your Google FeedBurner account instead of using the Publify feed URL."
+        feedburner_id: "Identifiant Feedburner"
+        publishing_options: "Options de publication"
+        status_main_feed: "Display statuses in the main feed"
+        statuses: "Notes"
+        time_format: "Afficher les heures"
+      feedback:
+        cancel: "Annuler"
+        or: "ou"
+        update_settings: "Mettre les paramètres à jour"
+        feedback_settings: "Paramètres des commentaires"
+        feedback: "Commentaires"
+        comments: "Commentaires"
+        enable_comments_by_default: "Activer les commentaires par défaut"
+        enable_feedback_moderation: "Activer la modération des commentaires"
+        explain_feedback_moderation: "Vous pouvez activez la modération des commentaires sur l'ensemble de votre site. Si vous le faites, aucun commentaire ou rétrolien ne sera publié sans une validation de votre part"
+        trackbacks: "Rétroliens"
+        enable_trackbacks_by_default: "Activer les rétroliens par défaut"
+        disable_trackbacks_sitewide: "Désactiver les trackbacks"
+        explain_disable_trackbacks: "Cette option vous permet de désactiver totalement les rétroliens sur votre blog. Ceci ne supprimera pas les rétroliens existants, mais empêchera tout nouveau rétrolien d'être créé"
+        comments_filter: "Mise en forme des commentaires"
+        avatars_provider: "Fournisseur d’avatars"
+        spam: "Spam"
+        spam_protection: "Protection contre le spam"
+        enable_spam_protection: "Activer la protection contre le spam"
+        explain_spam_protection: "La protection contre le spam permettra à publify de comparer l'adresse IP des commentateurs ainsi que le contenu de leurs commentaires avec une liste noire distante"
+        askimet_key: "Clé Akismet"
+        explain_spamfiltering: "Publify peut utiliser le service de lutte contre le spam <a href='http://akismet.com'>Akismet</a>. Vous devez vous enregistrer afin de pouvoir utiliser les services d'Akismet. Si vous possédez une clé Akismet, ajoutez là ici"
+        disable_comments_after: "Désactiver les commentaires au bout de "
+        days: "jours"
+        set_to_0_to_never_disable_comments: "Mettez cette option à 0 pour ne jamais désactiver les commentaires dans le temps"
+        max_links: "Nombre de liens maximum"
+        explain_reject_comments: "Publify rejettera automatiquement les commentaires et les rétroliens contenant un certain nombre de liens"
+        set_to_0_to_never_reject_comments: "Mettez cette option à 0 pour ne jamais rejeter les commentaires"
+        captcha: "Captcha"
+        enable_recaptcha: "Utiliser reCaptcha"
+        remember_to_set_your_recaptcha: "N'oubliez pas de mettre votre clé d'activation dans config/initializers/recaptcha.rb"
+      write:
+        cancel: "Annuler"
+        or: "ou"
+        update_settings: "Mettre les paramètres à jour"
+        write: "Écrire"
+        publish: "Publier"
+        trackbacks: "Rétroliens"
+        send_trackbacks: "Envoyer des rétroliens"
+        explain: "Quand vous publiez un billet sur Publify, vous pouvez envoyer un rétrolien aux sites que vous liez. Cette fonctionnalité devrait être désactivée pour les blogs privée puisqu'elle permet de donner des informations à leur sujet à des tiers. Ceci ne s'impose cependant pas pour un blog public."
+        urls_to_ping: "Sites à alerter automatiquement"
+        latitude_longitude: "Latitude, Longitude"
+        display: "Afficher"
+        your_geoloc: "vos coordonnées géographiques"
+        example: "exemple"
+        media: "Média"
+        image_thumbnail_size: "Taille des vignettes"
+        image_medium_size: "Taille des images réduites"
+        avatar_size: "Avatar size"
+        publish_on_twitter: "Publish on Twitter"
+        twitter_consumer_key: "Twitter consumer key"
+        twitter_consumer_secret: "Twitter consumer secret"
+      update_database:
+        database_migration: "Mise à jour de la base de données"
+        information: "Informations"
+        current_database_version: "Version actuelle de la base"
+        you_are_up_to_date: "Vous êtes à jour !"
+        migrations: "Migrations"
+        migration_pending:
+          one: "There is one migration pending."
+          other: "There are %{count} migrations pending."
+        needed_migrations: "Mise à jour nécessaire"
+        update_database_now: "Mettez votre base à jour"
+        may_take_a_moment: "cela peut prendre un moment"
+      index:
+        cancel: "Annuler"
+        or: "ou"
+        update_settings: "Mettre les paramètres à jour"
+        general_settings: "General settings"
+        your_blog: "Votre blog "
+        blog_name: "Titre du blog"
+        blog_subtitle: "Sous-titre du blog"
+        blog_url: "Adresse du blog"
+        language: "Langue"
+        users: "Utilisateurs"
+        allow_users_to_register: "Autoriser les utilisateurs à s'enregistrer"
+        explain_allow_users_to_register: "Vous pouvez permettre aux utilisateurs de s'enregistrer sur votre blog. Par défaut, ils seront enregistrés come contributeurs. Cet utilisateur a un niveau faible sans droit mais qui possède sont propre profile sur le site. Si vous ne voulez pas que les utilisateurs s'enregistrent, vous pouvez les ajouter vous même dans la partie d'administration des utilisateurs."
+        publify_notify_new_articles_or_comments: "Publify peut vous alerter quand de nouveaux articles et commentaires sont publiés"
+        source_email: "Adresse courriel source"
+        email_address_used_to_notify: "Adresse courriel utilisée par Publify pour l'envoi d'alertes"
+        items_to_display_in_admin_lists: "Nombre d'éléments à afficher dans les listes"
     seo:
       titles:
+        cancel: "Annuler"
+        or: "ou"
+        update_settings: "Mettre les paramètres à jour"
         title_settings: "Paramétrage des titres"
         home: "Home"
         title_template: "Titre"
@@ -40,6 +244,9 @@ fr:
         replaced_by_the_archive_date: "Remplacé par la date de l'archive"
         replaced_by_the_content_body: "Replaced by the content body"
       permalinks:
+        cancel: "Annuler"
+        or: "ou"
+        update_settings: "Mettre les paramètres à jour"
         explain: "Les exemples ci-dessous vous aideront à démarrerPublify vous offre la possibilité de créer une structure d'URL personnalisée pour vos liens permanents et vos archives. Cela peut vous permettre d'améliorer l'esthétique, l'utilisabilité et la viralité de vos liens."
         permalinks: "Permaliens"
         permalink_format: "Format des permaliens"
@@ -54,6 +261,9 @@ fr:
         your_article_month: "Le mois de publication de votre article."
         your_article_day: "Le jour de publication de votre article."
       index:
+        cancel: "Annuler"
+        or: "ou"
+        update_settings: "Mettre les paramètres à jour"
         global_settings: "Options générales"
         general_settings: "Options générales"
         meta_keywords: "Meta mots-clés"
@@ -81,11 +291,25 @@ fr:
         explain_moderate_feedback: "Si vous activez cette option, peut-être devriez-vous également activer la modération des commentaires."
         explain_rss_description: "You can use the following tags: %author% (author name), %blog_url% (this blog URL), %blog_name% (this blog title) and %permalink_url% (a link to the article you want to protect)"
     shared:
+      macros:
+        show_help_on_publify_macros: "Afficher l'aide sur les macros Publify"
+        name: "Name"
+        description: "Description"
+        tag: "Label"
       destroy:
         are_you_sure: "Êtes-vous certain de vouloir supprimer ce %{element}"
         action_or_other: "%{first_action} ou %{second_action}"
         cancel: "Annuler"
         delete: "Supprimer"
+    tags:
+      new:
+        articles: "Articles"
+        display_name: "Nom affiché"
+        manage_tags: "Labels"
+        name: "Nom"
+        cancel: "Annuler"
+        save: "Sauver"
+        or: "ou"
     resources:
       index:
         media_library: "Bibliothèque de média"
@@ -96,13 +320,20 @@ fr:
         content_type: "Type de contenu"
         file_size: "Taille du fichier"
         date: "Date"
+        are_you_sure: "Êtes-vous certain ?"
+        thumbnail: "Thumbnail"
+        medium_size: "Medium size"
+        original_size: "Original size"
     post_types:
       new:
+        cancel: "Annuler"
+        save: "Sauver"
+        or: "ou"
         post_types: "Modèles d'articles"
         name: "Nom"
         description: "Description"
         template_name: "Nom du modèle"
-        default: "Default"
+        default: "Défaut"
         publify_default_post_type: "Modèle d'article par défaut"
         explain: "Ce modèle est un fichier que Publify cherchera quand il voudra afficher un article de ce type. Il doit se trouver dans views/articles/template nom.html.erb"
     pages:
@@ -114,6 +345,8 @@ fr:
         author: "Auteur"
         date: "Date"
       form:
+        cancel: "Annuler"
+        change: "Modifier"
         publish: "Publier"
         title: "Titre"
         images: "Images"
@@ -123,7 +356,19 @@ fr:
         article_filter: "Mise en forme des billets"
         permanent_link: "Lien permanent"
         page_with_action_name: "%{action} page"
+        type_your_post: "Tapez votre texte"
     feedback:
+      bulkops:
+        success_mark_as_ham: 
+          zero: "No item selected to mark as Ham"
+          one: "Marked 1 item as Ham"
+          other: "Marked %{count} items as Ham"
+        success_mark_as_spam: 
+          zero: "No item selected to mark as Spam"
+          one: "Marked 1 item as Spam"
+          other: "Marked %{count} items as Spam"
+        success_classification: "Confirmed classification of %{count} item(s)"
+        success_deleted: "Deleted %{count} item(s)"
       index:
         feedback: "Commentaires"
         all: "Tous"
@@ -151,6 +396,10 @@ fr:
         action_or_other: "%{first_action} ou %{second_action}"
         cancel: "Annuler"
         save: "Sauver"
+      edit:
+        action_or_other: "%{first_action} or %{second_action}"
+        save: "Sauver"
+        comments_for: "Commentaires sur l'article %{article_link}"
       button:
         select_action: "Choisir de..."
         delete_checked_items: "Supprimer les commentaires sélectionnés"
@@ -162,6 +411,8 @@ fr:
         this_comment_by_was_flagged_as_spam: "Ce commentaire de %{author} a été marqué comme spam, %{cancel_link} ?"
         cancel: "Annuler"
     dashboard:
+      index:
+        welcome_back: "Bienvenue, %{user_name} !"
       drafts:
         your_drafts: "Vos brouillons"
         no_drafts_yet: "Pas de brouillons, pourquoi ne pas en écrire un"
@@ -227,6 +478,8 @@ fr:
       comment:
         no_comments_yet: "Aucun commentaire pour l'instant"
         by: "Par"
+      comments:
+        latest_comments: "Derniers commentaires"
     content:
       index:
         published: "Publié"
@@ -243,12 +496,22 @@ fr:
         publication_date: "Publié le"
         filter: "Filtrer"
       form:
+        article_type: "Type d'article"
+        now: "maintenant"
+        preview: "Prévisualiser"
+        save: "Sauver"
+        default: "Défaut"
+        cancel: "Annuler"
+        allow_comments_status:
+          zero: "désactivés"
+          one: "activés"
+        allow_pings_status:
+          zero: "désactivés"
+          one: "activés"
         public: "Public"
         publish: "Publier"
         title: "Titre"
         images: "Images"
-        excerpt: "Extrait"
-        excerpt_explaination: "Les résumés vous permettent d'afficher un texte descriptif de votre article à la place de ce dernier sur la page d'accueil de votre blog"
         publish_settings: "Paramètres de publication"
         status: "État"
         published: "Publié"
@@ -265,10 +528,14 @@ fr:
         categories: "Catégories"
         tags: "Labels"
         tags_explaination: "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;."
+        type_your_post: "Tapez votre texte"
       categories:
         new_category: "Nouvelle catégorie"
     categories:
       new:
+        cancel: "Annuler"
+        save: "Sauver"
+        or: "ou"
         categories: "Catégories"
         name: "Nom"
         keywords: "Mots clés"
@@ -284,6 +551,9 @@ fr:
       sidebar_plugins: "Widgets"
       logged_in_as: "Salutations, %{login}"
       new_article: "Nouvel article"
+      new_page: "Nouvelle Page"
+      new_media: "Nouveau Média"
+      new_note : "Nouvelle Note"
       profile: "Profil"
       logout: "Déconnexion &raquo;"
       home: "Tableau de bord"
@@ -294,13 +564,72 @@ fr:
         stats: "Il y a actuellement %{files_count} fichiers en cache pour un total de %{size} kilo octets."
         sweep_cache: "Vider le cache"
         cache: "Cache"
-        explanations: "Afin d'économiser des ressources, Publify génère des fichiers statiques avec votre contenu. Ces fichiers sont supprimés lors d'une nouvelle publication. Vous pouvez cependant les effacer vous même."
+        explaination: "Afin d'économiser des ressources, Publify génère des fichiers statiques avec votre contenu. Ces fichiers sont supprimés lors d'une nouvelle publication. Vous pouvez cependant les effacer vous même."
+    users:
+      edit:
+        edit_user: "Modifier un utilisateur"
+      new:
+        add_user: "Ajouter un utilisateur"
+      index:
+        login: "identifiant"
+        users: "Utilisateurs"
+        new_user: "Nouvel utilisateur"
+        name: "Nom"
+        email: "Email"
+        profile: "Profile"
+        articles: "Articles" 
+        comments: "Commentaires"
+        state: "État"
+        user_state: "%{state}"
+      form:
+        cancel: "Annuler"
+        save: "Sauver"
+        or: "ou"
+        user_status: "User Status"
+        account_settings: "Account Settings"
+        login: "Login"
+        password: "Password"
+        password_confirmation: "Password confirmation"
+        email: "Email"
+        profile: "Profile"
+        status: "Status"
+        profile_settings: "Profile Settings"
+        firstname: "First name"
+        lastname: "Last name"
+        nickname: "Nickname"
+        display_name: "Display name"
+        article_filter: "Article filter"
+        avatar: "Avatar Settings"
+        avatar_current: "Current avatar"
+        upload: "Upload your profile image"
+        upload_file: "Upload a .jpg, .png or .gif file"
+        notification_settings: "Notifications"
+        notifications: "Send notification messages"
+        notification_email: "via email"
+        notification_article: "when new article is posted"
+        notification_comment: "when new comment is posted"
+        twitter_settings: "Twitter Settings"
+        twitter_account: "Twitter username"
+        twitter_help: "Twitter account you want to post with"
+        twitter_oauth: "Twitter OAuth token"
+        twitter_oauth_secret: "Twitter OAuth secret"
+        contact_settings: "Contact Settings"
+        contact_explain: "This information will be displayed on your %{link}"
+        author_page: "author page"
+        about: "Biography"
+        website: "Website"
+        msn: "MSN Messenger ID"
+        yahoo: "Yahoo! Messenger ID"
+        jabber: "Jabber ID"
+        aim: "AIM screen name"
+        twitter: "Twitter username"
   accounts:
     back_to: "&larr; Revenir à %{place}"
     back_to_login: "S'identifier"
     create_account: "Créer un compte"
     lost_my_password: "J'ai perdu mon mot de passe"
     login:
+      title: "Identifiant"
       login: "Identifiant"
       password: "Mot de passe"
       sign_in: "S'identifier"
@@ -309,13 +638,37 @@ fr:
       proceed_to: "Allez sur %{link}"
       admin: "l'administration"
     recover_password:
+      title: "Récupération d'un mot de passe perdu"
       username_or_email: "Identifiant ou email"
       reset_my_password: "Me renvoyer un mot de passe"
     signup:
+      title: "s'identifier"
       username: "Identifiant"
       email: "Email"
       signup: "S'inscrire"
+  langs:
+    da_DK: "Danois"
+    de_DE: "Allemand"
+    en_US: "Anglais (Américain)"
+    es_MX: "Espagnol (Mexicain)"
+    fr_FR: "Français"
+    he_IL: "Hébreux"
+    it_IT: "Italien"
+    ja_JP: "Japonais"
+    lt_LT: "Lituanien"
+    nb_NO: "Norvégien"
+    nl_NL: "Néerlandais"
+    pl_PL: "Polonais"
+    ro_RO: "Roumain"
+    ru_RU: "Russe"
+    zh_TW: "Chinois"
+    zh_CN: "Simple Chinese"
+    pt_BR: "Portuguais (Brésilien)"
   time:
     formats:
       default: "%d/%m/%Y %H:%M"
       short: "%d/%m/%y"
+      letters_month_with_year: "%B %Y"
+  date:
+    month_names: [~, Janvier, Février, Mars, Avril, Mai, Juin, Juillet, Août, Septembre, Octobre, "Novembre", Décembre]
+    abbr_month_names: [~, jan, fév, mars, avr, mai, juin, juil, août, sep, oct, nov, déc]

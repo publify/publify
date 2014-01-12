@@ -1,30 +1,36 @@
 <%- content_for :page_heading do %>
-  <i class="icon-large icon-tags"></i><h2 class="page-title"><%= _("Manage tags") %></h2>
+  <h2>
+    <i class="glyphicon glyphicon-large glyphicon-tags"></i>
+    <%= t('.manage_tags') %>
+  </h2>
 <% end %>
 
-<div>
-  <div class='span4'>
+<div class='row'>
+  <div class='col-md-4'>
     <%= form_tag :action=>"edit", :id => @tag.id do %>
     <%= error_messages_for 'tag' %>
-    <label for="tag_display_name"><%= _("Name")%>:</label>
-    <%= text_field 'tag', 'display_name', :class => 'medium' %>
-    <div class='form-actions'>
-      <%= cancel_or_save %>
+    <div class='form-group'>
+      <%= text_field :tag, :display_name, class: 'form-control', placeholder: t('.name') %>
     </div>
-    <% end %>
+    <div class='form-group'>
+      <%= link_to(t(".cancel"), {action: 'index'}, class: 'btn') %>
+      <%= t(".or") %>
+      <%= submit_tag(t(".save"), class: 'btn btn-success') %>
+    </div>
+  <% end %>
   </div>
-  <div class='span8'>
-    <table class="table table-striped">
+  <div class='col-md-8'>
+    <table class="table table-hover">
       <thead>
         <tr class='noborder'>
-        <th><%= _("Display Name") %></th>
-        <th><%= _("Name") %></th>
-        <th><%= _("Articles") %></th>
-      </tr>
+          <th><%= t('.display_name') %></th>
+          <th><%= t('.name')  %></th>
+          <th><%= t('.articles') %></th>
+        </tr>
       </thead>
       <%= render_void_table(@tags.size, 3)  %>
       <% for tag in @tags %>
-      <tr>
+        <tr>
         <td>
           <%= link_to_edit tag.display_name, tag %>
           <%= show_tag_actions tag %>
@@ -32,10 +38,9 @@
         <td><%= tag.name %></td>
         <td><%= tag.published_articles.count.to_s %></td>
       </tr>
-      <% end %>
+    <% end %>
       <%= display_pagination(@tags, 3)%>
     </table>
-
   </div>
 </div>
 

@@ -70,11 +70,11 @@ describe Article do
     a.title = "Zzz"
     assert a.save
 
-    a.categories << Category.find(FactoryGirl.create(:category).id)
-    assert_equal 1, a.categories.size
+    a.tags << Tag.find(FactoryGirl.create(:tag).id)
+    assert_equal 1, a.tags.size
 
     b = Article.find(a.id)
-    assert_equal 1, b.categories.size
+    assert_equal 1, b.tags.size
   end
 
   it "test_permalink_with_title" do
@@ -252,33 +252,6 @@ describe Article do
     Trigger.fire
     art.reload
     assert art.published
-  end
-
-  it "test_find_published_by_category" do
-    cat = FactoryGirl.create(:category, :permalink => 'personal')
-    cat.articles << FactoryGirl.create(:article)
-    cat.articles << FactoryGirl.create(:article)
-    cat.articles << FactoryGirl.create(:article)
-
-    cat = FactoryGirl.create(:category, :permalink => 'software')
-    cat.articles << FactoryGirl.create(:article)
-
-    Article.create!(:title      => "News from the future!",
-                    :body       => "The future is cool!",
-                    :keywords   => "future",
-                    :published_at => Time.now + 12.minutes)
-
-    articles = Category.find_by_permalink('personal').published_articles
-    assert_equal 3, articles.size
-
-    articles = Category.find_by_permalink('software').published_articles
-    assert_equal 1, articles.size
-  end
-
-  it "test_find_published_by_nonexistent_category_raises_exception" do
-    assert_raises ActiveRecord::RecordNotFound do
-      Category.find_by_permalink('does-not-exist').published_articles
-    end
   end
 
   it "test_destroy_file_upload_associations" do
@@ -733,15 +706,6 @@ describe Article do
       let!(:last_draft_article) { create(:article, state: 'draft', created_at: now + 2.days) }
       let!(:draft_article) { create(:article, state: 'draft', created_at: now + 20.days) }
       it { expect(subject).to eq([draft_article, last_draft_article, article]) }
-    end
-
-    context "with two articles in two catageory" do
-      let(:show_category) { create(:category, name: 'show') }
-      let(:not_show_category) { create(:category, name: 'not_show') }
-      let(:params) { {category: show_category.id } }
-      let!(:article) { create(:article, categories: [show_category]) }
-      let!(:bad_category_article) { create(:article, categories: [not_show_category]) }
-      it { expect(subject).to eq([article]) }
     end
   end
 

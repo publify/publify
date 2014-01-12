@@ -1,31 +1,38 @@
 <%- content_for :page_heading do %>
-  <i class="icon-large icon-user"></i><h2 class="page-title"><%= _("Users") %></h2>
-  <div class='pull-right'>
-    <%= link_to(_("New User"), {controller: 'users', action: 'new'}, id: 'dialog-link', class: 'btn btn-info') %>
-  </div>
+  <h2>
+    <i class="glyphicon glyphicon-large glyphicon-user"></i>
+    <%= t(".users") %>
+    <%= link_to(t(".new_user"), {controller: 'users', action: 'new'}, id: 'dialog-link', class: 'btn btn-info pull-right') %>
+  </h2>
 <% end %>
 
-<table class="table table-striped">
+<table class="table table-hover">
   <thead>
-    <tr class='noborder'>
-      <th><%= _("Login") %></th>
-      <th><%= _("Name") %></th>
-      <th><%= _("Email") %></th>
-      <th><%= _("Profile") %></th>
-      <th><%= _("Articles") %></th>
-      <th><%= _("Comments") %></th>
-      <th><%= _("State") %></th>
+    <tr>
+      <th><%= t(".login") %></th>
+      <th><%= t(".name") %></th>
+      <th><%= t(".email") %></th>
+      <th><%= t(".profile") %></th>
+      <th><%= t(".articles") %></th>
+      <th><%= t(".comments") %></th>
+      <th><%= t(".state") %></th>
     </tr>
   </thead>
   <% for user in @users -%>
     <tr>
-      <td><%= link_to_edit user.login, user%></td>
+      <td>
+        <%= link_to_permalink user, user.login%>
+        <div class='action'>
+          <%= button_to_edit user%>
+          <%= button_to_show user %>
+        </div>
+      </td>
       <td> <%= user.nickname %></td>
       <td><%= mail_to user.email, user.email%></td>
-      <td><%= _(user.profile.nicename) %></td>
+      <td><%= t("profile.#{user.profile.label}") %></td>
       <td><%= Article.where("user_id = #{user.id}").count %></td>
       <td><%= Comment.where("user_id = #{user.id}").count %></td>
-      <td class='<%= user.state %>'><%= _("%s user", _("#{user.state.capitalize}").downcase)%></td>
+      <td><%= t("user.status.#{user.state}") %></td>
     </tr>
   <% end -%>
   <%= display_pagination(@users, 7)%>

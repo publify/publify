@@ -1,7 +1,7 @@
 <% for article in @articles -%>
   <div class="post">
     <%= render article %>
-    <p class="meta"><%= article_links article %></p>
+    <%= render 'article_links', article: article %>
   </div>
 <% end -%>
 

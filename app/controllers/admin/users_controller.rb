@@ -12,7 +12,7 @@ class Admin::UsersController < Admin::BaseController
     setup_profiles
     @user.name = @user.login
     if request.post? and @user.save
-      flash[:notice] = _('User was successfully created.')
+      gflash :success
       redirect_to :action => 'index'
     end
   end
@@ -26,7 +26,7 @@ class Admin::UsersController < Admin::BaseController
       if @user.id = current_user.id
         current_user = @user
       end
-      flash[:notice] = _('User was successfully updated.')
+      gflash :success
       redirect_to :action => 'index'
     end
   end
@@ -34,8 +34,8 @@ class Admin::UsersController < Admin::BaseController
   def destroy
     @record = User.find(params[:id])
     return(render 'admin/shared/destroy') unless request.post?
-
-    @record.destroy if User.count > 1
+    
+    @record.destroy if User.where("profile_id = ? and id != ?", Profile.find_by_label('admin'), @record.id).count > 1
     redirect_to :action => 'index'
   end
 

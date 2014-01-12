@@ -19,8 +19,6 @@ class Article < Content
   has_many :trackbacks, dependent: :destroy, order: "created_at ASC"
   has_many :feedback, order: "created_at DESC"
   has_many :resources, order: "created_at DESC", dependent: :nullify
-  has_many :categorizations
-  has_many :categories, through: :categorizations
   has_many :triggers, as: :pending_item
   has_many :comments, dependent: :destroy, order: "created_at ASC" do
     # Get only ham or presumed_ham comments
@@ -46,7 +44,6 @@ class Article < Content
   before_save :set_published_at, :ensure_settings_type, :set_permalink
   after_save :post_trigger, :keywords_to_tags, :shorten_url
 
-  scope :category, lambda { |category_id| where('categorizations.category_id = ?', category_id).includes('categorizations') }
   scope :drafts, lambda { where(state: 'draft').order('created_at DESC') }
   scope :child_of, lambda { |article_id| where(parent_id: article_id) }
   scope :published_at, lambda {|time_params| published.where(published_at: PublifyTime.delta(*time_params)).order('published_at DESC')}
@@ -116,10 +113,6 @@ class Article < Content
     scoped = super(params)
     if ["no_draft", "drafts", "published", "withdrawn", "pending"].include?(params[:state])
       scoped = scoped.send(params[:state])
-    end
-
-    if params[:category] && params[:category].to_i > 0
-      scoped = scoped.category(params[:category])
     end
 
     scoped.order('created_at DESC')
@@ -304,10 +297,6 @@ class Article < Content
 
   def add_comment(params)
     comments.build(params)
-  end
-
-  def add_category(category, is_primary = false)
-    self.categorizations.build(:category => category, :is_primary => is_primary)
   end
 
   def access_by?(user)

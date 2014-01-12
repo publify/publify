@@ -1,19 +1,25 @@
 <%- content_for :page_heading do %>
-  <i class="icon-large icon-resources"></i>
-  <h2 class="page-title"><%= t(".media_library") %></h2>
+  <h2>
+    <i class="glyphicon glyphicon-large glyphicon-picture"></i>
+    <%= t(".media_library") %>
+  </h2>
 <% end %>
 
-<%= form_tag({action: 'upload'}, {enctype: "multipart/form-data"}) do %>
+<%= form_tag({action: 'upload'}, {enctype: "multipart/form-data", class: 'form-inline'}) do %>
   <div class='well well-small'>
     <h3><%= t('.upload_a_file_to_your_site') %></h3>
-    <%= file_field('upload', 'filename', {class: 'input-file'}) -%>
-    <%= submit_tag(t('.upload'), {class: 'btn'}) -%>
+    <div class="form-group">
+      <%= file_field('upload', 'filename', {class: 'input-file'}) -%>
+    </div>
+    <div class="form-group">
+      <%= submit_tag(t('.upload'), {class: 'btn btn-success'}) -%>
+    </div>
   </div>
 <%- end %>
 
-<table class="table table-striped">
+<table class="table table-hover">
   <thead>
-    <tr class='noborder'>
+    <tr>
       <th><%= t(".filename")%> <small>(<%= t('.right_click_for_link')%>)</small></th>
       <th><%= t(".content_type")%></th>
       <th><%= t(".file_size")%></th>
@@ -31,7 +37,19 @@
         <% else %>
           <%= link_to(upload.upload_url, upload.upload_url) -%>
         <% end %>
-        <p><%= resource_action_links(upload) %></p>
+        <p>
+          <small>
+            <%- if upload.mime =~ /image/ %>
+              <%= link_to(t(".thumbnail"), upload.upload.thumb.url) %>
+              |
+              <%= link_to(t(".medium_size"), upload.upload.medium.url) %>
+              |
+              <%= link_to(t(".original_size"), upload.upload.url) %>
+              |
+            <%- end %>
+            <%= link_to(t(".delete"), { action: 'destroy', id: upload.id, search: params[:search], page: params[:page] },  confirm: t(".are_you_sure"), method: :post) %>
+          </small>
+        </p>
       </td>
       <td>
         <%= upload.mime %>

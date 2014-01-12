@@ -1,5 +1,5 @@
-$('#autosave').replaceWith('<%= hidden_field_tag('articles[id]', @article.id %>')
-$('#preview_link').replaceWith('<%= url_for({:controller => '/articles', :action => 'preview', :id => @article.id}, {:target => 'new', :class => 'btn info'}) %>')
-$('#destroy_link').replaceWith('<%= link_to_destroy_draft(@article) %>')
-$('#publish').replaceWith('<%=  text_field_tag('article', 'published_at', {:class => 'span7 datepicker'}) %>')
-<%= gflash :success => _("Article was successfully saved") %>
+$('#autosave').html('<%= hidden_field_tag('article[id]', @article.id) %>');
+$('#preview_link').replaceWith('<%= link_to('Preview', {:controller => '/articles', :action => 'preview', :id => @article.id}, {:target => 'new', :class => 'btn btn-default'}); %>');
+<% if @article.state.to_s.downcase == "draft" %>
+  $("#article_published_at").val(<% Time.now() %>);
+<% end %>

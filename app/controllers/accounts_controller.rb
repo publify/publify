@@ -1,33 +1,29 @@
 class AccountsController < ApplicationController
 
   before_filter :verify_config
-  before_filter :verify_users, :only => [:login, :recover_password]
-  before_filter :redirect_if_already_logged_in, :only => :login
+  before_filter :verify_users, only: [:login, :recover_password]
+  before_filter :redirect_if_already_logged_in, only: :login
 
   def index
     if User.count.zero?
-      redirect_to :action => 'signup'
+      redirect_to action: 'signup'
     else
-      redirect_to :action => 'login'
+      redirect_to action: 'login'
     end
   end
 
   def login
-    @page_title = "#{this_blog.blog_name} - #{_('login')}"
-
     return unless request.post?
-
     self.current_user = User.authenticate(params[:user][:login], params[:user][:password])
-
     if logged_in?
       successful_login
     else
-      unsuccessful_login
+      gflash :error
+      @login = params[:user][:login]
     end
   end
 
   def signup
-    @page_title = "#{this_blog.blog_name} - #{_('signup')}"
     unless User.count.zero? or this_blog.allow_signup == 1
       redirect_to :action => 'login'
       return
@@ -50,22 +46,21 @@ class AccountsController < ApplicationController
   end
 
   def recover_password
-    @page_title = "#{this_blog.blog_name} - #{_('Recover your password')}"
     return unless request.post?
     @user = User.where("login = ? or email = ?", params[:user][:login], params[:user][:login]).first
 
     if @user
       @user.generate_password!
       @user.save
-      flash[:notice] = _("An email has been successfully sent to your address with your new password")
-      redirect_to :action => 'login'
+      gflash :notice
+      redirect_to action: 'login'
     else
-      flash[:error] = _("Oops, something wrong just happened")
+      gflash :error
     end
   end
 
   def logout
-    flash[:notice]  = _("Successfully logged out")
+    gflash :notice
     self.current_user.forget_me
     self.current_user = nil
     session[:user_id] = nil
@@ -77,24 +72,23 @@ class AccountsController < ApplicationController
   private
 
   def verify_users
-    redirect_to(:controller => "accounts", :action => "signup") if User.count == 0
+    redirect_to(controller: "accounts", action: "signup") if User.count == 0
     true
   end
 
   def verify_config
-    redirect_to :controller => "setup", :action => "index" if  ! this_blog.configured?
+    redirect_to controller: "setup", action: "index" unless this_blog.configured?
   end
 
   def redirect_if_already_logged_in
     if session[:user_id] && session[:user_id] == self.current_user.id
-      redirect_back_or_default :controller => "admin/dashboard", :action => "index"
+      redirect_back_or_default controller: "admin/dashboard", action: "index"
       return
     end
   end
 
   def successful_login
     session[:user_id] = self.current_user.id
-
     if params[:remember_me] == "1"
       self.current_user.remember_me unless self.current_user.remember_token?
       cookies[:auth_token] = {
@@ -106,12 +100,7 @@ class AccountsController < ApplicationController
     add_to_cookies(:publify_user_profile, self.current_user.profile_label, '/')
 
     self.current_user.update_connection_time
-    flash[:notice]  = _("Login successful")
-    redirect_back_or_default :controller => "admin/dashboard", :action => "index"
-  end
-
-  def unsuccessful_login
-    flash.now[:error]  = _("Login unsuccessful")
-    @login = params[:user][:login]
+    gflash :success
+    redirect_back_or_default controller: "admin/dashboard", action: "index"
   end
 end

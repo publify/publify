@@ -3,8 +3,8 @@
     <%= _("Published on") %>
     <%= display_date_and_time(article.published_at) %>
     <%= _("by") %> <span class='p-author h-card'><%= article.user.nickname %></span>
-    <%= category_links(article, _("under")) unless article.categories.empty? %>.
-    <%= tag_links(article) unless article.tags.empty? %>
+    <%= _("Tags") + " " + article.tags.map { |tag| link_to tag.display_name, tag.permalink_url(nil, true), :rel => "tag"}.sort.join(", ") unless article.tags.empty? %>
+
   </small></p>
 </div>
 

@@ -32,7 +32,7 @@ class Admin::SeoController < Admin::BaseController
     if params[:setting]['permalink_format'] and params[:setting]['permalink_format'] == 'custom'
       params[:setting]['permalink_format'] = params[:setting]['custom_permalink']
     end
-    update_settings_with!(params)
+    update_settings_with!(params[:setting])
     if params[:setting][:robots].present?
       Robot.new.add(params[:setting][:robots])
     end

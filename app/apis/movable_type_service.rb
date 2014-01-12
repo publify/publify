@@ -6,17 +6,6 @@ module MovableTypeStructs
     member :title,        :string
   end
 
-  class CategoryList < ActionWebService::Struct
-    member :categoryId,   :string
-    member :categoryName, :string
-  end
-
-  class CategoryPerPost < ActionWebService::Struct
-    member :categoryName, :string
-    member :categoryId,   :string
-    member :isPrimary,    :bool
-  end
-
   class TextFilter < ActionWebService::Struct
     member :key,    :string
     member :label,  :string
@@ -31,21 +20,9 @@ end
 
 
 class MovableTypeApi < ActionWebService::API::Base
-  api_method :getCategoryList,
-    :expects => [ {:blogid => :string}, {:username => :string}, {:password => :string} ],
-    :returns => [[MovableTypeStructs::CategoryList]]
-
-  api_method :getPostCategories,
-    :expects => [ {:postid => :string}, {:username => :string}, {:password => :string} ],
-    :returns => [[MovableTypeStructs::CategoryPerPost]]
-
   api_method :getRecentPostTitles,
     :expects => [ {:blogid => :string}, {:username => :string}, {:password => :string}, {:numberOfPosts => :int} ],
     :returns => [[MovableTypeStructs::ArticleTitle]]
-
-  api_method :setPostCategories,
-    :expects => [ {:postid => :string}, {:username => :string}, {:password => :string}, {:categories => [MovableTypeStructs::CategoryPerPost]} ],
-    :returns => [:bool]
 
   api_method :supportedMethods,
     :expects => [],
@@ -79,36 +56,6 @@ class MovableTypeService < PublifyWebService
             :title       => article.title
           )
     end
-  end
-
-  def getCategoryList(blogid, username, password)
-    Category.find(:all).collect do |c|
-      MovableTypeStructs::CategoryList.new(
-          :categoryId   => c.id,
-          :categoryName => c.name
-        )
-    end
-  end
-
-  def getPostCategories(postid, username, password)
-    Article.find(postid).categorizations.collect do |c|
-      MovableTypeStructs::CategoryPerPost.new(
-          :categoryName => c.category.name,
-          :categoryId   => c.category_id.to_i,
-          :isPrimary    => c.is_primary
-        )
-    end
-  end
-
-  def setPostCategories(postid, username, password, categories)
-    article = Article.find(postid)
-    article.categories.clear if categories != nil
-
-    for c in categories
-      category = Category.find(c['categoryId'])
-      article.add_category(category, c['isPrimary'])
-    end
-    article.save
   end
 
   def supportedMethods()

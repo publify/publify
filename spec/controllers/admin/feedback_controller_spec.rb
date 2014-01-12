@@ -67,73 +67,45 @@ describe Admin::FeedbackController do
       end
     end
 
-    describe 'index action' do
+    describe :index do
+      let!(:spam) { create(:spam_comment) }
+      let!(:unapproved) { create(:unconfirmed_comment) }
+      let!(:presumed_ham) { create(:presumed_ham_comment) }
+      let!(:presumed_spam) { create(:presumed_spam_comment) }
+      let(:params) { }
 
-      before(:each) do
-        #Remove feedback due to some fixtures
-        Feedback.delete_all
+      before(:each) { get :index, params }
+
+      it { expect(response).to be_success }
+      it { expect(response).to render_template('index') }
+
+      context :simple do
+        it { expect(assigns(:feedback).size).to eq(4) }
       end
 
-      def should_success_with_index(response)
-        response.should be_success
-        response.should render_template('index')
+      context :unaproved do
+        let(:params) { {only: 'unapproved'} }
+        it { expect(assigns(:feedback)).to eq([unapproved, presumed_ham, presumed_spam]) }
       end
 
-      it 'should success' do
-        a = FactoryGirl.create(:article)
-        3.times { FactoryGirl.create(:comment, :article => a) }
-        get :index
-        should_success_with_index(response)
-        assert_equal 3, assigns(:feedback).size
+      context :spam do
+        let(:params) { {only: 'spam'} }
+        it { expect(assigns(:feedback)).to eq([spam]) }
       end
 
-      it 'should view only unconfirmed feedback' do
-        c = FactoryGirl.create(:comment, :state => 'presumed_ham')
-        FactoryGirl.create(:comment)
-        get :index, :confirmed => 'f'
-        should_success_with_index(response)
-        assigns(:feedback).should == [c]
+      context :presumed_spam do
+        let(:params) { {only: 'presumed_spam'} }
+        it { expect(assigns(:feedback)).to eq([presumed_spam]) }
       end
 
-      it 'should view only spam feedback' do
-        FactoryGirl.create(:comment)
-        c = FactoryGirl.create(:spam_comment)
-        get :index, :published => 'f'
-        should_success_with_index(response)
-        assigns(:feedback).should == [c]
+      context :presumed_ham do
+        let(:params) { {only: 'presumed_ham'} }
+        it { expect(assigns(:feedback)).to eq([unapproved, presumed_ham]) }
       end
 
-      it 'should view unconfirmed_spam' do
-        FactoryGirl.create(:comment)
-        FactoryGirl.create(:spam_comment)
-        c = FactoryGirl.create(:spam_comment, :state => 'presumed_spam')
-        get :index, :published => 'f', :confirmed => 'f'
-        should_success_with_index(response)
-        assigns(:feedback).should == [c]
-      end
-
-      # TODO: Functionality is counter-intuitive: param presumed_spam is
-      # set to f(alse), but shows presumed_spam.
-      it 'should view presumed_spam' do
-        c = FactoryGirl.create(:comment, :state => :presumed_spam)
-        FactoryGirl.create(:comment, :state => :presumed_ham)
-        get :index, :presumed_spam => 'f'
-        should_success_with_index(response)
-        assigns(:feedback).should == [c]
-      end
-
-      it 'should view presumed_ham' do
-        FactoryGirl.create(:comment)
-        FactoryGirl.create(:comment, :state => :presumed_spam)
-        c = FactoryGirl.create(:comment, :state => :presumed_ham)
-        get :index, :presumed_ham => 'f'
-        should_success_with_index(response)
-        assigns(:feedback).should == [c]
-      end
-
-      it 'should get page 1 if page params empty' do
-        get :index, :page => ''
-        should_success_with_index(response)
+      context 'with an empty page params' do
+        let(:params) { {page: ''} }
+        it { expect(assigns(:feedback).size).to eq(4) }
       end
 
     end
@@ -250,22 +222,22 @@ describe Admin::FeedbackController do
         comment = FactoryGirl.create(:comment, :article => article)
         post 'update', :id => comment.id,
           :comment => {:author => 'Bob Foo2',
-            :url => 'http://fakeurl.com',
-            :body => 'updated comment'}
-        response.should redirect_to(:action => 'article', :id => article.id)
-        comment.reload
-        comment.body.should == 'updated comment'
+                       :url => 'http://fakeurl.com',
+                       :body => 'updated comment'}
+          response.should redirect_to(:action => 'article', :id => article.id)
+          comment.reload
+          comment.body.should == 'updated comment'
       end
 
       it 'should not  update comment if get request' do
         comment = FactoryGirl.create(:comment)
         get 'update', :id => comment.id,
           :comment => {:author => 'Bob Foo2',
-            :url => 'http://fakeurl.com',
-            :body => 'updated comment'}
-        response.should redirect_to(:action => 'edit', :id => comment.id)
-        comment.reload
-        comment.body.should_not == 'updated comment'
+                       :url => 'http://fakeurl.com',
+                       :body => 'updated comment'}
+          response.should redirect_to(:action => 'edit', :id => comment.id)
+          comment.reload
+          comment.body.should_not == 'updated comment'
       end
 
 
@@ -327,21 +299,21 @@ describe Admin::FeedbackController do
       it 'should update comment if own article' do
         post 'update', :id => feedback_from_own_article.id,
           :comment => {:author => 'Bob Foo2',
-            :url => 'http://fakeurl.com',
-            :body => 'updated comment'}
-        response.should redirect_to(:action => 'article', :id => feedback_from_own_article.article.id)
-        feedback_from_own_article.reload
-        feedback_from_own_article.body.should == 'updated comment'
+                       :url => 'http://fakeurl.com',
+                       :body => 'updated comment'}
+          response.should redirect_to(:action => 'article', :id => feedback_from_own_article.article.id)
+          feedback_from_own_article.reload
+          feedback_from_own_article.body.should == 'updated comment'
       end
 
       it 'should not update comment if not own article' do
         post 'update', :id => feedback_from_not_own_article.id,
           :comment => {:author => 'Bob Foo2',
-            :url => 'http://fakeurl.com',
-            :body => 'updated comment'}
-        response.should redirect_to(:action => 'index')
-        feedback_from_not_own_article.reload
-        feedback_from_not_own_article.body.should_not == 'updated comment'
+                       :url => 'http://fakeurl.com',
+                       :body => 'updated comment'}
+          response.should redirect_to(:action => 'index')
+          feedback_from_not_own_article.reload
+          feedback_from_not_own_article.body.should_not == 'updated comment'
       end
     end
 

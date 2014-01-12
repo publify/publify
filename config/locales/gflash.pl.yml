@@ -1,0 +1,85 @@
+pl:
+  gflash:
+    titles:
+      notice: "Notice"
+      success: "Success"
+      warning: "Warning"
+      error: "Error"
+      progress: "Progress"
+    accounts:
+      login:
+        success: "Login successful"
+        error: "Login unsuccessful"
+      recover_password: 
+        notice: "An email has been successfully sent to your address with your new password"
+        error: "Oops, something wrong just happened"
+      logout:
+        notice: "Successfully logged out"
+    admin:
+      sidebar:
+        index:
+          error: "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually"
+      redirects:
+        destroy:
+          success: 'Redirection was successfully deleted.'
+      feedback:
+        bulkops:
+          error: "Not implemented"
+          success_deleted_spam: "All spam have been deleted"
+        update:
+          success: "Comment was successfully updated."
+        create:
+          success: "Comment was successfully created."
+        destroy:
+          success: "Deleted"
+          error: "Not found"
+      dashboard:
+        index:
+          error: "You are late from at least one major version of Publify. You should upgrade immediately. Download and install <a href='http://publify.co/stable.tgz'>the latest Publify version</a>"
+          warning: "There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
+          notice: "There's a new version of Publify available. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
+      content:
+        create:
+          success: "Article was successfully created"
+        update:
+          success: "Article was successfully updated"
+          error: "Error, you are not allowed to perform this action"
+        edit:
+          error: "Error, you are not allowed to perform this action"
+        autosave:
+          success: "Article was successfully saved"
+      settings:
+        update:
+          success: "konfiguracja zaktualizowana."
+      seo:
+        update:
+          success: "konfiguracja zaktualizowana."
+      cache:
+        index:
+          success: "Bufor opróżniono"
+          error: "Cache could not be cleared"
+      pages:
+        new:
+          success: "New page created"
+        edit:
+          success: "Page has been updated"
+      profiles:
+        index:
+          success: "User details updated"
+      resources:
+        upload:
+          success: "Załadowany plik"
+          warning: "Nie można załadować"
+        destroy:
+          notice: "File has been deleted"
+      tags:
+        edit:
+          success: "Tag was successfully updated"
+      themes:
+        switchto:
+          success: "Theme selection updated"
+      users:
+        new:
+          success: "User was successfully created"
+        edit:
+          success: "User was successfully updated"

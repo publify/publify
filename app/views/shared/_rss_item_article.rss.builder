@@ -1,6 +1,6 @@
 xm.item do
   if item.is_a?(Note)
-    xm.title item.body
+    xm.title truncate(item.html(:body).strip_html, length: 80, separator: ' ', omissions: '...')
   else
     xm.title item.title
   end
@@ -21,9 +21,6 @@ xm.item do
 
   if item.is_a?(Article)
     xm.comments(item.permalink_url("comments"))
-    for category in item.categories
-      xm.category category.name
-    end
     for tag in item.tags
       xm.category tag.display_name
     end

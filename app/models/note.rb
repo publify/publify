@@ -53,14 +53,19 @@ class Note < Content
     end
   end
 
-  def twitter_message_max_length
-    140 - (7 + TWITTER_LINK_LENGTH)
+  def truncate(message, length)
+    if message[length + 1] == ' '
+      message[0..length]
+    else
+      message[0..(message[0..length].rindex(' ') - 1)]
+    end
   end
 
   def twitter_message
     base_message = self.body.strip_html
-    if too_long?(base_message)
-      "#{base_message[0..twitter_message_max_length]}... (#{self.redirects.first.to_url})"
+    if too_long?("#{base_message} (#{short_link})")
+      max_length = 140 - "... (#{redirects.first.to_url})".length - 1
+      "#{truncate(base_message, max_length)}... (#{self.redirects.first.to_url})"
     else
       "#{base_message} (#{short_link})"
     end
@@ -70,12 +75,12 @@ class Note < Content
     return false unless Blog.default.has_twitter_configured?
     return false unless self.user.has_twitter_configured?
 
-    twitter = Twitter::Client.new(
-      :consumer_key => Blog.default.twitter_consumer_key,
-      :consumer_secret => Blog.default.twitter_consumer_secret,
-      :oauth_token => self.user.twitter_oauth_token,
-      :oauth_token_secret => self.user.twitter_oauth_token_secret
-    )
+    twitter = Twitter::REST::Client.new do |config| 
+      config.consumer_key = Blog.default.twitter_consumer_key
+      config.consumer_secret = Blog.default.twitter_consumer_secret
+      config.oauth_token = self.user.twitter_oauth_token
+      config.oauth_token_secret = self.user.twitter_oauth_token_secret
+    end
 
     begin
       options = {}
@@ -119,26 +124,30 @@ class Note < Content
   def short_link
     path = self.redirects.first.from_path
     blog = Blog.default
-    prefix = blog.custom_url_shortener.present? ? blog.custom_url_shortener : blog.base_url
     prefix.sub!(/^https?\:\/\//, '')
     "#{prefix} #{path}"
+  end
+
+  def prefix
+    blog.custom_url_shortener.present? ? blog.custom_url_shortener : blog.base_url
   end
 
   private
 
   def too_long?(message)
     uris = URI.extract(message, ['http', 'https', 'ftp'])
+    uris << prefix
     uris.each do |uri|
       case uri.split(":")[0]
-      when "http"
-        payload = "-" * TWITTER_HTTP_URL_LENGTH
       when "https"
         payload = "-" * TWITTER_HTTPS_URL_LENGTH
       when "ftp"
         payload = "-" * TWITTER_FTP_URL_LEGTH
+      else
+        payload = "-" * TWITTER_HTTP_URL_LENGTH
       end
       message = message.gsub(uri, payload)
     end
-    message.length > twitter_message_max_length
+    message.length > 140
   end
 end

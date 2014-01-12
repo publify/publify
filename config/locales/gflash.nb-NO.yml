@@ -1,0 +1,85 @@
+nb-NO:
+  gflash:
+    titles:
+      notice: "Notice"
+      success: "Success"
+      warning: "Warning"
+      error: "Error"
+      progress: "Progress"
+    accounts:
+      login:
+        success: "Logget inn"
+        error: "Feil under innlogging"
+      recover_password: 
+        notice: "En epost er sendt til din adresse med ditt nye passord"
+        error: "Ojsann, noe gikk galt"
+      logout:
+        notice: "Logget ut"
+    admin:
+      sidebar:
+        index:
+          error: "Noe gikk galt. Kanskje en av dine sidekolonner mangler og du burde reinstallere den eller fjerne den manuelt"
+      redirects:
+        destroy:
+          success: "Omdirigering slettet"
+      feedback:
+        bulkops:
+          error: "Ikke implementert"
+          success_deleted_spam: "All spam er slettet"
+        update:
+          success: "Kommentar oppdatert"
+        create:
+          success: "Kommentar opprettet"
+        destroy:
+          success: "Slettet"
+          error: "Ikke funnet"
+      dashboard:
+        index:
+          error: "Du bruker en gammel versjon av Publify. Du bør oppgradere snarest. Last ned og installer <a href='http://publify.co/stable.tgz'>den siste versjonan av Publify</a>"
+          warning: "Det finnes en ny versjon av Publify som kan inneholde viktige feilrettelser. Hva med å oppgradere til <a href='http://publify.co/stable.tgz'>den siste versjonan av Publify</a> ?"
+          notice: "Det finnes en ny versjon av Publify. Hva med å oppgradere til <a href='http://publify.co/stable.tgz'>den siste versjonan av Publify</a> ?"
+      content:
+        create:
+          success: "Artikkel opprettet"
+        update:
+          success: "Artikkel oppdatert"
+          error: "Du har ikke tillatelse til å utføre denne handlingen"
+        edit:
+          error: "Du har ikke tillatelse til å utføre denne handlingen"
+        autosave:
+          success: "Article was successfully saved"
+      settings:
+        update:
+          success: "Innstillinger oppdatert"
+      seo:
+        update:
+          success: "Innstillinger oppdatert"
+      cache:
+        index:
+          success: "Cache er kostet rent (sweeped)"
+          error: "Cache kunne ikke rengjøres"
+      pages:
+        new:
+          success: "Side opprettet"
+        edit:
+          success: "Side oppdatert"
+      profiles:
+        index:
+          success: "Bruker oppdatert"
+      resources:
+        upload:
+          success: "Lastet opp fil"
+          warning: "Kan ikke laste opp"
+        destroy:
+          notice: "Slettet"
+      tags:
+        edit:
+          success: "Tag oppdatert" 
+      themes:
+        switchto:
+          success: "Tema endret"
+      users:
+        new:
+          success: "Bruker opprettet"
+        edit:
+          success: "Bruker oppdatert"

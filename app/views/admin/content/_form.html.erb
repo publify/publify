@@ -3,209 +3,190 @@
 <div id="autosave"><%= hidden_field_tag("article[id]", @article.id) if @article.present? %></div>
 <div id="article_keywords_auto_complete" class="auto_complete"></div>
 
-<h2 class='page-header'>
-  <i class='icon-large icon-article-new'></i>
-  <%= _("#{controller.action_name.to_s.capitalize} article") %>
-  <span class='pull-right'>
-    <span id='preview_link'>
-      <%= link_to(t(".preview"), {controller: '/articles', action: 'preview', id: @article.id}, {target: 'new', class: 'btn'}) if @article.id %>
-    </span>
-    <input id='save_draft' type="submit" value="<%= t('.save_as_draft') %>" name="article[draft]" class='btn' />
-    <%= submit_tag(t(".publish"), :class => 'btn btn-primary') %>
-  </span>
-</h2>
+<div class='row'>
+  <div class='col-md-12'>
+    <div class='pull-right'>
+      <%= link_to(t('.cancel'), {action: 'index'}, {class: 'btn btn-default'}) %>
+      <span id='preview_link'>
+        <%= link_to(t(".preview"), {controller: '/articles', action: 'preview', id: @article.id}, {target: 'new', class: 'btn btn-default'}) if @article.id %>
+      </span>
+      <input id='save_draft' type="submit" value="<%= t('.save_as_draft') %>" name="article[draft]" class='btn btn-default' />
+      <!-- Button trigger modal -->
+      <button class="btn btn-success" data-toggle="modal" data-target="#publishOptions">
+        <%= controller.action_name == "new" ? t(".publish") : t(".save") %>
+      </button>    
+    </div>  
+  </div>
+</div>
 
-<%= error_messages_for 'article' %>
-<div>
-  <div>
-    <div>
-      <div class='span9'>
-        <div>
-          <%= text_field 'article', 'title', :class => 'input-block-level', :placeholder => t('.title') %>
-        </div>
-        <%= render('images', { :images => @images}) unless @images.empty? %>
+<div class='row'>
+  <div class='col-md-8 col-md-offset-2' id="error-message-article">
+    <%= error_messages_for 'article' %>        
+  </div>
+</div>
 
-        <div id="editor">
-          <i class='icon icon-media'></i> <span id='image-link'>
-            <a href="#" onclick="Element.toggle('carousel-wrapper'); return false"><%= t('.images')%></a>
-          </span>
-          <div id='quicktags'>
-            <script type="text/javascript">edToolbar('article_body_and_extended', '<%= @article.text_filter %>');</script>
-          </div>
-
-          <div id='simple_editor'>
-            <%= text_area('article', 'body_and_extended', {:class => 'input-block-level', :height => '360px'}) %>
-            <%= render 'admin/shared/macros' %>
-          </div>
-        </div>
-
-        <div class='separator'>
-          <h4><%= t(".excerpt") %></h4>
-          <%= text_area 'article', 'excerpt', {:height => '150', :class => 'input-block-level', :rows => '5'} %>
-          <span class='help-block'><%=t(".excerpt_explaination") %></span>
-        </div>
-
-        <div class='well'>
-          <fieldset>
-            <legend><%= t(".publish_settings") %></legend>
-            <div class='control-group'>
-              <p><%= t(".status") %>: <strong><%= _(@article.state.to_s.downcase) %></strong>
-              <a href="#" class="extoggle status"><%= t('.change')%></a>
-              </p>
-              <div id='status' style='display: none;'>
-                <label for="article_published" class='checkbox'>
-                  <%= check_box 'article', 'published'  %>
-                  <%= t(".published") %>
-                </label>
-                <p><span class='btn btn-mini'>
-                  <a href="#" class="extoggle status">OK</a>
-                </span></p>
-              </div>
-            </div>
-            <div class='control-group'>
-              <p><%= t(".allowed_comments_and_trackbacks", allow_comment: content_tag(:strong, get_feedback_status(@article.allow_comments)), allow_trackback: content_tag(:strong, get_feedback_status(@article.allow_pings))) %>
-            <a href="#" class="extoggle conversation" ><%= t('.change')%></a>
-            <div id='conversation' style='display: none'>
-              <label for="article_allow_pings" class='checkbox'>
-                <%= check_box 'article', 'allow_pings' %>
-                <%= t(".allow_trackbacks") %>
-              </label>
-              <label for="article_allow_comments" class='checkbox'>
-                <%= check_box 'article', 'allow_comments' %>
-                <%= t(".allow_comments") %>
-              </label>
-              <p><span class='btn btn-mini'>
-                <a href="#" class="extoggle conversation"><%= t('.ok')%></a>
-              </span></p>
-            </div>
-          </div>
-          <div class='control-group'>
-            <p><%= t(".published") %> <strong><%= publish_now_or_already_published @article %></strong>
-            <a href="#" class="extoggle publish" ><%= t('.change')%></a>
-            </p>
-            <div id='publish' class='input-append' style='display: none;'>
-              <%= text_field 'article', 'published_at', :class => "datepicker" %>
-              <p><span class="btn btn-mini">
-            <a href="#" class="extoggle status"><%= t('.ok')%></a>
-              </span></p>
-            </div>
-
-          </div>
-          <div class='control-group'>
-            <p><%= t(".visibility") %>: <strong><%= @article.password.nil? || @article.password.empty? ? t(".public") : t(".protected") %></strong>
-            <a href="#" class="extoggle visibility" ><%= t('.change')%></a>
-            </p>
-            <div id='visibility' style='display: none'>
-              <label for="article_password"><%= t(".password") %>
-    <div class='separator'>
-      <h4><%= _("Excerpt") %></h4>
-      <%= text_area 'article', 'excerpt', {:height => '150', :class => 'input-block-level', :rows => '5'} %>
-      <span class='help-block'><%=_("Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself") %></span>
+<div class='row'>
+  <div class='col-md-2' id='quicktags-block'>
+    <div id='quicktags' class='pull-right'>
+      <script type="text/javascript">edToolbar('article_body_and_extended', '<%= @article.text_filter %>');</script>
+      <%#= render 'admin/shared/macros' %>
     </div>
-    
-    <div class='well'>
-      <fieldset>
-        <legend><%= _("Publish settings") %></legend>
-        <div class='control-group'>
-          <p><%= _("Status") %>: <strong><%= _(@article.state.to_s.downcase) %></strong> <%= toggle_element 'status' %></p>
-          <div id='status' class="collapse">
-            <label for="article_published" class='checkbox'>
-              <%= check_box 'article', 'published'  %>
-              <%= _("Published") %>
-            </label>
-            <%= submit_tag 'Ok', :class => "old_ok_button status" %>
-            <%#= ok_button('status') %>
-          </div>
-        </div>
-        <div class='control-group'>
-          <p><%= _("Comments are %s and trackbacks are %s", content_tag(:strong, get_feedback_status(@article.allow_comments)), content_tag(:strong, get_feedback_status(@article.allow_pings))) %>
-          <%= toggle_element 'conversation' %></p>
-          <div id='conversation' class="collapse">
-            <label for="article_allow_pings" class='checkbox'>
-              <%= check_box 'article', 'allow_pings' %>
-              <%= _("Allow trackbacks") %>
-            </label>
-            <label for="article_allow_comments" class='checkbox'>
-              <%= check_box 'article', 'allow_comments' %>
-              <%= _("Allow comments") %>
-            </label>
-            <p><span class='btn btn-mini'><%= toggle_element 'conversation', "OK" %></span></p>
-          </div>
-        </div>
-        <div class='control-group'>
-          <p><%= _("Published") %> <strong><%= publish_now_or_already_published @article %></strong> <%= toggle_element 'publish' %></p>
-          <div id='publish' class='collapse input-append'>
-            <%= text_field 'article', 'published_at', :class => 'datepicker' %>
-            <%= submit_tag 'Ok', :class => "old_ok_button publish" %>
-            <%#= ok_button('publish') %>
-          </div>
-          
-        </div>
-        <div class='control-group'>
-          <p><%= _("Visibility") %>: <strong><%= @article.password.nil? || @article.password.empty? ? _("public") : _("protected") %></strong> <%= toggle_element 'visibility' %></p>
-          <div id='visibility' class="collapse">
-            <label for="article_password"><%= _("Password:") %>
-              <%= password_field :article, :password, :class => 'span10' %>
-            </label>
-            <p><span class="btn btn-mini">
-            <a href="#" class="extoggle status"><%= t('.ok')%></a>
-            </span></p>
-          </div>
-        </div>
-        <div class='control-group'>
-          <%= t(".permalink") %>:
-          <a href="#" class="extoggle permalink"><%= t('.change')%></a>
-          <div class='inputs-list' id='permalink' style='display: none'>
-            <%= text_field 'article', 'permalink', {class: 'span10'} %>
-            <p><span class="btn btn-mini">
-            <a href="#" class="extoggle status"><%= t('.ok')%></a>
-            </span></p>
-          </div>
-        </div>
-        <div class='control-group'>
-          <%= t(".article_filter") %>: <strong id='text_filter_placeholder'><%= _("#{@article.text_filter.description}") %></strong>
-          <a href="#" class="extoggle text_filter"><%= t('.change')%></a>
+  </div>
+  
+  <div class='col-md-8'>
+    <%= text_field 'article', 'title', :class => 'form-control', :placeholder => t('.title') %>  
+    <div id="editor">
+      <%= text_area('article', 'body_and_extended', {:class => 'form-control ', :height => '360px', placeholder: t('.type_your_post'), :"data-widearea" => "enable"}) %>
+      <%#= render 'admin/shared/macros' %>      
+    </div> <!-- End of editor -->
+  </div>
+</div>
 
-          <div id='text_filter' style='display: none'>
-            <select name="article[text_filter]" id="article_text_filter">
-              <%= options_for_select text_filter_options, @article.text_filter %>
-            </select>
-            <p><span class="btn btn-mini">
-              <a href="#" onclick="Element.toggle('status'); return false"><%= t('.ok')%></a>
-            </span></p>
-          </div>
-        </div>
-      </fieldset>
-    </div>
-    <div class='form-actions'>
-      <div class='pull-right'>
-        <%- if @article.id.present? && @article.state.to_s.downcase != 'draft' %>
-          <%- if current_user.admin? || current_user.id == @article.user_id %>
-            <%= link_to(t(".delete"), { action: 'destroy', id: @article.id }, data: {confirm: t(".are_you_sure")}, method: :post, class: 'btn danger', title: t(".delete_content")) %>
-          <%- end %>
-        <%- end %>
-        <span id='destroy_link'><%= link_to_destroy_draft @article %></span>
-        <input id='save_draft' type="submit" value="<%= t('.save_as_draft') %>" name="article[draft]" class='btn info' />
-        <%= submit_tag(t(".publish"), :class => 'btn btn-primary') %>
+<!-- Modal -->
+<div class="modal fade" id="publishOptions" tabindex="-1" role="dialog" aria-labelledby="publishOptions" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel"><%= t('.publish') %>
+        <%= submit_tag(t(".publish"), :class => 'btn btn-success pull-right') %>&nbsp;
+        </h2>
       </div>
-    </div>
+      <div class="modal-body">
+        <div class='well'>
+          <h4><%= t(".tags") %></h4>
+          <div class='form-group'>
+            <%= text_field 'article', 'keywords', {:autocomplete => 'off', :class => 'form-control'} %>
+          </div>
+          <p class='alert alert-warning'><%=t(".tags_explaination") %></p>
+          <%#= auto_complete_field 'article_keywords', { :url => { :action => "auto_complete_for_article_keywords"}, :method => 'get', :tokens => ','}%>		
+  
+        </div>
+        <% post_types = @post_types || [] %>
+        <%- if post_types.size.zero? %>
+          <%= hidden_field_tag "article[post_type]", "read" %>
+        <%- else %>
+          <div class='well'>
+            <h4><%= t(".article_type") %></h4>
+            <%= select :article, :post_type, post_types.map {|pt| [pt.name, pt.permalink]}, {include_blank: t('.default')} %>
+            </div>
+          <%- end %>
+          
+            <!-- Start of publish settings -->
+            <div class='well'>
+              <fieldset>
+                <legend><%= t(".publish_settings") %></legend>
+                <!-- Start of permalink box -->
+                <div class='control-group'>
+                  <p>
+                  <%= t(".permalink") %>: 
+                  <%= toggle_element('permalink') %>
+                  </p>
+                  <div id='permalink' class='collapse'>
+                    <div class='form-group'>
+                      <%= text_field 'article', 'permalink', {:autocomplete => 'off', :class => 'form-control'} %>
+                    </div>
+                    <p>
+                      <span class='btn btn-mini btn-default'>
+                        <%= toggle_element('permalink', t('.ok')) %>
+                      </span>
+                    </p>
+                  </div>
+                </div>
+                <!-- End of permalink box -->
+                <!-- Start of status -->
+                <div class='control-group'>
+                  <p>
+                  <%= t(".status") %>: <strong><%= _(@article.state.to_s.downcase) %></strong>
+                  <%= toggle_element('status') %>
+                  </p>
+                  <div id='status' class='collapse'>
+                    <label for="article_published" class='checkbox'>
+                      <%= check_box 'article', 'published'  %>
+                      <%= t(".published") %>
+                    </label>
+                    <p>
+                    <span class='btn btn-mini btn-default'>
+                      <%= toggle_element('status', t('.ok')) %>
+                    </span>
+                    </p>
+                  </div>
+                </div>
+                <!-- End of status -->
 
-  </div>
-</div>
+                <!-- Start of feedback settings -->
+                <div class='control-group'>
+                  <p>
+                  <%= t(".allowed_comments_and_trackbacks", allow_comment: content_tag(:strong, t(".allow_comments_status", count: @article.allow_comments ? 1 : 0)), allow_trackback: content_tag(:strong, t('.allow_pings_status', count: @article.allow_pings ? 1 : 0))) %>
+                  <%= toggle_element('conversation') %>
+                  </p>
+                  <div id='conversation' class='collapse'>
+                    <label for="article_allow_pings" class='checkbox'>
+                      <%= check_box 'article', 'allow_pings' %>
+                      <%= t(".allow_trackbacks") %>
+                    </label>
+                    <label for="article_allow_comments" class='checkbox'>
+                      <%= check_box 'article', 'allow_comments' %>
+                      <%= t(".allow_comments") %>
+                    </label>
+                    <p>
+                    <span class='btn btn-mini btn-default'>
+                      <%= toggle_element('conversation', t('.ok')) %>
+                    </span>
+                    </p>
+                  </div>
+                </div>
+                <!-- End of feedback settings -->
 
-<div class='span3'>
-  <div class='well'>
-    <h4><%= t(".categories") %></h4>
-    <%= render 'categories' %>
-  </div>
-  <div class='well'>
-    <h4><%= t(".tags") %></h4>
-    <div class='class'>
-      <%= text_field 'article', 'keywords', {:autocomplete => 'off', :class => 'input-block-level'} %>
-      <p class='alert alert-warning'><%=t(".tags_explaination") %></p>
-    </div>
-    <%#= auto_complete_field 'article_keywords', { :url => { :action => "auto_complete_for_article_keywords"}, :method => 'get', :tokens => ','}%>		
-    
-  </div>
-  <%= get_post_types %>
-</div>
+                <!-- Start of date publish -->
+                <div class='control-group'>
+                  <p>
+                  <%= t(".published") %> 
+                  <strong>
+                    <%- if @article.published %>
+                      <%= display_date_and_time(@article.published_at) %>
+                  <%- else %>
+                      <%= t(".now") %>
+                  <%- end %>
+                  </strong>
+                  <%= toggle_element('publish') %>
+                  </p>
+                  <div id='publish' class='collapse'>
+                    <%= text_field 'article', 'published_at', :class => "datepicker" %>
+                    <p>
+                    <span class="btn btn-mini btn-default">
+                      <%= toggle_element('publish', t('.ok')) %>
+                    </span>
+                    </p>
+                  </div>
+                </div>
+                <!-- End of date publish -->
+
+                <!-- Start of password block -->
+                <div class='control-group'>
+                  <p>
+                  <%= t(".visibility") %>: <strong><%= @article.password.nil? || @article.password.empty? ? t(".public") : t(".protected") %></strong>
+                  <%= toggle_element('visibility') %>
+                  </p>
+                  <div id='visibility' class='collapse'>
+                    <label for="article_password"><%= t(".password") %></label>
+                    <%= text_field 'article', 'published_at', :class => "form-control" %>
+                    <p>
+                    <span class="btn btn-mini btn-default">
+                      <%= toggle_element('visibility', t('.ok')) %>
+                    </span>
+                    </p>
+
+                  </div>
+                </div>
+                <!-- End of password block -->
+              </fieldset>
+            </div>
+            <!-- End of publish settings -->           
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal"><%= t('.cancel') %></button>
+            <%= submit_tag(t(".publish"), :class => 'btn btn-success') %>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->

@@ -4,72 +4,37 @@ describe Admin::SettingsController do
   render_views
 
   before(:each) do
-    FactoryGirl.create(:blog)
-    #TODO Remove this line after remove FIXTURE
-    Profile.delete_all
-    alice = FactoryGirl.create(:user, :login => 'alice', :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN))
+    create(:blog)
+    alice = create(:user_admin, :login => 'alice')
     request.session = { :user => alice.id }
   end
 
   describe "#index" do
-    before(:each) do
-      get :index
-    end
-  
-    it 'should render index' do  
-      response.should render_template('index')
-    end
+    before(:each) { get :index }
+    it { expect(response).to render_template('index') }
   end
 
   describe 'write action' do
-    before(:each) do
-      get :write
-    end
-  
-    it 'should be success' do
-      assert_template 'write'
-    end    
+    before(:each) { get :write }
+    it { expect(response).to render_template('write') }
   end
 
   describe 'display action' do
-    before(:each) do
-      get :display
-    end
-  
-    it 'should be success' do
-      assert_template 'display'
-    end    
+    before(:each) { get :display }
+    it { expect(response).to render_template('display') }
   end
 
   describe 'feedback action' do
-    before(:each) do
-      get :feedback
-    end
-  
-    it 'should be sucess' do
-      assert_template 'feedback'
-    end    
+    before(:each) { get :feedback }
+    it { expect(response).to render_template('feedback') }
   end
 
   describe 'update database action' do
-    before(:each) do
-      get :update_database
-    end
-  
-    it 'should be sucess' do
-      assert_template 'update_database'
-    end    
-  end
-
-  describe 'redirect action' do
-    it 'should be success' do
-      get :redirect
-      assert_response :redirect, :controller => 'admin/settings', :action => 'index'
-    end
+    before(:each) { get :update_database }
+    it { expect(response).to render_template('update_database') }
   end
 
   describe 'update action' do
-
     def good_update(options={})
       post :update, {"from"=>"seo",
         "authenticity_token"=>"f9ed457901b96c65e99ecb73991b694bd6e7c56b",

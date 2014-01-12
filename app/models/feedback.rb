@@ -6,42 +6,39 @@ class Feedback < ActiveRecord::Base
   belongs_to :article
 
   include PublifyGuid
-
   include Stateful
   include ContentBase
-
-  after_save :invalidates_cache?
-  after_destroy lambda { |c|  c.invalidates_cache?(true) }
+  include States
 
   validate :feedback_not_closed, :on => :create
 
   before_create :create_guid, :article_allows_this_feedback
-  before_save :correct_url
-  after_save :post_trigger
-  after_save :report_classification
+  before_save :correct_url, :before_save_handler
+  after_save :post_trigger, :report_classification, :invalidates_cache?
+  after_initialize :after_initialize_handler
+  after_destroy lambda { |c|  c.invalidates_cache?(true) }
+
+  default_scope order('created_at DESC')
 
   scope :ham, where("state in ('presumed_ham', 'ham')")
+  scope :spam, where(state: 'spam')
   scope :published_since, lambda {|time| ham.where('published_at > ?', time)}
+  scope :presumed_ham, where(state: 'presumed_ham')
+  scope :presumed_spam, where(state: 'presumed_spam')
+  scope :unapproved, where(status_confirmed: false)
 
-  has_state(:state,
-            :valid_states => [:unclassified, #initial state
-                              :presumed_spam, :just_marked_as_spam, :spam,
-                              :just_presumed_ham, :presumed_ham, :just_marked_as_ham, :ham],
+ has_state(:state,
+            :valid_states => [:unclassified, :presumed_spam, :just_marked_as_spam, :spam, :just_presumed_ham, :presumed_ham, :just_marked_as_ham, :ham],
             :handles => [:published?, :status_confirmed?, :just_published?,
                          :mark_as_ham, :mark_as_spam, :confirm_classification,
                          :withdraw,
                          :before_save_handler, :after_initialize_handler,
                          :send_notifications, :post_trigger, :report_classification])
 
-  before_save :before_save_handler
-  after_initialize :after_initialize_handler
-
-  include States
-
-  def self.default_order
-    'created_at ASC'
+  def self.paginated(page, per_page)
+    page(page).per(per_page)
   end
-
+ 
   def self.comments
     Comment.where(published: true).order('created_at DESC')
   end

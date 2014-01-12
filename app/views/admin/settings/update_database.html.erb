@@ -1,19 +1,22 @@
 <%- content_for :page_heading do %>
-  <i class="icon-large icon-settings"></i><h2 class="page-title"><%= _("Database migration") %></h2>
+  <h2>
+    <i class="glyphicon glyphicon-large glyphicon-cog"></i>
+    <%= t(".database_migration") %>
+  </h2>
 <% end %>
 
-<div class='alert alert-message warning'>
-  <h3><%= _("Information")%></h3>
+<div class='alert alert-warning'>
+  <h3><%= t(".information")%></h3>
   <p>
-    <strong><%= _("Current database version")%>:</strong>
+    <strong><%= t(".current_database_version")%>:</strong>
     <%= @current_version %>
   </p>
   <% unless @needed_migrations.blank? %>
   <p>
-    <strong><%= _("Migrations")%>:</strong>
-    <%= _("There are %d migration(s) pending.", @needed_migrations.count) %>
+    <strong><%= t(".migrations")%>:</strong>
+    <%= t(".migration_pending", count: @needed_migrations.count) %>
   </p>
-  <p><%= _("Needed migrations")%>:</p>
+  <p><%= t(".needed_migrations")%>:</p>
   <ul>
     <% for migration in @needed_migrations %>
     <li><%= migration.name %></li>
@@ -24,11 +27,11 @@
     <%= form_tag :action => 'migrate' do %>
     <% if @needed_migrations.blank? %>
     <div class='info'>
-      <p><strong><%= _("You are up to date!")%></strong></p>
+      <p><strong><%= t(".you_are_up_to_date")%></strong></p>
     </div>
     <% else %>
-    <%= save(_("Update database now")) %>
-    <small><%= _("may take a moment")%></small>
+    <%= save(t(".update_database_now")) %>
+    <small><%= t(".may_take_a_moment")%></small>
     <% end %>
     <% end %>
   </div>

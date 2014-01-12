@@ -1,0 +1,85 @@
+pt-BR:
+  gflash:
+    titles:
+      notice: "Notice"
+      success: "Success"
+      warning: "Warning"
+      error: "Error"
+      progress: "Progress"
+    accounts:
+      login:
+        success: "Logado com sucesso"
+        error: "Falha ao tentar se logar"
+      recover_password: 
+        notice: "Sua nova senha foi enviada com sucesso para o seu e-mail"
+        error: "Opps, alguma coisa errada acaba de acontecer"
+      logout:
+        notice: "Deslogado com sucesso"
+    admin:
+      sidebar:
+        index:
+          error: "Parece que algo deu errado. Talvez esteja faltando alguma sidebar e você precise reinstalar ou remove-las manualmente"
+      redirects:
+        destroy:
+          success: 'Redirection was successfully deleted.'
+      feedback:
+        bulkops:
+          error: "Não implementado"
+          success_deleted_spam: "Todos os spans foram deletados"
+        update:
+          success: "Comentário atualizado com sucesso"
+        create:
+          success: "Comentário criado com sucesso"
+        destroy:
+          success: "Deletado"
+          error: "Não encontrado"
+      dashboard:
+        index:
+          error: "You are late from at least one major version of Publify. You should upgrade immediately. Download and install <a href='http://publify.co/stable.tgz'>the latest Publify version</a>"
+          warning: "There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
+          notice: "There's a new version of Publify available. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
+      content:
+        create:
+          success: "Artigo criado com sucesso"
+        update:
+          success: "Artigo atualizado com sucesso"
+          error: "Erro, você não tem permissão para executar essa tarefa"
+        edit:
+          error: "Erro, você não tem permissão para executar essa tarefa"
+        autosave:
+          success: "Article was successfully saved"
+      settings:
+        update:
+          success: "Config atualizada."
+      seo:
+        update:
+          success: "Config atualizada."
+      cache:
+        index:
+          success: "Cache has been sweeped"
+          error: "Cache could not be cleared"
+      pages:
+        new:
+          success: "Página criada com sucesso"
+        edit:
+          success: "Página atualizada com sucesso"
+      profiles:
+        index:
+          success: "Usuário atualizado com sucesso"
+      resources:
+        upload:
+          success: "Arquivo enviado"
+          warning: "Incapaz de fazer enviar o arquivo"
+        destroy:
+          notice: "Deletado"
+      tags:
+        edit:
+          success: "Tag atualizada com sucesso"
+      themes:
+        switchto:
+          success: "Tema alterado com sucesso"
+      users:
+        new:
+          success: "Usuário criado com sucesso"
+        edit:
+          success: "Usuário atualizado com sucesso"

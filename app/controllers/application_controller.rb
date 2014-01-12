@@ -30,11 +30,6 @@ class ApplicationController < ActionController::Base
     self.class.view_paths = ::ActionController::Base.view_paths.dup.unshift("#{::Rails.root.to_s}/themes/#{this_blog.theme}/views")
   end
 
-  def error(message = "Record not found...", options = { })
-    @message = message.to_s
-    render 'articles/error', :status => options[:status] || 404
-  end
-
   def fire_triggers
     Trigger.fire
   end
@@ -47,7 +42,6 @@ class ApplicationController < ActionController::Base
     elsif I18n.available_locales.include?(this_blog.lang[0..1].to_sym)
       I18n.locale = this_blog.lang[0..1]
     end
-    # _("Localization.rtl")
   end
 
   def reset_local_cache

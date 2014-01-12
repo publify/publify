@@ -1,103 +1,124 @@
 <%- content_for :page_heading do %>
-  <i class="icon-large icon-settings"></i><h2 class="page-title"><%= _("Feedback settings") %></h2>
+  <h2>
+    <i class="glyphicon glyphicon-large glyphicon-cog"></i>
+    <%= t(".feedback_settings") %>
+  </h2>
 <% end %>
 
-<%= form_tag :action => 'update' do %>
+<%= form_tag action: 'update' do %>
+  <fieldset class='form-horizontal'>
+    <legend><%= t(".feedback")%></legend>
+    <div class='form-group'>
+      <label class='control-label col-sm-2'><%= t(".comments")%></label>
+      <div class='col-sm-5'>
+        <div class='checkbox'>
+          <label for="setting_default_allow_comments">
+            <%= check_box(:setting, :default_allow_comments)%>
+            <%= t(".enable_comments_by_default")%>
+          </label>
+        </div>
+        <div class='checkbox'>
+          <label for="setting_default_moderate_comments"><%= t(".enable_feedback_moderation")%>
+          <%= check_box(:setting, :default_moderate_comments)%>
+          </label>
+          <small class='help-block'><%= t(".explain_feedback_moderation")%></small>
+        </div>
+      </div>
+    </div>
+    <div class='form-group'>
+      <label class='control-label col-sm-2'><%= t(".trackbacks") %></label>
+      <div class='col-sm-5'>
+        <div class='checkbox'>
+          <label for="setting_default_allow_pings">
+            <%= check_box(:setting, :default_allow_pings)%>
+            <%= t(".enable_trackbacks_by_default")%>
+          </label>
+        </div>
+        <div class='checkbox'>
+          <label for="setting_global_pings_disable">
+            <%= check_box(:setting, :global_pings_disable)%>
+            <%= t(".disable_trackbacks_sitewide")%>
+          </label>
+          <small class='help-block'><%= t(".explain_disable_trackbacks")%></small>
+        </div>
+      </div>
+    </div>
+    <div class='form-group'>
+      <label class='control-label col-sm-2' for="comment_text_filter"><%= t(".comments_filter")%></label>
+      <div class='col-sm-5'>
+        <select name="setting[comment_text_filter]" id="comment_text_filter" class='form-control'>
+          <%= options_for_select text_filter_options, TextFilter.find_by_name(this_blog.comment_text_filter) %>
+        </select>
+      </div>
+    </div>
+    <div class='form-group'>
+      <label class='control-label col-sm-2' for="setting_plugin_avatar"><%= t(".avatars_provider")%></label>
+      <div class='col-sm-5'>
+        <select name="setting[plugin_avatar]" id="setting_plugin_avatar" class='form-control'>
+          <%= options_for_select plugin_options(:avatar), this_blog.plugin_avatar %>
+        </select>
+      </div>
+    </div>
+  </fieldset>
 
   <fieldset class='form-horizontal'>
-    <legend><%= _("Feedback")%></legend>
-    <div class='control-group'>
-      <label class='control-label'><%= _("Comments")%></label>
-      <div class='controls'>
-        <label class='checkbox' for="setting_default_allow_comments"><%= _("Enable comments by default")%>
-        <%= check_box(:setting, :default_allow_comments)%>
-      </label>
-      <label class='checkbox' for="setting_default_moderate_comments"><%= _("Enable feedback moderation")%>
-      <%= check_box(:setting, :default_moderate_comments)%>
-      <span class='help-block'><%= _("You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it.")%></span>
-    </label>
-    <label class='checkbox' for="setting_link_to_author"><%= _("Show your email address") %>
-    <%= check_box(:setting, :link_to_author)%>
-  </label>
-</div>
+    <legend><%= t(".spam")%></legend>
+    <div class='form-group'>
+      <label class='control-label col-sm-2'><%= t(".spam_protection") %></label>
+      <div class='col-sm-5'>
+        <div class='checkbox'>
+          <label for="setting_sp_global"><%= t(".enable_spam_protection")%>
+          <%= check_box(:setting, :sp_global)%>
+          </label>
+          <small class='help-block'><%= t(".explain_spam_protection")%>.</small>
+        </div>
+      </div>
     </div>
-    <div class='control-group'>
-      <label class='control-label'><%= _("Trackbacks") %></label>
-      <div class='controls'>
-        <label class='checkbox' for="setting_default_allow_pings"><%= _("Enable Trackbacks by default")%>
-        <%= check_box(:setting, :default_allow_pings)%>
-      </label>
-      <label class='checkbox' for="setting_global_pings_disable"><%= _("Disable trackbacks site-wide")%>
-      <%= check_box(:setting, :global_pings_disable)%>
-      <span class='help-block'><%= _("This setting allows you to disable trackbacks for every article in your blog.  It won't remove existing trackbacks, but it will prevent any further attempt to add a trackback anywhere on your blog.")%></span>
-    </label>
-
-  </div>
-</div>
-<div class='control-group'>
-  <label class='control-label' for="comment_text_filter"><%= _("Comments filter")%></label>
-  <div class='controls'>
-    <select name="setting[comment_text_filter]" id="comment_text_filter">
-      <%= options_for_select text_filter_options, TextFilter.find_by_name(this_blog.comment_text_filter) %>
-    </select>
-  </div>
-</div>
-<div class='control-group'>
-  <label class='control-label' for="setting_plugin_avatar"><%= _("Avatars provider")%></label>
-  <div class='controls'>
-    <select name="setting[plugin_avatar]" id="setting_plugin_avatar">
-      <%= options_for_select plugin_options(:avatar), this_blog.plugin_avatar %>
-    </select>
-  </div>
-</div>
-</fieldset>
-
-<fieldset class='form-horizontal'>
-  <legend><%= _("Spam")%></legend>
-  <div class='control-group'>
-    <label class='control-label'><%= _("Spam protection") %></label>
-    <div class='controls'>
-      <label class='checkbox' for="setting_sp_global"><%= _("Enable spam protection")%>
-      <%= check_box(:setting, :sp_global)%>
-      <span class='help-block'><%= _("Enabling spam protection will make Publify compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots")%>.</span>
-    </label>
-  </div>
-</div>
-<div class='control-group'>
-  <label class='control-label' for="setting_sp_akismet_key"><%= _("Akismet Key")%></label>
-  <div class='controls'>
-    <%= text_field(:setting, :sp_akismet_key, {:class => 'span6'}) %>
-    <span class='help-block'><%= _("Publify can (optionally) use the %s spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here", '<a href="http://akismet.com">Akismet</a>')%>.</span>
-  </div>
-</div>
-<div class='control-group'>
-  <label class='control-label' for="setting_sp_article_auto_close"><%= _("Disable comments after")%></label>
-  <div class='controls'>
-    <div class='input-append'>
-      <%= text_field(:setting, :sp_article_auto_close, {:size => 4, :class => 'span3'})%><span class='add-on'><%= _("days") %></span>
+    <div class='form-group'>
+      <label class='control-label col-sm-2' for="setting_sp_akismet_key"><%= t(".askimet_key")%></label>
+      <div class='col-sm-5'>
+        <%= text_field(:setting, :sp_akismet_key, {:class => 'form-control'}) %>
+        <small class='help-block'><%= t(".explain_spamfiltering") %>.</small>
+      </div>
     </div>
-    <span class='help-block'><%= _("Set to 0 to never disable comments")%>.</span>
-  </div>
-</div>
-<div class='control-group'>
-  <label class='control-label' for="setting_sp_url_limit"><%= _("Max Links")%></label>
-  <div class='controls'>
-    <%= text_field(:setting, :sp_url_limit, {:size => 4, :class => 'span1'})%>
-    <span class='help-block'><%= _("Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them")%>.
-      <%= _("Set to 0 to never reject comments")%>.</span>
-  </div>
-</div>
-<div class='control-group'>
-  <label class='control-label'><%= _("Captcha") %></label>
-  <div class='controls'>
-    <label class='checkbox' for="setting_use_recaptcha"><%= _("Enable reCaptcha") %>
-    <%= check_box(:setting, :use_recaptcha)%>
-    <span class='help-block'><%= _("Remember to set your reCaptcha keys inside config/initializers/recaptcha.rb")%></span>
-  </label>
-</div>
-  </div>
-</fieldset>
+    <div class='form-group'>
+      <label class='control-label col-sm-2' for="setting_sp_article_auto_close"><%= t(".disable_comments_after")%></label>
+      <div class='col-sm-1'>
+        <%= text_field(:setting, :sp_article_auto_close, {:size => 4, :class => 'form-control'})%>
+      </div>
+      <div class='pull-left'>
+        <span class='help-block'><%= t(".days") %></span>
+      </div>
+      <div class='col-sm-10'>
+        <small class='help-block'><%= t(".set_to_0_to_never_disable_comments")%>.</small>
+      </div>
+    </div>
+    <div class='form-group'>
+      <label class='control-label col-sm-2' for="setting_sp_url_limit"><%= t(".max_links")%></label>
+      <div class='col-sm-1'>
+        <%= text_field(:setting, :sp_url_limit, {:size => 4, :class => 'form-control'})%>
+      </div>
+      <div class='col-md-offset-2 col-sm-10'>
+        <small class='help-block'><%= t(".explain_reject_comments")%>. <%= t(".set_to_0_to_never_reject_comments")%>.</small>
+      </div>
+    </div>
+    <div class='form-group'>
+      <label class='control-label col-sm-2'><%= t(".captcha") %></label>
+      <div class='col-sm-5'>
+        <div class='checkbox'>
+          <label for="setting_use_recaptcha"><%= t(".enable_recaptcha") %>
+          <%= check_box(:setting, :use_recaptcha)%>
+          </div>
+          <small class='help-block'><%= t(".remember_to_set_your_recaptcha")%></small>
+        </label>
+      </div>
+    </div>
+  </fieldset>
 
-<%= hidden_field_tag 'from', 'feedback' %>
-<%= save_settings %>
+  <%= hidden_field_tag 'from', 'feedback' %>
+  <div class='form-group'>
+    <%= link_to(t(".cancel"), {action: 'index'}, class: 'btn') %>
+    <%= t(".or") %>
+    <%= submit_tag(t(".update_settings"), class: 'btn btn-success') %>
+  </div>
 <% end %>

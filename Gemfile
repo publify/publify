@@ -40,18 +40,16 @@ gem 'uuidtools', '~> 2.1.1'
 gem 'flickraw-cached'
 gem 'rubypants', '~> 0.2.0'
 gem 'rake', '~> 10.1.0'
-gem 'acts_as_list'
-gem 'acts_as_tree_rails3'
+#gem 'acts_as_list'
+#gem 'acts_as_tree_rails3'
 gem 'fog'
 gem 'recaptcha', :require => 'recaptcha/rails', :branch => 'rails3'
 gem 'carrierwave'
 gem 'akismet', '~> 1.0'
-gem 'twitter'
+gem 'twitter', '~> 5.2.0'
 
 gem "jquery-rails", "~> 3.0.4"
 gem "jquery-ui-rails", "~> 4.0.4"
-
-# Growler replacement
 gem "gritter", "~> 1.0.3"
 
 gem 'rails_autolink', '~> 1.1.0'
@@ -72,7 +70,6 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.14'
   gem 'simplecov', :require => false
   gem 'pry-rails'
-	# gem 'feedzirra' # required for blogger import
 end
 
 # Install gems from each theme

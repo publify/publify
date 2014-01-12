@@ -43,7 +43,6 @@ Theme root
     \__ stylesheets
     \__ views
         \__ articles
-        \__ categories
         \__ comments
         \__ layouts
         \__ tags
@@ -66,7 +65,6 @@ Whenever you add or change a theme helper, you'll have to restart your Publify a
 Publify theme views follow the way you browse a blog:
 
 * Articles
-* Categories
 * Tags
 * Comments. This one is a bit out of the normal process
 
@@ -100,7 +98,7 @@ The header is the part between the `<head>` and `</head>` sections of the HTML. 
 
 #### Main content
 
-To call the main content, just add `<%= yield %>` in your layout `<body>`. Publify will call the appropriate module according to the URL you're calling: articles, categories, tags, etc...
+To call the main content, just add `<%= yield %>` in your layout `<body>`. Publify will call the appropriate module according to the URL you're calling: articles, tags, etc...
 
 
 #### Sidebar content

@@ -2,10 +2,6 @@ class MetaWeblog::Service < PublifyWebService
   web_service_api MetaWeblog::Api
   before_invocation :authenticate
 
-  def getCategories(blogid, username, password)
-    Category.find(:all).collect { |c| c.name }
-  end
-
   def getPost(postid, username, password)
     article = Article.find(postid)
 
@@ -29,18 +25,11 @@ class MetaWeblog::Service < PublifyWebService
     article.allow_comments = struct['mt_allow_comments']  || this_blog.default_allow_comments
     article.allow_pings    = struct['mt_allow_pings']     || this_blog.default_allow_pings
     article.extended       = struct['mt_text_more']       || ''
-    article.excerpt        = struct['mt_excerpt']         || ''
     article.text_filter    = TextFilter.find_by_name(struct['mt_convert_breaks'] || this_blog.text_filter)
     article.keywords       = struct['mt_keywords']        || ''
 
     if !article.save
       raise article.errors.full_messages * ", "
-    end
-
-    if struct['categories']
-      Category.find(:all).each do |c|
-        article.categories << c if struct['categories'].include?(c.name)
-      end
     end
 
     article.id.to_s
@@ -63,16 +52,8 @@ class MetaWeblog::Service < PublifyWebService
     article.allow_comments = struct['mt_allow_comments'] || this_blog.default_allow_comments
     article.allow_pings    = struct['mt_allow_pings']    || this_blog.default_allow_pings
     article.extended       = struct['mt_text_more']      || ''
-    article.excerpt        = struct['mt_excerpt']        || ''
     article.keywords       = struct['mt_keywords']       || ''
     article.text_filter    = TextFilter.find_by_name(struct['mt_convert_breaks'] || this_blog.text_filter)
-
-    if struct['categories']
-      article.categorizations.clear
-      Category.find(:all).each do |c|
-        article.categories << c if struct['categories'].include?(c.name)
-      end
-    end
 
     ::Rails.logger.info(struct['mt_tb_ping_urls'])
     article.save
@@ -93,9 +74,7 @@ class MetaWeblog::Service < PublifyWebService
       :url               => article.permalink_url,
       :link              => article.permalink_url,
       :permaLink         => article.permalink_url,
-      :categories        => article.categories.collect { |c| c.name },
       :mt_text_more      => article.extended.to_s,
-      :mt_excerpt        => article.excerpt.to_s,
       :mt_keywords       => article.tags.collect { |p| p.name }.join(', '),
       :mt_allow_comments => article.allow_comments? ? 1 : 0,
       :mt_allow_pings    => article.allow_pings? ? 1 : 0,

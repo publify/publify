@@ -1,12 +1,216 @@
 da:
+  articles:
+    comment_form:
+      comment: "comment"
+      email_address: "Email address"
+      your_website: "Your website"
+      leave_url_email: "leave url/email"
+      your_name: "Dit Navn"
+      your_blog: "your blog"
+      your_email: "Din email"
+      your_message: "Din besked"
+      comment_markup_help: "Hjælp med kommentar markup"
+      preview_comment: "Vis kommentar eksempel"
+    article_links:
+      comments:
+        zero: "no kommentarer"
+        one: "1 comment"
+        other: "%{count} kommentarer"
+    comment_counter:
+      comments:
+        zero: "no kommentarer"
+        one: "1 comment"
+        other: "%{count} kommentarer"
+  profile:
+    admin: "Publify administrator"
+    publisher: "Blog publisher"
+    contributor: "Contributor"
+  user:
+    status:
+      active: "Active"
+      inactive: "Inactive"
+  errors:
+    render_sidebar: "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually"
+    no_posts_found: "No posts found..."
   views:
     pagination:
       truncate: "Truncate"
       next: "Next"
       last: "Last"
+  layouts:
+    administration:
+      new: "Ny"
+  authors:
+    show:
+      contact_information: "Contact information"
+      web_site: "Web site:"
+      jabber: "Jabber:"
+      msn: "MSN:"
+      yahoo: "Yahoo:"
+      aim: "AIM:"
+      twitter: "Twitter:"
+      this_author_has_not_published_any_article_yet: "This author has not published any article yet"
+      posted_in: "offentliggjort i"
+      next_page: "Næste side"
+      previous_page: "Forrige side"
+  setup:
+    confirm:
+      you_have_successfully_signed_up: "You have successfully signed up"
+      login: "Login: %{user}"
+      password: "Password: %{pass}"
+      dont_lose_the_mail_sent: "Don't lose the mail sent at %{email} or you won't be able to login anymore"
+      proceed_to: "Proceed to %{link}"
+      admin: "admin"
   admin:
+    notes:
+      new:
+        notes: "Notes"
+        compose_new_note: "Compose new note"
+        publish_settings: "Publish settings"
+        posse_to_twitter: "POSSE to twitter"
+        in_reply_to: "In reply to"
+        tweet_id_like: "Tweet id like 123456"
+        permanent_link: "Permanent link"
+        published: "Offentliggjort"
+        publish_at: "Offentliggjort den"
+        cancel: "Anuller"
+        or: "or"
+        publish: "Udgiv"
+    redirects:
+      new:
+        cancel: "Anuller"
+        save: "Gem"
+        or: "or"
+        redirects: "Redirects"
+        from: "Fra"
+        to: "To"
+        leave_empty_to_shorten_a_link: "Leave empty to shorten a link"
+    themes:
+      index:
+        choose_a_theme: "Vælg et tema"
+        use_this_theme: "Use this theme"
+        active_theme: "%{name} - Aktiv tema"
+    profiles:
+      index:
+        your_profile: "Din profil"
+    sidebar:
+      index:
+        sidebar: "Sidebar"
+        or: "or"
+        cancel: "Anuller"
+        explain_how_its_works: "Træk og slip for at ændre indholdsoversigten der vises på denne blog. Du kan fjerne elementer fra indholdsoversigten bare ved at klikke fjern. Ændringer gemmes med det samme, men ikke aktiveret, før du klikker på 'Offentliggør' knappen."
+        publish_changes: "Udgiv ændringer"
+        available_items: "Tilgængelige objekter"
+        active_sidebar_items: "Aktive sidebar objekter"
+        download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
+    settings:
+      display:
+        cancel: "Anuller"
+        or: "or"
+        update_settings: "Update settings"
+        ago: "ago"
+        custom_url: "Custom URL shortener domain"
+        custom_url_help: "If you have a custom domain for URL shortening, enter it here."
+        date_format: "Date format"
+        default_article_show: "articles on the homepage"
+        default_feed_show: "most recent articles in feed"
+        display: "Display"
+        display_settings: "Display Settings"
+        feed_articles: "Article excerpts"
+        feed_settings: "RSS Feed Settings"
+        feed_excerpts_only: "Show only article excerpts in feed"
+        feedburner_help: "Enter your FeedBurner ID if you wish to use your Google FeedBurner account instead of using the Publify feed URL."
+        feedburner_id: "FeedBurner ID"
+        publishing_options: "Publishing Options"
+        status_main_feed: "Display statuses in the main feed"
+        statuses: "Statuses"
+        time_format: "Time format"
+      feedback:
+        cancel: "Anuller"
+        or: "or"
+        update_settings: "Update settings"
+        feedback_settings: "Feedback settings"
+        feedback: "Feedback"
+        comments: "Kommentarer"
+        enable_comments_by_default: "Aktiver kommentarer som standard"
+        enable_feedback_moderation: "Aktiver feedback moderation"
+        explain_feedback_moderation: "Du kan slå feedback moderation til for hele bloggen. Hvis du gør dette kommer kommentarer og trackbacks først frem når du har godkendt dem"
+        trackbacks: "Trackbacks"
+        enable_trackbacks_by_default: "Aktiver Trackbacks som standard"
+        disable_trackbacks_sitewide: "Disable trackbacks site-wide"
+        explain_disable_trackbacks: "Denne indstilling giver dig mulighed for at deaktivere Trackbacks for hver artikel i din blog. Det vil ikke fjerne eksisterende Trackbacks, men det vil forhindre yderligere forsøg på at tilføje Trackbacks overalt på din blog."
+        comments_filter: "Kommentarfilter"
+        avatars_provider: "Avatars provider"
+        spam: "Spam"
+        spam_protection: "Spam beskyttelse"
+        enable_spam_protection: "Aktiver spam beskyttelse"
+        explain_spam_protection: "Enabling spam protection will make publify compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots" #Need translate
+        askimet_key: "Akismet nøgle"
+        explain_spamfiltering: "Publify can (optionally) use the <a href='http://akismet.com'>Akismet</a> spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here"
+        disable_comments_after: "Deaktiver kommentarer efter"
+        days: "dage"
+        set_to_0_to_never_disable_comments: "Sæt til 0 for at aldrig deaktivere kommentarer"
+        max_links: "Max Links"
+        explain_reject_comments: "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them" 
+        set_to_0_to_never_reject_comments: "Sæt til 0 for at aldrig forkaste kommentarer"
+        captcha: "Captcha"
+        enable_recaptcha: "Enable reCaptcha"
+        remember_to_set_your_recaptcha: "Remember to set your reCaptcha keys inside config/initializers/recaptcha.rb"
+      write:
+        cancel: "Anuller"
+        or: "or"
+        update_settings: "Update settings"
+        write: "Skriv"
+        publish: "Udgiv"
+        trackbacks: "Trackbacks"
+        send_trackbacks: "Send trackbacks"
+        explain: "Når du udgiver artikler kan Publify sende trackbacks til de hjemmesider du linker til. Dette bør slåes fra for private blogs da det ellers kan lække privat information til hjemmesider du diskuterer. For offentlige blogs, er der ingen reel mening i at deaktivere dette."
+        urls_to_ping: "Webadresser der automatisk pinges"
+        latitude_longitude: "Breddegrad, længdegrad"
+        display: "Vis"
+        your_geoloc: "din breddegrad og længdegrad"
+        example: "for eksempel"
+        media: "Media"
+        image_thumbnail_size: "Image thumbnail size"
+        image_medium_size: "Image medium size"
+        avatar_size: "Avatar size"
+        publish_on_twitter: "Publish on Twitter"
+        twitter_consumer_key: "Twitter consumer key"
+        twitter_consumer_secret: "Twitter consumer secret"
+      update_database:
+        database_migration: "Database migration"
+        information: "Information"
+        current_database_version: "Nuværende database version"
+        you_are_up_to_date: "Du er up to date!"
+        migrations: "Migrations"
+        migration_pending:
+          one: "There is one migration pending."
+          other: "There are %{count} migrations pending."
+        needed_migrations: "Manglende migrations"
+        update_database_now: "Updatér database nu"
+        may_take_a_moment: "Det varer et øjeblik"
+      index:
+        cancel: "Anuller"
+        or: "or"
+        update_settings: "Update settings"
+        general_settings: "Generelle Indstillinger"
+        your_blog: "Din Blog"
+        blog_name:  "Blog titel"
+        blog_subtitle: "Blog undertitel"
+        blog_url: "Blogadresse"
+        language: "Sprog"
+        users: "Brugere"
+        allow_users_to_register: "Allow users to register"
+        explain_allow_users_to_register: "This will allow users to register themselves as contributors, an unprivileged account level which grants them no rights beyond owning a profile on the site. If you don't want users to register, you can add them via <em>Manage users</em> under <em>Settings</em>."
+        publify_notify_new_articles_or_comments: "Publify kan give dig besked, når nye artikler eller kommentarer er indsendt"
+        source_email: "Afsender e-mail"
+        email_address_used_to_notify: "E-mail adresse der bruges af Publify til at sende meddelelser"
+        items_to_display_in_admin_lists: "Items to display in admin lists"
     seo:
       titles:
+        cancel: "Anuller"
+        or: "or"
+        update_settings: "Update settings"
         title_settings: "Title settings"
         home: "Home"
         title_template: "Title template"
@@ -40,6 +244,9 @@ da:
         replaced_by_the_archive_date: "Replaced by the archive date"
         replaced_by_the_content_body: "Replaced by the content body"
       permalinks:
+        cancel: "Anuller"
+        or: "or"
+        update_settings: "Update settings"
         explain: "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links."
         permalinks: "Permalinks"
         permalink_format: "Permalink format"
@@ -54,6 +261,9 @@ da:
         your_article_month: "your article month of publication."
         your_article_day: "your article day of publication."
       index:
+        cancel: "Anuller"
+        or: "or"
+        update_settings: "Update settings"
         global_settings: "Global settings"
         general_settings: "Generelle indstillinger"
         meta_keywords: "Meta keywords"
@@ -81,11 +291,25 @@ da:
         explain_moderate_feedback: "You may want to moderate feedback when turning this on"
         explain_rss_description: "You can use the following tags: %author% (author name), %blog_url% (this blog URL), %blog_name% (this blog title) and %permalink_url% (a link to the article you want to protect)"
     shared:
+      macros:
+        show_help_on_publify_macros: "Show help on Publify macros"
+        name: "Navn"
+        description: "Beskrivelse"
+        tag: "Tag"
       destroy:
         are_you_sure: "Are you sure you want to delete this %{element}"
         action_or_other: "%{first_action} eller %{second_action}"
         cancel: "Anuller"
         delete: "Slet"
+    tags:
+      new:
+        articles: "Artikler"
+        display_name: "Vis navn"
+        manage_tags: "Administrer Tags"
+        name: "Navn"
+        cancel: "Anuller"
+        save: "Gem"
+        or: "or"
     resources:
       index:
         media_library: "Media Library"
@@ -96,8 +320,15 @@ da:
         content_type: "Indholdstype (Content Type)"
         file_size: "Filstørrelse"
         date: "Dato"
+        are_you_sure: "Are you sure?"
+        thumbnail: "Thumbnail"
+        medium_size: "Medium size"
+        original_size: "Original size"
     post_types:
       new:
+        cancel: "Anuller"
+        save: "Gem"
+        or: "or"
         post_types: "Post Types"
         name: "Navn"
         description: "Beskrivelse"
@@ -108,12 +339,14 @@ da:
     pages:
       index:
         manage_pages: "Administrer sider"
-        new_page: "New Page"
+        new_page: "ny Side"
         title: "Titel"
         permalink: "Permanent link"
         author: "Forfatter"
         date: "Dato"
       form:
+        cancel: "Anuller"
+        change: "Change"
         publish: "Udgiv"
         title: "Titel"
         images: "Images"
@@ -123,7 +356,19 @@ da:
         article_filter: "Artikelfilter"
         permanent_link: "Permanent link"
         page_with_action_name: "%{action} page"
+        type_your_post: "Type your post"
     feedback:
+      bulkops:
+        success_mark_as_ham: 
+          zero: "No item selected to mark as Ham"
+          one: "Marked 1 item as Ham"
+          other: "Marked %{count} items as Ham"
+        success_mark_as_spam: 
+          zero: "No item selected to mark as Spam"
+          one: "Marked 1 item as Spam"
+          other: "Marked %{count} items as Spam"
+        success_classification: "Confirmed classification of %{count} item(s)"
+        success_deleted: "Deleted %{count} item(s)"
       index:
         feedback: "Diskussion"
         all: "All"
@@ -151,6 +396,10 @@ da:
         action_or_other: "%{first_action} eller %{second_action}"
         cancel: "Anuller"
         save: "Gem"
+      edit:
+        action_or_other: "%{first_action} eller %{second_action}"
+        save: "Gem"
+        comments_for: "Comments for %{article_link}"
       button:
         select_action: "Select action"
         delete_checked_items: "Delete Checked Items"
@@ -162,6 +411,8 @@ da:
         this_comment_by_was_flagged_as_spam: "This comment by %{author} was flagged as spam, %{cancel_link}?"
         cancel: "Anuller"
     dashboard:
+      index:
+        welcome_back: "Velkommen tilbage, %{user_name}!"
       drafts:
         your_drafts: "Your drafts"
         no_drafts_yet: "No drafts yet, why don't you start and write one"
@@ -197,12 +448,15 @@ da:
           other: "%{count} kommentarer"
         approved_count:
           zero: "no approved"
+          one: "1 approved"
           other: "%{count} approved"
         unconfirmed_count:
           zero: "no unconfirmed"
+          one: "1 unconfirmed"
           other: "%{count} unconfirmed"
         spam_count:
           zero: "no spam"
+          one: "1 spam"
           other: "%{count} spam"
       overview:
         dashboard_explain: "Dette sted giver dig en hurtig oversigt over, hvad der sker på din Publify blog, og hvad du kan gøre. Måske du ønsker at %{available_actions}."
@@ -224,10 +478,12 @@ da:
       comment:
         no_comments_yet: "Der er ingen kommentarer endnu"
         by: "By"
+      comments:
+        latest_comments: "Seneste kommentarer"
     content:
       index:
         published: "Offentliggjort"
-        new_article: "New article"
+        new_article: "Ny Artikel"
         all_articles: "All articles"
         manage_articles: "Administrer artikler"
         withdrawn: "Withdrawn"
@@ -240,12 +496,22 @@ da:
         publication_date: "Publication date"
         filter: "Filtrer"
       form:
+        article_type: "Article type"
+        now: "now"
+        preview: "Preview"
+        cancel: "Anuller"
+        save: "Gem"
+        default: "Default"
+        allow_comments_status:
+          zero: "disabled"
+          one: "aktiveret"
+        allow_pings_status:
+          zero: "disabled"
+          one: "aktiveret"
         public: "Public"
         publish: "Udgiv"
         title: "Titel"
         images: "Images"
-        excerpt: "Excerpt"
-        excerpt_explaination: "Excerpts are post summaries that show only on your blog homepage and won’t appear on the post itself"
         publish_settings: "Publish settings"
         status: "Status"
         published: "Offentliggjort"
@@ -262,10 +528,14 @@ da:
         categories: "Kategorier"
         tags: "Tags"
         tags_explaination: "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;."
+        type_your_post: "Type your post"
       categories:
         new_category: "New Category"
     categories:
       new:
+        cancel: "Anuller"
+        save: "Gem"
+        or: "or"
         categories: "Kategorier"
         name: "Navn"
         keywords: "Keywords"
@@ -280,8 +550,11 @@ da:
       in_page_plugins: "In page plugins"
       sidebar_plugins: "Sidebar plugins"
       logged_in_as: "Logged in as %{login}"
-      new_article: "New Article"
-      profile: "Profile"
+      new_article: "Ny Artikel"
+      new_page: "Ny Side"
+      new_media: "New Media"
+      new_note : "New Note"
+      profile: "Profil"
       logout: "Log ud &raquo;"
       home: "Home"
       dashboard: "Dashboard"
@@ -291,13 +564,72 @@ da:
         stats: "Der er %{files_count} objekter i cachen"
         sweep_cache: "Sweep cache"
         cache: "Cache"
-        explanations: "To save on resources, Publify generates static files along with your content. These files are deleted when a new article is created. You can, at any time, delete these files yourself."
+        explaination: "To save on resources, Publify generates static files along with your content. These files are deleted when a new article is created. You can, at any time, delete these files yourself."
+    users:
+      edit:
+        edit_user: "Rediger bruger"
+      new:
+        add_user: "Add User"
+      index:
+        login: "Log ind"
+        users: "Brugere"
+        new_user: "Ny bruger"
+        name: "Navn"
+        email: "Email"
+        profile: "Profil"
+        articles: "Artikler"
+        comments: "Kommentarer"
+        state: "State"
+        user_state: "%{state} user"
+      form:
+        cancel: "Anuller"
+        save: "Gem"
+        or: "or"
+        user_status: "User Status"
+        account_settings: "Account Settings"
+        login: "Log ind"
+        password: "Password"
+        password_confirmation: "Password confirmation"
+        email: "Email"
+        profile: "Profil"
+        status: "Status"
+        profile_settings: "Profile Settings"
+        firstname: "First name"
+        lastname: "Last name"
+        nickname: "Nickname"
+        display_name: "Display name"
+        article_filter: "Article filter"
+        avatar: "Avatar Settings"
+        avatar_current: "Current avatar"
+        upload: "Upload your profile image"
+        upload_file: "Upload a .jpg, .png or .gif file"
+        notification_settings: "Notifications"
+        notifications: "Send notification messages"
+        notification_email: "via email"
+        notification_article: "when new article is posted"
+        notification_comment: "when new comment is posted"
+        twitter_settings: "Twitter Settings"
+        twitter_account: "Twitter username"
+        twitter_help: "Twitter account you want to post with"
+        twitter_oauth: "Twitter OAuth token"
+        twitter_oauth_secret: "Twitter OAuth secret"
+        contact_settings: "Contact Settings"
+        contact_explain: "This information will be displayed on your %{link}"
+        author_page: "author page"
+        about: "Biography"
+        website: "Website"
+        msn: "MSN Messenger ID"
+        yahoo: "Yahoo! Messenger ID"
+        jabber: "Jabber ID"
+        aim: "AIM screen name"
+        twitter: "Twitter username"
   accounts:
     back_to: "&larr; Back to %{place}"
     back_to_login: "Back to login"
     create_account: "Create an account"
     lost_my_password: "I've lost my password"
     login:
+      title: "Log ind"
       login: "Log ind"
       password: "Kodeord"
       remember_me: "Remember me"
@@ -306,13 +638,37 @@ da:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
     recover_password:
+      title: "Recover your password"
       username_or_email: "Username or email"
       reset_my_password: "Reset my password"
     signup:
+      title: "Tilmelding"
       username: "Brugernavn"
       email: "Email"
       signup: "Tilmelding"
+  langs:
+    da_DK: "Danish"
+    de_DE: "German"
+    en_US: "English (US)"
+    es_MX: "Spanish (Mexican)"
+    fr_FR: "French"
+    he_IL: "Hebrew"
+    it_IT: "Italian"
+    ja_JP: "Japanese"
+    lt_LT: "Lithuanian"
+    nb_NO: "Norwegian"
+    nl_NL: "Nederland"
+    pl_PL: "Polish"
+    ro_RO: "Romanian"
+    ru_RU: "Russian"
+    zh_TW: "Chinese"
+    zh_CN: "Simple Chinese"
+    pt_BR: "Portuguese (Brazilian)"
   time:
     formats:
       default: "%m/%d/%Y %H:%M"
       short: "%m/%d/%y"
+      letters_month_with_year: "%m %Y"
+  date:
+    month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]
+    abbr_month_names: [~, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]

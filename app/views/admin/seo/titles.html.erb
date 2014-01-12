@@ -8,179 +8,148 @@
 
   <fieldset class='form-horizontal'>
     <legend><%= t(".home") %></legend>
-    <div class='control-group'>
-      <label class='control-label' for="setting_home_title_template"><%= t(".title_template") %></label>
-      <div class='controls'>
-        <%= text_field(:setting, :home_title_template, { :class => 'span5'})%>
+    <div class='form-group'>
+      <label class='control-label col-sm-2' for="setting_home_title_template"><%= t(".title_template") %></label>
+      <div class='col-sm-5'>
+        <%= text_field(:setting, :home_title_template, { :class => 'form-control'})%>
       </div>
     </div>
-    <div class='control-group'>
-      <label class='control-label' for="setting_home_desc_template"><%= t(".description_template") %></label>
-      <div class='controls'>
-        <%= text_area(:setting, :home_desc_template, :rows => 3, :class => 'span5')%>
+    <div class='form-group'>
+      <label class='control-label col-sm-2' for="setting_home_desc_template"><%= t(".description_template") %></label>
+      <div class='col-sm-5'>
+        <%= text_area(:setting, :home_desc_template, :rows => 3, :class => 'form-control')%>
       </div>
     </div>
   </fieldset>
   <fieldset class='form-horizontal'>
     <legend><%= t(".articles") %></legend>
-    <div class='control-group'>
-      <label class='control-label' for="setting_article_title_template"><%= t(".title_template") %></label>
-      <div class='controls'>
-        <%= text_field(:setting, :article_title_template, { :class => 'span5'})%>
+    <div class='form-group'>
+      <label class='control-label col-sm-2' for="setting_article_title_template"><%= t(".title_template") %></label>
+      <div class='col-sm-5'>
+        <%= text_field(:setting, :article_title_template, { :class => 'form-control'})%>
       </div>
     </div>
-    <div class='control-group'>
-      <label class='control-label' for="setting_article_desc_template"><%= t(".description_template") %></label>
-      <div class='controls'>
-        <%= text_area(:setting, :article_desc_template, :rows => 3, :class => 'span5')%>
+    <div class='form-group'>
+      <label class='control-label col-sm-2' for="setting_article_desc_template"><%= t(".description_template") %></label>
+      <div class='col-sm-5'>
+        <%= text_area(:setting, :article_desc_template, :rows => 3, :class => 'form-control')%>
       </div>
     </div>
   </fieldset>
   <fieldset class='form-horizontal'>
     <legend><%= t(".pages") %></legend>
-    <div class='control-group'>
-      <label class='control-label' for="setting_page_title_template"><%= t(".title_template") %></label>
-      <div class='controls'>
-        <%= text_field(:setting, :page_title_template, { :class => 'span5'})%>
+    <div class='form-group'>
+      <label class='control-label col-sm-2' for="setting_page_title_template"><%= t(".title_template") %></label>
+      <div class='col-sm-5'>
+        <%= text_field(:setting, :page_title_template, { :class => 'form-control'})%>
       </div>
     </div>
-    <div class='control-group'>
-      <label class='control-label' for="setting_page_desc_template"><%= t(".description_template") %></label>
-      <div class='controls'>
-        <%= text_area(:setting, :page_desc_template, :rows => 3, :class => 'span5')%>
+    <div class='form-group'>
+      <label class='control-label col-sm-2' for="setting_page_desc_template"><%= t(".description_template") %></label>
+      <div class='col-sm-5'>
+        <%= text_area(:setting, :page_desc_template, :rows => 3, :class => 'form-control')%>
       </div>
     </div>
   </fieldset>
 
   <fieldset class='form-horizontal'>
     <legend><%= t(".paginated_archives") %></legend>
-    <div class='control-group'>
-      <label class='control-label' for="setting_paginated_title_template"><%= t(".title_template") %></label>
-      <div class='controls'>
-        <%= text_field(:setting, :paginated_title_template, { :class => 'span5'})%>
+    <div class='form-group'>
+      <label class='control-label col-sm-2' for="setting_paginated_title_template"><%= t(".title_template") %></label>
+      <div class='col-sm-5'>
+        <%= text_field(:setting, :paginated_title_template, { :class => 'form-control'})%>
       </div>
     </div>
-    <div class='control-group'>
-      <label class='control-label' for="setting_paginated_desc_template"><%= t(".description_template") %></label>
-      <div class='controls'>
-        <%= text_area(:setting, :paginated_desc_template, :rows => 3, :class => 'span5')%>
+    <div class='form-group'>
+      <label class='control-label col-sm-2' for="setting_paginated_desc_template"><%= t(".description_template") %></label>
+      <div class='col-sm-5'>
+        <%= text_area(:setting, :paginated_desc_template, :rows => 3, :class => 'form-control')%>
       </div>
     </div>
   </fieldset>
   <fieldset class='form-horizontal'>
     <legend><%= t(".dated_archives") %></legend>
-    <div class='control-group'>
-      <label class='control-label' for="setting_archives_title_template"><%= t(".title_template") %></label>
-      <div class='controls'>
-        <%= text_field(:setting, :archives_title_template, { :class => 'span5'})%>
+    <div class='form-group'>
+      <label class='control-label col-sm-2' for="setting_archives_title_template"><%= t(".title_template") %></label>
+      <div class='col-sm-5'>
+        <%= text_field(:setting, :archives_title_template, { :class => 'form-control'})%>
       </div>
     </div>
-    <div class='control-group'>
-      <label class='control-label' for="setting_archives_desc_template"><%= t(".description_template") %></label>
-      <div class='controls'>
-        <%= text_area(:setting, :archives_desc_template, :rows => 3, :class => 'span5')%>
-      </div>
-    </div>
-  </fieldset>
-
-  <fieldset class='form-horizontal'>
-    <legend><%= t(".categories") %></legend>
-    <div class='control-group'>
-      <label class='control-label' for="setting_category_title_template"><%= t(".title_template") %></label>
-      <div class='controls'>
-        <%= text_field(:setting, :category_title_template, { :class => 'span5'})%>
-      </div>
-    </div>
-    <div class='control-group'>
-      <label class='control-label' for="setting_category_desc_template"><%= t(".description_template") %></label>
-      <div class='controls'>
-        <%= text_area(:setting, :category_desc_template, :rows => 3, :class => 'span5')%>
-      </div>
-    </div>
-  </fieldset>
-  <fieldset class='form-horizontal'>
-    <legend><%= t(".tags") %></legend>
-    <div class='control-group'>
-      <label class='control-label' for="setting_tag_title_template"><%= t(".title_template") %></label>
-      <div class='controls'>
-        <%= text_field(:setting, :tag_title_template, { :class => 'span5'})%>
-      </div>
-    </div>
-    <div class='control-group'>
-      <label class='control-label' for="setting_tag_desc_template"><%= t(".description_template") %></label>
-      <div class='controls'>
-        <%= text_area(:setting, :tag_desc_template, :rows => 3, :class => 'span5')%>
+    <div class='form-group'>
+      <label class='control-label col-sm-2' for="setting_archives_desc_template"><%= t(".description_template") %></label>
+      <div class='col-sm-5'>
+        <%= text_area(:setting, :archives_desc_template, :rows => 3, :class => 'form-control')%>
       </div>
     </div>
   </fieldset>
 
   <fieldset class='form-horizontal'>
     <legend><%= t(".author_page") %></legend>
-    <div class='control-group'>
-      <label class='control-label' for="setting_author_title_template"><%= t(".title_template") %></label>
-      <div class='controls'>
-        <%= text_field(:setting, :author_title_template, { :class => 'span5'})%>
+    <div class='form-group'>
+      <label class='control-label col-sm-2' for="setting_author_title_template"><%= t(".title_template") %></label>
+      <div class='col-sm-5'>
+        <%= text_field(:setting, :author_title_template, { :class => 'form-control'})%>
       </div>
     </div>
-    <div class='control-group'>
-      <label class='control-label' for="setting_author_desc_template"><%= t(".description_template") %></label>
-      <div class='controls'>
-        <%= text_area(:setting, :author_desc_template, :rows => 3, :class => 'span5')%>
+    <div class='form-group'>
+      <label class='control-label col-sm-2' for="setting_author_desc_template"><%= t(".description_template") %></label>
+      <div class='col-sm-5'>
+        <%= text_area(:setting, :author_desc_template, :rows => 3, :class => 'form-control')%>
       </div>
     </div>
   </fieldset>
 
   <fieldset class='form-horizontal'>
     <legend><%= t(".search_results") %></legend>
-    <div class='control-group'>
-      <label class='control-label' for="setting_search_title_template"><%= t(".title_template") %></label>
-      <div class='controls'>
-        <%= text_field(:setting, :search_title_template, { :class => 'span5'})%>
+    <div class='form-group'>
+      <label class='control-label col-sm-2' for="setting_search_title_template"><%= t(".title_template") %></label>
+      <div class='col-sm-5'>
+        <%= text_field(:setting, :search_title_template, { :class => 'form-control'})%>
       </div>
     </div>
-    <div class='control-group'>
-      <label class='control-label' for="setting_search_desc_template"><%= t(".description_template") %></label>
-      <div class='controls'>
-        <%= text_area(:setting, :search_desc_template, :rows => 3, :class => 'span5')%>
+    <div class='form-group'>
+      <label class='control-label col-sm-2' for="setting_search_desc_template"><%= t(".description_template") %></label>
+      <div class='col-sm-5'>
+        <%= text_area(:setting, :search_desc_template, :rows => 3, :class => 'form-control')%>
       </div>
     </div>
   </fieldset>
 
   <fieldset class='form-horizontal'>
     <legend><%= t(".short_statuses_lists") %></legend>
-    <div class='control-group'>
-      <label class='control-label' for="setting_statuses_title_template"><%= t(".title_template") %></label>
-      <div class='controls'>
-        <%= text_field(:setting, :statuses_title_template, { :class => 'span5'})%>
+    <div class='form-group'>
+      <label class='control-label col-sm-2' for="setting_statuses_title_template"><%= t(".title_template") %></label>
+      <div class='col-sm-5'>
+        <%= text_field(:setting, :statuses_title_template, { :class => 'form-control'})%>
       </div>
     </div>
-    <div class='control-group'>
-      <label class='control-label' for="setting_statuses_desc_template"><%= t(".description_template") %></label>
-      <div class='controls'>
-        <%= text_area(:setting, :statuses_desc_template, :rows => 3, :class => 'span5')%>
+    <div class='form-group'>
+      <label class='control-label col-sm-2' for="setting_statuses_desc_template"><%= t(".description_template") %></label>
+      <div class='col-sm-5'>
+        <%= text_area(:setting, :statuses_desc_template, :rows => 3, :class => 'form-control')%>
       </div>
     </div>
   </fieldset>
 
   <fieldset class='form-horizontal'>
     <legend><%= t(".short_statuses") %></legend>
-    <div class='control-group'>
-      <label class='control-label' for="setting_status_title_template"><%= t(".title_template") %></label>
-      <div class='controls'>
-        <%= text_field(:setting, :status_title_template, { :class => 'span5'})%>
+    <div class='form-group'>
+      <label class='control-label col-sm-2' for="setting_status_title_template"><%= t(".title_template") %></label>
+      <div class='col-sm-5'>
+        <%= text_field(:setting, :status_title_template, { :class => 'form-control'})%>
       </div>
     </div>
-    <div class='control-group'>
-      <label class='control-label' for="setting_status_desc_template"><%= t(".description_template") %></label>
-      <div class='controls'>
-        <%= text_area(:setting, :status_desc_template, :rows => 3, :class => 'span5')%>
+    <div class='form-group'>
+      <label class='control-label col-sm-2' for="setting_status_desc_template"><%= t(".description_template") %></label>
+      <div class='col-sm-5'>
+        <%= text_area(:setting, :status_desc_template, :rows => 3, :class => 'form-control')%>
       </div>
     </div>
   </fieldset>
 
   <h3><%= t(".help_on_title_settings")%></h3>
   <p class='help-block'><%= t(".these_tags_can_be_included") %></p>
-  <table class="table table-striped">
+  <table class="table table-hover">
     <tr>
       <td>%title%</td>
       <td><%= t(".replaced_with_the_title_of_the_article_page") %></td>
@@ -246,7 +215,14 @@
       <td><%= t(".replaced_by_the_content_body") %></td>
     </tr>
   </table>
-  <%= save_settings %>
+  
+  <div class='form-group'>
+  <div class='form-group'>
+    <%= link_to(t(".cancel"), {action: 'index'}, class: 'btn') %>
+    <%= t(".or") %>
+    <%= submit_tag(t(".update_settings"), class: 'btn btn-success') %>
+  </div>
+  </div>
   <%= hidden_field_tag 'from', 'titles' %>
 <% end %>
 

@@ -1,0 +1,85 @@
+zh-CN:
+  gflash:
+    titles:
+      notice: "Notice"
+      success: "Success"
+      warning: "Warning"
+      error: "Error"
+      progress: "Progress"
+    accounts:
+      login:
+        success: "登录成功"
+        error: "登录不成功"
+      recover_password: 
+        notice: "你的新密码已经发送到你的email邮箱当中"
+        error: "噢，发生了一些错误"
+      logout:
+        notice: "成功登出"
+    admin:
+      sidebar:
+        index:
+          error: "有错误发生，可能是一些侧边栏丢失，请尝试重新安装或者手动卸载。"
+      redirects:
+        destroy:
+          success: 'Redirection was successfully deleted.'
+      feedback:
+        bulkops:
+          error: "未实现"
+          success_deleted_spam: "所有垃圾信息已经呗删除"
+        update:
+          success: "评论更新成功"
+        create:
+          success: "评论创建成功"
+        destroy:
+          success: "删除"
+          error: "不存在"
+      dashboard:
+        index:
+          error: "You are late from at least one major version of Publify. You should upgrade immediately. Download and install <a href='http://publify.co/stable.tgz'>the latest Publify version</a>"
+          warning: "There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
+          notice: "There's a new version of Publify available. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
+      content:
+        create:
+          success: "文章创建成功"
+        update:
+          success: "文章更新成功"
+          error: "错误，不允许进行此操作"
+        edit:
+          error: "错误，不允许进行此操作"
+        autosave:
+          success: "Article was successfully saved"
+      settings:
+        update:
+          success: "更新配置"
+      seo:
+        update:
+          success: "更新配置"
+      cache:
+        index:
+          success: "cache已清除"
+          error: "Cache could not be cleared"
+      pages:
+        new:
+          success: "页面创建成功"
+        edit:
+          success: "页面更新成功"
+      profiles:
+        index:
+          success: "用户创建成功"
+      resources:
+        upload:
+          success: "文件上传"
+          warning: "No file selected"
+        destroy:
+          notice: "删除"
+      tags:
+        edit:
+          success: "Tag已经更新" 
+      themes:
+        switchto:
+          success: "主题切换成功"
+      users:
+        new:
+          success: "用户创建成功"
+        edit:
+          success: "用户创建成功"
