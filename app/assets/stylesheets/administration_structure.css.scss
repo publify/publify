@@ -8,21 +8,12 @@ footer {
   padding-bottom: 20px;
 }
 
-table.clearfix {
-  clear: both;
-  margin-top: 18px;
-}
-
 tr.noborder td {
   border-top: none;
 }
 
 tr.noborder th {
   border-top: none;
-}
-
-th {
-  background: none;
 }
 
 td small {
@@ -34,62 +25,11 @@ tr .action {
   margin-top: 5px;
 }
 
-/* Dashboard */
-
-.dashboard-left {
-  width: 49%;
-  float: left;
-}
-
-.dashboard {
-    width: 49%;
-    margin-left: 51%;
-}
-
 /* Editor */
 #editor {
   float: left;
   width: 100%;
   margin-top: 18px;
-}
-
-.separator {
-  clear: both;
-  margin-top: 18px;
-  margin-bottom: 18px;
-  padding: 17px 0 18px 0;
-}
-
-/* Carousel */
-#carousel-wrapper {
-  width: 100%;
-  overflow: hidden;
-  margin-top: 18px;
-}
-
-#carousel-content {
-  width: 3000px;
-  overflow: hidden;
-}
-
-#carousel-wrapper a {
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
-  float: left;
-  padding: 4px;
-  margin-right: 20px;
-  cursor: pointer;
-}
-
-/* Sidebars */
-
-.avatar {
-	float: left;
-	margin-right: 3px;
-	margin-bottom: 3px;
 }
 
 #autocomplete li {
@@ -108,15 +48,6 @@ tr .action {
 
 #main  {
   padding: 0 15px 0 15px;
-}
-
-a.delete {
-  color: #d14;
-}
-
-a.delete:hover,
-a.delete:focus {
-  color: #b94a48;
 }
 
 #preview_link {
@@ -168,36 +99,6 @@ a.delete:focus {
   margin-bottom: 10px;
   font-size: 24px;
 }
-
-.icon-large {
-    background-image: image-url("admin/glyphicons-large.png");
-    background-position: 24px 24px;
-    background-repeat: no-repeat;
-    display: inline-block;
-    height: 28px;
-    line-height: 28px;
-    vertical-align: text-bottom;
-    width: 28px;
-}
-
-.icon-large.icon-dashboard{ background-position: 0 -670px;  } 
-.icon-large.icon-articles{ background-position: 0 -985px;  } 
-.icon-large.icon-article-new{ background-position: -138px -1666px;  } 
-.icon-large.icon-comment{ background-position: -230px -102px;  } 
-.icon-large.icon-categories{ background-position: -46px -212px;  } 
-.icon-large.icon-tags{ background-position: -46px -212px;  } 
-.icon-large.icon-articles-types{ background-position: 0 -780px;  } 
-.icon-large.icon-redirect{ background-position: -46px -852px;  } 
-.icon-large.icon-notes{ background-position: -46px -1829px;  } 
-.icon-large.icon-pages{ background-position: -92px -853px;  } 
-.icon-large.icon-page-new{ background-position: -138px -1666px;  } 
-.icon-large.icon-theme{ background-position: -1px -1704px;  } 
-.icon-large.icon-sidebar{ background-position: 0 -780px;  } 
-.icon-large.icon-profile{ background-position: 0 -104px;  } 
-.icon-large.icon-user{ background-position: 0 -104px;  } 
-.icon-large.icon-user-add{ background-position: 0 -200px;  } 
-.icon-large.icon-settings{ background-position: 0 -780px;  } 
-.icon-large.icon-resources{ background-position: -92px -1332px;  } 
 
 .btn-action {
   padding: 4px;
