@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 114) do
+ActiveRecord::Schema.define(:version => 115) do
 
   create_table "articles_tags", :id => false, :force => true do |t|
     t.integer "article_id"
@@ -21,23 +21,6 @@ ActiveRecord::Schema.define(:version => 114) do
   create_table "blogs", :force => true do |t|
     t.text   "settings"
     t.string "base_url"
-  end
-
-  create_table "categories", :force => true do |t|
-    t.string  "name"
-    t.integer "position"
-    t.string  "permalink"
-    t.text    "keywords"
-    t.text    "description"
-    t.integer "parent_id"
-  end
-
-  add_index "categories", ["permalink"], :name => "index_categories_on_permalink"
-
-  create_table "categorizations", :force => true do |t|
-    t.integer "article_id"
-    t.integer "category_id"
-    t.boolean "is_primary"
   end
 
   create_table "contents", :force => true do |t|

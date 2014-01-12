@@ -77,15 +77,6 @@ describe Admin::UsersController, "rough port of the old functional test" do
           expect { User.find(id) }.to_not raise_error
         end
       end
-
-      context "GET" do
-        it "destroys the user" do
-          id = user.id
-          post :destroy, :id => id
-          response.should redirect_to(:action => 'index')
-          expect { User.find(id) }.to raise_error(ActiveRecord::RecordNotFound)
-        end
-      end
     end
   end
 
