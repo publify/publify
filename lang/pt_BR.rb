@@ -18,7 +18,6 @@ Localization.define("pt_BR") do |l|
   l.store "Submit", "Enviar"
   l.store "Reorder", "Reorganizar"
   l.store "Are you sure you want to delete the category", "Tem certeza que deseja deletar essa categoria?"
-  l.store "Delete this category", "Eliminar esta categoria"
   l.store "%s Category", "%s Categoria"
   l.store "Remove", "Remover"
   l.store "Limit to spam", "Limitar a spam"

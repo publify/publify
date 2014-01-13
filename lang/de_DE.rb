@@ -3,7 +3,6 @@ Localization.define("de_DE") do |l|
   l.store "Edit", "Bearbeiten"
   l.store "no trackbacks", "keine Trackbacks"
   l.store "Reorder", "Sortieren"
-  l.store "Delete this category", "Kategorie löschen"
   l.store "Remove", "Löschen"
   l.store "Limit to spam", "Einschränken auf Spam"
   l.store "New database version", "Neue Datenbank Version"

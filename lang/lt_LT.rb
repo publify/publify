@@ -3,7 +3,6 @@ Localization.define("lt_LT") do |l|
   l.store "Edit", "Redaguoti"
   l.store "no trackbacks", "nėra dienoraščio nuorodų"
   l.store "Reorder", "Rikiuoti"
-  l.store "Delete this category", "Trinti šią kategoriją"
   l.store "Remove", "Pašalinti"
   l.store "Limit to spam", "Spamo limitas"
   l.store "New database version", "Neue Datenbank Version"

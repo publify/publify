@@ -3,7 +3,6 @@ Localization.define("ro_RO") do |l|
   l.store "Edit", "Editare"
   l.store "no trackbacks", "fără retrolegături"
   l.store "Reorder", "Ordonează"
-  l.store "Delete this category", "Șterge această categorie"
   l.store "Remove", "Șterge"
   l.store "Limit to spam", "Doar spam"
   l.store "remove", "supprimer"

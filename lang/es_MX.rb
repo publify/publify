@@ -2,7 +2,6 @@ Localization.define("es_MX") do |l|
   l.store "Edit", "Editar"
   l.store "no trackbacks", "no hay trackbacks"
   l.store "Reorder", "Reorganizar"
-  l.store "Delete this category", "Eliminar esta categor&iacute;a"
   l.store "Remove", "Remover"
   l.store "New database version", "Nueva versi&oacute;n de la base de datos"
   l.store "yes", "s&iacute;"
