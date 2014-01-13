@@ -14,51 +14,8 @@
 
 <div id="messages">&nbsp;</div>
 
-<div id="sidebar-config" class='row'>
-  <div id="available" class='col-md-6'>
-    <div class='well'>
-      <h3><%= t(".available_items")%></h3>
-      <div id="available_box">
-        <% if @available.blank? %>
-          <p class='alert-message warning'><%= t(".you_have_no_plugins_installed")%>.</p>
-      <% else %>
-          <%= render :partial => 'available', :collection => @available %>
-      <% end %>
-      </div>      
-    </div>
-  </div>
+   <%= render partial: 'config' %>
 
-  <div id="cnt-active" class='col-md-6'>
-    <div class='well'>
-      <h3 id="hdr-active">
-        <%= t(".active_sidebar_items")%>
-        <%= image_tag "spinner-blue.gif", :id => 'update_spinner',
-          :style => 'display:none;' -%>
-      </h3>
-        <div id="active">
-          <%- if @active.blank? %>
-            <div id="sidebar_instructions" style="min-height: 30px;">
-              <p><%= t(".drag_some_plugins_here")%></p>
-            </div>
-          <%- else %>
-            <div id="active_<%= @active.html_id %>" class='alert alert-info'>
-              <h3 class='light'><%= @active.display_name %></h3>
-              <div class='widget-content'>
-                <p><%= @active.description %></p>
-                <div>
-                  <%- @active.class.fields.each do |row| %>
-                    <%= row.line_html(@active) %>
-                  <%- end %>
-                </div>
-              </div>
-            </div>
-          <%- end %>
-          <%#= sortable_element "active", :url => {:action => 'set_active'}, :tag => 'div', :handle => 'handle', :containment => ['active','available_box'], :loading => "new Element.show('update_spinner')" %>
-        </div>
-        </div>
-      </div>
-
-    </div>
     <div class='form-group'>
       <%= link_to(t(".cancel"), {action: 'index'}, class: 'btn') %>
       <%= t(".or") %>

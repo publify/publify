@@ -1,0 +1,37 @@
+
+<div id="sidebar-config" class='row'>
+  <div id="available" class='col-md-6'>
+    <div class='well'>
+      <h3><%= t(".available_items")%></h3>
+      <div id="available_box">
+        <% if @available.blank? %>
+          <p class='alert-message warning'><%= t(".you_have_no_plugins_installed")%>.</p>
+      <% else %>
+          <%= render :partial => 'available', :collection => @available %>
+      <% end %>
+      </div>      
+    </div>
+  </div>
+
+  <div id="cnt-active" class='col-md-6'>
+    <div class='well'>
+      <h3 id="hdr-active">
+        <%= t(".active_sidebar_items")%>
+        <%= image_tag "spinner-blue.gif", :id => 'update_spinner',
+          :style => 'display:none;' -%>
+      </h3>
+      <div id="active">
+        <% if @active.blank? %>
+          <%= render :partial => 'target' %>
+      <% else %>
+          <%= render :partial => 'active', :collection => @active %>
+      <% end %>
+        <%#= sortable_element "active", :url => {:action => 'set_active'},
+          :tag => 'div',
+          :handle => 'handle', :containment => ['active','available_box'],
+          :loading => "new Element.show('update_spinner')" %>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -8,7 +8,12 @@ $(document).ready(function() {
                                       url: '/admin/sidebar/staging',
                                       method: 'PUT',
                                       dataType: 'html',
-                                      data: {id: draggable_id, active: false}
+                                      data: {sidebar_id: draggable_id, staged_position: -1},
+                                      statusCode: {
+                                        200: function(data, textStatus, jqXHR) {
+                                               $('#sidebar-config').replaceWith(data)
+                                             }
+                                      }
                                     })
                                   }
                                 });

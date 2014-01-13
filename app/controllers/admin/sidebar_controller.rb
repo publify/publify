@@ -62,6 +62,24 @@ class Admin::SidebarController < Admin::BaseController
     index
   end
 
+  def staging
+    sidebar = Sidebar.find_by_id(params[:sidebar_id])
+    return render(text: "Can’t find sidebar #{sidebar.inspect}", status: 406) unless sidebar
+    #sidebar.staged_position = params[:staged_position].to_i
+    sidebar.setting(:staged_position, params[:staged_position].to_i)
+    sidebar.save!
+    @available = available
+    @active = Sidebar.find(:all, :order => 'active_position ASC') unless @active
+    respond_to do |format|
+      format.js do 
+        render :js => {sidebar.id => sidebar.staged_position }
+      end
+      format.html do
+        render :partial => 'config'
+      end
+    end
+  end
+
   protected
 
   def show_available
