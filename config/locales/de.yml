@@ -64,6 +64,7 @@ de:
   admin:
     notes:
       new:
+        no_notes: "There are no notes yet. Why don't you start and create one?"
         notes: "Notes"
         compose_new_note: "Compose new note"
         publish_settings: "Publish settings"
@@ -78,6 +79,7 @@ de:
         publish: "Veröffentlichen"
     redirects:
       new:
+        no_redirects: "There are no redirects yet. Why don't you start and create one?"
         cancel: "Abbrechen"
         save: "Speichern"
         or: "or"
@@ -304,6 +306,7 @@ de:
         delete: "Löschen"
     tags:
       new:
+        no_tags: "There are no tags yet. Why don't you start and create one?"
         articles: "Artikeln"
         display_name: "Anzeigename"
         manage_tags: "Etikett verwalten"
@@ -387,7 +390,9 @@ de:
         comment: "Comment"
         article: "Article"
         select_all: "Select all"
+        no_feedback: "There are no feedback yet. Why don't you start and create one?"
       article:
+        no_feedback: "There are no feedback yet. Why don't you start and create one?"
         comments_for: "Kommentare für %{title}"
         status: "Status"
         comment_author: "Comment Author"
@@ -485,6 +490,8 @@ de:
       comments:
         latest_comments: "Latest Comments"
     content:
+      article_list:
+        no_articles: "There are no articles yet. Why don't you start and create one?"
       index:
         published: "Veröffentlicht"
         new_article: "Neuen Artikeln"

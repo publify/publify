@@ -64,6 +64,7 @@ ja:
   admin:
     notes:
       new:
+        no_notes: "There are no notes yet. Why don't you start and create one?"
         notes: "Notes"
         compose_new_note: "Compose new note"
         publish_settings: "Publish settings"
@@ -78,6 +79,7 @@ ja:
         publish: "公開"
     redirects:
       new:
+        no_redirects: "There are no redirects yet. Why don't you start and create one?"
         cancel: "キャンセル"
         save: "保存"
         or: "or"
@@ -304,6 +306,7 @@ ja:
         delete: "削除"
     tags:
       new:
+        no_tags: "There are no tags yet. Why don't you start and create one?"
         articles: "記事"
         display_name: "表示名"
         manage_tags: "タグの管理"
@@ -386,8 +389,10 @@ ja:
         comment_author: "Comment Author"
         comment: "Comment"
         article: "記事"
+        no_feedback: "There are no feedback yet. Why don't you start and create one?"
         select_all: "Select all"
       article:
+        no_feedback: "There are no feedback yet. Why don't you start and create one?"
         comments_for: "〜へコメント%{title}"
         status: "ステータス"
         comment_author: "Comment Author"
@@ -485,6 +490,8 @@ ja:
       comments:
         latest_comments: "Latest Comments"
     content:
+      article_list:
+        no_articles: "There are no articles yet. Why don't you start and create one?"
       index:
         published: "公開済み"
         new_article: "New article"

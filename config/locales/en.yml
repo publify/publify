@@ -64,6 +64,7 @@ en:
   admin:
     notes:
       new:
+        no_notes: "There are no notes yet. Why don't you start and create one?"
         notes: "Notes"
         compose_new_note: "Compose new note"
         publish_settings: "Publish settings"
@@ -78,6 +79,7 @@ en:
         publish: "Publish"
     redirects:
       new:
+        no_redirects: "There are no redirects yet. Why don't you start and create one?"
         cancel: "Cancel"
         save: "Save"
         or: "or"
@@ -304,6 +306,7 @@ en:
         delete: "Delete"
     tags:
       new:
+        no_tags: "There are no tags yet. Why don't you start and create one?"
         articles: "Articles"
         display_name: "Display Name"
         manage_tags: "Manage Tags"
@@ -374,6 +377,7 @@ en:
         success_classification: "Confirmed classification of %{count} item(s)"
         success_deleted: "Deleted %{count} item(s)"
       index:
+        no_feedback: "There are no feedback yet. Why don't you start and create one?"
         feedback: "Feedback"
         all: "All"
         unapproved_comments: "Unapproved comments"
@@ -388,6 +392,7 @@ en:
         article: "Article"
         select_all: "Select all"
       article:
+        no_feedback: "There are no feedback yet. Why don't you start and create one?"
         comments_for: "Comments for %{title}"
         status: "Status"
         comment_author: "Comment Author"
@@ -485,6 +490,8 @@ en:
       comments:
         latest_comments: "Latest Comments"
     content:
+      article_list:
+        no_articles: "There are no articles yet. Why don't you start and create one?"
       index:
         published: "Published"
         new_article: "New article"

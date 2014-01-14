@@ -64,6 +64,7 @@ nb-NO:
   admin:
     notes:
       new:
+        no_notes: "Det finnes ingen notes enda. Hva med å opprette en?"
         notes: "Notes"
         compose_new_note: "Compose new note"
         publish_settings: "Publiseringsinnstillinger"
@@ -78,6 +79,7 @@ nb-NO:
         publish: "Publiser"
     redirects:
       new:
+        no_redirects: "Det finnes ingen omdirigeringer enda. Hva med å opprette en?"
         cancel: "Annuller"
         save: "Lagre"
         or: "or"
@@ -304,6 +306,7 @@ nb-NO:
         delete: "Slett"
     tags:
       new:
+        no_tags: "Det finnes ingen tags enda. Hva med å opprette en?"
         articles: "Artikler"
         display_name: "Visningsnavn"
         manage_tags: "Administrer tags"
@@ -387,7 +390,9 @@ nb-NO:
         comment: "Kommentar"
         article: "Artikkel"
         select_all: "Velg alle"
+        no_feedback: "Det finnes ingen diskusjon enda. Hva med å opprette en?"
       article:
+        no_feedback: "Det finnes ingen diskusjon enda. Hva med å opprette en?"
         comments_for: "Kommentarer for %{title}"
         status: "Status"
         comment_author: "Kommentarforfatter"
@@ -485,6 +490,8 @@ nb-NO:
       comments:
         latest_comments: "Siste kommentarer"
     content:
+      article_list:
+        no_articles: "Det finnes ingen articles enda. Hva med å opprette en?"
       index:
         published: "Publisert"
         new_article: "Ny artikkel"

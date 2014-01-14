@@ -64,6 +64,7 @@ nl:
   admin:
     notes:
       new:
+        no_notes: "Er zijn nog geen notes. Waarom begin je er niet een te maken?"
         notes: "Notes"
         compose_new_note: "Compose new note"
         publish_settings: "Publicatie instellingen"
@@ -78,6 +79,7 @@ nl:
         publish: "Publiceer"
     redirects:
       new:
+        no_redirects: "Er zijn nog geen redirects. Waarom begin je er niet een te maken?"
         cancel: "Terug"
         save: "Bewaar"
         or: "or"
@@ -304,6 +306,7 @@ nl:
         delete: "Verwijderen"
     tags:
       new:
+        no_tags: "Er zijn nog geen trefwoorden. Waarom begin je er niet een te maken?"
         articles: "Artikelen"
         display_name: "Toon naam"
         manage_tags: "Beheer tags"
@@ -387,7 +390,9 @@ nl:
         comment: "Reactie"
         article: "Artikel"
         select_all: "Select all"
+        no_feedback: "Er zijn nog geen feedback. Waarom begin je er niet een te maken?"
       article:
+        no_feedback: "Er zijn nog geen feedback. Waarom begin je er niet een te maken?"
         comments_for: "Commentaren voor %{title}"
         status: "Status"
         comment_author: "Auteur commentaar"
@@ -485,6 +490,8 @@ nl:
       comments:
         latest_comments: "Laatste reacties"
     content:
+      article_list:
+        no_articles: "Er zijn nog geen articles. Waarom begin je er niet een te maken?"
       index:
         published: "Gepubliceerd"
         new_article: "Nieuw artikel"

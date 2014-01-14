@@ -45,13 +45,6 @@ module Admin::BaseHelper
     end
   end
 
-  def render_void_table(size, cols)
-    return unless size == 0
-    content_tag(:tr) do
-      content_tag(:td, _("There are no %s yet. Why don't you start and create one?", _(controller.controller_name)), { colspan: cols})
-    end
-  end
-
   def show_actions item
     content_tag(:div, { :class => 'action', :style => '' }) do
       [ button_to_edit(item),

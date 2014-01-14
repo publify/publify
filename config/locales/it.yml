@@ -64,6 +64,7 @@ it:
   admin:
     notes:
       new:
+        no_notes: "There are no notes yet. Why don't you start and create one?"
         notes: "Notes"
         compose_new_note: "Compose new note"
         publish_settings: "Publish settings"
@@ -78,6 +79,7 @@ it:
         publish: "Pubblica"
     redirects:
       new:
+        no_redirects: "There are no redirects yet. Why don't you start and create one?"
         cancel: "Annulla"
         save: "Salva"
         or: "or"
@@ -304,6 +306,7 @@ it:
         delete: "Elimina"
     tags:
       new:
+        no_tags: "There are no tags yet. Why don't you start and create one?"
         articles: "Articoli"
         display_name: "Nome visualizzato"
         manage_tags: "Gestisci tags"
@@ -387,7 +390,9 @@ it:
         comment: "Comment"
         article: "Article"
         select_all: "Select all"
+        no_feedback: "There are no feedback yet. Why don't you start and create one?"
       article:
+        no_feedback: "There are no feedback yet. Why don't you start and create one?"
         comments_for: "Commenti per %{title}"
         status: "Stato"
         comment_author: "Comment Author"
@@ -485,6 +490,8 @@ it:
       comments:
         latest_comments: "Latest Comments"
     content:
+      article_list:
+        no_articles: "There are no articles yet. Why don't you start and create one?"
       index:
         published: "Pubblicato"
         new_article: "New article"

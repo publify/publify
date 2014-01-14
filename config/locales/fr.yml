@@ -64,6 +64,7 @@ fr:
   admin:
     notes:
       new:
+        no_notes: "Il n'y a pas encore de notes, pourquoi ne pas en créer une ? "
         notes: "Notes"
         compose_new_note: "Compose new note"
         publish_settings: "Paramètres de publication"
@@ -78,6 +79,7 @@ fr:
         publish: "Publier"
     redirects:
       new:
+        no_redirects: "Il n'y a pas encore de redirections, pourquoi ne pas en créer une ? "
         cancel: "Annuler"
         save: "Sauver"
         or: "ou"
@@ -304,6 +306,7 @@ fr:
         delete: "Supprimer"
     tags:
       new:
+        no_tags: "Il n'y a pas encore de labels, pourquoi ne pas en créer un ? "
         articles: "Articles"
         display_name: "Nom affiché"
         manage_tags: "Labels"
@@ -313,7 +316,7 @@ fr:
         or: "ou"
     resources:
       index:
-        no_resources: "Il n'y a pas encore de ressources, pourquoi ne pas en créer un ? "
+        no_resources: "Il n'y a pas encore de ressources, pourquoi ne pas en créer une ? "
         media_library: "Bibliothèque de média"
         upload_a_file_to_your_site: "Envoyer un fichier sur votre site"
         upload: "Ajouter un fichier joint"
@@ -360,7 +363,7 @@ fr:
         page_with_action_name: "%{action} page"
         type_your_post: "Tapez votre texte"
       pages:
-        no_pages: "Il n'y a pas encore de pages, pourquoi ne pas en créer un ? "
+        no_pages: "Il n'y a pas encore de pages, pourquoi ne pas en créer une ? "
     feedback:
       bulkops:
         success_mark_as_ham: 
@@ -387,7 +390,9 @@ fr:
         comment: "Commentaire"
         article: "Article"
         select_all: "Tout sélectionner"
+        no_feedback: "Il n'y a pas encore de commentaires, pourquoi ne pas en créer un ? "
       article:
+        no_feedback: "Il n'y a pas encore de commentaires, pourquoi ne pas en créer un ? "
         comments_for: "Commentaire sur %{title}"
         status: "État"
         comment_author: "Auteur du commentaire"
@@ -485,6 +490,8 @@ fr:
       comments:
         latest_comments: "Derniers commentaires"
     content:
+      article_list:
+        no_articles: "Il n'y a pas encore de articles, pourquoi ne pas en créer un ? "
       index:
         published: "Publié"
         new_article: "Nouvel article"

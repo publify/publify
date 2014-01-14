@@ -64,6 +64,7 @@ ru:
   admin:
     notes:
       new:
+        no_notes: "Ничего нет. Почему бы не начать и не добавить?"
         notes: "Notes"
         compose_new_note: "Compose new note"
         publish_settings: "Настройки публикации"
@@ -78,6 +79,7 @@ ru:
         publish: "Опубликовать"
     redirects:
       new:
+        no_redirects: "Ничего нет. Почему бы не начать и не добавить?"
         cancel: "Отменить"
         save: "Сохранить"
         or: "or"
@@ -304,6 +306,7 @@ ru:
         delete: "Удалить"
     tags:
       new:
+        no_tags: "Ничего нет. Почему бы не начать и не добавить?"
         articles: "Articles"
         display_name: "Display Name"
         manage_tags: "Manage Tags"
@@ -387,7 +390,9 @@ ru:
         comment: "Отправить комментарий"
         article: "Пост"
         select_all: "Выбрать все"
+        no_feedback: "Ничего нет. Почему бы не начать и не добавить?"
       article:
+        no_feedback: "Ничего нет. Почему бы не начать и не добавить?"
         comments_for: "Комментарии к %{title}"
         status: "Статус"
         comment_author: "Автор комментария"
@@ -485,6 +490,8 @@ ru:
       comments:
         latest_comments: "Последние комментарии"
     content:
+      article_list:
+        no_articles: "Ничего нет. Почему бы не начать и не добавить?"
       index:
         published: "Опубликован"
         new_article: "Новый пост"

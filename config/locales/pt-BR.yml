@@ -64,6 +64,7 @@ pt-BR:
   admin:
     notes:
       new:
+        no_notes: "Não existem notes ainda. Por que você não inicia e cria um?"
         notes: "Notes"
         compose_new_note: "Compose new note"
         publish_settings: "Configurações de publicação"
@@ -78,6 +79,7 @@ pt-BR:
         publish: "Publicar"
     redirects:
       new:
+        no_redirects: "Não existem redirects ainda. Por que você não inicia e cria um?"
         cancel: "Cancelar"
         save: "Salvar"
         or: "or"
@@ -304,6 +306,7 @@ pt-BR:
         delete: "Deletar"
     tags:
       new:
+        no_tags: "Não existem tags ainda. Por que você não inicia e cria um?"
         articles: "Artículos"
         display_name: "Nombre para mostrar"
         manage_tags: "Administrar tags"
@@ -387,7 +390,9 @@ pt-BR:
         comment: "Commentario"
         article: "Article"
         select_all: "Select all"
+        no_feedback: "Não existem feedback ainda. Por que você não inicia e cria um?"
       article:
+        no_feedback: "Não existem feedback ainda. Por que você não inicia e cria um?"
         comments_for: "Comentarios para %{title}"
         status: "Estado"
         comment_author: "Comment Author"
@@ -485,6 +490,8 @@ pt-BR:
       comments:
         latest_comments: "Latest Comments"
     content:
+      article_list:
+        no_articles: "Não existem articles ainda. Por que você não inicia e cria um?"
       index:
         published: "Publicado"
         new_article: "Novo Artigo"

@@ -52,7 +52,15 @@
 
   <div class='col-md-8'>
     <table class="table table-striped">
-      <%= render_void_table(@notes.size, 2)  %>
+
+      <%- if @notes.empty? %>
+        <tr>
+          <td colspan="2">
+            <%= t(".no_notes") %>
+          </td>
+        </tr>
+      <%- end %>
+
       <% for status in @notes %>
       <tr>
         <td>

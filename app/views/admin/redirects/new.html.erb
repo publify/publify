@@ -34,7 +34,13 @@
           <th><%= t(".to") %></th>
         </tr>
       </thead>
-      <%= render_void_table(@redirects.size, 2)  %>
+      <%- if @redirects.empty? %>
+        <tr>
+          <td colspan="2">
+            <%= t(".no_redirects") %>
+          </td>
+        </tr>
+      <%- end %>
       <% for redirect in @redirects %>
         <tr>
           <td>

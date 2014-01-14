@@ -64,6 +64,7 @@ zh-CN:
   admin:
     notes:
       new:
+        no_notes: "这儿并不存在Notes。让我们开始创建它。"
         notes: "Notes"
         compose_new_note: "Compose new note"
         publish_settings: "发布设定"
@@ -78,6 +79,7 @@ zh-CN:
         publish: "发布"
     redirects:
       new:
+        no_redirects: "这儿并不存在Redirects。让我们开始创建它。"
         cancel: "取消"
         save: "保存"
         or: "or"
@@ -304,6 +306,7 @@ zh-CN:
         delete: "删除"
     tags:
       new:
+        no_tags: "这儿并不存在Tags。让我们开始创建它。"
         articles: "文章"
         display_name: "暱稱"
         manage_tags: "Tags管理"
@@ -387,7 +390,9 @@ zh-CN:
         comment: "Comment"
         article: "Article"
         select_all: "Select all"
+        no_feedback: "这儿并不存在Feedback。让我们开始创建它。"
       article:
+        no_feedback: "这儿并不存在Feedback。让我们开始创建它。"
         comments_for: "做出评论 %{title}"
         status: "状态"
         comment_author: "Comment Author"
@@ -485,6 +490,8 @@ zh-CN:
       comments:
         latest_comments: "最近评论"
     content:
+      article_list:
+        no_articles: "这儿并不存在articles。让我们开始创建它。"
       index:
         published: "已发表"
         new_article: "新文章"

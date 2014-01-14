@@ -1,4 +1,11 @@
-<%= render_void_table(@articles.size, 7) %>
+<%- if @articles.empty? %>
+  <tr>
+    <td colspan="7">
+      <%= t(".no_articles") %>
+    </td>
+  </tr>
+<%- end %>
+
 <% for article in @articles %>
 <tr>
   <td>

@@ -64,6 +64,7 @@ he-IL:
   admin:
     notes:
       new:
+        no_notes: "There are no notes yet. Why don't you start and create one?"
         notes: "Notes"
         compose_new_note: "Compose new note"
         publish_settings: "Publish settings"
@@ -78,6 +79,7 @@ he-IL:
         publish: "פרסם"
     redirects:
       new:
+        no_redirects: "There are no redirects yet. Why don't you start and create one?"
         cancel: "בטל"
         save: "שמור"
         or: "or"
@@ -304,6 +306,7 @@ he-IL:
         delete: "מחק"
     tags:
       new:
+        no_tags: "There are no tags yet. Why don't you start and create one?"
         articles: "כתבות"
         display_name: "שם התצוגה"
         manage_tags: "נהל תוויות"
@@ -387,7 +390,9 @@ he-IL:
         comment: "תגובה"
         article: "כתבה"
         select_all: "Select all"
+        no_feedback: "There are no feedback yet. Why don't you start and create one?"
       article:
+        no_feedback: "There are no feedback yet. Why don't you start and create one?"
         comments_for: "תגובות עבור %{title}"
         status: "מצב"
         comment_author: "Comment Author"
@@ -485,6 +490,8 @@ he-IL:
       comments:
         latest_comments: "Latest Comments"
     content:
+      article_list:
+        no_articles: "There are no articles yet. Why don't you start and create one?"
       index:
         published: "פורסם"
         new_article: "New article"

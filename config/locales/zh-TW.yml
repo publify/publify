@@ -64,6 +64,7 @@ zh-TW:
   admin:
     notes:
       new:
+        no_notes: "There are no notes yet. Why don't you start and create one?"
         notes: "Notes"
         compose_new_note: "Compose new note"
         publish_settings: "Publish settings"
@@ -78,6 +79,7 @@ zh-TW:
         publish: "公開"
     redirects:
       new:
+        no_redirects: "There are no redirects yet. Why don't you start and create one?"
         cancel: "取消"
         save: "存檔"
         or: "or"
@@ -304,6 +306,7 @@ zh-TW:
         delete: "刪除"
     tags:
       new:
+        no_tags: "There are no tags yet. Why don't you start and create one?"
         articles: "文章"
         display_name: "暱稱"
         manage_tags: "Tags管理"
@@ -387,7 +390,9 @@ zh-TW:
         comment: "Comment"
         article: "Article"
         select_all: "Select all"
+        no_feedback: "There are no feedback yet. Why don't you start and create one?"
       article:
+        no_feedback: "There are no feedback yet. Why don't you start and create one?"
         comments_for: "做出評論 %{title}"
         status: "身分"
         comment_author: "Comment Author"
@@ -485,6 +490,8 @@ zh-TW:
       comments:
         latest_comments: "最近評論"
     content:
+      article_list:
+        no_articles: "There are no articles yet. Why don't you start and create one?"
       index:
         published: "已公開的"
         new_article: "New article"

@@ -28,8 +28,14 @@
           <th><%= t('.articles') %></th>
         </tr>
       </thead>
-      <%= render_void_table(@tags.size, 3)  %>
-      <% for tag in @tags %>
+      <%- if @tags.empty? %>
+        <tr>
+          <td colspan="3">
+            <%= t(".no_tags") %>
+          </td>
+        </tr>
+      <%- end %>
+      <%- for tag in @tags %>
         <tr>
         <td>
           <%= link_to_edit tag.display_name, tag %>

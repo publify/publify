@@ -31,8 +31,13 @@
         </th>
       </tr>
     </thead>
-    <%= render_void_table(@feedback.size, 5) %>
-
+    <%- if @feedback.empty? %>
+      <tr>
+        <td colspan="5">
+          <%= t(".no_feedback") %>
+        </td>
+      </tr>
+    <%- end %>
     <% @feedback.each do |comment| %>
       <%= render 'feedback', {:comment => comment} %>
     <% end %>

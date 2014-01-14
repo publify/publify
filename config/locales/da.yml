@@ -64,6 +64,7 @@ da:
   admin:
     notes:
       new:
+        no_notes: "There are no notes yet. Why don't you start and create one?"
         notes: "Notes"
         compose_new_note: "Compose new note"
         publish_settings: "Publish settings"
@@ -78,6 +79,7 @@ da:
         publish: "Udgiv"
     redirects:
       new:
+        no_redirects: "There are no redirects yet. Why don't you start and create one?"
         cancel: "Anuller"
         save: "Gem"
         or: "or"
@@ -304,6 +306,7 @@ da:
         delete: "Slet"
     tags:
       new:
+        no_tags: "There are no tags yet. Why don't you start and create one?"
         articles: "Artikler"
         display_name: "Vis navn"
         manage_tags: "Administrer Tags"
@@ -387,7 +390,9 @@ da:
         comment: "Comment"
         article: "Artikel"
         select_all: "Select all"
+        no_feedback: "There are no feedback yet. Why don't you start and create one?"
       article:
+        no_feedback: "There are no feedback yet. Why don't you start and create one?"
         comments_for: "Kommentarer for %{title}"
         status: "Status"
         comment_author: "Comment Author"
@@ -485,6 +490,8 @@ da:
       comments:
         latest_comments: "Seneste kommentarer"
     content:
+      article_list:
+        no_articles: "There are no articles yet. Why don't you start and create one?"
       index:
         published: "Offentliggjort"
         new_article: "Ny Artikel"

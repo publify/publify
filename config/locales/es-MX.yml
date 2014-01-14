@@ -64,6 +64,7 @@ es-MX:
   admin:
     notes:
       new:
+        no_notes: "There are no notes yet. Why don't you start and create one?"
         notes: "Notes"
         compose_new_note: "Compose new note"
         publish_settings: "Publish settings"
@@ -78,6 +79,7 @@ es-MX:
         publish: "Publicar"
     redirects:
       new:
+        no_redirects: "There are no redirects yet. Why don't you start and create one?"
         cancel: "Cancelar"
         save: "Guardar"
         or: "or"
@@ -304,6 +306,7 @@ es-MX:
         delete: "Eliminar"
     tags:
       new:
+        no_tags: "There are no tags yet. Why don't you start and create one?"
         articles: "Artículos"
         display_name: "Nombre para mostrar"
         manage_tags: "Administrar tags"
@@ -387,7 +390,9 @@ es-MX:
         comment: "Comment"
         article: "Article"
         select_all: "Select all"
+        no_feedback: "There are no feedback yet. Why don't you start and create one?"
       article:
+        no_feedback: "There are no feedback yet. Why don't you start and create one?"
         comments_for: "Comentarios para %{title}"
         status: "Estado"
         comment_author: "Comment Author"
@@ -485,6 +490,8 @@ es-MX:
       comments:
         latest_comments: "Latest Comments"
     content:
+      article_list:
+        no_articles: "There are no articles yet. Why don't you start and create one?"
       index:
         published: "Publicado"
         new_article: "New article"
