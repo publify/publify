@@ -1,11 +1,8 @@
 # coding: utf-8
 Localization.define("lt_LT") do |l|
   l.store "Edit", "Redaguoti"
-  l.store "no trackbacks", "nėra dienoraščio nuorodų"
   l.store "Reorder", "Rikiuoti"
   l.store "Remove", "Pašalinti"
-  l.store "Limit to spam", "Spamo limitas"
-  l.store "New database version", "Neue Datenbank Version"
   l.store "yes", "ja"
   l.store "no", "nein"
   l.store "Drag some plugins here to fill your sidebar", "Ziehen Sie Plugins hierher, um sie in die Seitenleiste aufzunehmen"
@@ -26,42 +23,23 @@ Localization.define("lt_LT") do |l|
   l.store "%d Categories", ["Kategorija", "%d Kategorijos"]
   l.store "%d Tags", ["Žymė", "%d Žymės"]
   l.store "%d Trackbacks", ["dienoraščio nuoroda", "%d dienoraščių nuorodos"]
-  l.store "%d Users", ["Vartotojas", "%d Vartotojai"]
   l.store "Action", "Aktion"
   l.store "Activate", "Aktivieren"
-  l.store "Add category", "Pridėti kategoriją"
-  l.store "Add new user", "Neuen Benutzer anlegen"
-  l.store "Add pattern", "Pridėti šabloną" #
-  l.store "Article Attachments", "Straipsnio prikabinti failai"
   l.store "Article Body", "Straipsnio tekstas" #straipsnio kūnas niekur nesako, reikia tinkamesnio
-  l.store "Article Content", "Straipsnio turinys"
-  l.store "Articles in", "Straipsniai"
-  l.store "Attachments", "Prikabinta"
-  l.store "Back to the blog", "Grįžti į dienoraštį"
-  l.store "Blacklist", "Juodasis sąrašas"
   l.store "Body", "Tekstas"
-  l.store "Category title", "kategorijos pavadinimas"
   l.store "Design", "Dizainas"
-  l.store "Desired login", "Trokštamas prisijungimo vardas"
   l.store "Filters", "Filter"
   l.store "IP", "IP adresas"
   l.store "Location", "Adresse"
   l.store "Logoff", "Atsijungti"
   l.store "Macros", "Makros"
-  l.store "Manage", "Valdyti"
   l.store "Markup", "Markup"
   l.store "MetaData", "Metadaten"
   l.store "Notified", "Benachrichtigt"
-  l.store "Offline", "Nepasiekiamas"
-  l.store "Page Body", "Seiteninhalt"
-  l.store "Parameters", "Parameter"
   l.store "Pattern", "Šablonas" # pavyzdys forma ?
-  l.store "Post title", "Žinutės pavadinimas"
-  l.store "Posted at", "publikuota"
   l.store "Read", "Skaityti"
   l.store "Read more", "Plačiau"
   l.store "Regex", "Reguliarioji išraiška" # kvailai skamba bet kaip kitaip ?
-  l.store "Setting for channel", "Kanaloptionen"
   l.store "Settings", "Nustatymai"
   l.store "Show Help", "Hilfe"
   l.store "String", "Eilutė"
@@ -70,8 +48,6 @@ Localization.define("lt_LT") do |l|
   l.store "Type", "Tipas"
   l.store "Publify admin", "Publify administravimas"
   l.store "Uploaded", "Upload beendet"
-  l.store "Write a Page", "Kurti puslapį"
-  l.store "Write an Article", "Kurti straipsnį"
   l.store "by", "bei"
   l.store "on", "įjungta"
 end
