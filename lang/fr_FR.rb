@@ -1,6 +1,5 @@
 #coding: utf-8
 Localization.define("fr_FR") do |l|
-  l.store "There are no %s yet. Why don't you start and create one?", "Il n'y a pas encore de %s, pourquoi ne pas en créer un ? "
   l.store "Edit", "Éditer"
   l.store "Show", "Affichage"
   l.store "no articles", "aucun article"

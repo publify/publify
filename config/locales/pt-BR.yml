@@ -313,6 +313,7 @@ pt-BR:
         or: "or"
     resources:
       index:
+        no_resources: "Não existem media ainda. Por que você não inicia e cria um?"
         media_library: "Media Library"
         upload_a_file_to_your_site: "Sube un Archivo a tu sitio"
         upload: "Subir"
@@ -358,6 +359,8 @@ pt-BR:
         permanent_link: "Permanent link"
         page_with_action_name: "%{action} page"
         type_your_post: "Type your post"
+      pages: 
+        no_pages: "Não existem pages ainda. Por que você não inicia e cria um?"
     feedback:
       bulkops:
         success_mark_as_ham:

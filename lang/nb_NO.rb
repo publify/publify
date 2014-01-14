@@ -1,6 +1,5 @@
 # coding: utf-8
 Localization.define("nb_NO") do |l|
-  l.store "There are no %s yet. Why don't you start and create one?", "Det finnes ingen %s enda. Hva med å opprette en?"
   l.store "Short url:", "Kort URL:"
   l.store "Edit", "Rediger"
   l.store "Show", "Vis"

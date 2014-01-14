@@ -313,6 +313,7 @@ ru:
         or: "or"
     resources:
       index:
+        no_resources: "Ничего нет. Почему бы не начать и не добавить?"
         media_library: "Media Library"
         upload_a_file_to_your_site: "Загрузить файл на ваш сайт"
         upload: "Upload"
@@ -358,6 +359,8 @@ ru:
         permanent_link: "Постоянная ссылка"
         page_with_action_name: "%{action} page"
         type_your_post: "Type your post"
+      pages:
+        no_pages: "Ничего нет. Почему бы не начать и не добавить?"
     feedback:
       bulkops:
         success_mark_as_ham:

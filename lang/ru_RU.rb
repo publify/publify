@@ -2,7 +2,6 @@
 Localization.define("ru_RU") do |l|
   l.store "Short url:", "Короткий URL:"
   l.store "Edit", "Редактировать"
-  l.store "There are no %s yet. Why don't you start and create one?", "Ничего нет. Почему бы не начать и не добавить?" # XXX
   l.store "Show", "Показать"
   l.store "Back to list", "Назад к списку"
   l.store "and published on", " — и она опубликована"

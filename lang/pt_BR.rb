@@ -1,7 +1,6 @@
 # coding: utf-8
 # Translation by Edgar J. Suarez
 Localization.define("pt_BR") do |l|
-  l.store "There are no %s yet. Why don't you start and create one?", "Não existem %s ainda. Por que você não inicia e cria um?"
   l.store "Edit", "Editar"
   l.store "Show", "Exibir"
   l.store "%d trackbacks", "%d trackbacks"

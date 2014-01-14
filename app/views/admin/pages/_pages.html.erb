@@ -1,7 +1,13 @@
-<%= render_void_table(@pages.size, 5)  %>
+<%- if @pages.empty? %>
+  <tr>
+  <td colspan="5">
+    <%= t(".no_pages") %>
+  </td>
+</tr>
+<%- end %>
 
 <% for page in @pages %>
-<tr>
+  <tr>
   <td>
     <%= link_to_edit_with_profiles page.title, page %>
     <%= show_actions page %>

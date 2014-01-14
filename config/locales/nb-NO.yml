@@ -313,6 +313,7 @@ nb-NO:
         or: "or"
     resources:
       index:
+        no_resources: "Det finnes ingen media enda. Hva med å opprette en?"
         media_library: "Media Library"
         upload_a_file_to_your_site: "Last opp en fil til siden din"
         upload: "Last opp"
@@ -358,6 +359,8 @@ nb-NO:
         permanent_link: "Permanent lenke"
         page_with_action_name: "%{action} page"
         type_your_post: "Type your post"
+      pages:
+        no_pages: "Det finnes ingen pages enda. Hva med å opprette en?"
     feedback:
       bulkops:
         success_mark_as_ham: 

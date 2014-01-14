@@ -313,6 +313,7 @@ nl:
         or: "or"
     resources:
       index:
+        no_resources: "Er zijn nog geen media. Waarom begin je er niet een te maken?"
         media_library: "Media Library"
         upload_a_file_to_your_site: "Upload een bestand naar je site"
         upload: "Upload"
@@ -358,6 +359,8 @@ nl:
         permanent_link: "Permanente link"
         page_with_action_name: "%{action} page"
         type_your_post: "Type your post"
+      pages: 
+        no_pages: "Er zijn nog geen pages. Waarom begin je er niet een te maken?"
     feedback:
       bulkops:
         success_mark_as_ham: 

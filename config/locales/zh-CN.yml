@@ -313,6 +313,7 @@ zh-CN:
         or: "or"
     resources:
       index:
+        no_resources: "这儿并不存在Media。让我们开始创建它。"
         media_library: "Media Library"
         upload_a_file_to_your_site: "上傳一個檔案到你的網點"
         upload: "上傳"
@@ -358,6 +359,8 @@ zh-CN:
         permanent_link: "Permanent link"
         page_with_action_name: "%{action} page"
         type_your_post: "Type your post"
+      pages:
+        no_pages: "这儿并不存在Pages。让我们开始创建它。"
     feedback:
       bulkops:
         success_mark_as_ham:

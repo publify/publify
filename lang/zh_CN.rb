@@ -1,6 +1,5 @@
 # coding: utf-8
 Localization.define("zh_CN") do |l|
-  l.store "There are no %s yet. Why don't you start and create one?", "这儿并不存在%s。让我们开始创建它。"
   l.store "Edit", "修改"
   l.store "Show", "显示"
   l.store "1 trackback", "一条引用"

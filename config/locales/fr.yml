@@ -313,6 +313,7 @@ fr:
         or: "ou"
     resources:
       index:
+        no_resources: "Il n'y a pas encore de ressources, pourquoi ne pas en créer un ? "
         media_library: "Bibliothèque de média"
         upload_a_file_to_your_site: "Envoyer un fichier sur votre site"
         upload: "Ajouter un fichier joint"
@@ -358,6 +359,8 @@ fr:
         permanent_link: "Lien permanent"
         page_with_action_name: "%{action} page"
         type_your_post: "Tapez votre texte"
+      pages:
+        no_pages: "Il n'y a pas encore de pages, pourquoi ne pas en créer un ? "
     feedback:
       bulkops:
         success_mark_as_ham: 

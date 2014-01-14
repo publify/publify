@@ -26,29 +26,36 @@
       <th><%= t(".date")%></th>
     </tr>
   </thead>
-  <%= render_void_table(@resources.size, 6) %>
-  <% for upload in @resources -%>
+  <%- if @resources.empty? %>
     <tr>
-      <td>
+      <td colspan="6">
+        <%= t(".no_resources") %>
+      </td>
+    </tr>
+  <%- end %>
+
+  <%- for upload in @resources %>
+    <tr>
+    <td>
         <% if upload.mime =~ /image/ %>
           <%= link_to upload.upload_url, rel: 'lightbox' do %>
-            <%= image_tag(upload.upload.thumb.url) %>
-          <% end %>
-        <% else %>
+          <%= image_tag(upload.upload.thumb.url) %>
+      <% end %>
+      <% else %>
           <%= link_to(upload.upload_url, upload.upload_url) -%>
-        <% end %>
+      <% end %>
         <p>
-          <small>
-            <%- if upload.mime =~ /image/ %>
-              <%= link_to(t(".thumbnail"), upload.upload.thumb.url) %>
-              |
-              <%= link_to(t(".medium_size"), upload.upload.medium.url) %>
-              |
-              <%= link_to(t(".original_size"), upload.upload.url) %>
-              |
-            <%- end %>
-            <%= link_to(t(".delete"), { action: 'destroy', id: upload.id, search: params[:search], page: params[:page] },  confirm: t(".are_you_sure"), method: :post) %>
-          </small>
+        <small>
+          <%- if upload.mime =~ /image/ %>
+            <%= link_to(t(".thumbnail"), upload.upload.thumb.url) %>
+          |
+          <%= link_to(t(".medium_size"), upload.upload.medium.url) %>
+          |
+          <%= link_to(t(".original_size"), upload.upload.url) %>
+          |
+        <%- end %>
+          <%= link_to(t(".delete"), { action: 'destroy', id: upload.id, search: params[:search], page: params[:page] },  confirm: t(".are_you_sure"), method: :post) %>
+        </small>
         </p>
       </td>
       <td>
@@ -58,5 +65,5 @@
       <td><%= format_date upload.created_at -%></td>
     </tr>
   <% end -%>
-  <%= display_pagination(@resources, 6)%>
-</table>
+    <%= display_pagination(@resources, 6)%>
+  </table>

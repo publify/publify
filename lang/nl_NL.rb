@@ -1,6 +1,5 @@
 # coding: utf-8
 Localization.define("nl_NL") do |l|
-  l.store "There are no %s yet. Why don't you start and create one?", "Er zijn nog geen %s. Waarom begin je er niet een te maken?"
   l.store "Edit", "Bewerken"
   l.store "Show", "Tonen"
   l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", "%%a, %%d %%b %%Y %%H:%%M:%%S GMT"
