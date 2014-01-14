@@ -65,6 +65,9 @@ nb-NO:
     notes:
       new:
         no_notes: "Det finnes ingen notes enda. Hva med å opprette en?"
+        how_to_setup_twitter: "If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."
+        fill_the_twitter_credentials: "fill in the oauth credentials"
+        registered_your_application: "registered your application"
         notes: "Notes"
         compose_new_note: "Compose new note"
         publish_settings: "Publiseringsinnstillinger"
@@ -160,6 +163,9 @@ nb-NO:
         enable_recaptcha: "Aktiver reCaptcha"
         remember_to_set_your_recaptcha: "Husk å sette reCaptcha-nøklene dine i filen config/initializers/recaptcha.rb"
       write:
+        how_to_setup_twitter: "If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."
+        fill_the_twitter_credentials: "fill in the oauth credentials"
+        registered_your_application: "registered your application"
         cancel: "Annuller"
         or: "or"
         update_settings: "Oppdater innstillinger"
@@ -593,6 +599,9 @@ nb-NO:
         state: "Tilstand"
         user_state: "%{state} bruker"
       form:
+        how_to_setup_twitter: "If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."
+        fill_the_twitter_credentials: "fill in the oauth credentials"
+        registered_your_application: "registered your application"
         cancel: "Annuller"
         save: "Lagre"
         or: "or"

@@ -61,7 +61,7 @@ module Admin::BaseHelper
     date.strftime('%d/%m/%Y %H:%M')
   end
 
- def published_or_not(item)
+  def published_or_not(item)
     return content_tag(:span, t(".published"), class: 'label label-success') if item.state.to_s.downcase == 'published'
     return content_tag(:span, t(".draft"), class: 'label label-info') if item.state.to_s.downcase == 'draft'
     return content_tag(:span, t(".withdrawn"), class: 'label label-important') if item.state.to_s.downcase == 'withdrawn'
@@ -109,9 +109,4 @@ module Admin::BaseHelper
     blog.has_twitter_configured? && user.has_twitter_configured?
   end
 
-  def twitter_disabled_message(blog, user)
-    unless twitter_available?(blog, user)
-      content_tag(:p, _("If you want to push short statuses on Twitter, you need to %s Twitter gave you after you %s.", link_to(_("fill in the oauth credentials"), :controller => 'admin/settings', action: 'write'), link_to(_("registered your application"), "https://dev.twitter.com/apps/new")).html_safe, class: 'alert alert-warning')
-    end
-  end
 end

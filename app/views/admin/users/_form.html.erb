@@ -125,7 +125,11 @@
 
 <fieldset class='form-horizontal'>
   <legend><%= t('.twitter')%></legend>
-  <%= twitter_disabled_message(this_blog, current_user) %>
+  <%- unless twitter_available?(this_blog, current_user) %>
+    <p class='alert alert-warning'>
+  <%= t(".how_to_setup_twitter", twitter_settings_link: link_to(t(".fill_the_twitter_credentials"), controller: 'admin/settings', action: 'write'), twitter_registration_link: link_to(t(".registered_your_application"), "https://dev.twitter.com/apps/new")) %>
+  </p>
+<%- end %>
   <div class='control-group'>
     <label class='control-label' for="user_twitter_account"><%= t('.twitter_account')%></label>
     <div class='controls'>

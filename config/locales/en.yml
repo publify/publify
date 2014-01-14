@@ -64,6 +64,9 @@ en:
   admin:
     notes:
       new:
+        how_to_setup_twitter: "If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."
+        fill_the_twitter_credentials: "fill in the oauth credentials"
+        registered_your_application: "registered your application"
         no_notes: "There are no notes yet. Why don't you start and create one?"
         notes: "Notes"
         compose_new_note: "Compose new note"
@@ -160,6 +163,9 @@ en:
         enable_recaptcha: "Enable reCaptcha"
         remember_to_set_your_recaptcha: "Remember to set your reCaptcha keys inside config/initializers/recaptcha.rb"
       write:
+        how_to_setup_twitter: "If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."
+        fill_the_twitter_credentials: "fill in the oauth credentials"
+        registered_your_application: "registered your application"
         cancel: "Cancel"
         or: "or"
         update_settings: "Update settings"
@@ -592,6 +598,9 @@ en:
         comments: "Comments"
         state: "State"
       form:
+        how_to_setup_twitter: "If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."
+        fill_the_twitter_credentials: "fill in the oauth credentials"
+        registered_your_application: "registered your application"
         cancel: "Cancel"
         or: "or"
         save: "Save"
