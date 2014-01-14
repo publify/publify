@@ -1,6 +1,5 @@
 #coding: utf-8
 Localization.define("fr_FR") do |l|
-  l.store "none", "Aucun"
   l.store "There are no %s yet. Why don't you start and create one?", "Il n'y a pas encore de %s, pourquoi ne pas en créer un ? "
   l.store "Edit", "Éditer"
   l.store "Show", "Affichage"
@@ -14,7 +13,6 @@ Localization.define("fr_FR") do |l|
   l.store "protected", "protégée"
   l.store "Markdown", "Markdown"
   l.store "Texttile", "Texttile"
-  l.store "None", "Aucun"
   l.store "SmartyPants", "SmartyPants"
   l.store "unconfirmed", "non validés"
   l.store "yes", "oui"

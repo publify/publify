@@ -126,6 +126,7 @@ pt-BR:
         statuses: "Statuses"
         time_format: "Time format"
       feedback:
+        none: "none"
         cancel: "Cancelar"
         or: "or"
         update_settings: "Update settings"

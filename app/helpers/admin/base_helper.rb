@@ -39,15 +39,10 @@ module Admin::BaseHelper
     end
   end
 
-  def plugin_options(kind, blank = true)
+  def plugin_options(kind)
     r = PublifyPlugins::Keeper.available_plugins(kind).collect do |plugin|
       [ plugin.name, plugin.to_s ]
     end
-    blank ? r << [_("none"),''] : r
-  end
-
-  def task_overview
-    content_tag :li, link_to(_('Back to list'), :action => 'index')
   end
 
   def render_void_table(size, cols)
@@ -98,10 +93,6 @@ module Admin::BaseHelper
     picture << "</a>"
 
     return picture
-  end
-
-  def save_settings
-    content_tag(:div, cancel_or_save(_("Update settings")).html_safe, :class => 'form-group')
   end
 
   def button_to_edit(item)

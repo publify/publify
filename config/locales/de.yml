@@ -126,6 +126,7 @@ de:
         statuses: "Statuses"
         time_format: "Time format"
       feedback:
+        none: "none"
         cancel: "Abbrechen"
         or: "or"
         update_settings: "Update settings"

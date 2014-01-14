@@ -126,6 +126,7 @@ fr:
         statuses: "Notes"
         time_format: "Afficher les heures"
       feedback:
+        none: "Aucun"
         cancel: "Annuler"
         or: "ou"
         update_settings: "Mettre les paramètres à jour"

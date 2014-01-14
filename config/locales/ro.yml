@@ -126,6 +126,7 @@ ro:
         statuses: "Statuses"
         time_format: "Time format"
       feedback:
+        none: "none"
         cancel: "Anulare"
         or: "or"
         update_settings: "Update settings"

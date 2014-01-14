@@ -126,6 +126,7 @@ it:
         statuses: "Statuses"
         time_format: "Time format"
       feedback:
+        none: "none"
         cancel: "Annulla"
         or: "or"
         update_settings: "Update settings"

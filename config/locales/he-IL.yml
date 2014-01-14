@@ -126,6 +126,7 @@ he-IL:
         statuses: "Statuses"
         time_format: "Time format"
       feedback:
+        none: "none"
         cancel: "בטל"
         or: "or"
         update_settings: "Update settings"

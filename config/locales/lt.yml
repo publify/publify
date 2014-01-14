@@ -126,6 +126,7 @@ lt:
         statuses: "Statuses"
         time_format: "Time format"
       feedback:
+        none: "none"
         cancel: "Baigti"
         or: "or"
         update_settings: "Update settings"

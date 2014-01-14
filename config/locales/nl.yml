@@ -126,6 +126,7 @@ nl:
         statuses: "Statuses"
         time_format: "Time format"
       feedback:
+        none: "none"
         cancel: "Terug"
         or: "or"
         update_settings: "Werk instellingen bij"

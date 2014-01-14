@@ -126,6 +126,7 @@ zh-CN:
         statuses: "Statuses"
         time_format: "Time format"
       feedback:
+        none: "none"
         cancel: "取消"
         or: "or"
         update_settings: "Update settings"

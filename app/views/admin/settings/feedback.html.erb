@@ -55,7 +55,7 @@
       <label class='control-label col-sm-2' for="setting_plugin_avatar"><%= t(".avatars_provider")%></label>
       <div class='col-sm-5'>
         <select name="setting[plugin_avatar]" id="setting_plugin_avatar" class='form-control'>
-          <%= options_for_select plugin_options(:avatar), this_blog.plugin_avatar %>
+          <%= options_for_select plugin_options(:avatar).push([t(".none"),'']), this_blog.plugin_avatar %>
         </select>
       </div>
     </div>

@@ -126,6 +126,7 @@ ru:
         statuses: "Statuses"
         time_format: "Time format"
       feedback:
+        none: "Нет"
         cancel: "Отменить"
         or: "or"
         update_settings: "Обновить настройки"

@@ -126,6 +126,7 @@ nb-NO:
         statuses: "Statuses"
         time_format: "Klokkeformat"
       feedback:
+        none: "ingen"
         cancel: "Annuller"
         or: "or"
         update_settings: "Oppdater innstillinger"
