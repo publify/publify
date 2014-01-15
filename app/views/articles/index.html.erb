@@ -1,4 +1,4 @@
-<% for article in @articles -%>
+<%- for article in @articles %>
   <div class="post">
     <%= render article %>
     <%= render 'article_links', article: article %>

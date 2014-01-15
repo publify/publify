@@ -67,7 +67,7 @@
         <%- else %>
           <div class='well'>
             <h4><%= t(".article_type") %></h4>
-            <%= select :article, :post_type, post_types.map {|pt| [pt.name, pt.permalink]}, {include_blank: t('.default')} %>
+            <%= select :article, :post_type, post_types.map{|pt| [pt.name, pt.permalink]}, {include_blank: t('.default')} %>
             </div>
           <%- end %>
           

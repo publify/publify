@@ -100,6 +100,12 @@ class Article < Content
     Article.exists?(parent_id: self.id)
   end
 
+  def post_type
+    _post_type = read_attribute(:post_type)
+    _post_type = 'read' if _post_type.blank?
+    _post_type
+  end
+
   def self.last_draft(article_id)
     article = Article.find(article_id)
     while article.has_child?

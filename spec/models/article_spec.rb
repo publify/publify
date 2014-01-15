@@ -885,4 +885,21 @@ describe Article do
       it { expect(article.tags.map(&:name)).to eq(['foo', 'bar-quiz', 'web2-0'])}
     end
   end
+
+  describe :post_type do
+    context "without post_type" do
+      let(:article) { build(:article, post_type: '') }
+      it { expect(article.post_type).to eq("read") }
+    end
+
+    context "with a oldschool read post_type" do
+      let(:article) { build(:article, post_type: 'read') }
+      it { expect(article.post_type).to eq("read") }
+    end
+
+    context "with a specific myletter post_type" do
+      let(:article) { build(:article, post_type: 'myletter') }
+      it { expect(article.post_type).to eq("myletter") }
+    end
+  end
 end

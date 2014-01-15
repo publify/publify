@@ -4,9 +4,9 @@
        xmlns:dc="http://purl.org/dc/elements/1.1/">
 <rdf:Description
     rdf:about=""
-<% if @article.allow_pings? -%>
+<%- if @article.allow_pings? %>
     trackback:ping="<%= @article.trackback_url %>"
-<% end -%>
+<%- end %>
     dc:title="<%=h @article.title.gsub(/-+/, '-') %>"
     dc:identifier="<%= @article.permalink_url %>"
     dc:description="<%=h (html(@article).strip_html[0..255]).gsub(/-+/, '-') %>"
