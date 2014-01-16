@@ -12,11 +12,8 @@ Localization.define("lt_LT") do |l|
   l.store "No articles found", "Straipsnių nėra"
   l.store "is about to say", "pasakoja apie"
   l.store "There are", "Čia yra"
-  l.store "Leave a response", "Palikti atsakymą"
   l.store "Use the following link to trackback from your own site", "Dienoraščio nuoroda (trackback)"
-  l.store "RSS feed for this post", "šio įrašo RSS"
   l.store "trackback uri", "Trackback URI"
-  l.store "Comments are disabled", "Komentavimas išjungtas"
   l.store "Trackbacks for", "Trackback für"
   l.store "Archives", "Archyvas"
   l.store "%d Articles", ["Straipsnis", "%d Straipsniai"]

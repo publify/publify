@@ -13,11 +13,8 @@ Localization.define("ro_RO") do |l|
   l.store "No articles found", "Niciun articol nu a fost găsit"
   l.store "is about to say", "vrea să scrie"
   l.store "There are", "Sînt"
-  l.store "Leave a response", "Comentează"
   l.store "Use the following link to trackback from your own site", "Folosește link-ul următor pentru a realiza o retrolegătură de la site-ul tău"
-  l.store "RSS feed for this post", "Flux RSS pentru acest articol"
   l.store "trackback uri", "URL pentru retrolegătură"
-  l.store "Comments are disabled", "Comentariile sînt dezactivate"
   l.store "Trackbacks for", "Retrolegături pentru"
   l.store "%d Articles", ["Articol", "%d Articole"]
   l.store "%d Categories", ["Categorie", "%d Categorii"]

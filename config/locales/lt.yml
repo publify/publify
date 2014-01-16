@@ -1,5 +1,10 @@
 lt:
   articles:
+    read:
+      comments: "Comments"
+      leave_a_response: "Palikti atsakymą"
+      rss_feed: "šio įrašo RSS"
+      comments_are_disabled: "Komentavimas išjungtas"
     comment_form:
       comment: "comment"
       email_address: "Email address"

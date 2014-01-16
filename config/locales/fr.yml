@@ -1,5 +1,10 @@
 fr:
   articles:
+    read:
+      comments: "Commentaires"
+      leave_a_response: "Réagir à ce billet"
+      rss_feed: "Flux RSS"
+      comments_are_disabled: "Les commentaires sont désactivés"
     comment_form:
       comment: "commentaire"
       email_address: "Adresse mail"

@@ -1,5 +1,10 @@
 ro:
   articles:
+    read:
+      comments: "Comentarii"
+      leave_a_response: "Comentează"
+      rss_feed: "Flux RSS pentru acest articol"
+      comments_are_disabled: "Comentariile sînt dezactivate"
     comment_form:
       comment: "comment"
       email_address: "Email address"

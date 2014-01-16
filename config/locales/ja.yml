@@ -1,5 +1,10 @@
 ja:
   articles:
+    read:
+      comments: "コメント"
+      leave_a_response: "コメントを書く"
+      rss_feed: "この記事のRSSフィード"
+      comments_are_disabled: "コメントは許可されていません"
     comment_form:
       comment: "comment"
       email_address: "Email address"

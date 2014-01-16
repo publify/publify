@@ -1,5 +1,10 @@
 he-IL:
   articles:
+    read:
+      comments: "תגובות"
+      leave_a_response: "הגב"
+      rss_feed: "מזין RSS לכתבה זו"
+      comments_are_disabled: "התגובות מבוטלות"
     comment_form:
       comment: "comment"
       email_address: "Email address"

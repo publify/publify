@@ -1,5 +1,10 @@
 en:
   articles:
+    read:
+      comments: "Comments"
+      leave_a_response: "Leave a response"
+      rss_feed: "RSS feed"
+      comments_are_disabled: "Comments are disabled"
     comment_form:
       comment: "comment"
       email_address: "Email address"

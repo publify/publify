@@ -1,5 +1,10 @@
 nb-NO:
   articles:
+    read:
+      comments: "Kommentarer"
+      leave_a_response: "Skriv en kommentar"
+      rss_feed: "RSS-feed for denne artikkel"
+      comments_are_disabled: "Kommentarer er deaktiveret"
     comment_form:
       comment: "kommentar"
       email_address: "Epostadresse"

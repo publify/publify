@@ -1,5 +1,10 @@
 nl:
   articles:
+    read:
+      comments: "Reacties"
+      leave_a_response: "Geef een reactie"
+      rss_feed: "RSS feed voor dit bericht"
+      comments_are_disabled: "Reacties zijn niet mogelijk"
     comment_form:
       comment: "reactie"
       email_address: "E-mailadres"

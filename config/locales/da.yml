@@ -1,5 +1,10 @@
 da:
   articles:
+    read:
+      comments: "Kommentarer"
+      leave_a_response: "Skriv en kommentar"
+      rss_feed: "RSS Feed for denne artikel"
+      comments_are_disabled: "Kommentarer er deaktiveret"
     comment_form:
       comment: "comment"
       email_address: "Email address"

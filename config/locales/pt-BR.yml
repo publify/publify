@@ -1,5 +1,10 @@
 pt-BR:
   articles:
+    read:
+      comments: "Comentarios"
+      leave_a_response: "Deja un comentario"
+      rss_feed: "Feed RSS para este art&iacute;culo"
+      comments_are_disabled: "Los comentarios est&aacute;n deshabilitados"
     comment_form:
       comment: "comment"
       email_address: "Email address"

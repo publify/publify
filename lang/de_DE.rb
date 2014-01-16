@@ -13,11 +13,8 @@ Localization.define("de_DE") do |l|
   l.store "No articles found", "Keine Artikel gefunden"
   l.store "is about to say", "will sagen"
   l.store "There are", "Es gibt"
-  l.store "Leave a response", "Einen Kommentar hinterlassen"
   l.store "Use the following link to trackback from your own site", "Verwenden Sie den folgenden Link zur Rückverlinkung von Ihrer eigenen Seite"
-  l.store "RSS feed for this post", "RSS Feed für diesen Artikel"
   l.store "trackback uri", "Trackback URI"
-  l.store "Comments are disabled", "Kommentare sind deaktiviert"
   l.store "Trackbacks for", "Trackback für"
   l.store "Archives", "Archive"
   l.store "%d Articles", ["Artikel", "%d Artikel"]

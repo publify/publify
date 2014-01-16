@@ -1,5 +1,10 @@
 ru:
   articles:
+    read:
+      comments: "комментариев"
+      leave_a_response: "Оставить отзыв"
+      rss_feed: "RSS feed"
+      comments_are_disabled: "Комментарии выключены"
     comment_form:
       comment: "comment"
       email_address: "Электронная почта"

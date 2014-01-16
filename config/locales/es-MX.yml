@@ -1,5 +1,10 @@
 es-MX:
   articles:
+    read:
+      comments: "Comentarios"
+      leave_a_response: "Deja un comentario"
+      rss_feed: "Feed RSS para este art&iacute;culo"
+      comments_are_disabled: "Los comentarios est&aacute;n deshabilitados"
     comment_form:
       comment: "comment"
       email_address: "Email address"
@@ -137,7 +142,7 @@ es-MX:
         update_settings: "Update settings"
         feedback_settings: "Feedback settings"
         feedback: "Feedback"
-        comments: "Comments"
+        comments: "Comentarios"
         enable_comments_by_default: "Habilitar comentarios por default"
         enable_feedback_moderation: "Habilitar moderaci&oacute;n de comentarios y trackbacks"
         explain_feedback_moderation: "You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it."

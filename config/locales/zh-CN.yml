@@ -1,5 +1,10 @@
 zh-CN:
   articles:
+    read:
+      comments: "评论"
+      leave_a_response: "離開一個回應"
+      rss_feed: "為本篇提供RSS"
+      comments_are_disabled: "评论停用"
     comment_form:
       comment: "comment"
       email_address: "Email address"

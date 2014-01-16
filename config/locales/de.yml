@@ -1,5 +1,10 @@
 de:
   articles:
+    read:
+      comments: "Kommentare"
+      leave_a_response: "Einen Kommentar hinterlassen"
+      rss_feed: "RSS Feed für diesen Artikel"
+      comments_are_disabled: "Kommentare sind deaktiviert"
     comment_form:
       comment: "comment"
       email_address: "Email address"
@@ -137,7 +142,7 @@ de:
         update_settings: "Update settings"
         feedback_settings: "Feedback settings"
         feedback: "Feedback"
-        comments: "Comments"
+        comments: "Kommentare"
         enable_comments_by_default: "Kommentare per default erlauben"
         enable_feedback_moderation: "Moderation von Kommentaren aktivieren"
         explain_feedback_moderation: "Sie können die Moderation von Kommentaren auf der gesamten Website aktivieren. Dann erscheinen keine Kommentare oder Trackbacks in Ihrem Blog, die sie nicht überprüft haben"

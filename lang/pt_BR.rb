@@ -24,11 +24,8 @@ Localization.define("pt_BR") do |l|
   l.store "No articles found", "No se encontraron art&iacute;culos"
   l.store "is about to say", "est&aacute; a punto de decir"
   l.store "There are", "Hay"
-  l.store "Leave a response", "Deja un comentario"
   l.store "Use the following link to trackback from your own site", "Usa el siguiente link para crear un trackback desde tu propio sitio"
-  l.store "RSS feed for this post", "Feed RSS para este art&iacute;culo"
   l.store "trackback uri", "trackback uri"
-  l.store "Comments are disabled", "Los comentarios est&aacute;n deshabilitados"
   l.store "Trackbacks for", "Trackbacks para"
   l.store "%d Articles", ["Art&iacute;culo", "%d Art&iacute;culos"]
   l.store "%d Categories", ["Categor&iacute;", "%d Categor&iacute;as"]
