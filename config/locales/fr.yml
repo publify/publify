@@ -1,6 +1,7 @@
 fr:
   articles:
     read:
+      edit: "Éditer"
       comments: "Commentaires"
       leave_a_response: "Réagir à ce billet"
       rss_feed: "Flux RSS"

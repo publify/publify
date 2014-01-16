@@ -1,6 +1,7 @@
 pt-BR:
   articles:
     read:
+      edit: "Editar"
       comments: "Comentarios"
       leave_a_response: "Deja un comentario"
       rss_feed: "Feed RSS para este art&iacute;culo"

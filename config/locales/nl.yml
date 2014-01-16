@@ -1,6 +1,7 @@
 nl:
   articles:
     read:
+      edit: "Bewerken"
       comments: "Reacties"
       leave_a_response: "Geef een reactie"
       rss_feed: "RSS feed voor dit bericht"

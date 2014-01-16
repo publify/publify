@@ -1,6 +1,7 @@
 ro:
   articles:
     read:
+      edit: "Editare"
       comments: "Comentarii"
       leave_a_response: "Comentează"
       rss_feed: "Flux RSS pentru acest articol"

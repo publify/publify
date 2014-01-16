@@ -1,6 +1,7 @@
 zh-CN:
   articles:
     read:
+      edit: "修改"
       comments: "评论"
       leave_a_response: "離開一個回應"
       rss_feed: "為本篇提供RSS"

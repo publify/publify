@@ -13,17 +13,13 @@ Localization.define("it_IT") do |l|
   l.store "is about to say", "sta per dire"
   l.store "There are", "Ci sono"
   l.store "Use the following link to trackback from your own site", "Usa il link seguente per fare un trackback dal tuo sito"
-  l.store "trackback uri", "trackback urk"
   l.store "Read full article", "Leggi articolo completo"
-  l.store "Trackbacks for", "Trackbacks per"
   l.store "Archives", "Archivi"
   l.store "%d Articles", ["Categoria", "%d Categorie"]
-  l.store "%d Categories", ["Categoria", "%d Categorie"]
   l.store "%d Tags", ["Tag", "%d Tags"]
   l.store "%d Trackbacks", ["Trackback", "%d Trackbacks"]
   l.store "Action", "Azioni"
   l.store "Activate", "Attiva"
-  l.store "Article Body", "Contenuto articolo"
   l.store "Body", "Messaggio"
   l.store "Cache was cleared", "Cache pulita"
   l.store "Confirm Classification of Checked Items", "Conferma classificazione degli elementi selezionati"
@@ -44,7 +40,6 @@ Localization.define("it_IT") do |l|
   l.store "Read more", "Continua"
   l.store "Regex", "Espressione regolare"
   l.store "Settings", "Configurazione"
-  l.store "Show Help", "Mostra l'aiuto"
   l.store "String", "Stringa"
   l.store "Summary", "Riassunto"
   l.store "Textfilter", "Formato testo"

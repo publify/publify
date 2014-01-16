@@ -16,7 +16,7 @@
 -->
 
 <div class="post"<%= onhover_show_admin_tools(:article) %>>
-  <%= link_to("edit", { controller: "admin/content", action: "edit", id: @article.id }, class: "admintools", style: "display: none", id: "admin_article") %>
+  <%= link_to(t(".edit"), { controller: "admin/content", action: "edit", id: @article.id }, class: "admintools", style: "display: none", id: "admin_article") %>
   <%= render @article %>
 </div>
 

@@ -1,6 +1,7 @@
 lt:
   articles:
     read:
+      edit: "Redaguoti"
       comments: "Comments"
       leave_a_response: "Palikti atsakymą"
       rss_feed: "šio įrašo RSS"

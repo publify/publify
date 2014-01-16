@@ -1,6 +1,7 @@
 da:
   articles:
     read:
+      edit: "Rediger"
       comments: "Kommentarer"
       leave_a_response: "Skriv en kommentar"
       rss_feed: "RSS Feed for denne artikel"

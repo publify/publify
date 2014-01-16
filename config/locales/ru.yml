@@ -1,6 +1,7 @@
 ru:
   articles:
     read:
+      edit: "Редактировать"
       comments: "комментариев"
       leave_a_response: "Оставить отзыв"
       rss_feed: "RSS feed"

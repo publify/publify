@@ -1,6 +1,5 @@
 # coding: utf-8
 Localization.define("da_DK") do |l|
-  l.store "Edit", "Rediger"
   l.store "1 trackback", "1 trackback"
   l.store "%d trackbacks", "%d trackbacks"
   l.store "Reorder", "Arranger"
@@ -15,15 +14,12 @@ Localization.define("da_DK") do |l|
   l.store "is about to say", "vil gerne sige"
   l.store "There are", "Der er"
   l.store "Use the following link to trackback from your own site", "Brug følgende link til lave trackback fra din egen side"
-  l.store "trackback uri", "Trackback URI"
   l.store "later", "senere"
   l.store "Leave a comment", "Skriv en kommentar"
   l.store "Name %s", "Navn %s"
   l.store "Archives", "Arkiv"
-  l.store "%d Categories", ["Kategori", "%d kategorier"]
   l.store "Action", "Aktion"
   l.store "Activate", "Aktiver"
-  l.store "Article Body", "Artikel"
   l.store "Body", "Tekst"
   l.store "Design", "Design"
   l.store "Filters", "Filtre"
@@ -42,7 +38,6 @@ Localization.define("da_DK") do |l|
   l.store "Regex", "Regulært udtryk"
   l.store "Says", "Sagde"
   l.store "Settings", "Indstillinger"
-  l.store "Show Help", "Vis hjælp"
   l.store "String", "Tekststreng"
   l.store "Summary", "Resumé"
   l.store "Textfilter", "Textfilter"

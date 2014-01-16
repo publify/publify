@@ -1,6 +1,7 @@
 pl:
   articles:
     read:
+      edit: "Zmień"
       comments: "Comments"
       leave_a_response: "Skomentuj"
       rss_feed: "Subskrypcja RSS dla tego wpisu"

@@ -1,6 +1,5 @@
 # coding: utf-8
 Localization.define("zh_TW") do |l|
-  l.store "Edit", "修改"
   l.store "Reorder", "重新排序"
   l.store "Remove", "移除"
   l.store "File", "檔案"
@@ -14,12 +13,9 @@ Localization.define("zh_TW") do |l|
   l.store "is about to say", "這是關於~~"
   l.store "There are", "有"
   l.store "Use the following link to trackback from your own site", "從你所屬的網點用隨後的連結去引用"
-  l.store "trackback uri", "引用URL"
-  l.store "Trackbacks for", "作為引用"
   l.store "Archives", "歸檔"
   l.store "Action", "開始行動"
   l.store "Activate", "執行中"
-  l.store "Article Body", "文章主體"
   l.store "Body", "本文主體"
   l.store "Cache was cleared", "cache已清除"
   l.store "Design", "設計"
@@ -38,7 +34,6 @@ Localization.define("zh_TW") do |l|
   l.store "Read more", "閱讀更多"
   l.store "Regex", "正規表示法"
   l.store "Settings", "設定"
-  l.store "Show Help", "顯示協助"
   l.store "String", "字串"
   l.store "Summary", "概要"
   l.store "Textfilter", "文章篩選"

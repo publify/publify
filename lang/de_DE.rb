@@ -1,6 +1,5 @@
 # coding: utf-8
 Localization.define("de_DE") do |l|
-  l.store "Edit", "Bearbeiten"
   l.store "Reorder", "Sortieren"
   l.store "Remove", "Löschen"
   l.store "yes", "ja"
@@ -14,16 +13,12 @@ Localization.define("de_DE") do |l|
   l.store "is about to say", "will sagen"
   l.store "There are", "Es gibt"
   l.store "Use the following link to trackback from your own site", "Verwenden Sie den folgenden Link zur Rückverlinkung von Ihrer eigenen Seite"
-  l.store "trackback uri", "Trackback URI"
-  l.store "Trackbacks for", "Trackback für"
   l.store "Archives", "Archive"
   l.store "%d Articles", ["Artikel", "%d Artikel"]
-  l.store "%d Categories", ["Kategorie", "%d Kategorien"]
   l.store "%d Tags", ["Tag", "%d Tags"]
   l.store "%d Trackbacks", ["Trackback", "%d Trackbacks"]
   l.store "Action", "Aktion"
   l.store "Activate", "Aktivieren"
-  l.store "Article Body", "Artikel"
   l.store "Body", "Text"
   l.store "Design", "Design"
   l.store "Filters", "Filter"
@@ -38,7 +33,6 @@ Localization.define("de_DE") do |l|
   l.store "Read", "Lesen"
   l.store "Regex", "Regulärer Ausdruck"
   l.store "Settings", "Einstellungen"
-  l.store "Show Help", "Hilfe"
   l.store "String", "Zeichenkette"
   l.store "Summary", "Zusammenfassung"
   l.store "Textfilter", "Textfilter"

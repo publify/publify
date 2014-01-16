@@ -12,14 +12,10 @@ Localization.define("es_MX") do |l|
   l.store "is about to say", "est&aacute; a punto de decir"
   l.store "There are", "Hay"
   l.store "Use the following link to trackback from your own site", "Usa el siguiente link para crear un trackback desde tu propio sitio"
-  l.store "trackback uri", "trackback uri"
-  l.store "Trackbacks for", "Trackbacks para"
   l.store "%d Articles", ["Art&iacute;culo", "%d Art&iacute;culos"]
-  l.store "%d Categories", ["Categor&iacute;", "%d Categor&iacute;as"]
   l.store "%d Trackbacks", ["Trackback", "%d Trackbacks"]
   l.store "Action", "Acci&oacute;n"
   l.store "Activate", "Activar"
-  l.store "Article Body", "Cuerpo del Art&iacute;culo"
   l.store "Body", "Comentario"
   l.store "Design", "Dise&ntilde;o"
   l.store "Filters", "Filtros"
@@ -36,7 +32,6 @@ Localization.define("es_MX") do |l|
   l.store "Read more", "Leer m&aacute;s"
   l.store "Regex", "Expresi&oacute;n regular"
   l.store "Settings", "Configuraci&oacute;n"
-  l.store "Show Help", "Mostrar Ayuda"
   l.store "String", "Cadena"
   l.store "Summary", "Resumen"
   l.store "Textfilter", "Filtro de texto"

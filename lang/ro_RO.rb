@@ -1,6 +1,5 @@
 # coding: utf-8
 Localization.define("ro_RO") do |l|
-  l.store "Edit", "Editare"
   l.store "Reorder", "Ordonează"
   l.store "Remove", "Șterge"
   l.store "remove", "supprimer"
@@ -14,15 +13,11 @@ Localization.define("ro_RO") do |l|
   l.store "is about to say", "vrea să scrie"
   l.store "There are", "Sînt"
   l.store "Use the following link to trackback from your own site", "Folosește link-ul următor pentru a realiza o retrolegătură de la site-ul tău"
-  l.store "trackback uri", "URL pentru retrolegătură"
-  l.store "Trackbacks for", "Retrolegături pentru"
   l.store "%d Articles", ["Articol", "%d Articole"]
-  l.store "%d Categories", ["Categorie", "%d Categorii"]
   l.store "%d Tags", ["Cuvînt cheie", "%d Cuvinte cheie"]
   l.store "%d Trackbacks", ["Retrolegătură", "%d Retrolegături"]
   l.store "Action", "Acțiuni"
   l.store "Activate", "Activează"
-  l.store "Article Body", "Corpul articolului"
   l.store "Body", "Conținut"
   l.store "Design", "Design"
   l.store "Filters", "Filtre"
@@ -39,7 +34,6 @@ Localization.define("ro_RO") do |l|
   l.store "Read more", "Citește mai departe"
   l.store "Regex", "Expresie regulată"
   l.store "Settings", "Configurare"
-  l.store "Show Help", "Ajutor"
   l.store "String", "Șir de caractere"
   l.store "Summary", "Rezumat"
   l.store "Textfilter", "Filtru de text"
