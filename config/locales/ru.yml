@@ -67,6 +67,9 @@ ru:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
   admin:
+    base:
+      restart_application: "По соображениям безопасности вам следует перезапустить ваше Publify-приложение. Приятного блогерства!"
+      cant_generate_secret: "Error: can't generate secret token. Security is at risk. Please, change %{checker_file} content"
     notes:
       new:
         no_notes: "Ничего нет. Почему бы не начать и не добавить?"

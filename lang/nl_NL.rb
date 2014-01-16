@@ -44,7 +44,6 @@ Localization.define("nl_NL") do |l|
   l.store "Continue reading", "Verder lezen"
   l.store "said", "zei"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "Dit commentaar is gemarkeerd voor goedkeuring. Het zal niet getoond worden totdat de auteur het goedkeurt."
-  l.store "Oops, something wrong happened, the comment could not be saved", "Er is iets mis gegaan en je reactie is niet bewaard"
   l.store "No articles found", "Geen artikelen gevonden"
   l.store "posted in", "geplaatst in"
   l.store "is about to say", "gaat zeggen"

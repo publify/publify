@@ -24,7 +24,6 @@ Localization.define("fr_FR") do |l|
   l.store "Editor", "Éditeur"
   l.store "Posted by", "Publié par"
   l.store "Continue reading", "Lire plus"
-  l.store "Oops, something wrong happened, the comment could not be saved", "Oops, quelque chose s'est mal déroulé. Votre commentaire n'a donc pu être enregistré."
   l.store "No comments", "Pas de commentaires"
   l.store "No articles found", "Aucun article ne correspond à la recherche"
   l.store "is about to say", "va dire"

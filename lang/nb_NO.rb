@@ -31,7 +31,6 @@ Localization.define("nb_NO") do |l|
   l.store "Yes", "Ja"
   l.store "Posted by", "Skrevet av"
   l.store "Continue reading", "Fortsett å lese"
-  l.store "Oops, something wrong happened, the comment could not be saved", "Ojsann, noe galt skjedde. Kommentaren ble ikke lagret"
   l.store "No comments", "Ingen kommentarer"
   l.store "No articles found", "Fant ingen artikler"
   l.store "is about to say", "vil snart si"

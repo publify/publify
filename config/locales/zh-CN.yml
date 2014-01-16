@@ -67,6 +67,9 @@ zh-CN:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
   admin:
+    base:
+      restart_application: "For security reasons, you should restart your Publify application. Enjoy your blogging experience."
+      cant_generate_secret: "Error: can't generate secret token. Security is at risk. Please, change %{checker_file} content"
     notes:
       new:
         no_notes: "这儿并不存在Notes。让我们开始创建它。"

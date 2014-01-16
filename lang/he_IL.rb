@@ -27,7 +27,6 @@ Localization.define("he_IL") do |l|
   l.store "Yes", "כן"
   l.store "Posted by", "נכתב על ידי"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "תגובה זו הועברה לביקורת. היא לא תופיע בבלוג עד אשר הכותב יאשר אותה"
-  l.store "Oops, something wrong happened, the comment could not be saved", "אופס, משהו השתבש, התגובה אינה יכולה להישמר"
   l.store "No articles found", "לא נמצאו כתבות"
   l.store "posted in", "נשלח ב-"
   l.store "is about to say", "עומד לומר"

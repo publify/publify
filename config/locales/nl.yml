@@ -67,6 +67,9 @@ nl:
       proceed_to: "Ga door naar %{link}"
       admin: "admin"
   admin:
+    base:
+      restart_application: "For security reasons, you should restart your Publify application. Enjoy your blogging experience."
+      cant_generate_secret: "Error: can't generate secret token. Security is at risk. Please, change %{checker_file} content"
     notes:
       new:
         no_notes: "Er zijn nog geen notes. Waarom begin je er niet een te maken?"

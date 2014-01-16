@@ -61,9 +61,9 @@ class Admin::BaseController < ApplicationController
 
     begin
       checker.generate_token
-      gflash notice: "For security reasons, you should restart your Publify application. Enjoy your blogging experience."
+      gflash notice: I18n.t('admin.base.restart_application')
     rescue
-      gflash error: "Error: can't generate secret token. Security is at risk. Please, change #{checker.file} content"
+      gflash error: I18n.t('admin.base.cant_genereate_secret', checker_file: checker.file)
     end
   end
 

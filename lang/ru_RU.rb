@@ -10,7 +10,5 @@ Localization.define("ru_RU") do |l|
   l.store "password", "пароль"
   l.store "Submit", "Войти"
   l.store "SmartyPants", "SmartyPants"
-  l.store "For security reasons, you should restart your Publify application. Enjoy your blogging experience.", "По соображениям безопасности вам следует перезапустить ваше Publify-приложение. Приятного блогерства!"
-  l.store "Oops, something wrong happened, the comment could not be saved", "Ох! Что-то случилось, и комментарий не сохранился"
   l.store "Published on", "Опубликовано"
 end
