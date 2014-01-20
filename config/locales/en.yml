@@ -27,6 +27,9 @@ en:
         zero: "no comments"
         one: "1 comment"
         other: "%{count} comments"
+  notes:
+    note:
+      view_on_twitter: "View on Twitter"
   profile:
     admin: "Publify administrator"
     publisher: "Blog publisher"

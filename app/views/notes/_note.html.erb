@@ -2,7 +2,6 @@
   <% if @reply %>
     <%= render :partial => "note_reply_context", :object => @reply %>
   <% end %>
-  
   <article class='status'>
     <%= author_picture note %>
     <div class='p-name entry-title e-content entry-content article'><%= note.html(:body) %></div>
@@ -11,7 +10,9 @@
         <%= link_to_permalink(note, display_date_and_time(note.published_at)) %> | 
         <%= link_to note.redirects.first.to_url, note.redirects.first.to_url %> | 
         <%= author_link note %> 
-        <%= view_on_twitter note %>          
+        <%- unless note.twitter_id.blank? %>
+          <%=  " | #{link_to(t(".view_on_twitter"), note.twitter_url, {class: 'u-syndication', rel: 'syndication'})}" %>
+       <%- end %>
       </small>
     </footer>
   </article>

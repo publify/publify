@@ -95,7 +95,11 @@ describe Note do
         end
         it { expect(note.send_to_twitter).to be_false }
       end
+    end
 
+    describe :twitter_url do
+      let(:note) { build(:note, settings: {twitter_id: "12345678901234"}) }
+      it { expect(note.twitter_url).to eq("https://twitter.com/#{note.user.twitter}/status/#{note.twitter_id}") }
     end
 
     describe :default_text_filter do

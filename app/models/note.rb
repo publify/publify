@@ -71,11 +71,15 @@ class Note < Content
     end
   end
 
+  def twitter_url
+    File.join('https://twitter.com', user.twitter, 'status', twitter_id)
+  end
+
   def send_to_twitter
     return false unless Blog.default.has_twitter_configured?
     return false unless self.user.has_twitter_configured?
 
-    twitter = Twitter::REST::Client.new do |config| 
+    twitter = Twitter::REST::Client.new do |config|
       config.consumer_key = Blog.default.twitter_consumer_key
       config.consumer_secret = Blog.default.twitter_consumer_secret
       config.oauth_token = self.user.twitter_oauth_token
