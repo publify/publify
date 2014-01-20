@@ -1,7 +1,5 @@
 # coding: utf-8
 Localization.define("lt_LT") do |l|
-  l.store "Reorder", "Rikiuoti"
-  l.store "Remove", "Pašalinti"
   l.store "yes", "ja"
   l.store "no", "nein"
   l.store "Drag some plugins here to fill your sidebar", "Ziehen Sie Plugins hierher, um sie in die Seitenleiste aufzunehmen"
@@ -19,26 +17,13 @@ Localization.define("lt_LT") do |l|
   l.store "Action", "Aktion"
   l.store "Activate", "Aktivieren"
   l.store "Body", "Tekstas"
-  l.store "Design", "Dizainas"
-  l.store "Filters", "Filter"
-  l.store "IP", "IP adresas"
-  l.store "Location", "Adresse"
-  l.store "Logoff", "Atsijungti"
-  l.store "Macros", "Makros"
   l.store "Markup", "Markup"
-  l.store "MetaData", "Metadaten"
-  l.store "Notified", "Benachrichtigt"
-  l.store "Pattern", "Šablonas" # pavyzdys forma ?
   l.store "Read", "Skaityti"
   l.store "Read more", "Plačiau"
-  l.store "Regex", "Reguliarioji išraiška" # kvailai skamba bet kaip kitaip ?
-  l.store "Settings", "Nustatymai"
   l.store "String", "Eilutė"
-  l.store "Summary", "Zusammenfassung"
   l.store "Textfilter", "Teksto filtras"
   l.store "Type", "Tipas"
   l.store "Publify admin", "Publify administravimas"
-  l.store "Uploaded", "Upload beendet"
   l.store "by", "bei"
   l.store "on", "įjungta"
 end

@@ -1,7 +1,5 @@
 # coding: utf-8
 Localization.define("de_DE") do |l|
-  l.store "Reorder", "Sortieren"
-  l.store "Remove", "Löschen"
   l.store "yes", "ja"
   l.store "no", "nein"
   l.store "Drag some plugins here to fill your sidebar", "Ziehen Sie Plugins hierher, um sie in die Seitenleiste aufzunehmen"
@@ -16,29 +14,15 @@ Localization.define("de_DE") do |l|
   l.store "Archives", "Archive"
   l.store "%d Articles", ["Artikel", "%d Artikel"]
   l.store "%d Tags", ["Tag", "%d Tags"]
-  l.store "%d Trackbacks", ["Trackback", "%d Trackbacks"]
   l.store "Action", "Aktion"
   l.store "Activate", "Aktivieren"
   l.store "Body", "Text"
-  l.store "Design", "Design"
-  l.store "Filters", "Filter"
-  l.store "IP", "IP-Adresse"
-  l.store "Location", "Adresse"
-  l.store "Logoff", "Logoff"
-  l.store "Macros", "Makros"
   l.store "Markup", "Markup"
-  l.store "MetaData", "Metadaten"
-  l.store "Notified", "Benachrichtigt"
-  l.store "Pattern", "Muster"
   l.store "Read", "Lesen"
-  l.store "Regex", "Regulärer Ausdruck"
-  l.store "Settings", "Einstellungen"
   l.store "String", "Zeichenkette"
-  l.store "Summary", "Zusammenfassung"
   l.store "Textfilter", "Textfilter"
   l.store "Type", "Typ"
   l.store "Publify admin", "Publify Administrator"
-  l.store "Uploaded", "Upload beendet"
   l.store "by", "bei"
   l.store "on", "über"
 end
