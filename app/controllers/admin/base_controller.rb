@@ -27,9 +27,9 @@ class Admin::BaseController < ApplicationController
 
   def save_a(object, title)
     if object.save
-      flash[:notice] = _("#{title.capitalize} was successfully saved.")
+      gflash notice: I18n.t("admin.base.successfully_saved", element: title) 
     else
-      flash[:error] = _("#{title.capitalize} could not be saved.")
+      gflash error: I18n.t("admin.base.unsuccessfully_saved", element: title) 
     end
     redirect_to action: 'index'
   end

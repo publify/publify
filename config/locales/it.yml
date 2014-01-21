@@ -79,6 +79,8 @@ it:
     base:
       restart_application: "For security reasons, you should restart your Publify application. Enjoy your blogging experience."
       cant_generate_secret: "Error: can't generate secret token. Security is at risk. Please, change %{checker_file} content"
+      successfully_saved: "%{element} was successfully saved."
+      unsuccessfully_saved: "%{element} could not be saved."
     notes:
       new:
         no_notes: "There are no notes yet. Why don't you start and create one?"

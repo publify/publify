@@ -25,17 +25,14 @@ class Admin::RedirectsController < Admin::BaseController
     end
 
     @redirect.attributes = params[:redirect]
-    if request.post?
       if @redirect.from_path.empty? || @redirect.from_path.nil?
         @redirect.from_path = @redirect.shorten
       end
-      save_redirect
-      return
+    if request.post?
+      save_a(@redirect, 'redirection')
+    else
+      render 'new'
     end
-    render 'new'
   end
 
-  def save_redirect
-    save_a(@redirect, 'redirection')
-  end
 end
