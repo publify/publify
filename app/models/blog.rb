@@ -221,12 +221,11 @@ class Blog < ActiveRecord::Base
 
   def permalink_has_identifier
     unless permalink_format =~ /(%title%)/
-      errors.add(:permalink_format, _("You need a permalink format with an identifier : %%title%%"))
+      errors.add(:permalink_format, I18n.t("errors.permalink_nede_a_title"))
     end
 
-    # A permalink cannot end in .atom or .rss. it's reserved for the feeds
     if permalink_format =~ /\.(atom|rss)$/
-      errors.add(:permalink_format, _("Can't end in .rss or .atom. These are reserved to be used for feed URLs"))
+      errors.add(:permalink_format, I18n.t("errors.cant_end_with_rss_or_atom"))
     end
   end
 

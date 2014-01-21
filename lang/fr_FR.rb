@@ -4,7 +4,6 @@ Localization.define("fr_FR") do |l|
   l.store "1 article", "1 article"
   l.store "%d articles", "%d articles"
   l.store "%d trackbacks", "%d rétroliens"
-  l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", "Ne peut pas se terminer par .rss ou .atom. Cette extension est réservée aux flux de syndication"
   l.store "public", "publique"
   l.store "protected", "protégée"
   l.store "Markdown", "Markdown"

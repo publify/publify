@@ -7,7 +7,6 @@ Localization.define("nl_NL") do |l|
   l.store "no posts", "geen berichten"
   l.store "1 post", "één bericht"
   l.store "%d posts", "%d berichten"
-  l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", "Mag niet eindigen met .rss of .atom. Die zijn gereserveerd voor feed URLs"
   l.store "Unclassified", "Niet geclassificeerd"
   l.store "Just Presumed Ham", "Zojuist aangenomen dat dit Ham is"
   l.store "Ham?", "Ham?"

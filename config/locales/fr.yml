@@ -29,6 +29,9 @@ fr:
         zero: "aucun commentaire"
         one: "1 commentaire"
         other: "%{count} commentaires"
+  notes:
+    note:
+      view_on_twitter: "View on Twitter"
   profile:
     admin: "Administrateur"
     publisher: "Rédacteur"
@@ -38,6 +41,8 @@ fr:
       active: "Active"
       inactive: "Inactive"
   errors:
+    permalink_need_a_title: "You need a permalink format with an identifier : %%title%%"
+    cant_end_with_rss_or_atom: "Ne peut pas se terminer par .rss ou .atom. Cette extension est réservée aux flux de syndication"
     render_sidebar: "Une erreur s'est produite. Un ou plusieurs plugins sont probablement manquants ou en erreur. Peut-être devriez-vous les supprimer ou les réinstaller"
     no_posts_found: "Aucun article n'a été trouvé"
   views:

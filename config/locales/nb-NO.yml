@@ -29,6 +29,9 @@ nb-NO:
         zero: "Ingen kommentarer"
         one: "1 comment"
         other: "%{count} Kommentarer"
+  notes:
+    note:
+      view_on_twitter: "View on Twitter"
   profile:
     admin: "Publify administrator"
     publisher: "Blog publisher"
@@ -38,6 +41,8 @@ nb-NO:
       active: "Active"
       inactive: "Inactive"
   errors:
+    permalink_need_a_title: "Du må bruke et permalenkeformat med identifikator: %%title%%"
+    cant_end_with_rss_or_atom: "Kan ikke slutte på .rss eller .atom. Disse er reserverte for feed-URLer"
     render_sidebar: "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually"
     no_posts_found: "No posts found..."
   views:

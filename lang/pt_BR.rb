@@ -3,7 +3,6 @@
 Localization.define("pt_BR") do |l|
   l.store "%d trackbacks", "%d trackbacks"
   l.store "no posts", "Sem posts"
-  l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", "Não pode terminar em .rss ou .atom. Esses formatos são reservados para URLs de feed"
   l.store "Unclassified", "Não classificado"
   l.store "Just Presumed Ham", "Ham apenas presumido"
   l.store "Just Marked As Ham", "Apenas marcado como Ham"

@@ -3,6 +3,7 @@ es-MX:
     at: "at"
   articles:
     read:
+      edit: "Edit"
       comments: "Comentarios"
       leave_a_response: "Deja un comentario"
       rss_feed: "Feed RSS para este art&iacute;culo"
@@ -28,6 +29,9 @@ es-MX:
         zero: "no Comentarios"
         one: "1 Comentario"
         other: "%{count} Comentarios"
+  notes:
+    note:
+      view_on_twitter: "View on Twitter"
   profile:
     admin: "Publify administrator"
     publisher: "Blog publisher"
@@ -37,6 +41,8 @@ es-MX:
       active: "Active"
       inactive: "Inactive"
   errors:
+    permalink_need_a_title: "You need a permalink format with an identifier : %%title%%"
+    cant_end_with_rss_or_atom: "Can't end in .rss or .atom. These are reserved to be used for feed URLs"
     render_sidebar: "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually"
     no_posts_found: "No posts found..."
   views:

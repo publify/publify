@@ -1,7 +1,5 @@
 # coding: utf-8
 Localization.define("nb_NO") do |l|
-  l.store "You need a permalink format with an identifier : %%title%%", "Du må bruke et permalenkeformat med identifikator: %%title%%"
-  l.store "Can't end in .rss or .atom. These are reserved to be used for feed URLs", "Kan ikke slutte på .rss eller .atom. Disse er reserverte for feed-URLer"
   l.store "Unclassified", "Uklassifisert"
   l.store "Just Presumed Ham", "Kun antatt Ham"
   l.store "Ham?", "Ham?"
