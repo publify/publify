@@ -1,4 +1,6 @@
 ja:
+  helper:
+    at: "at"
   articles:
     read:
       comments: "コメント"

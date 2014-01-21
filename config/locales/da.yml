@@ -1,4 +1,6 @@
 da:
+  helper:
+    at: "at"
   articles:
     read:
       edit: "Rediger"

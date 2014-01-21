@@ -1,4 +1,6 @@
 zh-CN:
+  helper:
+    at: "at"
   articles:
     read:
       edit: "修改"

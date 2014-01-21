@@ -1,4 +1,6 @@
 he-IL:
+  helper:
+    at: "at"
   articles:
     read:
       comments: "תגובות"

@@ -1,4 +1,6 @@
 pt-BR:
+  helper:
+    at: "at"
   articles:
     read:
       edit: "Editar"

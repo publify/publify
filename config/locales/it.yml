@@ -1,4 +1,6 @@
 it:
+  helper:
+    at: "at"
   articles:
     read:
       comments: "Comments"

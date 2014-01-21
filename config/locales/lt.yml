@@ -1,4 +1,6 @@
 lt:
+  helper:
+    at: "at"
   articles:
     read:
       edit: "Redaguoti"

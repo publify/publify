@@ -1,4 +1,6 @@
 nb-NO:
+  helper:
+    at: "at"
   articles:
     read:
       edit: "Rediger"

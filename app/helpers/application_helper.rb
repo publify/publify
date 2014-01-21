@@ -212,7 +212,7 @@ module ApplicationHelper
 
   def display_date_and_time(timestamp)
     return new_js_distance_of_time_in_words_to_now(timestamp) if this_blog.date_format == 'distance_of_time_in_words'
-    "#{display_date(timestamp)} #{_('at')} #{display_time(timestamp)}"
+    "#{display_date(timestamp)} #{t('helper.at')} #{display_time(timestamp)}"
   end
 
   def show_meta_keyword
