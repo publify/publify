@@ -38,21 +38,20 @@ class Admin::NotesController < Admin::BaseController
     if request.post?
       update_status_attributes
 
-      message = "created"
       if @note.id
         unless @note.access_by?(current_user)
-          flash[:error] = _("Error, you are not allowed to perform this action")
-          return(redirect_to :action => 'new')
+          gflash error: I18n.t('errors.you_are_not_allowed')
+          return(redirect_to action: 'new')
         end
-        message = "updated"
+        gflash notice: I18n.t("notice.note_successfully_updated")
+      else
+        gflash notice: I18n.t("notice.note_successfully_created")
       end
 
       if @note.save
-        flash[:notice] = _("Note was successfully %s.", message)
         if params[:push_to_twitter] && @note.twitter_id.blank?
           unless @note.send_to_twitter
-            flash[:notice] = nil
-            flash[:error] = _("Oooops something wrong happened")
+            gflash error: I18n.t("errors.problem_sending_to_twitter")
           end
         end
         redirect_to action: 'new'

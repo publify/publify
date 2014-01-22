@@ -63,7 +63,7 @@ describe Admin::NotesController do
         it {expect(response).to redirect_to(controller: 'notes', action: 'new')}
         it {expect(Note.count).to eq(1) }
         it {expect(Note.first.body).to eq("Emphasis _mine_, arguments *strong*") }
-        it {expect(flash[:notice]).to eq("Note was successfully created.") }
+        it {expect(session[:gflash][:notice]).to eq(["Note was successfully created"]) }
       end
 
       context "with permalink" do

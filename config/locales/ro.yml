@@ -40,7 +40,12 @@ ro:
     status:
       active: "Active"
       inactive: "Inactive"
+  notice:
+    note_successfully_updated: "Note was successfully updated"
+    note_successfully_created: "Note was successfully created"
   errors:
+    problem_sending_to_twitter: "Oooops something wrong happened"
+    you_are_not_allowed: "Error, you are not allowed to perform this action"
     article_type_already_exist: "This article type already exists"
     permalink_need_a_title: "You need a permalink format with an identifier : %%title%%"
     cant_end_with_rss_or_atom: "Can't end in .rss or .atom. These are reserved to be used for feed URLs"
