@@ -74,7 +74,9 @@ class Sidebar < ActiveRecord::Base
 
     class CheckBoxField < self
       def line_html(sidebar)
-hidden_field_tag(input_name(sidebar),0) + content_tag('label', "#{check_box_tag(input_name(sidebar), 1, sidebar.config[key], options)} #{label}".html_safe)
+        hidden_field_tag(input_name(sidebar),0) +
+          content_tag('label',
+                      "#{check_box_tag(input_name(sidebar), 1, sidebar.config[key], options)} #{label}".html_safe)
       end
 
       def canonicalize(value)
@@ -88,7 +90,7 @@ hidden_field_tag(input_name(sidebar),0) + content_tag('label', "#{check_box_tag(
     end
 
     def self.build(key, default, options)
-      field = class_for(options).new(key, default, options)
+      class_for(options).new(key, default, options)
     end
 
     def self.class_for(options)
@@ -116,7 +118,7 @@ hidden_field_tag(input_name(sidebar),0) + content_tag('label', "#{check_box_tag(
   def self.find *args
     begin
       super
-    rescue ActiveRecord::SubclassNotFound => e
+    rescue ActiveRecord::SubclassNotFound
       available = available_sidebars.map {|klass| klass.to_s}
       self.inheritance_column = :bogus
       super.each do |record|
@@ -278,4 +280,3 @@ hidden_field_tag(input_name(sidebar),0) + content_tag('label', "#{check_box_tag(
     self.class.view_root
   end
 end
-
