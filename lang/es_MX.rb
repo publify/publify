@@ -9,16 +9,10 @@ Localization.define("es_MX") do |l|
   l.store "is about to say", "est&aacute; a punto de decir"
   l.store "There are", "Hay"
   l.store "Use the following link to trackback from your own site", "Usa el siguiente link para crear un trackback desde tu propio sitio"
-  l.store "%d Articles", ["Art&iacute;culo", "%d Art&iacute;culos"]
   l.store "Action", "Acci&oacute;n"
-  l.store "Activate", "Activar"
-  l.store "Body", "Comentario"
-  l.store "Markup", "Marcado"
   l.store "Read", "Leer"
-  l.store "Read more", "Leer m&aacute;s"
   l.store "String", "Cadena"
   l.store "Textfilter", "Filtro de texto"
-  l.store "Type", "Tipo"
   l.store "by", "por"
   l.store "on", "en"
 end

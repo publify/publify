@@ -11,18 +11,10 @@ Localization.define("lt_LT") do |l|
   l.store "There are", "Čia yra"
   l.store "Use the following link to trackback from your own site", "Dienoraščio nuoroda (trackback)"
   l.store "Archives", "Archyvas"
-  l.store "%d Articles", ["Straipsnis", "%d Straipsniai"]
-  l.store "%d Tags", ["Žymė", "%d Žymės"]
-  l.store "%d Trackbacks", ["dienoraščio nuoroda", "%d dienoraščių nuorodos"]
   l.store "Action", "Aktion"
-  l.store "Activate", "Aktivieren"
-  l.store "Body", "Tekstas"
-  l.store "Markup", "Markup"
   l.store "Read", "Skaityti"
-  l.store "Read more", "Plačiau"
   l.store "String", "Eilutė"
   l.store "Textfilter", "Teksto filtras"
-  l.store "Type", "Tipas"
   l.store "Publify admin", "Publify administravimas"
   l.store "by", "bei"
   l.store "on", "įjungta"

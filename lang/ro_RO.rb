@@ -10,17 +10,10 @@ Localization.define("ro_RO") do |l|
   l.store "is about to say", "vrea să scrie"
   l.store "There are", "Sînt"
   l.store "Use the following link to trackback from your own site", "Folosește link-ul următor pentru a realiza o retrolegătură de la site-ul tău"
-  l.store "%d Articles", ["Articol", "%d Articole"]
-  l.store "%d Tags", ["Cuvînt cheie", "%d Cuvinte cheie"]
   l.store "Action", "Acțiuni"
-  l.store "Activate", "Activează"
-  l.store "Body", "Conținut"
-  l.store "Markup", "Marcaj"
   l.store "Read", "Afișare"
-  l.store "Read more", "Citește mai departe"
   l.store "String", "Șir de caractere"
   l.store "Textfilter", "Filtru de text"
-  l.store "Type", "Tip"
   l.store "Publify admin", "Administrare Publify"
   l.store "by", "de"
   l.store "on", "la"
