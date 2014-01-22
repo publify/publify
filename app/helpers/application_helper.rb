@@ -16,6 +16,7 @@ module ApplicationHelper
     end.join
   rescue => e
     logger.error e
+    logger.error e.backtrace.join("\n")
     I18n.t('errors.render_sidebar')
   end
 
