@@ -332,6 +332,7 @@ es-MX:
         description: "Descripci&oacute;n"
         tag: "Tag"
       destroy:
+        destroy_confirmation: "Destroy confirmation"
         are_you_sure: "&iquest;Est&aacute;s seguro que deseas eliminar este %{element}?"
         action_or_other: "%{first_action} o %{second_action}"
         cancel: "Cancelar"

@@ -332,6 +332,7 @@ he-IL:
         description: "תיאור"
         tag: "תוית"
       destroy:
+        destroy_confirmation: "Destroy confirmation"
         are_you_sure: "האם אתה בטוח שברצונך למחוק את %{element} הזו?"
         action_or_other: "%{first_action} או %{second_action}"
         cancel: "בטל"

@@ -332,6 +332,7 @@ ru:
         description: "Описание"
         tag: "Тег"
       destroy:
+        destroy_confirmation: "Destroy confirmation"
         are_you_sure: "Вы уверены, что хотите удалить %{element}?"
         action_or_other: "%{first_action} или %{second_action}"
         cancel: "Отменить"

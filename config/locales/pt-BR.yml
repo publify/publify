@@ -332,6 +332,7 @@ pt-BR:
         description: "Descrição"
         tag: "Tag"
       destroy:
+        destroy_confirmation: "Destroy confirmation"
         are_you_sure: "Are you sure you want to delete this %{element}"
         action_or_other: "%{first_action} ou %{second_action}"
         cancel: "Cancelar"

@@ -332,6 +332,7 @@ ja:
         description: "説明"
         tag: "Tag"
       destroy:
+        destroy_confirmation: "Destroy confirmation"
         are_you_sure: "Are you sure you want to delete this %{element}"
         action_or_other: "%{first_action} または %{second_action}"
         cancel: "キャンセル"

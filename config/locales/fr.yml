@@ -332,6 +332,7 @@ fr:
         description: "Description"
         tag: "Label"
       destroy:
+        destroy_confirmation: "Confirmation de suppression"
         are_you_sure: "Êtes-vous certain de vouloir supprimer ce %{element}"
         action_or_other: "%{first_action} ou %{second_action}"
         cancel: "Annuler"

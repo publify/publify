@@ -332,6 +332,7 @@ it:
         description: "Descrizione"
         tag: "Tag"
       destroy:
+        destroy_confirmation: "Destroy confirmation"
         are_you_sure: "Sei sicuro di voler eliminare questo %{element}?"
         action_or_other: "%{first_action} o %{second_action}"
         cancel: "Annulla"
