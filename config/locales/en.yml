@@ -86,6 +86,8 @@ en:
       cant_generate_secret: "Error: can't generate secret token. Security is at risk. Please, change %{checker_file} content"
       successfully_saved: "%{element} was successfully saved."
       unsuccessfully_saved: "%{element} could not be saved."
+      not_allowed: "Error, you are not allowed to perform this action"
+      successfully_deleted: "This %{name} was deleted successfully"
     notes:
       new:
         how_to_setup_twitter: "If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."

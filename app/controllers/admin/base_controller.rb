@@ -27,9 +27,9 @@ class Admin::BaseController < ApplicationController
 
   def save_a(object, title)
     if object.save
-      gflash notice: I18n.t("admin.base.successfully_saved", element: title) 
+      gflash notice: I18n.t("admin.base.successfully_saved", element: title)
     else
-      gflash error: I18n.t("admin.base.unsuccessfully_saved", element: title) 
+      gflash error: I18n.t("admin.base.unsuccessfully_saved", element: title)
     end
     redirect_to action: 'index'
   end
@@ -37,12 +37,12 @@ class Admin::BaseController < ApplicationController
   def destroy_a(klass_to_destroy)
     @record = klass_to_destroy.find(params[:id])
     if @record.respond_to?(:access_by?) && !@record.access_by?(current_user)
-      flash[:error] = _("Error, you are not allowed to perform this action")
+      gflash error: I18n.t("admin.base.not_allowed")
       return(redirect_to action: 'index')
     end
     return render('admin/shared/destroy') unless request.post?
     @record.destroy
-    flash[:notice] = _("This #{controller_name.humanize} was deleted successfully")
+    gflash notice: I18n.t("admin.base.successfully_deleted", name: controller_name.humanize)
     redirect_to action: 'index'
   end
 

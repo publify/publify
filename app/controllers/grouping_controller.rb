@@ -22,7 +22,7 @@ class GroupingController < ContentController
     self.groupings = grouping_class.page(params[:page]).per(100)
     @page_title = self.controller_name.capitalize
     @keywords = ""
-    @description = "#{_(self.class.to_s.sub(/Controller$/,''))} #{'for'} #{this_blog.blog_name}"
+    @description = "#{self.class.to_s.sub(/Controller$/,'')} for #{this_blog.blog_name}"
   end
 
   def show

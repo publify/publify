@@ -86,6 +86,8 @@ nb-NO:
       cant_generate_secret: "Error: can't generate secret token. Security is at risk. Please, change %{checker_file} content"
       successfully_saved: "%{element} was successfully saved."
       unsuccessfully_saved: "%{element} could not be saved."
+      not_allowed: "Error, you are not allowed to perform this action"
+      successfully_deleted: "This %{name} was deleted successfully"
     notes:
       new:
         no_notes: "Det finnes ingen notes enda. Hva med å opprette en?"
