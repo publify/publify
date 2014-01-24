@@ -20,7 +20,6 @@ Localization.define("he_IL") do |l|
   l.store "posted in", "נשלח ב-"
   l.store "is about to say", "עומד לומר"
   l.store "There are", "ישנם"
-  l.store "Use the following link to trackback from your own site", "השתמש בקישור הבא כדי לעקוב-חזרה מהאתר שלך"
   l.store "This comment has been flagged for moderator approval.", "התגובה הזו ממתינה לאישור"
   l.store "Powered by %s", "מופעל על ידי %s"
   l.store "Designed by %s ", "עוצב על ידי %s"

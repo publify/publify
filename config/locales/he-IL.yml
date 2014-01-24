@@ -17,6 +17,8 @@ he-IL:
       posted_in: "פורסם ב-"
       no_articles_found: "לא נמצאו כתבות"
     read:
+      use_the_following_link_to_trackback: "השתמש בקישור הבא כדי לעקוב-חזרה מהאתר שלך"
+      trackbacks: "Trackbacks"
       edit: "Edit"
       comments: "תגובות"
       leave_a_response: "הגב"

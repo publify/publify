@@ -17,6 +17,8 @@ nl:
       posted_in: "Geplaatst in"
       no_articles_found: "Geen artikelen gevonden"
     read:
+      use_the_following_link_to_trackback: "Gebruik de volgende link voor een trackback van jouw site"
+      trackbacks: "Trackbacks"
       edit: "Bewerken"
       comments: "Reacties"
       leave_a_response: "Geef een reactie"

@@ -17,6 +17,8 @@ ro:
       posted_in: "Posted in"
       no_articles_found: "Niciun articol nu a fost găsit"
     read:
+      use_the_following_link_to_trackback: "Folosește link-ul următor pentru a realiza o retrolegătură de la site-ul tău"
+      trackbacks: "Trackbacks"
       edit: "Editare"
       comments: "Comentarii"
       leave_a_response: "Comentează"

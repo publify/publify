@@ -25,7 +25,6 @@ Localization.define("nl_NL") do |l|
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "Dit commentaar is gemarkeerd voor goedkeuring. Het zal niet getoond worden totdat de auteur het goedkeurt."
   l.store "is about to say", "gaat zeggen"
   l.store "There are", "Er zijn"
-  l.store "Use the following link to trackback from your own site", "Gebruik de volgende link voor een trackback van jouw site"
   l.store "This comment has been flagged for moderator approval.", "Deze reactie is aangemerkt voor goedkeuring."
   l.store "Welcome", "Welkom"
   l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Publify will take care of everything else", "Welkom bij je %s blog setup. Vul een titel voor je blog in, en een e-mailadres, en Publify zorgt voor de rest"

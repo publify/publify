@@ -17,6 +17,8 @@ zh-TW:
       posted_in: "Posted in"
       no_articles_found: "沒有找到任何文章"
     read:
+      use_the_following_link_to_trackback: "從你所屬的網點用隨後的連結去引用"
+      trackbacks: "Trackbacks"
       edit: "修改"
       comments: "評論"
       leave_a_response: "離開一個回應"

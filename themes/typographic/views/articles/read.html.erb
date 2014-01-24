@@ -17,9 +17,9 @@
 <%= render @article %>
 
 <% if @article.allow_pings? -%>
-  <h2 id="trackbacks-title"><a id="trackbacks"><%= _("Trackbacks")%></a></h2>
+  <h2 id="trackbacks-title"><a id="trackbacks"><%= t(".trackbacks")%></a></h2>
   <p class="trackbackurl">
-    <%= _("Use the following link to trackback from your own site")%>:<br />
+    <%= t(".use_the_following_link_to_trackback")%>:<br />
     <%= @article.trackback_url %>
   </p>
 
@@ -29,12 +29,10 @@
   </ol>
   <% end -%>
 <% end -%>
-
 <% if @article.allow_comments? or @article.published_comments.size > 0 -%>
 
-
   <% unless @article.comments_closed? and @article.published_comments.size == 0 %>
-    <h2 id="comments-title"><a id="comments"><%= _("Comments")%></a></h2>
+    <h2 id="comments-title"><a id="comments"><%= t(".comments")%></a></h2>
   <% end -%>
 
   <div id="comments_div">

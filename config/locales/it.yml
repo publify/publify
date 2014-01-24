@@ -17,6 +17,8 @@ it:
       posted_in: "Posted in"
       no_articles_found: "Nessun articolo trovato"
     read:
+      use_the_following_link_to_trackback: "Usa il link seguente per fare un trackback dal tuo sito"
+      trackbacks: "Trackbacks"
       edit: "Edit"
       comments: "Comments"
       leave_a_response: "Commenta"

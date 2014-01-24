@@ -17,6 +17,8 @@ de:
       posted_in: "Posted in"
       no_articles_found: "Keine Artikel gefunden"
     read:
+      use_the_following_link_to_trackback: "Verwenden Sie den folgenden Link zur Rückverlinkung von Ihrer eigenen Seite"
+      trackbacks: "Trackbacks"
       edit: "Bearbeiten"
       comments: "Kommentare"
       leave_a_response: "Einen Kommentar hinterlassen"

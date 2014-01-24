@@ -17,6 +17,8 @@ pl:
       posted_in: "Posted in"
       no_articles_found: "Brak artykułów"
     read:
+      use_the_following_link_to_trackback: "Użyj następującego trackbacka na swojej stronie"
+      trackbacks: "Trackbacks"
       edit: "Zmień"
       comments: "Comments"
       leave_a_response: "Skomentuj"

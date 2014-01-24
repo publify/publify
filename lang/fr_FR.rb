@@ -14,7 +14,6 @@ Localization.define("fr_FR") do |l|
   l.store "No comments", "Pas de commentaires"
   l.store "is about to say", "va dire"
   l.store "There are", "Il y a"
-  l.store "Use the following link to trackback from your own site", "Utilisez le lien ci-dessous pour envoyer un rétrolien depuis votre site"
   l.store "Trackbacks are disabled", "Les rétroliens sont désactivés"
   l.store "said", "a dit"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "Ce commentaire a été envoyé à la modération. Il ne sera affiché qu'une fois approuvé par un modérateur"

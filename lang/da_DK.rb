@@ -7,7 +7,6 @@ Localization.define("da_DK") do |l|
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "Denne kommentar er blevet markeret som krævende godkendelse. Den vil ikke blive vist før forfatteren godkender den."
   l.store "is about to say", "vil gerne sige"
   l.store "There are", "Der er"
-  l.store "Use the following link to trackback from your own site", "Brug følgende link til lave trackback fra din egen side"
   l.store "Leave a comment", "Skriv en kommentar"
   l.store "Name %s", "Navn %s"
   l.store "Archives", "Arkiv"

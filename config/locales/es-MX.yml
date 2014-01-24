@@ -17,6 +17,8 @@ es-MX:
       posted_in: "Posted in"
       no_articles_found: "No se encontraron art&iacute;culos"
     read:
+      use_the_following_link_to_trackback: "Usa el siguiente link para crear un trackback desde tu propio sitio"
+      trackbacks: "Trackbacks"
       edit: "Edit"
       comments: "Comentarios"
       leave_a_response: "Deja un comentario"

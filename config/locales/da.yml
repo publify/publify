@@ -17,6 +17,8 @@ da:
       posted_in: "Posted in"
       no_articles_found: "Fandt ingen artikler"
     read:
+      use_the_following_link_to_trackback: "Brug følgende link til lave trackback fra din egen side"
+      trackbacks: "Trackbacks"
       edit: "Rediger"
       comments: "Kommentarer"
       leave_a_response: "Skriv en kommentar"

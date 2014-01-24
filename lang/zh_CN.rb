@@ -10,7 +10,6 @@ Localization.define("zh_CN") do |l|
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "這篇评论被標示為版主所允許的。他不會在博客顯示直到版主承認他。"
   l.store "is about to say", "这是关于~~"
   l.store "There are", "有"
-  l.store "Use the following link to trackback from your own site", "從你所屬的網點用隨後的連結去引用"
   l.store "About", "关于"
   l.store "Archives", "归档"
   l.store "Action", "開始行動"

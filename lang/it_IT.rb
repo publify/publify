@@ -8,7 +8,6 @@ Localization.define("it_IT") do |l|
   l.store "said", "dice"
   l.store "is about to say", "sta per dire"
   l.store "There are", "Ci sono"
-  l.store "Use the following link to trackback from your own site", "Usa il link seguente per fare un trackback dal tuo sito"
   l.store "Archives", "Archivi"
   l.store "Action", "Azioni"
   l.store "Confirm Classification of Checked Items", "Conferma classificazione degli elementi selezionati"

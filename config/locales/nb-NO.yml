@@ -17,6 +17,8 @@ nb-NO:
       posted_in: "Publisert i"
       no_articles_found: "Fant ingen artikler"
     read:
+      use_the_following_link_to_trackback: "Bruk følgende lenke for å opprette trackback fra din egen side"
+      trackbacks: "Trackbacks"
       edit: "Rediger"
       comments: "Kommentarer"
       leave_a_response: "Skriv en kommentar"

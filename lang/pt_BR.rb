@@ -13,7 +13,6 @@ Localization.define("pt_BR") do |l|
   l.store "said", "dijo"
   l.store "is about to say", "est&aacute; a punto de decir"
   l.store "There are", "Hay"
-  l.store "Use the following link to trackback from your own site", "Usa el siguiente link para crear un trackback desde tu propio sitio"
   l.store "Action", "Acci&oacute;n"
   l.store "Read", "Leer"
   l.store "String", "Cadena"

@@ -19,7 +19,6 @@ Localization.define("ja_JP") do |l|
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "このコメントはモデレーターの確認が必要です。モデレーターが確認後にコメントが表示されます。"
   l.store "is about to say", "〜について言う"
   l.store "There are", "ここに"
-  l.store "Use the following link to trackback from your own site", "トラックバックリンク"
   l.store "Archives", "アーカイブ"
   l.store "Action", "アクション"
   l.store "Confirm Classification of Checked Items", "チェックした行の分類を認める"

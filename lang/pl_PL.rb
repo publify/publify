@@ -12,7 +12,6 @@ Localization.define("pl_PL") do |l|
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "Ten komentarz oczekuje na akceptację.  Nie ukaże się do czasu zaakceptowania przez autora."
   l.store "is about to say", "zaraz powie"
   l.store "There are", "Istnieje"
-  l.store "Use the following link to trackback from your own site", "Użyj następującego trackbacka na swojej stronie"
   l.store "Previous", "Poprzednie"
   l.store "Archives", "Archiwa"
   l.store "Action", "Akcje"

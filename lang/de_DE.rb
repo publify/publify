@@ -7,7 +7,6 @@ Localization.define("de_DE") do |l|
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "Dieser Kommentar wurde für die Moderatorfreigabe markiert. Er wird erst nach Freigabe durch den Moderator in diesem Blog erscheinen"
   l.store "is about to say", "will sagen"
   l.store "There are", "Es gibt"
-  l.store "Use the following link to trackback from your own site", "Verwenden Sie den folgenden Link zur Rückverlinkung von Ihrer eigenen Seite"
   l.store "Archives", "Archive"
   l.store "Action", "Aktion"
   l.store "Read", "Lesen"

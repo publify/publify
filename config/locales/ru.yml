@@ -17,6 +17,8 @@ ru:
       posted_in: "Posted in"
       no_articles_found: "No articles found"
     read:
+      use_the_following_link_to_trackback: "Use the following link to trackback from your own site"
+      trackbacks: "Trackbacks"
       edit: "Редактировать"
       comments: "комментариев"
       leave_a_response: "Оставить отзыв"

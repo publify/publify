@@ -17,6 +17,8 @@ ja:
       posted_in: "Posted in"
       no_articles_found: "記事が見つかりませんでした"
     read:
+      use_the_following_link_to_trackback: "トラックバックリンク"
+      trackbacks: "Trackbacks"
       edit: "Edit"
       comments: "コメント"
       leave_a_response: "コメントを書く"

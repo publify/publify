@@ -7,7 +7,6 @@ Localization.define("ro_RO") do |l|
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "Acest comentariu a fost marcat pentru moderare. El nu va apărea în blog înainte de a fi aprobat."
   l.store "is about to say", "vrea să scrie"
   l.store "There are", "Sînt"
-  l.store "Use the following link to trackback from your own site", "Folosește link-ul următor pentru a realiza o retrolegătură de la site-ul tău"
   l.store "Action", "Acțiuni"
   l.store "Read", "Afișare"
   l.store "String", "Șir de caractere"

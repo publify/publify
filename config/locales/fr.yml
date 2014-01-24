@@ -17,6 +17,8 @@ fr:
       posted_in: "Publié sous"
       no_articles_found: "Aucun article ne correspond à la recherche"
     read:
+      use_the_following_link_to_trackback: "Utilisez le lien ci-dessous pour envoyer un rétrolien depuis votre site"
+      trackbacks: "Trackbacks"
       edit: "Éditer"
       comments: "Commentaires"
       leave_a_response: "Réagir à ce billet"

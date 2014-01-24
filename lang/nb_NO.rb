@@ -20,7 +20,6 @@ Localization.define("nb_NO") do |l|
   l.store "No comments", "Ingen kommentarer"
   l.store "is about to say", "vil snart si"
   l.store "There are", "Det er"
-  l.store "Use the following link to trackback from your own site", "Bruk følgende lenke for å opprette trackback fra din egen side"
   l.store "About %s", "Om %s"
   l.store "said", "sa"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "Denne kommentaren har blitt flagget for godkjenning av moderator. Den vil ikke bli vist på bloggen før moderatoren godkjenner den."

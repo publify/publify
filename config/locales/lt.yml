@@ -17,6 +17,8 @@ lt:
       posted_in: "Posted in"
       no_articles_found: "Straipsnių nėra"
     read:
+      use_the_following_link_to_trackback: "Dienoraščio nuoroda (trackback)"
+      trackbacks: "Trackbacks"
       edit: "Redaguoti"
       comments: "Comments"
       leave_a_response: "Palikti atsakymą"
