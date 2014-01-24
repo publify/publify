@@ -6,11 +6,8 @@ Localization.define("lt_LT") do |l|
   l.store "said", "pasakė"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "Komentaras laukia moderatoriaus patvirtinimo" # sutrumpinua, man rodos logiskaiu
   l.store "is about to say", "pasakoja apie"
-  l.store "There are", "Čia yra"
   l.store "Archives", "Archyvas"
-  l.store "Action", "Aktion"
   l.store "Read", "Skaityti"
-  l.store "String", "Eilutė"
   l.store "Textfilter", "Teksto filtras"
   l.store "Publify admin", "Publify administravimas"
   l.store "by", "bei"

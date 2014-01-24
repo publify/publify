@@ -13,7 +13,6 @@ Localization.define("fr_FR") do |l|
   l.store "Active", "Actif"
   l.store "No comments", "Pas de commentaires"
   l.store "is about to say", "va dire"
-  l.store "There are", "Il y a"
   l.store "Trackbacks are disabled", "Les rétroliens sont désactivés"
   l.store "said", "a dit"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "Ce commentaire a été envoyé à la modération. Il ne sera affiché qu'une fois approuvé par un modérateur"
@@ -47,7 +46,6 @@ Localization.define("fr_FR") do |l|
   l.store "Just Presumed Ham", "Marqué commme supposé désirable"
   l.store "Options", "Options"
   l.store "Read", "Lire"
-  l.store "String", "Chaîne de caractères"
   l.store "example", "par exemple"
   l.store "for", "pour"
 
