@@ -2,6 +2,9 @@ nl:
   helper:
     at: "at"
   articles:
+    archives:
+      posted_in: "geplaatst in"
+      no_articles_found: "Geen artikelen gevonden"
     read:
       edit: "Bewerken"
       comments: "Reacties"

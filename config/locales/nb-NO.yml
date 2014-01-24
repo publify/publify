@@ -2,6 +2,9 @@ nb-NO:
   helper:
     at: "at"
   articles:
+    archives:
+      posted_in: "Publisert i"
+      no_articles_found: "Fant ingen artikler"
     read:
       edit: "Rediger"
       comments: "Kommentarer"

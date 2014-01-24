@@ -2,6 +2,9 @@ he-IL:
   helper:
     at: "at"
   articles:
+    archives:
+      posted_in: "פורסם ב-"
+      no_articles_found: "לא נמצאו כתבות"
     read:
       edit: "Edit"
       comments: "תגובות"

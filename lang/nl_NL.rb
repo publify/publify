@@ -25,8 +25,6 @@ Localization.define("nl_NL") do |l|
   l.store "Posted by", "Geplaatst door"
   l.store "said", "zei"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "Dit commentaar is gemarkeerd voor goedkeuring. Het zal niet getoond worden totdat de auteur het goedkeurt."
-  l.store "No articles found", "Geen artikelen gevonden"
-  l.store "posted in", "geplaatst in"
   l.store "is about to say", "gaat zeggen"
   l.store "There are", "Er zijn"
   l.store "Use the following link to trackback from your own site", "Gebruik de volgende link voor een trackback van jouw site"

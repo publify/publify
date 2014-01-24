@@ -7,7 +7,6 @@ Localization.define("it_IT") do |l|
   l.store "Drag some plugins here to fill your sidebar", "Trascina alcuni plugins qui per popolare la tua sidebar"
   l.store "Posted by", "Scritto da"
   l.store "said", "dice"
-  l.store "No articles found", "Nessun articolo trovato"
   l.store "is about to say", "sta per dire"
   l.store "There are", "Ci sono"
   l.store "Use the following link to trackback from your own site", "Usa il link seguente per fare un trackback dal tuo sito"

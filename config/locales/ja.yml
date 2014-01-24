@@ -2,6 +2,9 @@ ja:
   helper:
     at: "at"
   articles:
+    archives:
+      posted_in: "Posted in"
+      no_articles_found: "記事が見つかりませんでした"
     read:
       edit: "Edit"
       comments: "コメント"

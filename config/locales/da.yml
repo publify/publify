@@ -2,6 +2,9 @@ da:
   helper:
     at: "at"
   articles:
+    archives:
+      posted_in: "Posted in"
+      no_articles_found: "Fandt ingen artikler"
     read:
       edit: "Rediger"
       comments: "Kommentarer"

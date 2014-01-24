@@ -2,6 +2,9 @@ lt:
   helper:
     at: "at"
   articles:
+    archives:
+      posted_in: "Posted in"
+      no_articles_found: "Straipsnių nėra"
     read:
       edit: "Redaguoti"
       comments: "Comments"

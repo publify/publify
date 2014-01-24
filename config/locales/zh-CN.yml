@@ -2,6 +2,9 @@ zh-CN:
   helper:
     at: "at"
   articles:
+    archives:
+      posted_in: "发表在"
+      no_articles_found: "没有找到任何文章"
     read:
       edit: "修改"
       comments: "评论"

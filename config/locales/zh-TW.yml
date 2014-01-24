@@ -2,6 +2,9 @@ zh-TW:
   helper:
     at: "at"
   articles:
+    archives:
+      posted_in: "Posted in"
+      no_articles_found: "沒有找到任何文章"
     read:
       edit: "修改"
       comments: "評論"

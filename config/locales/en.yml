@@ -2,6 +2,9 @@ en:
   helper:
     at: "at"
   articles:
+    archives:
+      posted_in: "Posted in"
+      no_articles_found: "No articles found"
     read:
       edit: "Edit"
       comments: "Comments"

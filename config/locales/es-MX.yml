@@ -2,6 +2,9 @@ es-MX:
   helper:
     at: "at"
   articles:
+    archives:
+      posted_in: "Posted in"
+      no_articles_found: "No se encontraron art&iacute;culos"
     read:
       edit: "Edit"
       comments: "Comentarios"

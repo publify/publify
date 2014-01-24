@@ -2,6 +2,9 @@ fr:
   helper:
     at: "at"
   articles:
+    archives:
+      posted_in: "Publié sous"
+      no_articles_found: "Aucun article ne correspond à la recherche"
     read:
       edit: "Éditer"
       comments: "Commentaires"
