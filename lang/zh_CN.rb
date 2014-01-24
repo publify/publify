@@ -6,7 +6,6 @@ Localization.define("zh_CN") do |l|
   l.store "yes", "确认"
   l.store "no", "取消"
   l.store "Drag some plugins here to fill your sidebar", "拖曳一些plugins填滿你的sidebar"
-  l.store "Posted by", "貼上"
   l.store "said", "發言"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "這篇评论被標示為版主所允許的。他不會在博客顯示直到版主承認他。"
   l.store "is about to say", "这是关于~~"

@@ -2,6 +2,17 @@ zh-CN:
   helper:
     at: "at"
   articles:
+    article:
+      posted_by: "貼上"
+      this_entry_was_posted_on: "This entry was posted on %{published_at}"
+      you_can_follow_entries_through_the: "You can follow any response to this entry through the %{feed}"
+      atom_feed: "Atom feed"
+      you_can_leave_a: "You can leave a %{comment}"
+      comment: "comment"
+      or_trackback: "or a %{trackback} from your own site"
+      trackback: "trackback"
+      read_full_article: "Read full article"
+      comments: "评论"
     archives:
       posted_in: "发表在"
       no_articles_found: "没有找到任何文章"

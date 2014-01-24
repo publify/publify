@@ -2,6 +2,17 @@ fr:
   helper:
     at: "at"
   articles:
+    article:
+      posted_by: "Publié par"
+      this_entry_was_posted_on: "Ce billet a été posté le %{published_at}"
+      you_can_follow_entries_through_the: "Vous pouvez suivre la discussion autour de cet article via le %{feed}"
+      atom_feed: "flux Atom"
+      you_can_leave_a: "Vous pouvez déposer un %{comment}"
+      comment: "commentaire"
+      or_trackback: "ou un %{trackback} depuis votre site"
+      trackback: "trackback"
+      read_full_article: "Lire l'article complet"
+      comments: "Commentaires"
     archives:
       posted_in: "Publié sous"
       no_articles_found: "Aucun article ne correspond à la recherche"

@@ -2,31 +2,29 @@
   <div class="title">
     <h2 class="title"><%= (controller.action_name.include? 'permalink') ? article.title : link_to_permalink(article,article.title) %></h2>
     <div class="meta">
-      <%= _("Posted by") %> <cite><%= author_link(article) %></cite> <abbr class="published" title="<%= article.published_at.xmlschema %>"><%= display_date_and_time article.published_at %></abbr>
+      <%= t(".posted_by") %> <cite><%= author_link(article) %></cite> <abbr class="published" title="<%= article.published_at.xmlschema %>"><%= display_date_and_time article.published_at %></abbr>
     </div>
   </div>
   <div class="content">
     <%= render 'articles/protected_article_content', { :article => article } %>
   </div>
   <% if controller.controller_name == "articles" and controller.action_name == "redirect" %>
-  <div class="meta">
+    <div class="meta">
     <p class="infos"><small>
-      <%= _("This entry was posted on %s", content_tag(:abbr, display_date_and_time(@article.published_at).html_safe, {:class => 'published', :title => @article.published_at.xmlschema})) %>
-      <%= _("You can follow any response to this entry through the %s", link_to(_("Atom feed"), @auto_discovery_url_atom)) %>.
-      <%= _("You can leave a %s", link_to_permalink(article, _('comment'), 'comments')) unless @article.comments_closed? %>
-      <%= _("or a %s from your own site", link_to_permalink(@article, _('trackback'), 'trackbacks')) if @article.allow_pings? %>.
+      <%= t(".this_entry_was_posted_on", published_at: content_tag(:abbr, display_date_and_time(@article.published_at).html_safe, {:class => 'published', :title => @article.published_at.xmlschema})) %>
+      <%= t(".you_can_follow_entries_through_the", feed: link_to(t(".atom_feed"), @auto_discovery_url_atom)) %>.
+      <%= t(".you_can_leave_a", comment: link_to_permalink(article, t('.comment'), 'comments')) unless @article.comments_closed? %>
+      <%= t(".or_trackback", trackback: link_to_permalink(@article, t('.trackback'), 'trackbacks')) if @article.allow_pings? %>.
     </small></p>
     <p class="tags">
-      <%= tag_links(@article) unless @article.tags.empty? %>
+    <%= tag_links(@article) unless @article.tags.empty? %>
     </p>
   </div>
-  <% else %>
-	<p class="links">
-        <%= link_to_permalink(article, _("Read full article"), nil, 'more') if controller.action_name != 'permalink' %>
-
-
-        <%= link_to t('.comments', count: article.published_comments.size), article.permalink_url('comments') %>
-        </p>
-      <% end %>
-        <br style="clear: left;" />
-      </div>
+<% else %>
+    <p class="links">
+  <%= link_to_permalink(article, t(".read_full_article"), nil, 'more') if controller.action_name != 'permalink' %>
+  <%= link_to t('.comments', count: article.published_comments.size), article.permalink_url('comments') %>
+  </p>
+<% end %>
+  <br style="clear: left;" />
+</div>

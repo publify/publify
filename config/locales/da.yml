@@ -2,6 +2,17 @@ da:
   helper:
     at: "at"
   articles:
+    article:
+      posted_by: "Skrevet af"
+      this_entry_was_posted_on: "This entry was posted on %{published_at}"
+      you_can_follow_entries_through_the: "You can follow any response to this entry through the %{feed}"
+      atom_feed: "Atom feed"
+      you_can_leave_a: "You can leave a %{comment}"
+      comment: "comment"
+      or_trackback: "or a %{trackback} from your own site"
+      trackback: "trackback"
+      read_full_article: "Read full article"
+      comments: "Kommentarer"
     archives:
       posted_in: "Posted in"
       no_articles_found: "Fandt ingen artikler"

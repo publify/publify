@@ -2,8 +2,19 @@ nl:
   helper:
     at: "at"
   articles:
+    article:
+      posted_by: "Geplaatst door"
+      this_entry_was_posted_on: "This entry was posted on %{published_at}"
+      you_can_follow_entries_through_the: "Je kunt reacties op dit bericht volgen via de %{feed}"
+      atom_feed: "Atom feed"
+      you_can_leave_a: "Je kunt een %{comment} achterlaten"
+      comment: "reactie"
+      or_trackback: "of een %{trackback} vanaf je eigen site"
+      trackback: "trackback"
+      read_full_article: "Lees volledige artikel"
+      comments: "Reacties"
     archives:
-      posted_in: "geplaatst in"
+      posted_in: "Geplaatst in"
       no_articles_found: "Geen artikelen gevonden"
     read:
       edit: "Bewerken"

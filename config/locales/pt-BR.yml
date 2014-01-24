@@ -2,6 +2,17 @@ pt-BR:
   helper:
     at: "at"
   articles:
+    article:
+      posted_by: "Posted by"
+      this_entry_was_posted_on: "This entry was posted on %{published_at}"
+      you_can_follow_entries_through_the: "You can follow any response to this entry through the %{feed}"
+      atom_feed: "Atom feed"
+      you_can_leave_a: "You can leave a %{comment}"
+      comment: "Commentario"
+      or_trackback: "or a %{trackback} from your own site"
+      trackback: "trackback"
+      read_full_article: "Read full article"
+      comments: "Comentarios"
     archives:
       posted_in: "Posted in"
       no_articles_found: "No se encontraron art&iacute;culos"
@@ -12,7 +23,7 @@ pt-BR:
       rss_feed: "Feed RSS para este art&iacute;culo"
       comments_are_disabled: "Los comentarios est&aacute;n deshabilitados"
     comment_form:
-      comment: "comment"
+      comment: "Commentario"
       email_address: "Email address"
       your_website: "Your website"
       leave_url_email: "leave url/email"

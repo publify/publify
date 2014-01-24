@@ -1,7 +1,6 @@
 # coding: utf-8
 Localization.define("nl_NL") do |l|
   l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", "%%a, %%d %%b %%Y %%H:%%M:%%S GMT"
-  l.store "Posted in", "Geplaatst in"
   l.store "no posts", "geen berichten"
   l.store "Unclassified", "Niet geclassificeerd"
   l.store "Just Presumed Ham", "Zojuist aangenomen dat dit Ham is"
@@ -22,7 +21,6 @@ Localization.define("nl_NL") do |l|
   l.store "Drag some plugins here to fill your sidebar", "Sleep wat plugins naar hier om de zijbalk te vullen"
   l.store "Are you sure you want to delete the tag", "Weet je zeker dat je deze tag wilt verwijderen?"
   l.store "Yes", "Ja"
-  l.store "Posted by", "Geplaatst door"
   l.store "said", "zei"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "Dit commentaar is gemarkeerd voor goedkeuring. Het zal niet getoond worden totdat de auteur het goedkeurt."
   l.store "is about to say", "gaat zeggen"
@@ -35,12 +33,6 @@ Localization.define("nl_NL") do |l|
   l.store "Designed by %s ", "Ontworpen door %s"
   l.store "This entry was posted on %s", "Dit bericht was geplaatst op %s"
   l.store "and %s", "en %s"
-  l.store "You can follow any response to this entry through the %s", "Je kunt reacties op dit bericht volgen via de %s"
-  l.store "Atom feed", "Atom feed"
-  l.store "You can leave a %s", "Je kunt een %s achterlaten"
-  l.store "or a %s from your own site", "of een %s vanaf je eigen site"
-  l.store "Read full article", "Lees volledige artikel"
-  l.store "trackback", "trackback"
   l.store "Leave a comment", "Geef een reactie"
   l.store "Name %s", "Naam %s"
   l.store "never displayed", "wordt niet getoond"

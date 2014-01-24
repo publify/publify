@@ -3,7 +3,6 @@ Localization.define("da_DK") do |l|
   l.store "yes", "ja"
   l.store "no", "nej"
   l.store "Drag some plugins here to fill your sidebar", "Træk plugins herover for at fylde din sidebar"
-  l.store "Posted by", "Skrevet af"
   l.store "said", "sagde"
   l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "Denne kommentar er blevet markeret som krævende godkendelse. Den vil ikke blive vist før forfatteren godkender den."
   l.store "is about to say", "vil gerne sige"

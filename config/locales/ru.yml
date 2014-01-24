@@ -2,6 +2,17 @@ ru:
   helper:
     at: "at"
   articles:
+    article:
+      posted_by: "Posted by"
+      this_entry_was_posted_on: "This entry was posted on %{published_at}"
+      you_can_follow_entries_through_the: "You can follow any response to this entry through the %{feed}"
+      atom_feed: "Atom feed"
+      you_can_leave_a: "You can leave a %{comment}"
+      comment: "Отправить комментарий"
+      or_trackback: "or a %{trackback} from your own site"
+      trackback: "trackback"
+      read_full_article: "Read full article"
+      comments: "комментариев"
     archives:
       posted_in: "Posted in"
       no_articles_found: "No articles found"
@@ -12,7 +23,7 @@ ru:
       rss_feed: "RSS feed"
       comments_are_disabled: "Комментарии выключены"
     comment_form:
-      comment: "comment"
+      comment: "Отправить комментарий"
       email_address: "Электронная почта"
       your_website: "Веб-сайт"
       leave_url_email: "leave url/email"

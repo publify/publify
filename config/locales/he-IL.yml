@@ -2,6 +2,17 @@ he-IL:
   helper:
     at: "at"
   articles:
+    article:
+      posted_by: "נכתב על ידי"
+      this_entry_was_posted_on: "כתבה זו פורסמה בתאריך %{published_at}"
+      you_can_follow_entries_through_the: "תוכל לעקוב אחרי התגובות במאמר זו דרך %{feed}"
+      atom_feed: "מזין Atom"
+      you_can_leave_a: "תוכל להשאיר %{comment}"
+      comment: "תגובה"
+      or_trackback: "או %{trackback} מהאתר שלך"
+      trackback: "עוקב-חזרה"
+      read_full_article: "קרא את הכתבה המלאה"
+      comments: "תגובות"
     archives:
       posted_in: "פורסם ב-"
       no_articles_found: "לא נמצאו כתבות"
@@ -12,7 +23,7 @@ he-IL:
       rss_feed: "מזין RSS לכתבה זו"
       comments_are_disabled: "התגובות מבוטלות"
     comment_form:
-      comment: "comment"
+      comment: "תגובה"
       email_address: "Email address"
       your_website: "Your website"
       leave_url_email: "השאר כתובת/דואל"
