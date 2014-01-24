@@ -1,4 +1,8 @@
 ja:
+  comments:
+    comment:
+      said: "発言"
+      this_comment_has_been_flagged_for_moderator_approval: "このコメントはモデレーターの確認が必要です。モデレーターが確認後にコメントが表示されます。"
   tags:
     index:
       there_is_no_tags: "There is no tag"

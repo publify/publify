@@ -1,4 +1,8 @@
 de:
+  comments:
+    comment:
+      said: "sagte"
+      this_comment_has_been_flagged_for_moderator_approval: "Dieser Kommentar wurde für die Moderatorfreigabe markiert. Er wird erst nach Freigabe durch den Moderator in diesem Blog erscheinen"
   tags:
     index:
       there_is_no_tags: "There is no tag"

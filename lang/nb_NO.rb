@@ -20,8 +20,6 @@ Localization.define("nb_NO") do |l|
   l.store "No comments", "Ingen kommentarer"
   l.store "is about to say", "vil snart si"
   l.store "About %s", "Om %s"
-  l.store "said", "sa"
-  l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "Denne kommentaren har blitt flagget for godkjenning av moderator. Den vil ikke bli vist på bloggen før moderatoren godkjenner den."
   l.store "This comment has been flagged for moderator approval.", "Denne kommentaren har blitt flagget for godkjenning av moderator."
   l.store "Welcome", "Velkommen"
   l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Publify will take care of everything else", "Velkommen til din %s bloggoppsett. Bare fyll inn bloggtittel og epostadressen din, så vil Publify ta seg av resten"

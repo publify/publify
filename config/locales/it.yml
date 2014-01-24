@@ -1,4 +1,8 @@
 it:
+  comments:
+    comment:
+      said: "dice"
+      this_comment_has_been_flagged_for_moderator_approval: "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it"
   tags:
     index:
       there_is_no_tags: "There is no tag"

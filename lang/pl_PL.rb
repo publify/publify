@@ -8,8 +8,6 @@ Localization.define("pl_PL") do |l|
   l.store "yes", "tak"
   l.store "no", "nie"
   l.store "Drag some plugins here to fill your sidebar", "Przeciągnij i upuść wtyczki na pasek boczny"
-  l.store "said", "powiedział"
-  l.store "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it", "Ten komentarz oczekuje na akceptację.  Nie ukaże się do czasu zaakceptowania przez autora."
   l.store "is about to say", "zaraz powie"
   l.store "Previous", "Poprzednie"
   l.store "Archives", "Archiwa"

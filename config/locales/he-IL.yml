@@ -1,4 +1,8 @@
 he-IL:
+  comments:
+    comment:
+      said: "said"
+      this_comment_has_been_flagged_for_moderator_approval: "תגובה זו הועברה לביקורת. היא לא תופיע בבלוג עד אשר הכותב יאשר אותה"
   tags:
     index:
       there_is_no_tags: "There is no tag"

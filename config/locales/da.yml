@@ -1,4 +1,8 @@
 da:
+  comments:
+    comment:
+      said: "sagde"
+      this_comment_has_been_flagged_for_moderator_approval: "Denne kommentar er blevet markeret som krævende godkendelse. Den vil ikke blive vist før forfatteren godkender den."
   tags:
     index:
       there_is_no_tags: "There is no tag"

@@ -1,4 +1,8 @@
 nl:
+  comments:
+    comment:
+      said: "zei"
+      this_comment_has_been_flagged_for_moderator_approval: "Dit commentaar is gemarkeerd voor goedkeuring. Het zal niet getoond worden totdat de auteur het goedkeurt."
   tags:
     index:
       there_is_no_tags: "There is no tag"

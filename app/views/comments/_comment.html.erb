@@ -3,10 +3,10 @@
   <p>
   <a name="comment-<%= comment.id %>"></a>
   <%= avatar_tag(:email => comment.email, :url => comment.url) %>
-  <cite><strong><%= link_to_unless(comment.url.blank?, h(comment.author), comment.url) %></strong> </cite> <%= _("said")%> <%= display_date_and_time comment.created_at %> later:<br />
+  <cite><strong><%= link_to_unless(comment.url.blank?, h(comment.author), comment.url) %></strong> </cite> <%= t(".said")%> <%= display_date_and_time comment.created_at %> later:<br />
   <%= comment.generate_html(:body) %>
   <% unless comment.published -%>
-    <div class="spamwarning"><%= _("This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it")%>.</div>
-  <% end -%>
-</li>
+    <div class="spamwarning"><%= t(".this_comment_has_been_flagged_for_moderator_approval")%>.</div>
+<% end -%>
+  </li>
 

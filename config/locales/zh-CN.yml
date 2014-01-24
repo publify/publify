@@ -1,4 +1,8 @@
 zh-CN:
+  comments:
+    comment:
+      said: "發言"
+      this_comment_has_been_flagged_for_moderator_approval: "這篇评论被標示為版主所允許的。他不會在博客顯示直到版主承認他。"
   tags:
     index:
       there_is_no_tags: "There is no tag"

@@ -1,4 +1,8 @@
 ro:
+  comments:
+    comment:
+      said: "a scris"
+      this_comment_has_been_flagged_for_moderator_approval: "Acest comentariu a fost marcat pentru moderare. El nu va apărea în blog înainte de a fi aprobat."
   tags:
     index:
       there_is_no_tags: "There is no tag"

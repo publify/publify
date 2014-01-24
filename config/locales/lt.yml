@@ -1,4 +1,8 @@
 lt:
+  comments:
+    comment:
+      said: "pasakė"
+      this_comment_has_been_flagged_for_moderator_approval: "Komentaras laukia moderatoriaus patvirtinimo"
   tags:
     index:
       there_is_no_tags: "There is no tag"

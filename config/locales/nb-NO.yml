@@ -1,4 +1,8 @@
 nb-NO:
+  comments:
+    comment:
+      said: "sa"
+      this_comment_has_been_flagged_for_moderator_approval: "Denne kommentaren har blitt flagget for godkjenning av moderator. Den vil ikke bli vist på bloggen før moderatoren godkjenner den."
   tags:
     index:
       there_is_no_tags: "There is no tag"
