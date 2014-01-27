@@ -10,7 +10,6 @@ Localization.define("ja_JP") do |l|
   l.store "Just Marked As Spam", "スパムマーク"
   l.store "yes", "はい"
   l.store "no", "いいえ"
-  l.store "Drag some plugins here to fill your sidebar", "サイドバーで利用するプラグインをドラッグしてください"
   l.store "Active", "有効"
   l.store "Yes", "はい"
   l.store "is about to say", "〜について言う"

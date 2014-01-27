@@ -152,6 +152,7 @@ fr:
     sidebar:
       index:
         sidebar: "Plugins"
+        drag_some_plugins_here: "Déplacez des plugins dans cet espace afin de remplir votre sidebar"
         or: "ou"
         cancel: "Annuler"
         explain_how_its_works: "Glissez / déplacez des éléments pour changer la sidebar de votre blog. Pour supprimer un élément de votre sidebar, cliquez simplement sur 'supprimer'. Les changements sont effectués immédiatement, mais ne seront pas actifs tant que vous n'aurez pas cliqué sur le bouton 'Publier'."

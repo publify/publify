@@ -7,7 +7,6 @@ Localization.define("pt_BR") do |l|
   l.store "Just Marked As Spam", "Apenas marcado como Spam"
   l.store "yes", "s&iacute;"
   l.store "no", "no"
-  l.store "Drag some plugins here to fill your sidebar", "Arrastra algunos plugins aqu&iacute; para llenar tu barra lateral"
   l.store "Posted by", "Publicado por"
   l.store "is about to say", "est&aacute; a punto de decir"
   l.store "Textfilter", "Filtro de texto"

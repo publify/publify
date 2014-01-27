@@ -3,7 +3,6 @@ Localization.define("it_IT") do |l|
   l.store "Edit", "Modifica"
   l.store "yes", "si"
   l.store "no", "no"
-  l.store "Drag some plugins here to fill your sidebar", "Trascina alcuni plugins qui per popolare la tua sidebar"
   l.store "is about to say", "sta per dire"
   l.store "Confirm Classification of Checked Items", "Conferma classificazione degli elementi selezionati"
   l.store "Textfilter", "Formato testo"

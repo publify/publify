@@ -152,6 +152,7 @@ nb-NO:
     sidebar:
       index:
         sidebar: "Sidebar"
+        drag_some_plugins_here: "Dra og slipp plugins hit for å populere sidebar"
         or: "or"
         cancel: "Annuller"
         explain_how_its_works: "Dra og slipp for at Dra og slipp innholdsendreen der vises på denne blog. Du kan fjerne elementer fra oversiktsoversikten bare ved at klikke fjern. endringer gemmes med det samme, men ikke aktiveret, før du klikker på 'Offentliggør' knappen."

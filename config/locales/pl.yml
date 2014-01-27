@@ -152,6 +152,7 @@ pl:
     sidebar:
       index:
         sidebar: "Sidebar"
+        drag_some_plugins_here: "Przeciągnij i upuść wtyczki na pasek boczny"
         or: "or"
         cancel: "Anuluj"
         explain_how_its_works: "Przeciągnij i upuść pozycje, które mają być wyświetlone na blogu. By usunąć pozycję naciśnij *Usuń*. Zmiany są zapisywane od razu, lecz nie są aktywne do momentu kliknięcia 'Publikuj zmiany'"

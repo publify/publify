@@ -152,6 +152,7 @@ ro:
     sidebar:
       index:
         sidebar: "Sidebar"
+        drag_some_plugins_here: "Trage plugin-uri aici pentru a popula bara laterală"
         or: "or"
         cancel: "Anulare"
         explain_how_its_works: "Trage și lasă obiecte pe bara laterală pentru a o modifica în blog. Pentru a șterge obiecte din bara laterală, apasă pe 'șterge'. Modificările se salvează imediat, dar nu vor fi activate pînă cînd apeși butonul 'publică'"

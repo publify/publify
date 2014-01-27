@@ -36,15 +36,24 @@
           :style => 'display:none;' -%>
       </h3>
         <div id="active">
-          <% if @active.blank? %>
-            <%= render :partial => 'target' %>
-        <% else %>
-            <%= render :partial => 'active', :collection => @active %>
-        <% end %>
-          <%#= sortable_element "active", :url => {:action => 'set_active'},
-            :tag => 'div',
-            :handle => 'handle', :containment => ['active','available_box'],
-            :loading => "new Element.show('update_spinner')" %>
+          <%- if @active.blank? %>
+            <div id="sidebar_instructions" style="min-height: 30px;">
+              <p><%= t(".drag_some_plugins_here")%></p>
+            </div>
+          <%- else %>
+            <div id="active_<%= @active.html_id %>" class='alert alert-info'>
+              <h3 class='light'><%= _(@active.display_name) %></h3>
+              <div class='widget-content'>
+                <p><%= _(@active.description) %></p>
+                <div>
+                  <%- @active.class.fields.each do |row| %>
+                    <%= row.line_html(@active) %>
+                  <%- end %>
+                </div>
+              </div>
+            </div>
+          <%- end %>
+          <%#= sortable_element "active", :url => {:action => 'set_active'}, :tag => 'div', :handle => 'handle', :containment => ['active','available_box'], :loading => "new Element.show('update_spinner')" %>
         </div>
         </div>
       </div>

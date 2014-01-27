@@ -11,7 +11,6 @@ Localization.define("he_IL") do |l|
   l.store "Just Marked As Spam", "סומן כספאם"
   l.store "yes", "כן"
   l.store "no", "לא"
-  l.store "Drag some plugins here to fill your sidebar", "גרור חלק מהתוספים כדי למלא את תיבת הצד"
   l.store "Yes", "כן"
   l.store "posted in", "נשלח ב-"
   l.store "is about to say", "עומד לומר"

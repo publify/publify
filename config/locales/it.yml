@@ -152,6 +152,7 @@ it:
     sidebar:
       index:
         sidebar: "Sidebar"
+        drag_some_plugins_here: "Trascina alcuni plugins qui per popolare la tua sidebar"
         cancel: "Annulla"
         or: "or"
         explain_how_its_works: "Trascina e rilascia per cambiare gli elementi visualizzati nella sidebar del tuo blog. Per rimuorverli clicca su annulla Cambiamenti perche' comunque non sono salvati automaticamente ma devi cliccare il bottone 'Pubblica'"

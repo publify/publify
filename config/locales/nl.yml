@@ -152,6 +152,7 @@ nl:
     sidebar:
       index:
         sidebar: "Zijbalk"
+        drag_some_plugins_here: "Sleep wat plugins naar hier om de zijbalk te vullen"
         or: "or"
         cancel: "Terug"
         explain_how_its_works: "Sleep dingen heen en weer om de zijbalk van dit blog aan te passen. Om dingen te verwijderen klik je op verwijderen  Wijzigen worden automatisch opgeslagen, maar niet geactiveerd totdat je de 'Publiceer' knop klikt"

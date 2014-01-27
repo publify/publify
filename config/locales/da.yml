@@ -152,6 +152,7 @@ da:
     sidebar:
       index:
         sidebar: "Sidebar"
+        drag_some_plugins_here: "Træk plugins herover for at fylde din sidebar"
         or: "or"
         cancel: "Anuller"
         explain_how_its_works: "Træk og slip for at ændre indholdsoversigten der vises på denne blog. Du kan fjerne elementer fra indholdsoversigten bare ved at klikke fjern. Ændringer gemmes med det samme, men ikke aktiveret, før du klikker på 'Offentliggør' knappen."
@@ -208,7 +209,7 @@ da:
         days: "dage"
         set_to_0_to_never_disable_comments: "Sæt til 0 for at aldrig deaktivere kommentarer"
         max_links: "Max Links"
-        explain_reject_comments: "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them" 
+        explain_reject_comments: "Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them"
         set_to_0_to_never_reject_comments: "Sæt til 0 for at aldrig forkaste kommentarer"
         captcha: "Captcha"
         enable_recaptcha: "Enable reCaptcha"
@@ -424,11 +425,11 @@ da:
         no_pages: "There are no pages yet. Why don't you start and create one?"
     feedback:
       bulkops:
-        success_mark_as_ham: 
+        success_mark_as_ham:
           zero: "No item selected to mark as Ham"
           one: "Marked 1 item as Ham"
           other: "Marked %{count} items as Ham"
-        success_mark_as_spam: 
+        success_mark_as_spam:
           zero: "No item selected to mark as Spam"
           one: "Marked 1 item as Spam"
           other: "Marked %{count} items as Spam"

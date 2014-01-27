@@ -152,6 +152,7 @@ zh-TW:
     sidebar:
       index:
         sidebar: "Sidebar"
+        drag_some_plugins_here: "拖曳一些plugins填滿你的sidebar"
         or: "or"
         cancel: "取消"
         explain_how_its_works: "在這個部落格顯示拖曳改變的sidebar選項。從sidebar選項移除會立即存檔，但是不會執行直到你輸入<公開>鍵"

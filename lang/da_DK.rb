@@ -2,7 +2,6 @@
 Localization.define("da_DK") do |l|
   l.store "yes", "ja"
   l.store "no", "nej"
-  l.store "Drag some plugins here to fill your sidebar", "Træk plugins herover for at fylde din sidebar"
   l.store "is about to say", "vil gerne sige"
   l.store "Leave a comment", "Skriv en kommentar"
   l.store "Name %s", "Navn %s"

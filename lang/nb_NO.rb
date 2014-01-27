@@ -8,7 +8,6 @@ Localization.define("nb_NO") do |l|
   l.store "Just Marked As Spam", "Kun markert som Spam"
   l.store "yes", "ja"
   l.store "no", "nei"
-  l.store "Drag some plugins here to fill your sidebar", "Dra og slipp plugins hit for å populere sidebar"
   l.store "Active", "Aktiv"
   l.store "Yes", "Ja"
   l.store "No comments", "Ingen kommentarer"

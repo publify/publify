@@ -14,7 +14,6 @@ Localization.define("nl_NL") do |l|
   l.store "Next page", "Volgende pagina"
   l.store "yes", "ja"
   l.store "no", "nee"
-  l.store "Drag some plugins here to fill your sidebar", "Sleep wat plugins naar hier om de zijbalk te vullen"
   l.store "Yes", "Ja"
   l.store "is about to say", "gaat zeggen"
   l.store "This comment has been flagged for moderator approval.", "Deze reactie is aangemerkt voor goedkeuring."
