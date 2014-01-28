@@ -10,11 +10,7 @@ Localization.define("nl_NL") do |l|
   l.store "Just Marked As Spam", "Zojuist gemarkeerd als Spam"
   l.store "Spam", "Spam"
   l.store "Drafts", "Concepten"
-  l.store "Previous page", "Vorige pagina"
   l.store "Next page", "Volgende pagina"
-  l.store "yes", "ja"
-  l.store "no", "nee"
-  l.store "Yes", "Ja"
   l.store "is about to say", "gaat zeggen"
   l.store "This comment has been flagged for moderator approval.", "Deze reactie is aangemerkt voor goedkeuring."
   l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Publify will take care of everything else", "Welkom bij je %s blog setup. Vul een titel voor je blog in, en een e-mailadres, en Publify zorgt voor de rest"
@@ -27,5 +23,4 @@ Localization.define("nl_NL") do |l|
   l.store "Textile enabled", "Textile beschikbaar"
   l.store "Markdown enabled", "Markdown beschikbaar"
   l.store "About", "Over"
-  l.store "Confirm Classification of Checked Items", "Bevestig classificatie van aangevinkte reacties"
 end
