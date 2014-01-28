@@ -11,6 +11,10 @@ lt:
   helper:
     at: "at"
   articles:
+    meta:
+      published_on: "Published on"
+      by: "bei"
+      tags: "Žymės"
     article:
       posted_by: "Parašė"
       this_entry_was_posted_on: "This entry was posted on %{published_at}"

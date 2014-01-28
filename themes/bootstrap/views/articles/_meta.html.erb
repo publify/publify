@@ -1,9 +1,9 @@
 <div class='meta'>
   <p><small>
-    <%= _("Published on") %>
+    <%= t(".published_on") %>
     <%= display_date_and_time(article.published_at) %>
-    <%= _("by") %> <span class='p-author h-card'><%= article.user.nickname %></span>
-    <%= _("Tags") + " " + article.tags.map { |tag| link_to tag.display_name, tag.permalink_url(nil, true), :rel => "tag"}.sort.join(", ") unless article.tags.empty? %>
+    <%= t(".by") %> <span class='p-author h-card'><%= article.user.nickname %></span>
+    <%= t(".tags") + " " + article.tags.map { |tag| link_to tag.display_name, tag.permalink_url(nil, true), :rel => "tag"}.sort.join(", ") unless article.tags.empty? %>
 
   </small></p>
 </div>

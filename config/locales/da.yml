@@ -11,6 +11,10 @@ da:
   helper:
     at: "at"
   articles:
+    meta:
+      published_on: "Published on"
+      by: "af"
+      tags: "Tags"
     article:
       posted_by: "Skrevet af"
       this_entry_was_posted_on: "This entry was posted on %{published_at}"

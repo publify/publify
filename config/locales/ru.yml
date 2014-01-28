@@ -11,6 +11,10 @@ ru:
   helper:
     at: "at"
   articles:
+    meta:
+      published_on: "Опубликовано"
+      by: "by"
+      tags: "Теги"
     article:
       posted_by: "Posted by"
       this_entry_was_posted_on: "This entry was posted on %{published_at}"

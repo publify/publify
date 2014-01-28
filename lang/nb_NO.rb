@@ -20,9 +20,7 @@ Localization.define("nb_NO") do |l|
   l.store "Textile enabled", "Textile aktivert"
   l.store "Markdown enabled", "Markdown aktivert"
   l.store "About", "Om"
-  l.store "Published on", "Publisert den"
   l.store "If you liked this article you can %s", "Hvis du likte denne artikkelen, kan du %s"
   l.store "add me to Twitter", "legge meg til på Twitter"
   l.store "Markup", "Markup"
-  l.store "by", "av"
 end

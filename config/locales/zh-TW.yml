@@ -11,6 +11,10 @@ zh-TW:
   helper:
     at: "at"
   articles:
+    meta:
+      published_on: "Published on"
+      by: "by"
+      tags: "標示標籤"
     article:
       posted_by: "貼上"
       this_entry_was_posted_on: "This entry was posted on %{published_at}"

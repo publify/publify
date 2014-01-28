@@ -11,6 +11,10 @@ ro:
   helper:
     at: "at"
   articles:
+    meta:
+      published_on: "Published on"
+      by: "de"
+      tags: "Tags"
     article:
       posted_by: "Publicat de"
       this_entry_was_posted_on: "This entry was posted on %{published_at}"

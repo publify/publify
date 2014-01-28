@@ -7,5 +7,4 @@ Localization.define("pt_BR") do |l|
   l.store "Just Marked As Spam", "Apenas marcado como Spam"
   l.store "Posted by", "Publicado por"
   l.store "is about to say", "est&aacute; a punto de decir"
-  l.store "by", "por"
 end

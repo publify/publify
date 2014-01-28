@@ -11,6 +11,10 @@ nl:
   helper:
     at: "at"
   articles:
+    meta:
+      published_on: "Published on"
+      by: "by"
+      tags: "Trefwoorden"
     article:
       posted_by: "Geplaatst door"
       this_entry_was_posted_on: "This entry was posted on %{published_at}"
