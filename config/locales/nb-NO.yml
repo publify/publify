@@ -711,6 +711,8 @@ nb-NO:
       password: "Passord"
       remember_me: "Husk meg"
       sign_in: "Sign in"
+      success: "Logget inn"
+      error: "Feil under innlogging"
     confirm:
       proceed_to: "Fortsett til %{link}"
       admin: "admin"
@@ -718,11 +720,15 @@ nb-NO:
       title: "Gjenopprett passord"
       username_or_email: "Brukernavn eller epost"
       reset_my_password: "Nullstill passordet mitt"
+      notice: "En epost er sendt til din adresse med ditt nye passord"
+      error: "Ojsann, noe gikk galt"
     signup:
       title: "Registrer"
       username: "Brukernavn"
       email: "Epost"
       signup: "Registrer"
+    logout:
+      notice: "Logget ut"
   langs:
     da_DK: "Dansk"
     de_DE: "Tysk"

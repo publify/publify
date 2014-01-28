@@ -8,13 +8,7 @@ ja:
       progress: "Progress"
     accounts:
       login:
-        success: "ログインしました"
-        error: "ログインに失敗しました"
       recover_password: 
-        notice: "An email has been successfully sent to your address with your new password"
-        error: "Oops, something wrong just happened"
-      logout:
-        notice: "ログアウトしました"
     admin:
       sidebar:
         index:

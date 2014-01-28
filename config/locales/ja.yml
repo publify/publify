@@ -711,6 +711,8 @@ ja:
       password: "パスワード"
       remember_me: "ログイン状態を持続"
       sign_in: "Sign in"
+      success: "ログインしました"
+      error: "ログインに失敗しました"
     confirm:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
@@ -718,11 +720,15 @@ ja:
       title: "Recover your password"
       username_or_email: "Username or email"
       reset_my_password: "Reset my password"
+      notice: "An email has been successfully sent to your address with your new password"
+      error: "Oops, something wrong just happened"
     signup:
       title: "サインアップ"
       username: "ユーザー名"
       email: "メールアドレス"
       signup: "サインアップ"
+    logout:
+      notice: "ログアウトしました"
   langs:
     da_DK: "Danish"
     de_DE: "German"

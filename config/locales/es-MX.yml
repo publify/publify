@@ -711,6 +711,8 @@ es-MX:
       password: "Contrase&ntilde;a"
       remember_me: "Remember me"
       sign_in: "Sign in"
+      success: "Login successful"
+      error: "Login unsuccessful"
     confirm:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
@@ -718,11 +720,15 @@ es-MX:
       title: "Recover your password"
       username_or_email: "Username or email"
       reset_my_password: "Reset my password"
+      notice: "An email has been successfully sent to your address with your new password"
+      error: "Oops, something wrong just happened"
     signup:
       title: "Registro"
       username: "Usuario"
       email: "Email"
       signup: "Registro"
+    logout:
+      notice: "Successfully logged out"
   langs:
     da_DK: "Danish"
     de_DE: "German"

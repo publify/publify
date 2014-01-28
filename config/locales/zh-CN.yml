@@ -711,6 +711,8 @@ zh-CN:
       password: "密码"
       remember_me: "记住用户"
       sign_in: "Sign in"
+      success: "登录成功"
+      error: "登录不成功"
     confirm:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
@@ -718,11 +720,15 @@ zh-CN:
       title: "Recover your password"
       username_or_email: "用户名或邮箱"
       reset_my_password: "Reset my password"
+      notice: "你的新密码已经发送到你的email邮箱当中"
+      error: "噢，发生了一些错误"
     signup:
       title: "注册"
       username: "用户名"
       email: "Email"
       signup: "注册"
+    logout:
+      notice: "成功登出"
   langs:
     da_DK: "Danish"
     de_DE: "German"

@@ -711,6 +711,8 @@ fr:
       password: "Mot de passe"
       sign_in: "S'identifier"
       remember_me: "Rester connecté"
+      success: "Connexion réussie"
+      error: "Échec de la connexion"
     confirm:
       proceed_to: "Allez sur %{link}"
       admin: "l'administration"
@@ -718,11 +720,15 @@ fr:
       title: "Récupération d'un mot de passe perdu"
       username_or_email: "Identifiant ou email"
       reset_my_password: "Me renvoyer un mot de passe"
+      notice: "Un courrier vous a été envoyé avec votre nouveau mot de passe"
+      error: "Désolé, une erreur vient de se produire"
     signup:
       title: "s'identifier"
       username: "Identifiant"
       email: "Email"
       signup: "S'inscrire"
+    logout:
+      notice: "Vous êtes maintenant déconnecté"
   langs:
     da_DK: "Danois"
     de_DE: "Allemand"

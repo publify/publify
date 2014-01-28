@@ -1,20 +1,11 @@
 fr:
-  gflash:
+  flash:
     titles:
       notice: "Notice"
       success: "Success"
       warning: "Warning"
       error: "Erreur"
       progress: "Progress"
-    accounts:
-      login:
-        success: "Connexion réussie"
-        error: "Échec de la connexion"
-      recover_password:
-        notice: "Un courrier vous a été envoyé avec votre nouveau mot de passe"
-        error: "Désolé, une erreur vient de se produire"
-      logout:
-        notice: "Vous êtes maintenant déconnecté"
     admin:
       sidebar:
         index:

@@ -6,15 +6,6 @@ pt-BR:
       warning: "Warning"
       error: "Error"
       progress: "Progress"
-    accounts:
-      login:
-        success: "Logado com sucesso"
-        error: "Falha ao tentar se logar"
-      recover_password: 
-        notice: "Sua nova senha foi enviada com sucesso para o seu e-mail"
-        error: "Opps, alguma coisa errada acaba de acontecer"
-      logout:
-        notice: "Deslogado com sucesso"
     admin:
       sidebar:
         index:
