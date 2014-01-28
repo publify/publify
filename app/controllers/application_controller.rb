@@ -41,6 +41,9 @@ class ApplicationController < ActionController::Base
       I18n.locale = this_blog.lang
     elsif I18n.available_locales.include?(this_blog.lang[0..1].to_sym)
       I18n.locale = this_blog.lang[0..1]
+    # for the same language used in different areas, e.g. zh_CN, zh_TW
+    elsif I18n.available_locales.include?(this_blog.lang.sub('_','-').to_sym)
+      I18n.locale = this_blog.lang.sub('_','-')
     end
   end
 
