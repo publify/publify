@@ -680,6 +680,8 @@ en:
       password: "Password"
       remember_me: "Remember me"
       sign_in: "Sign in"
+      success: "Login successful"
+      error: "Login unsuccessful"
     confirm:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
@@ -687,6 +689,10 @@ en:
       title: "Recover your password"
       username_or_email: "Username or email"
       reset_my_password: "Reset my password"
+      notice: "An email has been successfully sent to your address with your new password"
+      error: "Oops, something wrong just happened"
+    logout:
+      notice: "Successfully logged out"
     signup:
       title: "signup"
       username: "Username"

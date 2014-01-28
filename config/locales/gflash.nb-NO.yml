@@ -6,15 +6,6 @@ nb-NO:
       warning: "Warning"
       error: "Error"
       progress: "Progress"
-    accounts:
-      login:
-        success: "Logget inn"
-        error: "Feil under innlogging"
-      recover_password: 
-        notice: "En epost er sendt til din adresse med ditt nye passord"
-        error: "Ojsann, noe gikk galt"
-      logout:
-        notice: "Logget ut"
     admin:
       sidebar:
         index:

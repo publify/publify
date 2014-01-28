@@ -681,6 +681,8 @@ nl:
       password: "Wachtwoord"
       remember_me: "Onthoud me"
       sign_in: "Sign in"
+      success: "Login geslaagd"
+      error: "Login mislukt"
     confirm:
       proceed_to: "Ga door naar %{link}"
       admin: "admin"
@@ -688,11 +690,15 @@ nl:
       title: "Herstel uw wachtwoord"
       username_or_email: "Gebruikersnaam of e-mail"
       reset_my_password: "Reset my password"
+      notice: "Er is je met succes een e-mail gestuurd met uw nieuwe wachtwoord"
+      error: "Oeps, er is net iets misgegaan"
     signup:
       title: "aanmelden"
       username: "Gebruikersnaam"
       email: "E-mail"
       signup: "Meld aan"
+    logout:
+      notice: "Succesvol uitgelogd"
   langs:
     da_DK: "Danish"
     de_DE: "German"

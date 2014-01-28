@@ -6,15 +6,6 @@ zh-CN:
       warning: "Warning"
       error: "Error"
       progress: "Progress"
-    accounts:
-      login:
-        success: "登录成功"
-        error: "登录不成功"
-      recover_password: 
-        notice: "你的新密码已经发送到你的email邮箱当中"
-        error: "噢，发生了一些错误"
-      logout:
-        notice: "成功登出"
     admin:
       sidebar:
         index:

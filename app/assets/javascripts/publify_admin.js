@@ -4,9 +4,7 @@
 //= require bootstrap
 //= require publify_jquery
 //= require administration_jquery
-//= require gritter
 //= require_self
-//= require gritter
 //= require quicktags
 //= require widearea
 //= require admin_publify

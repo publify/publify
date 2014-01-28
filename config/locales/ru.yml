@@ -681,6 +681,8 @@ ru:
       password: "Пароль"
       remember_me: "Запомнить меня"
       sign_in: "Войти"
+      success: "Вход успешный"
+      error: "Не получилось зайти"
     confirm:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
@@ -688,11 +690,15 @@ ru:
       title: "Восстановление пароля"
       username_or_email: "Имя пользователи или email"
       reset_my_password: "Сбросить мой пароль"
+      notice: "Письмо с паролем было выслано на ваш адрес"
+      error: "Упс, произошло что-то нехорошее"
     signup:
       title: "войти"
       username: "Username"
       email: "Email"
       signup: "войти"
+    logout:
+      notice: "Вы успешно вышли"
   langs:
     da_DK: "Danish"
     de_DE: "German"

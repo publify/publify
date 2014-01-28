@@ -26,7 +26,6 @@
 
 </head>
 <body>
-  <%= gflash %>
   <nav class='navbar navbar-default navbar-inverse navbar-fixed-top' role="navigation">
     <div class="navbar-header">
       <%= link_to content_tag(:span, '', class: 'glyphicon glyphicon-home'), {controller: 'admin/dashboard'}, {class: "navbar-brand"} %>      
@@ -92,7 +91,7 @@
   <div id='main'>
     <div class='row'>
       <div class='col-md-12'>
-        <%= render_the_flash %>
+        <div id="flash"><%= render_the_flash %></div>
         <%- if content_for?(:page_heading) %>
           <div class='page-header'>
             <%= yield :page_heading %>
