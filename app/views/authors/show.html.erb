@@ -31,8 +31,8 @@ for article in @articles
     <div class="archivepost">
       <%= article.published_at.mday %> -
       <%= link_to_permalink(article,h(article.title)) %>
-      <% if !article.categories.empty? %> <%= t(".posted_in") %>
-        <%= article.categories.collect {|c| link_to_permalink c,c.name }.join(", ") -%>
+      <% if !article.tags.empty? %> <%= t(".posted_in") %>
+        <%= article.tags.collect {|c| link_to_permalink c,c.name }.join(", ") -%>
     <% end -%>
     </div>
   <% end %>
