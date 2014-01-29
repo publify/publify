@@ -1,8 +1,0 @@
-fr:
-  flash:
-    titles:
-      notice: "Notice"
-      success: "Success"
-      warning: "Warning"
-      error: "Erreur"
-      progress: "Progress"

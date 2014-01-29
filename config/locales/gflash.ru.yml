@@ -1,8 +1,0 @@
-ru:
-  gflash:
-    titles:
-      notice: "уведомление"
-      success: "успех"
-      warning: "предупреждение"
-      error: "ошибка"
-      progress: "прогресс"
