@@ -168,6 +168,8 @@ nl:
         active_sidebar_items: "Actieve zijbalk dingen"
         download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
     settings:
+      update:
+        success: "configuratie bijgewerkt"
       display:
         cancel: "Terug"
         or: "or"
@@ -442,7 +444,16 @@ nl:
       pages: 
         no_pages: "Er zijn nog geen pages. Waarom begin je er niet een te maken?"
     feedback:
+      update:
+        success: "Commentaar is succesvol bijgewerkt."
+      create:
+        success: "Commentaar is succesvol aangemaakt."
+      destroy:
+        success: "Verwijderd"
+        error: "Niet gevonden"
       bulkops:
+        error: "Niet geimplementeerd"
+        success_deleted_spam: "Alle spam is verwijderd"
         success_mark_as_ham: 
           zero: "No item selected to mark as Ham"
           one: "1 Item gemarkeerd als Ham"
@@ -498,6 +509,9 @@ nl:
         cancel: "Terug"
     dashboard:
       index:
+        error: "You are late from at least one major version of Publify. You should upgrade immediately. Download and install <a href='http://publify.co/stable.tgz'>the latest Publify version</a>"
+        warning: "There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
+        notice: "There's a new version of Publify available. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
         welcome_back: "Welkom terug, %{user_name}!"
       drafts:
         your_drafts: "Your drafts"
@@ -567,6 +581,15 @@ nl:
       comments:
         latest_comments: "Laatste reacties"
     content:
+      create:
+        success: "Artikel is succesvol gemaakt"
+      update:
+        success: "Artikel is succesvol bijgewerkt."
+        error: "Fout, je mag dit niet doen"
+      edit:
+        error: "Fout, je mag dit niet doen"
+      autosave:
+        success: "Article was successfully saved"
       article_list:
         no_articles: "Er zijn nog geen articles. Waarom begin je er niet een te maken?"
       index:

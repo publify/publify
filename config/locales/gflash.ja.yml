@@ -16,35 +16,3 @@ ja:
       redirects:
         destroy:
           success: 'Redirection was successfully deleted.'
-      feedback:
-        bulkops:
-          error: "Not implemented"
-          success_deleted_spam: "All spam have been deleted"
-        update:
-          success: "Comment was successfully updated."
-        create:
-          success: "Comment was successfully created."
-        destroy:
-          success: "Deleted"
-          error: "Not found"
-      dashboard:
-        index:
-          error: "You are late from at least one major version of Publify. You should upgrade immediately. Download and install <a href='http://publify.co/stable.tgz'>the latest Publify version</a>"
-          warning: "There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
-          notice: "There's a new version of Publify available. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
-      content:
-        create:
-          success: "記事を作成しました"
-        update:
-          success: "記事が更新されました"
-          error: "あなたのアカウントではこの操作は許可されていません"
-        edit:
-          error: "あなたのアカウントではこの操作は許可されていません"
-        autosave:
-          success: "Article was successfully saved"
-      settings:
-        update:
-          success: "設定は更新されました"
-      seo:
-        update:
-          success: "設定は更新されました"

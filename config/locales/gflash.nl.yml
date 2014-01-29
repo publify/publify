@@ -13,35 +13,3 @@ nl:
       redirects:
         destroy:
           success: 'Redirection was successfully deleted.'
-      feedback:
-        bulkops:
-          error: "Niet geimplementeerd"
-          success_deleted_spam: "Alle spam is verwijderd"
-        update:
-          success: "Commentaar is succesvol bijgewerkt."
-        create:
-          success: "Commentaar is succesvol aangemaakt."
-        destroy:
-          success: "Verwijderd"
-          error: "Niet gevonden"
-      dashboard:
-        index:
-          error: "You are late from at least one major version of Publify. You should upgrade immediately. Download and install <a href='http://publify.co/stable.tgz'>the latest Publify version</a>"
-          warning: "There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
-          notice: "There's a new version of Publify available. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
-      content:
-        create:
-          success: "Artikel is succesvol gemaakt"
-        update:
-          success: "Artikel is succesvol bijgewerkt."
-          error: "Fout, je mag dit niet doen"
-        edit:
-          error: "Fout, je mag dit niet doen"
-        autosave:
-          success: "Article was successfully saved"
-      settings:
-        update:
-          success: "configuratie bijgewerkt"
-      seo:
-        update:
-          success: "configuratie bijgewerkt"

@@ -168,6 +168,8 @@ ru:
         active_sidebar_items: "Active Sidebar items"
         download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
     settings:
+      update:
+        success: "Config updated."
       display:
         cancel: "Отменить"
         or: "or"
@@ -442,7 +444,16 @@ ru:
       pages:
         no_pages: "Ничего нет. Почему бы не начать и не добавить?"
     feedback:
+      update:
+        success: "Comment was successfully updated."
+      create:
+        success: "Comment was successfully created."
+      destroy:
+        success: "Deleted"
+        error: "Not found"
       bulkops:
+        error: "Not implemented"
+        success_deleted_spam: "All spam have been deleted"
         success_mark_as_ham:
           zero: "No item selected to mark as Ham"
           one: "Marked 1 item as Ham"
@@ -498,6 +509,9 @@ ru:
         cancel: "Отменить"
     dashboard:
       index:
+        error: "You are late from at least one major version of Publify. You should upgrade immediately. Download and install <a href='http://publify.co/stable.tgz'>the latest Publify version</a>"
+        warning: "There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
+        notice: "There's a new version of Publify available. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
         welcome_back: "Добро пожаловать снова, %{user_name}!"
       drafts:
         your_drafts: "Ваши черновики"
@@ -567,6 +581,15 @@ ru:
       comments:
         latest_comments: "Последние комментарии"
     content:
+      create:
+        success: "Article was successfully created"
+      update:
+        success: "Article was successfully updated"
+        error: "Error, you are not allowed to perform this action"
+      edit:
+        error: "Error, you are not allowed to perform this action"
+      autosave:
+        success: "Article was successfully saved"
       article_list:
         no_articles: "Ничего нет. Почему бы не начать и не добавить?"
       index:

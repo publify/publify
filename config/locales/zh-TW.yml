@@ -168,6 +168,8 @@ zh-TW:
         active_sidebar_items: "有效的側邊欄項目"
         download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
     settings:
+      update:
+        success: "更新設定"
       display:
         cancel: "取消"
         or: "or"
@@ -441,7 +443,16 @@ zh-TW:
       pages:
         no_pages: "There are no pages yet. Why don't you start and create one?"
     feedback:
+      update:
+        success: "Comment was successfully updated."
+      create:
+        success: "Comment was successfully created."
+      destroy:
+        success: "Deleted"
+        error: "Not found"
       bulkops:
+        error: "Not implemented"
+        success_deleted_spam: "All spam have been deleted"
         success_mark_as_ham:
           zero: "No item selected to mark as Ham"
           one: "Marked 1 item as Ham"
@@ -497,6 +508,9 @@ zh-TW:
         cancel: "取消"
     dashboard:
       index:
+        error: "You are late from at least one major version of Publify. You should upgrade immediately. Download and install <a href='http://publify.co/stable.tgz'>the latest Publify version</a>"
+        warning: "There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
+        notice: "There's a new version of Publify available. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
         welcome_back: "歡迎回來， %{user_name}！"
       drafts:
         your_drafts: "Your drafts"
@@ -566,6 +580,15 @@ zh-TW:
       comments:
         latest_comments: "最近評論"
     content:
+      create:
+        success: "Article was successfully created"
+      update:
+        success: "Article was successfully updated"
+        error: "Error, you are not allowed to perform this action"
+      edit:
+        error: "Error, you are not allowed to perform this action"
+      autosave:
+        success: "Article was successfully saved"
       article_list:
         no_articles: "There are no articles yet. Why don't you start and create one?"
       index:

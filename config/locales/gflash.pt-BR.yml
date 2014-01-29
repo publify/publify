@@ -13,35 +13,3 @@ pt-BR:
       redirects:
         destroy:
           success: 'Redirection was successfully deleted.'
-      feedback:
-        bulkops:
-          error: "Não implementado"
-          success_deleted_spam: "Todos os spans foram deletados"
-        update:
-          success: "Comentário atualizado com sucesso"
-        create:
-          success: "Comentário criado com sucesso"
-        destroy:
-          success: "Deletado"
-          error: "Não encontrado"
-      dashboard:
-        index:
-          error: "You are late from at least one major version of Publify. You should upgrade immediately. Download and install <a href='http://publify.co/stable.tgz'>the latest Publify version</a>"
-          warning: "There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
-          notice: "There's a new version of Publify available. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
-      content:
-        create:
-          success: "Artigo criado com sucesso"
-        update:
-          success: "Artigo atualizado com sucesso"
-          error: "Erro, você não tem permissão para executar essa tarefa"
-        edit:
-          error: "Erro, você não tem permissão para executar essa tarefa"
-        autosave:
-          success: "Article was successfully saved"
-      settings:
-        update:
-          success: "Config atualizada."
-      seo:
-        update:
-          success: "Config atualizada."

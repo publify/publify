@@ -168,6 +168,8 @@ nb-NO:
         active_sidebar_items: "Aktive sidebar-enheter"
         download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
     settings:
+      update:
+        success: "Innstillinger oppdatert"
       display:
         cancel: "Annuller"
         or: "or"
@@ -442,7 +444,16 @@ nb-NO:
       pages:
         no_pages: "Det finnes ingen pages enda. Hva med å opprette en?"
     feedback:
+      update:
+        success: "Kommentar oppdatert"
+      create:
+        success: "Kommentar opprettet"
+      destroy:
+        success: "Slettet"
+        error: "Ikke funnet"
       bulkops:
+        error: "Ikke implementert"
+        success_deleted_spam: "All spam er slettet"
         success_mark_as_ham: 
           zero: "No item selected to mark as Ham"
           one: "Markerte 1 enhet som Ham"
@@ -498,6 +509,9 @@ nb-NO:
         cancel: "Annuller"
     dashboard:
       index:
+        error: "Du bruker en gammel versjon av Publify. Du bør oppgradere snarest. Last ned og installer <a href='http://publify.co/stable.tgz'>den siste versjonan av Publify</a>"
+        warning: "Det finnes en ny versjon av Publify som kan inneholde viktige feilrettelser. Hva med å oppgradere til <a href='http://publify.co/stable.tgz'>den siste versjonan av Publify</a> ?"
+        notice: "Det finnes en ny versjon av Publify. Hva med å oppgradere til <a href='http://publify.co/stable.tgz'>den siste versjonan av Publify</a> ?"
         welcome_back: "Velkommen tilbake, %{user_name}!"
       drafts:
         your_drafts: "Your drafts"
@@ -567,6 +581,15 @@ nb-NO:
       comments:
         latest_comments: "Siste kommentarer"
     content:
+      create:
+        success: "Artikkel opprettet"
+      update:
+        success: "Artikkel oppdatert"
+        error: "Du har ikke tillatelse til å utføre denne handlingen"
+      edit:
+        error: "Du har ikke tillatelse til å utføre denne handlingen"
+      autosave:
+        success: "Article was successfully saved"
       article_list:
         no_articles: "Det finnes ingen articles enda. Hva med å opprette en?"
       index:

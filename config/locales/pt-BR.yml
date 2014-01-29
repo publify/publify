@@ -168,6 +168,8 @@ pt-BR:
         active_sidebar_items: "Items activos de la barra lateral"
         download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
     settings:
+      update:
+        success: "Config atualizada."
       display:
         cancel: "Cancelar"
         or: "or"
@@ -442,7 +444,16 @@ pt-BR:
       pages: 
         no_pages: "Não existem pages ainda. Por que você não inicia e cria um?"
     feedback:
+      update:
+        success: "Comentário atualizado com sucesso"
+      create:
+        success: "Comentário criado com sucesso"
+      destroy:
+        success: "Deletado"
+        error: "Não encontrado"
       bulkops:
+        error: "Não implementado"
+        success_deleted_spam: "Todos os spans foram deletados"
         success_mark_as_ham:
           zero: "No item selected to mark as Ham"
           one: "Marked 1 item as Ham"
@@ -498,6 +509,9 @@ pt-BR:
         cancel: "Cancelar"
     dashboard:
       index:
+        error: "You are late from at least one major version of Publify. You should upgrade immediately. Download and install <a href='http://publify.co/stable.tgz'>the latest Publify version</a>"
+        warning: "There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
+        notice: "There's a new version of Publify available. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
         welcome_back: "Welcome back, %{user_name}!"
       drafts:
         your_drafts: "Your drafts"
@@ -567,6 +581,15 @@ pt-BR:
       comments:
         latest_comments: "Latest Comments"
     content:
+      create:
+        success: "Artigo criado com sucesso"
+      update:
+        success: "Artigo atualizado com sucesso"
+        error: "Erro, você não tem permissão para executar essa tarefa"
+      edit:
+        error: "Erro, você não tem permissão para executar essa tarefa"
+      autosave:
+        success: "Article was successfully saved"
       article_list:
         no_articles: "Não existem articles ainda. Por que você não inicia e cria um?"
       index:

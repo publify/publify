@@ -168,6 +168,8 @@ zh-CN:
         active_sidebar_items: "有效的側邊欄項目"
         download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
     settings:
+      update:
+        success: "更新配置"
       display:
         cancel: "取消"
         or: "or"
@@ -442,7 +444,16 @@ zh-CN:
       pages:
         no_pages: "这儿并不存在Pages。让我们开始创建它。"
     feedback:
+      update:
+        success: "评论更新成功"
+      create:
+        success: "评论创建成功"
+      destroy:
+        success: "删除"
+        error: "不存在"
       bulkops:
+        success_deleted_spam: "所有垃圾信息已经呗删除"
+        error: "未实现"
         success_mark_as_ham:
           zero: "No item selected to mark as Ham"
           one: "Marked 1 item as Ham"
@@ -498,6 +509,9 @@ zh-CN:
         cancel: "取消"
     dashboard:
       index:
+        error: "You are late from at least one major version of Publify. You should upgrade immediately. Download and install <a href='http://publify.co/stable.tgz'>the latest Publify version</a>"
+        warning: "There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
+        notice: "There's a new version of Publify available. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
         welcome_back: "欢迎回來， %{user_name}！"
       drafts:
         your_drafts: "Your drafts"
@@ -567,6 +581,15 @@ zh-CN:
       comments:
         latest_comments: "最近评论"
     content:
+      create:
+        success: "文章创建成功"
+      update:
+        success: "文章更新成功"
+        error: "错误，不允许进行此操作"
+      edit:
+        error: "错误，不允许进行此操作"
+      autosave:
+        success: "Article was successfully saved"
       article_list:
         no_articles: "这儿并不存在articles。让我们开始创建它。"
       index:

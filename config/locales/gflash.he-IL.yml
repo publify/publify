@@ -13,35 +13,3 @@ he-IL:
       redirects:
         destroy:
           success: 'Redirection was successfully deleted.'
-      feedback:
-        bulkops:
-          error: "לא מיושם"
-          success_deleted_spam: "All spam have been deleted"
-        update:
-          success: "התגובה עודכנה בהצלחה."
-        create:
-          success: "התגובה נוצרה בהצלחה."
-        destroy:
-          success: "נמחקה"
-          error: "לא נמצאה"
-      dashboard:
-        index:
-          error: "You are late from at least one major version of Publify. You should upgrade immediately. Download and install <a href='http://publify.co/stable.tgz'>the latest Publify version</a>"
-          warning: "There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
-          notice: "There's a new version of Publify available. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
-      content:
-        create:
-          success: "הכתבה נוצרה בהצלחה "
-        update:
-          success: "הכתבה עודכנה בהצלחה."
-          error: "שגיאה, אינך רשאי לבצע פעולה זו"
-        edit:
-          error: "שגיאה, אינך רשאי לבצע פעולה זו"
-        autosave:
-          success: "הכתבה נשמרה בהצלחה"
-      settings:
-        update:
-          success: "ההגדרה עודכנה."
-      seo:
-        update:
-          success: "ההגדרה עודכנה."

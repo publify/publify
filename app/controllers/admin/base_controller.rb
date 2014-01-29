@@ -21,15 +21,15 @@ class Admin::BaseController < ApplicationController
     Blog.transaction do
       settings_param.each { |k,v| this_blog.send("#{k.to_s}=", v) }
       this_blog.save
-      gflash :success
+      flash[:success] = I18n.t('admin.settings.update.success')
     end
   end
 
   def save_a(object, title)
     if object.save
-      gflash notice: I18n.t("admin.base.successfully_saved", element: title)
+      flash[:notice] = I18n.t("admin.base.successfully_saved", element: title)
     else
-      gflash error: I18n.t("admin.base.unsuccessfully_saved", element: title)
+      flash[:error] = I18n.t("admin.base.unsuccessfully_saved", element: title)
     end
     redirect_to action: 'index'
   end
@@ -37,12 +37,12 @@ class Admin::BaseController < ApplicationController
   def destroy_a(klass_to_destroy)
     @record = klass_to_destroy.find(params[:id])
     if @record.respond_to?(:access_by?) && !@record.access_by?(current_user)
-      gflash error: I18n.t("admin.base.not_allowed")
+      flash[:error] = I18n.t("admin.base.not_allowed")
       return(redirect_to action: 'index')
     end
     return render('admin/shared/destroy') unless request.post?
     @record.destroy
-    gflash notice: I18n.t("admin.base.successfully_deleted", name: controller_name.humanize)
+    flash[:notice] = I18n.t("admin.base.successfully_deleted", name: controller_name.humanize)
     redirect_to action: 'index'
   end
 
@@ -61,9 +61,9 @@ class Admin::BaseController < ApplicationController
 
     begin
       checker.generate_token
-      gflash notice: I18n.t('admin.base.restart_application')
+      flash[:notice] = I18n.t('admin.base.restart_application')
     rescue
-      gflash error: I18n.t('admin.base.cant_genereate_secret', checker_file: checker.file)
+      flash[:error] = I18n.t('admin.base.cant_genereate_secret', checker_file: checker.file)
     end
   end
 

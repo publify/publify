@@ -28,9 +28,9 @@ class Admin::FeedbackController < Admin::BaseController
 
     begin
       @record.destroy
-      gflash :success
+      flash[:success] = I18n.t('admin.feedback.destroy.success')
     rescue ActiveRecord::RecordNotFound
-      gflash :error
+      flash[:error] = I18n.t('admin.feedback.destroy.error')
     end
     redirect_to action: 'article', id: @record.article.id
   end
@@ -44,7 +44,7 @@ class Admin::FeedbackController < Admin::BaseController
       # We should probably wave a spam filter over this, but for now, just mark it as published.
       @comment.mark_as_ham
       @comment.save!
-      gflash :success
+      flash[:success] = I18n.t('admin.feedback.create.success')
     end
     redirect_to :action => 'article', :id => @article.id
   end
@@ -66,7 +66,7 @@ class Admin::FeedbackController < Admin::BaseController
     end
     comment.attributes = params[:comment]
     if request.post? and comment.save
-      gflash :success
+      flash[:success] = I18n.t('admin.feedback.update.success')
       redirect_to action: 'article', id: comment.article.id
     else
       redirect_to action: 'edit', id: comment.id
@@ -120,7 +120,7 @@ class Admin::FeedbackController < Admin::BaseController
       ids.each do |id|
         count += Feedback.delete(id)
       end
-      gflash success_deleted: I18n.t('admin.feedback.bulkops.success_deleted', count: count)
+      flash[:success] = I18n.t('admin.feedback.bulkops.success_deleted', count: count)
 
       items.each do |i|
         i.invalidates_cache? or next
@@ -129,20 +129,20 @@ class Admin::FeedbackController < Admin::BaseController
       end
     when 'Mark Checked Items as Ham'
       update_feedback(items, :mark_as_ham!)
-      gflash success_mark_as_ham:  I18n.t('admin.feedback.bulkops.success_mark_as_ham', count: ids.size)
+      flash[:success] =  I18n.t('admin.feedback.bulkops.success_mark_as_ham', count: ids.size)
     when 'Mark Checked Items as Spam'
       update_feedback(items, :mark_as_spam!)
-      gflash success_mark_as_spam:  I18n.t('admin.feedback.bulkops.success_mark_as_spam', count: ids.size)
+      flash[:success] =  I18n.t('admin.feedback.bulkops.success_mark_as_spam', count: ids.size)
     when 'Confirm Classification of Checked Items'
       update_feedback(items, :confirm_classification!)
-      gflash success_classification: I18n.t('admin.feedback.bulkops.success_classification', count: ids.size)
+      flash[:success] = I18n.t('admin.feedback.bulkops.success_classification', count: ids.size)
     when 'Delete all spam'
       if request.post?
         Feedback.delete_all(['state = ?', 'spam'])
-        gflash :success_deleted_spam
+        flash[:success] = I18n.t('admin.feedback.bulkops.success')
       end
     else
-      gflash :error
+      flash[:error] = I18n.t('admin.feedback.bulkops.error')
     end
 
     if params[:article_id]

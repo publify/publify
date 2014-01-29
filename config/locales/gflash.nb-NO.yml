@@ -13,35 +13,3 @@ nb-NO:
       redirects:
         destroy:
           success: "Omdirigering slettet"
-      feedback:
-        bulkops:
-          error: "Ikke implementert"
-          success_deleted_spam: "All spam er slettet"
-        update:
-          success: "Kommentar oppdatert"
-        create:
-          success: "Kommentar opprettet"
-        destroy:
-          success: "Slettet"
-          error: "Ikke funnet"
-      dashboard:
-        index:
-          error: "Du bruker en gammel versjon av Publify. Du bør oppgradere snarest. Last ned og installer <a href='http://publify.co/stable.tgz'>den siste versjonan av Publify</a>"
-          warning: "Det finnes en ny versjon av Publify som kan inneholde viktige feilrettelser. Hva med å oppgradere til <a href='http://publify.co/stable.tgz'>den siste versjonan av Publify</a> ?"
-          notice: "Det finnes en ny versjon av Publify. Hva med å oppgradere til <a href='http://publify.co/stable.tgz'>den siste versjonan av Publify</a> ?"
-      content:
-        create:
-          success: "Artikkel opprettet"
-        update:
-          success: "Artikkel oppdatert"
-          error: "Du har ikke tillatelse til å utføre denne handlingen"
-        edit:
-          error: "Du har ikke tillatelse til å utføre denne handlingen"
-        autosave:
-          success: "Article was successfully saved"
-      settings:
-        update:
-          success: "Innstillinger oppdatert"
-      seo:
-        update:
-          success: "Innstillinger oppdatert"
