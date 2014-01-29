@@ -639,6 +639,8 @@ fr:
         sweep_cache: "Vider le cache"
         cache: "Cache"
         explaination: "Afin d'économiser des ressources, Publify génère des fichiers statiques avec votre contenu. Ces fichiers sont supprimés lors d'une nouvelle publication. Vous pouvez cependant les effacer vous même."
+        success: "Le cache a été vidé avec succès"
+        error: "Oops, un problème s'est produit et le cache n'a pas pu être vidé correctement"
     users:
       edit:
         edit_user: "Modifier un utilisateur"

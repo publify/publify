@@ -45,10 +45,6 @@ it:
       seo:
         update:
           success: "Configurazione aggiornata."
-      cache:
-        index:
-          success: "Cache pulita"
-          error: "Cache could not be cleared"
       pages:
         new:
           success: "New page created"

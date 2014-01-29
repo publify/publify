@@ -45,10 +45,6 @@ nl:
       seo:
         update:
           success: "configuratie bijgewerkt"
-      cache:
-        index:
-          success: "Cache has been sweeped"
-          error: "Cache could not be cleared"
       pages:
         new:
           success: "Pagina is succesvol aangemaakt"

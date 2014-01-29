@@ -639,6 +639,8 @@ pl:
         sweep_cache: "Sweep cache"
         cache: "Bufor"
         explaination: "To save on resources, Publify generates static files along with your content. These files are deleted when a new article is created. You can, at any time, delete these files yourself."
+        success: "Bufor opróżniono"
+        error: "Cache could not be cleared"
     users:
       edit:
         edit_user: "Zmień dane użytkownika"

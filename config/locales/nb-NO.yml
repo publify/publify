@@ -639,6 +639,8 @@ nb-NO:
         sweep_cache: "Sweep cache"
         cache: "Cache"
         explaination: "For å lagre resurser cacher Publify innholdet i statiske filer. Cachen slettes hver gang noe publiseres. Du kan også velge å slette cachen selv."
+        success: "Cache er kostet rent (sweeped)"
+        error: "Cache kunne ikke rengjøres"
     users:
       edit:
         edit_user: "Rediger bruker"

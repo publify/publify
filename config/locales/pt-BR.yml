@@ -639,6 +639,8 @@ pt-BR:
         sweep_cache: "Limpar cache"
         cache: "Cache"
         explaination: "Para economizar recursos, Publify gera arquivos estáticos juntamente com o seu conteúdo. Esses arquivos são apagados automaticamente quando um novo artigo é criado. Você pode, a qualquer momento, excluir esses arquivos."
+        success: "Cache has been sweeped"
+        error: "Cache could not be cleared"
     users:
       edit:
         edit_user: "Editar usuario"

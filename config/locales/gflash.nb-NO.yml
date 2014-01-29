@@ -45,10 +45,6 @@ nb-NO:
       seo:
         update:
           success: "Innstillinger oppdatert"
-      cache:
-        index:
-          success: "Cache er kostet rent (sweeped)"
-          error: "Cache kunne ikke rengjøres"
       pages:
         new:
           success: "Side opprettet"

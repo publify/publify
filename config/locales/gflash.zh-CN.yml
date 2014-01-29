@@ -45,10 +45,6 @@ zh-CN:
       seo:
         update:
           success: "更新配置"
-      cache:
-        index:
-          success: "cache已清除"
-          error: "Cache could not be cleared"
       pages:
         new:
           success: "页面创建成功"

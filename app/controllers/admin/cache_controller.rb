@@ -10,9 +10,9 @@ class Admin::CacheController < Admin::BaseController
     if request.post?
       begin
         PageCache.sweep_all
-        gflash :success
+        flash[:success] = t('admin.cache.index.success')
       rescue
-        gflash :error
+        flash[:error] = t('admin.cache.index.error')
       end
     end
 

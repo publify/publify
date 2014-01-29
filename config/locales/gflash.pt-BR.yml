@@ -45,10 +45,6 @@ pt-BR:
       seo:
         update:
           success: "Config atualizada."
-      cache:
-        index:
-          success: "Cache has been sweeped"
-          error: "Cache could not be cleared"
       pages:
         new:
           success: "Página criada com sucesso"

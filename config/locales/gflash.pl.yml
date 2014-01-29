@@ -45,10 +45,6 @@ pl:
       seo:
         update:
           success: "konfiguracja zaktualizowana."
-      cache:
-        index:
-          success: "Bufor opróżniono"
-          error: "Cache could not be cleared"
       pages:
         new:
           success: "New page created"

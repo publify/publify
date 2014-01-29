@@ -45,10 +45,6 @@ zh-TW:
       seo:
         update:
           success: "更新設定"
-      cache:
-        index:
-          success: "Cache has been sweeped"
-          error: "Cache could not be cleared"
       pages:
         new:
           success: "New page created"

@@ -45,10 +45,6 @@ he-IL:
       seo:
         update:
           success: "ההגדרה עודכנה."
-      cache:
-        index:
-          success: "המטמון נוקה"
-          error: "Cache could not be cleared"
       pages:
         new:
           success: "הדף נוצר בהצלחה"

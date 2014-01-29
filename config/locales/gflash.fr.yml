@@ -45,10 +45,6 @@ fr:
       seo:
         update:
           success: "Configuration mise à jour."
-      cache:
-        index:
-          success: "Le cache a été vidé avec succès"
-          error: "Oops, un problème s'est produit et le cache n'a pas pu être vidé correctement"
       pages:
         new:
           success: "Cette page a été créée avec succès"
