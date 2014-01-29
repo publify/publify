@@ -9,7 +9,7 @@ class Admin::RedirectsController < Admin::BaseController
     return(render 'admin/shared/destroy') unless request.post?
 
     @record.destroy
-    gflash :success
+    flash[:success] = I18n.t('admin.redirects.destroy.success')
     redirect_to :action => 'index'
   end
 

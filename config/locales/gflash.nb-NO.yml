@@ -6,10 +6,3 @@ nb-NO:
       warning: "Warning"
       error: "Error"
       progress: "Progress"
-    admin:
-      sidebar:
-        index:
-          error: "Noe gikk galt. Kanskje en av dine sidekolonner mangler og du burde reinstallere den eller fjerne den manuelt"
-      redirects:
-        destroy:
-          success: "Omdirigering slettet"

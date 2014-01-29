@@ -40,18 +40,18 @@ class Admin::NotesController < Admin::BaseController
 
       if @note.id
         unless @note.access_by?(current_user)
-          gflash error: I18n.t('errors.you_are_not_allowed')
+          flash[:error] = I18n.t('errors.you_are_not_allowed')
           return(redirect_to action: 'new')
         end
-        gflash notice: I18n.t("notice.note_successfully_updated")
+        flash[:notice] = I18n.t("notice.note_successfully_updated")
       else
-        gflash notice: I18n.t("notice.note_successfully_created")
+        flash[:notice] = I18n.t("notice.note_successfully_created")
       end
 
       if @note.save
         if params[:push_to_twitter] && @note.twitter_id.blank?
           unless @note.send_to_twitter
-            gflash error: I18n.t("errors.problem_sending_to_twitter")
+            flash[:error] = I18n.t("errors.problem_sending_to_twitter")
           end
         end
         redirect_to action: 'new'

@@ -136,6 +136,8 @@ he-IL:
         or: "or"
         publish: "פרסם"
     redirects:
+      destroy:
+        success: 'Redirection was successfully deleted.'
       new:
         no_redirects: "There are no redirects yet. Why don't you start and create one?"
         cancel: "בטל"
@@ -159,6 +161,7 @@ he-IL:
     sidebar:
       index:
         sidebar: "תיבת צד"
+        error: "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually"
         drag_some_plugins_here: "גרור חלק מהתוספים כדי למלא את תיבת הצד"
         cancel: "בטל"
         or: "or"

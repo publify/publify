@@ -6,10 +6,3 @@ ru:
       warning: "предупреждение"
       error: "ошибка"
       progress: "прогресс"
-    admin:
-      sidebar:
-        index:
-          error: "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually"
-      redirects:
-        destroy:
-          success: 'Redirection was successfully deleted.'

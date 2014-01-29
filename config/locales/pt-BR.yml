@@ -136,6 +136,8 @@ pt-BR:
         or: "or"
         publish: "Publicar"
     redirects:
+      destroy:
+        success: 'Redirection was successfully deleted.'
       new:
         no_redirects: "Não existem redirects ainda. Por que você não inicia e cria um?"
         cancel: "Cancelar"
@@ -158,6 +160,7 @@ pt-BR:
         your_profile: "Your profile"
     sidebar:
       index:
+        error: "Parece que algo deu errado. Talvez esteja faltando alguma sidebar e você precise reinstalar ou remove-las manualmente"
         sidebar: "Sidebar"
         drag_some_plugins_here: "Arrastra algunos plugins aqu&iacute; para llenar tu barra lateral"
         or: "or"

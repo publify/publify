@@ -6,10 +6,3 @@ fr:
       warning: "Warning"
       error: "Erreur"
       progress: "Progress"
-    admin:
-      sidebar:
-        index:
-          error: "Une erreur s'est produite. Un ou plusieurs plugins sont probablement manquants ou en erreur. Peut-être devriez-vous les supprimer ou les réinstaller"
-      redirects:
-        destroy:
-          success: "La redirection a été supprimée avec succès."

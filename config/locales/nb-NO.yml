@@ -136,6 +136,8 @@ nb-NO:
         or: "or"
         publish: "Publiser"
     redirects:
+      destroy:
+        success: "Omdirigering slettet"
       new:
         no_redirects: "Det finnes ingen omdirigeringer enda. Hva med å opprette en?"
         cancel: "Annuller"
@@ -158,6 +160,7 @@ nb-NO:
         your_profile: "Din profil"
     sidebar:
       index:
+        error: "Noe gikk galt. Kanskje en av dine sidekolonner mangler og du burde reinstallere den eller fjerne den manuelt"
         sidebar: "Sidebar"
         drag_some_plugins_here: "Dra og slipp plugins hit for å populere sidebar"
         or: "or"

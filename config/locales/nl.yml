@@ -136,6 +136,8 @@ nl:
         or: "or"
         publish: "Publiceer"
     redirects:
+      destroy:
+        success: 'Redirection was successfully deleted.'
       new:
         no_redirects: "Er zijn nog geen redirects. Waarom begin je er niet een te maken?"
         cancel: "Terug"
@@ -158,6 +160,7 @@ nl:
         your_profile: "Je profiel"
     sidebar:
       index:
+        error: "Het lijkt er op dat er iets fout ging. Misschien ontbreken sommige zijbalken en moet je ze opnieuw installeren of handmatig verwijderen"
         sidebar: "Zijbalk"
         drag_some_plugins_here: "Sleep wat plugins naar hier om de zijbalk te vullen"
         or: "or"

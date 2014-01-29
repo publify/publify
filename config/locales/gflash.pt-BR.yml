@@ -6,10 +6,3 @@ pt-BR:
       warning: "Warning"
       error: "Error"
       progress: "Progress"
-    admin:
-      sidebar:
-        index:
-          error: "Parece que algo deu errado. Talvez esteja faltando alguma sidebar e você precise reinstalar ou remove-las manualmente"
-      redirects:
-        destroy:
-          success: 'Redirection was successfully deleted.'

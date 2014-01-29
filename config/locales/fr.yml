@@ -136,6 +136,8 @@ fr:
         or: "ou"
         publish: "Publier"
     redirects:
+      destroy:
+        success: "La redirection a été supprimée avec succès."
       new:
         no_redirects: "Il n'y a pas encore de redirections, pourquoi ne pas en créer une ? "
         cancel: "Annuler"
@@ -158,6 +160,7 @@ fr:
         your_profile: "Votre profil"
     sidebar:
       index:
+        error: "Une erreur s'est produite. Un ou plusieurs plugins sont probablement manquants ou en erreur. Peut-être devriez-vous les supprimer ou les réinstaller"
         sidebar: "Plugins"
         drag_some_plugins_here: "Déplacez des plugins dans cet espace afin de remplir votre sidebar"
         or: "ou"

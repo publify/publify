@@ -136,6 +136,8 @@ it:
         or: "or"
         publish: "Pubblica"
     redirects:
+      destroy:
+        success: 'Redirection was successfully deleted.'
       new:
         no_redirects: "There are no redirects yet. Why don't you start and create one?"
         cancel: "Annulla"
@@ -158,6 +160,7 @@ it:
         your_profile: "Your profile"
     sidebar:
       index:
+        error: "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually"
         sidebar: "Sidebar"
         drag_some_plugins_here: "Trascina alcuni plugins qui per popolare la tua sidebar"
         cancel: "Annulla"

@@ -6,10 +6,3 @@ nl:
       warning: "Warning"
       error: "Error"
       progress: "Progress"
-    admin:
-      sidebar:
-        index:
-          error: "Het lijkt er op dat er iets fout ging. Misschien ontbreken sommige zijbalken en moet je ze opnieuw installeren of handmatig verwijderen"
-      redirects:
-        destroy:
-          success: 'Redirection was successfully deleted.'

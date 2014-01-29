@@ -136,6 +136,8 @@ en:
         or: "or"
         publish: "Publish"
     redirects:
+      destroy:
+        success: 'Redirection was successfully deleted.'
       new:
         no_redirects: "There are no redirects yet. Why don't you start and create one?"
         cancel: "Cancel"
@@ -160,6 +162,7 @@ en:
       index:
         sidebar: "Sidebar"
         drag_some_plugins_here: "Drag some plugins here to fill your sidebar"
+        error: "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually"
         or: "or"
         cancel: "Cancel"
         explain_how_its_works: "Drag and drop to change the sidebar items displayed on this blog. To remove items from the sidebar just click 'remove'. Changes are saved immediately, but not activated until you click the 'Publish changes' button"

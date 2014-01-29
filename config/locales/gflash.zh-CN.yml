@@ -6,10 +6,3 @@ zh-CN:
       warning: "Warning"
       error: "Error"
       progress: "Progress"
-    admin:
-      sidebar:
-        index:
-          error: "有错误发生，可能是一些侧边栏丢失，请尝试重新安装或者手动卸载。"
-      redirects:
-        destroy:
-          success: 'Redirection was successfully deleted.'
