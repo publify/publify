@@ -45,11 +45,3 @@ zh-CN:
       seo:
         update:
           success: "更新配置"
-      pages:
-        new:
-          success: "页面创建成功"
-        edit:
-          success: "页面更新成功"
-      profiles:
-        index:
-          success: "用户创建成功"

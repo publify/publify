@@ -154,6 +154,7 @@ nb-NO:
         active_theme: "%{name} - Aktivt tema"
     profiles:
       index:
+        success: "Bruker oppdatert"
         your_profile: "Din profil"
     sidebar:
       index:
@@ -414,6 +415,10 @@ nb-NO:
         publify_default_post_type: "Publify default post type"
         explain: "The template name is the filename Publify will look for when calling an article of that type. It should be in your theme under views/articles/template name.html.erb"
     pages:
+      new:
+        success: "Side opprettet"
+      edit:
+        success: "Side oppdatert"
       index:
         manage_pages: "Administrer sider"
         new_page: "Ny side"

@@ -45,11 +45,3 @@ nl:
       seo:
         update:
           success: "configuratie bijgewerkt"
-      pages:
-        new:
-          success: "Pagina is succesvol aangemaakt"
-        edit:
-          success: "Pagina is succesvol bijgewerkt"
-      profiles:
-        index:
-          success: "Gebruiker is succesvol bijgewerkt"

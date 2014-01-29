@@ -154,6 +154,7 @@ de:
         active_theme: "%{name} - Aktives Motiv"
     profiles:
       index:
+        success: "User details updated"
         your_profile: "Your profile"
     sidebar:
       index:
@@ -414,6 +415,10 @@ de:
         publify_default_post_type: "Publify default post type"
         explain: "The template name is the filename Publify will look for when calling an article of that type. It should be in your theme under views/articles/template name.html.erb"
     pages:
+      new:
+        success: "New page created"
+      edit:
+        success: "Page has been updated"
       index:
         manage_pages: "Seiten verwalten"
         new_page: "Neue Seite"

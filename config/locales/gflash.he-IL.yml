@@ -45,11 +45,3 @@ he-IL:
       seo:
         update:
           success: "ההגדרה עודכנה."
-      pages:
-        new:
-          success: "הדף נוצר בהצלחה"
-        edit:
-          success: "הדף עודכן בהצלחה"
-      profiles:
-        index:
-          success: "המשתמש עודכן בהצלחה"

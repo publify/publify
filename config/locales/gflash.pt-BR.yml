@@ -45,11 +45,3 @@ pt-BR:
       seo:
         update:
           success: "Config atualizada."
-      pages:
-        new:
-          success: "Página criada com sucesso"
-        edit:
-          success: "Página atualizada com sucesso"
-      profiles:
-        index:
-          success: "Usuário atualizado com sucesso"

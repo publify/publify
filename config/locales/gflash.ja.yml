@@ -48,11 +48,3 @@ ja:
       seo:
         update:
           success: "設定は更新されました"
-      pages:
-        new:
-          success: "ページが作成されました"
-        edit:
-          success: "ページが更新されました"
-      profiles:
-        index:
-          success: "プロフィールが更新されました"

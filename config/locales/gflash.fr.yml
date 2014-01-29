@@ -45,11 +45,3 @@ fr:
       seo:
         update:
           success: "Configuration mise à jour."
-      pages:
-        new:
-          success: "Cette page a été créée avec succès"
-        edit:
-          success: "Cette page a été mise à jour avec succès"
-      profiles:
-        index:
-          success: "L'utilisateur a été mis à jour avec succès"

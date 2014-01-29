@@ -154,6 +154,7 @@ he-IL:
         active_theme: "%{name} - עיצוב פעיל"
     profiles:
       index:
+        success: "המשתמש עודכן בהצלחה"
         your_profile: "Your profile"
     sidebar:
       index:
@@ -414,6 +415,10 @@ he-IL:
         publify_default_post_type: "Publify default post type"
         explain: "The template name is the filename Publify will look for when calling an article of that type. It should be in your theme under views/articles/template name.html.erb"
     pages:
+      new:
+        success: "הדף נוצר בהצלחה"
+      edit:
+        success: "הדף עודכן בהצלחה"
       index:
         manage_pages: "נהל דפים"
         new_page: "New Page"
@@ -768,4 +773,3 @@ he-IL:
   date:
     month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]
     abbr_month_names: [~, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
-       

@@ -154,6 +154,7 @@ zh-CN:
         active_theme: "%{name} - 執行中主題"
     profiles:
       index:
+        success: "用户创建成功"
         your_profile: "Your profile"
     sidebar:
       index:
@@ -414,6 +415,10 @@ zh-CN:
         publify_default_post_type: "Publify default post type"
         explain: "The template name is the filename Publify will look for when calling an article of that type. It should be in your theme under views/articles/template name.html.erb"
     pages:
+      new:
+        success: "页面创建成功"
+      edit:
+        success: "页面更新成功"
       index:
         manage_pages: "管理页面"
         new_page: "新页面"

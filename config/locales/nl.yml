@@ -154,6 +154,7 @@ nl:
         active_theme: "%{name} - Actieve thema's"
     profiles:
       index:
+        success: "Gebruiker is succesvol bijgewerkt"
         your_profile: "Je profiel"
     sidebar:
       index:
@@ -414,6 +415,10 @@ nl:
         publify_default_post_type: "Publify default post type"
         explain: "The template name is the filename Publify will look for when calling an article of that type. It should be in your theme under views/articles/template name.html.erb"
     pages:
+      new:
+        success: "Pagina is succesvol aangemaakt"
+      edit:
+        success: "Pagina is succesvol bijgewerkt"
       index:
         manage_pages: "Beheer pagina's"
         new_page: "Nieuwe pagina"

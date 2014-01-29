@@ -154,6 +154,7 @@ ja:
         active_theme: "%{name} - 現在のテーマ"
     profiles:
       index:
+        success: "プロフィールが更新されました"
         your_profile: "あなたのプロフィール"
     sidebar:
       index:
@@ -414,6 +415,10 @@ ja:
         publify_default_post_type: "Publify default post type"
         explain: "The template name is the filename Publify will look for when calling an article of that type. It should be in your theme under views/articles/template name.html.erb"
     pages:
+      new:
+        success: "ページが作成されました"
+      edit:
+        success: "ページが更新されました"
       index:
         manage_pages: "ページの管理"
         new_page: "New Page"

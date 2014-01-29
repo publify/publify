@@ -154,6 +154,7 @@ fr:
         active_theme: "%{name} - Thème actif"
     profiles:
       index:
+        success: "L'utilisateur a été mis à jour avec succès"
         your_profile: "Votre profil"
     sidebar:
       index:
@@ -414,6 +415,10 @@ fr:
         publify_default_post_type: "Modèle d'article par défaut"
         explain: "Ce modèle est un fichier que Publify cherchera quand il voudra afficher un article de ce type. Il doit se trouver dans views/articles/template nom.html.erb"
     pages:
+      new:
+        success: "Cette page a été créée avec succès"
+      edit:
+        success: "Cette page a été mise à jour avec succès"
       index:
         manage_pages: "Administrer les pages"
         new_page: "Nouvelle page"

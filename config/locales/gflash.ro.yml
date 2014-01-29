@@ -45,11 +45,3 @@ ro:
       seo:
         update:
           success: "Config updated."
-      pages:
-        new:
-          success: "New page created"
-        edit:
-          success: "Page has been updated"
-      profiles:
-        index:
-          success: "User details updated"

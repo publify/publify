@@ -45,11 +45,3 @@ nb-NO:
       seo:
         update:
           success: "Innstillinger oppdatert"
-      pages:
-        new:
-          success: "Side opprettet"
-        edit:
-          success: "Side oppdatert"
-      profiles:
-        index:
-          success: "Bruker oppdatert"
