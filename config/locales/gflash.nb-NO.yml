@@ -53,20 +53,3 @@ nb-NO:
       profiles:
         index:
           success: "Bruker oppdatert"
-      resources:
-        upload:
-          success: "Lastet opp fil"
-          warning: "Kan ikke laste opp"
-        destroy:
-          notice: "Slettet"
-      tags:
-        edit:
-          success: "Tag oppdatert" 
-      themes:
-        switchto:
-          success: "Tema endret"
-      users:
-        new:
-          success: "Bruker opprettet"
-        edit:
-          success: "Bruker oppdatert"

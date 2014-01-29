@@ -53,20 +53,3 @@ he-IL:
       profiles:
         index:
           success: "המשתמש עודכן בהצלחה"
-      resources:
-        upload:
-          success: "הקובץ הועלה"
-          warning: "לא מסוגל להעלות"
-        destroy:
-          notice: "נמחקה"
-      tags:
-        edit:
-          success: "התוית עודכנה בהצלחה." 
-      themes:
-        switchto:
-          success: "Theme selection updated"
-      users:
-        new:
-          success: "המשתמש נוצר בהצלחה."
-        edit:
-          success: "המשתמש עודכן בהצלחה."

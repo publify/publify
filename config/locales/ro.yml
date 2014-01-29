@@ -146,6 +146,8 @@ ro:
         to: "To"
         leave_empty_to_shorten_a_link: "Leave empty to shorten a link"
     themes:
+      switchto:
+        success: "Theme selection updated"
       index:
         choose_a_theme: "Alege o temă"
         use_this_theme: "Use this theme"
@@ -368,6 +370,8 @@ ro:
         cancel: "Anulare"
         delete: "Delete"
     tags:
+      edit:
+        success: "Tag was successfully updated"
       new:
         no_tags: "There are no tags yet. Why don't you start and create one?"
         articles: "Articol"
@@ -378,6 +382,11 @@ ro:
         save: "Salvează"
         or: "or"
     resources:
+      upload:
+        success: "File uploaded"
+        warning: "No file selected"
+      destroy:
+        notice: "File has been deleted"
       index:
         no_resources: "There are no resources yet. Why don't you start and create one?"
         media_library: "Media Library"
@@ -643,8 +652,10 @@ ro:
         error: "Cache could not be cleared"
     users:
       edit:
+        success: "User was successfully updated"
         edit_user: "Editează un utilizator"
       new:
+        success: "User was successfully created"
         add_user: "Add User"
       index:
         login: "login"

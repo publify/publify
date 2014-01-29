@@ -53,20 +53,3 @@ ro:
       profiles:
         index:
           success: "User details updated"
-      resources:
-        upload:
-          success: "File uploaded"
-          warning: "No file selected"
-        destroy:
-          notice: "File has been deleted"
-      tags:
-        edit:
-          success: "Tag was successfully updated"
-      themes:
-        switchto:
-          success: "Theme selection updated"
-      users:
-        new:
-          success: "User was successfully created"
-        edit:
-          success: "User was successfully updated"

@@ -146,6 +146,8 @@ he-IL:
         to: "To"
         leave_empty_to_shorten_a_link: "Leave empty to shorten a link"
     themes:
+      switchto:
+        success: "Theme selection updated"
       index:
         choose_a_theme: "בחר עיצוב"
         use_this_theme: "Use this theme"
@@ -368,6 +370,8 @@ he-IL:
         cancel: "בטל"
         delete: "מחק"
     tags:
+      edit:
+        success: "התוית עודכנה בהצלחה." 
       new:
         no_tags: "There are no tags yet. Why don't you start and create one?"
         articles: "כתבות"
@@ -378,6 +382,11 @@ he-IL:
         save: "שמור"
         or: "or"
     resources:
+      upload:
+        success: "הקובץ הועלה"
+        warning: "לא מסוגל להעלות"
+      destroy:
+        notice: "נמחקה"
       index:
         no_resources: "There are no resources yet. Why don't you start and create one?"
         media_library: "Media Library"
@@ -643,8 +652,10 @@ he-IL:
         error: "Cache could not be cleared"
     users:
       edit:
+        success: "המשתמש עודכן בהצלחה."
         edit_user: "ערוך משתמש"
       new:
+        success: "המשתמש נוצר בהצלחה."
         add_user: "הוסף משתמש"
       index:
         login: "התחבר"
@@ -757,3 +768,4 @@ he-IL:
   date:
     month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]
     abbr_month_names: [~, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+       

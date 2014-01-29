@@ -146,6 +146,8 @@ pt-BR:
         to: "To"
         leave_empty_to_shorten_a_link: "Leave empty to shorten a link"
     themes:
+      switchto:
+        success: "Tema alterado com sucesso"
       index:
         choose_a_theme: "Escoge un tema"
         use_this_theme: "Use this theme"
@@ -368,6 +370,8 @@ pt-BR:
         cancel: "Cancelar"
         delete: "Deletar"
     tags:
+      edit:
+        success: "Tag atualizada com sucesso"
       new:
         no_tags: "Não existem tags ainda. Por que você não inicia e cria um?"
         articles: "Artículos"
@@ -378,6 +382,11 @@ pt-BR:
         save: "Salvar"
         or: "or"
     resources:
+      upload:
+        success: "Arquivo enviado"
+        warning: "Incapaz de fazer enviar o arquivo"
+      destroy:
+        notice: "Deletado"
       index:
         no_resources: "Não existem media ainda. Por que você não inicia e cria um?"
         media_library: "Media Library"
@@ -643,8 +652,10 @@ pt-BR:
         error: "Cache could not be cleared"
     users:
       edit:
+        success: "Usuário atualizado com sucesso"
         edit_user: "Editar usuario"
       new:
+        success: "Usuário criado com sucesso"
         add_user: "Add User"
       index:
         login: "entrar"

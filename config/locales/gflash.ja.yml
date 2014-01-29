@@ -56,20 +56,3 @@ ja:
       profiles:
         index:
           success: "プロフィールが更新されました"
-      resources:
-        upload:
-          success: "アップロードするファイル"
-          warning: "アップロードできません"
-        destroy:
-          notice: "File has been deleted"
-      tags:
-        edit:
-          success: "Tag was successfully updated" 
-      themes:
-        switchto:
-          success: "Theme selection updated"
-      users:
-        new:
-          success: "User was successfully created"
-        edit:
-          success: "プロフィールが更新されました"

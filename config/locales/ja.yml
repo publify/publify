@@ -146,6 +146,8 @@ ja:
         to: "To"
         leave_empty_to_shorten_a_link: "Leave empty to shorten a link"
     themes:
+      switchto:
+        success: "Theme selection updated"
       index:
         choose_a_theme: "テーマの選択"
         use_this_theme: "Use this theme"
@@ -368,6 +370,8 @@ ja:
         cancel: "キャンセル"
         delete: "削除"
     tags:
+      edit:
+        success: "Tag was successfully updated" 
       new:
         no_tags: "There are no tags yet. Why don't you start and create one?"
         articles: "記事"
@@ -378,6 +382,11 @@ ja:
         save: "保存"
         or: "or"
     resources:
+      upload:
+        success: "アップロードするファイル"
+        warning: "アップロードできません"
+      destroy:
+        notice: "File has been deleted"
       index:
         no_resources: "There are no resources yet. Why don't you start and create one?"
         media_library: "Media Library"
@@ -643,8 +652,10 @@ ja:
         error: "Cache could not be cleared"
     users:
       edit:
+        success: "プロフィールが更新されました"
         edit_user: "ユーザー編集"
       new:
+        success: "User was successfully created"
         add_user: "ユーザーの追加"
       index:
         login: "ログイン"

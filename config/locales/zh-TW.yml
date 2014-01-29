@@ -146,6 +146,8 @@ zh-TW:
         to: "To"
         leave_empty_to_shorten_a_link: "Leave empty to shorten a link"
     themes:
+      switchto:
+        success: "Theme selection updated"
       index:
         choose_a_theme: "選擇主題"
         use_this_theme: "Use this theme"
@@ -367,6 +369,8 @@ zh-TW:
         cancel: "取消"
         delete: "刪除"
     tags:
+      edit:
+        success: "Tag was successfully updated"
       new:
         no_tags: "There are no tags yet. Why don't you start and create one?"
         articles: "文章"
@@ -377,6 +381,11 @@ zh-TW:
         save: "存檔"
         or: "or"
     resources:
+      upload:
+        success: "檔案上傳"
+        warning: "不能被上傳"
+      destroy:
+        notice: "File has been deleted"
       index:
         no_resources: "There are no resources yet. Why don't you start and create one?"
         media_library: "Media Library"
@@ -642,8 +651,10 @@ zh-TW:
         error: "Cache could not be cleared"
     users:
       edit:
+        success: "User was successfully updated"
         edit_user: "修改使用者"
       new:
+        success: "User was successfully created"
         add_user: "Add User"
       index:
         login: "登入"

@@ -146,6 +146,8 @@ it:
         to: "To"
         leave_empty_to_shorten_a_link: "Leave empty to shorten a link"
     themes:
+      switchto:
+        success: "Theme selection updated"
       index:
         choose_a_theme: "Seleziona un tema"
         use_this_theme: "Use this theme"
@@ -368,6 +370,8 @@ it:
         cancel: "Annulla"
         delete: "Elimina"
     tags:
+      edit:
+        success: "Tag was successfully updated" 
       new:
         no_tags: "There are no tags yet. Why don't you start and create one?"
         articles: "Articoli"
@@ -378,6 +382,11 @@ it:
         save: "Salva"
         or: "or"
     resources:
+      upload:
+        success: "File inviata"
+        warning: "Impossibile inviare"
+      destroy:
+        notice: "File has been deleted"
       index:
         no_resources: "There are no resources yet. Why don't you start and create one?"
         media_library: "Media Library"
@@ -643,8 +652,10 @@ it:
         error: "Cache could not be cleared"
     users:
       edit:
+        success: "User was successfully updated"
         edit_user: "Modifica utente"
       new:
+        success: "User was successfully created"
         add_user: "Aggiungi Utente"
       index:
         login: "login"
@@ -757,3 +768,4 @@ it:
   date:
     month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]
     abbr_month_names: [~, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+       

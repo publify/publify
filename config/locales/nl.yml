@@ -146,6 +146,8 @@ nl:
         to: "To"
         leave_empty_to_shorten_a_link: "Leave empty to shorten a link"
     themes:
+      switchto:
+        success: "Thema succesvol aangepast"
       index:
         choose_a_theme: "Kies een thema"
         use_this_theme: "Use this theme"
@@ -368,6 +370,8 @@ nl:
         cancel: "Terug"
         delete: "Verwijderen"
     tags:
+      edit:
+        success: "Tag was succesvol bijgewerkt."
       new:
         no_tags: "Er zijn nog geen trefwoorden. Waarom begin je er niet een te maken?"
         articles: "Artikelen"
@@ -378,6 +382,11 @@ nl:
         save: "Bewaar"
         or: "or"
     resources:
+      upload:
+        success: "Bestand geupload"
+        warning: "Kon niet uploaden"
+      destroy:
+        notice: "Verwijderd"
       index:
         no_resources: "Er zijn nog geen media. Waarom begin je er niet een te maken?"
         media_library: "Media Library"
@@ -643,8 +652,10 @@ nl:
         error: "Cache could not be cleared"
     users:
       edit:
+        success: "Gebruiker is succesvol bijgewerkt."
         edit_user: "Gebruiker wijzigen"
       new:
+        success: "Gebruiker succesvol aangemaakt."
         add_user: "Gebruiker toevoegen"
       index:
         login: "inloggen"

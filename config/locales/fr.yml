@@ -146,6 +146,8 @@ fr:
         to: "Vers"
         leave_empty_to_shorten_a_link: "Laissez vide pour créer un lien court"
     themes:
+      switchto:
+        success: "Le thème a été changé avec succès"
       index:
         choose_a_theme: "Sélectionnez un thème"
         use_this_theme: "Choisir ce thème"
@@ -368,6 +370,8 @@ fr:
         cancel: "Annuler"
         delete: "Supprimer"
     tags:
+      edit:
+        success: "Le label a été mis à jour avec succès"
       new:
         no_tags: "Il n'y a pas encore de labels, pourquoi ne pas en créer un ? "
         articles: "Articles"
@@ -378,6 +382,11 @@ fr:
         save: "Sauver"
         or: "ou"
     resources:
+      upload:
+        success: "Fichier envoyé"
+        warning: "impossible d'envoyer"
+      destroy:
+        notice: "Supprimé"
       index:
         no_resources: "Il n'y a pas encore de ressources, pourquoi ne pas en créer une ? "
         media_library: "Bibliothèque de média"
@@ -643,8 +652,10 @@ fr:
         error: "Oops, un problème s'est produit et le cache n'a pas pu être vidé correctement"
     users:
       edit:
+        success: "L'utilisateur a été mis à jour avec succès."
         edit_user: "Modifier un utilisateur"
       new:
+        success: "L'utilisateur a été créé avec succès."
         add_user: "Ajouter un utilisateur"
       index:
         login: "identifiant"

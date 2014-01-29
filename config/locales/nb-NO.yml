@@ -146,6 +146,8 @@ nb-NO:
         to: "Til"
         leave_empty_to_shorten_a_link: "Leave empty to shorten a link"
     themes:
+      switchto:
+        success: "Tema endret"
       index:
         choose_a_theme: "Velg et tema"
         use_this_theme: "Velg dette temaet"
@@ -368,6 +370,8 @@ nb-NO:
         cancel: "Annuller"
         delete: "Slett"
     tags:
+      edit:
+        success: "Tag oppdatert" 
       new:
         no_tags: "Det finnes ingen tags enda. Hva med å opprette en?"
         articles: "Artikler"
@@ -378,6 +382,11 @@ nb-NO:
         save: "Lagre"
         or: "or"
     resources:
+      upload:
+        success: "Lastet opp fil"
+        warning: "Kan ikke laste opp"
+      destroy:
+        notice: "Slettet"
       index:
         no_resources: "Det finnes ingen media enda. Hva med å opprette en?"
         media_library: "Media Library"
@@ -643,8 +652,10 @@ nb-NO:
         error: "Cache kunne ikke rengjøres"
     users:
       edit:
+        success: "Bruker oppdatert"
         edit_user: "Rediger bruker"
       new:
+        success: "Bruker opprettet"
         add_user: "Legg til bruker"
       index:
         login: "Logg inn"

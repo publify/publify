@@ -53,20 +53,3 @@ pt-BR:
       profiles:
         index:
           success: "Usuário atualizado com sucesso"
-      resources:
-        upload:
-          success: "Arquivo enviado"
-          warning: "Incapaz de fazer enviar o arquivo"
-        destroy:
-          notice: "Deletado"
-      tags:
-        edit:
-          success: "Tag atualizada com sucesso"
-      themes:
-        switchto:
-          success: "Tema alterado com sucesso"
-      users:
-        new:
-          success: "Usuário criado com sucesso"
-        edit:
-          success: "Usuário atualizado com sucesso"

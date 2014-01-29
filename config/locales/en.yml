@@ -146,6 +146,8 @@ en:
         to: "To"
         leave_empty_to_shorten_a_link: "Leave empty to shorten a link"
     themes:
+      siwtchto:
+        success: "Theme selection updated"
       index:
         choose_a_theme: "Choose a theme"
         use_this_theme: "Use this theme"
@@ -368,6 +370,8 @@ en:
         cancel: "Cancel"
         delete: "Delete"
     tags:
+      edit:
+        success: "Tag was successfully updated"
       new:
         no_tags: "There are no tags yet. Why don't you start and create one?"
         articles: "Articles"
@@ -378,6 +382,11 @@ en:
         save: "Save"
         or: "or"
     resources:
+      upload:
+        success: "File uploaded"
+        warning: "No file selected"
+      destroy:
+        notice: "File has been deleted"
       index:
         no_resources: "There are no resources yet. Why don't you start and create one?"
         media_library: "Media Library"
@@ -644,8 +653,10 @@ en:
     users:
       edit:
         edit_user: "Edit User"
+        success: "User was successfully updated"
       new:
         add_user: "Add User"
+        success: "User was successfully created"
       index:
         login: "login"
         users: "Users"

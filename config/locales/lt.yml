@@ -146,6 +146,8 @@ lt:
         to: "To"
         leave_empty_to_shorten_a_link: "Leave empty to shorten a link"
     themes:
+      switchto:
+        success: "Theme selection updated"
       index:
         choose_a_theme: "Motiv auswählen"
         use_this_theme: "Use this theme"
@@ -368,6 +370,8 @@ lt:
         cancel: "Baigti"
         delete: "Trinti"
     tags:
+      edit:
+        success: "Tag was successfully updated" 
       new:
         no_tags: "There are no žymės yet. Why don't you start and create one?"
         articles: "Straipsniai"
@@ -378,6 +382,11 @@ lt:
         save: "Saugoti"
         or: "or"
     resources:
+      upload:
+        success: "File uploaded"
+        warning: "No file selected"
+      destroy:
+        notice: "File has been deleted"
       index:
         no_resources: "There are no resources yet. Why don't you start and create one?"
         media_library: "Media Library"
@@ -866,8 +875,10 @@ lt:
         explanations: "To save on resources, Publify generates static files along with your content. These files are deleted when a new article is created. You can, at any time, delete these files yourself."
     users:
       edit:
+        success: "User was successfully updated"
         edit_user: "Benutzer bearbeiten"
       new:
+        success: "User was successfully created"
         add_user: "Add User"
       index:
         login: "Prisijungimas"

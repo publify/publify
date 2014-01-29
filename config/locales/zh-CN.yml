@@ -146,6 +146,8 @@ zh-CN:
         to: "To"
         leave_empty_to_shorten_a_link: "Leave empty to shorten a link"
     themes:
+      switchto:
+        success: "主题切换成功"
       index:
         choose_a_theme: "選擇主題"
         use_this_theme: "Use this theme"
@@ -368,6 +370,8 @@ zh-CN:
         cancel: "取消"
         delete: "删除"
     tags:
+      edit:
+        success: "Tag已经更新" 
       new:
         no_tags: "这儿并不存在Tags。让我们开始创建它。"
         articles: "文章"
@@ -378,6 +382,11 @@ zh-CN:
         save: "保存"
         or: "or"
     resources:
+      upload:
+        success: "文件上传"
+        warning: "No file selected"
+      destroy:
+        notice: "删除"
       index:
         no_resources: "这儿并不存在Media。让我们开始创建它。"
         media_library: "Media Library"
@@ -643,8 +652,10 @@ zh-CN:
         error: "Cache could not be cleared"
     users:
       edit:
+        success: "用户创建成功"
         edit_user: "修改使用者"
       new:
+        success: "用户创建成功"
         add_user: "Add User"
       index:
         login: "登录"

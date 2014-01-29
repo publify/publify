@@ -146,6 +146,8 @@ es-MX:
         to: "To"
         leave_empty_to_shorten_a_link: "Leave empty to shorten a link"
     themes:
+      switchto:
+        success: "Theme selection updated"
       index:
         choose_a_theme: "Escoge un tema"
         use_this_theme: "Use this theme"
@@ -368,6 +370,8 @@ es-MX:
         cancel: "Cancelar"
         delete: "Eliminar"
     tags:
+      edit:
+        success: "Tag was successfully updated"
       new:
         no_tags: "There are no tags yet. Why don't you start and create one?"
         articles: "Artículos"
@@ -378,6 +382,11 @@ es-MX:
         save: "Guardar"
         or: "or"
     resources:
+      upload:
+        success: "File uploaded"
+        warning: "No file selected"
+      destroy:
+        notice: "File has been deleted"
       index:
         no_resources: "There are no resources yet. Why don't you start and create one?"
         media_library: "Media Library"
@@ -643,8 +652,10 @@ es-MX:
         error: "Cache could not be cleared"
     users:
       edit:
+        success: "User was successfully updated"
         edit_user: "Editar usuario"
       new:
+        success: "User was successfully created"
         add_user: "Add User"
       index:
         login: "login"
