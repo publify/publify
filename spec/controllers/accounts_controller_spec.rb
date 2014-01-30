@@ -380,7 +380,7 @@ describe AccountsController do
     context "post with an unknown login" do
       before(:each) { post :recover_password, user: {login: 'foobar'} }
       it { expect(response).to render_template('recover_password') }
-      it { expect(session[:gflash][:error]).to eq([I18n.t('gflash.accounts.recover_password.error')]) }
+      it { expect(flash[:error]).to eq(I18n.t('accounts.recover_password.error')) }
     end
   end
 end

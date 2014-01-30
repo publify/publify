@@ -136,6 +136,8 @@ en:
         or: "or"
         publish: "Publish"
     redirects:
+      destroy:
+        success: 'Redirection was successfully deleted.'
       new:
         no_redirects: "There are no redirects yet. Why don't you start and create one?"
         cancel: "Cancel"
@@ -146,6 +148,8 @@ en:
         to: "To"
         leave_empty_to_shorten_a_link: "Leave empty to shorten a link"
     themes:
+      siwtchto:
+        success: "Theme selection updated"
       index:
         choose_a_theme: "Choose a theme"
         use_this_theme: "Use this theme"
@@ -153,10 +157,12 @@ en:
     profiles:
       index:
         your_profile: "Your profile"
+        success: "User details updated"
     sidebar:
       index:
         sidebar: "Sidebar"
         drag_some_plugins_here: "Drag some plugins here to fill your sidebar"
+        error: "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually"
         or: "or"
         cancel: "Cancel"
         explain_how_its_works: "Drag and drop to change the sidebar items displayed on this blog. To remove items from the sidebar just click 'remove'. Changes are saved immediately, but not activated until you click the 'Publish changes' button"
@@ -165,6 +171,8 @@ en:
         active_sidebar_items: "Active Sidebar items"
         download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
     settings:
+      update:
+        success: "Config updated."
       display:
         cancel: "Cancel"
         or: "or"
@@ -368,6 +376,8 @@ en:
         cancel: "Cancel"
         delete: "Delete"
     tags:
+      edit:
+        success: "Tag was successfully updated"
       new:
         no_tags: "There are no tags yet. Why don't you start and create one?"
         articles: "Articles"
@@ -378,6 +388,11 @@ en:
         save: "Save"
         or: "or"
     resources:
+      upload:
+        success: "File uploaded"
+        warning: "No file selected"
+      destroy:
+        notice: "File has been deleted"
       index:
         no_resources: "There are no resources yet. Why don't you start and create one?"
         media_library: "Media Library"
@@ -405,6 +420,10 @@ en:
         publify_default_post_type: "Publify default post type"
         explain: "The template name is the filename Publify will look for when calling an article of that type. It should be in your theme under views/articles/template name.html.erb"
     pages:
+      new:
+        success: "New page created"
+      edit:
+        success: "Page has been updated"
       index:
         manage_pages: "Manage pages"
         new_page: "New Page"
@@ -428,7 +447,16 @@ en:
       pages:
         no_pages: "There are no pages yet. Why don't you start and create one?"
     feedback:
+      update:
+        success: "Comment was successfully updated."
+      create:
+        success: "Comment was successfully created."
+      destroy:
+        success: "Deleted"
+        error: "Not found"
       bulkops:
+        error: "Not implemented"
+        success_deleted_spam: "All spam have been deleted"
         success_mark_as_ham:
           zero: "No item selected to mark as Ham"
           one: "Marked 1 item as Ham"
@@ -483,6 +511,10 @@ en:
         this_comment_by_was_flagged_as_spam: "This comment by %{author} was flagged as spam, %{cancel_link}?"
         cancel: "Cancel"
     dashboard:
+      publify_version:
+        error: "You are late from at least one major version of Publify. You should upgrade immediately. Download and install <a href='http://publify.co/stable.tgz'>the latest Publify version</a>"
+        warning: "There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
+        notice: "There's a new version of Publify available. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
       index:
         welcome_back: "Welcome back, %{user_name}!"
       drafts:
@@ -553,6 +585,14 @@ en:
       comments:
         latest_comments: "Latest Comments"
     content:
+      create:
+        success: "Article was successfully created"
+      update:
+        success: "Article was successfully updated"
+      access_granted:
+        error: "Error, you are not allowed to perform this action"
+      autosave:
+        success: "Article was successfully saved"
       article_list:
         no_articles: "There are no articles yet. Why don't you start and create one?"
       index:
@@ -639,11 +679,15 @@ en:
         sweep_cache: "Sweep cache"
         cache: "Cache"
         explaination: "To save on resources, Publify generates static files along with your content. These files are deleted when a new article is created. You can, at any time, delete these files yourself."
+        success: "Cache has been sweeped"
+        error: "Cache could not be cleared"
     users:
       edit:
         edit_user: "Edit User"
+        success: "User was successfully updated"
       new:
         add_user: "Add User"
+        success: "User was successfully created"
       index:
         login: "login"
         users: "Users"
@@ -710,6 +754,8 @@ en:
       password: "Password"
       remember_me: "Remember me"
       sign_in: "Sign in"
+      success: "Login successful"
+      error: "Login unsuccessful"
     confirm:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
@@ -717,6 +763,10 @@ en:
       title: "Recover your password"
       username_or_email: "Username or email"
       reset_my_password: "Reset my password"
+      notice: "An email has been successfully sent to your address with your new password"
+      error: "Oops, something wrong just happened"
+    logout:
+      notice: "Successfully logged out"
     signup:
       title: "signup"
       username: "Username"

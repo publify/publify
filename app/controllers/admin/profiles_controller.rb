@@ -12,7 +12,7 @@ class Admin::ProfilesController < Admin::BaseController
       
       if @user.save
         current_user = @user
-        gflash :success
+        flash[:success] = I18n.t('admin.profiles.index.success')
       end
     end
   end

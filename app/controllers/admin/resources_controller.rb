@@ -13,9 +13,9 @@ class Admin::ResourcesController < Admin::BaseController
         mime = file.content_type.chomp
       end
       @up = Resource.create(:upload => file, :mime => mime, :created_at => Time.now)
-      gflash :success
+      flash[:success] = I18n.t('admin.resources.upload.success')
     else
-      gflash :warning
+      flash[:warning] = I18n.t('admin.resources.upload.warning')
     end
 
     redirect_to :action => "index"
@@ -40,7 +40,7 @@ class Admin::ResourcesController < Admin::BaseController
       return(render 'admin/shared/destroy') unless request.post?
 
       @record.destroy
-      gflash :notice
+      flash[:notice] = I18n.t('admin.resources.destroy.notice')
       redirect_to :action => 'index'
     rescue
       raise

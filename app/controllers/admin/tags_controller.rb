@@ -26,7 +26,7 @@ class Admin::TagsController < Admin::BaseController
 
       if @tag.save
         Redirect.create(:from_path => "/tag/#{old_name}", :to_path => @tag.permalink_url(nil, true))
-        gflash :success
+        flash[:success] = I18n.t('admin.tags.edit.success')
       end
     end
     render 'new'

@@ -52,7 +52,7 @@ describe Admin::PagesController do
 
         it { expect(Page.first.name).to eq("new_page") } 
         it { expect(response).to redirect_to(action: :index) }
-        it { expect(session[:gflash][:success]).to eq([I18n.t('gflash.admin.pages.new.success')]) }
+        it { expect(flash[:success]).to eq(I18n.t('admin.pages.new.success')) }
       end
 
       it 'should create a published page with a redirect' do

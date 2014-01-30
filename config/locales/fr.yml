@@ -136,6 +136,8 @@ fr:
         or: "ou"
         publish: "Publier"
     redirects:
+      destroy:
+        success: "La redirection a été supprimée avec succès."
       new:
         no_redirects: "Il n'y a pas encore de redirections, pourquoi ne pas en créer une ? "
         cancel: "Annuler"
@@ -146,15 +148,19 @@ fr:
         to: "Vers"
         leave_empty_to_shorten_a_link: "Laissez vide pour créer un lien court"
     themes:
+      switchto:
+        success: "Le thème a été changé avec succès"
       index:
         choose_a_theme: "Sélectionnez un thème"
         use_this_theme: "Choisir ce thème"
         active_theme: "%{name} - Thème actif"
     profiles:
       index:
+        success: "L'utilisateur a été mis à jour avec succès"
         your_profile: "Votre profil"
     sidebar:
       index:
+        error: "Une erreur s'est produite. Un ou plusieurs plugins sont probablement manquants ou en erreur. Peut-être devriez-vous les supprimer ou les réinstaller"
         sidebar: "Plugins"
         drag_some_plugins_here: "Déplacez des plugins dans cet espace afin de remplir votre sidebar"
         or: "ou"
@@ -165,6 +171,8 @@ fr:
         active_sidebar_items: "Éléments utilisés"
         download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
     settings:
+      update:
+        success: "Configuration mise à jour."
       display:
         cancel: "Annuler"
         or: "ou"
@@ -368,6 +376,8 @@ fr:
         cancel: "Annuler"
         delete: "Supprimer"
     tags:
+      edit:
+        success: "Le label a été mis à jour avec succès"
       new:
         no_tags: "Il n'y a pas encore de labels, pourquoi ne pas en créer un ? "
         articles: "Articles"
@@ -378,6 +388,11 @@ fr:
         save: "Sauver"
         or: "ou"
     resources:
+      upload:
+        success: "Fichier envoyé"
+        warning: "impossible d'envoyer"
+      destroy:
+        notice: "Supprimé"
       index:
         no_resources: "Il n'y a pas encore de ressources, pourquoi ne pas en créer une ? "
         media_library: "Bibliothèque de média"
@@ -405,6 +420,10 @@ fr:
         publify_default_post_type: "Modèle d'article par défaut"
         explain: "Ce modèle est un fichier que Publify cherchera quand il voudra afficher un article de ce type. Il doit se trouver dans views/articles/template nom.html.erb"
     pages:
+      new:
+        success: "Cette page a été créée avec succès"
+      edit:
+        success: "Cette page a été mise à jour avec succès"
       index:
         manage_pages: "Administrer les pages"
         new_page: "Nouvelle page"
@@ -428,7 +447,16 @@ fr:
       pages:
         no_pages: "Il n'y a pas encore de pages, pourquoi ne pas en créer une ? "
     feedback:
+      update:
+        success: "Commentaire mis à jour avec succès."
+      create:
+        success: "Commentaire créé avec succès."
+      destroy:
+        success: "Supprimé"
+        error: "Introuvable"
       bulkops:
+        error: "Non implémenté"
+        success_deleted_spam: "Tout le spam a été supprimé"
         success_mark_as_ham: 
           zero: "No item selected to mark as Ham"
           one: "Marked 1 item as Ham"
@@ -484,6 +512,9 @@ fr:
         cancel: "Annuler"
     dashboard:
       index:
+        error: "Vous avez au moins une version majeure de Publify de retard. Vous devriez immédiatement vous mettre à jour. Téléchargez et installez <a href='http://publify.co/stable.tgz'>la dernière version de Publify</a>"
+        warning: "Une nouvelle version de Publify est disponible. Celle-ci contient probablement d'importants correctifs. Pourquoi ne téléchargeriez-vous pas <a href='http://publify.co/stable.tgz'>la dernière version de Publify</a> ?"
+        notice: "Une nouvelle version de Publify est disponible. Pouquoi n'installeriez-vous pas <a href='http://publify.co/stable.tgz'>la dernière version de Publify</a> ?"
         welcome_back: "Bienvenue, %{user_name} !"
       drafts:
         your_drafts: "Vos brouillons"
@@ -553,6 +584,15 @@ fr:
       comments:
         latest_comments: "Derniers commentaires"
     content:
+      create:
+        success: "Cet article a été créé avec succès"
+      update:
+        success: "Cet article a été mis à jour avec succès"
+        error: "Erreur, vous n'avez pas les droits requis pour effectuer cette action"
+      edit:
+        error: "Erreur, vous n'avez pas les droits requis pour effectuer cette action"
+      autosave:
+        success: "Article was successfully saved"
       article_list:
         no_articles: "Il n'y a pas encore de articles, pourquoi ne pas en créer un ? "
       index:
@@ -639,10 +679,14 @@ fr:
         sweep_cache: "Vider le cache"
         cache: "Cache"
         explaination: "Afin d'économiser des ressources, Publify génère des fichiers statiques avec votre contenu. Ces fichiers sont supprimés lors d'une nouvelle publication. Vous pouvez cependant les effacer vous même."
+        success: "Le cache a été vidé avec succès"
+        error: "Oops, un problème s'est produit et le cache n'a pas pu être vidé correctement"
     users:
       edit:
+        success: "L'utilisateur a été mis à jour avec succès."
         edit_user: "Modifier un utilisateur"
       new:
+        success: "L'utilisateur a été créé avec succès."
         add_user: "Ajouter un utilisateur"
       index:
         login: "identifiant"
@@ -711,6 +755,8 @@ fr:
       password: "Mot de passe"
       sign_in: "S'identifier"
       remember_me: "Rester connecté"
+      success: "Connexion réussie"
+      error: "Échec de la connexion"
     confirm:
       proceed_to: "Allez sur %{link}"
       admin: "l'administration"
@@ -718,11 +764,15 @@ fr:
       title: "Récupération d'un mot de passe perdu"
       username_or_email: "Identifiant ou email"
       reset_my_password: "Me renvoyer un mot de passe"
+      notice: "Un courrier vous a été envoyé avec votre nouveau mot de passe"
+      error: "Désolé, une erreur vient de se produire"
     signup:
       title: "s'identifier"
       username: "Identifiant"
       email: "Email"
       signup: "S'inscrire"
+    logout:
+      notice: "Vous êtes maintenant déconnecté"
   langs:
     da_DK: "Danois"
     de_DE: "Allemand"

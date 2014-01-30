@@ -136,6 +136,8 @@ pt-BR:
         or: "or"
         publish: "Publicar"
     redirects:
+      destroy:
+        success: 'Redirection was successfully deleted.'
       new:
         no_redirects: "Não existem redirects ainda. Por que você não inicia e cria um?"
         cancel: "Cancelar"
@@ -146,15 +148,19 @@ pt-BR:
         to: "To"
         leave_empty_to_shorten_a_link: "Leave empty to shorten a link"
     themes:
+      switchto:
+        success: "Tema alterado com sucesso"
       index:
         choose_a_theme: "Escoge un tema"
         use_this_theme: "Use this theme"
         active_theme: "%{name} - Tema activo"
     profiles:
       index:
+        success: "Usuário atualizado com sucesso"
         your_profile: "Your profile"
     sidebar:
       index:
+        error: "Parece que algo deu errado. Talvez esteja faltando alguma sidebar e você precise reinstalar ou remove-las manualmente"
         sidebar: "Sidebar"
         drag_some_plugins_here: "Arrastra algunos plugins aqu&iacute; para llenar tu barra lateral"
         or: "or"
@@ -165,6 +171,8 @@ pt-BR:
         active_sidebar_items: "Items activos de la barra lateral"
         download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
     settings:
+      update:
+        success: "Config atualizada."
       display:
         cancel: "Cancelar"
         or: "or"
@@ -368,6 +376,8 @@ pt-BR:
         cancel: "Cancelar"
         delete: "Deletar"
     tags:
+      edit:
+        success: "Tag atualizada com sucesso"
       new:
         no_tags: "Não existem tags ainda. Por que você não inicia e cria um?"
         articles: "Artículos"
@@ -378,6 +388,11 @@ pt-BR:
         save: "Salvar"
         or: "or"
     resources:
+      upload:
+        success: "Arquivo enviado"
+        warning: "Incapaz de fazer enviar o arquivo"
+      destroy:
+        notice: "Deletado"
       index:
         no_resources: "Não existem media ainda. Por que você não inicia e cria um?"
         media_library: "Media Library"
@@ -405,6 +420,10 @@ pt-BR:
         publify_default_post_type: "Publify default post type"
         explain: "The template name is the filename Publify will look for when calling an article of that type. It should be in your theme under views/articles/template name.html.erb"
     pages:
+      new:
+        success: "Página criada com sucesso"
+      edit:
+        success: "Página atualizada com sucesso"
       index:
         manage_pages: "Administrar P&aacute;ginas"
         new_page: "Nueva P&aacute;gina"
@@ -428,7 +447,16 @@ pt-BR:
       pages: 
         no_pages: "Não existem pages ainda. Por que você não inicia e cria um?"
     feedback:
+      update:
+        success: "Comentário atualizado com sucesso"
+      create:
+        success: "Comentário criado com sucesso"
+      destroy:
+        success: "Deletado"
+        error: "Não encontrado"
       bulkops:
+        error: "Não implementado"
+        success_deleted_spam: "Todos os spans foram deletados"
         success_mark_as_ham:
           zero: "No item selected to mark as Ham"
           one: "Marked 1 item as Ham"
@@ -484,6 +512,9 @@ pt-BR:
         cancel: "Cancelar"
     dashboard:
       index:
+        error: "You are late from at least one major version of Publify. You should upgrade immediately. Download and install <a href='http://publify.co/stable.tgz'>the latest Publify version</a>"
+        warning: "There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
+        notice: "There's a new version of Publify available. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
         welcome_back: "Welcome back, %{user_name}!"
       drafts:
         your_drafts: "Your drafts"
@@ -553,6 +584,15 @@ pt-BR:
       comments:
         latest_comments: "Latest Comments"
     content:
+      create:
+        success: "Artigo criado com sucesso"
+      update:
+        success: "Artigo atualizado com sucesso"
+        error: "Erro, você não tem permissão para executar essa tarefa"
+      edit:
+        error: "Erro, você não tem permissão para executar essa tarefa"
+      autosave:
+        success: "Article was successfully saved"
       article_list:
         no_articles: "Não existem articles ainda. Por que você não inicia e cria um?"
       index:
@@ -639,10 +679,14 @@ pt-BR:
         sweep_cache: "Limpar cache"
         cache: "Cache"
         explaination: "Para economizar recursos, Publify gera arquivos estáticos juntamente com o seu conteúdo. Esses arquivos são apagados automaticamente quando um novo artigo é criado. Você pode, a qualquer momento, excluir esses arquivos."
+        success: "Cache has been sweeped"
+        error: "Cache could not be cleared"
     users:
       edit:
+        success: "Usuário atualizado com sucesso"
         edit_user: "Editar usuario"
       new:
+        success: "Usuário criado com sucesso"
         add_user: "Add User"
       index:
         login: "entrar"
@@ -711,6 +755,8 @@ pt-BR:
       password: "Senha"
       remember_me: "Lembrar-me"
       sign_in: "Entrar"
+      success: "Logado com sucesso"
+      error: "Falha ao tentar se logar"
     confirm:
       proceed_to: "Continuar para %{link}"
       admin: "admin"
@@ -718,11 +764,15 @@ pt-BR:
       title: "Recupere sua senha"
       username_or_email: "Usuário ou Email"
       reset_my_password: "Redefinir senha"
+      notice: "Sua nova senha foi enviada com sucesso para o seu e-mail"
+      error: "Opps, alguma coisa errada acaba de acontecer"
     signup:
       title: "Registrar"
       username: "Usuário"
       email: "Email"
       signup: "Registrar"
+    logout:
+      notice: "Deslogado com sucesso"
   langs:
     da_DK: "Danish"
     de_DE: "German"

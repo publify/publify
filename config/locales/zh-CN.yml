@@ -136,6 +136,8 @@ zh-CN:
         or: "or"
         publish: "发布"
     redirects:
+      destroy:
+        success: 'Redirection was successfully deleted.'
       new:
         no_redirects: "这儿并不存在Redirects。让我们开始创建它。"
         cancel: "取消"
@@ -146,15 +148,19 @@ zh-CN:
         to: "To"
         leave_empty_to_shorten_a_link: "Leave empty to shorten a link"
     themes:
+      switchto:
+        success: "主题切换成功"
       index:
         choose_a_theme: "選擇主題"
         use_this_theme: "Use this theme"
         active_theme: "%{name} - 執行中主題"
     profiles:
       index:
+        success: "用户创建成功"
         your_profile: "Your profile"
     sidebar:
       index:
+        error: "有错误发生，可能是一些侧边栏丢失，请尝试重新安装或者手动卸载。"
         sidebar: "Sidebar"
         drag_some_plugins_here: "拖曳一些plugins填滿你的sidebar"
         or: "or"
@@ -165,6 +171,8 @@ zh-CN:
         active_sidebar_items: "有效的側邊欄項目"
         download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
     settings:
+      update:
+        success: "更新配置"
       display:
         cancel: "取消"
         or: "or"
@@ -368,6 +376,8 @@ zh-CN:
         cancel: "取消"
         delete: "删除"
     tags:
+      edit:
+        success: "Tag已经更新" 
       new:
         no_tags: "这儿并不存在Tags。让我们开始创建它。"
         articles: "文章"
@@ -378,6 +388,11 @@ zh-CN:
         save: "保存"
         or: "or"
     resources:
+      upload:
+        success: "文件上传"
+        warning: "No file selected"
+      destroy:
+        notice: "删除"
       index:
         no_resources: "这儿并不存在Media。让我们开始创建它。"
         media_library: "Media Library"
@@ -405,6 +420,10 @@ zh-CN:
         publify_default_post_type: "Publify default post type"
         explain: "The template name is the filename Publify will look for when calling an article of that type. It should be in your theme under views/articles/template name.html.erb"
     pages:
+      new:
+        success: "页面创建成功"
+      edit:
+        success: "页面更新成功"
       index:
         manage_pages: "管理页面"
         new_page: "新页面"
@@ -428,7 +447,16 @@ zh-CN:
       pages:
         no_pages: "这儿并不存在Pages。让我们开始创建它。"
     feedback:
+      update:
+        success: "评论更新成功"
+      create:
+        success: "评论创建成功"
+      destroy:
+        success: "删除"
+        error: "不存在"
       bulkops:
+        success_deleted_spam: "所有垃圾信息已经呗删除"
+        error: "未实现"
         success_mark_as_ham:
           zero: "No item selected to mark as Ham"
           one: "Marked 1 item as Ham"
@@ -484,6 +512,9 @@ zh-CN:
         cancel: "取消"
     dashboard:
       index:
+        error: "You are late from at least one major version of Publify. You should upgrade immediately. Download and install <a href='http://publify.co/stable.tgz'>the latest Publify version</a>"
+        warning: "There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
+        notice: "There's a new version of Publify available. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
         welcome_back: "欢迎回來， %{user_name}！"
       drafts:
         your_drafts: "Your drafts"
@@ -553,6 +584,15 @@ zh-CN:
       comments:
         latest_comments: "最近评论"
     content:
+      create:
+        success: "文章创建成功"
+      update:
+        success: "文章更新成功"
+        error: "错误，不允许进行此操作"
+      edit:
+        error: "错误，不允许进行此操作"
+      autosave:
+        success: "Article was successfully saved"
       article_list:
         no_articles: "这儿并不存在articles。让我们开始创建它。"
       index:
@@ -639,10 +679,14 @@ zh-CN:
         sweep_cache: "Sweep cache"
         cache: "儲存"
         explaination: "To save on resources, Publify generates static files along with your content. These files are deleted when a new article is created. You can, at any time, delete these files yourself."
+        success: "cache已清除"
+        error: "Cache could not be cleared"
     users:
       edit:
+        success: "用户创建成功"
         edit_user: "修改使用者"
       new:
+        success: "用户创建成功"
         add_user: "Add User"
       index:
         login: "登录"
@@ -711,6 +755,8 @@ zh-CN:
       password: "密码"
       remember_me: "记住用户"
       sign_in: "Sign in"
+      success: "登录成功"
+      error: "登录不成功"
     confirm:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
@@ -718,11 +764,15 @@ zh-CN:
       title: "Recover your password"
       username_or_email: "用户名或邮箱"
       reset_my_password: "Reset my password"
+      notice: "你的新密码已经发送到你的email邮箱当中"
+      error: "噢，发生了一些错误"
     signup:
       title: "注册"
       username: "用户名"
       email: "Email"
       signup: "注册"
+    logout:
+      notice: "成功登出"
   langs:
     da_DK: "Danish"
     de_DE: "German"

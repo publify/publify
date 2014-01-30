@@ -136,6 +136,8 @@ zh-TW:
         or: "or"
         publish: "公開"
     redirects:
+      destroy:
+        success: 'Redirection was successfully deleted.'
       new:
         no_redirects: "There are no redirects yet. Why don't you start and create one?"
         cancel: "取消"
@@ -146,15 +148,19 @@ zh-TW:
         to: "To"
         leave_empty_to_shorten_a_link: "Leave empty to shorten a link"
     themes:
+      switchto:
+        success: "Theme selection updated"
       index:
         choose_a_theme: "選擇主題"
         use_this_theme: "Use this theme"
         active_theme: "%{name} - 執行中主題"
     profiles:
       index:
+        success: "User details updated"
         your_profile: "Your profile"
     sidebar:
       index:
+        error: "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually"
         sidebar: "Sidebar"
         drag_some_plugins_here: "拖曳一些plugins填滿你的sidebar"
         or: "or"
@@ -165,6 +171,8 @@ zh-TW:
         active_sidebar_items: "有效的側邊欄項目"
         download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
     settings:
+      update:
+        success: "更新設定"
       display:
         cancel: "取消"
         or: "or"
@@ -367,6 +375,8 @@ zh-TW:
         cancel: "取消"
         delete: "刪除"
     tags:
+      edit:
+        success: "Tag was successfully updated"
       new:
         no_tags: "There are no tags yet. Why don't you start and create one?"
         articles: "文章"
@@ -377,6 +387,11 @@ zh-TW:
         save: "存檔"
         or: "or"
     resources:
+      upload:
+        success: "檔案上傳"
+        warning: "不能被上傳"
+      destroy:
+        notice: "File has been deleted"
       index:
         no_resources: "There are no resources yet. Why don't you start and create one?"
         media_library: "Media Library"
@@ -404,6 +419,10 @@ zh-TW:
         publify_default_post_type: "Publify default post type"
         explain: "The template name is the filename Publify will look for when calling an article of that type. It should be in your theme under views/articles/template name.html.erb"
     pages:
+      new:
+        success: "New page created"
+      edit:
+        success: "Page has been updated"
       index:
         manage_pages: "管理頁面"
         new_page: "New Page"
@@ -427,7 +446,16 @@ zh-TW:
       pages:
         no_pages: "There are no pages yet. Why don't you start and create one?"
     feedback:
+      update:
+        success: "Comment was successfully updated."
+      create:
+        success: "Comment was successfully created."
+      destroy:
+        success: "Deleted"
+        error: "Not found"
       bulkops:
+        error: "Not implemented"
+        success_deleted_spam: "All spam have been deleted"
         success_mark_as_ham:
           zero: "No item selected to mark as Ham"
           one: "Marked 1 item as Ham"
@@ -483,6 +511,9 @@ zh-TW:
         cancel: "取消"
     dashboard:
       index:
+        error: "You are late from at least one major version of Publify. You should upgrade immediately. Download and install <a href='http://publify.co/stable.tgz'>the latest Publify version</a>"
+        warning: "There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
+        notice: "There's a new version of Publify available. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
         welcome_back: "歡迎回來， %{user_name}！"
       drafts:
         your_drafts: "Your drafts"
@@ -552,6 +583,15 @@ zh-TW:
       comments:
         latest_comments: "最近評論"
     content:
+      create:
+        success: "Article was successfully created"
+      update:
+        success: "Article was successfully updated"
+        error: "Error, you are not allowed to perform this action"
+      edit:
+        error: "Error, you are not allowed to perform this action"
+      autosave:
+        success: "Article was successfully saved"
       article_list:
         no_articles: "There are no articles yet. Why don't you start and create one?"
       index:
@@ -638,10 +678,14 @@ zh-TW:
         sweep_cache: "Sweep cache"
         cache: "儲存"
         explaination: "To save on resources, Publify generates static files along with your content. These files are deleted when a new article is created. You can, at any time, delete these files yourself."
+        success: "Cache has been sweeped"
+        error: "Cache could not be cleared"
     users:
       edit:
+        success: "User was successfully updated"
         edit_user: "修改使用者"
       new:
+        success: "User was successfully created"
         add_user: "Add User"
       index:
         login: "登入"
@@ -710,6 +754,8 @@ zh-TW:
       password: "密碼"
       remember_me: "Remember me"
       sign_in: "Sign in"
+      success: "Login successful"
+      error: "Login unsuccessful"
     confirm:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
@@ -717,11 +763,15 @@ zh-TW:
       title: "Recover your password"
       username_or_email: "Username or email"
       reset_my_password: "Reset my password"
+      notice: "An email has been successfully sent to your address with your new password"
+      error: "Oops, something wrong just happened"
     signup:
       title: "註冊"
       username: "名稱"
       email: "Email"
       signup: "註冊"
+    logout:
+      notice: "Successfully logged out"
   langs:
     da_DK: "Danish"
     de_DE: "German"

@@ -12,7 +12,7 @@ class Admin::UsersController < Admin::BaseController
     setup_profiles
     @user.name = @user.login
     if request.post? and @user.save
-      gflash :success
+      flash[:success] = I18n.t('admin.users.new.success')
       redirect_to :action => 'index'
     end
   end
@@ -26,7 +26,7 @@ class Admin::UsersController < Admin::BaseController
       if @user.id = current_user.id
         current_user = @user
       end
-      gflash :success
+      flash[:success] = I18n.t('admin.users.new.success')
       redirect_to :action => 'index'
     end
   end

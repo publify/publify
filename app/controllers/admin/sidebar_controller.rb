@@ -81,7 +81,7 @@ class Admin::SidebarController < Admin::BaseController
         logger.error e
         # Avoiding the view to crash
         @active = []
-        gflash :error
+        flash[:error] = I18n.t('admin.sidebar.index.error')
       end
     end
     flash[:sidebars]

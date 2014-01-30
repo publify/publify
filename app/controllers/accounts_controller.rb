@@ -18,7 +18,7 @@ class AccountsController < ApplicationController
     if logged_in?
       successful_login
     else
-      gflash :error
+      flash[:error] = t('accounts.login.error')
       @login = params[:user][:login]
     end
   end
@@ -52,15 +52,15 @@ class AccountsController < ApplicationController
     if @user
       @user.generate_password!
       @user.save
-      gflash :notice
+      flash[:notice] = t('accounts.recover_password.notice')
       redirect_to action: 'login'
     else
-      gflash :error
+      flash[:error] = t('accounts.recover_password.error')
     end
   end
 
   def logout
-    gflash :notice
+    flash[:notice] = t('accounts.logout.notice')
     self.current_user.forget_me
     self.current_user = nil
     session[:user_id] = nil
@@ -100,7 +100,7 @@ class AccountsController < ApplicationController
     add_to_cookies(:publify_user_profile, self.current_user.profile_label, '/')
 
     self.current_user.update_connection_time
-    gflash :success
+    flash[:success] = t('accounts.login.success')
     redirect_back_or_default controller: "admin/dashboard", action: "index"
   end
 end

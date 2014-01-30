@@ -44,11 +44,11 @@ class Admin::DashboardController < Admin::BaseController
     end
 
     if version[0].to_i > TYPO_MAJOR.to_i
-      gflash :error
+      flash[:error] = I18n.t('admin.dashboard.publify_version.error')
     elsif version[1].to_i > TYPO_SUB.to_i
-      gflash :warning
+      flash[:warning] = I18n.t('admin.dashboard.publify_version.warning')
     elsif version[2].to_i > TYPO_MINOR.to_i
-      gflash :notice
+      flash[:notice] = I18n.t('admin.dashboard.publify_version.notice')
     end
   end
 

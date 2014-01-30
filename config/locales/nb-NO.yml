@@ -136,6 +136,8 @@ nb-NO:
         or: "or"
         publish: "Publiser"
     redirects:
+      destroy:
+        success: "Omdirigering slettet"
       new:
         no_redirects: "Det finnes ingen omdirigeringer enda. Hva med å opprette en?"
         cancel: "Annuller"
@@ -146,15 +148,19 @@ nb-NO:
         to: "Til"
         leave_empty_to_shorten_a_link: "Leave empty to shorten a link"
     themes:
+      switchto:
+        success: "Tema endret"
       index:
         choose_a_theme: "Velg et tema"
         use_this_theme: "Velg dette temaet"
         active_theme: "%{name} - Aktivt tema"
     profiles:
       index:
+        success: "Bruker oppdatert"
         your_profile: "Din profil"
     sidebar:
       index:
+        error: "Noe gikk galt. Kanskje en av dine sidekolonner mangler og du burde reinstallere den eller fjerne den manuelt"
         sidebar: "Sidebar"
         drag_some_plugins_here: "Dra og slipp plugins hit for å populere sidebar"
         or: "or"
@@ -165,6 +171,8 @@ nb-NO:
         active_sidebar_items: "Aktive sidebar-enheter"
         download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
     settings:
+      update:
+        success: "Innstillinger oppdatert"
       display:
         cancel: "Annuller"
         or: "or"
@@ -368,6 +376,8 @@ nb-NO:
         cancel: "Annuller"
         delete: "Slett"
     tags:
+      edit:
+        success: "Tag oppdatert" 
       new:
         no_tags: "Det finnes ingen tags enda. Hva med å opprette en?"
         articles: "Artikler"
@@ -378,6 +388,11 @@ nb-NO:
         save: "Lagre"
         or: "or"
     resources:
+      upload:
+        success: "Lastet opp fil"
+        warning: "Kan ikke laste opp"
+      destroy:
+        notice: "Slettet"
       index:
         no_resources: "Det finnes ingen media enda. Hva med å opprette en?"
         media_library: "Media Library"
@@ -405,6 +420,10 @@ nb-NO:
         publify_default_post_type: "Publify default post type"
         explain: "The template name is the filename Publify will look for when calling an article of that type. It should be in your theme under views/articles/template name.html.erb"
     pages:
+      new:
+        success: "Side opprettet"
+      edit:
+        success: "Side oppdatert"
       index:
         manage_pages: "Administrer sider"
         new_page: "Ny side"
@@ -428,7 +447,16 @@ nb-NO:
       pages:
         no_pages: "Det finnes ingen pages enda. Hva med å opprette en?"
     feedback:
+      update:
+        success: "Kommentar oppdatert"
+      create:
+        success: "Kommentar opprettet"
+      destroy:
+        success: "Slettet"
+        error: "Ikke funnet"
       bulkops:
+        error: "Ikke implementert"
+        success_deleted_spam: "All spam er slettet"
         success_mark_as_ham: 
           zero: "No item selected to mark as Ham"
           one: "Markerte 1 enhet som Ham"
@@ -484,6 +512,9 @@ nb-NO:
         cancel: "Annuller"
     dashboard:
       index:
+        error: "Du bruker en gammel versjon av Publify. Du bør oppgradere snarest. Last ned og installer <a href='http://publify.co/stable.tgz'>den siste versjonan av Publify</a>"
+        warning: "Det finnes en ny versjon av Publify som kan inneholde viktige feilrettelser. Hva med å oppgradere til <a href='http://publify.co/stable.tgz'>den siste versjonan av Publify</a> ?"
+        notice: "Det finnes en ny versjon av Publify. Hva med å oppgradere til <a href='http://publify.co/stable.tgz'>den siste versjonan av Publify</a> ?"
         welcome_back: "Velkommen tilbake, %{user_name}!"
       drafts:
         your_drafts: "Your drafts"
@@ -553,6 +584,15 @@ nb-NO:
       comments:
         latest_comments: "Siste kommentarer"
     content:
+      create:
+        success: "Artikkel opprettet"
+      update:
+        success: "Artikkel oppdatert"
+        error: "Du har ikke tillatelse til å utføre denne handlingen"
+      edit:
+        error: "Du har ikke tillatelse til å utføre denne handlingen"
+      autosave:
+        success: "Article was successfully saved"
       article_list:
         no_articles: "Det finnes ingen articles enda. Hva med å opprette en?"
       index:
@@ -639,10 +679,14 @@ nb-NO:
         sweep_cache: "Sweep cache"
         cache: "Cache"
         explaination: "For å lagre resurser cacher Publify innholdet i statiske filer. Cachen slettes hver gang noe publiseres. Du kan også velge å slette cachen selv."
+        success: "Cache er kostet rent (sweeped)"
+        error: "Cache kunne ikke rengjøres"
     users:
       edit:
+        success: "Bruker oppdatert"
         edit_user: "Rediger bruker"
       new:
+        success: "Bruker opprettet"
         add_user: "Legg til bruker"
       index:
         login: "Logg inn"
@@ -711,6 +755,8 @@ nb-NO:
       password: "Passord"
       remember_me: "Husk meg"
       sign_in: "Sign in"
+      success: "Logget inn"
+      error: "Feil under innlogging"
     confirm:
       proceed_to: "Fortsett til %{link}"
       admin: "admin"
@@ -718,11 +764,15 @@ nb-NO:
       title: "Gjenopprett passord"
       username_or_email: "Brukernavn eller epost"
       reset_my_password: "Nullstill passordet mitt"
+      notice: "En epost er sendt til din adresse med ditt nye passord"
+      error: "Ojsann, noe gikk galt"
     signup:
       title: "Registrer"
       username: "Brukernavn"
       email: "Epost"
       signup: "Registrer"
+    logout:
+      notice: "Logget ut"
   langs:
     da_DK: "Dansk"
     de_DE: "Tysk"
