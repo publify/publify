@@ -458,6 +458,15 @@ nb-NO:
       pages:
         no_pages: "Det finnes ingen pages enda. Hva med å opprette en?"
     feedback:
+      state:
+        unclassified: "Uklassifisert"
+        ham: "Ham"
+        presumed_ham: "Ham?"
+        just_presumed_ham: "Kun antatt Ham"
+        just_marked_as_ham: "Kun markert som Ham"
+        presumed_spam: "Spam?"
+        just_marked_as_spam: "Kun markert som Spam"
+        spam: "Spam"
       update:
         success: "Kommentar oppdatert"
       create:

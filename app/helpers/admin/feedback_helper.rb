@@ -1,7 +1,7 @@
 module Admin::FeedbackHelper
   def comment_class state
-    return 'label-info' if state.to_s.downcase == 'ham?'
-    return 'label-warning' if state.to_s.downcase == 'spam?'
+    return 'label-info' if state.to_s.downcase == 'presumed_ham'
+    return 'label-warning' if state.to_s.downcase == 'presumed_spam'
     return 'label-success' if state.to_s.downcase == 'ham'
     return 'label-danger'
   end

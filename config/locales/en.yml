@@ -458,6 +458,15 @@ en:
       pages:
         no_pages: "There are no pages yet. Why don't you start and create one?"
     feedback:
+      state:
+        unclassified: "Unclassified"
+        ham: "Ham"
+        presumed_ham: "Ham?"
+        just_presumed_ham: "Just Presumed Ham"
+        just_marked_as_ham: "Just Marked As Ham"
+        presumed_spam: "Spam?"
+        just_marked_as_spam: "Just Marked As Spam"
+        spam: "Spam"
       update:
         success: "Comment was successfully updated."
       create:

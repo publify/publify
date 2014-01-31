@@ -458,6 +458,15 @@ ja:
       pages:
         no_pages: "There are no pages yet. Why don't you start and create one?"
     feedback:
+      state:
+        unclassified: "未分類"
+        ham: "Ham"
+        presumed_ham: "承認?"
+        just_presumed_ham: "承認と推定"
+        just_marked_as_ham: "承認マーク"
+        presumed_spam: "スパム?"
+        just_marked_as_spam: "スパムマーク"
+        spam: "Spam"
       update:
         success: "Comment was successfully updated."
       create:

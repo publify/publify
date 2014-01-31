@@ -458,6 +458,15 @@ zh-CN:
       pages:
         no_pages: "这儿并不存在Pages。让我们开始创建它。"
     feedback:
+      state:
+        unclassified: "Unclassified"
+        ham: "Ham"
+        presumed_ham: "Ham?"
+        just_presumed_ham: "Just Presumed Ham"
+        just_marked_as_ham: "Just Marked As Ham"
+        presumed_spam: "Spam?"
+        just_marked_as_spam: "Just Marked As Spam"
+        spam: "Spam"
       update:
         success: "评论更新成功"
       create:

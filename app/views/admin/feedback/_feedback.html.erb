@@ -3,7 +3,7 @@
   <td></td>
   <td style='text-align: center'>
       <%= avatar_tag(:email => comment.email, :url => comment.url, :size => 48, :class => 'img-circle') %>
-      <p class='action'><span class='label label-danger'><%= comment.state %></span></p>
+      <p class='action'><span class='label label-danger'><%= t("admin.feedback.state.#{comment.state}") %></span></p>
   </td>
   <td colspan=4>
     <%= link_to comment.article.title, :controller => 'feedback', :action => 'article', :id => comment.article_id %>
@@ -25,7 +25,7 @@
   <td><input class= "feedback_check" type="checkbox" name="feedback_check[<%= comment.id %>]"/></td>
   <td style='text-align: center'>
     <%= avatar_tag(:email => comment.email, :url => comment.url, :size => 80, :class => 'img-circle') %>
-    <p class='action'><span class='label <%= comment_class comment.state.to_s.downcase %>'><%= comment.state %></span></p>
+    <p class='action'><span class='label <%= comment_class comment.state.to_s.downcase %>'><%= t("admin.feedback.state.#{comment.state}") %></span></p>
   </td>
   <td>
     <%= link_to comment.article.title, :controller => 'feedback', :action => 'article', :id => comment.article_id %>

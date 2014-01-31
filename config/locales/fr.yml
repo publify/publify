@@ -458,6 +458,15 @@ fr:
       pages:
         no_pages: "Il n'y a pas encore de pages, pourquoi ne pas en créer une ? "
     feedback:
+      state:
+        unclassified: "Unclassified"
+        ham: "Ham"
+        presumed_ham: "Désirable?"
+        just_presumed_ham: "Marqué commme supposé désirable"
+        just_marked_as_ham: "Marqué comme désirable"
+        presumed_spam: "Spam?"
+        just_marked_as_spam: "Marqué comme spam"
+        spam: "Spam"
       update:
         success: "Commentaire mis à jour avec succès."
       create:

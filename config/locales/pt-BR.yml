@@ -458,6 +458,15 @@ pt-BR:
       pages: 
         no_pages: "Não existem pages ainda. Por que você não inicia e cria um?"
     feedback:
+      state:
+        unclassified: "Não classificado"
+        ham: "Ham"
+        presumed_ham: "Ham?"
+        just_presumed_ham: "Ham apenas presumido"
+        just_marked_as_ham: "Apenas marcado como Ham"
+        presumed_spam: "Spam?"
+        just_marked_as_spam: "Apenas marcado como Spam"
+        spam: "Spam"
       update:
         success: "Comentário atualizado com sucesso"
       create:

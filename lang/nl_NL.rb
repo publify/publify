@@ -1,14 +1,6 @@
 # coding: utf-8
 Localization.define("nl_NL") do |l|
   l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", "%%a, %%d %%b %%Y %%H:%%M:%%S GMT"
-  l.store "Unclassified", "Niet geclassificeerd"
-  l.store "Just Presumed Ham", "Zojuist aangenomen dat dit Ham is"
-  l.store "Ham?", "Ham?"
-  l.store "Just Marked As Ham", "Zojuist gemarkeerd als Ham"
-  l.store "Ham", "Ham"
-  l.store "Spam?", "Spam?"
-  l.store "Just Marked As Spam", "Zojuist gemarkeerd als Spam"
-  l.store "Spam", "Spam"
   l.store "Drafts", "Concepten"
   l.store "Next page", "Volgende pagina"
   l.store "This comment has been flagged for moderator approval.", "Deze reactie is aangemerkt voor goedkeuring."

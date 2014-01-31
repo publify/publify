@@ -13,8 +13,4 @@ Localization.define("fr_FR") do |l|
   l.store "About", "À propos de"
   l.store "Powered by %s", "Propulsé par %s"
   l.store "Designed by %s ", "Design par %s"
-  l.store "Ham?", "Désirable?"
-  l.store "Just Marked As Ham", "Marqué comme désirable"
-  l.store "Just Marked As Spam", "Marqué comme spam"
-  l.store "Just Presumed Ham", "Marqué commme supposé désirable"
 end

@@ -458,6 +458,15 @@ he-IL:
       pages:
         no_pages: "There are no pages yet. Why don't you start and create one?"
     feedback:
+      state:
+        unclassified: "לא סווג"
+        ham: "Ham"
+        presumed_ham: "לא-ספאם ?"
+        just_presumed_ham: "כנראה לא-ספאם"
+        just_marked_as_ham: "סומן כלא-ספאם"
+        presumed_spam: "ספאם ?"
+        just_marked_as_spam: "סומן כספאם"
+        spam: "Spam"
       update:
         success: "התגובה עודכנה בהצלחה."
       create:

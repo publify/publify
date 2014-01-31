@@ -458,6 +458,15 @@ nl:
       pages: 
         no_pages: "Er zijn nog geen pages. Waarom begin je er niet een te maken?"
     feedback:
+      state:
+        unclassified: "Niet geclassificeerd"
+        ham: "Ham"
+        presumed_ham: "Ham?"
+        just_presumed_ham: "Zojuist aangenomen dat dit Ham is"
+        just_marked_as_ham: "Zojuist gemarkeerd als Ham"
+        presumed_spam: "Spam?"
+        just_marked_as_spam: "Zojuist gemarkeerd als Spam"
+        spam: "Spam"
       update:
         success: "Commentaar is succesvol bijgewerkt."
       create:
