@@ -7,5 +7,4 @@ Localization.define("nl_NL") do |l|
   l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Publify will take care of everything else", "Welkom bij je %s blog setup. Vul een titel voor je blog in, en een e-mailadres, en Publify zorgt voor de rest"
   l.store "Powered by %s", "Powered by %s"
   l.store "Designed by %s ", "Ontworpen door %s"
-  l.store "About", "Over"
 end

@@ -57,11 +57,7 @@ class SetupController < ApplicationController
   end
     
   def create_first_page user
-    Page.create(name: "about",
-      title: "about",
-      user: user,
-      body: "This is an example of a Publify page. You can edit this to write information about yourself or your site so readers know who you are. You can create as many pages as this one as you like and manage all of your content inside Publify.")
-    
+    Page.create(name: "about", title: I18n.t("setup.page.about"), user: user, body: I18n.t("setup.page.body"))
   end
 
   def check_config
