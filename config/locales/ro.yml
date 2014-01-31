@@ -11,6 +11,8 @@ ro:
   helper:
     at: "at"
   articles:
+    comment_preview:
+      is_about_to_say: "vrea să scrie"
     meta:
       published_on: "Published on"
       by: "de"

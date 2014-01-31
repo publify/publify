@@ -11,6 +11,8 @@ pt-BR:
   helper:
     at: "at"
   articles:
+    comment_preview:
+      is_about_to_say: "est&aacute; a punto de decir"
     meta:
       published_on: "Published on"
       by: "por"

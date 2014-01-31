@@ -9,7 +9,6 @@ Localization.define("he_IL") do |l|
   l.store "Just Marked As Ham", "סומן כלא-ספאם"
   l.store "Spam?", "ספאם ?"
   l.store "Just Marked As Spam", "סומן כספאם"
-  l.store "is about to say", "עומד לומר"
   l.store "This comment has been flagged for moderator approval.", "התגובה הזו ממתינה לאישור"
   l.store "Powered by %s", "מופעל על ידי %s"
   l.store "Designed by %s ", "עוצב על ידי %s"

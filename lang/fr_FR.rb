@@ -4,7 +4,6 @@ Localization.define("fr_FR") do |l|
   l.store "Markdown", "Markdown"
   l.store "Texttile", "Texttile"
   l.store "No comments", "Pas de commentaires"
-  l.store "is about to say", "va dire"
   l.store "Trackbacks are disabled", "Les rétroliens sont désactivés"
   l.store "This comment has been flagged for moderator approval.", "Ce commentaire est en attente de modération"
   l.store "Page not found", "Page non trouvée"

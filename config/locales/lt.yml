@@ -11,6 +11,8 @@ lt:
   helper:
     at: "at"
   articles:
+    comment_preview:
+      is_about_to_say: "pasakoja apie"
     meta:
       published_on: "Published on"
       by: "bei"

@@ -11,6 +11,8 @@ de:
   helper:
     at: "at"
   articles:
+    comment_preview:
+      is_about_to_say: "will sagen"
     meta:
       published_on: "Published on"
       by: "bei"

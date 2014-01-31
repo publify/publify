@@ -7,5 +7,4 @@ Localization.define("ja_JP") do |l|
   l.store "Just Marked As Ham", "承認マーク"
   l.store "Spam?", "スパム?"
   l.store "Just Marked As Spam", "スパムマーク"
-  l.store "is about to say", "〜について言う"
 end

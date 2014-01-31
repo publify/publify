@@ -7,7 +7,6 @@ Localization.define("nb_NO") do |l|
   l.store "Spam?", "Spam?"
   l.store "Just Marked As Spam", "Kun markert som Spam"
   l.store "No comments", "Ingen kommentarer"
-  l.store "is about to say", "vil snart si"
   l.store "This comment has been flagged for moderator approval.", "Denne kommentaren har blitt flagget for godkjenning av moderator."
   l.store "Welcome to your %s blog setup. Just fill in your blog title and your email, and Publify will take care of everything else", "Velkommen til din %s bloggoppsett. Bare fyll inn bloggtittel og epostadressen din, så vil Publify ta seg av resten"
   l.store "Powered by %s", "Bloggen bruker %s"

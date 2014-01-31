@@ -11,6 +11,8 @@ ru:
   helper:
     at: "at"
   articles:
+    comment_preview:
+      is_about_to_say: "is about to say"
     meta:
       published_on: "Опубликовано"
       by: "by"

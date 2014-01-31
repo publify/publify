@@ -11,6 +11,8 @@ zh-TW:
   helper:
     at: "at"
   articles:
+    comment_preview:
+      is_about_to_say: "這是關於~~"
     meta:
       published_on: "Published on"
       by: "by"

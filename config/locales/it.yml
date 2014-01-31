@@ -11,6 +11,8 @@ it:
   helper:
     at: "at"
   articles:
+    comment_preview:
+      is_about_to_say: "sta per dire"
     meta:
       published_on: "Published on"
       by: "da"

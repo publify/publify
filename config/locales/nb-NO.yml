@@ -11,6 +11,8 @@ nb-NO:
   helper:
     at: "at"
   articles:
+    comment_preview:
+      is_about_to_say: "vil snart si"
     meta:
       published_on: "Publisert den"
       by: "av"
