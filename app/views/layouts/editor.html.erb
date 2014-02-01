@@ -35,21 +35,4 @@
     </div>  
   </div>
 </body>
-<script type='text/javascript'>
-var tagApi = jQuery("#article_keywords").tagsManager({
-      prefilled: <%= @article.tags.map {|t| t.display_name} %>,
-      replace: true
-      
-      });
- 
-    jQuery("#article_keywords").typeahead({
-      name: 'tags',
-      limit: 15,
-      prefetch: '/admin/content/auto_complete_for_article_keywords'
-    }).on('typeahead:selected', function (e, d) {
- 
-      tagApi.tagsManager("pushTag", d.value);
- 
-    });
-</script>
 </html>
