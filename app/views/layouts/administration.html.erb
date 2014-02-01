@@ -100,12 +100,15 @@
         <%= yield  %>
       </div>
     </div>  
-  </div>
 
-  <footer class='clearfix'>
-  <div class='span12'>
-    <%= link_to(this_blog.blog_name, this_blog.base_url) %> <%= t("admin.menu.powered_by")%> Publify <%=h PUBLIFY_VERSION %> – Icons courtesy of <a href='http://glyphicons.com/'>Glyphicons</a>
-  </div>
+  <footer>
+    <div class='row'>
+      <div class='col-md-12'>
+        <%= link_to(this_blog.blog_name, this_blog.base_url) %> <%= t("admin.menu.powered_by")%> Publify <%=h PUBLIFY_VERSION %> – Icons courtesy of <a href='http://glyphicons.com/'>Glyphicons</a>
+      </div>      
+    </div>
   </footer>
+</div>
+  
 </body>
 </html>
