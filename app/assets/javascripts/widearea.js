@@ -90,13 +90,13 @@
       currentElement = value;
 
       if (currentElement) {
-        id = parseInt(currentElement.getAttribute("data-widearea-id"));
+        id = parseInt(currentElement.attr("data-widearea-id"));
       }
     }
 
     //and then, clear the textarea
     if (currentElement && id) {
-      currentElement.value = '';
+      currentElement.val('');
       localStorage.removeItem(this._options.autoSaveKeyPrefix + id);
     }
   }

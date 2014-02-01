@@ -1,10 +1,9 @@
 <%= hidden_field_tag "user_textfilter", current_user.text_filter_name %>
 
 <div id="autosave"><%= hidden_field_tag("article[id]", @article.id) if @article.present? %></div>
-<div id="article_keywords_auto_complete" class="auto_complete"></div>
 
 <div class='row'>
-  <div class='col-md-12'>
+  <div class='col-md-10 col-md-offset-1' id="save-bar">
     <div class='pull-right'>
       <%= link_to(t('.cancel'), {action: 'index'}, {class: 'btn btn-default'}) %>
       <span id='preview_link'>
@@ -21,6 +20,8 @@
 
 <div class='row'>
   <div class='col-md-8 col-md-offset-2' id="error-message-article">
+    <%= render_the_flash %>
+    
     <%= error_messages_for 'article' %>        
   </div>
 </div>
