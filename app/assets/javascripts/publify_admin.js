@@ -7,6 +7,8 @@
 //= require_self
 //= require quicktags
 //= require widearea
+//= require tagmanager
+//= require typeahead
 //= require admin_publify
 
 // Front javascript manifest

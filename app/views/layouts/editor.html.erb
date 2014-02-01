@@ -23,7 +23,7 @@
       src: local('Open Sans Bold'), local('OpenSans-Bold'), url(<%= File.join(this_blog.base_url, 'stylesheets', 'fonts', 'open-sans-bold.woff') %>) format('woff');
     }
   </style>
-
+  
 </head>
 <body>
   <div id='main'>
@@ -35,4 +35,21 @@
     </div>  
   </div>
 </body>
+<script type='text/javascript'>
+var tagApi = jQuery("#article_keywords").tagsManager({
+      prefilled: <%= @article.tags.map {|t| t.display_name} %>,
+      replace: true
+      
+      });
+ 
+    jQuery("#article_keywords").typeahead({
+      name: 'tags',
+      limit: 15,
+      prefetch: '/admin/content/auto_complete_for_article_keywords'
+    }).on('typeahead:selected', function (e, d) {
+ 
+      tagApi.tagsManager("pushTag", d.value);
+ 
+    });
+</script>
 </html>

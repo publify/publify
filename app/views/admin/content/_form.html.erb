@@ -55,7 +55,7 @@
         <div class='well'>
           <h4><%= t(".tags") %></h4>
           <div class='form-group'>
-            <%= text_field 'article', 'keywords', {:autocomplete => 'off', :class => 'form-control'} %>
+            <%= text_field 'article', 'keywords', {:autocomplete => 'off', :class => 'form-control tm-input'} %>
           </div>
           <p class='alert alert-warning'><%=t(".tags_explaination") %></p>
           <%#= auto_complete_field 'article_keywords', { :url => { :action => "auto_complete_for_article_keywords"}, :method => 'get', :tokens => ','}%>		

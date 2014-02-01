@@ -20,7 +20,7 @@ function autosave_request(e) {
 }
 
 function set_widerea(element) {
-  if ($("#article_id").value() == "") {
+  if ($("#article_id").val() == "") {
     wideArea().clearData(element);
   }
 
@@ -33,3 +33,4 @@ $(document).ready(function() {
   $('#page_form').each(function(e){set_widerea($('#page_body'))});
   $('.merge_link').each(function(merge_link){ merge_link.click(bind_merge_link); });
 });
+
