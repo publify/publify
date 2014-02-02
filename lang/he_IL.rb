@@ -4,6 +4,4 @@ Localization.define("he_IL") do |l|
   l.store "Edit", "ערוך"
   l.store "%%a, %%d %%b %%Y %%H:%%M:%%S GMT", "%%a, %%d %%b %%Y %%H:%%M:%%S GMT"
   l.store "This comment has been flagged for moderator approval.", "התגובה הזו ממתינה לאישור"
-  l.store "Powered by %s", "מופעל על ידי %s"
-  l.store "Designed by %s ", "עוצב על ידי %s"
 end

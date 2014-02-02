@@ -101,6 +101,10 @@ he-IL:
       next: "Next"
       last: "Last"
   layouts:
+    default:
+      html:
+        powered_by: "מופעל על ידי %{powered_by}"
+        designed_by: "עוצב על ידי %{designed_by}"
     administration:
       new: "New"
   authors:

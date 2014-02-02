@@ -101,6 +101,10 @@ nb-NO:
       next: "Neste"
       last: "Last"
   layouts:
+    default:
+      html:
+        powered_by: "Bloggen bruker %{powered_by}"
+        designed_by: "Utformet av %{designed_by}"
     administration:
       new: "Ny"
   authors:
@@ -392,7 +396,7 @@ nb-NO:
         delete: "Slett"
     tags:
       edit:
-        success: "Tag oppdatert" 
+        success: "Tag oppdatert"
       new:
         no_tags: "Det finnes ingen tags enda. Hva med å opprette en?"
         articles: "Artikler"
@@ -481,11 +485,11 @@ nb-NO:
       bulkops:
         error: "Ikke implementert"
         success_deleted_spam: "All spam er slettet"
-        success_mark_as_ham: 
+        success_mark_as_ham:
           zero: "No item selected to mark as Ham"
           one: "Markerte 1 enhet som Ham"
           other: "Markerte %{count} enheter som Ham"
-        success_mark_as_spam: 
+        success_mark_as_spam:
           zero: "No item selected to mark as Spam"
           one: "Markerte 1 enhet som Spam"
           other: "Markerte %{count} enheter som Spam"

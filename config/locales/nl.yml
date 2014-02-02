@@ -101,6 +101,10 @@ nl:
       next: "Volgende"
       last: "Last"
   layouts:
+    default:
+      html:
+        powered_by: "Powered by %{powered_by}"
+        designed_by: "Ontworpen door %{designed_by}"
     administration:
       new: "Nieuwe"
   authors:

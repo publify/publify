@@ -101,6 +101,10 @@ en:
       next: "Next"
       last: "Last"
   layouts:
+    default:
+      html:
+        powered_by: "Powered by %{powered_by}"
+        designed_by: "Designed by %{designed_by}"
     administration:
       new: "New"
   authors:
