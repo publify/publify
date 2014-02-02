@@ -197,9 +197,19 @@ class Sidebar < ActiveRecord::Base
     Sidebar.descendants.sort_by { |klass| klass.to_s }
   end
 
-    def self.fields=(newval)
-      @fields = newval
+  def self.fields=(newval)
+    @fields = newval
+  end
+
+  def self.apply_staging_on_active!
+    Sidebar.transaction do
+      Sidebar.all.each do |s|
+        s.active_position = s.staged_position
+        s.staged_position = nil
+        s.save!
+      end
     end
+  end
 
   class << self
     attr_accessor :view_root
