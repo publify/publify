@@ -15,6 +15,12 @@ pt-BR:
   helper:
     at: "at"
   articles:
+    index:
+      next_page: "Next page"
+      previous_page: "Previous page"
+    search:
+      next_page: "Next page"
+      previous_page: "Previous page"
     comment_preview:
       is_about_to_say: "est&aacute; a punto de decir"
     meta:
@@ -74,6 +80,9 @@ pt-BR:
         one: "1 comentario"
         other: "%{count} comentarios"
   notes:
+    index:
+      next_page: "Next page"
+      previous_page: "Previous page"
     note:
       view_on_twitter: "View on Twitter"
   profile:

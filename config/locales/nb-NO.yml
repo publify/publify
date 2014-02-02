@@ -15,6 +15,12 @@ nb-NO:
   helper:
     at: "at"
   articles:
+    index:
+      next_page: "Next page"
+      previous_page: "Previous page"
+    search:
+      next_page: "Next page"
+      previous_page: "Previous page"
     comment_preview:
       is_about_to_say: "vil snart si"
     meta:
@@ -74,6 +80,9 @@ nb-NO:
         one: "1 comment"
         other: "%{count} Kommentarer"
   notes:
+    index:
+      next_page: "Next page"
+      previous_page: "Previous page"
     note:
       view_on_twitter: "View on Twitter"
   profile:

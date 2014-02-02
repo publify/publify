@@ -15,6 +15,12 @@ ro:
   helper:
     at: "at"
   articles:
+    index:
+      next_page: "Next page"
+      previous_page: "Previous page"
+    search:
+      next_page: "Next page"
+      previous_page: "Previous page"
     comment_preview:
       is_about_to_say: "vrea să scrie"
     meta:
@@ -74,6 +80,9 @@ ro:
         one: "1 comentariu"
         other: "%{count} comentarii"
   notes:
+    index:
+      next_page: "Next page"
+      previous_page: "Previous page"
     note:
       view_on_twitter: "View on Twitter"
   profile:

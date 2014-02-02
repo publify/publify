@@ -15,6 +15,12 @@ nl:
   helper:
     at: "at"
   articles:
+    index:
+      next_page: "Next page"
+      previous_page: "Previous page"
+    search:
+      next_page: "Next page"
+      previous_page: "Previous page"
     comment_preview:
       is_about_to_say: "gaat zeggen"
     meta:
@@ -74,6 +80,9 @@ nl:
         one: "1 comment"
         other: "%{count} comments"
   notes:
+    index:
+      next_page: "Next page"
+      previous_page: "Previous page"
     note:
       view_on_twitter: "View on Twitter"
   profile:

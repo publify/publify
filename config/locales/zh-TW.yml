@@ -15,6 +15,12 @@ zh-TW:
   helper:
     at: "at"
   articles:
+    index:
+      next_page: "Next page"
+      previous_page: "Previous page"
+    search:
+      next_page: "Next page"
+      previous_page: "Previous page"
     comment_preview:
       is_about_to_say: "這是關於~~"
     meta:
@@ -74,6 +80,9 @@ zh-TW:
         one: "1 comment"
         other: "%{count} comments"
   notes:
+    index:
+      next_page: "Next page"
+      previous_page: "Previous page"
     note:
       view_on_twitter: "View on Twitter"
   profile:

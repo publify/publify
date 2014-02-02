@@ -12,4 +12,4 @@
   <% end -%>
 </div>
 
-<%= paginate @notes, :next_label => "#{_("Next page")} &raquo;", :previous_label => "&laquo; #{_('Previous page')}" %>
+<%= paginate @notes, :next_label => "#{t(".next_page")} &raquo;", :previous_label => "&laquo; #{t('.previous_page')}" %>
