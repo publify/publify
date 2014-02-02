@@ -1,0 +1,20 @@
+<%- available.each_with_index do |available, index| -%>
+<div id="droppable_<%= index %>" data-index="<%= index %>" class="droppable">
+<%- if @active[index] -%>
+  <div class="active">
+    <h3 class='light'><%= _(@active[index].display_name) %></h3>
+    <div class='widget-content'>
+      <p><%= _(@active[index].description) %></p>
+    </div>
+  </div>
+<%- end -%>
+<%- if @staged[index] -%>
+  <div class="staged">
+    <h3 class='light'><%= _(@staged[index].display_name) %></h3>
+    <div class='widget-content'>
+      <p><%= _(@staged[index].description) %></p>
+    </div>
+  </div>
+<%- end -%>
+</div>
+<%- end -%>
