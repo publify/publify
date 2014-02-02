@@ -1,6 +1,8 @@
 class Admin::SidebarController < Admin::BaseController
   def index
     @available = available
+    @active = active_by_index
+    @staged = staged_by_index
     # Reset the staged position based on the active position.
     Sidebar.delete_all('active_position is null')
     flash_sidebars
@@ -88,6 +90,24 @@ class Admin::SidebarController < Admin::BaseController
 
   def available
     ::Sidebar.available_sidebars
+  end
+
+  def staged_by_index
+    staged = ::Sidebar.where('`sidebars`.`staged_position` IS NOT NULL').order('staged_position')
+    staged_h = {}
+    staged.each do |s|
+      staged_h[s.staged_position] = s
+    end
+    staged_h
+  end
+
+  def active_by_index
+    active = ::Sidebar.where('`sidebars`.`active_position` IS NOT NULL').order('active_position')
+    active_h = {}
+    active.each do |s|
+      active_h[s.active_position] = s
+    end
+    active_h
   end
 
   def flash_sidebars

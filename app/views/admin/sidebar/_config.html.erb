@@ -21,15 +21,7 @@
           :style => 'display:none;' -%>
       </h3>
       <div id="active">
-        <% if @active.blank? %>
-          <%= render :partial => 'target' %>
-      <% else %>
-          <%= render :partial => 'active', :collection => @active %>
-      <% end %>
-        <%#= sortable_element "active", :url => {:action => 'set_active'},
-          :tag => 'div',
-          :handle => 'handle', :containment => ['active','available_box'],
-          :loading => "new Element.show('update_spinner')" %>
+        <%= render :partial => 'target' %>
       </div>
     </div>
   </div>
