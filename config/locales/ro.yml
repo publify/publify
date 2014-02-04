@@ -5,6 +5,7 @@ ro:
       body: "This is an example of a Publify page. You can edit this to write information about yourself or your site so readers know who you are. You can create as many pages as this one as you like and manage all of your content inside Publify."
   comments:
     comment:
+      by: "de"
       said: "a scris"
       this_comment_has_been_flagged_for_moderator_approval: "Acest comentariu a fost marcat pentru moderare. El nu va apărea în blog înainte de a fi aprobat."
   tags:

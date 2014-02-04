@@ -5,6 +5,7 @@ ru:
       body: "This is an example of a Publify page. You can edit this to write information about yourself or your site so readers know who you are. You can create as many pages as this one as you like and manage all of your content inside Publify."
   comments:
     comment:
+      by: "by"
       said: "said"
       this_comment_has_been_flagged_for_moderator_approval: "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it"
   tags:

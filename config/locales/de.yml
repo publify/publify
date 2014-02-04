@@ -5,6 +5,7 @@ de:
       body: "This is an example of a Publify page. You can edit this to write information about yourself or your site so readers know who you are. You can create as many pages as this one as you like and manage all of your content inside Publify."
   comments:
     comment:
+      by: "bei"
       said: "sagte"
       this_comment_has_been_flagged_for_moderator_approval: "Dieser Kommentar wurde für die Moderatorfreigabe markiert. Er wird erst nach Freigabe durch den Moderator in diesem Blog erscheinen"
   tags:

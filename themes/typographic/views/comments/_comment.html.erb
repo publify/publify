@@ -8,7 +8,7 @@
     <%= comment.html %>
   </div>
   <% unless comment.published -%>
-  <div class="spamwarning"><%= _("This comment has been flagged for moderator approval.") %></div>
+    <div class="spamwarning"><%= t(".this_comment_has_been_flagged_for_moderator_approval") %></div>
   <% end -%>
 </li>
 
