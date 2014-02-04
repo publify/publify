@@ -8,25 +8,9 @@
   <meta http-equiv="imagetoolbar" content="no" />
   <%= stylesheet_link_tag 'publify_admin' %>
   <%= javascript_include_tag 'publify_admin' %>
-  <style type="text/css">
-    #carousel-content .slide { width: <%= this_blog.image_thumb_size %>; }
-    @font-face {
-      font-family: 'Open Sans';
-      font-style: normal;
-      font-weight: 400;
-      src: local('Open Sans'), local('OpenSans'), url(<%= File.join(this_blog.base_url, 'stylesheets', 'fonts', 'open-sans.woff') %>) format('woff');
-    }
-    @font-face {
-      font-family: 'Open Sans';
-      font-style: normal;
-      font-weight: 700;
-      src: local('Open Sans Bold'), local('OpenSans-Bold'), url(<%= File.join(this_blog.base_url, 'stylesheets', 'fonts', 'open-sans-bold.woff') %>) format('woff');
-    }
-  </style>
-
 </head>
 <body>
-  <nav class='navbar navbar-default navbar-inverse navbar-fixed-top' role="navigation">
+  <nav class='navbar navbar-default navbar-fixed-top' role="navigation">
     <div class="navbar-header">
       <%= link_to content_tag(:span, '', class: 'glyphicon glyphicon-home'), {controller: 'admin/dashboard'}, {class: "navbar-brand"} %>      
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#sidebar-top">
