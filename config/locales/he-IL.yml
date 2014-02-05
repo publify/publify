@@ -1,5 +1,10 @@
 he-IL:
   setup:
+    index:
+      blog_name: "Blog name"
+      save: "Save"
+      welcome_to_your_blog_setup: "Welcome to your blog setup"
+      your_mail: "Your email"
     page:
       about: "אודות"
       body: "This is an example of a Publify page. You can edit this to write information about yourself or your site so readers know who you are. You can create as many pages as this one as you like and manage all of your content inside Publify."
