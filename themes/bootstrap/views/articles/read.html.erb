@@ -7,7 +7,7 @@
 
     <% if @article.user.twitter.present? %>
     <div class='well'>
-      <%= _("If you liked this article you can %s", link_to(_("add me to Twitter"), "http://twitter.com/#{@article.user.twitter}"))%>
+      <%= t(".if_you_liked_this_article_you_can", add_twitter: link_to(t(".add_me_to_twitter"), "http://twitter.com/#{@article.user.twitter}"))%>
     </div>
     <% end %>
 
@@ -23,12 +23,12 @@
       <%= render 'articles/comment_form' %>
     <% else %>
       <div class="well well-small">
-        <%= _("Comments are disabled") %>
+        <%= t(".comments_are_disabled") %>
       </div>
     <% end %>
 
     <% if @article.allow_pings? -%>
-    <h5 class="feedback" id="trackbacks"><%= _('Trackbacks for')%> <em><%= @article.title %></em></h5>
+    <h5 class="feedback" id="trackbacks"><%= t('.trackbacks_for')%> <em><%= @article.title %></em></h5>
     <% unless @article.published_trackbacks.blank? -%>
     <ol id="trackbacks" class="trackbacks">
       <%= render "trackback", :collection => @article.published_trackbacks %>
@@ -36,7 +36,7 @@
     <% end -%>
     <% else -%>
     <div class="well well-small">
-      <%= _("Trackbacks are disabled") %>
+      <%= t(".trackbacks_are_disabled") %>
     </div>
     <% end -%>
   </div>

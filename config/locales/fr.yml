@@ -43,6 +43,11 @@ fr:
       posted_in: "Publié sous"
       no_articles_found: "Aucun article ne correspond à la recherche"
     read:
+      comments_are_disabled: "Comments are disabled"
+      trackbacks_for: "Trackbacks for"
+      trackbacks_are_disabled: "Les rétroliens sont désactivés"
+      if_you_liked_this_article_you_can: "Si vous avez aimé cet article, vous pouvez %{add_twitter}"
+      add_me_to_twitter: "me suivre sur Twitter"
       use_the_following_link_to_trackback: "Utilisez le lien ci-dessous pour envoyer un rétrolien depuis votre site"
       trackbacks: "Trackbacks"
       edit: "Éditer"
