@@ -1,4 +1,8 @@
 ja:
+  errors:
+    404:
+      page_not_found: "Page not found"
+      the_page_you_are_looking_for: "The page you are looking for has moved or does not exist."
   setup:
     index:
       blog_name: "Blog name"

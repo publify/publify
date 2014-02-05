@@ -1,4 +1,8 @@
 fr:
+  errors:
+    404:
+      page_not_found: "Page non trouvée"
+      the_page_you_are_looking_for: "La page que vous cherchez a été déplacée ou n'existe pas"
   setup:
     index:
       blog_name: "Blog name"
