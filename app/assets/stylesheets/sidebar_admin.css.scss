@@ -1,0 +1,10 @@
+#available_box > * {
+  z-index: 10;
+}
+.draggable-hover {
+  z-index: 1000;
+}
+.voidPlaceholder {
+  padding: 45px;
+  border: 1px solid #ccc;
+}

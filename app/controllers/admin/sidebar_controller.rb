@@ -3,8 +3,10 @@ class Admin::SidebarController < Admin::BaseController
     @available = available
     @active = active_by_index
     @staged = staged_by_index
+    @positionnal = @active.merge(@staged).values
+    @positionnal << Sidebar.new # to let at least 1 sortable element
     # Reset the staged position based on the active position.
-    Sidebar.delete_all('active_position is null')
+    #Sidebar.delete_all('active_position is null')
     flash_sidebars
   end
 
@@ -41,27 +43,9 @@ class Admin::SidebarController < Admin::BaseController
   end
 
   def publish
-    Sidebar.transaction do
-      position = 0
-      params[:configure] ||= { }
-      # Crappy workaround to rails update_all bug with PgSQL / SQLite
-      ActiveRecord::Base.connection.execute("update sidebars set active_position=null")
-      flash_sidebars.each do |id|
-        sidebar = Sidebar.find(id)
-        sb_attribs = params[:configure][id.to_s] || {}
-        # If it's a checkbox and unchecked, convert the 0 to false
-        # This is ugly.  Anyone have an improvement?
-        sidebar.fields.each do |field|
-          sb_attribs[field.key] = field.canonicalize(sb_attribs[field.key])
-        end
-
-        sidebar.update_attributes(:config => sb_attribs, :active_position => position)
-        position += 1
-      end
-      Sidebar.delete_all('active_position is null')
-    end
+    Sidebar.apply_staging_on_active!
     PageCache.sweep_all
-    index
+    redirect_to admin_sidebar_path
   end
 
   def staging
@@ -78,6 +62,28 @@ class Admin::SidebarController < Admin::BaseController
       end
       format.html do
         render :partial => 'config'
+      end
+    end
+  end
+
+  # Callback for admin sidebar sortable plugin
+  def sortable
+    respond_to do |format|
+      format.json do
+        positionned_sidebar = staged_by_index.merge(active_by_index)
+        flatten_array = positionned_sidebar.values
+        sorted = params[:sidebar]
+        flatten_array.each_with_index do |sidebar, index|
+          sidebar.staged_position = sorted[index] unless sidebar.active_position == sorted[index]
+        end
+        Sidebar.transaction do
+          flatten_array.map(&:save!)
+        end
+        @positionnal = staged_by_index.merge(active_by_index).values
+        @positionnal << Sidebar.new # to let at least 1 sortable element
+        @active = active_by_index
+        @staged = staged_by_index
+        render json: { html: render_to_string('admin/sidebar/_config.html.erb') }
       end
     end
   end

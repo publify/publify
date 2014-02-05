@@ -5,7 +5,7 @@
 
 <p class='help-block'><%= t(".explain_how_its_works") %></p>
 
-<%= form_tag(:url => {:action=>'publish', :method => :post }, :remote => true, :class => 'spinner') do %>
+<%= form_tag(url_for(:action=>'publish'), :method => :post, :class => 'spinner') do %>
   <div class='form-actions'>
   <%= link_to(t(".cancel"), {action: 'index'}, class: 'btn') %>
   <%= t(".or") %>
