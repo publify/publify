@@ -1,1 +1,7 @@
 Fix password protection, which is certainly totally broken
+
+AdminSidebar:
+- On the fly save of params
+- CSS
+- Remove on staged/active sidebars
+- Maybe some animations
