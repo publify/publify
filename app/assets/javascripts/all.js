@@ -7431,7 +7431,7 @@ function register_onload(func) {
 }
 
 function show_dates_as_local_time() {
-    $$('span.typo_date').each(function(e){
+    $$('span.publify_date').each(function(e){
         var classname = e.className ;
         var gmtdate = '' ;
         res = classname.match( /gmttimestamp-(\d+)/ ) ;

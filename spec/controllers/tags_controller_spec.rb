@@ -127,13 +127,11 @@ describe TagsController, "password protected article" do
   render_views
 
   it 'article in tag should be password protected' do
-    FactoryGirl.create(:blog)
-    #TODO need to add default article into tag_factory build to remove this :articles =>...
-    a = FactoryGirl.create(:article, :password => 'password')
-    foo = FactoryGirl.create(:tag, :name => 'foo', :articles => [a])
-    get 'show', :id => 'foo'
-    assert_tag :tag => "input",
-      :attributes => { :id => "article_password" }
+    create(:blog)
+    article = create(:article, password: 'password')
+    foo = create(:tag, name: 'foo', articles: [article])
+    get 'show', id: 'foo'
+    assert_tag tag: "input", attributes: { id: "article_password" }
   end
 end
 

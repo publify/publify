@@ -1,5 +1,5 @@
 <div class="post">
-  <h2 class="title"><%= _(@page_title) %></h2>
+  <h2 class="title"><%= @page_title %></h2>
   <%- unless @tags.empty? %>
     <ul>
       <%- for tag in @tags.sort_by{|grp|grp.display_name} %>

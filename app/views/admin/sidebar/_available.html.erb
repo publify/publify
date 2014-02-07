@@ -1,7 +1,6 @@
 <div id="available_<%= available.short_name %>" class='alert alert-success'>
-  <h3 class='light'><%= _(available.display_name) %></h3>
+  <h3 class='light'><%= available.display_name %></h3>
   <div class='widget-content'>
-    <p><%= _(available.description) %></p>
+    <p><%= available.description %></p>
   </div>
 </div>
-<%#= draggable_element "available_#{available.short_name}" %>

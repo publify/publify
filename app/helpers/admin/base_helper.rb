@@ -2,16 +2,16 @@ module Admin::BaseHelper
   include ActionView::Helpers::DateHelper
 
   def tab_for(current_module)
-    content_tag(:li, link_to(_(current_module.menu_name), current_module.menu_url))    
+    content_tag(:li, link_to(current_module.menu_name, current_module.menu_url))    
   end
 
   def subtabs_for(current_module)
     output = ""
     AccessControl.submenus_for(current_user.profile_label, current_module).each do |m|
       if m.current_url?(params[:controller], params[:action])
-        output << content_tag(:li, link_to(_(m.name), '#'), class: 'active')
+        output << content_tag(:li, link_to(m.name, '#'), class: 'active')
       else
-        output << content_tag(:li, link_to(_(m.name), m.url))
+        output << content_tag(:li, link_to(m.name, m.url))
       end
     end
     output
@@ -29,13 +29,13 @@ module Admin::BaseHelper
 
   def text_filter_options
     TextFilter.all.collect do |filter|
-      [ _(filter.description), filter ]
+      [ filter.description, filter ]
     end
   end
 
   def text_filter_options_with_id
     TextFilter.all.collect do |filter|
-      [ _(filter.description), filter.id ]
+      [ filter.description, filter.id ]
     end
   end
 

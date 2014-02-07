@@ -97,7 +97,7 @@
                 <!-- Start of status -->
                 <div class='control-group'>
                   <p>
-                  <%= t(".status") %>: <strong><%= _(@article.state.to_s.downcase) %></strong>
+                  <%= t(".status") %>: <strong><%= @article.state.to_s.downcase %></strong>
                   <%= toggle_element('status') %>
                   </p>
                   <div id='status' class='collapse'>

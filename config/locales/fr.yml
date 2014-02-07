@@ -1,4 +1,7 @@
 fr:
+  datetime:
+    distance_in_words:
+      x_days: "distance en mots"
   errors:
     404:
       page_not_found: "Page non trouvée"

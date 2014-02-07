@@ -1,24 +1,3 @@
-# Localization.lang = ''
-# LisiaSoft::AccessControl, permit to manage, backend, and frontend access.
-# Based on the LoginSystem of Lipisadmin
-# You can define on the fly, roles access, for example:
-#
-#   Publify::AccessControl.map :require => [ :administrator, :manager, :customer ]  do |map|
-#     # Shared Permission
-#     map.permission "backend/base"
-#     # Module Permission
-#     map.project_module :accounts, "backend/accounts" do |project|
-#       project.menu :list, { action: => :index }, :class => "icon-no-group"
-#       project.menu :new,  { action: => :new }, :class => "icon-new"
-#     end
-#
-#   end
-#
-#   Publify::AccessControl.map :require => :customer do |map|
-#     # Shared Permission
-#     map.permission "frontend/cart"
-#     # Module Permission
-#     map.project_module :store, "frontend/store" do |map|
 #       map.menu :add, { :cart => :add }, :class => "icon-no-group"
 #       map.menu :list,  { :cart => :list }, :class => "icon-no-group"
 #     end

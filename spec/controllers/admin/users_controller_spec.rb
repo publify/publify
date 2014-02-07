@@ -66,12 +66,12 @@ describe Admin::UsersController, "rough port of the old functional test" do
     end
 
     describe "#destroy" do
-      let(:user) { FactoryGirl.create(:user) }
+      let(:user) { create(:user) }
 
       context "GET" do
         it "shows the user to be destroyed" do
           id = user.id
-          get :destroy, :id => id
+          get :destroy, id: id
           assert_template 'destroy'
           assert assigns(:record).valid?
           expect { User.find(id) }.to_not raise_error

@@ -59,7 +59,7 @@
           <fieldset>
             <legend><%= t(".publish_settings") %></legend>
             <div class='control-group'>
-              <%= t(".status") %>: <strong><%= _(@page.state.to_s.downcase) %></strong> 
+              <%= t(".status") %>: <strong><%= @page.state.to_s.downcase %></strong> 
               <%= toggle_element('status') %>
               <div id='status' class='collapse'>
                 <label for="page_published" class='checkbox'>
@@ -70,7 +70,7 @@
               </div>
             </div>
             <div class='control-group'>
-              <%= t(".article_filter") %>: <strong><%= _("#{@page.text_filter.description}") %></strong> <%= toggle_element 'text_filter' %>
+              <%= t(".article_filter") %>: <strong><%= @page.text_filter.description %></strong> <%= toggle_element 'text_filter' %>
               <div id='text_filter' class='collapse'>
                 <select name="page[text_filter]" id="text_filter" class='form-control'>
                 <%= options_for_select text_filter_options, @page.text_filter %>
