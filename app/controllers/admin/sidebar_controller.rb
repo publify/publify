@@ -70,20 +70,26 @@ class Admin::SidebarController < Admin::BaseController
   def sortable
     respond_to do |format|
       format.json do
-        positionned_sidebar = staged_by_index.merge(active_by_index)
-        flatten_array = positionned_sidebar.values
-        sorted = params[:sidebar]
-        flatten_array.each_with_index do |sidebar, index|
-          sidebar.staged_position = sorted[index] unless sidebar.active_position == sorted[index]
-        end
+        sorted = params[:sidebar].map(&:to_i)
+
         Sidebar.transaction do
-          flatten_array.map(&:save!)
+          sorted.each_with_index do |sidebar_id, staged_index|
+            # DEV NOTE : Ok, that's a HUGE hack. Sidebar.available are Class, not Sidebar instances. In order to use jQuery.sortable we need that hack: Sidebar.available is an Array, so it's ordered. I arbitrary shift by? IT'SOVER NINE THOUSAND! considering we'll never reach 9K Sidebar instances or Sidebar specializations
+            sidebar = if sidebar_id >= 9000
+              Sidebar.available_sidebars[sidebar_id - 9000].new
+            else
+              Sidebar.find(sidebar_id)
+            end
+            sidebar.update_attributes(staged_position: staged_index)
+          end
         end
+
         @positionnal = staged_by_index.merge(active_by_index).values
         @positionnal << Sidebar.new # to let at least 1 sortable element
         @active = active_by_index
         @staged = staged_by_index
-        render json: { html: render_to_string('admin/sidebar/_config.html.erb') }
+        @available = Sidebar.available_sidebars
+        render json: { html: render_to_string('admin/sidebar/_config.html.erb', layout: false) }
       end
     end
   end

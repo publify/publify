@@ -1,13 +1,15 @@
 <ul class="sortable">
   <%- @positionnal.each_with_index do |sidebar, index| -%>
+  <%- next if sidebar.new_record? -%>
   <%- if sidebar.new_record? -%>
-        <div id="sidebar_<%= index %>" class="voidPlaceholder alert">
-         <li>Placeholder</li>
-        </div>
+        <li>
+          <div id="sidebar_<%= index %>" class="voidPlaceholder alert">
+            Placeholder
+          </div>
+        </li>
   <%-   next -%>
   <%- end -%>
-  <div id="sidebar_<%= index %>" data-id="<%= sidebar.id %>" data-staged="<%= sidebar.staged_position %>" data-active="<%= sidebar.active_position %>" data-index="<%= index %>" >
-    <li>
+    <li data-sortable="sidebar_<%= sidebar.id %>" data-id="<%= sidebar.id %>" data-staged="<%= sidebar.staged_position %>" data-active="<%= sidebar.active_position %>" data-index="<%= index %>" >
       <div class="active alert <%= sidebar.staged_position == 0 ? 'alert-info' : 'alert-warning' %>">
         <h3 class='light'><%= _(sidebar.display_name) %></h3>
         <div class='widget-content'>
@@ -15,6 +17,5 @@
         </div>
       </div>
     </li>
-  </div>
   <%- end -%>
 </ul>

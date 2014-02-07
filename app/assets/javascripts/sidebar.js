@@ -1,25 +1,33 @@
-$(document).ready(function() {
+var bind_sortable = function() {
   $('.sortable').sortable({
+                            dropOnEmpty: true,
                             stop: function(evt, ui) {
-                                    var data = $(this).sortable('serialize');
+                                    var data = $(this).sortable('serialize', {attribute: 'data-sortable'});
 
                                     $.ajax({
                                         data: data,
                                         type: 'PUT',
                                         dataType: 'json',
-                                        url: '/admin/sidebar/sortable'
+                                        url: '/admin/sidebar/sortable',
+                                        statusCode: {
+                                          200: function(data, textStatus, jqXHR) {
+                                                 $('#sidebar-config').replaceWith(data.html);
+                                                 bind_sortable();
+                                               },
+                                          500: function(jqXHR, textStatus, errorThrown) {
+                                                 alert('Oups?');
+                                               } 
+                                        }
                                     });
                             },
                           
   });
   //$('.sortable').disableSelection();
 
-  $('#available_box, #active').children().draggable({ revert: 'invalid' });
-  $('#available_box').draggable({ 
-                                  accept: '.draggable',
-                                  hoverClass: 'draggable-hover',
+  $('.draggable').draggable({ 
                                   connectToSortable: '.sortable',
-                                  revert: true 
+                                  helper: "clone",
+                                  revert: "invalid"
                                   //drop: function(evt, ui) {
                                   //  var draggable_id = parseInt(ui.draggable.attr('id').split(/-/)[1])
                                   //  $.ajax({
@@ -35,5 +43,7 @@ $(document).ready(function() {
                                   //  })
                                   //}
                                 });
-  $('#active').droppable({ accept: '#available_box > *' });
+}
+$(document).ready(function() {
+  bind_sortable();
 });
