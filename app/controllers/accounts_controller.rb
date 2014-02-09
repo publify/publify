@@ -82,8 +82,7 @@ class AccountsController < ApplicationController
 
   def redirect_if_already_logged_in
     if session[:user_id] && session[:user_id] == self.current_user.id
-      redirect_back_or_default controller: "admin/dashboard", action: "index"
-      return
+      redirect_back_or_default
     end
   end
 
@@ -101,6 +100,11 @@ class AccountsController < ApplicationController
 
     self.current_user.update_connection_time
     flash[:success] = t('accounts.login.success')
-    redirect_back_or_default controller: "admin/dashboard", action: "index"
+    redirect_back_or_default
+  end
+
+  def redirect_back_or_default
+    redirect_to(session[:return_to] || {controller: "admin/dashboard", action: "index"})
+    session[:return_to] = nil
   end
 end
