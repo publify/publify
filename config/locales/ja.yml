@@ -1,4 +1,17 @@
 ja:
+  activerecord:
+    errors:
+      template:
+        header: ""
+        body: ""
+      models:
+        article:
+          attributes:
+            title:
+              blank: "can't be blank"
+  datetime:
+    distance_in_words:
+      x_days: "Distance in words"
   errors:
     404:
       page_not_found: "Page not found"

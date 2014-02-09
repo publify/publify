@@ -20,8 +20,8 @@
             <h1 class='panel-title'><%= link_to("Publify", "http://publify.co") %></h1>
           </div>
           <div class="panel-body">
-            <div id="flash"><%= render_the_flash %></div>
-              <%= yield %>
+            <%= render 'shared/flash', flash: flash %>
+            <%= yield %>
           </div>
         </div>
         <%- if content_for?(:account_links) %>

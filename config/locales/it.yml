@@ -1,4 +1,17 @@
 it:
+  activerecord:
+    errors:
+      template:
+        header: ""
+        body: ""
+      models:
+        article:
+          attributes:
+            title:
+              blank: "can't be blank"
+  datetime:
+    distance_in_words:
+      x_days: "Distance in words"
   errors:
     404:
       page_not_found: "Page not found"
@@ -420,7 +433,7 @@ it:
         delete: "Elimina"
     tags:
       edit:
-        success: "Tag was successfully updated" 
+        success: "Tag was successfully updated"
       new:
         no_tags: "There are no tags yet. Why don't you start and create one?"
         articles: "Articoli"
@@ -487,7 +500,7 @@ it:
         permanent_link: "Permanent link"
         page_with_action_name: "%{action} page"
         type_your_post: "Type your post"
-      pages: 
+      pages:
         no_pages: "There are no pages yet. Why don't you start and create one?"
     feedback:
       state:
@@ -509,11 +522,11 @@ it:
       bulkops:
         error: "Non implementato"
         success_deleted_spam: "All spam have been deleted"
-        success_mark_as_ham: 
+        success_mark_as_ham:
           zero: "No item selected to mark as Ham"
           one: "Marked 1 item as Ham"
           other: "Marked %{count} items as Ham"
-        success_mark_as_spam: 
+        success_mark_as_spam:
           zero: "No item selected to mark as Spam"
           one: "Marked 1 item as Spam"
           other: "Marked %{count} items as Spam"

@@ -172,16 +172,6 @@ module ApplicationHelper
     feed_for('rss')
   end
 
-  def render_the_flash
-    return unless flash[:notice] or flash[:error] or flash[:warning] or flash[:success]
-    the_class = flash[:error] ? 'danger' : 'success'
-
-    html = "<div style='margin-top: 20px' class='alert alert-#{the_class}'>"
-    html << "<a class='close' href='#'>×</a>"
-    html << render_flash rescue nil
-    html << "</div>"
-  end
-
   def content_array
     if @articles
       @articles
@@ -236,14 +226,6 @@ module ApplicationHelper
     elsif not @auto_discovery_url_atom.nil?
       instance_variable_get("@auto_discovery_url_#{type}")
     end
-  end
-
-  def render_flash
-    output = []
-    for key,value in flash
-      output << "<span class=\"#{key.to_s.downcase}\">#{h(value)}</span>"
-    end if flash
-    output.join("<br />\n")
   end
 
   def new_js_distance_of_time_in_words_to_now(date)

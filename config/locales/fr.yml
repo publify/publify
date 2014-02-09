@@ -1,4 +1,14 @@
 fr:
+  activerecord:
+    errors:
+      template:
+        header: ""
+        body: ""
+      models:
+        article:
+          attributes:
+            title:
+              blank: "can't be blank"
   datetime:
     distance_in_words:
       x_days: "distance en mots"

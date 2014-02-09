@@ -1,0 +1,10 @@
+<%- if flash %>
+  <%- flash.each do |alert_level, message| %>
+    <div id="flash" class='alert alert-<%= flash[:error] ? 'danger' : 'success'%>'>
+      <a class='close' href='#'>×</a>
+      <p class="<%= alert_level.to_s.downcase %>">
+        <%= message %>
+      </p>
+    </div>
+  <%- end %>
+<%- end %>

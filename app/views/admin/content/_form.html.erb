@@ -20,8 +20,7 @@
 
 <div class='row'>
   <div class='col-md-8 col-md-offset-2' id="error-message-article">
-    <%= render_the_flash %>
-    
+    <%= render 'shared/flash', flash: flash %>
     <%= error_messages_for 'article' %>        
   </div>
 </div>
@@ -33,7 +32,7 @@
       <%#= render 'admin/shared/macros' %>
     </div>
   </div>
-  
+
   <div class='col-md-8'>
     <%= text_field 'article', 'title', :class => 'form-control', :placeholder => t('.title') %>  
     <div id="editor">
@@ -60,134 +59,134 @@
           </div>
           <p class='alert alert-warning'><%=t(".tags_explaination") %></p>
           <%#= auto_complete_field 'article_keywords', { :url => { :action => "auto_complete_for_article_keywords"}, :method => 'get', :tokens => ','}%>		
-  
+
         </div>
         <% post_types = @post_types || [] %>
         <%- if post_types.size.zero? %>
           <%= hidden_field_tag "article[post_type]", "read" %>
-        <%- else %>
+      <%- else %>
           <div class='well'>
-            <h4><%= t(".article_type") %></h4>
-            <%= select :article, :post_type, post_types.map{|pt| [pt.name, pt.permalink]}, {include_blank: t('.default')} %>
+          <h4><%= t(".article_type") %></h4>
+          <%= select :article, :post_type, post_types.map{|pt| [pt.name, pt.permalink]}, {include_blank: t('.default')} %>
+        </div>
+      <%- end %>
+
+        <!-- Start of publish settings -->
+        <div class='well'>
+          <fieldset>
+            <legend><%= t(".publish_settings") %></legend>
+            <!-- Start of permalink box -->
+            <div class='control-group'>
+              <p>
+              <%= t(".permalink") %>: 
+              <%= toggle_element('permalink') %>
+              </p>
+              <div id='permalink' class='collapse'>
+                <div class='form-group'>
+                  <%= text_field 'article', 'permalink', {:autocomplete => 'off', :class => 'form-control'} %>
+                </div>
+                <p>
+                <span class='btn btn-mini btn-default'>
+                  <%= toggle_element('permalink', t('.ok')) %>
+                </span>
+                </p>
+              </div>
             </div>
-          <%- end %>
-          
-            <!-- Start of publish settings -->
-            <div class='well'>
-              <fieldset>
-                <legend><%= t(".publish_settings") %></legend>
-                <!-- Start of permalink box -->
-                <div class='control-group'>
-                  <p>
-                  <%= t(".permalink") %>: 
-                  <%= toggle_element('permalink') %>
-                  </p>
-                  <div id='permalink' class='collapse'>
-                    <div class='form-group'>
-                      <%= text_field 'article', 'permalink', {:autocomplete => 'off', :class => 'form-control'} %>
-                    </div>
-                    <p>
-                      <span class='btn btn-mini btn-default'>
-                        <%= toggle_element('permalink', t('.ok')) %>
-                      </span>
-                    </p>
-                  </div>
-                </div>
-                <!-- End of permalink box -->
-                <!-- Start of status -->
-                <div class='control-group'>
-                  <p>
-                  <%= t(".status") %>: <strong><%= @article.state.to_s.downcase %></strong>
-                  <%= toggle_element('status') %>
-                  </p>
-                  <div id='status' class='collapse'>
-                    <label for="article_published" class='checkbox'>
-                      <%= check_box 'article', 'published'  %>
-                      <%= t(".published") %>
-                    </label>
-                    <p>
-                    <span class='btn btn-mini btn-default'>
-                      <%= toggle_element('status', t('.ok')) %>
-                    </span>
-                    </p>
-                  </div>
-                </div>
-                <!-- End of status -->
-
-                <!-- Start of feedback settings -->
-                <div class='control-group'>
-                  <p>
-                  <%= t(".allowed_comments_and_trackbacks", allow_comment: content_tag(:strong, t(".allow_comments_status", count: @article.allow_comments ? 1 : 0)), allow_trackback: content_tag(:strong, t('.allow_pings_status', count: @article.allow_pings ? 1 : 0))) %>
-                  <%= toggle_element('conversation') %>
-                  </p>
-                  <div id='conversation' class='collapse'>
-                    <label for="article_allow_pings" class='checkbox'>
-                      <%= check_box 'article', 'allow_pings' %>
-                      <%= t(".allow_trackbacks") %>
-                    </label>
-                    <label for="article_allow_comments" class='checkbox'>
-                      <%= check_box 'article', 'allow_comments' %>
-                      <%= t(".allow_comments") %>
-                    </label>
-                    <p>
-                    <span class='btn btn-mini btn-default'>
-                      <%= toggle_element('conversation', t('.ok')) %>
-                    </span>
-                    </p>
-                  </div>
-                </div>
-                <!-- End of feedback settings -->
-
-                <!-- Start of date publish -->
-                <div class='control-group'>
-                  <p>
-                  <%= t(".published") %> 
-                  <strong>
-                    <%- if @article.published %>
-                      <%= display_date_and_time(@article.published_at) %>
-                  <%- else %>
-                      <%= t(".now") %>
-                  <%- end %>
-                  </strong>
-                  <%= toggle_element('publish') %>
-                  </p>
-                  <div id='publish' class='collapse'>
-                    <%= text_field 'article', 'published_at', :class => "datepicker" %>
-                    <p>
-                    <span class="btn btn-mini btn-default">
-                      <%= toggle_element('publish', t('.ok')) %>
-                    </span>
-                    </p>
-                  </div>
-                </div>
-                <!-- End of date publish -->
-
-                <!-- Start of password block -->
-                <div class='control-group'>
-                  <p>
-                  <%= t(".visibility") %>: <strong><%= @article.password.nil? || @article.password.empty? ? t(".public") : t(".protected") %></strong>
-                  <%= toggle_element('visibility') %>
-                  </p>
-                  <div id='visibility' class='collapse'>
-                    <label for="article_password"><%= t(".password") %></label>
-                    <%= text_field 'article', 'published_at', :class => "form-control" %>
-                    <p>
-                    <span class="btn btn-mini btn-default">
-                      <%= toggle_element('visibility', t('.ok')) %>
-                    </span>
-                    </p>
-
-                  </div>
-                </div>
-                <!-- End of password block -->
-              </fieldset>
+            <!-- End of permalink box -->
+            <!-- Start of status -->
+            <div class='control-group'>
+              <p>
+              <%= t(".status") %>: <strong><%= @article.state.to_s.downcase %></strong>
+              <%= toggle_element('status') %>
+              </p>
+              <div id='status' class='collapse'>
+                <label for="article_published" class='checkbox'>
+                  <%= check_box 'article', 'published'  %>
+                  <%= t(".published") %>
+                </label>
+                <p>
+                <span class='btn btn-mini btn-default'>
+                  <%= toggle_element('status', t('.ok')) %>
+                </span>
+                </p>
+              </div>
             </div>
-            <!-- End of publish settings -->           
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal"><%= t('.cancel') %></button>
-            <%= submit_tag(t(".publish"), :class => 'btn btn-success') %>
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+            <!-- End of status -->
+
+            <!-- Start of feedback settings -->
+            <div class='control-group'>
+              <p>
+              <%= t(".allowed_comments_and_trackbacks", allow_comment: content_tag(:strong, t(".allow_comments_status", count: @article.allow_comments ? 1 : 0)), allow_trackback: content_tag(:strong, t('.allow_pings_status', count: @article.allow_pings ? 1 : 0))) %>
+              <%= toggle_element('conversation') %>
+              </p>
+              <div id='conversation' class='collapse'>
+                <label for="article_allow_pings" class='checkbox'>
+                  <%= check_box 'article', 'allow_pings' %>
+                  <%= t(".allow_trackbacks") %>
+                </label>
+                <label for="article_allow_comments" class='checkbox'>
+                  <%= check_box 'article', 'allow_comments' %>
+                  <%= t(".allow_comments") %>
+                </label>
+                <p>
+                <span class='btn btn-mini btn-default'>
+                  <%= toggle_element('conversation', t('.ok')) %>
+                </span>
+                </p>
+              </div>
+            </div>
+            <!-- End of feedback settings -->
+
+            <!-- Start of date publish -->
+            <div class='control-group'>
+              <p>
+              <%= t(".published") %> 
+              <strong>
+                <%- if @article.published %>
+                  <%= display_date_and_time(@article.published_at) %>
+              <%- else %>
+                  <%= t(".now") %>
+              <%- end %>
+              </strong>
+              <%= toggle_element('publish') %>
+              </p>
+              <div id='publish' class='collapse'>
+                <%= text_field 'article', 'published_at', :class => "datepicker" %>
+                <p>
+                <span class="btn btn-mini btn-default">
+                  <%= toggle_element('publish', t('.ok')) %>
+                </span>
+                </p>
+              </div>
+            </div>
+            <!-- End of date publish -->
+
+            <!-- Start of password block -->
+            <div class='control-group'>
+              <p>
+              <%= t(".visibility") %>: <strong><%= @article.password.nil? || @article.password.empty? ? t(".public") : t(".protected") %></strong>
+              <%= toggle_element('visibility') %>
+              </p>
+              <div id='visibility' class='collapse'>
+                <label for="article_password"><%= t(".password") %></label>
+                <%= text_field 'article', 'published_at', :class => "form-control" %>
+                <p>
+                <span class="btn btn-mini btn-default">
+                  <%= toggle_element('visibility', t('.ok')) %>
+                </span>
+                </p>
+
+              </div>
+            </div>
+            <!-- End of password block -->
+          </fieldset>
+        </div>
+        <!-- End of publish settings -->           
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"><%= t('.cancel') %></button>
+        <%= submit_tag(t(".publish"), :class => 'btn btn-success') %>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

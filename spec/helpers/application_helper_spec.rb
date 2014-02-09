@@ -13,23 +13,6 @@ describe ApplicationHelper do
   context "With a simple blog" do
     let!(:blog) { create(:blog) }
 
-    describe '#render_flash' do
-      it 'should render empty string if no flash' do
-        render_flash.should == ''
-      end
-
-      it 'should render a good render if only one notice' do
-        flash[:notice] = 'good update'
-        render_flash.should == '<span class="notice">good update</span>'
-      end
-
-      it 'should render the notice and error flash' do
-        flash[:notice] = 'good update'.html_safe
-        flash[:error] = "it's not good".html_safe
-        render_flash.split("<br />\n").sort.should == [%Q{<span class="error">it's not good</span>}, %Q{<span class="notice">good update</span>}]
-      end
-    end
-
     describe "#link_to_permalink" do
       describe "for a simple ascii-only permalink" do
         let(:article) { build(:article, published_at: Date.new(2004, 6, 1).to_datetime, title: "An Article sample") }
