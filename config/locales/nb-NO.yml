@@ -739,11 +739,12 @@ nb-NO:
       dashboard: "Dashboard"
       powered_by: "bruker med stolthet"
     cache:
-      index:
+      show:
         stats: "Det finnes for øyeblikket %{files_count} filer i cachen som utgjør totalt %{size} kB"
         sweep_cache: "Sweep cache"
         cache: "Cache"
         explaination: "For å lagre resurser cacher Publify innholdet i statiske filer. Cachen slettes hver gang noe publiseres. Du kan også velge å slette cachen selv."
+      destroy:
         success: "Cache er kostet rent (sweeped)"
         error: "Cache kunne ikke rengjøres"
     users:

@@ -739,11 +739,12 @@ fr:
       dashboard: "Tableau de bord"
       powered_by: "tourne fièrement sous"
     cache:
-      index:
+      show:
         stats: "Il y a actuellement %{files_count} fichiers en cache pour un total de %{size} kilo octets."
         sweep_cache: "Vider le cache"
         cache: "Cache"
         explaination: "Afin d'économiser des ressources, Publify génère des fichiers statiques avec votre contenu. Ces fichiers sont supprimés lors d'une nouvelle publication. Vous pouvez cependant les effacer vous même."
+      destroy:
         success: "Le cache a été vidé avec succès"
         error: "Oops, un problème s'est produit et le cache n'a pas pu être vidé correctement"
     users:

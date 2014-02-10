@@ -45,8 +45,8 @@ Rails.application.routes.draw do
     end
   end
 
-  # TrackbacksController
   resources :trackbacks
+
   # I thinks it's useless. More investigating
   post "trackbacks/:id/:day/:month/:year", :to => 'trackbacks#create', :format => false
 
@@ -99,21 +99,16 @@ Rails.application.routes.draw do
   end
 
   # Admin/XController
-  %w{advanced cache categories content comments profiles general pages feedback resources sidebar textfilters themes trackbacks users settings tags redirects seo post_types notes }.each do |i|
+  %w{advanced categories content comments profiles general pages feedback resources sidebar textfilters themes trackbacks users settings tags redirects seo post_types notes }.each do |i|
     match "/admin/#{i}", :to => "admin/#{i}#index", :format => false
     match "/admin/#{i}(/:action(/:id))", :to => "admin/#{i}", :action => nil, :id => nil, :format => false
   end
 
-#  namespace :admin do
-#    resources :content do
-#      post :autosave, on: :collection
-#      post :destroy, on: :member
-#      get :auto_complete_for_article_keywords, on: :collection
-##      get :attachment_box_add, on: :member
-#    end
-#  end
+  namespace :admin do
+    get 'cache', to: 'cache#show'
+    delete 'cache', to: 'cache#destroy'
+  end
 
-  # default
   root :to  => 'articles#index', :format => false
 
   match '*from', :to => 'articles#redirect', :format => false

@@ -71,7 +71,7 @@ AccessControl.map require: [ :admin, :publisher, :contributor ]  do |map|
     project.submenu "Write",            { controller: "admin/settings",    action: "write" }
     project.submenu "Display",          { controller: "admin/settings",    action: "display" }
     project.submenu "Feedback",         { controller: "admin/settings",    action: "feedback" }
-    project.submenu "Cache",            { controller: "admin/cache",       action: "index" }
+    project.submenu "Cache",            { controller: "admin/cache",       action: "show" }
     project.submenu "Manage users",     { controller: "admin/users",       action: "index" }
   end
 

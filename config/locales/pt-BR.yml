@@ -739,11 +739,12 @@ pt-BR:
       dashboard: "Dashboard"
       powered_by: "é orgulhosamente desenvolvido por"
     cache:
-      index:
+      show:
         stats: "Atualmente existem %{files_count} arquivos em cache para uma quantidade total de %{size} Kb."
         sweep_cache: "Limpar cache"
         cache: "Cache"
         explaination: "Para economizar recursos, Publify gera arquivos estáticos juntamente com o seu conteúdo. Esses arquivos são apagados automaticamente quando um novo artigo é criado. Você pode, a qualquer momento, excluir esses arquivos."
+      destroy:
         success: "Cache has been sweeped"
         error: "Cache could not be cleared"
     users:

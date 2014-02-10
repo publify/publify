@@ -2,22 +2,21 @@ require 'spec_helper'
 
 describe Admin::CacheController do
   render_views
+  let!(:blog) { create(:blog) }
 
-  before do
-    FactoryGirl.create(:blog)
-    #TODO Delete after removing fixtures
-    Profile.delete_all
-    @henri = FactoryGirl.create(:user, :login => 'henri', :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN))
-    request.session = { :user => @henri.id }
+  before(:each) do
+    admin = create(:user_admin)
+    request.session = { user: admin.id }
   end
 
-  describe "test_index" do
-    before(:each) do
-      get :index
-    end
-    
-    it 'should render template index' do
-      assert_template 'index'
-    end    
+  describe :show do
+    before(:each) { get :show }
+    it { expect(response).to be_success }
+    it { expect(response).to render_template('show') }
+  end
+
+  describe :destory do
+    before(:each) { post :destroy }
+    it { expect(response).to redirect_to(admin_cache_path)}
   end
 end
