@@ -257,10 +257,6 @@ class Blog < ActiveRecord::Base
 
   private
 
-  def protocol
-    split_base_url[:protocol]
-  end
-
   def host_with_port
     split_base_url[:host_with_port]
   end
@@ -270,8 +266,7 @@ class Blog < ActiveRecord::Base
       unless base_url =~ /(https?):\/\/([^\/]*)(.*)/
         raise "Invalid base_url: #{self.base_url}"
       end
-      @split_base_url = { :protocol => $1, :host_with_port => $2,
-                          :root_path => $3.gsub(%r{/$},'') }
+      @split_base_url = { :protocol => $1, :host_with_port => $2, :root_path => $3.gsub(%r{/$},'') }
     end
     @split_base_url
   end

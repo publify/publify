@@ -8,8 +8,7 @@ class XmlSidebar < Sidebar
   setting :article_comments, true, :input_type => :checkbox
   setting :tag_feeds, false, :input_type => :checkbox
 
-  setting :format, 'atom', :input_type => :radio,
-          :choices => [["rss",  "RSS"], ["atom", "Atom"]]
+  setting :format, 'atom', :input_type => :radio, :choices => [["rss",  "RSS"], ["atom", "Atom"]]
 
   def format_strip
     strip_format = self.format

@@ -58,8 +58,6 @@
             <%= text_field 'article', 'keywords', {:autocomplete => 'off', :class => 'form-control tm-input'} %>
           </div>
           <p class='alert alert-warning'><%=t(".tags_explaination") %></p>
-          <%#= auto_complete_field 'article_keywords', { :url => { :action => "auto_complete_for_article_keywords"}, :method => 'get', :tokens => ','}%>		
-
         </div>
         <% post_types = @post_types || [] %>
         <%- if post_types.size.zero? %>
