@@ -96,17 +96,6 @@ class User < ActiveRecord::Base
     save(:validate => false)
   end
 
-  def permalink_url(anchor=nil, only_path=false)
-    blog = Blog.default # remove me...
-
-    blog.url_for(
-      :controller => 'authors',
-      :action => 'show',
-      :id => login,
-      :only_path => only_path
-    )
-  end
-
   def default_text_filter
     text_filter
   end

@@ -1,4 +1,4 @@
-class AuthorsController < ContentController
+class AuthorController < ContentController
   layout :theme_layout
 
   def show
@@ -10,22 +10,17 @@ class AuthorsController < ContentController
     @keywords = this_blog.meta_keywords
     @description = this_blog.author_desc_template.to_title(@author, this_blog, params)
 
-    auto_discovery_feed(:only_path => false)
+    auto_discovery_feed(only_path: false)
 
     respond_to do |format|
-      format.html do
-        render
-      end
-      format.rss do
-        render_feed "rss"
-      end
-      format.atom do
-        render_feed "atom"
-      end
+      format.rss { render_feed "rss" }
+      format.atom { render_feed "atom" }
+      format.html
     end
   end
 
   private
+
   def render_feed format
     render "show_#{format}_feed", :layout => false
   end

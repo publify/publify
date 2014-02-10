@@ -73,9 +73,7 @@ Rails.application.routes.draw do
   match '/tag/:id/page/:page', :to => 'tags#show', :format => false
   match '/tags/page/:page', :to => 'tags#index', :format => false
 
-  # AuthorsController
-  match '/author/:id(.:format)', :to => 'authors#show', :format => /rss|atom/, :as => 'xml'
-  match '/author(/:id)', :to => 'authors#show', :format => false
+  resources :author, only: :show
 
   # ThemesController
   scope :controller => 'theme', :filename => /.*/ do

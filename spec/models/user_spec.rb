@@ -3,13 +3,13 @@ require 'spec_helper'
 describe User do
   describe 'FactoryGirl Girl' do
     it 'should user factory valid' do
-      FactoryGirl.create(:user).should be_valid
-      FactoryGirl.build(:user).should be_valid
+      create(:user).should be_valid
+      build(:user).should be_valid
     end
 
     it 'should multiple user factory valid' do
-      FactoryGirl.create(:user).should be_valid
-      FactoryGirl.create(:user).should be_valid
+      create(:user).should be_valid
+      create(:user).should be_valid
     end
 
     it 'salt should not be nil' do
@@ -23,38 +23,38 @@ describe User do
     end
 
     it 'Calling User.authenticate with a valid user/password combo returns a user' do
-      alice = FactoryGirl.create(:user, :login => 'alice', :password => 'greatest')
+      alice = create(:user, :login => 'alice', :password => 'greatest')
       User.authenticate('alice', 'greatest').should == alice
     end
 
     it 'User.authenticate(user,invalid) returns nil' do
-      FactoryGirl.create(:user, :login => 'alice', :password => 'greatest')
+      create(:user, :login => 'alice', :password => 'greatest')
       User.authenticate('alice', 'wrong password').should be_nil
     end
 
     it 'User.authenticate(inactive,valid) returns nil' do
-      FactoryGirl.create(:user, :login => 'alice', :state => 'inactive')
+      create(:user, :login => 'alice', :state => 'inactive')
       User.authenticate('inactive', 'longtest').should be_nil
     end
 
     it 'User.authenticate(invalid,whatever) returns nil' do
-      FactoryGirl.create(:user, :login => 'alice')
+      create(:user, :login => 'alice')
       User.authenticate('userwhodoesnotexist', 'what ever').should be_nil
     end
 
     it 'The various article finders work appropriately' do
-      FactoryGirl.create(:blog)
-      tobi = FactoryGirl.create(:user)
+      create(:blog)
+      tobi = create(:user)
       7.times do
-        FactoryGirl.create(:article, :user => tobi)
+        create(:article, :user => tobi)
       end
-      FactoryGirl.create(:article, :published => false, :published_at => nil, :user => tobi)
+      create(:article, :published => false, :published_at => nil, :user => tobi)
       tobi.articles.size.should == 8
       tobi.articles.published.size.should == 7
     end
 
     it 'authenticate? works as expected' do
-      bob = FactoryGirl.create(:user, :login => 'bob', :password => 'testtest')
+      bob = create(:user, :login => 'bob', :password => 'testtest')
       User.should be_authenticate('bob', 'testtest')
       User.should_not be_authenticate('bob', 'duff password')
     end
@@ -128,7 +128,7 @@ describe User do
 
   describe 'With a user in the database' do
     before(:each) do
-      @olduser = FactoryGirl.create(:user)
+      @olduser = create(:user)
     end
 
     it 'should not be able to create another user with the same login' do
@@ -142,7 +142,7 @@ describe User do
 
   describe 'Updating an existing user' do
     before(:each) do
-      @user = FactoryGirl.create(:user)
+      @user = create(:user)
       set_password 'a secure password'
       @user.save!
     end
@@ -211,27 +211,20 @@ describe User do
 
   describe '#admin?' do
     it 'should return true if user is admin' do
-      admin = FactoryGirl.build(:user, :profile => FactoryGirl.build(:profile_admin, :label => Profile::ADMIN))
+      admin = build(:user, :profile => build(:profile_admin, :label => Profile::ADMIN))
       admin.should be_admin
     end
 
     it 'should return false if user is not admin' do
-      publisher = FactoryGirl.build(:user, :profile => FactoryGirl.build(:profile_publisher))
+      publisher = build(:user, :profile => build(:profile_publisher))
       publisher.should_not be_admin
     end
-
-  end
-
-  describe '#permalink_url' do
-    before(:each) { FactoryGirl.create(:blog, :base_url => 'http://myblog.net/') }
-    subject { FactoryGirl.build(:user, :login => 'alice').permalink_url }
-    it { should == 'http://myblog.net/author/alice' }
   end
 
   describe "set_author" do
     it "uses user given param to set author AND user of article" do
       article = Article.new
-      user = FactoryGirl.build(:user, login: 'Henri')
+      user = build(:user, login: 'Henri')
       article.set_author(user)
       article.author.should eq 'Henri'
       article.user.should eq user
@@ -253,8 +246,8 @@ describe User do
 
   describe "default_text_filter" do
     it "returns user text_filter" do
-      blog = FactoryGirl.create(:blog)
-      user = FactoryGirl.build(:user)
+      blog = create(:blog)
+      user = build(:user)
       expect(user.default_text_filter.name).to eq(blog.text_filter)
     end
   end
@@ -300,42 +293,42 @@ describe User do
 
   describe "User's Twitter configuration" do
     it "A user without twitter_oauth_token or twitter_oauth_token_secret should not have Twitter configured" do
-      user = FactoryGirl.build(:user, twitter_oauth_token:nil, twitter_oauth_token_secret:nil)
+      user = build(:user, twitter_oauth_token:nil, twitter_oauth_token_secret:nil)
       user.has_twitter_configured?.should == false
     end
 
     it "A user with an empty twitter_oauth_token and no twitter_oauth_token_secret should not have Twitter configured" do
-      user = FactoryGirl.build(:user, twitter_oauth_token: "", twitter_oauth_token_secret: nil)
+      user = build(:user, twitter_oauth_token: "", twitter_oauth_token_secret: nil)
       user.has_twitter_configured?.should == false
     end
 
     it "A user with an empty twitter_oauth_token and an empty twitter_oauth_token_secret should not have Twitter configured" do
-      user = FactoryGirl.build(:user, twitter_oauth_token: "", twitter_oauth_token_secret: "")
+      user = build(:user, twitter_oauth_token: "", twitter_oauth_token_secret: "")
       user.has_twitter_configured?.should == false
     end
 
     it "A user with a twitter_oauth_token and no twitter_oauth_token_secret should not have Twitter configured" do
-      user = FactoryGirl.build(:user, twitter_oauth_token: "12345", twitter_oauth_token_secret: '')
+      user = build(:user, twitter_oauth_token: "12345", twitter_oauth_token_secret: '')
       user.has_twitter_configured?.should == false
     end
 
     it "A user with a twitter_oauth_token and an empty twitter_oauth_token_secret should not have Twitter configured" do
-      user = FactoryGirl.build(:user, twitter_oauth_token: "12345", twitter_oauth_token_secret: "")
+      user = build(:user, twitter_oauth_token: "12345", twitter_oauth_token_secret: "")
       user.has_twitter_configured?.should == false
     end
 
     it "A user with a twitter_oauth_token_secret and no twitter_oauth_token should not have Twitter configured" do
-      user = FactoryGirl.build(:user, twitter_oauth_token: "", twitter_oauth_token_secret: "67890")
+      user = build(:user, twitter_oauth_token: "", twitter_oauth_token_secret: "67890")
       user.has_twitter_configured?.should == false
     end
 
     it "A user with a twitter_oauth_token_secret and an empty twitter_oauth_token should not have Twitter configured" do
-      user = FactoryGirl.build(:user, twitter_oauth_token_secret: "67890", twitter_oauth_token: "")
+      user = build(:user, twitter_oauth_token_secret: "67890", twitter_oauth_token: "")
       user.has_twitter_configured?.should == false
     end
 
     it "A user with a twitter_oauth_token and a twitter_oauth_token_secret should have Twitter configured" do
-      user = FactoryGirl.build(:user, twitter_oauth_token: "12345", twitter_oauth_token_secret: "67890")
+      user = build(:user, twitter_oauth_token: "12345", twitter_oauth_token_secret: "67890")
       user.has_twitter_configured?.should == true
     end
   end

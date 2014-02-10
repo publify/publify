@@ -5,8 +5,8 @@ describe Admin::UsersController, "rough port of the old functional test" do
 
   describe ' when you are admin' do
     before(:each) do
-      FactoryGirl.create(:blog)
-            @admin = FactoryGirl.create(:user, :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN))
+      create(:blog)
+      @admin = create(:user, :profile => create(:profile_admin, :label => Profile::ADMIN))
       request.session = { :user => @admin.id }
     end
 
@@ -20,9 +20,7 @@ describe Admin::UsersController, "rough port of the old functional test" do
       get :new
       assert_template 'new'
 
-      post :new, :user => { :login => 'errand', :email => 'corey@test.com',
-        :password => 'testpass', :password_confirmation => 'testpass', :profile_id => 1, 
-        :nickname => 'fooo', :firstname => 'bar' }
+      post :new, :user => { :login => 'errand', :email => 'corey@test.com', :password => 'testpass', :password_confirmation => 'testpass', :profile_id => 1, :nickname => 'fooo', :firstname => 'bar' }
       response.should redirect_to(:action => 'index')
     end
 
@@ -31,8 +29,8 @@ describe Admin::UsersController, "rough port of the old functional test" do
       describe 'with POST request' do
         it 'should redirect to index' do
           post :edit, :id => @admin.id, :user => { :login => 'errand',
-            :email => 'corey@test.com', :password => 'testpass',
-            :password_confirmation => 'testpass' }
+                                                   :email => 'corey@test.com', :password => 'testpass',
+                                                   :password_confirmation => 'testpass' }
           response.should redirect_to(:action => 'index')
         end
       end
@@ -83,8 +81,8 @@ describe Admin::UsersController, "rough port of the old functional test" do
   describe 'when you are not admin' do
 
     before :each do
-      FactoryGirl.create(:blog)
-      user = FactoryGirl.create(:user)
+      create(:blog)
+      user = create(:user)
       session[:user] = user.id
     end
 
@@ -97,9 +95,9 @@ describe Admin::UsersController, "rough port of the old functional test" do
 
       describe 'try update another user' do
         before do
-          @admin_profile = FactoryGirl.create(:profile_admin)
-          @administrator = FactoryGirl.create(:user, :profile => @admin_profile)
-          contributor = FactoryGirl.create(:profile_contributor)
+          @admin_profile = create(:profile_admin)
+          @administrator = create(:user, :profile => @admin_profile)
+          contributor = create(:profile_contributor)
           post :edit,
             :id => @administrator.id,
             :profile_id => contributor.id

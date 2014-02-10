@@ -151,10 +151,9 @@
   </div>
 </fieldset>
 
-
 <fieldset class='form-horizontal'>
   <legend><%= t('.contact_settings')%></legend>
-  <div class='alert alert-info'><%= t('.contact_explain', link: link_to(t('.author_page'), :controller => '/authors', :action => 'show', :id => current_user.login)) %></div>
+  <div class='alert alert-info'><%= t('.contact_explain', link: link_to(t('.author_page'), author_path(id: current_user.login))) %></div>
   <div class='form-group'>
     <div class='form-group'>
       <label class='control-label col-sm-2' for="user_description"><%= t('.about')%></label>

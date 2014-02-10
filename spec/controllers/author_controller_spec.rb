@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe AuthorsController do
+describe AuthorController do
   let!(:blog) { create(:blog, limit_article_display: 1) }
   let(:now) { DateTime.new(2012,12,23,3,45) }
 
