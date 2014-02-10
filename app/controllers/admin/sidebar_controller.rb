@@ -7,7 +7,7 @@ class Admin::SidebarController < Admin::BaseController
     @positionnal << Sidebar.new # to let at least 1 sortable element
     # Reset the staged position based on the active position.
     #Sidebar.delete_all('active_position is null')
-    flash_sidebars
+    #flash_sidebars
   end
 
   def set_active
