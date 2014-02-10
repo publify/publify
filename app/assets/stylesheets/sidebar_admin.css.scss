@@ -1,3 +1,11 @@
+#sidebar-config {
+  #active {
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+  }
+}
 #available_box > * {
   z-index: 10;
 }
