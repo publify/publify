@@ -90,6 +90,14 @@ Rails.application.routes.draw do
   match '/notes/page/:page', :to => 'notes#index', :format => false
   get '/note/:permalink', :to => 'notes#show', :format => false
 
+  namespace :admin do
+    resources :sidebars, only: [:index, :update, :destroy] do
+      collection do
+        put :sortable
+      end
+    end
+  end
+
 
   # Work around the Bad URI bug
   %w{ accounts backend files sidebar }.each do |i|
