@@ -1,14 +1,5 @@
 <ul class="sortable">
   <%- @positionnal.each_with_index do |sidebar, index| -%>
-  <%- next if sidebar.new_record? -%>
-  <%- if sidebar.new_record? -%>
-        <li>
-          <div id="sidebar_<%= index %>" class="voidPlaceholder alert">
-            Placeholder
-          </div>
-        </li>
-  <%-   next -%>
-  <%- end -%>
     <li data-sortable="sidebar_<%= sidebar.id %>" >
       <div class="active alert <%= sidebar.staged_position == 0 ? 'alert-info' : 'alert-warning' %>">
         <h3 class='light'><%= sidebar.display_name %></h3>
