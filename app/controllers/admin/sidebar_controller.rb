@@ -10,6 +10,20 @@ class Admin::SidebarController < Admin::BaseController
     #flash_sidebars
   end
 
+  # Just update a single active Sidebar instance at once
+  def update
+    sidebar = Sidebar.where(id: params[:id]).first
+    sidebar.update_attributes params[:sidebar]
+    respond_to do |format|
+      format.js do
+        # render partial _target for it
+      end
+      format.html do
+        redirect_to admin_sidebar_path
+      end
+    end
+  end
+
   def set_active
     # Get all available plugins
     klass_for = available.inject({}) do |hash, klass|
