@@ -12,14 +12,15 @@ class Admin::SidebarController < Admin::BaseController
 
   # Just update a single active Sidebar instance at once
   def update
+    sidebar_config = params[:configure]
     sidebar = Sidebar.where(id: params[:id]).first
-    sidebar.update_attributes params[:sidebar]
+    sidebar.update_attributes sidebar_config[sidebar.id.to_s]
     respond_to do |format|
       format.js do
         # render partial _target for it
       end
       format.html do
-        redirect_to admin_sidebar_path
+        return redirect_to(admin_sidebar_index_path)
       end
     end
   end
@@ -59,7 +60,7 @@ class Admin::SidebarController < Admin::BaseController
   def publish
     Sidebar.apply_staging_on_active!
     PageCache.sweep_all
-    redirect_to admin_sidebar_path
+    redirect_to admin_sidebar_index_path
   end
 
   def staging
