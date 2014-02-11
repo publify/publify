@@ -91,7 +91,7 @@ Rails.application.routes.draw do
   get '/note/:permalink', :to => 'notes#show', :format => false
 
   namespace :admin do
-    resources :sidebars, only: [:index, :update, :destroy] do
+    resources :sidebar, only: [:index, :update, :destroy] do
       collection do
         put :sortable
       end
