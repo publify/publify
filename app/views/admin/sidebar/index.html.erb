@@ -6,16 +6,18 @@
 <p class='help-block'><%= t(".explain_how_its_works") %></p>
 
 <%= form_tag(url_for(:action=>'publish'), :method => :post, :class => 'spinner') do %>
-  <div class='form-actions'>
+<div class='form-actions'>
   <%= link_to(t(".cancel"), {action: 'index'}, class: 'btn') %>
   <%= t(".or") %>
   <%= submit_tag(t('.publish_changes'), class: 'btn btn-success') %>
 </div>
+<%- end -%>
 
 <div id="messages">&nbsp;</div>
 
    <%= render partial: 'config' %>
 
+<%= form_tag(url_for(:action=>'publish'), :method => :post, :class => 'spinner') do %>
     <div class='form-group'>
       <%= link_to(t(".cancel"), {action: 'index'}, class: 'btn') %>
       <%= t(".or") %>

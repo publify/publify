@@ -1,6 +1,8 @@
 <ul class="sortable">
   <%- @positionnal.each_with_index do |sidebar, index| -%>
+    <%- next unless sidebar.id -%>
     <li data-sortable="sidebar_<%= sidebar.id %>" >
+      <%= form_tag admin_sidebar_path(sidebar.id), {method: :put} do |f| %>
       <div class="active alert <%= sidebar.staged_position == 0 ? 'alert-info' : 'alert-warning' %>">
         <h3 class='light'><%= sidebar.display_name %></h3>
         <div class='widget-content'>
@@ -12,10 +14,11 @@
         <%- end %>
         <%- if sidebar.class.fields.length > 0 -%>
         <p>
-          <%= link_to 'Enregistrer', admin_sidebar_path(sidebar), class: 'fake_button', remote: true, method: :put %>
+          <%= submit_tag 'Enregistrer' %>
         </p>
         <%- end -%>
         </div>
+        <%- end -%>
       </div>
     </li>
   <%- end -%>
