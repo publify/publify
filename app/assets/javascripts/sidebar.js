@@ -22,26 +22,11 @@ var bind_sortable = function() {
                             },
                           
   });
-  //$('.sortable').disableSelection();
 
   $('.draggable').draggable({ 
                                   connectToSortable: '.sortable',
                                   helper: "clone",
                                   revert: "invalid"
-                                  //drop: function(evt, ui) {
-                                  //  var draggable_id = parseInt(ui.draggable.attr('id').split(/-/)[1])
-                                  //  $.ajax({
-                                  //    url: '/admin/sidebar/staging',
-                                  //    method: 'PUT',
-                                  //    dataType: 'html',
-                                  //    data: {sidebar_id: draggable_id, staged_position: -1},
-                                  //    statusCode: {
-                                  //      200: function(data, textStatus, jqXHR) {
-                                  //             $('#sidebar-config').replaceWith(data)
-                                  //           }
-                                  //    }
-                                  //  })
-                                  //}
                                 });
 }
 $(document).ready(function() {
