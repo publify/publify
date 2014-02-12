@@ -28,16 +28,6 @@ var bind_sortable = function() {
                                   helper: "clone",
                                   revert: "invalid"
                                 });
-  $('.fake_button').on('ajax:beforeSend', function(e, xhr, settings) {
-
-                         console.log('BS befr');
-                         settings.data = $(this).parents('.active').find('input').serializeArray();
-                         console.log('BS after');
-                       });
-  $('.fake_button').on('ajax:after', function(e, xhr, settings) {
-                         console.log('after');
-                       });
-
 }
 $(document).ready(function() {
   bind_sortable();
