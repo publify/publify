@@ -1,0 +1,20 @@
+    <li class="sidebar_item" data-sortable="sidebar_<%= sidebar.id %>" >
+      <%= form_tag admin_sidebar_path(sidebar.id), {remote: true, method: :put} do |f| %>
+      <div class="active alert <%= sidebar.staged_position == 0 ? 'alert-info' : 'alert-warning' %>">
+        <h3 class='light'><%= sidebar.display_name %></h3>
+        <div class='widget-content'>
+          <p><%= sidebar.description %></p>
+        </div>
+        <div>
+        <%- sidebar.class.fields.each do |row| %>
+          <%= row.line_html(sidebar) %>
+        <%- end %>
+        <%- if sidebar.class.fields.length > 0 -%>
+        <p>
+          <%= submit_tag 'Enregistrer' %>
+        </p>
+        <%- end -%>
+        </div>
+        <%- end -%>
+      </div>
+    </li>

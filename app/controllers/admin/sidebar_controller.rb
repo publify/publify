@@ -17,6 +17,7 @@ class Admin::SidebarController < Admin::BaseController
     respond_to do |format|
       format.js do
         # render partial _target for it
+        return render partial: 'target_sidebar', locals: { sidebar: sidebar}
       end
       format.html do
         return redirect_to(admin_sidebar_index_path)
