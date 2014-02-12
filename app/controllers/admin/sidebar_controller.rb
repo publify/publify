@@ -4,7 +4,6 @@ class Admin::SidebarController < Admin::BaseController
     @active = active_by_index
     @staged = staged_by_index
     @positionnal = @active.merge(@staged).values
-    @positionnal << Sidebar.new # to let at least 1 sortable element
     # Reset the staged position based on the active position.
     #Sidebar.delete_all('active_position is null')
     #flash_sidebars
@@ -100,7 +99,6 @@ class Admin::SidebarController < Admin::BaseController
         end
 
         @positionnal = staged_by_index.merge(active_by_index).values
-        @positionnal << Sidebar.new # to let at least 1 sortable element
         @active = active_by_index
         @staged = staged_by_index
         @available = Sidebar.available_sidebars
