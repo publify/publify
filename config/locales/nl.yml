@@ -17,6 +17,13 @@ nl:
       page_not_found: "Page not found"
       the_page_you_are_looking_for: "The page you are looking for has moved or does not exist."
   setup:
+    confirm:
+      you_have_successfully_signed_up: "Je bent succesvol aangemeld"
+      login: "Inlognaam: %{user}"
+      password: "Wachtwoord: %{pass}"
+      dont_lose_the_mail_sent: "Verlies de e-mail verzonden naar %{email}, want anders kun je niet meer inloggen"
+      proceed_to: "Ga door naar %{link}"
+      admin: "admin"
     index:
       blog_name: "Blog name"
       save: "Save"
@@ -157,14 +164,6 @@ nl:
       posted_in: "postet i"
       next_page: "Next page"
       previous_page: "Previous page"
-  setup:
-    confirm:
-      you_have_successfully_signed_up: "Je bent succesvol aangemeld"
-      login: "Inlognaam: %{user}"
-      password: "Wachtwoord: %{pass}"
-      dont_lose_the_mail_sent: "Verlies de e-mail verzonden naar %{email}, want anders kun je niet meer inloggen"
-      proceed_to: "Ga door naar %{link}"
-      admin: "admin"
   admin:
     base:
       restart_application: "For security reasons, you should restart your Publify application. Enjoy your blogging experience."

@@ -17,6 +17,13 @@ ja:
       page_not_found: "Page not found"
       the_page_you_are_looking_for: "The page you are looking for has moved or does not exist."
   setup:
+    confirm:
+      you_have_successfully_signed_up: "You have successfully signed up"
+      login: "Login: %{user}"
+      password: "Password: %{pass}"
+      dont_lose_the_mail_sent: "Don't lose the mail sent at %{email} or you won't be able to login anymore"
+      proceed_to: "Proceed to %{link}"
+      admin: "admin"
     index:
       blog_name: "Blog name"
       save: "Save"
@@ -157,14 +164,6 @@ ja:
       posted_in: "カテゴリ"
       next_page: "次のページ"
       previous_page: "前のページ"
-  setup:
-    confirm:
-      you_have_successfully_signed_up: "You have successfully signed up"
-      login: "Login: %{user}"
-      password: "Password: %{pass}"
-      dont_lose_the_mail_sent: "Don't lose the mail sent at %{email} or you won't be able to login anymore"
-      proceed_to: "Proceed to %{link}"
-      admin: "admin"
   admin:
     base:
       restart_application: "For security reasons, you should restart your Publify application. Enjoy your blogging experience."

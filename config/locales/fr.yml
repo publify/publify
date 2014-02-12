@@ -17,6 +17,13 @@ fr:
       page_not_found: "Page non trouvée"
       the_page_you_are_looking_for: "La page que vous cherchez a été déplacée ou n'existe pas"
   setup:
+    confirm:
+      you_have_successfully_signed_up: "Vous vous êtes inscrit avec succès"
+      login: "Identifiant&nbsp;: %{user}"
+      password: "Mot de passe&nbsp;: %{pass}"
+      dont_lose_the_mail_sent: "Ne perdez pas l'email que nous venons de vous envoyer à l'adresse %{email} ou vous ne pourrez plus vous connecter à l'application"
+      proceed_to: "Proceed to %{link}"
+      admin: "admin"
     index:
       blog_name: "Blog name"
       save: "Enregistrer"
@@ -157,14 +164,6 @@ fr:
       posted_in: "publié dans"
       next_page: "Page suivante"
       previous_page: "Page précédente"
-  setup:
-    confirm:
-      you_have_successfully_signed_up: "Vous vous êtes inscrit avec succès"
-      login: "Identifiant&nbsp;: %{user}"
-      password: "Mot de passe&nbsp;: %{pass}"
-      dont_lose_the_mail_sent: "Ne perdez pas l'email que nous venons de vous envoyer à l'adresse %{email} ou vous ne pourrez plus vous connecter à l'application"
-      proceed_to: "Proceed to %{link}"
-      admin: "admin"
   admin:
     base:
       restart_application: "For security reasons, you should restart your Publify application. Enjoy your blogging experience."
