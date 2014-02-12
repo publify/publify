@@ -20,16 +20,11 @@ class Admin::ThemesController < Admin::BaseController
   def switchto
     this_blog.theme = params[:theme]
     this_blog.save
-    zap_theme_caches
+    FileUtils.rm_rf(%w{stylesheets javascript images}.collect{|v| page_cache_directory + "/#{v}/theme"})
     this_blog.current_theme(:reload)
     flash[:success] = I18n.t('admin.themes.switchto.success')
-    require "#{this_blog.current_theme.path}/helpers/theme_helper.rb" if File.exists? "#{this_blog.current_theme.path}/helpers/theme_helper.rb"
     redirect_to :action => 'index'
   end
 
   protected
-
-  def zap_theme_caches
-    FileUtils.rm_rf(%w{stylesheets javascript images}.collect{|v| page_cache_directory + "/#{v}/theme"})
-  end
 end

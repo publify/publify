@@ -1,6 +1,4 @@
 class FeedbackController < ApplicationController
-  helper :theme
-
   before_filter :get_article, only: [:create]
 
   cache_sweeper :blog_sweeper

@@ -129,9 +129,6 @@ def with_each_theme
     next if theme =~ /\.\.?/
     theme_dir = "#{::Rails.root.to_s}/themes/#{theme}"
     view_path = "#{theme_dir}/views"
-    if File.exists?("#{theme_dir}/helpers/theme_helper.rb")
-      require "#{theme_dir}/helpers/theme_helper.rb"
-    end
     yield theme, view_path
   end
 end
