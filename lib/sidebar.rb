@@ -139,6 +139,21 @@ class Sidebar < ActiveRecord::Base
     where('staged_position is not null').order('staged_position')
   end
 
+  def self.ordered_sidebars
+    os = []
+    Sidebar.all.each do |s| 
+      if s.staged_position
+        os[s.staged_position] = ((os[s.staged_position] || []) << s).uniq
+      elsif s.active_position
+        os[s.active_position] = ((os[s.active_position] || []) << s).uniq
+      end
+      if s.active_position.nil? && s.staged_position.nil?
+        s.destroy # neither staged nor active: destroy. Full stop.
+      end
+    end
+    os.flatten.compact
+  end
+
   def self.purge
     delete_all('active_position is null and staged_position is null')
   end
@@ -288,5 +303,11 @@ class Sidebar < ActiveRecord::Base
 
   def view_root
     self.class.view_root
+  end
+
+  def admin_state
+    return :active if active_position && (staged_position == active_position || staged_position.nil?)
+    return :will_change_position if active_position != staged_position
+    raise "Oups, ask ook to set an admin_state for this: #{{active: active_position, staged: staged_position}}"
   end
 end

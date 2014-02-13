@@ -27,9 +27,13 @@ var bind_sortable = function() {
                                   connectToSortable: '.sortable',
                                   helper: "clone",
                                   revert: "invalid"
-                                });
-  $('.sidebar_item').on('ajax:sucess', function(data, textStatus, xhr) {
+                            });
+  $('.sidebar_item').on('ajax:success', function(data, textStatus, xhr) {
                                          $($(this).parent).replaceWith(data);
+                                       }
+                       );
+  $('.deletion_link').on('ajax:success', function(data, textStatus, xhr) {
+                                         $($(this).parent).remove();
                                        }
                        );
 }

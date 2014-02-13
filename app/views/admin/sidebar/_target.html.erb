@@ -1,6 +1,6 @@
 <ul class="sortable">
-  <%- @positionnal.each_with_index do |sidebar, index| -%>
+  <%- @ordered_sidebars.each_with_index do |sidebar, index| -%>
     <%- next unless sidebar.id -%>
-    <%= render partial: 'target_sidebar', locals: { sidebar: sidebar } %>
+    <%= render partial: 'target_sidebar', locals: { sidebar: sidebar, sortable_index: index } %>
   <%- end -%>
 </ul>

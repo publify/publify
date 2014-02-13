@@ -3,7 +3,7 @@ class Admin::SidebarController < Admin::BaseController
     @available = available
     @active = active_by_index
     @staged = staged_by_index
-    @positionnal = @active.merge(@staged).values
+    @ordered_sidebars = Sidebar.ordered_sidebars
     # Reset the staged position based on the active position.
     #Sidebar.delete_all('active_position is null')
     #flash_sidebars
@@ -13,15 +13,25 @@ class Admin::SidebarController < Admin::BaseController
   def update
     sidebar_config = params[:configure]
     sidebar = Sidebar.where(id: params[:id]).first
+    old_s_index = sidebar.staged_position || sidebar.active_position
     sidebar.update_attributes sidebar_config[sidebar.id.to_s]
     respond_to do |format|
       format.js do
         # render partial _target for it
-        return render partial: 'target_sidebar', locals: { sidebar: sidebar}
+        return render partial: 'target_sidebar', locals: { sortable_index: old_s_index, sidebar: sidebar}
       end
       format.html do
         return redirect_to(admin_sidebar_index_path)
       end
+    end
+  end
+
+  def destroy
+    sidebar = Sidebar.where(id: params[:id]).first
+    sidebar && sidebar.destroy
+    respond_to do |format|
+      format.html { return redirect_to(admin_sidebar_index_path)}
+      format.js { render js: {ok: :ok} }
     end
   end
 
@@ -99,7 +109,7 @@ class Admin::SidebarController < Admin::BaseController
           end
         end
 
-        @positionnal = staged_by_index.merge(active_by_index).values
+        @ordered_sidebars = Sidebar.ordered_sidebars
         @active = active_by_index
         @staged = staged_by_index
         @available = Sidebar.available_sidebars
