@@ -2,8 +2,6 @@
 class Admin::SidebarController < Admin::BaseController
   def index
     @available = available
-    @active = active_by_index
-    @staged = staged_by_index
     @ordered_sidebars = Sidebar.ordered_sidebars
     # Reset the staged position based on the active position.
     #Sidebar.delete_all('active_position is null')
@@ -74,24 +72,6 @@ class Admin::SidebarController < Admin::BaseController
     redirect_to admin_sidebar_index_path
   end
 
-  def staging
-    sidebar = Sidebar.find_by_id(params[:sidebar_id])
-    return render(text: "Can’t find sidebar #{sidebar.inspect}", status: 406) unless sidebar
-    #sidebar.staged_position = params[:staged_position].to_i
-    sidebar.setting(:staged_position, params[:staged_position].to_i)
-    sidebar.save!
-    @available = available
-    @active = Sidebar.find(:all, :order => 'active_position ASC') unless @active
-    respond_to do |format|
-      format.js do 
-        render :js => {sidebar.id => sidebar.staged_position }
-      end
-      format.html do
-        render :partial => 'config'
-      end
-    end
-  end
-
   # Callback for admin sidebar sortable plugin
   def sortable
     respond_to do |format|
@@ -111,8 +91,6 @@ class Admin::SidebarController < Admin::BaseController
         end
 
         @ordered_sidebars = Sidebar.ordered_sidebars
-        @active = active_by_index
-        @staged = staged_by_index
         @available = Sidebar.available_sidebars
         render json: { html: render_to_string('admin/sidebar/_config.html.erb', layout: false) }
       end
@@ -127,24 +105,6 @@ class Admin::SidebarController < Admin::BaseController
 
   def available
     ::Sidebar.available_sidebars
-  end
-
-  def staged_by_index
-    staged = ::Sidebar.where('`sidebars`.`staged_position` IS NOT NULL').order('staged_position')
-    staged_h = {}
-    staged.each do |s|
-      staged_h[s.staged_position] = s
-    end
-    staged_h
-  end
-
-  def active_by_index
-    active = ::Sidebar.where('`sidebars`.`active_position` IS NOT NULL').order('active_position')
-    active_h = {}
-    active.each do |s|
-      active_h[s.active_position] = s
-    end
-    active_h
   end
 
   def flash_sidebars

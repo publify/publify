@@ -1,5 +1,0 @@
-if flash[:sidebars].empty?
-  page.insert_html :top, 'active', :partial => 'target'
-end
-page.remove @element_to_remove
-page.hide('update_spinner')
