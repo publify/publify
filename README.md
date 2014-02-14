@@ -3,7 +3,7 @@ Publify
 
 **The Rails blogging engine formerly known as Typo**
 
-[![Build Status](https://travis-ci.org/fdv/publify.png)](https://travis-ci.org/fdv/publify)
+[![Build Status](https://travis-ci.org/publify/publify.png)](https://travis-ci.org/publify/publify)
 [![](https://codeclimate.com/badge.png)](https://codeclimate.com/github/fdv/publify)
 [![Dependency Status](https://gemnasium.com/fdv/publify.png)](https://gemnasium.com/fdv/publify)
 
@@ -84,7 +84,7 @@ Download Publify
 If you want to play it safe, you can download the latest [stable release](http://publify.co/stable.tgz).
 
 If you feel adventurous or want to hack on Publify, [clone Publify
-repository](https://github.com/fdv/publify.git).
+repository](https://github.com/publify/publify.git).
 
 <a name="installpublifylocally"></a>
 
@@ -178,17 +178,17 @@ Useful links
 
 ### Enhance your blog
 
--   [Sidebar Plugins](https://github.com/fdv/publify/wiki/Sidebar-plugins)
--   [In page Plugins](https://github.com/fdv/publify/wiki/In-Page-Plugins)
+-   [Sidebar Plugins](https://github.com/publify/publify/wiki/Sidebar-plugins)
+-   [In page Plugins](https://github.com/publify/publify/wiki/In-Page-Plugins)
 
 <a name="moreresources"></a>
 
 ### More resources:
 
 -   [Download Publify source code](http://publify.co/stable.tgz)
--   [**Report a bug**](https://github.com/fdv/publify/issues)
+-   [**Report a bug**](https://github.com/publify/publify/issues)
 -   [**Frequently Asked
-    Questions**](https://github.com/fdv/publify/wiki/frequently-asked-questions)
+    Questions**](https://github.com/publify/publify/wiki/frequently-asked-questions)
 -   [Official Publify blog](http://blog.publify.co)
 -   [Follow us on Twitter](https://twitter.com/getpublify)
 
@@ -226,7 +226,7 @@ blog: http://elsif.fr
 irc: yaf
 
 And [many more cool people who’ve one day or another contributed to
-Publify](https://github.com/fdv/publify/graphs/contributors).
+Publify](https://github.com/publify/publify/graphs/contributors).
 
 **Original Author: Tobias Luetke**
 blog: http://blog.leetsoft.com/
