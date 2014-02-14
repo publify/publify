@@ -28,7 +28,7 @@ describe :ping do
       end
     end
 
-    context "with a send outboug pings blog" do
+    context "with a send outbound pings blog" do
       let!(:blog) { create(:blog, send_outbound_pings: 1) }
 
       it 'Pingback sent when new article is saved' do
