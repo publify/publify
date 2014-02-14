@@ -29,11 +29,11 @@ var bind_sortable = function() {
                                   revert: "invalid"
                             });
   $('.sidebar_item').on('ajax:success', function(data, textStatus, xhr) {
-                                         $($(this).parent).replaceWith(data);
+                                         $(this).parent().replaceWith(data);
                                        }
                        );
   $('.deletion_link').on('ajax:success', function(data, textStatus, xhr) {
-                                         $($(this).parent).remove();
+                                         $(this).parent().remove();
                                        }
                        );
 }
