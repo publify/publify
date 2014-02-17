@@ -7,6 +7,8 @@ describe Note do
 
     describe "validations" do
       it { expect(build(:note)).to be_valid }
+      it { expect(build(:note).redirects).to be_empty }
+      it { expect(create(:note).redirects).to_not be_empty }
       it { expect(build(:note, body:nil)).to be_invalid }
 
       it "with a nil body, return default error message" do
@@ -71,6 +73,7 @@ describe Note do
     end
 
     describe :send_to_twitter do
+      context "with a simple note" do
       let(:note) { build(:note) }
       context "with twitter configured for blog and user" do
         before(:each) do
@@ -95,6 +98,24 @@ describe Note do
         end
         it { expect(note.send_to_twitter).to be_false }
       end
+      end
+
+      context "with a more than 140 char note" do
+        let(:note) { create(:note, body: "a big message that contains more than 140 char is not to hard to do. You only need to speak as a french guy, a lot to say nothing. And that probably the best way to write more that 140 char") }
+
+        let(:fake_twitter) { OpenStruct.new }
+
+        before(:each) do
+          Twitter::REST::Client.should_receive(:new).and_return(fake_twitter)
+          fake_twitter.should_receive(:update).and_raise(Twitter::Error::Forbidden.new('Status is over 140 characters.'))
+          Blog.any_instance.should_receive(:has_twitter_configured?).and_return(true)
+          User.any_instance.should_receive(:has_twitter_configured?).and_return(true)
+          note.send_to_twitter
+        end
+
+        it { expect(note.errors.full_messages).to eq(['Message Status is over 140 characters.']) }
+      end
+
     end
 
     describe :twitter_url do
@@ -127,6 +148,14 @@ describe Note do
         let(:expected_tweet) { "A very big(10) message with lot of text (40)inside just to try the shortener and (80)the new link that publify... (#{note.redirects.first.to_url})" }
         it { expect(note.twitter_message).to eq(expected_tweet) }
         it { expect(note.twitter_message.length).to eq(140) }
+      end
+
+      context "With a test message from production..." do
+        let(:tweet) { "Le dojo de nantes, c'est comme au McDo, sans les odeurs, et en plus rigolo: RT @abailly Ce midi c'est coding dojo à la Cantine #Nantes. Pour s'inscrire si vous voulez c'est ici: http://cantine.atlantic2.org/evenements/coding-dojo-8/ … Sinon venez comme vous êtes" }
+        let(:expected_tweet) { "Le dojo de nantes, c'est comme au McDo, sans les odeurs, et en plus rigolo: RT @abailly Ce midi c'est coding... (#{note.redirects.first.to_url})" } 
+        it { expect(note.twitter_message).to eq("Le dojo de nantes, c'est comme au McDo, sans les odeurs, et en plus rigolo: RT @abailly Ce midi c'est coding... (#{note.redirects.first.to_url})") }
+        it { expect(note.twitter_message).to eq(expected_tweet) }
+        it { expect(note.twitter_message.length).to eq(138) }
       end
 
       context "with a bug message" do

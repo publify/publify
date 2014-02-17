@@ -21,7 +21,7 @@ class Note < Content
 
   default_scope order("published_at DESC")
 
-  TWITTER_FTP_URL_LEGTH = 19
+  TWITTER_FTP_URL_LENGTH = 19
   TWITTER_HTTP_URL_LENGTH = 20
   TWITTER_HTTPS_URL_LENGTH = 21
   TWITTER_LINK_LENGTH = 22
@@ -93,7 +93,6 @@ class Note < Content
         options = {:in_reply_to_status_id => self.in_reply_to_status_id}
         self.in_reply_to_message = twitter.status(self.in_reply_to_status_id).to_json
       end
-
       tweet = twitter.update(self.twitter_message, options)
       self.twitter_id = tweet.attrs[:id_str]
       self.save
@@ -101,6 +100,7 @@ class Note < Content
       true
     rescue StandardError => e
       Rails.logger.error("Error while sending to twitter: #{e}")
+      errors.add(:message, e)
       false
     end
   end
@@ -127,7 +127,6 @@ class Note < Content
 
   def short_link
     path = self.redirects.first.from_path
-    blog = Blog.default
     prefix.sub!(/^https?\:\/\//, '')
     "#{prefix} #{path}"
   end
@@ -146,7 +145,7 @@ class Note < Content
       when "https"
         payload = "-" * TWITTER_HTTPS_URL_LENGTH
       when "ftp"
-        payload = "-" * TWITTER_FTP_URL_LEGTH
+        payload = "-" * TWITTER_FTP_URL_LENGTH
       else
         payload = "-" * TWITTER_HTTP_URL_LENGTH
       end
