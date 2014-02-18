@@ -225,6 +225,8 @@ fr:
         available_items: "Éléments disponibles"
         active_sidebar_items: "Éléments utilisés"
         download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
+      target_sidebar:
+        update: 'Update'
     settings:
       update:
         success: "Configuration mise à jour."
