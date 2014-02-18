@@ -1,18 +1,13 @@
 require 'spec_helper'
 
 describe "comments/index_atom_feed.atom.builder" do
-  before do
-    stub_default_blog
-  end
+  let!(:blog) { build_stubbed :blog }
 
   describe "rendering comments with one comment" do
     let(:article) { stub_full_article }
-    let(:comment) { FactoryGirl.build(:comment,
-                                      article: article,
-                                      body: "Comment body",
-                                      guid: '12313123123123123') }
+    let(:comment) { build(:comment, article: article, body: "Comment body", guid: '12313123123123123') }
 
-    before do
+    before(:each) do
       assign(:items, [comment])
       render
     end

@@ -1,12 +1,10 @@
 require 'spec_helper'
 
 describe "shared/_atom_header.atom.builder" do
-  before do
-    stub_default_blog
-  end
+  let!(:blog) { build_stubbed :blog }
 
   describe "with no items" do
-    before do
+    before(:each) do
       @xml = ::Builder::XmlMarkup.new
       @xml.foo do
         render partial: "shared/atom_header",

@@ -90,10 +90,6 @@ def assert_rss20 feed, count
   root.css('channel item').count.should == count
 end
 
-def stub_default_blog
-  FactoryGirl.build_stubbed :blog
-end
-
 def stub_full_article(time=Time.now)
   author = stub_model(User, :name => "User Name")
   text_filter = FactoryGirl.build(:textile)
@@ -107,19 +103,6 @@ def stub_full_article(time=Time.now)
   a.stub(:tags) { [FactoryGirl.build(:tag)] }
   a.stub(:text_filter) { text_filter }
   a
-end
-
-def stub_pagination collection, attributes = {}
-  length = collection.length
-  per_page = attributes[:per_page] || 25
-  num_pages = length / per_page + (length % per_page == 0 ? 0 : 1)
-
-  attributes = attributes.reverse_merge current_page: 1, num_pages: num_pages,
-    total_count: length, limit_value: per_page, total_pages: 12
-  attributes.each do |key, value|
-    collection.stub(key).and_return value
-  end
-  collection
 end
 
 # test standard view and all themes
@@ -199,12 +182,6 @@ def parse_validator_messages(message)
   else
     [true, ""]
   end
-end
-
-# Temporarily define #flunk until rspec-rails 2 beta 21 comes out.
-# TODO: Remove this once no longer needed!
-def flunk(*args, &block)
-  assertion_delegate.flunk(*args, &block)
 end
 
 # Make webrat's matchers treat XML like XML.

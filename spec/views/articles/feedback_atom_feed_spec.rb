@@ -1,15 +1,13 @@
 require 'spec_helper'
 
 describe "articles/feedback_atom_feed.atom.builder" do
-  before do
-    FactoryGirl.create(:blog)
-  end
+  let!(:blog) { build_stubbed :blog }
 
   describe "with one trackback" do
     let(:article) { stub_full_article }
-    let(:trackback) { FactoryGirl.build(:trackback, :article => article) }
+    let(:trackback) { build(:trackback, :article => article) }
 
-    before do
+    before(:each) do
       assign(:feedback, [trackback])
       render
     end
@@ -36,7 +34,7 @@ describe "articles/feedback_atom_feed.atom.builder" do
 
   describe 'with a comment with problematic characters' do
     let(:article) { stub_full_article }
-    let(:comment) { FactoryGirl.build(:comment, :article => article, :body => "&eacute;coute! 4 < 2, non?") }
+    let(:comment) { build(:comment, :article => article, :body => "&eacute;coute! 4 < 2, non?") }
 
     before(:each) do
       assign(:feedback, [comment])

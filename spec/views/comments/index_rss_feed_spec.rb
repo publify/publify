@@ -1,18 +1,13 @@
 require 'spec_helper'
 
 describe "comments/index_rss_feed.rss.builder" do
-  before do
-    stub_default_blog
-  end
+  let!(:blog) { build_stubbed :blog }
 
   describe "rendering comments" do
     let(:article) { FactoryGirl.build_stubbed :article }
-    let(:comment) { FactoryGirl.build_stubbed(:comment,
-                                      article: article,
-                                      body: "Comment body",
-                                      guid: '12313123123123123') }
+    let(:comment) { FactoryGirl.build_stubbed(:comment, article: article, body: "Comment body", guid: '12313123123123123') }
 
-    before do
+    before(:each) do
       assign(:items, [comment])
       render
     end

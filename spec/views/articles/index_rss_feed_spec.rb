@@ -2,9 +2,7 @@
 require 'spec_helper'
 
 describe "articles/index_rss_feed.rss.builder" do
-  before do
-    stub_default_blog
-  end
+  let!(:blog) { build_stubbed :blog }
 
   describe "rendering articles (with some funny characters)" do
     before do
@@ -13,7 +11,6 @@ describe "articles/index_rss_feed.rss.builder" do
       article2 = stub_full_article(2.minutes.ago)
       article2.body = 'is 4 < 2? no!'
       assign(:articles, [article1, article2])
-
       render
     end
 
@@ -26,8 +23,7 @@ describe "articles/index_rss_feed.rss.builder" do
     end
 
     it "renders the article RSS partial twice" do
-      view.should render_template(:partial => "shared/_rss_item_article",
-                                  :count => 2)
+      view.should render_template(:partial => "shared/_rss_item_article", :count => 2)
     end
   end
 
@@ -50,7 +46,7 @@ describe "articles/index_rss_feed.rss.builder" do
     end
 
     describe "with an author without email set" do
-      before do
+      before(:each) do
         @article.user.email = nil
         render
       end
@@ -61,12 +57,12 @@ describe "articles/index_rss_feed.rss.builder" do
     end
 
     describe "with an author with email set" do
-      before do
+      before(:each) do
         @article.user.email = 'foo@bar.com'
       end
 
       describe "on a blog that links to the author" do
-        before do
+        before(:each) do
           Blog.default.link_to_author = true
           render
         end
@@ -81,7 +77,7 @@ describe "articles/index_rss_feed.rss.builder" do
       end
 
       describe "on a blog that does not link" do
-        before do
+        before(:each) do
           Blog.default.link_to_author = false
           render
         end
@@ -93,7 +89,7 @@ describe "articles/index_rss_feed.rss.builder" do
     end
 
     describe "on a blog that shows extended content in feeds" do
-      before do
+      before(:each) do
         Blog.default.hide_extended_on_rss = false
         render
       end
@@ -104,7 +100,7 @@ describe "articles/index_rss_feed.rss.builder" do
     end
 
     describe "on a blog that hides extended content in feeds" do
-      before do
+      before(:each) do
         Blog.default.hide_extended_on_rss = true
         render
       end
@@ -117,7 +113,7 @@ describe "articles/index_rss_feed.rss.builder" do
     end
 
     describe "on a blog that has an RSS description set" do
-      before do
+      before(:each) do
         Blog.default.rss_description = true
         Blog.default.rss_description_text = "rss description"
         render
@@ -135,7 +131,7 @@ describe "articles/index_rss_feed.rss.builder" do
   end
 
   describe "rendering a password protected article" do
-    before do
+    before(:each) do
       @article = stub_full_article
       @article.body = "shh .. it's a secret!"
       @article.extended = "even more secret!"
@@ -144,7 +140,7 @@ describe "articles/index_rss_feed.rss.builder" do
     end
 
     describe "on a blog that shows extended content in feeds" do
-      before do
+      before(:each) do
         Blog.default.hide_extended_on_rss = false
         render
       end
@@ -160,7 +156,7 @@ describe "articles/index_rss_feed.rss.builder" do
     end
 
     describe "on a blog that hides extended content in feeds" do
-      before do
+      before(:each) do
         Blog.default.hide_extended_on_rss = true
         render
       end
@@ -177,7 +173,7 @@ describe "articles/index_rss_feed.rss.builder" do
   end
 
   describe "rendering an article with a UTF-8 permalink" do
-    before do
+    before(:each) do
       @article = stub_full_article
       @article.permalink = 'ルビー'
       assign(:articles, [@article])
@@ -196,7 +192,6 @@ describe "articles/index_rss_feed.rss.builder" do
   end
 
   describe :title do
-
     before(:each) do
       assign(:articles, [article])
       render

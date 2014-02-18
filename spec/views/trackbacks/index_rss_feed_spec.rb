@@ -1,15 +1,13 @@
 require 'spec_helper'
 
 describe "trackbacks/index_rss_feed.rss.builder" do
-  before do
-    stub_default_blog
-  end
+  let!(:blog) { build_stubbed :blog }
 
   describe "rendering trackbacks" do
     let(:article) { stub_full_article }
     let(:trackback) { FactoryGirl.build(:trackback, :article => article) }
 
-    before do
+    before(:each) do
       assign(:items, [trackback])
       render
     end

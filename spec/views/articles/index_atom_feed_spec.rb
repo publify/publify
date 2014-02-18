@@ -1,12 +1,10 @@
 require 'spec_helper'
 
 describe "articles/index_atom_feed.atom.builder" do
-  before do
-    stub_default_blog
-  end
+  let!(:blog) { build_stubbed :blog }
 
   describe "with no items" do
-    before do
+    before(:each) do
       assign(:articles, [])
       render
     end
