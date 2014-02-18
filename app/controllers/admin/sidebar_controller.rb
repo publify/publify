@@ -34,38 +34,6 @@ class Admin::SidebarController < Admin::BaseController
     end
   end
 
-  def set_active
-    # Get all available plugins
-    klass_for = available.inject({}) do |hash, klass|
-      hash.merge({ klass.short_name => klass })
-    end
-
-    # Get all already active plugins
-    activemap = flash_sidebars.inject({}) do |h, sb_id|
-      sb = Sidebar.find(sb_id.to_i)
-      sb ? h.merge(sb.html_id => sb_id) : h
-    end
-
-    # Figure out which plugins are referenced by the params[:active] array and
-    # lay them out in a easy accessible sequential array
-    flash[:sidebars] = params[:active].map do |name|
-      if klass_for.has_key?(name)
-        new_sidebar_id = klass_for[name].create.id
-        @new_item = Sidebar.find(new_sidebar_id)
-        new_sidebar_id
-      elsif activemap.has_key?(name)
-        activemap[name]
-      end
-    end.compact
-  end
-
-  def remove
-    flash[:sidebars] = flash_sidebars.reject do |sb_id|
-      sb_id == params[:id].to_i
-    end
-    @element_to_remove = params[:element]
-  end
-
   def publish
     Sidebar.apply_staging_on_active!
     PageCache.sweep_all
