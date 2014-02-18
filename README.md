@@ -4,7 +4,7 @@ Publify
 **The Rails blogging engine formerly known as Typo**
 
 [![Build Status](https://travis-ci.org/publify/publify.png)](https://travis-ci.org/publify/publify)
-[![](https://codeclimate.com/badge.png)](https://codeclimate.com/github/fdv/publify)
+[![](https://codeclimate.com/badge.png)](https://codeclimate.com/github/publify/publify)
 [![Dependency Status](https://gemnasium.com/fdv/publify.png)](https://gemnasium.com/fdv/publify)
 
 ### Table of contents
