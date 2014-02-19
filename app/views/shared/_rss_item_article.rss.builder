@@ -4,14 +4,7 @@ xm.item do
   else
     xm.title item.title
   end
-  content_html =
-    if item.password_protected?
-      "<p>This article is password protected. Please <a href='#{item.permalink_url}'>fill in your password</a> to read it</p>"
-    elsif this_blog.hide_extended_on_rss
-      html(item, :body)
-    else
-      html(item, :all)
-    end
+  content_html = fetch_html_content_for_feeds(item, this_blog)
   xm.description content_html + item.get_rss_description
   xm.pubDate item.published_at.rfc822
   xm.guid "urn:uuid:#{item.guid}", "isPermaLink" => "false"

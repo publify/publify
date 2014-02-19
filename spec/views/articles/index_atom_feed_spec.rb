@@ -70,12 +70,21 @@ describe "articles/index_atom_feed.atom.builder" do
     describe "on a blog that hides extended content in feeds" do
       before do
         Blog.default.hide_extended_on_rss = true
-        render
       end
 
-      it "shows only the body content in the feed" do
+      it "if there is no excerpt, it shows only the body content in the feed" do
+        render
         entry = rendered_entry
         entry.css("content").first.content.should =~ /public info/
+        entry.css("content").first.content.should_not =~ /public info.*and more/m
+      end
+
+      it "if there is excerpt, it shows the excerpt instead of the body content in the feed" do
+        @article.excerpt = "excerpt"
+        render
+        entry = rendered_entry
+        entry.css("content").first.content.should =~ /excerpt/
+        entry.css("content").first.content.should_not =~ /public info/
         entry.css("content").first.content.should_not =~ /public info.*and more/m
       end
 
@@ -119,7 +128,7 @@ describe "articles/index_atom_feed.atom.builder" do
 
       it "shows only a link to the article" do
         rendered_entry.css("content").first.content.should ==
-          "<p>This article is password protected. Please <a href='#{@article.permalink_url}'>fill in your password</a> to read it</p>"
+            "<p>This article is password protected. Please <a href='#{@article.permalink_url}'>fill in your password</a> to read it</p>"
       end
 
       it "does not have a summary element in addition to the content element" do
@@ -139,7 +148,7 @@ describe "articles/index_atom_feed.atom.builder" do
 
       it "shows only a link to the article" do
         rendered_entry.css("content").first.content.should ==
-          "<p>This article is password protected. Please <a href='#{@article.permalink_url}'>fill in your password</a> to read it</p>"
+            "<p>This article is password protected. Please <a href='#{@article.permalink_url}'>fill in your password</a> to read it</p>"
       end
 
       it "does not have a summary element in addition to the content element" do
