@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   match ':year', :to => 'articles#index', :year => /\d{4}/, :as => 'articles_by_year', :format => false
   match ':year/page/:page', :to => 'articles#index', :year => /\d{4}/, :as => 'articles_by_year_page', :format => false
 
-  resources :dashboard, only: [:index], module: 'admin', path: '/admin'
 
   match 'articles.:format', :to => 'articles#index', :constraints => {:format => 'rss'}, :as => 'rss'
   match 'articles.:format', :to => 'articles#index', :constraints => {:format => 'atom'}, :as => 'atom'
@@ -91,13 +90,16 @@ Rails.application.routes.draw do
   get '/note/:permalink', :to => 'notes#show', :format => false
 
   namespace :admin do
+    get '/', to: 'dashboard#index', as: 'dashboard'
     resources :sidebar, only: [:index, :update, :destroy] do
       collection do
         put :sortable
       end
     end
-  end
 
+    get 'cache', to: 'cache#show'
+    delete 'cache', to: 'cache#destroy'
+  end
 
   # Work around the Bad URI bug
   %w{ accounts backend files sidebar }.each do |i|
@@ -108,16 +110,11 @@ Rails.application.routes.draw do
 
   # Admin/XController
   %w{content comments profiles general pages feedback resources sidebar textfilters themes trackbacks users settings tags redirects seo post_types notes }.each do |i|
-    match "/admin/#{i}", :to => "admin/#{i}#index", :format => false
-    match "/admin/#{i}(/:action(/:id))", :to => "admin/#{i}", :action => nil, :id => nil, :format => false
-  end
-
-  namespace :admin do
-    get 'cache', to: 'cache#show'
-    delete 'cache', to: 'cache#destroy'
+    match "/admin/#{i}", to: "admin/#{i}#index", format: false
+    match "/admin/#{i}(/:action(/:id))", to: "admin/#{i}", action: nil, id: nil, format: false
   end
 
   root :to  => 'articles#index', :format => false
 
-  match '*from', :to => 'articles#redirect', :format => false
+  get '*from', :to => 'articles#redirect', :format => false
 end

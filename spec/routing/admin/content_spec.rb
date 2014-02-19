@@ -8,8 +8,7 @@ describe "Admin::ContentController routing" do
   end
 
   it "routes #autosave" do
-    { :post => "/admin/content/autosave"}.should route_to(controller: "admin/content",
-                                                          action: "autosave", :id => nil)
+    { :post => "/admin/content/autosave"}.should route_to(controller: "admin/content", action: "autosave", :id => nil)
   end
 
   it "routes #auto_complete_for_article_keywords" do
