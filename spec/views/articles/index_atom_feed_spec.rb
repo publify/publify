@@ -89,6 +89,7 @@ describe "articles/index_atom_feed.atom.builder" do
       end
 
       it "does not have a summary element in addition to the content element" do
+        render
         rendered_entry.css("summary").should be_empty
       end
     end
