@@ -41,7 +41,6 @@ module Publify
   end
 
   # Load included libraries.
-  require 'localization'
   require 'sidebar'
   require 'publify_sidebar'
   require 'publify_textfilters'
@@ -79,15 +78,6 @@ module Publify
   end
 
   ActionMailer::Base.default :charset => 'utf-8'
-
-  # Work around interpolation deprecation problem: %d is replaced by
-  # {{count}}, even when we don't want them to.
-  # FIXME: We should probably fully convert to standard Rails I18n.
-  class I18n::Backend::Simple
-    def interpolate(locale, string, values = {})
-      interpolate_without_deprecated_syntax(locale, string, values)
-    end
-  end
 
   if ::Rails.env != 'test'
     begin

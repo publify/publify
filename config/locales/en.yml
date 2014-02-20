@@ -1,4 +1,16 @@
 en:
+  meta_sidebar:
+    content:
+      rss_feed: "RSS Feed"
+      admin: "Admin"
+      powered_by_publify: "Powered by Publify"
+      search: "Search"
+  search_sidebar:
+    content:
+      search: "Search"
+  page_sidebar:
+    content:
+      pages: "Pages"
   activerecord:
     errors:
       template:
@@ -147,6 +159,8 @@ en:
   layouts:
     default:
       html:
+        home: "Home"
+        statuses: "Statuses"
         powered_by: "Powered by %{powered_by}"
         designed_by: "Designed by %{designed_by}"
     administration:
@@ -861,6 +875,7 @@ en:
     formats:
       default: "%m/%d/%Y %H:%M"
       short: "%m/%d/%y"
+      with_spaces: "%d %B %y"
       letters_month_with_year: "%m %Y"
   date:
     month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]

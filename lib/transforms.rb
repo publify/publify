@@ -100,7 +100,7 @@ class String
   
   def parse_page(string, params)
     return '' unless params[:page]
-    "#{_('page')} #{params[:page]}"
+    "#{t('.page')} #{params[:page]}"
   end
   
 end

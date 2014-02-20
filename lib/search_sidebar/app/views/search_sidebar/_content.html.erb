@@ -3,6 +3,6 @@
 </h3>
 <%= form_tag({:controller => 'articles',  :action => 'search'}, {:method => 'get', :id => 'sform'}) do %>
   <input type="text" id="q" name="q" value="" size="15" />
-  <input type='submit' value='<%= _("Search") %>' />
+  <input type='submit' value='<%= t(".search") %>' />
 <% end %>
 <br style='clear: right' />

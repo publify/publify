@@ -15,7 +15,7 @@
   <td><%= page.name%></td>
   <td>
     <%= author_link(page) %><br />
-    <small><%= format_date page.created_at %></small>
+    <small><%= l(page.created_at) %></small>
   </td>
 </tr>
 <% end %>

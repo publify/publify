@@ -1,7 +1,7 @@
 <li d="trackback-<%= trackback.id %>">
   <div class="author">
     <a href="<%= trackback.url %>" rel="nofollow"><%= trackback.title %></a>
-    <abbr><% _("From") %> <cite><%= trackback.blog_name %></cite></abbr>
+    <abbr><% t(".from") %> <cite><%= trackback.blog_name %></cite></abbr>
   </div>
   <div class="content">
     <%= trackback.excerpt %>

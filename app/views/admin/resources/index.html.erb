@@ -62,7 +62,7 @@
         <%= upload.mime %>
       </td>
       <td><%=h upload.size rescue 0 -%> bytes</td>
-      <td><%= format_date upload.created_at -%></td>
+      <td><%= l(upload.created_at, format: :short) %></td>
     </tr>
   <% end -%>
     <%= display_pagination(@resources, 6)%>

@@ -1,10 +1,10 @@
 <% unless sidebar.authors.blank? -%>
-<h3><%= _("Authors")%></h3>
+<h3><%= t(".authors")%></h3>
 <ul id="categories">
 <% for user in sidebar.authors -%>
   <li>
     <% count = "(#{user.articles.count})" %>
-    <%= link_to "#{h(user.name)} #{count if sidebar.count}", :controller => 'authors', :action => 'show', :id => user.login  %>
+    <%= link_to "#{h(user.name)} #{count if sidebar.count}", author_path(id: user.login)  %>
   </li>
   <% end %>
 </ul>

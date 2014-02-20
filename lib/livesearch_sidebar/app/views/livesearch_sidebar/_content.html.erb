@@ -5,11 +5,4 @@
   <%= text_field_tag :q, '', {:id => "live_search", :size => 15, :autocomplete => "off"} %>
   <%= image_tag "spinner-blue.gif", :id => 'search_spinner', :style => 'display:none;' %>
 <% end %>
-<%= observe_field "live_search", :frequency => 1,
-    :url => live_search_articles_url,
-    :loading => "Element.show('search_spinner')",
-    :complete => "Element.hide('search_spinner')",
-    :update => "search-results",
-    :with => "'q=' + encodeURIComponent($F('live_search'))" -%>
-
 <div id="search-results" class="results"></div>

@@ -1,4 +1,4 @@
-<h1><%= _('Search results for:')%> <%= h(params[:q]) %></h1>
+<h1><%= t('.search_results_for')%> <%= h(params[:q]) %></h1>
 
 <% @articles.each do |article| %>
 <div id="article-<%= article.id %>">

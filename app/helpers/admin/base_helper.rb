@@ -53,14 +53,6 @@ module Admin::BaseHelper
     end
   end
 
-  def format_date(date)
-    date.strftime('%d/%m/%Y')
-  end
-
-  def format_date_time(date)
-    date.strftime('%d/%m/%Y %H:%M')
-  end
-
   def published_or_not(item)
     return content_tag(:span, t(".published"), class: 'label label-success') if item.state.to_s.downcase == 'published'
     return content_tag(:span, t(".draft"), class: 'label label-info') if item.state.to_s.downcase == 'draft'
@@ -99,10 +91,6 @@ module Admin::BaseHelper
   def button_to_short_url(item)
     return "" if item.short_url.nil?
     link_to(content_tag(:span, '', class: 'glyphicon glyphicon-link'), item.short_url, {class: 'btn btn-success btn-xs btn-action'})
-  end
-
-  def button_to_show(item)
-    link_to_permalink(item, content_tag(:span, '', class: 'glyphicon glyphicon-link'), nil, 'btn btn-success btn-xs btn-action')
   end
 
   def twitter_available?(blog, user)
