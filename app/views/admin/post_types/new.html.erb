@@ -41,7 +41,9 @@
         <tr>
           <td>
             <%= pt.name %><br />
-            <%= show_post_types_actions pt %>
+            <div class='action'>
+              <%= [button_to_edit(pt), button_to_delete(pt)].join(" ").html_safe %>
+            </div>
           </td>
           <td><%= h pt.description %></td>
           <td><%= pt.permalink %></td>

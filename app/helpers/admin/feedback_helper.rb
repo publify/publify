@@ -29,10 +29,6 @@ module Admin::FeedbackHelper
     link_to(content_tag(:span, '', class: 'glyphicon glyphicon-share-alt'), {controller: 'admin/feedback', action: 'article', id: item.article_id}, {class: 'btn btn-default btn-xs btn-action'})  
   end  
 
-  def filter_link(text, filter='', style='')
-    return content_tag(:span, text, {:class => 'label'}) unless [params[:published], params[:confirmed], params[:ham], params[:spam], params[:presumed_ham], params[:presumed_spam]].include?('f')
-  end
-  
   def change_status(item, context='listing')
     status = (item.state.to_s.downcase =~ /spam/) ? :ham : :spam
     klass = (item.state.to_s.downcase =~ /spam/) ? 'up' : 'down'
