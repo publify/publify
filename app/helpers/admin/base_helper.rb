@@ -1,8 +1,59 @@
 module Admin::BaseHelper
   include ActionView::Helpers::DateHelper
 
+  def toggle_element(element, label=t('.change'))
+    link_to(label, "##{element}", :"data-toggle" => :collapse)
+  end
+
+  def dashboard_action_links
+    links = []
+    links << link_to(t('.write_a_post'), controller: 'content', action: 'new') if current_user.can_access_to_articles?
+    links << link_to(t('.write_a_page'), controller: 'pages', action: 'new') if current_user.can_access_to_pages?
+    links << link_to(t(".update_your_profile_or_change_your_password"), controller: 'profiles', action: 'index')
+    links.join(', ')
+  end
+
+  def show_redirect_actions item
+    content_tag(:div, {:class => 'action'}) do
+      [ button_to_edit(item),
+        button_to_delete(item) ].join(" ").html_safe
+    end
+  end
+
+  def show_rss_description
+    Article.first.get_rss_description rescue ""
+  end
+
+  def show_tag_actions item
+    content_tag(:div, {:class => 'action'}) do
+      [ button_to_edit(item),
+        button_to_delete(item),
+        link_to_permalink(item, "#{item.articles.size} <span class='glyphicon glyphicon-link'></span>".html_safe, nil, 'btn btn-success btn-xs').html_safe
+        ].join(" ").html_safe
+    end
+  end
+
+  def class_for_admin_state(sidebar, this_position)
+    case sidebar.admin_state
+    when :active
+      return 'active alert-info'
+    when :will_change_position
+      if this_position == sidebar.active_position
+        return 'will_change ghost'
+      else
+        return 'will_change alert-warning'
+      end
+    else
+      raise sidebar.admin_state.inspect
+    end
+  end
+
+  def robot_writable?
+    File.writable?"#{::Rails.root.to_s}/public/robots.txt"
+  end
+
   def tab_for(current_module)
-    content_tag(:li, link_to(current_module.menu_name, current_module.menu_url))    
+    content_tag(:li, link_to(current_module.menu_name, current_module.menu_url))
   end
 
   def subtabs_for(current_module)
