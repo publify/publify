@@ -1,42 +1,49 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <title>Publify by publify</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <title>Publify by The publify team</title>
   </head>
-
   <body>
-    <div id="container">
-      <div class="inner">
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Publify</h1>
+        <p class="header">Publify is the oldest and most powerful Ruby on Rails blogware, providing custom templates, powerful drag and drop plugins API, advanced SEO capabilities, XMLRPC API and many more.</p>
 
-        <header>
-          <h1>Publify</h1>
-          <h2>Publify is a free Web software you can use to create your blog or Web site. It is simple and powerful at the same time with a comprehensive template engine, plugin system, an API and advanced SEO capabilities. Publify is built by a core of dozens of volounteers to help you take your Web back.</h2>
-        </header>
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/publify/publify/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/publify/publify/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/publify/publify">View On GitHub</a></li>
+        </ul>
 
-        <section id="downloads" class="clearfix">
-          <a href="http://publify.co/stable.zip" id="download-zip" class="button"><span>Download .zip</span></a>
-          <a href="http://publify.co/stable.tgz" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
-          <a href="https://github.com/fdv/publify" id="view-on-github" class="button"><span>View on GitHub</span></a>
-        </section>
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/publify">publify</a></p>
 
-        <hr>
 
-        <section id="main_content">
-          <h1>Publify</h1>
+      </header>
+      <section>
+        <h1>
+<a name="publify" class="anchor" href="#publify"><span class="octicon octicon-link"></span></a>Publify</h1>
 
-<h3>Table of contents</h3>
+<p><strong>The Rails blogging engine formerly known as Typo</strong></p>
+
+<p><a href="https://travis-ci.org/publify/publify"><img src="https://travis-ci.org/publify/publify.png" alt="Build Status"></a>
+<a href="https://codeclimate.com/github/publify/publify"><img src="https://codeclimate.com/github/publify/publify.png" alt="Code Climate"></a>
+<a href="https://gemnasium.com/fdv/publify"><img src="https://gemnasium.com/fdv/publify.png" alt="Dependency Status"></a></p>
+
+<h3>
+<a name="table-of-contents" class="anchor" href="#table-of-contents"><span class="octicon octicon-link"></span></a>Table of contents</h3>
 
 <ul>
-<li>  <a href="#themissingweblogengine">The missing weblog engine</a>
+<li>  <a href="#themissingweblogengine">The missing publishing platforn</a>
 </li>
 <li>  <a href="#publifydemo">Publify demo</a>
 </li>
@@ -67,61 +74,6 @@
 </ul>
 </li>
 <li>
-<p><a href="#createasimpletheme">Create a simple theme</a></p>
-
-<ul>
-<li>  <a href="#createasimplethemeheader">Header</a>
-</li>
-<li>  <a href="#createasimplethemebody">Body</a>
-</li>
-</ul>
-</li>
-<li>
-<p><a href="#advancedthemecreation">Advanced theme creation</a></p>
-
-<ul>
-<li>  <a href="#advancedthemecreationpavethepath">Pave the path</a>
-</li>
-<li>  <a href="#advancedthemecreationcreatetemplate">Create the templates</a>
-</li>
-</ul>
-</li>
-<li>
-<p><a href="#advancedplugins">Advanced plugins</a></p>
-
-<ul>
-<li>  <a href="#advancedplugins-createtheplugin">Create the plugin</a>
-</li>
-<li>  <a href="#advancedplugins-makeyourcodeaccessible">Make your code
-accessible</a>
-</li>
-<li>  <a href="#advancedplugins-therouting">The routing</a>
-</li>
-<li>  <a href="#advancedplugins-themodels">The models</a>
-</li>
-<li>  <a href="#advancedplugins-thefront">The front</a>
-
-<ul>
-<li>  <a href="#advancedplugins-thefront-controllers">Controllers</a>
-</li>
-<li>  <a href="#advancedplugins-thefront-views">Views</a>
-</li>
-</ul>
-</li>
-<li>  <a href="#advancedplugins-theadmin">The admin</a>
-
-<ul>
-<li>  <a href="#advancedplugins-theadmin-add-your-module">Add your module</a>
-</li>
-<li>  <a href="#advancedplugins-theadmin-controllers">Controllers</a>
-</li>
-<li>  <a href="#advancedplugins-theadmin-views">Views</a>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
 <p><a href="#usefullinks">Useful links</a></p>
 
 <ul>
@@ -136,16 +88,17 @@ accessible</a>
 <li><p><a href="#maintainers">Maintainers</a></p></li>
 </ul><p><a name="themissingweblogengine"></a></p>
 
-<h2>The missing weblog engine</h2>
+<h2>
+<a name="the-missing-publishing-platform" class="anchor" href="#the-missing-publishing-platform"><span class="octicon octicon-link"></span></a>The missing publishing platform</h2>
 
-<p>Publify is a modern, lightweight, comprehensive, full featured Weblog
-engine using Ruby on Rails. It’s been around since 2004 and probably the
-oldest open source project based on Ruby on Rails.</p>
+<p>Publify is a modern, comprehensive, extensible, full featured publishing platform composed of a blogging engine and a mini message system connected to Twitter. Publify has been around since 2004 ans is the oldest Ruby on Rails open source project alive.</p>
 
 <p>Publify provides you with everything you need to easily publish content on
 the Web.</p>
 
-<p><strong>Multi user:</strong> role based management for multiple authors Web sites.</p>
+<p><strong>A nice, user friendly blogging platform providing an incredible writing experience</strong></p>
+
+<p><strong>Multi user:</strong> role based management for multiple author websites.</p>
 
 <p><strong>Powerful plugin engine:</strong> available both in page, as text filters and
 as widgets.</p>
@@ -154,19 +107,20 @@ as widgets.</p>
 redesigned according to your needs without changing a single line of the
 core engine.</p>
 
-<p><strong>Cool API:</strong> Publify supports the various blogging engine APIs so you can
+<p><strong>Cool API:</strong> Publify supports various blogging engine APIs so you can
 publish from desktop clients.</p>
 
-<p><strong>On demand editor:</strong> Publify supports various editors (visual, plain HTML,
+<p><strong>On demand syntax:</strong> Publify supports various syntax (plain HTML,
 Markdown, Textile)</p>
 
 <p><strong>Multilingual</strong>: Publify is (more or less) translated in English, French,
-German, Danish, Norvegian, Japanese, Hebrew, Simple Chinese, Mexicain
+German, Danish, Norvegian, Japanese, Hebrew, Simplified Chinese, Mexicain
 Spanish, Italian, Lituanese, Dutch, Polish, Romanian…</p>
 
 <p><a name="publifydemo"></a></p>
 
-<h2>Publify demo</h2>
+<h2>
+<a name="publify-demo" class="anchor" href="#publify-demo"><span class="octicon octicon-link"></span></a>Publify demo</h2>
 
 <p>If you want to give Publify a try, check out <a href="http://demo.publify.co">our full featured
 demo</a></p>
@@ -175,37 +129,40 @@ demo</a></p>
 are:</p>
 
 <ul>
-<li>  Administrator: admin / admin</li>
-<li>  Publisher: publish / publish</li>
-</ul><p>The demo is reset every hour.</p>
+<li>Administrator: admin / admin</li>
+<li>Publisher: publish / publish</li>
+</ul><p>The demo is reset every 2 hours.</p>
 
 <p><a name="downloadpublify"></a></p>
 
-<h2>Download Publify</h2>
+<h2>
+<a name="download-publify" class="anchor" href="#download-publify"><span class="octicon octicon-link"></span></a>Download Publify</h2>
 
-<p>For a production blog, you should download <a href="http://publify.co/stable.tgz">download Publify
-6.1.4</a></p>
+<p>If you want to play it safe, you can download the latest <a href="http://publify.co/stable.tgz">stable release</a>.</p>
 
-<p>If you feel adventurous or want to hack on Publify, <a>clone Publify
-repository</a></p>
+<p>If you feel adventurous or want to hack on Publify, <a href="https://github.com/publify/publify.git">clone Publify
+repository</a>.</p>
 
 <p><a name="installpublifylocally"></a></p>
 
-<h2>Install Publify locally</h2>
+<h2>
+<a name="install-publify-locally" class="anchor" href="#install-publify-locally"><span class="octicon octicon-link"></span></a>Install Publify locally</h2>
 
 <p><a name="prerequisites"></a></p>
 
-<h3>Prerequisites</h3>
+<h3>
+<a name="prerequisites" class="anchor" href="#prerequisites"><span class="octicon octicon-link"></span></a>Prerequisites</h3>
 
 <p>To install Publify you need the following:</p>
 
 <ul>
-<li>  Ruby 1.9.2 or 1.9.3.</li>
-<li>  Ruby On Rails 3.2.12</li>
+<li>  Ruby 1.9.3 or 2.0</li>
+<li>  Ruby On Rails 3.2.14</li>
 <li>  A database engine, MySQL, PgSQL or SQLite3</li>
 </ul><p><a href="installpublify"></a></p>
 
-<h3>Install Publify</h3>
+<h3>
+<a name="install-publify" class="anchor" href="#install-publify"><span class="octicon octicon-link"></span></a>Install Publify</h3>
 
 <ol>
 <li> Unzip Publify archive</li>
@@ -213,42 +170,46 @@ repository</a></p>
 <li> Edit database.yml to add your database name, login and password.</li>
 </ol><pre><code>$ bundle install
 $ rake db:create
+$ rake db:migrate
+$ rake db:seed
 $ ./script/rails server
 </code></pre>
 
-<p>You don’t need to run <code>rake db:migrate</code> and <code>rake db:seed</code> as Publify will
-take care of everything the first time you access 127.0.0.1:3000.</p>
+<p>You can now launch you browser and access to 127.0.0.1:3000.</p>
 
 <p><a name="installpublifyonheroku"></a></p>
 
-<h2>Install Publify on Heroku</h2>
+<h2>
+<a name="install-publify-on-heroku" class="anchor" href="#install-publify-on-heroku"><span class="octicon octicon-link"></span></a>Install Publify on Heroku</h2>
 
-<p>In order to install Publify on Heroku, you’ll need to do some minor tweaks…</p>
+<p>In order to install Publify on Heroku, you’ll need to do some minor tweaks.</p>
 
 <p><a name="database"></a></p>
 
-<h3>Database</h3>
+<h3>
+<a name="database" class="anchor" href="#database"><span class="octicon octicon-link"></span></a>Database</h3>
 
 <p>Just add the Heroku Postgres plugin to your app. When deploying, Heroku
 will write the database configuration so you don’t have to do anything.</p>
 
 <p><a name="storage"></a></p>
 
-<h3>Storage</h3>
+<h3>
+<a name="storage" class="anchor" href="#storage"><span class="octicon octicon-link"></span></a>Storage</h3>
 
 <p>You need to setup Amazon s3 storage to be able to upload files on your
-blog. Edit <code>config/storage.yml</code></p>
+blog. Set heroku config vars.</p>
 
-<pre><code>provider: AWS
-engine: AWS
-aws_access_key_id: YOUR_AWS_ACCESS_KEY_ID
-aws_secret_access_key: YOUR_AWS_SECRET_ACCESS_KEY
-aws_bucket: YOUR_AWS_BUCKET_NAME
+<pre><code>$ heroku config:set provider=AWS \
+  aws_access_key_id=YOUR_AWS_ACCESS_KEY_ID \
+  aws_secret_access_key=YOUR_AWS_SECRET_ACCESS_KEY \
+  aws_bucket=YOUR_AWS_BUCKET_NAME
 </code></pre>
 
 <p><a name="gemfile"></a></p>
 
-<h3>Gemfile</h3>
+<h3>
+<a name="gemfile" class="anchor" href="#gemfile"><span class="octicon octicon-link"></span></a>Gemfile</h3>
 
 <p>Replace the default <code>Gemfile</code> by <code>Gemfile.heroku</code> :
 <code>cp Gemfile Gemfile.heroku</code>.
@@ -265,431 +226,39 @@ which is rather slow. Just add thin to get some free speed.</p>
 
 <p><a name="gemfilelock"></a></p>
 
-<h3>Gemfile.lock</h3>
+<h3>
+<a name="gemfilelock" class="anchor" href="#gemfilelock"><span class="octicon octicon-link"></span></a>Gemfile.lock</h3>
 
 <p>Heroku needs Gemfile.lock to be in the Git repository. Remove
 Gemfile.lock from .gitignore and add it <code>git add .gitignore
 Gemfile.lock</code></p>
 
-<p><a name="createasimpletheme"></a></p>
-
-<h2>Create a simple theme</h2>
-
-<p>Publify offers a very slick and evolved theme engine. It allows theme
-developers to override every view of the application, or just add their
-own layout, stylesheet, and let Publify do the job.</p>
-
-<p>A Publify template is made with a <em>minimum</em> of three main files:</p>
-
-<ul>
-<li>  The layout.</li>
-<li>  A CSS stylesheet.</li>
-<li>  An about file using Markdown.</li>
-<li>  You can eventually add a screenshot, and some fancy pictures in your
-theme, but they are not mandatory.</li>
-</ul><p>Browsing a default Publify theme looks like:</p>
-
-<pre><code>themes 
-      \_ my theme
-                 \_ about.markdown
-                 \_ images
-                 \_ layouts
-                           \_ default.html.erb
-                 \_ preview.png
-                 \_ stylesheets
-                               \_ style.css
-</code></pre>
-
-<p>Your main file is in <code>layouts/default.html.erb</code>, which is your theme
-main template. This is a simple RHTML file in which you’ll call Publify
-main methods.</p>
-
-<p><a name="createasimplethemeheader"></a></p>
-
-<h3>Header</h3>
-
-<p>This is a standard HTML file header, along with some Ruby calls. Nothing
-complicated at all here.</p>
-
-<pre><code>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;
-&lt;html xmlns="http://www.w3.org/1999/xhtml" lang="fr"&gt;
-&lt;head profile="http://gmpg.org/xfn/11"&gt;
-  &lt;title&gt;&lt;%= h(page_title) %&gt;&lt;/title&gt;
-  &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8" /&gt;
-  &lt;meta http-equiv="Content-Language" content="fr" /&gt;
-
-  &lt;%= stylesheet_link_tag "/stylesheets/theme/style", :media =&gt; ‘all’ %&gt;
-  &lt;%= page_header %&gt;
-&lt;/head&gt;
-</code></pre>
-
-<p>There are some things you must pay attention to:</p>
-
-<ul>
-<li>  <code>h(page_title)</code> is the title of the current document. This is
-generated by Publify, and translation in supported languages is done
-when avaliable.</li>
-<li>  <code>stylesheet_link_tag</code> is where you call your CSS stylesheet. It will
-always be in <code>/stylesheets/theme/</code>. Some call it <code>style.css</code>, some
-<code>application.css</code>, but do whatever you want.</li>
-<li>  <code>page_header</code> with display a page header generated by Publify. It will
-provide:
-
-<ul>
-<li>  ICBM tag, for geo localization.</li>
-<li>  Your meta description.</li>
-<li>  Your meta keywords.</li>
-<li>  Your RSD.</li>
-<li>  URLs for both your RSS and Atom feeds, for automatic discovery.</li>
-<li>  Stylesheets used by Publify embedded plugins, so that you don’t
-have to care.</li>
-<li>  Google Analytics tags, if provided.</li>
-</ul>
-</li>
-</ul><p><a name="createasimplethemebody"></a></p>
-
-<h3>Body</h3>
-
-<p>Every <code>div</code> included here is not mandatory. You just need to care about
-the Ruby calls.</p>
-
-<pre><code>&lt;body&gt;
-&lt;div id="header"&gt;
-  &lt;h1&gt;&lt;a href="&lt;%= this_blog.base_url %&gt;"&gt;&lt;%= this_blog.blog_name %&gt;&lt;/a&gt;&lt;/h1&gt;
-  &lt;h2&gt;&lt;%= this_blog.blog_subtitle %&gt;&lt;/h2&gt;
-&lt;/div&gt;
-
-&lt;div id="page"&gt;
-  &lt;div id="content"&gt;
-    &lt;%= yield %&gt;
-  &lt;/div&gt;
-
-  &lt;div id="sidebar"&gt;
-    &lt;%= render_sidebars %&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-
-<p>The importants things are:</p>
-
-<ul>
-<li>  <code>this_blog.base_url</code> is your blog URL defined in your settings.</li>
-<li>  <code>this_blog.name</code> is your blog title, defined in your settings.</li>
-<li>  <code>this_blog.blog_subtitle</code> is your blog tagline, defined in your
-settings.</li>
-<li>  <code>yield</code> is the most important part of your layout. It renders the
-page main content according to what you’re browsing (articles, tags,
-categories…)</li>
-<li>  <code>render_sidebars</code> displays your sdebar made of Publify plugins.</li>
-</ul><p>Here you are. You can now build a standard Publify theme and profit from
-the great things Publify can provide.</p>
-
-<p><a name="advancedthemecreation"></a></p>
-
-<h2>Advanced theme cration</h2>
-
-<p>Publify offers custom post type. Let’s say you blog about tech and wine,
-and want to display wine posts differently. You upload an attached
-picture to every wine related post and want it to be displayed in every
-article. You also have a custom CSS for wine blocks, and don’t want
-people to comment on your wine reviews (this is to make the sample template
-more readable). You also want to apply this to the category page.</p>
-
-<p><a name="advancedthemecreationpavethepath"></a></p>
-
-<h3>Pave the path</h3>
-
-<p>First, login to your blog admin and go to Article → Post Types.
-Create a new post type called Wine.</p>
-
-<p>Now, create a new category in Articles → Categories. We’ll call it
-Wine too.</p>
-
-<p><a name="advancedthemecreationcreatetemplate"></a></p>
-
-<h3>Create the templates</h3>
-
-<p>Create two custom templates: one to display wine related articles, and one
-to display the Wine category.</p>
-
-<p>First, create a template called <code>wine.html.erb</code> in your
-<code>theme/views/articles/</code> directory. If the <code>views/articles</code> directory
-doesn’t exist, create it. The template will probably look like something
-like this:</p>
-
-<pre><code>&lt;div class="wine" %&gt;&gt;
-  &lt;h2&gt;&lt;%= link_to_permalink @article, @article.title %&gt;&lt;/h2&gt;
-  &lt;p class="auth"&gt;&lt;%= _("Posted by")%&gt; &lt;%= author_link(@article) %&gt;
-  &lt;%= display_date_and_time @article.published_at %&gt;&lt;/p&gt;
-  &lt;%= @article.html(:body) %&gt;
-  &lt;!-- This display the attached images --&gt;
-  &lt;% @article.resources.each do |upload| %&gt;
-    &lt;img src='&lt;%= "#{this_blog.base_url}/files/#{upload.filename}" %&gt;' class="centered" /&gt;
-  &lt;% end %&gt;
-  &lt;div class="extended"&gt;
-    &lt;%= @article.html(:extended) %&gt;
-  &lt;/div&gt;
-
-&lt;/div&gt;
-&lt;p class="meta"&gt;
-  &lt;%= article_links @article %&gt;
-&lt;/p&gt;
-</code></pre>
-
-<p>Do the same with the wine category. In your theme <code>/views/categories</code>,
-create a <code>wine.html.erb</code> template. This is adapted from the
-<code>category/show.html.erb</code> of one of the stock themes.</p>
-
-<pre><code>&lt;h1&gt;&lt;%= link_to "Wine", "#{this_blog.base_url}/category/#{params[:id]}" %&gt;&lt;/h1&gt;
-
-&lt;div class='category-excerpt &lt;%= "border" if @article_counter &gt;= 0 %&gt;' id="article-&lt;%= article.id %&gt;"&gt;
-
-&lt;% @articles.each do |article| %&gt;
-  &lt;h2&gt;&lt;%= link_to_permalink(article, article.title) %&gt;&lt;/h2&gt;
-  &lt;p class="auth"&gt;&lt;%= _("Posted by")%&gt; &lt;%= author_link(earticle) %&gt;
-  &lt;%= display_date_and_time article.published_at %&gt;&lt;/p&gt;
-  &lt;%= article.html(:body) %&gt;
-  &lt;!-- This display the attached images --&gt;
-  &lt;% article.resources.each do |upload| %&gt;
-    &lt;img src='&lt;%= "#{this_blog.base_url}/files/#{upload.filename}" %&gt;' class="centered" /&gt;
-  &lt;% end %&gt;
-  &lt;div class="extended"&gt;
-    &lt;%= article.html(:extended) %&gt;
-  &lt;/div&gt;
-&lt;% end %&gt;
-&lt;/div&gt;
-
-&lt;div id='paginate'&gt;
-  &lt;%= paginate @articles, { :previous_label =&gt; _('Previous'), :next_label =&gt; _('Next')  } %&gt;
-&lt;/div&gt;
-</code></pre>
-
-<p>Here you are, you can now write about wine. Just don’t forget to choose
-the wine post type within the editor.</p>
-
-<p><a name="advancedplugins"></a></p>
-
-<h2>Advanced plugins</h2>
-
-<p><a name="advancedplugins-createtheplugin"></a></p>
-
-<h3>Create the plugin</h3>
-
-<p>As Publify plugins are just plain Rails plugins, creation is kinda trivial.</p>
-
-<pre><code>./script/rails generate plugin publify_sample_plugin
-</code></pre>
-
-<p>Create some folders to reflect a Rails application tree:</p>
-
-<pre><code>cd vendor/plugins/publify_sample_plugin
-mkdir -p app/controllers/admin app/models app/helpers/admin config app/views/admin
-</code></pre>
-
-<p><a name="advancedplugins-makeyourcodeaccessible"></a></p>
-
-<h3>Make your code accessible</h3>
-
-<p>Mmake Publify access your code. Edit your <code>init.rb</code> file and add the
-following:</p>
-
-<pre><code>PLUGIN_NAME = 'publify_sample_plugin'
-PLUGIN_PATH = "#{::Rails.root.to_s}/vendor/plugins/#{PLUGIN_NAME}"
-PLUGIN_CONTROLLER_PATH = "#{PLUGIN_PATH}/app/controllers"
-PLUGIN_VIEWS_PATH = "#{PLUGIN_PATH}/app/views"
-PLUGIN_HELPER_PATH = "#{PLUGIN_PATH}/app/helpers"
-PLUGIN_MODELS_PATH = "#{PLUGIN_PATH}/app/models" 
-
-config.autoload_paths += %W(#{PublifySamplePlugin::PLUGIN_CONTROLLER_PATH}  
-                            #{PublifySamplePlugin::PLUGIN_HELPER_PATH}      
-                            #{PublifySamplePlugin::PLUGIN_VIEWS_PATH}       
-                            #{PublifySamplePlugin::PLUGIN_MODELS_PATH}
-
-ActionView::Base.send(:include, PublifySamplePlugin::Helper)
-</code></pre>
-
-<p><a name="advancedplugins-therouting"></a></p>
-
-<h3>The routing</h3>
-
-<p>Unless Rails generators, your plugin won’t be allowed to change
-routes.rb. We want our end users to remove them if they don’t want them
-anymore. So we’re going to create our own <code>config/routes.rb</code>. It’s going
-to look like this:</p>
-
-<pre><code>ActionController::Routing::Routes.draw do |map|
-  map.connect 'sample_plugin/:action', :controller =&gt; 'publify_sample', :action =&gt; 'index'
-
-  %w{ sample_plugin }.each do |i|
-    map.connect "/admin/#{i}", :controller =&gt; "admin/#{i}", :action =&gt; 'index'
-    map.connect "/admin/#{i}/:action/:id", :controller =&gt; "admin/#{i}", :action =&gt; nil, :id =&gt; nil
-  end
-end
-</code></pre>
-
-<p>I know, we’re still using Rails 2 routing DSL. It’s bad but Rails 3
-can’t handle everything we do.</p>
-
-<p>The first block is for your frontend controllers, the second one for the
-admin. Easy as pie isn’t it?</p>
-
-<p><a name="advancedplugins-themodels"></a></p>
-
-<h3>The models</h3>
-
-<p>Add your models files in app/models exactly like on any Rails
-application. You can use any Active Record relations you want and access
-or extend existing Publify models.</p>
-
-<p>To create your database schema, edit your <code>init.rb</code> file, and add the
-following code:</p>
-
-<pre><code>unless ::PublifySamplePlugin.table_exists?
-  ActiveRecord::Schema.create_table(PublifySamplePlugin.table_name) do |t|
-    t.column :name,  :string
-    t.column :description,  :text
-  end
-end
-</code></pre>
-
-<p><a name="advancedplugins-thefront"></a></p>
-
-<h3>The front</h3>
-
-<p><a name="advancedplugins-thefront-controllers"></a></p>
-
-<h4>Controllers</h4>
-
-<p>To be able to display your content within your Publify blog layout, every
-front end controller will need the following code:</p>
-
-<pre><code>class PublifySamplePluginController &lt; ActionController::Base 
-  unloadable
-  layout :theme_layout
-  before_filter :template_root
-
-  def template_root
-    self.class.view_paths = ::ActionController::Base.view_paths.dup.unshift(PublifySamplePlugin::PLUGIN_VIEWS_PATH)
-  end
-
-  def theme_layout
-    File.join("#{::Rails.root.to_s}/themes/#{Blog.default.theme}/views", Blog.default.current_theme.layout(self.action_name))
-  end
-
-end
-</code></pre>
-
-<p>There’s certainly a cleaner way to do it by not repeating the code, but
-I’ll dig into it later.</p>
-
-<p><a name="advancedplugins-thefront-views"></a></p>
-
-<h4>Views</h4>
-
-<p>Nothing special here. Really.</p>
-
-<p><a name="advancedplugins-theadmin"></a></p>
-
-<h3>The admin</h3>
-
-<p>OK, now you want to give your plugin a fancy back office? Let’s go.</p>
-
-<p><a name="advancedplugins-theadmin-add-your-module"></a></p>
-
-<h4>Add your modules to the admim</h4>
-
-<p>Edit your <code>init.rb</code>. In your model creation block, add the following:</p>
-
-<pre><code>admin = Profile.find_by_label('admin')
-admin.modules &lt;&lt; :publifysampleplugin
-admin.save
-
-publisher = Profile.find_by_label('publisher')
-publisher.modules &lt;&lt; :publifysampleplugin
-publisher.save    
-</code></pre>
-
-<p>This will update both admin and publisher profiles giving them the
-rights to access your plugin admin.</p>
-
-<p>Add them to the access control list (and the menu as well). This is
-still in init.rb</p>
-
-<pre><code>AccessControl.map :require =&gt; [ :admin, :publisher, :contributor ]  do |map|
-  map.project_module :publifysampleplugin, nil do |project|
-    project.menu    "My plugin meny",  { :controller =&gt; "admin/publify_sample_plugin" }
-    project.submenu "My submenu", {:controller =&gt; "admin/publify_sample_plugin_other" }
-  end
-end
-</code></pre>
-
-<p>Edit your lib/publify_sample_plugin.rb and add the following:</p>
-
-<pre><code>module Helper
-  def class_publifysampleplugin
-  return class_selected_tab if controller.controller_name  =~ /publify_sample_plugin/
-  class_tab  
-  end
-end
-</code></pre>
-
-<p>This allows you to manage the tabs highlight in the admin.</p>
-
-<p><a name="advancedplugins-theadmin-controllers"></a></p>
-
-<h4>Controllers</h4>
-
-<p>Your controllers will go to <code>app/controllers/admin</code> and will all look
-like this, pretty like normal admin controllers:</p>
-
-<pre><code>module Admin; end
-
-class Admin::PublifySamplePluginController &lt; Admin::BaseController
-  layout 'administration'
-  unloadable
-
-    ...
-end
-</code></pre>
-
-<p><a name="advancedplugins-theadmin-views"></a></p>
-
-<h4>Views</h4>
-
-<p>Publify plugins admin views look like normal admin views. Minimum code is:</p>
-
-<pre><code>&lt;% @page_heading = _('Sample plugin') %&gt;
-&lt;% subtabs_for(:publifysampleplugin) %&gt;
-</code></pre>
-
-<p>You can access any admin helper like save_or_cancel or link_to_new.</p>
-
 <p><a name="usefullinks"></a></p>
 
-<h2>Useful links</h2>
+<h2>
+<a name="useful-links" class="anchor" href="#useful-links"><span class="octicon octicon-link"></span></a>Useful links</h2>
 
 <p><a name="enhanceyourblog"></a></p>
 
-<h3>Enhance your blog</h3>
+<h3>
+<a name="enhance-your-blog" class="anchor" href="#enhance-your-blog"><span class="octicon octicon-link"></span></a>Enhance your blog</h3>
 
 <ul>
-<li>  <a href="https://github.com/fdv/publify/wiki/Sidebar-plugins">Sidebar Plugins</a>
+<li>  <a href="https://github.com/publify/publify/wiki/Sidebar-plugins">Sidebar Plugins</a>
 </li>
-<li>  <a href="https://github.com/fdv/publify/wiki/In-Page-Plugins">In page Plugins</a>
+<li>  <a href="https://github.com/publify/publify/wiki/In-Page-Plugins">In page Plugins</a>
 </li>
 </ul><p><a name="moreresources"></a></p>
 
-<h3>More resources:</h3>
+<h3>
+<a name="more-resources" class="anchor" href="#more-resources"><span class="octicon octicon-link"></span></a>More resources:</h3>
 
 <ul>
 <li>  <a href="http://publify.co/stable.tgz">Download Publify source code</a>
 </li>
-<li>  <a href="https://github.com/fdv/publify/issues"><strong>Report a bug</strong></a>
+<li>  <a href="https://github.com/publify/publify/issues"><strong>Report a bug</strong></a>
 </li>
-<li>  <a href="http://wiki.github.com/fdv/publify/frequently-asked-questions"><strong>Frequently Asked
+<li>  <a href="https://github.com/publify/publify/wiki/frequently-asked-questions"><strong>Frequently Asked
 Questions</strong></a>
 </li>
 <li>  <a href="http://blog.publify.co">Official Publify blog</a>
@@ -698,20 +267,18 @@ Questions</strong></a>
 </li>
 </ul><p><a name="support"></a></p>
 
-<h3>Support</h3>
+<h3>
+<a name="support" class="anchor" href="#support"><span class="octicon octicon-link"></span></a>Support</h3>
 
 <p>If you need help or want to contribute to Publify, you should start with
 the following:</p>
 
 <ul>
 <li>  IRC: #publify on irc.freenode.net</li>
-<li>  <a href="http://rubyforge.org/mailman/listinfo/publify-list">Mailing list</a>
-</li>
 </ul><p><a name="maintainers"></a></p>
 
-<h2>Maintainers</h2>
-
-<p><a href="https://codeclimate.com/github/fdv/publify"><img src="https://codeclimate.com/badge.png" alt=""></a></p>
+<h2>
+<a name="maintainers" class="anchor" href="#maintainers"><span class="octicon octicon-link"></span></a>Maintainers</h2>
 
 <p>This is a list of Publify maintainers. If you have committed, please add
 your name and contact details to the list.</p>
@@ -732,7 +299,7 @@ irc: ook</p>
 blog: <a href="http://elsif.fr">http://elsif.fr</a>
 irc: yaf</p>
 
-<p>And <a href="https://github.com/fdv/publify/graphs/contributors">many more cool people who’ve one day or another contributed to
+<p>And <a href="https://github.com/publify/publify/graphs/contributors">many more cool people who’ve one day or another contributed to
 Publify</a>.</p>
 
 <p><strong>Original Author: Tobias Luetke</strong>
@@ -741,15 +308,12 @@ irc: xal</p>
 
 <p>Enjoy,
 The Publify team</p>
-        </section>
-
-        <footer>
-          Publify is maintained by <a href="https://github.com/fdv">fdv</a><br>
-          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.
-        </footer>
-
-        
-      </div>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
     </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
   </body>
 </html>
