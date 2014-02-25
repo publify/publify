@@ -9,8 +9,10 @@ describe Admin::NotesController do
     before(:each) { request.session = { user: admin.id } }
 
     describe :index do
+      let!(:notes) { [create(:note), create(:note)] }
       before(:each) { get :index }
-      it { expect(response).to redirect_to(action: 'new') }
+      it { expect(response).to render_template('index') }
+      it { expect(assigns(:notes).sort).to eq(notes.sort) }
     end
 
     describe :new do
@@ -18,13 +20,11 @@ describe Admin::NotesController do
       it { expect(response).to render_template('new') }
     end
 
-    describe "Editing an existing note" do
+    describe :edit do
       let(:note) { create(:note) }
 
-      it 'should render template edit' do
-        get 'edit', :id => note.id
-        response.should render_template('new')
-      end
+      before(:each) { get :edit, id: note.id }
+      it { expect(response).to render_template('new') }
     end
 
     describe :new do

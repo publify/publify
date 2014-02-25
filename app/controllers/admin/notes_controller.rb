@@ -3,7 +3,7 @@ class Admin::NotesController < Admin::BaseController
   cache_sweeper :blog_sweeper
 
   def index
-    redirect_to action: 'new' 
+    @notes = Note.page(params[:page]).per(this_blog.limit_article_display)
   end
 
   def new
