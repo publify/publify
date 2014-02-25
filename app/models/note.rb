@@ -88,7 +88,6 @@ class Note < Content
 
     begin
       options = {}
-
       if self.in_reply_to_status_id and self.in_reply_to_status_id != ""
         options = {:in_reply_to_status_id => self.in_reply_to_status_id}
         self.in_reply_to_message = twitter.status(self.in_reply_to_status_id).to_json

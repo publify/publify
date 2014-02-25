@@ -1,12 +1,18 @@
-module Admin; end
-
 class Admin::NotesController < Admin::BaseController
   layout "administration"
   cache_sweeper :blog_sweeper
 
-  def index; redirect_to :action => 'new' ; end
-  def new; new_or_edit; end
-  def edit; new_or_edit; end
+  def index
+    redirect_to action: 'new' 
+  end
+
+  def new
+    new_or_edit
+  end
+
+  def edit
+    new_or_edit
+  end
 
   def destroy
     destroy_a(Note)
