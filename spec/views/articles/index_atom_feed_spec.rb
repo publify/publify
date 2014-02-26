@@ -70,16 +70,25 @@ describe "articles/index_atom_feed.atom.builder" do
     describe "on a blog that hides extended content in feeds" do
       before do
         Blog.default.hide_extended_on_rss = true
-        render
       end
 
-      it "shows only the body content in the feed" do
+      it "shows only the body content in the feed if there is no excerpt" do
+        render
         entry = rendered_entry
         entry.css("content").first.content.should =~ /public info/
         entry.css("content").first.content.should_not =~ /public info.*and more/m
       end
 
+      it "shows the excerpt instead of the body content in the feed, if there is an excerpt" do
+        @article.excerpt = "excerpt"
+        render
+        entry = rendered_entry
+        entry.css("content").first.content.should =~ /excerpt/
+        entry.css("content").first.content.should_not =~ /public info/
+      end
+
       it "does not have a summary element in addition to the content element" do
+        render
         rendered_entry.css("summary").should be_empty
       end
     end

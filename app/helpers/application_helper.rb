@@ -237,5 +237,22 @@ module ApplicationHelper
     content_tag(:span, time, {:class => "publify_date date gmttimestamp-#{timestamp}", :title => time})
   end
 
+  # fetches appropriate html content for RSS and ATOM feeds. Checks for:
+  # - article being password protected
+  # - hiding extended content on RSS. In this case if there is an excerpt we show the excerpt, or else we show the body
+  def fetch_html_content_for_feeds(item, this_blog)
+    if item.password_protected?
+      "<p>This article is password protected. Please <a href='#{item.permalink_url}'>fill in your password</a> to read it</p>"
+    elsif this_blog.hide_extended_on_rss
+      if item.excerpt? and item.excerpt.length>0 then
+        item.excerpt
+      else
+        html(item, :body)
+      end
+    else
+      html(item, :all)
+    end
+  end
+
 
 end
