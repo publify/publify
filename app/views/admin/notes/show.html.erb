@@ -1,0 +1,14 @@
+<%- content_for :page_heading do %>
+  <i class="icon-large"></i>
+  <h2 class="page-title"><%= t('.destroy_confirmation') %></h2>
+<% end %>
+
+<p>
+  <%= t(".are_you_sure", note: @note)%>
+</p>
+
+<%= form_for @note, url: admin_note_path(@note), method: :delete do %>
+  <div class='form-actions'>
+    <%= t(".action_or_other", first_action: link_to(t(".cancel"), {action: 'index'}, class: 'btn'), second_action: submit_tag(t(".delete"), class: "btn btn-danger")) %>
+  </div>
+<%- end %>

@@ -4,10 +4,38 @@ class Admin::NotesController < Admin::BaseController
 
   def index
     @notes = Note.page(params[:page]).per(this_blog.limit_article_display)
+    @note = Note.new do |note|
+      note.text_filter = current_user.default_text_filter
+      note.published = true
+      note.published_at = Time.now
+    end
   end
 
   def new
-    new_or_edit
+    redirect_to action: :index
+  end
+
+  def create
+    note = Note.new
+    note.text_filter = current_user.default_text_filter
+    note.published = true
+    note.attributes = params[:note]
+    note.published_at = parse_date_time params[:note][:published_at]
+    note.published_at ||= Time.now
+    note.set_author(current_user)
+    note.text_filter ||= current_user.default_text_filter
+    if note.save
+      if params[:push_to_twitter] && note.twitter_id.blank?
+        unless note.send_to_twitter
+          flash[:error] = I18n.t("errors.problem_sending_to_twitter")
+          flash[:error] += " : #{note.errors.full_messages.join(' ')}"
+        end
+      end
+      flash[:notice] = I18n.t("notice.note_successfully_created")
+    else
+      flash[:error] = note.errors.full_messages
+    end
+    redirect_to action: :index
   end
 
   def edit
@@ -15,7 +43,18 @@ class Admin::NotesController < Admin::BaseController
   end
 
   def destroy
-    destroy_a(Note)
+    note = Note.find(params[:id])
+    note.destroy
+    flash[:notice] = I18n.t("admin.base.successfully_deleted", name: 'note')
+    redirect_to action: 'index'
+  end
+
+  def show
+    @note = Note.find(params[:id])
+    if @note.respond_to?(:access_by?) && !@note.access_by?(current_user)
+      flash[:error] = I18n.t("admin.base.not_allowed")
+      redirect_to action: 'index'
+    end
   end
 
   private

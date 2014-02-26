@@ -187,6 +187,12 @@ pt-BR:
       not_allowed: "Error, you are not allowed to perform this action"
       successfully_deleted: "This %{name} was deleted successfully"
     notes:
+      show:
+        destroy_confirmation: "Destroy confirmation"
+        are_you_sure: "Are you sure you want to delete this note"
+        action_or_other: "%{first_action} ou %{second_action}"
+        cancel: "Cancelar"
+        delete: "Deletar"
       index:
         no_notes: "Não existem notes ainda. Por que você não inicia e cria um?"
         how_to_setup_twitter: "If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."

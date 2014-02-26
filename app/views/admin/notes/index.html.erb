@@ -8,7 +8,7 @@
 
 <div class='row'>
   <div class='col-md-4'>
-    <%= form_for Note.new do |n| %>
+    <%= form_for @note, url: admin_notes_path do |n| %>
       <%= n.hidden_field :text_filter, value: current_user.text_filter_name %>
       <div class='form-group'>
         <%= n.text_area :body, {class: 'form-control', rows: '7', placeholder: t(".compose_new_note")} %>
@@ -70,15 +70,19 @@
         <tr>
         <td>
           <%= h(status.body.strip_html.slice(0..140)) %>
-          <%= show_actions status %>
+          <div class='action'>
+            <%= link_to(content_tag(:span, '', class: 'glyphicon glyphicon-pencil'), {action: 'edit', id: status.id}, {class: 'btn btn-primary btn-xs btn-action'}) %>
+            <%= link_to(content_tag(:span, '', class: 'glyphicon glyphicon-trash'), admin_note_path(status), {class: 'btn btn-danger btn-xs btn-action'}) %>
+            <%= link_to(content_tag(:span, '', class: 'glyphicon glyphicon-link'), status.short_url, {class: 'btn btn-success btn-xs btn-action'}) %>
+          </div>
         </td>
-        <td>
-          <%= author_link(status)%><br />
-          <small><%= l(status.published_at) %></small>
-        </td>
-      </tr>
-    <% end %>
-      <%= display_pagination(@notes, 3, 'first', 'last')%>
-    </table>
+          <td>
+            <%= author_link(status)%><br />
+            <small><%= l(status.published_at) %></small>
+          </td>
+        </tr>
+      <% end %>
+        <%= display_pagination(@notes, 3, 'first', 'last')%>
+      </table>
+    </div>
   </div>
-</div>

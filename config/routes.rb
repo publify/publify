@@ -97,6 +97,8 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :notes
+
     get 'cache', to: 'cache#show'
     delete 'cache', to: 'cache#destroy'
   end
@@ -109,7 +111,7 @@ Rails.application.routes.draw do
   end
 
   # Admin/XController
-  %w{content comments profiles general pages feedback resources sidebar textfilters themes trackbacks users settings tags redirects seo post_types notes}.each do |i|
+  %w{content comments profiles general pages feedback resources sidebar textfilters themes trackbacks users settings tags redirects seo post_types}.each do |i|
     match "/admin/#{i}", to: "admin/#{i}#index", format: false
     match "/admin/#{i}(/:action(/:id))", to: "admin/#{i}", action: nil, id: nil, format: false
   end
