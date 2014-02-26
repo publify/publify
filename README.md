@@ -5,7 +5,7 @@ Publify
 
 [![Build Status](https://travis-ci.org/publify/publify.png)](https://travis-ci.org/publify/publify)
 [![Code Climate](https://codeclimate.com/github/publify/publify.png)](https://codeclimate.com/github/publify/publify)
-[![Dependency Status](https://gemnasium.com/fdv/publify.png)](https://gemnasium.com/fdv/publify)
+[![Dependency Status](https://gemnasium.com/publify/publify.png)](https://gemnasium.com/publify/publify)
 
 ### Table of contents
 
