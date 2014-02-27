@@ -39,7 +39,7 @@ describe ArticlesController do
         response.should have_selector("head>link[href='#{blog.base_url}/']")
       end
 
-      it 'should have googd title' do
+      it 'should have good title' do
         response.should have_selector('title', :content => "test blog | test subtitles")
       end
     end
