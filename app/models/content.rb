@@ -11,6 +11,7 @@ class Content < ActiveRecord::Base
   after_destroy lambda { |c|  c.invalidates_cache?(true) }
 
   belongs_to :text_filter
+  belongs_to :user
 
   has_many :redirections
   has_many :redirects, :through => :redirections, :dependent => :destroy
@@ -35,6 +36,15 @@ class Content < ActiveRecord::Base
   )}
 
   serialize :whiteboard
+
+  def author=(user)
+    if user.respond_to?(:login)
+      write_attribute(:author, user.login)
+      self.user = user
+    elsif user.is_a?(String)
+      write_attribute(:author, user)
+    end
+  end
 
   def shorten_url
     return unless self.published

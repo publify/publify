@@ -13,8 +13,6 @@ class Article < Content
   validates_uniqueness_of :guid
   validates_presence_of :title
 
-  belongs_to :user
-
   has_many :pings, dependent: :destroy, order: "created_at ASC"
   has_many :trackbacks, dependent: :destroy, order: "created_at ASC"
   has_many :feedback, order: "created_at DESC"
@@ -89,13 +87,6 @@ class Article < Content
   def set_permalink
     return if self.state == 'draft' || self.permalink.present?
     self.permalink = self.title.to_permalink
-  end
-
-  def author=(user)
-    if user.respond_to?(:login)
-      write_attribute(:author, user.login)
-    end
-    self.user = user
   end
 
   def has_child?

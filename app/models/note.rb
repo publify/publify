@@ -12,7 +12,6 @@ class Note < Content
   setting :in_reply_to_protected, :boolean, false
   setting :in_reply_to_message, :string, ""
 
-  belongs_to :user
   validates_presence_of :body
   validates_uniqueness_of :permalink, :guid
 
@@ -33,11 +32,6 @@ class Note < Content
 
   def categories;[];end
   def tags;[];end
-
-  def author=(user)
-    write_attribute(:author, user.login)
-    self.user = user
-  end
 
   def html_preprocess(field, html)
     PublifyApp::Textfilter::Twitterfilter.filtertext(nil,nil,html,nil).nofollowify

@@ -5,12 +5,30 @@ describe Content do
   context "with a simple blog" do
   let!(:blog) { create(:blog) }
 
+  describe :author= do
+    let(:content) { Content.new }
+
+    before(:each) { content.author = user }
+
+    context "with a User as author" do
+      let(:user) { build(:user) }
+      it { expect(content.author).to eq(user.login) }
+      it { expect(content.user).to eq(user) }
+    end
+
+    context "with a String as author" do
+      let(:user) { "George Sand" }
+      it { expect(content.author).to eq(user) }
+      it { expect(content.user).to be_nil }
+    end
+  end
+
   describe "#short_url" do
     before do
       @content = FactoryGirl.build_stubbed :content,
         published: true,
         redirects: [FactoryGirl.build_stubbed(:redirect, :from_path =>
-                                            "foo", :to_path => "bar")]
+                                              "foo", :to_path => "bar")]
     end
 
     describe "normally" do
