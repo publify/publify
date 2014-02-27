@@ -8,6 +8,7 @@ class Admin::NotesController < Admin::BaseController
       note.text_filter = current_user.default_text_filter
       note.published = true
       note.published_at = Time.now
+      note.set_author(current_user)
     end
   end
 
@@ -39,7 +40,9 @@ class Admin::NotesController < Admin::BaseController
   end
 
   def edit
-    new_or_edit
+    @notes = Note.page(params[:page]).per(this_blog.limit_article_display)
+    @note = Note.find(params[:id])
+    render :index
   end
 
   def destroy

@@ -181,8 +181,10 @@ describe Note do
         it { expect(note.twitter_message).to eq(expected_tweet) }
         it { expect(note.twitter_message.length).to eq(140) }
       end
+    end
 
-
+    describe :set_author do
+      it { expect(Note.new).to respond_to(:set_author) }
     end
   end
 
@@ -215,4 +217,5 @@ describe Note do
       end
     end
   end
+
 end

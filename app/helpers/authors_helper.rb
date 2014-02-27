@@ -31,7 +31,7 @@ module AuthorsHelper
   private
 
   def just_author?(author)
-    author.name.blank? || author.nil?
+    author.nil? || author.name.blank?
   end
 
   def just_name?(author)
