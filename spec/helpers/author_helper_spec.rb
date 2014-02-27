@@ -41,7 +41,7 @@ describe AuthorsHelper do
 
       context "with an author without a name to this article" do
         let(:author) { build(:user, name: "") }
-        let(:article) { build(:article, user: author, author: "Emile") }
+        let(:article) { build(:article, author: author) }
 
         context "with a link_to_author set in blog" do
           let!(:blog) { create(:blog, link_to_author: true) }

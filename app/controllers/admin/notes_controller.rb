@@ -8,7 +8,7 @@ class Admin::NotesController < Admin::BaseController
       note.text_filter = current_user.default_text_filter
       note.published = true
       note.published_at = Time.now
-      note.set_author(current_user)
+      note.author = current_user
     end
   end
 
@@ -23,7 +23,7 @@ class Admin::NotesController < Admin::BaseController
     note.attributes = params[:note]
     note.published_at = parse_date_time params[:note][:published_at]
     note.published_at ||= Time.now
-    note.set_author(current_user)
+    note.author = current_user
     note.text_filter ||= current_user.default_text_filter
     if note.save
       if params[:push_to_twitter] && note.twitter_id.blank?
@@ -75,7 +75,7 @@ class Admin::NotesController < Admin::BaseController
   def update_status_attributes
     @note.attributes = params[:note]
     @note.published_at = parse_date_time params[:note][:published_at]
-    @note.set_author(current_user)
+    @note.author = current_user
     @note.text_filter ||= current_user.default_text_filter
   end
 

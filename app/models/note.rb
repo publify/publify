@@ -34,8 +34,8 @@ class Note < Content
   def categories;[];end
   def tags;[];end
 
-  def set_author(user)
-    self.author = user.login
+  def author=(user)
+    write_attribute(:author, user.login)
     self.user = user
   end
 

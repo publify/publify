@@ -98,7 +98,7 @@ class Admin::ContentController < Admin::BaseController
     @article.attributes = params[:article]
 
     @article.published = false
-    @article.set_author(current_user)
+    @article.author = current_user
     @article.save_attachments!(params[:attachments])
     @article.state = "draft" unless @article.state == "withdrawn"
     @article.text_filter ||= current_user.default_text_filter
@@ -154,7 +154,7 @@ class Admin::ContentController < Admin::BaseController
   def update_article_attributes
     @article.attributes = params[:article]
     @article.published_at = parse_date_time params[:article][:published_at]
-    @article.set_author(current_user)
+    @article.author = current_user
     @article.save_attachments!(params[:attachments])
     @article.state = "draft" if @article.draft
     @article.text_filter ||= current_user.default_text_filter

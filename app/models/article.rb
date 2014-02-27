@@ -91,8 +91,10 @@ class Article < Content
     self.permalink = self.title.to_permalink
   end
 
-  def set_author(user)
-    self.author = user.login
+  def author=(user)
+    if user.respond_to?(:login)
+      write_attribute(:author, user.login)
+    end
     self.user = user
   end
 

@@ -221,21 +221,7 @@ describe User do
     end
   end
 
-  describe "set_author" do
-    it "uses user given param to set author AND user of article" do
-      article = Article.new
-      user = build(:user, login: 'Henri')
-      article.set_author(user)
-      article.author.should eq 'Henri'
-      article.user.should eq user
-    end
-  end
-
-  describe "generate_password!" do
-    it "respond to generate_password!" do
-      User.new.should respond_to(:generate_password!)
-    end
-
+  describe :generate_password! do
     it "set a 7 char length password" do
       user = User.new
       user.should_receive(:rand).exactly(7).times.and_return(0)

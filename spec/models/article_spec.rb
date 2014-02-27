@@ -902,4 +902,15 @@ describe Article do
       it { expect(article.post_type).to eq("myletter") }
     end
   end
+
+  describe :author= do
+    it { expect(Article.new).to respond_to(:author=) }
+    let(:article) { Article.new }
+    let(:user) { build(:user) }
+
+    before(:each) { article.author = user }
+    it { expect(article.author).to eq(user.login) }
+    it { expect(article.user).to eq(user) }
+  end
+
 end
