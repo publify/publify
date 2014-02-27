@@ -1,0 +1,43 @@
+<%= n.hidden_field :text_filter, value: current_user.text_filter_name %>
+<div class='form-group'>
+  <%= n.text_area :body, {class: 'form-control', rows: '7', placeholder: t(".compose_new_note")} %>
+</div>
+
+<fieldset class="hidden-phone">
+  <legend><%= t(".publish_settings") %></legend>
+  <%- unless twitter_available?(this_blog, current_user) %>
+    <p class='alert alert-warning'>
+  <%= t(".how_to_setup_twitter", twitter_settings_link: link_to(t(".fill_the_twitter_credentials"), controller: 'admin/settings', action: 'write'), twitter_registration_link: link_to(t(".registered_your_application"), "https://dev.twitter.com/apps/new")) %>
+  </p>
+<%- else %>
+    <div class="checkbox">
+    <label for="push_to_twitter">
+      <%= check_box_tag 'push_to_twitter', true, true %>
+      <%= t(".posse_to_twitter")%>
+    </label>
+  </div>
+  <div class="form-group">
+    <label for="note_in_reply_to_status_id"><%= t(".in_reply_to")%></label>
+    <%= n.text_field :in_reply_to_status_id, class: 'form-control', placeholder: t(".tweet_id_like") %>
+  </div>
+<%- end %>
+  <div class='form-group'>
+    <label for="note_permalink"><%= t(".permanent_link")%></label>
+    <%= n.text_field :permalink, class: 'form-control' %>
+  </div>
+  <div class='checkbox'>
+    <label for='note_published'>
+      <%= n.check_box :published %>
+      <%= t(".published") %>
+    </label>
+  </div>
+  <div class='form-group'>
+    <label for='note_published_at'><%= t(".publish_at") %></label>
+    <%= n.text_field :published_at, {class: 'form-control datepicker'} %>
+  </div>
+  <div class='form-group'>
+    <%= link_to(t(".cancel"), {action: 'index'}, class: 'btn') %>
+    <%= t(".or") %>
+    <%= submit_tag(t(".publish"), class: 'btn btn-success') %>
+  </div>
+</fieldset>

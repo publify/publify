@@ -1,0 +1,14 @@
+<div class='col-md-8'>
+  <table class="table table-striped">
+    <%- if @notes.empty? %>
+      <tr>
+      <td colspan="2">
+        <%= t(".no_notes") %>
+      </td>
+    </tr>
+  <%- end %>
+    <%= render @notes %>
+    <%= display_pagination(@notes, 3, 'first', 'last')%>
+  </table>
+</div>
+

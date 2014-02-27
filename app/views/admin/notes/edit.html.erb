@@ -2,7 +2,7 @@
 
 <div class='row'>
   <div class='col-md-4'>
-    <%= form_for @note, url: admin_notes_path do |n| %>
+    <%= form_for @note, url: admin_note_path(@note) do |n| %>
       <%= render 'form', n: n %>
     <%- end %>
   </div>

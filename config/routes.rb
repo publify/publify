@@ -89,7 +89,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :notes
+    resources :notes, except: [:new]
 
     get 'cache', to: 'cache#show'
     delete 'cache', to: 'cache#destroy'

@@ -19,11 +19,6 @@ describe Admin::NotesController do
       it { expect(assigns(:note).user).to eq(admin)}
     end
 
-    describe :new do
-      before(:each) { get :new }
-      it { expect(response).to redirect_to(admin_notes_path) }
-    end
-
     describe :create do
       context "a simple note" do
         before(:each) { post :create, note: { body: "Emphasis _mine_" } }
@@ -41,7 +36,16 @@ describe Admin::NotesController do
 
       describe :edit do
         before(:each) { get :edit, id: note.id }
-        it { expect(response).to render_template('index') }
+        it { expect(response).to be_success }
+        it { expect(response).to render_template('edit') }
+        it { expect(assigns(:note)).to eq(note) }
+        it { expect(assigns(:notes)).to eq([note]) }
+      end
+
+      describe :update do
+        before(:each) { post :update, id: note.id, note: {body: 'new body'} }
+        it { expect(response).to redirect_to(action: :index) }
+        it { expect(note.reload.body).to eq('new body') }
       end
 
       describe :show do
