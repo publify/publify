@@ -495,6 +495,18 @@ describe ArticlesController, "redirecting" do
 
     end
 
+    describe "theme rendering" do
+      render_views
+
+      with_each_theme do |theme, view_path|
+        it "renders template #{view_path}/articles/read" do
+          blog.theme = theme if theme
+          get :redirect, from: "#{@article.permalink}.html"
+          response.should render_template('articles/read')
+        end
+      end
+    end
+
     describe 'rendering as atom feed' do
       before(:each) do
         @trackback1 = FactoryGirl.create(:trackback, :article => @article, :published_at => Time.now - 1.day,
