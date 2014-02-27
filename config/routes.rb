@@ -1,12 +1,4 @@
 Rails.application.routes.draw do
-  # Load plugin routes first. A little bit ugly, but I didn't find any better way to do it
-  # We consider that only publify_* plugins are concerned
-  Dir.glob(File.join("vendor", "plugins", "publify_*")).each do |dir|
-    if File.exists?(File.join(dir, "config", "routes.rb"))
-      require File.join(dir, "config", "routes.rb")
-    end
-  end
-
   # TODO: use only in archive sidebar. See how made other system
   match ':year/:month', :to => 'articles#index', :year => /\d{4}/, :month => /\d{1,2}/, :as => 'articles_by_month', :format => false
   match ':year/:month/page/:page', :to => 'articles#index', :year => /\d{4}/, :month => /\d{1,2}/, :as => 'articles_by_month_page', :format => false
