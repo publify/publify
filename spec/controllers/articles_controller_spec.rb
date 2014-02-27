@@ -629,7 +629,7 @@ describe ArticlesController, "preview page" do
   describe 'with non logged user' do
     before :each do
       @request.session = {}
-      get :preview, :id => FactoryGirl.create(:article).id
+      get :preview_page, :id => FactoryGirl.create(:article).id
     end
 
     it 'should redirect to login' do
