@@ -96,7 +96,7 @@ Rails.application.routes.draw do
   end
 
   # Work around the Bad URI bug
-  %w{ accounts backend files sidebar }.each do |i|
+  %w{ accounts files sidebar }.each do |i|
     match "#{i}", :to => "#{i}#index", :format => false
     match "#{i}(/:action)", :to => i, :format => false
     match "#{i}(/:action(/:id))", :to => i, :id => nil, :format => false

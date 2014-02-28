@@ -45,7 +45,6 @@ module Publify
   require 'publify_sidebar'
   require 'publify_textfilters'
   require 'publify_avatar_gravatar'
-  require 'action_web_service'
   require 'publify_lang'
   ## Required by the plugins themselves.
   # require 'avatar_plugin'
