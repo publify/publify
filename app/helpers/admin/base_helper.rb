@@ -104,13 +104,6 @@ module Admin::BaseHelper
     end
   end
 
-  def published_or_not(item)
-    return content_tag(:span, t(".published"), class: 'label label-success') if item.state.to_s.downcase == 'published'
-    return content_tag(:span, t(".draft"), class: 'label label-info') if item.state.to_s.downcase == 'draft'
-    return content_tag(:span, t(".withdrawn"), class: 'label label-important') if item.state.to_s.downcase == 'withdrawn'
-    return content_tag(:span, t(".publication_pending"), class: 'label label-warning') if item.state.to_s.downcase == 'publicationpending'
-  end
-
   def macro_help_popup(macro, text)
     "<a href=\"#{url_for :controller => 'textfilters', :action => 'macro_help', :id => macro.short_name}\" onclick=\"return popup(this, 'Publify Macro Help')\">#{text}</a>"
   end
