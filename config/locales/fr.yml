@@ -151,6 +151,7 @@ fr:
     cant_end_with_rss_or_atom: "Ne peut pas se terminer par .rss ou .atom. Cette extension est réservée aux flux de syndication"
     render_sidebar: "Une erreur s'est produite. Un ou plusieurs plugins sont probablement manquants ou en erreur. Peut-être devriez-vous les supprimer ou les réinstaller"
     no_posts_found: "Aucun article n'a été trouvé"
+    no_notes_found: "Aucune note n'a été trouvée..."
   views:
     pagination:
       truncate: "Truncate"

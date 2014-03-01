@@ -3,17 +3,27 @@ require 'spec_helper'
 describe NotesController, "/index" do
   before do
     create(:blog)
-    @note = create(:note)
   end
 
   describe "normally" do
     before do
+      @note = create(:note)
       get 'index'
     end
 
     specify { response.should be_success }
     specify { response.should render_template('notes/index') }
     specify { assigns(:notes).should =~ [@note] }
+  end
+  
+  describe "with no note" do
+    before do
+      Note.delete_all
+      get 'index'
+    end
+    
+    specify { response.should be_success }
+    specify { response.should render_template('notes/error') }
   end
 end
 

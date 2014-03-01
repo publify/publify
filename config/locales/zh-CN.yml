@@ -151,6 +151,7 @@ zh-CN:
     cant_end_with_rss_or_atom: "Can't end in .rss or .atom. These are reserved to be used for feed URLs"
     render_sidebar: "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually"
     no_posts_found: "No posts found..."
+    no_notes_found: "No notes found..."
   views:
     pagination:
       truncate: "Truncate"

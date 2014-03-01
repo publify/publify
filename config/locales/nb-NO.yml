@@ -151,6 +151,7 @@ nb-NO:
     cant_end_with_rss_or_atom: "Kan ikke slutte på .rss eller .atom. Disse er reserverte for feed-URLer"
     render_sidebar: "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually"
     no_posts_found: "No posts found..."
+    no_notes_found: "No notes found..."
   views:
     pagination:
       truncate: "Truncate"

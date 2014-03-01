@@ -11,7 +11,8 @@ class NotesController < ContentController
     @notes = Note.published.page(params[:page]).per(this_blog.limit_article_display)
     @keywords = this_blog.meta_keywords
     @page_title = this_blog.statuses_title_template.to_title(@notes, this_blog, params)
-     @description = this_blog.statuses_desc_template.to_title(@notes, this_blog, params)    
+    @description = this_blog.statuses_desc_template.to_title(@notes, this_blog, params)    
+    return error! if @notes.empty?
   end
   
   def show
@@ -29,4 +30,10 @@ class NotesController < ContentController
       render "errors/404", :status => 404
     end
   end
+  
+  def error!
+    @message = I18n.t("errors.no_notes_found")
+    render 'notes/error', status: 200
+  end
+  
 end
