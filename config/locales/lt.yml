@@ -408,6 +408,7 @@ lt:
         your_article_year: "your article year of publication."
         your_article_month: "your article month of publication."
         your_article_day: "your article day of publication."
+        help_on_permalink_settings: "Help on permalink settings"
       index:
         cancel: "Baigti"
         or: "or"

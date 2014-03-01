@@ -41,19 +41,32 @@
   </div>
 </div>
 
-<p class='clear'><%= t(".you_can_custom_your_url_structure") %></p>
-<ul>
-  <li><code>%title%</code>: <%= t(".your_article_slug") %></li>
-  <li><code>%year%</code>: <%= t(".your_article_year") %></li>
-  <li><code>%month%</code>: <%= t(".your_article_month") %></li>
-  <li><code>%day%</code>: <%= t(".your_article_day") %></li>
-</ul>
+<h3><%= t(".help_on_permalink_settings")%></h3>
+<p class='help-block'><%= t(".you_can_custom_your_url_structure") %></p>
+<table class="table table-hover">
+  <tr>
+    <td><code>%title%</code></td>
+    <td><%= t(".your_article_slug") %></td>
+  </tr>
+  <tr>
+    <td><code>%year%</code></td>
+    <td><%= t(".your_article_year") %></td>
+  </tr>
+  <tr>
+    <td><code>%month%</code></td>
+    <td><%= t(".your_article_month") %></td>
+  </tr>
+  <tr>
+    <td><code>%day%</code></td>
+    <td><%= t(".your_article_day") %></td>
+  </table>
+  
+<div class='form-group'>
+  <%= link_to(t(".cancel"), {action: 'index'}, class: 'btn') %>
+  <%= t(".or") %>
+  <%= submit_tag(t(".update_settings"), class: 'btn btn-success') %>
+</div>
 
-  <div class='form-group'>
-    <%= link_to(t(".cancel"), {action: 'index'}, class: 'btn') %>
-    <%= t(".or") %>
-    <%= submit_tag(t(".update_settings"), class: 'btn btn-success') %>
-  </div>
 <%= hidden_field_tag 'from', 'permalinks' %>
 <% end %>
 

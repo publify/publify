@@ -411,6 +411,7 @@ fr:
         your_article_year: "L'année de publication de votre article."
         your_article_month: "Le mois de publication de votre article."
         your_article_day: "Le jour de publication de votre article."
+        help_on_permalink_settings: "Aide sur le paramétrage des permaliens"
       index:
         cancel: "Annuler"
         or: "ou"
