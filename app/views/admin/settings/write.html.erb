@@ -31,7 +31,7 @@
     <label class='control-label col-sm-2' for="setting_geourl_location"><%= t(".latitude_longitude")%></label>
     <div class='col-sm-5'>
       <%= text_field(:setting, :geourl_location, { :class => 'form-control'})%>
-      <span class='help-block'><%= t(".display")%> <a href="http://geourl.org"><%= t(".your_geoloc")%></a> (<%= t(".example")%>: <tt>47.774,-122.201</tt>)</span>
+      <small class='help-block'><%= t(".display")%> <a href="http://geourl.org"><%= t(".your_geoloc")%></a> (<%= t(".example")%>: <tt>47.774,-122.201</tt>)</small>
     </div>
   </div>
 </fieldset>
