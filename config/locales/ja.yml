@@ -351,7 +351,6 @@ ja:
         users: "ユーザー"
         allow_users_to_register: "ユーザーに登録させる"
         explain_allow_users_to_register: "ユーザーがこのブログに登録するのを許可できます。デフォルトでユーザーは自分自身のプロフィールを編集する以外の権限を持たないcontributorとして登録されます。ユーザーに登録させたくない場合は、管理者であるあなた自らがユーザーを追加することができます。"
-        publify_notify_new_articles_or_comments: "新しい記事やコメントが投稿された場合に通知を送ることができます"
         source_email: "メールアドレス"
         email_address_used_to_notify: "通知の送信先メールアドレス"
         items_to_display_in_admin_lists: "管理リストに表示する行数"

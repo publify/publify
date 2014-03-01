@@ -351,7 +351,6 @@ he-IL:
         users: "משתמשים"
         allow_users_to_register: "אפשר למשתמשים להירשם"
         explain_allow_users_to_register: "תוכל לאפשר למשתמשים להירשם לבלוג שלך. כברירת מחדל, הם יירשמו כתורמים - חשבון שאינו נותן הרשאות מיוחדות אלא רק את הזכות להחזיק  חשבון באתר. אם אינך רוצה שהמשתמשים יוכלו להירשם בעצמם, תוכל להוסיף אותם בעצמך כחללק מדף זה"
-        publify_notify_new_articles_or_comments: "Publify יכולה לעדכן אותך בעת שמאמרים חדשים או תגובות נשלחות."
         source_email: "דואל המקור"
         email_address_used_to_notify: "כתובת הדואל שתשמש את Publify לשלוח עדכונים"
         items_to_display_in_admin_lists: "Items to display in admin lists"

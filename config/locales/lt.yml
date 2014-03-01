@@ -350,7 +350,6 @@ lt:
         users: "Vartotojai"
         allow_users_to_register: "Allow users to register"
         explain_allow_users_to_register: "This will allow users to register themselves as contributors, an unprivileged account level which grants them no rights beyond owning a profile on the site. If you don't want users to register, you can add them via <em>Manage users</em> under <em>Settings</em>."
-        publify_notify_new_articles_or_comments: "Publify kann Sie benachrichtigen, wenn neue Artikel oder Kommentare angelegt werden"
         source_email: "Email Adresse"
         email_address_used_to_notify: "Email Adresse, die Publify beim Versenden von Benachrichtigungen verwenden soll"
         items_to_display_in_admin_lists: "Items to display in admin lists"

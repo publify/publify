@@ -351,7 +351,6 @@ nb-NO:
         users: "Brukere"
         allow_users_to_register: "Tillat brukere å registrere seg"
         explain_allow_users_to_register: "Du kan tillate brukere å registrere seg på bloggen din. Som standard vil de registreres som bidragsytere, et upriviligert kontonivå som kun gir dem en egen profil på websiden. Dersom du ikke ønsker at brukere skal kunne registrere seg, så kan du legge dem til selv under brukerkontoer."
-        publify_notify_new_articles_or_comments: "Publify kan gi deg beskjed når nye artikler eller kommentarer er mottatt"
         source_email: "Epostavsender"
         email_address_used_to_notify: "Epostadresse som brukes av Publify til å sende beskjeder"
         items_to_display_in_admin_lists: "Enheter å vise i adminlisten"

@@ -353,7 +353,6 @@ en:
         users: "Users"
         allow_users_to_register: "Allow users to register"
         explain_allow_users_to_register: "This will allow users to register themselves as contributors, an unprivileged account level which grants them no rights beyond owning a profile on the site. If you don't want users to register, you can add them via <em>Manage users</em> under <em>Settings</em>."
-        publify_notify_new_articles_or_comments: "Publify can notify you when new articles or comments are posted"
         source_email: "Source Email"
         email_address_used_to_notify: "Email address used by Publify to send notifications"
         items_to_display_in_admin_lists: "Items to display in admin lists"

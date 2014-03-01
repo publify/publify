@@ -351,7 +351,6 @@ zh-TW:
         users: "使用者"
         allow_users_to_register: "Allow users to register"
         explain_allow_users_to_register: "This will allow users to register themselves as contributors, an unprivileged account level which grants them no rights beyond owning a profile on the site. If you don't want users to register, you can add them via <em>Manage users</em> under <em>Settings</em>."
-        publify_notify_new_articles_or_comments: "當新的文章或評論被貼上時publify會通知你"
         source_email: "原始email"
         email_address_used_to_notify: "email位址使用publify發出通知"
         items_to_display_in_admin_lists: "Items to display in admin lists"

@@ -351,7 +351,6 @@ nl:
         users: "Gebruikers"
         allow_users_to_register: "Sta gebruikers toe zich te registreren"
         explain_allow_users_to_register: "Je kunt gebruikers toestaan zich te registreren bij je blog. Standaard zullen ze contributors worden, een soort account zonder rechten behalve het hebben van een profiel op de site. Als je niet wilt dat gebruikers zich registreren kun je ze altijd zelf toevoegen in het gebruikers deel."
-        publify_notify_new_articles_or_comments: "Publify can je notificeren wanneer nieuwe artikelen of commentaren gepost worden"
         source_email: "Bron e-mail"
         email_address_used_to_notify: "E-mail adres dat Publify gebruikt om notificaties te versturen"
         items_to_display_in_admin_lists: "Items to display in admin lists"
