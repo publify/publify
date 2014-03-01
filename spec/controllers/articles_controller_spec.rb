@@ -297,7 +297,7 @@ describe ArticlesController, "previewing" do
       render_views
       with_each_theme do |theme, view_path|
         it "should render template #{view_path}/articles/read" do
-          blog.theme = theme if theme
+          blog.theme = theme
           get :preview, id: article.id
           response.should render_template('articles/read')
         end
@@ -502,7 +502,7 @@ describe ArticlesController, "redirecting" do
 
       with_each_theme do |theme, view_path|
         it "renders template #{view_path}/articles/read" do
-          blog.theme = theme if theme
+          blog.theme = theme
           get :redirect, from: "#{@article.permalink}.html"
           response.should render_template('articles/read')
         end
@@ -660,7 +660,7 @@ describe ArticlesController, "preview page" do
 
     with_each_theme do |theme, view_path|
       it "should render template #{view_path}/articles/view_page" do
-        blog.theme = theme if theme
+        blog.theme = theme
         get :preview_page, :id => @page.id
         response.should render_template('articles/view_page')
       end
