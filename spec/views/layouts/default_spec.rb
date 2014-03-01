@@ -2,9 +2,6 @@ require 'spec_helper'
 
 describe "layouts/default.html.erb" do
   with_each_theme do |theme, view_path|
-    # FIXME: Add default.html.erb in base view dir.
-    next unless theme
-
     describe theme ? "with theme #{theme}" : "without a theme" do
       before(:each) do
         assign(:keywords, ["foo", "bar"])

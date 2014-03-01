@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%= render 'shared/page_header' %>
+  <title><%=h page_title %></title>
+</head>
+
+<body>
+  <div id="header">
+    <h1><%= link_to this_blog.blog_name, this_blog.base_url %></h1>
+    <p class="desc"><%= this_blog.blog_subtitle %></p>
+  </div>
+
+  <div id="page">
+    <div id="content">
+      <%= yield %>
+    </div>
+
+    <div id="sidebar">
+      <%= render_sidebars %>
+    </div>
+
+    <div id="footer">
+      <p id="legal">
+      <%= t(".powered_by", powered_by: link_to('Publify', 'http://publify.co')) %>
+      </p>
+    </div>
+  </div>
+</body>
+</html>
+
