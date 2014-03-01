@@ -28,7 +28,7 @@ describe Admin::ThemesController do
   end
 
   it "returns succes for the :preview action" do
-    get :preview, :theme => 'typographic'
+    get :preview, :theme => 'bootstrap'
     assert_response :success
   end  
 end

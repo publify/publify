@@ -87,7 +87,7 @@ describe ArticlesController do
 
         it 'should have content markdown interpret and without html tag' do
           response.should have_selector('div') do |div|
-            div.should contain(/in markdown format\n\n\nwe\nuse\nok to define a link\n\n...\n/)
+            div.should contain(%Q{in markdown format * we * use [ok](http://blog.ok.com) to define a link})
           end
         end
       end
@@ -581,7 +581,7 @@ describe ArticlesController, "password protected" do
 
   before do
     b = build_stubbed(:blog, :permalink_format => '/%title%.html')
-    @article = FactoryGirl.create(:article, :password => 'password')
+    @article = create(:article, :password => 'password')
   end
 
   it 'article alone should be password protected' do

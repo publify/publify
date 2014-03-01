@@ -14,12 +14,12 @@ describe 'Given the default theme' do
   end
 
   it 'theme should be typographic' do
-    @theme.name.should == 'typographic'
+    @theme.name.should == 'bootstrap'
   end
 
   it 'theme description should be correct' do
     @theme.description.should ==
-      File.open(::Rails.root.to_s + '/themes/typographic/about.markdown') {|f| f.read}
+      File.open(::Rails.root.to_s + '/themes/bootstrap/about.markdown') {|f| f.read}
   end
 
   it 'theme_from_path should find the correct theme' do

@@ -5,7 +5,7 @@
   <h2><%= link_to_permalink(article,article.title) %></h2>
   <p><%= article.body.strip_html.slice(0, 300) %> [...]</p>
   <div class='author'>
-    Le <%= "#{article.published_at.strftime('%d')} #{_(article.published_at.strftime('%B'))} #{article.published_at.strftime('%Y')}" %>
+    Le <%= l(article.published_at, format: :with_spaces) %>
   </div>
   <div class='comments'>
     <%= render 'articles/comment_counter', article: article %>
