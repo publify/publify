@@ -20,10 +20,6 @@ module Publify
     
     config.plugins = [ :all ]
 
-    config.autoload_paths += %W(
-      app/apis
-    ).map {|dir| "#{::Rails.root.to_s}/#{dir}"}.select { |dir| File.directory?(dir) }
-
     # Activate observers that should always be running
     config.active_record.observers = :email_notifier, :web_notifier
 
