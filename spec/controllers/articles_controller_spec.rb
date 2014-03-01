@@ -274,7 +274,6 @@ describe ArticlesController, "the index" do
 end
 
 describe ArticlesController, "previewing" do
-  render_views
   let!(:blog) { create(:blog) }
 
   describe 'with non logged user' do
@@ -294,11 +293,14 @@ describe ArticlesController, "previewing" do
 
     before(:each) { @request.session = { user: henri.id } }
 
-    with_each_theme do |theme, view_path|
-      it "should render template #{view_path}/articles/read" do
-        blog.theme = theme if theme
-        get :preview, id: article.id
-        response.should render_template('articles/read')
+    describe 'theme rendering' do
+      render_views
+      with_each_theme do |theme, view_path|
+        it "should render template #{view_path}/articles/read" do
+          blog.theme = theme if theme
+          get :preview, id: article.id
+          response.should render_template('articles/read')
+        end
       end
     end
 
