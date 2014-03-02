@@ -1,8 +1,10 @@
 <div class="article" id="article-<%= @article.id %>">
   <h1 class='page-header'><%= link_to_permalink(@article,@article.title) %></h1>
+
   <%= @article.html(:body) %>
   <%= @article.html(:extended) %>
 
+  <%= render 'articles/protected_article_content', { article: @article } %>
   <%= render 'articles/meta', article: @article %>
 
     <% if @article.user.twitter.present? %>

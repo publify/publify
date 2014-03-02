@@ -57,6 +57,8 @@ ja:
   helper:
     at: "at"
   articles:
+    password_form:
+      submit: "Submit"
     index:
       next_page: "Next page"
       previous_page: "Previous page"

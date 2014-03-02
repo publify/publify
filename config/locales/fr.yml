@@ -57,6 +57,8 @@ fr:
   helper:
     at: "à"
   articles:
+    password_form:
+      submit: "Envoyer"
     index:
       next_page: "Next page"
       previous_page: "Previous page"
