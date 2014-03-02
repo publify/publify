@@ -34,6 +34,7 @@ describe Admin::PagesController do
       it { expect(assigns(:page)).to_not be_nil }
       it { expect(assigns(:page).user).to eq(user) }
       it { expect(assigns(:page).text_filter.name).to eq('textile') }
+      it { expect(assigns(:page).published).to be_true }
     end
 
     context "using post" do
@@ -61,7 +62,7 @@ describe Admin::PagesController do
       end
 
       it 'should create an unpublished page without a redirect' do
-        post(:new, 'page' => base_page({:published => false}))
+        post(:new, 'page' => base_page({state: :unpublished, published: false}))
         assigns(:page).redirects.count.should == 0
       end
 
