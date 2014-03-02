@@ -185,7 +185,7 @@ module ApplicationHelper
   end
 
   def display_date(date)
-    date.strftime(this_blog.date_format)
+    l(date, :format => this_blog.date_format)
   end
 
   def display_time(time)

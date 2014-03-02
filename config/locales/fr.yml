@@ -55,7 +55,7 @@ fr:
       next_page: "Next page"
       previous_page: "Previous page"
   helper:
-    at: "at"
+    at: "à"
   articles:
     index:
       next_page: "Next page"
@@ -67,7 +67,7 @@ fr:
     comment_preview:
       is_about_to_say: "va dire"
     meta:
-      published_on: "Published on"
+      published_on: "Publié le"
       by: "par"
       tags: "Tags"
     article:
