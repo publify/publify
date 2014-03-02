@@ -524,6 +524,8 @@ fr:
         permanent_link: "Lien permanent"
         page_with_action_name: "%{action} page"
         type_your_post: "Tapez votre texte"
+        published: "publiée"
+        offline: "hors ligne"
       pages:
         no_pages: "Il n'y a pas encore de pages, pourquoi ne pas en créer une ? "
     feedback:

@@ -57,7 +57,7 @@ class SetupController < ApplicationController
   end
     
   def create_first_page user
-    Page.create(name: "about", title: I18n.t("setup.page.about"), user: user, body: I18n.t("setup.page.body"))
+    Page.create(name: "about", published: true, title: I18n.t("setup.page.about"), user: user, body: I18n.t("setup.page.body"))
   end
 
   def check_config

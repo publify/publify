@@ -522,6 +522,8 @@ ro:
         permanent_link: "Permanent link"
         page_with_action_name: "%{action} page"
         type_your_post: "Type your post"
+        published: "published"
+        offline: "offline"
       pages: 
         no_pages: "There are no pages yet. Why don't you start and create one?"
     feedback:

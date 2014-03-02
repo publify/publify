@@ -522,6 +522,8 @@ zh-CN:
         permanent_link: "Permanent link"
         page_with_action_name: "%{action} page"
         type_your_post: "Type your post"
+        published: "published"
+        offline: "offline"
       pages:
         no_pages: "这儿并不存在Pages。让我们开始创建它。"
     feedback:

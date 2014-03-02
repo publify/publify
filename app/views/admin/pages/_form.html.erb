@@ -59,7 +59,7 @@
           <fieldset>
             <legend><%= t(".publish_settings") %></legend>
             <div class='control-group'>
-              <%= t(".status") %>: <strong><%= @page.state.to_s.downcase %></strong> 
+              <%= t(".status") %>: <strong><%= (@page.published) ? t(".published") : t(".offline") %></strong> 
               <%= toggle_element('status') %>
               <div id='status' class='collapse'>
                 <label for="page_published" class='checkbox'>

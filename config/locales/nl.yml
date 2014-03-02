@@ -522,6 +522,8 @@ nl:
         permanent_link: "Permanente link"
         page_with_action_name: "%{action} page"
         type_your_post: "Type your post"
+        published: "published"
+        offline: "offline"
       pages: 
         no_pages: "Er zijn nog geen pages. Waarom begin je er niet een te maken?"
     feedback:
