@@ -30,13 +30,13 @@
   <div class='form-group'>
     <label class='control-label col-sm-2' for="user_profile"><%= t('.profile')%></label>
     <div class='col-sm-5'>
-      <%= select("user", "profile_id", @profiles.collect {|p| [t("profile.#{p.label}"), p.id ] }, { include_blank: false }) %>
+      <%= select("user", "profile_id", @profiles.collect {|p| [t("profile.#{p.label}"), p.id ] }, { include_blank: false }, class: 'form-control') %>
     </div>
   </div>
   <div class='form-group'>
     <label class='control-label col-sm-2' for="user_state"><%= t('.user_status')%></label>
     <div class='col-sm-5'>
-      <select name="user[state]">
+      <select name="user[state]" class='form-control'>
         <%- User::STATUS.each do |state| %>
           <option value="<%= state %>" <%= 'selected' if @user.state == state %>><%= t("user.status.#{state}")%></option>
       <%- end %>
@@ -70,7 +70,7 @@
   <div class='form-group'>
     <label class='control-label col-sm-2' for="user_name"><%= t('.display_name')%></label>
     <div class='col-sm-5'>
-      <select name="user[name]" id="user_name">
+      <select name="user[name]" id="user_name" class='form-control'>
         <%= options_for_select(@user.display_names, @user.name) %>
       </select>
     </div>
@@ -79,7 +79,7 @@
   <div class='form-group'>
     <label class='control-label col-sm-2' for="text_filter"><%= t('.article_filter')%></label>
     <div class='col-sm-5'>
-      <select name="user[text_filter_id]" id="text_filter">
+      <select name="user[text_filter_id]" id="text_filter" class='form-control'>
         <%= options_for_select text_filter_options_with_id, @user.text_filter.id %>
       </select>
     </div>
