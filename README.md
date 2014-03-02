@@ -98,7 +98,7 @@ Install Publify locally
 To install Publify you need the following:
 
 -   Ruby 1.9.3 or 2.0
--   Ruby On Rails 3.2.14
+-   Ruby On Rails 3.2.16
 -   A database engine, MySQL, PgSQL or SQLite3
 
 <a href="installpublify"></a>
