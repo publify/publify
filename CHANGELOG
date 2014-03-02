@@ -1,76 +1,2485 @@
-# Publify 7.1
+# Publify 8.0 
 
-Since Publify 7.0 release 8 days ago, a few bugs have been fixed:
+It's been 5 months since Publify 7.1, and considering the figures, Publify 8.0 is the biggest release we ever pushed in 9 years: 474 commits, 71 issues closed, 8 contributors, 567 files changed, 60,767 additions and 45,166 deletions.
 
-* #246: added a migration to fix empty permalinks on article and empty guid on notes when they exist (may have been introduced by an old historical bug and they now make notes crash).
-* #247: fixed a bug that made the application crash when saving a note would fail for any reason.
-* #248: fixed a bug introduced by some heavy code cleaning that made feedback/article/xxx to crash.
-* #252: fixed an old bug making comment creation from the admin crashing.
+But you probably don't care about numbers that much, except if you're wondering whether or not the project is till alive. TL; DR: it is.
 
-**********************************************************************
+The project itself has known one big change, [moving from Fred's personal Github account to a dedicated organization][1]. We have been thinking about it for a while, and we believe it's the best we could do for Publify.
 
-# Publify 7.0
+### Simpler, better, faster
 
-Since Publify 7.0 beta1, changes have mostly been about fixing bugs.
+Last summer, [we started to rethink what we wanted Publify to be][2]. At a time where online publishing is more or less split between Wordpress, hosted platforms and static engines, being "only" a blogging platform had no meaning anymore. We started to extend publishing capabilities, choosing Twitter pushed short notes as a first step before we add more content type. This led to Publify 7.0, and once again we knew it was the way to go.
 
-* #228: Changelog is meaningless.
-* #237: Missing or incorrect labels on many forms.
-* #239: Dashboard: marking a comment as spam should load the next non spammy comment.
-* #240: On authors pages, links are rails escaped.
+Before adding these feature, we wanted Publify 8.0 to rebuild the whole user experience. It had to be simpler, clearer and better, far from the MS Word 97 style that prevails in Web publishing since more than 10 years.
 
-**********************************************************************
+This meant a simpler interface with a single, smaller menu, getting out of the old create / read / update / delete scheme when possible, merging some sections and finally removing lots of things. This also means using the most of large screens capabilities, using _responsive_ layouts as much as we could, even though it made the job more difficult at some point.
 
-# Publify 7.0 beta 1
+The editor, it has been completely revamped, following the way opened by both Medium and Ghost. We've pushed aside everything that may distract you from writing. The post settings are 1 click away from the editor so you won't feel lost anyway. We know how much work is left to get a really classy tool, but we're working on it. 
 
-## New features and enhancement
+The notes have got improvement. When replying to a tweet, Publify now displays the original tweet so readers can keep the context this was done.
 
-### Notes and POSSE to Twitter
+Users profiles have been improved to. Each user now has its own detailed page with avatar, contact links, short bio and indeed the published content.
 
-The most important feature of this new release is the addition of notes. Notes are (more or less) short statuses that were not long enough to deserve a full blog post. Notes come with their own feed you can find in /notes/ and can optionnaly be displayed on your Publify main feed. Notes have auto discovery for twitter account (@publify), hashtags (#publify) and links. 
+### Missing in action
 
-Notes can optionnaly be pushed to Twitter, with a perma short link back to the original content. They handle Twitter in reply context, so if you reply to a tweet, the original message will be displayed with a proper link just above yours. If the note and perma short link are short enough to fit into 140 characters, the link back is dislayed under the (foo.com something) form. Otherwise, the tweet is sent with a full link to the content.
+The old categories VS tags separation is no more. We merged the first into the seconds as a strict categorization has no real meaning on most blogs. Don't worry about your URLs, we took care of everything, eventually creating the redirects you needed.
 
-### Visual editor and self dogfooding
+The _excerpt_ has been removed. Excerpt was meant to display a different content on the listing page and on the post itself. It was an interesting feature, but only a handful of people, if none was using it, and it made the editor more complicated than necessary.
 
-The visual editor and file manager were completely removed in the name of self dogfooding (issue #224 and #164). This was a hard to take decision, as we understand you may be reluctant to use the Markdown, Textile or plain HTML syntaxes. The reason why we finally removed it was simple: none of us would use it, so it was poorly implemented and tested and, for many points, broken.
+The old [Typographic theme][3] is not part of the core anymore. It has moved to its own project and will still be maintained. 
 
-### Other features
+The old XMLRPC backend has been discontinued. This means Publify does not support desktop clients anymore. This choice has been motivated by the fact that the APIs it was relying had not been updated for 10 years, and that most desktop editors are not maintained anymore either. Web browsers capabilities have evolved, and you can now have a fairly decent editor with local saving without the need of a desktop application.
 
-* ##198: 404 errors are now handled by the themes instead of the application settings (change bd427c892ed827e26228a34d33245a33492af260).
-* #219: Default theme now supports hentry Microformat (change 2671fd771734a7226cf1269bd440853e3ab337e2)
-* #224: Visual editor was removed. It may come back under another form later (change 8058ec52cf33cbf0521414fa6fe5be1f7e52b73e).
-* Editor toolbar behaves according to the selected text filter (change c802f0a88620170e79e164e1c91cd8c07312b5bd).
-* Old, deprecated converters from Wordpress and Dotclear were removed (change 8f29f35645080f7f996ae031fd6898c3903d0f9d).
-* A new sidebar plugin displays the most popular posts.
-* A new sidebar plugin displays the 5 latest published notes.
-* URL shortener can now use a ustom domain (change 31573fa30be188951db6178fe7706acd3a0c316b)
-* A little revamping of the login / register / confirm / lost password / setup pages (change 1257ce2bf68718f32e53782d12cd88a99b594458, 0bdfa854de22016f6aae3f27c30b44b865cfb380).
-* Themes now can embed their own gems (change 373cfb8da90a47325dc647318485c59b1f9c5f03).
-* Admin layout now behaves nicely with mobile devices (change 56cf701a19175ba7fe2584fb716541a9e57a804a).
-* Add very basic support for OpenGraph data (changes e7a60b19f2e2029700b04acc8e8c514795a5386a, changes 62406703b2d4a7b645c2604f38b577bf1217f3fb). By Diego Elio Pettenò.
-* Excerpts: pre-process the excerpts with the filter (change a636e23d4e0cfbe97ed3d8584cf01a0192b475fa). By Diego Elio Pettenò.
-* Added dynamic_form error_messages_for user created on signup page. (change 01f8ade7ff9d680fefc9a3577ae060013d5a7379). By Kyle Fazzari.
-* Upgrade to Rails 3.2.13.
-* Feed cleaning: don't append the subtitle to the page title (change 6bf9a5b5f372ab3cfb9ce7589b2a97021cdf5496). By Diego Elio Pettenò.
+### Under the hood
 
-Thank you to all the contributors who helped improving the UI by pushing wording improvement or contributing to translation effort (Soon Van, Raman Sinha, mariozig, Geraud Puechaldou)
+Publify has been around for 9 years now. Rails was not 1.0 yet, and some of our code was older than you can ever imagine. 
 
-## Squashed bugs
+Publify 8.0 got rid of most of that legacy code. The old Prototype based helpers that made Rails famous back then left the building. Prototype itself has finally been replaced by Jquery, and Rails i18n allowed the _Globalize_ based translation system to enjoy a deserved retirement. Most helpers have been removed too, as most of them were only used in one place. 
 
-* #59: Articles were randomly rendered as password protected.
-* #65: Saving articles may make them lose tags.
-* #97 Dashboard crashing when fetching some RSS from Google alerts.
-* #150: Theme crashing when displaying comments count
-* #161, #162: Gemfile processing would crash because of YAML not being availale (change f3765d63b5207e09f27ac36e7b044d2ab5bc3a15).
-* #163: Iconv gem was missing in Gemfile.
-* #174: Articles using excerpt did not have the "continue reading" link (change b7839d232c3397b9a277b8353f4f4c8d5e067dd7).
-* #179: Fixes article deletion in admin. Solves 
-* Avoid resetting tags when posts are published via trigger (change f1e44c8d91aa40fa4df149f59599d1d957d3c5f2). By Diego Elio Pettenò.
-* Sqlite3 making Article.bestof crash (change 56ea99a34205f7d79a7f7568c9bfbe1697eb59cf).
-* "Mark checked item as (Ham|Spam)" do what they're supposed to do (change 79c44a8516d69078f4c049c7517f2fb5fc5e36b4). By Diego Elio Pettenò.
-* Incorrect sprintf format in Norwegian translation in users/index.html.erb (change 40b823b3b2a9c5b29b1607c7db82dce4e16b91f1). By Tor Helland.
-* Article text filters would e reset on edit (change 1e820efb6b3e8e4a840734baca841e40ada10872).
-* Gravatar generated HTML did not validate correctly (change 05e1372c7ed2628fc49538f75d6d332b84847c21).
-* Incorrect migration versioning scheme (change 80ca76c3802a52447330afe9f1241d3baef762c5, change 77a0039dd7b86d7ceb1608d048e6880db7e98622, change 7fc1bc07eb0d9de0886ba0433c2a175ad6da9248, change 318aec2ff0616e4f8cacf37b0839ad9aecf1b46c and change 0ffdae86c2bad405c00ba94b646b22088163c590). By David Ryder.
-* The search plugin didn't echo the form_tag, which was deprecated in Rails 3.0 and unsupported in Rails 3.1. This fixes that. (change 4ff48a829784813cde0689a7bd10648b2521dd1f)
-* Inbound link widget on the dashboard did not work (change 0d64ba929b6fdeccf7b1fb414a4f4cddf0de2d4e).
+This should not affect you unless you're running custom themes and plugins. If so, have a look at the Bootstrap theme to see how we're now working.
+
+That's all folks, you can now download Publify, or give it a try on [our demo platform][4].
+
+[1]:	http://t37.net/here-comes-the-time-to-hand-over-your-open-source-project.html
+[2]:	http://t37.net/is-coding-a-blogging-engine-still-worth-the-effort-in-2013-and-other-thoughts-about-content-publishing-tools.html
+[3]:	https://github.com/publify/typographic
+[4]:	http://demo.publify.co/
+
+### Commits
+
+commit 31f273838b126c7d330f821ef43e286aef85a9ff
+Author: mukaer <mukaer@gmail.com>
+
+    Adds config TimeZone.
+
+commit 4185daf1ade24ca4f50af4ae3b43c23931e06188
+Author: Greg Molnar <molnargerg@gmail.com>
+
+    upgrade Rails to 3.14
+
+commit 4bebd8bff9525fb3575e15aaf873a5852f9c6769
+Merge: 9d4fabb 4185daf
+Author: yaf <yannick.francois@free.fr>
+
+    Merge pull request #242 from gregmolnar/rails_upgrade
+
+commit 163f998ef1809c57c486e2a22a93135de83dd1d9
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Improve helper
+
+commit 618426ef87aa92189a570d197e33c0f3cb368ea4
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Clean helper about twitter config test
+
+commit 9022318b665f3ce8a971dfdc7b8178f69ca7c30e
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Clean spec around default layout view
+
+commit 954216bc725f5a4657e02b9437c81923fa35fd26
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Clean note spec and refactoring around twitter message
+
+commit 2cb2fb3e12ccc7769e97705b858774fc02633bbb
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Remove some unnecessary code from note model
+
+commit 0c38a45ed0d5c53d5b26d21ae623d52c9da968ae
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Remove helper method to use content_for
+
+commit ce9c76446aa4e00a29dc1f30c0c54ba85776b4df
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Fix some strange text filter work
+
+commit fc12a91535fe86e2f7715d614a35efaed4e6f8a8
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Fix content for heading style
+
+commit 8d192b4458f77e5c7e0f1cb484b9c236055de55b
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Clean account page and start config locale.
+
+commit 747fc2557ee42d6aa27c128e607832ac478eec11
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Fix push_to_twitter bug and clean factory
+
+commit 2aab5cb9f9543b3ed71ccd7da407076c4fa8bd04
+Author: Soon Van <cog@randomecho.com>
+
+    Admin login is looking for en.yml keys for placeholder text
+
+commit b58a2ab7d1575d9fe4412d22f76811565512e05b
+Merge: 747fc25 2aab5cb
+Author: yaf <yannick.francois@free.fr>
+
+    Merge pull request #258 from randomecho/i18n-admin-login-placeholders
+
+commit f6aa5381c46494565f2f1bff823cf57147354f59
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Add a test case with a new method about twitter message length calcul
+
+commit 677da43ff93b1afe1a941f6391fa91e1cde4ae48
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Fix twitter message length
+
+commit 668931f54d0728e639e88a8dddfce004775a3d4e
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Twitter link limit
+
+commit 4d3d2afcfa3695f2b813799cd2f84d00e8f66de7
+Author: Breno Moura <basmoura@gmail.com>
+
+    create translation file for pt-BR
+
+commit 4249f1e8fc7f69b7ddb5bfb9d36a7ce726305a6b
+Merge: 668931f 4d3d2af
+Author: yaf <yannick.francois@free.fr>
+
+    Merge pull request #259 from basmoura/master
+
+commit 24a86b57ea80894263003423296f958ab0ad0947
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Clean accounts view
+
+commit 04f422c47914e43ae1b9dad34ca3d7bd428b2ef7
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Add missing en keys
+
+commit 2a5b4396e8e329ff7d149d93eb7ba6b62a249607
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locales
+
+commit 19d6ebb7383c96a666d7d9ff71accef49da86038
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Administraiton layout label changes
+
+commit f68ff4165fd98d368912606ef8862e814af65a93
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Change categories new view
+
+commit 2d61dfdf0c1572ec6508f17578acc85d1c894433
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    move lang to locals for account revover and signup pages
+
+commit d4e8caf30eb18e5f968d13e20d6b83b0edc3599b
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move from lang to locales of admin cache index page
+
+commit 09d92ee68ac61901ba8564521d4a18fafe960bbd
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locales for new cat.
+
+commit 24922bdcf7bfa9ca285e0d3c4d266b7f0aad14a9
+Author: Breno Moura <basmoura@gmail.com>
+
+    adds more translations for pt-BR
+
+commit 4a23da1912353e1eecdedfb838f56da3a04755f9
+Merge: 09d92ee 24922bd
+Author: yaf <yannick.francois@free.fr>
+
+    Merge pull request #261 from basmoura/master
+
+commit 3f95bb96c6e4f0ac3ac05e8ddda0e76e4d1b70df
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Clean helper and content form
+
+commit 6755f61d44b29ceefd3a303bf32c737746444e24
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move from lang to locales for content form
+
+commit c733eb728fb4854773b3bb55877f342e4a67047f
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move content index from lang to locales
+
+commit e95b4c2cc5647ca17a5f6b26d12e19d537bde2fe
+Author: Breno Moura <basmoura@gmail.com>
+
+    adds more translations for pt-BR
+
+commit 1a6c6da7f588032a6ccc482aa5d77d5339a0896e
+Merge: c733eb7 e95b4c2
+Author: yaf <yannick.francois@free.fr>
+
+    Merge pull request #262 from basmoura/master
+
+commit 4fe0acbd22cf3bb35e2477310c8e9e40b12f7db0
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale for comment part of dashboard
+
+commit 05e3141639b7a0787fa3703e6b52a6fca8d5c65d
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move from lang to locale for inbound dashboard part
+
+commit 5a656991b4b5cde5369b008d843607d2e54b5f9b
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale for dashboard overview part
+
+commit cb166f6d1319130c4c4760a8b5b5212a3c92f62e
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Fix specs around dashboard link check
+
+commit 308590a609484c8baa77ffd250b366d5115686b5
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Clean dashboard, move lang to locales
+
+commit 93e9769a2a51de2a2b5150ceea51fac57a7ad6e6
+Author: Breno Moura <basmoura@gmail.com>
+
+    adds more translations for pt-BR
+
+commit 04feca3c58617f0a7d68ac152e1f16e30cdbab1a
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Fix specs
+
+commit 868f5c0bd9750cf8144afe2848d4edf29ed4a031
+Author: Marc Pelteret <marc@pelteret.co.za>
+
+    Updated Gems source and prototype_legacy_helper source.
+
+commit a37e4147477a7a0585bf2280be60095f0201c527
+Merge: 04feca3 93e9769
+Author: yaf <yannick.francois@free.fr>
+
+    Merge pull request #263 from basmoura/master
+
+commit 0659743ecf90c0b83ef5332ab61ac04b8df90672
+Merge: a37e414 868f5c0
+Author: yaf <yannick.francois@free.fr>
+
+    Merge pull request #264 from MarQ-ZA/patch-1
+
+commit 353894911de9bb850eb0e8ee759cbf8a3f5a857f
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes profiles rendering that would crash despite being tested.
+
+commit e5558ee7f9497dd853c40ab43100f301b219e345
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale
+
+commit c369ff8b94c5befac7f9d14f0637da5c4a2fb5b7
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Fix dashboard draft
+
+commit db024b8c431a363c6ee07f5637054c7fc3b394ae
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    move lang to locale for feedback button
+
+commit 42432f5606135520b78357773d92afedd8687a0f
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale for feedback
+
+commit 38c4982bf3921503432bffa895079786cb304e1f
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Remove view test. That fail on special themes
+
+commit 8810556d74bf09e748bd59ca9ea8dc4e95e8d9ad
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale for article feedback part
+
+commit 638b519a7c8d5021189594dcda17419a2f7ac7e4
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Fix user profile avatar on his page
+
+commit 74b9a62cf97bcaeac52d107b3064d6b62d7b3a18
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Fix user profile avatar on his page
+
+commit 095c71b911afcc2270e085c15eb39858d03c0337
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locales for feedback index
+
+commit bbe4e62148a4481798330b0a46e7ab17694d5f58
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale for pages form
+
+commit 5b96c7ab202338354072820a7b7c9bd7b708c0e2
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale for pages index
+
+commit 762484f91ab0c3087e364b44dae903aea3449bd9
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale for post types new
+
+commit ff4d6c547e4fc8c72f1af8909aa6d14037f83fe9
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale (and refactor) resources view
+
+commit 3c9e7a7d3b2a865d19bd5794096157e1d40d13d4
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale for destroy shared page
+
+commit cc0a312bbdaa58f67b48e087015a7b515cad3b68
+Author: Thomas Lecavelier <tl@pierlis.com>
+
+    get rid of prototype/scriptaculous files
+
+commit 171298a34b5384269387b74c0bbd439bd6984aba
+Author: Thomas Lecavelier <tl@pierlis.com>
+
+    Prepare jquery gems
+
+commit c3ef18f5d4c61d0c4a268ff10ee3a61abcb45834
+Author: Thomas Lecavelier <tl@pierlis.com>
+
+    Ignore sqlite dbs files
+
+commit 73fd56972bf89a11cb8a283f59c6811d081d3fe4
+Author: Thomas Lecavelier <tl@pierlis.com>
+
+    Result of 'rails generate jquery:install' since we don't use asset pipeline yet
+
+commit e3768118bf1c12860d33d419d86a52840131e2e6
+Author: Thomas Lecavelier <tl@pierlis.com>
+
+    declare jquery front files
+
+commit 8f93b278ca6df67521a83e4741c6f6258f19f1e2
+Author: Thomas Lecavelier <tl@pierlis.com>
+
+    Remove old calendar_date_select
+
+commit 142a21d956b6ade1b2129ed517bb48b1a960a8c5
+Author: Thomas Lecavelier <tl@pierlis.com>
+
+    Apply gem changes to heroku
+
+commit 929afe2f129df259ed3d7606931f0857c28a41a6
+Author: Thomas Lecavelier <tl@pierlis.com>
+
+    Add bootstrap, jquery-ui and convert Element.toggle to bootstrap collapse
+
+commit 1a36690b7684c485850ca495633269b9d535a01d
+Author: Thomas Lecavelier <tl@pierlis.com>
+
+    Fix some link_to_remote + form_to_remote. Add Form.spinnable :remote => true behavior
+
+commit 532d323df9357d7e4a7bc98f3867268bd3385dbc
+Author: Thomas Lecavelier <tl@pierlis.com>
+
+    Kick out Growler (proto), welcome Gritter (jquery)
+
+commit 44f2a3a5dfb2b7008765b35621ddbb9b1b39855a
+Author: Thomas Lecavelier <tl@pierlis.com>
+
+    WIP autosave
+
+commit d2c4d6f7e046addf6ea468151e8a13b8b97a851a
+Author: Thomas Lecavelier <tl@pierlis.com>
+
+    WIP, need asset_pipeline
+
+commit 472e3756e27fcf39b37fa0d8b6308834302f5c25
+Author: Thomas Lecavelier <tl@pierlis.com>
+
+    WIP move to assets pipeline
+
+commit 6c156999062edc8d02b9dae675c94660cfe992e9
+Author: Thomas Lecavelier <tl@pierlis.com>
+
+    Use Rails asset-pipeline. Ok for front
+
+commit bf174c622a113353d678a47c998db68c58b0e589
+Author: Thomas Lecavelier <tl@pierlis.com>
+
+    Remove bootstrap files, use the bootstrap-sass gem instead
+
+commit b8808ab03a940daa538cc65093661709d4bacba3
+Author: Thomas Lecavelier <tl@pierlis.com>
+
+    Separate quicktags JS in his own file, include it through the asset pipeline in publify_admin.js
+
+commit b086547ab67a83fc8ea6866a1bdb8c0254425dca
+Author: Thomas Lecavelier <tl@pierlis.com>
+
+    Remove administration.js which is now empty (was only hooks, put in admin_publify, and quicktags verbatim
+
+commit c28cf668107961fddbded611063d45defffd7473
+Author: Thomas Lecavelier <tl@pierlis.com>
+
+    Fix feedback admin view, may miss some js
+
+commit 06fbd98b9cc107903455fe7979e940bb09c80e54
+Author: Thomas Lecavelier <tl@pierlis.com>
+
+    Replace calendar_date_picker slutty plugin for Jquery datepicker. Not as fun, but UJS
+
+commit 449ed62f6b2dbd45f0b61fd0f6f298dcf937d8f1
+Author: Thomas Lecavelier <tl@pierlis.com>
+
+    Remove form_remote for now
+
+commit fadf85a4cd9e7484705b2ee0d99a3dd33c4f5236
+Author: Thomas Lecavelier <tl@pierlis.com>
+
+    FIXME need to convert these two calls to jquery.ui.draggable widgets
+
+commit 2c4d5177fc7378af3248a7e6eaa1540d0b5cec89
+Author: Thomas Lecavelier <tl@pierlis.com>
+
+    typographic theme make prototype call. Just comment them: FIXME this themes can't work right now
+
+commit 84b93ec30a032f62932ff5c7b184d477e36cf9eb
+Author: Thomas Lecavelier <tl@pierlis.com>
+
+    Certainly broke password protected articles
+
+commit 0c912ae6615f33c97a83f2ca7142d19d81d2ed0c
+Author: Thomas Lecavelier <tl@pierlis.com>
+
+    update rspec for backend
+
+commit a37190d523fe6f87e9493336fe85f24e6ce14fe6
+Author: Thomas Lecavelier <tl@pierlis.com>
+
+    Fix back calendar in admin
+
+commit 3855680f81dabbc94db871792653eacf431bc10f
+Author: Thomas Lecavelier <tl@pierlis.com>
+
+    Certainly a relic from a inplace editor. Be ready to add best_in_place gem
+
+commit 0cb8edc0880d828118510b03a0266f6c56e64a49
+Author: Thomas Lecavelier <tl@pierlis.com>
+
+    Hu ho… accounts has its own layout
+
+commit 483c99e983e8201042f7812827f6b35696e5bdf8
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    add time format to locale
+
+commit a4dc69f6b6b53062dae592396be033b1260c5d8a
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move seo index from lang to locale
+
+commit fe23e29b4e4c6691d56227d3d9b263b611665145
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes CSS issues that came after the switch to assets pipelining.
+
+commit 2d5b959255f682443db1729eb4874845afb7036f
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes Javascript issues in the main layout
+
+commit b3bdd3ae83368aa5ac035cd6bed1039ce9dc273b
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes a bug where the redirects would not be displayed in the right order
+
+commit 2cbb5b3037d020d1837f10b50ee3676c1a12c791
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Brings the simple editor back
+
+commit 860ce882b1fde2b2c7d7d215733ce7bbde12c235
+Author: Hobofan <goisser94@gmail.com>
+
+    added Blogger importer
+
+commit 0cd73579fbbe14e6934fd69f4a3ceb727c4c8ab2
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Removing old Bootstrap 2.x files. Adding new Bootstrap 3 stylesheets.
+
+commit a18800fbfcd7d364a8c7b6a65311074861a5fa42
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Ports accounts layout to Bootstrap 3.
+    Ports login form to Bootstrap 3.
+
+commit bd548e4bffd68333767be5dcf574bb25a8fa6493
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes bogus bootstrap call.
+
+commit 23ce34353460cef7ff8df151f707937b29896328
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Moves email recover form to Bootstrap 3.
+
+commit 74dc621f4c16778605f53b301487bd6ed02d22f9
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Moves the login form to Bootstrap 3.
+
+commit 32c5b55309ae521112e274d42991c41d09d0ded0
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Makes the default layout visible again (this will change soon but not now)
+
+commit 9030e2ce79500f3a60d59a77c51417980166df64
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Makes Glyphicons work.
+
+commit 4e03f21a284345926613fa0d0f4dc97a22700e7b
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Brings the dashboard back to life.
+
+commit d20805873e049c15a4a5dce8fa6fb2dce365ab5f
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Ports the articles listing to Bootstrap 3.
+    Revamps the filterings.
+
+commit 66173737ee88887ede720a2edcae304f628e8e04
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Reindents the html.
+
+commit 9eaf50bb91c2edd210586d8801cecc9c908a44f1
+Merge: 2cbb5b3 860ce88
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge pull request #267 from hobofan/master
+
+commit c7ba3feef277e3ba0ee2e33d5f7757953aa2e9c3
+Merge: 9eaf50b 31f2738
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Merge branch 'add_config_timezone_2' of github.com:mukaer/publify into mukaer-add_config_timezone_2
+
+commit 2b1c555b9b4905d54618177a0cc2775de0962a1e
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Moves feedback management to Bootstrap 3.
+
+commit 32083df87f8d5d4a5ddedb360a99821fabe4b6bf
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Adds icons back on feedback title.
+
+commit b7269dee70dad29bae2b375733b18452b6249626
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Moves categories to Bootstrap 3. Ensures button with a create / update action are green.
+
+commit 3326907bdfd43423e34728249c1b97042e580bee
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Ports tags listing to Bootstrap3
+
+commit 460e86d484af43fa7b86b0aff1560c7929296993
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes indent and line break
+
+commit 0dff3603d3b0fd44ab1986fda3985b81572b6222
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Ports articles types to Bootstrap 3.
+
+commit f587c0ace4f7679544deb255aab5d8617f50583b
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Ports redirect to Bootstrap 3.
+
+commit 5512eceb6a315a6392e04dcc0bb2d332980fb7ce
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Ports notes to Bootstrap3
+
+commit 0b4da8d159763d0da82fee5e17c2686e151b82d4
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Moves pages listing to Bootstrap3.
+
+commit d01bc7011ca38fbbd4a5dd4b5fbca21903017dfe
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Moves admin/cache to Bootstrap3.
+
+commit 97e524105084e9cbc08924f6e3650e6c14334443
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Moves pages editor to Bootstrap 3.
+
+commit f157cb42bab6624f4d242238ebf365f434dca3d3
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Makes articles form useable before we completely change it.
+
+commit 52bcfbfd9edbd29a98afb42bfd7bb19444d83a0b
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Moves resources to Bootstrap 3.
+
+commit eed8415c68eb87e8eda635c23327c2ff2b845ae4
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Makes the themes list use Bootstrap3.
+
+commit 8776b5c1ed52c4173b4f62d151b1c70f7cd5a4d2
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Makes sidebar selection use Bootstrap 3.
+
+commit f48b0e7ac544039b88dfd9be7856d9783f21028d
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Moves users and profile to Bootstrap 3.
+
+commit 9f187c10977a49a6b8071edb8d7860f88db93a24
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to config for permalinks
+
+commit c5b453f1ffd91dbaa446dd3be2beb16e0ac81516
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes error message display.
+
+commit 4155660f6da54b08f52ebec2f9e40e7392b7db7c
+Merge: c5b453f 9f187c1
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge branch 'master' into feature/drop-bootstrap2-for-bootstrap3/269
+
+commit f0e30b436ca7da438ded2a8eaa76541eef1b9a5f
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Ports the settings part to Bootstrap3.
+
+commit 2d3dc57a2b13798a77da9e02c30d2faf3e8d46b5
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Moves SEO settings to Bootstrap 3.
+
+commit f595fec09591c6307e4d8686bd350bfde3ae0e60
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Ports the setup to Bootstrap 3.
+
+commit 4d6644d22eefe75a4b9ee32be0276d7cfaa830bc
+Merge: c7ba3fe 9f187c1
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge pull request #281 from fdv/master
+
+commit c7eb41b13a5b30be384e74764a71082c9c33fcca
+Merge: 4d6644d f595fec
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge branch 'feature/drop-bootstrap2-for-bootstrap3/269' into milestone/publify-8
+
+commit 10c4ade36aa69387b5998b3b904ec6fff1f13b61
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    This should fix the build.
+
+commit d40409c2f4eee0c0229d7873d55b67e018d6d7b8
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge users with settings.
+    Removes profile entry as it already exists.
+
+commit fb76d1af41ae9754c0dce84c1ecabcee9cbcd3fe
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Moves navbar to horizontal.
+
+commit a07f1060cd3b330aedfc8c15685dc70cb8a76f2e
+Merge: 10c4ade d40409c
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge pull request #282 from fdv/feature/simplify-menus/274
+
+commit 1a372e71772e65fed217ffc5f1a011cd3b2ad3a4
+Merge: a07f106 fb76d1a
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge pull request #283 from fdv/feature/horizontal-navbar/270
+
+commit b6649b4fe8c26852b537cd25a52d22c2ca20bc84
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes a bug with profile grants removal
+
+commit f46e29e51b0c91e92f35865fa7002e1e3135685c
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    move lang to locale for seo titles
+
+commit 051b9b30bb298357cf95ff261d8c1f4073034105
+Merge: b6649b4 f46e29e
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge branch 'master' into milestone/publify-8
+
+commit 0e37f8fff5bc5fb288c5dc8c1ad97a7b2d789abb
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    move lang to config for settings
+
+commit e7e65448b85d3d08efff967af4dd5013114657f7
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale for update db settings
+
+commit 98eba52fc941c5f04caa31638cedbb704a5d47c6
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale for write settings
+
+commit 2f248efa15ba829c85d9c47b12b3533f62a2f5cd
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Fix #284 don't cut word when publish
+
+commit bce90ac369d1f546a016cfffdd8be6ddb6c0b7c0
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Fix gen thumb task description
+
+commit fd1c916d597daf658740df6408b2e4d3ab6bc058
+Author: Alexander Markov <apsheronets@gmail.com>
+
+    I'm so happy cause you  guys use config/locales
+
+commit 2a434475e8596a5a532b1ad52d0001d4bc35beab
+Author: Alexander Markov <apsheronets@gmail.com>
+
+    I haven't twitter but this message presents anyway
+
+commit 6547c61e224209dc83535a1b476e3ba912302c6d
+Merge: f46e29e 2a43447
+Author: yaf <yannick.francois@free.fr>
+
+    Merge pull request #286 from apsheronets/master
+
+commit 8b289d03970aeadfccfc9043400eac52eb3b9146
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes editor non AJAX Javascript issues.
+
+commit 584170df580a668ee1a6e23e513838ba9a7f7f64
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Post editor:
+
+commit 21bc434a661dfc634e77e3875e8b3841004c250a
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    - Makes the pages editor settings in a modal.
+    - Puts the editor at the center of the page.
+
+commit 2cf6a68d57cb4fc28163fd1206ab6c2bbee6d054
+Merge: 8b289d0 21bc434
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge pull request #291 from fdv/feature/make-new-publication-options/272
+
+commit 9c62fcf8c7e55156ccf33e7d919bd25661232060
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Drops excerpt on new posts.
+
+commit 32edbe48f8857f4235614995c9d65535bf5277a7
+Merge: 2cf6a68 9c62fcf
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge pull request #292 from fdv/feature/drop-excerpt/290
+
+commit 1f55e7da842320a905e5e187f17e9d25fe7d7adc
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    First draft for a new editor.
+
+commit 8736d9b076c471f0a9c800586cc634bf7cc8bbf0
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Adds widerea support for fullscreen.
+
+commit 498a2ba7cb7ae990f5525f285502e08e03f6dcdc
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Improves the editor
+
+commit dff80a763fd1b21b5cde8f089ce25cfd45b35cf4
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Even more editor improvement. Love this.
+
+commit 49c71ccfd2be47e3f5ed9dd44da2df4f47b70537
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    And now it's the pages editor turn.
+
+commit c501d0942ccaf689aff6dcfb30c00b0c263a8120
+Merge: 32edbe4 49c71cc
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge pull request #293 from fdv/feature/new-editor/271
+
+commit 8dd79ba2974ad3f91d883f34fc99b8c32f276057
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes the dashboard that was exploding because the count: 1 needed a specific translation key. Apparently "other" was not enough.
+
+commit ddaca2a2a5fa1e0ae56639d2310f6300c6221aaf
+Merge: c501d09 8dd79ba
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge pull request #295 from fdv/bug/fix-spam-count/294
+
+commit b649a3e3ae55036216d97a680a911189b359b930
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes a bug where the collapsed bottom sidebar would trigger the top menu, making it unusable on a mobile device
+
+commit 7e05a9b132eeed8c5914ffd77ee212798f1cffb7
+Merge: b649a3e ddaca2a
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge branch 'milestone/publify-8' of github.com:fdv/publify into milestone/publify-8
+
+commit 5f78dd964b1f43e07b68b11827bd6ce05f50ae8e
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes an issue when leaving fullscreen mode. We need to resize the textarea or the new text won't appear. This seems to do the trick.
+
+commit 8ba62871f436d79d834f4715373bad2c72d0767b
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    < ook> to speak about publify, I'm still very confused by the "publish" button to save already published post
+
+commit 2deb484e38a9d1466d183446b96855ddd0b329cc
+Author: drakontia <mhden@drakontia.com>
+
+    Change storage setting from storage.yml to heroku config.
+
+commit feffc7a74d0341804c62aef66c6e10d07d199cea
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    Fix crash on non existing bulkop (ie. after a full list of spam marked)
+
+commit 610531fb9c4b617e5c1c5b28489d94b8af582b72
+Author: Soon Van <cog@randomecho.com>
+
+    Update profile edit form to use config/locale language files
+
+commit ad85b5b44328bd10da3bc3fd8d0fee4fad53a51f
+Merge: feffc7a 610531f
+Author: yaf <yannick.francois@free.fr>
+
+    Merge pull request #301 from randomecho/l10n-profile-edit-form
+
+commit e73949a8b05d8fefa63a0ce1745355985c345e5c
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Makes the menu bar a little more convenient: since we're using dropdowns, there should not be menus for a single link to click on. This change ensures we only have one link to click to
+
+commit b07a41bb585929bcc57396601ea35d0d02312214
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Taking @yaf comments into account: adding menu_name and menu_url methods to access menus.first.name and menus.first.url
+
+commit 875e04367c953e170925d9e5558b7d037958b268
+Merge: ad85b5b b07a41b
+Author: yaf <yannick.francois@free.fr>
+
+    Merge pull request #302 from fdv/feature/feature/improve-menu-bar/296
+
+commit bfada17a7303787e20b02f8938e7ad8187192439
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale for sidebar
+
+commit 30144acc7126bc1e63e343e96c15229ee8a1e9f5
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale for feedback
+
+commit e46001706986bf42f426650f36ba0a3ee94e3268
+Author: Soon Van <cog@randomecho.com>
+
+    More concise User registration help note explanation [ci skip]
+
+commit 36b1deaf341f4683017b7429e5a8ea91126da2f6
+Author: Soon Van <cog@randomecho.com>
+
+    Update Display Settings admin to use config/locale lang files
+
+commit 5455d0e5bde5fbd3f5fb6152bc857e29fa6a03fb
+Merge: 30144ac 36b1dea
+Author: yaf <yannick.francois@free.fr>
+
+    Merge pull request #303 from randomecho/admin-settings-explanation
+
+commit c6be05141031f824d925190673f9518df9445e44
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Add lang data to config for display
+
+commit 7eedf7e9e21f8d034ac89af50ce838b0f1100647
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Add lang data to config for display
+
+commit 3d1ee4d83cbf0c7b5bbd4ea4bea4266626902e6e
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Improve admin feedback code
+
+commit 741a1f700c00c5f850fe5ec8e70894e8d8a96e14
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Remove unused view and i18n keys
+
+commit 0d9fea49465a5110e6d26a1e6a08f5f3450e6bf3
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    move lang to locale, author page
+
+commit 3849bf1f626f5abec537b56d9a2636e79d067d40
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Remove month in lang
+
+commit e847bc79a5e94a27d797ee4bd5646a5a105e3bf4
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes notes RSS and atom title length.
+
+commit 6a84a39bdd484ea4ca0e2b9ed0c51cde6f4cda46
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Remove unused view and i18n keys
+
+commit f87c4a6a05fd7cbe2e451d68a87d52b4e6beb97b
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    move lang to locale, author page
+
+commit d04bcf74d17ea0c11f61737ec8937dd1647441c2
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Remove month in lang
+
+commit be28609a9e67cb48cdc506d9bad3ed8dadcb4734
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes notes RSS and atom title length.
+
+commit eb9aecf61008154a72cef0a122c4fced0d334bee
+Merge: e847bc7 be28609
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Merge branch 'refactoring/improve_admin_feedback' into milestone/publify-8
+
+commit 777c3a891200c833ec50038c31fcf1354941c2e8
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale from resource helper
+
+commit 5c5192c46b7eb101a9001cd2109bae8be77fa64b
+Author: Soon Van <cog@randomecho.com>
+
+    Fix typo, grammar on RSS default footer description
+
+commit f7ef23627991356ed14560d6e6a52c644584e867
+Merge: 777c3a8 5c5192c
+Author: yaf <yannick.francois@free.fr>
+
+    Merge pull request #308 from randomecho/rss-footer-default-text
+
+commit 5b6644cb89e51a9faf053f5c8d69d92b2c1952fe
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Remove autosave.js from view...
+
+commit dc5fbe2b44c4ebfd7ff86425855941a650a04320
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Remove unused i18n keys
+
+commit f8a798801b7d07f989dff9e60ff47f3d3399b13f
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes Twitter POSSE.
+
+commit e0a4230d8404adcb8e903ba87faddb8eb3dedeb5
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Show field by default.
+
+commit 7ba13eab3d8ca4d7748d5339c9807fba4869a53b
+Author: Soon Van <cog@randomecho.com>
+
+    Move lang to locale for Admin Tags section
+
+commit 9015243429e69349d0ae4ee906c6df098cf3bc5e
+Merge: f8a7988 7ba13ea
+Author: yaf <yannick.francois@free.fr>
+
+    Merge pull request #313 from randomecho/tags-locale
+
+commit 008a197591c17a14266f5dfe924ea9bd8930830f
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Feedback article seems to be unused...
+
+commit daaa20f521b2307a3c105027e4d11a31b4aa0a75
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Remove unused i18n keys
+
+commit bc8d327922addc1ddf3c093b63cd64d270b99c5a
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Moe lang to config for confirm setup page
+
+commit f130242b612a83a40458d57d1594898c23123fb7
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Revert "Feedback article seems to be unused..."
+
+commit c662670a311a1e3521515badaba521f58b6b7d37
+Author: Soon Van <cog@randomecho.com>
+
+    Move flash to gflash in admin tags controller
+
+commit 3a5d9fa53561682f35dda8a4f1b22855c3c83431
+Merge: f130242 c662670
+Author: yaf <yannick.francois@free.fr>
+
+    Merge pull request #314 from randomecho/gflash-tag-admin
+
+commit 5415357f0d957255a5c8e0e411904dc7f3395095
+Author: Soon Van <cog@randomecho.com>
+
+    Use gflash in admin users controller
+
+commit 9b6c46c4101cb66fdecb52999bac3399e21dacc4
+Merge: 3a5d9fa 5415357
+Author: yaf <yannick.francois@free.fr>
+
+    Merge pull request #315 from randomecho/gflash-admin-users
+
+commit ec0012223bfc1add7698a8c5297bea53b2716e02
+Author: Soon Van <cog@randomecho.com>
+
+    Move to gflash in admin themes controller
+
+commit 1e18e16f65d6db1770daa2c56961e5f3b4206550
+Author: Soon Van <cog@randomecho.com>
+
+    Use gflash in admin cache controller
+
+commit e2a41449172d832fd9a0ed794a18eb82386bab27
+Author: Soon Van <cog@randomecho.com>
+
+    Move to gflash in admin profiles controller
+
+commit 864b6bb248a90877eb565172a35b9b021f246b0c
+Author: Soon Van <cog@randomecho.com>
+
+    Move to gflash in admin pages controller
+
+commit 369ecc3b8d0f959c4c5eda24585ceef0f95bbeb1
+Author: Soon Van <cog@randomecho.com>
+
+    Move to gflash in admin resources controller
+
+commit 37e34babd2bffc08aaf883008dddfa0a1b416da9
+Author: Soon Van <cog@randomecho.com>
+
+    Fix spec for gflash on new page creation in admin
+
+commit 19a47ca5b51527008d1970f150e6bfbf31733dfe
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Fix specs, assert not nil
+
+commit 6f3e44a1f8081eeccf02e1be028f76451ddcdf7a
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Remove unused keys
+
+commit 1ab2e651e853d01763827854bf14f6d90cffce66
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move from lang to locales accounts controller
+
+commit 985ca4c93ffae52f55f7ac06555d32544c985e6e
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Fix spec and clean some spec files
+
+commit 1c372cf2c74c913bfbd32d1a6b6ca544e4d0f1e5
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Remove unused keys
+
+commit b6c0b411c1281c5c07f6e9d8c03e494530f02cd0
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locales for admin base flash
+
+commit 5bf2f20934c7ada52cd2b744b217a3dc4f3f2ff2
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale for content controller
+
+commit bcf75e7c7d17c16a5a2789eea37b8dc2a8afcf70
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Remove translation on this token error/warning... Is it ok for you ?
+
+commit 085e5856819f9bb2ffa886166080d705bb6c1334
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move from lang to locales for dashboard publify version messages
+
+commit 38da485a3fee0a73e3c81ec4196a1ab59907cef8
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale for admin feedback controller
+
+commit fcfe4dd534206fd436304a5ac8a8cef3500aba3a
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale for redirect controller
+
+commit adec716893b49a3a4133bae9e2c849d3edc422f9
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Remove some unused keys
+
+commit 3774618920cd9cb811f531523c00bc603d134107
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale for user index
+
+commit eda4dbc2f66d48499aa6b26d19a4d9db3c817dcc
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Remove some unused keys
+
+commit 3079767a237b585e11e88b8b2dcdf293f8f54185
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Remove more unused i18n keys
+
+commit b226716a6eae080eaabe59ff665da5a1f980e284
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locales and change title
+
+commit 065c56e36fa1446f2bd0fb232a735a166894cd22
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    remove preview keys and clean helper
+
+commit fa1d4e779c5e8b3591fbc9f1699bc58f599205bc
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Fix explainations for cache and remove complete key
+
+commit 7cc49ad3d19b4fc10140b018e5fa1a6b9d0fa8ed
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locales
+
+commit 796abf02d0d31f11f45e98adfe667dbf7a4a9fa5
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Cleaning Javascript before we start
+
+commit 446593fb6c5065f53215a660a648440713aa39db
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Uses `contenteditable=true` in a div / h1 instead of a Javascript resized textarea in the article form. If Javascript is disabled, the form uses the `textarea` and `input`
+
+commit 8d398ec357ba757a91badc043c2a32a7f22c6836
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale
+
+commit d384dfa9427a1fd9bb51dc2a51735e9fc29fc8ff
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Use `contenteditable` div and h1 on page form.
+
+commit 9f43e59f8a43c621a0c4d474248d41f3fadcd9ed
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Ensures placeholder are loaded on new contents.
+
+commit 7d0dbe6cce0ad3ae61c13e0bc2933cbdeee9e17c
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Remove some unused keys
+
+commit 170af3a78310efc630f4a1ef47a28482686c4655
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Remove some unused keys
+
+commit 2d583643bfcb0f6cfc9a876f5fe40fe1cb620eb1
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes publify:code start tag.
+
+commit 3d1c3146a834c17947888660ca9d944561da923f
+Merge: 2d58364 170af3a
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge branch 'milestone/publify-8' of github.com:fdv/publify into milestone/publify-8
+
+commit 72499540ad765ee7ce1260116c76c5d8559e6807
+Merge: 9f43e59 3d1c314
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Merge branch 'milestone/publify-8' into bug/use-contenteditable-in-editor/307
+
+commit 3d0912aef5537f2433dc3cc1a9b0aa92096b336a
+Merge: 7249954 5b6644c
+Author: yaf <yannick.francois@free.fr>
+
+    Merge pull request #309 from fdv/refactoring/remove-autosave-js-view
+
+commit ee8a160b20bf65d79821cdf4c795c8fea71793dd
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Revert "Remove autosave.js from view..."
+
+commit 164108fc682609292431dbc6006b5fc76bc59479
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Page is generate from article_controller, not grouping...
+
+commit f97c7a268dfbd7c90d95de789e47169035627925
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale for profiles index
+
+commit 20a4b8a948bb441815452d95d81f28b466414944
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale for feedback edit
+
+commit 70bc33ebbe3c2836c01f69c46c9fdcd64b180889
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Remove unused keys
+
+commit 13ae466716fd8e285f985b0f1bad8f9fc299905f
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale for theme index
+
+commit 02b90844cac673a87498e502066c1f3ae0f9a72c
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale for new user page
+
+commit fc7b14427125e4e318514f17c16251b45882ff3e
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale for edit user page
+
+commit f9ce88a9b9c540f8f17313faf18abe7abf08389a
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes autosave.
+
+commit c9c3fb664a30355fb8c99f02efaa6b780a777f03
+Merge: f9ce88a fc7b144
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Merge branch 'milestone/publify-8' into bug/fix-autosave/297
+
+commit a62cefe0d2e65ab6764845c4e4070c6c2a277408
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Remove some unused keys
+
+commit d98ca7ad2711da4997efc76cf78dc461b52d04e1
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale for redirects
+
+commit 3ec9f3d583e8d2b64f35e689de32912f5ff36ac5
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Fix some missing i18n keys and specs
+
+commit fa9893ce2a3ce75fa413f1349fe78def9858b627
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    First, let's clean some HTML.
+
+commit b28d407e08f719c50a554cd19dc168080f6377ee
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Fix missing spec
+
+commit 73b7746c805a74326fde162644109246730e542f
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale for dashboard latest comments
+
+commit 31c824ddf265ce4f270c34fac3fd4c6589dab12b
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move buttons back to views
+
+commit 516b0a6fdb58a8e402aed8aec0bc2c9a59bc7cc5
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale for tag new
+
+commit a7dd9b7f4d4d889a142e4b6ae5bb5109bfa30c33
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Remove some unused keys
+
+commit 0c440c06fba518e6eb02c13e1f49e4585c8bfb62
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale for user index and form
+
+commit eaf85a73aa8341e8f9588f89bfa6de8a44f18fc1
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    move lang to locale user form
+
+commit b411cadb69572ab3bfc71e59439d6040a3dbb382
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale for dashboard
+
+commit 27dd95e17bb4e99f49607d1119f62ba85d0c4efa
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale for macros
+
+commit 511746f182eb279695e847e789dda6e99c42df14
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale cancel or save/update setings buttons
+
+commit d6a4d45dc9988d621b53e3e4cdb5e582c5b77b8c
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale for notes
+
+commit bb7482e9471e67b3d6af54bcd179e8d27275b89e
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale for comment
+
+commit 98f84f9d1b5e081ec7b2cd2862f3ddeb6058fcb5
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale
+
+commit dfb9a195e1b80223e3c5e82b4fa508eb50f3445d
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Fix lang/locale, remove pluralize
+
+commit 77eb4ed3e2b2d777eedb779fbc6ec47d74643afa
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locales
+
+commit ebd7e92aeb02cda1705eb4e4168c7e6c428d4f50
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale (and clean helper)
+
+commit b30a8e4ae351219c03fe9e1e26e02eea7a848d51
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Makes the articles editor back to using a textarea with widearea to handle fullscreen editing.
+
+commit bd678623bab1c2731332718cf14a27a5f5a4c4f1
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Makes page form simpler to user.
+
+commit e3296607f657d35205ad7cd8b7308be3b6add490
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move land to locale for lang
+
+commit 780789d296244307ce08086cea3ce034bfb78a96
+Merge: e329660 bd67862
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Merge branch 'feature/make-the-simple-editor-really-simple-after-all/324' into milestone/publify-8
+
+commit cbaa55ee10f9028673bf9a28c21f2147aef193ac
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes the permalink generation.
+
+commit d5b9445bf79413fd5f3ec4b914577e8a4028a856
+Merge: 780789d cbaa55e
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge pull request #331 from fdv/bug/broken-permalink-creation/328
+
+commit 4819c0addbd8f8171c7cd1c7fd14ff9f6e6708d0
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Removes categories creation from the admin section.
+
+commit f11ab28c8e278d5698da6aa307a40b0ab22a4a31
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Removes the categories from article creation, article search and article lists.
+
+commit c5cba8e487991f96023a4e84884348c57cc9217e
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Removing category support.
+
+commit 39d0a4541ebd29bc8789fecb370da8bcbda6517f
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Adds category removal migration.
+
+commit b1d8a90a2145907896b691f34a9e29287d9155db
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Redirect to accounts/confirm after setup
+
+commit d415cf71b7e918b9ae06a14e41474543a65a9403
+Merge: d5b9445 39d0a45
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge pull request #334 from fdv/feature/drop-categories-for-tags/332
+
+commit 142e4fce8006838af631d70fd1320529579a926c
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merges both menus.
+    Merges the help and welcome menu.
+    Moves the new menu to the right.
+
+commit 35eb851758e6ce779eed1a835dc2e1adb68be0b5
+Merge: d415cf7 142e4fc
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge pull request #337 from fdv/feature/merge-menus/329
+
+commit 2e1d17a86b527a1b3df153d012c0abc37c51fb38
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes the comment listing format.
+    Fixes the comment form format.
+
+commit f0e98560b18d194391a5b189271cc8b9067a66fa
+Merge: 35eb851 2e1d17a
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge pull request #338 from fdv/bug/fix-admin-feedback-article-xxx/335
+
+commit 27292a8acf11b15ff0c7cd806383f8a225eaa67d
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes the editor loading
+
+commit f78cd97d4bdd762a5e3c44e9fdb4d25ee98bd52d
+Merge: 27292a8 f0e9856
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge branch 'milestone/publify-8' of github.com:fdv/publify into milestone/publify-8
+
+commit aa0278cf9d29d1ef65796e65d46604cd83a89e8b
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Ensures there's always one admin remaining.
+    Not sure about this, but we may ensure that a user can't destroy himself.
+
+commit 488459d0895862839cd998c3c244f532ffb84794
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Doing some CSS cleaning. This allow to drop the old glyphicon.png since we're now using a Unicode font.
+
+commit 1c333d6bfc7b2ff6940582fcb959d7131884c853
+Merge: aa0278c 488459d
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge pull request #339 from fdv/feature/clean-administration-css/330
+
+commit 95c1b1f73d02e5267f8152ee3084f4b71a4bd938
+Merge: b1d8a90 1c333d6
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge branch 'milestone/publify-8'
+
+commit 543ff1563fab099dfb64919a2a275f5adc123a1d
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Fix schema.rb and spec (no more user destroy action)
+
+commit 76a28c21eb828dfc33530bba574b921f4a6cc47d
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Remove unused sutf
+
+commit 08b513aaf74e228e3680175df43478681f7996b9
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Remove unused keys
+
+commit 9bb36d9f241149d5145b12d2e1b8d49588eca867
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Start to clean admin base_helper for lang
+
+commit da44009d26f9539dd60cde23811cb37cdb8c4757
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    relocalize empty table to put context back for i18n
+
+commit 65c5dc29c9f6f5cd9cb9487a4ee1d5613dc71009
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locales
+
+commit 8e5cbe5939f317d5d15b7a614ecfac293f1411f9
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    move lang to locales, more context in page
+
+commit 383aa377d499ee79588e4b5313282eaa7bb670d0
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Set default post_type closer to article. Fix cat in default view
+
+commit a05bc3b35f36ac916fcb36252a736c1577460a11
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale for default article view
+
+commit 03336c8fb54c9c5e12fa1f818a16f4e19bbccd3b
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale base controller and clean
+
+commit 9ec989403e09be27cfd7c1cb1c1ce2dd22bbdff6
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    move lang to localem read missing
+
+commit b16a78e06d4f20dbad0d58242c3cd297b1488af6
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes the update database form.
+
+commit 43972956b104cecfe5e83d9b0a2c302bcf846c42
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Remove unused keys
+
+commit ad02fb4d61be7a78383ae0cfdb13b5fb4566316a
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Clean helper by moving i18n stuff to views, with more context.
+
+commit 6ed896beb73cecede8367f85d55bfb457997d69c
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale for helper
+
+commit 259304cc5457c503c6f2b672d1feb8c3aa57f6fc
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale for errors in blog
+
+commit 458c49787c2d521eee0dd581bb2c87585401a20f
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale for post_Type error
+
+commit 8153ca02be73494af00856fd693a709a54e9697c
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale for base errors messages
+
+commit 305e21ff9eb70af52f6c09e6da0531a170b59a30
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Log full backtrace on sidebar errors
+
+commit fdeb5ba9996b1469e6b8048bd15e56c9ce3850c6
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Small cleanups of lib/sidebar.rb code
+
+commit 159e3b03674ffaa95a12ef803ef2dea4ec48c280
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Fix call to find_all_with_article_counters in tag sidebar
+
+commit 2058d696e89579560c5b6fbb50f5dd703b01287b
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Remove unused keys
+
+commit 9fdfca210562a0c36e453063d5678d835f813935
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale for note controller msg
+
+commit c2b841006334ce91188c06f55e10797756507920
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to config for controller message
+
+commit 8dd05e597b97584da426580c1b2ab21eff602231
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    move lang to locale
+
+commit 9d710d6198d2eaca227527bed3cf0eb79cd9af4a
+Author: siwei <shensiwei@youku.com>
+
+    fix bug: can not show chinese zh-CN and zh-TW
+
+commit bcc4ee724c42de9e1e1466eb1343eefa4e468050
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locales, archives page
+
+commit 6f0c922b700170ea81b37c33154683d1f1438a12
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locales for _article view
+
+commit 9a3493ff81188e0b6188e420868849497b789834
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locales
+
+commit 5363c8e3a3509cd628b94c2da55e46a7d4c77fae
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    move lang to locale for tags index
+
+commit f1318d6e13c05d7ab4e7469b7ee33f5635f674fd
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale for comments view
+
+commit 0e6903449ac537ce7ae50145cb0d4d3b3c1d0a74
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    remove unused keys
+
+commit eb71970cd82e8cb8d83d4c0243379c1d03710040
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale for sidebar index
+
+commit 8e1b6516892821dfc7428d9fbbcd01d1f8f41594
+Merge: eb71970 9d710d6
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge pull request #351 from sg552/master
+
+commit 9dfa2886973a72e7216ea214741ac9cf7b990767
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Drops Gritter Gem globally.
+    Moves account flashes from gflash files to the main ones.
+
+commit f3a1d2139b477e911effbb1b1c881790e0d0a324
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes display of author pages by replacing removed categories by tags.
+
+commit dbd7ab86945125891f36566768f5e19410e61d83
+Merge: 8e1b651 f3a1d21
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge pull request #361 from fdv/bug/fix-undefined-method-categories/357
+
+commit 30e289dd02b784c999f7e6c686b5bf0495547e5d
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes tag sidebar URLs.
+
+commit 1fd6370e711ca31364ad2c84e5aee79b6a1d2082
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Remove more unused keys
+
+commit 07ba09bd45c6332216d46f1cf4ca7b721ee16a42
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locales for bootstrap meta part
+
+commit fb23cd451739a882d8f1840ff565fd9d7e058d5e
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Drops Gritter Gem globally.
+    Moves account flashes from gflash files to the main ones.
+
+commit 7de990ace804cee9c549f31db4587e86b8e3dc6b
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Remove gflash on admin/cache
+
+commit e8cbb5b2a6b6b672b49e85fa85876c7f2e342425
+Merge: 7de990a 9dfa288
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge branch 'feature/drop-fucking-gritter/346' of github.com:fdv/publify into feature/drop-fucking-gritter/346
+
+commit ab15674029c0776ef2bd4d83765c06f866338041
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Start to remove gflash resource, tags themes and users controller
+
+commit c8b3629381c1850a399ce308d83c1b99567c9b35
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Remove gflash from pages and profiles controller
+
+commit 28bcf05b5d4f12a070cda1ba8c6bc2eff0f657ba
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Remove gflash fo radmin basem content dashboard and feedback
+
+commit 087569389a15bd1821a1533ef22fedd6b9f8053d
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Remove gflash for notesm redirects and sidebar
+
+commit 24561be5451832ac56d29d467cf18982b59d0682
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Remove last gflash files and fix specs
+
+commit 1c15a56610075aa121dd857ffb82c3611168171e
+Merge: 07ba09b 24561be
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge pull request #362 from fdv/feature/drop-fucking-gritter/346
+
+commit 11c120773a9201192582189837e13f708bd4f5f2
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale
+
+commit 3dec3d69d1d8c12739be68a5d57f1d6e627e65e7
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locales
+
+commit 2153db0c800f9da377a9ee85640baacef116c15c
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale
+
+commit d699840a8bd8edc807632085ae82894611ba2cf1
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixing the article tags part using Jquery Tag manager + Typeahead.
+
+commit 83b4afc8da49d990b43e8b2cb7c5cbea9aa5d390
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Moves the JS out of the view.
+
+commit 3e3e83efff1ecb24f17949891df9d9fe94b902f9
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes the build.
+
+commit e583358957d7f0c73ce506076684954fa701b508
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    I know this should be done un multiple commits, but I'm really too lazy to think
+    how I should split them. Really. But you'll love me for doing it anyway.
+
+commit 45909ed58ff366f72dcc85a5119ee7d364542d3d
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes the footer display.
+
+commit 76455211f3ee04f74fa92c5e60f8140e2ebd6f7d
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale
+
+commit 1c7301720bebfa0076b496739c8987795d85bf00
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale
+
+commit 530caba90a05a943ed08eaf984293e407100f96d
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale
+
+commit fdd9f40aa621d4482c74eb7b7af1fb2a4bb14961
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Ignore gems localy installed
+
+commit 3c2a6d60d93d8a5b6f13aef86624ef66df8261b5
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes the documentation.
+
+commit 5b0662f555de62749e68ec29c37f1308e2a53eb8
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes syntax highlighting in themes.
+
+commit 540596ec919e390a55cd6d0f1699fc09a94171d3
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Makes the administration navigation bar white and not black
+
+commit 1fd1fa221476ee90fcd84bcbea60400fb5b3e831
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes profile styling
+
+commit e5449f42693191a14833198a856b9f0376cad585
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locales
+
+commit d366ccd095810fcb738563641396727b2daec3de
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locales
+
+commit 9ca55f5ff0bbeec1f135f17194e516004e748166
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale
+
+commit 287ae2da6abf865468f7e4c97b8adf2006a6d2d2
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale
+
+commit d6724adecd2468e0fa43767d7b36dc465424c7a2
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move lang to locale.
+
+commit 2dcdbb42a7755d9a7b43aec1873fd80f94fabb84
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Remove unused keys
+
+commit 0f4379aec65ae7cea87b206dd38cdabe080b62ec
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Finish to remove lang... \o/
+
+commit 9b01e1b6e4caea44b2a04ab182d88ba180e3e65d
+Author: yaf <yannick.francois@free.fr>
+
+    Update administration.html.erb
+
+commit 9aa2f268f836546d829eba32152f0796fe26dc72
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Refactoring around redirect when login
+
+commit bcc185419d5f3d1db73f9019cd8a52764abb0548
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Remove render the flash to use a partial instead
+
+commit 5f24e5bcef66b0ec3b7b10da0675e7b2361375c7
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Remove some unused method
+
+commit 2f8725e6f8a221f8448dbf238caf7c5702f6b42a
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Author route in a more rails way...
+
+commit 90841ad794c9e2fbd2e0776fe0b7da18aec422e5
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Clean cache controller routes
+
+commit c97c22b0d1cae988526e8aeeabf90c63ecc1f414
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Remove unused routes
+
+commit 7f2f735fccab6c57c96ae652347fb344f4cf91cf
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Fix setup page i18n problem
+
+commit f55946ca01e846c1b7a95080fb30ad72d16b463c
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Remove custom theme helper capability...
+
+commit 04047f1a1079cd40862caef741ab2c6e6f837eb9
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Revert "Remove custom theme helper capability..."
+
+commit 0be6fda85a16b09121cd39699cb421786218d943
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    draggable + droppage AdminSidebars
+
+commit 9a0891bd09a10f36cbeeb17b48d89c1ff80d77af
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    WIP now I doubt on how it works…
+
+commit 24d4fd1ff4f910d40d460a44a471badcab3125c6
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    Add transactionnal commit of staged data onto active
+
+commit 3c77229e1ed26f21c86163648348fe37e7ea9840
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    Prepare list of staged and active sidebar to handle switch of states
+
+commit 073eefbd17f8c2eeeff178c2addf124986ed8a6e
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    One partial to handle active and staged states
+
+commit 322ab103e1b7a06be44bea0eb8c06b4165ac7ed9
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    WIP
+
+commit f132f66bec9c28c3b41881da77e4716a4151b807
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    Sortable logic for Admin Sidebar
+
+commit 49793d8ae642f3fd7274fd127dfc16e42ac489f5
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    Reintroduce parametrable fields + cleaning
+
+commit 2bbf27e05537883f9c3c1afa9f2d1480655b97ea
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    Keep a todolist
+
+commit d4617a87c94dd68091f2f27ab5fcebc918c470fa
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    Hum? Why this? Really?
+
+commit d1d955aa2d00a3fa46fb7d5ce0a65a893e94fab8
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    Some work for yaf? ;)
+
+commit 1f72142e238f75a87c4e1280c9038721be6057a6
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    Apply reasonnable CSS for admin Sidebars
+
+commit 09d5024500105f494d905fa935dc2c33311b9eaf
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    Fix stupid routes
+
+commit 4f6a0ff3ebe2a26530b44a4eca3cb71e704fd12f
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    No more need of placeholder
+
+commit 8dcacbec40d99b16aa217ad0e6af7c34b38a9423
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    Singular
+
+commit b180164d5bc23823f55b5ae07cb885ee397646ed
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    No crsf_meta_tags in layout? You can't be serious!
+
+commit d2738fa8890b4c9b0f0ef7343c711b82a93ce91c
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    Cleanup sidebar.js
+
+commit 141ab33135f2ef960aef50ee1c6f7e349b046992
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    Fake button approach. Doubt about it
+
+commit 9f0490678507bd2299aaaab4f91eebc712b8c844
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    Update logic for AdminSidebar
+
+commit cbfeac3c771d28dbaa050145e720e2764a92fb96
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    Fix AdminSidebar#update
+
+commit 367f52d49ed47776e4d51d215b9c6b10348d5107
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    1 form per Sidebar instance
+
+commit ad3c53abfdf813de01eeaf7021e001194cb3cbe8
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    Remove fake_button stuff from js
+
+commit 542c9b9d7fdac8e3a361906122e8ca59525f110f
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    Cleanup controller. No more need of placeholder
+
+commit 602b583384982e78ebbe37e6de723337211700e7
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    ajaxify target_sidebar update
+
+commit 9370cbfaa954267e902f0de5be23d7305d773c4f
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    Sidebar.ordered_sidebars and visual feedback
+
+commit 70d7f8e5b8bd70756f9f5d46ea0a12181856dad9
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    Switch warning and info class
+
+commit d2d4f8c142d514b1611a84bcae5a718b6d745984
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    Placeholder for first drop
+
+commit 06b3bf332cfe14d7c494555cedfdf75339a7c2d5
+Author: Soon Van <cog@randomecho.com>
+
+    Update GitHub links to point to new organisation [ci skip]
+
+commit ed08b0ce583117603b62351e5632e7ae37cff9c6
+Merge: d2d4f8c 06b3bf3
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    Merge pull request #369 from randomecho/readme-github-move
+
+commit d19fb2f0c612809ec4f29ed6fac175c399acdef5
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    A little bit more jquery-ing
+
+commit f1ee9b0a2fc7b0913342a654c6ac34b11979c715
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    Missing encoding header for ruby 1.9
+
+commit 03b68ec8654d1bcf93ba8b2a9b59d60fe3266a3b
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    AdminSidebar cleaning
+
+commit 29c6e1b233a7a2de0904f3f7c583be66d8714b7f
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    Rather sure Travis failed by itself, so fix a typo to see…
+
+commit b432bde722737056ab3eef79cdad1ed9034f2285
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Clean around note still a strange prod problem around tweet length
+
+commit 0c52669ca7b26ac22cd7c6ad0141660de65dfaf3
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    Code climate for publify/publify account
+
+commit 55c46f0155374a435b08fd0a5b1d91d6ff15f292
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    Remove dead code in AdminSidebar
+
+commit 29a3427ae155d3a9ae26f43dc0dbb7dd9d1d5076
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    Missing l18n for adminSidebar
+
+commit 6910b0cd641a5044ba872c133d5344e1ea37de39
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    New code climate badge
+
+commit 91f2f1b1548ac8bb80a5679a8981de317d8cf8b4
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Remove and clean some test around useless helper method
+
+commit 242bba88704db8c43f0a6c066bf2442fa64fd9c3
+Author: alexandros giamas <agiamas@gmail.com>
+
+    fixes publify/publify#372
+
+commit e3440dcba997d1ee4b960dad4b7431cf2d1f9d85
+Author: alexandros giamas <agiamas@gmail.com>
+
+    fixes publify/publify#372
+
+commit e6cee8409922b772881b3b55072f470c12425c35
+Author: alexandros giamas <agiamas@gmail.com>
+
+    fixed indenting, removed dead assertions, better it messages in rspec
+
+commit b1c5e5f38f7586258b275f782dcaff18b13a615c
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Clean admin route
+
+commit f2059f5763efa8742f9f2f5e474cbf4d4de486aa
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Fix some i18n sidebar problems
+
+commit 08df1e868fff24881047286e6571e39a933b634e
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Remove localisation from specs
+
+commit afd3b9d16c50ffa1a09d3fc867534a722858068f
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Clean helper, remove post_types ones
+
+commit 0aa3d9648ae3045f807cd022615636736e15c8d7
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    Attempt to fix fdv problem with sortable
+
+commit eb0fecf22924a3bc366a66e42cae9019bdf6f1b8
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move helper methods to a same file
+
+commit a5ac467ac610e2071e76278a48ea14dec7d8db34
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Start to refactor around note
+
+commit 1f88f1f6b9709140933aae34ca412bad2095d884
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Create an index view for notes
+
+commit 1714c0f5634f2e9bacdb547589c88161796c04d4
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    Publify @ gemnasium: ok. Close issue #370
+
+commit c7d7b3dd24c36cbb8afcb4769c19e279a6133e76
+Author: Thomas Lecavelier <thomas@lecavelier.name>
+
+    Update Rails to latest security fix for 3.2 + some jquery related gems
+
+commit 62630bcaacae9f2ad2edc21f2ca726623471a5c4
+Merge: c7d7b3d e6cee84
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge pull request #375 from agiamas/master
+
+commit 1337ae791d007c5201ce7dbcadb1c1107043673a
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move note controller to a more rails rest way
+
+commit 4f90aad76a0c6d11a024a95df5054262bcea0171
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Edit reuse index tempate now.
+
+commit 1ecc02d7320d8cd5915763af92b95593a05080df
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Test correct action in preview_page spec section
+
+commit 39c929cbcbe1fc4b6b0a8ca0510834f9df2e04e3
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Stop trying to load plugin routes from vendor/plugins
+
+commit a69a6c0f824e723e5fd48ae9d98658612e0381b8
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Fix typo
+
+commit b3e63c9a21281ceae8cb0b7a669b250a7dbc68c9
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Test rendering of article for each theme
+
+commit ea3178edd31ebbed8c7017d8857c626301bf4c16
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Change set_author to a more clear author=
+
+commit 391b04843b44c76f314e4880abea58355ee74314
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Add test around author for content
+
+commit 638ab54e5c4e60fb47edebf0b43877c74e4f8169
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Move note to a more ressources way
+
+commit 3b8b71bb32f59c778876fb17fb39518a15d888b2
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Remove unused helper
+
+commit c6369a62c2eedc1ee943ad433a0ddd348516f245
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Removing the old XMLRPC API as it appears no one use desktop client anymore, and we don't see the point of maintaining accesses to APIs that have not been maintained since 2003.
+
+commit 28c480eb18fb03a31b5f176ca0eb12ec76ae6fec
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Moving Typographic as an external project. New URL is now https://github.com/publify/typographic
+
+commit e744c7dd5af1dc02543244d9dc99c5959d84f967
+Author: Yannick Francois <yannick.francois@free.fr>
+
+    Use default views for test.
+
+commit db3efbebfd16e6c0390f8b371c143ad66182a5a6
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Adds a "move" cursor when hovering the draggable sidebar elements.
+
+commit 8a651621af5baec525d67dde712be5028a86f22b
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Updates seo/permalinks to use the same help style as seo/titles
+
+commit 5681583327581deecd108a0046690b677526826c
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Removes the "Publify can notify you when new articles or comments are posted" message
+
+commit f8b33477558ecb715de08f107219160b1ce2bddb
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    When there is no note to display, render a 200 with an "error" template saying "there is no note".
+
+commit f396669b1f96eca4806c4b588325b6b1a5ba4262
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Add default layout to unthemed views
+
+commit 3d1e2ec00ab82371243c93128c93e085ee6afb28
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Simplify specs, silencing warnings
+
+commit 28f2deee3dd00d3ae04526c489950aeec6f09f9d
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Remove deprecated layout locations
+
+commit 66dc2a363d9d5033929d47a066a490483ecb2e13
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Limit view rendering in article preview spec
+
+commit ffaf770ef4863a48435637ca1b63dbec43f5d76c
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Correctly spec article views without themes
+
+commit 97ce4b8f10f423592141460a59c79bd3728693fe
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Uses `small` instead of `span` to display the geolocation help messages in admin/settings/write
+
+commit 664b5a92387dc4a6ca09780c0f65698b21afb4e1
+Merge: 97ce4b8 ffaf770
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Improve theme testing [merges 'improve-theme-testing']
+
+commit ba543e4a67440a9157768e0f3891ee33bf4614a7
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Remove old autoload path
+
+commit f5f5aafdbd424f3624d5cb8dc90a92ba272fd465
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes the "page" translation in paginated lists `title`.
+
+commit 7b81dc7022126002c3ade24bffcdf85c3c78c48e
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Add default layout to unthemed views
+
+commit 9c0afebb0a0f9cf1daa15443d7a50648e6e09b7b
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Simplify specs, silencing warnings
+
+commit 01821993f5aaadfbd5a2e85781b44b89478948ed
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Remove deprecated layout locations
+
+commit 1d0893bbaa22042e1b24fa7c8b6fc9b65b7ad0e4
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Limit view rendering in article preview spec
+
+commit aaee822a18ef581a0342ae70660160bfc38c87ca
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Correctly spec article views without themes
+
+commit 248b4c67d02371269c81367e2bbc162e3abd1679
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Remove old autoload path
+
+commit 5a666938462144c900e65d0eac36b29fa0df6e9f
+Merge: 248b4c6 ba543e4
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge branch 'master' of github.com:fdv/publify
+
+commit 01e5cdccc0691e8f8252fc736aeb92d414f0f36c
+Merge: ba543e4 f5f5aaf
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Merge branch 'fix-page-translation'
+
+commit 03cdd0f989923ac35ecebb22cbd5fa2b292eabce
+Author: Matijs van Zuijlen <matijs@matijs.net>
+
+    Fix archives sidebar month rendering
+
+commit f0bfe4c75bedd9211e120c1014d9447b3d091cc3
+Merge: 5a66693 03cdd0f
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Merge branch 'master' of github.com:fdv/publify
+
+commit a7ca808d0f846802f29c4ce593d112620430de88
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes "no notes" default message.
+
+commit aaef24c405c6d57275052a2c32e8a2f331aae82a
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Styles users creation form dropdown menus.
+
+commit 65cdfe38546723f60031d31a86cefa54eed8d307
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Adds top margin to the admin footer
+
+commit 8e4f7c8dd0197d0ee8aa7b7922312389200a837e
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes the missing "Don't lose the mail sent at %{email} or you won't be able to login anymore" message at setup confirmation.
+
+commit 4eb90d62e9962c86653ad1b9f01eb11ec45a60e4
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Fixes date translation in themes.
+
+commit 9ce22aa33f8196a425a4b7ea4451448901ed5700
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Styles admin/cache
+
+commit 222f639e1fe06d218e36134be4adb901a3420665
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Finally solving an issue where pages were created offline despite all other content being online. For what I know, this issue has been present since about 9 years.
+
+commit 906190a3e7d9da2e53ec7b07eaaa21c0f947dab6
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Adds specs for previous commit.
+
+commit 7e799ca85bed5a0ce8e0ad68f8c051873ccd3754
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Adding json.erb views actually fixes the sidebar drag and drop. Certainely a better way to do it, but I want to release first.
+
+commit d4d70efda73e1b9aeca6b939fad565542da0c4f1
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Adds a thin line above save button blocks to visually separate them from the form.
+
+commit 5f16fb91f1acee9554dd744a3424cab2e9f09504
+Author: Frédéric de Villamil <frederic@de-villamil.com>
+
+    Updated Rails version to 3.16
