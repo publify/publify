@@ -62,6 +62,7 @@ da:
     search:
       next_page: "Next page"
       previous_page: "Previous page"
+      page: "page"
     comment_preview:
       is_about_to_say: "vil gerne sige"
     meta:
