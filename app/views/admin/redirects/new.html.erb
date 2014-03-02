@@ -19,6 +19,7 @@
         <%= text_field :redirect, :to_path, :class => 'form-control', placeholder: t(".to") %>
       </div>
       <div class='form-group'>
+        <hr />
         <%= link_to(t(".cancel"), {action: 'index'}, class: 'btn') %>
         <%= t(".or") %>
         <%= submit_tag(t(".save"), class: 'btn btn-success') %>

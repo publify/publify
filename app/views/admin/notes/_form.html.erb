@@ -36,6 +36,7 @@
     <%= n.text_field :published_at, {class: 'form-control datepicker'} %>
   </div>
   <div class='form-group'>
+    <hr />
     <%= link_to(t(".cancel"), {action: 'index'}, class: 'btn') %>
     <%= t(".or") %>
     <%= submit_tag(t(".publish"), class: 'btn btn-success') %>

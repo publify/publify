@@ -3,12 +3,16 @@
   <h2 class="page-title"><%= t('.destroy_confirmation') %></h2>
 <% end %>
 
-<p>
-  <%= t(".are_you_sure", element: @record.class.name.downcase)%>
-</p>
+<div class='well'>
+  <p>
+    <%= t(".are_you_sure", element: @record.class.name.downcase)%>
+  </p>
 
-<%= form_tag action: "destroy", id: @record.id do %>
-  <div class='form-actions'>
-    <%= t(".action_or_other", first_action: link_to(t(".cancel"), {action: 'index'}, class: 'btn'), second_action: submit_tag(t(".delete"), class: "btn btn-danger")) %>
-  </div>
-<% end %>
+  <%= form_tag action: "destroy", id: @record.id do %>
+    <hr />
+    <div class='form-actions'>
+      <%= t(".action_or_other", first_action: link_to(t(".cancel"), {action: 'index'}, class: 'btn'), second_action: submit_tag(t(".delete"), class: "btn btn-danger")) %>
+    </div>
+  <% end %>
+  
+</div>

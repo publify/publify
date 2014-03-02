@@ -13,6 +13,7 @@
       <%= text_field :tag, :display_name, class: 'form-control', placeholder: t('.name') %>
     </div>
     <div class='form-group'>
+      <hr />
       <%= link_to(t(".cancel"), {action: 'index'}, class: 'btn') %>
       <%= t(".or") %>
       <%= submit_tag(t(".save"), class: 'btn btn-success') %>
