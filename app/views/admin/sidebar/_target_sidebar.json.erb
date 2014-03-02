@@ -1,0 +1,21 @@
+    <li class="sidebar_item" data-sortable="sidebar_<%= sidebar.id %>" >
+    <%= link_to 'X', admin_sidebar_path(sidebar), {class: 'deletion_link', remote: true, method: :delete, :'data-confirm'=>'Are you sure?'} %>
+      <%= form_tag admin_sidebar_path(sidebar.id), {remote: true, method: :put} do |f| %>
+      <div class="active alert <%= class_for_admin_state(sidebar, sortable_index)%>">
+        <h3 class='light'><%= sidebar.display_name %></h3>
+        <div class='widget-content'>
+          <p><%= sidebar.description %></p>
+        </div>
+        <div>
+        <%- sidebar.class.fields.each do |row| %>
+          <%= row.line_html(sidebar) %>
+        <%- end %>
+        <%- if sidebar.class.fields.length > 0 -%>
+        <p>
+          <%= submit_tag t('.update') %>
+        </p>
+        <%- end -%>
+        </div>
+        <%- end -%>
+      </div>
+    </li>

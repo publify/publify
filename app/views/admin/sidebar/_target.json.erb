@@ -1,0 +1,9 @@
+<ul class="sortable">
+  <%- @ordered_sidebars.each_with_index do |sidebar, index| -%>
+    <%- next unless sidebar.id -%>
+    <%= render partial: 'target_sidebar', locals: { sidebar: sidebar, sortable_index: index } %>
+  <%- end -%>
+  <%- if @ordered_sidebars.empty? -%>
+    <li></li>
+  <%- end -%>
+</ul>
