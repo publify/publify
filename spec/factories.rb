@@ -161,7 +161,7 @@ http://alsoping.example.com/rpc/ping"
     association :text_filter, factory: :textile
     sp_article_auto_close 0
     link_to_author false
-    comment_text_filter "markdown" #FactoryGirl.create(:markdown).name
+    association :comment_text_filter, factory: :markdown
     permalink_format "/%year%/%month%/%day%/%title%"
     use_canonical_url true
     lang "en_US"

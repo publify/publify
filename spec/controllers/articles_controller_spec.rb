@@ -11,7 +11,7 @@ describe ArticlesController do
     response.should redirect_to(tags_path)
   end
 
-  describe 'index action' do
+  describe :index do
     before :each do
       create(:article)
       get 'index'
@@ -48,10 +48,8 @@ describe ArticlesController do
 
   describe '#search action' do
     before :each do
-      FactoryGirl.create(:article,
-              :body => "in markdown format\n\n * we\n * use\n [ok](http://blog.ok.com) to define a link",
-              :text_filter => FactoryGirl.create(:markdown))
-      FactoryGirl.create(:article, :body => "xyz")
+      create(:article, :body => "in markdown format\n\n * we\n * use\n [ok](http://blog.ok.com) to define a link", :text_filter => create(:markdown))
+      create(:article, :body => "xyz")
     end
 
     describe 'a valid search' do
@@ -120,9 +118,9 @@ describe ArticlesController do
     describe 'with a query with several words' do
 
       before :each do
-        FactoryGirl.create(:article, :body => "hello world and im herer")
-        FactoryGirl.create(:article, :title => "hello", :body => "worldwide")
-        FactoryGirl.create(:article)
+        create(:article, :body => "hello world and im herer")
+        create(:article, :title => "hello", :body => "worldwide")
+        create(:article)
         get :live_search, :q => 'hello world'
       end
 
@@ -157,7 +155,7 @@ describe ArticlesController do
   describe '#archives' do
     render_views
     it "works" do
-      3.times { FactoryGirl.create(:article) }
+      3.times { create(:article) }
       get 'archives'
       response.should render_template(:archives)
       assigns[:articles].should_not be_nil
@@ -171,7 +169,7 @@ describe ArticlesController do
   describe 'index for a month' do
 
     before :each do
-      FactoryGirl.create(:article, :published_at => Time.utc(2004, 4, 23))
+      create(:article, :published_at => Time.utc(2004, 4, 23))
       get 'index', :year => 2004, :month => 4
     end
 
@@ -217,23 +215,17 @@ end
 describe ArticlesController, "feeds" do
   let!(:blog) { create(:blog) }
 
-  before(:each) do
-    @article1 = FactoryGirl.create(:article,
-                               :created_at => Time.now - 1.day)
-    FactoryGirl.create(:trackback, :article => @article1, :published_at => Time.now - 1.day,
-                   :published => true)
-    @article2 = FactoryGirl.create(:article,
-                               :created_at => '2004-04-01 12:00:00',
-                               :published_at => '2004-04-01 12:00:00',
-                               :updated_at => '2004-04-01 12:00:00')
+  let!(:article1) { create(:article, :created_at => Time.now - 1.day) }
+  let!(:article2) { create(:article, :created_at => '2004-04-01 12:00:00', :published_at => '2004-04-01 12:00:00', :updated_at => '2004-04-01 12:00:00') }
 
-  end
+  let(:trackback) { create(:trackback, :article => article1, :published_at => Time.now - 1.day, :published => true) }
+
 
   specify "/articles.atom => an atom feed" do
     get 'index', :format => 'atom'
     response.should be_success
     response.should render_template("index_atom_feed")
-    assigns(:articles).should == [@article1, @article2]
+    assigns(:articles).should == [article1, article2]
     @layouts.keys.compact.should be_empty
   end
 
@@ -241,29 +233,30 @@ describe ArticlesController, "feeds" do
     get 'index', :format => 'rss'
     response.should be_success
     response.should render_template("index_rss_feed")
-    assigns(:articles).should == [@article1, @article2]
+    assigns(:articles).should == [article1, article2]
     @layouts.keys.compact.should be_empty
   end
 
   specify "atom feed for archive should be valid" do
     get 'index', :year => 2004, :month => 4, :format => 'atom'
     response.should render_template("index_atom_feed")
-    assigns(:articles).should == [@article2]
+    assigns(:articles).should == [article2]
     @layouts.keys.compact.should be_empty
   end
 
   specify "RSS feed for archive should be valid" do
     get 'index', :year => 2004, :month => 4, :format => 'rss'
     response.should render_template("index_rss_feed")
-    assigns(:articles).should == [@article2]
+    assigns(:articles).should == [article2]
     @layouts.keys.compact.should be_empty
   end
 end
 
 describe ArticlesController, "the index" do
+  let!(:blog) { create(:blog) }
+
   before(:each) do
-    build_stubbed(:blog)
-    FactoryGirl.create(:user, :login => 'henri', :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN))
+    create(:user, :login => 'henri', :profile => create(:profile_admin, :label => Profile::ADMIN))
   end
 
   it "should ignore the HTTP Accept: header" do
@@ -279,7 +272,7 @@ describe ArticlesController, "previewing" do
   describe 'with non logged user' do
     before :each do
       @request.session = {}
-      get :preview, :id => FactoryGirl.create(:article).id
+      get :preview, :id => create(:article).id
     end
 
     it 'should redirect to login' do
@@ -288,10 +281,10 @@ describe ArticlesController, "previewing" do
   end
 
   describe 'with logged user' do
-    let(:henri) { create(:user, login: 'henri', profile: create(:profile_admin, label: Profile::ADMIN)) }
-    let(:article) { create(:article, user: henri) }
+    let(:admin) { create(:user_admin) }
+    let(:article) { create(:article, user: admin) }
 
-    before(:each) { @request.session = { user: henri.id } }
+    before(:each) { @request.session = { user: admin.id } }
 
     describe 'theme rendering' do
       render_views
@@ -349,21 +342,21 @@ describe ArticlesController, "redirecting" do
       end
 
       it 'should redirect' do
-        FactoryGirl.create(:redirect, :from_path => 'foo/bar', :to_path => '/someplace/else')
+        create(:redirect, :from_path => 'foo/bar', :to_path => '/someplace/else')
         get :redirect, :from => "foo/bar"
         assert_response 301
         response.should redirect_to("http://test.host/blog/someplace/else")
       end
 
       it 'should redirect if to_path includes relative_url_root' do
-        FactoryGirl.create(:redirect, :from_path => 'bar/foo', :to_path => '/blog/someplace/else')
+        create(:redirect, :from_path => 'bar/foo', :to_path => '/blog/someplace/else')
         get :redirect, :from => "bar/foo"
         assert_response 301
         response.should redirect_to("http://test.host/blog/someplace/else")
       end
 
       it "should ignore the blog base_url if the to_path is a full uri" do
-        FactoryGirl.create(:redirect, :from_path => 'foo', :to_path => 'http://some.where/else')
+        create(:redirect, :from_path => 'foo', :to_path => 'http://some.where/else')
         get :redirect, :from => "foo"
         assert_response 301
         response.should redirect_to("http://some.where/else")
@@ -373,8 +366,7 @@ describe ArticlesController, "redirecting" do
 
   it 'should get good article with utf8 slug' do
     build_stubbed(:blog)
-    utf8article = FactoryGirl.create(:utf8article, :permalink => 'ルビー',
-                                     :published_at => Time.utc(2004, 6, 2))
+    utf8article = create(:utf8article, :permalink => 'ルビー', :published_at => Time.utc(2004, 6, 2))
     get :redirect, :from => '2004/06/02/ルビー'
     assigns(:article).should == utf8article
   end
@@ -382,18 +374,15 @@ describe ArticlesController, "redirecting" do
   # NOTE: This is needed because Rails over-unescapes glob parameters.
   it 'should get good article with pre-escaped utf8 slug using unescaped slug' do
     build_stubbed(:blog)
-    utf8article = FactoryGirl.create(:utf8article, :permalink => '%E3%83%AB%E3%83%93%E3%83%BC', :published_at => Time.utc(2004, 6, 2))
+    utf8article = create(:utf8article, :permalink => '%E3%83%AB%E3%83%93%E3%83%BC', :published_at => Time.utc(2004, 6, 2))
     get :redirect, :from => '2004/06/02/ルビー'
     assigns(:article).should == utf8article
   end
 
   describe 'accessing old-style URL with "articles" as the first part' do
     it 'should redirect to article' do
-      build_stubbed(:blog)
-      article = FactoryGirl.create(:article, :permalink => 'second-blog-article',
-                                   :published_at => '2004-04-01 02:00:00',
-                                   :updated_at => '2004-04-01 02:00:00',
-                                   :created_at => '2004-04-01 02:00:00')
+      create(:blog)
+      article = create(:article, :permalink => 'second-blog-article', :published_at => '2004-04-01 02:00:00', :updated_at => '2004-04-01 02:00:00', :created_at => '2004-04-01 02:00:00')
       get :redirect, :from => "articles/2004/04/01/second-blog-article"
       assert_response 301
       response.should redirect_to("http://myblog.net/2004/04/01/second-blog-article")
@@ -401,10 +390,7 @@ describe ArticlesController, "redirecting" do
 
     it 'should redirect to article with url_root' do
       b = build_stubbed(:blog, :base_url => "http://test.host/blog")
-      article = FactoryGirl.create(:article, :permalink => 'second-blog-article',
-                                   :published_at => '2004-04-01 02:00:00',
-                                   :updated_at => '2004-04-01 02:00:00',
-                                   :created_at => '2004-04-01 02:00:00')
+      article = create(:article, :permalink => 'second-blog-article', :published_at => '2004-04-01 02:00:00', :updated_at => '2004-04-01 02:00:00', :created_at => '2004-04-01 02:00:00')
       get :redirect, :from => "articles/2004/04/01/second-blog-article"
       assert_response 301
       response.should redirect_to("http://test.host/blog/2004/04/01/second-blog-article")
@@ -412,10 +398,7 @@ describe ArticlesController, "redirecting" do
 
     it 'should redirect to article with articles in url_root' do
       b = build_stubbed(:blog, :base_url => "http://test.host/aaa/articles/bbb")
-      article = FactoryGirl.create(:article, :permalink => 'second-blog-article',
-                                   :published_at => '2004-04-01 02:00:00',
-                                   :updated_at => '2004-04-01 02:00:00',
-                                   :created_at => '2004-04-01 02:00:00')
+      article = create(:article, :permalink => 'second-blog-article', :published_at => '2004-04-01 02:00:00', :updated_at => '2004-04-01 02:00:00', :created_at => '2004-04-01 02:00:00')
       get :redirect, :from => "articles/2004/04/01/second-blog-article"
       assert_response 301
       response.should redirect_to("http://test.host/aaa/articles/bbb/2004/04/01/second-blog-article")
@@ -423,48 +406,39 @@ describe ArticlesController, "redirecting" do
   end
 
   describe 'with permalink_format like %title%.html' do
-    let!(:blog) { build_stubbed(:blog, :permalink_format => '/%title%.html') }
+    let!(:blog) { create(:blog, :permalink_format => '/%title%.html') }
+    let!(:admin) { create(:user_admin) }
 
     before(:each) do
-
-      @article = FactoryGirl.create(:article, :permalink => 'second-blog-article', :published_at => '2004-04-01 02:00:00', :updated_at => '2004-04-01 02:00:00', :created_at => '2004-04-01 02:00:00')
+      @request.session = { :user => admin.id }
     end
 
-    describe "accessing various non-matching URLs" do
-      it "should not find '.htmlsecond-blog-article'" do
-        get :redirect, :from => ".html#{@article.permalink}"
-        assert_response 404
+    context "with an article" do
+      let!(:article) { create(:article, :permalink => 'second-blog-article', :published_at => '2004-04-01 02:00:00', :updated_at => '2004-04-01 02:00:00', :created_at => '2004-04-01 02:00:00') }
+
+      context "try redirect to an unknow location" do
+        before(:each) { get :redirect, from: "#{article.permalink}/foo/bar" }
+        it { expect(response.code).to eq('404') }
       end
 
-      it "should not find 'second-blog-article.html.html'" do
-        get :redirect, :from => "#{@article.permalink}.html.html"
-        assert_response 404
-      end
+      describe "accessing legacy URLs" do
+        it 'should redirect from default URL format' do
+          get :redirect, :from => "2004/04/01/second-blog-article"
+          expect(response).to redirect_to("http://myblog.net/second-blog-article.html")
+        end
 
-      it "should not find 'second-blog-article.html/foo'" do
-        get :redirect, :from => "#{@article.permalink}.html/foo"
-        assert_response 404
-      end
-    end
-
-    describe "accessing legacy URLs" do
-      it 'should redirect from default URL format' do
-        get :redirect, :from => "2004/04/01/second-blog-article"
-        assert_response 301
-        response.should redirect_to("http://myblog.net/second-blog-article.html")
-      end
-
-      it 'should redirect from old-style URL format with "articles" part' do
-        get :redirect, :from => "articles/2004/04/01/second-blog-article"
-        assert_response 301
-        response.should redirect_to("http://myblog.net/second-blog-article.html")
+        it 'should redirect from old-style URL format with "articles" part' do
+          get :redirect, :from => "articles/2004/04/01/second-blog-article"
+          expect(response).to redirect_to("http://myblog.net/second-blog-article.html")
+        end
       end
     end
 
     describe 'accessing an article' do
 
+      let!(:article) { create(:article, :permalink => 'second-blog-article', :published_at => '2004-04-01 02:00:00', :updated_at => '2004-04-01 02:00:00', :created_at => '2004-04-01 02:00:00') }
       before(:each) do
-        get :redirect, :from => "#{@article.permalink}.html"
+        get :redirect, :from => "#{article.permalink}.html"
       end
 
       it 'should render template read to article' do
@@ -472,66 +446,69 @@ describe ArticlesController, "redirecting" do
       end
 
       it 'should assign article1 to @article' do
-        assigns(:article).should == @article
+        assigns(:article).should == article
       end
 
       describe "the resulting page" do
         render_views
 
         it 'should have good rss feed link' do
-          response.should have_selector("head>link[href=\"http://myblog.net/#{@article.permalink}.html.rss\"]")
+          response.should have_selector("head>link[href=\"http://myblog.net/#{article.permalink}.html.rss\"]")
         end
 
         it 'should have good atom feed link' do
-          response.should have_selector("head>link[href=\"http://myblog.net/#{@article.permalink}.html.atom\"]")
+          response.should have_selector("head>link[href=\"http://myblog.net/#{article.permalink}.html.atom\"]")
         end
 
         it 'should have a canonical url' do
-          response.should have_selector("head>link[href='#{blog.base_url}/#{@article.permalink}.html']")
+          response.should have_selector("head>link[href='#{blog.base_url}/#{article.permalink}.html']")
         end
 
         it 'should have a good title' do
           response.should have_selector('title', :content => "A big article | test blog")
         end
       end
-
     end
 
     describe "theme rendering" do
       render_views
 
+      let!(:article) { create(:article, :permalink => 'second-blog-article', :published_at => '2004-04-01 02:00:00', :updated_at => '2004-04-01 02:00:00', :created_at => '2004-04-01 02:00:00') }
+
       with_each_theme do |theme, view_path|
         it "renders template #{view_path}/articles/read" do
           blog.theme = theme
-          get :redirect, from: "#{@article.permalink}.html"
+          get :redirect, from: "#{article.permalink}.html"
           response.should render_template('articles/read')
         end
       end
     end
 
     describe 'rendering as atom feed' do
+      let!(:article) { create(:article, :permalink => 'second-blog-article', :published_at => '2004-04-01 02:00:00', :updated_at => '2004-04-01 02:00:00', :created_at => '2004-04-01 02:00:00') }
+      let!(:trackback1) { create(:trackback, :article => article, :published_at => Time.now - 1.day, :published => true) }
+
       before(:each) do
-        @trackback1 = FactoryGirl.create(:trackback, :article => @article, :published_at => Time.now - 1.day,
-                                         :published => true)
-        get :redirect, :from => "#{@article.permalink}.html.atom"
+        get :redirect, :from => "#{article.permalink}.html.atom"
       end
 
       it 'should render feedback atom feed' do
-        assigns(:feedback).should == [@trackback1]
+        assigns(:feedback).should == [trackback1]
         response.should render_template('feedback_atom_feed')
         @layouts.keys.compact.should be_empty
       end
     end
 
     describe 'rendering as rss feed' do
+      let!(:article) { create(:article, :permalink => 'second-blog-article', :published_at => '2004-04-01 02:00:00', :updated_at => '2004-04-01 02:00:00', :created_at => '2004-04-01 02:00:00') }
+      let!(:trackback1) { create(:trackback, :article => article, :published_at => Time.now - 1.day, :published => true) }
+
       before(:each) do
-        @trackback1 = FactoryGirl.create(:trackback, :article => @article, :published_at => Time.now - 1.day,
-                                         :published => true)
-        get :redirect, :from => "#{@article.permalink}.html.rss"
+        get :redirect, :from => "#{article.permalink}.html.rss"
       end
 
       it 'should render rss20 partial' do
-        assigns(:feedback).should == [@trackback1]
+        assigns(:feedback).should == [trackback1]
         response.should render_template('feedback_rss_feed')
         @layouts.keys.compact.should be_empty
       end
@@ -539,29 +516,23 @@ describe ArticlesController, "redirecting" do
   end
 
   describe "with a format containing a fixed component" do
-    before(:each) do
-      b = build_stubbed(:blog, :permalink_format => '/foo/%title%')
-
-      @article = FactoryGirl.create(:article)
-    end
+    let!(:blog) { create(:blog, :permalink_format => '/foo/%title%') }
+    let!(:article) { create(:article) }
 
     it "should find the article if the url matches all components" do
-      get :redirect, :from => "foo/#{@article.permalink}"
+      get :redirect, :from => "foo/#{article.permalink}"
       response.should be_success
     end
 
     it "should not find the article if the url does not match the fixed component" do
-      get :redirect, :from => "bar/#{@article.permalink}"
+      get :redirect, :from => "bar/#{article.permalink}"
       assert_response 404
     end
   end
 
   describe "with a custom format with several fixed parts and several variables" do
-    before(:each) do
-      b = build_stubbed(:blog, :permalink_format => '/foo/bar/%year%/%month%/%title%')
-
-      @article = FactoryGirl.create(:article)
-    end
+    let!(:blog) { create(:blog, :permalink_format => '/foo/bar/%year%/%month%/%title%') }
+    let!(:article) { create(:article) }
 
     # TODO: Think about allowing this, and changing find_by_params_hash to match.
     if false
@@ -580,25 +551,22 @@ end
 
 describe ArticlesController, "password protected" do
   render_views
-
-  before do
-    b = build_stubbed(:blog, :permalink_format => '/%title%.html')
-    @article = create(:article, :password => 'password')
-  end
+  let!(:blog) { create(:blog, :permalink_format => '/%title%.html') }
+  let!(:article) { create(:article, :password => 'password') }
 
   it 'article alone should be password protected' do
-    get :redirect, :from => "#{@article.permalink}.html"
+    get :redirect, :from => "#{article.permalink}.html"
     response.should have_selector('input[id="article_password"]', :count => 1)
   end
 
   describe "#check_password" do
     it "shows article when given correct password" do
-      xhr :get, :check_password, :article => {:id => @article.id, :password => @article.password}
+      xhr :get, :check_password, :article => {:id => article.id, :password => article.password}
       response.should_not have_selector('input[id="article_password"]')
     end
 
     it "shows password form when given incorrect password" do
-      xhr :get, :check_password, :article => {:id => @article.id, :password => "wrong password"}
+      xhr :get, :check_password, :article => {:id => article.id, :password => "wrong password"}
       response.should have_selector('input[id="article_password"]')
     end
   end
@@ -643,7 +611,7 @@ describe ArticlesController, "preview page" do
   describe 'with non logged user' do
     before :each do
       @request.session = {}
-      get :preview_page, :id => FactoryGirl.create(:article).id
+      get :preview_page, :id => create(:article).id
     end
 
     it 'should redirect to login' do
@@ -652,23 +620,24 @@ describe ArticlesController, "preview page" do
   end
 
   describe 'with logged user' do
+    let!(:page) { create(:page) }
+
     before :each do
       henri = create(:user, :login => 'henri', :profile => create(:profile_admin, :label => Profile::ADMIN))
       @request.session = { :user => henri.id }
-      @page = FactoryGirl.create(:page)
     end
 
     with_each_theme do |theme, view_path|
       it "should render template #{view_path}/articles/view_page" do
         blog.theme = theme
-        get :preview_page, :id => @page.id
+        get :preview_page, :id => page.id
         response.should render_template('articles/view_page')
       end
     end
 
     it 'should assigns article define with id' do
-      get :preview_page, :id => @page.id
-      assigns[:page].should == @page
+      get :preview_page, :id => page.id
+      assigns[:page].should == page
     end
   end
 end
