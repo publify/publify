@@ -194,6 +194,7 @@ class Article < Content
     req_params = {}
     req_params[:permalink] = params[:title] if params[:title]
     req_params[:published_at] = date_range if date_range
+    req_params[:id] = params[:id] if params[:id]
 
     return nil if req_params.empty? # no search if no params send
     article = find_published(:first, :conditions => req_params)
@@ -338,6 +339,7 @@ class Article < Content
     format_url.gsub!('%year%', published_at.year.to_s)
     format_url.gsub!('%month%', sprintf("%.2d", published_at.month))
     format_url.gsub!('%day%', sprintf("%.2d", published_at.day))
+    format_url.gsub!('%id%', id.to_s)
     format_url.gsub!('%title%', URI.encode(permalink.to_s))
     if format_url[0,1] == '/'
       format_url[1..-1]

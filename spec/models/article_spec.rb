@@ -43,6 +43,16 @@ describe Article do
         subject.permalink_url(anchor=nil, only_path=true).should == '/2004/06/01/one+two'
       end
     end
+
+    describe "with an id in the permalink" do
+      it' allows ids' do
+       article = Article.new(:permalink => 'one', :published_at => Time.utc(2004, 6, 1))
+       article.id = 1
+       article.blog.permalink_format = "/%year%/%month%/%day%/%id%/%title%"
+       article.permalink_url(anchor=nil, only_path=true).should == "/2004/06/01/1/one"
+      end
+    end
+
   end
 
   describe "#initialize" do
@@ -83,6 +93,14 @@ describe Article do
     assert_raises(ActiveRecord::RecordNotFound) do
       Article.find_by_permalink year: 2005, month: "06", day: "01", title: "article-5"
     end
+  end
+
+  it "finds an article with an id when there are multiple articles on the same day with the same title" do
+    article1 = FactoryGirl.create(:article, title: 'article-6', permalink: 'article-6', published_at: Time.utc(2004, 6, 1))
+    article2 = FactoryGirl.create(:article, title: 'article-6', permalink: 'article-6', published_at: Time.utc(2004, 6, 1))
+    blog.permalink_format = "/%year%/%month%/%day%/%id%/%title%"
+    result = Article.find_by_permalink year: 2004, month: "06", day: "01", id: article2.id, title: "article-6"
+    result.should == article2
   end
 
   it "test_strip_title" do
