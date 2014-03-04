@@ -6,23 +6,17 @@ class Admin::NotesController < Admin::BaseController
   before_filter :find_note, only: [:edit, :update, :show, :destroy]
 
   def index
-    @note = Note.new do |note|
-      note.text_filter = current_user.default_text_filter
-      note.published = true
-      note.published_at = Time.now
-      note.author = current_user
-    end
+    @note = Publisher.new(current_user).new_note
   end
 
   def create
-    note = Note.new
-    note.text_filter = current_user.default_text_filter
+    note = Publisher.new(current_user).new_note
+
     note.published = true
-    note.attributes = params[:note]
     note.published_at = parse_date_time params[:note][:published_at]
-    note.published_at ||= Time.now
-    note.author = current_user
+    note.attributes = params[:note]
     note.text_filter ||= current_user.default_text_filter
+    note.published_at ||= Time.now
     if note.save
       if params[:push_to_twitter] && note.twitter_id.blank?
         unless note.send_to_twitter

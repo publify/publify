@@ -194,6 +194,7 @@ zh-CN:
       header:
         notes: "Notes"
       form:
+        now: "Now"
         no_notes: "这儿并不存在Notes。让我们开始创建它。"
         how_to_setup_twitter: "If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."
         fill_the_twitter_credentials: "fill in the oauth credentials"
