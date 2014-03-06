@@ -2,15 +2,15 @@ require 'spec_helper'
 
 describe Admin::ContentController do
   render_views
+
   let!(:blog) { create(:blog) }
+  let!(:article) { create(:article) } 
 
-  describe :index do
-    let!(:article) { create(:article) } 
+  context "as publisher (admin can do the same)" do
+    let!(:user) { create(:user, :as_publisher) }
+    before(:each) { request.session = { user: user.id } }
 
-    context "with a publisher" do
-      let!(:user) { create(:user, :as_publisher) }
-      before(:each) { request.session = { user: user.id } }
-
+    describe :index do
       context "simple query" do
         before(:each) { get :index }
         it { expect(response).to be_success }
@@ -52,91 +52,44 @@ describe Admin::ContentController do
       end
     end
 
-    context "with an admin" do
-      let!(:user) { create(:user, :as_admin) }
-    end
-  end
+    describe :autosave do
+      context "first time save" do
+        it { expect{
+          xhr :post, :autosave, article: attributes_for(:article)
+        }.to change(Article, :count).from(1).to(2) }
 
+        it { expect{
+          xhr :post, :autosave, article: attributes_for(:article, :with_tags)
+        }.to change(Tag, :count).from(0).to(2) }
+      end
 
-  shared_examples_for 'autosave action' do
-    describe "first time for a new article" do
-      it 'should save new article with draft status and no parent article' do
-        create(:none)
-        lambda do
-          lambda do
-            xhr :post, :autosave, :article => {:allow_comments => '1',
-                                               :body_and_extended => 'my draft in autosave',
-                                               :keywords => 'mientag',
-                                               :permalink => 'big-post',
-                                               :title => 'big post',
-                                               :text_filter => 'none',
-                                               :published => '1',
-                                               :published_at => 'December 23, 2009 03:20 PM'}
-          end.should change(Article, :count)
-        end.should change(Tag, :count)
-        result = Article.last
-        result.body.should == 'my draft in autosave'
-        result.title.should == 'big post'
-        result.permalink.should == 'big-post'
-        result.parent_id.should be_nil
-        result.redirects.count.should == 0
+      context "second call to save" do
+        let!(:draft) { create(:article, published: false, state: 'draft') }
+        it { expect{
+          xhr :post, :autosave, article: {id: draft.id, body_and_extended: 'new body' }
+        }.to_not change(Article, :count) }
+      end
+
+      context "with an other existing draft" do
+        let!(:draft) { create(:article, published: false, state: 'draft', body: 'existing body') }
+        it { expect{
+          xhr :post, :autosave, article: attributes_for(:article)
+        }.to change(Article, :count).from(2).to(3) }
+
+        it "dont replace existing draft" do
+          xhr :post, :autosave, article: attributes_for(:article)
+          expect(assigns(:article).id).to_not eq(draft.id)
+          expect(assigns(:article).body).to_not eq(draft.body)
+        end
       end
     end
 
-    describe "second time for a new article" do
-      it 'should save the same article with draft status and no parent article' do
-        draft = create(:article, published: false, state: 'draft')
-        lambda do
-          xhr :post, :autosave, :article => {
-            :id => draft.id,
-            :body_and_extended => 'new body' }
-        end.should_not change(Article, :count)
-        result = Article.find(draft.id)
-        result.body.should == 'new body'
-        result.parent_id.should be_nil
-        result.redirects.count.should == 0
-      end
-    end
-
-    describe "for a published article" do
-      let(:article) { create(:article) }
-
-      before(:each) do
-        data = {:allow_comments => article.allow_comments,
-                :body_and_extended => 'my draft in autosave',
-                :keywords => '',
-                :permalink => article.permalink,
-                :title => article.title,
-                :text_filter => article.text_filter,
-                :published => '1',
-                :published_at => 'December 23, 2009 03:20 PM'}
-
-        xhr :post, :autosave, id: article.id, article: data
-      end
-
+    describe :new do
+      before(:each) { get :new }
       it { expect(response).to be_success }
-      # TODO More pertinent tests needed
-    end
-
-    describe "with an unrelated draft in the database" do
-      before do
-        @draft = create(:article, :state => 'draft')
-      end
-
-      it "leaves the original draft in existence" do
-        xhr :post, :autosave, article: {}
-        assigns(:article).id.should_not == @draft.id
-        Article.find(@draft.id).should_not be_nil
-      end
-    end
-  end
-
-  shared_examples_for 'new action' do
-    it "renders the 'new' template" do
-      get :new
-      response.should render_template('new')
-      assigns(:article).should_not be_nil
-      assigns(:article).redirects.count.should == 0
+      it { expect(response).to render_template('new') }
+      it { expect(assigns(:article)).to_not be_nil }
+      it { expect(assigns(:article).redirects).to be_empty }
     end
   end
 
@@ -191,9 +144,9 @@ describe Admin::ContentController do
     end
 
     it 'should create new published article' do
-      Article.count.should be == 1
-      post :create, 'article' => base_article
       Article.count.should be == 2
+      post :create, 'article' => base_article
+      Article.count.should be == 3
     end
 
     it 'should redirect to show' do
@@ -301,9 +254,7 @@ describe Admin::ContentController do
       @article = create(:article)
     end
 
-    it_should_behave_like 'new action'
     it_should_behave_like 'create action'
-    it_should_behave_like 'autosave action'
 
     describe 'edit action' do
       it 'should edit article' do
@@ -472,7 +423,6 @@ describe Admin::ContentController do
       request.session = {user: user.id}
     end
 
-    it_should_behave_like 'new action'
     it_should_behave_like 'create action'
   end
 

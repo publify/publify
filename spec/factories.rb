@@ -73,6 +73,10 @@ FactoryGirl.define do
     state :published
     allow_pings true
     association :text_filter, factory: :textile
+
+    trait :with_tags do
+      keywords 'a tag'
+    end
   end
 
   factory :unpublished_article, :parent => :article do |a|
