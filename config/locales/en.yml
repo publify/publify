@@ -194,6 +194,7 @@ en:
       header:
         notes: "Notes"
       form:
+        now: "Now"
         compose_new_note: "Compose new note"
         no_notes: "There are no notes yet. Why don't you start and create one?"
         how_to_setup_twitter: "If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."

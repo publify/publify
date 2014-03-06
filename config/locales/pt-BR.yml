@@ -194,6 +194,7 @@ pt-BR:
       header:
         notes: "Notes"
       form:
+        now: "Now"
         no_notes: "Não existem notes ainda. Por que você não inicia e cria um?"
         how_to_setup_twitter: "If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."
         fill_the_twitter_credentials: "fill in the oauth credentials"
