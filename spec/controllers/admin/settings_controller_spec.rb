@@ -5,7 +5,7 @@ describe Admin::SettingsController do
 
   before(:each) do
     create(:blog)
-    alice = create(:user_admin, :login => 'alice')
+    alice = create(:user, :as_admin, login: 'alice')
     request.session = { :user => alice.id }
   end
 

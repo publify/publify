@@ -27,14 +27,12 @@ FactoryGirl.define do
     association :resource, factory: :avatar
     association :text_filter, factory: :textile
 
-    factory :user_with_an_empty_profile do
-      name "Doe"
-      nickname "John Doe"
+    trait :without_twitter do
       twitter nil
       association :resource, nil
     end
 
-    factory :user_with_a_full_profile do
+    trait :with_a_full_profile do
       description "I am a poor lonesone factory generated user"
       url "http://myblog.net"
       msn "random@mail.com"
@@ -44,14 +42,19 @@ FactoryGirl.define do
       jabber "random@account.com"
     end
 
-    factory :user_admin do
-      association :profile, factory: :profile_admin
-
-      trait :with_twitter do
-        twitter_oauth_token "oauth_token"
-        twitter_oauth_token_secret "oauth_token"
-      end
+    trait :with_twitter do
+      twitter_oauth_token "oauth_token"
+      twitter_oauth_token_secret "oauth_token"
     end
+
+    trait :as_admin do
+      association :profile, factory: :profile_admin
+    end
+
+    trait :as_publisher do
+      association :profile, factory: :profile_publisher
+    end
+
   end
 
   factory :article do

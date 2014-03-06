@@ -88,16 +88,16 @@ describe Admin::ContentController do
       it 'should save new article with draft status and no parent article' do
         create(:none)
         lambda do
-        lambda do
-          xhr :post, :autosave, :article => {:allow_comments => '1',
-            :body_and_extended => 'my draft in autosave',
-            :keywords => 'mientag',
-            :permalink => 'big-post',
-            :title => 'big post',
-            :text_filter => 'none',
-            :published => '1',
-            :published_at => 'December 23, 2009 03:20 PM'}
-        end.should change(Article, :count)
+          lambda do
+            xhr :post, :autosave, :article => {:allow_comments => '1',
+                                               :body_and_extended => 'my draft in autosave',
+                                               :keywords => 'mientag',
+                                               :permalink => 'big-post',
+                                               :title => 'big post',
+                                               :text_filter => 'none',
+                                               :published => '1',
+                                               :published_at => 'December 23, 2009 03:20 PM'}
+          end.should change(Article, :count)
         end.should change(Tag, :count)
         result = Article.last
         result.body.should == 'my draft in autosave'
@@ -128,13 +128,13 @@ describe Admin::ContentController do
 
       before(:each) do
         data = {:allow_comments => article.allow_comments,
-          :body_and_extended => 'my draft in autosave',
-          :keywords => '',
-          :permalink => article.permalink,
-          :title => article.title,
-          :text_filter => article.text_filter,
-          :published => '1',
-          :published_at => 'December 23, 2009 03:20 PM'}
+                :body_and_extended => 'my draft in autosave',
+                :keywords => '',
+                :permalink => article.permalink,
+                :title => article.title,
+                :text_filter => article.text_filter,
+                :published => '1',
+                :published_at => 'December 23, 2009 03:20 PM'}
 
         xhr :post, :autosave, id: article.id, article: data
       end
@@ -321,9 +321,9 @@ describe Admin::ContentController do
 
   describe 'with admin connection' do
     before(:each) do
-      @user = create(:user_admin, text_filter: create(:markdown))
-      @article = create(:article)
+      @user = create(:user, :as_admin, text_filter: create(:markdown))
       request.session = { :user => @user.id }
+      @article = create(:article)
     end
 
     it_should_behave_like 'index action'

@@ -5,7 +5,7 @@ describe Admin::PagesController do
   render_views
 
   let!(:blog) { create(:blog) }
-  let!(:user) { create(:user_admin) }
+  let!(:user) { create(:user, :as_admin) }
 
   before(:each) { request.session = { user: user.id } }
 

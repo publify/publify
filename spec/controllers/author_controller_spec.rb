@@ -6,7 +6,7 @@ describe AuthorController do
 
   describe :show do
     describe "With an empty profile" do
-      let(:no_profile_user) { create(:user_with_an_empty_profile) }
+      let(:no_profile_user) { create(:user, :without_twitter) }
       let!(:article) { create(:article, user: no_profile_user, published_at: now - 1.hour) }
 
       describe "html" do
@@ -35,7 +35,7 @@ describe AuthorController do
     end
 
     describe "With full profile" do
-      let!(:full_profile_user) { create(:user_with_a_full_profile) }
+      let!(:full_profile_user) { create(:user, :with_a_full_profile) }
       let!(:article) { create(:article, user: full_profile_user) }
 
       describe "html" do
