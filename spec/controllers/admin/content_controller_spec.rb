@@ -1,87 +1,62 @@
- require 'spec_helper'
+require 'spec_helper'
 
 describe Admin::ContentController do
   render_views
   let!(:blog) { create(:blog) }
 
-  # Like it's a shared, need call everywhere
-  shared_examples_for 'index action' do
+  describe :index do
+    let!(:article) { create(:article) } 
 
-    it 'should render template index' do
-      get 'index'
-      response.should render_template('index')
+    context "with a publisher" do
+      let!(:user) { create(:user, :as_publisher) }
+      before(:each) { request.session = { user: user.id } }
+
+      context "simple query" do
+        before(:each) { get :index }
+        it { expect(response).to be_success }
+        it { expect(response).to render_template('index', layout: 'administration') }
+      end
+
+      it "return article that match with search query" do
+        get :index, search: {searchstring: article.body[0..4]}
+        expect(assigns(:articles)).to eq([article])
+      end
+
+      it "search query and limit on published_at" do
+        get :index, search: {
+          searchstring: article.body[0..4], 
+          published_at: article.published_at + 2.days
+        }
+        expect(assigns(:articles)).to be_empty
+      end
+
+      context "search for state" do
+        let!(:draft_article) { create(:article, state: 'draft') }
+        let!(:pending_article) { create(:article, state: 'publication_pending', published_at: '2020-01-01') }
+        before(:each) { get :index, search: state }
+
+        context "draft only" do
+          let(:state) {{ state: 'drafts' }}
+          it { expect(assigns(:articles)).to eq([draft_article]) }
+        end
+
+        context "publication_pending only" do
+          let(:state) { { state: 'pending' } }
+          it { expect(assigns(:articles)).to eq([pending_article]) }
+        end
+
+        context "with a bad state" do
+          let(:state) {{ state: '3vI1 1337 h4x0r'} }
+          it { expect(assigns(:articles).sort).to eq([article, pending_article, draft_article].sort) }
+        end
+      end
     end
 
-    it 'should see all published in index' do
-      get :index, :search => {:published => '0', :published_at => '2008-08', :user_id => '2'}
-      response.should render_template('index')
-      response.should be_success
+    context "with an admin" do
+      let!(:user) { create(:user, :as_admin) }
     end
-
-    it 'should restrict only by searchstring' do
-      article = create(:article, body: 'once uppon an originally time')
-      get :index, search: {searchstring: 'originally'}
-      assigns(:articles).should == [article]
-      response.should render_template('index')
-      response.should be_success
-    end
-
-    it 'should restrict by searchstring and published_at' do
-      create(:article)
-      get :index, :search => {:searchstring => 'originally', :published_at => '2008-08'}
-      assigns(:articles).should be_empty
-      response.should render_template('index')
-      response.should be_success
-    end
-
-    it 'should restrict to drafts' do
-      article = create(:article, :state => 'draft')
-      get :index, :search => {:state => 'drafts'}
-      assigns(:articles).should == [article]
-      response.should render_template('index')
-      response.should be_success
-    end
-
-    it 'should restrict to publication pending articles' do
-      article = create(:article, :state => 'publication_pending', :published_at => '2020-01-01')
-      get :index, :search => {:state => 'pending'}
-      assigns(:articles).should == [article]
-      response.should render_template('index')
-      response.should be_success
-    end
-
-    it 'should restrict to withdrawn articles' do
-      article = create(:article, :state => 'withdrawn', :published_at => '2010-01-01')
-      get :index, :search => {:state => 'withdrawn'}
-      assigns(:articles).should == [article]
-      response.should render_template('index')
-      response.should be_success
-    end
-
-    it 'should restrict to withdrawn articles' do
-      article = create(:article, :state => 'withdrawn', :published_at => '2010-01-01')
-      get :index, :search => {:state => 'withdrawn'}
-      assigns(:articles).should == [article]
-      response.should render_template('index')
-      response.should be_success
-    end
-
-    it 'should restrict to published articles' do
-      article = create(:article, :state => 'published', :published_at => '2010-01-01')
-      get :index, :search => {:state => 'published'}
-      response.should render_template('index')
-      response.should be_success
-    end
-
-    it 'should fallback to default behavior' do
-      article = create(:article, :state => 'draft')
-      get :index, :search => {:state => '3vI1 1337 h4x0r'}
-      response.should render_template('index')
-      assigns(:articles).should_not == [article]
-      response.should be_success
-    end
-
   end
+
 
   shared_examples_for 'autosave action' do
     describe "first time for a new article" do
@@ -326,7 +301,6 @@ describe Admin::ContentController do
       @article = create(:article)
     end
 
-    it_should_behave_like 'index action'
     it_should_behave_like 'new action'
     it_should_behave_like 'create action'
     it_should_behave_like 'autosave action'
@@ -498,7 +472,6 @@ describe Admin::ContentController do
       request.session = {user: user.id}
     end
 
-    it_should_behave_like 'index action'
     it_should_behave_like 'new action'
     it_should_behave_like 'create action'
   end

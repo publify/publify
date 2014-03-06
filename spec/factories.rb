@@ -70,6 +70,7 @@ FactoryGirl.define do
     published_trackbacks []
     allow_comments true
     published true
+    state :published
     allow_pings true
     association :text_filter, factory: :textile
   end
