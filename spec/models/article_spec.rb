@@ -52,7 +52,7 @@ describe Article do
   end
 
   describe ".feed_url" do
-    let(:article) { FactoryGirl.build(:article, permalink: 'article-3', published_at: Time.utc(2004, 6, 1)) }
+    let(:article) { build(:article, permalink: 'article-3', published_at: Time.utc(2004, 6, 1)) }
 
     it "returns url for atom feed for a Atom 1.0 asked" do
       article.feed_url('atom10').should eq "http://myblog.net/2004/06/01/article-3.atom"
@@ -70,7 +70,7 @@ describe Article do
     a.title = "Zzz"
     assert a.save
 
-    a.tags << Tag.find(FactoryGirl.create(:tag).id)
+    a.tags << Tag.find(create(:tag).id)
     assert_equal 1, a.tags.size
 
     b = Article.find(a.id)
@@ -78,7 +78,7 @@ describe Article do
   end
 
   it "test_permalink_with_title" do
-    article = FactoryGirl.create(:article, permalink: 'article-3', published_at: Time.utc(2004, 6, 1))
+    article = create(:article, permalink: 'article-3', published_at: Time.utc(2004, 6, 1))
     assert_equal(article, Article.find_by_permalink({year: 2004, month: 06, day: 01, title: "article-3"}) )
     assert_raises(ActiveRecord::RecordNotFound) do
       Article.find_by_permalink year: 2005, month: "06", day: "01", title: "article-5"
@@ -191,9 +191,9 @@ describe Article do
   end
 
   it "test_find_published_by_tag_name" do
-    art1 = FactoryGirl.create(:article)
-    art2 = FactoryGirl.create(:article)
-    FactoryGirl.create(:tag, :name => 'foo', :articles => [art1, art2])
+    art1 = create(:article)
+    art2 = create(:article)
+    create(:tag, :name => 'foo', :articles => [art1, art2])
     articles = Tag.find_by_name('foo').published_articles
     assert_equal 2, articles.size
   end
@@ -255,11 +255,11 @@ describe Article do
   end
 
   it "test_destroy_file_upload_associations" do
-    a = FactoryGirl.create(:article)
-    FactoryGirl.create(:resource, :article => a)
-    FactoryGirl.create(:resource, :article => a)
+    a = create(:article)
+    create(:resource, :article => a)
+    create(:resource, :article => a)
     assert_equal 2, a.resources.size
-    a.resources << FactoryGirl.create(:resource)
+    a.resources << create(:resource)
     assert_equal 3, a.resources.size
     a.destroy
     assert_equal 0, Resource.find(:all, :conditions => "article_id = #{a.id}").size
@@ -267,10 +267,10 @@ describe Article do
 
   describe "#interested_users" do
     it 'should gather users interested in new articles' do
-      henri = FactoryGirl.create(:user, :login => 'henri', :notify_on_new_articles => true)
-      alice = FactoryGirl.create(:user, :login => 'alice', :notify_on_new_articles => true)
+      henri = create(:user, :login => 'henri', :notify_on_new_articles => true)
+      alice = create(:user, :login => 'alice', :notify_on_new_articles => true)
 
-      a = FactoryGirl.build(:article)
+      a = build(:article)
       users = a.interested_users
       logins = users.map {|u| u.login}.sort
       logins.should eq ['alice', 'henri']
@@ -278,7 +278,7 @@ describe Article do
   end
 
   it "test_withdrawal" do
-    art = FactoryGirl.create(:article)
+    art = create(:article)
     assert   art.published?
     assert ! art.withdrawn?
     art.withdraw!
@@ -290,25 +290,25 @@ describe Article do
   end
 
   it 'should get only ham not spam comment' do
-    article = FactoryGirl.create(:article)
+    article = create(:article)
     article.stub(:allow_comments?).and_return(true)
-    ham_comment = FactoryGirl.create(:comment, :article => article)
-    spam_comment = FactoryGirl.create(:spam_comment, :article => article)
+    ham_comment = create(:comment, :article => article)
+    spam_comment = create(:spam_comment, :article => article)
     article.comments.ham.should == [ham_comment]
     article.comments.count.should == 2
   end
 
   describe '#access_by?' do
     before do
-      @alice = FactoryGirl.build(:user, :profile => FactoryGirl.build(:profile_admin, :label => Profile::ADMIN))
+      @alice = build(:user, :profile => build(:profile_admin, :label => Profile::ADMIN))
     end
 
     it 'admin should have access to an article written by another' do
-      FactoryGirl.build(:article).should be_access_by(@alice)
+      build(:article).should be_access_by(@alice)
     end
 
     it 'admin should have access to an article written by himself' do
-      article = FactoryGirl.build(:article, :author => @alice)
+      article = build(:article, :author => @alice)
       article.should be_access_by(@alice)
     end
 
@@ -336,8 +336,8 @@ describe Article do
 
     describe 'with one word and result' do
       it 'should have two items' do
-        FactoryGirl.create(:article, :extended => "extended talk")
-        FactoryGirl.create(:article, :extended => "Once uppon a time, an extended story")
+        create(:article, :extended => "extended talk")
+        create(:article, :extended => "Once uppon a time, an extended story")
         assert_equal 2, Article.search('extended').size
       end
     end
@@ -401,7 +401,7 @@ describe Article do
   end
 
   it "test_cannot_ping_old_article" do
-    a = FactoryGirl.create(:article, :allow_pings => false)
+    a = create(:article, :allow_pings => false)
     assert_equal(true, a.pings_closed?)
     a.allow_pings = false
     assert_equal(true, a.pings_closed?)
@@ -415,13 +415,13 @@ describe Article do
       # is now more than two years ago, except for two, which are from
       # yesterday and the day before. The existence of those two makes
       # 1.month.ago not suitable, because yesterday can be last month.
-      @article_two_month_ago = FactoryGirl.create(:article, :published_at => 2.month.ago)
+      @article_two_month_ago = create(:article, :published_at => 2.month.ago)
 
-      @article_four_months_ago = FactoryGirl.create(:article, :published_at => 4.month.ago)
-      @article_2_four_months_ago = FactoryGirl.create(:article, :published_at => 4.month.ago)
+      @article_four_months_ago = create(:article, :published_at => 4.month.ago)
+      @article_2_four_months_ago = create(:article, :published_at => 4.month.ago)
 
-      @article_two_year_ago = FactoryGirl.create(:article, :published_at => 2.year.ago)
-      @article_2_two_year_ago = FactoryGirl.create(:article, :published_at => 2.year.ago)
+      @article_two_year_ago = create(:article, :published_at => 2.year.ago)
+      @article_2_two_year_ago = create(:article, :published_at => 2.year.ago)
     end
 
     it 'should return all content for the year if only year sent' do
@@ -439,25 +439,25 @@ describe Article do
 
   describe '#has_child?' do
     it 'should be true if article has one to link it by parent_id' do
-      parent = FactoryGirl.create(:article)
-      FactoryGirl.create(:article, :parent_id => parent.id)
+      parent = create(:article)
+      create(:article, :parent_id => parent.id)
       parent.should be_has_child
     end
     it 'should be false if article has no article to link it by parent_id' do
-      parent = FactoryGirl.create(:article)
-      FactoryGirl.create(:article, :parent_id => nil)
+      parent = create(:article)
+      create(:article, :parent_id => nil)
       parent.should_not be_has_child
     end
   end
 
   describe 'self#last_draft(id)' do
     it 'should return article if no draft associated' do
-      draft = FactoryGirl.create(:article, :state => 'draft')
+      draft = create(:article, :state => 'draft')
       Article.last_draft(draft.id).should == draft
     end
     it 'should return draft associated to this article if there are one' do
-      parent = FactoryGirl.create(:article)
-      draft = FactoryGirl.create(:article, :parent_id => parent.id, :state => 'draft')
+      parent = create(:article)
+      draft = create(:article, :parent_id => parent.id, :state => 'draft')
       Article.last_draft(draft.id).should == draft
     end
   end
@@ -466,7 +466,7 @@ describe Article do
     before do
       @timezone = Time.zone
       Time.zone = 'UTC'
-      @a = FactoryGirl.build(:article)
+      @a = build(:article)
       @a.published_at = "21 Feb 2011 23:30 UTC"
     end
 
@@ -493,7 +493,7 @@ describe Article do
     before do
       @timezone = Time.zone
       Time.zone = 'UTC'
-      @a = FactoryGirl.build(:article)
+      @a = build(:article)
       @a.published_at = "22 Feb 2011 00:30 UTC"
     end
 
@@ -520,7 +520,7 @@ describe Article do
     before do
       @time_zone = Time.zone
       Time.zone = "Tokyo"
-      @a = FactoryGirl.build(:article)
+      @a = build(:article)
       @a.published_at = "31 Dec 2012 23:30 +0900"
     end
 
@@ -547,7 +547,7 @@ describe Article do
     before do
       @time_zone = Time.zone
       Time.zone = "Tokyo"
-      @a = FactoryGirl.build(:article)
+      @a = build(:article)
       @a.published_at = "1 Jan 2013 00:30 +0900"
     end
 
@@ -593,23 +593,23 @@ describe Article do
       first_file = OpenStruct.new
       second_file = OpenStruct.new
       hash = {a_key: first_file, a_second_key: second_file}
-      article = FactoryGirl.build(:article)
+      article = build(:article)
       article.should_receive(:save_attachment!).with(first_file)
       article.should_receive(:save_attachment!).with(second_file)
       article.save_attachments!(hash)
     end
 
     it "do nothing with nil given" do
-      article = FactoryGirl.build(:article)
+      article = build(:article)
       article.save_attachments!(nil)
     end
   end
 
   describe "save_attachment!" do
     it "calls resource create_and_upload and add this new resource" do
-      resource = FactoryGirl.build(:resource)
+      resource = build(:resource)
       file = OpenStruct.new
-      article = FactoryGirl.create(:article)
+      article = create(:article)
       Resource.should_receive(:create_and_upload).with(file).and_return(resource)
       article.save_attachment!(file).reload
       article.resources.should eq [resource]
@@ -761,15 +761,15 @@ describe Article do
 
     context "returns objects that respond to publication with YYYY-MM published_at date format" do
       it "with article published_at date" do
-        FactoryGirl.create(:article, published_at: Date.new(2010, 11, 23))
+        create(:article, published_at: Date.new(2010, 11, 23))
         result = Article.find_by_published_at
         result.count.should eq 1
         result.first.should eq ["2010-11"]
       end
 
       it "with 2 articles" do
-        FactoryGirl.create(:article, published_at: Date.new(2010, 11, 23))
-        FactoryGirl.create(:article, published_at: Date.new(2002, 4, 9))
+        create(:article, published_at: Date.new(2010, 11, 23))
+        create(:article, published_at: Date.new(2002, 4, 9))
         result = Article.find_by_published_at
         result.count.should eq 2
         result.sort.should eq [["2010-11"], ["2002-04"]].sort
@@ -785,13 +785,13 @@ describe Article do
     end
 
     it "returns article that was published since" do
-      article = FactoryGirl.create(:article, published_at: time + 2.hours)
+      article = create(:article, published_at: time + 2.hours)
       Article.published_since(time).should eq [article]
     end
 
     it "returns only article that was published since last visit" do
-      already_seen_article = FactoryGirl.create(:article, published_at: time - 2.hours)
-      article = FactoryGirl.create(:article, published_at: time + 2.hours)
+      already_seen_article = create(:article, published_at: time - 2.hours)
+      article = create(:article, published_at: time + 2.hours)
       Article.published_since(time).should eq [article]
     end
   end
@@ -802,7 +802,7 @@ describe Article do
     end
 
     it "returns article with comment count field" do
-      comment = FactoryGirl.create(:comment)
+      comment = create(:comment)
       article = comment.article
       expect(Article.bestof.first.comment_count.to_i).to eq 1
     end
@@ -816,26 +816,26 @@ describe Article do
     end
 
     it "returns only 5 articles" do
-      6.times { FactoryGirl.create(:comment) }
+      6.times { create(:comment) }
       expect(Article.bestof.length).to eq(5)
     end
 
     it "returns only published articles" do
-      article = FactoryGirl.create(:article)
-      FactoryGirl.create(:comment, article: article)
-      unpublished_article = FactoryGirl.create(:article, published: false)
-      FactoryGirl.create(:comment, article: unpublished_article)
+      article = create(:article)
+      create(:comment, article: article)
+      unpublished_article = create(:article, published: false, state: 'draft')
+      create(:comment, article: unpublished_article)
       expect(Article.published).to eq([article])
       expect(Article.bestof).to eq([article])
     end
 
     it "returns article sorted by comment counts" do
-      last_article = FactoryGirl.create(:article)
-      FactoryGirl.create(:comment, article: last_article)
+      last_article = create(:article)
+      create(:comment, article: last_article)
 
-      first_article = FactoryGirl.create(:article)
-      FactoryGirl.create(:comment, article: first_article)
-      FactoryGirl.create(:comment, article: first_article)
+      first_article = create(:article)
+      create(:comment, article: first_article)
+      create(:comment, article: first_article)
 
       expect(Article.bestof).to eq([first_article, last_article])
     end
