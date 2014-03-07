@@ -281,7 +281,7 @@ describe ArticlesController, "previewing" do
   end
 
   describe 'with logged user' do
-    let(:admin) { create(:user_admin) }
+    let(:admin) { create(:user, :as_admin) }
     let(:article) { create(:article, user: admin) }
 
     before(:each) { @request.session = { user: admin.id } }
@@ -407,7 +407,7 @@ describe ArticlesController, "redirecting" do
 
   describe 'with permalink_format like %title%.html' do
     let!(:blog) { create(:blog, :permalink_format => '/%title%.html') }
-    let!(:admin) { create(:user_admin) }
+    let!(:admin) { create(:user, :as_admin) }
 
     before(:each) do
       @request.session = { :user => admin.id }

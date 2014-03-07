@@ -6,7 +6,7 @@ describe Admin::NotesController do
   before(:each) { request.session = { user: admin.id } }
 
   context "with a blog" do
-    let(:admin) { create(:user_admin) }
+    let(:admin) { create(:user, :as_admin) }
     let!(:blog) { create(:blog) }
 
     describe :index do
@@ -63,7 +63,7 @@ describe Admin::NotesController do
 
   context "with a blog with twitter configured" do
     let!(:blog) { create(:blog_with_twitter) }
-    let(:admin) { create(:user_admin, :with_twitter) }
+    let(:admin) { create(:user, :as_admin, :with_twitter) }
 
     describe :edit do
       context "when push to twitter" do

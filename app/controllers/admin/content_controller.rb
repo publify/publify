@@ -9,7 +9,6 @@ class Admin::ContentController < Admin::BaseController
 
   def auto_complete_for_article_keywords
     @items = Tag.find(:all, select: :display_name, order: :display_name).map {|t| t.display_name}
-    
     render inline: "<%= @items %>"
   end
 

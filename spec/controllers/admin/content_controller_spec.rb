@@ -1,167 +1,95 @@
- require 'spec_helper'
+require 'spec_helper'
 
 describe Admin::ContentController do
   render_views
+
   let!(:blog) { create(:blog) }
+  let!(:article) { create(:article) } 
 
-  # Like it's a shared, need call everywhere
-  shared_examples_for 'index action' do
+  context "as publisher (admin can do the same)" do
+    let!(:user) { create(:user, :as_publisher) }
+    before(:each) { request.session = { user: user.id } }
 
-    it 'should render template index' do
-      get 'index'
-      response.should render_template('index')
-    end
+    describe :index do
+      context "simple query" do
+        before(:each) { get :index }
+        it { expect(response).to be_success }
+        it { expect(response).to render_template('index', layout: 'administration') }
+      end
 
-    it 'should see all published in index' do
-      get :index, :search => {:published => '0', :published_at => '2008-08', :user_id => '2'}
-      response.should render_template('index')
-      response.should be_success
-    end
+      it "return article that match with search query" do
+        get :index, search: {searchstring: article.body[0..4]}
+        expect(assigns(:articles)).to eq([article])
+      end
 
-    it 'should restrict only by searchstring' do
-      article = create(:article, body: 'once uppon an originally time')
-      get :index, search: {searchstring: 'originally'}
-      assigns(:articles).should == [article]
-      response.should render_template('index')
-      response.should be_success
-    end
+      it "search query and limit on published_at" do
+        get :index, search: {
+          searchstring: article.body[0..4], 
+          published_at: article.published_at + 2.days
+        }
+        expect(assigns(:articles)).to be_empty
+      end
 
-    it 'should restrict by searchstring and published_at' do
-      create(:article)
-      get :index, :search => {:searchstring => 'originally', :published_at => '2008-08'}
-      assigns(:articles).should be_empty
-      response.should render_template('index')
-      response.should be_success
-    end
+      context "search for state" do
+        let!(:draft_article) { create(:article, state: 'draft') }
+        let!(:pending_article) { create(:article, state: 'publication_pending', published_at: '2020-01-01') }
+        before(:each) { get :index, search: state }
 
-    it 'should restrict to drafts' do
-      article = create(:article, :state => 'draft')
-      get :index, :search => {:state => 'drafts'}
-      assigns(:articles).should == [article]
-      response.should render_template('index')
-      response.should be_success
-    end
+        context "draft only" do
+          let(:state) {{ state: 'drafts' }}
+          it { expect(assigns(:articles)).to eq([draft_article]) }
+        end
 
-    it 'should restrict to publication pending articles' do
-      article = create(:article, :state => 'publication_pending', :published_at => '2020-01-01')
-      get :index, :search => {:state => 'pending'}
-      assigns(:articles).should == [article]
-      response.should render_template('index')
-      response.should be_success
-    end
+        context "publication_pending only" do
+          let(:state) { { state: 'pending' } }
+          it { expect(assigns(:articles)).to eq([pending_article]) }
+        end
 
-    it 'should restrict to withdrawn articles' do
-      article = create(:article, :state => 'withdrawn', :published_at => '2010-01-01')
-      get :index, :search => {:state => 'withdrawn'}
-      assigns(:articles).should == [article]
-      response.should render_template('index')
-      response.should be_success
-    end
-
-    it 'should restrict to withdrawn articles' do
-      article = create(:article, :state => 'withdrawn', :published_at => '2010-01-01')
-      get :index, :search => {:state => 'withdrawn'}
-      assigns(:articles).should == [article]
-      response.should render_template('index')
-      response.should be_success
-    end
-
-    it 'should restrict to published articles' do
-      article = create(:article, :state => 'published', :published_at => '2010-01-01')
-      get :index, :search => {:state => 'published'}
-      response.should render_template('index')
-      response.should be_success
-    end
-
-    it 'should fallback to default behavior' do
-      article = create(:article, :state => 'draft')
-      get :index, :search => {:state => '3vI1 1337 h4x0r'}
-      response.should render_template('index')
-      assigns(:articles).should_not == [article]
-      response.should be_success
-    end
-
-  end
-
-  shared_examples_for 'autosave action' do
-    describe "first time for a new article" do
-      it 'should save new article with draft status and no parent article' do
-        create(:none)
-        lambda do
-        lambda do
-          xhr :post, :autosave, :article => {:allow_comments => '1',
-            :body_and_extended => 'my draft in autosave',
-            :keywords => 'mientag',
-            :permalink => 'big-post',
-            :title => 'big post',
-            :text_filter => 'none',
-            :published => '1',
-            :published_at => 'December 23, 2009 03:20 PM'}
-        end.should change(Article, :count)
-        end.should change(Tag, :count)
-        result = Article.last
-        result.body.should == 'my draft in autosave'
-        result.title.should == 'big post'
-        result.permalink.should == 'big-post'
-        result.parent_id.should be_nil
-        result.redirects.count.should == 0
+        context "with a bad state" do
+          let(:state) {{ state: '3vI1 1337 h4x0r'} }
+          it { expect(assigns(:articles).sort).to eq([article, pending_article, draft_article].sort) }
+        end
       end
     end
 
-    describe "second time for a new article" do
-      it 'should save the same article with draft status and no parent article' do
-        draft = create(:article, published: false, state: 'draft')
-        lambda do
-          xhr :post, :autosave, :article => {
-            :id => draft.id,
-            :body_and_extended => 'new body' }
-        end.should_not change(Article, :count)
-        result = Article.find(draft.id)
-        result.body.should == 'new body'
-        result.parent_id.should be_nil
-        result.redirects.count.should == 0
+    describe :autosave do
+      context "first time save" do
+        it { expect{
+          xhr :post, :autosave, article: attributes_for(:article)
+        }.to change(Article, :count).from(1).to(2) }
+
+        it { expect{
+          xhr :post, :autosave, article: attributes_for(:article, :with_tags)
+        }.to change(Tag, :count).from(0).to(2) }
+      end
+
+      context "second call to save" do
+        let!(:draft) { create(:article, published: false, state: 'draft') }
+        it { expect{
+          xhr :post, :autosave, article: {id: draft.id, body_and_extended: 'new body' }
+        }.to_not change(Article, :count) }
+      end
+
+      context "with an other existing draft" do
+        let!(:draft) { create(:article, published: false, state: 'draft', body: 'existing body') }
+        it { expect{
+          xhr :post, :autosave, article: attributes_for(:article)
+        }.to change(Article, :count).from(2).to(3) }
+
+        it "dont replace existing draft" do
+          xhr :post, :autosave, article: attributes_for(:article)
+          expect(assigns(:article).id).to_not eq(draft.id)
+          expect(assigns(:article).body).to_not eq(draft.body)
+        end
       end
     end
 
-    describe "for a published article" do
-      let(:article) { create(:article) }
-
-      before(:each) do
-        data = {:allow_comments => article.allow_comments,
-          :body_and_extended => 'my draft in autosave',
-          :keywords => '',
-          :permalink => article.permalink,
-          :title => article.title,
-          :text_filter => article.text_filter,
-          :published => '1',
-          :published_at => 'December 23, 2009 03:20 PM'}
-
-        xhr :post, :autosave, id: article.id, article: data
-      end
-
+    describe :new do
+      before(:each) { get :new }
       it { expect(response).to be_success }
-      # TODO More pertinent tests needed
-    end
-
-    describe "with an unrelated draft in the database" do
-      before do
-        @draft = create(:article, :state => 'draft')
-      end
-
-      it "leaves the original draft in existence" do
-        xhr :post, :autosave, article: {}
-        assigns(:article).id.should_not == @draft.id
-        Article.find(@draft.id).should_not be_nil
-      end
-    end
-  end
-
-  shared_examples_for 'new action' do
-    it "renders the 'new' template" do
-      get :new
-      response.should render_template('new')
-      assigns(:article).should_not be_nil
-      assigns(:article).redirects.count.should == 0
+      it { expect(response).to render_template('new') }
+      it { expect(assigns(:article)).to_not be_nil }
+      it { expect(assigns(:article).redirects).to be_empty }
     end
   end
 
@@ -216,9 +144,9 @@ describe Admin::ContentController do
     end
 
     it 'should create new published article' do
-      Article.count.should be == 1
-      post :create, 'article' => base_article
       Article.count.should be == 2
+      post :create, 'article' => base_article
+      Article.count.should be == 3
     end
 
     it 'should redirect to show' do
@@ -321,15 +249,12 @@ describe Admin::ContentController do
 
   describe 'with admin connection' do
     before(:each) do
-      @user = create(:user_admin, text_filter: create(:markdown))
-      @article = create(:article)
+      @user = create(:user, :as_admin, text_filter: create(:markdown))
       request.session = { :user => @user.id }
+      @article = create(:article)
     end
 
-    it_should_behave_like 'index action'
-    it_should_behave_like 'new action'
     it_should_behave_like 'create action'
-    it_should_behave_like 'autosave action'
 
     describe 'edit action' do
       it 'should edit article' do
@@ -498,8 +423,6 @@ describe Admin::ContentController do
       request.session = {user: user.id}
     end
 
-    it_should_behave_like 'index action'
-    it_should_behave_like 'new action'
     it_should_behave_like 'create action'
   end
 

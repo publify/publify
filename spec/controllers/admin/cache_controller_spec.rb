@@ -5,7 +5,7 @@ describe Admin::CacheController do
   let!(:blog) { create(:blog) }
 
   before(:each) do
-    admin = create(:user_admin)
+    admin = create(:user, :as_admin)
     request.session = { user: admin.id }
   end
 

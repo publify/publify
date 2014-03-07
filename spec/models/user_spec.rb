@@ -45,10 +45,8 @@ describe User do
     it 'The various article finders work appropriately' do
       create(:blog)
       tobi = create(:user)
-      7.times do
-        create(:article, :user => tobi)
-      end
-      create(:article, :published => false, :published_at => nil, :user => tobi)
+      7.times { create(:article, user: tobi) }
+      create(:article, published: false, state: 'draft', published_at: nil, user: tobi)
       tobi.articles.size.should == 8
       tobi.articles.published.size.should == 7
     end
