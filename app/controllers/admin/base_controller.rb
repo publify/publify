@@ -63,7 +63,7 @@ class Admin::BaseController < ApplicationController
       checker.generate_token
       flash[:notice] = I18n.t('admin.base.restart_application')
     rescue
-      flash[:error] = I18n.t('admin.base.cant_genereate_secret', checker_file: checker.file)
+      flash[:error] = I18n.t('admin.base.cant_generate_secret', checker_file: checker.file)
     end
   end
 
