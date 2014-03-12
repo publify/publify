@@ -3,62 +3,42 @@ require 'spec_helper'
 describe Admin::SeoController do
   render_views
 
-  before(:each) do
-    FactoryGirl.create(:blog)
-    #TODO Delete after removing fixtures
-    Profile.delete_all
-    henri = FactoryGirl.create(:user, :login => 'henri', :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN))
-    request.session = { :user => henri.id }
+  let!(:blog) { create(:blog) }
+  let(:admin) { create(:user, :as_admin) }
+
+  before(:each) { request.session = { :user => admin.id } }
+
+  describe :index do
+    before(:each) { get :index }
+
+    it { expect(response).to render_template('index') }
   end
 
-  describe "#index" do
-    before do
-      get :index
-    end
-
-    it 'should render index' do
-      response.should render_template('index')
-    end    
+  describe :permalinks do
+    before(:each) { get :permalinks }
+    it { expect(response).to render_template('permalinks') }
   end
 
-  describe "#permalinks" do
-    before do
-      get :permalinks
-    end
-
-    it 'should render permalinks' do
-      response.should render_template('permalinks')
-    end
+  describe :titles do
+    before(:each) { get :titles }
+    it { expect(response).to render_template('titles') }
   end
 
-  describe "#titles" do
-    before(:each) do
-      get :titles
-    end
-    
-    it 'should render titles' do
-      response.should render_template('titles')
-    end    
-  end
+  describe :update do
 
-  describe 'update action' do
+    before(:each) { post :update, {from: "permalinks", setting: {permalink_format: format}} }
 
-    def good_update(options={})
-      post :update, {"from"=>"permalinks",
-        "authenticity_token"=>"f9ed457901b96c65e99ecb73991b694bd6e7c56b",
-        "setting"=>{"permalink_format"=>"/%title%"}}.merge(options)
+    context "simple title format" do
+      let(:format) { '/%title%' }
+      it { expect(response).to redirect_to(action: 'permalinks') }
+      it { expect(blog.reload.permalink_format).to eq(format) } 
+      it { expect(flash[:success]).to eq(I18n.t('admin.settings.update.success')) }
     end
 
-    it 'should success' do
-      good_update
-      response.should redirect_to(:action => 'permalinks')
-    end
-
-    it 'should not save blog with bad permalink format' do
-      @blog = Blog.default
-      good_update "setting" => {"permalink_format" => "/%month%"}
-      response.should redirect_to(:action => 'permalinks')
-      @blog.should == Blog.default
+    context "without title format" do
+      let(:format) { '/%month%' }
+      it { expect(blog.reload.permalink_format).to_not eq(format) } 
+      it { expect(flash[:error]).to eq(I18n.t('admin.settings.update.error', messages: I18n.t("errors.permalink_need_a_title"))) }
     end
   end
 
