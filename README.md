@@ -17,10 +17,8 @@ Publify
     -   [Install Publify](#installpublify)
 
 -   [Install Publify on Heroku](#installpublifyonheroku)
-    -   [Database](#database)
     -   [Storage](#storage)
     -   [Gemfile](#gemfile)
-    -   [Gemfile.lock](#gemfilelock)
 
 -   [Useful links](#usefullinks)
     -   [Enhance your blog](#enhanceyourblog)
@@ -126,13 +124,6 @@ Install Publify on Heroku
 
 In order to install Publify on Heroku, you’ll need to do some minor tweaks.
 
-<a name="database"></a>
-
-### Database
-
-Just add the Heroku Postgres plugin to your app. When deploying, Heroku
-will write the database configuration so you don’t have to do anything.
-
 <a name="storage"></a>
 
 ### Storage
@@ -147,27 +138,25 @@ blog. Set heroku config vars.
 
 <a name="gemfile"></a>
 
-### Gemfile
+### Gemfile and database
 
-Replace the default `Gemfile` by `Gemfile.heroku` :
-`cp Gemfile Gemfile.heroku`.
-Heroku may also need the Ruby version to be declared. You may add
-`ruby "1.9.3"` after the source to use the latest Ruby version.
+To generate the Gemfile.lock, run:
+    HEROKU=true bundle install
 
-Heroku will also boot your app on Webrick, the default Ruby web server,
-which is rather slow. Just add thin to get some free speed.
+Remove Gemfile.lock from .gitignore and commit it.
 
-Now, run
+Add the user env Heroku plugin:
+    heroku labs:enable user-env-compile -a your_app_name
 
-    bundle install
+Add the HEROKU config variable to your Heroku instance:
+    heroku set:config HEROKU=true
 
-<a name="gemfilelock"></a>
+Push the repository to Heroku.
 
-### Gemfile.lock
+When deploying for the first time, Heroku will automaticaly add a Database plugin to your instance and links it to the application.
+After the first deployment, don't forget to run the database migration and seed.
 
-Heroku needs Gemfile.lock to be in the Git repository. Remove
-Gemfile.lock from .gitignore and add it `git add .gitignore
-Gemfile.lock`
+    heroku run rake db:migrate db:seed
 
 <a name="usefullinks"></a>
 
