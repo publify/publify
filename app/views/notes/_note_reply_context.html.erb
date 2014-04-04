@@ -1,4 +1,4 @@
-<article class=''>
+<article class=' well well-small'>
   <%= image_tag(@reply['user']['profile_image_url'] , class: "alignleft", alt: @reply['user']['name']) %>
   <strong><%= link_to(@reply['user']['name'], get_reply_context_url(@reply)) %></strong>
   <p><%= PublifyApp::Textfilter::Twitterfilter.filtertext(nil,nil,@reply['text'],nil).nofollowify %></p>
