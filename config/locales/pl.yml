@@ -69,9 +69,7 @@ pl:
     comment_preview:
       is_about_to_say: "zaraz powie"
     meta:
-      published_on: "Published on"
-      by: "przez"
-      tags: "Tags"
+      published_on: "Published on %{publish_date_and_time} by %{by}, tags %{tags}"
     article:
       posted_by: "Opublikowane przez"
       this_entry_was_posted_on: "This entry was posted on %{published_at}"

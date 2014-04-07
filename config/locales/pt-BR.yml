@@ -69,9 +69,7 @@ pt-BR:
     comment_preview:
       is_about_to_say: "est&aacute; a punto de decir"
     meta:
-      published_on: "Published on"
-      by: "por"
-      tags: "Tags"
+      published_on: "Published on %{publish_date_and_time} by %{by}, tags %{tags}"
     article:
       posted_by: "Publicado por"
       this_entry_was_posted_on: "This entry was posted on %{published_at}"
