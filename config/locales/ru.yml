@@ -69,9 +69,7 @@ ru:
     comment_preview:
       is_about_to_say: "is about to say"
     meta:
-      published_on: "Опубликовано"
-      by: "by"
-      tags: "Теги"
+      published_on: "Опубликовано %{publish_date_and_time} автором %{by} под тегами %{tags}"
     article:
       posted_by: "Posted by"
       this_entry_was_posted_on: "This entry was posted on %{published_at}"

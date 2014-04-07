@@ -69,9 +69,7 @@ fr:
     comment_preview:
       is_about_to_say: "va dire"
     meta:
-      published_on: "Publié le"
-      by: "par"
-      tags: "Tags"
+      published_on: "Publié le %{publish_date_and_time} par %{by}, tags %{tags}"
     article:
       posted_by: "Publié par"
       this_entry_was_posted_on: "Ce billet a été posté le %{published_at}"
