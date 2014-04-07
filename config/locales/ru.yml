@@ -1,16 +1,16 @@
 ru:
   meta_sidebar:
     content:
-      rss_feed: "RSS Feed"
-      admin: "Admin"
-      powered_by_publify: "Powered by Publify"
-      search: "Search"
+      rss_feed: "RSS-лента"
+      admin: "Администрирование"
+      powered_by_publify: "Работает на Publify"
+      search: "Поиск"
   search_sidebar:
     content:
-      search: "Search"
+      search: "Поиск"
   page_sidebar:
     content:
-      pages: "Pages"
+      pages: "Страницы"
   activerecord:
     errors:
       template:
@@ -20,52 +20,52 @@ ru:
         article:
           attributes:
             title:
-              blank: "can't be blank"
+              blank: "не может быть пустым"
   datetime:
     distance_in_words:
       x_days: "Distance in words"
   errors:
     404:
-      page_not_found: "Page not found"
-      the_page_you_are_looking_for: "The page you are looking for has moved or does not exist."
+      page_not_found: "Страница не найдена"
+      the_page_you_are_looking_for: "Страница, которую вы запрашиваете, была перемещена или не существует"
   setup:
     confirm:
       you_have_successfully_signed_up: "You have successfully signed up"
       login: "логин: %{user}"
-      password: "Password: %{pass}"
-      dont_lose_the_mail_sent: "Don't lose the mail sent at %{email} or you won't be able to login anymore"
+      password: "пароль: %{pass}"
+      dont_lose_the_mail_sent: "Не потеряйте письмо, высланное на %{email}, или вы больше не сможете зайти"
       proceed_to: "Proceed to %{link}"
       admin: "admin"
     index:
-      blog_name: "Blog name"
-      save: "Save"
+      blog_name: "Название блога"
+      save: "Сохранить"
       welcome_to_your_blog_setup: "Welcome to your blog setup"
-      your_mail: "Your email"
+      your_mail: "Ваш email"
     page:
       about: "About"
       body: "This is an example of a Publify page. You can edit this to write information about yourself or your site so readers know who you are. You can create as many pages as this one as you like and manage all of your content inside Publify."
   comments:
     comment:
-      by: "by"
       said: "said"
+      by: "by"
       this_comment_has_been_flagged_for_moderator_approval: "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it"
   tags:
     index:
-      there_is_no_tags: "There is no tag"
-      next_page: "Next page"
-      previous_page: "Previous page"
+      there_is_no_tags: "Тегов нет"
+      next_page: "Следующая страница"
+      previous_page: "Предыдущая страница"
   helper:
     at: "at"
   articles:
     password_form:
       submit: "Submit"
     index:
-      next_page: "Next page"
-      previous_page: "Previous page"
-      page: "page"
+      next_page: "Следующая страница"
+      previous_page: "Предыдущая страница"
+      page: "страница"
     search:
-      next_page: "Next page"
-      previous_page: "Previous page"
+      next_page: "Следующая страница"
+      previous_page: "Предыдущая страница"
     comment_preview:
       is_about_to_say: "is about to say"
     meta:
@@ -81,7 +81,7 @@ ru:
       comment: "Отправить комментарий"
       or_trackback: "or a %{trackback} from your own site"
       trackback: "trackback"
-      read_full_article: "Read full article"
+      read_full_article: "Читать статью полностью"
       comments: "комментариев"
     archives:
       posted_in: "Posted in"
@@ -131,8 +131,8 @@ ru:
         other: "%{count} comments"
   notes:
     index:
-      next_page: "Next page"
-      previous_page: "Previous page"
+      next_page: "Следующая страница"
+      previous_page: "Предыдущая страница"
     note:
       view_on_twitter: "View on Twitter"
   profile:
@@ -180,8 +180,8 @@ ru:
       twitter: "Twitter:"
       this_author_has_not_published_any_article_yet: "Этот автор еще ничего не публиковал"
       posted_in: "posted in"
-      next_page: "Next page"
-      previous_page: "Previous page"
+      next_page: "Следующая страница"
+      previous_page: "Предыдущая страница"
   admin:
     base:
       restart_application: "По соображениям безопасности вам следует перезапустить ваше Publify-приложение. Приятного блогерства!"
@@ -195,15 +195,15 @@ ru:
         notes: "Notes"
       form:
         now: "Now"
+        compose_new_note: "Compose new note"
         no_notes: "Ничего нет. Почему бы не начать и не добавить?"
         how_to_setup_twitter: "If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."
         fill_the_twitter_credentials: "fill in the oauth credentials"
         registered_your_application: "registered your application"
-        compose_new_note: "Compose new note"
         publish_settings: "Настройки публикации"
         posse_to_twitter: "POSSE to twitter"
-        in_reply_to: "In reply to"
         tweet_id_like: "Tweet id like 123456"
+        in_reply_to: "In reply to"
         permanent_link: "Permanent link"
         published: "Опубликован"
         publish_at: "Опубликован"
@@ -237,13 +237,13 @@ ru:
         active_theme: "%{name} - Active theme"
     profiles:
       index:
-        success: "User details updated"
         your_profile: "Ваш профиль"
+        success: "User details updated"
     sidebar:
       index:
-        error: "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually"
         sidebar: "Sidebar"
         drag_some_plugins_here: "Drag some plugins here to fill your sidebar"
+        error: "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually"
         or: "or"
         cancel: "Отменить"
         explain_how_its_works: "Drag and drop to change the sidebar items displayed on this blog. To remove items from the sidebar just click 'remove'. Changes are saved immediately, but not activated until you click the 'Publish changes' button"
@@ -251,9 +251,12 @@ ru:
         available_items: "Available Items"
         active_sidebar_items: "Active Sidebar items"
         download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
+      target_sidebar:
+        update: 'Update'
     settings:
       update:
         success: "Config updated."
+        error: "Error: %{messages}"
       display:
         cancel: "Отменить"
         or: "or"
@@ -347,7 +350,7 @@ ru:
         cancel: "Отменить"
         or: "or"
         update_settings: "Обновить настройки"
-        general_settings: "Главные настройки"
+        general_settings: "Основные настройки"
         your_blog: "Ваш блог"
         blog_name: "Имя блога"
         blog_subtitle: "Подзаголовок блога"
@@ -358,7 +361,7 @@ ru:
         explain_allow_users_to_register: "Вы можете разрешить пользователям регистрироваться в вашем блоге. По умолчанию они регистрируются как контрибьюторы, то есть получают непривелигированные учетные записи, которые не имеют никаких прав — только профиль на сайте. Если вы не хотите давать пользователям возможность регистрироваться, вы можете добавлять их вручную в разделе «пользователи» панели администратора"
         source_email: "Source Email"
         email_address_used_to_notify: "Email address used by Publify to send notifications"
-        items_to_display_in_admin_lists: "Элементы для отображения в администраторских списках"
+        items_to_display_in_admin_lists: "Количество элементов для отображения в администраторских списках"
     seo:
       titles:
         cancel: "Отменить"
@@ -502,9 +505,9 @@ ru:
         explain: "The template name is the filename Publify will look for when calling an article of that type. It should be in your theme under views/articles/template name.html.erb"
     pages:
       new:
-        success: "New page created"
+        success: "Новая страница создана"
       edit:
-        success: "Page has been updated"
+        success: "Страница обновлена"
       index:
         manage_pages: "Manage pages"
         new_page: "Новая страница"
@@ -514,7 +517,7 @@ ru:
         date: "Дата"
       form:
         cancel: "Отменить"
-        change: "Change"
+        change: "Изменить"
         publish: "Опубликовать"
         title: "Заголовок"
         images: "Изображения"
@@ -560,6 +563,7 @@ ru:
         success_classification: "Confirmed classification of %{count} item(s)"
         success_deleted: "Deleted %{count} item(s)"
       index:
+        no_feedback: "Ничего нет. Почему бы не начать и не добавить?"
         feedback: "Комментарии"
         all: "All"
         unapproved_comments: "Unapproved comments"
@@ -573,7 +577,6 @@ ru:
         comment: "Отправить комментарий"
         article: "Пост"
         select_all: "Выбрать все"
-        no_feedback: "Ничего нет. Почему бы не начать и не добавить?"
       article:
         no_feedback: "Ничего нет. Почему бы не начать и не добавить?"
         comments_for: "Комментарии к %{title}"
@@ -603,10 +606,11 @@ ru:
         this_comment_by_was_flagged_as_spam: "This comment by %{author} was flagged as spam, %{cancel_link}?"
         cancel: "Отменить"
     dashboard:
-      index:
+      publify_version:
         error: "You are late from at least one major version of Publify. You should upgrade immediately. Download and install <a href='http://publify.co/stable.tgz'>the latest Publify version</a>"
         warning: "There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
         notice: "There's a new version of Publify available. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
+      index:
         welcome_back: "Добро пожаловать снова, %{user_name}!"
       drafts:
         your_drafts: "Ваши черновики"
@@ -680,8 +684,7 @@ ru:
         success: "Article was successfully created"
       update:
         success: "Article was successfully updated"
-        error: "Error, you are not allowed to perform this action"
-      edit:
+      access_granted:
         error: "Error, you are not allowed to perform this action"
       autosave:
         success: "Article was successfully saved"
@@ -776,11 +779,11 @@ ru:
         error: "Cache could not be cleared"
     users:
       edit:
-        success: "User was successfully updated"		  
         edit_user: "Edit User"
+        success: "User was successfully updated"		  
       new:
-        success: "User was successfully created"
         add_user: "Add User"
+        success: "User was successfully created"
       index:
         login: "логин"
         users: "Users"
@@ -791,14 +794,13 @@ ru:
         articles: "Articles"
         comments: "комментариев"
         state: "State"
-        user_state: "%{state} user"
       form:
         how_to_setup_twitter: "If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."
         fill_the_twitter_credentials: "fill in the oauth credentials"
         registered_your_application: "registered your application"
         cancel: "Отменить"
-        save: "Сохранить"
         or: "or"
+        save: "Сохранить"
         user_status: "User Status"
         account_settings: "Account Settings"
         login: "Логин"
@@ -859,13 +861,13 @@ ru:
       reset_my_password: "Сбросить мой пароль"
       notice: "Письмо с паролем было выслано на ваш адрес"
       error: "Упс, произошло что-то нехорошее"
+    logout:
+      notice: "Successfully logged out"
     signup:
       title: "войти"
-      username: "Username"
+      username: "Имя пользователя"
       email: "Email"
       signup: "войти"
-    logout:
-      notice: "Вы успешно вышли"
   langs:
     da_DK: "Danish"
     de_DE: "German"
@@ -888,6 +890,7 @@ ru:
     formats:
       default: "%m/%d/%Y %H:%M"
       short: "%m/%d/%y"
+      with_spaces: "%d %B %y"
       letters_month_with_year: "%m %Y"
   date:
     month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]
