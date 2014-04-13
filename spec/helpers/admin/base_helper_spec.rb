@@ -30,4 +30,5 @@ describe Admin::BaseHelper do
       end
     end
   end
+
 end

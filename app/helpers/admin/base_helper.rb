@@ -52,6 +52,10 @@ module Admin::BaseHelper
     File.writable?"#{::Rails.root.to_s}/public/robots.txt"
   end
 
+  def human_writable?
+    File.writable?"#{::Rails.root.to_s}/public/humans.txt"
+  end
+
   def tab_for(current_module)
     content_tag(:li, link_to(current_module.menu_name, current_module.menu_url))
   end

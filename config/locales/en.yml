@@ -416,6 +416,10 @@ en:
         your_article_day: "your article day of publication."
         help_on_permalink_settings: "Help on permalink settings"
       index:
+        human: "Human"
+        humans_txt: "Human"
+        you_humans_txt_file_is_not_writeable: "Your humans txt file is not writable."
+        explain_humans_txt: "It's an initiative for knowing the people behind a website. It's a TXT file that contains information about the different people who have contributed to building the website. http://humanstxt.org/"
         cancel: "Cancel"
         or: "or"
         update_settings: "Update settings"
