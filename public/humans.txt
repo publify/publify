@@ -1,7 +1,0 @@
-/* TEAM */
-Author: Yannick François.
-Site: <http://elsif.fr>, <yaf@elsif.fr>.
-Twitter: @ya_f.
-
-/* SITE */ 
-Software: Publify [http://publify.co] 8.0.1

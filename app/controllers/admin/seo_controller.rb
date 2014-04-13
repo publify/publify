@@ -36,12 +36,6 @@ class Admin::SeoController < Admin::BaseController
     if params[:setting][:robots].present?
       Robot.new.add(params[:setting][:robots])
     end
-    if params[:setting][:humans].present?
-      humans_txt_file = "#{::Rails.root.to_s}/public/humans.txt"
-      humans = File.new(humans_txt_file, "w+")
-      humans.write(params[:setting][:humans])
-      humans.close
-    end
     redirect_to action: params[:from]
   end
 

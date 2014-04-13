@@ -107,9 +107,6 @@
     <div class='col-sm-5'>
       <%= text_area(:setting, :humans, rows: 10, class: 'form-control')%>
       <small class='help-block'><%= t(".explain_humans_txt") %></small>
-      <% unless human_writable? -%>
-        <p class='alert alert-danger'><%= t(".you_humans_txt_file_is_not_writeable") %></p>
-      <% end -%>
     </div>
   </div>
 </fieldset>
