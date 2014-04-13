@@ -82,6 +82,7 @@ Rails.application.routes.draw do
   get '/note/:permalink', :to => 'notes#show', :format => false
 
   get '/humans', to: 'text#humans', format: 'txt'
+  get '/robots', to: 'text#robots', format: 'txt'
 
   namespace :admin do
     get '/', to: 'dashboard#index', as: 'dashboard'

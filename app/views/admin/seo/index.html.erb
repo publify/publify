@@ -68,9 +68,6 @@
     <label class='control-label col-sm-2' for="setting_robots"><%= t(".robots_txt")%></label>
     <div class='col-sm-5'>
       <%= text_area(:setting, :robots, :rows => 10, :class => 'form-control')%>
-      <% unless robot_writable? -%>
-        <p class='alert alert-danger'><%= t(".you_robots_txt_file_is_not_writeable") %></p>
-      <% end -%>
     </div>
   </div>
 
