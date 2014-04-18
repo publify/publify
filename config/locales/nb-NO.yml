@@ -46,8 +46,8 @@ nb-NO:
       body: "This is an example of a Publify page. You can edit this to write information about yourself or your site so readers know who you are. You can create as many pages as this one as you like and manage all of your content inside Publify."
   comments:
     comment:
-      by: "av"
       said: "sa"
+      by: "av"
       this_comment_has_been_flagged_for_moderator_approval: "Denne kommentaren har blitt flagget for godkjenning av moderator. Den vil ikke bli vist på bloggen før moderatoren godkjenner den."
   tags:
     index:
@@ -193,15 +193,15 @@ nb-NO:
         notes: "Notes"
       form:
         now: "Now"
+        compose_new_note: "Compose new note"
         no_notes: "Det finnes ingen notes enda. Hva med å opprette en?"
         how_to_setup_twitter: "If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."
         fill_the_twitter_credentials: "fill in the oauth credentials"
         registered_your_application: "registered your application"
-        compose_new_note: "Compose new note"
         publish_settings: "Publiseringsinnstillinger"
         posse_to_twitter: "POSSE to twitter"
-        in_reply_to: "In reply to"
         tweet_id_like: "Tweet id like 123456"
+        in_reply_to: "In reply to"
         permanent_link: "Permanent lenke"
         published: "Publisert"
         publish_at: "Offentliggjort den"
@@ -235,13 +235,13 @@ nb-NO:
         active_theme: "%{name} - Aktivt tema"
     profiles:
       index:
-        success: "Bruker oppdatert"
         your_profile: "Din profil"
+        success: "Bruker oppdatert"
     sidebar:
       index:
-        error: "Noe gikk galt. Kanskje en av dine sidekolonner mangler og du burde reinstallere den eller fjerne den manuelt"
         sidebar: "Sidebar"
         drag_some_plugins_here: "Dra og slipp plugins hit for å populere sidebar"
+        error: "Noe gikk galt. Kanskje en av dine sidekolonner mangler og du burde reinstallere den eller fjerne den manuelt"
         or: "or"
         cancel: "Annuller"
         explain_how_its_works: "Dra og slipp for at Dra og slipp innholdsendreen der vises på denne blog. Du kan fjerne elementer fra oversiktsoversikten bare ved at klikke fjern. endringer gemmes med det samme, men ikke aktiveret, før du klikker på 'Offentliggør' knappen."
@@ -249,9 +249,12 @@ nb-NO:
         available_items: "Tilgjengelige enheter"
         active_sidebar_items: "Aktive sidebar-enheter"
         download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
+      target_sidebar:
+        update: 'Update'
     settings:
       update:
         success: "Innstillinger oppdatert"
+        error: "Error: %{messages}"
       display:
         cancel: "Annuller"
         or: "or"
@@ -561,6 +564,7 @@ nb-NO:
         success_classification: "Bekreftet klassifisering av %{count} enhet(er)"
         success_deleted: "Slettet %{count} enheter"
       index:
+        no_feedback: "Det finnes ingen diskusjon enda. Hva med å opprette en?"
         feedback: "Diskusjon"
         all: "All"
         unapproved_comments: "Kommentarer på vent"
@@ -574,7 +578,6 @@ nb-NO:
         comment: "Kommentar"
         article: "Artikkel"
         select_all: "Velg alle"
-        no_feedback: "Det finnes ingen diskusjon enda. Hva med å opprette en?"
       article:
         no_feedback: "Det finnes ingen diskusjon enda. Hva med å opprette en?"
         comments_for: "Kommentarer for %{title}"
@@ -604,10 +607,11 @@ nb-NO:
         this_comment_by_was_flagged_as_spam: "Denne kommentaren av %{author} er flagget som Spam, %{cancel_link}?"
         cancel: "Annuller"
     dashboard:
+      publify_version:
+        error: "You are late from at least one major version of Publify. You should upgrade immediately. Download and install <a href='http://publify.co/stable.tgz'>the latest Publify version</a>"
+        warning: "There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
+        notice: "There's a new version of Publify available. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
       index:
-        error: "Du bruker en gammel versjon av Publify. Du bør oppgradere snarest. Last ned og installer <a href='http://publify.co/stable.tgz'>den siste versjonan av Publify</a>"
-        warning: "Det finnes en ny versjon av Publify som kan inneholde viktige feilrettelser. Hva med å oppgradere til <a href='http://publify.co/stable.tgz'>den siste versjonan av Publify</a> ?"
-        notice: "Det finnes en ny versjon av Publify. Hva med å oppgradere til <a href='http://publify.co/stable.tgz'>den siste versjonan av Publify</a> ?"
         welcome_back: "Velkommen tilbake, %{user_name}!"
       drafts:
         your_drafts: "Your drafts"
@@ -681,8 +685,7 @@ nb-NO:
         success: "Artikkel opprettet"
       update:
         success: "Artikkel oppdatert"
-        error: "Du har ikke tillatelse til å utføre denne handlingen"
-      edit:
+      access_granted:
         error: "Du har ikke tillatelse til å utføre denne handlingen"
       autosave:
         success: "Article was successfully saved"
@@ -792,14 +795,13 @@ nb-NO:
         articles: "Artikler"
         comments: "Kommentarer"
         state: "Tilstand"
-        user_state: "%{state} bruker"
       form:
         how_to_setup_twitter: "If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."
         fill_the_twitter_credentials: "fill in the oauth credentials"
         registered_your_application: "registered your application"
         cancel: "Annuller"
-        save: "Lagre"
         or: "or"
+        save: "Lagre"
         user_status: "User Status"
         account_settings: "Account Settings"
         login: "Logg inn"
@@ -860,13 +862,13 @@ nb-NO:
       reset_my_password: "Nullstill passordet mitt"
       notice: "En epost er sendt til din adresse med ditt nye passord"
       error: "Ojsann, noe gikk galt"
+    logout:
+      notice: "Logget ut"
     signup:
       title: "Registrer"
       username: "Brukernavn"
       email: "Epost"
       signup: "Registrer"
-    logout:
-      notice: "Logget ut"
   langs:
     da_DK: "Dansk"
     de_DE: "Tysk"
@@ -889,6 +891,7 @@ nb-NO:
     formats:
       default: "%m/%d/%Y %H:%M"
       short: "%m/%d/%y"
+      with_spaces: "%d %B %y"
       letters_month_with_year: "%m %Y"
   date:
     month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]
