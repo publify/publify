@@ -59,7 +59,7 @@ img.centered, img.alignleft, img.alignright, img.thumb {
 }
 
 .navbar-inverse .navbar-inner {
-        background-image: url("/images/theme/header-menu.png");
+        background-image: url("../../images/theme/header-menu.png");
         
 }
 
