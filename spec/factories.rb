@@ -195,8 +195,7 @@ http://alsoping.example.com/rpc/ping"
     factory :profile_admin do
       label Profile::ADMIN
       nicename 'Publify administrator'
-      modules [ :dashboard, :write, :articles, :pages, :feedback, :themes,
-                :customizesidebar, :users, :seo, :media, :settings, :profile, :notes ]
+      modules [ :dashboard, :write, :articles, :pages, :feedback, :themes, :customizesidebar, :users, :seo, :media, :settings, :profile, :notes ]
     end
 
     factory :profile_publisher do
