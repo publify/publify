@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "articles/feedback_atom_feed.atom.builder" do
-  let!(:blog) { build_stubbed :blog }
+  let!(:blog) { create :blog }
 
   describe "with one trackback" do
     let(:article) { stub_full_article }
