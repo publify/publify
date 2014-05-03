@@ -68,11 +68,9 @@
     <label class='control-label col-sm-2' for="setting_robots"><%= t(".robots_txt")%></label>
     <div class='col-sm-5'>
       <%= text_area(:setting, :robots, :rows => 10, :class => 'form-control')%>
-      <% unless robot_writable? -%>
-        <p class='alert alert-danger'><%= t(".you_robots_txt_file_is_not_writeable") %></p>
-      <% end -%>
     </div>
   </div>
+
   <div class='form-group'>
     <label class='control-label col-sm-2'><%= t(".dofollow") %></label>
     <div class='col-sm-5'>
@@ -93,10 +91,21 @@
         <%= check_box(:setting, :use_canonical_url)%>
         <%= t(".use_canonical_url")%>
       </label>
-      <small class='help-block'><%= t(".read_more_about", link: link_to("rel='canonical'", "http://support.google.com/webmasters/bin/answer.py?hl=en&answer=139394")) %></small>      
+      <small class='help-block'><%= t(".read_more_about", link: link_to("rel='canonical'", "http://support.google.com/webmasters/bin/answer.py?hl=en&answer=139394")) %></small>
     </div>
   </div>
 </div>
+</fieldset>
+
+<fieldset class='form-horizontal'>
+  <legend><%= t(".human") %></legend>
+  <div class='form-group'>
+    <label class='control-label col-sm-2' for="setting_humans"><%= t(".humans_txt")%></label>
+    <div class='col-sm-5'>
+      <%= text_area(:setting, :humans, rows: 10, class: 'form-control')%>
+      <small class='help-block'><%= t(".explain_humans_txt") %></small>
+    </div>
+  </div>
 </fieldset>
 
 <fieldset class='form-horizontal'>

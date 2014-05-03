@@ -4,7 +4,7 @@ describe Admin::ContentController do
   render_views
 
   let!(:blog) { create(:blog) }
-  let!(:article) { create(:article) } 
+  let!(:article) { create(:article) }
 
   context "as publisher (admin can do the same)" do
     let!(:user) { create(:user, :as_publisher) }
@@ -24,7 +24,7 @@ describe Admin::ContentController do
 
       it "search query and limit on published_at" do
         get :index, search: {
-          searchstring: article.body[0..4], 
+          searchstring: article.body[0..4],
           published_at: article.published_at + 2.days
         }
         expect(assigns(:articles)).to be_empty
@@ -91,6 +91,49 @@ describe Admin::ContentController do
       it { expect(assigns(:article)).to_not be_nil }
       it { expect(assigns(:article).redirects).to be_empty }
     end
+
+    describe :create do
+
+      let(:article_params) {{title: 'posted via tests!', body: 'a good boy'}}
+
+      context "create an article" do
+        it { expect{
+          post :create, article: article_params
+        }.to change(Article, :count).from(1).to(2) }
+      end
+
+      context "classic" do
+
+        before(:each) { post :create, article: article_params }
+
+        it { expect(response).to redirect_to(action: :index) }
+        it { expect(flash[:success]).to eq(I18n.t('admin.content.create.success')) }
+
+        it { expect(assigns(:article)).to be_published }
+        it { expect(assigns(:article).user).to eq(user) }
+
+        context "when doing a draft" do
+          let(:article_params) {{title: 'posted via tests!', body: 'a good boy', state: 'draft'}}
+          it { expect(assigns(:article)).to_not be_published }
+        end
+      end
+
+      context "write for futur" do
+        let(:article_params) {{title: 'posted via tests!', body: 'a good boy', state: 'draft', published_at: (Time.now + 1.hour).to_s}}
+        
+        it { expect{
+          post :create, article: article_params
+        }.to change(Article, :count).from(1).to(2) }
+
+        it { expect{
+          post :create, article: article_params
+        }.to_not change(Redirection, :count) }
+
+        it { expect{
+          post :create, article: article_params
+        }.to change(Trigger, :count).from(0).to(1) }
+      end
+    end
   end
 
   shared_examples_for 'create action' do
@@ -99,59 +142,6 @@ describe Admin::ContentController do
         :body => "A good body",
         :allow_comments => '1',
         :allow_pings => '1' }.merge(options)
-    end
-
-    it 'should create article with no comments' do
-      post(:create,
-           'article' => base_article({:allow_comments => '0'}),
-           'tags' => [create(:tag).id])
-      assigns(:article).should_not be_allow_comments
-      assigns(:article).should be_allow_pings
-      assigns(:article).should be_published
-    end
-
-    it 'should create a published article with a redirect' do
-      post(:create, 'article' => base_article)
-      assigns(:article).redirects.count.should == 1
-    end
-
-    it 'should create a draft article without a redirect' do
-      post(:create, 'article' => base_article({:state => 'draft'}))
-      assigns(:article).redirects.count.should == 0
-    end
-
-    it 'should create an unpublished article without a redirect' do
-      post(:create, 'article' => base_article({:published => false}))
-      assigns(:article).redirects.count.should == 0
-    end
-
-    it 'should create an article published in the future without a redirect' do
-      post(:create, 'article' => base_article({:published_at => (Time.now + 1.hour).to_s}))
-      assigns(:article).redirects.count.should == 0
-    end
-
-    it 'should create article with no pings' do
-      post(:create, 'article' => {:allow_pings => '0', 'title' => 'my Title'}, 'tags' => [create(:tag).id])
-      assigns(:article).should be_allow_comments
-      assigns(:article).should_not be_allow_pings
-      assigns(:article).should be_published
-    end
-
-    it 'should create an article linked to the current user' do
-      post :create, article: base_article
-      new_article = Article.last
-      assert_equal @user, new_article.user
-    end
-
-    it 'should create new published article' do
-      Article.count.should be == 2
-      post :create, 'article' => base_article
-      Article.count.should be == 3
-    end
-
-    it 'should redirect to show' do
-      post :create, 'article' => base_article
-      assert_response :redirect, :action => 'show'
     end
 
     it 'should send notifications on create' do
@@ -175,17 +165,6 @@ describe Admin::ContentController do
       post :create, 'article' => base_article(:keywords => "foo bar")
       new_article = Article.last
       assert_equal 2, new_article.tags.size
-    end
-
-    it 'should create article in future' do
-      lambda do
-        post(:create,
-             :article =>  base_article(:published_at => (Time.now + 1.hour).to_s) )
-        assert_response :redirect, :action => 'show'
-        assigns(:article).should_not be_published
-      end.should_not change(Article.published, :count)
-      assert_equal 1, Trigger.count
-      assigns(:article).redirects.count.should == 0
     end
 
     it "should correctly interpret time zone in :published_at" do

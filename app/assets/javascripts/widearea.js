@@ -53,7 +53,7 @@
    */
   function _saveToStorage(id, value) {
     //save textarea data in localStorage
-    localStorage.setItem(this._options.autoSaveKeyPrefix + id, value);
+    //localStorage.setItem(this._options.autoSaveKeyPrefix + id, value);
   }
 
   /**
@@ -63,7 +63,7 @@
    * @method _getFromStorage
    */
   function _getFromStorage(id) {
-    return localStorage.getItem(this._options.autoSaveKeyPrefix + id);
+    // return localStorage.getItem(this._options.autoSaveKeyPrefix + id);
   }
 
   /**

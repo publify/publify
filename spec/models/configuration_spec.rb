@@ -1,257 +1,254 @@
 require 'spec_helper'
 
 describe 'Given a new blog' do
-  before(:each) do
-    @blog = Blog.new
-  end
-  
+  let!(:blog) { Blog.new }
+
   it '#blog_name should be My Shiny Weblog!' do
-    @blog.blog_name.should == 'My Shiny Weblog!'
+    blog.blog_name.should == 'My Shiny Weblog!'
   end
 
   it '#blog_subtitle should be ""' do
-    @blog.blog_subtitle.should == ''
+    blog.blog_subtitle.should == ''
   end
 
   it '#geourl_location should be ""' do
-    @blog.geourl_location.should == ''
+    blog.geourl_location.should == ''
   end
 
   it '#canonical_server_url should be ""' do
-    @blog.geourl_location.should == ''
+    blog.geourl_location.should == ''
   end
 
   it '#lang should be en_US' do
-    @blog.lang.should == 'en_US'
+    blog.lang.should == 'en_US'
   end
 
   # Must find a better name for this key!
   it 'Global spam protection is not enabled' do
-    @blog.should_not be_sp_global
+    blog.should_not be_sp_global
   end
 
   it "#sp_article_auto_close should be 0" do
-    @blog.sp_article_auto_close.should == 0
+    blog.sp_article_auto_close.should == 0
   end
 
   it "#sp_url_limit should be 0" do
-    @blog.sp_url_limit.should == 0
+    blog.sp_url_limit.should == 0
   end
 
   it "#sp_akismet_key should be blank" do
-    @blog.sp_akismet_key.should == ''
+    blog.sp_akismet_key.should == ''
   end
 
   it "#use_recaptcha should be false" do
-    @blog.should_not be_use_recaptcha
+    blog.should_not be_use_recaptcha
   end
 
   it '#text_filter and #comment_text_filter should be markdown smartypants' do
-    @blog.text_filter.should == 'markdown smartypants'
-    @blog.comment_text_filter.should == 'markdown smartypants'
+    blog.text_filter.should == 'markdown smartypants'
+    blog.comment_text_filter.should == 'markdown smartypants'
   end
 
   it '#limit_article_display and #limit_rss_display should be 10' do
-    @blog.limit_article_display.should == 10
-    @blog.limit_rss_display.should == 10
+    blog.limit_article_display.should == 10
+    blog.limit_rss_display.should == 10
   end
 
   it 'Pings should not be allowed by default' do
-    @blog.should_not be_default_allow_pings
+    blog.should_not be_default_allow_pings
   end
 
   it 'Comments should be allowed unmoderated by default' do
-    @blog.should be_default_allow_comments
-    @blog.should_not be_default_moderate_comments
+    blog.should be_default_allow_comments
+    blog.should_not be_default_moderate_comments
   end
 
   it 'Should not link to author' do
-    @blog.should_not be_link_to_author
+    blog.should_not be_link_to_author
   end
 
   it 'Should not hide extended on rss' do
-    @blog.should_not be_hide_extended_on_rss
+    blog.should_not be_hide_extended_on_rss
   end
 
   it '#theme should be "Bootstrap"' do
-    @blog.theme.should == 'bootstrap'
+    blog.theme.should == 'bootstrap'
   end
 
   it 'should not use any avatar plugin' do
-    @blog.plugin_avatar.should == ''
+    blog.plugin_avatar.should == ''
   end
 
   # Another clumsy setting name
   it '#global_pings_disable should be false' do
-    @blog.global_pings_disable.should == false
-    @blog.should_not be_global_pings_disable
+    blog.global_pings_disable.should == false
+    blog.should_not be_global_pings_disable
   end
 
   it 'should ping technorati, blog.gs and weblogs.com' do
-    @blog.ping_urls.should == "http://blogsearch.google.com/ping/RPC2\nhttp://rpc.technorati.com/rpc/ping\nhttp://ping.blo.gs/\nhttp://rpc.weblogs.com/RPC2"
+    blog.ping_urls.should == "http://blogsearch.google.com/ping/RPC2\nhttp://rpc.technorati.com/rpc/ping\nhttp://ping.blo.gs/\nhttp://rpc.weblogs.com/RPC2"
   end
 
   it 'should send outbound pings' do
-    @blog.should be_send_outbound_pings
+    blog.should be_send_outbound_pings
   end
 
   it '#email_from should be publify@example.com' do
-    @blog.email_from.should == 'publify@example.com'
+    blog.email_from.should == 'publify@example.com'
   end
 
   it '#date format should be day/month/year hour:minute' do
-    @blog.date_format.should == '%d/%m/%Y'
-    @blog.time_format.should == '%Hh%M'
+    blog.date_format.should == '%d/%m/%Y'
+    blog.time_format.should == '%Hh%M'
   end
 
   it 'Thumb, medium and avatar image size' do
-    @blog.image_avatar_size.should == 48
-    @blog.image_thumb_size.should == 125
-    @blog.image_medium_size.should == 600
+    blog.image_avatar_size.should == 48
+    blog.image_thumb_size.should == 125
+    blog.image_medium_size.should == 600
   end
-  
+
   it 'Default meta keyword and description should be empty' do
-    @blog.meta_description.should == ''
-    @blog.meta_keywords.should == ''
+    blog.meta_description.should == ''
+    blog.meta_keywords.should == ''
   end
 
   it 'Google analytics and Webmaster toold should be empty' do
-    @blog.google_verification.should == ''
-    @blog.google_analytics.should == ''
+    blog.google_verification.should == ''
+    blog.google_analytics.should == ''
   end
 
   it '#feedburner should be empty' do
-    @blog.feedburner_url.should == ''
-  end
-  
-  it 'RSS description should be disable but not empty' do
-    @blog.should_not be_rss_description
-    @blog.rss_description_text.should == "<hr /><p><small>Original article written by %author% and published on <a href='%blog_url%'>%blog_name%</a> | <a href='%permalink_url%'>direct link to this article</a> | If you are reading this article anywhere other than on <a href='%blog_url%'>%blog_name%</a>, it has been illegally reproduced and without proper authorization.</small></p>"
-  end
-  
-  it 'Permalink format should be /year/month/day/title' do
-    @blog.permalink_format.should == '/%year%/%month%/%day%/%title%'
+    blog.feedburner_url.should == ''
   end
 
-  # really?!
+  it 'RSS description should be disable but not empty' do
+    blog.should_not be_rss_description
+    blog.rss_description_text.should == "<hr /><p><small>Original article written by %author% and published on <a href='%blog_url%'>%blog_name%</a> | <a href='%permalink_url%'>direct link to this article</a> | If you are reading this article anywhere other than on <a href='%blog_url%'>%blog_name%</a>, it has been illegally reproduced and without proper authorization.</small></p>"
+  end
+
+  it 'Permalink format should be /year/month/day/title' do
+    blog.permalink_format.should == '/%year%/%month%/%day%/%title%'
+  end
+
   it 'Robots.txt should be empty' do
-    @blog.robots.should == ''
+    expect(blog.robots).to eq('User-agent: *\\nAllow: /\\nDisallow: /admin\\n')
   end
 
   it 'Tags should be indexed' do
-    @blog.should be_index_tags
-    @blog.should_not be_unindex_tags    
+    blog.should be_index_tags
+    blog.should_not be_unindex_tags
   end
-  
+
   it 'Displays 10 elements in admin' do
-    @blog.admin_display_elements.should == 10
+    blog.admin_display_elements.should == 10
   end
-  
+
   it 'Links are nofollow by default' do
-    @blog.should be_nofollowify
-    @blog.should_not be_dofollowify
+    blog.should be_nofollowify
+    blog.should_not be_dofollowify
   end
 
   it 'Use of canonical URL is disabled by default' do
-    @blog.should_not be_use_canonical_url
+    blog.should_not be_use_canonical_url
   end
 
   it 'Use of meta keywords is enabled by default' do
-    @blog.should be_use_meta_keyword
+    blog.should be_use_meta_keyword
   end
 
   it '#is_okay should be false until #blog_name is explicitly set' do
-    @blog.should_not be_configured
-    @blog.blog_name = 'Specific blog name'
-    @blog.should be_configured
+    blog.should_not be_configured
+    blog.blog_name = 'Specific blog name'
+    blog.should be_configured
   end
-  
+
   it 'home display template is blog name | blog description | meta keywords' do
-    @blog.home_title_template.should == "%blog_name% | %blog_subtitle%"
-    @blog.home_desc_template.should == "%blog_name% | %blog_subtitle% | %meta_keywords%"
+    blog.home_title_template.should == "%blog_name% | %blog_subtitle%"
+    blog.home_desc_template.should == "%blog_name% | %blog_subtitle% | %meta_keywords%"
   end
-  
+
   it 'article template is title | blog name with excerpt in the description' do
-    @blog.article_title_template.should == "%title% | %blog_name%"
-    @blog.article_desc_template.should == "%excerpt%"
+    blog.article_title_template.should == "%title% | %blog_name%"
+    blog.article_desc_template.should == "%excerpt%"
   end
-  
+
   it 'page template is title | blog name with excerpt in the description' do
-    @blog.page_title_template.should == "%title% | %blog_name%"
-    @blog.page_desc_template.should == "%excerpt%"
+    blog.page_title_template.should == "%title% | %blog_name%"
+    blog.page_desc_template.should == "%excerpt%"
   end
 
   it 'paginated template is title | blog name | page with keywords in the description' do
-    @blog.paginated_title_template.should == "%blog_name% | %blog_subtitle% %page%"
-    @blog.paginated_desc_template.should == "%blog_name% | %blog_subtitle% | %meta_keywords% %page%"
+    blog.paginated_title_template.should == "%blog_name% | %blog_subtitle% %page%"
+    blog.paginated_desc_template.should == "%blog_name% | %blog_subtitle% | %meta_keywords% %page%"
   end
 
   it 'tags title template is Tag: name | blog_name | page' do
-    @blog.tag_title_template.should == "Tag: %name% | %blog_name% %page%"
+    blog.tag_title_template.should == "Tag: %name% | %blog_name% %page%"
   end
-  
+
   it 'tags description template is name | description | blog description page' do
-    @blog.tag_desc_template.should == "%name% | %blog_name% | %blog_subtitle% %page%"
+    blog.tag_desc_template.should == "%name% | %blog_name% | %blog_subtitle% %page%"
   end
 
   it 'author title template is name | blog_name' do
-    @blog.author_title_template.should == "%author% | %blog_name%"
+    blog.author_title_template.should == "%author% | %blog_name%"
   end
-  
+
   it 'author description template is name | blog name | blog description page' do
-    @blog.author_desc_template.should == "%author% | %blog_name% | %blog_subtitle%"
+    blog.author_desc_template.should == "%author% | %blog_name% | %blog_subtitle%"
   end
 
   it 'archives title template is Archives for blog name date page' do
-    @blog.archives_title_template.should == "Archives for %blog_name% %date% %page%"
+    blog.archives_title_template.should == "Archives for %blog_name% %date% %page%"
   end
-  
+
   it 'archives description template is Archives for blog name date page blog description' do
-    @blog.archives_desc_template.should == "Archives for %blog_name% %date% %page% %blog_subtitle%"
+    blog.archives_desc_template.should == "Archives for %blog_name% %date% %page% %blog_subtitle%"
   end
 
   it 'search title template is Archives for blog name date page' do
-    @blog.search_title_template.should == "Results for %search% | %blog_name% %page%"
+    blog.search_title_template.should == "Results for %search% | %blog_name% %page%"
   end
-  
+
   it 'search description template is Archives for blog name date page blog description' do
-    @blog.search_desc_template.should == "Results for %search% | %blog_name% | %blog_subtitle% %page%"
+    blog.search_desc_template.should == "Results for %search% | %blog_name% | %blog_subtitle% %page%"
   end
-  
+
   it 'status list title is Statuses | blog name page' do
-    @blog.statuses_title_template.should == "Notes | %blog_name% %page%"
+    blog.statuses_title_template.should == "Notes | %blog_name% %page%"
   end
-  
+
   it 'status list description  is Notes | blog name | blog subtitle page' do
-    @blog.statuses_desc_template.should == "Notes | %blog_name% | %blog_subtitle% %page%"
+    blog.statuses_desc_template.should == "Notes | %blog_name% | %blog_subtitle% %page%"
   end
 
   it 'a single status title is status content | blog name' do
-    @blog.status_title_template.should == "%body% | %blog_name%"
+    blog.status_title_template.should == "%body% | %blog_name%"
   end
-  
+
   it 'status list description  is status content' do
-    @blog.status_desc_template.should == "%excerpt%"
+    blog.status_desc_template.should == "%excerpt%"
   end
 
   it 'custom tracking fiels is empty' do
-    @blog.custom_tracking_field.should == ''
+    blog.custom_tracking_field.should == ''
   end
 
   it 'twitter_consumer_key is empty' do
-    @blog.twitter_consumer_key.should == ''
+    blog.twitter_consumer_key.should == ''
   end
-  
+
   it 'twitter consumer secret should be empty' do
-    @blog.twitter_consumer_secret.should == ''
+    blog.twitter_consumer_secret.should == ''
   end
-  
+
   it 'should have an empty custom url shortener' do
-    @blog.custom_url_shortener.should == ''
+    blog.custom_url_shortener.should == ''
   end
-  
+
   it 'a new blog should display statuses in the main feed' do
-    @blog.statuses_in_timeline.should == true
+    blog.statuses_in_timeline.should == true
   end
 end
 
@@ -303,15 +300,15 @@ describe 'Given a new user' do
   it 'Jabber is empty' do
     @user.jabber.should == ''
   end
-  
+
   it 'Admin theme should be blue' do
     @user.admin_theme.should == 'blue'
-  end  
-  
+  end
+
   it 'Twitter account for statuses should be empty' do
     @user.twitter_account.should == ''
   end
-  
+
   it 'Twitter oauth token should be empty' do
     @user.twitter_oauth_token.should == ''
   end
@@ -319,10 +316,10 @@ describe 'Given a new user' do
   it 'Twitter oauth secret token should be empty' do
     @user.twitter_oauth_token_secret.should == ''
   end
-  
+
   it 'Twitter profile image should be empty' do
     @user.twitter_profile_image.should == ''
-  end  
+  end
 end
 
 describe 'Given a new article' do
@@ -349,11 +346,11 @@ describe "Given a new status" do
   before(:each) do
     @note = Note.new
   end
-  
+
   it "should not have a twitter id set" do
     @note.twitter_id.should == ""
   end
-  
+
   it "should not reply to another one" do
     @note.in_reply_to_status_id.should == ""
   end
@@ -361,7 +358,7 @@ describe "Given a new status" do
   it "should not have a reply context message" do
     @note.in_reply_to_message.should == ""
   end
-  
+
   it "should not have a reply context protected" do
     @note.in_reply_to_protected.should == false
   end

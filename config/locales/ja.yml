@@ -69,9 +69,7 @@ ja:
     comment_preview:
       is_about_to_say: "〜について言う"
     meta:
-      published_on: "Published on"
-      by: "by"
-      tags: "タグ"
+      published_on: "Published on %{publish_date_and_time} by %{by}, tags %{tags}"
     article:
       posted_by: "投稿者"
       this_entry_was_posted_on: "This entry was posted on %{published_at}"
@@ -415,6 +413,9 @@ ja:
         your_article_day: "your article day of publication."
         help_on_permalink_settings: "Help on permalink settings"
       index:
+        human: "Human"
+        humans_txt: "Human"
+        explain_humans_txt: "It's an initiative for knowing the people behind a website. It's a TXT file that contains information about the different people who have contributed to building the website. http://humanstxt.org/"
         cancel: "キャンセル"
         or: "or"
         update_settings: "Update settings"

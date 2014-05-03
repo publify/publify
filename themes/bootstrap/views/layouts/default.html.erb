@@ -4,7 +4,7 @@
 <head profile="http://gmpg.org/xfn/11">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= h(page_title) %></title>
-  <%= stylesheet_link_tag "/stylesheets/theme/bootstrap.min.css", "/stylesheets/theme/style.css", :media => 'all' %>  
+  <%= stylesheet_link_tag "/stylesheets/theme/bootstrap.min.css", "/stylesheets/theme/style.css", "/stylesheets/user-style.css", :media => 'all' %>  
   <%= render 'shared/page_header' %>
   <style type="text/css">
       #logo { background: url(<%= File.join(this_blog.base_url, "images", "theme", "bg#{Random.rand(2) + 1}.jpg") %>) top left no-repeat; }

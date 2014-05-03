@@ -69,9 +69,7 @@ en:
     comment_preview:
       is_about_to_say: "is about to say"
     meta:
-      published_on: "Published on"
-      by: "by"
-      tags: "Tags"
+      published_on: "Published on %{publish_date_and_time} by %{by}, tags %{tags}"
     article:
       posted_by: "Posted by"
       this_entry_was_posted_on: "This entry was posted on %{published_at}"
@@ -256,6 +254,7 @@ en:
     settings:
       update:
         success: "Config updated."
+        error: "Error: %{messages}"
       display:
         cancel: "Cancel"
         or: "or"
@@ -418,6 +417,9 @@ en:
         your_article_id: "your article id."
         help_on_permalink_settings: "Help on permalink settings"
       index:
+        human: "Human"
+        humans_txt: "Human"
+        explain_humans_txt: "It's an initiative for knowing the people behind a website. It's a TXT file that contains information about the different people who have contributed to building the website. http://humanstxt.org/"
         cancel: "Cancel"
         or: "or"
         update_settings: "Update settings"

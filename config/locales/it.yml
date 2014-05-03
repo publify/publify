@@ -69,9 +69,7 @@ it:
     comment_preview:
       is_about_to_say: "sta per dire"
     meta:
-      published_on: "Published on"
-      by: "da"
-      tags: "Tags"
+      published_on: "Published on %{publish_date_and_time} by %{by}, tags %{tags}"
     article:
       posted_by: "Scritto da"
       this_entry_was_posted_on: "This entry was posted on %{published_at}"
@@ -415,6 +413,9 @@ it:
         your_article_day: "your article day of publication."
         help_on_permalink_settings: "Help on permalink settings"
       index:
+        human: "Human"
+        humans_txt: "Human"
+        explain_humans_txt: "It's an initiative for knowing the people behind a website. It's a TXT file that contains information about the different people who have contributed to building the website. http://humanstxt.org/"
         cancel: "Annulla"
         or: "or"
         update_settings: "Update settings"

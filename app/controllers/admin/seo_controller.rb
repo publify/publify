@@ -3,7 +3,6 @@ class Admin::SeoController < Admin::BaseController
   before_filter :set_setting, only: [:index, :titles]
 
   def index
-    @setting.robots = Robot.new.rules
   end
 
   def permalinks
@@ -33,9 +32,6 @@ class Admin::SeoController < Admin::BaseController
       params[:setting]['permalink_format'] = params[:setting]['custom_permalink']
     end
     update_settings_with!(params[:setting])
-    if params[:setting][:robots].present?
-      Robot.new.add(params[:setting][:robots])
-    end
     redirect_to action: params[:from]
   end
 
