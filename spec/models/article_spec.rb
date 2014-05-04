@@ -43,6 +43,14 @@ describe Article do
         subject.permalink_url(anchor=nil, only_path=true).should == '/2004/06/01/one+two'
       end
     end
+
+    it "finds an article with an id when there are multiple articles on the same day with the same title" do
+      article1 = FactoryGirl.create(:article, title: 'article-6', published_at: Time.utc(2004, 6, 1))
+      article2 = FactoryGirl.create(:article, title: 'article-6', published_at: Time.utc(2004, 6, 1))
+      blog.permalink_format = "/%year%/%month%/%day%/%title%"
+      result = Article.find_by_permalink year: 2004, month: "06", day: "01", title: "article-6-2"
+      result.should == article2
+    end
   end
 
   describe "#initialize" do
