@@ -8,4 +8,4 @@ env:
   - DB=postgresql
 
 before_script:
-  - rake db:create db:migrate
+  - bundle exec rake db:create db:migrate
