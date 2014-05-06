@@ -3,7 +3,7 @@ class CommentsController < FeedbackController
 
   def create
     @comment = @article.with_options(new_comment_defaults) do |art|
-      art.add_comment(params[:comment].symbolize_keys)
+      art.add_comment(params[:comment].slice(:body, :author, :email, :url).symbolize_keys)
     end
 
     unless current_user.nil? or session[:user_id].nil?
