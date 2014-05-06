@@ -1,11 +1,11 @@
 language: ruby
 rvm:
+  - 2.1.1
   - 2.0.0
-  - 1.9.3
 env:
   - DB=sqlite
   - DB=mysql
   - DB=postgresql
-  
+
 before_script:
   - rake db:create db:migrate
