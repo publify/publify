@@ -1,3 +1,7 @@
+8.0.2
+
+* #423: stutter article content
+
 This 8.0.1 release fixes the most important bugs we found since the 8.0 release.
 
 * #398: the user-style.css stylesheet is not loaded in the Bootstrap theme
