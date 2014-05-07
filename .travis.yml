@@ -8,4 +8,5 @@ env:
   - DB=postgresql
 
 before_script:
+  - sudo apt-get install python-feedvalidator
   - bundle exec rake db:create db:migrate
