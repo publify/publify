@@ -3,7 +3,7 @@ class CommentsController < FeedbackController
 
   def create
     @comment = @article.with_options(new_comment_defaults) do |art|
-      art.add_comment(params[:comment].slice(:body, :author, :email, :url).symbolize_keys)
+      art.add_comment(params[:comment].slice(:body, :author, :email, :url))
     end
 
     unless current_user.nil? or session[:user_id].nil?
@@ -55,13 +55,13 @@ class CommentsController < FeedbackController
   end
 
   def new_comment_defaults
-    { :ip  => request.remote_ip,
+    { :ip         => request.remote_ip,
       :author     => 'Anonymous',
       :published  => true,
       :user       => @current_user,
       :user_agent => request.env['HTTP_USER_AGENT'],
       :referrer   => request.env['HTTP_REFERER'],
-      :permalink  => @article.permalink_url }
+      :permalink  => @article.permalink_url }.stringify_keys
   end
 
   def set_headers
