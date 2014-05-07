@@ -13,7 +13,7 @@ class ArticlesController < ContentController
   def index
     conditions = (Blog.default.statuses_in_timeline) ? ["type in (?, ?)", "Article", "Note"] : ["type = ?", "Article"]
 
-      limit = this_blog.per_page(params[:format])
+    limit = this_blog.per_page(params[:format])
     unless params[:year].blank?
       @articles = Content.published_at(params.values_at(:year, :month, :day)).where(conditions).page(params[:page]).per(limit)
     else
