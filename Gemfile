@@ -37,7 +37,6 @@ else
 end
 
 gem 'rails', '~> 3.2.18'
-gem 'require_relative'
 gem 'htmlentities'
 gem 'bluecloth', '~> 2.1'
 gem 'coderay', '~> 1.1.0'
@@ -62,8 +61,6 @@ gem "jquery-ui-rails", "~> 4.2.0"
 
 gem 'rails_autolink', '~> 1.1.0'
 gem 'dynamic_form', '~> 1.1.4'
-
-gem 'iconv'
 
 group :assets do
   gem 'sass-rails', " ~> 3.2.6"
