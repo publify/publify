@@ -88,12 +88,6 @@ HEROKU=true bundle install
 
 Remove Gemfile.lock from .gitignore and commit it.
 
-Add the user env Heroku plugin:
-
-```bash
-heroku labs:enable user-env-compile -a your_app_name
-```
-
 Add the HEROKU config variable to your Heroku instance:
 
 ```bash
