@@ -103,6 +103,12 @@ After the first deployment, don't forget to run the database migration and seed.
 heroku run rake db:migrate db:seed
 ```
 
+If application error has occurred after migration, you need to restart Heroku server.
+
+```bash
+heroku restart
+```
+
 ## Resources
 
 - [Sidebar Plugins](https://github.com/publify/publify/wiki/Sidebar-plugins)
