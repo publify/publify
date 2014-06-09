@@ -97,7 +97,7 @@ heroku labs:enable user-env-compile -a your_app_name
 Add the HEROKU config variable to your Heroku instance:
 
 ```bash
-heroku set:config HEROKU=true
+heroku config:set HEROKU=true
 ```
 
 Push the repository to Heroku.
