@@ -2,8 +2,7 @@ require 'spec_helper'
 
 describe XmlController do
   before do
-    blog = stub_model(Blog, :base_url => "http://myblog.net")
-    Blog.stub(:default) { blog }
+    create(:blog, base_url: "http://myblog.net")
     Trigger.stub(:fire) { }
   end
 
@@ -88,7 +87,7 @@ describe XmlController do
 
     describe "for an article" do
       before do
-        @article = stub_model(Article, :published_at => Time.now, :permalink => "foo")
+        @article = build_stubbed(:article, published_at: Time.now, permalink: "foo")
         Article.stub(:find) { @article }
       end
 
@@ -127,7 +126,7 @@ describe XmlController do
 
   describe "#articlerss" do
     before do
-      @article = stub_model(Article, :published_at => Time.now, :permalink => "foo")
+      @article = build_stubbed(:article, published_at: Time.now, permalink: "foo")
       Article.stub(:find) { @article }
     end
 

@@ -231,9 +231,9 @@ describe Article do
     assert_sets_trigger Article.create!(:title => 'title', :body => 'body',
                                         :published_at => Time.now + 4.seconds)
   end
-
   it "test_triggers_are_dependent" do
-    pending "Needs a fix for Rails ticket #5105: has_many: Dependent deleting does not work with STI"
+    #TODO Needs a fix for Rails ticket #5105: has_many: Dependent deleting does not work with STI
+    skip
     art = Article.create!(:title => 'title', :body => 'body',
                           :published_at => Time.now + 1.hour)
     assert_equal 1, Trigger.count
@@ -381,14 +381,14 @@ describe Article do
 
   describe '#comment_url' do
     it 'should render complete url of comment' do
-      article = stub_model(Article, :id => 123)
+      article = build_stubbed(:article, id: 123)
       article.comment_url.should == "/comments?article_id=#{article.id}"
     end
   end
 
   describe '#preview_comment_url' do
     it 'should render complete url of comment' do
-      article = stub_model(Article, :id => 123)
+      article = build_stubbed(:article, id: 123)
       article.preview_comment_url.should == "/comments/preview?article_id=#{article.id}"
     end
   end
@@ -711,44 +711,44 @@ describe Article do
 
   describe ".allow_comments?" do
     it "true if article set to true" do
-      Article.new(allow_comments: true).allow_comments?.should be_true
+      Article.new(allow_comments: true).allow_comments?.should be_truthy
     end
 
     it "false if article set to false" do
-      Article.new(allow_comments: false).allow_comments?.should be_false
+      Article.new(allow_comments: false).allow_comments?.should be_falsey
     end
 
     context "given an article with no allow comments state" do
       it "returns true when blog default allow comments is true" do
         Blog.any_instance.should_receive(:default_allow_comments).and_return(true)
-        Article.new(allow_comments: nil).allow_comments?.should be_true
+        Article.new(allow_comments: nil).allow_comments?.should be_truthy
       end
 
       it "returns false when blog default allow comments is true" do
         Blog.any_instance.should_receive(:default_allow_comments).and_return(false)
-        Article.new(allow_comments: nil).allow_comments?.should be_false
+        Article.new(allow_comments: nil).allow_comments?.should be_falsey
       end
     end
   end
 
   describe ".allow_pings?" do
     it "true if article set to true" do
-      Article.new(allow_pings: true).allow_pings?.should be_true
+      Article.new(allow_pings: true).allow_pings?.should be_truthy
     end
 
     it "false if article set to false" do
-      Article.new(allow_pings: false).allow_pings?.should be_false
+      Article.new(allow_pings: false).allow_pings?.should be_falsey
     end
 
     context "given an article with no allow pings state" do
       it "returns true when blog default allow pings is true" do
         Blog.any_instance.should_receive(:default_allow_pings).and_return(true)
-        Article.new(allow_pings: nil).allow_pings?.should be_true
+        Article.new(allow_pings: nil).allow_pings?.should be_truthy
       end
 
       it "returns false when blog default allow pings is true" do
         Blog.any_instance.should_receive(:default_allow_pings).and_return(false)
-        Article.new(allow_pings: nil).allow_pings?.should be_false
+        Article.new(allow_pings: nil).allow_pings?.should be_falsey
       end
     end
 

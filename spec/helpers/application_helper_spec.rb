@@ -22,7 +22,7 @@ describe ApplicationHelper do
 
       describe "for a multibyte permalink" do
         let(:article) { build(:article, permalink: 'ルビー') }
-        it { expect(link_to_permalink(article, "title")).to include('%E3%83%AB%E3%83%93%E3%83%BC') } 
+        it { expect(link_to_permalink(article, "title")).to include('%E3%83%AB%E3%83%93%E3%83%BC') }
       end
     end
 
@@ -30,17 +30,17 @@ describe ApplicationHelper do
       subject { helper.stop_index_robots?(blog) }
 
       context "default" do
-        it { expect(subject).to be_false }
+        it { expect(subject).to be_falsey }
       end
 
       context "with year:2010" do
         before(:each) { params[:year] = 2010 }
-        it { expect(subject).to be_true }
+        it { expect(subject).to be_truthy }
       end
 
       context "with page:2" do
         before(:each) { params[:page] = 2 }
-        it { expect(subject).to be_true }
+        it { expect(subject).to be_truthy }
       end
 
       context "for the tags controller" do
@@ -48,12 +48,12 @@ describe ApplicationHelper do
 
         context "with unindex_tags set in blog" do
           before(:each) { blog.should_receive(:unindex_tags).and_return(true) }
-          it { expect(subject).to be_true }
+          it { expect(subject).to be_truthy }
         end
 
         context "with unindex_tags set in blog" do
           before(:each) { blog.should_receive(:unindex_tags).and_return(false) }
-          it { expect(subject).to be_false }
+          it { expect(subject).to be_falsey }
         end
       end
 
@@ -62,12 +62,12 @@ describe ApplicationHelper do
 
         context "with unindex_tags set in blog" do
           before(:each) { blog.should_receive(:unindex_categories).and_return(true) }
-          it { expect(subject).to be_true }
+          it { expect(subject).to be_truthy }
         end
 
         context "with unindex_tags set in blog" do
           before(:each) { blog.should_receive(:unindex_categories).and_return(false) }
-          it { expect(subject).to be_false }
+          it { expect(subject).to be_falsey }
         end
       end
     end

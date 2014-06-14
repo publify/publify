@@ -23,8 +23,11 @@ describe Note do
       end
     end
 
-    describe :permalink do
-      let(:note) { create(:note, body:"àé") }
+    describe "permalink" do
+      let(:note) do
+        Rails.cache.clear
+        create(:note, body:"àé")
+      end
 
       it { expect(note.permalink).to eq("#{note.id}-ae") }
       it { expect(note.permalink_url).to eq("#{blog.base_url}/note/#{note.id}-ae") }
@@ -47,12 +50,12 @@ describe Note do
       end
     end
 
-    describe :redirects do
+    describe "redirects" do
       let(:note) { create(:note) }
       it { expect(note.redirects.map(&:to_path)).to eq([note.permalink_url]) }
     end
 
-    describe :scopes do
+    describe "scopes" do
 
       describe :published do
         let(:now) { DateTime.new(2012,5,20,14,23) }
@@ -72,7 +75,7 @@ describe Note do
       end
     end
 
-    describe :send_to_twitter do
+    describe "send_to_twitter" do
       context "with a simple note" do
       let(:note) { build(:note) }
       context "with twitter configured for blog and user" do
@@ -81,14 +84,14 @@ describe Note do
           User.any_instance.should_receive(:has_twitter_configured?).and_return(true)
         end
 
-        it { expect(note.send_to_twitter).to be_false }
+        it { expect(note.send_to_twitter).to be_falsey }
       end
 
       context "with twitter not configured for blog" do
         before(:each) do
           Blog.any_instance.should_receive(:has_twitter_configured?).and_return(false)
         end
-        it { expect(note.send_to_twitter).to be_false }
+        it { expect(note.send_to_twitter).to be_falsey }
       end
 
       context "with a twitter configured for blog but not user" do
@@ -96,7 +99,7 @@ describe Note do
           Blog.any_instance.should_receive(:has_twitter_configured?).and_return(true)
           User.any_instance.should_receive(:has_twitter_configured?).and_return(false)
         end
-        it { expect(note.send_to_twitter).to be_false }
+        it { expect(note.send_to_twitter).to be_falsey }
       end
       end
 
@@ -118,17 +121,17 @@ describe Note do
 
     end
 
-    describe :twitter_url do
+    describe "twitter_url" do
       let(:note) { build(:note, settings: {twitter_id: "12345678901234"}) }
       it { expect(note.twitter_url).to eq("https://twitter.com/#{note.user.twitter}/status/#{note.twitter_id}") }
     end
 
-    describe :default_text_filter do
+    describe "default_text_filter" do
       let(:note) { build(:note) }
       it { expect(note.default_text_filter.name).to eq(Blog.default.text_filter) }
     end
 
-    describe :twitter_message do
+    describe "twitter_message" do
       let(:note) { create(:note, body: tweet) }
 
       context "with a short simple message" do
@@ -152,7 +155,7 @@ describe Note do
 
       context "With a test message from production..." do
         let(:tweet) { "Le dojo de nantes, c'est comme au McDo, sans les odeurs, et en plus rigolo: RT @abailly Ce midi c'est coding dojo à la Cantine #Nantes. Pour s'inscrire si vous voulez c'est ici: http://cantine.atlantic2.org/evenements/coding-dojo-8/ … Sinon venez comme vous êtes" }
-        let(:expected_tweet) { "Le dojo de nantes, c'est comme au McDo, sans les odeurs, et en plus rigolo: RT @abailly Ce midi c'est coding... (#{note.redirects.first.to_url})" } 
+        let(:expected_tweet) { "Le dojo de nantes, c'est comme au McDo, sans les odeurs, et en plus rigolo: RT @abailly Ce midi c'est coding... (#{note.redirects.first.to_url})" }
         it { expect(note.twitter_message).to eq("Le dojo de nantes, c'est comme au McDo, sans les odeurs, et en plus rigolo: RT @abailly Ce midi c'est coding... (#{note.redirects.first.to_url})") }
         it { expect(note.twitter_message).to eq(expected_tweet) }
         it { expect(note.twitter_message.length).to eq(138) }
@@ -213,5 +216,4 @@ describe Note do
       end
     end
   end
-
 end

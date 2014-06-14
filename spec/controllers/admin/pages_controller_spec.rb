@@ -34,7 +34,7 @@ describe Admin::PagesController do
       it { expect(assigns(:page)).to_not be_nil }
       it { expect(assigns(:page).user).to eq(user) }
       it { expect(assigns(:page).text_filter.name).to eq('textile') }
-      it { expect(assigns(:page).published).to be_true }
+      it { expect(assigns(:page).published).to be_truthy }
     end
 
     context "using post" do
@@ -48,10 +48,10 @@ describe Admin::PagesController do
 
       context "simple" do
         before(:each) do
-          post :new, page: { name: "new_page", title: "New Page Title", body: "Emphasis _mine_, arguments *strong*" } 
+          post :new, page: { name: "new_page", title: "New Page Title", body: "Emphasis _mine_, arguments *strong*" }
         end
 
-        it { expect(Page.first.name).to eq("new_page") } 
+        it { expect(Page.first.name).to eq("new_page") }
         it { expect(response).to redirect_to(action: :index) }
         it { expect(flash[:success]).to eq(I18n.t('admin.pages.new.success')) }
       end
@@ -67,7 +67,8 @@ describe Admin::PagesController do
       end
 
       it 'should create a page published in the future without a redirect' do
-        pending ":published_at parameter is currently ignored"
+        #TODO :published_at parameter is currently ignored
+        skip
         post(:new, 'page' => base_page({:published_at => (Time.now + 1.hour).to_s}))
         assigns(:page).redirects.count.should == 0
       end
@@ -94,7 +95,7 @@ describe Admin::PagesController do
     end
   end
 
-  describe :destroy do
+  describe 'destroy' do
     let!(:page) { create(:page) }
 
     before(:each) { post :destroy, id: page.id }

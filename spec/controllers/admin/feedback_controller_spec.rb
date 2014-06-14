@@ -34,11 +34,9 @@ describe Admin::FeedbackController do
 
   describe 'logged in admin user' do
 
-    before :each do
-      FactoryGirl.create(:blog)
-      #TODO Delete after removing fixtures
-      Profile.delete_all
-      @admin = FactoryGirl.create(:user, :login => 'henri', :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN))
+    before(:each) do
+      create(:blog)
+      @admin = create(:user, :as_admin)
       request.session = { :user => @admin.id }
     end
 
@@ -67,7 +65,7 @@ describe Admin::FeedbackController do
       end
     end
 
-    describe :index do
+    describe 'index' do
       let!(:spam) { create(:spam_comment) }
       let!(:unapproved) { create(:unconfirmed_comment) }
       let!(:presumed_ham) { create(:presumed_ham_comment) }
@@ -79,26 +77,26 @@ describe Admin::FeedbackController do
       it { expect(response).to be_success }
       it { expect(response).to render_template('index') }
 
-      context :simple do
+      context 'simple' do
         it { expect(assigns(:feedback).size).to eq(4) }
       end
 
-      context :unaproved do
+      context 'unaproved' do
         let(:params) { {only: 'unapproved'} }
         it { expect(assigns(:feedback)).to eq([unapproved, presumed_ham, presumed_spam]) }
       end
 
-      context :spam do
+      context 'spam' do
         let(:params) { {only: 'spam'} }
         it { expect(assigns(:feedback)).to eq([spam]) }
       end
 
-      context :presumed_spam do
+      context 'presumed_spam' do
         let(:params) { {only: 'presumed_spam'} }
         it { expect(assigns(:feedback)).to eq([presumed_spam]) }
       end
 
-      context :presumed_ham do
+      context 'presumed_ham' do
         let(:params) { {only: 'presumed_ham'} }
         it { expect(assigns(:feedback)).to eq([unapproved, presumed_ham]) }
       end

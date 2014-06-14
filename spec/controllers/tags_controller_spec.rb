@@ -45,7 +45,8 @@ describe TagsController, 'showing a single tag' do
     end
 
     it 'should render :show by default' do
-      pending "Stubbing #template_exists is not enough to fool Rails"
+      #TODO Stubbing #template_exists is not enough to fool Rails
+      skip
       controller.stub(:template_exists?) \
         .and_return(true)
       do_get

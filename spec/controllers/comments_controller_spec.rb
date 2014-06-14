@@ -3,7 +3,7 @@ require 'spec_helper'
 describe CommentsController do
   let!(:blog) { create(:blog) }
 
-  describe :create do
+  describe 'create' do
     describe "Basic comment creation" do
       let(:article) { create(:article) }
       let(:comment) { {body: 'content', author: 'bob', email: 'bob@home', url: 'http://bobs.home/'} }
@@ -33,7 +33,7 @@ describe CommentsController do
     end
   end
 
-  describe :index do
+  describe 'index' do
     context 'scoped index' do
       let(:article) { create(:article) }
       before(:each) { get 'index', article_id: article.id }

@@ -36,7 +36,7 @@ describe Tag do
     foo = FactoryGirl.create(:tag, :name => 'foo', :articles => [a, b, c])
     bar = FactoryGirl.create(:tag, :name => 'bar', :articles => [a, b])
     tags = Tag.find_all_with_article_counters
-    tags.should have(2).entries
+    expect(tags.entries.size).to eq(2)
     tags.first.name.should == "foo"
     tags.first.article_counter.should == 3
     tags.last.name.should == 'bar'

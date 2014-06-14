@@ -324,12 +324,12 @@ describe User do
     AccessControl.available_modules.each do |m|
       context "without module #{m}" do
         let(:modules) { [] }
-        it { expect(user.send("can_access_to_#{m}?")).to be_false }
+        it { expect(user.send("can_access_to_#{m}?")).to be_falsey }
       end
 
       context "with module #{m}" do
         let(:modules) { [m] }
-        it { expect(user.send("can_access_to_#{m}?")).to be_true }
+        it { expect(user.send("can_access_to_#{m}?")).to be_truthy }
       end
     end
   end

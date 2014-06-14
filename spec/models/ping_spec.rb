@@ -42,7 +42,7 @@ describe :ping do
         mock_response.should_receive(:[]).with('X-Pingback').at_least(:once).and_return(pingback_target)
         mock_xmlrpc_response.should_receive(:call).with('pingback.ping', %r{http://myblog.net/\d{4}/\d{2}/\d{2}/test-the-pinging}, referenced_url)
 
-        a.should have(1).html_urls
+        expect(a.html_urls.size).to eq(1)
         a.save!
         a.should be_just_published
         a = Article.find(a.id)

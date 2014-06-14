@@ -6,7 +6,7 @@ describe Admin::TagsController do
 
   before { request.session = { user: user.id } }
 
-  describe :index do
+  describe 'index' do
     before(:each) { get :index }
     it { expect(response).to redirect_to(action: 'new') }
   end
@@ -14,7 +14,7 @@ describe Admin::TagsController do
   context "with a tag" do
     let(:tag) { create(:tag) }
 
-    describe :edit do
+    describe 'edit' do
       before(:each) { get :edit, id: tag.id }
 
       it { expect(response).to be_success }
@@ -22,7 +22,7 @@ describe Admin::TagsController do
       it { expect(assigns(:tag)).to be_valid }
     end
 
-    describe :destroy do
+    describe 'destroy' do
       context "with a get" do
         before(:each) { get :destroy, id: tag.id }
 
@@ -43,7 +43,7 @@ describe Admin::TagsController do
       end
     end
 
-    describe :update do
+    describe 'update' do
       before(:each) { post :edit, id: tag.id, tag: {display_name: 'Foo Bar'} }
       it { expect(response).to be_success }
       it { expect(tag.reload.name).to eq('foo-bar') }

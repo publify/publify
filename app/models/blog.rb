@@ -179,16 +179,15 @@ class Blog < ActiveRecord::Base
       url_generated += "##{extra_params[:anchor]}" if extra_params[:anchor]
       url_generated
     when Hash
-      unless RouteCache[options]
+      unless Rails.cache.exist?('blog-urlfor-withbaseurl')
         options.reverse_merge!(:only_path => false, :controller => '',
                                :action => 'permalink',
                                :host => host_with_port,
                                :script_name => root_path)
 
-        RouteCache[options] = url_for_without_base_url(options)
+        Rails.cache.write('blog-urlfor-withbaseurl', url_for_without_base_url(options))
       end
-
-      return RouteCache[options]
+      Rails.cache.read('blog-urlfor-withbaseurl')
     else
       raise "Invalid URL in url_for: #{options.inspect}"
     end

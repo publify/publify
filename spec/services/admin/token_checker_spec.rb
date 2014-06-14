@@ -7,24 +7,24 @@ describe Admin::TokenChecker do
   describe "#safe_token_in_use?" do
     it "returns false with the default token loaded" do
       Publify::Application.config.secret_token = $default_token
-      expect(checker.safe_token_in_use?).to be_false
+      expect(checker.safe_token_in_use?).to be_falsey
     end
 
     it "returns true with some other token loaded" do
       Publify::Application.config.secret_token = "foo"
-      expect(checker.safe_token_in_use?).to be_true
+      expect(checker.safe_token_in_use?).to be_truthy
     end
   end
 
   describe "#needs_token_generation?" do
     it "returns true with the default token in the config" do
       File.write(fixture, "#{$default_token}\n")
-      expect(checker.needs_token_generation?).to be_true
+      expect(checker.needs_token_generation?).to be_truthy
     end
 
     it "returns false if a token has already been generated" do
       File.write(fixture, "foo\n")
-      expect(checker.needs_token_generation?).to be_false
+      expect(checker.needs_token_generation?).to be_falsey
     end
   end
 
@@ -55,7 +55,7 @@ describe Admin::TokenChecker do
 
     it "returns true on success" do
       rval = checker.generate_token
-      expect(rval).to be_true
+      expect(rval).to be_truthy
     end
 
     it "propagates errors on failure" do

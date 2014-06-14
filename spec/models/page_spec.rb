@@ -4,15 +4,16 @@ require 'spec_helper'
 describe Page do
   let!(:blog) { create(:blog) }
 
-  describe :name= do
+  describe "name=" do
     context "when build a page without name" do
       let(:page) { create(:page, name: nil, title: 'A title') }
       it { expect(page.name).to eq('a-title') }
     end
   end
 
-  describe :permalink do
+  describe "permalink" do
     context "with an existing page" do
+      before(:each) { Rails.cache.clear }
       let(:page) { create(:page, name: 'page_one') }
       it { expect(page.permalink_url).to eq('http://myblog.net/pages/page_one') }
     end
@@ -37,11 +38,11 @@ describe Page do
     end
   end
 
-  describe :default_text_filter do
+  describe "default_text_filter" do
     it { expect(create(:page).default_text_filter.name).to eq(blog.text_filter) }
   end
 
-  describe :search_with do
+  describe "search_with" do
     context "with an simple page" do
       let!(:page) { create(:page) }
 
@@ -67,7 +68,7 @@ describe Page do
     end
   end
 
-  describe :redirects do
+  describe "redirects" do
     context "with a simple page" do
       let(:page) { create(:page) }
       it { expect(page.redirects.first.to_path).to eq(page.permalink_url) }

@@ -10,7 +10,7 @@ describe Admin::ContentController do
     let!(:user) { create(:user, :as_publisher) }
     before(:each) { request.session = { user: user.id } }
 
-    describe :index do
+    describe 'index' do
       context "simple query" do
         before(:each) { get :index }
         it { expect(response).to be_success }
@@ -84,7 +84,7 @@ describe Admin::ContentController do
       end
     end
 
-    describe :new do
+    describe 'new' do
       before(:each) { get :new }
       it { expect(response).to be_success }
       it { expect(response).to render_template('new') }
@@ -120,7 +120,7 @@ describe Admin::ContentController do
 
       context "write for futur" do
         let(:article_params) {{title: 'posted via tests!', body: 'a good boy', state: 'draft', published_at: (Time.now + 1.hour).to_s}}
-        
+
         it { expect{
           post :create, article: article_params
         }.to change(Article, :count).from(1).to(2) }

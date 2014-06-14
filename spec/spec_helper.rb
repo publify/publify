@@ -41,9 +41,14 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.use_instantiated_fixtures  = false
   config.fixture_path = "#{::Rails.root}/test/fixtures"
+  config.infer_spec_type_from_file_location!
 
   # shortcuts for factory_girl to use: create / build / build_stubbed
   config.include FactoryGirl::Syntax::Methods
+
+  config.before(:each) do
+    Rails.cache.clear
+  end
 end
 
 def define_spec_public_cache_directory
@@ -87,10 +92,10 @@ def assert_rss20 feed, count
 end
 
 def stub_full_article(time=Time.now)
-  author = stub_model(User, :name => "User Name")
+  author = FactoryGirl.build_stubbed(User, :name => "User Name")
   text_filter = FactoryGirl.build(:textile)
 
-  a = stub_model(Article, :published_at => time, :user => author,
+  a = FactoryGirl.build_stubbed(Article, :published_at => time, :user => author,
                  :created_at => time, :updated_at => time,
                  :title => "Foo Bar", :permalink => 'foo-bar',
                  :guid => time.hash)

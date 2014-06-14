@@ -5,12 +5,12 @@ describe ArticlesController, "base" do
   let!(:blog) { create(:blog) }
   let!(:user) { create :user }
 
-  describe :tag do
+  describe 'tag' do
     before(:each) { get :tag }
     it { expect(response).to redirect_to(tags_path) }
   end
 
-  describe :index do
+  describe 'index' do
     let!(:article) { create(:article) }
     before(:each) { get :index }
 
@@ -110,8 +110,7 @@ describe ArticlesController, "base" do
       end
 
       it 'should be valid' do
-        assigns[:articles].should_not be_empty
-        assigns[:articles].should have(2).records
+        expect(assigns(:articles).records.size).to eq(2)
       end
 
       it 'should render without layout' do

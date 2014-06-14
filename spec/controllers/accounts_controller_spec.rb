@@ -288,7 +288,7 @@ describe AccountsController do
     before(:each) do
       create(:blog)
       User.stub(:count).and_return(0)
-      @user = mock_model(User)
+      @user = build_stubbed(User)
       @user.stub(:login).and_return('newbob')
       @user.stub(:generate_password!).and_return(true)
       @user.stub(:name=).and_return(true)

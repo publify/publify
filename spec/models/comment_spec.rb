@@ -54,7 +54,7 @@ describe Comment do
 
     it 'should save a valid comment' do
       c = valid_comment # article created 2 days ago
-      c.save.should be_true
+      c.save.should be_truthy
       c.errors.should be_empty
     end
 
@@ -62,7 +62,7 @@ describe Comment do
       blog.stub(:sp_article_auto_close) { 1 }
 
       c = build(:comment, :article => build_stubbed(:article, :allow_comments => false))
-      c.save.should_not be_true
+      c.save.should_not be_truthy
       c.errors.should_not be_empty
     end
 

@@ -33,14 +33,14 @@ describe Migrator do
     context "when there are pending migrations" do
       let(:pending_migrations) { ['a_migration', 'another_migration'] }
       it "returns true" do
-        migrator.migrations_pending?.should be_true
+        migrator.migrations_pending?.should be_truthy
       end
     end
 
     context "when there are no pending migrations" do
       let(:pending_migrations) { [] }
       it "returns false" do
-        migrator.migrations_pending?.should be_false
+        migrator.migrations_pending?.should be_falsey
       end
     end
   end

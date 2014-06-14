@@ -9,14 +9,14 @@ describe Admin::CacheController do
     request.session = { user: admin.id }
   end
 
-  describe :show do
+  describe 'show' do
     before(:each) { get :show }
     it { expect(response).to be_success }
     it { expect(response).to render_template('show') }
   end
 
-  describe :destory do
+  describe 'destroy' do
     before(:each) { post :destroy }
-    it { expect(response).to redirect_to(admin_cache_path)}
+    it { expect(response).to redirect_to(admin_cache_path) }
   end
 end

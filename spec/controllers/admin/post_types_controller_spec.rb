@@ -5,11 +5,11 @@ describe Admin::PostTypesController do
 
   before do
     create(:blog)
-    user = FactoryGirl.create(:user, profile: create(:profile_admin, :label => Profile::ADMIN))
+    user = create(:user, :as_admin)
     request.session = { user: user.id }
   end
 
-  describe :index do
+  describe 'index' do
     before(:each) { get :index }
     it { expect(response).to redirect_to(action: 'new') }
   end
@@ -37,12 +37,12 @@ describe Admin::PostTypesController do
 
   end
 
-  describe :new do
+  describe 'new' do
     before(:each) { get :new }
     it { expect(response).to render_template('new')}
   end
 
-  describe :destroy do
+  describe 'destroy' do
     let!(:post_type) { create(:post_type) }
 
     context "with a get method" do
