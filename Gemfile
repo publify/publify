@@ -64,6 +64,7 @@ gem 'dynamic_form', '~> 1.1.4'
 
 # removed from Rails-core as Rails 4.0
 gem 'actionpack-page_caching', '~> 1.0.2'
+gem 'rails-observers', '~> 0.1.2'
 
 group :assets do
   gem 'sass-rails', " ~> 4.0.3"
