@@ -161,8 +161,8 @@ fr:
   layouts:
     default:
       html:
-        home: "Home"
-        statuses: "Statuses"
+        home: "Accueil"
+        statuses: "Statuts"
         powered_by: "Propulsé par %{powered_by}"
         designed_by: "Design par %{designed_by}"
     administration:
