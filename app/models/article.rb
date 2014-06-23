@@ -30,11 +30,9 @@ class Article < Content
     end
   end
 
-  with_options(:conditions => { :published => true }, :order => 'created_at ASC') do |this|
-    this.has_many :published_comments, class_name: "Comment"
-    this.has_many :published_trackbacks, class_name: "Trackback"
-    this.has_many :published_feedback, class_name: "Feedback"
-  end
+  has_many :published_comments,    -> { where(published: true).order('created_at ASC') }, class_name: "Comment"
+  has_many :published_trackbacks,  -> { where(published: true).order('created_at ASC') }, class_name: "Trackback"
+  has_many :published_feedback,    -> { where(published: true).order('created_at ASC') }, class_name: "Feedback"
 
   has_and_belongs_to_many :tags
 
