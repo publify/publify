@@ -18,7 +18,7 @@ class Feedback < ActiveRecord::Base
   after_initialize :after_initialize_handler
   after_destroy lambda { |c|  c.invalidates_cache?(true) }
 
-  default_scope order('created_at DESC')
+  default_scope { order('created_at DESC') }
 
   scope :ham, where("state in ('presumed_ham', 'ham')")
   scope :spam, where(state: 'spam')
