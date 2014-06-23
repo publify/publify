@@ -1,38 +1,38 @@
 Rails.application.routes.draw do
   # TODO: use only in archive sidebar. See how made other system
-  match ':year/:month', :to => 'articles#index', :year => /\d{4}/, :month => /\d{1,2}/, :as => 'articles_by_month', :format => false
-  match ':year/:month/page/:page', :to => 'articles#index', :year => /\d{4}/, :month => /\d{1,2}/, :as => 'articles_by_month_page', :format => false
-  match ':year', :to => 'articles#index', :year => /\d{4}/, :as => 'articles_by_year', :format => false
-  match ':year/page/:page', :to => 'articles#index', :year => /\d{4}/, :as => 'articles_by_year_page', :format => false
+  get ':year/:month', :to => 'articles#index', :year => /\d{4}/, :month => /\d{1,2}/, :as => 'articles_by_month', :format => false
+  get ':year/:month/page/:page', :to => 'articles#index', :year => /\d{4}/, :month => /\d{1,2}/, :as => 'articles_by_month_page', :format => false
+  get ':year', :to => 'articles#index', :year => /\d{4}/, :as => 'articles_by_year', :format => false
+  get ':year/page/:page', :to => 'articles#index', :year => /\d{4}/, :as => 'articles_by_year_page', :format => false
 
 
-  match 'articles.:format', :to => 'articles#index', :constraints => {:format => 'rss'}, :as => 'rss'
-  match 'articles.:format', :to => 'articles#index', :constraints => {:format => 'atom'}, :as => 'atom'
+  get 'articles.:format', :to => 'articles#index', :constraints => {:format => 'rss'}, :as => 'rss'
+  get 'articles.:format', :to => 'articles#index', :constraints => {:format => 'atom'}, :as => 'atom'
 
   scope :controller => 'xml', :path => 'xml', :as => 'xml' do
-    match 'articlerss/:id/feed.xml', :action => 'articlerss', :format => false
-    match 'commentrss/feed.xml', :action => 'commentrss', :format => false
-    match 'trackbackrss/feed.xml', :action => 'trackbackrss', :format => false
+    get 'articlerss/:id/feed.xml', :action => 'articlerss', :format => false
+    get 'commentrss/feed.xml', :action => 'commentrss', :format => false
+    get 'trackbackrss/feed.xml', :action => 'trackbackrss', :format => false
   end
 
-  match 'xml/:format', :to => 'xml#feed', :type => 'feed', :constraints => {:format => 'rss'}, :as => 'xml'
-  match 'sitemap.xml', :to => 'xml#feed', :format => 'googlesitemap', :type => 'sitemap', :as => 'xml'
+  get 'xml/:format', :to => 'xml#feed', :type => 'feed', :constraints => {:format => 'rss'}, :as => 'xml'
+  get 'sitemap.xml', :to => 'xml#feed', :format => 'googlesitemap', :type => 'sitemap', :as => 'xml'
 
   scope :controller => 'xml', :path => 'xml', :as => 'xml' do
     scope :action => 'feed' do
-      match ':format/feed.xml', :type => 'feed'
-      match ':format/:type/:id/feed.xml'
-      match ':format/:type/feed.xml'
+      get ':format/feed.xml', :type => 'feed'
+      get ':format/:type/:id/feed.xml'
+      get ':format/:type/feed.xml'
     end
   end
 
-  match 'xml/rsd', :to => 'xml#rsd', :format => false
-  match 'xml/feed', :to => 'xml#feed'
+  get 'xml/rsd', :to => 'xml#rsd', :format => false
+  get 'xml/feed', :to => 'xml#feed'
 
   # CommentsController
   resources :comments, :as => 'admin_comments' do
     collection do
-      match :preview
+      match :preview, methods: [:get, :post, :put, :delete]
     end
   end
 
