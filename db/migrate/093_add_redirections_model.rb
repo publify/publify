@@ -16,7 +16,7 @@ class AddRedirectionsModel < ActiveRecord::Migration
       :conditions => ['published = ? AND published_at < ?', true, Time.now] }
 
     # Avoid STI errors
-    set_inheritance_column :bogustype
+    self.inheritance_column = :bogustype
   end
 
   def self.up
