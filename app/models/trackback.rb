@@ -4,7 +4,7 @@ class Trackback < Feedback
   content_fields :excerpt
   validates_presence_of :title, :excerpt, :url
 
-  attr_accessible :url, :blog_name, :title, :excerpt, :ip, :published, :article_id
+  #attr_accessible :url, :blog_name, :title, :excerpt, :ip, :published, :article_id
 
   def initialize(*args, &block)
     super(*args, &block)
