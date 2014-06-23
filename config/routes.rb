@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get 'articles.:format', :to => 'articles#index', :constraints => {:format => 'rss'}, :as => 'rss'
   get 'articles.:format', :to => 'articles#index', :constraints => {:format => 'atom'}, :as => 'atom'
 
-  scope :controller => 'xml', :path => 'xml', :as => 'xml' do
+  scope :controller => 'xml', :path => 'xml' do
     get 'articlerss/:id/feed.xml', :action => 'articlerss', :format => false
     get 'commentrss/feed.xml', :action => 'commentrss', :format => false
     get 'trackbackrss/feed.xml', :action => 'trackbackrss', :format => false
@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   # CommentsController
   resources :comments, :as => 'admin_comments' do
     collection do
-      match :preview, methods: [:get, :post, :put, :delete]
+      match :preview, via: [:get, :post, :put, :delete]
     end
   end
 
