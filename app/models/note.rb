@@ -18,7 +18,7 @@ class Note < Content
   after_create :set_permalink, :shorten_url
   before_create :create_guid
 
-  default_scope order("published_at DESC")
+  default_scope { order("published_at DESC") }
 
   TWITTER_FTP_URL_LENGTH = 19
   TWITTER_HTTP_URL_LENGTH = 20
