@@ -43,8 +43,8 @@ Rails.application.routes.draw do
 
   # ArticlesController
   get '/live_search/', :to => 'articles#live_search', :as => :live_search_articles, :format => false
-  get '/search/:q(.:format)/page/:page', :to => 'articles#search', :as => 'search'
-  get '/search(/:q(.:format))', :to => 'articles#search', :as => 'search'
+  get '/search/:q(.:format)/page/:page', :to => 'articles#search', :as => 'search', defaults: {page: 1}
+  get '/search(/:q(.:format))', :to => 'articles#search'
   get '/search/', :to => 'articles#search', :as => 'search_base', :format => false
   get '/archives/', :to => 'articles#archives', :format => false
   get '/page/:page', :to => 'articles#index', :page => /\d+/, :format => false
