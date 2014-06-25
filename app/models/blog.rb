@@ -11,6 +11,8 @@ class Blog < ActiveRecord::Base
 
   attr_accessor :custom_permalink
 
+  default_scope -> { order('id') }
+
   validate(:on => :create) { |blog|
     unless Blog.count.zero?
       blog.errors.add(:base, "There can only be one...")
@@ -125,7 +127,7 @@ class Blog < ActiveRecord::Base
   # The default Blog. This is the lowest-numbered blog, almost always
   # id==1. This should be the only blog as well.
   def self.default
-    find(:first, :order => 'id')
+    first
   rescue
     logger.warn 'You have no blog installed.'
     nil
