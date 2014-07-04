@@ -29,7 +29,7 @@ class AccountsController < ApplicationController
       return
     end
 
-    @user = User.new(params[:user])
+    @user = User.new((params[:user].permit! if params[:user]))
 
     return unless request.post?
 
