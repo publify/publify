@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe Migrator do
   let(:migrator) { Migrator.new }
-  let(:migrations_path) { Rails.root + 'db' + 'migrate' }
+  let(:migrations_paths) { ['db/migrate'] }
+  let(:all_migrations) { ActiveRecord::Migrator.migrations(migrations_paths) }
 
   describe "#current_schema_version" do
     it "delegates to ActiveRecord::Migrator" do
@@ -16,7 +17,7 @@ describe Migrator do
       ar_migrator = double("activerecord migrator")
       ar_migrator.should_receive(:pending_migrations).and_return ['a_migration', 'another_migration']
 
-      ActiveRecord::Migrator.should_receive(:new).with(:up, migrations_path).and_return ar_migrator
+      ActiveRecord::Migrator.should_receive(:new).with(:up, all_migrations).and_return ar_migrator
 
       migrator.pending_migrations.should eq ['a_migration', 'another_migration']
     end
@@ -27,7 +28,7 @@ describe Migrator do
       ar_migrator = double("activerecord migrator")
       ar_migrator.should_receive(:pending_migrations).and_return pending_migrations
 
-      ActiveRecord::Migrator.should_receive(:new).with(:up, migrations_path).and_return ar_migrator
+      ActiveRecord::Migrator.should_receive(:new).with(:up, all_migrations).and_return ar_migrator
     end
 
     context "when there are pending migrations" do
@@ -47,7 +48,7 @@ describe Migrator do
 
   describe "#migrate" do
     it "delegates to ActiveRecord::Migrator" do
-      ActiveRecord::Migrator.should_receive(:migrate).with(migrations_path)
+      ActiveRecord::Migrator.should_receive(:migrate).with(migrations_paths)
       migrator.migrate
     end
   end
