@@ -2,8 +2,7 @@ class FixesNotesRedirects < ActiveRecord::Migration
   def self.up
     say "Fixes notes redirects, it may take some time"
 
-    notes = Note.find(:all)
-    notes.each do |note|
+    Note.find_each do |note|
       if note.redirects.size > 0
         old_from = note.redirects.first.to_path
         from = note.redirects.first.from_path
@@ -19,8 +18,7 @@ class FixesNotesRedirects < ActiveRecord::Migration
   def self.down
     say "Fixes statuses redirects"
 
-    notes = Note.find(:all)
-    notes.each do |note|
+    Notes.find_each do |note|
       if note.redirects.size > 0
         redirect = Redirect.find.where(to_path: note.redirects.first.to_path)
         redirect.destroy

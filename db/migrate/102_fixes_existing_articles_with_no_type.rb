@@ -8,7 +8,7 @@ class FixesExistingArticlesWithNoType < ActiveRecord::Migration
 
   def self.up
     say "Fixes existing articles with no post types"
-    Article.find(:all).each do |art|
+    Article.find_each do |art|
       art.post_type = "read" if art.post_type.empty?
       art.save!
     end

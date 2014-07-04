@@ -79,7 +79,7 @@ class AddsContentSettings < ActiveRecord::Migration
     unless $schema_generator
       begin
         BareSetting.transaction do
-          BareContent.find(:all).each do |content|
+          BareContent.find_each do |content|
             content.settings = { }
             content.settings['password'] = content.s_password
             content.save

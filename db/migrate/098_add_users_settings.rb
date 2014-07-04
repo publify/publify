@@ -119,7 +119,7 @@ class AddUsersSettings < ActiveRecord::Migration
     unless $schema_generator
       begin
         BareSetting.transaction do
-          BareUser.find(:all).each do |user|
+          BareUser.find_each do |user|
             user.settings = { }
 #            user.settings['notify_via_email'] = user.s_notify_via_email
 #            user.settings['notify_on_new_articles'] = user.s_notify_on_new_articles

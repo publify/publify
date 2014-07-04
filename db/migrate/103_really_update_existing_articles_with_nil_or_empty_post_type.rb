@@ -5,8 +5,7 @@ class ReallyUpdateExistingArticlesWithNilOrEmptyPostType < ActiveRecord::Migrati
 
   def self.up
     say_with_time "Really fix existing articles with no post type." do
-      Content.find(:all,
-                   :conditions => ['type = ?', 'Article']).each do |art|
+      Content.where(type: 'Article').find_each do |art|
         if art.post_type.nil? or art.post_type.empty?
           say "Fixing '#{art.title}'", 1
           art.post_type = "read"
