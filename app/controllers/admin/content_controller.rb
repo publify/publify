@@ -153,12 +153,16 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def update_article_attributes
-    @article.attributes = params[:article].permit!
+    @article.attributes = update_params
     @article.published_at = parse_date_time params[:article][:published_at]
     @article.author = current_user
     @article.save_attachments!(params[:attachments])
     @article.state = "draft" if @article.draft
     @article.text_filter ||= current_user.default_text_filter
+  end
+
+  def update_params
+    params.require(:article).except(:id).permit!
   end
   
   def get_layout
