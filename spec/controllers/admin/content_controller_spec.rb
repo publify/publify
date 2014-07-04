@@ -248,7 +248,7 @@ describe Admin::ContentController do
       it "correctly converts multi-word tags" do
         a = create(:article, :keywords => '"foo bar", baz')
         get :edit, :id => a.id
-        response.should have_selector("input[id=article_keywords][value='baz, \"foo bar\"']")
+        response.body.should have_selector("input[id=article_keywords][value='baz, \"foo bar\"']")
       end
     end
 

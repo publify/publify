@@ -21,19 +21,19 @@ describe ArticlesController, "base" do
       render_views
 
       it 'should have good link feed rss' do
-        response.should have_selector('head>link[href="http://test.host/articles.rss"]')
+        response.body.should have_selector('head>link[href="http://test.host/articles.rss"]', visible: false)
       end
 
       it 'should have good link feed atom' do
-        response.should have_selector('head>link[href="http://test.host/articles.atom"]')
+        response.body.should have_selector('head>link[href="http://test.host/articles.atom"]', visible: false)
       end
 
       it 'should have a canonical url' do
-        response.should have_selector("head>link[href='#{blog.base_url}/']")
+        response.body.should have_selector("head>link[href='#{blog.base_url}/']", visible: false)
       end
 
       it 'should have good title' do
-        response.should have_selector('title', :content => "test blog | test subtitles")
+        response.body.should have_selector('title', :text => "test blog | test subtitles", visible: false)
       end
     end
   end
@@ -53,23 +53,23 @@ describe ArticlesController, "base" do
       context "with the view rendered" do
         render_views
         it 'should have good feed rss link' do
-          response.should have_selector('head>link[href="http://test.host/search/a.rss"]')
+          response.body.should have_selector('head>link[href="http://test.host/search/a.rss"]', visible: false)
         end
 
         it 'should have good feed atom link' do
-          response.should have_selector('head>link[href="http://test.host/search/a.atom"]')
+          response.body.should have_selector('head>link[href="http://test.host/search/a.atom"]', visible: false)
         end
 
         it 'should have a canonical url' do
-          response.should have_selector("head>link[href='#{blog.base_url}/search/a']")
+          response.body.should have_selector("head>link[href='#{blog.base_url}/search/a']", visible: false)
         end
 
         it 'should have a good title' do
-          response.should have_selector('title', :content => "Results for a | test blog")
+          response.body.should have_selector('title', :text => "Results for a | test blog", visible: false)
         end
 
         it 'should have content markdown interpret and without html tag' do
-          response.should have_selector('div') do |div|
+          response.body.should have_selector('div') do |div|
             div.should match(%Q{in markdown format * we * use [ok](http://blog.ok.com) to define a link})
           end
         end
@@ -124,7 +124,7 @@ describe ArticlesController, "base" do
       context "with the view rendered" do
         render_views
         it 'should not have h3 tag' do
-          response.should have_selector("h3")
+          response.body.should have_selector("h3")
         end
       end
 
@@ -145,8 +145,8 @@ describe ArticlesController, "base" do
       assigns[:articles].should_not be_nil
       assigns[:articles].should_not be_empty
 
-      response.should have_selector("head>link[href='#{blog.base_url}/archives']")
-      response.should have_selector('title', :content => "Archives for test blog")
+      response.body.should have_selector("head>link[href='#{blog.base_url}/archives']", visible: false)
+      response.body.should have_selector('title', :text => "Archives for test blog", visible: false)
     end
   end
 
@@ -169,11 +169,11 @@ describe ArticlesController, "base" do
     context "with the view rendered" do
       render_views
       it 'should have a canonical url' do
-        response.should have_selector("head>link[href='#{blog.base_url}/2004/4']")
+        response.body.should have_selector("head>link[href='#{blog.base_url}/2004/4']", visible: false)
       end
 
       it 'should have a good title' do
-        response.should have_selector('title', :content => "Archives for test blog")
+        response.body.should have_selector('title', :text => "Archives for test blog", visible: false)
       end
     end
   end
@@ -440,19 +440,19 @@ describe ArticlesController, "redirecting" do
         render_views
 
         it 'should have good rss feed link' do
-          response.should have_selector("head>link[href=\"http://myblog.net/#{article.permalink}.html.rss\"]")
+          response.body.should have_selector("head>link[href=\"http://myblog.net/#{article.permalink}.html.rss\"]", visible: false)
         end
 
         it 'should have good atom feed link' do
-          response.should have_selector("head>link[href=\"http://myblog.net/#{article.permalink}.html.atom\"]")
+          response.body.should have_selector("head>link[href=\"http://myblog.net/#{article.permalink}.html.atom\"]", visible: false)
         end
 
         it 'should have a canonical url' do
-          response.should have_selector("head>link[href='#{blog.base_url}/#{article.permalink}.html']")
+          response.body.should have_selector("head>link[href='#{blog.base_url}/#{article.permalink}.html']", visible: false)
         end
 
         it 'should have a good title' do
-          response.should have_selector('title', :content => "A big article | test blog")
+          response.body.should have_selector('title', :text => "A big article | test blog", visible: false)
         end
       end
     end
@@ -543,18 +543,18 @@ describe ArticlesController, "password protected" do
 
   it 'article alone should be password protected' do
     get :redirect, :from => "#{article.permalink}.html"
-    response.should have_selector('input[id="article_password"]', :count => 1)
+    response.body.should have_selector('input[id="article_password"]', :count => 1)
   end
 
   describe "#check_password" do
     it "shows article when given correct password" do
       xhr :get, :check_password, :article => {:id => article.id, :password => article.password}
-      response.should_not have_selector('input[id="article_password"]')
+      response.body.should_not have_selector('input[id="article_password"]')
     end
 
     it "shows password form when given incorrect password" do
       xhr :get, :check_password, :article => {:id => article.id, :password => "wrong password"}
-      response.should have_selector('input[id="article_password"]')
+      response.body.should have_selector('input[id="article_password"]')
     end
   end
 end

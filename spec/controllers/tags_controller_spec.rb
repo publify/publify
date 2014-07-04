@@ -101,15 +101,15 @@ describe TagsController, 'showing tag "foo"' do
   end
 
   it 'should have good rss feed link in head' do
-    response.should have_selector("head>link[href='http://test.host/tag/foo.rss'][rel=alternate][type='application/rss+xml'][title=RSS]")
+    response.body.should have_selector("head>link[href='http://test.host/tag/foo.rss'][rel=alternate][type='application/rss+xml'][title=RSS]", visible: false)
   end
 
   it 'should have good atom feed link in head' do
-    response.should have_selector("head>link[href='http://test.host/tag/foo.atom'][rel=alternate][type='application/atom+xml'][title=Atom]")
+    response.body.should have_selector("head>link[href='http://test.host/tag/foo.atom'][rel=alternate][type='application/atom+xml'][title=Atom]", visible: false)
   end
 
   it 'should have a canonical URL' do
-    response.should have_selector("head>link[href='#{blog.base_url}/tag/foo']")
+    response.body.should have_selector("head>link[href='#{blog.base_url}/tag/foo']", visible: false)
   end
 end
 
