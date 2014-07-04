@@ -24,7 +24,7 @@ class Admin::RedirectsController < Admin::BaseController
       Redirect.find(params[:id])
     end
 
-    @redirect.attributes = params[:redirect]
+    @redirect.attributes = params[:redirect].permit! if params[:redirect]
       if  @redirect.from_path.nil? || @redirect.from_path.empty?
         @redirect.from_path = @redirect.shorten
       end

@@ -96,7 +96,7 @@ class Admin::ContentController < Admin::BaseController
 
     get_fresh_or_existing_draft_for_article
 
-    @article.attributes = params[:article]
+    @article.attributes = params[:article].permit!
 
     @article.published = false
     @article.author = current_user
@@ -153,7 +153,7 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def update_article_attributes
-    @article.attributes = params[:article]
+    @article.attributes = params[:article].permit!
     @article.published_at = parse_date_time params[:article][:published_at]
     @article.author = current_user
     @article.save_attachments!(params[:attachments])
