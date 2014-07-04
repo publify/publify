@@ -3,7 +3,7 @@ require 'fog'
 class Admin::ProfilesController < Admin::BaseController
   def index
     @user = current_user
-    @profiles = Profile.find(:all, :order => 'id')
+    @profiles = Profile.order('id')
     @user.attributes = params[:user].permit! if params[:user]
     if request.post?
       if params[:user][:filename]

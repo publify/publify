@@ -8,7 +8,7 @@ class Admin::ContentController < Admin::BaseController
   cache_sweeper :blog_sweeper
 
   def auto_complete_for_article_keywords
-    @items = Tag.find(:all, select: :display_name, order: :display_name).map {|t| t.display_name}
+    @items = Tag.select(:display_name).order(:display_name).map {|t| t.display_name}
     render inline: "<%= @items %>"
   end
 
@@ -135,7 +135,7 @@ class Admin::ContentController < Admin::BaseController
   private
 
   def load_resources
-    @post_types = PostType.find(:all)
+    @post_types = PostType.all
     @images = Resource.images_by_created_at.page(params[:page]).per(10)
     @resources = Resource.without_images_by_filename
     @macros = TextFilter.macro_filters
