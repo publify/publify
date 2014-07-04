@@ -71,7 +71,7 @@ end
 group :development, :test do
   gem 'thin'
   gem 'factory_girl', '~> 4.2.0'
-  gem 'webrat'
+  gem 'capybara'
   gem 'rspec-rails', '~> 2.99.0'
   gem 'simplecov', :require => false
   gem 'pry-rails'
