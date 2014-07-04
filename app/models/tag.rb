@@ -15,7 +15,9 @@ class Tag < ActiveRecord::Base
         x.first.tr("\"'", '')
       end.uniq.map do |tagword|
         tagname = tagword.to_url
-        tags << find_or_create_by_name(tagname, display_name: tagword)
+        tags << find_or_create_by(name: tagname) do |tag|
+          tag.display_name = tagword
+        end
       end
     end
     article.tags = tags

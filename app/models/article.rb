@@ -194,12 +194,12 @@ class Article < Content
     req_params[:published_at] = date_range if date_range
 
     return nil if req_params.empty? # no search if no params send
-    article = find_published(:first, :conditions => req_params)
+    article = published.where(req_params).first
     return article if article
 
     if params[:title]
       req_params[:permalink] = CGI.escape(params[:title])
-      article = find_published(:first, :conditions => req_params)
+      article = published.where(req_params).first
       return article if article
     end
 
@@ -223,7 +223,7 @@ class Article < Content
   end
 
   def interested_users
-    User.find_all_by_notify_on_new_articles(true)
+    User.where(notify_on_new_articles: true)
   end
 
   def notify_user_via_email(user)

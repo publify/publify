@@ -103,7 +103,7 @@ class ArticlesController < ContentController
   end
 
   def archives
-    @articles = Article.find_published
+    @articles = Article.published
     @page_title = this_blog.archives_title_template.to_title(@articles, this_blog, params)
     @keywords = this_blog.meta_keywords
     @description = this_blog.archives_desc_template.to_title(@articles, this_blog, params)

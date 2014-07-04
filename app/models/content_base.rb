@@ -103,12 +103,6 @@ module ContentBase
       class_eval "def content_fields; #{attribs.inspect}; end"
     end
 
-    def find_published(what = :all, options = {})
-      with_scope(:find => where(:published => true).order(default_order)) do
-        find what, options
-      end
-    end
-
     def default_order
       'published_at DESC'
     end
