@@ -30,8 +30,8 @@ describe SetupController do
         admin = User.find_by_login("admin")
         admin.should_not be_nil
         admin.email.should == 'foo@bar.net'
-        Article.find(:first).user.should == admin
-        Page.find(:first).user.should == admin
+        Article.first.user.should == admin
+        Page.first.user.should == admin
       end
 
       it "should log in admin user" do
