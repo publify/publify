@@ -15,7 +15,7 @@ class Admin::PagesController < Admin::BaseController
   end
 
   def new
-    @page = Page.new(params[:page])
+    @page = Page.new((params[:page].permit! if params[:page]))
     @page.user_id = current_user.id
     @page.text_filter ||= default_textfilter
     @page.published = true unless params[:page].present?
@@ -31,7 +31,7 @@ class Admin::PagesController < Admin::BaseController
 
   def edit
     @page = Page.find(params[:id])
-    @page.attributes = params[:page]
+    @page.attributes = params[:page].permit! if params[:page]
     @page.text_filter ||= default_textfilter
     if request.post? and @page.save
       flash[:success] = I18n.t('admin.pages.edit.success')
