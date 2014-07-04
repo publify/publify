@@ -237,6 +237,7 @@ describe ArticlesController, "the index" do
 
   before(:each) do
     create(:user, :login => 'henri', :profile => create(:profile_admin, :label => Profile::ADMIN))
+    create(:article)
   end
 
   it "should ignore the HTTP Accept: header" do
