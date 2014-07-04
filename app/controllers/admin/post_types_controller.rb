@@ -20,7 +20,7 @@ class Admin::PostTypesController < Admin::BaseController
   private
 
   def new_or_edit
-    @post_types = PostType.find(:all)
+    @post_types = PostType.all
     @post_type = PostType.where(id: params[:id]).first
     @post_type ||= PostType.new
     @post_type.attributes = params[:post_type].permit! if params[:post_type]

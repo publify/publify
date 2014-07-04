@@ -25,9 +25,9 @@ class Admin::RedirectsController < Admin::BaseController
     end
 
     @redirect.attributes = params[:redirect].permit! if params[:redirect]
-      if  @redirect.from_path.nil? || @redirect.from_path.empty?
-        @redirect.from_path = @redirect.shorten
-      end
+    if @redirect.from_path.nil? || @redirect.from_path.empty?
+      @redirect.from_path = @redirect.shorten
+    end
     if request.post?
       save_a(@redirect, 'redirection')
     else

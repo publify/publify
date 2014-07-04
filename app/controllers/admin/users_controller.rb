@@ -42,6 +42,6 @@ class Admin::UsersController < Admin::BaseController
   private
 
   def setup_profiles
-    @profiles = Profile.find(:all, :order => 'id')
+    @profiles = Profile.order('id')
   end
 end

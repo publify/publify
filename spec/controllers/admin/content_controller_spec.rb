@@ -187,7 +187,7 @@ describe Admin::ContentController do
 
       assert_response :redirect, :action => 'index'
 
-      new_article = Article.find(:first, :order => "created_at DESC")
+      new_article = Article.order(created_at: :desc).first
 
       new_article.body.should eq body
       new_article.extended.should eq extended

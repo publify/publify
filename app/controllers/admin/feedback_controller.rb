@@ -2,7 +2,7 @@ class Admin::FeedbackController < Admin::BaseController
   cache_sweeper :blog_sweeper
 
   def index
-    scoped_feedback = Feedback.scoped
+    scoped_feedback = Feedback
 
     if params[:only].present?
       scoped_feedback = scoped_feedback.send(params[:only])
