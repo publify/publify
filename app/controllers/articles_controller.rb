@@ -6,8 +6,7 @@ class ArticlesController < ContentController
   layout :theme_layout, except: [:comment_preview, :trackback]
 
   cache_sweeper :blog_sweeper
-  caches_page :archives
-  caches_page :index, :read, :view_page, :redirect, if: Proc.new {|c| c.request.query_string == ''}
+  caches_page :index, :archives, :read, :view_page, :redirect, if: Proc.new {|c| c.request.query_string == ''}
 
   helper :'admin/base'
 

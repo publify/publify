@@ -45,10 +45,6 @@ RSpec.configure do |config|
 
   # shortcuts for factory_girl to use: create / build / build_stubbed
   config.include FactoryGirl::Syntax::Methods
-
-  config.before(:each) do
-    Rails.cache.clear
-  end
 end
 
 def define_spec_public_cache_directory
