@@ -57,7 +57,7 @@ describe Admin::RedirectsController do
   describe "test_destroy" do
     before(:each) do
       @test_id = FactoryGirl.create(:redirect).id
-      assert_not_nil Redirect.find(@test_id)
+      Redirect.find(@test_id).should_not be_nil
     end
 
     describe 'with GET' do
@@ -81,7 +81,7 @@ describe Admin::RedirectsController do
       end
 
       it 'should have no more redirects' do
-        assert_raise(ActiveRecord::RecordNotFound) { Redirect.find(@test_id) }
+        lambda { Redirect.find(@test_id) }.should raise_error ActiveRecord::RecordNotFound
       end
     end
   end

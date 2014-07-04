@@ -18,7 +18,7 @@ describe Admin::ThemesController do
 
     it "assigns @themes for the :index action" do
       assert_response :success
-      assert_not_nil assigns(:themes)
+      assigns(:themes).should_not be_nil
     end
   end
 
