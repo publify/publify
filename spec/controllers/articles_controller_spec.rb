@@ -70,7 +70,7 @@ describe ArticlesController, "base" do
 
         it 'should have content markdown interpret and without html tag' do
           response.should have_selector('div') do |div|
-            div.should contain(%Q{in markdown format * we * use [ok](http://blog.ok.com) to define a link})
+            div.should match(%Q{in markdown format * we * use [ok](http://blog.ok.com) to define a link})
           end
         end
       end

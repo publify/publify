@@ -241,8 +241,8 @@ describe Admin::ContentController do
         response.should render_template 'edit'
         assigns(:article).should_not be_nil
         assigns(:article).should be_valid
-        response.should contain(/body/)
-        response.should contain(/extended content/)
+        response.body.should match(/body/)
+        response.body.should match(/extended content/)
       end
 
       it "correctly converts multi-word tags" do
