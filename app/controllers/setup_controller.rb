@@ -39,7 +39,7 @@ class SetupController < ApplicationController
 
   # FIXME: Move to a setup concern that coordinates first blog, user, and post
   def update_or_create_first_post_with_user user
-    art = Article.find(:first)
+    art = Article.first
     if art
       art.user = user
       art.save

@@ -92,35 +92,35 @@ describe 'find Article date range ' do
 
     it 'delta given year' do
       range = PublifyTime.delta(@year)
-      expect(Article.find_all_by_published_at(range)).to eq([@a])
+      expect(Article.where(published_at: range)).to eq([@a])
     end
 
     it 'delta given year month' do
       range = PublifyTime.delta(@year,@month)
-      expect(Article.find_all_by_published_at(range)).to eq([@a])
+      expect(Article.where(published_at: range)).to eq([@a])
     end
 
     it 'delta given year month day' do
       range = PublifyTime.delta(@year,@month,@day)
-      expect(Article.find_all_by_published_at(range)).to eq([@a])
+      expect(Article.where(published_at: range)).to eq([@a])
     end
 
 
     it 'delta_like given year' do
       range = PublifyTime.delta_like("#{@year}")
-      expect(Article.find_all_by_published_at(range)).to eq([@a])
+      expect(Article.where(published_at: range)).to eq([@a])
     end
 
 
     it 'delta_like given year month' do
       range = PublifyTime.delta_like("#{@year}-#{@month}")
-      expect(Article.find_all_by_published_at(range)).to eq([@a])
+      expect(Article.where(published_at: range)).to eq([@a])
     end
 
 
     it 'delta_like given year month day' do
       range = PublifyTime.delta_like("#{@year}-#{@month}-#{@day}")
-      expect(Article.find_all_by_published_at(range)).to eq([@a])
+      expect(Article.where(published_at: range)).to eq([@a])
     end
   end
 
@@ -139,35 +139,35 @@ describe 'find Article date range ' do
 
     it 'delta given year' do
       range = PublifyTime.delta(@year)
-      expect(Article.find_all_by_published_at(range)).to eq([@a])
+      expect(Article.where(published_at: range)).to eq([@a])
     end
 
     it 'delta given year month' do
       range = PublifyTime.delta(@year,@month)
-      expect(Article.find_all_by_published_at(range)).to eq([@a])
+      expect(Article.where(published_at: range)).to eq([@a])
     end
 
     it 'delta given year month day' do
       range = PublifyTime.delta(@year,@month,@day)
-      expect(Article.find_all_by_published_at(range)).to eq([@a])
+      expect(Article.where(published_at: range)).to eq([@a])
     end
 
 
     it 'delta_like given year' do
       range = PublifyTime.delta_like("#{@year}")
-      expect(Article.find_all_by_published_at(range)).to eq([@a])
+      expect(Article.where(published_at: range)).to eq([@a])
     end
 
 
     it 'delta_like given year month' do
       range = PublifyTime.delta_like("#{@year}-#{@month}")
-      expect(Article.find_all_by_published_at(range)).to eq([@a])
+      expect(Article.where(published_at: range)).to eq([@a])
     end
 
 
     it 'delta_like given year month day' do
       range = PublifyTime.delta_like("#{@year}-#{@month}-#{@day}")
-      expect(Article.find_all_by_published_at(range)).to eq([@a])
+      expect(Article.where(published_at: range)).to eq([@a])
     end
   end
 end
