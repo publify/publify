@@ -287,20 +287,20 @@ describe Admin::ContentController do
       end
 
       it 'should delete draft about this article if update' do
-        article = @article
-        draft = Article.create!(article.attributes.merge(:state => 'draft', :parent_id => article.id, :guid => nil))
+        attributes = @article.attributes.except("id").merge(:state => 'draft', :parent_id => @article.id, :guid => nil)
+        draft = Article.create!(attributes)
         lambda do
-          put :update, 'id' => article.id, 'article' => { 'title' => 'new'}
+          put :update, 'id' => @article.id, 'article' => { 'title' => 'new'}
         end.should change(Article, :count).by(-1)
         Article.should_not be_exists({:id => draft.id})
       end
 
       it 'should delete all draft about this article if update not happen but why not' do
-        article = @article
-        draft = Article.create!(article.attributes.merge(:state => 'draft', :parent_id => article.id, :guid => nil))
-        draft_2 = Article.create!(article.attributes.merge(:state => 'draft', :parent_id => article.id, :guid => nil))
+        attributes = @article.attributes.except("id").merge(:state => 'draft', :parent_id => @article.id, :guid => nil)
+        draft = Article.create!(attributes)
+        draft_2 = Article.create!(attributes)
         lambda do
-          put :update, 'id' => article.id, 'article' => { 'title' => 'new'}
+          put :update, 'id' => @article.id, 'article' => { 'title' => 'new'}
         end.should change(Article, :count).by(-2)
         Article.should_not be_exists({:id => draft.id})
         Article.should_not be_exists({:id => draft_2.id})
