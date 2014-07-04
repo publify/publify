@@ -1,5 +1,5 @@
 class Tag < ActiveRecord::Base
-  has_and_belongs_to_many :articles, :order => 'created_at DESC'
+  has_and_belongs_to_many :articles, :order => 'created_at DESC', join_table: 'articles_tags'
 
   validates_uniqueness_of :name
 

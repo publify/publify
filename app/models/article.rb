@@ -34,7 +34,7 @@ class Article < Content
   has_many :published_trackbacks,  -> { where(published: true).order('created_at ASC') }, class_name: "Trackback"
   has_many :published_feedback,    -> { where(published: true).order('created_at ASC') }, class_name: "Feedback"
 
-  has_and_belongs_to_many :tags
+  has_and_belongs_to_many :tags, join_table: 'articles_tags'
 
   before_create :create_guid
   before_save :set_published_at, :ensure_settings_type, :set_permalink
