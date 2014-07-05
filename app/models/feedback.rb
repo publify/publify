@@ -18,14 +18,14 @@ class Feedback < ActiveRecord::Base
   after_initialize :after_initialize_handler
   after_destroy lambda { |c|  c.invalidates_cache?(true) }
 
-  default_scope order('created_at DESC')
+  default_scope { order('created_at DESC') }
 
-  scope :ham, where("state in ('presumed_ham', 'ham')")
-  scope :spam, where(state: 'spam')
+  scope :ham, -> { where("state in ('presumed_ham', 'ham')") }
+  scope :spam, -> { where(state: 'spam') }
   scope :published_since, lambda {|time| ham.where('published_at > ?', time)}
-  scope :presumed_ham, where(state: 'presumed_ham')
-  scope :presumed_spam, where(state: 'presumed_spam')
-  scope :unapproved, where(status_confirmed: false)
+  scope :presumed_ham, -> { where(state: 'presumed_ham') }
+  scope :presumed_spam, -> { where(state: 'presumed_spam') }
+  scope :unapproved, -> { where(status_confirmed: false) }
 
  has_state(:state,
             :valid_states => [:unclassified, :presumed_spam, :just_marked_as_spam, :spam, :just_presumed_ham, :presumed_ham, :just_marked_as_ham, :ham],

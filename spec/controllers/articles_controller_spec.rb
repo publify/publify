@@ -79,21 +79,18 @@ describe ArticlesController, "base" do
     it 'should render feed rss by search' do
       get 'search', :q => 'a', :format => 'rss'
       response.should be_success
-      response.should render_template('index_rss_feed')
-      @layouts.keys.compact.should be_empty
+      response.should render_template('index_rss_feed', layout: false)
     end
 
     it 'should render feed atom by search' do
       get 'search', :q => 'a', :format => 'atom'
       response.should be_success
-      response.should render_template('index_atom_feed')
-      @layouts.keys.compact.should be_empty
+      response.should render_template('index_atom_feed', layout: false)
     end
 
     it 'search with empty result' do
       get 'search', :q => 'abcdefghijklmnopqrstuvwxyz'
-      response.should render_template('articles/error')
-      assigns[:articles].should be_empty
+      response.should render_template('articles/error', layout: false)
     end
 
   end
@@ -211,31 +208,27 @@ describe ArticlesController, "feeds" do
   specify "/articles.atom => an atom feed" do
     get 'index', :format => 'atom'
     response.should be_success
-    response.should render_template("index_atom_feed")
+    response.should render_template("index_atom_feed", layout: false)
     assigns(:articles).should == [article1, article2]
-    @layouts.keys.compact.should be_empty
   end
 
   specify "/articles.rss => an RSS 2.0 feed" do
     get 'index', :format => 'rss'
     response.should be_success
-    response.should render_template("index_rss_feed")
+    response.should render_template("index_rss_feed", layout: false)
     assigns(:articles).should == [article1, article2]
-    @layouts.keys.compact.should be_empty
   end
 
   specify "atom feed for archive should be valid" do
     get 'index', :year => 2004, :month => 4, :format => 'atom'
-    response.should render_template("index_atom_feed")
+    response.should render_template("index_atom_feed", layout: false)
     assigns(:articles).should == [article2]
-    @layouts.keys.compact.should be_empty
   end
 
   specify "RSS feed for archive should be valid" do
     get 'index', :year => 2004, :month => 4, :format => 'rss'
-    response.should render_template("index_rss_feed")
+    response.should render_template("index_rss_feed", layout: false)
     assigns(:articles).should == [article2]
-    @layouts.keys.compact.should be_empty
   end
 end
 
@@ -244,6 +237,7 @@ describe ArticlesController, "the index" do
 
   before(:each) do
     create(:user, :login => 'henri', :profile => create(:profile_admin, :label => Profile::ADMIN))
+    create(:article)
   end
 
   it "should ignore the HTTP Accept: header" do
@@ -481,8 +475,7 @@ describe ArticlesController, "redirecting" do
 
       it 'should render feedback atom feed' do
         assigns(:feedback).should == [trackback1]
-        response.should render_template('feedback_atom_feed')
-        @layouts.keys.compact.should be_empty
+        response.should render_template('feedback_atom_feed', layout: false)
       end
     end
 
@@ -496,8 +489,7 @@ describe ArticlesController, "redirecting" do
 
       it 'should render rss20 partial' do
         assigns(:feedback).should == [trackback1]
-        response.should render_template('feedback_rss_feed')
-        @layouts.keys.compact.should be_empty
+        response.should render_template('feedback_rss_feed', layout: false)
       end
     end
   end

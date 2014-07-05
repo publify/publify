@@ -10,16 +10,6 @@ module ContentBase
   attr_accessor :just_changed_published_status
   alias_method :just_changed_published_status?, :just_changed_published_status
 
-  # Set the text filter for this object.
-  def text_filter= filter
-    filter_object = filter.to_text_filter
-    if filter_object
-      self.text_filter_id = filter_object.id
-    else
-      self.text_filter_id = filter.to_i
-    end
-  end
-
   def really_send_notifications
     interested_users.each do |value|
       send_notification_to_user(value)
@@ -101,12 +91,6 @@ module ContentBase
   module ClassMethods
     def content_fields *attribs
       class_eval "def content_fields; #{attribs.inspect}; end"
-    end
-
-    def find_published(what = :all, options = {})
-      with_scope(:find => where(:published => true).order(default_order)) do
-        find what, options
-      end
     end
 
     def default_order

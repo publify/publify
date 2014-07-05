@@ -1,5 +1,5 @@
 class Tag < ActiveRecord::Base
-  has_and_belongs_to_many :articles, :order => 'created_at DESC'
+  has_and_belongs_to_many :articles, :order => 'created_at DESC', join_table: 'articles_tags'
 
   validates_uniqueness_of :name
 
@@ -15,7 +15,9 @@ class Tag < ActiveRecord::Base
         x.first.tr("\"'", '')
       end.uniq.map do |tagword|
         tagname = tagword.to_url
-        tags << find_or_create_by_name(tagname, display_name: tagword)
+        tags << find_or_create_by(name: tagname) do |tag|
+          tag.display_name = tagword
+        end
       end
     end
     article.tags = tags

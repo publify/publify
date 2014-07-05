@@ -46,6 +46,18 @@ class Content < ActiveRecord::Base
     end
   end
 
+  # Set the text filter for this object.
+  # NOTE: Due to how Rails injects association methods, this cannot be put in ContentBase
+  # TODO: Allowing assignment of a string here is not very clean.
+  def text_filter= filter
+    filter_object = filter.to_text_filter
+    if filter_object
+      self.text_filter_id = filter_object.id
+    else
+      self.text_filter_id = filter.to_i
+    end
+  end
+
   def shorten_url
     return unless self.published
 

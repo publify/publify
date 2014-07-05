@@ -29,7 +29,7 @@ describe CommentsController do
   describe 'AJAX creation' do
     it "should render the comment partial" do
       xhr :post, :create, comment: {body: 'content', author: 'bob'}, article_id: create(:article).id
-      expect(response).to render_template("/articles/_comment")
+      expect(response).to render_template("articles/_comment")
     end
   end
 

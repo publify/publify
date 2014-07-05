@@ -12,9 +12,8 @@ class User < ActiveRecord::Base
   delegate :label, :to => :profile, :prefix => true
 
   has_many :notifications, :foreign_key => 'notify_user_id'
-  has_many :notify_contents, :through => :notifications,
-    :source => 'notify_content',
-    :uniq => true
+  has_many :notify_contents, -> { uniq }, :through => :notifications,
+    :source => 'notify_content'
 
   has_many :articles
 

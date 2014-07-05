@@ -66,9 +66,9 @@ def create_file_in_spec_public_cache_directory(file)
 end
 
 def assert_xml(xml)
-  assert_nothing_raised do
+  lambda do
     assert REXML::Document.new(xml)
-  end
+  end.should_not raise_error
 end
 
 def assert_atom10 feed, count

@@ -23,7 +23,7 @@ class Comment < Feedback
   end
 
   def interested_users
-    User.find_all_by_notify_on_comments(true)
+    User.where(notify_on_comments: true)
   end
 
   def default_text_filter

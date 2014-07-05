@@ -9,7 +9,7 @@ module ApplicationHelper
   end
 
   def render_sidebars(*sidebars)
-    (sidebars.blank? ? Sidebar.find(:all, :order => 'active_position ASC') : sidebars).map do |sb|
+    (sidebars.blank? ? Sidebar.order(:active_position) : sidebars).map do |sb|
       @sidebar = sb
       sb.parse_request(content_array, params)
       render_sidebar(sb)
@@ -67,7 +67,11 @@ module ApplicationHelper
   end
 
   def avatar_tag(options = {})
-    avatar_class = this_blog.plugin_avatar.constantize
+    begin
+      avatar_class = this_blog.plugin_avatar.constantize
+    rescue NameError
+      return ''
+    end
     return '' unless avatar_class.respond_to?(:get_avatar)
     avatar_class.get_avatar(options)
   end
