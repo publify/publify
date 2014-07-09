@@ -22,10 +22,11 @@ class NotesController < ContentController
 
       if @note.in_reply_to_message.present?
         @reply = JSON.parse(@note.in_reply_to_message)
+        render :show_in_reply
+        return
       end
-
     else
-      render "errors/404", :status => 404
+      render "errors/404", status: 404
     end
   end
 

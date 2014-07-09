@@ -1,3 +1,5 @@
 <div class="hfeed">
-  <%= render :partial => "note", :object => @note %>
+  <div class='h-entry hentry h-as-note'>
+    <%= render partial: 'note', object: @note %>
+  </div>
 </div>

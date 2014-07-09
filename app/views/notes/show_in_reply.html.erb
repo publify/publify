@@ -1,0 +1,16 @@
+<div class="hfeed">
+  <div class='h-entry hentry h-as-note'>
+    <article class=' well well-small'>
+      <%= image_tag(@reply['user']['profile_image_url'] , class: "alignleft", alt: @reply['user']['name']) %>
+      <strong><%= get_reply_context_url(@reply) %></strong>
+      <p><%= PublifyApp::Textfilter::Twitterfilter.filtertext(nil,nil,@reply['text'],nil).nofollowify %></p>
+      <p>
+      <small>
+        <%= get_reply_context_twitter_link(@reply) %>
+      </small>
+      </p>
+    </article>
+
+    <%= render partial: 'note', object: @note %>
+  </div>
+</div>
