@@ -194,7 +194,7 @@ module ApplicationHelper
 
   def display_date_and_time(timestamp)
     if this_blog.date_format == 'setting_date_format_distance_of_time_in_words'
-      new_js_distance_of_time_in_words_to_now(timestamp) 
+      new_js_distance_of_time_in_words_to_now(timestamp)
     else
       "#{display_date(timestamp)} #{t('helper.at')} #{display_time(timestamp)}"
     end
@@ -214,6 +214,16 @@ module ApplicationHelper
     stop = blog.unindex_tags if controller_name == "tags"
     stop = blog.unindex_categories if controller_name == "categories"
     stop
+  end
+
+  def get_reply_context_url(reply)
+    link_to(reply['user']['name'], reply['user']['entities']['url']['urls'][0]['expanded_url'])
+  rescue
+     link_to(reply['user']['name'], "https://twitter.com/#{reply['user']['name']}")
+  end
+
+  def get_reply_context_twitter_link(reply)
+    link_to(display_date_and_time(reply['created_at'].to_time), "https://twitter.com/#{reply['user']['screen_name']}/status/#{reply['id_str']}")
   end
 
   private
@@ -253,6 +263,5 @@ module ApplicationHelper
       html(item, :all)
     end
   end
-
 
 end
