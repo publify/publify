@@ -11,7 +11,6 @@ class ResourceUploader < CarrierWave::Uploader::Base
   end
 
   include CarrierWave::MiniMagick
-  include CarrierWave::MimeTypes
 
   process :set_content_type
 

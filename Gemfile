@@ -52,7 +52,7 @@ gem 'rake', '~> 10.1.0'
 #gem 'acts_as_tree_rails3'
 gem 'fog'
 gem 'recaptcha', :require => 'recaptcha/rails', :branch => 'rails3'
-gem 'carrierwave'
+gem 'carrierwave', '~> 0.10.0'
 gem 'akismet', '~> 1.0'
 gem 'twitter', '~> 5.6.0'
 
