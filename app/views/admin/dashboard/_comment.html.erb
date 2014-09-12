@@ -3,7 +3,7 @@
 <%- else %>
   <%- for comment in @comments %>
     <li id='feedback_<%= comment.id %>'>
-    <%= avatar_tag(:email => comment.email, :url => comment.url) %>
+    <%= avatar_tag(:email => comment.email, :url => comment.url, class: 'pull-left img-circle gravatar') %>
     <h5>
       <%= t(".by") %> <%= (comment.url.blank?) ? h(comment.author) : link_to(h(comment.author), comment.url).nofollowify %>
       <%= display_date_and_time comment.created_at %>
