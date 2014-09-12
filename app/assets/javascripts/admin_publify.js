@@ -75,3 +75,7 @@ $(document).ready(function() {
   $('#page_form').each(function(e){set_widerea($('#page_body'))});
 });
 
+$(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
+    event.preventDefault();
+    $(this).ekkoLightbox();
+}); 
