@@ -1,4 +1,4 @@
-    <li class="sidebar_item" data-sortable="sidebar_<%= sidebar.id %>" >
+    <li id="sidebar_<%= sidebar.id %>" class="sidebar_item" data-sortable="sidebar_<%= sidebar.id %>" >
     <%= link_to 'X', admin_sidebar_path(sidebar), {class: 'deletion_link', remote: true, method: :delete, :'data-confirm'=>'Are you sure?'} %>
       <%= form_tag admin_sidebar_path(sidebar.id), {remote: true, method: :put} do |f| %>
       <div class="active alert <%= class_for_admin_state(sidebar, sortable_index)%>">

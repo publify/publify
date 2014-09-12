@@ -26,11 +26,11 @@ class Admin::SidebarController < Admin::BaseController
   end
 
   def destroy
-    sidebar = Sidebar.where(id: params[:id]).first
-    sidebar && sidebar.destroy
+    @sidebar = Sidebar.where(id: params[:id]).first
+    @sidebar && @sidebar.destroy
     respond_to do |format|
       format.html { return redirect_to(admin_sidebar_index_path)}
-      format.js { render js: {ok: :ok} }
+      format.js
     end
   end
 
