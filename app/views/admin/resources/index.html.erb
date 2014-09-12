@@ -38,9 +38,9 @@
     <tr>
     <td>
         <% if upload.mime =~ /image/ %>
-          <%= link_to upload.upload_url, rel: 'lightbox' do %>
-          <%= image_tag(upload.upload.thumb.url) %>
-      <% end %>
+        <a href="<%= upload.upload.medium.url %>" data-toggle="lightbox">
+          <%= image_tag(upload.upload.thumb.url) %>        
+        </a>
       <% else %>
           <%= link_to(upload.upload_url, upload.upload_url) -%>
       <% end %>
