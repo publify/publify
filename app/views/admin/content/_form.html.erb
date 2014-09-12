@@ -2,7 +2,7 @@
 
 <div id="autosave"><%= hidden_field_tag("article[id]", @article.id) if @article.present? %></div>
 
-<div class='row'>
+<div class='row save-bar'>
   <div class='col-md-10 col-md-offset-1' id="save-bar">
     <div class='pull-right'>
       <%= link_to(t('.cancel'), {action: 'index'}, {class: 'btn btn-default'}) %>
