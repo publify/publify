@@ -1,3 +1,4 @@
+# coding: utf-8
 class Admin::DashboardController < Admin::BaseController
   require 'open-uri'
   require 'time'
@@ -27,6 +28,7 @@ class Admin::DashboardController < Admin::BaseController
 
     @statspam = Comment.spam.count
     @inbound_links = inbound_links
+    puts @inbound_links.inspect
     @publify_links = publify_dev
     publify_version
   end
@@ -57,7 +59,7 @@ class Admin::DashboardController < Admin::BaseController
   def inbound_links
     host = URI.parse(this_blog.base_url).host
     return [] if Rails.env.development?
-    url = "http://www.google.com/search?q=links:#{host}&tbm=blg&output=rss"
+    url = "http://www.google.com/search?q=link:#{host}&tbm=blg&output=rss"
     parse(url).reverse.compact
   end
 
@@ -79,7 +81,7 @@ class Admin::DashboardController < Admin::BaseController
   end
 
   def parse_rss(body)
-    xml = REXML::Document.new(body)
+    xml = REXML::Document.new(body.force_encoding("ISO-8859-1").encode("UTF-8"))
 
     items        = []
     link         = REXML::XPath.match(xml, "//channel/link/text()").first.value rescue ""
@@ -98,6 +100,6 @@ class Admin::DashboardController < Admin::BaseController
       items << item
     end
 
-    items.sort_by { |item| item.date }
+    return items
   end
 end
