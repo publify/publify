@@ -219,28 +219,28 @@ _footer text here_
 
     context "lightbox" do
       it "should work" do
-        assert_equal "<a href=\"http://photos23.flickr.com/31366117_b1a791d68e_b.jpg\" rel=\"lightbox\" title=\"Matz\"><img src=\"http://photos23.flickr.com/31366117_b1a791d68e_t.jpg\" width=\"67\" height=\"100\" alt=\"Matz\" title=\"Matz\"/></a><p class=\"caption\" style=\"width:67px\">This is Matz, Ruby's creator</p>",
+        assert_equal "<a href=\"http://photos23.flickr.com/31366117_b1a791d68e_b.jpg\" data-toggle=\"lightbox\" title=\"Matz\"><img src=\"http://photos23.flickr.com/31366117_b1a791d68e_t.jpg\" width=\"67\" height=\"100\" alt=\"Matz\" title=\"Matz\"/></a><p class=\"caption\" style=\"width:67px\">This is Matz, Ruby's creator</p>",
           filter_text('<publify:lightbox img="31366117" thumbsize="Thumbnail" displaysize="Large" style="float:left"/>',
                       [:macropre,:macropost],
                       {})
       end
 
       it "shoudl use default thumb image size" do
-        assert_equal "<a href=\"http://photos23.flickr.com/31366117_b1a791d68e_b.jpg\" rel=\"lightbox\" title=\"Matz\"><img src=\"http://photos23.flickr.com/31366117_b1a791d68e_s.jpg\" width=\"75\" height=\"75\" alt=\"Matz\" title=\"Matz\"/></a><p class=\"caption\" style=\"width:75px\">This is Matz, Ruby's creator</p>",
+        assert_equal "<a href=\"http://photos23.flickr.com/31366117_b1a791d68e_b.jpg\" data-toggle=\"lightbox\" title=\"Matz\"><img src=\"http://photos23.flickr.com/31366117_b1a791d68e_s.jpg\" width=\"75\" height=\"75\" alt=\"Matz\" title=\"Matz\"/></a><p class=\"caption\" style=\"width:75px\">This is Matz, Ruby's creator</p>",
           filter_text('<publify:lightbox img="31366117" displaysize="Large"/>',
                       [:macropre,:macropost],
                       {})
       end
 
       it "should use default display image size" do
-        assert_equal "<a href=\"http://photos23.flickr.com/31366117_b1a791d68e_o.jpg\" rel=\"lightbox\" title=\"Matz\"><img src=\"http://photos23.flickr.com/31366117_b1a791d68e_s.jpg\" width=\"75\" height=\"75\" alt=\"Matz\" title=\"Matz\"/></a><p class=\"caption\" style=\"width:75px\">This is Matz, Ruby's creator</p>",
+        assert_equal "<a href=\"http://photos23.flickr.com/31366117_b1a791d68e_o.jpg\" data-toggle=\"lightbox\" title=\"Matz\"><img src=\"http://photos23.flickr.com/31366117_b1a791d68e_s.jpg\" width=\"75\" height=\"75\" alt=\"Matz\" title=\"Matz\"/></a><p class=\"caption\" style=\"width:75px\">This is Matz, Ruby's creator</p>",
           filter_text('<publify:lightbox img="31366117"/>',
                       [:macropre,:macropost],
                       {})
       end
 
       it "should work with caption" do
-        assert_equal "<a href=\"http://photos23.flickr.com/31366117_b1a791d68e_o.jpg\" rel=\"lightbox\" title=\"Matz\"><img src=\"http://photos23.flickr.com/31366117_b1a791d68e_s.jpg\" width=\"75\" height=\"75\" alt=\"Matz\" title=\"Matz\"/></a>",
+        assert_equal "<a href=\"http://photos23.flickr.com/31366117_b1a791d68e_o.jpg\" data-toggle=\"lightbox\" title=\"Matz\"><img src=\"http://photos23.flickr.com/31366117_b1a791d68e_s.jpg\" width=\"75\" height=\"75\" alt=\"Matz\" title=\"Matz\"/></a>",
           filter_text('<publify:lightbox img="31366117" caption=""/>',
                       [:macropre,:macropost],
                       {})

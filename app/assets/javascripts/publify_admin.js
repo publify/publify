@@ -11,5 +11,6 @@
 //= require typeahead
 //= require admin_publify
 //= require sidebar
+//= require lightbox
 
 // Front javascript manifest
