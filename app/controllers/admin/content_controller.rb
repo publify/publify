@@ -17,7 +17,9 @@ class Admin::ContentController < Admin::BaseController
     @articles = Article.search_with(@search).page(params[:page]).per(this_blog.admin_display_elements)
 
     if request.xhr?
-      render partial: 'article_list', locals: { articles: @articles }
+      respond_to do |format|
+        format.js {  }
+      end
     else
       @article = Article.new(params[:article])
     end
