@@ -1,5 +1,5 @@
 <div class='alert alert-info'>
-  <p>
+<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>  <p>
   <%= t(".dashboard_explain", available_actions: dashboard_action_links) %>
   </p>
   <%- if current_user.can_access_to_themes? %>
