@@ -1,8 +1,8 @@
 <input type="hidden" name="user_textfilter" id="user_textfilter" value="<%= current_user.text_filter_name %>" />
 
 <%= error_messages_for 'page' %>
-<div class='row'>
-  <div class='col-md-12'>
+<div class='row save-bar'>
+  <div class='col-md-8 col-md-offset-2'>
     <span class='pull-right'>
       <%= link_to(t('.cancel'), {action: 'index'}, {class: 'btn btn-default'}) %>
       <!-- Button trigger modal -->
