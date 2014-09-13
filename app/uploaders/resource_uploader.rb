@@ -12,8 +12,6 @@ class ResourceUploader < CarrierWave::Uploader::Base
 
   include CarrierWave::MiniMagick
 
-  process :set_content_type
-
   def store_dir
     "files/#{model.class.to_s.underscore}/#{model.id}"
   end
