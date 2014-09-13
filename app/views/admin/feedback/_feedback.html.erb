@@ -1,42 +1,7 @@
 <tr id='feedback_<%= comment.id %>' class='<%= comment.state.to_s.downcase %>'>
   <% if comment.state.to_s.downcase == 'spam'%>
-  <td></td>
-  <td style='text-align: center'>
-      <%= avatar_tag(:email => comment.email, :url => comment.url, :size => 48, :class => 'img-circle') %>
-      <p class='action'><span class='label label-danger'><%= t("admin.feedback.state.#{comment.state}") %></span></p>
-  </td>
-  <td colspan=4>
-    <%= link_to comment.article.title, :controller => 'feedback', :action => 'article', :id => comment.article_id %>
-    <p>
-      <small>
-        <%= t('.by:')%> <%= mail_to h(comment.email), h(comment.author) %>
-        <%= link_to "(#{h(comment.url)})".html_safe, comment.url unless comment.url.blank? %>
-        <%= t('.on') %> <%= l(comment.created_at) %>
-      </small>
-    </p>
-    <p>
-      <small>
-        <%= t(".this_comment_by_was_flagged_as_spam", author: comment.author, cancel_link: link_to(t('.cancel'), url: {action: 'change_state', id: comment.id, remote: true})) %> 
-        <%= toggle_element "feedback_#{comment.id}" %>
-      </small>
-    </p>
-  </td>
+    <%= render :partial => 'spam', :locals => { :comment => comment } %>
   <% else %>
-  <td><input class= "feedback_check" type="checkbox" name="feedback_check[<%= comment.id %>]"/></td>
-  <td style='text-align: center'>
-    <%= avatar_tag(:email => comment.email, :url => comment.url, :size => 80, :class => 'img-circle') %>
-    <p class='action'><span class='label <%= comment_class comment.state.to_s.downcase %>'><%= t("admin.feedback.state.#{comment.state}") %></span></p>
-  </td>
-  <td>
-    <%= link_to comment.article.title, :controller => 'feedback', :action => 'article', :id => comment.article_id %>
-    <p>
-      <small>
-        <%= t('.by:')%> <%= mail_to h(comment.email), h(comment.author) %>
-        <%= link_to "(#{h(comment.url)})".html_safe, comment.url unless comment.url.blank? %>
-        <%= t('.on') %> <%= l(comment.created_at) %>
-      </small>
-    </p>
-    <%= comment.html(:all) %>
-    <%= show_feedback_actions comment %>
-  </td>
+  <%= render :partial => 'ham', :locals => { :comment => comment } %>
 <% end %>
+</tr>

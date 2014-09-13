@@ -88,21 +88,20 @@ class Admin::FeedbackController < Admin::BaseController
   def change_state
     return unless request.xhr?
 
-    feedback = Feedback.find(params[:id])
-    template = feedback.change_state!
+    @feedback = Feedback.find(params[:id])
+    template = @feedback.change_state!
 
-    render(:update) do |page|
+    respond_to do |format|
+      
       if params[:context] != 'listing'
         @comments = Comment.last_published
         page.replace_html('commentList', :partial => 'admin/dashboard/comment')
       else
         if template == "ham"
-          page.visual_effect :appear, "feedback_#{feedback.id}"
-          page.visual_effect :fade, "placeholder_#{feedback.id}"
+          format.js { render 'ham' }
         else
-          page.visual_effect :appear, "placeholder_#{feedback.id}"
-          page.visual_effect :fade, "feedback_#{feedback.id}"
-        end
+          format.js { render 'spam'}
+        end        
       end
     end
   end
