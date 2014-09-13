@@ -28,7 +28,6 @@ class Admin::DashboardController < Admin::BaseController
 
     @statspam = Comment.spam.count
     @inbound_links = inbound_links
-    puts @inbound_links.inspect
     @publify_links = publify_dev
     publify_version
   end
