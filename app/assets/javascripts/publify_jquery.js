@@ -1,5 +1,5 @@
 $(document).ready(function() {
    $(function() {
-    $( ".datepicker" ).datepicker();
+    $( "#article_published_at" ).datetimepicker();
    });
 });
