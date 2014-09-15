@@ -43,7 +43,11 @@ class Admin::SidebarController < Admin::BaseController
 
     Sidebar.transaction do
       sorted.each_with_index do |sidebar_id, staged_index|
-        # DEV NOTE : Ok, that's a HUGE hack. Sidebar.available are Class, not Sidebar instances. In order to use jQuery.sortable we need that hack: Sidebar.available is an Array, so it's ordered. I arbitrary shift by? IT'SOVER NINE THOUSAND! considering we'll never reach 9K Sidebar instances or Sidebar specializations
+        # DEV NOTE : Ok, that's a HUGE hack. Sidebar.available are Class, not
+        # Sidebar instances. In order to use jQuery.sortable we need that hack:
+        # Sidebar.available is an Array, so it's ordered. I arbitrary shift by?
+        # IT'S OVER NINE THOUSAND! considering we'll never reach 9K Sidebar
+        # instances or Sidebar specializations
         sidebar = if sidebar_id >= 9000
           Sidebar.available_sidebars[sidebar_id - 9000].new
         else
