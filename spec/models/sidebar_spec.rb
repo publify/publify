@@ -7,20 +7,35 @@ describe Sidebar do
     end
   end
 
+  describe "#ordered_sidebars" do
+    context "with several sidebars with different positions" do
+      let(:amazon_sidebar) { AmazonSidebar.new(staged_position: 2) }
+      let(:archives_sidebar) { ArchivesSidebar.new(active_position: 1) }
 
+      before do
+        amazon_sidebar.save
+        archives_sidebar.save
+      end
 
-  describe "#find with an invalid sidebar in the database" do
-    before do
-      Sidebar.class_eval { self.inheritance_column = :bogus }
-      Sidebar.new(:type => "AmazonSidebar").save
-      Sidebar.new(:type => "FooBarSidebar").save
-      Sidebar.class_eval { self.inheritance_column = :type }
+      it "resturns the sidebars ordered by position" do
+        sidebars = Sidebar.ordered_sidebars
+        sidebars.should == [archives_sidebar, amazon_sidebar]
+      end
     end
 
-    it "skips the invalid active sidebar" do
-      sidebars = Sidebar.find :all
-      sidebars.size.should == 1
-      sidebars.first.class.should == AmazonSidebar
+    context "with an invalid sidebar in the database" do
+      before do
+        Sidebar.class_eval { self.inheritance_column = :bogus }
+        Sidebar.new(type: "AmazonSidebar", staged_position: 1).save
+        Sidebar.new(type: "FooBarSidebar", staged_position: 2).save
+        Sidebar.class_eval { self.inheritance_column = :type }
+      end
+
+      it "skips the invalid active sidebar" do
+        sidebars = Sidebar.ordered_sidebars
+        sidebars.size.should == 1
+        sidebars.first.class.should == AmazonSidebar
+      end
     end
   end
 

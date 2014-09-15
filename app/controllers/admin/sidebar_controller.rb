@@ -50,7 +50,7 @@ class Admin::SidebarController < Admin::BaseController
         sidebar = if sidebar_id >= 9000
           Sidebar.available_sidebars[sidebar_id - 9000].new
         else
-          Sidebar.find(sidebar_id)
+          Sidebar.valid.find(sidebar_id)
         end
         sidebar.update_attributes(staged_position: staged_index)
       end
@@ -81,7 +81,7 @@ class Admin::SidebarController < Admin::BaseController
   def flash_sidebars
     unless flash[:sidebars]
       begin
-        active = Sidebar.find(:all, :order => 'active_position ASC')
+        active = Sidebar.valid.order('active_position ASC')
         flash[:sidebars] = active.map {|sb| sb.id }
       rescue => e
         logger.error e
