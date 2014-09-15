@@ -71,6 +71,7 @@ class Admin::SidebarController < Admin::BaseController
 
   protected
 
+  # TODO: Rename and move to a AdminSidebarHelpers module. Or use in instance variable.
   def available
     ::Sidebar.available_sidebars
   end
