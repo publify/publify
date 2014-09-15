@@ -7,18 +7,7 @@ describe Sidebar do
     end
   end
 
-  describe "#find_all_visible" do
-    before do
-      AmazonSidebar.new(:active_position => 1).save
-      AuthorsSidebar.new().save
-    end
 
-    it "returns only the sidebar with active position" do
-      sidebars = Sidebar.find_all_visible
-      sidebars.size.should == 1
-      sidebars.first.class.should == AmazonSidebar
-    end
-  end
 
   describe "#find with an invalid sidebar in the database" do
     before do

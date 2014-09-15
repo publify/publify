@@ -131,14 +131,6 @@ class Sidebar < ActiveRecord::Base
     end
   end
 
-  def self.find_all_visible
-    where('active_position is not null').order('active_position')
-  end
-
-  def self.find_all_staged
-    where('staged_position is not null').order('staged_position')
-  end
-
   def self.ordered_sidebars
     os = []
     Sidebar.all.each do |s| 
