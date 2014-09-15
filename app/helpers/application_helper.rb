@@ -244,6 +244,7 @@ module ApplicationHelper
   end
 
   def new_js_distance_of_time_in_words_to_now(date)
+    # FIXME: Check if this is still relevant somehow.
     # Ruby Date class doesn't have #utc method, but _publify_dev.html.erb
     # passes Ruby Date.
     date = date.to_time
