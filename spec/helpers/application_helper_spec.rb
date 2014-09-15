@@ -88,8 +88,16 @@ describe ApplicationHelper do
       describe "get_reply_context_url" do
 
         it "return link from context" do
-          reply = {'id_str' => '123456789', 'created_at' => DateTime.new(2014,1,23,13,47), 'user' => {'screen_name' => 'a_screen_name', 'entities' => {'url' => {'urls' => [{'expanded_url' => 'an url'}]}}}}
-          expect(get_reply_context_twitter_link(reply)).to eq("<a href=\"https://twitter.com/a_screen_name/status/123456789\">23/01/2014 at 13h47</a>")
+          reply = {
+            'id_str' => '123456789',
+            'created_at' => DateTime.new(2014,1,23,13,47),
+            'user' => {
+              'screen_name' => 'a_screen_name',
+              'entities' => {'url' => {'urls' => [{'expanded_url' => 'an url'}]}}
+            }
+          }
+          expect(get_reply_context_twitter_link(reply)).
+            to eq "<a href=\"https://twitter.com/a_screen_name/status/123456789\">23/01/2014 at 13h47</a>"
         end
 
       end
