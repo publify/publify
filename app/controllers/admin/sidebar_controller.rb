@@ -3,9 +3,6 @@ class Admin::SidebarController < Admin::BaseController
   def index
     @available = available
     @ordered_sidebars = Sidebar.ordered_sidebars
-    # Reset the staged position based on the active position.
-    #Sidebar.delete_all('active_position is null')
-    #flash_sidebars
   end
 
   # Just update a single active Sidebar instance at once
@@ -70,27 +67,8 @@ class Admin::SidebarController < Admin::BaseController
 
   protected
 
-  def show_available
-    render :partial => 'availables', :object => available
-  end
-
   def available
     ::Sidebar.available_sidebars
-  end
-
-  def flash_sidebars
-    unless flash[:sidebars]
-      begin
-        active = Sidebar.valid.order('active_position ASC')
-        flash[:sidebars] = active.map {|sb| sb.id }
-      rescue => e
-        logger.error e
-        # Avoiding the view to crash
-        @active = []
-        flash[:error] = I18n.t('admin.sidebar.index.error')
-      end
-    end
-    flash[:sidebars]
   end
 
   helper_method :available

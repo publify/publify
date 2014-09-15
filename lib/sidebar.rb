@@ -238,10 +238,6 @@ class Sidebar < ActiveRecord::Base
     self[:config] ||= { }
   end
 
-  def sidebar_controller
-    @sidebar_controller ||= SidebarController.available_sidebars.find { |s| s.short_name == self.controller }
-  end
-
   def html_id
     short_name + '-' + id.to_s
   end
