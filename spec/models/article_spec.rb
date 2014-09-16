@@ -156,12 +156,29 @@ describe Article do
     end
   end
 
-  ### XXX: Should we have a test here?
-  it "test_send_pings" do
-  end
+  describe "saving an Article" do
+    context "with a blog that sends outbound pings" do
+      let(:referenced_url) { 'http://anotherblog.org/a-post' }
+      let!(:blog) { create(:blog, send_outbound_pings: 1) }
 
-  ### XXX: Should we have a test here?
-  it "test_send_multiple_pings" do
+      it 'sends a pingback to urls linked in the body' do
+        ActiveRecord::Base.observers.should include(:email_notifier)
+        ActiveRecord::Base.observers.should include(:web_notifier)
+        a = Article.new :body => %{<a href="#{referenced_url}">}, :title => 'Test the pinging', :published => true
+        mock_ping = double('ping')
+        a.pings.stub(:build) { double 'other ping' }
+        a.pings.stub(:build).with("url" => referenced_url).and_return mock_ping
+        mock_ping.should_receive(:send_pingback_or_trackback).with(%r{http://myblog.net/\d{4}/\d{2}/\d{2}/test-the-pinging})
+
+        expect(a.html_urls.size).to eq(1)
+        a.save!
+        a.should be_just_published
+        a = Article.find(a.id)
+        a.should_not be_just_published
+        # Saving again will not resend the pings
+        a.save
+      end
+    end
   end
 
   describe "Testing redirects" do

@@ -21,36 +21,11 @@ describe :ping do
 
       it 'Pingback sent to url found in referenced body' do
         mock_response.should_receive(:[]).with('X-Pingback').at_least(:once).and_return(nil)
-        mock_response.should_receive(:body).at_least(:once)\
-          .and_return(%{<link rel="pingback" href="http://anotherblog.org/xml-rpc" />})
+        mock_response.should_receive(:body).at_least(:once).
+          and_return(%{<link rel="pingback" href="#{pingback_target}" />})
         mock_xmlrpc_response.should_receive(:call).with('pingback.ping', referrer_url, referenced_url)
         make_and_send_ping
       end
-    end
-
-    context "with a send outbound pings blog" do
-      let!(:blog) { create(:blog, send_outbound_pings: 1) }
-
-      it 'Pingback sent when new article is saved' do
-        ActiveRecord::Base.observers.should include(:email_notifier)
-        ActiveRecord::Base.observers.should include(:web_notifier)
-        a = Article.new :body => '<a href="http://anotherblog.org/a-post">', :title => 'Test the pinging', :published => true
-
-        Net::HTTP.should_receive(:get_response).and_return(mock_response)
-        XMLRPC::Client.should_receive(:new2).with(pingback_target).and_return(mock_xmlrpc_response)
-
-        mock_response.should_receive(:[]).with('X-Pingback').at_least(:once).and_return(pingback_target)
-        mock_xmlrpc_response.should_receive(:call).with('pingback.ping', %r{http://myblog.net/\d{4}/\d{2}/\d{2}/test-the-pinging}, referenced_url)
-
-        expect(a.html_urls.size).to eq(1)
-        a.save!
-        a.should be_just_published
-        a = Article.find(a.id)
-        a.should_not be_just_published
-        # Saving again will not resend the pings
-        a.save
-      end
-
     end
 
     def make_and_send_ping
