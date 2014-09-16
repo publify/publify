@@ -75,30 +75,18 @@ You need to setup Amazon S3 storage to be able to upload files on your
 blog. Set Heroku config vars.
 
 ```yaml
-heroku config:set provider=AWS 
-aws_access_key_id=YOUR_AWS_ACCESS_KEY_ID 
-aws_secret_access_key=YOUR_AWS_SECRET_ACCESS_KEY 
+heroku config:set provider=AWS
+aws_access_key_id=YOUR_AWS_ACCESS_KEY_ID
+aws_secret_access_key=YOUR_AWS_SECRET_ACCESS_KEY
 aws_bucket=YOUR_AWS_BUCKET_NAME
 ```
 
 To generate the Gemfile.lock, run:
 ```bash
-HEROKU=true bundle install
+STACK=cedar bundle install
 ```
 
 Remove Gemfile.lock from .gitignore and commit it.
-
-Add the user env Heroku plugin:
-
-```bash
-heroku labs:enable user-env-compile -a your_app_name
-```
-
-Add the HEROKU config variable to your Heroku instance:
-
-```bash
-heroku set:config HEROKU=true
-```
 
 Push the repository to Heroku.
 
