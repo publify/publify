@@ -227,7 +227,7 @@ module ApplicationHelper
   end
 
   def get_reply_context_twitter_link(reply)
-    link_to(display_date_and_time(reply['created_at']),
+    link_to(display_date_and_time(reply['created_at'].to_time.in_time_zone),
             "https://twitter.com/#{reply['user']['screen_name']}/status/#{reply['id_str']}")
   end
 
