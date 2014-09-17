@@ -3,7 +3,10 @@ require 'spec_helper'
 describe SetupController do
   describe 'when no blog is configured' do
     before do
+      # Set up database similar to result of seeding
       Blog.new.save
+      create :tag
+      create :none
     end
 
     describe 'GET setup' do
