@@ -11,7 +11,7 @@ describe "shared/_page_header.html.erb" do
     it "shows the blog's custom tracking field if it exists" do
       Blog.default.custom_tracking_field = "the-custom-tracking-field"
       render
-      rendered.should contain "the-custom-tracking-field"
+      rendered.should match "the-custom-tracking-field"
     end
   end
 end

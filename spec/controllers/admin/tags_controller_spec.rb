@@ -32,7 +32,7 @@ describe Admin::TagsController do
 
         context "with view" do
           render_views
-          it { expect(response).to have_selector("form[action='/admin/tags/destroy/#{tag.id}'][method='post']") }
+          it { expect(response.body).to have_selector("form[action='/admin/tags/destroy/#{tag.id}'][method='post']") }
         end
       end
 
