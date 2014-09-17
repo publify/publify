@@ -21,7 +21,7 @@ class InitialSchema < ActiveRecord::Migration
       t.integer "parent_id"
     end
 
-    add_index "categories", ["permalink"], name: "index_categories_on_permalink"
+    add_index "categories", ["permalink"]
 
     create_table "categorizations", force: true do |t|
       t.integer "article_id"
@@ -50,11 +50,12 @@ class InitialSchema < ActiveRecord::Migration
       t.datetime "published_at"
       t.string   "state"
       t.integer  "parent_id"
-      t.string   "password"
+      t.text     "settings"
+      t.string   "post_type",      default: "read"
     end
 
-    add_index "contents", ["published"], name: "index_contents_on_published"
-    add_index "contents", ["text_filter_id"], name: "index_contents_on_text_filter_id"
+    add_index "contents", ["published"]
+    add_index "contents", ["text_filter_id"]
 
     create_table "feedback", force: true do |t|
       t.string   "type"
@@ -77,23 +78,17 @@ class InitialSchema < ActiveRecord::Migration
       t.datetime "published_at"
       t.string   "state"
       t.boolean  "status_confirmed"
+      t.string   "user_agent"
     end
 
-    add_index "feedback", ["article_id"], name: "index_feedback_on_article_id"
-    add_index "feedback", ["text_filter_id"], name: "index_feedback_on_text_filter_id"
-
-    create_table "notifications", force: true do |t|
-      t.integer  "content_id"
-      t.integer  "user_id"
-      t.datetime "created_at"
-      t.datetime "updated_at"
-    end
+    add_index "feedback", ["article_id"]
+    add_index "feedback", ["text_filter_id"]
 
     create_table "page_caches", force: true do |t|
       t.string "name"
     end
 
-    add_index "page_caches", ["name"], name: "index_page_caches_on_name"
+    add_index "page_caches", ["name"]
 
     create_table "pings", force: true do |t|
       t.integer  "article_id"
@@ -101,7 +96,13 @@ class InitialSchema < ActiveRecord::Migration
       t.datetime "created_at"
     end
 
-    add_index "pings", ["article_id"], name: "index_pings_on_article_id"
+    add_index "pings", ["article_id"]
+
+    create_table "post_types", force: true do |t|
+      t.string "name"
+      t.string "permalink"
+      t.string "description"
+    end
 
     create_table "profiles", force: true do |t|
       t.string "label"
@@ -114,14 +115,22 @@ class InitialSchema < ActiveRecord::Migration
       t.integer "right_id"
     end
 
+    create_table "redirections", force: true do |t|
+      t.integer "content_id"
+      t.integer "redirect_id"
+    end
+
     create_table "redirects", force: true do |t|
-      t.string "from_path"
-      t.string "to_path"
+      t.string   "from_path"
+      t.string   "to_path"
+      t.string   "origin"
+      t.datetime "created_at"
+      t.datetime "updated_at"
     end
 
     create_table "resources", force: true do |t|
       t.integer  "size"
-      t.string   "filename"
+      t.string   "upload"
       t.string   "mime"
       t.datetime "created_at"
       t.datetime "updated_at"
@@ -134,11 +143,6 @@ class InitialSchema < ActiveRecord::Migration
       t.string   "itunes_keywords"
       t.string   "itunes_category"
       t.boolean  "itunes_explicit"
-    end
-
-    create_table "rights", force: true do |t|
-      t.string "name"
-      t.string "description"
     end
 
     create_table "sidebars", force: true do |t|
@@ -188,30 +192,14 @@ class InitialSchema < ActiveRecord::Migration
       t.boolean  "notify_via_email"
       t.boolean  "notify_on_new_articles"
       t.boolean  "notify_on_comments"
-      t.boolean  "notify_watch_my_articles"
-      t.string   "jabber"
       t.integer  "profile_id"
       t.string   "remember_token"
       t.datetime "remember_token_expires_at"
       t.string   "text_filter_id",            default: "1"
-      t.string   "editor",                    default: "simple"
       t.string   "state",                     default: "active"
-      t.string   "firstname"
-      t.string   "lastname"
-      t.string   "nickname"
-      t.string   "url"
-      t.string   "msn"
-      t.string   "aim"
-      t.string   "yahoo"
-      t.string   "twitter"
-      t.text     "description"
-      t.boolean  "show_url"
-      t.boolean  "show_msn"
-      t.boolean  "show_aim"
-      t.boolean  "show_yahoo"
-      t.boolean  "show_twitter"
-      t.boolean  "show_jabber"
       t.datetime "last_connection"
+      t.text     "settings"
+      t.integer  "resource_id"
     end
   end
 end
