@@ -75,6 +75,8 @@ gem 'twitter', '~> 5.16.0'
 gem 'uuidtools', '~> 2.1.1'
 gem 'feedjira', '~> 2.0.0'
 
+gem 'bootstrap-sass', '~> 3.3.6'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', '~> 9.0'
