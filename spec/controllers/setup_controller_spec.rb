@@ -3,10 +3,7 @@ require 'spec_helper'
 describe SetupController do
   describe 'when no blog is configured' do
     before do
-      User.delete_all
-      Article.delete_all
       Blog.new.save
-      Article.create(:title => "First post").save!
     end
 
     describe 'GET setup' do
@@ -18,24 +15,52 @@ describe SetupController do
     end
 
     describe 'POST setup' do
-      before do
-        post 'index', {:setting => {:blog_name => 'Foo', :email => 'foo@bar.net'}}
+      let(:post_setup_index) {
+        post 'index', {setting: {blog_name: 'Foo', email: 'foo@bar.net'}} }
+
+      context "when a first article exists" do
+        before do
+          Article.create(title: "First post").save!
+          post_setup_index
+        end
+
+        specify { response.should redirect_to(controller: "accounts",
+                                              action: 'confirm') }
+
+        it "should correctly initialize blog and users" do
+          Blog.default.blog_name.should == 'Foo'
+          admin = User.find_by_login("admin")
+          admin.should_not be_nil
+          admin.email.should == 'foo@bar.net'
+          Article.first.user.should == admin
+          Page.first.user.should == admin
+        end
+
+        it "should log in admin user" do
+          session[:user_id].should == User.find_by_login("admin").id
+        end
       end
 
-      specify { response.should redirect_to(controller: "accounts",
-                                            action: 'confirm') }
+      context "when no first article exists" do
+        before do
+          post_setup_index
+        end
 
-      it "should correctly initialize blog and users" do
-        Blog.default.blog_name.should == 'Foo'
-        admin = User.find_by_login("admin")
-        admin.should_not be_nil
-        admin.email.should == 'foo@bar.net'
-        Article.first.user.should == admin
-        Page.first.user.should == admin
-      end
+        specify { response.should redirect_to(controller: "accounts",
+                                              action: 'confirm') }
 
-      it "should log in admin user" do
-        session[:user_id].should == User.find_by_login("admin").id
+        it "should correctly initialize blog and users" do
+          Blog.default.blog_name.should == 'Foo'
+          admin = User.find_by_login("admin")
+          admin.should_not be_nil
+          admin.email.should == 'foo@bar.net'
+          Article.first.user.should == admin
+          Page.first.user.should == admin
+        end
+
+        it "should log in admin user" do
+          session[:user_id].should == User.find_by_login("admin").id
+        end
       end
     end
   end

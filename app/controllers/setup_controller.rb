@@ -51,7 +51,7 @@ class SetupController < ApplicationController
                      allow_pings: 1,
                      published: 1,
                      permalink: 'hello-world',
-                     tags: [Tag.find(:first)],
+                     tags: [Tag.first],
                      user: user)
     end
   end
