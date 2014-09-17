@@ -64,22 +64,22 @@ describe SetupController do
       end
     end
   end
-  
+
   describe 'POST setup with incorrect parameters' do
     before do
       Blog.delete_all
       User.delete_all
       Blog.new.save
     end
-    
+
     it "empty blog name should raise an error" do
-      post 'index', {:setting => {:blog_name => '', :email => 'foo@bar.net'}}
-      response.should redirect_to(:action => 'index')
+      post 'index', {setting: {blog_name: '', email: 'foo@bar.net'}}
+      response.should redirect_to(action: 'index')
     end
-    
+
     it "empty email should raise an error" do
-      post 'index', {:setting => {:blog_name => 'Foo', :email => ''}}
-      response.should redirect_to(:action => 'index')
+      post 'index', {setting: {blog_name: 'Foo', email: ''}}
+      response.should redirect_to(action: 'index')
     end
   end
 
@@ -90,16 +90,16 @@ describe SetupController do
         get 'index'
       end
 
-      specify { response.should redirect_to(:controller => 'articles', :action => 'index') }
+      specify { response.should redirect_to(controller: 'articles', action: 'index') }
     end
 
     describe 'POST setup' do
       before do
         FactoryGirl.create(:blog)
-        post 'index', {:setting => {:blog_name => 'Foo', :email => 'foo@bar.net'}}
+        post 'index', {setting: {blog_name: 'Foo', email: 'foo@bar.net'}}
       end
 
-      specify { response.should redirect_to(:controller => 'articles', :action => 'index') }
+      specify { response.should redirect_to(controller: 'articles', action: 'index') }
 
       it "should not initialize blog and users" do
         Blog.default.blog_name.should_not == 'Foo'

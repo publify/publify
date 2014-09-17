@@ -1,19 +1,21 @@
 class SetupController < ApplicationController
-  before_filter :check_config, :only => 'index'
+  before_filter :check_config, only: 'index'
   layout 'accounts'
 
   def index
     return if not request.post?
-    
+
     this_blog.blog_name = params[:setting][:blog_name]
     this_blog.base_url = blog_base_url
 
-    @user = User.new(:login => 'admin', :email => params[:setting][:email], :nickname => "Publify Admin")
+    @user = User.new(login: 'admin',
+                     email: params[:setting][:email],
+                     nickname: "Publify Admin")
     @user.generate_password!
     @user.name = @user.login
 
     unless this_blog.valid? and @user.valid?
-      redirect_to :action => 'index'
+      redirect_to action: 'index'
       return
     end
 
@@ -31,7 +33,7 @@ class SetupController < ApplicationController
       update_or_create_first_post_with_user @user
       create_first_page @user
     end
-    
+
     redirect_to controller: "accounts", action: "confirm"
   end
 
@@ -55,13 +57,13 @@ class SetupController < ApplicationController
                      user: user)
     end
   end
-    
+
   def create_first_page user
     Page.create(name: "about", published: true, title: I18n.t("setup.page.about"), user: user, body: I18n.t("setup.page.body"))
   end
 
   def check_config
     return unless this_blog.configured?
-    redirect_to :controller => 'articles', :action => 'index'
+    redirect_to controller: 'articles', action: 'index'
   end
 end
