@@ -62,6 +62,8 @@ gem "jquery-ui-rails", "~> 4.2.0"
 gem 'rails_autolink', '~> 1.1.0'
 gem 'dynamic_form', '~> 1.1.4'
 
+gem 'non-stupid-digest-assets'
+
 # removed from Rails-core as Rails 4.0
 gem 'actionpack-page_caching', '~> 1.0.2'
 gem 'rails-observers', '~> 0.1.2'
@@ -70,7 +72,6 @@ group :assets do
   gem 'sass-rails', " ~> 4.0.3"
   gem 'coffee-rails', " ~> 4.0.1"
   gem 'uglifier'
-  gem 'non-stupid-digest-assets'
 end
 
 group :development, :test do
