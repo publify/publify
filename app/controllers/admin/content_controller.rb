@@ -105,7 +105,7 @@ class Admin::ContentController < Admin::BaseController
     @article.text_filter ||= current_user.default_text_filter
 
     if @article.title.blank?
-      lastid = Article.find(:first, :order => 'id DESC').id
+      lastid = Article.order('id desc').first.id
       @article.title = "Draft article " + lastid.to_s
     end
 
