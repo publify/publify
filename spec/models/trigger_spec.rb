@@ -37,4 +37,20 @@ describe Trigger do
     @page.should be_published
   end
 
+  describe ".remove" do
+    let!(:item) { create :content }
+    let!(:other_item) { create :content }
+
+    let!(:trigger_to_remove) {
+      Trigger.create due_at: 1.day.from_now, pending_item: item, trigger_method: 'foo' }
+    let!(:other_triggers) { [
+      Trigger.create(due_at: 1.day.from_now, pending_item: item, trigger_method: 'bar'),
+      Trigger.create(due_at: 1.day.from_now, pending_item: other_item, trigger_method: 'foo')
+    ] }
+
+    it "removes the trigger for the given item and conditions" do
+      Trigger.remove item, trigger_method: 'foo'
+      Trigger.all.should =~ other_triggers
+    end
+  end
 end
