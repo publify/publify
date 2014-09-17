@@ -38,19 +38,26 @@ describe Trigger do
   end
 
   describe ".remove" do
-    let!(:item) { create :content }
-    let!(:other_item) { create :content }
+    context "with several existing triggers" do
+      let!(:item) { create :content }
+      let!(:other_item) { create :content }
 
-    let!(:trigger_to_remove) {
-      Trigger.create due_at: 1.day.from_now, pending_item: item, trigger_method: 'foo' }
-    let!(:other_triggers) { [
-      Trigger.create(due_at: 1.day.from_now, pending_item: item, trigger_method: 'bar'),
-      Trigger.create(due_at: 1.day.from_now, pending_item: other_item, trigger_method: 'foo')
-    ] }
+      let!(:trigger_item_foo) {
+        Trigger.create due_at: 1.day.from_now, pending_item: item, trigger_method: 'foo' }
+      let!(:trigger_item_bar) {
+        Trigger.create due_at: 1.day.from_now, pending_item: item, trigger_method: 'bar' }
+      let!(:trigger_other_item_foo) {
+        Trigger.create due_at: 1.day.from_now, pending_item: other_item, trigger_method: 'foo' }
 
-    it "removes the trigger for the given item and conditions" do
-      Trigger.remove item, trigger_method: 'foo'
-      Trigger.all.should =~ other_triggers
+      it "removes the trigger for the given item and condition" do
+        Trigger.remove item, trigger_method: 'foo'
+        Trigger.all.should =~ [trigger_item_bar, trigger_other_item_foo]
+      end
+
+      it "removes the triggers for the given item" do
+        Trigger.remove item
+        Trigger.all.should =~ [trigger_other_item_foo]
+      end
     end
   end
 end
