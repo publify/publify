@@ -34,7 +34,7 @@ class Trigger < ActiveRecord::Base
       return if pending_item.new_record?
       conditions_string =
         conditions.keys.collect{ |k| "(#{k} = :#{k})"}.join(' AND ')
-      with_scope(:find => where(conditions_string, conditions)) do
+      where(conditions_string, conditions) do
         delete_all(["pending_item_id = ? AND pending_item_type = ?",
                     pending_item.id, pending_item.class.to_s])
       end
