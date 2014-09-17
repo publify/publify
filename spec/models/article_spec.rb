@@ -215,15 +215,6 @@ describe Article do
     assert_equal 2, articles.size
   end
 
-  it "test_find_published" do
-    article = create(:article, title: 'Article 1!', state: 'published')
-    create(:article, published: false, state: 'draft')
-    articles = Article.find_published
-    assert_equal 1, articles.size
-    articles = Article.find_published(:all, :conditions => "title = 'Article 1!'")
-    assert_equal [article], articles
-  end
-
   it "test_just_published_flag" do
 
     art = Article.new(:title => 'title', :body => 'body', :published => true)
@@ -260,7 +251,7 @@ describe Article do
 
   def assert_sets_trigger(art)
     assert_equal 1, Trigger.count
-    assert Trigger.find(:first, :conditions => ['pending_item_id = ?', art.id])
+    assert Trigger.where(pending_item_id: art.id).first
     assert !art.published
     t = Time.now
     # We stub the Time.now answer to emulate a sleep of 4. Avoid the sleep. So
@@ -279,7 +270,7 @@ describe Article do
     a.resources << create(:resource)
     assert_equal 3, a.resources.size
     a.destroy
-    assert_equal 0, Resource.find(:all, :conditions => "article_id = #{a.id}").size
+    assert_equal 0, Resource.where(article_id: a.id).size
   end
 
   describe "#interested_users" do

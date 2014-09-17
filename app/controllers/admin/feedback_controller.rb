@@ -2,7 +2,7 @@ class Admin::FeedbackController < Admin::BaseController
   cache_sweeper :blog_sweeper
 
   def index
-    scoped_feedback = Feedback.scoped
+    scoped_feedback = Feedback
 
     if params[:only].present?
       scoped_feedback = scoped_feedback.send(params[:only])
@@ -37,7 +37,7 @@ class Admin::FeedbackController < Admin::BaseController
 
   def create
     @article = Article.find(params[:article_id])
-    @comment = @article.comments.build(params[:comment])
+    @comment = @article.comments.build(params[:comment].permit!)
     @comment.user_id = current_user.id
 
     if request.post? and @comment.save
@@ -64,7 +64,7 @@ class Admin::FeedbackController < Admin::BaseController
       redirect_to :action => 'index'
       return
     end
-    comment.attributes = params[:comment]
+    comment.attributes = params[:comment].permit!
     if request.post? and comment.save
       flash[:success] = I18n.t('admin.feedback.update.success')
       redirect_to action: 'article', id: comment.article.id

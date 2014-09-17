@@ -13,12 +13,12 @@ class Article < Content
   validates_uniqueness_of :guid
   validates_presence_of :title
 
-  has_many :pings, dependent: :destroy, order: "created_at ASC"
-  has_many :trackbacks, dependent: :destroy, order: "created_at ASC"
-  has_many :feedback, order: "created_at DESC"
-  has_many :resources, order: "created_at DESC", dependent: :nullify
+  has_many :pings, -> { order('created_at ASC') }, dependent: :destroy
+  has_many :trackbacks, -> { order('created_at ASC') }, dependent: :destroy
+  has_many :feedback, -> { order('created_at DESC') }
+  has_many :resources, -> {order("created_at DESC") }, dependent: :nullify
   has_many :triggers, as: :pending_item
-  has_many :comments, dependent: :destroy, order: "created_at ASC" do
+  has_many :comments, -> {order('created_at ASC')}, dependent: :destroy do
     # Get only ham or presumed_ham comments
     def ham
       where(state: ["presumed_ham", "ham"])
@@ -30,13 +30,11 @@ class Article < Content
     end
   end
 
-  with_options(:conditions => { :published => true }, :order => 'created_at ASC') do |this|
-    this.has_many :published_comments, class_name: "Comment"
-    this.has_many :published_trackbacks, class_name: "Trackback"
-    this.has_many :published_feedback, class_name: "Feedback"
-  end
+  has_many :published_comments,    -> { where(published: true).order('created_at ASC') }, class_name: "Comment"
+  has_many :published_trackbacks,  -> { where(published: true).order('created_at ASC') }, class_name: "Trackback"
+  has_many :published_feedback,    -> { where(published: true).order('created_at ASC') }, class_name: "Feedback"
 
-  has_and_belongs_to_many :tags
+  has_and_belongs_to_many :tags, join_table: 'articles_tags'
 
   before_create :create_guid
   before_save :set_published_at, :ensure_settings_type, :set_permalink
@@ -196,12 +194,12 @@ class Article < Content
     req_params[:published_at] = date_range if date_range
 
     return nil if req_params.empty? # no search if no params send
-    article = find_published(:first, :conditions => req_params)
+    article = published.where(req_params).first
     return article if article
 
     if params[:title]
       req_params[:permalink] = CGI.escape(params[:title])
-      article = find_published(:first, :conditions => req_params)
+      article = published.where(req_params).first
       return article if article
     end
 
@@ -225,7 +223,7 @@ class Article < Content
   end
 
   def interested_users
-    User.find_all_by_notify_on_new_articles(true)
+    User.where(notify_on_new_articles: true)
   end
 
   def notify_user_via_email(user)

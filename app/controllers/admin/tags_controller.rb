@@ -20,7 +20,7 @@ class Admin::TagsController < Admin::BaseController
                   Tag.find(params[:id])
                 end
 
-    @tag.attributes = params[:tag]
+    @tag.attributes = params[:tag].permit! if params[:tag]
     if request.post?
       old_name = @tag.name if @tag.id
 

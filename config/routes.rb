@@ -1,38 +1,38 @@
 Rails.application.routes.draw do
   # TODO: use only in archive sidebar. See how made other system
-  match ':year/:month', :to => 'articles#index', :year => /\d{4}/, :month => /\d{1,2}/, :as => 'articles_by_month', :format => false
-  match ':year/:month/page/:page', :to => 'articles#index', :year => /\d{4}/, :month => /\d{1,2}/, :as => 'articles_by_month_page', :format => false
-  match ':year', :to => 'articles#index', :year => /\d{4}/, :as => 'articles_by_year', :format => false
-  match ':year/page/:page', :to => 'articles#index', :year => /\d{4}/, :as => 'articles_by_year_page', :format => false
+  get ':year/:month', :to => 'articles#index', :year => /\d{4}/, :month => /\d{1,2}/, :as => 'articles_by_month', :format => false
+  get ':year/:month/page/:page', :to => 'articles#index', :year => /\d{4}/, :month => /\d{1,2}/, :as => 'articles_by_month_page', :format => false
+  get ':year', :to => 'articles#index', :year => /\d{4}/, :as => 'articles_by_year', :format => false
+  get ':year/page/:page', :to => 'articles#index', :year => /\d{4}/, :as => 'articles_by_year_page', :format => false
 
 
-  match 'articles.:format', :to => 'articles#index', :constraints => {:format => 'rss'}, :as => 'rss'
-  match 'articles.:format', :to => 'articles#index', :constraints => {:format => 'atom'}, :as => 'atom'
+  get 'articles.:format', :to => 'articles#index', :constraints => {:format => 'rss'}, :as => 'rss'
+  get 'articles.:format', :to => 'articles#index', :constraints => {:format => 'atom'}, :as => 'atom'
 
-  scope :controller => 'xml', :path => 'xml', :as => 'xml' do
-    match 'articlerss/:id/feed.xml', :action => 'articlerss', :format => false
-    match 'commentrss/feed.xml', :action => 'commentrss', :format => false
-    match 'trackbackrss/feed.xml', :action => 'trackbackrss', :format => false
+  scope :controller => 'xml', :path => 'xml' do
+    get 'articlerss/:id/feed.xml', :action => 'articlerss', :format => false
+    get 'commentrss/feed.xml', :action => 'commentrss', :format => false
+    get 'trackbackrss/feed.xml', :action => 'trackbackrss', :format => false
   end
 
-  match 'xml/:format', :to => 'xml#feed', :type => 'feed', :constraints => {:format => 'rss'}, :as => 'xml'
-  match 'sitemap.xml', :to => 'xml#feed', :format => 'googlesitemap', :type => 'sitemap', :as => 'xml'
+  get 'xml/:format', :to => 'xml#feed', :type => 'feed', :constraints => {:format => 'rss'}, :as => 'xml'
+  get 'sitemap.xml', :to => 'xml#feed', :format => 'googlesitemap', :type => 'sitemap', :as => 'sitemap_xml'
 
   scope :controller => 'xml', :path => 'xml', :as => 'xml' do
     scope :action => 'feed' do
-      match ':format/feed.xml', :type => 'feed'
-      match ':format/:type/:id/feed.xml'
-      match ':format/:type/feed.xml'
+      get ':format/feed.xml', :type => 'feed'
+      get ':format/:type/:id/feed.xml'
+      get ':format/:type/feed.xml'
     end
   end
 
-  match 'xml/rsd', :to => 'xml#rsd', :format => false
-  match 'xml/feed', :to => 'xml#feed'
+  get 'xml/rsd', :to => 'xml#rsd', :format => false
+  get 'xml/feed', :to => 'xml#feed'
 
   # CommentsController
   resources :comments, :as => 'admin_comments' do
     collection do
-      match :preview
+      match :preview, via: [:get, :post, :put, :delete]
     end
   end
 
@@ -42,27 +42,27 @@ Rails.application.routes.draw do
   post "trackbacks/:id/:day/:month/:year", :to => 'trackbacks#create', :format => false
 
   # ArticlesController
-  match '/live_search/', :to => 'articles#live_search', :as => :live_search_articles, :format => false
-  match '/search/:q(.:format)/page/:page', :to => 'articles#search', :as => 'search'
-  match '/search(/:q(.:format))', :to => 'articles#search', :as => 'search'
-  match '/search/', :to => 'articles#search', :as => 'search_base', :format => false
-  match '/archives/', :to => 'articles#archives', :format => false
-  match '/page/:page', :to => 'articles#index', :page => /\d+/, :format => false
+  get '/live_search/', :to => 'articles#live_search', :as => :live_search_articles, :format => false
+  get '/search/:q(.:format)/page/:page', :to => 'articles#search', :as => 'search', defaults: {page: 1}
+  get '/search(/:q(.:format))', :to => 'articles#search'
+  get '/search/', :to => 'articles#search', :as => 'search_base', :format => false
+  get '/archives/', :to => 'articles#archives', :format => false
+  get '/page/:page', :to => 'articles#index', :page => /\d+/, :format => false
   get '/pages/*name', :to => 'articles#view_page', :format => false
-  match 'previews(/:id)', :to => 'articles#preview', :format => false
-  match 'previews_pages(/:id)', :to => 'articles#preview_page', :format => false
-  match 'check_password', :to => 'articles#check_password', :format => false
-  match 'articles/markup_help/:id', :to => 'articles#markup_help', :format => false
-  match 'articles/tag', :to => 'articles#tag', :format => false
+  get 'previews(/:id)', :to => 'articles#preview', :format => false
+  get 'previews_pages(/:id)', :to => 'articles#preview_page', :format => false
+  get 'check_password', :to => 'articles#check_password', :format => false
+  get 'articles/markup_help/:id', :to => 'articles#markup_help', :format => false
+  get 'articles/tag', :to => 'articles#tag', :format => false
 
   # SetupController
-  match '/setup', :to => 'setup#index', :format => false
+  match '/setup', :to => 'setup#index', via: [:get, :post], :format => false
 
   # TagsController (imitate inflected_resource)
   resources :tags, :except => [:show, :update, :destroy, :edit]
   resources :tags, :path => 'tag', :only => [:show, :edit, :update, :destroy]
-  match '/tag/:id/page/:page', :to => 'tags#show', :format => false
-  match '/tags/page/:page', :to => 'tags#index', :format => false
+  get '/tag/:id/page/:page', :to => 'tags#show', :format => false
+  get '/tags/page/:page', :to => 'tags#index', :format => false
 
   resources :author, only: :show
 
@@ -77,8 +77,8 @@ Rails.application.routes.draw do
   get 'theme/static_view_test', :format => false
 
   # For the statuses
-  match '/notes', :to => 'notes#index', :format => false
-  match '/notes/page/:page', :to => 'notes#index', :format => false
+  get '/notes', :to => 'notes#index', :format => false
+  get '/notes/page/:page', :to => 'notes#index', :format => false
   get '/note/:permalink', :to => 'notes#show', :format => false
 
   get '/humans', to: 'text#humans', format: 'txt'
@@ -100,15 +100,15 @@ Rails.application.routes.draw do
 
   # Work around the Bad URI bug
   %w{ accounts files sidebar }.each do |i|
-    match "#{i}", :to => "#{i}#index", :format => false
-    match "#{i}(/:action)", :to => i, :format => false
-    match "#{i}(/:action(/:id))", :to => i, :id => nil, :format => false
+    get "#{i}", :to => "#{i}#index", :format => false
+    match "#{i}(/:action)", :to => i, :format => false, via: [:get, :post, :put, :delete] # TODO: convert this magic catchers to resources item to close un-needed HTTP method
+    match "#{i}(/:action(/:id))", :to => i, :id => nil, :format => false, via: [:get, :post, :put, :delete] # TODO: convert this magic catchers to resources item to close un-needed HTTP method
   end
 
   # Admin/XController
   %w{content comments profiles general pages feedback resources sidebar textfilters themes trackbacks users settings tags redirects seo post_types}.each do |i|
-    match "/admin/#{i}", to: "admin/#{i}#index", format: false
-    match "/admin/#{i}(/:action(/:id))", to: "admin/#{i}", action: nil, id: nil, format: false
+    match "/admin/#{i}", to: "admin/#{i}#index", format: false, via: [:get, :post, :put, :delete] # TODO: convert this magic catchers to resources item to close un-needed HTTP method
+    match "/admin/#{i}(/:action(/:id))", to: "admin/#{i}", action: nil, id: nil, format: false, via: [:get, :post, :put, :delete] # TODO: convert this magic catchers to resources item to close un-needed HTTP method
   end
 
   root :to  => 'articles#index', :format => false

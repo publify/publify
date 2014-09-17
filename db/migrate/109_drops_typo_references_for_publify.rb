@@ -15,7 +15,7 @@ class DropsTypoReferencesForPublify < ActiveRecord::Migration
       blog.save!
     end
     
-    Article.find(:all).each do |art|
+    Article.find_each do |art|
       art.body.gsub!("<typo:", "<publify:")
       art.body.gsub!("</typo:", "</publify:")
       art.extended.gsub!("<typo:", "<publify:")
@@ -25,7 +25,7 @@ class DropsTypoReferencesForPublify < ActiveRecord::Migration
       art.save!
     end
     
-    Page.find(:all).each do |page|
+    Page.find_each do |page|
       page.body.gsub!("<typo:", "<publify:")
       page.body.gsub!("</typo:", "</publify:")
       page.extended.gsub!("<typo:", "<publify:")
@@ -35,7 +35,7 @@ class DropsTypoReferencesForPublify < ActiveRecord::Migration
       page.save!
     end
 
-    Feedback.find(:all).each do |feedback|
+    Feedback.find_each do |feedback|
       feedback.body.gsub!("<typo:", "<publify:")
       feedback.body.gsub!("</typo:", "</publify:")
       feedback.save!

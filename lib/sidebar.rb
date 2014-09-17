@@ -115,33 +115,11 @@ class Sidebar < ActiveRecord::Base
     end
   end
 
-  def self.find *args
-    begin
-      super
-    rescue ActiveRecord::SubclassNotFound
-      available = available_sidebars.map {|klass| klass.to_s}
-      self.inheritance_column = :bogus
-      super.each do |record|
-        unless available.include? record.type
-          record.delete
-        end
-      end
-      self.inheritance_column = :type
-      super
-    end
-  end
-
-  def self.find_all_visible
-    where('active_position is not null').order('active_position')
-  end
-
-  def self.find_all_staged
-    where('staged_position is not null').order('staged_position')
-  end
+  scope :valid, ->() { where(type: available_sidebar_types) }
 
   def self.ordered_sidebars
     os = []
-    Sidebar.all.each do |s| 
+    Sidebar.valid.each do |s|
       if s.staged_position
         os[s.staged_position] = ((os[s.staged_position] || []) << s).uniq
       elsif s.active_position
@@ -212,6 +190,10 @@ class Sidebar < ActiveRecord::Base
     Sidebar.descendants.sort_by { |klass| klass.to_s }
   end
 
+  def self.available_sidebar_types
+    @available_sidebar_types ||= available_sidebars.map {|klass| klass.to_s}
+  end
+
   def self.fields=(newval)
     @fields = newval
   end
@@ -254,10 +236,6 @@ class Sidebar < ActiveRecord::Base
 
   def config
     self[:config] ||= { }
-  end
-
-  def sidebar_controller
-    @sidebar_controller ||= SidebarController.available_sidebars.find { |s| s.short_name == self.controller }
   end
 
   def html_id

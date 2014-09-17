@@ -24,10 +24,10 @@ class Admin::RedirectsController < Admin::BaseController
       Redirect.find(params[:id])
     end
 
-    @redirect.attributes = params[:redirect]
-      if  @redirect.from_path.nil? || @redirect.from_path.empty?
-        @redirect.from_path = @redirect.shorten
-      end
+    @redirect.attributes = params[:redirect].permit! if params[:redirect]
+    if @redirect.from_path.nil? || @redirect.from_path.empty?
+      @redirect.from_path = @redirect.shorten
+    end
     if request.post?
       save_a(@redirect, 'redirection')
     else

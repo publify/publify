@@ -2,8 +2,9 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 
-# Auto-require default libraries and those for the current Rails environment.
-Bundler.require :default, Rails.env
+# Require the gems listed in Gemfile, including any gems
+# you've limited to :test, :development, or :production.
+Bundler.require(*Rails.groups)
 
 module Publify
   class Application < Rails::Application
@@ -17,7 +18,7 @@ module Publify
     # Setup the cache path
     config.action_controller.page_cache_directory = "#{::Rails.root.to_s}/public/cache/"
     config.cache_store=:file_store, "#{::Rails.root.to_s}/public/cache/"
-    
+
     config.plugins = [ :all ]
 
     # Activate observers that should always be running
@@ -26,14 +27,14 @@ module Publify
     # Turn om timestamped migrations
     config.active_record.timestamped_migrations = true
 
-    # Filter sensitive parameters from the log file
-    config.filter_parameters << :password
-
     # To avoid exception when deploying on Heroku
     config.assets.initialize_on_precompile = false
 
     # Time to step into asset pipeline…
     config.assets.enabled = true
+
+    # Mime type is fully determined by url
+    config.action_dispatch.ignore_accept_header = true
   end
 
   # Load included libraries.

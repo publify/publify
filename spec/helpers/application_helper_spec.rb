@@ -70,31 +70,56 @@ describe ApplicationHelper do
           it { expect(subject).to be_falsey }
         end
       end
+    end
 
-      describe "get_reply_context_url" do
-
-        it "return link to the original reply the reply" do
-          reply = {'user' => {'name' => 'truc', 'entities' => {'url' => {'urls' => [{'expanded_url' => 'an url'}]}}}}
-          expect(get_reply_context_url(reply)).to eq("<a href=\"an url\">truc</a>")
-        end
-
-        it "return link from the reply" do
-          reply = {'user' => {'name' => 'truc', 'entities' => {}}}
-          expect(get_reply_context_url(reply)).to eq("<a href=\"https://twitter.com/truc\">truc</a>")
-        end
-
+    describe "#get_reply_context_url" do
+      it "returns a link to the reply's URL if given" do
+        reply = {
+          'user' => {
+            'name' => 'truc',
+            'entities' => {'url' => {'urls' => [{'expanded_url' => 'an url'}]}}
+          }
+        }
+        expect(get_reply_context_url(reply)).to eq "<a href=\"an url\">truc</a>"
       end
 
-      describe "get_reply_context_url" do
+      it "returns a link to the reply's user if no URL is given" do
+        reply = {'user' => {'name' => 'truc', 'entities' => {}}}
+        expect(get_reply_context_url(reply)).
+          to eq "<a href=\"https://twitter.com/truc\">truc</a>"
+      end
+    end
 
-        it "return link from context" do
-          reply = {'id_str' => '123456789', 'created_at' => DateTime.new(2014,1,23,13,47), 'user' => {'screen_name' => 'a_screen_name', 'entities' => {'url' => {'urls' => [{'expanded_url' => 'an url'}]}}}}
-          expect(get_reply_context_twitter_link(reply)).to eq("<a href=\"https://twitter.com/a_screen_name/status/123456789\">23/01/2014 at 13h47</a>")
+    describe "#get_reply_context_twitter_link" do
+      let(:reply) { { 'id_str' => '123456789',
+                      'created_at' => "Thu Jan 23 13:47:00 +0000 2014",
+                      'user' => {
+                        'screen_name' => 'a_screen_name',
+                        'entities' => {'url' => {'urls' => [{'expanded_url' => 'an url'}]}}
+                      } } }
+      it "returns a link with the creation date and time" do
+        begin
+          timezone = Time.zone
+          Time.zone = "UTC"
+
+          expect(get_reply_context_twitter_link(reply)).
+            to eq "<a href=\"https://twitter.com/a_screen_name/status/123456789\">23/01/2014 at 13h47</a>"
+        ensure
+          Time.zone = timezone
         end
-
       end
 
+      it "displays creation date and time in the current time zone" do
+        begin
+          timezone = Time.zone
+          Time.zone = "Tokyo"
 
+          expect(get_reply_context_twitter_link(reply)).
+            to eq "<a href=\"https://twitter.com/a_screen_name/status/123456789\">23/01/2014 at 22h47</a>"
+        ensure
+          Time.zone = timezone
+        end
+      end
     end
 
     context "SidebarHelper" do

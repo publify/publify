@@ -3,9 +3,6 @@ class Admin::SidebarController < Admin::BaseController
   def index
     @available = available
     @ordered_sidebars = Sidebar.ordered_sidebars
-    # Reset the staged position based on the active position.
-    #Sidebar.delete_all('active_position is null')
-    #flash_sidebars
   end
 
   # Just update a single active Sidebar instance at once
@@ -46,11 +43,15 @@ class Admin::SidebarController < Admin::BaseController
 
     Sidebar.transaction do
       sorted.each_with_index do |sidebar_id, staged_index|
-        # DEV NOTE : Ok, that's a HUGE hack. Sidebar.available are Class, not Sidebar instances. In order to use jQuery.sortable we need that hack: Sidebar.available is an Array, so it's ordered. I arbitrary shift by? IT'SOVER NINE THOUSAND! considering we'll never reach 9K Sidebar instances or Sidebar specializations
+        # DEV NOTE : Ok, that's a HUGE hack. Sidebar.available are Class, not
+        # Sidebar instances. In order to use jQuery.sortable we need that hack:
+        # Sidebar.available is an Array, so it's ordered. I arbitrary shift by?
+        # IT'S OVER NINE THOUSAND! considering we'll never reach 9K Sidebar
+        # instances or Sidebar specializations
         sidebar = if sidebar_id >= 9000
           Sidebar.available_sidebars[sidebar_id - 9000].new
         else
-          Sidebar.find(sidebar_id)
+          Sidebar.valid.find(sidebar_id)
         end
         sidebar.update_attributes(staged_position: staged_index)
       end
@@ -70,27 +71,9 @@ class Admin::SidebarController < Admin::BaseController
 
   protected
 
-  def show_available
-    render :partial => 'availables', :object => available
-  end
-
+  # TODO: Rename and move to a AdminSidebarHelpers module. Or use in instance variable.
   def available
     ::Sidebar.available_sidebars
-  end
-
-  def flash_sidebars
-    unless flash[:sidebars]
-      begin
-        active = Sidebar.find(:all, :order => 'active_position ASC')
-        flash[:sidebars] = active.map {|sb| sb.id }
-      rescue => e
-        logger.error e
-        # Avoiding the view to crash
-        @active = []
-        flash[:error] = I18n.t('admin.sidebar.index.error')
-      end
-    end
-    flash[:sidebars]
   end
 
   helper_method :available

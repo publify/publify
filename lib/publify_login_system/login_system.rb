@@ -35,7 +35,7 @@ module LoginSystem
           if logged_in?
             flash[:error] = "You're not allowed to perform this action"
             redirect_to :controller => "admin/dashboard", :action => "index"
-          elsif User.find(:first)
+          elsif User.first
             redirect_to :controller => "/accounts", :action => "login"
           else
             redirect_to :controller => "/accounts", :action => "signup"

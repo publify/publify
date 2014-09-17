@@ -11,7 +11,7 @@ describe Tag do
   end
 
   it 'display names with spaces can be found by dash joined name' do
-    Tag.find(:first, :conditions => {:name => 'Monty Python'}).should be_nil
+    Tag.where(:name => 'Monty Python').first.should be_nil
     tag = Tag.create(:name => 'Monty Python')
     tag.should be_valid
     tag.name.should == 'monty-python'

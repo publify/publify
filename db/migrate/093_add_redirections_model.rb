@@ -12,11 +12,11 @@ class AddRedirectionsModel < ActiveRecord::Migration
   class Content < ActiveRecord::Base
     has_many :redirections
     has_many :redirects, :through => :redirections
-    scope :already_published, {
-      :conditions => ['published = ? AND published_at < ?', true, Time.now] }
+    scope :already_published,
+      -> { where('published = ? AND published_at < ?', true, Time.now) }
 
     # Avoid STI errors
-    set_inheritance_column :bogustype
+    self.inheritance_column = :bogustype
   end
 
   def self.up

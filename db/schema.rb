@@ -9,21 +9,21 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 115) do
+ActiveRecord::Schema.define(version: 115) do
 
-  create_table "articles_tags", :id => false, :force => true do |t|
+  create_table "articles_tags", id: false, force: true do |t|
     t.integer "article_id"
     t.integer "tag_id"
   end
 
-  create_table "blogs", :force => true do |t|
+  create_table "blogs", force: true do |t|
     t.text   "settings"
     t.string "base_url"
   end
 
-  create_table "contents", :force => true do |t|
+  create_table "contents", force: true do |t|
     t.string   "type"
     t.string   "title"
     t.string   "author"
@@ -38,20 +38,20 @@ ActiveRecord::Schema.define(:version => 115) do
     t.integer  "text_filter_id"
     t.text     "whiteboard"
     t.string   "name"
-    t.boolean  "published",      :default => false
+    t.boolean  "published",      default: false
     t.boolean  "allow_pings"
     t.boolean  "allow_comments"
     t.datetime "published_at"
     t.string   "state"
     t.integer  "parent_id"
     t.text     "settings"
-    t.string   "post_type",      :default => "read"
+    t.string   "post_type",      default: "read"
   end
 
-  add_index "contents", ["published"], :name => "index_contents_on_published"
-  add_index "contents", ["text_filter_id"], :name => "index_contents_on_text_filter_id"
+  add_index "contents", ["published"], name: "index_contents_on_published"
+  add_index "contents", ["text_filter_id"], name: "index_contents_on_text_filter_id"
 
-  create_table "feedback", :force => true do |t|
+  create_table "feedback", force: true do |t|
     t.string   "type"
     t.string   "title"
     t.string   "author"
@@ -66,55 +66,55 @@ ActiveRecord::Schema.define(:version => 115) do
     t.integer  "article_id"
     t.string   "email"
     t.string   "url"
-    t.string   "ip",               :limit => 40
+    t.string   "ip",               limit: 40
     t.string   "blog_name"
-    t.boolean  "published",                      :default => false
+    t.boolean  "published",                   default: false
     t.datetime "published_at"
     t.string   "state"
     t.boolean  "status_confirmed"
     t.string   "user_agent"
   end
 
-  add_index "feedback", ["article_id"], :name => "index_feedback_on_article_id"
-  add_index "feedback", ["text_filter_id"], :name => "index_feedback_on_text_filter_id"
+  add_index "feedback", ["article_id"], name: "index_feedback_on_article_id"
+  add_index "feedback", ["text_filter_id"], name: "index_feedback_on_text_filter_id"
 
-  create_table "page_caches", :force => true do |t|
+  create_table "page_caches", force: true do |t|
     t.string "name"
   end
 
-  add_index "page_caches", ["name"], :name => "index_page_caches_on_name"
+  add_index "page_caches", ["name"], name: "index_page_caches_on_name"
 
-  create_table "pings", :force => true do |t|
+  create_table "pings", force: true do |t|
     t.integer  "article_id"
     t.string   "url"
     t.datetime "created_at"
   end
 
-  add_index "pings", ["article_id"], :name => "index_pings_on_article_id"
+  add_index "pings", ["article_id"], name: "index_pings_on_article_id"
 
-  create_table "post_types", :force => true do |t|
+  create_table "post_types", force: true do |t|
     t.string "name"
     t.string "permalink"
     t.string "description"
   end
 
-  create_table "profiles", :force => true do |t|
+  create_table "profiles", force: true do |t|
     t.string "label"
     t.string "nicename"
     t.text   "modules"
   end
 
-  create_table "profiles_rights", :id => false, :force => true do |t|
+  create_table "profiles_rights", id: false, force: true do |t|
     t.integer "profile_id"
     t.integer "right_id"
   end
 
-  create_table "redirections", :force => true do |t|
+  create_table "redirections", force: true do |t|
     t.integer "content_id"
     t.integer "redirect_id"
   end
 
-  create_table "redirects", :force => true do |t|
+  create_table "redirects", force: true do |t|
     t.string   "from_path"
     t.string   "to_path"
     t.string   "origin"
@@ -122,7 +122,7 @@ ActiveRecord::Schema.define(:version => 115) do
     t.datetime "updated_at"
   end
 
-  create_table "resources", :force => true do |t|
+  create_table "resources", force: true do |t|
     t.integer  "size"
     t.string   "upload"
     t.string   "mime"
@@ -139,14 +139,14 @@ ActiveRecord::Schema.define(:version => 115) do
     t.boolean  "itunes_explicit"
   end
 
-  create_table "sidebars", :force => true do |t|
+  create_table "sidebars", force: true do |t|
     t.integer "active_position"
     t.text    "config"
     t.integer "staged_position"
     t.string  "type"
   end
 
-  create_table "sitealizer", :force => true do |t|
+  create_table "sitealizer", force: true do |t|
     t.string   "path"
     t.string   "ip"
     t.string   "referer"
@@ -156,14 +156,14 @@ ActiveRecord::Schema.define(:version => 115) do
     t.date     "created_on"
   end
 
-  create_table "tags", :force => true do |t|
+  create_table "tags", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "display_name"
   end
 
-  create_table "text_filters", :force => true do |t|
+  create_table "text_filters", force: true do |t|
     t.string "name"
     t.string "description"
     t.string "markup"
@@ -171,14 +171,14 @@ ActiveRecord::Schema.define(:version => 115) do
     t.text   "params"
   end
 
-  create_table "triggers", :force => true do |t|
+  create_table "triggers", force: true do |t|
     t.integer  "pending_item_id"
     t.string   "pending_item_type"
     t.datetime "due_at"
     t.string   "trigger_method"
   end
 
-  create_table "users", :force => true do |t|
+  create_table "users", force: true do |t|
     t.string   "login"
     t.string   "password"
     t.text     "email"
@@ -189,8 +189,8 @@ ActiveRecord::Schema.define(:version => 115) do
     t.integer  "profile_id"
     t.string   "remember_token"
     t.datetime "remember_token_expires_at"
-    t.string   "text_filter_id",            :default => "1"
-    t.string   "state",                     :default => "active"
+    t.string   "text_filter_id",            default: "1"
+    t.string   "state",                     default: "active"
     t.datetime "last_connection"
     t.text     "settings"
     t.integer  "resource_id"

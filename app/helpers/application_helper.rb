@@ -9,7 +9,7 @@ module ApplicationHelper
   end
 
   def render_sidebars(*sidebars)
-    (sidebars.blank? ? Sidebar.find(:all, :order => 'active_position ASC') : sidebars).map do |sb|
+    (sidebars.blank? ? Sidebar.order(:active_position) : sidebars).map do |sb|
       @sidebar = sb
       sb.parse_request(content_array, params)
       render_sidebar(sb)
@@ -67,7 +67,11 @@ module ApplicationHelper
   end
 
   def avatar_tag(options = {})
-    avatar_class = this_blog.plugin_avatar.constantize
+    begin
+      avatar_class = this_blog.plugin_avatar.constantize
+    rescue NameError
+      return ''
+    end
     return '' unless avatar_class.respond_to?(:get_avatar)
     avatar_class.get_avatar(options)
   end
@@ -223,7 +227,8 @@ module ApplicationHelper
   end
 
   def get_reply_context_twitter_link(reply)
-    link_to(display_date_and_time(reply['created_at'].to_time), "https://twitter.com/#{reply['user']['screen_name']}/status/#{reply['id_str']}")
+    link_to(display_date_and_time(reply['created_at'].to_time.in_time_zone),
+            "https://twitter.com/#{reply['user']['screen_name']}/status/#{reply['id_str']}")
   end
 
   private
@@ -239,6 +244,7 @@ module ApplicationHelper
   end
 
   def new_js_distance_of_time_in_words_to_now(date)
+    # FIXME: Check if this is still relevant somehow.
     # Ruby Date class doesn't have #utc method, but _publify_dev.html.erb
     # passes Ruby Date.
     date = date.to_time

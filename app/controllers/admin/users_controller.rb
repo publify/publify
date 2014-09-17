@@ -7,7 +7,7 @@ class Admin::UsersController < Admin::BaseController
 
   def new
     @user = User.new
-    @user.attributes = params[:user]
+    @user.attributes = params[:user].permit! if params[:user]
     @user.text_filter = TextFilter.find_by_name(this_blog.text_filter)
     setup_profiles
     @user.name = @user.login
@@ -21,7 +21,7 @@ class Admin::UsersController < Admin::BaseController
     @user = params[:id] ? User.find_by_id(params[:id]) : current_user
 
     setup_profiles
-    @user.attributes = params[:user]
+    @user.attributes = params[:user].permit! if params[:user]
     if request.post? and @user.save
       if @user.id = current_user.id
         current_user = @user
@@ -42,6 +42,6 @@ class Admin::UsersController < Admin::BaseController
   private
 
   def setup_profiles
-    @profiles = Profile.find(:all, :order => 'id')
+    @profiles = Profile.order('id')
   end
 end
