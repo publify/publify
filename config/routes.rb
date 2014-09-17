@@ -56,7 +56,7 @@ Rails.application.routes.draw do
   get 'articles/tag', :to => 'articles#tag', :format => false
 
   # SetupController
-  post '/setup', :to => 'setup#index', :format => false
+  match '/setup', :to => 'setup#index', via: [:get, :post], :format => false
 
   # TagsController (imitate inflected_resource)
   resources :tags, :except => [:show, :update, :destroy, :edit]
