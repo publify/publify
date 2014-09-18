@@ -26,7 +26,6 @@ public/cache/*
 Gemfile.lock
 .rbenv-version
 .ruby-version
-bin/
 .bundle/
 .sass-cache/
 /vendor/bundle
