@@ -22,11 +22,11 @@ Bootstrap is divided into four main parts which reflect the structure of the Pub
 
 1. helpers: custom Ruby methods, such as displaying a breadcrumb, go here.
 2. images: your theme images. Backgrounds and icones go here.
-3. stylesheets: this is where your CSS goes. Bootstrap uses three CSS files: 
+3. stylesheets: this is where your CSS goes. Bootstrap uses three CSS files:
  - bootstrap.css - which is a generated one
- - style.css - some custom structure addons 
+ - style.css - some custom structure addons
  - user-styles.css - Publify wide
-  
+
      You'll learn more about updating your CSS later.
 
 4. views: these are small HTML and Ruby files called by Publify. You don't need to provide views for the whole Publify structure. If your blog can't find a view and it exists as a standard, it will just load the default. The only thing you really need is a layout.
@@ -57,7 +57,7 @@ Whenever you add or change a theme helper, you'll have to restart your Publify a
 
 ## 1.3 Get into the views
 
-> Get into the views, boy you've got to prove your love to me  
+> Get into the views, boy you've got to prove your love to me
 > -- Famous 80's pop song.
 
 ### 1.3.1 Understanding the views
@@ -75,7 +75,7 @@ For each section, you'll have two choices:
 
 Exceptions
 
-* Single pages such as the about page have their templates located in articles/view_page.html.erb. 
+* Single pages such as the about page have their templates located in articles/view_page.html.erb.
 * View used for article reading uses the read.html.erb template.
 
 By default, you won't need the whole theme structure, you may even want only to customize the layout and let Publify do the job. But let's say you want to change the articles listing. In your theme views directory, create an articles folder, and copy the main article index.html.erb. Do the changes, refresh and you're done.
@@ -83,7 +83,7 @@ By default, you won't need the whole theme structure, you may even want only to 
 
 ### 1.3.2 The layout
 
-The layout is where everything happens in your theme. There's a chance you will only need to change this. It is located in `views/layouts`. It is divided in three parts: 
+The layout is where everything happens in your theme. There's a chance you will only need to change this. It is located in `views/layouts`. It is divided in three parts:
 
 * Header
 * Main content
@@ -91,7 +91,7 @@ The layout is where everything happens in your theme. There's a chance you will 
 
 #### Header
 
-The header is the part between the `<head>` and `</head>` sections of the HTML. Publify provides two methods you should know about: 
+The header is the part between the `<head>` and `</head>` sections of the HTML. Publify provides two methods you should know about:
 
 * `page_title` is the generated page title you should call in your `title` HTML tag. You can customize the title content into the admin SEO section.
 * `page_header` includes many things like meta tags, description, some CSS, some JavaScript, etc...
@@ -113,7 +113,7 @@ If you don't like the Bootstrap default background, you just need to overwrite t
 
 Changing fonts and colors is as easy as pie. Go to the Bootstrap [customization page][4] and select the changes you want. You may want to uncheck all the jQuery plugins, but what you want is the _customize variables_ section. When you have selected your changes, click on "Customize and Download".
 
-You will download a zip file caled bootstrap.zip. Unzip it, it contains a css directory with two CSS files: 
+You will download a zip file caled bootstrap.zip. Unzip it, it contains a css directory with two CSS files:
 
 * bootstrap.css
 * bootstrap.min.css
