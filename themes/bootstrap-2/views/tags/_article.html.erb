@@ -1,0 +1,10 @@
+<article id="article-<%= article.id %>" class='h-entry hentry h-as-note'>
+  <h2 class='page-header p-name entry-title'><%= link_to_permalink(article,article.title) %></h2>
+  <div class='e-content entry-content article'>
+    <%= render 'articles/protected_article_content', { :article => article } %>
+    <%= render 'articles/meta', article: article %>
+  </div>
+  <div class='comments'>
+    <%= render 'articles/comment_counter', article: article %>
+  </div>
+</article>
