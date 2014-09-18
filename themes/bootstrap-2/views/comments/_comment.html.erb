@@ -1,5 +1,5 @@
-<li id="comment-<%= comment.id %>">
-  <%= avatar_tag(:email => comment.email, :url => comment.url) %>
+<li class='list-unstyled' id="comment-<%= comment.id %>">
+  <%= avatar_tag(:email => comment.email, :url => comment.url, :class => 'img-circle pull-left') %>
   <h4>
     <%= t(".by") %> <%= (comment.url.blank?) ? h(comment.author) : link_to(h(comment.author), comment.url).nofollowify %>
     <%= display_date_and_time comment.created_at %>
