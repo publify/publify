@@ -61,6 +61,19 @@ body {
   margin-top: 30px;
 }
 
+#page .gravatar {
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+#commentList {
+  padding-left: 0;
+}
+
+#commentList li .content {
+  margin-left: 76px;
+}
+
 #sidebar {
   padding-top: 24px;
 }
