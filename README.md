@@ -58,8 +58,8 @@ $ bundle install
 $ rake db:create
 $ rake db:migrate
 $ rake db:seed
-$ rake asset:precompile
-$ ./script/rails server
+$ rake assets:precompile
+$ rails server
 ```
 
 You can now launch you browser and access to 127.0.0.1:3000.
