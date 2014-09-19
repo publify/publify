@@ -71,8 +71,8 @@ describe 'Given a new blog' do
     blog.should_not be_hide_extended_on_rss
   end
 
-  it '#theme should be "Bootstrap"' do
-    blog.theme.should == 'bootstrap'
+  it '#theme should be "Bootstrap 2"' do
+    blog.theme.should == 'bootstrap-2'
   end
 
   it 'should not use any avatar plugin' do
