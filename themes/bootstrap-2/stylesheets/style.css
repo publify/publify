@@ -2,6 +2,10 @@ body {
   background: #edece3;
 }
 
+/* Page header classes */
+.navbar {
+  border-radius: 0;
+}
 
 #logo {
   margin-top: 60px;
@@ -12,20 +16,6 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-}
-
-
-.navbar {
-  border-radius: 0;
-}
-
-#page {
-  background: #fff;
-  padding-bottom: 20px;
-}
-
-#sidebar {
-  padding-top: 24px;
 }
 
 .vertical-container {
@@ -50,7 +40,27 @@ body {
   font-weight: bold;
 }
 
+/* Main page classes */
+#page {
+  background: #fff;
+  padding-bottom: 20px;
+}
+
+#page img {
+    background: #ddd;
+    border: 1px solid #DDDDDD;
+    border-radius: 6px;
+    line-height: 1;
+    padding: 4px;
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
 .status {
   margin-top: 30px;
-  
+}
+
+#sidebar {
+  padding-top: 24px;
 }
