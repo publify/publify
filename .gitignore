@@ -30,7 +30,6 @@ Gemfile.lock
 .sass-cache/
 /vendor/bundle
 /themes/*
-!/themes/bootstrap
 !/themes/bootstrap-2
 !/themes/typographic
 gems/
