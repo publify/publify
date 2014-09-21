@@ -14,22 +14,22 @@ describe Theme do
   end
 
   describe '#name' do
-    it "returns the theme's name (default: bootstrap)" do
-      default_theme.name.should eq 'bootstrap'
+    it "returns the theme's name (default: bootstrap-2)" do
+      default_theme.name.should eq 'bootstrap-2'
     end
   end
 
   describe '#description' do
     it 'returns the contents of the corresponding markdown file' do
       default_theme.description.should eq(
-        File.open(::Rails.root.to_s + '/themes/bootstrap/about.markdown') {|f| f.read})
+        File.open(::Rails.root.to_s + '/themes/bootstrap-2/about.markdown') {|f| f.read})
     end
   end
 
   describe '.theme_from_path' do
     it 'finds the correct theme' do
-      Theme.theme_from_path(::Rails.root.to_s + 'themes/bootstrap').name.
-        should eq 'bootstrap'
+      Theme.theme_from_path(::Rails.root.to_s + 'themes/bootstrap-2').name.
+        should eq 'bootstrap-2'
     end
   end
 
