@@ -49,7 +49,7 @@ class Blog < ActiveRecord::Base
   setting :link_to_author,             :boolean, false
   setting :show_extended_on_rss,       :boolean, true # deprecated but still needed for backward compatibility
   setting :hide_extended_on_rss,       :boolean, false
-  setting :theme,                      :string, 'bootstrap'
+  setting :theme,                      :string, 'bootstrap-2'
   setting :plugin_avatar,              :string, ''
   setting :global_pings_disable,       :boolean, false
   setting :ping_urls,                  :string, "http://blogsearch.google.com/ping/RPC2\nhttp://rpc.technorati.com/rpc/ping\nhttp://ping.blo.gs/\nhttp://rpc.weblogs.com/RPC2"
