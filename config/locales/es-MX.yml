@@ -23,53 +23,53 @@ es-MX:
               blank: "can't be blank"
   datetime:
     distance_in_words:
-      x_days: "Distance in words"
+      x_days: "Distancia en palabras"
   errors:
     404:
-      page_not_found: "Page not found"
-      the_page_you_are_looking_for: "The page you are looking for has moved or does not exist."
+      page_not_found: "P&aacute;gina no encontrada"
+      the_page_you_are_looking_for: "La p&aacute;gina que est&aacute; buscanod ha sido movida o no existe."
   setup:
     confirm:
-      you_have_successfully_signed_up: "You have successfully signed up"
+      you_have_successfully_signed_up: "Ud. ha sido autenticado exit&oacute;samente"
       login: "Login: %{user}"
-      password: "Password: %{pass}"
-      dont_lose_the_mail_sent: "Don't lose the mail sent at %{email} or you won't be able to login anymore"
-      proceed_to: "Proceed to %{link}"
+      password: "Contrase&ntilde;a: %{pass}"
+      dont_lose_the_mail_sent: "No pierda el correo enviado a %{email} o no podr&aacute; volver a acceder en el futuro"
+      proceed_to: "Proceda a %{link}"
       admin: "admin"
     index:
-      blog_name: "Blog name"
-      save: "Save"
-      welcome_to_your_blog_setup: "Welcome to your blog setup"
-      your_mail: "Your email"
+      blog_name: "Nombre del Blog"
+      save: "Guardar"
+      welcome_to_your_blog_setup: "Bienvenido a la configuraci&oacute;n de su blog"
+      your_mail: "Su correo electr&oacute;nico"
     page:
-      about: "About"
-      body: "This is an example of a Publify page. You can edit this to write information about yourself or your site so readers know who you are. You can create as many pages as this one as you like and manage all of your content inside Publify."
+      about: "Acerca"
+      body: "Este es un ejemplo de una p&aacute;gina en Publify.  Ud. puede editarla para escribir informaci&oacute;n acerca de usted o su sitio para que los lectores sepan quien es usted.  Usted puede crear tantas p&aacute;ginas como esta para manejar todo el contenido dentro de Publify."
   comments:
     comment:
       by: "por"
       said: "dijo"
-      this_comment_has_been_flagged_for_moderator_approval: "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it"
+      this_comment_has_been_flagged_for_moderator_approval: "Este comentario ha sido marcado para aprobaci&oacute;n del moderador.  Este no aparecer&aacute; en este blog hasta qye el autor lo apruebe"
   tags:
     index:
-      there_is_no_tags: "There is no tag"
-      next_page: "Next page"
-      previous_page: "Previous page"
+      there_is_no_tags: "No existen Tags"
+      next_page: "Siguiente p&aacute;gina"
+      previous_page: "P&aacute;gina anterior"
   helper:
-    at: "at"
+    at: "a"
   articles:
     password_form:
-      submit: "Submit"
+      submit: "Enviar"
     index:
-      next_page: "Next page"
-      previous_page: "Previous page"
-      page: "page"
+      next_page: "Siguiente p&aacute;gina"
+      previous_page: "P&aacute;gina anterior"
+      page: "p&aacute;gina"
     search:
-      next_page: "Next page"
-      previous_page: "Previous page"
+      next_page: "Siguiente p&aacute;gina"
+      previous_page: "P&aacute;gina anterior"
     comment_preview:
       is_about_to_say: "est&aacute; a punto de decir"
     meta:
-      published_on: "Published on %{publish_date_and_time} by %{by}, tags %{tags}"
+      published_on: "Publicado el %{publish_date_and_time} por %{by}, tags %{tags}"
     article:
       posted_by: "Publicado por"
       this_entry_was_posted_on: "This entry was posted on %{published_at}"
@@ -190,15 +190,15 @@ es-MX:
       successfully_deleted: "This %{name} was deleted successfully"
     notes:
       header:
-        notes: "Notes"
+        notes: "Notas"
       form:
         now: "Now"
-        no_notes: "There are no notes yet. Why don't you start and create one?"
+        no_notes: "No existen notas a&uacute;n. Por qu&eacute; no empieza creando una?"
         how_to_setup_twitter: "If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."
         fill_the_twitter_credentials: "fill in the oauth credentials"
         registered_your_application: "registered your application"
-        compose_new_note: "Compose new note"
-        publish_settings: "Publish settings"
+        compose_new_note: "Componer una nueva nota"
+        publish_settings: "Configurar Publicaciones"
         posse_to_twitter: "POSSE to twitter"
         in_reply_to: "In reply to"
         tweet_id_like: "Tweet id like 123456"
@@ -356,7 +356,7 @@ es-MX:
         explain_allow_users_to_register: "This will allow users to register themselves as contributors, an unprivileged account level which grants them no rights beyond owning a profile on the site. If you don't want users to register, you can add them via <em>Manage users</em> under <em>Settings</em>."
         source_email: "Email remitente"
         email_address_used_to_notify: "Email address used by Publify to send notifications"
-        items_to_display_in_admin_lists: "Items to display in admin lists"
+        items_to_display_in_admin_lists: "Items a desplegar en listados de administrador"
     seo:
       titles:
         cancel: "Cancelar"
