@@ -661,7 +661,7 @@ es-MX:
         customization_explain: "Puedes hacer algo de dise&ntilde;o, %{theme_link} o %{sidebar_link}."
         change_your_blog_presentation: "cambiar la presentacion del blog"
         enable_plugins: "habilitar plugins"
-        help_explain: "Si necesita ayuda, %{doc_link}."
+        help_explain: "Si necesitas ayuda, %{doc_link}."
         read_our_documentation: "lea nuestra documentacion"
       inbound:
         inbound_links: "Inbound links"
