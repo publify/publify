@@ -6,4 +6,5 @@ Rails.application.config.assets.precompile += %w(
   accounts.css
   bootstrap.css
   user-styles.css
+  coderay.css
 )
