@@ -89,10 +89,11 @@ module ApplicationHelper
   end
 
   def onhover_show_admin_tools(type, id = nil)
+    admin_id = "#admin_#{[type, id].compact.join('_')}"
     tag = []
-    tag << %{ onmouseover="if (getCookie('publify_user_profile') == 'admin') { Element.show('admin_#{[type, id].compact.join('_')}'); }" }
-    tag << %{ onmouseout="Element.hide('admin_#{[type, id].compact.join('_')}');" }
-    tag
+    tag << %{ onmouseover="if (getCookie('publify_user_profile') == 'admin') { $('#{admin_id}').show(); }" }
+    tag << %{ onmouseout="$('#{admin_id}').hide();" }
+    tag.join " "
   end
 
   def feed_title
