@@ -7,13 +7,20 @@
     <table cellpadding="4" cellspacing="0" class="frm-tbl">
       <tr>
         <td><p><label for="comment_author"><%= t(".your_name")%></label></p></td>
-        <td> <%= text_field "comment", "author", size: 20 %> <small><%= link_to_function("(#{t('.leave_url_email')} &#187;)".html_safe, "Element.toggle('guest_url'); Element.toggle('guest_email')") %></small></td>
+        <td>
+          <%= text_field "comment", "author", size: 20 %>
+          <small>
+            <%= link_to '#', onclick: "$('.optional_field').toggle()" do %>
+              (<%= t(".leave_url_email") %> &#187;)
+            <%- end %>
+          </small>
+        </td>
       </tr>
-      <tr id="guest_url" style="display:none;">
+      <tr class="optional_field">
         <td><p><label for="comment_url"><%= t(".your_blog")%></label></p></td>
         <td> <%= text_field "comment", "url" %></td>
       </tr>
-      <tr id="guest_email" style="display:none;">
+      <tr class="optional_field">
         <td><p><label for="comment_email"><%= t(".your_email")%></label></p></td>
         <td> <%= text_field "comment", "email" %></td>
       </tr>
