@@ -59,6 +59,8 @@ gem 'twitter', '~> 5.6.0'
 gem "jquery-rails", "~> 3.1.0"
 gem "jquery-ui-rails", "~> 4.2.0"
 
+gem 'rails-timeago', '~> 2.0'
+
 gem 'rails_autolink', '~> 1.1.0'
 gem 'dynamic_form', '~> 1.1.4'
 

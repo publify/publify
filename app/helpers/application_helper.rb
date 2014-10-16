@@ -199,7 +199,7 @@ module ApplicationHelper
 
   def display_date_and_time(timestamp)
     if this_blog.date_format == 'setting_date_format_distance_of_time_in_words'
-      new_js_distance_of_time_in_words_to_now(timestamp)
+      timeago_tag timestamp, date_only: false
     else
       "#{display_date(timestamp)} #{t('helper.at')} #{display_time(timestamp)}"
     end
@@ -242,16 +242,6 @@ module ApplicationHelper
     elsif not @auto_discovery_url_atom.nil?
       instance_variable_get("@auto_discovery_url_#{type}")
     end
-  end
-
-  def new_js_distance_of_time_in_words_to_now(date)
-    # FIXME: Check if this is still relevant somehow.
-    # Ruby Date class doesn't have #utc method, but _publify_dev.html.erb
-    # passes Ruby Date.
-    date = date.to_time
-    time = date.utc.strftime("%a, %d %b %Y %H:%M:%S GMT")
-    timestamp = date.utc.to_i
-    content_tag(:span, time, {:class => "publify_date date gmttimestamp-#{timestamp}", :title => time})
   end
 
   # fetches appropriate html content for RSS and ATOM feeds. Checks for:
