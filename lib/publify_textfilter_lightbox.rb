@@ -89,9 +89,11 @@ Common attributes:
 
           width  = thumbdetails['width']
           height = thumbdetails['height']
-          thumburl    = thumbdetails['source']
 
-          displayurl    = displaydetails['source']
+          # use protocol-relative URL after getting the source address
+          # so not to break HTTPS support
+          thumburl = thumbdetails['source'].sub(/^https?:/, '')
+          displayurl = displaydetails['source'].sub(/^https?:/, '')
 
           caption ||= flickrimage.description
           title ||= flickrimage.title
