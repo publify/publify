@@ -64,6 +64,7 @@ def create_file_in_spec_public_cache_directory(file)
   file_path
 end
 
+# TODO: Clean up use of these Test::Unit style expectations
 def assert_xml(xml)
   expect do
     assert REXML::Document.new(xml)
