@@ -80,7 +80,7 @@ group :development, :test do
   gem 'thin'
   gem 'factory_girl', '~> 4.2.0'
   gem 'capybara'
-  gem 'rspec-rails', '~> 2.99.0'
+  gem 'rspec-rails', '~> 3.0.2'
   gem 'simplecov', :require => false
   gem 'pry-rails'
 end

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Admin::UsersController, "rough port of the old functional test", :type => :controller do
   render_views

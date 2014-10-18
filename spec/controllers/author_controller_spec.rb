@@ -1,10 +1,10 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe AuthorController, :type => :controller do
   let!(:blog) { create(:blog, limit_article_display: 1) }
   let(:now) { DateTime.new(2012,12,23,3,45) }
 
-  describe :show do
+  describe "#show" do
     describe "With an empty profile" do
       let(:no_profile_user) { create(:user, :without_twitter) }
       let!(:article) { create(:article, user: no_profile_user, published_at: now - 1.hour) }

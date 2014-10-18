@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Migrator do
   let(:migrator) { Migrator.new }

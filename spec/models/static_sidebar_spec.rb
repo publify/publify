@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'Given a new StaticSidebar', :type => :model do
   before(:each) { @sb = StaticSidebar.new }

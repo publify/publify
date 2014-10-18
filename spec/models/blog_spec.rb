@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Blog, :type => :model do
   describe "#initialize" do
@@ -200,7 +200,7 @@ http://anotherurl.net/other_line")
     end
   end
 
-  describe :per_page do
+  describe "#per_page" do
     let(:blog) { create(:blog, limit_article_display: 3, limit_rss_display: 4) }
     it { expect(blog.per_page(nil)).to eq(3) }
     it { expect(blog.per_page('html')).to eq(3) }
@@ -208,7 +208,7 @@ http://anotherurl.net/other_line")
     it { expect(blog.per_page('atom')).to eq(4) }
   end
 
-  describe :allow_signup? do
+  describe "#allow_signup?" do
     context "with a blog that allow signup" do
       let(:blog) { build(:blog, allow_signup: 1) }
       it {expect(blog.allow_signup?).to be_truthy}
@@ -220,7 +220,7 @@ http://anotherurl.net/other_line")
     end
   end
 
-  describe :humans do
+  describe "#humans" do
     context "default value with publify txt" do
       let(:blog) { create :blog }
       it { expect(blog.humans).to_not be_nil }

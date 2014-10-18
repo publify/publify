@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "articles/index_atom_feed.atom.builder", :type => :view do
   let!(:blog) { build_stubbed :blog }
@@ -168,7 +168,7 @@ describe "articles/index_atom_feed.atom.builder", :type => :view do
     parsed.css("entry").first
   end
 
-  describe :title do
+  describe "#title" do
 
     before(:each) do
       assign(:articles, [article])

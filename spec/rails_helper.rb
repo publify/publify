@@ -37,7 +37,6 @@ module RSpec
 end
 
 RSpec.configure do |config|
-  config.mock_with :rspec
   config.use_transactional_fixtures = true
   config.use_instantiated_fixtures  = false
   config.fixture_path = "#{::Rails.root}/test/fixtures"

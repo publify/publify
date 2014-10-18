@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Sidebar, :type => :model do
   describe "#available_sidebars" do

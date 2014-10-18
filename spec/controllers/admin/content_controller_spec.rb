@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Admin::ContentController, :type => :controller do
   render_views
@@ -52,7 +52,7 @@ describe Admin::ContentController, :type => :controller do
       end
     end
 
-    describe :autosave do
+    describe "#autosave" do
       context "first time save" do
         it { expect{
           xhr :post, :autosave, article: attributes_for(:article)
@@ -92,7 +92,7 @@ describe Admin::ContentController, :type => :controller do
       it { expect(assigns(:article).redirects).to be_empty }
     end
 
-    describe :create do
+    describe "#create" do
 
       let(:article_params) {{title: 'posted via tests!', body: 'a good boy'}}
 
@@ -410,7 +410,7 @@ describe Admin::ContentController, :type => :controller do
 
     before(:each) { request.session = {user: user.id} }
 
-    describe :edit do
+    describe "#edit" do
       context "with an article from an other user" do
         let!(:article) { create(:article, user: create(:user, login: 'another_user')) }
 
@@ -428,7 +428,7 @@ describe Admin::ContentController, :type => :controller do
       end
     end
 
-    describe :update do
+    describe "#update" do
       context "with an article" do
         let!(:article) { create(:article, body: "another *textile* test", user: user) }
         let!(:body) { "not the *same* text" }
@@ -439,7 +439,7 @@ describe Admin::ContentController, :type => :controller do
       end
     end
 
-    describe :destroy do
+    describe "#destroy" do
       context "with post method" do
         context "with an article from other user" do
           let(:article) { create(:article, user: create(:user, login: 'other_user')) }

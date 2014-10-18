@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "layouts/default.html.erb", :type => :view do
   with_each_theme do |theme, view_path|

@@ -1,5 +1,5 @@
 # coding: utf-8
-require 'spec_helper'
+require 'rails_helper'
 
 describe Note, :type => :model do
   context "with a simple blog" do
@@ -57,7 +57,7 @@ describe Note, :type => :model do
 
     describe "scopes" do
 
-      describe :published do
+      describe "#published" do
         let(:now) { DateTime.new(2012,5,20,14,23) }
         let(:note) { create(:note, published_at: now - 1.minute) }
 

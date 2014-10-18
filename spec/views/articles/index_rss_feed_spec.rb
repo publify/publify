@@ -1,5 +1,5 @@
 # coding: utf-8
-require 'spec_helper'
+require 'rails_helper'
 
 describe "articles/index_rss_feed.rss.builder", :type => :view do
   let!(:blog) { build_stubbed :blog }
@@ -201,7 +201,7 @@ describe "articles/index_rss_feed.rss.builder", :type => :view do
     parsed.css("item").first
   end
 
-  describe :title do
+  describe "#title" do
     before(:each) do
       assign(:articles, [article])
       render

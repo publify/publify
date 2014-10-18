@@ -1,11 +1,11 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Article::Builder, :type => :model do
   let!(:blog) { FactoryGirl.build_stubbed(:blog) }
   let(:user) { FactoryGirl.create(:user) }
   let(:factory) {Article::Factory.new(blog, user)}
 
-  describe :default do
+  describe "#default" do
     let(:new_article) { factory.default }
 
     it { expect(new_article.allow_comments).to eq(blog.default_allow_comments) }
@@ -14,7 +14,7 @@ describe Article::Builder, :type => :model do
     it { expect(new_article.published).to be_truthy }
   end
 
-  describe :get_or_build do
+  describe "#get_or_build" do
 
     context "with an existing article" do
       let(:article) { FactoryGirl.create(:article) }
@@ -33,7 +33,7 @@ describe Article::Builder, :type => :model do
     end
   end
 
-  describe :requested_article do
+  describe "#requested_article" do
     it "call find_by_permalink" do
       params = {something: 'truc'}
       expect(Article).to receive(:find_by_permalink).with(params)
@@ -55,7 +55,7 @@ describe Article::Builder, :type => :model do
     end
   end
 
-  describe :match_permalink_format do
+  describe "#match_permalink_format" do
     let!(:article) { create(:article, permalink: 'a-title') }
 
     context "with one more element on url than on format" do

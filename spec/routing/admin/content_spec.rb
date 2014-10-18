@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 # TODO: Clean out non-resourceful routes
 describe "Admin::ContentController routing", :type => :routing do

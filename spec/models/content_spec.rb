@@ -1,11 +1,11 @@
 # coding: utf-8
-require 'spec_helper'
+require 'rails_helper'
 
 describe Content, :type => :model do
   context "with a simple blog" do
   let!(:blog) { create(:blog) }
 
-  describe :author= do
+  describe "#author=" do
     let(:content) { Content.new }
 
     before(:each) { content.author = user }
@@ -71,7 +71,7 @@ describe Content, :type => :model do
     end
   end
 
-  describe :search_posts_with do
+  describe "#search_posts_with" do
     context "with an simple article" do
       subject { Content.search_with(params) }
 
@@ -116,7 +116,7 @@ describe Content, :type => :model do
   end
   end
 
-  describe :generate_html do
+  describe "#generate_html" do
     context "with a blog with textile filter" do
       let!(:blog) { create(:blog, comment_text_filter: 'textile') }
 

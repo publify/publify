@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Feedback::States, :type => :model do
   before(:each) do

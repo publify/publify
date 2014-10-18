@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Feedback, :type => :model do
   before { create(:blog) }
@@ -29,14 +29,14 @@ describe Feedback, :type => :model do
 
   describe "scopes" do
 
-    describe :comments do
+    describe "#comments" do
       context "with 1 comments" do
         let!(:comment) { create(:comment) }
         it { expect(Feedback.comments).to eq([comment]) }
       end
     end
 
-    describe :trackbacks do
+    describe "#trackbacks" do
       it { expect(Feedback).to respond_to(:trackbacks) }
 
       context "with 1 Trackback" do
@@ -75,7 +75,7 @@ describe Feedback, :type => :model do
     context 'order by created at' do
       let(:now) { DateTime.new(2009, 12, 6, 14, 56) }
 
-      describe :paginated do
+      describe "#paginated" do
         let!(:a_comment) { create(:comment, created_at: now) }
         let!(:an_other_comment) { create(:comment, created_at: now - 1.day) }
 
@@ -84,27 +84,27 @@ describe Feedback, :type => :model do
         it { expect(Feedback.paginated(1, 1)).to eq([a_comment]) }
       end
 
-      describe :presumed_ham do
+      describe "#presumed_ham" do
         let!(:presumed_ham_comment) { create(:presumed_ham_comment) }
         let!(:ham_comment) { create(:ham_comment) }
 
         it { expect(Feedback.presumed_ham).to eq([presumed_ham_comment]) }
       end
 
-      describe :presumed_spam do
+      describe "#presumed_spam" do
         let!(:presumed_spam_comment) { create(:presumed_spam_comment) }
         let!(:ham_comment) { create(:ham_comment) }
 
         it { expect(Feedback.presumed_spam).to eq([presumed_spam_comment]) }
       end
 
-      describe :spam do
+      describe "#spam" do
         let!(:spam_comment) { create(:spam_comment) }
         let!(:ham_comment) { create(:ham_comment) }
         it { expect(Feedback.spam).to eq([spam_comment]) }
       end
 
-      describe :unapproved do
+      describe "#unapproved" do
         let!(:unapproved) { create(:unconfirmed_comment) }
         let!(:ham_comment) { create(:ham_comment) }
 
@@ -113,7 +113,7 @@ describe Feedback, :type => :model do
     end
   end
 
-  describe :from do
+  describe "#from" do
     context "with a comment" do
       let(:comment) { create(:comment) }
       it { expect(Feedback.from(:comments)).to eq([comment]) }

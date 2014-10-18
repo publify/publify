@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Admin::TokenChecker do
   let(:fixture) { Rails.root.join("spec", "fixtures", "secret.token") }

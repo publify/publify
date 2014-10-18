@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'Given an empty redirects table', :type => :model do
   before(:each) do

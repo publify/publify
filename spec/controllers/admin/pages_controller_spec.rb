@@ -1,5 +1,5 @@
 # coding: utf-8
-require 'spec_helper'
+require 'rails_helper'
 
 describe Admin::PagesController, :type => :controller do
   render_views
@@ -9,7 +9,7 @@ describe Admin::PagesController, :type => :controller do
 
   before(:each) { request.session = { user: user.id } }
 
-  describe :index do
+  describe "#index" do
     context "without params" do
       before(:each) { get :index }
       it { expect(response).to be_success }
@@ -25,7 +25,7 @@ describe Admin::PagesController, :type => :controller do
     end
   end
 
-  describe :new do
+  describe "#new" do
     context "using get" do
       before(:each) { get :new }
 
@@ -76,7 +76,7 @@ describe Admin::PagesController, :type => :controller do
     end
   end
 
-  describe :edit do
+  describe "#edit" do
     let!(:page) { create(:page) }
 
     context "using get" do

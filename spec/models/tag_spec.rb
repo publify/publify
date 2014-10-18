@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Tag, :type => :model do
   let!(:blog) { create(:blog) }
@@ -78,7 +78,7 @@ describe Tag, :type => :model do
     end
 
 
-    describe :create_from_article do
+    describe "#create_from_article" do
       before(:each) { Tag.create_from_article!(article) }
 
       context "without keywords" do

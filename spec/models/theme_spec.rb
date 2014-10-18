@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Theme, :type => :model do
   let(:blog) { build_stubbed :blog }

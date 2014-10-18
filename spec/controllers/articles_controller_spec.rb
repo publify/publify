@@ -1,5 +1,5 @@
 # coding: utf-8
-require 'spec_helper'
+require 'rails_helper'
 
 describe ArticlesController, "base", :type => :controller do
   let!(:blog) { create(:blog) }
@@ -107,7 +107,7 @@ describe ArticlesController, "base", :type => :controller do
       end
 
       it 'should be valid' do
-        expect(assigns(:articles).records.size).to eq(2)
+        expect(assigns(:articles).size).to eq(2)
       end
 
       it 'should render without layout' do

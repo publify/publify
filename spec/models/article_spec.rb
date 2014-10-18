@@ -1,5 +1,5 @@
 # coding: utf-8
-require 'spec_helper'
+require 'rails_helper'
 
 describe Article, :type => :model do
 
@@ -680,7 +680,7 @@ describe Article, :type => :model do
     end
   end
 
-  describe :search_with do
+  describe "#search_with" do
     subject { Article.search_with(params) }
 
     context "without article" do
@@ -895,7 +895,7 @@ describe Article, :type => :model do
     end
   end
 
-  describe :post_type do
+  describe "#post_type" do
     context "without post_type" do
       let(:article) { build(:article, post_type: '') }
       it { expect(article.post_type).to eq("read") }

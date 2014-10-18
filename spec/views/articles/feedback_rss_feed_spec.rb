@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "articles/feedback_rss_feed.rss.builder", :type => :view do
   let!(:blog) { build_stubbed :blog }

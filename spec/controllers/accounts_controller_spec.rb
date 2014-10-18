@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe AccountsController, :type => :controller do
   describe "A successful login with 'Remember me' checked" do
@@ -363,7 +363,7 @@ describe AccountsController, :type => :controller do
     end
   end
 
-  describe :recover_password do
+  describe "#recover_password" do
     let!(:blog) { create(:blog) }
     let!(:user) { create(:user, :as_admin) }
 

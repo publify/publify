@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 def file_upload(filename)
   ActionDispatch::Http::UploadedFile.new(

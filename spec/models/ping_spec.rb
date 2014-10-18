@@ -1,7 +1,7 @@
-require 'spec_helper'
+require 'rails_helper'
 require 'xmlrpc/client'
 
-describe :ping, :type => :model do
+describe Ping, :type => :model do
   describe 'Given a post which references a pingback enabled article' do
 
     let(:pingback_target) { 'http://anotherblog.org/xml-rpc' }

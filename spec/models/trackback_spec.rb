@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Trackback, 'With the various trackback filters loaded and DNS mocked out appropriately', :type => :model do
   before(:each) do

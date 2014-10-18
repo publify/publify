@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe User, :type => :model do
   describe 'FactoryGirl Girl' do
@@ -219,7 +219,7 @@ describe User, :type => :model do
     end
   end
 
-  describe :generate_password! do
+  describe "#generate_password!" do
     it "set a 7 char length password" do
       user = User.new
       expect(user).to receive(:rand).exactly(7).times.and_return(0)
@@ -236,7 +236,7 @@ describe User, :type => :model do
     end
   end
 
-  describe :first_and_last_name do
+  describe "#first_and_last_name" do
     context "with first and last name" do
       let(:user) { create(:user, firstname: 'Marlon', lastname: 'Brando') }
       it { expect(user.first_and_last_name).to eq('Marlon Brando') }
@@ -248,7 +248,7 @@ describe User, :type => :model do
     end
   end
 
-  describe :display_names do
+  describe "#display_names" do
     context "with user without nickname, firstname, lastname" do
       let(:user) { create(:user, nickname: nil, firstname: nil, lastname: nil) }
       it { expect(user.display_names).to eq([user.login]) }
@@ -317,7 +317,7 @@ describe User, :type => :model do
     end
   end
 
-  describe :can_access_to do
+  describe "#can_access_to" do
     let(:profile) { create(:profile, modules: modules) }
     let(:user) { create(:user, profile: profile) }
 
