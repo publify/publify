@@ -72,7 +72,6 @@ gem 'rails-observers', '~> 0.1.2'
 
 group :assets do
   gem 'sass-rails', " ~> 4.0.3"
-  gem 'coffee-rails', " ~> 4.0.1"
   gem 'uglifier'
 end
 
