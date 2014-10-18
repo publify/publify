@@ -66,25 +66,25 @@ def create_file_in_spec_public_cache_directory(file)
 end
 
 def assert_xml(xml)
-  lambda do
+  expect do
     assert REXML::Document.new(xml)
-  end.should_not raise_error
+  end.not_to raise_error
 end
 
 def assert_atom10 feed, count
   doc = Nokogiri::XML.parse(feed)
   root = doc.css(':root').first
-  root.name.should == "feed"
-  root.namespace.href.should == "http://www.w3.org/2005/Atom"
-  root.css('entry').count.should == count
+  expect(root.name).to eq("feed")
+  expect(root.namespace.href).to eq("http://www.w3.org/2005/Atom")
+  expect(root.css('entry').count).to eq(count)
 end
 
 def assert_rss20 feed, count
   doc = Nokogiri::XML.parse(feed)
   root = doc.css(':root').first
-  root.name.should == "rss"
-  root['version'].should == "2.0"
-  root.css('channel item').count.should == count
+  expect(root.name).to eq("rss")
+  expect(root['version']).to eq("2.0")
+  expect(root.css('channel item').count).to eq(count)
 end
 
 def stub_full_article(time=Time.now)
@@ -95,10 +95,10 @@ def stub_full_article(time=Time.now)
                  :created_at => time, :updated_at => time,
                  :title => "Foo Bar", :permalink => 'foo-bar',
                  :guid => time.hash)
-  a.stub(:published_comments) { [] }
-  a.stub(:resources) { [FactoryGirl.build(:resource)] }
-  a.stub(:tags) { [FactoryGirl.build(:tag)] }
-  a.stub(:text_filter) { text_filter }
+  allow(a).to receive(:published_comments) { [] }
+  allow(a).to receive(:resources) { [FactoryGirl.build(:resource)] }
+  allow(a).to receive(:tags) { [FactoryGirl.build(:tag)] }
+  allow(a).to receive(:text_filter) { text_filter }
   a
 end
 

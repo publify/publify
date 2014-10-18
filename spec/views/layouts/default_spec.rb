@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "layouts/default.html.erb" do
+describe "layouts/default.html.erb", :type => :view do
   with_each_theme do |theme, view_path|
     describe theme ? "with theme #{theme}" : "without a theme" do
       before(:each) do

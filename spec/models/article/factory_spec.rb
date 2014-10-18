@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Article::Builder do
+describe Article::Builder, :type => :model do
   let!(:blog) { FactoryGirl.build_stubbed(:blog) }
   let(:user) { FactoryGirl.create(:user) }
   let(:factory) {Article::Factory.new(blog, user)}
@@ -36,21 +36,21 @@ describe Article::Builder do
   describe :requested_article do
     it "call find_by_permalink" do
       params = {something: 'truc'}
-      Article.should_receive(:find_by_permalink).with(params)
+      expect(Article).to receive(:find_by_permalink).with(params)
       expect(factory.requested_article(params)).to be_nil
     end
 
     it "set title params with article_id params" do
       params = {article_id: 12}
       expected_params = params.merge({title: 12})
-      Article.should_receive(:find_by_permalink).with(expected_params)
+      expect(Article).to receive(:find_by_permalink).with(expected_params)
       expect(factory.requested_article(params)).to be_nil
     end
 
     it "dont set title params with article_id when title already set" do
       params = {article_id: 12, title: 'Beautiful'}
       expected_params = params
-      Article.should_receive(:find_by_permalink).with(expected_params)
+      expect(Article).to receive(:find_by_permalink).with(expected_params)
       expect(factory.requested_article(params)).to be_nil
     end
   end

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Admin::PostTypesController do
+describe Admin::PostTypesController, :type => :controller do
   render_views
 
   before do

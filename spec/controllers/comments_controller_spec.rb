@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe CommentsController do
+describe CommentsController, :type => :controller do
   let!(:blog) { create(:blog) }
 
   describe 'create' do

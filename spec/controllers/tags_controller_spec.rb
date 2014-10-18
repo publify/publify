@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe TagsController, "/index" do
+describe TagsController, "/index", :type => :controller do
   before do
     create(:blog)
     @tag = create(:tag)
@@ -12,13 +12,13 @@ describe TagsController, "/index" do
       get 'index'
     end
 
-    specify { response.should be_success }
-    specify { response.should render_template('tags/index') }
-    specify { assigns(:tags).should =~ [@tag] }
+    specify { expect(response).to be_success }
+    specify { expect(response).to render_template('tags/index') }
+    specify { expect(assigns(:tags)).to match_array([@tag]) }
   end
 end
 
-describe TagsController, 'showing a single tag' do
+describe TagsController, 'showing a single tag', :type => :controller do
   before do
     FactoryGirl.create(:blog)
     @tag = FactoryGirl.create(:tag, :name => 'Foo')
@@ -36,43 +36,43 @@ describe TagsController, 'showing a single tag' do
 
     it 'should be successful' do
       do_get()
-      response.should be_success
+      expect(response).to be_success
     end
 
     it 'should retrieve the correct set of articles' do
       do_get
-      assigns[:articles].map(&:id).sort.should == @articles.map(&:id).sort
+      expect(assigns[:articles].map(&:id).sort).to eq(@articles.map(&:id).sort)
     end
 
     it 'should render :show by default' do
       #TODO Stubbing #template_exists is not enough to fool Rails
       skip
-      controller.stub(:template_exists?) \
+      allow(controller).to receive(:template_exists?) \
         .and_return(true)
       do_get
-      response.should render_template(:show)
+      expect(response).to render_template(:show)
     end
 
     it 'should fall back to rendering articles/index' do
-      controller.stub(:template_exists?) \
+      allow(controller).to receive(:template_exists?) \
         .and_return(false)
       do_get
-      response.should render_template('articles/index')
+      expect(response).to render_template('articles/index')
     end
 
     it 'should set the page title to "Tag foo"' do
       do_get
-      assigns[:page_title].should == 'Tag: foo | test blog '
+      expect(assigns[:page_title]).to eq('Tag: foo | test blog ')
     end
 
     it 'should render the atom feed for /articles/tag/foo.atom' do
       get 'show', :id => 'foo', :format => 'atom'
-      response.should render_template('articles/index_atom_feed', layout: false)
+      expect(response).to render_template('articles/index_atom_feed', layout: false)
     end
 
     it 'should render the rss feed for /articles/tag/foo.rss' do
       get 'show', :id => 'foo', :format => 'rss'
-      response.should render_template('articles/index_rss_feed', layout: false)
+      expect(response).to render_template('articles/index_rss_feed', layout: false)
     end
   end
 
@@ -81,13 +81,13 @@ describe TagsController, 'showing a single tag' do
     it 'should redirect to main page' do
       do_get
 
-      response.status.should == 301
-      response.should redirect_to(Blog.default.base_url)
+      expect(response.status).to eq(301)
+      expect(response).to redirect_to(Blog.default.base_url)
     end
   end
 end
 
-describe TagsController, 'showing tag "foo"' do
+describe TagsController, 'showing tag "foo"', :type => :controller do
   render_views
 
   let!(:blog) { FactoryGirl.create(:blog) }
@@ -99,30 +99,30 @@ describe TagsController, 'showing tag "foo"' do
   end
 
   it 'should have good rss feed link in head' do
-    response.body.should have_selector("head>link[href='http://test.host/tag/foo.rss'][rel=alternate][type='application/rss+xml'][title=RSS]", visible: false)
+    expect(response.body).to have_selector("head>link[href='http://test.host/tag/foo.rss'][rel=alternate][type='application/rss+xml'][title=RSS]", visible: false)
   end
 
   it 'should have good atom feed link in head' do
-    response.body.should have_selector("head>link[href='http://test.host/tag/foo.atom'][rel=alternate][type='application/atom+xml'][title=Atom]", visible: false)
+    expect(response.body).to have_selector("head>link[href='http://test.host/tag/foo.atom'][rel=alternate][type='application/atom+xml'][title=Atom]", visible: false)
   end
 
   it 'should have a canonical URL' do
-    response.body.should have_selector("head>link[href='#{blog.base_url}/tag/foo']", visible: false)
+    expect(response.body).to have_selector("head>link[href='#{blog.base_url}/tag/foo']", visible: false)
   end
 end
 
-describe TagsController, "showing a non-existant tag" do
+describe TagsController, "showing a non-existant tag", :type => :controller do
   # TODO: Perhaps we can show something like 'Nothing tagged with this tag'?
   it 'should redirect to main page' do
     FactoryGirl.create(:blog)
     get 'show', :id => 'thistagdoesnotexist'
 
-    response.status.should == 301
-    response.should redirect_to(Blog.default.base_url)
+    expect(response.status).to eq(301)
+    expect(response).to redirect_to(Blog.default.base_url)
   end
 end
 
-describe TagsController, "password protected article" do
+describe TagsController, "password protected article", :type => :controller do
   render_views
 
   it 'article in tag should be password protected' do
@@ -134,7 +134,7 @@ describe TagsController, "password protected article" do
   end
 end
 
-describe TagsController, "SEO Options" do
+describe TagsController, "SEO Options", :type => :controller do
   before(:each) do
     @blog = FactoryGirl.create(:blog)
     @a = FactoryGirl.create(:article)
@@ -145,14 +145,14 @@ describe TagsController, "SEO Options" do
     it 'does not assign keywords when the blog has no keywords' do
       get 'show', :id => 'foo'
 
-      assigns(:keywords).should eq ""
+      expect(assigns(:keywords)).to eq ""
     end
 
     it "assigns the blog's keywords if present" do
       @blog.meta_keywords = "foo, bar"
       @blog.save
       get 'show', :id => 'foo'
-      assigns(:keywords).should eq "foo, bar"
+      expect(assigns(:keywords)).to eq "foo, bar"
     end
   end
 end

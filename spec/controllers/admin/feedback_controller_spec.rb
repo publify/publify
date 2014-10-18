@@ -1,34 +1,34 @@
 require 'spec_helper'
 
-describe Admin::FeedbackController do
+describe Admin::FeedbackController, :type => :controller do
 
   render_views
 
   shared_examples_for "destroy feedback with feedback from own article" do
     it 'should destroy feedback' do
       id = feedback_from_own_article.id
-      lambda do
+      expect do
         post 'destroy', :id => id
-      end.should change(Feedback, :count)
-      lambda do
+      end.to change(Feedback, :count)
+      expect do
         Feedback.find(feedback_from_own_article.id)
-      end.should raise_error(ActiveRecord::RecordNotFound)
+      end.to raise_error(ActiveRecord::RecordNotFound)
     end
 
     it 'should redirect to feedback from article' do
       post 'destroy', :id => feedback_from_own_article.id
-      response.should redirect_to(:controller => 'admin/feedback', :action => 'article', :id => feedback_from_own_article.article.id)
+      expect(response).to redirect_to(:controller => 'admin/feedback', :action => 'article', :id => feedback_from_own_article.article.id)
     end
 
     it 'should not destroy feedback in get request' do
       id = feedback_from_own_article.id
-      lambda do
+      expect do
         get 'destroy', :id => id
-      end.should_not change(Feedback, :count)
-      lambda do
+      end.not_to change(Feedback, :count)
+      expect do
         Feedback.find(feedback_from_own_article.id)
-      end.should_not raise_error
-      response.should render_template 'destroy'
+      end.not_to raise_error
+      expect(response).to render_template 'destroy'
     end
   end
 
@@ -55,13 +55,13 @@ describe Admin::FeedbackController do
 
       it "should destroy feedback from article doesn't own" do
         id = feedback_from_not_own_article.id
-        lambda do
+        expect do
           post 'destroy', :id => id
-        end.should change(Feedback, :count)
-        lambda do
+        end.to change(Feedback, :count)
+        expect do
           Feedback.find(feedback_from_not_own_article.id)
-        end.should raise_error(ActiveRecord::RecordNotFound)
-        response.should redirect_to(:controller => 'admin/feedback', :action => 'article', :id => feedback_from_not_own_article.article.id)
+        end.to raise_error(ActiveRecord::RecordNotFound)
+        expect(response).to redirect_to(:controller => 'admin/feedback', :action => 'article', :id => feedback_from_not_own_article.article.id)
       end
     end
 
@@ -111,8 +111,8 @@ describe Admin::FeedbackController do
     describe 'article action' do
 
       def should_success_with_article_view(response)
-        response.should be_success
-        response.should render_template('article')
+        expect(response).to be_success
+        expect(response).to render_template('article')
       end
 
       it 'should see all feedback on one article' do
@@ -121,8 +121,8 @@ describe Admin::FeedbackController do
         FactoryGirl.create(:comment, :article => article)
         get :article, :id => article.id
         should_success_with_article_view(response)
-        assigns(:article).should == article
-        assigns(:feedback).size.should == 2
+        expect(assigns(:article)).to eq(article)
+        expect(assigns(:feedback).size).to eq(2)
       end
 
       it 'should see only spam feedback on one article' do
@@ -130,8 +130,8 @@ describe Admin::FeedbackController do
         FactoryGirl.create(:comment, :state => 'spam', :article => article)
         get :article, :id => article.id, :spam => 'y'
         should_success_with_article_view(response)
-        assigns(:article).should == article
-        assigns(:feedback).size.should == 1
+        expect(assigns(:article)).to eq(article)
+        expect(assigns(:feedback).size).to eq(1)
       end
 
       it 'should see only ham feedback on one article' do
@@ -139,14 +139,14 @@ describe Admin::FeedbackController do
         comment = FactoryGirl.create(:comment, :article => article)
         get :article, :id => article.id, :ham => 'y'
         should_success_with_article_view(response)
-        assigns(:article).should == article
-        assigns(:feedback).size.should == 1
+        expect(assigns(:article)).to eq(article)
+        expect(assigns(:feedback).size).to eq(1)
       end
 
       it 'should redirect_to index if bad article id' do
-        lambda{
+        expect{
           get :article, :id => 102302
-        }.should raise_error(ActiveRecord::RecordNotFound)
+        }.to raise_error(ActiveRecord::RecordNotFound)
       end
 
     end
@@ -159,42 +159,42 @@ describe Admin::FeedbackController do
 
       describe 'by get access' do
         it "should raise ActiveRecordNotFound if article doesn't exist" do
-          lambda {
+          expect {
             get 'create', :article_id => 120431, :comment => base_comment
-          }.should raise_error(ActiveRecord::RecordNotFound)
+          }.to raise_error(ActiveRecord::RecordNotFound)
         end
 
         it 'should not create comment' do
           article = FactoryGirl.create(:article)
-          lambda do
+          expect do
             get 'create', :article_id => article.id, :comment => base_comment
-            response.should redirect_to(:action => 'article', :id => article.id)
-          end.should_not change(Comment, :count)
+            expect(response).to redirect_to(:action => 'article', :id => article.id)
+          end.not_to change(Comment, :count)
         end
 
       end
 
       describe 'by post access' do
         it "should raise ActiveRecord::RecordNotFound if article doesn't exist" do
-          lambda {
+          expect {
             post 'create', :article_id => 123104, :comment => base_comment
-          }.should raise_error(ActiveRecord::RecordNotFound)
+          }.to raise_error(ActiveRecord::RecordNotFound)
         end
 
         it 'should create comment' do
           article = FactoryGirl.create(:article)
-          lambda do
+          expect do
             post 'create', :article_id => article.id, :comment => base_comment
-            response.should redirect_to(:action => 'article', :id => article.id)
-          end.should change(Comment, :count)
+            expect(response).to redirect_to(:action => 'article', :id => article.id)
+          end.to change(Comment, :count)
         end
 
         it 'should create comment mark as ham' do
           article = FactoryGirl.create(:article)
-          lambda do
+          expect do
             post 'create', :article_id => article.id, :comment => base_comment
-            response.should redirect_to(:action => 'article', :id => article.id)
-          end.should change { Comment.count(:conditions => {:state => "ham"}) }
+            expect(response).to redirect_to(:action => 'article', :id => article.id)
+          end.to change { Comment.count(:conditions => {:state => "ham"}) }
         end
 
       end
@@ -206,10 +206,10 @@ describe Admin::FeedbackController do
         article = FactoryGirl.create(:article)
         comment = FactoryGirl.create(:comment, :article => article)
         get 'edit', :id => comment.id
-        assigns(:comment).should == comment
-        assigns(:article).should == article
-        response.should be_success
-        response.should render_template('edit')
+        expect(assigns(:comment)).to eq(comment)
+        expect(assigns(:article)).to eq(article)
+        expect(response).to be_success
+        expect(response).to render_template('edit')
       end
     end
 
@@ -222,9 +222,9 @@ describe Admin::FeedbackController do
           :comment => {:author => 'Bob Foo2',
                        :url => 'http://fakeurl.com',
                        :body => 'updated comment'}
-          response.should redirect_to(:action => 'article', :id => article.id)
+          expect(response).to redirect_to(:action => 'article', :id => article.id)
           comment.reload
-          comment.body.should == 'updated comment'
+          expect(comment.body).to eq('updated comment')
       end
 
       it 'should not  update comment if get request' do
@@ -233,9 +233,9 @@ describe Admin::FeedbackController do
           :comment => {:author => 'Bob Foo2',
                        :url => 'http://fakeurl.com',
                        :body => 'updated comment'}
-          response.should redirect_to(:action => 'edit', :id => comment.id)
+          expect(response).to redirect_to(:action => 'edit', :id => comment.id)
           comment.reload
-          comment.body.should_not == 'updated comment'
+          expect(comment.body).not_to eq('updated comment')
       end
 
 
@@ -268,10 +268,10 @@ describe Admin::FeedbackController do
       it "should not destroy feedback doesn't own" do
         id = feedback_from_not_own_article.id
         post 'destroy', :id => id
-        response.should redirect_to(:controller => 'admin/feedback', :action => 'index')
-        lambda do
+        expect(response).to redirect_to(:controller => 'admin/feedback', :action => 'index')
+        expect do
           Feedback.find(id)
-        end.should_not raise_error
+        end.not_to raise_error
       end
     end
 
@@ -279,15 +279,15 @@ describe Admin::FeedbackController do
 
       it 'should not edit comment no own article' do
         get 'edit', :id => feedback_from_not_own_article.id
-        response.should redirect_to(:action => 'index')
+        expect(response).to redirect_to(:action => 'index')
       end
 
       it 'should edit comment if own article' do
         get 'edit', :id => feedback_from_own_article.id
-        response.should be_success
-        response.should render_template('edit')
-        assigns(:comment).should == feedback_from_own_article
-        assigns(:article).should == feedback_from_own_article.article
+        expect(response).to be_success
+        expect(response).to render_template('edit')
+        expect(assigns(:comment)).to eq(feedback_from_own_article)
+        expect(assigns(:article)).to eq(feedback_from_own_article.article)
       end
 
     end
@@ -299,9 +299,9 @@ describe Admin::FeedbackController do
           :comment => {:author => 'Bob Foo2',
                        :url => 'http://fakeurl.com',
                        :body => 'updated comment'}
-          response.should redirect_to(:action => 'article', :id => feedback_from_own_article.article.id)
+          expect(response).to redirect_to(:action => 'article', :id => feedback_from_own_article.article.id)
           feedback_from_own_article.reload
-          feedback_from_own_article.body.should == 'updated comment'
+          expect(feedback_from_own_article.body).to eq('updated comment')
       end
 
       it 'should not update comment if not own article' do
@@ -309,23 +309,23 @@ describe Admin::FeedbackController do
           :comment => {:author => 'Bob Foo2',
                        :url => 'http://fakeurl.com',
                        :body => 'updated comment'}
-          response.should redirect_to(:action => 'index')
+          expect(response).to redirect_to(:action => 'index')
           feedback_from_not_own_article.reload
-          feedback_from_not_own_article.body.should_not == 'updated comment'
+          expect(feedback_from_not_own_article.body).not_to eq('updated comment')
       end
     end
 
     describe '#bulkops action' do
       it "redirect to index" do
         post :bulkops, bulkop_top: 'destroy all spam'
-        @response.should redirect_to(action: 'index')
+        expect(@response).to redirect_to(action: 'index')
       end
 
       it "delete all spam" do
         Feedback.delete_all
         comment = FactoryGirl.create(:comment, state: :spam)
         post :bulkops, bulkop_top: 'Delete all spam'
-        Feedback.count.should == 0
+        expect(Feedback.count).to eq(0)
       end
 
       it "delete all spam and only confirmed spam" do
@@ -335,79 +335,79 @@ describe Admin::FeedbackController do
         FactoryGirl.create(:comment, state: :presumed_ham)
         FactoryGirl.create(:comment, state: :ham)
         post :bulkops, bulkop_top: 'Delete all spam'
-        Feedback.count.should == 3
+        expect(Feedback.count).to eq(3)
       end
 
       it "mark presumed spam comments as spam" do
         comment = FactoryGirl.create(:comment, state: :presumed_spam)
         post :bulkops, bulkop_top: 'Mark Checked Items as Spam', feedback_check: {comment.id.to_s => "on"}
-        Feedback.find(comment.id).should be_spam
+        expect(Feedback.find(comment.id)).to be_spam
       end
 
       it "mark confirmed spam comments as spam" do
         comment = FactoryGirl.create(:comment, state: :spam)
         post :bulkops, bulkop_top: 'Mark Checked Items as Spam', feedback_check: {comment.id.to_s => "on"}
-        Feedback.find(comment.id).should be_spam
+        expect(Feedback.find(comment.id)).to be_spam
       end
 
       it "mark presumed ham comments as spam" do
         comment = FactoryGirl.create(:comment, state: :presumed_ham)
         post :bulkops, bulkop_top: 'Mark Checked Items as Spam', feedback_check: {comment.id.to_s => "on"}
-        Feedback.find(comment.id).should be_spam
+        expect(Feedback.find(comment.id)).to be_spam
       end
 
       it "mark ham comments as spam" do
         comment = FactoryGirl.create(:comment, state: :ham)
         post :bulkops, bulkop_top: 'Mark Checked Items as Spam', feedback_check: {comment.id.to_s => "on"}
-        Feedback.find(comment.id).should be_spam
+        expect(Feedback.find(comment.id)).to be_spam
       end
 
       it "mark presumed spam comments as ham" do
         comment = FactoryGirl.create(:comment, state: :presumed_spam)
         post :bulkops, bulkop_top: 'Mark Checked Items as Ham', feedback_check: {comment.id.to_s => "on"}
-        Feedback.find(comment.id).should be_ham
+        expect(Feedback.find(comment.id)).to be_ham
       end
 
       it "mark confirmed spam comments as ham" do
         comment = FactoryGirl.create(:comment, state: :spam)
         post :bulkops, bulkop_top: 'Mark Checked Items as Ham', feedback_check: {comment.id.to_s => "on"}
-        Feedback.find(comment.id).should be_ham
+        expect(Feedback.find(comment.id)).to be_ham
       end
 
       it "mark presumed ham comments as ham" do
         comment = FactoryGirl.create(:comment, state: :presumed_ham)
         post :bulkops, bulkop_top: 'Mark Checked Items as Ham', feedback_check: {comment.id.to_s => "on"}
-        Feedback.find(comment.id).should be_ham
+        expect(Feedback.find(comment.id)).to be_ham
       end
 
       it "mark ham comments as ham" do
         comment = FactoryGirl.create(:comment, state: :ham)
         post :bulkops, bulkop_top: 'Mark Checked Items as Ham', feedback_check: {comment.id.to_s => "on"}
-        Feedback.find(comment.id).should be_ham
+        expect(Feedback.find(comment.id)).to be_ham
       end
 
       it "confirms presumed spam comments as spam" do
         comment = FactoryGirl.create(:comment, state: :presumed_spam)
         post :bulkops, bulkop_top: 'Confirm Classification of Checked Items', feedback_check: {comment.id.to_s => "on"}
-        Feedback.find(comment.id).should be_spam
+        expect(Feedback.find(comment.id)).to be_spam
       end
 
       it "confirms confirmed spam comments as spam" do
         comment = FactoryGirl.create(:comment, state: :spam)
         post :bulkops, bulkop_top: 'Confirm Classification of Checked Items', feedback_check: {comment.id.to_s => "on"}
-        Feedback.find(comment.id).should be_spam
+        expect(Feedback.find(comment.id)).to be_spam
       end
 
       it "confirms presumed ham comments as ham" do
         comment = FactoryGirl.create(:comment, state: :presumed_ham)
         post :bulkops, bulkop_top: 'Confirm Classification of Checked Items', feedback_check: {comment.id.to_s => "on"}
-        Feedback.find(comment.id).should be_ham
+        expect(Feedback.find(comment.id)).to be_ham
       end
 
       it "confirms ham comments as ham" do
         comment = FactoryGirl.create(:comment, state: :ham)
         post :bulkops, bulkop_top: 'Confirm Classification of Checked Items', feedback_check: {comment.id.to_s => "on"}
-        Feedback.find(comment.id).should be_ham
+        expect(Feedback.find(comment.id)).to be_ham
       end
 
     end

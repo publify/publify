@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Admin::TagsController do
+describe Admin::TagsController, :type => :controller do
   let!(:blog) { create(:blog) }
   let!(:user) { create(:user, login: 'henri', profile: create(:profile_admin)) }
 

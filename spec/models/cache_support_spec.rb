@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Given a published article' do
+describe 'Given a published article', :type => :model do
   before(:each) do
     FactoryGirl.create(:blog)
     FactoryGirl.create(:article)
@@ -8,32 +8,32 @@ describe 'Given a published article' do
   end
 
   it "An unchanged article does not invalidate the cache" do
-    @article.should_not be_invalidates_cache
+    expect(@article).not_to be_invalidates_cache
   end
 
   it 'changing the body smashes the cache' do
     @article.body = "New Body"
-    @article.should be_invalidates_cache
+    expect(@article).to be_invalidates_cache
   end
 
   it 'withdrawing it smashes the cache' do
     @article.withdraw!
-    @article.should be_invalidates_cache
+    expect(@article).to be_invalidates_cache
   end
 
   it 'destroying it smashes the cache' do
     @article.destroy
-    @article.should be_invalidates_cache(true)
+    expect(@article).to be_invalidates_cache(true)
   end
 
   it 'withdrawing, then destroying it smashes the cache' do
     @article.withdraw
     @article.destroy
-    @article.should be_invalidates_cache
+    expect(@article).to be_invalidates_cache
   end
 end
 
-describe "Given an unpublished article" do
+describe "Given an unpublished article", :type => :model do
   before(:each) do
     FactoryGirl.create(:blog)
     FactoryGirl.create(:article, :published => false, :state => 'draft')
@@ -42,20 +42,20 @@ describe "Given an unpublished article" do
 
   it "publishing smashes the cache" do
     @article.publish!
-    @article.should be_invalidates_cache
+    expect(@article).to be_invalidates_cache
   end
   it "changing it keeps the cache" do
     @article.body = 'New body'
-    @article.should_not be_invalidates_cache
+    expect(@article).not_to be_invalidates_cache
   end
 
   it "destroying it keeps the cache" do
     @article.destroy
-    @article.should_not be_invalidates_cache
+    expect(@article).not_to be_invalidates_cache
   end
 end
 
-describe "Given an unpublished spammy comment" do
+describe "Given an unpublished spammy comment", :type => :model do
   before(:each) do
     FactoryGirl.create(:blog)
     @comment = FactoryGirl.create(:comment, 
@@ -67,23 +67,23 @@ describe "Given an unpublished spammy comment" do
   it 'changing it does not alter the cache' do
     @comment.body = "Lorem ipsum dolor"
     @comment.save
-    @comment.should_not be_invalidates_cache
+    expect(@comment).not_to be_invalidates_cache
   end
 
   it 'publishing it does alter the cache' do
     @comment.published = true
     @comment.state = 'presumed_ham'
     @comment.save
-    @comment.should be_invalidates_cache
+    expect(@comment).to be_invalidates_cache
   end
 
   it 'destroying it does not alter the cache' do
     @comment.destroy
-    @comment.should_not be_invalidates_cache
+    expect(@comment).not_to be_invalidates_cache
   end
 end
 
-describe "Given a published comment" do
+describe "Given a published comment", :type => :model do
   before(:each) do
     FactoryGirl.create(:blog)
     @comment = FactoryGirl.create(:comment)
@@ -92,21 +92,21 @@ describe "Given a published comment" do
   it 'changing it destroys the cache' do
     @comment.body = "Lorem ipsum dolor"
     @comment.publish!
-    @comment.should be_invalidates_cache
+    expect(@comment).to be_invalidates_cache
   end
 
   it 'unpublishing it destroys the cache' do
     @comment.withdraw!
-    @comment.should be_invalidates_cache
+    expect(@comment).to be_invalidates_cache
   end
 
   it 'destroying it destroys the cache' do
     @comment.destroy
-    @comment.should be_invalidates_cache
+    expect(@comment).to be_invalidates_cache
   end
 end
 
-describe "Given an unpublished spammy trackback" do
+describe "Given an unpublished spammy trackback", :type => :model do
   before(:each) do
     FactoryGirl.create(:blog)
     @trackback = FactoryGirl.create(:trackback, :published => false,
@@ -116,23 +116,23 @@ describe "Given an unpublished spammy trackback" do
   it 'changing it does not alter the cache' do
     @trackback.body = "Lorem ipsum dolor"
     @trackback.save!
-    @trackback.should_not be_invalidates_cache
+    expect(@trackback).not_to be_invalidates_cache
   end
 
   it 'publishing it does alter the cache' do
     @trackback.published = true
     @trackback.state = 'presumed_ham'
     @trackback.save!
-    @trackback.should be_invalidates_cache
+    expect(@trackback).to be_invalidates_cache
   end
 
   it 'destroying it does not alter the cache' do
     @trackback.destroy
-    @trackback.should_not be_invalidates_cache
+    expect(@trackback).not_to be_invalidates_cache
   end
 end
 
-describe "Given a published trackback" do
+describe "Given a published trackback", :type => :model do
   before(:each) do
     FactoryGirl.create(:blog)
     @trackback = FactoryGirl.create(:comment)
@@ -141,16 +141,16 @@ describe "Given a published trackback" do
   it 'changing it destroys the cache' do
     @trackback.body = "Lorem ipsum dolor"
     @trackback.save
-    @trackback.should be_invalidates_cache
+    expect(@trackback).to be_invalidates_cache
   end
 
   it 'unpublishing it destroys the cache' do
     @trackback.withdraw!
-    @trackback.should be_invalidates_cache
+    expect(@trackback).to be_invalidates_cache
   end
 
   it 'destroying it destroys the cache' do
     @trackback.destroy
-    @trackback.should be_invalidates_cache
+    expect(@trackback).to be_invalidates_cache
   end
 end

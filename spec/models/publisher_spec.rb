@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Publisher do
+describe Publisher, :type => :model do
   context "with a user" do
     let(:user) { create(:user) }
 

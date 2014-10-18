@@ -1,21 +1,21 @@
 require 'spec_helper'
 
-describe Tag do
+describe Tag, :type => :model do
   let!(:blog) { create(:blog) }
 
   it 'tags are unique' do
-    lambda {Tag.create!(:name => 'test')}.should_not raise_error
+    expect {Tag.create!(:name => 'test')}.not_to raise_error
     test_tag = Tag.new(:name => 'test')
-    test_tag.should_not be_valid
-    test_tag.errors[:name].should == ['has already been taken']
+    expect(test_tag).not_to be_valid
+    expect(test_tag.errors[:name]).to eq(['has already been taken'])
   end
 
   it 'display names with spaces can be found by dash joined name' do
-    Tag.where(:name => 'Monty Python').first.should be_nil
+    expect(Tag.where(:name => 'Monty Python').first).to be_nil
     tag = Tag.create(:name => 'Monty Python')
-    tag.should be_valid
-    tag.name.should == 'monty-python'
-    tag.display_name.should == 'Monty Python'
+    expect(tag).to be_valid
+    expect(tag.name).to eq('monty-python')
+    expect(tag.display_name).to eq('Monty Python')
   end
 
   it 'articles can be tagged' do
@@ -25,8 +25,8 @@ describe Tag do
     a.tags << foo
     a.tags << bar
     a.reload
-    a.tags.size.should == 2
-    a.tags.sort_by(&:id).should == [foo, bar].sort_by(&:id)
+    expect(a.tags.size).to eq(2)
+    expect(a.tags.sort_by(&:id)).to eq([foo, bar].sort_by(&:id))
   end
 
   it 'find_all_with_article_counters finds 2 tags' do
@@ -37,10 +37,10 @@ describe Tag do
     bar = FactoryGirl.create(:tag, :name => 'bar', :articles => [a, b])
     tags = Tag.find_all_with_article_counters
     expect(tags.entries.size).to eq(2)
-    tags.first.name.should == "foo"
-    tags.first.article_counter.should == 3
-    tags.last.name.should == 'bar'
-    tags.last.article_counter.should == 2
+    expect(tags.first.name).to eq("foo")
+    expect(tags.first.article_counter).to eq(3)
+    expect(tags.last.name).to eq('bar')
+    expect(tags.last.article_counter).to eq(2)
   end
 
   describe 'permalink_url' do
@@ -53,7 +53,7 @@ describe Tag do
       published_art = FactoryGirl.create(:article)
       draft_art = FactoryGirl.create(:article, :published_at => nil, :published => false, :state => 'draft')
       art_tag = FactoryGirl.create(:tag, :name => 'art', :articles => [published_art, draft_art])
-      art_tag.published_articles.size.should == 1
+      expect(art_tag.published_articles.size).to eq(1)
     end
   end
 
@@ -66,15 +66,15 @@ describe Tag do
     end
 
     it "find_with_char('f') should be return foo" do
-      Tag.find_with_char('f').should == [@foo]
+      expect(Tag.find_with_char('f')).to eq([@foo])
     end
 
     it "find_with_char('v') should return empty data" do
-      Tag.find_with_char('v').should == []
+      expect(Tag.find_with_char('v')).to eq([])
     end
 
     it "find_with_char('ba') should return tag bar and bazz" do
-      Tag.find_with_char('ba').sort_by(&:id).should == [@bar, @bazz].sort_by(&:id)
+      expect(Tag.find_with_char('ba').sort_by(&:id)).to eq([@bar, @bazz].sort_by(&:id))
     end
 
 

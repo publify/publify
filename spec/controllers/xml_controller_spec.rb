@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe XmlController do
+describe XmlController, :type => :controller do
   before do
     create(:blog, base_url: "http://myblog.net")
-    Trigger.stub(:fire) { }
+    allow(Trigger).to receive(:fire) { }
   end
 
   def assert_moved_permanently_to(location)
@@ -88,7 +88,7 @@ describe XmlController do
     describe "for an article" do
       before do
         @article = build_stubbed(:article, published_at: Time.now, permalink: "foo")
-        Article.stub(:find) { @article }
+        allow(Article).to receive(:find) { @article }
       end
 
       describe "without format parameter" do
@@ -127,7 +127,7 @@ describe XmlController do
   describe "#articlerss" do
     before do
       @article = build_stubbed(:article, published_at: Time.now, permalink: "foo")
-      Article.stub(:find) { @article }
+      allow(Article).to receive(:find) { @article }
     end
 
     it "redirects permanently to the article RSS feed" do

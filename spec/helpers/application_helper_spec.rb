@@ -9,7 +9,7 @@ class TestBrokenSidebar < Sidebar
   end
 end
 
-describe ApplicationHelper do
+describe ApplicationHelper, :type => :helper do
   context "With a simple blog" do
     let!(:blog) { create(:blog) }
 
@@ -44,29 +44,29 @@ describe ApplicationHelper do
       end
 
       context "for the tags controller" do
-        before(:each) { helper.stub(:controller_name).and_return("tags") }
+        before(:each) { allow(helper).to receive(:controller_name).and_return("tags") }
 
         context "with unindex_tags set in blog" do
-          before(:each) { blog.should_receive(:unindex_tags).and_return(true) }
+          before(:each) { expect(blog).to receive(:unindex_tags).and_return(true) }
           it { expect(subject).to be_truthy }
         end
 
         context "with unindex_tags set in blog" do
-          before(:each) { blog.should_receive(:unindex_tags).and_return(false) }
+          before(:each) { expect(blog).to receive(:unindex_tags).and_return(false) }
           it { expect(subject).to be_falsey }
         end
       end
 
       context "for the categories controller" do
-        before(:each) { helper.stub(:controller_name).and_return("categories") }
+        before(:each) { allow(helper).to receive(:controller_name).and_return("categories") }
 
         context "with unindex_tags set in blog" do
-          before(:each) { blog.should_receive(:unindex_categories).and_return(true) }
+          before(:each) { expect(blog).to receive(:unindex_categories).and_return(true) }
           it { expect(subject).to be_truthy }
         end
 
         context "with unindex_tags set in blog" do
-          before(:each) { blog.should_receive(:unindex_categories).and_return(false) }
+          before(:each) { expect(blog).to receive(:unindex_categories).and_return(false) }
           it { expect(subject).to be_falsey }
         end
       end
@@ -136,12 +136,12 @@ describe ApplicationHelper do
 
           def logger
             fake_logger = double('fake logger')
-            fake_logger.should_receive(:error)
+            expect(fake_logger).to receive(:error)
             fake_logger
           end
 
           it "should return a friendly error message" do
-            render_sidebars.should =~ /It seems something went wrong/
+            expect(render_sidebars).to match(/It seems something went wrong/)
           end
         end
 
@@ -151,7 +151,7 @@ describe ApplicationHelper do
           end
 
           it "should render the sidebar" do
-            render_sidebars.should =~ /Rendered/
+            expect(render_sidebars).to match(/Rendered/)
           end
         end
       end

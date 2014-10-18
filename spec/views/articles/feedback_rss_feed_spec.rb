@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "articles/feedback_rss_feed.rss.builder" do
+describe "articles/feedback_rss_feed.rss.builder", :type => :view do
   let!(:blog) { build_stubbed :blog }
 
   describe "with feedback consisting of one trackback and one comment" do
@@ -22,11 +22,11 @@ describe "articles/feedback_rss_feed.rss.builder" do
     end
 
     it "renders the trackback RSS partial once" do
-      view.should render_template(:partial => "shared/_rss_item_trackback", :count => 1)
+      expect(view).to render_template(:partial => "shared/_rss_item_trackback", :count => 1)
     end
 
     it "renders the comment RSS partial once" do
-      view.should render_template(:partial => "shared/_rss_item_comment", :count => 1)
+      expect(view).to render_template(:partial => "shared/_rss_item_comment", :count => 1)
     end
   end
 end

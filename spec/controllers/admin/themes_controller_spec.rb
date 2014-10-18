@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Admin::ThemesController do
+describe Admin::ThemesController, :type => :controller do
   render_views
 
   before do
@@ -18,7 +18,7 @@ describe Admin::ThemesController do
 
     it "assigns @themes for the :index action" do
       assert_response :success
-      assigns(:themes).should_not be_nil
+      expect(assigns(:themes)).not_to be_nil
     end
   end
 

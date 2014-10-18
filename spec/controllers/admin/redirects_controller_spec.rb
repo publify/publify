@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Admin::RedirectsController do
+describe Admin::RedirectsController, :type => :controller do
   render_views
 
   before do
@@ -22,19 +22,19 @@ describe Admin::RedirectsController do
   end
 
   it "test_create" do
-    lambda do
+    expect do
       post :edit, 'redirect' => { :from_path => "some/place", 
         :to_path => "somewhere/else" }
       assert_response :redirect, :action => 'index'
-    end.should change(Redirect, :count)
+    end.to change(Redirect, :count)
   end
   
   it "test_create with empty from path" do
-    lambda do
+    expect do
       post :edit, 'redirect' => { :from_path => "", 
         :to_path => "somewhere/else/else" }
       assert_response :redirect, :action => 'index'
-    end.should change(Redirect, :count)
+    end.to change(Redirect, :count)
   end
   
   describe "#edit" do
@@ -44,7 +44,7 @@ describe Admin::RedirectsController do
 
     it 'should render new template with valid redirect' do
       assert_template 'new'
-      assigns(:redirect).should_not be_nil
+      expect(assigns(:redirect)).not_to be_nil
       assert assigns(:redirect).valid?
     end
   end
@@ -57,7 +57,7 @@ describe Admin::RedirectsController do
   describe "test_destroy" do
     before(:each) do
       @test_id = FactoryGirl.create(:redirect).id
-      Redirect.find(@test_id).should_not be_nil
+      expect(Redirect.find(@test_id)).not_to be_nil
     end
 
     describe 'with GET' do
@@ -81,7 +81,7 @@ describe Admin::RedirectsController do
       end
 
       it 'should have no more redirects' do
-        lambda { Redirect.find(@test_id) }.should raise_error ActiveRecord::RecordNotFound
+        expect { Redirect.find(@test_id) }.to raise_error ActiveRecord::RecordNotFound
       end
     end
   end

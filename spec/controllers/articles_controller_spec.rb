@@ -1,7 +1,7 @@
 # coding: utf-8
 require 'spec_helper'
 
-describe ArticlesController, "base" do
+describe ArticlesController, "base", :type => :controller do
   let!(:blog) { create(:blog) }
   let!(:user) { create :user }
 
@@ -21,19 +21,19 @@ describe ArticlesController, "base" do
       render_views
 
       it 'should have good link feed rss' do
-        response.body.should have_selector('head>link[href="http://test.host/articles.rss"]', visible: false)
+        expect(response.body).to have_selector('head>link[href="http://test.host/articles.rss"]', visible: false)
       end
 
       it 'should have good link feed atom' do
-        response.body.should have_selector('head>link[href="http://test.host/articles.atom"]', visible: false)
+        expect(response.body).to have_selector('head>link[href="http://test.host/articles.atom"]', visible: false)
       end
 
       it 'should have a canonical url' do
-        response.body.should have_selector("head>link[href='#{blog.base_url}/']", visible: false)
+        expect(response.body).to have_selector("head>link[href='#{blog.base_url}/']", visible: false)
       end
 
       it 'should have good title' do
-        response.body.should have_selector('title', :text => "test blog | test subtitles", visible: false)
+        expect(response.body).to have_selector('title', :text => "test blog | test subtitles", visible: false)
       end
     end
   end
@@ -53,24 +53,24 @@ describe ArticlesController, "base" do
       context "with the view rendered" do
         render_views
         it 'should have good feed rss link' do
-          response.body.should have_selector('head>link[href="http://test.host/search/a.rss"]', visible: false)
+          expect(response.body).to have_selector('head>link[href="http://test.host/search/a.rss"]', visible: false)
         end
 
         it 'should have good feed atom link' do
-          response.body.should have_selector('head>link[href="http://test.host/search/a.atom"]', visible: false)
+          expect(response.body).to have_selector('head>link[href="http://test.host/search/a.atom"]', visible: false)
         end
 
         it 'should have a canonical url' do
-          response.body.should have_selector("head>link[href='#{blog.base_url}/search/a']", visible: false)
+          expect(response.body).to have_selector("head>link[href='#{blog.base_url}/search/a']", visible: false)
         end
 
         it 'should have a good title' do
-          response.body.should have_selector('title', :text => "Results for a | test blog", visible: false)
+          expect(response.body).to have_selector('title', :text => "Results for a | test blog", visible: false)
         end
 
         it 'should have content markdown interpret and without html tag' do
-          response.body.should have_selector('div') do |div|
-            div.should match(%Q{in markdown format * we * use [ok](http://blog.ok.com) to define a link})
+          expect(response.body).to have_selector('div') do |div|
+            expect(div).to match(%Q{in markdown format * we * use [ok](http://blog.ok.com) to define a link})
           end
         end
       end
@@ -78,19 +78,19 @@ describe ArticlesController, "base" do
 
     it 'should render feed rss by search' do
       get 'search', :q => 'a', :format => 'rss'
-      response.should be_success
-      response.should render_template('index_rss_feed', layout: false)
+      expect(response).to be_success
+      expect(response).to render_template('index_rss_feed', layout: false)
     end
 
     it 'should render feed atom by search' do
       get 'search', :q => 'a', :format => 'atom'
-      response.should be_success
-      response.should render_template('index_atom_feed', layout: false)
+      expect(response).to be_success
+      expect(response).to render_template('index_atom_feed', layout: false)
     end
 
     it 'search with empty result' do
       get 'search', :q => 'abcdefghijklmnopqrstuvwxyz'
-      response.should render_template('articles/error', layout: false)
+      expect(response).to render_template('articles/error', layout: false)
     end
 
   end
@@ -111,22 +111,22 @@ describe ArticlesController, "base" do
       end
 
       it 'should render without layout' do
-        response.should render_template(:layout => nil)
+        expect(response).to render_template(:layout => nil)
       end
 
       it 'should render template live_search' do
-        response.should render_template('live_search')
+        expect(response).to render_template('live_search')
       end
 
       context "with the view rendered" do
         render_views
         it 'should not have h3 tag' do
-          response.body.should have_selector("h3")
+          expect(response.body).to have_selector("h3")
         end
       end
 
       it "should assign @search the search string" do
-        assigns[:search].should be_equal(controller.params[:q])
+        expect(assigns[:search]).to be_equal(controller.params[:q])
       end
 
     end
@@ -138,12 +138,12 @@ describe ArticlesController, "base" do
     it "works" do
       3.times { create(:article) }
       get 'archives'
-      response.should render_template(:archives)
-      assigns[:articles].should_not be_nil
-      assigns[:articles].should_not be_empty
+      expect(response).to render_template(:archives)
+      expect(assigns[:articles]).not_to be_nil
+      expect(assigns[:articles]).not_to be_empty
 
-      response.body.should have_selector("head>link[href='#{blog.base_url}/archives']", visible: false)
-      response.body.should have_selector('title', :text => "Archives for test blog", visible: false)
+      expect(response.body).to have_selector("head>link[href='#{blog.base_url}/archives']", visible: false)
+      expect(response.body).to have_selector('title', :text => "Archives for test blog", visible: false)
     end
   end
 
@@ -155,48 +155,48 @@ describe ArticlesController, "base" do
     end
 
     it 'should render template index' do
-      response.should render_template(:index)
+      expect(response).to render_template(:index)
     end
 
     it 'should contain some articles' do
-      assigns[:articles].should_not be_nil
-      assigns[:articles].should_not be_empty
+      expect(assigns[:articles]).not_to be_nil
+      expect(assigns[:articles]).not_to be_empty
     end
 
     context "with the view rendered" do
       render_views
       it 'should have a canonical url' do
-        response.body.should have_selector("head>link[href='#{blog.base_url}/2004/4']", visible: false)
+        expect(response.body).to have_selector("head>link[href='#{blog.base_url}/2004/4']", visible: false)
       end
 
       it 'should have a good title' do
-        response.body.should have_selector('title', :text => "Archives for test blog", visible: false)
+        expect(response.body).to have_selector('title', :text => "Archives for test blog", visible: false)
       end
     end
   end
 
 end
 
-describe ArticlesController, "nosettings" do
+describe ArticlesController, "nosettings", :type => :controller do
   let!(:blog) { create(:blog, settings: {}) }
 
   it 'redirects to setup' do
     get 'index'
-    response.should redirect_to(controller: 'setup', action: 'index')
+    expect(response).to redirect_to(controller: 'setup', action: 'index')
   end
 end
 
-describe ArticlesController, "nousers" do
+describe ArticlesController, "nousers", :type => :controller do
 
   let!(:blog) { create(:blog) }
 
   it 'redirects to signup' do
     get 'index'
-    response.should redirect_to(controller: 'accounts', action: 'signup')
+    expect(response).to redirect_to(controller: 'accounts', action: 'signup')
   end
 end
 
-describe ArticlesController, "feeds" do
+describe ArticlesController, "feeds", :type => :controller do
   let!(:blog) { create(:blog) }
 
   let!(:article1) { create(:article, :created_at => Time.now - 1.day) }
@@ -207,32 +207,32 @@ describe ArticlesController, "feeds" do
 
   specify "/articles.atom => an atom feed" do
     get 'index', :format => 'atom'
-    response.should be_success
-    response.should render_template("index_atom_feed", layout: false)
-    assigns(:articles).should == [article1, article2]
+    expect(response).to be_success
+    expect(response).to render_template("index_atom_feed", layout: false)
+    expect(assigns(:articles)).to eq([article1, article2])
   end
 
   specify "/articles.rss => an RSS 2.0 feed" do
     get 'index', :format => 'rss'
-    response.should be_success
-    response.should render_template("index_rss_feed", layout: false)
-    assigns(:articles).should == [article1, article2]
+    expect(response).to be_success
+    expect(response).to render_template("index_rss_feed", layout: false)
+    expect(assigns(:articles)).to eq([article1, article2])
   end
 
   specify "atom feed for archive should be valid" do
     get 'index', :year => 2004, :month => 4, :format => 'atom'
-    response.should render_template("index_atom_feed", layout: false)
-    assigns(:articles).should == [article2]
+    expect(response).to render_template("index_atom_feed", layout: false)
+    expect(assigns(:articles)).to eq([article2])
   end
 
   specify "RSS feed for archive should be valid" do
     get 'index', :year => 2004, :month => 4, :format => 'rss'
-    response.should render_template("index_rss_feed", layout: false)
-    assigns(:articles).should == [article2]
+    expect(response).to render_template("index_rss_feed", layout: false)
+    expect(assigns(:articles)).to eq([article2])
   end
 end
 
-describe ArticlesController, "the index" do
+describe ArticlesController, "the index", :type => :controller do
   let!(:blog) { create(:blog) }
 
   before(:each) do
@@ -243,11 +243,11 @@ describe ArticlesController, "the index" do
   it "should ignore the HTTP Accept: header" do
     request.env["HTTP_ACCEPT"] = "application/atom+xml"
     get "index"
-    response.should render_template("index")
+    expect(response).to render_template("index")
   end
 end
 
-describe ArticlesController, "previewing" do
+describe ArticlesController, "previewing", :type => :controller do
   let!(:blog) { create(:blog) }
 
   describe 'with non logged user' do
@@ -257,7 +257,7 @@ describe ArticlesController, "previewing" do
     end
 
     it 'should redirect to login' do
-      response.should redirect_to(:controller => "accounts", :action => "login")
+      expect(response).to redirect_to(:controller => "accounts", :action => "login")
     end
   end
 
@@ -273,25 +273,25 @@ describe ArticlesController, "previewing" do
         it "should render template #{view_path}/articles/read" do
           blog.theme = theme
           get :preview, id: article.id
-          response.should render_template('articles/read')
+          expect(response).to render_template('articles/read')
         end
       end
     end
 
     it 'should assigns article define with id' do
       get :preview, :id => article.id
-      assigns[:article].should == article
+      expect(assigns[:article]).to eq(article)
     end
 
     it 'should assigns last article with id like parent_id' do
       draft = create(:article, parent_id: article.id)
       get :preview, id: article.id
-      assigns[:article].should == draft
+      expect(assigns[:article]).to eq(draft)
     end
   end
 end
 
-describe ArticlesController, "redirecting" do
+describe ArticlesController, "redirecting", :type => :controller do
 
   describe "with explicit redirects" do
     it 'should redirect from known URL' do
@@ -300,7 +300,7 @@ describe ArticlesController, "redirecting" do
       create(:redirect)
       get :redirect, :from => "foo/bar"
       assert_response 301
-      response.should redirect_to("http://test.host/someplace/else")
+      expect(response).to redirect_to("http://test.host/someplace/else")
     end
 
     it 'should not redirect from unknown URL' do
@@ -326,21 +326,21 @@ describe ArticlesController, "redirecting" do
         create(:redirect, :from_path => 'foo/bar', :to_path => '/someplace/else')
         get :redirect, :from => "foo/bar"
         assert_response 301
-        response.should redirect_to("http://test.host/blog/someplace/else")
+        expect(response).to redirect_to("http://test.host/blog/someplace/else")
       end
 
       it 'should redirect if to_path includes relative_url_root' do
         create(:redirect, :from_path => 'bar/foo', :to_path => '/blog/someplace/else')
         get :redirect, :from => "bar/foo"
         assert_response 301
-        response.should redirect_to("http://test.host/blog/someplace/else")
+        expect(response).to redirect_to("http://test.host/blog/someplace/else")
       end
 
       it "should ignore the blog base_url if the to_path is a full uri" do
         create(:redirect, :from_path => 'foo', :to_path => 'http://some.where/else')
         get :redirect, :from => "foo"
         assert_response 301
-        response.should redirect_to("http://some.where/else")
+        expect(response).to redirect_to("http://some.where/else")
       end
     end
   end
@@ -349,7 +349,7 @@ describe ArticlesController, "redirecting" do
     build_stubbed(:blog)
     utf8article = create(:utf8article, :permalink => 'ルビー', :published_at => Time.utc(2004, 6, 2))
     get :redirect, :from => '2004/06/02/ルビー'
-    assigns(:article).should == utf8article
+    expect(assigns(:article)).to eq(utf8article)
   end
 
   # NOTE: This is needed because Rails over-unescapes glob parameters.
@@ -357,7 +357,7 @@ describe ArticlesController, "redirecting" do
     build_stubbed(:blog)
     utf8article = create(:utf8article, :permalink => '%E3%83%AB%E3%83%93%E3%83%BC', :published_at => Time.utc(2004, 6, 2))
     get :redirect, :from => '2004/06/02/ルビー'
-    assigns(:article).should == utf8article
+    expect(assigns(:article)).to eq(utf8article)
   end
 
   describe 'accessing old-style URL with "articles" as the first part' do
@@ -366,7 +366,7 @@ describe ArticlesController, "redirecting" do
       article = create(:article, :permalink => 'second-blog-article', :published_at => '2004-04-01 02:00:00', :updated_at => '2004-04-01 02:00:00', :created_at => '2004-04-01 02:00:00')
       get :redirect, :from => "articles/2004/04/01/second-blog-article"
       assert_response 301
-      response.should redirect_to("http://myblog.net/2004/04/01/second-blog-article")
+      expect(response).to redirect_to("http://myblog.net/2004/04/01/second-blog-article")
     end
 
     it 'should redirect to article with url_root' do
@@ -374,7 +374,7 @@ describe ArticlesController, "redirecting" do
       article = create(:article, :permalink => 'second-blog-article', :published_at => '2004-04-01 02:00:00', :updated_at => '2004-04-01 02:00:00', :created_at => '2004-04-01 02:00:00')
       get :redirect, :from => "articles/2004/04/01/second-blog-article"
       assert_response 301
-      response.should redirect_to("http://test.host/blog/2004/04/01/second-blog-article")
+      expect(response).to redirect_to("http://test.host/blog/2004/04/01/second-blog-article")
     end
 
     it 'should redirect to article with articles in url_root' do
@@ -382,7 +382,7 @@ describe ArticlesController, "redirecting" do
       article = create(:article, :permalink => 'second-blog-article', :published_at => '2004-04-01 02:00:00', :updated_at => '2004-04-01 02:00:00', :created_at => '2004-04-01 02:00:00')
       get :redirect, :from => "articles/2004/04/01/second-blog-article"
       assert_response 301
-      response.should redirect_to("http://test.host/aaa/articles/bbb/2004/04/01/second-blog-article")
+      expect(response).to redirect_to("http://test.host/aaa/articles/bbb/2004/04/01/second-blog-article")
     end
   end
 
@@ -423,30 +423,30 @@ describe ArticlesController, "redirecting" do
       end
 
       it 'should render template read to article' do
-        response.should render_template('articles/read')
+        expect(response).to render_template('articles/read')
       end
 
       it 'should assign article1 to @article' do
-        assigns(:article).should == article
+        expect(assigns(:article)).to eq(article)
       end
 
       describe "the resulting page" do
         render_views
 
         it 'should have good rss feed link' do
-          response.body.should have_selector("head>link[href=\"http://myblog.net/#{article.permalink}.html.rss\"]", visible: false)
+          expect(response.body).to have_selector("head>link[href=\"http://myblog.net/#{article.permalink}.html.rss\"]", visible: false)
         end
 
         it 'should have good atom feed link' do
-          response.body.should have_selector("head>link[href=\"http://myblog.net/#{article.permalink}.html.atom\"]", visible: false)
+          expect(response.body).to have_selector("head>link[href=\"http://myblog.net/#{article.permalink}.html.atom\"]", visible: false)
         end
 
         it 'should have a canonical url' do
-          response.body.should have_selector("head>link[href='#{blog.base_url}/#{article.permalink}.html']", visible: false)
+          expect(response.body).to have_selector("head>link[href='#{blog.base_url}/#{article.permalink}.html']", visible: false)
         end
 
         it 'should have a good title' do
-          response.body.should have_selector('title', :text => "A big article | test blog", visible: false)
+          expect(response.body).to have_selector('title', :text => "A big article | test blog", visible: false)
         end
       end
     end
@@ -460,7 +460,7 @@ describe ArticlesController, "redirecting" do
         it "renders template #{view_path}/articles/read" do
           blog.theme = theme
           get :redirect, from: "#{article.permalink}.html"
-          response.should render_template('articles/read')
+          expect(response).to render_template('articles/read')
         end
       end
     end
@@ -474,8 +474,8 @@ describe ArticlesController, "redirecting" do
       end
 
       it 'should render feedback atom feed' do
-        assigns(:feedback).should == [trackback1]
-        response.should render_template('feedback_atom_feed', layout: false)
+        expect(assigns(:feedback)).to eq([trackback1])
+        expect(response).to render_template('feedback_atom_feed', layout: false)
       end
     end
 
@@ -488,8 +488,8 @@ describe ArticlesController, "redirecting" do
       end
 
       it 'should render rss20 partial' do
-        assigns(:feedback).should == [trackback1]
-        response.should render_template('feedback_rss_feed', layout: false)
+        expect(assigns(:feedback)).to eq([trackback1])
+        expect(response).to render_template('feedback_rss_feed', layout: false)
       end
     end
   end
@@ -500,7 +500,7 @@ describe ArticlesController, "redirecting" do
 
     it "should find the article if the url matches all components" do
       get :redirect, :from => "foo/#{article.permalink}"
-      response.should be_success
+      expect(response).to be_success
     end
 
     it "should not find the article if the url does not match the fixed component" do
@@ -517,7 +517,7 @@ describe ArticlesController, "redirecting" do
     if false
       it "should find the article if the url matches all fixed parts and no variable components" do
         get :redirect, :from => "foo/bar"
-        response.should be_success
+        expect(response).to be_success
       end
 
       it "should not find the article if the url does not match all fixed component" do
@@ -528,30 +528,30 @@ describe ArticlesController, "redirecting" do
   end
 end
 
-describe ArticlesController, "password protected" do
+describe ArticlesController, "password protected", :type => :controller do
   render_views
   let!(:blog) { create(:blog, :permalink_format => '/%title%.html') }
   let!(:article) { create(:article, :password => 'password') }
 
   it 'article alone should be password protected' do
     get :redirect, :from => "#{article.permalink}.html"
-    response.body.should have_selector('input[id="article_password"]', :count => 1)
+    expect(response.body).to have_selector('input[id="article_password"]', :count => 1)
   end
 
   describe "#check_password" do
     it "shows article when given correct password" do
       xhr :get, :check_password, :article => {:id => article.id, :password => article.password}
-      response.body.should_not have_selector('input[id="article_password"]')
+      expect(response.body).not_to have_selector('input[id="article_password"]')
     end
 
     it "shows password form when given incorrect password" do
       xhr :get, :check_password, :article => {:id => article.id, :password => "wrong password"}
-      response.body.should have_selector('input[id="article_password"]')
+      expect(response.body).to have_selector('input[id="article_password"]')
     end
   end
 end
 
-describe ArticlesController, "assigned keywords" do
+describe ArticlesController, "assigned keywords", :type => :controller do
   before(:each) { create :user }
 
   context "with default blog" do
@@ -559,7 +559,7 @@ describe ArticlesController, "assigned keywords" do
 
     it 'index without option and no blog keywords should not have meta keywords' do
       get 'index'
-      assigns(:keywords).should == ""
+      expect(assigns(:keywords)).to eq("")
     end
   end
 
@@ -578,12 +578,12 @@ describe ArticlesController, "assigned keywords" do
     it 'article without tags should not have meta keywords' do
       article = create(:article)
       get :redirect, :from => "#{article.permalink}.html"
-      assigns(:keywords).should == ""
+      expect(assigns(:keywords)).to eq("")
     end
   end
 end
 
-describe ArticlesController, "preview page" do
+describe ArticlesController, "preview page", :type => :controller do
   let!(:blog) { create(:blog) }
 
   describe 'with non logged user' do
@@ -593,7 +593,7 @@ describe ArticlesController, "preview page" do
     end
 
     it 'should redirect to login' do
-      response.should redirect_to(:controller => "accounts", :action => "login")
+      expect(response).to redirect_to(:controller => "accounts", :action => "login")
     end
   end
 
@@ -609,13 +609,13 @@ describe ArticlesController, "preview page" do
       it "should render template #{view_path}/articles/view_page" do
         blog.theme = theme
         get :preview_page, :id => page.id
-        response.should render_template('articles/view_page')
+        expect(response).to render_template('articles/view_page')
       end
     end
 
     it 'should assigns article define with id' do
       get :preview_page, :id => page.id
-      assigns[:page].should == page
+      expect(assigns[:page]).to eq(page)
     end
   end
 end

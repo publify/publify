@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "trackbacks/index_rss_feed.rss.builder" do
+describe "trackbacks/index_rss_feed.rss.builder", :type => :view do
   let!(:blog) { build_stubbed :blog }
 
   describe "rendering trackbacks" do
@@ -22,11 +22,12 @@ describe "trackbacks/index_rss_feed.rss.builder" do
         xml = Nokogiri::XML.parse(rendered)
         entry_xml = xml.css("item").first
 
-        entry_xml.css("title").first.content.should ==
+        expect(entry_xml.css("title").first.content).to eq(
           "Trackback from #{trackback.blog_name}: #{trackback.title} on #{article.title}"
-        entry_xml.css("guid").first.content.should == "urn:uuid:dsafsadffsdsf"
-        entry_xml.css("description").first.content.should == "This is an excerpt"
-        entry_xml.css("link").first.content.should == trackback.url
+        )
+        expect(entry_xml.css("guid").first.content).to eq("urn:uuid:dsafsadffsdsf")
+        expect(entry_xml.css("description").first.content).to eq("This is an excerpt")
+        expect(entry_xml.css("link").first.content).to eq(trackback.url)
       end
     end
   end

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe TextController do
+describe TextController, :type => :controller do
   let!(:blog) { create(:blog) }
 
   describe "humans" do

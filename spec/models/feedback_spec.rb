@@ -1,28 +1,28 @@
 require 'spec_helper'
 
-describe Feedback do
+describe Feedback, :type => :model do
   before { create(:blog) }
 
   describe ".change_state!" do
     it "respond to change_state!" do
-      Feedback.new.should respond_to(:change_state!)
+      expect(Feedback.new).to respond_to(:change_state!)
     end
 
     context "given a feedback with a spam state" do
       it "calls mark_as_ham!" do
         feedback = FactoryGirl.build(:spam_comment)
-        feedback.should_receive(:mark_as_ham)
-        feedback.should_receive(:save!)
-        feedback.change_state!.should eq "ham"
+        expect(feedback).to receive(:mark_as_ham)
+        expect(feedback).to receive(:save!)
+        expect(feedback.change_state!).to eq "ham"
       end
     end
 
     context "given a feedback with a ham state" do
       it "calls mark_as_spam!" do
         feedback = FactoryGirl.build(:ham_comment)
-        feedback.should_receive(:mark_as_spam)
-        feedback.should_receive(:save!)
-        feedback.change_state!.should eq "spam"
+        expect(feedback).to receive(:mark_as_spam)
+        expect(feedback).to receive(:save!)
+        expect(feedback.change_state!).to eq "spam"
       end
     end
   end
@@ -48,13 +48,13 @@ describe Feedback do
     describe "ham" do
       it "returns nothing when no ham" do
         FactoryGirl.create(:spam_comment)
-        Feedback.ham.should be_empty
+        expect(Feedback.ham).to be_empty
       end
 
       it "returns only ham" do
         FactoryGirl.create(:spam_comment)
         ham = FactoryGirl.create(:ham_comment)
-        Feedback.ham.should eq [ham]
+        expect(Feedback.ham).to eq [ham]
       end
     end
 
@@ -62,13 +62,13 @@ describe Feedback do
       let(:time) { DateTime.new(2011, 11, 1, 13, 45) }
       it "returns nothing with no feedback" do
         create(:ham_comment)
-        Feedback.published_since(time).should be_empty
+        expect(Feedback.published_since(time)).to be_empty
       end
 
       it "returns feedback when one published since last visit" do
         FactoryGirl.create(:ham_comment)
         feedback = FactoryGirl.create(:ham_comment, published_at: time + 2.hours)
-        Feedback.published_since(time).should eq [feedback]
+        expect(Feedback.published_since(time)).to eq [feedback]
       end
     end
 

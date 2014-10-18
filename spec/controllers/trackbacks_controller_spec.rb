@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe TrackbacksController do
+describe TrackbacksController, :type => :controller do
   let!(:blog) { create(:blog) }
 
   describe :index do

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe NotesController do
+describe NotesController, :type => :controller do
   render_views
   let!(:blog) { create(:blog) }
 

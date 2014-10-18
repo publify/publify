@@ -1,7 +1,7 @@
 # coding: utf-8
 require 'spec_helper'
 
-describe Article do
+describe Article, :type => :model do
 
   let!(:blog) { create(:blog) }
 
@@ -13,12 +13,12 @@ describe Article do
   describe "#permalink_url" do
     describe "with hostname" do
       subject { Article.new(:permalink => 'article-3', :published_at => Time.utc(2004, 6, 1)).permalink_url(anchor=nil, only_path=false) }
-      it { should == 'http://myblog.net/2004/06/01/article-3' }
+      it { is_expected.to eq('http://myblog.net/2004/06/01/article-3') }
     end
 
     describe "without hostname" do
       subject { Article.new(:permalink => 'article-3', :published_at => Time.utc(2004, 6, 1)).permalink_url(anchor=nil, only_path=true) }
-      it { should == '/2004/06/01/article-3' }
+      it { is_expected.to eq('/2004/06/01/article-3') }
     end
 
     # NOTE: URLs must not have any multibyte characters in them. The
@@ -26,21 +26,21 @@ describe Article do
     describe "with a multibyte permalink" do
       subject { Article.new(:permalink => 'ルビー', :published_at => Time.utc(2004, 6, 1)) }
       it "escapes the multibyte characters" do
-        subject.permalink_url(anchor=nil, only_path=true).should == '/2004/06/01/%E3%83%AB%E3%83%93%E3%83%BC'
+        expect(subject.permalink_url(anchor=nil, only_path=true)).to eq('/2004/06/01/%E3%83%AB%E3%83%93%E3%83%BC')
       end
     end
 
     describe "with a permalink containing a space" do
       subject { Article.new(:permalink => 'hello there', :published_at => Time.utc(2004, 6, 1)) }
       it "escapes the space as '%20', not as '+'" do
-        subject.permalink_url(anchor=nil, only_path=true).should == '/2004/06/01/hello%20there'
+        expect(subject.permalink_url(anchor=nil, only_path=true)).to eq('/2004/06/01/hello%20there')
       end
     end
 
     describe "with a permalink containing a plus" do
       subject { Article.new(:permalink => 'one+two', :published_at => Time.utc(2004, 6, 1)) }
       it "does not escape the plus" do
-        subject.permalink_url(anchor=nil, only_path=true).should == '/2004/06/01/one+two'
+        expect(subject.permalink_url(anchor=nil, only_path=true)).to eq('/2004/06/01/one+two')
       end
     end
   end
@@ -55,11 +55,11 @@ describe Article do
     let(:article) { build(:article, permalink: 'article-3', published_at: Time.utc(2004, 6, 1)) }
 
     it "returns url for atom feed for a Atom 1.0 asked" do
-      article.feed_url('atom10').should eq "http://myblog.net/2004/06/01/article-3.atom"
+      expect(article.feed_url('atom10')).to eq "http://myblog.net/2004/06/01/article-3.atom"
     end
 
     it "returns url for rss feed for a RSS 2 asked" do
-      article.feed_url('rss20').should eq "http://myblog.net/2004/06/01/article-3.rss"
+      expect(article.feed_url('rss20')).to eq "http://myblog.net/2004/06/01/article-3.rss"
     end
   end
 
@@ -108,20 +108,20 @@ describe Article do
 
     it "does not escape multibyte characters" do
       a = Article.new(:title => "ルビー")
-      a.title.to_permalink.should == "ルビー"
+      expect(a.title.to_permalink).to eq("ルビー")
     end
 
     it "is called upon saving the article" do
       a = Article.new(:title => "space separated")
-      a.permalink.should be_nil
+      expect(a.permalink).to be_nil
       a.save
-      a.permalink.should == "space-separated"
+      expect(a.permalink).to eq("space-separated")
     end
   end
 
   describe "the html_urls method" do
     before do
-      blog.stub(:text_filter_object) { TextFilter.new(:filters => []) }
+      allow(blog).to receive(:text_filter_object) { TextFilter.new(:filters => []) }
       @article = Article.new
     end
 
@@ -162,19 +162,19 @@ describe Article do
       let!(:blog) { create(:blog, send_outbound_pings: 1) }
 
       it 'sends a pingback to urls linked in the body' do
-        ActiveRecord::Base.observers.should include(:email_notifier)
-        ActiveRecord::Base.observers.should include(:web_notifier)
+        expect(ActiveRecord::Base.observers).to include(:email_notifier)
+        expect(ActiveRecord::Base.observers).to include(:web_notifier)
         a = Article.new :body => %{<a href="#{referenced_url}">}, :title => 'Test the pinging', :published => true
         mock_ping = double('ping')
-        a.pings.stub(:build) { double 'other ping' }
-        a.pings.stub(:build).with("url" => referenced_url).and_return mock_ping
-        mock_ping.should_receive(:send_pingback_or_trackback).with(%r{http://myblog.net/\d{4}/\d{2}/\d{2}/test-the-pinging})
+        allow(a.pings).to receive(:build) { double 'other ping' }
+        allow(a.pings).to receive(:build).with("url" => referenced_url).and_return mock_ping
+        expect(mock_ping).to receive(:send_pingback_or_trackback).with(%r{http://myblog.net/\d{4}/\d{2}/\d{2}/test-the-pinging})
 
         expect(a.html_urls.size).to eq(1)
         a.save!
-        a.should be_just_published
+        expect(a).to be_just_published
         a = Article.find(a.id)
-        a.should_not be_just_published
+        expect(a).not_to be_just_published
         # Saving again will not resend the pings
         a.save
       end
@@ -184,26 +184,26 @@ describe Article do
   describe "Testing redirects" do
     it "a new published article gets a redirect" do
       a = Article.create(:title => "Some title", :body => "some text", :published => true)
-      a.redirects.first.should_not be_nil
-      a.redirects.first.to_path.should == a.permalink_url
+      expect(a.redirects.first).not_to be_nil
+      expect(a.redirects.first.to_path).to eq(a.permalink_url)
     end
 
     it "a new unpublished article should not get a redirect" do
       a = Article.create(:title => "Some title", :body => "some text", :published => false)
-      a.redirects.first.should be_nil
+      expect(a.redirects.first).to be_nil
     end
 
     it "Changin a published article permalink url should only change the to redirection" do
       a = Article.create(:title => "Some title", :body => "some text", :published => true)
-      a.redirects.first.should_not be_nil
-      a.redirects.first.to_path.should == a.permalink_url
+      expect(a.redirects.first).not_to be_nil
+      expect(a.redirects.first.to_path).to eq(a.permalink_url)
       r  = a.redirects.first.from_path
 
       a.permalink = "some-new-permalink"
       a.save
-      a.redirects.first.should_not be_nil
-      a.redirects.first.to_path.should == a.permalink_url
-      a.redirects.first.from_path.should == r
+      expect(a.redirects.first).not_to be_nil
+      expect(a.redirects.first.to_path).to eq(a.permalink_url)
+      expect(a.redirects.first.from_path).to eq(r)
     end
   end
 
@@ -256,7 +256,7 @@ describe Article do
     t = Time.now
     # We stub the Time.now answer to emulate a sleep of 4. Avoid the sleep. So
     # speed up in test
-    Time.stub(:now).and_return(t + 5.seconds)
+    allow(Time).to receive(:now).and_return(t + 5.seconds)
     Trigger.fire
     art.reload
     assert art.published
@@ -281,7 +281,7 @@ describe Article do
       a = build(:article)
       users = a.interested_users
       logins = users.map {|u| u.login}.sort
-      logins.should eq ['alice', 'henri']
+      expect(logins).to eq ['alice', 'henri']
     end
   end
 
@@ -299,11 +299,11 @@ describe Article do
 
   it 'should get only ham not spam comment' do
     article = create(:article)
-    article.stub(:allow_comments?).and_return(true)
+    allow(article).to receive(:allow_comments?).and_return(true)
     ham_comment = create(:comment, :article => article)
     spam_comment = create(:spam_comment, :article => article)
-    article.comments.ham.should == [ham_comment]
-    article.comments.count.should == 2
+    expect(article.comments.ham).to eq([ham_comment])
+    expect(article.comments.count).to eq(2)
   end
 
   describe '#access_by?' do
@@ -312,12 +312,12 @@ describe Article do
     end
 
     it 'admin should have access to an article written by another' do
-      build(:article).should be_access_by(@alice)
+      expect(build(:article)).to be_access_by(@alice)
     end
 
     it 'admin should have access to an article written by himself' do
       article = build(:article, :author => @alice)
-      article.should be_access_by(@alice)
+      expect(article).to be_access_by(@alice)
     end
 
   end
@@ -330,13 +330,14 @@ describe Article do
     end
 
     it 'should combine body and extended content' do
-      @article.body_and_extended.should ==
+      expect(@article.body_and_extended).to eq(
         "#{@article.body}\n<!--more-->\n#{@article.extended}"
+      )
     end
 
     it 'should not insert <!--more--> tags if extended is empty' do
       @article.extended = ''
-      @article.body_and_extended.should == @article.body
+      expect(@article.body_and_extended).to eq(@article.body)
     end
   end
 
@@ -358,46 +359,46 @@ describe Article do
 
     it 'should split apart values at <!--more-->' do
       @article.body_and_extended = 'foo<!--more-->bar'
-      @article.body.should == 'foo'
-      @article.extended.should == 'bar'
+      expect(@article.body).to eq('foo')
+      expect(@article.extended).to eq('bar')
     end
 
     it 'should remove newlines around <!--more-->' do
       @article.body_and_extended = "foo\n<!--more-->\nbar"
-      @article.body.should == 'foo'
-      @article.extended.should == 'bar'
+      expect(@article.body).to eq('foo')
+      expect(@article.extended).to eq('bar')
     end
 
     it 'should make extended empty if no <!--more--> tag' do
       @article.body_and_extended = "foo"
-      @article.body.should == 'foo'
-      @article.extended.should be_empty
+      expect(@article.body).to eq('foo')
+      expect(@article.extended).to be_empty
     end
 
     it 'should preserve extra <!--more--> tags' do
       @article.body_and_extended = "foo<!--more-->bar<!--more-->baz"
-      @article.body.should == 'foo'
-      @article.extended.should == 'bar<!--more-->baz'
+      expect(@article.body).to eq('foo')
+      expect(@article.extended).to eq('bar<!--more-->baz')
     end
 
     it 'should be settable via self.attributes=' do
       @article.attributes = { :body_and_extended => 'foo<!--more-->bar' }
-      @article.body.should == 'foo'
-      @article.extended.should == 'bar'
+      expect(@article.body).to eq('foo')
+      expect(@article.extended).to eq('bar')
     end
   end
 
   describe '#comment_url' do
     it 'should render complete url of comment' do
       article = build_stubbed(:article, id: 123)
-      article.comment_url.should == "/comments?article_id=#{article.id}"
+      expect(article.comment_url).to eq("/comments?article_id=#{article.id}")
     end
   end
 
   describe '#preview_comment_url' do
     it 'should render complete url of comment' do
       article = build_stubbed(:article, id: 123)
-      article.preview_comment_url.should == "/comments/preview?article_id=#{article.id}"
+      expect(article.preview_comment_url).to eq("/comments/preview?article_id=#{article.id}")
     end
   end
 
@@ -433,15 +434,15 @@ describe Article do
     end
 
     it 'should return all content for the year if only year sent' do
-      Article.published_at_like(2.year.ago.strftime('%Y')).map(&:id).sort.should == [@article_two_year_ago.id, @article_2_two_year_ago.id].sort
+      expect(Article.published_at_like(2.year.ago.strftime('%Y')).map(&:id).sort).to eq([@article_two_year_ago.id, @article_2_two_year_ago.id].sort)
     end
 
     it 'should return all content for the month if year and month sent' do
-      Article.published_at_like(4.month.ago.strftime('%Y-%m')).map(&:id).sort.should == [@article_four_months_ago.id, @article_2_four_months_ago.id].sort
+      expect(Article.published_at_like(4.month.ago.strftime('%Y-%m')).map(&:id).sort).to eq([@article_four_months_ago.id, @article_2_four_months_ago.id].sort)
     end
 
     it 'should return all content on this date if date send' do
-      Article.published_at_like(2.month.ago.strftime('%Y-%m-%d')).map(&:id).sort.should == [@article_two_month_ago.id].sort
+      expect(Article.published_at_like(2.month.ago.strftime('%Y-%m-%d')).map(&:id).sort).to eq([@article_two_month_ago.id].sort)
     end
   end
 
@@ -449,24 +450,24 @@ describe Article do
     it 'should be true if article has one to link it by parent_id' do
       parent = create(:article)
       create(:article, :parent_id => parent.id)
-      parent.should be_has_child
+      expect(parent).to be_has_child
     end
     it 'should be false if article has no article to link it by parent_id' do
       parent = create(:article)
       create(:article, :parent_id => nil)
-      parent.should_not be_has_child
+      expect(parent).not_to be_has_child
     end
   end
 
   describe 'self#last_draft(id)' do
     it 'should return article if no draft associated' do
       draft = create(:article, :state => 'draft')
-      Article.last_draft(draft.id).should == draft
+      expect(Article.last_draft(draft.id)).to eq(draft)
     end
     it 'should return draft associated to this article if there are one' do
       parent = create(:article)
       draft = create(:article, :parent_id => parent.id, :state => 'draft')
-      Article.last_draft(draft.id).should == draft
+      expect(Article.last_draft(draft.id)).to eq(draft)
     end
   end
 
@@ -484,7 +485,7 @@ describe Article do
 
     describe "#permalink_url" do
       it "uses UTC to determine correct day" do
-        @a.permalink_url.should == "http://myblog.net/2011/02/21/a-big-article"
+        expect(@a.permalink_url).to eq("http://myblog.net/2011/02/21/a-big-article")
       end
     end
 
@@ -492,7 +493,7 @@ describe Article do
       it "uses UTC to determine correct day" do
         @a.save
         a = Article.find_by_permalink :year => 2011, :month => 2, :day => 21, :permalink => 'a-big-article'
-        a.should == @a
+        expect(a).to eq(@a)
       end
     end
   end
@@ -511,7 +512,7 @@ describe Article do
 
     describe "#permalink_url" do
       it "uses UTC to determine correct day" do
-        @a.permalink_url.should == "http://myblog.net/2011/02/22/a-big-article"
+        expect(@a.permalink_url).to eq("http://myblog.net/2011/02/22/a-big-article")
       end
     end
 
@@ -519,7 +520,7 @@ describe Article do
       it "uses UTC to determine correct day" do
         @a.save
         a = Article.find_by_permalink :year => 2011, :month => 2, :day => 22, :permalink => 'a-big-article'
-        a.should == @a
+        expect(a).to eq(@a)
       end
     end
   end
@@ -538,7 +539,7 @@ describe Article do
 
     describe "#permalink_url" do
       it "uses JST to determine correct day" do
-        @a.permalink_url.should == "http://myblog.net/2012/12/31/a-big-article"
+        expect(@a.permalink_url).to eq("http://myblog.net/2012/12/31/a-big-article")
       end
     end
 
@@ -546,7 +547,7 @@ describe Article do
       it "uses JST to determine correct day" do
         @a.save
         a = Article.find_by_permalink :year => 2012, :month => 12, :day => 31, :permalink => 'a-big-article'
-        a.should == @a
+        expect(a).to eq(@a)
       end
     end
   end
@@ -565,7 +566,7 @@ describe Article do
 
     describe "#permalink_url" do
       it "uses JST to determine correct day" do
-        @a.permalink_url.should == "http://myblog.net/2013/01/01/a-big-article"
+        expect(@a.permalink_url).to eq("http://myblog.net/2013/01/01/a-big-article")
       end
     end
 
@@ -573,7 +574,7 @@ describe Article do
       it "uses JST to determine correct day" do
         @a.save
         a = Article.find_by_permalink :year => 2013, :month => 1, :day => 1, :permalink => 'a-big-article'
-        a.should == @a
+        expect(a).to eq(@a)
       end
     end
   end
@@ -602,8 +603,8 @@ describe Article do
       second_file = OpenStruct.new
       hash = {a_key: first_file, a_second_key: second_file}
       article = build(:article)
-      article.should_receive(:save_attachment!).with(first_file)
-      article.should_receive(:save_attachment!).with(second_file)
+      expect(article).to receive(:save_attachment!).with(first_file)
+      expect(article).to receive(:save_attachment!).with(second_file)
       article.save_attachments!(hash)
     end
 
@@ -618,9 +619,9 @@ describe Article do
       resource = build(:resource)
       file = OpenStruct.new
       article = create(:article)
-      Resource.should_receive(:create_and_upload).with(file).and_return(resource)
+      expect(Resource).to receive(:create_and_upload).with(file).and_return(resource)
       article.save_attachment!(file).reload
-      article.resources.should eq [resource]
+      expect(article.resources).to eq [resource]
     end
   end
 
@@ -629,50 +630,50 @@ describe Article do
       let(:article) { Article.new }
 
       it "return nil and do nothing when blog should not send_outbound_pings" do
-        Blog.any_instance.should_receive(:send_outbound_pings).and_return(false)
-        article.really_send_pings.should be_nil
+        expect_any_instance_of(Blog).to receive(:send_outbound_pings).and_return(false)
+        expect(article.really_send_pings).to be_nil
       end
 
       context "given a blog that allow send outbound pings" do
         before(:each) do
-          Blog.any_instance.should_receive(:send_outbound_pings).and_return(true)
+          expect_any_instance_of(Blog).to receive(:send_outbound_pings).and_return(true)
         end
 
         it "do nothing when no urls to ping article" do
-          Blog.any_instance.should_receive(:urls_to_ping_for).and_return([])
-          article.should_receive(:html_urls_to_ping).and_return([])
-          Ping.any_instance.should_not_receive(:send_weblogupdatesping)
-          Ping.any_instance.should_not_receive(:send_pingback_or_trackback)
+          expect_any_instance_of(Blog).to receive(:urls_to_ping_for).and_return([])
+          expect(article).to receive(:html_urls_to_ping).and_return([])
+          expect_any_instance_of(Ping).not_to receive(:send_weblogupdatesping)
+          expect_any_instance_of(Ping).not_to receive(:send_pingback_or_trackback)
           article.really_send_pings
         end
 
         it "do nothing when urls already list in article.pings (already ping ?)"  do
           ping = OpenStruct.new(url: "an_url_to_ping")
-          Blog.any_instance.should_receive(:urls_to_ping_for).and_return([ping])
-          article.should_receive(:html_urls_to_ping).and_return(['an_url_to_ping'])
-          Ping.any_instance.should_not_receive(:send_weblogupdatesping)
-          Ping.any_instance.should_not_receive(:send_pingback_or_trackback)
+          expect_any_instance_of(Blog).to receive(:urls_to_ping_for).and_return([ping])
+          expect(article).to receive(:html_urls_to_ping).and_return(['an_url_to_ping'])
+          expect_any_instance_of(Ping).not_to receive(:send_weblogupdatesping)
+          expect_any_instance_of(Ping).not_to receive(:send_pingback_or_trackback)
           article.really_send_pings
         end
 
         it "calls send_weblogupdatesping when it's not already done"  do
           new_ping = OpenStruct.new
           urls_to_ping = [new_ping]
-          Blog.any_instance.should_receive(:urls_to_ping_for).and_return(urls_to_ping)
-          article.should_receive(:permalink_url)
-          article.should_receive(:html_urls_to_ping).and_return([])
-          new_ping.should_receive(:send_weblogupdatesping)
-          new_ping.should_not_receive(:send_pingback_or_trackback)
+          expect_any_instance_of(Blog).to receive(:urls_to_ping_for).and_return(urls_to_ping)
+          expect(article).to receive(:permalink_url)
+          expect(article).to receive(:html_urls_to_ping).and_return([])
+          expect(new_ping).to receive(:send_weblogupdatesping)
+          expect(new_ping).not_to receive(:send_pingback_or_trackback)
           article.really_send_pings
         end
 
         it "calls send_pingback_or_trackback when it's not already done"  do
-          Blog.any_instance.should_receive(:urls_to_ping_for).and_return([])
+          expect_any_instance_of(Blog).to receive(:urls_to_ping_for).and_return([])
           new_ping = OpenStruct.new
-          article.should_receive(:html_urls_to_ping).and_return([new_ping])
-          article.should_receive(:permalink_url)
-          new_ping.should_receive(:send_pingback_or_trackback)
-          new_ping.should_not_receive(:send_weblogupdatesping)
+          expect(article).to receive(:html_urls_to_ping).and_return([new_ping])
+          expect(article).to receive(:permalink_url)
+          expect(new_ping).to receive(:send_pingback_or_trackback)
+          expect(new_ping).not_to receive(:send_weblogupdatesping)
           article.really_send_pings
         end
       end
@@ -719,44 +720,44 @@ describe Article do
 
   describe ".allow_comments?" do
     it "true if article set to true" do
-      Article.new(allow_comments: true).allow_comments?.should be_truthy
+      expect(Article.new(allow_comments: true).allow_comments?).to be_truthy
     end
 
     it "false if article set to false" do
-      Article.new(allow_comments: false).allow_comments?.should be_falsey
+      expect(Article.new(allow_comments: false).allow_comments?).to be_falsey
     end
 
     context "given an article with no allow comments state" do
       it "returns true when blog default allow comments is true" do
-        Blog.any_instance.should_receive(:default_allow_comments).and_return(true)
-        Article.new(allow_comments: nil).allow_comments?.should be_truthy
+        expect_any_instance_of(Blog).to receive(:default_allow_comments).and_return(true)
+        expect(Article.new(allow_comments: nil).allow_comments?).to be_truthy
       end
 
       it "returns false when blog default allow comments is true" do
-        Blog.any_instance.should_receive(:default_allow_comments).and_return(false)
-        Article.new(allow_comments: nil).allow_comments?.should be_falsey
+        expect_any_instance_of(Blog).to receive(:default_allow_comments).and_return(false)
+        expect(Article.new(allow_comments: nil).allow_comments?).to be_falsey
       end
     end
   end
 
   describe ".allow_pings?" do
     it "true if article set to true" do
-      Article.new(allow_pings: true).allow_pings?.should be_truthy
+      expect(Article.new(allow_pings: true).allow_pings?).to be_truthy
     end
 
     it "false if article set to false" do
-      Article.new(allow_pings: false).allow_pings?.should be_falsey
+      expect(Article.new(allow_pings: false).allow_pings?).to be_falsey
     end
 
     context "given an article with no allow pings state" do
       it "returns true when blog default allow pings is true" do
-        Blog.any_instance.should_receive(:default_allow_pings).and_return(true)
-        Article.new(allow_pings: nil).allow_pings?.should be_truthy
+        expect_any_instance_of(Blog).to receive(:default_allow_pings).and_return(true)
+        expect(Article.new(allow_pings: nil).allow_pings?).to be_truthy
       end
 
       it "returns false when blog default allow pings is true" do
-        Blog.any_instance.should_receive(:default_allow_pings).and_return(false)
-        Article.new(allow_pings: nil).allow_pings?.should be_falsey
+        expect_any_instance_of(Blog).to receive(:default_allow_pings).and_return(false)
+        expect(Article.new(allow_pings: nil).allow_pings?).to be_falsey
       end
     end
 
@@ -764,23 +765,23 @@ describe Article do
 
   describe "#find_by_published_at" do
     it "returns an empty array when no articles" do
-      Article.find_by_published_at.should be_empty
+      expect(Article.find_by_published_at).to be_empty
     end
 
     context "returns objects that respond to publication with YYYY-MM published_at date format" do
       it "with article published_at date" do
         create(:article, published_at: Date.new(2010, 11, 23))
         result = Article.find_by_published_at
-        result.count.should eq 1
-        result.first.should eq ["2010-11"]
+        expect(result.count).to eq 1
+        expect(result.first).to eq ["2010-11"]
       end
 
       it "with 2 articles" do
         create(:article, published_at: Date.new(2010, 11, 23))
         create(:article, published_at: Date.new(2002, 4, 9))
         result = Article.find_by_published_at
-        result.count.should eq 2
-        result.sort.should eq [["2010-11"], ["2002-04"]].sort
+        expect(result.count).to eq 2
+        expect(result.sort).to eq [["2010-11"], ["2002-04"]].sort
       end
     end
 
@@ -789,18 +790,18 @@ describe Article do
   describe "published_since" do
     let(:time) { DateTime.new(2010,11,3,23,34) }
     it "empty when no articles" do
-      Article.published_since(time).should be_empty
+      expect(Article.published_since(time)).to be_empty
     end
 
     it "returns article that was published since" do
       article = create(:article, published_at: time + 2.hours)
-      Article.published_since(time).should eq [article]
+      expect(Article.published_since(time)).to eq [article]
     end
 
     it "returns only article that was published since last visit" do
       already_seen_article = create(:article, published_at: time - 2.hours)
       article = create(:article, published_at: time + 2.hours)
-      Article.published_since(time).should eq [article]
+      expect(Article.published_since(time)).to eq [article]
     end
   end
 
