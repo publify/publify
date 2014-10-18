@@ -17,15 +17,15 @@ class PublifyApp
 
       def self.help_text
         %{
-You can use `<typo:code>` to include syntax-highlighted code blocks.  Example:
+You can use `<publify:code>` to include syntax-highlighted code blocks.  Example:
 
-    <typo:code lang="ruby">
+    <publify:code lang="ruby">
     class Foo
       def bar
         "abcde"
       end
     end
-    </typo:code>
+    </publify:code>
 
 This uses the Ruby [Syntax](http://coderay.rubychan.de) module.  Options:
 
