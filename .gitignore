@@ -31,5 +31,4 @@ Gemfile.lock
 /vendor/bundle
 /themes/*
 !/themes/bootstrap-2
-!/themes/typographic
 gems/
