@@ -36,7 +36,7 @@ describe Admin::DashboardController, :type => :controller do
     end
 
     it "should have a link to user's article listing" do
-      expect(response.body).to have_selector("a[href='/admin/content?search%5Buser_id%5D=#{@henri.id}']", :text => "no article writen by you")
+      expect(response.body).to have_selector("a[href='/admin/content?search%5Buser_id%5D=#{@henri.id}']", :text => "no article written by you")
     end
 
     it "should have a link to drafts" do
@@ -95,7 +95,7 @@ describe Admin::DashboardController, :type => :controller do
     end
 
     it "should have a link to user's article listing" do
-      expect(response.body).to have_selector("a[href='/admin/content?search%5Buser_id%5D=#{@rene.id}']", :text => "no article writen by you")
+      expect(response.body).to have_selector("a[href='/admin/content?search%5Buser_id%5D=#{@rene.id}']", :text => "no article written by you")
     end
 
     it "should have a link to total comments" do
