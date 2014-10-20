@@ -1,0 +1,39 @@
+# Default style guide 'https://github.com/bbatsov/ruby-style-guide#indent-public-private-protected'.
+
+# Documenting all classes is not common in Ruby projects.
+Documentation:
+  Enabled: false
+
+# Provides more information, while still being displayable in modern wide-screen.
+Metrics/LineLength:
+  Max: 120
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/CollectionMethods:
+  Enabled: false
+
+# Allows formas strings with: format, sprintf or percent.
+Style/FormatString:
+  Enabled: false
+
+# Allows the use of 'and' 'or' in controll structures.
+Style/AndOr:
+  EnforcedStyle: conditionals
+
+# Allows the use of 'not' in controll structures.
+Style/Not:
+  Enabled: false
+
+# Allows the use of '!!', it is common in Ruby projects.
+Style/DoubleNegation:
+  Enabled: false
+
+AllCops:
+  Exclude:
+  - 'bin/**/*'
+  - 'config/**/*'
+  - 'db/**/*'
+  - 'tmp/**/*'
+  - 'vendor/**/*'
