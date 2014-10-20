@@ -1,7 +1,7 @@
 # coding: utf-8
-require 'spec_helper'
+require 'rails_helper'
 
-describe Note do
+describe Note, :type => :model do
   context "with a simple blog" do
     let!(:blog) { create(:blog) }
 
@@ -34,8 +34,8 @@ describe Note do
 
       context "with a particular blog" do
         before(:each) do
-          Blog.any_instance.stub(:custom_url_shortener).and_return(url_shortener)
-          Blog.any_instance.stub(:base_url).and_return("http://mybaseurl.net")
+          allow_any_instance_of(Blog).to receive(:custom_url_shortener).and_return(url_shortener)
+          allow_any_instance_of(Blog).to receive(:base_url).and_return("http://mybaseurl.net")
         end
 
         context "with a blog that have a custome url shortener" do
@@ -57,11 +57,11 @@ describe Note do
 
     describe "scopes" do
 
-      describe :published do
+      describe "#published" do
         let(:now) { DateTime.new(2012,5,20,14,23) }
         let(:note) { create(:note, published_at: now - 1.minute) }
 
-        before(:each) { Time.stub(:now).and_return(now) }
+        before(:each) { allow(Time).to receive(:now).and_return(now) }
 
         context "with a unpubilshed note" do
           let(:unpublished_note) { create(:unpublished_note) }
@@ -80,8 +80,8 @@ describe Note do
       let(:note) { build(:note) }
       context "with twitter configured for blog and user" do
         before(:each) do
-          Blog.any_instance.should_receive(:has_twitter_configured?).and_return(true)
-          User.any_instance.should_receive(:has_twitter_configured?).and_return(true)
+          expect_any_instance_of(Blog).to receive(:has_twitter_configured?).and_return(true)
+          expect_any_instance_of(User).to receive(:has_twitter_configured?).and_return(true)
         end
 
         it { expect(note.send_to_twitter).to be_falsey }
@@ -89,15 +89,15 @@ describe Note do
 
       context "with twitter not configured for blog" do
         before(:each) do
-          Blog.any_instance.should_receive(:has_twitter_configured?).and_return(false)
+          expect_any_instance_of(Blog).to receive(:has_twitter_configured?).and_return(false)
         end
         it { expect(note.send_to_twitter).to be_falsey }
       end
 
       context "with a twitter configured for blog but not user" do
         before(:each) do
-          Blog.any_instance.should_receive(:has_twitter_configured?).and_return(true)
-          User.any_instance.should_receive(:has_twitter_configured?).and_return(false)
+          expect_any_instance_of(Blog).to receive(:has_twitter_configured?).and_return(true)
+          expect_any_instance_of(User).to receive(:has_twitter_configured?).and_return(false)
         end
         it { expect(note.send_to_twitter).to be_falsey }
       end
@@ -109,10 +109,10 @@ describe Note do
         let(:fake_twitter) { OpenStruct.new }
 
         before(:each) do
-          Twitter::REST::Client.should_receive(:new).and_return(fake_twitter)
-          fake_twitter.should_receive(:update).and_raise(Twitter::Error::Forbidden.new('Status is over 140 characters.'))
-          Blog.any_instance.should_receive(:has_twitter_configured?).and_return(true)
-          User.any_instance.should_receive(:has_twitter_configured?).and_return(true)
+          expect(Twitter::REST::Client).to receive(:new).and_return(fake_twitter)
+          expect(fake_twitter).to receive(:update).and_raise(Twitter::Error::Forbidden.new('Status is over 140 characters.'))
+          expect_any_instance_of(Blog).to receive(:has_twitter_configured?).and_return(true)
+          expect_any_instance_of(User).to receive(:has_twitter_configured?).and_return(true)
           note.send_to_twitter
         end
 

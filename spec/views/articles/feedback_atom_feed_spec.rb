@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe "articles/feedback_atom_feed.atom.builder" do
+describe "articles/feedback_atom_feed.atom.builder", :type => :view do
   let!(:blog) { create :blog }
 
   describe "with one trackback" do
@@ -25,9 +25,10 @@ describe "articles/feedback_atom_feed.atom.builder" do
         xml = Nokogiri::XML.parse(rendered)
         entry_xml = xml.css("entry").first
 
-        entry_xml.css("title").first.content.should ==
+        expect(entry_xml.css("title").first.content).to eq(
           "Trackback from #{trackback.blog_name}: #{trackback.title} on #{article.title}"
-        entry_xml.css("id").first.content.should == "urn:uuid:dsafsadffsdsf"
+        )
+        expect(entry_xml.css("id").first.content).to eq("urn:uuid:dsafsadffsdsf")
       end
     end
   end

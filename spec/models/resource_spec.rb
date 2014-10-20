@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 def file_upload(filename)
   ActionDispatch::Http::UploadedFile.new(
@@ -6,13 +6,13 @@ def file_upload(filename)
     :filename => filename)
 end
 
-describe Resource do
+describe Resource, :type => :model do
   describe "scopes" do
     describe "#without_images" do
       it "should list resource that are not image (based on mime type)" do
         other_resource = FactoryGirl.create(:resource, :mime => 'text/css')
         image_resource = FactoryGirl.create(:resource, :mime => 'image/jpeg')
-        Resource.without_images.should == [other_resource]
+        expect(Resource.without_images).to eq([other_resource])
       end
     end
 
@@ -20,7 +20,7 @@ describe Resource do
       it "should list only images (based on mime type)" do
         other_resource = FactoryGirl.create(:resource, :mime => 'text/css')
         image_resource = FactoryGirl.create(:resource, :mime => 'image/jpeg')
-        Resource.images.should == [image_resource]
+        expect(Resource.images).to eq([image_resource])
       end
 
     end
@@ -29,7 +29,7 @@ describe Resource do
       it "should sort resource by filename" do
         b_resource = FactoryGirl.create(:resource, upload: file_upload("b"))
         a_resource = FactoryGirl.create(:resource, upload: file_upload("a"))
-        Resource.by_filename.should == [a_resource, b_resource]
+        expect(Resource.by_filename).to eq([a_resource, b_resource])
       end
     end
 
@@ -37,7 +37,7 @@ describe Resource do
       it "should sort resource by created_at DESC" do
         b_resource = FactoryGirl.create(:resource, :created_at => DateTime.new(2011,03,13))
         a_resource = FactoryGirl.create(:resource, :created_at => DateTime.new(2011,02,21))
-        Resource.by_created_at.should == [b_resource, a_resource]
+        expect(Resource.by_created_at).to eq([b_resource, a_resource])
       end
     end
 
@@ -46,7 +46,7 @@ describe Resource do
         image_resource = FactoryGirl.create(:resource, :mime => 'image/jpeg')
         b_resource = FactoryGirl.create(:resource, mime: 'text/html', upload: file_upload("b"))
         a_resource = FactoryGirl.create(:resource, mime: 'text/html', upload: file_upload("a"))
-        Resource.without_images_by_filename.should == [a_resource, b_resource]
+        expect(Resource.without_images_by_filename).to eq([a_resource, b_resource])
       end
     end
 

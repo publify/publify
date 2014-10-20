@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Sidebar do
+describe Sidebar, :type => :model do
   describe "#available_sidebars" do
     it "finds at least the standard sidebars" do
       assert Sidebar.available_sidebars.size >= 6
@@ -19,7 +19,7 @@ describe Sidebar do
 
       it "resturns the sidebars ordered by position" do
         sidebars = Sidebar.ordered_sidebars
-        sidebars.should == [archives_sidebar, amazon_sidebar]
+        expect(sidebars).to eq([archives_sidebar, amazon_sidebar])
       end
     end
 
@@ -33,15 +33,15 @@ describe Sidebar do
 
       it "skips the invalid active sidebar" do
         sidebars = Sidebar.ordered_sidebars
-        sidebars.size.should == 1
-        sidebars.first.class.should == AmazonSidebar
+        expect(sidebars.size).to eq(1)
+        expect(sidebars.first.class).to eq(AmazonSidebar)
       end
     end
   end
 
   describe "#content_partial" do
     it "bases the partial name on the class name" do
-      AmazonSidebar.new.content_partial.should == "/amazon_sidebar/content"
+      expect(AmazonSidebar.new.content_partial).to eq("/amazon_sidebar/content")
     end
   end
 
@@ -54,13 +54,13 @@ describe Sidebar do
 
     it "creates a reader method with default value on instances" do
       dummy = dummy_sidebar.new
-      dummy.foo.should eq "default-foo"
+      expect(dummy.foo).to eq "default-foo"
     end
 
     it "creates a writer method on instances" do
       dummy = dummy_sidebar.new
       dummy.foo = "adjusted-foo"
-      dummy.foo.should eq "adjusted-foo"
+      expect(dummy.foo).to eq "adjusted-foo"
     end
 
     it "provides the default value to instances created earlier" do
@@ -70,8 +70,8 @@ describe Sidebar do
         setting :bar, "default-bar"
       end
 
-      dummy.config.should_not have_key("bar")
-      dummy.bar.should eq "default-bar"
+      expect(dummy.config).not_to have_key("bar")
+      expect(dummy.bar).to eq "default-bar"
     end
   end
 end

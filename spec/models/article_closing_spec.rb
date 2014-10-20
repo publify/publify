@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe "CommentClosing from Test::Unit; no I don't know why it's in article_closing_spec.rb" do
+describe "CommentClosing from Test::Unit; no I don't know why it's in article_closing_spec.rb", :type => :model do
   def an_article(options = {})
     Article.create(options.reverse_merge(:user_id => 1, :body => 'Foo', :title => 'Bar'))
   end
@@ -11,7 +11,7 @@ describe "CommentClosing from Test::Unit; no I don't know why it's in article_cl
       :default_allow_comments => true)
     # Blog.default may have already cached a copy of the default blog, and
     # it won't see our changes.  So override the caching.
-    Blog.stub(:default).and_return(@blog)
+    allow(Blog).to receive(:default).and_return(@blog)
   end
 
   it "test_new_article_should_be_open_if_auto_close_is_zero" do

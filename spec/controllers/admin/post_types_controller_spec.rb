@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Admin::PostTypesController do
+describe Admin::PostTypesController, :type => :controller do
   render_views
 
   before do
@@ -14,7 +14,7 @@ describe Admin::PostTypesController do
     it { expect(response).to redirect_to(action: 'new') }
   end
 
-  describe :edit do
+  describe "#edit" do
     context "when create a new one" do
       before(:each) {post :edit, post_type: {name: "new post type"}}
       it { expect(response).to redirect_to(action: 'index') }

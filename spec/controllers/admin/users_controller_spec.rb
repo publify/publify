@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Admin::UsersController, "rough port of the old functional test" do
+describe Admin::UsersController, "rough port of the old functional test", :type => :controller do
   render_views
 
   describe ' when you are admin' do
@@ -13,7 +13,7 @@ describe Admin::UsersController, "rough port of the old functional test" do
     it "test_index" do
       get :index
       assert_template 'index'
-      assigns(:users).should_not be_nil
+      expect(assigns(:users)).not_to be_nil
     end
 
     it "test_new" do
@@ -21,7 +21,7 @@ describe Admin::UsersController, "rough port of the old functional test" do
       assert_template 'new'
 
       post :new, :user => { :login => 'errand', :email => 'corey@test.com', :password => 'testpass', :password_confirmation => 'testpass', :profile_id => 1, :nickname => 'fooo', :firstname => 'bar' }
-      response.should redirect_to(:action => 'index')
+      expect(response).to redirect_to(:action => 'index')
     end
 
     describe '#EDIT action' do
@@ -31,7 +31,7 @@ describe Admin::UsersController, "rough port of the old functional test" do
           post :edit, :id => @admin.id, :user => { :login => 'errand',
                                                    :email => 'corey@test.com', :password => 'testpass',
                                                    :password_confirmation => 'testpass' }
-          response.should redirect_to(:action => 'index')
+          expect(response).to redirect_to(:action => 'index')
         end
       end
 
@@ -43,7 +43,7 @@ describe Admin::UsersController, "rough port of the old functional test" do
 
           it 'should assigns tobi user' do
             assert assigns(:user).valid?
-            assigns(:user).should == @admin 
+            expect(assigns(:user)).to eq(@admin) 
           end
         end
         describe 'with no id params' do
@@ -88,7 +88,7 @@ describe Admin::UsersController, "rough port of the old functional test" do
 
     it "don't see the list of user" do
       get :index
-      response.should redirect_to(:controller => "/admin/dashboard", :action => "index")
+      expect(response).to redirect_to(:controller => "/admin/dashboard", :action => "index")
     end
 
     describe 'EDIT Action' do
@@ -104,12 +104,12 @@ describe Admin::UsersController, "rough port of the old functional test" do
         end
 
         it 'should redirect to login' do
-          response.should redirect_to(:controller => "/admin/dashboard", :action => "index")
+          expect(response).to redirect_to(:controller => "/admin/dashboard", :action => "index")
         end
 
         it 'should not change user profile' do
           u = @administrator.reload
-          u.profile_id.should == @admin_profile.id
+          expect(u.profile_id).to eq(@admin_profile.id)
         end
       end
     end

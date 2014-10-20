@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Admin::SeoController do
+describe Admin::SeoController, :type => :controller do
   render_views
 
   let!(:blog) { create(:blog) }

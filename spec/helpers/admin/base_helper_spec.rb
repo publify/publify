@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Admin::BaseHelper do
+describe Admin::BaseHelper, :type => :helper do
   describe "twitter_available?" do
     context "when blog has twitter configured" do
       let!(:blog) { create(:blog, twitter_consumer_key: "12345", twitter_consumer_secret: "67890" ) }

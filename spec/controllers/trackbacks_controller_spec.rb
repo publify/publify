@@ -1,9 +1,9 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe TrackbacksController do
+describe TrackbacksController, :type => :controller do
   let!(:blog) { create(:blog) }
 
-  describe :index do
+  describe "#index" do
     let!(:some) { create(:trackback, title: 'some') }
     let!(:items) { create(:trackback, title: 'items') }
 

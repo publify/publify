@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Admin::NotesController do
+describe Admin::NotesController, :type => :controller do
   render_views
 
   before(:each) { request.session = { user: admin.id } }
@@ -70,10 +70,10 @@ describe Admin::NotesController do
         it "call note to send to twitter" do
           expect(Note.count).to eq(0)
           twitter_cli = double(twitter_cli)
-          Twitter::Client.should_receive(:new).and_return(twitter_cli)
+          expect(Twitter::Client).to receive(:new).and_return(twitter_cli)
           Tweet = Struct.new(:attrs)
           tweet = Tweet.new({id_str: '2344'})
-          twitter_cli.should_receive(:update).and_return(tweet)
+          expect(twitter_cli).to receive(:update).and_return(tweet)
           post :create, note: { body: "Emphasis _mine_, arguments *strong*" }, push_to_twitter: "true"
           expect(Note.first.twitter_id).to eq('2344')
         end

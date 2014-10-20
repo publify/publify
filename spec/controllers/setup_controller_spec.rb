@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe SetupController do
+describe SetupController, :type => :controller do
   describe 'when no blog is configured' do
     before do
       # Set up database similar to result of seeding
@@ -14,7 +14,7 @@ describe SetupController do
         get 'index'
       end
 
-      specify { response.should render_template('index') }
+      specify { expect(response).to render_template('index') }
     end
 
     describe 'POST setup' do
@@ -27,20 +27,20 @@ describe SetupController do
           post_setup_index
         end
 
-        specify { response.should redirect_to(controller: "accounts",
+        specify { expect(response).to redirect_to(controller: "accounts",
                                               action: 'confirm') }
 
         it "should correctly initialize blog and users" do
-          Blog.default.blog_name.should == 'Foo'
+          expect(Blog.default.blog_name).to eq('Foo')
           admin = User.find_by_login("admin")
-          admin.should_not be_nil
-          admin.email.should == 'foo@bar.net'
-          Article.first.user.should == admin
-          Page.first.user.should == admin
+          expect(admin).not_to be_nil
+          expect(admin.email).to eq('foo@bar.net')
+          expect(Article.first.user).to eq(admin)
+          expect(Page.first.user).to eq(admin)
         end
 
         it "should log in admin user" do
-          session[:user_id].should == User.find_by_login("admin").id
+          expect(session[:user_id]).to eq(User.find_by_login("admin").id)
         end
       end
 
@@ -49,20 +49,20 @@ describe SetupController do
           post_setup_index
         end
 
-        specify { response.should redirect_to(controller: "accounts",
+        specify { expect(response).to redirect_to(controller: "accounts",
                                               action: 'confirm') }
 
         it "should correctly initialize blog and users" do
-          Blog.default.blog_name.should == 'Foo'
+          expect(Blog.default.blog_name).to eq('Foo')
           admin = User.find_by_login("admin")
-          admin.should_not be_nil
-          admin.email.should == 'foo@bar.net'
-          Article.first.user.should == admin
-          Page.first.user.should == admin
+          expect(admin).not_to be_nil
+          expect(admin.email).to eq('foo@bar.net')
+          expect(Article.first.user).to eq(admin)
+          expect(Page.first.user).to eq(admin)
         end
 
         it "should log in admin user" do
-          session[:user_id].should == User.find_by_login("admin").id
+          expect(session[:user_id]).to eq(User.find_by_login("admin").id)
         end
       end
     end
@@ -77,12 +77,12 @@ describe SetupController do
 
     it "empty blog name should raise an error" do
       post 'index', {setting: {blog_name: '', email: 'foo@bar.net'}}
-      response.should redirect_to(action: 'index')
+      expect(response).to redirect_to(action: 'index')
     end
 
     it "empty email should raise an error" do
       post 'index', {setting: {blog_name: 'Foo', email: ''}}
-      response.should redirect_to(action: 'index')
+      expect(response).to redirect_to(action: 'index')
     end
   end
 
@@ -93,7 +93,7 @@ describe SetupController do
         get 'index'
       end
 
-      specify { response.should redirect_to(controller: 'articles', action: 'index') }
+      specify { expect(response).to redirect_to(controller: 'articles', action: 'index') }
     end
 
     describe 'POST setup' do
@@ -102,12 +102,12 @@ describe SetupController do
         post 'index', {setting: {blog_name: 'Foo', email: 'foo@bar.net'}}
       end
 
-      specify { response.should redirect_to(controller: 'articles', action: 'index') }
+      specify { expect(response).to redirect_to(controller: 'articles', action: 'index') }
 
       it "should not initialize blog and users" do
-        Blog.default.blog_name.should_not == 'Foo'
+        expect(Blog.default.blog_name).not_to eq('Foo')
         admin = User.find_by_login("admin")
-        admin.should be_nil
+        expect(admin).to be_nil
       end
     end
   end

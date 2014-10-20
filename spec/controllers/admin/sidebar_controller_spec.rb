@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Admin::SidebarController do
+describe Admin::SidebarController, :type => :controller do
   before do
     FactoryGirl.create(:blog)
     #TODO Delete after removing fixtures

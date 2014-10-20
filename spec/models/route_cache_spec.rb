@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe RouteCache do
+describe RouteCache, :type => :model do
 
   it "test_cache_clear" do
     RouteCache[:foo] = :bar

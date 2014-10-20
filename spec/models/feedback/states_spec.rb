@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Feedback::States do
+describe Feedback::States, :type => :model do
   before(:each) do
     FactoryGirl.create(:blog)
     @comment = FactoryGirl.create(:article).comments.build(author: 'Piers', body: 'Body')

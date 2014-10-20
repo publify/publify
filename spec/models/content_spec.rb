@@ -1,11 +1,11 @@
 # coding: utf-8
-require 'spec_helper'
+require 'rails_helper'
 
-describe Content do
+describe Content, :type => :model do
   context "with a simple blog" do
   let!(:blog) { create(:blog) }
 
-  describe :author= do
+  describe "#author=" do
     let(:content) { Content.new }
 
     before(:each) { content.author = user }
@@ -35,8 +35,8 @@ describe Content do
       let!(:blog) { create(:blog, base_url: "http://myblog.net") }
 
       it "returns the blog's base url combined with the redirection's from path" do
-        @content.should be_published
-        @content.short_url.should == "http://myblog.net/foo"
+        expect(@content).to be_published
+        expect(@content.short_url).to eq("http://myblog.net/foo")
       end
     end
 
@@ -44,7 +44,7 @@ describe Content do
       let!(:blog) { create(:blog, base_url: "http://myblog.net/blog") }
 
       it "includes the sub-uri path" do
-        @content.short_url.should == "http://myblog.net/blog/foo"
+        expect(@content.short_url).to eq("http://myblog.net/blog/foo")
       end
     end
   end
@@ -52,7 +52,7 @@ describe Content do
   describe "#text_filter" do
     it "returns nil by default" do
       @content = Content.new
-      @content.text_filter.should be_nil
+      expect(@content.text_filter).to be_nil
     end
   end
 
@@ -62,16 +62,16 @@ describe Content do
       henri = create(:user)
       alice = create(:user)
 
-      @content.should_receive(:notify_user_via_email).with henri
-      @content.should_receive(:notify_user_via_email).with alice
+      expect(@content).to receive(:notify_user_via_email).with henri
+      expect(@content).to receive(:notify_user_via_email).with alice
 
-      @content.should_receive(:interested_users).and_return([henri, alice])
+      expect(@content).to receive(:interested_users).and_return([henri, alice])
 
       @content.really_send_notifications
     end
   end
 
-  describe :search_posts_with do
+  describe "#search_posts_with" do
     context "with an simple article" do
       subject { Content.search_with(params) }
 
@@ -116,7 +116,7 @@ describe Content do
   end
   end
 
-  describe :generate_html do
+  describe "#generate_html" do
     context "with a blog with textile filter" do
       let!(:blog) { create(:blog, comment_text_filter: 'textile') }
 

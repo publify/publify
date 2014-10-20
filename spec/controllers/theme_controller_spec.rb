@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe ThemeController do
+describe ThemeController, :type => :controller do
   render_views
 
   before(:each) { FactoryGirl.create(:blog) }

@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Blog do
+describe Blog, :type => :model do
   describe "#initialize" do
     it "accepts a settings field in its parameter hash" do
       Blog.new({"blog_name" => 'foo'})
@@ -16,7 +16,7 @@ describe Blog do
     it "values boolify like Perl" do
       {"0 but true" => true, "" => false, "false" => false, 1 => true, 0 => false, nil => false, 'f' => false }.each do |value, expected|
         @blog.sp_global = value
-        @blog.sp_global.should == expected
+        expect(@blog.sp_global).to eq(expected)
       end
     end
 
@@ -32,12 +32,12 @@ describe Blog do
           describe "blog.url_for" do
             describe "with a hash argument and only_path = #{only_path}" do
               subject { @blog.url_for(:controller => 'tags', :action => 'show', :id => 1, :only_path => only_path) }
-              it { should == "#{only_path ? sub_url : @base_url}/tag/1" }
+              it { is_expected.to eq("#{only_path ? sub_url : @base_url}/tag/1") }
             end
 
             describe "with a string argument and only_path = #{only_path}" do
               subject { @blog.url_for('tag/1', :only_path => only_path) }
-              it { should == "#{only_path ? sub_url : @base_url}/tag/1" }
+              it { is_expected.to eq("#{only_path ? sub_url : @base_url}/tag/1") }
             end
           end
         end
@@ -51,7 +51,7 @@ describe Blog do
     }
 
     it "should be the only blog allowed" do
-      Blog.new.should_not be_valid
+      expect(Blog.new).not_to be_valid
     end
   end
 
@@ -62,7 +62,7 @@ describe Blog do
       b.blog_name = "some other name"
       b.save
       c = Blog.default
-      c.blog_name.should == "some other name"
+      expect(c.blog_name).to eq("some other name")
     end
   end
 
@@ -73,17 +73,17 @@ describe Blog do
 
     it "should be valid after filling the title" do
       @blog.blog_name = "something not empty"
-      @blog.should be_valid
+      expect(@blog).to be_valid
     end
 
     it "should be valid without filling the title" do
-      @blog.blog_name.should == "My Shiny Weblog!"
-      @blog.should be_valid
+      expect(@blog.blog_name).to eq("My Shiny Weblog!")
+      expect(@blog).to be_valid
     end
 
     it "should not be valid after setting an empty title" do
       @blog.blog_name = ""
-      @blog.should_not be_valid
+      expect(@blog).not_to be_valid
     end
   end
 
@@ -101,20 +101,20 @@ describe Blog do
      '%year%', '%day%', '%month%', '%title%.html.atom', '%title%.html.rss'].each do |permalink_type|
       it "not valid with #{permalink_type}" do
         set_permalink permalink_type
-        @blog.should_not be_valid
+        expect(@blog).not_to be_valid
       end
     end
 
     ['%title%', '%title%.html', '/hello/all/%year%/%title%', 'atom/%title%.html', 'ok/rss/%title%.html'].each do |permalink_type|
       it "should be valid with only #{permalink_type}" do
         set_permalink permalink_type
-        @blog.should be_valid
+        expect(@blog).to be_valid
       end
     end
 
     it "should not be valid without %title% in" do
       @blog.permalink_format = '/toto/%year%/%month/%day%'
-      @blog.should_not be_valid
+      expect(@blog).not_to be_valid
     end
 
   end
@@ -122,24 +122,24 @@ describe Blog do
   describe ".meta_keywords" do
     it "return empty string when nothing" do
       blog = Blog.new
-      blog.meta_keywords.should eq ''
+      expect(blog.meta_keywords).to eq ''
     end
 
     it "return meta keywords when exist" do
       blog = Blog.new(meta_keywords: "key")
-      blog.meta_keywords.should eq 'key'
+      expect(blog.meta_keywords).to eq 'key'
     end
   end
 
   describe ".meta_description" do
     it "return empty string when nothing" do
       blog = Blog.new
-      blog.meta_description.should eq ''
+      expect(blog.meta_description).to eq ''
     end
 
     it "return meta keywords when exist" do
       blog = Blog.new(meta_description: "key")
-      blog.meta_description.should eq 'key'
+      expect(blog.meta_description).to eq 'key'
     end
   end
 
@@ -147,60 +147,60 @@ describe Blog do
     it "format ping_urls to an array" do
       article = Article.new
       blog = FactoryGirl.build(:blog, ping_urls: "http://ping.example.com/ping")
-      blog.urls_to_ping_for(article).map(&:url).should eq ["http://ping.example.com/ping"]
+      expect(blog.urls_to_ping_for(article).map(&:url)).to eq ["http://ping.example.com/ping"]
     end
 
     it "format ping_urls to an array even when multiple urls" do
       article = Article.new
       blog = FactoryGirl.build(:blog, ping_urls: "http://ping.example.com/ping
 http://anotherurl.net/other_line")
-      blog.urls_to_ping_for(article).map(&:url).should eq ["http://ping.example.com/ping", "http://anotherurl.net/other_line"]
+      expect(blog.urls_to_ping_for(article).map(&:url)).to eq ["http://ping.example.com/ping", "http://anotherurl.net/other_line"]
     end
   end
 
   describe "Blog Twitter configuration" do
     it "A blog without :twitter_consumer_key or twitter_consumer_secret should not have Twitter configured" do
       blog = FactoryGirl.build(:blog)
-      blog.has_twitter_configured?.should == false
+      expect(blog.has_twitter_configured?).to eq(false)
     end
 
     it "A blog with an empty :twitter_consumer_key and no twitter_consumer_secret should not have Twitter configured" do
       blog = FactoryGirl.build(:blog, twitter_consumer_key: "")
-      blog.has_twitter_configured?.should == false
+      expect(blog.has_twitter_configured?).to eq(false)
     end
 
     it "A blog with an empty twitter_consumer_key and an empty twitter_consumer_secret should not have Twitter configured" do
       blog = FactoryGirl.build(:blog, twitter_consumer_key: "", twitter_consumer_secret: "")
-      blog.has_twitter_configured?.should == false
+      expect(blog.has_twitter_configured?).to eq(false)
     end
 
     it "A blog with a twitter_consumer_key and no twitter_consumer_secret should not have Twitter configured" do
       blog = FactoryGirl.build(:blog, twitter_consumer_key: "12345")
-      blog.has_twitter_configured?.should == false
+      expect(blog.has_twitter_configured?).to eq(false)
     end
 
     it "A blog with a twitter_consumer_key and an empty twitter_consumer_secret should not have Twitter configured" do
       blog = FactoryGirl.build(:blog, twitter_consumer_key: "12345", twitter_consumer_secret: "")
-      blog.has_twitter_configured?.should == false
+      expect(blog.has_twitter_configured?).to eq(false)
     end
 
     it "A blog with a twitter_consumer_secret and no twitter_consumer_key should not have Twitter configured" do
       blog = FactoryGirl.build(:blog, twitter_consumer_secret: "67890")
-      blog.has_twitter_configured?.should == false
+      expect(blog.has_twitter_configured?).to eq(false)
     end
 
     it "A blog with a twitter_consumer_secret and an empty twitter_consumer_key should not have Twitter configured" do
       blog = FactoryGirl.build(:blog, twitter_consumer_secret: "67890", twitter_consumer_key: "")
-      blog.has_twitter_configured?.should == false
+      expect(blog.has_twitter_configured?).to eq(false)
     end
 
     it "A blog with a twitter_consumer_key and a twitter_consumer_secret should have Twitter configured" do
       blog = FactoryGirl.build(:blog, twitter_consumer_key: "12345", twitter_consumer_secret: "67890")
-      blog.has_twitter_configured?.should == true
+      expect(blog.has_twitter_configured?).to eq(true)
     end
   end
 
-  describe :per_page do
+  describe "#per_page" do
     let(:blog) { create(:blog, limit_article_display: 3, limit_rss_display: 4) }
     it { expect(blog.per_page(nil)).to eq(3) }
     it { expect(blog.per_page('html')).to eq(3) }
@@ -208,7 +208,7 @@ http://anotherurl.net/other_line")
     it { expect(blog.per_page('atom')).to eq(4) }
   end
 
-  describe :allow_signup? do
+  describe "#allow_signup?" do
     context "with a blog that allow signup" do
       let(:blog) { build(:blog, allow_signup: 1) }
       it {expect(blog.allow_signup?).to be_truthy}
@@ -220,7 +220,7 @@ http://anotherurl.net/other_line")
     end
   end
 
-  describe :humans do
+  describe "#humans" do
     context "default value with publify txt" do
       let(:blog) { create :blog }
       it { expect(blog.humans).to_not be_nil }

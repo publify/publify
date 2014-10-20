@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Admin::TextfiltersController do
+describe Admin::TextfiltersController, :type => :controller do
   render_views
 
   describe 'macro help action' do
@@ -11,7 +11,7 @@ describe Admin::TextfiltersController do
       henri = FactoryGirl.create(:user, :login => 'henri', :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN))
       request.session = { :user => henri.id }
       get 'macro_help', :id => 'code'
-      response.should be_success
+      expect(response).to be_success
     end
   end
 end

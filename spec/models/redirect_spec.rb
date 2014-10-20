@@ -1,17 +1,17 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe 'Given an empty redirects table' do
+describe 'Given an empty redirects table', :type => :model do
   before(:each) do
     Redirect.delete_all
   end
 
   it 'redirects are unique' do
-    lambda { Redirect.create!(:from_path => 'foo/bar', :to_path => '/') }.should_not raise_error
+    expect { Redirect.create!(:from_path => 'foo/bar', :to_path => '/') }.not_to raise_error
 
     redirect = Redirect.new(:from_path => 'foo/bar', :to_path => '/')
 
-    redirect.should_not be_valid
-    redirect.errors[:from_path].should == ['has already been taken']
+    expect(redirect).not_to be_valid
+    expect(redirect.errors[:from_path]).to eq(['has already been taken'])
   end
 end
 

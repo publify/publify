@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Admin::ContentController do
+describe Admin::ContentController, :type => :controller do
   render_views
 
   let!(:blog) { create(:blog) }
@@ -52,7 +52,7 @@ describe Admin::ContentController do
       end
     end
 
-    describe :autosave do
+    describe "#autosave" do
       context "first time save" do
         it { expect{
           xhr :post, :autosave, article: attributes_for(:article)
@@ -92,7 +92,7 @@ describe Admin::ContentController do
       it { expect(assigns(:article).redirects).to be_empty }
     end
 
-    describe :create do
+    describe "#create" do
 
       let(:article_params) {{title: 'posted via tests!', body: 'a good boy'}}
 
@@ -189,11 +189,11 @@ describe Admin::ContentController do
 
       new_article = Article.order(created_at: :desc).first
 
-      new_article.body.should eq body
-      new_article.extended.should eq extended
-      new_article.text_filter.name.should eq @user.text_filter.name
-      new_article.html(:body).should eq "<p>body via <em>markdown</em></p>"
-      new_article.html(:extended).should eq "<p><em>foo</em></p>"
+      expect(new_article.body).to eq body
+      expect(new_article.extended).to eq extended
+      expect(new_article.text_filter.name).to eq @user.text_filter.name
+      expect(new_article.html(:body)).to eq "<p>body via <em>markdown</em></p>"
+      expect(new_article.html(:extended)).to eq "<p><em>foo</em></p>"
     end
 
     context "with a previously autosaved draft" do
@@ -203,11 +203,11 @@ describe Admin::ContentController do
       end
 
       it "updates the draft" do
-        Article.find(@draft.id).body.should eq 'update'
+        expect(Article.find(@draft.id).body).to eq 'update'
       end
 
       it "makes the draft published" do
-        Article.find(@draft.id).should be_published
+        expect(Article.find(@draft.id)).to be_published
       end
     end
 
@@ -219,8 +219,8 @@ describe Admin::ContentController do
       describe "saving new article as draft" do
         it "leaves the original draft in existence" do
           post :create, article: base_article({:draft => 'save as draft'})
-          assigns(:article).id.should_not == @draft.id
-          Article.find(@draft.id).should_not be_nil
+          expect(assigns(:article).id).not_to eq(@draft.id)
+          expect(Article.find(@draft.id)).not_to be_nil
         end
       end
     end
@@ -238,17 +238,17 @@ describe Admin::ContentController do
     describe 'edit action' do
       it 'should edit article' do
         get :edit, 'id' => @article.id
-        response.should render_template 'edit'
-        assigns(:article).should_not be_nil
-        assigns(:article).should be_valid
-        response.body.should match(/body/)
-        response.body.should match(/extended content/)
+        expect(response).to render_template 'edit'
+        expect(assigns(:article)).not_to be_nil
+        expect(assigns(:article)).to be_valid
+        expect(response.body).to match(/body/)
+        expect(response.body).to match(/extended content/)
       end
 
       it "correctly converts multi-word tags" do
         a = create(:article, :keywords => '"foo bar", baz')
         get :edit, :id => a.id
-        response.body.should have_selector("input[id=article_keywords][value='baz, \"foo bar\"']")
+        expect(response.body).to have_selector("input[id=article_keywords][value='baz, \"foo bar\"']")
       end
     end
 
@@ -266,10 +266,10 @@ describe Admin::ContentController do
           assert_response :redirect, :action => 'show', :id => art_id
 
           article = @article.reload
-          article.text_filter.name.should == "textile"
-          body.should == article.body
+          expect(article.text_filter.name).to eq("textile")
+          expect(body).to eq(article.body)
 
-          emails.size.should == 0
+          expect(emails.size).to eq(0)
         ensure
           ActionMailer::Base.perform_deliveries = false
         end
@@ -282,28 +282,28 @@ describe Admin::ContentController do
         }
         assert_response :redirect
         article.reload
-        article.body.should == 'foo'
-        article.extended.should == 'bar<!--more-->baz'
+        expect(article.body).to eq('foo')
+        expect(article.extended).to eq('bar<!--more-->baz')
       end
 
       it 'should delete draft about this article if update' do
         attributes = @article.attributes.except("id").merge(:state => 'draft', :parent_id => @article.id, :guid => nil)
         draft = Article.create!(attributes)
-        lambda do
+        expect do
           put :update, 'id' => @article.id, 'article' => { 'title' => 'new'}
-        end.should change(Article, :count).by(-1)
-        Article.should_not be_exists({:id => draft.id})
+        end.to change(Article, :count).by(-1)
+        expect(Article).not_to be_exists({:id => draft.id})
       end
 
       it 'should delete all draft about this article if update not happen but why not' do
         attributes = @article.attributes.except("id").merge(:state => 'draft', :parent_id => @article.id, :guid => nil)
         draft = Article.create!(attributes)
         draft_2 = Article.create!(attributes)
-        lambda do
+        expect do
           put :update, 'id' => @article.id, 'article' => { 'title' => 'new'}
-        end.should change(Article, :count).by(-2)
-        Article.should_not be_exists({:id => draft.id})
-        Article.should_not be_exists({:id => draft_2.id})
+        end.to change(Article, :count).by(-2)
+        expect(Article).not_to be_exists({:id => draft.id})
+        expect(Article).not_to be_exists({:id => draft_2.id})
       end
 
       describe "publishing a published article with an autosaved draft" do
@@ -316,7 +316,7 @@ describe Admin::ContentController do
         end
 
         it "updates the original" do
-          Article.find(@orig.id).body.should == 'update'
+          expect(Article.find(@orig.id).body).to eq('update')
         end
 
         it "deletes the draft" do
@@ -336,7 +336,7 @@ describe Admin::ContentController do
         end
 
         it "updates the original" do
-          Article.find(@orig.id).body.should == 'update'
+          expect(Article.find(@orig.id).body).to eq('update')
         end
 
         it "deletes the draft" do
@@ -357,22 +357,22 @@ describe Admin::ContentController do
 
         it "leaves the original published" do
           @orig.reload
-          @orig.published.should == true
+          expect(@orig.published).to eq(true)
         end
 
         it "leaves the original as is" do
           @orig.reload
-          @orig.body.should_not == 'update'
+          expect(@orig.body).not_to eq('update')
         end
 
         it "redirects to the index" do
-          response.should redirect_to(:action => 'index')
+          expect(response).to redirect_to(:action => 'index')
         end
 
         it "creates a draft" do
           draft = Article.child_of(@orig.id).first
-          draft.parent_id.should == @orig.id
-          draft.should_not be_published
+          expect(draft.parent_id).to eq(@orig.id)
+          expect(draft).not_to be_published
         end
       end
     end
@@ -386,8 +386,8 @@ describe Admin::ContentController do
 
       it 'should return foo for keywords fo' do
         get :auto_complete_for_article_keywords, :article => {:keywords => 'fo'}
-        response.should be_success
-        response.body.should == "[\"bar\", \"bazz\", \"foo\"]"
+        expect(response).to be_success
+        expect(response.body).to eq("[\"bar\", \"bazz\", \"foo\"]")
       end
     end
   end
@@ -410,7 +410,7 @@ describe Admin::ContentController do
 
     before(:each) { request.session = {user: user.id} }
 
-    describe :edit do
+    describe "#edit" do
       context "with an article from an other user" do
         let!(:article) { create(:article, user: create(:user, login: 'another_user')) }
 
@@ -428,7 +428,7 @@ describe Admin::ContentController do
       end
     end
 
-    describe :update do
+    describe "#update" do
       context "with an article" do
         let!(:article) { create(:article, body: "another *textile* test", user: user) }
         let!(:body) { "not the *same* text" }
@@ -439,7 +439,7 @@ describe Admin::ContentController do
       end
     end
 
-    describe :destroy do
+    describe "#destroy" do
       context "with post method" do
         context "with an article from other user" do
           let(:article) { create(:article, user: create(:user, login: 'other_user')) }

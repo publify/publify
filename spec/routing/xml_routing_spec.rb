@@ -1,45 +1,45 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe XmlController do
+describe XmlController, :type => :routing do
   describe "routing" do
     it "recognizes and generates #articlerss" do
-      { :get => "/xml/articlerss/1/feed.xml"}.should route_to(:controller => "xml", :action => "articlerss", :id => "1")
+      expect({ :get => "/xml/articlerss/1/feed.xml"}).to route_to(:controller => "xml", :action => "articlerss", :id => "1")
     end
 
     it "recognizes and generates #commentrss" do
-      { :get => "/xml/commentrss/feed.xml"}.should route_to(:controller => "xml", :action => "commentrss")
+      expect({ :get => "/xml/commentrss/feed.xml"}).to route_to(:controller => "xml", :action => "commentrss")
     end
 
     it "recognizes and generates #trackbackrss" do
-      { :get => "/xml/trackbackrss/feed.xml"}.should route_to(:controller => "xml", :action => "trackbackrss")
+      expect({ :get => "/xml/trackbackrss/feed.xml"}).to route_to(:controller => "xml", :action => "trackbackrss")
     end
 
     it "recognizes and generates #rsd" do
-      { :get => "/xml/rsd"}.should route_to(:controller => "xml", :action => "rsd")
+      expect({ :get => "/xml/rsd"}).to route_to(:controller => "xml", :action => "rsd")
     end
 
     it "recognizes and generates #feed" do
-      { :get => "/xml/atom/feed.xml"}.should route_to(:controller => "xml", :action => "feed", :type => "feed", :format => "atom")
+      expect({ :get => "/xml/atom/feed.xml"}).to route_to(:controller => "xml", :action => "feed", :type => "feed", :format => "atom")
     end
 
     it "recognizes and generates #feed with a custom type" do
-      { :get => "/xml/atom/comments/feed.xml"}.should route_to(:controller => "xml", :action => "feed", :format => "atom", :type => "comments")
+      expect({ :get => "/xml/atom/comments/feed.xml"}).to route_to(:controller => "xml", :action => "feed", :format => "atom", :type => "comments")
     end
 
     it "recognizes and generates #feed with a custom type and an id" do
-      { :get => "/xml/atom/comments/1/feed.xml"}.should route_to(:controller => "xml", :action => "feed", :format => "atom", :type => "comments", :id => "1")
+      expect({ :get => "/xml/atom/comments/1/feed.xml"}).to route_to(:controller => "xml", :action => "feed", :format => "atom", :type => "comments", :id => "1")
     end
 
     it "recognizes and generates #feed with rss type" do
-      { :get => "/xml/rss"}.should route_to(:controller => "xml", :action => "feed", :type => "feed", :format => "rss")
+      expect({ :get => "/xml/rss"}).to route_to(:controller => "xml", :action => "feed", :type => "feed", :format => "rss")
     end
 
     it "recognizes and generates #feed without format" do
-      { :get => "/xml/feed"}.should route_to(:controller => "xml", :action => "feed")
+      expect({ :get => "/xml/feed"}).to route_to(:controller => "xml", :action => "feed")
     end
 
     it "recognizes and generates #feed with sitemap type" do
-      { :get => "/sitemap.xml"}.should route_to(:controller => "xml", :action => "feed", :type => "sitemap", :format => "googlesitemap")
+      expect({ :get => "/sitemap.xml"}).to route_to(:controller => "xml", :action => "feed", :type => "sitemap", :format => "googlesitemap")
     end
   end
 end

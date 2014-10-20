@@ -1,10 +1,10 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe NotesController do
+describe NotesController, :type => :controller do
   render_views
   let!(:blog) { create(:blog) }
 
-  describe :index do
+  describe "#index" do
     context "normally" do
       let!(:note) { create(:note) }
       before(:each) { get 'index' }
@@ -21,7 +21,7 @@ describe NotesController do
     end
   end
 
-  describe :show do
+  describe "#show" do
     before(:each) { get :show, permalink: permalink }
 
     context "normal" do

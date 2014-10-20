@@ -1,9 +1,9 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ResourceUploader do
   describe ".versions" do
     it "has two versions" do
-      ResourceUploader.versions.keys.should include(:thumb, :medium)
+      expect(ResourceUploader.versions.keys).to include(:thumb, :medium)
     end
   end
 end

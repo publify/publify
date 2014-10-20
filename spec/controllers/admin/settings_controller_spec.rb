@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Admin::SettingsController do
+describe Admin::SettingsController, :type => :controller do
   render_views
 
   before(:each) do
@@ -50,14 +50,14 @@ describe Admin::SettingsController do
 
     it 'should success' do
       good_update
-      response.should redirect_to(:action => 'seo')
+      expect(response).to redirect_to(:action => 'seo')
     end
 
     it 'should not save blog with bad permalink format' do
       @blog = Blog.default
       good_update "setting" => {"permalink_format" => "/%month%"}
-      response.should redirect_to(:action => 'seo')
-      @blog.should == Blog.default
+      expect(response).to redirect_to(:action => 'seo')
+      expect(@blog).to eq(Blog.default)
     end
   end
   

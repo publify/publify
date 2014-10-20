@@ -1,44 +1,44 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe ArticlesController do
+describe ArticlesController, :type => :routing do
   describe "routing" do
     it "recognizes and generates #index" do
-      { :get => "/" }.should route_to(:controller => "articles", :action => "index")
+      expect({ :get => "/" }).to route_to(:controller => "articles", :action => "index")
     end
 
     it "recognizes and generates #index with rss format" do
-      { :get => "/articles.rss" }.should route_to(:controller => "articles", :action => "index", :format => "rss")
+      expect({ :get => "/articles.rss" }).to route_to(:controller => "articles", :action => "index", :format => "rss")
     end
 
     it "recognizes and generates #index with atom format" do
-      { :get => "/articles.atom" }.should route_to(:controller => "articles", :action => "index", :format => "atom")
+      expect({ :get => "/articles.atom" }).to route_to(:controller => "articles", :action => "index", :format => "atom")
     end
   end
 
   describe "routing for #redirect action" do
     it 'picks up any previously undefined path' do
-      { :get => "/foobar" }.should route_to(:controller => 'articles',
+      expect({ :get => "/foobar" }).to route_to(:controller => 'articles',
                                      :action => 'redirect',
                                      :from => 'foobar')
     end
 
     it 'matches paths with multiple components' do
-      { :get => "foo/bar/baz" }.should route_to(:controller => 'articles',
+      expect({ :get => "foo/bar/baz" }).to route_to(:controller => 'articles',
                                                 :action => 'redirect',
                                                 :from => "foo/bar/baz")
     end
 
     it 'should route URLs under /articles' do
-      { :get => "/articles" }.should route_to(:controller => 'articles',
+      expect({ :get => "/articles" }).to route_to(:controller => 'articles',
                                               :action => 'redirect',
                                               :from => "articles")
-      { :get => "/articles/foo" }.should route_to(:controller => 'articles',
+      expect({ :get => "/articles/foo" }).to route_to(:controller => 'articles',
                                                   :action => 'redirect',
                                                   :from => "articles/foo")
-      { :get => "/articles/foo/bar" }.should route_to(:controller => 'articles',
+      expect({ :get => "/articles/foo/bar" }).to route_to(:controller => 'articles',
                                                       :action => 'redirect',
                                                       :from => "articles/foo/bar")
-      { :get => "/articles/foo/bar/baz" }.should route_to(:controller => 'articles',
+      expect({ :get => "/articles/foo/bar/baz" }).to route_to(:controller => 'articles',
                                                           :action => 'redirect',
                                                           :from => "articles/foo/bar/baz")
     end

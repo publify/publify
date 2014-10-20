@@ -1,7 +1,7 @@
-require 'spec_helper'
+require 'rails_helper'
 require 'xmlrpc/client'
 
-describe :ping do
+describe Ping, :type => :model do
   describe 'Given a post which references a pingback enabled article' do
 
     let(:pingback_target) { 'http://anotherblog.org/xml-rpc' }
@@ -14,27 +14,27 @@ describe :ping do
       let!(:blog) { create(:blog) }
 
       it 'Pingback sent to url found in referenced header' do
-        mock_response.should_receive(:[]).with('X-Pingback').at_least(:once).and_return(pingback_target)
-        mock_xmlrpc_response.should_receive(:call).with('pingback.ping', referrer_url, referenced_url)
+        expect(mock_response).to receive(:[]).with('X-Pingback').at_least(:once).and_return(pingback_target)
+        expect(mock_xmlrpc_response).to receive(:call).with('pingback.ping', referrer_url, referenced_url)
         make_and_send_ping
       end
 
       it 'Pingback sent to url found in referenced body' do
-        mock_response.should_receive(:[]).with('X-Pingback').at_least(:once).and_return(nil)
-        mock_response.should_receive(:body).at_least(:once).
+        expect(mock_response).to receive(:[]).with('X-Pingback').at_least(:once).and_return(nil)
+        expect(mock_response).to receive(:body).at_least(:once).
           and_return(%{<link rel="pingback" href="#{pingback_target}" />})
-        mock_xmlrpc_response.should_receive(:call).with('pingback.ping', referrer_url, referenced_url)
+        expect(mock_xmlrpc_response).to receive(:call).with('pingback.ping', referrer_url, referenced_url)
         make_and_send_ping
       end
     end
 
     def make_and_send_ping
-      Net::HTTP.should_receive(:get_response).and_return(mock_response)
-      XMLRPC::Client.should_receive(:new2).with(pingback_target).and_return(mock_xmlrpc_response)
+      expect(Net::HTTP).to receive(:get_response).and_return(mock_response)
+      expect(XMLRPC::Client).to receive(:new2).with(pingback_target).and_return(mock_xmlrpc_response)
 
       ping = FactoryGirl.create(:article).pings.build("url" => referenced_url)
-      ping.should be_instance_of(Ping)
-      ping.url.should == referenced_url
+      expect(ping).to be_instance_of(Ping)
+      expect(ping.url).to eq(referenced_url)
       ping.send_pingback_or_trackback(referrer_url).join
     end
   end
@@ -79,12 +79,12 @@ describe :ping do
 
     def make_and_send_ping(post, article, article_url)
       mock = double('html_response')
-      Net::HTTP.should_receive(:get_response).with(URI.parse(referenced_url)).and_return(mock)
-      mock.should_receive(:[]).with('X-Pingback').at_least(:once)
-      mock.should_receive(:body).twice.and_return(referenced_body)
-      Net::HTTP.should_receive(:start).with(URI.parse(trackback_url).host, 80).and_yield(mock)
+      expect(Net::HTTP).to receive(:get_response).with(URI.parse(referenced_url)).and_return(mock)
+      expect(mock).to receive(:[]).with('X-Pingback').at_least(:once)
+      expect(mock).to receive(:body).twice.and_return(referenced_body)
+      expect(Net::HTTP).to receive(:start).with(URI.parse(trackback_url).host, 80).and_yield(mock)
 
-      mock.should_receive(:post).with('/a-post/trackback', post, 'Content-type' => 'application/x-www-form-urlencoded; charset=utf-8').and_return(mock)
+      expect(mock).to receive(:post).with('/a-post/trackback', post, 'Content-type' => 'application/x-www-form-urlencoded; charset=utf-8').and_return(mock)
 
       ping = article.pings.create(url: referenced_url)
       ping.send_pingback_or_trackback(article_url).join
@@ -113,8 +113,8 @@ describe :ping do
     it 'we can ping them correctly' do
       create(:blog)
       mock = double('response')
-      XMLRPC::Client.should_receive(:new2).with('http://rpc.technorati.com/rpc/ping').and_return(mock)
-      mock.should_receive(:call).with('weblogUpdates.ping', 'test blog', 'http://myblog.net', 'http://myblog.net/new-post')
+      expect(XMLRPC::Client).to receive(:new2).with('http://rpc.technorati.com/rpc/ping').and_return(mock)
+      expect(mock).to receive(:call).with('weblogUpdates.ping', 'test blog', 'http://myblog.net', 'http://myblog.net/new-post')
 
       ping = create(:article).pings.build("url" => "http://rpc.technorati.com/rpc/ping")
       ping.send_weblogupdatesping('http://myblog.net', 'http://myblog.net/new-post').join

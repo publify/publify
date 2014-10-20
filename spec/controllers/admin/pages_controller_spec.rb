@@ -1,7 +1,7 @@
 # coding: utf-8
-require 'spec_helper'
+require 'rails_helper'
 
-describe Admin::PagesController do
+describe Admin::PagesController, :type => :controller do
   render_views
 
   let!(:blog) { create(:blog) }
@@ -9,7 +9,7 @@ describe Admin::PagesController do
 
   before(:each) { request.session = { user: user.id } }
 
-  describe :index do
+  describe "#index" do
     context "without params" do
       before(:each) { get :index }
       it { expect(response).to be_success }
@@ -25,7 +25,7 @@ describe Admin::PagesController do
     end
   end
 
-  describe :new do
+  describe "#new" do
     context "using get" do
       before(:each) { get :new }
 
@@ -58,25 +58,25 @@ describe Admin::PagesController do
 
       it 'should create a published page with a redirect' do
         post(:new, 'page' => base_page)
-        assigns(:page).redirects.count.should == 1
+        expect(assigns(:page).redirects.count).to eq(1)
       end
 
       it 'should create an unpublished page without a redirect' do
         post(:new, 'page' => base_page({state: :unpublished, published: false}))
-        assigns(:page).redirects.count.should == 0
+        expect(assigns(:page).redirects.count).to eq(0)
       end
 
       it 'should create a page published in the future without a redirect' do
         #TODO :published_at parameter is currently ignored
         skip
         post(:new, 'page' => base_page({:published_at => (Time.now + 1.hour).to_s}))
-        assigns(:page).redirects.count.should == 0
+        expect(assigns(:page).redirects.count).to eq(0)
       end
 
     end
   end
 
-  describe :edit do
+  describe "#edit" do
     let!(:page) { create(:page) }
 
     context "using get" do

@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Comment do
+describe Comment, :type => :model do
   let!(:blog) { build_stubbed :blog }
 
   def published_article
@@ -19,13 +19,13 @@ describe Comment do
     subject { @c.permalink_url }
 
     it 'should render permalink to comment in public part' do
-      should == "#{@c.article.permalink_url}#comment-#{@c.id}"
+      is_expected.to eq("#{@c.article.permalink_url}#comment-#{@c.id}")
     end
   end
 
   describe '#save' do
     before(:each) {
-      blog.stub(:sp_article_auto_close) { 300 }
+      allow(blog).to receive(:sp_article_auto_close) { 300 }
     }
     it 'should save good comment' do
       c = build(:comment, :url => "http://www.google.de", :article => published_article)
@@ -54,16 +54,16 @@ describe Comment do
 
     it 'should save a valid comment' do
       c = valid_comment # article created 2 days ago
-      c.save.should be_truthy
-      c.errors.should be_empty
+      expect(c.save).to be_truthy
+      expect(c.errors).to be_empty
     end
 
     it 'should not save with article not allow comment'  do
-      blog.stub(:sp_article_auto_close) { 1 }
+      allow(blog).to receive(:sp_article_auto_close) { 1 }
 
       c = build(:comment, :article => build_stubbed(:article, :allow_comments => false))
-      c.save.should_not be_truthy
-      c.errors.should_not be_empty
+      expect(c.save).not_to be_truthy
+      expect(c.errors).not_to be_empty
     end
 
   end
@@ -78,19 +78,19 @@ describe Comment do
     it 'preserves urls starting with https://' do
       c = valid_comment(:url => 'https://example.com/')
       c.save
-      c.url.should == 'https://example.com/'
+      expect(c.url).to eq('https://example.com/')
     end
 
     it 'preserves urls starting with http://' do
       c = valid_comment(:url => 'http://example.com/')
       c.save
-      c.url.should == 'http://example.com/'
+      expect(c.url).to eq('http://example.com/')
     end
 
     it 'prepends http:// to urls without protocol' do
       c = valid_comment(:url => 'example.com')
       c.save
-      c.url.should == 'http://example.com'
+      expect(c.url).to eq('http://example.com')
     end
   end
 
@@ -102,8 +102,8 @@ describe Comment do
 
     it 'should not define spam a comment rbl with lookup succeeds' do
       c = valid_comment(:author => "Not a Spammer", :body => "Useful commentary!", :url => "http://www.bofh.org.uk")
-      c.should_not be_spam
-      c.should_not be_status_confirmed
+      expect(c).not_to be_spam
+      expect(c).not_to be_status_confirmed
     end
 
     it 'should reject spam with uri limit' do
@@ -112,8 +112,8 @@ describe Comment do
     end
 
     def should_be_spam(comment)
-      comment.should be_spam
-      comment.should_not be_status_confirmed
+      expect(comment).to be_spam
+      expect(comment).not_to be_status_confirmed
     end
 
   end
@@ -158,23 +158,23 @@ describe Comment do
 
     it 'should becomes confirmed if withdrawn' do
       unconfirmed = build_stubbed(:comment, :state => 'presumed_ham')
-      unconfirmed.should_not be_status_confirmed
+      expect(unconfirmed).not_to be_status_confirmed
       unconfirmed.withdraw!
-      unconfirmed.should be_status_confirmed
+      expect(unconfirmed).to be_status_confirmed
     end
   end
 
   it 'should have good default filter' do
-    blog.stub(:text_filter_object) { build_stubbed :textile }
-    blog.stub(:comment_text_filter) { build_stubbed :markdown }
+    allow(blog).to receive(:text_filter_object) { build_stubbed :textile }
+    allow(blog).to receive(:comment_text_filter) { build_stubbed :markdown }
     a = build_stubbed(:comment)
     assert_equal 'markdown', a.default_text_filter.name
   end
 
   describe 'with feedback moderation enabled' do
     before(:each) do
-      blog.stub(:sp_global) { false }
-      blog.stub(:default_moderate_comments) { true }
+      allow(blog).to receive(:sp_global) { false }
+      allow(blog).to receive(:default_moderate_comments) { true }
     end
 
     it 'should mark comment as presumably spam' do
