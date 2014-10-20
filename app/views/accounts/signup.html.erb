@@ -10,14 +10,14 @@
   <div class="form-group">
     <%= text_field(:user, :email, {class: 'form-control', placeholder: t(".email") })%>    
   </div>
-  <input type="submit" id="submit" class='btn btn-lg btn-success btn-block' value="<%= t('.signup')%>" />
+  <input type="submit" id="submit" class='btn btn-lg btn-success btn-block' value="<%= t('.signup')%>">
 </fieldset>
 <% end %>
 
 <%- content_for :account_links do %>
   <small><%= link_to(t("accounts.lost_my_password"), action: 'recover_password') %></small>
-  <br/>
+  <br>
   <small><%= link_to(t("accounts.back_to_login"), action: 'login') %></small>
-  <br/>
+  <br>
   <small><%= link_to(t("accounts.back_to", place: this_blog.blog_name).html_safe, this_blog.base_url) %></small>
 <% end %>
