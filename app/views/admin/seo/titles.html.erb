@@ -1,5 +1,6 @@
 <%- content_for :page_heading do %>
-  <i class="icon-large icon-settings"></i><h2 class="page-title"><%= t(".title_settings") %></h2>
+<i class="icon-large icon-settings"></i>
+<h2 class="page-title"><%= t(".title_settings") %></h2>
 <% end %>
 
 <%= error_messages_for 'blog' %>
@@ -218,7 +219,7 @@
   
   <div class='form-group'>
   <div class='form-group'>
-    <hr />
+    <hr>
     <%= link_to(t(".cancel"), {action: 'index'}) %>
     <%= t(".or") %>
     <%= submit_tag(t(".update_settings"), class: 'btn btn-success') %>

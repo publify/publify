@@ -1,8 +1,8 @@
 <%- content_for :page_heading do %>
-  <h2>
-    <i class="glyphicon glyphicon-large glyphicon-cog"></i>
-    <%= t(".post_types") %>
-  </h2>
+<h2>
+  <i class="glyphicon glyphicon-large glyphicon-cog"></i>
+  <%= t(".post_types") %>
+</h2>
 <% end %>
 
 <div class='row'>
@@ -16,7 +16,7 @@
       <%= text_area :post_type, :description, rows: 5, class: 'form-control', placeholder: t(".description") %>
     </div>
     <div class='form-group'>
-      <hr />
+      <hr>
       <%= link_to(t(".cancel"), {action: 'index'}) %>
       <%= t(".or") %>
       <%= submit_tag(t(".save"), class: 'btn btn-success') %>
@@ -39,17 +39,17 @@
         <td>read</td>
       </tr>
       <% for pt in @post_types -%>
-        <tr>
-          <td>
-            <%= pt.name %><br />
-            <div class='action'>
-              <%= [button_to_edit(pt), button_to_delete(pt)].join(" ").html_safe %>
-            </div>
-          </td>
-          <td><%= h pt.description %></td>
-          <td><%= pt.permalink %></td>
-        </tr>
-      <% end -%>
+      <tr>
+        <td>
+          <%= pt.name %><br>
+          <div class='action'>
+            <%= [button_to_edit(pt), button_to_delete(pt)].join(" ").html_safe %>
+          </div>
+        </td>
+        <td><%= h pt.description %></td>
+        <td><%= pt.permalink %></td>
+      </tr>
+    <% end -%>
     </table>
     <p class="help-block"><%= t(".explain") %></p>
   </div>

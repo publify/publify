@@ -16,7 +16,7 @@
             <%= display_date_and_time(post.created_at) %>
           </h5>
           <p><%= post.body.strip_html.slice(0,300) if post.body %></p>
-          <hr />
+          <hr>
           </li>
         <% end %>
       <% end %>

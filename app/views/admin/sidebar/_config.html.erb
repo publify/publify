@@ -1,15 +1,14 @@
-
 <div id="sidebar-config" class='row'>
   <div id="available" class='col-md-6'>
     <div class='well'>
       <h3><%= t(".available_items")%></h3>
       <div id="available_box">
         <% if @available.blank? %>
-          <p class='alert-message warning'><%= t(".you_have_no_plugins_installed")%>.</p>
-      <% else %>
+        <p class='alert-message warning'><%= t(".you_have_no_plugins_installed")%>.</p>
+        <% else %>
           <%= render :partial => 'available', :collection => @available %>
-      <% end %>
-      </div>      
+        <% end %>
+      </div>
     </div>
   </div>
 
@@ -25,5 +24,4 @@
       </div>
     </div>
   </div>
-
 </div>

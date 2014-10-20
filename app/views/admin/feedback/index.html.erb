@@ -1,8 +1,8 @@
 <%- content_for :page_heading do %>
-  <h2>
-    <i class="glyphicon glyphicon-large glyphicon-comment"></i>
-    <%= t(".feedback") %>
-  </h2>
+<h2>
+  <i class="glyphicon glyphicon-large glyphicon-comment"></i>
+  <%= t(".feedback") %>
+</h2>
 <% end %>
 
 <%= render 'shared/flash', flash: flash %>
@@ -26,7 +26,7 @@
     <thead>
       <tr class='noborder'>
         <th colspan='5'>
-          <input type="checkbox" name="checkall" id="checkall" onclick="check_all(this);"/>
+          <input type="checkbox" name="checkall" id="checkall" onclick="check_all(this);">
           <%= t(".select_all") %>
         </th>
       </tr>
@@ -43,11 +43,11 @@
     <% end %>
     <%= display_pagination(@feedback, 5) %>
     <tr>
-      <th><input type="checkbox" name="checkall" id="checkall" onclick="check_all(this);"/></th>
+      <th><input type="checkbox" name="checkall" id="checkall" onclick="check_all(this);"></th>
       <th colspan='4'><%= t(".select_all") %></th>
     </tr>
   </table>
   <%= render 'button', { position: 'bottom' } %>
 <% end %>
 
-<br class='clear' />
+<br class='clear'>

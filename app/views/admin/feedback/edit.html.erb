@@ -1,9 +1,8 @@
 <%- content_for :page_heading do %>
-  
-  <h2 class="page-title">
-    <i class="glyphicon glyphicon-large glyphicon-comment"></i>
-    <%= t(".comments_for", article_link: link_to(h(@comment.article.title), controller: '/admin/content', action: 'edit', id: @comment.article.id).html_safe) %>
-  </h2>
+<h2 class="page-title">
+  <i class="glyphicon glyphicon-large glyphicon-comment"></i>
+  <%= t(".comments_for", article_link: link_to(h(@comment.article.title), controller: '/admin/content', action: 'edit', id: @comment.article.id).html_safe) %>
+</h2>
 <% end %>
 
 <%= form_tag :action => "update", :id => @comment.id do %>
@@ -40,7 +39,7 @@
     </div>
     <div class='row'>
       <div class='form-group col-md-12'>
-        <hr />
+        <hr>
         <%= t(".action_or_other", first_action: link_to(t(".cancel"), {action: 'index'}), second_action: submit_tag(t(".save"), class: 'btn btn-primary')) %>
       </div>
     </div>
@@ -48,4 +47,3 @@
   </fieldset>
 
 <% end %>
-

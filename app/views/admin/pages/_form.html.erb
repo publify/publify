@@ -1,4 +1,4 @@
-<input type="hidden" name="user_textfilter" id="user_textfilter" value="<%= current_user.text_filter_name %>" />
+<input type="hidden" name="user_textfilter" id="user_textfilter" value="<%= current_user.text_filter_name %>">
 
 <%= error_messages_for 'page' %>
 <div class='row save-bar'>
@@ -52,7 +52,6 @@
           <div>
             <%= text_field 'page', 'name', :class => 'form-control' %>
           </div>
-
         </div>
         
         <div class='well'>

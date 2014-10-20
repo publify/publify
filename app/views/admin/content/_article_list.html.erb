@@ -1,9 +1,9 @@
 <%- if @articles.empty? %>
-  <tr>
-    <td colspan="7">
-      <%= t(".no_articles") %>
-    </td>
-  </tr>
+<tr>
+  <td colspan="7">
+    <%= t(".no_articles") %>
+  </td>
+</tr>
 <%- end %>
 
 <% for article in @articles %>
@@ -17,7 +17,7 @@
     <%= show_actions article %>
   </td>
   <td>
-    <%= author_link(article)%><br />
+    <%= author_link(article)%><br>
     <small><%= l(article.published_at) %></small>
   </td>
   <td>
