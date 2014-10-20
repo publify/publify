@@ -21,7 +21,7 @@
               <%= sprintf("%s %s %s %s %s", link_to(link.author, link.link), t(".made_a_link_to_you_on"), link_date && link_date.strftime(this_blog.date_format) || t('.at_an_unknown_date'), link_date && t(".at") || '', link_date && link_date.strftime(this_blog.time_format)) || '' %>
             </h5>
             <p><%= link.description.strip_html.slice(0, 300) %></p>
-            <hr />
+            <hr>
             </li>
           <% end %>
         <% end %>

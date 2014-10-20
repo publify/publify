@@ -1,6 +1,6 @@
 <%- content_for :page_heading do %>
-  <i class="icon-large icon-sidebar"></i>
-  <h2 class="page-title"><%= t(".sidebar") %></h2>
+<i class="icon-large icon-sidebar"></i>
+<h2 class="page-title"><%= t(".sidebar") %></h2>
 <%- end %>
 
 <div class='alert alert-info'>
@@ -11,11 +11,11 @@
 <p class='help-block'></p>
 
 <%= form_tag(url_for(:action=>'publish'), :method => :post, :class => 'spinner') do %>
-<div class='form-actions'>
-  <%= link_to(t(".cancel"), {action: 'index'}) %>
-  <%= t(".or") %>
-  <%= submit_tag(t('.publish_changes'), class: 'btn btn-success') %>
-</div>
+  <div class='form-actions'>
+    <%= link_to(t(".cancel"), {action: 'index'}) %>
+    <%= t(".or") %>
+    <%= submit_tag(t('.publish_changes'), class: 'btn btn-success') %>
+  </div>
 <%- end -%>
 
 <div id="messages">&nbsp;</div>
@@ -27,5 +27,5 @@
     <%= link_to(t(".cancel"), {action: 'index'}) %>
     <%= t(".or") %>
     <%= submit_tag(t('.publish_changes'), class: 'btn btn-success') %>
-    </div>
-  <% end %>
+  </div>
+<% end %>

@@ -1,11 +1,15 @@
 <div class='alert alert-info'>
-<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>  <p>
-  <%= t(".dashboard_explain", available_actions: dashboard_action_links) %>
+  <button type="button" class="close" data-dismiss="alert">
+    <span aria-hidden="true">&times;</span>
+    <span class="sr-only">Close</span>
+  </button>
+  <p>
+    <%= t(".dashboard_explain", available_actions: dashboard_action_links) %>
   </p>
   <%- if current_user.can_access_to_themes? %>
-    <p>
+  <p>
     <%= t(".customization_explain", theme_link: link_to(t(".change_your_blog_presentation"), controller: 'themes'), sidebar_link: link_to(t(".enable_plugins"), controller: 'sidebar')) %>
-    </p>
+  </p>
   <%- end %>
   <p>
   <%= t(".help_explain", doc_link: link_to(t('.read_our_documentation'), 'http://publify.co')) %>

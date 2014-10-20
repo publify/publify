@@ -1,5 +1,5 @@
 <%- if @pages.empty? %>
-  <tr>
+<tr>
   <td colspan="5">
     <%= t(".no_pages") %>
   </td>
@@ -7,14 +7,14 @@
 <%- end %>
 
 <% for page in @pages %>
-  <tr>
+<tr>
   <td>
     <%= link_to_edit_with_profiles page.title, page %>
     <%= show_actions page %>
   </td>
   <td><%= page.name%></td>
   <td>
-    <%= author_link(page) %><br />
+    <%= author_link(page) %><br>
     <small><%= l(page.created_at) %></small>
   </td>
 </tr>

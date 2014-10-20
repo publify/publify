@@ -1,9 +1,9 @@
 <%- content_for :page_heading do %>
-  <h2>
-    <i class="glyphicon glyphicon-large glyphicon-pencil"></i>
-    <%= t(".manage_articles") %>
-    <%= link_to(t(".new_article"), {controller: 'content', action: 'new'}, id: 'dialog-link', class: 'btn btn-info pull-right')%>
-  </h2>
+<h2>
+  <i class="glyphicon glyphicon-large glyphicon-pencil"></i>
+  <%= t(".manage_articles") %>
+  <%= link_to(t(".new_article"), {controller: 'content', action: 'new'}, id: 'dialog-link', class: 'btn btn-info pull-right')%>
+</h2>
 <% end %>
 
 <%= form_tag({action: 'index'}, {method: :get, name: 'article', remote: true, :class => 'form-inline spinnable', :"data-update-success" => 'articleList'}) do %>
@@ -30,14 +30,14 @@
           <%= select_tag('search[published_at]', options_for_select(Article.find_by_published_at), {prompt: t(".publication_date"), :class => 'form-control'}) %>  
         </div>
         <div class='form-group'>
-          <input id="search" type="text" name="search[searchstring]" class='form-control' />        
+          <input id="search" type="text" name="search[searchstring]" class='form-control'>
         </div>
         <div class='form-group'>
           <%= submit_tag(t(".search"), {:class => 'btn btn-success'}) %>
-          <span id='spinner' style="display:none;"><%= image_tag('spinner.gif') %></span>                    
+          <span id='spinner' style="display:none;"><%= image_tag('spinner.gif') %></span>
         </div>
       </div>
-      <br style='clear: both' />
+      <br style='clear: both'>
     </div>
   </div>
   <table class="table table-hover">

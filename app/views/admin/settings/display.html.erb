@@ -1,8 +1,8 @@
 <%- content_for :page_heading do %>
-  <h2>
-    <i class="glyphicon glyphicon-large glyphicon-cog"></i>
-    <%= t('.display_settings') %>
-  </h2>
+<h2>
+  <i class="glyphicon glyphicon-large glyphicon-cog"></i>
+  <%= t('.display_settings') %>
+</h2>
 <% end %>
 
 <%= form_tag :action => 'update' do %>
@@ -149,7 +149,7 @@
   </fieldset>
   <%= hidden_field_tag 'from', 'display' %>
   <div class='form-group'>
-    <hr />
+    <hr>
     <%= link_to(t(".cancel"), {action: 'index'}) %>
     <%= t(".or") %>
     <%= submit_tag(t(".update_settings"), class: 'btn btn-success') %>

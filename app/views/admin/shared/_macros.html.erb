@@ -11,15 +11,14 @@
         </tr>
       </thead>
       <tbody>
-      <% for macro in @macros.sort_by { |f| f.short_name } %>
+        <% for macro in @macros.sort_by { |f| f.short_name } %>
         <tr>
           <td><%= macro_help_popup(macro, macro.display_name) %></td>
           <td><%= h(macro.description) %></td>
           <td><code>&lt;<%= h(macro.short_name) %>&gt;</code></td>
         </tr>
-      <% end %>
+        <% end %>
       </tbody>
     </table>
-    
   </div>
 </div>
