@@ -626,9 +626,9 @@ en:
           one: "1 article"
           other: "%{count} articles"
         your_articles_count:
-          zero: "no article writen by you"
-          one: "1 article writen by you"
-          other: "%{count} articles writen by you"
+          zero: "no article written by you"
+          one: "1 article written by you"
+          other: "%{count} articles written by you"
         drafts_count:
           zero: "no draft"
           one: "1 draft"
