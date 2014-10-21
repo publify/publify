@@ -47,7 +47,7 @@ describe Article, :type => :model do
 
   describe '#initialize' do
     it 'accepts a settings field in its parameter hash' do
-      Article.new({'password' => 'foo'})
+      Article.new('password' => 'foo')
     end
   end
 
@@ -79,7 +79,7 @@ describe Article, :type => :model do
 
   it 'test_permalink_with_title' do
     article = create(:article, permalink: 'article-3', published_at: Time.utc(2004, 6, 1))
-    assert_equal(article, Article.find_by_permalink({year: 2004, month: 06, day: 01, title: 'article-3'}) )
+    assert_equal(article, Article.find_by_permalink(year: 2004, month: 06, day: 01, title: 'article-3') )
     assert_raises(ActiveRecord::RecordNotFound) do
       Article.find_by_permalink year: 2005, month: '06', day: '01', title: 'article-5'
     end

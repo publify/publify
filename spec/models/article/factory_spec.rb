@@ -42,7 +42,7 @@ describe Article::Builder, :type => :model do
 
     it 'set title params with article_id params' do
       params = {article_id: 12}
-      expected_params = params.merge({title: 12})
+      expected_params = params.merge(title: 12)
       expect(Article).to receive(:find_by_permalink).with(expected_params)
       expect(factory.requested_article(params)).to be_nil
     end

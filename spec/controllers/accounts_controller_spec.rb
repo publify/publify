@@ -6,7 +6,7 @@ describe AccountsController, :type => :controller do
       create(:blog)
       allow(User).to receive(:salt).and_return('change-me')
       henri = create(:user, :login => 'henri', :password => 'testagain')
-      post 'login', {:user => {:login => 'henri', :password => 'testagain'}, :remember_me => '1'}
+      post 'login', :user => {:login => 'henri', :password => 'testagain'}, :remember_me => '1'
       expect(request.session[:user_id]).to eq(henri.id)
     end
   end
@@ -19,7 +19,7 @@ describe AccountsController, :type => :controller do
     end
 
     def make_request
-      post 'login', {:user => {:login => 'henri', :password => 'testagain'}}
+      post 'login', :user => {:login => 'henri', :password => 'testagain'}
     end
 
     it 'session gets a user' do
@@ -64,7 +64,7 @@ describe AccountsController, :type => :controller do
     end
 
     def make_request
-      post 'login', {:user => {:login => 'inactive', :password => 'longtest'}}
+      post 'login', :user => {:login => 'inactive', :password => 'longtest'}
     end
 
     it 'no user id goes in the session' do
@@ -96,7 +96,7 @@ describe AccountsController, :type => :controller do
     end
 
     def make_request
-      post 'login', {:user => {:login => nil, :password => nil}}
+      post 'login', :user => {:login => nil, :password => nil}
     end
 
     it 'should render login action' do
@@ -113,7 +113,7 @@ describe AccountsController, :type => :controller do
     end
 
     def make_request
-      post 'login', {:user => {:login => 'bob', :password => 'test'}}
+      post 'login', :user => {:login => 'bob', :password => 'test'}
     end
 
     it 'no user in goes in the session' do
@@ -196,7 +196,7 @@ describe AccountsController, :type => :controller do
 
     describe 'POST signup without allow_signup' do
       it 'should redirect to login' do
-        post 'signup', {'user' =>  {'login' => 'newbob'}}
+        post 'signup', 'user' =>  {'login' => 'newbob'}
         expect(response).to redirect_to(:action => 'login')
       end
     end
@@ -217,7 +217,7 @@ describe AccountsController, :type => :controller do
 
     describe 'POST signup with allow_signup' do
       it 'should redirect to login' do
-        post 'signup', {'user' =>  {'login' => 'newbob', 'email' => 'newbob@mail.com'}}
+        post 'signup', 'user' =>  {'login' => 'newbob', 'email' => 'newbob@mail.com'}
         expect(response).to redirect_to(:action => 'confirm')
       end
     end
@@ -259,8 +259,8 @@ describe AccountsController, :type => :controller do
 
     describe 'when POST signup' do
       before do
-        post 'signup', {'user' =>  {'login' => 'newbob', 'password' => 'newpassword',
-          'password_confirmation' => 'newpassword'}}
+        post 'signup', 'user' =>  {'login' => 'newbob', 'password' => 'newpassword',
+          'password_confirmation' => 'newpassword'}
       end
       it 'redirects to setup' do
         expect(response).to redirect_to(:controller => 'setup', :action => 'index')
@@ -276,7 +276,7 @@ describe AccountsController, :type => :controller do
 
     describe 'when POST login' do
       before do
-        post 'login', {'user' =>  {'login' => 'newbob', 'password' => 'newpassword'}}
+        post 'login', 'user' =>  {'login' => 'newbob', 'password' => 'newpassword'}
       end
       it 'redirects to setup' do
         expect(response).to redirect_to(:controller => 'setup', :action => 'index')

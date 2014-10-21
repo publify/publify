@@ -72,7 +72,7 @@ describe Admin::NotesController, :type => :controller do
           twitter_cli = double(twitter_cli)
           expect(Twitter::Client).to receive(:new).and_return(twitter_cli)
           Tweet = Struct.new(:attrs)
-          tweet = Tweet.new({id_str: '2344'})
+          tweet = Tweet.new(id_str: '2344')
           expect(twitter_cli).to receive(:update).and_return(tweet)
           post :create, note: { body: 'Emphasis _mine_, arguments *strong*' }, push_to_twitter: 'true'
           expect(Note.first.twitter_id).to eq('2344')

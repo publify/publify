@@ -25,7 +25,7 @@ describe Admin::SeoController, :type => :controller do
 
   describe 'update' do
 
-    before(:each) { post :update, {from: 'permalinks', setting: {permalink_format: format}} }
+    before(:each) { post :update, from: 'permalinks', setting: {permalink_format: format} }
 
     context 'simple title format' do
       let(:format) { '/%title%' }

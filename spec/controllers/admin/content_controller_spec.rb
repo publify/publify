@@ -218,7 +218,7 @@ describe Admin::ContentController, :type => :controller do
 
       describe 'saving new article as draft' do
         it 'leaves the original draft in existence' do
-          post :create, article: base_article({:draft => 'save as draft'})
+          post :create, article: base_article(:draft => 'save as draft')
           expect(assigns(:article).id).not_to eq(@draft.id)
           expect(Article.find(@draft.id)).not_to be_nil
         end
@@ -292,7 +292,7 @@ describe Admin::ContentController, :type => :controller do
         expect do
           put :update, 'id' => @article.id, 'article' => { 'title' => 'new'}
         end.to change(Article, :count).by(-1)
-        expect(Article).not_to be_exists({:id => draft.id})
+        expect(Article).not_to be_exists(:id => draft.id)
       end
 
       it 'should delete all draft about this article if update not happen but why not' do
@@ -302,8 +302,8 @@ describe Admin::ContentController, :type => :controller do
         expect do
           put :update, 'id' => @article.id, 'article' => { 'title' => 'new'}
         end.to change(Article, :count).by(-2)
-        expect(Article).not_to be_exists({:id => draft.id})
-        expect(Article).not_to be_exists({:id => draft_2.id})
+        expect(Article).not_to be_exists(:id => draft.id)
+        expect(Article).not_to be_exists(:id => draft_2.id)
       end
 
       describe 'publishing a published article with an autosaved draft' do

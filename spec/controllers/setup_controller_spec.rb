@@ -19,7 +19,7 @@ describe SetupController, :type => :controller do
 
     describe 'POST setup' do
       let(:post_setup_index) {
-        post 'index', {setting: {blog_name: 'Foo', email: 'foo@bar.net'}} }
+        post 'index', setting: {blog_name: 'Foo', email: 'foo@bar.net'} }
 
       context 'when a first article exists' do
         before do
@@ -76,12 +76,12 @@ describe SetupController, :type => :controller do
     end
 
     it 'empty blog name should raise an error' do
-      post 'index', {setting: {blog_name: '', email: 'foo@bar.net'}}
+      post 'index', setting: {blog_name: '', email: 'foo@bar.net'}
       expect(response).to redirect_to(action: 'index')
     end
 
     it 'empty email should raise an error' do
-      post 'index', {setting: {blog_name: 'Foo', email: ''}}
+      post 'index', setting: {blog_name: 'Foo', email: ''}
       expect(response).to redirect_to(action: 'index')
     end
   end
@@ -99,7 +99,7 @@ describe SetupController, :type => :controller do
     describe 'POST setup' do
       before do
         FactoryGirl.create(:blog)
-        post 'index', {setting: {blog_name: 'Foo', email: 'foo@bar.net'}}
+        post 'index', setting: {blog_name: 'Foo', email: 'foo@bar.net'}
       end
 
       specify { expect(response).to redirect_to(controller: 'articles', action: 'index') }
