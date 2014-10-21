@@ -134,7 +134,7 @@ class Blog < ActiveRecord::Base
 
   # In settings with :article_id
   def ping_article!(settings)
-    unless global_pings_enabled? && settings.has_key?(:url) && settings.has_key?(:article_id)
+    unless global_pings_enabled? && settings.key?(:url) && settings.key?(:article_id)
       throw :error, 'Invalid trackback or trackbacks not enabled'
     end
     settings[:blog_id] = self.id
@@ -151,7 +151,7 @@ class Blog < ActiveRecord::Base
 
   # Check that all required blog settings have a value.
   def configured?
-    settings.has_key?('blog_name')
+    settings.key?('blog_name')
   end
 
   # Generate a URL based on the +base_url+.  This allows us to generate URLs
