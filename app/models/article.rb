@@ -48,13 +48,13 @@ class Article < Content
   scope :pending, lambda { where('state = ? and published_at > ?', 'publication_pending', Time.now).order('published_at DESC') }
 
   scope :bestof, ->() {
-    joins(:feedback).
-      where('feedback.published' => true, 'feedback.type' => 'Comment',
-            'contents.published' => true).
-      group('contents.id').
-      order('count(feedback.id) DESC').
-      select('contents.*, count(feedback.id) as comment_count').
-      limit(5)
+    joins(:feedback)
+      .where('feedback.published' => true, 'feedback.type' => 'Comment',
+            'contents.published' => true)
+      .group('contents.id')
+      .order('count(feedback.id) DESC')
+      .select('contents.*, count(feedback.id) as comment_count')
+      .limit(5)
   }
 
   setting :password, :string, ''

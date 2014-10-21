@@ -28,8 +28,8 @@ describe Theme, :type => :model do
 
   describe '.theme_from_path' do
     it 'finds the correct theme' do
-      expect(Theme.theme_from_path(::Rails.root.to_s + 'themes/bootstrap-2').name).
-        to eq 'bootstrap-2'
+      expect(Theme.theme_from_path(::Rails.root.to_s + 'themes/bootstrap-2').name)
+        .to eq 'bootstrap-2'
     end
   end
 
