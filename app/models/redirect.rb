@@ -6,7 +6,6 @@ class Redirect < ActiveRecord::Base
 
   has_many :contents, :through => :redirections
 
-
   def full_to_path
     path = self.to_path
     return path if path =~ /^(https?):\/\/([^\/]*)(.*)/

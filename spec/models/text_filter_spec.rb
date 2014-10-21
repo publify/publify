@@ -9,7 +9,6 @@ describe 'With the list of available filters', :type => :model do
     @whiteboard = Hash.new
   end
 
-
   describe '#available_filters' do
     subject { @filters }
     it { is_expected.to include(PublifyApp::Textfilter::Markdown) }
@@ -175,7 +174,6 @@ end
         end
       end #multiline
     end #code textfilter
-
 
     it 'test_code_plus_markup_chain' do
       build_stubbed :textile

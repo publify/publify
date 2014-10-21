@@ -43,7 +43,6 @@ describe NotesController, :type => :controller do
       it { expect(assigns[:page_title]).to eq('Notes | test blog ') }
     end
 
-
     context 'note not found' do
       let(:permalink) { 'thistagdoesnotexist' }
 

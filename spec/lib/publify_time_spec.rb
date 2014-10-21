@@ -77,7 +77,6 @@ describe 'find Article date range ' do
     Time.zone = @timezone
   end
 
-
   describe 'UTC' do
     before do
       Time.zone = 'UTC'
@@ -105,25 +104,21 @@ describe 'find Article date range ' do
       expect(Article.where(published_at: range)).to eq([@a])
     end
 
-
     it 'delta_like given year' do
       range = PublifyTime.delta_like("#{@year}")
       expect(Article.where(published_at: range)).to eq([@a])
     end
-
 
     it 'delta_like given year month' do
       range = PublifyTime.delta_like("#{@year}-#{@month}")
       expect(Article.where(published_at: range)).to eq([@a])
     end
 
-
     it 'delta_like given year month day' do
       range = PublifyTime.delta_like("#{@year}-#{@month}-#{@day}")
       expect(Article.where(published_at: range)).to eq([@a])
     end
   end
-
 
   describe 'JST(+0900) ' do
     before do
@@ -152,18 +147,15 @@ describe 'find Article date range ' do
       expect(Article.where(published_at: range)).to eq([@a])
     end
 
-
     it 'delta_like given year' do
       range = PublifyTime.delta_like("#{@year}")
       expect(Article.where(published_at: range)).to eq([@a])
     end
 
-
     it 'delta_like given year month' do
       range = PublifyTime.delta_like("#{@year}-#{@month}")
       expect(Article.where(published_at: range)).to eq([@a])
     end
-
 
     it 'delta_like given year month day' do
       range = PublifyTime.delta_like("#{@year}-#{@month}-#{@day}")

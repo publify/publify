@@ -132,7 +132,6 @@ describe ArticlesController, 'base', :type => :controller do
     end
   end
 
-
   describe '#archives' do
     render_views
     it 'works' do
@@ -203,7 +202,6 @@ describe ArticlesController, 'feeds', :type => :controller do
   let!(:article2) { create(:article, :created_at => '2004-04-01 12:00:00', :published_at => '2004-04-01 12:00:00', :updated_at => '2004-04-01 12:00:00') }
 
   let(:trackback) { create(:trackback, :article => article1, :published_at => Time.now - 1.day, :published => true) }
-
 
   specify '/articles.atom => an atom feed' do
     get 'index', :format => 'atom'

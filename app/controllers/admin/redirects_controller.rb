@@ -3,7 +3,6 @@ class Admin::RedirectsController < Admin::BaseController
   def edit; new_or_edit;  end
   def new; new_or_edit;  end
 
-
   def destroy
     @record = Redirect.find(params[:id])
     return(render 'admin/shared/destroy') unless request.post?

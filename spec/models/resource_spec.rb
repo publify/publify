@@ -50,6 +50,5 @@ describe Resource, :type => :model do
       end
      end
 
-
   end
 end

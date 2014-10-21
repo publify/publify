@@ -1,7 +1,6 @@
 # coding: utf-8
 require 'rails_helper'
 
-
 class TestBrokenSidebar < Sidebar
   description 'Invalid test sidebar'
   def parse_request(_contents, _request_params)

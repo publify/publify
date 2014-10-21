@@ -87,7 +87,6 @@ module ContentBase
     blog.text_filter_object
   end
 
-
   module ClassMethods
     def content_fields *attribs
       class_eval "def content_fields; #{attribs.inspect}; end"

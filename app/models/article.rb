@@ -244,7 +244,6 @@ class Article < Content
     urls.uniq
   end
 
-
   def pings_closed?
     !(allow_pings? && in_feedback_window?)
   end
@@ -341,7 +340,6 @@ class Article < Content
       format_url
     end
   end
-
 
   def html_urls_to_ping
     urls_to_ping = []
