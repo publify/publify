@@ -14,11 +14,11 @@ class PageCache
 
   # Delete all file save in path_cache by page_cache system
   def self.sweep_all
-    self.zap_pages(%w{*})
+    zap_pages(%w{*})
   end
 
   def self.sweep_theme_cache
-    self.zap_pages(%w{images/theme/* stylesheets/theme/* javascripts/theme/*})
+    zap_pages(%w{images/theme/* stylesheets/theme/* javascripts/theme/*})
   end
 
   def self.zap_pages(paths)
@@ -28,7 +28,7 @@ class PageCache
     paths.each {|v|
       FileUtils.rm_rf(Dir.glob(public_path + "/#{v}"))
     }
-    return true
+    true
   end
 
 end

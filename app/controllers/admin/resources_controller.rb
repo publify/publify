@@ -34,16 +34,14 @@ class Admin::ResourcesController < Admin::BaseController
   end
 
   def destroy
-    begin
-      @record = Resource.find(params[:id])
-      mime = @record.mime
-      return(render 'admin/shared/destroy') unless request.post?
+    @record = Resource.find(params[:id])
+    mime = @record.mime
+    return(render 'admin/shared/destroy') unless request.post?
 
-      @record.destroy
-      flash[:notice] = I18n.t('admin.resources.destroy.notice')
-      redirect_to action: 'index'
-    rescue
-      raise
-    end
+    @record.destroy
+    flash[:notice] = I18n.t('admin.resources.destroy.notice')
+    redirect_to action: 'index'
+  rescue
+    raise
   end
 end

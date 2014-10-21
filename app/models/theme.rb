@@ -23,7 +23,7 @@ class Theme
 
   # Find a theme, given the theme name
   def self.find(name)
-    self.new(name,theme_path(name))
+    new(name,theme_path(name))
   end
 
   def self.themes_root
@@ -36,7 +36,7 @@ class Theme
 
   def self.theme_from_path(path)
     name = path.scan(/[-\w]+$/i).flatten.first
-    self.new(name, path)
+    new(name, path)
   end
 
   def self.find_all

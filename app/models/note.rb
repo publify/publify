@@ -26,8 +26,8 @@ class Note < Content
   TWITTER_LINK_LENGTH = 22
 
   def set_permalink
-    self.permalink = "#{self.id}-#{self.body.to_permalink[0..79]}" if self.permalink.nil? or self.permalink.empty?
-    self.save
+    self.permalink = "#{id}-#{body.to_permalink[0..79]}" if permalink.nil? or permalink.empty?
+    save
   end
 
   def categories;[];end
@@ -56,10 +56,10 @@ class Note < Content
   end
 
   def twitter_message
-    base_message = self.body.strip_html
+    base_message = body.strip_html
     if too_long?("#{base_message} (#{short_link})")
       max_length = 140 - "... (#{redirects.first.to_url})".length - 1
-      "#{truncate(base_message, max_length)}... (#{self.redirects.first.to_url})"
+      "#{truncate(base_message, max_length)}... (#{redirects.first.to_url})"
     else
       "#{base_message} (#{short_link})"
     end
@@ -71,25 +71,25 @@ class Note < Content
 
   def send_to_twitter
     return false unless Blog.default.has_twitter_configured?
-    return false unless self.user.has_twitter_configured?
+    return false unless user.has_twitter_configured?
 
     twitter = Twitter::REST::Client.new do |config|
       config.consumer_key = Blog.default.twitter_consumer_key
       config.consumer_secret = Blog.default.twitter_consumer_secret
-      config.access_token = self.user.twitter_oauth_token
-      config.access_token_secret = self.user.twitter_oauth_token_secret
+      config.access_token = user.twitter_oauth_token
+      config.access_token_secret = user.twitter_oauth_token_secret
     end
 
     begin
       options = {}
-      if self.in_reply_to_status_id and self.in_reply_to_status_id != ''
-        options = {in_reply_to_status_id: self.in_reply_to_status_id}
-        self.in_reply_to_message = twitter.status(self.in_reply_to_status_id).to_json
+      if in_reply_to_status_id and in_reply_to_status_id != ''
+        options = {in_reply_to_status_id: in_reply_to_status_id}
+        self.in_reply_to_message = twitter.status(in_reply_to_status_id).to_json
       end
-      tweet = twitter.update(self.twitter_message, options)
+      tweet = twitter.update(twitter_message, options)
       self.twitter_id = tweet.attrs[:id_str]
-      self.save
-      self.user.update_twitter_profile_image(tweet.attrs[:user][:profile_image_url])
+      save
+      user.update_twitter_profile_image(tweet.attrs[:user][:profile_image_url])
       true
     rescue StandardError => e
       Rails.logger.error("Error while sending to twitter: #{e}")
@@ -119,7 +119,7 @@ class Note < Content
   end
 
   def short_link
-    path = self.redirects.first.from_path
+    path = redirects.first.from_path
     prefix.sub!(/^https?\:\/\//, '')
     "#{prefix} #{path}"
   end

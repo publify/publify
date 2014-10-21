@@ -81,12 +81,12 @@ class Article < Content
   end
 
   def set_permalink
-    return if self.state == 'draft' || self.permalink.present?
-    self.permalink = self.title.to_permalink
+    return if state == 'draft' || permalink.present?
+    self.permalink = title.to_permalink
   end
 
   def has_child?
-    Article.exists?(parent_id: self.id)
+    Article.exists?(parent_id: id)
   end
 
   def post_type
@@ -124,21 +124,21 @@ class Article < Content
   end
 
   def save_attachment!(file)
-    self.resources << Resource.create_and_upload(file)
+    resources << Resource.create_and_upload(file)
   rescue => e
     logger.info(e.message)
   end
 
   def trackback_url
-    blog.url_for("trackbacks?article_id=#{self.id}", only_path: false)
+    blog.url_for("trackbacks?article_id=#{id}", only_path: false)
   end
 
   def comment_url
-    blog.url_for("comments?article_id=#{self.id}", only_path: true)
+    blog.url_for("comments?article_id=#{id}", only_path: true)
   end
 
   def preview_comment_url
-    blog.url_for("comments/preview?article_id=#{self.id}", only_path: true)
+    blog.url_for("comments/preview?article_id=#{id}", only_path: true)
   end
 
   def feed_url(format)
@@ -250,8 +250,8 @@ class Article < Content
 
   # check if time to comment is open or not
   def in_feedback_window?
-    self.blog.sp_article_auto_close.zero? ||
-      self.published_at.to_i > self.blog.sp_article_auto_close.days.ago.to_i
+    blog.sp_article_auto_close.zero? ||
+      published_at.to_i > blog.sp_article_auto_close.days.ago.to_i
   end
 
   def cast_to_boolean(value)
@@ -298,24 +298,24 @@ class Article < Content
   end
 
   def already_ping?(url)
-    self.pings.map(&:url).include?(url)
+    pings.map(&:url).include?(url)
   end
 
   def allow_comments?
-    return self.allow_comments unless self.allow_comments.nil?
+    return allow_comments unless allow_comments.nil?
     blog.default_allow_comments
   end
 
   def allow_pings?
-    return self.allow_pings unless self.allow_pings.nil?
+    return allow_pings unless allow_pings.nil?
     blog.default_allow_pings
   end
 
   protected
 
   def set_published_at
-    if self.published and self[:published_at].nil?
-      self[:published_at] = self.created_at || Time.now
+    if published and self[:published_at].nil?
+      self[:published_at] = created_at || Time.now
     end
   end
 
@@ -344,7 +344,7 @@ class Article < Content
   def html_urls_to_ping
     urls_to_ping = []
     html_urls.delete_if{|url| already_ping?(url)}.uniq.each do |url_to_ping|
-      urls_to_ping << self.pings.build('url' => url_to_ping)
+      urls_to_ping << pings.build('url' => url_to_ping)
     end
     urls_to_ping
   end

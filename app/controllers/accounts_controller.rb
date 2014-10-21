@@ -61,7 +61,7 @@ class AccountsController < ApplicationController
 
   def logout
     flash[:notice] = t('accounts.logout.notice')
-    self.current_user.forget_me
+    current_user.forget_me
     self.current_user = nil
     session[:user_id] = nil
     cookies.delete :auth_token
@@ -81,24 +81,24 @@ class AccountsController < ApplicationController
   end
 
   def redirect_if_already_logged_in
-    if session[:user_id] && session[:user_id] == self.current_user.id
+    if session[:user_id] && session[:user_id] == current_user.id
       redirect_back_or_default
     end
   end
 
   def successful_login
-    session[:user_id] = self.current_user.id
+    session[:user_id] = current_user.id
     if params[:remember_me] == '1'
-      self.current_user.remember_me unless self.current_user.remember_token?
+      current_user.remember_me unless current_user.remember_token?
       cookies[:auth_token] = {
-        value: self.current_user.remember_token,
-        expires: self.current_user.remember_token_expires_at,
+        value: current_user.remember_token,
+        expires: current_user.remember_token_expires_at,
         httponly: true # Help prevent auth_token theft.
       }
     end
-    add_to_cookies(:publify_user_profile, self.current_user.profile_label, '/')
+    add_to_cookies(:publify_user_profile, current_user.profile_label, '/')
 
-    self.current_user.update_connection_time
+    current_user.update_connection_time
     flash[:success] = t('accounts.login.success')
     redirect_back_or_default
   end

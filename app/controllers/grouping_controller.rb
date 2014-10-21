@@ -11,7 +11,7 @@ class GroupingController < ContentController
     if klass
       @grouping_class = klass
     end
-    @grouping_class ||= self.to_s.sub(/Controller$/,'').singularize.constantize
+    @grouping_class ||= to_s.sub(/Controller$/,'').singularize.constantize
   end
 
   def self.ivar_name
@@ -20,7 +20,7 @@ class GroupingController < ContentController
 
   def index
     self.groupings = grouping_class.page(params[:page]).per(100)
-    @page_title = self.controller_name.capitalize
+    @page_title = controller_name.capitalize
     @keywords = ''
     @description = "#{self.class.to_s.sub(/Controller$/,'')} for #{this_blog.blog_name}"
   end

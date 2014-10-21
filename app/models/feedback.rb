@@ -95,7 +95,7 @@ class Feedback < ActiveRecord::Base
 
   def classify
     begin
-      return :ham if self.user_id
+      return :ham if user_id
       return :spam if blog.default_moderate_comments
       return :ham unless blog.sp_global
     rescue NoMethodError
@@ -113,7 +113,7 @@ class Feedback < ActiveRecord::Base
     sp = SpamProtection.new(blog)
     Timeout.timeout(defined?($TESTING) ? 10 : 30) do
       spam_fields.any? do |field|
-        sp.is_spam?(self.send(field))
+        sp.is_spam?(send(field))
       end
     end
   rescue Timeout::Error
@@ -182,7 +182,7 @@ class Feedback < ActiveRecord::Base
 
   def confirm_classification!
     confirm_classification
-    self.save
+    save
   end
 
   def feedback_not_closed
@@ -196,7 +196,7 @@ class Feedback < ActiveRecord::Base
 
   def akismet
     @@akismet = akismet_client if @@akismet.nil?
-    return @@akismet == false ? nil : @@akismet
+    @@akismet == false ? nil : @@akismet
   end
 
   def akismet_client

@@ -59,21 +59,21 @@ class Content < ActiveRecord::Base
   end
 
   def shorten_url
-    return unless self.published
+    return unless published
 
     r = Redirect.new
     r.from_path = r.shorten
-    r.to_path = self.permalink_url
+    r.to_path = permalink_url
 
     # This because updating self.redirects.first raises ActiveRecord::ReadOnlyRecord
-    unless (red = self.redirects.first).nil?
-      return if red.to_path == self.permalink_url
+    unless (red = redirects.first).nil?
+      return if red.to_path == permalink_url
       r.from_path = red.from_path
       red.destroy
-      self.redirects.clear # not sure we need this one
+      redirects.clear # not sure we need this one
     end
 
-    self.redirects << r
+    redirects << r
   end
 
   def self.find_already_published(_limit)
@@ -82,7 +82,7 @@ class Content < ActiveRecord::Base
 
   def self.search_with(params)
     params ||= {}
-    scoped = self.unscoped
+    scoped = unscoped
     if params[:searchstring].present?
       scoped = scoped.searchstring(params[:searchstring])
     end
@@ -108,7 +108,7 @@ class Content < ActiveRecord::Base
   end
 
   def withdraw!
-    self.withdraw
+    withdraw
     self.save!
   end
 
@@ -122,14 +122,14 @@ class Content < ActiveRecord::Base
 
   def get_rss_description
     return '' unless blog.rss_description
-    return '' unless respond_to?(:user) && self.user && self.user.name
+    return '' unless respond_to?(:user) && user && user.name
 
     rss_desc = blog.rss_description_text
-    rss_desc.gsub!('%author%', self.user.name)
+    rss_desc.gsub!('%author%', user.name)
     rss_desc.gsub!('%blog_url%', blog.base_url)
     rss_desc.gsub!('%blog_name%', blog.blog_name)
-    rss_desc.gsub!('%permalink_url%', self.permalink_url)
-    return rss_desc
+    rss_desc.gsub!('%permalink_url%', permalink_url)
+    rss_desc
   end
 
   # TODO: Perhaps permalink_url should produce valid URI's instead of IRI's
@@ -139,15 +139,15 @@ class Content < ActiveRecord::Base
 
   def short_url
     # Double check because of crappy data in my own old database
-    return unless self.published and self.redirects.size > 0
-    self.redirects.last.to_url
+    return unless published and redirects.size > 0
+    redirects.last.to_url
   end
 
 end
 
 class Object
   def to_text_filter
-    TextFilter.find_by_name(self.to_s) || TextFilter.find_by_name('none')
+    TextFilter.find_by_name(to_s) || TextFilter.find_by_name('none')
   end
 end
 

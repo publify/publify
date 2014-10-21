@@ -11,7 +11,7 @@ class Page < Content
   after_save :shorten_url
 
   def set_permalink
-    self.name = self.title.to_permalink if self.name.blank?
+    self.name = title.to_permalink if name.blank?
   end
 
   def initialize(*args)

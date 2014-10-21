@@ -14,7 +14,7 @@ module ContentBase
     interested_users.each do |value|
       send_notification_to_user(value)
     end
-    return true
+    true
   end
 
   def send_notification_to_user(user)
@@ -64,7 +64,7 @@ module ContentBase
 
     text = text.strip_html
 
-    return text.slice(0, length) +
+    text.slice(0, length) +
       (text.length > length ? '...' : '');
   end
 

@@ -8,7 +8,7 @@ class Trackback < Feedback
 
   def initialize(*args, &block)
     super(*args, &block)
-    self.title ||= self.url
+    self.title ||= url
     self.blog_name ||= ''
   end
 

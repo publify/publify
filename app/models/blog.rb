@@ -138,7 +138,7 @@ class Blog < ActiveRecord::Base
     unless global_pings_enabled? && settings.key?(:url) && settings.key?(:article_id)
       throw :error, 'Invalid trackback or trackbacks not enabled'
     end
-    settings[:blog_id] = self.id
+    settings[:blog_id] = id
     article = Article.find(settings[:article_id])
     unless article.allow_pings?
       throw :error, 'Trackback not saved'
@@ -217,7 +217,7 @@ class Blog < ActiveRecord::Base
 
   def rss_limit_params
     limit = limit_rss_display.to_i
-    return limit.zero? \
+    limit.zero? \
       ? {} \
       : {limit: limit}
   end
@@ -242,15 +242,15 @@ class Blog < ActiveRecord::Base
 
   def urls_to_ping_for(article)
     urls_to_ping = []
-    self.ping_urls.gsub(/ +/, '').split(/[\n\r]+/).map(&:strip).delete_if{|u| article.already_ping?(u)}.uniq.each do |url|
+    ping_urls.gsub(/ +/, '').split(/[\n\r]+/).map(&:strip).delete_if{|u| article.already_ping?(u)}.uniq.each do |url|
       urls_to_ping << article.pings.build('url' => url)
     end
     urls_to_ping
   end
 
   def has_twitter_configured?
-    return false if self.twitter_consumer_key.nil? or self.twitter_consumer_secret.nil?
-    return false if self.twitter_consumer_key.empty? or self.twitter_consumer_secret.empty?
+    return false if twitter_consumer_key.nil? or twitter_consumer_secret.nil?
+    return false if twitter_consumer_key.empty? or twitter_consumer_secret.empty?
     true
   end
 
@@ -267,7 +267,7 @@ class Blog < ActiveRecord::Base
   def split_base_url
     unless @split_base_url
       unless base_url =~ /(https?):\/\/([^\/]*)(.*)/
-        raise "Invalid base_url: #{self.base_url}"
+        raise "Invalid base_url: #{base_url}"
       end
       @split_base_url = { protocol: $1, host_with_port: $2, root_path: $3.gsub(%r{/$},'') }
     end

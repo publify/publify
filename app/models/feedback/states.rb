@@ -26,7 +26,7 @@ module Feedback::States
   class Unclassified < Base
     def after_initialize_handler
       enter_hook
-      return true
+      true
     end
 
     def enter_hook
@@ -111,7 +111,7 @@ module Feedback::States
 
     def send_notifications
       content.really_send_notifications if content.just_changed_published_status
-      return true
+      true
     end
   end
 
