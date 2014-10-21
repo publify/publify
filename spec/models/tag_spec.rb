@@ -77,7 +77,6 @@ describe Tag, :type => :model do
       expect(Tag.find_with_char('ba').sort_by(&:id)).to eq([@bar, @bazz].sort_by(&:id))
     end
 
-
     describe '#create_from_article' do
       before(:each) { Tag.create_from_article!(article) }
 

@@ -57,7 +57,6 @@ module Article::States
     end
   end
 
-
   class Published < Base
     def enter_hook
       super

@@ -238,7 +238,6 @@ describe Admin::FeedbackController, :type => :controller do
           expect(comment.body).not_to eq('updated comment')
       end
 
-
     end
   end
 

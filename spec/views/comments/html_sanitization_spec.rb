@@ -18,7 +18,6 @@ shared_examples_for 'CommentSanitization' do
     assign(:comment, @comment)
   end
 
-
   ['', 'markdown', 'textile', 'smartypants', 'markdown smartypants'].each do |value|
     it "Should sanitize content rendered with the #{value} textfilter" do
       @blog.comment_text_filter = value

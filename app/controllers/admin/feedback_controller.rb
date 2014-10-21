@@ -84,7 +84,6 @@ class Admin::FeedbackController < Admin::BaseController
     @feedback ||= @article.comments
   end
 
-
   def change_state
     return unless request.xhr?
 

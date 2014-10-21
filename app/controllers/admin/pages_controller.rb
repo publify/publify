@@ -49,7 +49,6 @@ class Admin::PagesController < Admin::BaseController
     current_user.text_filter || blog.text_filter
   end
 
-
   def set_macro
     @macros = TextFilter.macro_filters
   end

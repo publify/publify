@@ -579,7 +579,6 @@ describe Article, :type => :model do
     end
   end
 
-
   describe '#published_comments' do
     it 'should not include withdrawn comments' do
       a = Article.new(title: 'foo')
