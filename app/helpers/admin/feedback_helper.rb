@@ -14,7 +14,7 @@ module Admin::FeedbackHelper
         button_to_delete_comment(item),
         button_to_conversation(item)
         ].join(" ").html_safe
-      end
+    end
   end
   
   def button_to_edit_comment(item)

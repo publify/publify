@@ -52,7 +52,7 @@ class ApplicationController < ActionController::Base
     url_for(:controller => '/articles').gsub(%r{/$},'')
   end
 
-  def add_to_cookies(name, value, path=nil, expires=nil)
+  def add_to_cookies(name, value, path=nil, _expires=nil)
     cookies[name] = { :value => value, :path => path || "/#{controller_name}", :expires => 6.weeks.from_now }
   end
 

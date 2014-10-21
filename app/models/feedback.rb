@@ -59,11 +59,11 @@ class Feedback < ActiveRecord::Base
     article
   end
 
-  def permalink_url(anchor=:ignored, only_path=false)
+  def permalink_url(_anchor=:ignored, only_path=false)
     article.permalink_url("#{self.class.to_s.downcase}-#{id}",only_path)
   end
 
-  def html_postprocess(field, html)
+  def html_postprocess(_field, html)
     helper = ContentTextHelpers.new
     helper.sanitize(helper.auto_link(html)).nofollowify
   end
@@ -109,7 +109,7 @@ class Feedback < ActiveRecord::Base
     end
   end
 
-  def sp_is_spam?(options={})
+  def sp_is_spam?(_options={})
     sp = SpamProtection.new(blog)
     Timeout.timeout(defined?($TESTING) ? 10 : 30) do
       spam_fields.any? do |field|
@@ -120,7 +120,7 @@ class Feedback < ActiveRecord::Base
     nil
   end
 
-  def akismet_is_spam?(options={})
+  def akismet_is_spam?(_options={})
     return false if akismet.nil?
 
     begin

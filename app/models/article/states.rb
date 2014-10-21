@@ -6,7 +6,7 @@ module Article::States
       self.class.to_s.demodulize
     end
 
-    def exit_hook(target)
+    def exit_hook(_target)
       ::Rails.logger.debug("#{content} leaving state #{self.class}")
     end
 

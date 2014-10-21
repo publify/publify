@@ -126,7 +126,7 @@ class Ping < ActiveRecord::Base
       rescue XMLRPC::FaultException => e
         logger.error(e)
       end
-    rescue Exception => e
+    rescue => e
       logger.error(e)
     end
   end

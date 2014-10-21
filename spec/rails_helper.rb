@@ -12,7 +12,7 @@ FactoryGirl.find_definitions
 class EmailNotify
   class << self
     alias real_send_user_create_notification send_user_create_notification
-    def send_user_create_notification user; end
+    def send_user_create_notification _user; end
   end
 end
 

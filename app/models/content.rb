@@ -76,7 +76,7 @@ class Content < ActiveRecord::Base
     self.redirects << r
   end
 
-  def self.find_already_published(limit)
+  def self.find_already_published(_limit)
     where('published_at < ?', Time.now).limit(1000).order('created_at DESC')
   end
 

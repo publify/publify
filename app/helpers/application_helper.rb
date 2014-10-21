@@ -87,7 +87,7 @@ module ApplicationHelper
     end
   end
 
-  def html(content, what = :all, deprecated = false)
+  def html(content, what = :all, _deprecated = false)
     content.html(what)
   end
 
@@ -140,7 +140,7 @@ module ApplicationHelper
 
   def page_header_includes
     content_array.collect { |c| c.whiteboard }.collect do |w|
-      w.select {|k,v| k =~ /^page_header_/}.collect do |_,v|
+      w.select {|k,_v| k =~ /^page_header_/}.collect do |_,v|
         v = v.chomp
         # trim the same number of spaces from the beginning of each line
         # this way plugins can indent nicely without making ugly source output

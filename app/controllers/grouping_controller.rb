@@ -82,7 +82,7 @@ class GroupingController < ContentController
     @grouping_name ||= self.class.to_s.sub(/Controller$/,'')
   end
 
-  def show_page_title_for grouping, page
+  def show_page_title_for _grouping, _page
     if grouping_name.singularize == 'Tag'
       @page_title   = this_blog.tag_title_template.to_title(@grouping, this_blog, params)
       @description = this_blog.tag_title_template.to_title(@grouping, this_blog, params)

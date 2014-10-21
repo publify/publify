@@ -4,7 +4,7 @@ require 'rails_helper'
 
 class TestBrokenSidebar < Sidebar
   description "Invalid test sidebar"
-  def parse_request(contents, request_params)
+  def parse_request(_contents, _request_params)
     raise "I'm b0rked!"
   end
 end

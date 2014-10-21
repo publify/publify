@@ -33,7 +33,7 @@ class Note < Content
   def categories;[];end
   def tags;[];end
 
-  def html_preprocess(field, html)
+  def html_preprocess(_field, html)
     PublifyApp::Textfilter::Twitterfilter.filtertext(nil,nil,html,nil).nofollowify
   end
 
@@ -42,7 +42,7 @@ class Note < Content
     # Yes, this is weird - PDC
     begin
       self.settings ||= {}
-    rescue Exception => e
+    rescue => e
       self.settings = {}
     end
   end
