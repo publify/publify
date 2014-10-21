@@ -41,14 +41,14 @@ describe Resource, type: :model do
       end
     end
 
-     describe '#without_images_by_filename' do
+    describe '#without_images_by_filename' do
       it 'should combine 2 scopes' do
         image_resource = FactoryGirl.create(:resource, mime: 'image/jpeg')
         b_resource = FactoryGirl.create(:resource, mime: 'text/html', upload: file_upload('b'))
         a_resource = FactoryGirl.create(:resource, mime: 'text/html', upload: file_upload('a'))
         expect(Resource.without_images_by_filename).to eq([a_resource, b_resource])
       end
-     end
+    end
 
   end
 end

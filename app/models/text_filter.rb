@@ -106,6 +106,6 @@ class TextFilter < ActiveRecord::Base
   def to_s; self.name; end
 
   def to_text_filter
-     self
+    self
   end
 end

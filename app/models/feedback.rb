@@ -27,13 +27,13 @@ class Feedback < ActiveRecord::Base
   scope :presumed_spam, -> { where(state: 'presumed_spam') }
   scope :unapproved, -> { where(status_confirmed: false) }
 
- has_state(:state,
-           valid_states: [:unclassified, :presumed_spam, :just_marked_as_spam, :spam, :just_presumed_ham, :presumed_ham, :just_marked_as_ham, :ham],
-           handles: [:published?, :status_confirmed?, :just_published?,
-                        :mark_as_ham, :mark_as_spam, :confirm_classification,
-                        :withdraw,
-                        :before_save_handler, :after_initialize_handler,
-                        :send_notifications, :post_trigger, :report_classification])
+  has_state(:state,
+            valid_states: [:unclassified, :presumed_spam, :just_marked_as_spam, :spam, :just_presumed_ham, :presumed_ham, :just_marked_as_ham, :ham],
+            handles: [:published?, :status_confirmed?, :just_published?,
+                         :mark_as_ham, :mark_as_spam, :confirm_classification,
+                         :withdraw,
+                         :before_save_handler, :after_initialize_handler,
+                         :send_notifications, :post_trigger, :report_classification])
 
   def self.paginated(page, per_page)
     page(page).per(per_page)
