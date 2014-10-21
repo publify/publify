@@ -22,7 +22,7 @@ describe Theme, type: :model do
   describe '#description' do
     it 'returns the contents of the corresponding markdown file' do
       expect(default_theme.description).to eq(
-        File.open(::Rails.root.to_s + '/themes/bootstrap-2/about.markdown') {|f| f.read})
+        File.open(::Rails.root.to_s + '/themes/bootstrap-2/about.markdown') { |f| f.read })
     end
   end
 

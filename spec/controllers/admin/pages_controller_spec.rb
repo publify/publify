@@ -39,7 +39,7 @@ describe Admin::PagesController, type: :controller do
 
     context 'using post' do
 
-      def base_page(options={})
+      def base_page(options = {})
         { title: 'posted via tests!',
           body: 'A good body',
           name: 'posted-via-tests',
@@ -83,7 +83,7 @@ describe Admin::PagesController, type: :controller do
       before(:each) { get :edit, id: page.id }
       it { expect(response).to be_success }
       it { expect(response).to render_template('edit') }
-      it { expect(assigns(:page)).to eq(page)}
+      it { expect(assigns(:page)).to eq(page) }
     end
 
     context 'using post' do
@@ -91,7 +91,7 @@ describe Admin::PagesController, type: :controller do
         post :edit, id: page.id, page: { name: 'markdown-page', title: 'Markdown Page', body: 'Adding a [link](http://www.publify.co/) here' }
       end
 
-      it {expect(response).to redirect_to(action: :index)}
+      it { expect(response).to redirect_to(action: :index) }
     end
   end
 

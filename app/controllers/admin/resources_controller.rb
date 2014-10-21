@@ -4,7 +4,7 @@ class Admin::ResourcesController < Admin::BaseController
   cache_sweeper :blog_sweeper
 
   def upload
-    if ! params[:upload].blank?
+    if !params[:upload].blank?
       file = params[:upload][:filename]
 
       unless file.content_type

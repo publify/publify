@@ -15,20 +15,20 @@ describe Admin::NotesController, type: :controller do
       it { expect(response).to render_template('index') }
       it { expect(assigns(:notes).sort).to eq(notes.sort) }
       it { expect(assigns(:note)).to be_a(Note) }
-      it { expect(assigns(:note).author).to eq(admin.login)}
-      it { expect(assigns(:note).user).to eq(admin)}
+      it { expect(assigns(:note).author).to eq(admin.login) }
+      it { expect(assigns(:note).user).to eq(admin) }
     end
 
     describe 'create' do
       context 'a simple note' do
         before(:each) { post :create, note: { body: 'Emphasis _mine_' } }
-        it {expect(response).to redirect_to(admin_notes_path)}
-        it {expect(flash[:notice]).to eq(I18n.t('notice.note_successfully_created')) }
+        it { expect(response).to redirect_to(admin_notes_path) }
+        it { expect(flash[:notice]).to eq(I18n.t('notice.note_successfully_created')) }
       end
 
       it { expect{
         post :create, note: { body: 'Emphasis _mine_' }
-      }.to change{ Note.count }.from(0).to(1) }
+      }.to change { Note.count }.from(0).to(1) }
     end
 
     context 'with an existing note from current user' do
@@ -43,7 +43,7 @@ describe Admin::NotesController, type: :controller do
       end
 
       describe 'update' do
-        before(:each) { post :update, id: note.id, note: {body: 'new body'} }
+        before(:each) { post :update, id: note.id, note: { body: 'new body' } }
         it { expect(response).to redirect_to(action: :index) }
         it { expect(note.reload.body).to eq('new body') }
       end

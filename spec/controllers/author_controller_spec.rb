@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe AuthorController, type: :controller do
   let!(:blog) { create(:blog, limit_article_display: 1) }
-  let(:now) { DateTime.new(2012,12,23,3,45) }
+  let(:now) { DateTime.new(2012, 12, 23, 3, 45) }
 
   describe '#show' do
     describe 'With an empty profile' do

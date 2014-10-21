@@ -8,7 +8,7 @@ class Admin::ThemesController < Admin::BaseController
   def index
     @themes = Theme.find_all
     @themes.each do |theme|
-      theme.description_html = TextFilter.filter_text(this_blog, theme.description, nil, [:markdown,:smartypants])
+      theme.description_html = TextFilter.filter_text(this_blog, theme.description, nil, [:markdown, :smartypants])
     end
     @active = this_blog.current_theme
   end
@@ -30,6 +30,6 @@ class Admin::ThemesController < Admin::BaseController
   protected
 
   def zap_theme_caches
-    FileUtils.rm_rf(%w{stylesheets javascript images}.collect{|v| page_cache_directory + "/#{v}/theme"})
+    FileUtils.rm_rf(%w{stylesheets javascript images}.collect { |v| page_cache_directory + "/#{v}/theme" })
   end
 end

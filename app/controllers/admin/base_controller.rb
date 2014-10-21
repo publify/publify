@@ -3,7 +3,7 @@ class Admin::BaseController < ApplicationController
   @@look_for_migrations = true
   layout 'administration'
 
-  before_filter :login_required, except: [ :login, :signup ]
+  before_filter :login_required, except: [:login, :signup]
   before_filter :look_for_needed_db_updates, except: [:login, :signup, :update_database, :migrate]
   before_filter :check_and_generate_secret_token, except: [:login, :signup, :update_database, :migrate]
 
@@ -17,7 +17,7 @@ class Admin::BaseController < ApplicationController
 
   def update_settings_with!(settings_param)
     Blog.transaction do
-      settings_param.each { |k,v| this_blog.send("#{k}=", v) }
+      settings_param.each { |k, v| this_blog.send("#{k}=", v) }
       if this_blog.save
         flash[:success] = I18n.t('admin.settings.update.success')
       else

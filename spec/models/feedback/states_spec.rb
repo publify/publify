@@ -13,17 +13,17 @@ describe Feedback::States, type: :model do
       end
     end
     assert @comment.unclassified?
-    assert   @comment.published?
-    assert   @comment.just_published?
-    assert   @comment.just_changed_published_status?
-    assert   @comment.save
-    assert   @comment.just_changed_published_status?
-    assert   @comment.just_published?
+    assert @comment.published?
+    assert @comment.just_published?
+    assert @comment.just_changed_published_status?
+    assert @comment.save
+    assert @comment.just_changed_published_status?
+    assert @comment.just_published?
     @comment = Comment.find(@comment.id)
     assert ! @comment.just_changed_published_status?
     assert ! @comment.just_published?
     @comment.confirm_classification
-    assert   @comment.published?
+    assert @comment.published?
     assert ! @comment.just_published?
     assert ! @comment.just_changed_published_status?
   end
@@ -38,7 +38,7 @@ describe Feedback::States, type: :model do
     assert ! @comment.published?
     assert ! @comment.just_published?
     assert ! @comment.just_changed_published_status?
-    assert   @comment.save
+    assert @comment.save
     assert ! @comment.published?
     assert ! @comment.just_published?
     assert ! @comment.just_changed_published_status?
@@ -64,6 +64,6 @@ describe Feedback::States, type: :model do
     @comment.mark_as_spam
     assert ! @comment.published?
     assert ! @comment.just_published?
-    assert   @comment.just_changed_published_status?
+    assert @comment.just_changed_published_status?
   end
 end

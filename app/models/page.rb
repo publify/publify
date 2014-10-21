@@ -34,7 +34,7 @@ class Page < Content
     super(search_hash).order('title ASC')
   end
 
-  def permalink_url(anchor=nil, only_path=false)
+  def permalink_url(anchor = nil, only_path = false)
     blog.url_for(
       controller: '/articles',
       action: 'view_page',

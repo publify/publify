@@ -7,8 +7,8 @@ describe Comment, type: :model do
     build_stubbed(:article, published_at: Time.now - 1.hour)
   end
 
-  def valid_comment(options={})
-    Comment.new({author: 'Bob', article: published_article, body: 'nice post', ip: '1.2.3.4'}.merge(options))
+  def valid_comment(options = {})
+    Comment.new({ author: 'Bob', article: published_article, body: 'nice post', ip: '1.2.3.4' }.merge(options))
   end
 
   describe '#permalink_url' do
@@ -42,7 +42,7 @@ describe Comment, type: :model do
     it 'should not save in invalid article' do
       c = valid_comment(author: 'Old Spammer', body: 'Old trackback body', article: build(:article, state: 'draft'))
 
-      assert ! c.save
+      assert !c.save
       assert c.errors['article_id'].any?
     end
 
@@ -133,7 +133,7 @@ describe Comment, type: :model do
         c.article = build_stubbed(:article)
       end
     end
-    ['','textile','markdown','smartypants','markdown smartypants'].each do |filter|
+    ['', 'textile', 'markdown', 'smartypants', 'markdown smartypants'].each do |filter|
       it "should reject with filter '#{filter}'" do
         # XXX: This makes sure text filter can be 'found' in the database
         # FIXME: TextFilter objects should not be in the database!
@@ -151,7 +151,7 @@ describe Comment, type: :model do
     it 'should become unpublished if withdrawn' do
       c = build_stubbed :comment, published: true, published_at: Time.now
       assert c.withdraw!
-      assert ! c.published?
+      assert !c.published?
       assert c.spam?
       assert c.status_confirmed?
     end
@@ -184,9 +184,9 @@ describe Comment, type: :model do
         c.article = build_stubbed(:article)
       end
 
-      assert ! comment.published?
+      assert !comment.published?
       assert comment.spam?
-      assert ! comment.status_confirmed?
+      assert !comment.status_confirmed?
     end
 
     it 'should save comment as confirmed ham' do

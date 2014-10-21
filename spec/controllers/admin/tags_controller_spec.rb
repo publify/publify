@@ -37,14 +37,14 @@ describe Admin::TagsController, type: :controller do
       end
 
       context 'with a post' do
-        before(:each) { post :destroy, id: tag.id, tag: {display_name: 'Foo Bar'}}
+        before(:each) { post :destroy, id: tag.id, tag: { display_name: 'Foo Bar' } }
         it { expect(response).to redirect_to(action: 'index') }
         it { expect(Tag.count).to eq(0) }
       end
     end
 
     describe 'update' do
-      before(:each) { post :edit, id: tag.id, tag: {display_name: 'Foo Bar'} }
+      before(:each) { post :edit, id: tag.id, tag: { display_name: 'Foo Bar' } }
       it { expect(response).to be_success }
       it { expect(tag.reload.name).to eq('foo-bar') }
       it { expect(tag.reload.display_name).to eq('Foo Bar') }

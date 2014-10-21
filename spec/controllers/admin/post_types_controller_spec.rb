@@ -16,7 +16,7 @@ describe Admin::PostTypesController, type: :controller do
 
   describe '#edit' do
     context 'when create a new one' do
-      before(:each) {post :edit, post_type: {name: 'new post type'}}
+      before(:each) { post :edit, post_type: { name: 'new post type' } }
       it { expect(response).to redirect_to(action: 'index') }
       it { expect(PostType.count).to eq(1) }
       it { expect(PostType.first.name).to eq('new post type') }
@@ -24,14 +24,14 @@ describe Admin::PostTypesController, type: :controller do
 
     context 'when update an existing one' do
       let(:post_type) { create(:post_type, name: 'a name') }
-      before(:each) {post :edit, id: post_type.id, post_type: {name: 'an other name'}}
+      before(:each) { post :edit, id: post_type.id, post_type: { name: 'an other name' } }
       it { expect(response).to redirect_to(action: 'index') }
       it { expect(PostType.count).to eq(1) }
       it { expect(PostType.first.name).to eq('an other name') }
     end
 
     context 'when edit with a get method' do
-      before(:each) {get :edit, post_type: {name: 'new post type'}}
+      before(:each) { get :edit, post_type: { name: 'new post type' } }
       it { expect(response).to render_template('new') }
     end
 
@@ -39,7 +39,7 @@ describe Admin::PostTypesController, type: :controller do
 
   describe 'new' do
     before(:each) { get :new }
-    it { expect(response).to render_template('new')}
+    it { expect(response).to render_template('new') }
   end
 
   describe 'destroy' do

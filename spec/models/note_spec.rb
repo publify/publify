@@ -9,10 +9,10 @@ describe Note, type: :model do
       it { expect(build(:note)).to be_valid }
       it { expect(build(:note).redirects).to be_empty }
       it { expect(create(:note).redirects).to_not be_empty }
-      it { expect(build(:note, body:nil)).to be_invalid }
+      it { expect(build(:note, body: nil)).to be_invalid }
 
       it 'with a nil body, return default error message' do
-        note = build(:note, body:nil)
+        note = build(:note, body: nil)
         note.save
         expect(note.errors[:body]).to eq(["can't be blank"])
       end
@@ -26,7 +26,7 @@ describe Note, type: :model do
     describe 'permalink' do
       let(:note) do
         Rails.cache.clear
-        create(:note, body:'àé')
+        create(:note, body: 'àé')
       end
 
       it { expect(note.permalink).to eq("#{note.id}-ae") }
@@ -58,7 +58,7 @@ describe Note, type: :model do
     describe 'scopes' do
 
       describe '#published' do
-        let(:now) { DateTime.new(2012,5,20,14,23) }
+        let(:now) { DateTime.new(2012, 5, 20, 14, 23) }
         let(:note) { create(:note, published_at: now - 1.minute) }
 
         before(:each) { allow(Time).to receive(:now).and_return(now) }
@@ -122,7 +122,7 @@ describe Note, type: :model do
     end
 
     describe 'twitter_url' do
-      let(:note) { build(:note, settings: {twitter_id: '12345678901234'}) }
+      let(:note) { build(:note, settings: { twitter_id: '12345678901234' }) }
       it { expect(note.twitter_url).to eq("https://twitter.com/#{note.user.twitter}/status/#{note.twitter_id}") }
     end
 

@@ -8,7 +8,7 @@ class Theme
     @name, @path = name, path
   end
 
-  def layout(action=:default)
+  def layout(action = :default)
     if action.to_s == 'view_page'
       if File.exist? "#{::Rails.root}/themes/#{name}/views/layouts/pages.html.erb"
         return 'layouts/pages.html'
@@ -23,7 +23,7 @@ class Theme
 
   # Find a theme, given the theme name
   def self.find(name)
-    new(name,theme_path(name))
+    new(name, theme_path(name))
   end
 
   def self.themes_root

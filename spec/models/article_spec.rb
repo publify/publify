@@ -12,12 +12,12 @@ describe Article, type: :model do
 
   describe '#permalink_url' do
     describe 'with hostname' do
-      subject { Article.new(permalink: 'article-3', published_at: Time.utc(2004, 6, 1)).permalink_url(anchor=nil, only_path=false) }
+      subject { Article.new(permalink: 'article-3', published_at: Time.utc(2004, 6, 1)).permalink_url(anchor = nil, only_path = false) }
       it { is_expected.to eq('http://myblog.net/2004/06/01/article-3') }
     end
 
     describe 'without hostname' do
-      subject { Article.new(permalink: 'article-3', published_at: Time.utc(2004, 6, 1)).permalink_url(anchor=nil, only_path=true) }
+      subject { Article.new(permalink: 'article-3', published_at: Time.utc(2004, 6, 1)).permalink_url(anchor = nil, only_path = true) }
       it { is_expected.to eq('/2004/06/01/article-3') }
     end
 
@@ -26,21 +26,21 @@ describe Article, type: :model do
     describe 'with a multibyte permalink' do
       subject { Article.new(permalink: 'ルビー', published_at: Time.utc(2004, 6, 1)) }
       it 'escapes the multibyte characters' do
-        expect(subject.permalink_url(anchor=nil, only_path=true)).to eq('/2004/06/01/%E3%83%AB%E3%83%93%E3%83%BC')
+        expect(subject.permalink_url(anchor = nil, only_path = true)).to eq('/2004/06/01/%E3%83%AB%E3%83%93%E3%83%BC')
       end
     end
 
     describe 'with a permalink containing a space' do
       subject { Article.new(permalink: 'hello there', published_at: Time.utc(2004, 6, 1)) }
       it "escapes the space as '%20', not as '+'" do
-        expect(subject.permalink_url(anchor=nil, only_path=true)).to eq('/2004/06/01/hello%20there')
+        expect(subject.permalink_url(anchor = nil, only_path = true)).to eq('/2004/06/01/hello%20there')
       end
     end
 
     describe 'with a permalink containing a plus' do
       subject { Article.new(permalink: 'one+two', published_at: Time.utc(2004, 6, 1)) }
       it 'does not escape the plus' do
-        expect(subject.permalink_url(anchor=nil, only_path=true)).to eq('/2004/06/01/one+two')
+        expect(subject.permalink_url(anchor = nil, only_path = true)).to eq('/2004/06/01/one+two')
       end
     end
   end
@@ -79,7 +79,7 @@ describe Article, type: :model do
 
   it 'test_permalink_with_title' do
     article = create(:article, permalink: 'article-3', published_at: Time.utc(2004, 6, 1))
-    assert_equal(article, Article.find_by_permalink(year: 2004, month: 06, day: 01, title: 'article-3') )
+    assert_equal(article, Article.find_by_permalink(year: 2004, month: 06, day: 01, title: 'article-3'))
     assert_raises(ActiveRecord::RecordNotFound) do
       Article.find_by_permalink year: 2005, month: '06', day: '01', title: 'article-5'
     end
@@ -227,7 +227,7 @@ describe Article, type: :model do
 
     art = Article.create!(title: 'title2', body: 'body', published: false)
 
-    assert ! art.just_changed_published_status?
+    assert !art.just_changed_published_status?
   end
 
   it 'test_future_publishing' do
@@ -280,21 +280,21 @@ describe Article, type: :model do
 
       a = build(:article)
       users = a.interested_users
-      logins = users.map {|u| u.login}.sort
+      logins = users.map { |u| u.login }.sort
       expect(logins).to eq ['alice', 'henri']
     end
   end
 
   it 'test_withdrawal' do
     art = create(:article)
-    assert   art.published?
-    assert ! art.withdrawn?
+    assert art.published?
+    assert !art.withdrawn?
     art.withdraw!
-    assert ! art.published?
-    assert   art.withdrawn?
+    assert !art.published?
+    assert art.withdrawn?
     art.reload
-    assert ! art.published?
-    assert   art.withdrawn?
+    assert !art.published?
+    assert art.withdrawn?
   end
 
   it 'should get only ham not spam comment' do
@@ -600,7 +600,7 @@ describe Article, type: :model do
     it 'calls save_attachment for each file given' do
       first_file = OpenStruct.new
       second_file = OpenStruct.new
-      hash = {a_key: first_file, a_second_key: second_file}
+      hash = { a_key: first_file, a_second_key: second_file }
       article = build(:article)
       expect(article).to receive(:save_attachment!).with(first_file)
       expect(article).to receive(:save_attachment!).with(second_file)
@@ -694,14 +694,14 @@ describe Article, type: :model do
     end
 
     context 'with two article but only one matching searchstring' do
-      let(:params) { {searchstring: 'match the string'} }
+      let(:params) { { searchstring: 'match the string' } }
       let!(:not_found_article) { create(:article) }
       let!(:article) { create(:article, body: 'this match the string of article') }
       it { expect(subject).to eq([article]) }
     end
 
     context 'with two articles with differents states and published params' do
-      let(:params) { {state: 'published'} }
+      let(:params) { { state: 'published' } }
       let!(:article) { create(:article, state: 'published') }
       let!(:draft_article) { create(:article, state: 'draft') }
       it { expect(subject).to eq([article]) }
@@ -709,7 +709,7 @@ describe Article, type: :model do
 
     context 'with two articles with differents states and no params' do
       let(:params) { nil }
-      let(:now) { DateTime.new(2011,3,12) }
+      let(:now) { DateTime.new(2011, 3, 12) }
       let!(:article) { create(:article, state: 'published', created_at: now) }
       let!(:last_draft_article) { create(:article, state: 'draft', created_at: now + 2.days) }
       let!(:draft_article) { create(:article, state: 'draft', created_at: now + 20.days) }
@@ -787,7 +787,7 @@ describe Article, type: :model do
   end
 
   describe 'published_since' do
-    let(:time) { DateTime.new(2010,11,3,23,34) }
+    let(:time) { DateTime.new(2010, 11, 3, 23, 34) }
     it 'empty when no articles' do
       expect(Article.published_since(time)).to be_empty
     end
@@ -890,7 +890,7 @@ describe Article, type: :model do
 
     context 'with keywords with dot and quote' do
       let(:article) { build(:article, keywords: 'foo "bar quiz" web2.0') }
-      it { expect(article.tags.map(&:name)).to eq(['foo', 'bar-quiz', 'web2-0'])}
+      it { expect(article.tags.map(&:name)).to eq(['foo', 'bar-quiz', 'web2-0']) }
     end
   end
 

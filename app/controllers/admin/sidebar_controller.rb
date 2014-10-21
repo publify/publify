@@ -14,7 +14,7 @@ class Admin::SidebarController < Admin::BaseController
     respond_to do |format|
       format.js do
         # render partial _target for it
-        return render partial: 'target_sidebar', locals: { sortable_index: old_s_index, sidebar: sidebar}
+        return render partial: 'target_sidebar', locals: { sortable_index: old_s_index, sidebar: sidebar }
       end
       format.html do
         return redirect_to(admin_sidebar_index_path)
@@ -26,7 +26,7 @@ class Admin::SidebarController < Admin::BaseController
     @sidebar = Sidebar.where(id: params[:id]).first
     @sidebar && @sidebar.destroy
     respond_to do |format|
-      format.html { return redirect_to(admin_sidebar_index_path)}
+      format.html { return redirect_to(admin_sidebar_index_path) }
       format.js
     end
   end

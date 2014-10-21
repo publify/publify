@@ -8,7 +8,7 @@ class Admin::ContentController < Admin::BaseController
   cache_sweeper :blog_sweeper
 
   def auto_complete_for_article_keywords
-    @items = Tag.select(:display_name).order(:display_name).map {|t| t.display_name}
+    @items = Tag.select(:display_name).order(:display_name).map { |t| t.display_name }
     render inline: '<%= @items %>'
   end
 
@@ -18,7 +18,7 @@ class Admin::ContentController < Admin::BaseController
 
     if request.xhr?
       respond_to do |format|
-        format.js {  }
+        format.js {}
       end
     else
       @article = Article.new(params[:article])

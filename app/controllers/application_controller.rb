@@ -40,8 +40,8 @@ class ApplicationController < ActionController::Base
     elsif I18n.available_locales.include?(this_blog.lang[0..1].to_sym)
       I18n.locale = this_blog.lang[0..1]
     # for the same language used in different areas, e.g. zh_CN, zh_TW
-    elsif I18n.available_locales.include?(this_blog.lang.sub('_','-').to_sym)
-      I18n.locale = this_blog.lang.sub('_','-')
+    elsif I18n.available_locales.include?(this_blog.lang.sub('_', '-').to_sym)
+      I18n.locale = this_blog.lang.sub('_', '-')
     end
   end
 
@@ -55,10 +55,10 @@ class ApplicationController < ActionController::Base
   # The base URL for this request, calculated by looking up the URL for the main
   # blog index page.
   def blog_base_url
-    url_for(controller: '/articles').gsub(%r{/$},'')
+    url_for(controller: '/articles').gsub(%r{/$}, '')
   end
 
-  def add_to_cookies(name, value, path=nil, _expires=nil)
+  def add_to_cookies(name, value, path = nil, _expires = nil)
     cookies[name] = { value: value, path: path || "/#{controller_name}", expires: 6.weeks.from_now }
   end
 

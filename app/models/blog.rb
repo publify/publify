@@ -147,7 +147,7 @@ class Blog < ActiveRecord::Base
   end
 
   def global_pings_enabled?
-    ! global_pings_disable?
+    !global_pings_disable?
   end
 
   # Check that all required blog settings have a value.
@@ -206,7 +206,7 @@ class Blog < ActiveRecord::Base
     end
   end
 
-  def articles_matching(query, args={})
+  def articles_matching(query, args = {})
     Article.search(query, args)
   end
 
@@ -219,7 +219,7 @@ class Blog < ActiveRecord::Base
     limit = limit_rss_display.to_i
     limit.zero? \
       ? {} \
-      : {limit: limit}
+      : { limit: limit }
   end
 
   def permalink_has_identifier
@@ -242,7 +242,7 @@ class Blog < ActiveRecord::Base
 
   def urls_to_ping_for(article)
     urls_to_ping = []
-    ping_urls.gsub(/ +/, '').split(/[\n\r]+/).map(&:strip).delete_if{|u| article.already_ping?(u)}.uniq.each do |url|
+    ping_urls.gsub(/ +/, '').split(/[\n\r]+/).map(&:strip).delete_if { |u| article.already_ping?(u) }.uniq.each do |url|
       urls_to_ping << article.pings.build('url' => url)
     end
     urls_to_ping
@@ -269,7 +269,7 @@ class Blog < ActiveRecord::Base
       unless base_url =~ /(https?):\/\/([^\/]*)(.*)/
         raise "Invalid base_url: #{base_url}"
       end
-      @split_base_url = { protocol: $1, host_with_port: $2, root_path: $3.gsub(%r{/$},'') }
+      @split_base_url = { protocol: $1, host_with_port: $2, root_path: $3.gsub(%r{/$}, '') }
     end
     @split_base_url
   end

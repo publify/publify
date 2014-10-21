@@ -4,7 +4,7 @@ describe Tag, type: :model do
   let!(:blog) { create(:blog) }
 
   it 'tags are unique' do
-    expect {Tag.create!(name: 'test')}.not_to raise_error
+    expect { Tag.create!(name: 'test') }.not_to raise_error
     test_tag = Tag.new(name: 'test')
     expect(test_tag).not_to be_valid
     expect(test_tag.errors[:name]).to eq(['has already been taken'])

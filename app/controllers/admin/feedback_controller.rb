@@ -99,18 +99,18 @@ class Admin::FeedbackController < Admin::BaseController
         if template == 'ham'
           format.js { render 'ham' }
         else
-          format.js { render 'spam'}
+          format.js { render 'spam' }
         end        
       end
     end
   end
 
   def bulkops
-    ids = (params[:feedback_check]||{}).keys.map(&:to_i)
+    ids = (params[:feedback_check] || {}).keys.map(&:to_i)
     items = Feedback.find(ids)
     @unexpired = true
 
-    bulkop = (params[:bulkop_top]||{}).empty? ? params[:bulkop_bottom] : params[:bulkop_top]
+    bulkop = (params[:bulkop_top] || {}).empty? ? params[:bulkop_bottom] : params[:bulkop_top]
 
     case bulkop
     when 'Delete Checked Items'

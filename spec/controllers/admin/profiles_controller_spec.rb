@@ -17,7 +17,7 @@ describe Admin::ProfilesController, type: :controller do
   describe 'successful POST to index' do
     it 'redirects to profile page' do
       request.session = { user: alice.id }
-      post :index, user: {email: 'foo@bar.com'}
+      post :index, user: { email: 'foo@bar.com' }
       expect(response).to render_template('index')
     end
   end

@@ -10,7 +10,7 @@ class Redirect < ActiveRecord::Base
     path = to_path
     return path if path =~ /^(https?):\/\/([^\/]*)(.*)/
     url_root = Blog.default.root_path
-    path = File.join(url_root, path) unless url_root.nil? or path[0,url_root.length] == url_root
+    path = File.join(url_root, path) unless url_root.nil? or path[0, url_root.length] == url_root
     path
   end
 

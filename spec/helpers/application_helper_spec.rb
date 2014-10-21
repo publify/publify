@@ -76,14 +76,14 @@ describe ApplicationHelper, type: :helper do
         reply = {
           'user' => {
             'name' => 'truc',
-            'entities' => {'url' => {'urls' => [{'expanded_url' => 'an url'}]}}
+            'entities' => { 'url' => { 'urls' => [{ 'expanded_url' => 'an url' }] } }
           }
         }
         expect(get_reply_context_url(reply)).to eq "<a href=\"an url\">truc</a>"
       end
 
       it "returns a link to the reply's user if no URL is given" do
-        reply = {'user' => {'name' => 'truc', 'entities' => {}}}
+        reply = { 'user' => { 'name' => 'truc', 'entities' => {} } }
         expect(get_reply_context_url(reply))
           .to eq "<a href=\"https://twitter.com/truc\">truc</a>"
       end
@@ -94,7 +94,7 @@ describe ApplicationHelper, type: :helper do
                       'created_at' => 'Thu Jan 23 13:47:00 +0000 2014',
                       'user' => {
                         'screen_name' => 'a_screen_name',
-                        'entities' => {'url' => {'urls' => [{'expanded_url' => 'an url'}]}}
+                        'entities' => { 'url' => { 'urls' => [{ 'expanded_url' => 'an url' }] } }
                       } } }
       it 'returns a link with the creation date and time' do
         begin

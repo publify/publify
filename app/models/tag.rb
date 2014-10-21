@@ -46,7 +46,7 @@ class Tag < ActiveRecord::Base
       GROUP BY tags.id, tags.name, tags.display_name
       ORDER BY article_counter DESC
       LIMIT ? OFFSET ?
-      },true, 1000, 0]).each{|item| item.article_counter = item.article_counter.to_i }
+      }, true, 1000, 0]).each { |item| item.article_counter = item.article_counter.to_i }
   end
 
   def self.find_by_permalink(name)
@@ -69,7 +69,7 @@ class Tag < ActiveRecord::Base
     name
   end
 
-  def permalink_url(_anchor=nil, only_path=false)
+  def permalink_url(_anchor = nil, only_path = false)
     blog = Blog.default # remove me...
     blog.url_for(controller: 'tags', action: 'show', id: permalink, only_path: only_path)
   end

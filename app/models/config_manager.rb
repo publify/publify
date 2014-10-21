@@ -9,7 +9,7 @@ module ConfigManager
       @fields ||= Hash.new { Item.new }
     end
 
-    def setting(name, type=:object, default=nil)
+    def setting(name, type = :object, default = nil)
       item = Item.new
       item.name, item.ruby_type, item.default = name.to_s, type, default
       fields[name.to_s] = item
