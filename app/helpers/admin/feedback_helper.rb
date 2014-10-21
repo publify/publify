@@ -8,7 +8,7 @@ module Admin::FeedbackHelper
 
   def show_feedback_actions(item, context='listing')
     return if current_user.profile.label == 'contributor'
-    content_tag(:div, :class => 'action', :style => '') do
+    content_tag(:div, class: 'action', style: '') do
       [content_tag(:small, change_status(item, context)),
        button_to_edit_comment(item),
        button_to_delete_comment(item),
@@ -34,7 +34,7 @@ module Admin::FeedbackHelper
     klass = (item.state.to_s.downcase =~ /spam/) ? 'up' : 'down'
     klass2 = (item.state.to_s.downcase =~ /spam/) ? 'success' : 'warning'
 
-    link_to(content_tag(:span, '', class: "glyphicon glyphicon-thumbs-#{klass}"), {:controller => 'admin/feedback',:action => 'change_state', :id => item.id, :context => context}, class: "btn btn-#{klass2} btn-xs btn-action", remote: true)
+    link_to(content_tag(:span, '', class: "glyphicon glyphicon-thumbs-#{klass}"), {controller: 'admin/feedback',action: 'change_state', id: item.id, context: context}, class: "btn btn-#{klass2} btn-xs btn-action", remote: true)
   end
 
 end

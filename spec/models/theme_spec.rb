@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Theme, :type => :model do
+describe Theme, type: :model do
   let(:blog) { build_stubbed :blog }
   let(:default_theme) { blog.current_theme }
 

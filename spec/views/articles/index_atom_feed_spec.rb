@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'articles/index_atom_feed.atom.builder', :type => :view do
+describe 'articles/index_atom_feed.atom.builder', type: :view do
   let!(:blog) { build_stubbed :blog }
 
   describe 'with no items' do
@@ -10,7 +10,7 @@ describe 'articles/index_atom_feed.atom.builder', :type => :view do
     end
 
     it 'renders the atom header partial' do
-      expect(view).to render_template(:partial => 'shared/_atom_header')
+      expect(view).to render_template(partial: 'shared/_atom_header')
     end
   end
 
@@ -34,8 +34,8 @@ describe 'articles/index_atom_feed.atom.builder', :type => :view do
     end
 
     it 'renders the article atom partial twice' do
-      expect(view).to render_template(:partial => 'shared/_atom_item_article',
-                                      :count => 2)
+      expect(view).to render_template(partial: 'shared/_atom_item_article',
+                                      count: 2)
     end
   end
 

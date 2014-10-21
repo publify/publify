@@ -16,16 +16,16 @@ class ResourceUploader < CarrierWave::Uploader::Base
     "files/#{model.class.to_s.underscore}/#{model.id}"
   end
 
-  version :thumb, :if => :image? do
-    process :dynamic_resize_to_fit => :thumb
+  version :thumb, if: :image? do
+    process dynamic_resize_to_fit: :thumb
   end
 
-  version :medium, :if => :image? do
-    process :dynamic_resize_to_fit => :medium
+  version :medium, if: :image? do
+    process dynamic_resize_to_fit: :medium
   end
 
-  version :avatar, :if => :image? do
-    process :dynamic_resize_to_fit => :avatar
+  version :avatar, if: :image? do
+    process dynamic_resize_to_fit: :avatar
   end
 
   def dynamic_resize_to_fit(size)

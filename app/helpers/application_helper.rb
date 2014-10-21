@@ -40,7 +40,7 @@ module ApplicationHelper
       new_root = File.join(this_blog.current_theme.path, 'views', new_root)
       view_root = new_root if File.exist?(File.join(new_root, 'content.rhtml'))
     end
-    render_to_string(:file => "#{view_root}/content.rhtml", :locals => sidebar.to_locals_hash, :layout => false)
+    render_to_string(file: "#{view_root}/content.rhtml", locals: sidebar.to_locals_hash, layout: false)
   end
 
   def articles?
@@ -77,12 +77,12 @@ module ApplicationHelper
   end
 
   def meta_tag(name, value)
-    tag :meta, :name => name, :content => value unless value.blank?
+    tag :meta, name: name, content: value unless value.blank?
   end
 
   def markup_help_popup(markup, text)
     if markup and markup.commenthelp.size > 1
-      "<a href=\"#{url_for :controller => 'articles', :action => 'markup_help', :id => markup.id}\" onclick=\"return popup(this, 'Publify Markup Help')\">#{text}</a>"
+      "<a href=\"#{url_for controller: 'articles', action: 'markup_help', id: markup.id}\" onclick=\"return popup(this, 'Publify Markup Help')\">#{text}</a>"
     else
       ''
     end
@@ -190,7 +190,7 @@ module ApplicationHelper
   end
 
   def display_date(date)
-    l(date, :format => this_blog.date_format)
+    l(date, format: this_blog.date_format)
   end
 
   def display_time(time)

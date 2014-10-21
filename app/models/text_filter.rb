@@ -54,7 +54,7 @@ class TextFilter < ActiveRecord::Base
       begin
         filter_class = map[filter.to_s]
         next unless filter_class
-        text = filter_class.filtertext(blog, content, text, :filterparams => filterparams)
+        text = filter_class.filtertext(blog, content, text, filterparams: filterparams)
       rescue => err
         logger.error "Filter #{filter} failed: #{err}"
       end

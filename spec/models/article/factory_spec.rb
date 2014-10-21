@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Article::Builder, :type => :model do
+describe Article::Builder, type: :model do
   let!(:blog) { FactoryGirl.build_stubbed(:blog) }
   let(:user) { FactoryGirl.create(:user) }
   let(:factory) {Article::Factory.new(blog, user)}

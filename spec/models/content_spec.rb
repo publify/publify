@@ -1,7 +1,7 @@
 # coding: utf-8
 require 'rails_helper'
 
-describe Content, :type => :model do
+describe Content, type: :model do
   context 'with a simple blog' do
   let!(:blog) { create(:blog) }
 
@@ -27,8 +27,7 @@ describe Content, :type => :model do
     before do
       @content = FactoryGirl.build_stubbed :content,
                                            published: true,
-                                           redirects: [FactoryGirl.build_stubbed(:redirect, :from_path =>
-                                                                                 'foo', :to_path => 'bar')]
+                                           redirects: [FactoryGirl.build_stubbed(:redirect, from_path:                                                                                  'foo', to_path: 'bar')]
     end
 
     describe 'normally' do

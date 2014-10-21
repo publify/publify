@@ -8,7 +8,7 @@ class TestBrokenSidebar < Sidebar
   end
 end
 
-describe ApplicationHelper, :type => :helper do
+describe ApplicationHelper, type: :helper do
   context 'With a simple blog' do
     let!(:blog) { create(:blog) }
 

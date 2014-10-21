@@ -1,6 +1,6 @@
 class ArticlesController < ContentController
-  before_filter :login_required, :only => [:preview, :preview_page]
-  before_filter :auto_discovery_feed, :only => [:show, :index]
+  before_filter :login_required, only: [:preview, :preview_page]
+  before_filter :auto_discovery_feed, only: [:show, :index]
   before_filter :verify_config
 
   layout :theme_layout, except: [:comment_preview, :trackback]
@@ -42,7 +42,7 @@ class ArticlesController < ContentController
         render_articles_feed('atom')
       end
       format.rss do
-        auto_discovery_feed(:only_path => false)
+        auto_discovery_feed(only_path: false)
         render_articles_feed('rss')
       end
     end
@@ -55,15 +55,15 @@ class ArticlesController < ContentController
     @description = this_blog.search_desc_template.to_title(@articles, this_blog, params)
     respond_to do |format|
       format.html { render 'search' }
-      format.rss { render 'index_rss_feed', :layout => false }
-      format.atom { render 'index_atom_feed', :layout => false }
+      format.rss { render 'index_rss_feed', layout: false }
+      format.atom { render 'index_atom_feed', layout: false }
     end
   end
 
   def live_search
     @search = params[:q]
     @articles = Article.search(@search)
-    render :live_search, :layout => false
+    render :live_search, layout: false
   end
 
   def preview
@@ -76,9 +76,9 @@ class ArticlesController < ContentController
     return unless request.xhr?
     @article = Article.find(params[:article][:id])
     if @article.password == params[:article][:password]
-      render :partial => 'articles/full_article_content', :locals => { :article => @article }
+      render partial: 'articles/full_article_content', locals: { article: @article }
     else
-      render :partial => 'articles/password_form', :locals => { :article => @article }
+      render partial: 'articles/password_form', locals: { article: @article }
     end
   end
 
@@ -111,7 +111,7 @@ class ArticlesController < ContentController
 
   def comment_preview
     if (params[:comment][:body].blank? rescue true)
-      render :nothing => true
+      render nothing: true
       return
     end
 
@@ -176,7 +176,7 @@ class ArticlesController < ContentController
 
   def render_articles_feed format
     if this_blog.feedburner_url.empty? or request.env['HTTP_USER_AGENT'] =~ /FeedBurner/i
-      render "index_#{format}_feed", :layout => false
+      render "index_#{format}_feed", layout: false
     else
       redirect_to "http://feeds2.feedburner.com/#{this_blog.feedburner_url}"
     end
@@ -184,13 +184,13 @@ class ArticlesController < ContentController
 
   def render_feedback_feed format
     @feedback = @article.published_feedback
-    render "feedback_#{format}_feed", :layout => false
+    render "feedback_#{format}_feed", layout: false
   end
 
   def render_paginated_index
     return error! if @articles.empty?
     if this_blog.feedburner_url.empty?
-      auto_discovery_feed(:only_path => false)
+      auto_discovery_feed(only_path: false)
     else
       @auto_discovery_url_rss = "http://feeds2.feedburner.com/#{this_blog.feedburner_url}"
       @auto_discovery_url_atom = "http://feeds2.feedburner.com/#{this_blog.feedburner_url}"

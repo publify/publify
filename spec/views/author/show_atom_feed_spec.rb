@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'author/show_atom_feed.atom.builder', :type => :view do
+describe 'author/show_atom_feed.atom.builder', type: :view do
   let!(:blog) { create(:blog) }
 
   describe 'with no items' do
@@ -33,7 +33,7 @@ describe 'author/show_atom_feed.atom.builder', :type => :view do
     end
 
     it 'renders the article atom partial twice' do
-      expect(view).to render_template(:partial => 'shared/_atom_item_article', :count => 2)
+      expect(view).to render_template(partial: 'shared/_atom_item_article', count: 2)
     end
   end
 end

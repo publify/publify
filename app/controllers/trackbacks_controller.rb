@@ -8,7 +8,7 @@ class TrackbacksController < FeedbackController
       else
           begin
               @trackback =  this_blog.ping_article!(
-                params.merge(:ip => request.remote_ip, :published => true))
+                params.merge(ip: request.remote_ip, published: true))
               ''
           rescue ActiveRecord::RecordNotFound, ActiveRecord::StatementInvalid
             throw :error, "Article id #{params[:id]} not found."

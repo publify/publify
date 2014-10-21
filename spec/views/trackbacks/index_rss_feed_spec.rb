@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-describe 'trackbacks/index_rss_feed.rss.builder', :type => :view do
+describe 'trackbacks/index_rss_feed.rss.builder', type: :view do
   let!(:blog) { build_stubbed :blog }
 
   describe 'rendering trackbacks' do
     let(:article) { stub_full_article }
-    let(:trackback) { FactoryGirl.build(:trackback, :article => article) }
+    let(:trackback) { FactoryGirl.build(:trackback, article: article) }
 
     before(:each) do
       assign(:items, [trackback])

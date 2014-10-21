@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe TextController, :type => :controller do
+describe TextController, type: :controller do
   let!(:blog) { create(:blog) }
 
   describe 'humans' do

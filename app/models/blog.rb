@@ -13,13 +13,13 @@ class Blog < ActiveRecord::Base
 
   default_scope -> { order('id') }
 
-  validate(:on => :create) { |blog|
+  validate(on: :create) { |blog|
     unless Blog.count.zero?
       blog.errors.add(:base, 'There can only be one...')
     end
   }
 
-  validates :blog_name, :presence => true
+  validates :blog_name, presence: true
 
   serialize :settings, Hash
 
@@ -181,10 +181,10 @@ class Blog < ActiveRecord::Base
       url_generated += "##{extra_params[:anchor]}" if extra_params[:anchor]
       url_generated
     when Hash
-      merged_opts = options.reverse_merge!(:only_path => false, :controller => '',
-                                           :action => 'permalink',
-                                           :host => host_with_port,
-                                           :script_name => root_path)
+      merged_opts = options.reverse_merge!(only_path: false, controller: '',
+                                           action: 'permalink',
+                                           host: host_with_port,
+                                           script_name: root_path)
       cache_key = merged_opts.values.prepend('blog-urlfor-withbaseurl').join('-')
       unless Rails.cache.exist?(cache_key)
         Rails.cache.write(cache_key, url_for_without_base_url(merged_opts))
@@ -202,7 +202,7 @@ class Blog < ActiveRecord::Base
     if CarrierWave.configure { |config| config.storage == CarrierWave::Storage::Fog }
       filename
     else
-      url_for "files/#{filename}", :only_path => false
+      url_for "files/#{filename}", only_path: false
     end
   end
 
@@ -219,7 +219,7 @@ class Blog < ActiveRecord::Base
     limit = limit_rss_display.to_i
     return limit.zero? \
       ? {} \
-      : {:limit => limit}
+      : {limit: limit}
   end
 
   def permalink_has_identifier
@@ -269,7 +269,7 @@ class Blog < ActiveRecord::Base
       unless base_url =~ /(https?):\/\/([^\/]*)(.*)/
         raise "Invalid base_url: #{self.base_url}"
       end
-      @split_base_url = { :protocol => $1, :host_with_port => $2, :root_path => $3.gsub(%r{/$},'') }
+      @split_base_url = { protocol: $1, host_with_port: $2, root_path: $3.gsub(%r{/$},'') }
     end
     @split_base_url
   end

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Sidebar, :type => :model do
+describe Sidebar, type: :model do
   describe '#available_sidebars' do
     it 'finds at least the standard sidebars' do
       assert Sidebar.available_sidebars.size >= 6

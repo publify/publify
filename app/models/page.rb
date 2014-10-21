@@ -36,11 +36,11 @@ class Page < Content
 
   def permalink_url(anchor=nil, only_path=false)
     blog.url_for(
-      :controller => '/articles',
-      :action => 'view_page',
-      :name => name,
-      :anchor => anchor,
-      :only_path => only_path
+      controller: '/articles',
+      action: 'view_page',
+      name: name,
+      anchor: anchor,
+      only_path: only_path
     )
   end
 

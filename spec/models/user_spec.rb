@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe User, :type => :model do
+describe User, type: :model do
   describe 'FactoryGirl Girl' do
     it 'should user factory valid' do
       expect(create(:user)).to be_valid
@@ -23,22 +23,22 @@ describe User, :type => :model do
     end
 
     it 'Calling User.authenticate with a valid user/password combo returns a user' do
-      alice = create(:user, :login => 'alice', :password => 'greatest')
+      alice = create(:user, login: 'alice', password: 'greatest')
       expect(User.authenticate('alice', 'greatest')).to eq(alice)
     end
 
     it 'User.authenticate(user,invalid) returns nil' do
-      create(:user, :login => 'alice', :password => 'greatest')
+      create(:user, login: 'alice', password: 'greatest')
       expect(User.authenticate('alice', 'wrong password')).to be_nil
     end
 
     it 'User.authenticate(inactive,valid) returns nil' do
-      create(:user, :login => 'alice', :state => 'inactive')
+      create(:user, login: 'alice', state: 'inactive')
       expect(User.authenticate('inactive', 'longtest')).to be_nil
     end
 
     it 'User.authenticate(invalid,whatever) returns nil' do
-      create(:user, :login => 'alice')
+      create(:user, login: 'alice')
       expect(User.authenticate('userwhodoesnotexist', 'what ever')).to be_nil
     end
 
@@ -52,7 +52,7 @@ describe User, :type => :model do
     end
 
     it 'authenticate? works as expected' do
-      bob = create(:user, :login => 'bob', :password => 'testtest')
+      bob = create(:user, login: 'bob', password: 'testtest')
       expect(User).to be_authenticate('bob', 'testtest')
       expect(User).not_to be_authenticate('bob', 'duff password')
     end
@@ -60,7 +60,7 @@ describe User, :type => :model do
 
   describe 'With a new user' do
     before(:each) do
-      @user = User.new :login => 'not_bob'
+      @user = User.new login: 'not_bob'
       @user.email = 'publify@publify.com'
       set_password 'a secure password'
     end
@@ -131,7 +131,7 @@ describe User, :type => :model do
 
     it 'should not be able to create another user with the same login' do
       login = @olduser.login
-      u = User.new(:login => login) {|u| u.password = u.password_confirmation = 'secure password'}
+      u = User.new(login: login) {|u| u.password = u.password_confirmation = 'secure password'}
 
       expect(u).not_to be_valid
       expect(u.errors['login']).to be_any
@@ -209,12 +209,12 @@ describe User, :type => :model do
 
   describe '#admin?' do
     it 'should return true if user is admin' do
-      admin = build(:user, :profile => build(:profile_admin, :label => Profile::ADMIN))
+      admin = build(:user, profile: build(:profile_admin, label: Profile::ADMIN))
       expect(admin).to be_admin
     end
 
     it 'should return false if user is not admin' do
-      publisher = build(:user, :profile => build(:profile_publisher))
+      publisher = build(:user, profile: build(:profile_publisher))
       expect(publisher).not_to be_admin
     end
   end

@@ -25,7 +25,7 @@ class AccountsController < ApplicationController
 
   def signup
     unless User.count.zero? or this_blog.allow_signup == 1
-      redirect_to :action => 'login'
+      redirect_to action: 'login'
       return
     end
 
@@ -40,7 +40,7 @@ class AccountsController < ApplicationController
       self.current_user = @user
       session[:user_id] = @user.id
 
-      redirect_to :controller => 'accounts', :action => 'confirm'
+      redirect_to controller: 'accounts', action: 'confirm'
       return
     end
   end
@@ -66,7 +66,7 @@ class AccountsController < ApplicationController
     session[:user_id] = nil
     cookies.delete :auth_token
     cookies.delete :publify_user_profile
-    redirect_to :action => 'login'
+    redirect_to action: 'login'
   end
 
   private
@@ -91,9 +91,9 @@ class AccountsController < ApplicationController
     if params[:remember_me] == '1'
       self.current_user.remember_me unless self.current_user.remember_token?
       cookies[:auth_token] = {
-        :value => self.current_user.remember_token,
-        :expires => self.current_user.remember_token_expires_at,
-        :httponly => true # Help prevent auth_token theft.
+        value: self.current_user.remember_token,
+        expires: self.current_user.remember_token_expires_at,
+        httponly: true # Help prevent auth_token theft.
       }
     end
     add_to_cookies(:publify_user_profile, self.current_user.profile_label, '/')

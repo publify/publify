@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Admin::NotesController, :type => :controller do
+describe Admin::NotesController, type: :controller do
   render_views
 
   before(:each) { request.session = { user: admin.id } }

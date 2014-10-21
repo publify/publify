@@ -1,14 +1,14 @@
 require 'rails_helper'
 
-describe Comment, :type => :model do
+describe Comment, type: :model do
   let!(:blog) { build_stubbed :blog }
 
   def published_article
-    build_stubbed(:article, :published_at => Time.now - 1.hour)
+    build_stubbed(:article, published_at: Time.now - 1.hour)
   end
 
   def valid_comment(options={})
-    Comment.new({:author => 'Bob', :article => published_article, :body => 'nice post', :ip => '1.2.3.4'}.merge(options))
+    Comment.new({author: 'Bob', article: published_article, body: 'nice post', ip: '1.2.3.4'}.merge(options))
   end
 
   describe '#permalink_url' do
@@ -28,26 +28,26 @@ describe Comment, :type => :model do
       allow(blog).to receive(:sp_article_auto_close) { 300 }
     }
     it 'should save good comment' do
-      c = build(:comment, :url => 'http://www.google.de', :article => published_article)
+      c = build(:comment, url: 'http://www.google.de', article: published_article)
       assert c.save
       assert_equal 'http://www.google.de', c.url
     end
 
     it 'should save spam comment' do
-      c = build(:comment, :body => 'test <a href="http://fakeurl.com">body</a>', :article => published_article)
+      c = build(:comment, body: 'test <a href="http://fakeurl.com">body</a>', article: published_article)
       assert c.save
       assert_equal 'http://fakeurl.com', c.url
     end
 
     it 'should not save in invalid article' do
-      c = valid_comment(:author => 'Old Spammer', :body => 'Old trackback body', :article => build(:article, :state => 'draft'))
+      c = valid_comment(author: 'Old Spammer', body: 'Old trackback body', article: build(:article, state: 'draft'))
 
       assert ! c.save
       assert c.errors['article_id'].any?
     end
 
     it 'should change old comment' do
-      c = build(:comment, :body => 'Comment body <em>italic</em> <strong>bold</strong>', :article => published_article)
+      c = build(:comment, body: 'Comment body <em>italic</em> <strong>bold</strong>', article: published_article)
       assert c.save
       assert c.errors.empty?
     end
@@ -61,7 +61,7 @@ describe Comment, :type => :model do
     it 'should not save with article not allow comment'  do
       allow(blog).to receive(:sp_article_auto_close) { 1 }
 
-      c = build(:comment, :article => build_stubbed(:article, :allow_comments => false))
+      c = build(:comment, article: build_stubbed(:article, allow_comments: false))
       expect(c.save).not_to be_truthy
       expect(c.errors).not_to be_empty
     end
@@ -76,19 +76,19 @@ describe Comment, :type => :model do
     end
 
     it 'preserves urls starting with https://' do
-      c = valid_comment(:url => 'https://example.com/')
+      c = valid_comment(url: 'https://example.com/')
       c.save
       expect(c.url).to eq('https://example.com/')
     end
 
     it 'preserves urls starting with http://' do
-      c = valid_comment(:url => 'http://example.com/')
+      c = valid_comment(url: 'http://example.com/')
       c.save
       expect(c.url).to eq('http://example.com/')
     end
 
     it 'prepends http:// to urls without protocol' do
-      c = valid_comment(:url => 'example.com')
+      c = valid_comment(url: 'example.com')
       c.save
       expect(c.url).to eq('http://example.com')
     end
@@ -96,18 +96,18 @@ describe Comment, :type => :model do
 
   describe '#spam?' do
     it 'should reject spam rbl' do
-      c = valid_comment(:author => 'Spammer', :body => %{This is just some random text. &lt;a href="http://chinaaircatering.com"&gt;without any senses.&lt;/a&gt;. Please disregard.}, :url => 'http://buy-computer.us')
+      c = valid_comment(author: 'Spammer', body: %{This is just some random text. &lt;a href="http://chinaaircatering.com"&gt;without any senses.&lt;/a&gt;. Please disregard.}, url: 'http://buy-computer.us')
       should_be_spam(c)
     end
 
     it 'should not define spam a comment rbl with lookup succeeds' do
-      c = valid_comment(:author => 'Not a Spammer', :body => 'Useful commentary!', :url => 'http://www.bofh.org.uk')
+      c = valid_comment(author: 'Not a Spammer', body: 'Useful commentary!', url: 'http://www.bofh.org.uk')
       expect(c).not_to be_spam
       expect(c).not_to be_status_confirmed
     end
 
     it 'should reject spam with uri limit' do
-      c = valid_comment(:author => 'Yet Another Spammer', :body => %{ <a href="http://www.one.com/">one</a> <a href="http://www.two.com/">two</a> <a href="http://www.three.com/">three</a> <a href="http://www.four.com/">four</a> }, :url => 'http://www.uri-limit.com')
+      c = valid_comment(author: 'Yet Another Spammer', body: %{ <a href="http://www.one.com/">one</a> <a href="http://www.two.com/">two</a> <a href="http://www.three.com/">three</a> <a href="http://www.four.com/">four</a> }, url: 'http://www.uri-limit.com')
       should_be_spam(c)
     end
 
@@ -120,7 +120,7 @@ describe Comment, :type => :model do
 
   it 'should have good relation' do
     article = build_stubbed(:article)
-    comment = build_stubbed(:comment, :article => article)
+    comment = build_stubbed(:comment, article: article)
     assert comment.article
     assert_equal article, comment.article
   end
@@ -149,7 +149,7 @@ describe Comment, :type => :model do
 
   describe 'change state' do
     it 'should become unpublished if withdrawn' do
-      c = build_stubbed :comment, :published => true, :published_at => Time.now
+      c = build_stubbed :comment, published: true, published_at: Time.now
       assert c.withdraw!
       assert ! c.published?
       assert c.spam?
@@ -157,7 +157,7 @@ describe Comment, :type => :model do
     end
 
     it 'should becomes confirmed if withdrawn' do
-      unconfirmed = build_stubbed(:comment, :state => 'presumed_ham')
+      unconfirmed = build_stubbed(:comment, state: 'presumed_ham')
       expect(unconfirmed).not_to be_status_confirmed
       unconfirmed.withdraw!
       expect(unconfirmed).to be_status_confirmed

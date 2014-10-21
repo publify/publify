@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-describe Admin::SeoController, :type => :controller do
+describe Admin::SeoController, type: :controller do
   render_views
 
   let!(:blog) { create(:blog) }
   let(:admin) { create(:user, :as_admin) }
 
-  before(:each) { request.session = { :user => admin.id } }
+  before(:each) { request.session = { user: admin.id } }
 
   describe 'index' do
     before(:each) { get :index }

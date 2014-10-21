@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-describe Admin::SettingsController, :type => :controller do
+describe Admin::SettingsController, type: :controller do
   render_views
 
   before(:each) do
     create(:blog)
     alice = create(:user, :as_admin, login: 'alice')
-    request.session = { :user => alice.id }
+    request.session = { user: alice.id }
   end
 
   describe '#index' do
@@ -50,13 +50,13 @@ describe Admin::SettingsController, :type => :controller do
 
     it 'should success' do
       good_update
-      expect(response).to redirect_to(:action => 'seo')
+      expect(response).to redirect_to(action: 'seo')
     end
 
     it 'should not save blog with bad permalink format' do
       @blog = Blog.default
       good_update 'setting' => {'permalink_format' => '/%month%'}
-      expect(response).to redirect_to(:action => 'seo')
+      expect(response).to redirect_to(action: 'seo')
       expect(@blog).to eq(Blog.default)
     end
   end

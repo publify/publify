@@ -1,9 +1,9 @@
 class GroupingController < ContentController
-  before_filter :auto_discovery_feed, :only => [:show, :index]
+  before_filter :auto_discovery_feed, only: [:show, :index]
   layout :theme_layout
   cache_sweeper :blog_sweeper
 
-  caches_page :index, :show, :if => Proc.new {|c|
+  caches_page :index, :show, if: Proc.new {|c|
     c.request.query_string == ''
   }
 
@@ -53,12 +53,12 @@ class GroupingController < ContentController
 
       format.atom {
         @articles = @articles[0,this_blog.limit_rss_display]
-        render 'articles/index_atom_feed', :layout => false
+        render 'articles/index_atom_feed', layout: false
       }
 
       format.rss  {
         @articles = @articles[0,this_blog.limit_rss_display]
-        render 'articles/index_rss_feed', :layout => false
+        render 'articles/index_rss_feed', layout: false
       }
     end
 

@@ -14,7 +14,7 @@ module Admin::BaseHelper
   end
 
   def show_redirect_actions item
-    content_tag(:div, :class => 'action') do
+    content_tag(:div, class: 'action') do
       [ button_to_edit(item),
         button_to_delete(item) ].join(' ').html_safe
     end
@@ -25,7 +25,7 @@ module Admin::BaseHelper
   end
 
   def show_tag_actions item
-    content_tag(:div, :class => 'action') do
+    content_tag(:div, class: 'action') do
       [ button_to_edit(item),
         button_to_delete(item),
         link_to_permalink(item, "#{item.articles.size} <span class='glyphicon glyphicon-link'></span>".html_safe, nil, 'btn btn-success btn-xs').html_safe
@@ -65,12 +65,12 @@ module Admin::BaseHelper
   end
 
   def link_to_edit(label, record, controller = controller.controller_name)
-    link_to label, {:controller => controller, :action => 'edit', :id => record.id}, :class => 'edit'
+    link_to label, {controller: controller, action: 'edit', id: record.id}, class: 'edit'
   end
 
   def link_to_edit_with_profiles(label, record, controller = controller.controller_name)
     if current_user.admin? || current_user.id == record.user_id
-      link_to label, {:controller => controller, :action => 'edit', :id => record.id}, :class => 'edit'
+      link_to label, {controller: controller, action: 'edit', id: record.id}, class: 'edit'
     end
   end
 
@@ -93,7 +93,7 @@ module Admin::BaseHelper
   end
 
   def show_actions item
-    content_tag(:div, :class => 'action', :style => '') do
+    content_tag(:div, class: 'action', style: '') do
       [ button_to_edit(item),
         button_to_delete(item),
         button_to_short_url(item) ].join(' ').html_safe
@@ -101,13 +101,13 @@ module Admin::BaseHelper
   end
 
   def macro_help_popup(macro, text)
-    "<a href=\"#{url_for :controller => 'textfilters', :action => 'macro_help', :id => macro.short_name}\" onclick=\"return popup(this, 'Publify Macro Help')\">#{text}</a>"
+    "<a href=\"#{url_for controller: 'textfilters', action: 'macro_help', id: macro.short_name}\" onclick=\"return popup(this, 'Publify Macro Help')\">#{text}</a>"
   end
 
   def display_pagination(collection, cols, _first='', _last='')
     return if collection.count == 0
     content_tag(:tr) do
-      content_tag(:td, paginate(collection), :class => 'paginate', :colspan => cols)
+      content_tag(:td, paginate(collection), class: 'paginate', colspan: cols)
     end
   end
 

@@ -24,7 +24,7 @@ class Admin::PagesController < Admin::BaseController
       @page.published_at = Time.now
       if @page.save
         flash[:success] = I18n.t('admin.pages.new.success')
-        redirect_to :action => 'index'
+        redirect_to action: 'index'
       end
     end
   end
@@ -35,7 +35,7 @@ class Admin::PagesController < Admin::BaseController
     @page.text_filter ||= default_textfilter
     if request.post? and @page.save
       flash[:success] = I18n.t('admin.pages.edit.success')
-      redirect_to :action => 'index'
+      redirect_to action: 'index'
     end
   end
 

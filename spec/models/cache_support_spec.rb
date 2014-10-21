@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Given a published article', :type => :model do
+describe 'Given a published article', type: :model do
   before(:each) do
     FactoryGirl.create(:blog)
     FactoryGirl.create(:article)
@@ -33,10 +33,10 @@ describe 'Given a published article', :type => :model do
   end
 end
 
-describe 'Given an unpublished article', :type => :model do
+describe 'Given an unpublished article', type: :model do
   before(:each) do
     FactoryGirl.create(:blog)
-    FactoryGirl.create(:article, :published => false, :state => 'draft')
+    FactoryGirl.create(:article, published: false, state: 'draft')
     @article = Article.first
   end
 
@@ -55,13 +55,13 @@ describe 'Given an unpublished article', :type => :model do
   end
 end
 
-describe 'Given an unpublished spammy comment', :type => :model do
+describe 'Given an unpublished spammy comment', type: :model do
   before(:each) do
     FactoryGirl.create(:blog)
     @comment = FactoryGirl.create(:comment, 
-                                  :published => false,
-                                  :state => 'presumed_spam',
-                                  :status_confirmed => false)
+                                  published: false,
+                                  state: 'presumed_spam',
+                                  status_confirmed: false)
   end
 
   it 'changing it does not alter the cache' do
@@ -83,7 +83,7 @@ describe 'Given an unpublished spammy comment', :type => :model do
   end
 end
 
-describe 'Given a published comment', :type => :model do
+describe 'Given a published comment', type: :model do
   before(:each) do
     FactoryGirl.create(:blog)
     @comment = FactoryGirl.create(:comment)
@@ -106,11 +106,11 @@ describe 'Given a published comment', :type => :model do
   end
 end
 
-describe 'Given an unpublished spammy trackback', :type => :model do
+describe 'Given an unpublished spammy trackback', type: :model do
   before(:each) do
     FactoryGirl.create(:blog)
-    @trackback = FactoryGirl.create(:trackback, :published => false,
-      :state => 'presumed_spam', :status_confirmed => false)
+    @trackback = FactoryGirl.create(:trackback, published: false,
+      state: 'presumed_spam', status_confirmed: false)
   end
 
   it 'changing it does not alter the cache' do
@@ -132,7 +132,7 @@ describe 'Given an unpublished spammy trackback', :type => :model do
   end
 end
 
-describe 'Given a published trackback', :type => :model do
+describe 'Given a published trackback', type: :model do
   before(:each) do
     FactoryGirl.create(:blog)
     @trackback = FactoryGirl.create(:comment)

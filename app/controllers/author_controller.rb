@@ -22,6 +22,6 @@ class AuthorController < ContentController
   private
 
   def render_feed format
-    render "show_#{format}_feed", :layout => false
+    render "show_#{format}_feed", layout: false
   end
 end

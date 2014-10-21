@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-describe 'trackbacks/index_atom_feed.atom.builder', :type => :view do
+describe 'trackbacks/index_atom_feed.atom.builder', type: :view do
   let!(:blog) { build_stubbed :blog }
 
   describe 'rendering trackbacks with one trackback' do
     let(:article) { create(:article) }
-    let(:trackback) { create(:trackback, :article => article) }
+    let(:trackback) { create(:trackback, article: article) }
 
     before(:each) do
       assign(:items, [trackback])

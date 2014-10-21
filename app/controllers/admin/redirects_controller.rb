@@ -1,5 +1,5 @@
 class Admin::RedirectsController < Admin::BaseController
-  def index; redirect_to :action => 'new' ; end
+  def index; redirect_to action: 'new' ; end
   def edit; new_or_edit;  end
   def new; new_or_edit;  end
 
@@ -9,7 +9,7 @@ class Admin::RedirectsController < Admin::BaseController
 
     @record.destroy
     flash[:success] = I18n.t('admin.redirects.destroy.success')
-    redirect_to :action => 'index'
+    redirect_to action: 'index'
   end
 
   private
