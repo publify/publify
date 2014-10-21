@@ -3,7 +3,7 @@ module Admin::FeedbackHelper
     return 'label-info' if state.to_s.downcase == 'presumed_ham'
     return 'label-warning' if state.to_s.downcase == 'presumed_spam'
     return 'label-success' if state.to_s.downcase == 'ham'
-    return 'label-danger'
+    'label-danger'
   end
 
   def show_feedback_actions(item, context='listing')

@@ -71,7 +71,7 @@ class User < ActiveRecord::Base
   def update_connection_time
     self.last_venue = last_connection
     self.last_connection = Time.now
-    self.save
+    save
   end
 
   # These create and unset the fields required for remembering users between browser closes
@@ -100,7 +100,7 @@ class User < ActiveRecord::Base
   end
 
   def self.authenticate?(login, pass)
-    user = self.authenticate(login, pass)
+    user = authenticate(login, pass)
     return false if user.nil?
     return true if user.login == login
 
@@ -108,7 +108,7 @@ class User < ActiveRecord::Base
   end
 
   def self.find_by_permalink(permalink)
-    self.find_by_login(permalink).tap do |user|
+    find_by_login(permalink).tap do |user|
       raise ActiveRecord::RecordNotFound unless user
     end
   end
@@ -176,9 +176,9 @@ class User < ActiveRecord::Base
   end
 
   def update_twitter_profile_image(img)
-    return if self.twitter_profile_image == img
+    return if twitter_profile_image == img
     self.twitter_profile_image = img
-    self.save
+    save
   end
 
   def generate_password!
@@ -189,7 +189,7 @@ class User < ActiveRecord::Base
   end
 
   def has_twitter_configured?
-    self.twitter_oauth_token.present? && self.twitter_oauth_token_secret.present?
+    twitter_oauth_token.present? && twitter_oauth_token_secret.present?
   end
 
   protected
@@ -225,7 +225,7 @@ class User < ActiveRecord::Base
   # password and just reset it to the old value.
   def crypt_unless_empty
     if password(true).empty?
-      user = self.class.find(self.id)
+      user = self.class.find(id)
       write_attribute 'password', user.password
     else
       crypt_password

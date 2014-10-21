@@ -29,14 +29,14 @@ class Tag < ActiveRecord::Base
   end
 
   def ensure_naming_conventions
-    if self.display_name.blank?
-      self.display_name = self.name
+    if display_name.blank?
+      self.display_name = name
     end
-    self.name = self.display_name.to_url
+    self.name = display_name.to_url
   end
 
   def self.find_all_with_article_counters
-    self.find_by_sql([%{
+    find_by_sql([%{
       SELECT tags.id, tags.name, tags.display_name, COUNT(articles_tags.article_id) AS article_counter
       FROM #{Tag.table_name} tags LEFT OUTER JOIN #{Tag.table_name_prefix}articles_tags#{Tag.table_name_suffix} articles_tags
         ON articles_tags.tag_id = tags.id
@@ -50,7 +50,7 @@ class Tag < ActiveRecord::Base
   end
 
   def self.find_by_permalink(name)
-    self.find_by_name(name)
+    find_by_name(name)
   end
 
   def self.find_with_char(char)
@@ -66,7 +66,7 @@ class Tag < ActiveRecord::Base
   end
 
   def permalink
-    self.name
+    name
   end
 
   def permalink_url(_anchor=nil, only_path=false)

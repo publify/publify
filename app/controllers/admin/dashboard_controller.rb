@@ -99,6 +99,6 @@ class Admin::DashboardController < Admin::BaseController
       items << item
     end
 
-    return items
+    items
   end
 end

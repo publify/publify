@@ -9,23 +9,21 @@ class Trigger < ActiveRecord::Base
     end
 
     def fire
-      begin
-        destroy_all ['due_at <= ?', Time.now]
-        true
-      rescue
-        migrator = Migrator.new
+      destroy_all ['due_at <= ?', Time.now]
+      true
+    rescue
+      migrator = Migrator.new
 
-        if !migrator.pending_migrations.empty?
-          starting_version = migrator.current_schema_version
-          migrator.migrate
+      if !migrator.pending_migrations.empty?
+        starting_version = migrator.current_schema_version
+        migrator.migrate
 
-          if starting_version == 0
-            load "#{Rails.root}/Rakefile"
-            Rake::Task['db:seed'].invoke
-            User.reset_column_information
-            Article.reset_column_information
-            Page.reset_column_information
-          end
+        if starting_version == 0
+          load "#{Rails.root}/Rakefile"
+          Rake::Task['db:seed'].invoke
+          User.reset_column_information
+          Article.reset_column_information
+          Page.reset_column_information
         end
       end
     end
@@ -42,6 +40,6 @@ class Trigger < ActiveRecord::Base
 
   def trigger_pending_item
     pending_item.send(trigger_method) if pending_item
-    return true
+    true
   end
 end

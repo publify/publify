@@ -10,11 +10,9 @@ class Admin::BaseController < ApplicationController
   private
 
   def parse_date_time(str)
-    begin
-      DateTime.strptime(str, '%B %e, %Y %I:%M %p GMT%z').utc
-    rescue
-      Time.parse(str).utc rescue nil
-    end
+    DateTime.strptime(str, '%B %e, %Y %I:%M %p GMT%z').utc
+  rescue
+    Time.parse(str).utc rescue nil
   end
 
   def update_settings_with!(settings_param)

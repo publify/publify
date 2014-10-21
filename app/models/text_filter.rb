@@ -100,10 +100,10 @@ class TextFilter < ActiveRecord::Base
       f.help_text.blank? ? '' : "#{BlueCloth.new(f.help_text).to_html}\n"
     end.join("\n")
 
-    return help_text
+    help_text
   end
 
-  def to_s; self.name; end
+  def to_s; name; end
 
   def to_text_filter
     self

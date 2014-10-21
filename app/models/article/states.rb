@@ -33,7 +33,7 @@ module Article::States
       if boolean
         content.state = :just_published
       end
-      return boolean
+      boolean
     end
 
     def published_at=(new_time)

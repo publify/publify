@@ -24,7 +24,7 @@ class XmlController < ApplicationController
     when 'article'
       redirect_to Article.find(params[:id]).feed_url(@format), status: :moved_permanently
     when 'tag', 'author'
-      redirect_to self.send("#{params[:type]}_url", params[:id], format: @format), status: :moved_permanently
+      redirect_to send("#{params[:type]}_url", params[:id], format: @format), status: :moved_permanently
     when 'trackbacks'
       redirect_to trackbacks_url(format: @format), status: :moved_permanently
     when 'sitemap'

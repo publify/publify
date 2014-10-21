@@ -117,7 +117,7 @@ module Admin::BaseHelper
     picture << "alt='#{image.upload.url}' />"
     picture << '</a>'
 
-    return picture
+    picture
   end
 
   def button_to_edit(item)

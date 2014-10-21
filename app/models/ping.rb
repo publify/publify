@@ -9,15 +9,13 @@ class Ping < ActiveRecord::Base
     attr_accessor :blog
 
     def send_pingback_or_trackback
-      begin
-        @response = Net::HTTP.get_response(URI.parse(ping.url))
-        send_pingback or send_trackback
-      rescue Timeout::Error => err
-        Rails.logger.info 'Sending pingback or trackback timed out'
-        return
-      rescue => err
-        Rails.logger.info "Sending pingback or trackback failed with error: #{err}"
-      end
+      @response = Net::HTTP.get_response(URI.parse(ping.url))
+      send_pingback or send_trackback
+    rescue Timeout::Error => err
+      Rails.logger.info 'Sending pingback or trackback timed out'
+      return
+    rescue => err
+      Rails.logger.info "Sending pingback or trackback failed with error: #{err}"
     end
 
     def pingback_url
@@ -110,7 +108,7 @@ class Ping < ActiveRecord::Base
 
   def send_weblogupdatesping(server_url, origin_url)
     t = Thread.start(article.blog.blog_name) do |blog_name|
-      send_xml_rpc(self.url, 'weblogUpdates.ping', blog_name, server_url, origin_url)
+      send_xml_rpc(url, 'weblogUpdates.ping', blog_name, server_url, origin_url)
     end
     t
   end
@@ -118,16 +116,14 @@ class Ping < ActiveRecord::Base
   protected
 
   def send_xml_rpc(xml_rpc_url, name, *args)
-    begin
-      server = XMLRPC::Client.new2(URI.parse(xml_rpc_url).to_s)
+    server = XMLRPC::Client.new2(URI.parse(xml_rpc_url).to_s)
 
-      begin
-        result = server.call(name, *args)
-      rescue XMLRPC::FaultException => e
-        logger.error(e)
-      end
-    rescue => e
+    begin
+      result = server.call(name, *args)
+    rescue XMLRPC::FaultException => e
       logger.error(e)
     end
+  rescue => e
+    logger.error(e)
   end
 end
