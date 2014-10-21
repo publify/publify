@@ -48,4 +48,3 @@ describe AuthorController, type: :controller do
     end
   end
 end
-

@@ -26,5 +26,3 @@ describe 'author/show_rss_feed.rss.builder', type: :view do
     end
   end
 end
-
-

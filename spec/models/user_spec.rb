@@ -156,7 +156,7 @@ describe User, type: :model do
       end
 
       { 'too short' => 'x',
-        'too long' => 'repetitivepass' * 10,
+        'too long' => 'repetitivepass' * 10
       }.each do |problematic, password|
         it "cannot be #{problematic}" do
           set_password password

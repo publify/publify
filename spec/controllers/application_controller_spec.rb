@@ -15,4 +15,3 @@ describe ApplicationController, type: :controller do
     File.delete(file_path)
   end
 end
-

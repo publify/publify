@@ -30,4 +30,3 @@ describe 'articles/feedback_rss_feed.rss.builder', type: :view do
     end
   end
 end
-

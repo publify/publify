@@ -129,4 +129,3 @@ describe Content, type: :model do
 
   end
 end
-

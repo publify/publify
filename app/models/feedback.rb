@@ -38,7 +38,7 @@ class Feedback < ActiveRecord::Base
   def self.paginated(page, per_page)
     page(page).per(per_page)
   end
- 
+
   def self.comments
     Comment.where(published: true).order('created_at DESC')
   end

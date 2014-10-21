@@ -88,7 +88,7 @@ class Admin::ContentController < Admin::BaseController
 
   def autosave
     return false unless request.xhr?
-    
+
     id = params[:article][:id] || params[:id]
 
     article_factory = Article::Factory.new(this_blog, current_user)
@@ -164,7 +164,7 @@ class Admin::ContentController < Admin::BaseController
   def update_params
     params.require(:article).except(:id).permit!
   end
-  
+
   def get_layout
     case action_name
     when 'new', 'edit', 'create'

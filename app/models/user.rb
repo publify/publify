@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   belongs_to :profile
   belongs_to :text_filter
   belongs_to :resource
-  
+
   delegate :name, to: :text_filter, prefix: true
   delegate :label, to: :profile, prefix: true
 

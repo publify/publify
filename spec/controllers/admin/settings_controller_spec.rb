@@ -60,5 +60,5 @@ describe Admin::SettingsController, type: :controller do
       expect(@blog).to eq(Blog.default)
     end
   end
-  
+
 end
