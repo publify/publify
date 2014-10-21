@@ -11,7 +11,7 @@ class Admin::FeedbackController < Admin::BaseController
     if params[:page].blank? || params[:page] == '0'
       params.delete(:page)
     end
-    
+
     @feedback = scoped_feedback.paginated(params[:page], this_blog.admin_display_elements)
   end
 
@@ -91,7 +91,7 @@ class Admin::FeedbackController < Admin::BaseController
     template = @feedback.change_state!
 
     respond_to do |format|
-      
+
       if params[:context] != 'listing'
         @comments = Comment.last_published
         page.replace_html('commentList', partial: 'admin/dashboard/comment')
@@ -100,7 +100,7 @@ class Admin::FeedbackController < Admin::BaseController
           format.js { render 'ham' }
         else
           format.js { render 'spam' }
-        end        
+        end
       end
     end
   end

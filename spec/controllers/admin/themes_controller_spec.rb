@@ -30,5 +30,5 @@ describe Admin::ThemesController, type: :controller do
   it 'returns succes for the :preview action' do
     get :preview, theme: 'bootstrap-2'
     assert_response :success
-  end  
+  end
 end

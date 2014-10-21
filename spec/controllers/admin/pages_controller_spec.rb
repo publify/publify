@@ -104,4 +104,3 @@ describe Admin::PagesController, type: :controller do
     it { expect(Page.count).to eq(0) }
   end
 end
-

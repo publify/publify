@@ -24,4 +24,3 @@ describe 'layouts/default.html.erb', type: :view do
     end
   end
 end
-

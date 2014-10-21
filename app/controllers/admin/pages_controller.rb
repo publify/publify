@@ -19,7 +19,7 @@ class Admin::PagesController < Admin::BaseController
     @page.user_id = current_user.id
     @page.text_filter ||= default_textfilter
     @page.published = true unless params[:page].present?
-    
+
     if request.post?
       @page.published_at = Time.now
       if @page.save

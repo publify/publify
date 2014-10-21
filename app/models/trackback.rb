@@ -56,4 +56,3 @@ class Trackback < Feedback
     "Trackback from #{blog_name}: #{title} on #{article.title}"
   end
 end
-

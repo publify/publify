@@ -37,5 +37,3 @@ describe 'author/show_atom_feed.atom.builder', type: :view do
     end
   end
 end
-
-

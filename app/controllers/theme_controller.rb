@@ -56,4 +56,3 @@ class ThemeController < ContentController
     end
   end
 end
-

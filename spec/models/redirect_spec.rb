@@ -14,4 +14,3 @@ describe 'Given an empty redirects table', type: :model do
     expect(redirect.errors[:from_path]).to eq(['has already been taken'])
   end
 end
-

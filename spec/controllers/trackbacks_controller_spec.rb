@@ -24,4 +24,3 @@ describe TrackbacksController, type: :controller do
     end
   end
 end
-

@@ -15,4 +15,3 @@ describe 'shared/_page_header.html.erb', type: :view do
     end
   end
 end
-

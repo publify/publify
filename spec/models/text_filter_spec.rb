@@ -41,12 +41,12 @@ describe 'With the list of available filters', type: :model do
     def filter_text(text, filters, filterparams = {})
       TextFilter.filter_text(blog, text, self, filters, filterparams)
     end
-    
+
     it 'should replace a hashtag with a proper URL to Twitter search' do
       text = filter_text('A test tweet with a #hashtag', [:twitterfilter])
       expect(text).to eq("A test tweet with a <a href='https://twitter.com/search?q=%23hashtag&src=tren&mode=realtime'>#hashtag</a>")
-    end  
-  
+    end
+
     it 'should replace a @mention by a proper URL to the twitter account' do
       text = filter_text('A test tweet with a @mention', [:twitterfilter])
       expect(text).to eq("A test tweet with a <a href='https://twitter.com/mention'>@mention</a>")
@@ -60,8 +60,8 @@ describe 'With the list of available filters', type: :model do
     it 'should replace a https URL with a proper link' do
       text = filter_text('A test tweet with a https://link.com', [:twitterfilter])
       expect(text).to eq("A test tweet with a <a href='https://link.com'>https://link.com</a>")
-    end  
-    
+    end
+
   end
 
   describe '#filter_text' do
@@ -272,4 +272,3 @@ _footer text here_
   end
 
 end
-

@@ -219,4 +219,3 @@ describe 'articles/index_rss_feed.rss.builder', type: :view do
   end
 
 end
-

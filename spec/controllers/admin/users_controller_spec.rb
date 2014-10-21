@@ -43,7 +43,7 @@ describe Admin::UsersController, 'rough port of the old functional test', type: 
 
           it 'should assigns tobi user' do
             assert assigns(:user).valid?
-            expect(assigns(:user)).to eq(@admin) 
+            expect(assigns(:user)).to eq(@admin)
           end
         end
         describe 'with no id params' do
