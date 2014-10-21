@@ -70,7 +70,7 @@ class TextFilter < ActiveRecord::Base
 
   def filter_text_for_content(blog, text, content)
     self.class.filter_text(blog, text, content,
-      [:macropre, markup, :macropost, filters].flatten, params)
+                           [:macropre, markup, :macropost, filters].flatten, params)
   end
 
   def help

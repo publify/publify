@@ -28,7 +28,7 @@ describe SetupController, :type => :controller do
         end
 
         specify { expect(response).to redirect_to(controller: 'accounts',
-                                              action: 'confirm') }
+                                                  action: 'confirm') }
 
         it 'should correctly initialize blog and users' do
           expect(Blog.default.blog_name).to eq('Foo')
@@ -50,7 +50,7 @@ describe SetupController, :type => :controller do
         end
 
         specify { expect(response).to redirect_to(controller: 'accounts',
-                                              action: 'confirm') }
+                                                  action: 'confirm') }
 
         it 'should correctly initialize blog and users' do
           expect(Blog.default.blog_name).to eq('Foo')

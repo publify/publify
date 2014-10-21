@@ -26,9 +26,9 @@ describe Content, :type => :model do
   describe '#short_url' do
     before do
       @content = FactoryGirl.build_stubbed :content,
-        published: true,
-        redirects: [FactoryGirl.build_stubbed(:redirect, :from_path =>
-                                              'foo', :to_path => 'bar')]
+                                           published: true,
+                                           redirects: [FactoryGirl.build_stubbed(:redirect, :from_path =>
+                                                                                 'foo', :to_path => 'bar')]
     end
 
     describe 'normally' do

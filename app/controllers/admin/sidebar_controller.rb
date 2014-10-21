@@ -49,10 +49,10 @@ class Admin::SidebarController < Admin::BaseController
         # IT'S OVER NINE THOUSAND! considering we'll never reach 9K Sidebar
         # instances or Sidebar specializations
         sidebar = if sidebar_id >= 9000
-          Sidebar.available_sidebars[sidebar_id - 9000].new
-        else
-          Sidebar.valid.find(sidebar_id)
-        end
+                    Sidebar.available_sidebars[sidebar_id - 9000].new
+                  else
+                    Sidebar.valid.find(sidebar_id)
+                  end
         sidebar.update_attributes(staged_position: staged_index)
       end
     end

@@ -24,7 +24,7 @@ describe Admin::RedirectsController, :type => :controller do
   it 'test_create' do
     expect do
       post :edit, 'redirect' => { :from_path => 'some/place', 
-        :to_path => 'somewhere/else' }
+                                  :to_path => 'somewhere/else' }
       assert_response :redirect, :action => 'index'
     end.to change(Redirect, :count)
   end
@@ -32,7 +32,7 @@ describe Admin::RedirectsController, :type => :controller do
   it 'test_create with empty from path' do
     expect do
       post :edit, 'redirect' => { :from_path => '', 
-        :to_path => 'somewhere/else/else' }
+                                  :to_path => 'somewhere/else/else' }
       assert_response :redirect, :action => 'index'
     end.to change(Redirect, :count)
   end

@@ -35,7 +35,7 @@ describe 'articles/index_atom_feed.atom.builder', :type => :view do
 
     it 'renders the article atom partial twice' do
       expect(view).to render_template(:partial => 'shared/_atom_item_article',
-                                  :count => 2)
+                                      :count => 2)
     end
   end
 

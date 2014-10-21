@@ -59,9 +59,9 @@ describe 'Given an unpublished spammy comment', :type => :model do
   before(:each) do
     FactoryGirl.create(:blog)
     @comment = FactoryGirl.create(:comment, 
-        :published => false,
-        :state => 'presumed_spam',
-        :status_confirmed => false)
+                                  :published => false,
+                                  :state => 'presumed_spam',
+                                  :status_confirmed => false)
   end
 
   it 'changing it does not alter the cache' do

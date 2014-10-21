@@ -16,7 +16,7 @@ describe Admin::SidebarController, :type => :controller do
       get :index
       assert_template 'index'
       assert_tag :tag => 'div',
-        :attributes => { :id => 'sidebar-config' }
+                 :attributes => { :id => 'sidebar-config' }
     end
   end
 end

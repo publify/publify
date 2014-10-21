@@ -7,8 +7,8 @@ describe "CommentClosing from Test::Unit; no I don't know why it's in article_cl
 
   before(:each) do
     @blog = FactoryGirl.create(:blog,
-      :sp_article_auto_close => 0,
-      :default_allow_comments => true)
+                               :sp_article_auto_close => 0,
+                               :default_allow_comments => true)
     # Blog.default may have already cached a copy of the default blog, and
     # it won't see our changes.  So override the caching.
     allow(Blog).to receive(:default).and_return(@blog)

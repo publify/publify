@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
 
   has_many :notifications, :foreign_key => 'notify_user_id'
   has_many :notify_contents, -> { uniq }, :through => :notifications,
-    :source => 'notify_content'
+                                          :source => 'notify_content'
 
   has_many :articles
 
