@@ -99,10 +99,10 @@ describe 'With the list of available filters', :type => :model do
       build_stubbed(:markdown)
       build_stubbed(:smartypants)
       assert_equal '<p><em>&#8220;foo&#8221;</em></p>',
-      filter_text('*"foo"*',[:markdown,:smartypants])
+                   filter_text('*"foo"*',[:markdown,:smartypants])
 
       assert_equal '<p><em>&#8220;foo&#8221;</em></p>',
-      filter_text('*"foo"*',[:doesntexist1,:markdown,"doesn't exist 2",:smartypants,:nopenotmeeither])
+                   filter_text('*"foo"*',[:doesntexist1,:markdown,"doesn't exist 2",:smartypants,:nopenotmeeither])
     end
 
     describe 'specific publify tags' do
@@ -111,30 +111,30 @@ describe 'With the list of available filters', :type => :model do
 
         it 'should show with default settings' do
           assert_equal "<div style=\"float:left\" class=\"flickrplugin\"><a href=\"http://www.flickr.com/users/scottlaird/31366117\"><img src=\"//photos23.flickr.com/31366117_b1a791d68e_s.jpg\" width=\"75\" height=\"75\" alt=\"Matz\" title=\"Matz\"/></a><p class=\"caption\" style=\"width:75px\">This is Matz, Ruby's creator</p></div>",
-            filter_text('<publify:flickr img="31366117" size="Square" style="float:left"/>',
-                        [:macropre,:macropost],
-                        {'flickr-user' => 'scott@sigkill.org'})
+                       filter_text('<publify:flickr img="31366117" size="Square" style="float:left"/>',
+                                   [:macropre,:macropost],
+                                   {'flickr-user' => 'scott@sigkill.org'})
         end
 
         it 'should use default image size' do
           assert_equal "<div style=\"\" class=\"flickrplugin\"><a href=\"http://www.flickr.com/users/scottlaird/31366117\"><img src=\"//photos23.flickr.com/31366117_b1a791d68e_s.jpg\" width=\"75\" height=\"75\" alt=\"Matz\" title=\"Matz\"/></a><p class=\"caption\" style=\"width:75px\">This is Matz, Ruby's creator</p></div>",
-            filter_text('<publify:flickr img="31366117"/>',
-                        [:macropre,:macropost],
-                        {'flickr-user' => 'scott@sigkill.org'})
+                       filter_text('<publify:flickr img="31366117"/>',
+                                   [:macropre,:macropost],
+                                   {'flickr-user' => 'scott@sigkill.org'})
         end
 
         it 'should use caption' do
           assert_equal "<div style=\"\" class=\"flickrplugin\"><a href=\"http://www.flickr.com/users/scottlaird/31366117\"><img src=\"//photos23.flickr.com/31366117_b1a791d68e_s.jpg\" width=\"75\" height=\"75\" alt=\"Matz\" title=\"Matz\"/></a></div>",
-            filter_text('<publify:flickr img="31366117" caption=""/>',
-                        [:macropre,:macropost],
-                        {'flickr-user' => 'scott@sigkill.org'})
+                       filter_text('<publify:flickr img="31366117" caption=""/>',
+                                   [:macropre,:macropost],
+                                   {'flickr-user' => 'scott@sigkill.org'})
         end
 
         it 'broken_flickr_link' do
           assert_equal %{<div class='broken_flickr_link'>\`notaflickrid\' could not be displayed because: <br />Photo not found</div>},
-            filter_text('<publify:flickr img="notaflickrid" />',
-                        [:macropre, :macropost],
-                        { 'flickr-user' => 'scott@sigkill.org' })
+                       filter_text('<publify:flickr img="notaflickrid" />',
+                                   [:macropre, :macropost],
+                                   { 'flickr-user' => 'scott@sigkill.org' })
         end
       end
 
@@ -220,30 +220,30 @@ _footer text here_
     context 'lightbox' do
       it 'should work' do
         assert_equal "<a href=\"//photos23.flickr.com/31366117_b1a791d68e_b.jpg\" data-toggle=\"lightbox\" title=\"Matz\"><img src=\"//photos23.flickr.com/31366117_b1a791d68e_t.jpg\" width=\"67\" height=\"100\" alt=\"Matz\" title=\"Matz\"/></a><p class=\"caption\" style=\"width:67px\">This is Matz, Ruby's creator</p>",
-          filter_text('<publify:lightbox img="31366117" thumbsize="Thumbnail" displaysize="Large" style="float:left"/>',
-                      [:macropre,:macropost],
-                      {})
+                     filter_text('<publify:lightbox img="31366117" thumbsize="Thumbnail" displaysize="Large" style="float:left"/>',
+                                 [:macropre,:macropost],
+                                 {})
       end
 
       it 'shoudl use default thumb image size' do
         assert_equal "<a href=\"//photos23.flickr.com/31366117_b1a791d68e_b.jpg\" data-toggle=\"lightbox\" title=\"Matz\"><img src=\"//photos23.flickr.com/31366117_b1a791d68e_s.jpg\" width=\"75\" height=\"75\" alt=\"Matz\" title=\"Matz\"/></a><p class=\"caption\" style=\"width:75px\">This is Matz, Ruby's creator</p>",
-          filter_text('<publify:lightbox img="31366117" displaysize="Large"/>',
-                      [:macropre,:macropost],
-                      {})
+                     filter_text('<publify:lightbox img="31366117" displaysize="Large"/>',
+                                 [:macropre,:macropost],
+                                 {})
       end
 
       it 'should use default display image size' do
         assert_equal "<a href=\"//photos23.flickr.com/31366117_b1a791d68e_o.jpg\" data-toggle=\"lightbox\" title=\"Matz\"><img src=\"//photos23.flickr.com/31366117_b1a791d68e_s.jpg\" width=\"75\" height=\"75\" alt=\"Matz\" title=\"Matz\"/></a><p class=\"caption\" style=\"width:75px\">This is Matz, Ruby's creator</p>",
-          filter_text('<publify:lightbox img="31366117"/>',
-                      [:macropre,:macropost],
-                      {})
+                     filter_text('<publify:lightbox img="31366117"/>',
+                                 [:macropre,:macropost],
+                                 {})
       end
 
       it 'should work with caption' do
         assert_equal "<a href=\"//photos23.flickr.com/31366117_b1a791d68e_o.jpg\" data-toggle=\"lightbox\" title=\"Matz\"><img src=\"//photos23.flickr.com/31366117_b1a791d68e_s.jpg\" width=\"75\" height=\"75\" alt=\"Matz\" title=\"Matz\"/></a>",
-          filter_text('<publify:lightbox img="31366117" caption=""/>',
-                      [:macropre,:macropost],
-                      {})
+                     filter_text('<publify:lightbox img="31366117" caption=""/>',
+                                 [:macropre,:macropost],
+                                 {})
       end
     end
 

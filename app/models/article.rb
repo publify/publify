@@ -63,14 +63,12 @@ class Article < Content
 
   include Article::States
 
-  has_state(:state, :valid_states  => [:new, :draft,
-                                       :publication_pending, :just_published, :published,
-                                       :just_withdrawn, :withdrawn],
-                                       :initial_state =>  :new,
-                                       :handles       => [:withdraw,
-                                                          :post_trigger,
-                                                          :send_pings, :send_notifications,
-                                                          :published_at=, :just_published?])
+  has_state(
+    :state,
+    valid_states: [:new, :draft, :publication_pending, :just_published, :published, :just_withdrawn, :withdrawn],
+    initial_state: :new,
+    handles: [:withdraw, :post_trigger, :send_pings, :send_notifications, :published_at=, :just_published?]
+  )
 
   def initialize(*args)
     super

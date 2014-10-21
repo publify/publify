@@ -99,8 +99,8 @@ describe Admin::UsersController, 'rough port of the old functional test', :type 
           @administrator = create(:user, :profile => @admin_profile)
           contributor = create(:profile_contributor)
           post :edit,
-            :id => @administrator.id,
-            :profile_id => contributor.id
+               :id => @administrator.id,
+               :profile_id => contributor.id
         end
 
         it 'should redirect to login' do

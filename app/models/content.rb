@@ -27,7 +27,7 @@ class Content < ActiveRecord::Base
   scope :searchstring, lambda { |search_string|
     tokens = search_string.split(' ').collect {|c| "%#{c.downcase}%"}
     where('state = ? AND ' + (['(LOWER(body) LIKE ? OR LOWER(extended) LIKE ? OR LOWER(title) LIKE ?)']*tokens.size).join(' AND '),
-                     'published', *tokens.collect{ |token| [token] * 3 }.flatten)
+          'published', *tokens.collect{ |token| [token] * 3 }.flatten)
   }
   scope :already_published, lambda { where('published = ? AND published_at < ?', true, Time.now).order(default_order) }
 
