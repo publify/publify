@@ -124,12 +124,12 @@ FactoryGirl.define do
     m.markup 'textile'
   end
 
-  factory :none, :parent => :markdown do |m|
+  factory :none, :parent => :markdown do |_m|
     name "none"
     description "None"
     markup 'none'
 
-    after :stub do |filter|
+    after :stub do |_filter|
       TextFilter.stub(:find_by_name).with('') { nil }
     end
   end
@@ -310,7 +310,7 @@ http://alsoping.example.com/rpc/ping"
     n.published false
   end
 
-  factory :trackback do |t|
+  factory :trackback do |_t|
     published true
     state 'ham'
     article

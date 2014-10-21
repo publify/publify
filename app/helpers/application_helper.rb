@@ -38,7 +38,7 @@ module ApplicationHelper
       new_root.sub! %r{^/?vendor/}, ""
       new_root.sub! %r{/views}, ""
       new_root = File.join(this_blog.current_theme.path, "views", new_root)
-      view_root = new_root if File.exists?(File.join(new_root, "content.rhtml"))
+      view_root = new_root if File.exist?(File.join(new_root, "content.rhtml"))
     end
     render_to_string(:file => "#{view_root}/content.rhtml", :locals => sidebar.to_locals_hash, :layout => false)
   end
@@ -106,7 +106,7 @@ module ApplicationHelper
     end
   end
 
-  def html(content, what = :all, deprecated = false)
+  def html(content, what = :all, _deprecated = false)
     content.html(what)
   end
 
@@ -159,7 +159,7 @@ module ApplicationHelper
 
   def page_header_includes
     content_array.collect { |c| c.whiteboard }.collect do |w|
-      w.select {|k,v| k =~ /^page_header_/}.collect do |_,v|
+      w.select {|k,_v| k =~ /^page_header_/}.collect do |_,v|
         v = v.chomp
         # trim the same number of spaces from the beginning of each line
         # this way plugins can indent nicely without making ugly source output

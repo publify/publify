@@ -10,7 +10,7 @@ class Admin::TokenChecker
   end
 
   def needs_token_generation?
-    return true unless File.exists? file
+    return true unless File.exist? file
     File.read(@file).chomp == $default_token
   end
 

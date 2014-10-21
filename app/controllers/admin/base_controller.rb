@@ -19,7 +19,7 @@ class Admin::BaseController < ApplicationController
 
   def update_settings_with!(settings_param)
     Blog.transaction do
-      settings_param.each { |k,v| this_blog.send("#{k.to_s}=", v) }
+      settings_param.each { |k,v| this_blog.send("#{k}=", v) }
       if this_blog.save
         flash[:success] = I18n.t('admin.settings.update.success')
       else

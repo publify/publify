@@ -9,7 +9,7 @@ module Net
   end
 
   class Net::HTTP
-    def initialize(*args)
+    def initialize(*_args)
     end
 
     def self.start(host, port)
@@ -32,7 +32,7 @@ module Net
       @@response = mock_response
     end
 
-    def self.get_response(*args)
+    def self.get_response(*_args)
       @@response
     end
   end

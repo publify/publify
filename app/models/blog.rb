@@ -119,7 +119,7 @@ class Blog < ActiveRecord::Base
     # Yes, this is weird - PDC
     begin
       self.settings ||= {}
-    rescue Exception => e
+    rescue => e
       self.settings = {}
     end
   end

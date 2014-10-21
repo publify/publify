@@ -12,7 +12,7 @@ FactoryGirl.find_definitions
 class EmailNotify
   class << self
     alias real_send_user_create_notification send_user_create_notification
-    def send_user_create_notification user; end
+    def send_user_create_notification _user; end
   end
 end
 
@@ -107,9 +107,9 @@ def with_each_theme
   yield nil, ""
   Dir.new(File.join(::Rails.root.to_s, "themes")).each do |theme|
     next if theme =~ /\.\.?/
-    theme_dir = "#{::Rails.root.to_s}/themes/#{theme}"
+    theme_dir = "#{::Rails.root}/themes/#{theme}"
     view_path = "#{theme_dir}/views"
-    if File.exists?("#{theme_dir}/helpers/theme_helper.rb")
+    if File.exist?("#{theme_dir}/helpers/theme_helper.rb")
       require "#{theme_dir}/helpers/theme_helper.rb"
     end
     yield theme, view_path

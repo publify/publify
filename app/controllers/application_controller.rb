@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def set_paths
-    prepend_view_path "#{::Rails.root.to_s}/themes/#{this_blog.theme}/views"
+    prepend_view_path "#{::Rails.root}/themes/#{this_blog.theme}/views"
     Dir.glob(File.join(::Rails.root.to_s, "lib", "*_sidebar/app/views")).select do |file|
       append_view_path file
     end
@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
 
   def setup_themer
     # Ick!
-    self.class.view_paths = ::ActionController::Base.view_paths.dup.unshift("#{::Rails.root.to_s}/themes/#{this_blog.theme}/views")
+    self.class.view_paths = ::ActionController::Base.view_paths.dup.unshift("#{::Rails.root}/themes/#{this_blog.theme}/views")
   end
 
   def fire_triggers
@@ -58,7 +58,7 @@ class ApplicationController < ActionController::Base
     url_for(:controller => '/articles').gsub(%r{/$},'')
   end
 
-  def add_to_cookies(name, value, path=nil, expires=nil)
+  def add_to_cookies(name, value, path=nil, _expires=nil)
     cookies[name] = { :value => value, :path => path || "/#{controller_name}", :expires => 6.weeks.from_now }
   end
 

@@ -12,7 +12,7 @@ else
   env = ENV["RAILS_ENV"] || 'development'
   dbfile = File.expand_path("../config/database.yml", __FILE__)
 
-  unless File.exists?(dbfile)
+  unless File.exist?(dbfile)
     if ENV['DB']
       FileUtils.cp "config/database.yml.#{ENV['DB'] || 'postgres'}", 'config/database.yml'
     else

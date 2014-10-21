@@ -45,7 +45,7 @@ class Trackback < Feedback
     self.excerpt = newval
   end
 
-  def rss_author(xml)
+  def rss_author(_xml)
   end
 
   def rss_title(xml)

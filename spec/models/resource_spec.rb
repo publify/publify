@@ -48,7 +48,7 @@ describe Resource, :type => :model do
         a_resource = FactoryGirl.create(:resource, mime: 'text/html', upload: file_upload("a"))
         expect(Resource.without_images_by_filename).to eq([a_resource, b_resource])
       end
-    end
+     end
 
 
   end

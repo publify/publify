@@ -65,6 +65,6 @@ describe Admin::TokenChecker do
   end
 
   after do
-    File.delete fixture if File.exists? fixture
+    File.delete fixture if File.exist? fixture
   end
 end
