@@ -2,8 +2,8 @@
 require 'simplecov'
 SimpleCov.start 'rails'
 
-ENV["RAILS_ENV"] ||= 'test'
-require File.expand_path("../../config/environment", __FILE__)
+ENV['RAILS_ENV'] ||= 'test'
+require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'factory_girl'
 require 'rexml/document'
@@ -22,7 +22,7 @@ end
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
-Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+Dir[Rails.root.join('spec/support/**/*.rb')].each {|f| require f}
 
 module RSpec
   module Core
@@ -74,26 +74,26 @@ end
 def assert_atom10 feed, count
   doc = Nokogiri::XML.parse(feed)
   root = doc.css(':root').first
-  expect(root.name).to eq("feed")
-  expect(root.namespace.href).to eq("http://www.w3.org/2005/Atom")
+  expect(root.name).to eq('feed')
+  expect(root.namespace.href).to eq('http://www.w3.org/2005/Atom')
   expect(root.css('entry').count).to eq(count)
 end
 
 def assert_rss20 feed, count
   doc = Nokogiri::XML.parse(feed)
   root = doc.css(':root').first
-  expect(root.name).to eq("rss")
-  expect(root['version']).to eq("2.0")
+  expect(root.name).to eq('rss')
+  expect(root['version']).to eq('2.0')
   expect(root.css('channel item').count).to eq(count)
 end
 
 def stub_full_article(time=Time.now)
-  author = FactoryGirl.build_stubbed(User, :name => "User Name")
+  author = FactoryGirl.build_stubbed(User, :name => 'User Name')
   text_filter = FactoryGirl.build(:textile)
 
   a = FactoryGirl.build_stubbed(Article, :published_at => time, :user => author,
                  :created_at => time, :updated_at => time,
-                 :title => "Foo Bar", :permalink => 'foo-bar',
+                 :title => 'Foo Bar', :permalink => 'foo-bar',
                  :guid => time.hash)
   allow(a).to receive(:published_comments) { [] }
   allow(a).to receive(:resources) { [FactoryGirl.build(:resource)] }
@@ -115,9 +115,9 @@ end
 if($validator_installed == nil)
   $validator_installed = false
   begin
-    IO.popen("feedvalidator 2> /dev/null","r") do |pipe|
+    IO.popen('feedvalidator 2> /dev/null','r') do |pipe|
       if (pipe.read =~ %r{Validating http://www.intertwingly.net/blog/index.})
-        puts "Using locally installed Python feed validator"
+        puts 'Using locally installed Python feed validator'
         $validator_installed = true
       end
     end
@@ -163,6 +163,6 @@ def parse_validator_messages(message)
   if(messages.size > 1)
     [false, messages.join("\n")]
   else
-    [true, ""]
+    [true, '']
   end
 end

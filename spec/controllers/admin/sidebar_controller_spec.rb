@@ -9,14 +9,14 @@ describe Admin::SidebarController, :type => :controller do
     request.session = { :user => henri.id }
   end
 
-  describe "rendering" do
+  describe 'rendering' do
     render_views
 
-    it "test_index" do
+    it 'test_index' do
       get :index
       assert_template 'index'
-      assert_tag :tag => "div",
-        :attributes => { :id => "sidebar-config" }
+      assert_tag :tag => 'div',
+        :attributes => { :id => 'sidebar-config' }
     end
   end
 end

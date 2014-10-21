@@ -56,7 +56,7 @@ module ContentBase
   end
 
   def excerpt_text(length = 160)
-    if respond_to?(:excerpt) and (excerpt || "") != ""
+    if respond_to?(:excerpt) and (excerpt || '') != ''
       text = generate_html(:excerpt, excerpt)
     else
       text = html(:all)

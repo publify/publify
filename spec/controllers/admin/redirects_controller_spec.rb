@@ -11,7 +11,7 @@ describe Admin::RedirectsController, :type => :controller do
     request.session = { :user => henri.id }
   end
 
-  describe "#index" do
+  describe '#index' do
     before(:each) do
       get :index
     end
@@ -21,23 +21,23 @@ describe Admin::RedirectsController, :type => :controller do
     end
   end
 
-  it "test_create" do
+  it 'test_create' do
     expect do
-      post :edit, 'redirect' => { :from_path => "some/place", 
-        :to_path => "somewhere/else" }
+      post :edit, 'redirect' => { :from_path => 'some/place', 
+        :to_path => 'somewhere/else' }
       assert_response :redirect, :action => 'index'
     end.to change(Redirect, :count)
   end
   
-  it "test_create with empty from path" do
+  it 'test_create with empty from path' do
     expect do
-      post :edit, 'redirect' => { :from_path => "", 
-        :to_path => "somewhere/else/else" }
+      post :edit, 'redirect' => { :from_path => '', 
+        :to_path => 'somewhere/else/else' }
       assert_response :redirect, :action => 'index'
     end.to change(Redirect, :count)
   end
   
-  describe "#edit" do
+  describe '#edit' do
     before(:each) do
       get :edit, :id => FactoryGirl.create(:redirect).id
     end
@@ -49,12 +49,12 @@ describe Admin::RedirectsController, :type => :controller do
     end
   end
 
-  it "test_update" do
+  it 'test_update' do
     post :edit, :id => FactoryGirl.create(:redirect).id
     assert_response :redirect, :action => 'index'
   end
 
-  describe "test_destroy" do
+  describe 'test_destroy' do
     before(:each) do
       @test_id = FactoryGirl.create(:redirect).id
       expect(Redirect.find(@test_id)).not_to be_nil

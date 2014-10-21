@@ -9,7 +9,7 @@ class Admin::ContentController < Admin::BaseController
 
   def auto_complete_for_article_keywords
     @items = Tag.select(:display_name).order(:display_name).map {|t| t.display_name}
-    render inline: "<%= @items %>"
+    render inline: '<%= @items %>'
   end
 
   def index
@@ -101,12 +101,12 @@ class Admin::ContentController < Admin::BaseController
     @article.published = false
     @article.author = current_user
     @article.save_attachments!(params[:attachments])
-    @article.state = "draft" unless @article.state == "withdrawn"
+    @article.state = 'draft' unless @article.state == 'withdrawn'
     @article.text_filter ||= current_user.default_text_filter
 
     if @article.title.blank?
       lastid = Article.order('id desc').first.id
-      @article.title = "Draft article " + lastid.to_s
+      @article.title = 'Draft article ' + lastid.to_s
     end
 
     if @article.save
@@ -157,7 +157,7 @@ class Admin::ContentController < Admin::BaseController
     @article.published_at = parse_date_time params[:article][:published_at]
     @article.author = current_user
     @article.save_attachments!(params[:attachments])
-    @article.state = "draft" if @article.draft
+    @article.state = 'draft' if @article.draft
     @article.text_filter ||= current_user.default_text_filter
   end
 
@@ -167,12 +167,12 @@ class Admin::ContentController < Admin::BaseController
   
   def get_layout
     case action_name
-    when "new", "edit", "create"
-      "editor"
-    when "show", "autosave"
+    when 'new', 'edit', 'create'
+      'editor'
+    when 'show', 'autosave'
       nil
     else
-      "administration"
+      'administration'
     end
   end
 end

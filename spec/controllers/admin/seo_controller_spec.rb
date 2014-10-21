@@ -25,19 +25,19 @@ describe Admin::SeoController, :type => :controller do
 
   describe 'update' do
 
-    before(:each) { post :update, {from: "permalinks", setting: {permalink_format: format}} }
+    before(:each) { post :update, {from: 'permalinks', setting: {permalink_format: format}} }
 
-    context "simple title format" do
+    context 'simple title format' do
       let(:format) { '/%title%' }
       it { expect(response).to redirect_to(action: 'permalinks') }
       it { expect(blog.reload.permalink_format).to eq(format) }
       it { expect(flash[:success]).to eq(I18n.t('admin.settings.update.success')) }
     end
 
-    context "without title format" do
+    context 'without title format' do
       let(:format) { '/%month%' }
       it { expect(blog.reload.permalink_format).to_not eq(format) }
-      it { expect(flash[:error]).to eq(I18n.t('admin.settings.update.error', messages: I18n.t("errors.permalink_need_a_title"))) }
+      it { expect(flash[:error]).to eq(I18n.t('admin.settings.update.error', messages: I18n.t('errors.permalink_need_a_title'))) }
     end
   end
 

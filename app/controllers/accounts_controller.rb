@@ -40,14 +40,14 @@ class AccountsController < ApplicationController
       self.current_user = @user
       session[:user_id] = @user.id
 
-      redirect_to :controller => "accounts", :action => "confirm"
+      redirect_to :controller => 'accounts', :action => 'confirm'
       return
     end
   end
 
   def recover_password
     return unless request.post?
-    @user = User.where("login = ? or email = ?", params[:user][:login], params[:user][:login]).first
+    @user = User.where('login = ? or email = ?', params[:user][:login], params[:user][:login]).first
 
     if @user
       @user.generate_password!
@@ -72,12 +72,12 @@ class AccountsController < ApplicationController
   private
 
   def verify_users
-    redirect_to(controller: "accounts", action: "signup") if User.count == 0
+    redirect_to(controller: 'accounts', action: 'signup') if User.count == 0
     true
   end
 
   def verify_config
-    redirect_to controller: "setup", action: "index" unless this_blog.configured?
+    redirect_to controller: 'setup', action: 'index' unless this_blog.configured?
   end
 
   def redirect_if_already_logged_in
@@ -88,7 +88,7 @@ class AccountsController < ApplicationController
 
   def successful_login
     session[:user_id] = self.current_user.id
-    if params[:remember_me] == "1"
+    if params[:remember_me] == '1'
       self.current_user.remember_me unless self.current_user.remember_token?
       cookies[:auth_token] = {
         :value => self.current_user.remember_token,
@@ -104,7 +104,7 @@ class AccountsController < ApplicationController
   end
 
   def redirect_back_or_default
-    redirect_to(session[:return_to] || {controller: "admin/dashboard", action: "index"})
+    redirect_to(session[:return_to] || {controller: 'admin/dashboard', action: 'index'})
     session[:return_to] = nil
   end
 end

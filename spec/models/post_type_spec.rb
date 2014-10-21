@@ -12,12 +12,12 @@ describe PostType, :type => :model do
     end
    
    it 'should have a sanitized permalink' do
-     @pt = PostType.create(:name => "Un joli PostType Accentué")
+     @pt = PostType.create(:name => 'Un joli PostType Accentué')
      expect(@pt.permalink).to eq('un-joli-posttype-accentue')
    end
     
    it 'should have a sanitized permalink with a' do
-     @pt = PostType.create(:name => "Un joli PostType à Accentuer")
+     @pt = PostType.create(:name => 'Un joli PostType à Accentuer')
      expect(@pt.permalink).to eq('un-joli-posttype-a-accentuer')
    end
   end

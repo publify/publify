@@ -21,7 +21,7 @@ class GroupingController < ContentController
   def index
     self.groupings = grouping_class.page(params[:page]).per(100)
     @page_title = self.controller_name.capitalize
-    @keywords = ""
+    @keywords = ''
     @description = "#{self.class.to_s.sub(/Controller$/,'')} for #{this_blog.blog_name}"
   end
 
@@ -33,7 +33,7 @@ class GroupingController < ContentController
       @canonical_url = permalink_with_page @grouping, params[:page]
       @page_title = show_page_title_for @grouping, params[:page]
       @description = @grouping.description.to_s
-      @keywords = ""
+      @keywords = ''
       @keywords << @grouping.keywords unless @grouping.keywords.blank?
       @keywords << this_blog.meta_keywords unless this_blog.meta_keywords.blank?
       @articles = @grouping.articles.published.page(params[:page]).per(10)
@@ -53,12 +53,12 @@ class GroupingController < ContentController
 
       format.atom {
         @articles = @articles[0,this_blog.limit_rss_display]
-        render "articles/index_atom_feed", :layout => false
+        render 'articles/index_atom_feed', :layout => false
       }
 
       format.rss  {
         @articles = @articles[0,this_blog.limit_rss_display]
-        render "articles/index_rss_feed", :layout => false
+        render 'articles/index_rss_feed', :layout => false
       }
     end
 
@@ -91,7 +91,7 @@ class GroupingController < ContentController
 
   # For some reasons, the permalink_url does not take the pagination.
   def permalink_with_page grouping, page
-    suffix = page.nil? ? "/" : "/page/#{page}/"
+    suffix = page.nil? ? '/' : "/page/#{page}/"
     grouping.permalink_url + suffix
   end
 end

@@ -43,7 +43,7 @@ module ApplicationHelper
   def link_to_permalink(item, title, anchor=nil, style=nil, nofollow=nil, only_path=false)
     options = {}
     options[:class] = style if style
-    options[:rel] = "nofollow" if nofollow
+    options[:rel] = 'nofollow' if nofollow
     link_to title, item.permalink_url(anchor,only_path), options
   end
 
@@ -74,7 +74,7 @@ module ApplicationHelper
     tag = []
     tag << %{ onmouseover="if (getCookie('publify_user_profile') == 'admin') { $('#{admin_id}').show(); }" }
     tag << %{ onmouseout="$('#{admin_id}').hide();" }
-    tag.join " "
+    tag.join ' '
   end
 
   def feed_title
@@ -116,7 +116,7 @@ module ApplicationHelper
     return if status.user.twitter_profile_image.nil? or status.user.twitter_profile_image.empty?
     return if status.twitter_id.nil? or status.twitter_id.empty?
 
-    image_tag(status.user.twitter_profile_image , class: "alignleft", alt: status.user.nickname)
+    image_tag(status.user.twitter_profile_image , class: 'alignleft', alt: status.user.nickname)
   end
 
   def google_analytics
@@ -144,7 +144,7 @@ module ApplicationHelper
         v = v.chomp
         # trim the same number of spaces from the beginning of each line
         # this way plugins can indent nicely without making ugly source output
-        spaces = /\A[ \t]*/.match(v)[0].gsub(/\t/, "  ")
+        spaces = /\A[ \t]*/.match(v)[0].gsub(/\t/, '  ')
         v.gsub!(/^#{spaces}/, '  ') # add 2 spaces to line up with the assumed position of the surrounding tags
       end
     end.flatten.uniq.join("\n")
@@ -197,8 +197,8 @@ module ApplicationHelper
 
   def stop_index_robots?(blog)
     stop = (params[:year].present? || params[:page].present?)
-    stop = blog.unindex_tags if controller_name == "tags"
-    stop = blog.unindex_categories if controller_name == "categories"
+    stop = blog.unindex_tags if controller_name == 'tags'
+    stop = blog.unindex_categories if controller_name == 'categories'
     stop
   end
 

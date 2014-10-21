@@ -1,7 +1,7 @@
 class Admin::TokenChecker
   attr_reader :file
 
-  def initialize(file = File.join(Rails.root, "config", "secret.token"))
+  def initialize(file = File.join(Rails.root, 'config', 'secret.token'))
     @file = file
   end
 

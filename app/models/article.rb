@@ -16,23 +16,23 @@ class Article < Content
   has_many :pings, -> { order('created_at ASC') }, dependent: :destroy
   has_many :trackbacks, -> { order('created_at ASC') }, dependent: :destroy
   has_many :feedback, -> { order('created_at DESC') }
-  has_many :resources, -> {order("created_at DESC") }, dependent: :nullify
+  has_many :resources, -> {order('created_at DESC') }, dependent: :nullify
   has_many :triggers, as: :pending_item
   has_many :comments, -> {order('created_at ASC')}, dependent: :destroy do
     # Get only ham or presumed_ham comments
     def ham
-      where(state: ["presumed_ham", "ham"])
+      where(state: ['presumed_ham', 'ham'])
     end
 
     # Get only spam or presumed_spam comments
     def spam
-      where(state: ["presumed_spam", "spam"])
+      where(state: ['presumed_spam', 'spam'])
     end
   end
 
-  has_many :published_comments,    -> { where(published: true).order('created_at ASC') }, class_name: "Comment"
-  has_many :published_trackbacks,  -> { where(published: true).order('created_at ASC') }, class_name: "Trackback"
-  has_many :published_feedback,    -> { where(published: true).order('created_at ASC') }, class_name: "Feedback"
+  has_many :published_comments,    -> { where(published: true).order('created_at ASC') }, class_name: 'Comment'
+  has_many :published_trackbacks,  -> { where(published: true).order('created_at ASC') }, class_name: 'Trackback'
+  has_many :published_feedback,    -> { where(published: true).order('created_at ASC') }, class_name: 'Feedback'
 
   has_and_belongs_to_many :tags, join_table: 'articles_tags'
 
@@ -108,7 +108,7 @@ class Article < Content
   def self.search_with(params)
     params ||= {}
     scoped = super(params)
-    if ["no_draft", "drafts", "published", "withdrawn", "pending"].include?(params[:state])
+    if ['no_draft', 'drafts', 'published', 'withdrawn', 'pending'].include?(params[:state])
       scoped = scoped.send(params[:state])
     end
 
@@ -334,8 +334,8 @@ class Article < Content
   def permalink_url_options
     format_url = blog.permalink_format.dup
     format_url.gsub!('%year%', published_at.year.to_s)
-    format_url.gsub!('%month%', sprintf("%.2d", published_at.month))
-    format_url.gsub!('%day%', sprintf("%.2d", published_at.day))
+    format_url.gsub!('%month%', sprintf('%.2d', published_at.month))
+    format_url.gsub!('%day%', sprintf('%.2d', published_at.day))
     format_url.gsub!('%title%', URI.encode(permalink.to_s))
     if format_url[0,1] == '/'
       format_url[1..-1]
@@ -348,7 +348,7 @@ class Article < Content
   def html_urls_to_ping
     urls_to_ping = []
     html_urls.delete_if{|url| already_ping?(url)}.uniq.each do |url_to_ping|
-      urls_to_ping << self.pings.build("url" => url_to_ping)
+      urls_to_ping << self.pings.build('url' => url_to_ping)
     end
     urls_to_ping
   end

@@ -60,12 +60,12 @@ class Admin::PagesController < Admin::BaseController
 
   def get_layout
     case action_name
-    when "new", "edit", "create"
-      "editor"
-    when "show"
+    when 'new', 'edit', 'create'
+      'editor'
+    when 'show'
       nil
     else
-      "administration"
+      'administration'
     end
   end
 

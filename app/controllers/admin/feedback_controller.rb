@@ -8,7 +8,7 @@ class Admin::FeedbackController < Admin::BaseController
       scoped_feedback = scoped_feedback.send(params[:only])
     end
 
-    if params[:page].blank? || params[:page] == "0"
+    if params[:page].blank? || params[:page] == '0'
       params.delete(:page)
     end
     
@@ -97,7 +97,7 @@ class Admin::FeedbackController < Admin::BaseController
         @comments = Comment.last_published
         page.replace_html('commentList', :partial => 'admin/dashboard/comment')
       else
-        if template == "ham"
+        if template == 'ham'
           format.js { render 'ham' }
         else
           format.js { render 'spam'}

@@ -9,7 +9,7 @@ class Trackback < Feedback
   def initialize(*args, &block)
     super(*args, &block)
     self.title ||= self.url
-    self.blog_name ||= ""
+    self.blog_name ||= ''
   end
 
   before_create :process_trackback
@@ -17,7 +17,7 @@ class Trackback < Feedback
   def process_trackback
     if excerpt.length >= 251
       # this limits excerpt to 250 chars, including the trailing "..."
-      self.excerpt = excerpt[0..246] << "..."
+      self.excerpt = excerpt[0..246] << '...'
     end
   end
 
@@ -29,7 +29,7 @@ class Trackback < Feedback
 
   def blog_allows_feedback?
     return true unless blog.global_pings_disable
-    errors.add(:article, "Pings are disabled")
+    errors.add(:article, 'Pings are disabled')
     false
   end
 

@@ -20,8 +20,8 @@ gem 'carrierwave', '~> 0.10.0'
 gem 'akismet', '~> 1.0'
 gem 'twitter', '~> 5.6.0'
 
-gem "jquery-rails", "~> 3.1.0"
-gem "jquery-ui-rails", "~> 5.0.2"
+gem 'jquery-rails', '~> 3.1.0'
+gem 'jquery-ui-rails', '~> 5.0.2'
 
 gem 'rails-timeago', '~> 2.0'
 
@@ -35,8 +35,8 @@ gem 'actionpack-page_caching', '~> 1.0.2'
 gem 'rails-observers', '~> 0.1.2'
 
 group :assets do
-  gem 'sass-rails', " ~> 4.0.3"
-  gem 'coffee-rails', " ~> 4.0.1"
+  gem 'sass-rails', ' ~> 4.0.3'
+  gem 'coffee-rails', ' ~> 4.0.1'
   gem 'uglifier'
 end
 

@@ -58,7 +58,7 @@ class Tag < ActiveRecord::Base
   end
 
   def self.collection_to_string tags
-    tags.map(&:display_name).sort.map { |name| name =~ / / ? "\"#{name}\"" : name }.join ", "
+    tags.map(&:display_name).sort.map { |name| name =~ / / ? "\"#{name}\"" : name }.join ', '
   end
 
   def published_articles

@@ -15,7 +15,7 @@ class Blog < ActiveRecord::Base
 
   validate(:on => :create) { |blog|
     unless Blog.count.zero?
-      blog.errors.add(:base, "There can only be one...")
+      blog.errors.add(:base, 'There can only be one...')
     end
   }
 
@@ -82,26 +82,26 @@ class Blog < ActiveRecord::Base
   setting :dofollowify,                :boolean, false
   setting :use_canonical_url,          :boolean, false
   setting :use_meta_keyword,           :boolean, true
-  setting :home_title_template,        :string, "%blog_name% | %blog_subtitle%" # spec OK
-  setting :home_desc_template,         :string, "%blog_name% | %blog_subtitle% | %meta_keywords%" # OK
-  setting :article_title_template,     :string, "%title% | %blog_name%"
-  setting :article_desc_template,      :string, "%excerpt%"
-  setting :page_title_template,        :string, "%title% | %blog_name%"
-  setting :page_desc_template,         :string, "%excerpt%"
-  setting :paginated_title_template,   :string, "%blog_name% | %blog_subtitle% %page%"
-  setting :paginated_desc_template,    :string, "%blog_name% | %blog_subtitle% | %meta_keywords% %page%"
-  setting :tag_title_template,         :string, "Tag: %name% | %blog_name% %page%"
-  setting :tag_desc_template,          :string, "%name% | %blog_name% | %blog_subtitle% %page%"
-  setting :author_title_template,      :string, "%author% | %blog_name%"
-  setting :author_desc_template,       :string, "%author% | %blog_name% | %blog_subtitle%"
-  setting :archives_title_template,    :string, "Archives for %blog_name% %date% %page%"
-  setting :archives_desc_template,     :string, "Archives for %blog_name% %date% %page% %blog_subtitle%"
-  setting :search_title_template,      :string, "Results for %search% | %blog_name% %page%"
-  setting :search_desc_template,       :string, "Results for %search% | %blog_name% | %blog_subtitle% %page%"
-  setting :statuses_title_template,    :string, "Notes | %blog_name% %page%"
-  setting :statuses_desc_template,     :string, "Notes | %blog_name% | %blog_subtitle% %page%"
-  setting :status_title_template,      :string, "%body% | %blog_name%"
-  setting :status_desc_template,       :string, "%excerpt%"
+  setting :home_title_template,        :string, '%blog_name% | %blog_subtitle%' # spec OK
+  setting :home_desc_template,         :string, '%blog_name% | %blog_subtitle% | %meta_keywords%' # OK
+  setting :article_title_template,     :string, '%title% | %blog_name%'
+  setting :article_desc_template,      :string, '%excerpt%'
+  setting :page_title_template,        :string, '%title% | %blog_name%'
+  setting :page_desc_template,         :string, '%excerpt%'
+  setting :paginated_title_template,   :string, '%blog_name% | %blog_subtitle% %page%'
+  setting :paginated_desc_template,    :string, '%blog_name% | %blog_subtitle% | %meta_keywords% %page%'
+  setting :tag_title_template,         :string, 'Tag: %name% | %blog_name% %page%'
+  setting :tag_desc_template,          :string, '%name% | %blog_name% | %blog_subtitle% %page%'
+  setting :author_title_template,      :string, '%author% | %blog_name%'
+  setting :author_desc_template,       :string, '%author% | %blog_name% | %blog_subtitle%'
+  setting :archives_title_template,    :string, 'Archives for %blog_name% %date% %page%'
+  setting :archives_desc_template,     :string, 'Archives for %blog_name% %date% %page% %blog_subtitle%'
+  setting :search_title_template,      :string, 'Results for %search% | %blog_name% %page%'
+  setting :search_desc_template,       :string, 'Results for %search% | %blog_name% | %blog_subtitle% %page%'
+  setting :statuses_title_template,    :string, 'Notes | %blog_name% %page%'
+  setting :statuses_desc_template,     :string, 'Notes | %blog_name% | %blog_subtitle% %page%'
+  setting :status_title_template,      :string, '%body% | %blog_name%'
+  setting :status_desc_template,       :string, '%excerpt%'
 
   setting :custom_tracking_field,      :string, ''
   # setting :meta_author_template,       :string, "%blog_name% | %nickname%"
@@ -135,12 +135,12 @@ class Blog < ActiveRecord::Base
   # In settings with :article_id
   def ping_article!(settings)
     unless global_pings_enabled? && settings.has_key?(:url) && settings.has_key?(:article_id)
-      throw :error, "Invalid trackback or trackbacks not enabled"
+      throw :error, 'Invalid trackback or trackbacks not enabled'
     end
     settings[:blog_id] = self.id
     article = Article.find(settings[:article_id])
     unless article.allow_pings?
-      throw :error, "Trackback not saved"
+      throw :error, 'Trackback not saved'
     end
     article.trackbacks.create!(settings)
   end
@@ -215,11 +215,11 @@ class Blog < ActiveRecord::Base
 
   def permalink_has_identifier
     unless permalink_format =~ /(%title%)/
-      errors.add(:base, I18n.t("errors.permalink_need_a_title"))
+      errors.add(:base, I18n.t('errors.permalink_need_a_title'))
     end
 
     if permalink_format =~ /\.(atom|rss)$/
-      errors.add(:permalink_format, I18n.t("errors.cant_end_with_rss_or_atom"))
+      errors.add(:permalink_format, I18n.t('errors.cant_end_with_rss_or_atom'))
     end
   end
 
@@ -234,7 +234,7 @@ class Blog < ActiveRecord::Base
   def urls_to_ping_for(article)
     urls_to_ping = []
     self.ping_urls.gsub(/ +/, '').split(/[\n\r]+/).map(&:strip).delete_if{|u| article.already_ping?(u)}.uniq.each do |url|
-      urls_to_ping << article.pings.build("url" => url)
+      urls_to_ping << article.pings.build('url' => url)
     end
     urls_to_ping
   end

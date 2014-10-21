@@ -11,7 +11,7 @@ class NotesController < ContentController
     @notes = Note.published.page(params[:page]).per(this_blog.limit_article_display)
 
     if @notes.empty?
-      @message = I18n.t("errors.no_notes_found")
+      @message = I18n.t('errors.no_notes_found')
       render 'notes/error', status: 200
     end
   end
@@ -26,7 +26,7 @@ class NotesController < ContentController
         return
       end
     else
-      render "errors/404", status: 404
+      render 'errors/404', status: 404
     end
   end
 

@@ -50,7 +50,7 @@ class CommentsController < FeedbackController
   protected
 
   def recaptcha_ok_for? comment
-    use_recaptcha = Blog.default.settings["use_recaptcha"]
+    use_recaptcha = Blog.default.settings['use_recaptcha']
     ((use_recaptcha && verify_recaptcha(:model => comment)) || !use_recaptcha)
   end
 
@@ -65,7 +65,7 @@ class CommentsController < FeedbackController
   end
 
   def set_headers
-    headers["Content-Type"] = "text/html; charset=utf-8"
+    headers['Content-Type'] = 'text/html; charset=utf-8'
   end
 
   def set_cookies_for comment

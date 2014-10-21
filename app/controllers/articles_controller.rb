@@ -11,7 +11,7 @@ class ArticlesController < ContentController
   helper :'admin/base'
 
   def index
-    conditions = (Blog.default.statuses_in_timeline) ? ["type in (?, ?)", "Article", "Note"] : ["type = ?", "Article"]
+    conditions = (Blog.default.statuses_in_timeline) ? ['type in (?, ?)', 'Article', 'Note'] : ['type = ?', 'Article']
 
     limit = this_blog.per_page(params[:format])
     unless params[:year].blank?
@@ -34,7 +34,7 @@ class ArticlesController < ContentController
 
     @keywords = this_blog.meta_keywords
 
-    suffix = (params[:page].nil? and params[:year].nil?) ? "" : "/"
+    suffix = (params[:page].nil? and params[:year].nil?) ? '' : '/'
 
     respond_to do |format|
       format.html { render_paginated_index }
@@ -55,8 +55,8 @@ class ArticlesController < ContentController
     @description = this_blog.search_desc_template.to_title(@articles, this_blog, params)
     respond_to do |format|
       format.html { render 'search' }
-      format.rss { render "index_rss_feed", :layout => false }
-      format.atom { render "index_atom_feed", :layout => false }
+      format.rss { render 'index_rss_feed', :layout => false }
+      format.atom { render 'index_atom_feed', :layout => false }
     end
   end
 
@@ -91,7 +91,7 @@ class ArticlesController < ContentController
 
     # Redirect old version with /:year/:month/:day/:title to new format,
     # because it's changed
-    ["%year%/%month%/%day%/%title%", "articles/%year%/%month%/%day%/%title%"].each do |part|
+    ['%year%/%month%/%day%/%title%', 'articles/%year%/%month%/%day%/%title%'].each do |part|
       @article = factory.match_permalink_format(from, part)
       return redirect_to @article.permalink_url, status: 301 if @article
     end
@@ -99,7 +99,7 @@ class ArticlesController < ContentController
     r = Redirect.find_by_from_path(from)
     return redirect_to r.full_to_path, status: 301 if r
 
-    render "errors/404", status: 404
+    render 'errors/404', status: 404
   end
 
   def archives
@@ -115,7 +115,7 @@ class ArticlesController < ContentController
       return
     end
 
-    headers["Content-Type"] = "text/html; charset=utf-8"
+    headers['Content-Type'] = 'text/html; charset=utf-8'
     @comment = Comment.new(params[:comment])
   end
 
@@ -129,12 +129,12 @@ class ArticlesController < ContentController
   end
 
   def view_page
-    if(@page = Page.find_by_name(Array(params[:name]).join("/"))) && @page.published?
+    if(@page = Page.find_by_name(Array(params[:name]).join('/'))) && @page.published?
       @page_title = @page.title
       @description = this_blog.meta_description
       @keywords = this_blog.meta_keywords
     else
-      render "errors/404", status: 404
+      render 'errors/404', status: 404
     end
   end
 
@@ -147,9 +147,9 @@ class ArticlesController < ContentController
 
   def verify_config
     if  ! this_blog.configured?
-      redirect_to controller: "setup", action: "index"
+      redirect_to controller: 'setup', action: 'index'
     elsif User.count == 0
-      redirect_to controller: "accounts", action: "signup"
+      redirect_to controller: 'accounts', action: 'signup'
     else
       return true
     end
@@ -161,7 +161,7 @@ class ArticlesController < ContentController
     @page_title   = this_blog.article_title_template.to_title(@article, this_blog, params)
     @description = this_blog.article_desc_template.to_title(@article, this_blog, params)
     groupings = @article.tags
-    @keywords = groupings.map { |g| g.name }.join(", ")
+    @keywords = groupings.map { |g| g.name }.join(', ')
 
     auto_discovery_feed
     respond_to do |format|
@@ -175,7 +175,7 @@ class ArticlesController < ContentController
   end
 
   def render_articles_feed format
-    if this_blog.feedburner_url.empty? or request.env["HTTP_USER_AGENT"] =~ /FeedBurner/i
+    if this_blog.feedburner_url.empty? or request.env['HTTP_USER_AGENT'] =~ /FeedBurner/i
       render "index_#{format}_feed", :layout => false
     else
       redirect_to "http://feeds2.feedburner.com/#{this_blog.feedburner_url}"
@@ -210,7 +210,7 @@ class ArticlesController < ContentController
   end
 
   def error!
-    @message = I18n.t("errors.no_posts_found")
+    @message = I18n.t('errors.no_posts_found')
     render 'articles/error', status: 200
   end
 

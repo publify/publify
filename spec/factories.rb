@@ -16,7 +16,7 @@ FactoryGirl.define do
     login { FactoryGirl.generate(:user) }
     email { generate(:email) }
     name 'Bond'
-    nickname "James Bond"
+    nickname 'James Bond'
     notify_via_email false
     notify_on_new_articles false
     notify_on_comments false
@@ -33,18 +33,18 @@ FactoryGirl.define do
     end
 
     trait :with_a_full_profile do
-      description "I am a poor lonesone factory generated user"
-      url "http://myblog.net"
-      msn "random@mail.com"
-      aim "randomaccount"
-      yahoo "anotherrandomaccount"
-      twitter "@random"
-      jabber "random@account.com"
+      description 'I am a poor lonesone factory generated user'
+      url 'http://myblog.net'
+      msn 'random@mail.com'
+      aim 'randomaccount'
+      yahoo 'anotherrandomaccount'
+      twitter '@random'
+      jabber 'random@account.com'
     end
 
     trait :with_twitter do
-      twitter_oauth_token "oauth_token"
-      twitter_oauth_token_secret "oauth_token"
+      twitter_oauth_token 'oauth_token'
+      twitter_oauth_token_secret 'oauth_token'
     end
 
     trait :as_admin do
@@ -89,12 +89,12 @@ FactoryGirl.define do
 
   factory :post_type do |p|
     p.name 'foobar'
-    p.description "Some description"
+    p.description 'Some description'
   end
 
   factory :markdown, :class => :text_filter do
-    name "markdown"
-    description "Markdown"
+    name 'markdown'
+    description 'Markdown'
     markup 'markdown'
     filters '--- []'
     params '--- {}'
@@ -105,28 +105,28 @@ FactoryGirl.define do
   end
 
   factory :smartypants, :parent => :markdown do |m|
-    m.name "smartypants"
-    m.description "SmartyPants"
+    m.name 'smartypants'
+    m.description 'SmartyPants'
     m.markup 'none'
     m.filters %q{ [:smartypants].to_yaml.inspect }
   end
 
   factory 'markdown smartypants', :parent => :smartypants do |m|
-    m.name "markdown smartypants"
-    m.description "Markdown with SmartyPants"
+    m.name 'markdown smartypants'
+    m.description 'Markdown with SmartyPants'
     m.markup 'markdown'
     m.filters [:smartypants]
   end
 
   factory :textile, :parent => :markdown do |m|
-    m.name "textile"
-    m.description "Textile"
+    m.name 'textile'
+    m.description 'Textile'
     m.markup 'textile'
   end
 
   factory :none, :parent => :markdown do |_m|
-    name "none"
-    description "None"
+    name 'none'
+    description 'None'
     markup 'none'
 
     after :stub do |_filter|
@@ -156,23 +156,23 @@ FactoryGirl.define do
     limit_article_display 2
     sp_url_limit 3
     plugin_avatar ''
-    blog_subtitle "test subtitles"
+    blog_subtitle 'test subtitles'
     limit_rss_display 10
     ping_urls "http://ping.example.com/ping
 http://alsoping.example.com/rpc/ping"
-    geourl_location ""
+    geourl_location ''
     default_allow_pings false
     send_outbound_pings false
     sp_global true
     default_allow_comments true
-    email_from "scott@sigkill.org"
+    email_from 'scott@sigkill.org'
     association :text_filter, factory: :textile
     sp_article_auto_close 0
     link_to_author false
     association :comment_text_filter, factory: :markdown
-    permalink_format "/%year%/%month%/%day%/%title%"
+    permalink_format '/%year%/%month%/%day%/%title%'
     use_canonical_url true
-    lang "en_US"
+    lang 'en_US'
 
     after :stub do |blog|
       Blog.stub(:default) { blog }
@@ -182,8 +182,8 @@ http://alsoping.example.com/rpc/ping"
     end
 
     factory :blog_with_twitter do
-      twitter_consumer_key "consumer_key"
-      twitter_consumer_secret "consumer_secret"
+      twitter_consumer_key 'consumer_key'
+      twitter_consumer_secret 'consumer_secret'
     end
   end
 
@@ -220,7 +220,7 @@ http://alsoping.example.com/rpc/ping"
   end
 
   factory :avatar, parent: :resource do |a|
-    a.upload "avatar.jpg"
+    a.upload 'avatar.jpg'
     a.mime 'image.jpeg'
     a.size 600
   end

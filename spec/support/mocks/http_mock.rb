@@ -1,5 +1,5 @@
 module Net
-  remove_const "HTTP"
+  remove_const 'HTTP'
   class Request < Struct.new(:host, :port, :query, :post_data, :headers)
     def post(query, post, headers = {})
       self.query = query

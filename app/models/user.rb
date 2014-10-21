@@ -65,7 +65,7 @@ class User < ActiveRecord::Base
   end
 
   def self.authenticate(login, pass)
-    where("login = ? AND password = ? AND state = ?", login, password_hash(pass), 'active').first
+    where('login = ? AND password = ? AND state = ?', login, password_hash(pass), 'active').first
   end
 
   def update_connection_time
@@ -149,7 +149,7 @@ class User < ActiveRecord::Base
     if cleartext
       @password.to_s
     else
-      @password || read_attribute("password")
+      @password || read_attribute('password')
     end
   end
 
@@ -182,8 +182,8 @@ class User < ActiveRecord::Base
   end
 
   def generate_password!
-    chars = ("a".."z").to_a + ("A".."Z").to_a + ("0".."9").to_a
-    newpass = ""
+    chars = ('a'..'z').to_a + ('A'..'Z').to_a + ('0'..'9').to_a
+    newpass = ''
     1.upto(7) { |_i| newpass << chars[rand(chars.size-1)] }
     self.password = newpass
   end
@@ -214,7 +214,7 @@ class User < ActiveRecord::Base
   # password
   def crypt_password
     EmailNotify.send_user_create_notification self
-    write_attribute "password", password_hash(password(true))
+    write_attribute 'password', password_hash(password(true))
     @password = nil
   end
 
@@ -226,7 +226,7 @@ class User < ActiveRecord::Base
   def crypt_unless_empty
     if password(true).empty?
       user = self.class.find(self.id)
-      write_attribute "password", user.password
+      write_attribute 'password', user.password
     else
       crypt_password
     end

@@ -11,7 +11,7 @@ describe Admin::TagsController, :type => :controller do
     it { expect(response).to redirect_to(action: 'new') }
   end
 
-  context "with a tag" do
+  context 'with a tag' do
     let(:tag) { create(:tag) }
 
     describe 'edit' do
@@ -23,20 +23,20 @@ describe Admin::TagsController, :type => :controller do
     end
 
     describe 'destroy' do
-      context "with a get" do
+      context 'with a get' do
         before(:each) { get :destroy, id: tag.id }
 
         it { expect(response).to be_success }
         it { expect(response).to render_template('destroy') }
         it { expect(assigns(:record)).to be_valid }
 
-        context "with view" do
+        context 'with view' do
           render_views
           it { expect(response.body).to have_selector("form[action='/admin/tags/destroy/#{tag.id}'][method='post']") }
         end
       end
 
-      context "with a post" do
+      context 'with a post' do
         before(:each) { post :destroy, id: tag.id, tag: {display_name: 'Foo Bar'}}
         it { expect(response).to redirect_to(action: 'index') }
         it { expect(Tag.count).to eq(0) }
