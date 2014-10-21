@@ -46,7 +46,7 @@ module Feedback::States
     end
 
     def spam?
-      classify_content;
+      classify_content
       content.spam?
     end
 

@@ -65,7 +65,7 @@ module ContentBase
     text = text.strip_html
 
     text.slice(0, length) +
-      (text.length > length ? '...' : '');
+      (text.length > length ? '...' : '')
   end
 
   def invalidates_cache?(on_destruction = false)
