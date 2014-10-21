@@ -3,7 +3,7 @@ require 'rails_helper'
 
 describe Content, type: :model do
   context 'with a simple blog' do
-  let!(:blog) { create(:blog) }
+    let!(:blog) { create(:blog) }
 
   describe '#author=' do
     let(:content) { Content.new }

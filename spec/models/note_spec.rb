@@ -77,7 +77,7 @@ describe Note, type: :model do
 
     describe 'send_to_twitter' do
       context 'with a simple note' do
-      let(:note) { build(:note) }
+        let(:note) { build(:note) }
       context 'with twitter configured for blog and user' do
         before(:each) do
           expect_any_instance_of(Blog).to receive(:has_twitter_configured?).and_return(true)
