@@ -86,6 +86,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.1.0'
   gem 'simplecov', :require => false
   gem 'pry-rails'
+  gem 'rubocop'
   gem 'better_errors', '~> 2.0.0'
   gem 'binding_of_caller'
   gem 'guard-rspec'
