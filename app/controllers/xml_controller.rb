@@ -1,5 +1,5 @@
 class XmlController < ApplicationController
-  caches_page :feed, :if => Proc.new {|c|
+  caches_page :feed, if: Proc.new {|c|
     c.request.query_string == ''
   }
 

@@ -1,7 +1,7 @@
 # coding: utf-8
 require 'rails_helper'
 
-describe Admin::PagesController, :type => :controller do
+describe Admin::PagesController, type: :controller do
   render_views
 
   let!(:blog) { create(:blog) }
@@ -40,10 +40,10 @@ describe Admin::PagesController, :type => :controller do
     context 'using post' do
 
       def base_page(options={})
-        { :title => 'posted via tests!',
-          :body => 'A good body',
-          :name => 'posted-via-tests',
-          :published => true }.merge(options)
+        { title: 'posted via tests!',
+          body: 'A good body',
+          name: 'posted-via-tests',
+          published: true }.merge(options)
       end
 
       context 'simple' do
@@ -69,7 +69,7 @@ describe Admin::PagesController, :type => :controller do
       it 'should create a page published in the future without a redirect' do
         #TODO :published_at parameter is currently ignored
         skip
-        post(:new, 'page' => base_page(:published_at => (Time.now + 1.hour).to_s))
+        post(:new, 'page' => base_page(published_at: (Time.now + 1.hour).to_s))
         expect(assigns(:page).redirects.count).to eq(0)
       end
 

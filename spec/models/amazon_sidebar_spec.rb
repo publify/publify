@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Given a brand new AmazonSidebar', :type => :model do
+describe 'Given a brand new AmazonSidebar', type: :model do
   before(:each) do
     @sidebar = AmazonSidebar.new
   end
@@ -28,11 +28,11 @@ describe 'Given a brand new AmazonSidebar', :type => :model do
   end
 end
 
-describe 'With no amazon sidebars', :type => :model do
+describe 'With no amazon sidebars', type: :model do
   it 'hash initialization should set attributes correctly' do
-    sb = AmazonSidebar.new(:title => 'Books',
-                           :associate_id => 'justasummary-21',
-                           :maxlinks => 3)
+    sb = AmazonSidebar.new(title: 'Books',
+                           associate_id: 'justasummary-21',
+                           maxlinks: 3)
     expect(sb).to be_valid
     expect(sb.title).to        eq('Books')
     expect(sb.associate_id).to eq('justasummary-21')

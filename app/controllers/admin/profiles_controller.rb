@@ -28,7 +28,7 @@ class Admin::ProfilesController < Admin::BaseController
       mime = file.content_type.chomp
     end
 
-    Resource.create(:upload => file, :mime => mime, :created_at => Time.now)
+    Resource.create(upload: file, mime: mime, created_at: Time.now)
   end
   
 

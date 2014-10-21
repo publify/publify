@@ -1,10 +1,10 @@
 class Trigger < ActiveRecord::Base
-  belongs_to :pending_item, :polymorphic => true
+  belongs_to :pending_item, polymorphic: true
 
   class << self
     def post_action(due_at, item, method='came_due')
-      create!(:due_at => due_at, :pending_item => item,
-              :trigger_method => method)
+      create!(due_at: due_at, pending_item: item,
+              trigger_method: method)
       fire
     end
 

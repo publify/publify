@@ -1,7 +1,7 @@
 # coding: utf-8
 require 'rails_helper'
 
-describe 'articles/index_rss_feed.rss.builder', :type => :view do
+describe 'articles/index_rss_feed.rss.builder', type: :view do
   let!(:blog) { build_stubbed :blog }
 
   describe 'rendering articles (with some funny characters)' do
@@ -23,7 +23,7 @@ describe 'articles/index_rss_feed.rss.builder', :type => :view do
     end
 
     it 'renders the article RSS partial twice' do
-      expect(view).to render_template(:partial => 'shared/_rss_item_article', :count => 2)
+      expect(view).to render_template(partial: 'shared/_rss_item_article', count: 2)
     end
   end
 

@@ -1,7 +1,7 @@
 # coding: utf-8
 require 'rails_helper'
 
-describe Article, :type => :model do
+describe Article, type: :model do
 
   let!(:blog) { create(:blog) }
 
@@ -12,33 +12,33 @@ describe Article, :type => :model do
 
   describe '#permalink_url' do
     describe 'with hostname' do
-      subject { Article.new(:permalink => 'article-3', :published_at => Time.utc(2004, 6, 1)).permalink_url(anchor=nil, only_path=false) }
+      subject { Article.new(permalink: 'article-3', published_at: Time.utc(2004, 6, 1)).permalink_url(anchor=nil, only_path=false) }
       it { is_expected.to eq('http://myblog.net/2004/06/01/article-3') }
     end
 
     describe 'without hostname' do
-      subject { Article.new(:permalink => 'article-3', :published_at => Time.utc(2004, 6, 1)).permalink_url(anchor=nil, only_path=true) }
+      subject { Article.new(permalink: 'article-3', published_at: Time.utc(2004, 6, 1)).permalink_url(anchor=nil, only_path=true) }
       it { is_expected.to eq('/2004/06/01/article-3') }
     end
 
     # NOTE: URLs must not have any multibyte characters in them. The
     # browser may display them differently, though.
     describe 'with a multibyte permalink' do
-      subject { Article.new(:permalink => 'ルビー', :published_at => Time.utc(2004, 6, 1)) }
+      subject { Article.new(permalink: 'ルビー', published_at: Time.utc(2004, 6, 1)) }
       it 'escapes the multibyte characters' do
         expect(subject.permalink_url(anchor=nil, only_path=true)).to eq('/2004/06/01/%E3%83%AB%E3%83%93%E3%83%BC')
       end
     end
 
     describe 'with a permalink containing a space' do
-      subject { Article.new(:permalink => 'hello there', :published_at => Time.utc(2004, 6, 1)) }
+      subject { Article.new(permalink: 'hello there', published_at: Time.utc(2004, 6, 1)) }
       it "escapes the space as '%20', not as '+'" do
         expect(subject.permalink_url(anchor=nil, only_path=true)).to eq('/2004/06/01/hello%20there')
       end
     end
 
     describe 'with a permalink containing a plus' do
-      subject { Article.new(:permalink => 'one+two', :published_at => Time.utc(2004, 6, 1)) }
+      subject { Article.new(permalink: 'one+two', published_at: Time.utc(2004, 6, 1)) }
       it 'does not escape the plus' do
         expect(subject.permalink_url(anchor=nil, only_path=true)).to eq('/2004/06/01/one+two')
       end
@@ -96,23 +96,23 @@ describe Article, :type => :model do
 
   describe '#stripped_title' do
     it 'works for simple cases' do
-      assert_equal 'article-1', Article.new(:title => 'Article 1!').title.to_permalink
-      assert_equal 'article-2', Article.new(:title => 'Article 2!').title.to_permalink
-      assert_equal 'article-3', Article.new(:title => 'Article 3!').title.to_permalink
+      assert_equal 'article-1', Article.new(title: 'Article 1!').title.to_permalink
+      assert_equal 'article-2', Article.new(title: 'Article 2!').title.to_permalink
+      assert_equal 'article-3', Article.new(title: 'Article 3!').title.to_permalink
     end
 
     it 'strips html' do
-      a = Article.new(:title => 'This <i>is</i> a <b>test</b>')
+      a = Article.new(title: 'This <i>is</i> a <b>test</b>')
       assert_equal 'this-is-a-test', a.title.to_permalink
     end
 
     it 'does not escape multibyte characters' do
-      a = Article.new(:title => 'ルビー')
+      a = Article.new(title: 'ルビー')
       expect(a.title.to_permalink).to eq('ルビー')
     end
 
     it 'is called upon saving the article' do
-      a = Article.new(:title => 'space separated')
+      a = Article.new(title: 'space separated')
       expect(a.permalink).to be_nil
       a.save
       expect(a.permalink).to eq('space-separated')
@@ -121,7 +121,7 @@ describe Article, :type => :model do
 
   describe 'the html_urls method' do
     before do
-      allow(blog).to receive(:text_filter_object) { TextFilter.new(:filters => []) }
+      allow(blog).to receive(:text_filter_object) { TextFilter.new(filters: []) }
       @article = Article.new
     end
 
@@ -164,7 +164,7 @@ describe Article, :type => :model do
       it 'sends a pingback to urls linked in the body' do
         expect(ActiveRecord::Base.observers).to include(:email_notifier)
         expect(ActiveRecord::Base.observers).to include(:web_notifier)
-        a = Article.new :body => %{<a href="#{referenced_url}">}, :title => 'Test the pinging', :published => true
+        a = Article.new body: %{<a href="#{referenced_url}">}, title: 'Test the pinging', published: true
         mock_ping = double('ping')
         allow(a.pings).to receive(:build) { double 'other ping' }
         allow(a.pings).to receive(:build).with('url' => referenced_url).and_return mock_ping
@@ -183,18 +183,18 @@ describe Article, :type => :model do
 
   describe 'Testing redirects' do
     it 'a new published article gets a redirect' do
-      a = Article.create(:title => 'Some title', :body => 'some text', :published => true)
+      a = Article.create(title: 'Some title', body: 'some text', published: true)
       expect(a.redirects.first).not_to be_nil
       expect(a.redirects.first.to_path).to eq(a.permalink_url)
     end
 
     it 'a new unpublished article should not get a redirect' do
-      a = Article.create(:title => 'Some title', :body => 'some text', :published => false)
+      a = Article.create(title: 'Some title', body: 'some text', published: false)
       expect(a.redirects.first).to be_nil
     end
 
     it 'Changin a published article permalink url should only change the to redirection' do
-      a = Article.create(:title => 'Some title', :body => 'some text', :published => true)
+      a = Article.create(title: 'Some title', body: 'some text', published: true)
       expect(a.redirects.first).not_to be_nil
       expect(a.redirects.first.to_path).to eq(a.permalink_url)
       r  = a.redirects.first.from_path
@@ -210,14 +210,14 @@ describe Article, :type => :model do
   it 'test_find_published_by_tag_name' do
     art1 = create(:article)
     art2 = create(:article)
-    create(:tag, :name => 'foo', :articles => [art1, art2])
+    create(:tag, name: 'foo', articles: [art1, art2])
     articles = Tag.find_by_name('foo').published_articles
     assert_equal 2, articles.size
   end
 
   it 'test_just_published_flag' do
 
-    art = Article.new(:title => 'title', :body => 'body', :published => true)
+    art = Article.new(title: 'title', body: 'body', published: true)
 
     assert art.just_changed_published_status?
     assert art.save
@@ -225,25 +225,25 @@ describe Article, :type => :model do
     art = Article.find(art.id)
     assert !art.just_changed_published_status?
 
-    art = Article.create!(:title => 'title2', :body => 'body', :published => false)
+    art = Article.create!(title: 'title2', body: 'body', published: false)
 
     assert ! art.just_changed_published_status?
   end
 
   it 'test_future_publishing' do
-    assert_sets_trigger(Article.create!(:title => 'title', :body => 'body',
-                                        :published => true, :published_at => Time.now + 4.seconds))
+    assert_sets_trigger(Article.create!(title: 'title', body: 'body',
+                                        published: true, published_at: Time.now + 4.seconds))
   end
 
   it 'test_future_publishing_without_published_flag' do
-    assert_sets_trigger Article.create!(:title => 'title', :body => 'body',
-                                        :published_at => Time.now + 4.seconds)
+    assert_sets_trigger Article.create!(title: 'title', body: 'body',
+                                        published_at: Time.now + 4.seconds)
   end
   it 'test_triggers_are_dependent' do
     #TODO Needs a fix for Rails ticket #5105: has_many: Dependent deleting does not work with STI
     skip
-    art = Article.create!(:title => 'title', :body => 'body',
-                          :published_at => Time.now + 1.hour)
+    art = Article.create!(title: 'title', body: 'body',
+                          published_at: Time.now + 1.hour)
     assert_equal 1, Trigger.count
     art.destroy
     assert_equal 0, Trigger.count
@@ -264,8 +264,8 @@ describe Article, :type => :model do
 
   it 'test_destroy_file_upload_associations' do
     a = create(:article)
-    create(:resource, :article => a)
-    create(:resource, :article => a)
+    create(:resource, article: a)
+    create(:resource, article: a)
     assert_equal 2, a.resources.size
     a.resources << create(:resource)
     assert_equal 3, a.resources.size
@@ -275,8 +275,8 @@ describe Article, :type => :model do
 
   describe '#interested_users' do
     it 'should gather users interested in new articles' do
-      henri = create(:user, :login => 'henri', :notify_on_new_articles => true)
-      alice = create(:user, :login => 'alice', :notify_on_new_articles => true)
+      henri = create(:user, login: 'henri', notify_on_new_articles: true)
+      alice = create(:user, login: 'alice', notify_on_new_articles: true)
 
       a = build(:article)
       users = a.interested_users
@@ -300,15 +300,15 @@ describe Article, :type => :model do
   it 'should get only ham not spam comment' do
     article = create(:article)
     allow(article).to receive(:allow_comments?).and_return(true)
-    ham_comment = create(:comment, :article => article)
-    spam_comment = create(:spam_comment, :article => article)
+    ham_comment = create(:comment, article: article)
+    spam_comment = create(:spam_comment, article: article)
     expect(article.comments.ham).to eq([ham_comment])
     expect(article.comments.count).to eq(2)
   end
 
   describe '#access_by?' do
     before do
-      @alice = build(:user, :profile => build(:profile_admin, :label => Profile::ADMIN))
+      @alice = build(:user, profile: build(:profile_admin, label: Profile::ADMIN))
     end
 
     it 'admin should have access to an article written by another' do
@@ -316,7 +316,7 @@ describe Article, :type => :model do
     end
 
     it 'admin should have access to an article written by himself' do
-      article = build(:article, :author => @alice)
+      article = build(:article, author: @alice)
       expect(article).to be_access_by(@alice)
     end
 
@@ -325,8 +325,8 @@ describe Article, :type => :model do
   describe 'body_and_extended' do
     before :each do
       @article = Article.new(
-        :body => 'basic text',
-        :extended => 'extended text to explain more and more how Publify is wonderful')
+        body: 'basic text',
+        extended: 'extended text to explain more and more how Publify is wonderful')
     end
 
     it 'should combine body and extended content' do
@@ -345,8 +345,8 @@ describe Article, :type => :model do
 
     describe 'with one word and result' do
       it 'should have two items' do
-        create(:article, :extended => 'extended talk')
-        create(:article, :extended => 'Once uppon a time, an extended story')
+        create(:article, extended: 'extended talk')
+        create(:article, extended: 'Once uppon a time, an extended story')
         assert_equal 2, Article.search('extended').size
       end
     end
@@ -382,7 +382,7 @@ describe Article, :type => :model do
     end
 
     it 'should be settable via self.attributes=' do
-      @article.attributes = { :body_and_extended => 'foo<!--more-->bar' }
+      @article.attributes = { body_and_extended: 'foo<!--more-->bar' }
       expect(@article.body).to eq('foo')
       expect(@article.extended).to eq('bar')
     end
@@ -410,7 +410,7 @@ describe Article, :type => :model do
   end
 
   it 'test_cannot_ping_old_article' do
-    a = create(:article, :allow_pings => false)
+    a = create(:article, allow_pings: false)
     assert_equal(true, a.pings_closed?)
     a.allow_pings = false
     assert_equal(true, a.pings_closed?)
@@ -424,13 +424,13 @@ describe Article, :type => :model do
       # is now more than two years ago, except for two, which are from
       # yesterday and the day before. The existence of those two makes
       # 1.month.ago not suitable, because yesterday can be last month.
-      @article_two_month_ago = create(:article, :published_at => 2.month.ago)
+      @article_two_month_ago = create(:article, published_at: 2.month.ago)
 
-      @article_four_months_ago = create(:article, :published_at => 4.month.ago)
-      @article_2_four_months_ago = create(:article, :published_at => 4.month.ago)
+      @article_four_months_ago = create(:article, published_at: 4.month.ago)
+      @article_2_four_months_ago = create(:article, published_at: 4.month.ago)
 
-      @article_two_year_ago = create(:article, :published_at => 2.year.ago)
-      @article_2_two_year_ago = create(:article, :published_at => 2.year.ago)
+      @article_two_year_ago = create(:article, published_at: 2.year.ago)
+      @article_2_two_year_ago = create(:article, published_at: 2.year.ago)
     end
 
     it 'should return all content for the year if only year sent' do
@@ -449,24 +449,24 @@ describe Article, :type => :model do
   describe '#has_child?' do
     it 'should be true if article has one to link it by parent_id' do
       parent = create(:article)
-      create(:article, :parent_id => parent.id)
+      create(:article, parent_id: parent.id)
       expect(parent).to be_has_child
     end
     it 'should be false if article has no article to link it by parent_id' do
       parent = create(:article)
-      create(:article, :parent_id => nil)
+      create(:article, parent_id: nil)
       expect(parent).not_to be_has_child
     end
   end
 
   describe 'self#last_draft(id)' do
     it 'should return article if no draft associated' do
-      draft = create(:article, :state => 'draft')
+      draft = create(:article, state: 'draft')
       expect(Article.last_draft(draft.id)).to eq(draft)
     end
     it 'should return draft associated to this article if there are one' do
       parent = create(:article)
-      draft = create(:article, :parent_id => parent.id, :state => 'draft')
+      draft = create(:article, parent_id: parent.id, state: 'draft')
       expect(Article.last_draft(draft.id)).to eq(draft)
     end
   end
@@ -492,7 +492,7 @@ describe Article, :type => :model do
     describe '#find_by_permalink' do
       it 'uses UTC to determine correct day' do
         @a.save
-        a = Article.find_by_permalink :year => 2011, :month => 2, :day => 21, :permalink => 'a-big-article'
+        a = Article.find_by_permalink year: 2011, month: 2, day: 21, permalink: 'a-big-article'
         expect(a).to eq(@a)
       end
     end
@@ -519,7 +519,7 @@ describe Article, :type => :model do
     describe '#find_by_permalink' do
       it 'uses UTC to determine correct day' do
         @a.save
-        a = Article.find_by_permalink :year => 2011, :month => 2, :day => 22, :permalink => 'a-big-article'
+        a = Article.find_by_permalink year: 2011, month: 2, day: 22, permalink: 'a-big-article'
         expect(a).to eq(@a)
       end
     end
@@ -546,7 +546,7 @@ describe Article, :type => :model do
     describe '#find_by_permalink' do
       it 'uses JST to determine correct day' do
         @a.save
-        a = Article.find_by_permalink :year => 2012, :month => 12, :day => 31, :permalink => 'a-big-article'
+        a = Article.find_by_permalink year: 2012, month: 12, day: 31, permalink: 'a-big-article'
         expect(a).to eq(@a)
       end
     end
@@ -573,7 +573,7 @@ describe Article, :type => :model do
     describe '#find_by_permalink' do
       it 'uses JST to determine correct day' do
         @a.save
-        a = Article.find_by_permalink :year => 2013, :month => 1, :day => 1, :permalink => 'a-big-article'
+        a = Article.find_by_permalink year: 2013, month: 1, day: 1, permalink: 'a-big-article'
         expect(a).to eq(@a)
       end
     end

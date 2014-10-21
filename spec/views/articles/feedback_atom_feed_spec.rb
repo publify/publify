@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-describe 'articles/feedback_atom_feed.atom.builder', :type => :view do
+describe 'articles/feedback_atom_feed.atom.builder', type: :view do
   let!(:blog) { create :blog }
 
   describe 'with one trackback' do
     let(:article) { stub_full_article }
-    let(:trackback) { build(:trackback, :article => article) }
+    let(:trackback) { build(:trackback, article: article) }
 
     before(:each) do
       assign(:feedback, [trackback])
@@ -35,7 +35,7 @@ describe 'articles/feedback_atom_feed.atom.builder', :type => :view do
 
   describe 'with a comment with problematic characters' do
     let(:article) { stub_full_article }
-    let(:comment) { build(:comment, :article => article, :body => '&eacute;coute! 4 < 2, non?') }
+    let(:comment) { build(:comment, article: article, body: '&eacute;coute! 4 < 2, non?') }
 
     before(:each) do
       assign(:feedback, [comment])

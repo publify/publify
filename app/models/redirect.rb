@@ -4,7 +4,7 @@ class Redirect < ActiveRecord::Base
 
   has_many :redirections
 
-  has_many :contents, :through => :redirections
+  has_many :contents, through: :redirections
 
   def full_to_path
     path = self.to_path

@@ -10,7 +10,7 @@ class Feedback < ActiveRecord::Base
   include ContentBase
   include States
 
-  validate :feedback_not_closed, :on => :create
+  validate :feedback_not_closed, on: :create
 
   before_create :create_guid, :article_allows_this_feedback
   before_save :correct_url, :before_save_handler
@@ -28,8 +28,8 @@ class Feedback < ActiveRecord::Base
   scope :unapproved, -> { where(status_confirmed: false) }
 
  has_state(:state,
-           :valid_states => [:unclassified, :presumed_spam, :just_marked_as_spam, :spam, :just_presumed_ham, :presumed_ham, :just_marked_as_ham, :ham],
-           :handles => [:published?, :status_confirmed?, :just_published?,
+           valid_states: [:unclassified, :presumed_spam, :just_marked_as_spam, :spam, :just_presumed_ham, :presumed_ham, :just_marked_as_ham, :ham],
+           handles: [:published?, :status_confirmed?, :just_published?,
                         :mark_as_ham, :mark_as_spam, :confirm_classification,
                         :withdraw,
                         :before_save_handler, :after_initialize_handler,
@@ -82,11 +82,11 @@ class Feedback < ActiveRecord::Base
   end
 
   def akismet_options
-    {:comment_type => self.class.to_s.downcase,
-     :comment_author => originator,
-     :comment_author_email => email,
-     :comment_author_url => url,
-     :comment_content => body}
+    {comment_type: self.class.to_s.downcase,
+     comment_author: originator,
+     comment_author_email: email,
+     comment_author_url: url,
+     comment_content: body}
   end
 
   def spam_fields

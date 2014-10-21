@@ -13,7 +13,7 @@ class Admin::UsersController < Admin::BaseController
     @user.name = @user.login
     if request.post? and @user.save
       flash[:success] = I18n.t('admin.users.new.success')
-      redirect_to :action => 'index'
+      redirect_to action: 'index'
     end
   end
 
@@ -27,7 +27,7 @@ class Admin::UsersController < Admin::BaseController
         current_user = @user
       end
       flash[:success] = I18n.t('admin.users.new.success')
-      redirect_to :action => 'index'
+      redirect_to action: 'index'
     end
   end
 
@@ -36,7 +36,7 @@ class Admin::UsersController < Admin::BaseController
     return(render 'admin/shared/destroy') unless request.post?
     
     @record.destroy if User.where('profile_id = ? and id != ?', Profile.find_by_label('admin'), @record.id).count > 1
-    redirect_to :action => 'index'
+    redirect_to action: 'index'
   end
 
   private

@@ -14,9 +14,9 @@ class Content < ActiveRecord::Base
   belongs_to :user
 
   has_many :redirections
-  has_many :redirects, :through => :redirections, :dependent => :destroy
+  has_many :redirects, through: :redirections, dependent: :destroy
 
-  has_many :triggers, :as => :pending_item, :dependent => :delete_all
+  has_many :triggers, as: :pending_item, dependent: :delete_all
 
   scope :user_id, lambda { |user_id| where('user_id = ?', user_id) }
   scope :published, lambda { where(published: true, published_at: Time.at(0)..Time.now).order('published_at DESC') }
@@ -32,7 +32,7 @@ class Content < ActiveRecord::Base
   scope :already_published, lambda { where('published = ? AND published_at < ?', true, Time.now).order(default_order) }
 
   scope :published_at_like, lambda { |date_at|
-    where(:published_at => (PublifyTime.delta_like(date_at))
+    where(published_at: (PublifyTime.delta_like(date_at))
   )}
 
   serialize :whiteboard

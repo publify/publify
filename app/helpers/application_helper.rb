@@ -58,12 +58,12 @@ module ApplicationHelper
   end
 
   def meta_tag(name, value)
-    tag :meta, :name => name, :content => value unless value.blank?
+    tag :meta, name: name, content: value unless value.blank?
   end
 
   def markup_help_popup(markup, text)
     if markup and markup.commenthelp.size > 1
-      "<a href=\"#{url_for :controller => 'articles', :action => 'markup_help', :id => markup.id}\" onclick=\"return popup(this, 'Publify Markup Help')\">#{text}</a>"
+      "<a href=\"#{url_for controller: 'articles', action: 'markup_help', id: markup.id}\" onclick=\"return popup(this, 'Publify Markup Help')\">#{text}</a>"
     else
       ''
     end
@@ -171,7 +171,7 @@ module ApplicationHelper
   end
 
   def display_date(date)
-    l(date, :format => this_blog.date_format)
+    l(date, format: this_blog.date_format)
   end
 
   def display_time(time)

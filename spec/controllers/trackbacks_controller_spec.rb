@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe TrackbacksController, :type => :controller do
+describe TrackbacksController, type: :controller do
   let!(:blog) { create(:blog) }
 
   describe '#index' do

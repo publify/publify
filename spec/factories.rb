@@ -79,7 +79,7 @@ FactoryGirl.define do
     end
   end
 
-  factory :unpublished_article, :parent => :article do |a|
+  factory :unpublished_article, parent: :article do |a|
     a.published_at nil
     a.published false
   end
@@ -92,7 +92,7 @@ FactoryGirl.define do
     p.description 'Some description'
   end
 
-  factory :markdown, :class => :text_filter do
+  factory :markdown, class: :text_filter do
     name 'markdown'
     description 'Markdown'
     markup 'markdown'
@@ -104,27 +104,27 @@ FactoryGirl.define do
     end
   end
 
-  factory :smartypants, :parent => :markdown do |m|
+  factory :smartypants, parent: :markdown do |m|
     m.name 'smartypants'
     m.description 'SmartyPants'
     m.markup 'none'
     m.filters %q{ [:smartypants].to_yaml.inspect }
   end
 
-  factory 'markdown smartypants', :parent => :smartypants do |m|
+  factory 'markdown smartypants', parent: :smartypants do |m|
     m.name 'markdown smartypants'
     m.description 'Markdown with SmartyPants'
     m.markup 'markdown'
     m.filters [:smartypants]
   end
 
-  factory :textile, :parent => :markdown do |m|
+  factory :textile, parent: :markdown do |m|
     m.name 'textile'
     m.description 'Textile'
     m.markup 'textile'
   end
 
-  factory :none, :parent => :markdown do |_m|
+  factory :none, parent: :markdown do |_m|
     name 'none'
     description 'None'
     markup 'none'
@@ -134,16 +134,16 @@ FactoryGirl.define do
     end
   end
 
-  factory :utf8article, :parent => :article do |u|
+  factory :utf8article, parent: :article do |u|
     u.title 'ルビー'
     u.permalink 'ルビー'
   end
 
-  factory :second_article, :parent => :article do |a|
+  factory :second_article, parent: :article do |a|
     a.title 'Another big article'
   end
 
-  factory :article_with_accent_in_html, :parent => :article do |a|
+  factory :article_with_accent_in_html, parent: :article do |a|
     a.title 'article with accent'
     a.body '&eacute;coute The future is cool!'
     a.permalink 'article-with-accent'
@@ -187,7 +187,7 @@ http://alsoping.example.com/rpc/ping"
     end
   end
 
-  factory :profile, :class => :profile do
+  factory :profile, class: :profile do
     label {FactoryGirl.generate(:label)}
     nicename 'Publify contributor'
     modules [:dashboard, :profile]
@@ -306,7 +306,7 @@ http://alsoping.example.com/rpc/ping"
     guid
   end
 
-  factory :unpublished_note, :parent => :note do |n|
+  factory :unpublished_note, parent: :note do |n|
     n.published false
   end
 

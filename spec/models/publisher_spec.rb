@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Publisher, :type => :model do
+describe Publisher, type: :model do
   context 'with a user' do
     let(:user) { create(:user) }
 

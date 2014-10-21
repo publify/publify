@@ -74,7 +74,7 @@ class Admin::ContentController < Admin::BaseController
         Article.where(parent_id: @article.id).map(&:destroy)
       end
       flash[:success] = I18n.t('admin.content.update.success')
-      redirect_to :action => 'index'
+      redirect_to action: 'index'
     else
       @article.keywords = Tag.collection_to_string @article.tags
       load_resources

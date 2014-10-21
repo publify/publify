@@ -3,7 +3,7 @@ class NotesController < ContentController
 
   layout 'default.html.erb'
   cache_sweeper :blog_sweeper
-  caches_page :index, :show, :if => Proc.new {|c| c.request.query_string == '' }
+  caches_page :index, :show, if: Proc.new {|c| c.request.query_string == '' }
 
   after_filter :set_blog_infos
 

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe AuthorsHelper, :type => :helper do
+describe AuthorsHelper, type: :helper do
 
   describe 'display_profile_item' do
     it 'should display the item as a list item if show_item is true' do

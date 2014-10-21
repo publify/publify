@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'comments/index_atom_feed.atom.builder', :type => :view do
+describe 'comments/index_atom_feed.atom.builder', type: :view do
   let!(:blog) { build_stubbed :blog }
 
   describe 'rendering comments with one comment' do

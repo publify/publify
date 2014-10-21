@@ -46,14 +46,14 @@ class Admin::FeedbackController < Admin::BaseController
       @comment.save!
       flash[:success] = I18n.t('admin.feedback.create.success')
     end
-    redirect_to :action => 'article', :id => @article.id
+    redirect_to action: 'article', id: @article.id
   end
 
   def edit
     @comment = Comment.find(params[:id])
     @article = @comment.article
     unless @article.access_by? current_user
-      redirect_to :action => 'index'
+      redirect_to action: 'index'
       return
     end
   end
@@ -61,7 +61,7 @@ class Admin::FeedbackController < Admin::BaseController
   def update
     comment = Comment.find(params[:id])
     unless comment.article.access_by? current_user
-      redirect_to :action => 'index'
+      redirect_to action: 'index'
       return
     end
     comment.attributes = params[:comment].permit!
@@ -94,7 +94,7 @@ class Admin::FeedbackController < Admin::BaseController
       
       if params[:context] != 'listing'
         @comments = Comment.last_published
-        page.replace_html('commentList', :partial => 'admin/dashboard/comment')
+        page.replace_html('commentList', partial: 'admin/dashboard/comment')
       else
         if template == 'ham'
           format.js { render 'ham' }

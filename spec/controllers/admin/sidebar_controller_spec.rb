@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-describe Admin::SidebarController, :type => :controller do
+describe Admin::SidebarController, type: :controller do
   before do
     FactoryGirl.create(:blog)
     #TODO Delete after removing fixtures
     Profile.delete_all
-    henri = FactoryGirl.create(:user, :login => 'henri', :profile => FactoryGirl.create(:profile_admin, :label => Profile::ADMIN))
-    request.session = { :user => henri.id }
+    henri = FactoryGirl.create(:user, login: 'henri', profile: FactoryGirl.create(:profile_admin, label: Profile::ADMIN))
+    request.session = { user: henri.id }
   end
 
   describe 'rendering' do
@@ -15,8 +15,8 @@ describe Admin::SidebarController, :type => :controller do
     it 'test_index' do
       get :index
       assert_template 'index'
-      assert_tag :tag => 'div',
-                 :attributes => { :id => 'sidebar-config' }
+      assert_tag tag: 'div',
+                 attributes: { id: 'sidebar-config' }
     end
   end
 end

@@ -8,12 +8,12 @@ class User < ActiveRecord::Base
   belongs_to :text_filter
   belongs_to :resource
   
-  delegate :name, :to => :text_filter, :prefix => true
-  delegate :label, :to => :profile, :prefix => true
+  delegate :name, to: :text_filter, prefix: true
+  delegate :label, to: :profile, prefix: true
 
-  has_many :notifications, :foreign_key => 'notify_user_id'
-  has_many :notify_contents, -> { uniq }, :through => :notifications,
-                                          :source => 'notify_content'
+  has_many :notifications, foreign_key: 'notify_user_id'
+  has_many :notify_contents, -> { uniq }, through: :notifications,
+                                          source: 'notify_content'
 
   has_many :articles
 
@@ -86,13 +86,13 @@ class User < ActiveRecord::Base
   def remember_me_until(time)
     self.remember_token_expires_at = time
     self.remember_token            = Digest::SHA1.hexdigest("#{email}--#{remember_token_expires_at}")
-    save(:validate => false)
+    save(validate: false)
   end
 
   def forget_me
     self.remember_token_expires_at = nil
     self.remember_token            = nil
-    save(:validate => false)
+    save(validate: false)
   end
 
   def default_text_filter
@@ -238,9 +238,9 @@ class User < ActiveRecord::Base
     self.profile ||= Profile.find_by_label(User.count.zero? ? 'admin' : 'contributor')
   end
 
-  validates_uniqueness_of :login, :on => :create
-  validates_uniqueness_of :email, :on => :create
-  validates_length_of :password, :within => 5..40, :if => Proc.new { |user|
+  validates_uniqueness_of :login, on: :create
+  validates_uniqueness_of :email, on: :create
+  validates_length_of :password, within: 5..40, if: Proc.new { |user|
     user.read_attribute('password').nil? or user.password.to_s.length > 0
   }
 
@@ -248,5 +248,5 @@ class User < ActiveRecord::Base
   validates_presence_of :email
 
   validates_confirmation_of :password
-  validates_length_of :login, :within => 3..40
+  validates_length_of :login, within: 3..40
 end

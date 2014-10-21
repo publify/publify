@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'shared/_atom_header.atom.builder', :type => :view do
+describe 'shared/_atom_header.atom.builder', type: :view do
   let!(:blog) { create :blog }
 
   describe 'with no items' do

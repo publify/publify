@@ -1,7 +1,7 @@
 # coding: utf-8
 require 'rails_helper'
 
-describe Page, :type => :model do
+describe Page, type: :model do
   let!(:blog) { create(:blog) }
 
   describe 'name=' do

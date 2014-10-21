@@ -83,7 +83,7 @@ class Note < Content
     begin
       options = {}
       if self.in_reply_to_status_id and self.in_reply_to_status_id != ''
-        options = {:in_reply_to_status_id => self.in_reply_to_status_id}
+        options = {in_reply_to_status_id: self.in_reply_to_status_id}
         self.in_reply_to_message = twitter.status(self.in_reply_to_status_id).to_json
       end
       tweet = twitter.update(self.twitter_message, options)
@@ -110,11 +110,11 @@ class Note < Content
 
   def permalink_url(anchor=nil, only_path=false)
     blog.url_for(
-      :controller => '/notes',
-      :action => 'show',
-      :permalink => permalink,
-      :anchor => anchor,
-      :only_path => only_path
+      controller: '/notes',
+      action: 'show',
+      permalink: permalink,
+      anchor: anchor,
+      only_path: only_path
     )
   end
 

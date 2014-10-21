@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'shared/_page_header.html.erb', :type => :view do
+describe 'shared/_page_header.html.erb', type: :view do
   let!(:blog) { build_stubbed :blog }
 
   context 'when rendered as if from the articles controller' do
