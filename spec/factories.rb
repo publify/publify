@@ -4,13 +4,13 @@
 FactoryGirl.define do
 
   sequence :name do |n|; "name_#{n}"; end
-  sequence :body do |n|; "body #{n}" * (n+3 % 5) ; end
-  sequence :user do |n|; "user#{n}" ; end
-  sequence :email do |n|; "user#{n}@example.com" ; end
-  sequence :guid do |n|; "deadbeef#{n}" ; end
-  sequence :label do |n|; "lab_#{n}" ; end
-  sequence :file_name do |f|; "file_name_#{f}" ; end
-  sequence :time do |n|; DateTime.new(2012,3,26,19,56) - n ; end
+  sequence :body do |n|; "body #{n}" * (n + 3 % 5); end
+  sequence :user do |n|; "user#{n}"; end
+  sequence :email do |n|; "user#{n}@example.com"; end
+  sequence :guid do |n|; "deadbeef#{n}"; end
+  sequence :label do |n|; "lab_#{n}"; end
+  sequence :file_name do |f|; "file_name_#{f}"; end
+  sequence :time do |n|; DateTime.new(2012, 3, 26, 19, 56) - n; end
 
   factory :user do
     login { FactoryGirl.generate(:user) }
@@ -63,7 +63,7 @@ FactoryGirl.define do
     extended 'extended content for fun'
     guid
     permalink 'a-big-article'
-    published_at DateTime.new(2005,1,1,2,0,0)
+    published_at DateTime.new(2005, 1, 1, 2, 0, 0)
     user
     tags []
     published_comments []
@@ -188,7 +188,7 @@ http://alsoping.example.com/rpc/ping"
   end
 
   factory :profile, class: :profile do
-    label {FactoryGirl.generate(:label)}
+    label { FactoryGirl.generate(:label) }
     nicename 'Publify contributor'
     modules [:dashboard, :profile]
 
@@ -209,12 +209,12 @@ http://alsoping.example.com/rpc/ping"
   end
 
   factory :tag do |tag|
-    tag.name {FactoryGirl.generate(:name)}
+    tag.name { FactoryGirl.generate(:name) }
     tag.display_name { |a| a.name }
   end
 
   factory :resource do |r|
-    r.upload {FactoryGirl.generate(:file_name)}
+    r.upload { FactoryGirl.generate(:file_name) }
     r.mime 'image/jpeg'
     r.size 110
   end
@@ -283,9 +283,9 @@ http://alsoping.example.com/rpc/ping"
   end
 
   factory :page do
-    name {FactoryGirl.generate(:name)}
+    name { FactoryGirl.generate(:name) }
     title 'Page One Title'
-    body {FactoryGirl.generate(:body)}
+    body { FactoryGirl.generate(:body) }
     created_at '2005-05-05 01:00:01'
     published_at '2005-05-05 01:00:01'
     updated_at '2005-05-05 01:00:01'

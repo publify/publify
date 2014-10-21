@@ -23,7 +23,7 @@ describe PostType, type: :model do
   end
   
   it 'post types are unique' do
-    expect {PostType.create!(name: 'test')}.not_to raise_error
+    expect { PostType.create!(name: 'test') }.not_to raise_error
     test_type = PostType.new(name: 'test')
     expect(test_type).not_to be_valid
     expect(test_type.errors[:name]).to eq(['has already been taken'])

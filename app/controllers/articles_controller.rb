@@ -6,7 +6,7 @@ class ArticlesController < ContentController
   layout 'default.html.erb', except: [:comment_preview, :trackback]
 
   cache_sweeper :blog_sweeper
-  caches_page :index, :archives, :read, :view_page, :redirect, if: Proc.new {|c| c.request.query_string == ''}
+  caches_page :index, :archives, :read, :view_page, :redirect, if: Proc.new { |c| c.request.query_string == '' }
 
   helper :'admin/base'
 
@@ -49,7 +49,7 @@ class ArticlesController < ContentController
   end
 
   def search
-    @articles = this_blog.articles_matching(params[:q], page: params[:page], per_page: this_blog.per_page(params[:format]) )
+    @articles = this_blog.articles_matching(params[:q], page: params[:page], per_page: this_blog.per_page(params[:format]))
     return error! if @articles.empty?
     @page_title = this_blog.search_title_template.to_title(@articles, this_blog, params)
     @description = this_blog.search_desc_template.to_title(@articles, this_blog, params)
@@ -129,7 +129,7 @@ class ArticlesController < ContentController
   end
 
   def view_page
-    if(@page = Page.find_by_name(Array(params[:name]).join('/'))) && @page.published?
+    if (@page = Page.find_by_name(Array(params[:name]).join('/'))) && @page.published?
       @page_title = @page.title
       @description = this_blog.meta_description
       @keywords = this_blog.meta_keywords
@@ -146,7 +146,7 @@ class ArticlesController < ContentController
   private
 
   def verify_config
-    if  ! this_blog.configured?
+    if  !this_blog.configured?
       redirect_to controller: 'setup', action: 'index'
     elsif User.count == 0
       redirect_to controller: 'accounts', action: 'signup'
@@ -201,10 +201,10 @@ class ArticlesController < ContentController
   def extract_feed_format(from)
     if from =~ /^.*\.rss$/
       request.format = 'rss'
-      from = from.gsub(/\.rss/,'')
+      from = from.gsub(/\.rss/, '')
     elsif from =~ /^.*\.atom$/
       request.format = 'atom'
-      from = from.gsub(/\.atom$/,'')
+      from = from.gsub(/\.atom$/, '')
     end
     from
   end

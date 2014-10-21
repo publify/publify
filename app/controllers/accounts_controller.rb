@@ -104,7 +104,7 @@ class AccountsController < ApplicationController
   end
 
   def redirect_back_or_default
-    redirect_to(session[:return_to] || {controller: 'admin/dashboard', action: 'index'})
+    redirect_to(session[:return_to] || { controller: 'admin/dashboard', action: 'index' })
     session[:return_to] = nil
   end
 end

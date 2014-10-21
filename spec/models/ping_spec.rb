@@ -68,7 +68,7 @@ describe Ping, type: :model do
       # TODO: Assert the following:
       # contents(:markdown_article) #in markdown format\n * we\n * use\n [ok](http://blog.ok.com) to define a link
 
-      article = create(:article, title: 'How made link with markdown', excerpt: 'A content with several data' )
+      article = create(:article, title: 'How made link with markdown', excerpt: 'A content with several data')
       post = "title=#{CGI.escape(article.title)}"
       post << "&excerpt=#{CGI.escape('A content with several data')}" # not original text see if normal ?
       post << "&url=#{article.permalink_url}"

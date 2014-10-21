@@ -3,7 +3,7 @@ require 'rails_helper'
 describe XmlController, type: :controller do
   before do
     create(:blog, base_url: 'http://myblog.net')
-    allow(Trigger).to receive(:fire) { }
+    allow(Trigger).to receive(:fire) {}
   end
 
   def assert_moved_permanently_to(location)
@@ -74,7 +74,7 @@ describe XmlController, type: :controller do
 
       it 'redirects tag feed to tag Atom feed' do
         get :feed, format: 'atom10', type: 'tag', id: 'foo'
-        assert_moved_permanently_to tag_url('foo',format: 'atom')
+        assert_moved_permanently_to tag_url('foo', format: 'atom')
       end
     end
 

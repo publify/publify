@@ -34,8 +34,8 @@ describe 'With no amazon sidebars', type: :model do
                            associate_id: 'justasummary-21',
                            maxlinks: 3)
     expect(sb).to be_valid
-    expect(sb.title).to        eq('Books')
+    expect(sb.title).to eq('Books')
     expect(sb.associate_id).to eq('justasummary-21')
-    expect(sb.maxlinks).to     eq(3)
+    expect(sb.maxlinks).to eq(3)
   end
 end

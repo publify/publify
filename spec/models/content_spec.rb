@@ -80,34 +80,34 @@ describe Content, type: :model do
       end
 
       context 'with a matching searchstring article' do
-        let(:params) { {searchstring: 'a search string'} }
+        let(:params) { { searchstring: 'a search string' } }
         let!(:match_article) { create(:article, body: 'there is a search string here') }
         it { expect(subject).to eq([match_article]) }
       end
 
       context 'with an article published_at' do
-        let(:params) { {published_at: '2012-02'} }
+        let(:params) { { published_at: '2012-02' } }
         let!(:article) { create(:article) }
-        let!(:match_article) { create(:article, published_at: DateTime.new(2012,2,13)) }
+        let!(:match_article) { create(:article, published_at: DateTime.new(2012, 2, 13)) }
         it { expect(subject).to eq([match_article]) }
       end
 
       context 'with same user_id article' do
-        let(:params) { {user_id: '13'} }
+        let(:params) { { user_id: '13' } }
         let!(:article) { create(:article) }
         let!(:match_article) { create(:article, user_id: 13) }
         it { expect(subject).to eq([match_article]) }
       end
 
       context 'with not published status article' do
-        let(:params) { {published: '0' } }
+        let(:params) { { published: '0' } }
         let!(:article) { create(:article) }
         let!(:match_article) { create(:article, published: false, state: 'draft') }
         it { expect(subject).to eq([match_article]) }
       end
 
       context 'with published status article' do
-        let(:params) { {published: '1' } }
+        let(:params) { { published: '1' } }
         let!(:article) { create(:article, published: true) }
         it { expect(subject).to eq([article]) }
       end
@@ -120,7 +120,7 @@ describe Content, type: :model do
       let!(:blog) { create(:blog, comment_text_filter: 'textile') }
 
       context 'comment with italic and bold' do
-        let(:comment) {build(:comment, body: 'Comment body _italic_ *bold*')}
+        let(:comment) { build(:comment, body: 'Comment body _italic_ *bold*') }
 
         it { expect(comment.generate_html(:body)).to match(/\<em\>italic\<\/em\>/) }
         it { expect(comment.generate_html(:body)).to match(/\<strong\>bold\<\/strong\>/) }

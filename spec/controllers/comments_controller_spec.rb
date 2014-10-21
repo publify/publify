@@ -6,7 +6,7 @@ describe CommentsController, type: :controller do
   describe 'create' do
     describe 'Basic comment creation' do
       let(:article) { create(:article) }
-      let(:comment) { {body: 'content', author: 'bob', email: 'bob@home', url: 'http://bobs.home/'} }
+      let(:comment) { { body: 'content', author: 'bob', email: 'bob@home', url: 'http://bobs.home/' } }
 
       before { post :create, comment: comment, article_id: article.id }
 
@@ -21,14 +21,14 @@ describe CommentsController, type: :controller do
 
     it 'should redirect to the article' do
       article = create(:article, created_at: '2005-01-01 02:00:00')
-      post :create, comment: {body: 'content', author: 'bob'}, article_id: article.id
+      post :create, comment: { body: 'content', author: 'bob' }, article_id: article.id
       expect(response).to redirect_to("#{blog.base_url}/#{article.created_at.year}/#{sprintf('%.2d', article.created_at.month)}/#{sprintf('%.2d', article.created_at.day)}/#{article.permalink}")
     end
   end
 
   describe 'AJAX creation' do
     it 'should render the comment partial' do
-      xhr :post, :create, comment: {body: 'content', author: 'bob'}, article_id: create(:article).id
+      xhr :post, :create, comment: { body: 'content', author: 'bob' }, article_id: create(:article).id
       expect(response).to render_template('articles/_comment')
     end
   end
@@ -79,10 +79,10 @@ describe CommentsController, type: :controller do
 
       context 'with article' do
         let!(:article) { create(:article) }
-        before(:each) { get :index, format: 'rss', article_id: article.id}
+        before(:each) { get :index, format: 'rss', article_id: article.id }
 
-        it {expect(response).to be_success}
-        it {expect(response).to render_template('index_rss_feed')}
+        it { expect(response).to be_success }
+        it { expect(response).to render_template('index_rss_feed') }
       end
     end
   end

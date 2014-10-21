@@ -11,7 +11,7 @@ class GroupingController < ContentController
     if klass
       @grouping_class = klass
     end
-    @grouping_class ||= to_s.sub(/Controller$/,'').singularize.constantize
+    @grouping_class ||= to_s.sub(/Controller$/, '').singularize.constantize
   end
 
   def self.ivar_name
@@ -22,7 +22,7 @@ class GroupingController < ContentController
     self.groupings = grouping_class.page(params[:page]).per(100)
     @page_title = controller_name.capitalize
     @keywords = ''
-    @description = "#{self.class.to_s.sub(/Controller$/,'')} for #{this_blog.blog_name}"
+    @description = "#{self.class.to_s.sub(/Controller$/, '')} for #{this_blog.blog_name}"
   end
 
   def show
@@ -52,12 +52,12 @@ class GroupingController < ContentController
       end
 
       format.atom {
-        @articles = @articles[0,this_blog.limit_rss_display]
+        @articles = @articles[0, this_blog.limit_rss_display]
         render 'articles/index_atom_feed', layout: false
       }
 
       format.rss  {
-        @articles = @articles[0,this_blog.limit_rss_display]
+        @articles = @articles[0, this_blog.limit_rss_display]
         render 'articles/index_rss_feed', layout: false
       }
     end
@@ -79,7 +79,7 @@ class GroupingController < ContentController
   end
 
   def grouping_name
-    @grouping_name ||= self.class.to_s.sub(/Controller$/,'')
+    @grouping_name ||= self.class.to_s.sub(/Controller$/, '')
   end
 
   def show_page_title_for _grouping, _page

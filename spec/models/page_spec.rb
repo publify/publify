@@ -54,7 +54,7 @@ describe Page, type: :model do
       end
 
       context 'with a matching searchstring page' do
-        let(:params) { {searchstring: 'foobar'} }
+        let(:params) { { searchstring: 'foobar' } }
         let!(:match_page) { create(:page, title: 'foobar') }
         it { expect(subject).to eq([match_page]) }
       end
@@ -62,7 +62,7 @@ describe Page, type: :model do
       context 'with 2 pages with title aaa and zzz' do
         let!(:last_page) { create(:page, title: 'ZZZ', published: true) }
         let!(:first_page) { create(:page, title: 'AAA', published: true) }
-        let(:params) { {published: '1'} }
+        let(:params) { { published: '1' } }
         it { expect(subject).to eq([first_page, page, last_page]) }
       end
     end
@@ -76,7 +76,7 @@ describe Page, type: :model do
 
     context 'with an unpublished page' do
       let(:page) { create(:page, published: false) }
-      it { expect(page.redirects).to be_empty}
+      it { expect(page.redirects).to be_empty }
     end
 
   end

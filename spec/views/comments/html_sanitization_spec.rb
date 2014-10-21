@@ -54,7 +54,7 @@ describe 'Second dodgy comment', type: :view do
   it_should_behave_like 'CommentSanitization'
 
   def comment_options
-    { body: 'link to [spammy goodness](http://spammer.example.com)'}
+    { body: 'link to [spammy goodness](http://spammer.example.com)' }
   end
 end
 
@@ -62,7 +62,7 @@ describe 'Dodgy comment #3', type: :view do
   it_should_behave_like 'CommentSanitization'
 
   def comment_options
-    { body: 'link to <a href="spammer.com">spammy goodness</a>'}
+    { body: 'link to <a href="spammer.com">spammy goodness</a>' }
   end
 end
 
@@ -87,7 +87,7 @@ end
 describe 'XSS2', type: :view do
   it_should_behave_like 'CommentSanitization'
   def comment_options
-    { body: %{<a href="#" onclick="javascript">bad link</a>}}
+    { body: %{<a href="#" onclick="javascript">bad link</a>} }
   end
 end
 
@@ -95,7 +95,7 @@ describe 'XSS2', type: :view do
   it_should_behave_like 'CommentSanitization'
 
   def comment_options
-    { body: %{<a href="javascript:bad">bad link</a>}}
+    { body: %{<a href="javascript:bad">bad link</a>} }
   end
 end
 
@@ -171,7 +171,7 @@ describe 'Second dodgy comment with dofollow', type: :view do
   it_should_behave_like 'CommentSanitizationWithDofollow'
 
   def comment_options
-    { body: 'link to [spammy goodness](http://spammer.example.com)'}
+    { body: 'link to [spammy goodness](http://spammer.example.com)' }
   end
 end
 
@@ -179,7 +179,7 @@ describe 'Dodgy comment #3 with dofollow', type: :view do
   it_should_behave_like 'CommentSanitizationWithDofollow'
 
   def comment_options
-    { body: 'link to <a href="spammer.com">spammy goodness</a>'}
+    { body: 'link to <a href="spammer.com">spammy goodness</a>' }
   end
 end
 
@@ -204,7 +204,7 @@ end
 describe 'XSS2 with dofollow', type: :view do
   it_should_behave_like 'CommentSanitizationWithDofollow'
   def comment_options
-    { body: %{<a href="#" onclick="javascript">bad link</a>}}
+    { body: %{<a href="#" onclick="javascript">bad link</a>} }
   end
 end
 
@@ -212,7 +212,7 @@ describe 'XSS2 with dofollow', type: :view do
   it_should_behave_like 'CommentSanitizationWithDofollow'
 
   def comment_options
-    { body: %{<a href="javascript:bad">bad link</a>}}
+    { body: %{<a href="javascript:bad">bad link</a>} }
   end
 end
 

@@ -30,11 +30,11 @@ class Note < Content
     save
   end
 
-  def categories;[];end
-  def tags;[];end
+  def categories; []; end
+  def tags; []; end
 
   def html_preprocess(_field, html)
-    PublifyApp::Textfilter::Twitterfilter.filtertext(nil,nil,html,nil).nofollowify
+    PublifyApp::Textfilter::Twitterfilter.filtertext(nil, nil, html, nil).nofollowify
   end
 
   def initialize(*args)
@@ -83,7 +83,7 @@ class Note < Content
     begin
       options = {}
       if in_reply_to_status_id and in_reply_to_status_id != ''
-        options = {in_reply_to_status_id: in_reply_to_status_id}
+        options = { in_reply_to_status_id: in_reply_to_status_id }
         self.in_reply_to_message = twitter.status(in_reply_to_status_id).to_json
       end
       tweet = twitter.update(twitter_message, options)
@@ -108,7 +108,7 @@ class Note < Content
     user.admin? || user_id == user.id
   end
 
-  def permalink_url(anchor=nil, only_path=false)
+  def permalink_url(anchor = nil, only_path = false)
     blog.url_for(
       controller: '/notes',
       action: 'show',

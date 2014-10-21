@@ -16,9 +16,9 @@ class Article < Content
   has_many :pings, -> { order('created_at ASC') }, dependent: :destroy
   has_many :trackbacks, -> { order('created_at ASC') }, dependent: :destroy
   has_many :feedback, -> { order('created_at DESC') }
-  has_many :resources, -> {order('created_at DESC') }, dependent: :nullify
+  has_many :resources, -> { order('created_at DESC') }, dependent: :nullify
   has_many :triggers, as: :pending_item
-  has_many :comments, -> {order('created_at ASC')}, dependent: :destroy do
+  has_many :comments, -> { order('created_at ASC') }, dependent: :destroy do
     # Get only ham or presumed_ham comments
     def ham
       where(state: ['presumed_ham', 'ham'])
@@ -42,8 +42,8 @@ class Article < Content
 
   scope :drafts, lambda { where(state: 'draft').order('created_at DESC') }
   scope :child_of, lambda { |article_id| where(parent_id: article_id) }
-  scope :published_at, lambda {|time_params| published.where(published_at: PublifyTime.delta(*time_params)).order('published_at DESC')}
-  scope :published_since, lambda {|time| published.where('published_at > ?', time).order('published_at DESC') }
+  scope :published_at, lambda { |time_params| published.where(published_at: PublifyTime.delta(*time_params)).order('published_at DESC') }
+  scope :published_since, lambda { |time| published.where('published_at > ?', time).order('published_at DESC') }
   scope :withdrawn, lambda { where(state: 'withdrawn').order('published_at DESC') }
   scope :pending, lambda { where('state = ? and published_at > ?', 'publication_pending', Time.now).order('published_at DESC') }
 
@@ -113,7 +113,7 @@ class Article < Content
     scoped.order('created_at DESC')
   end
 
-  def permalink_url(anchor=nil, only_path=false)
+  def permalink_url(anchor = nil, only_path = false)
     @cached_permalink_url ||= {}
     @cached_permalink_url["#{anchor}#{only_path}"] ||= blog.url_for(permalink_url_options, anchor: anchor, only_path: only_path)
   end
@@ -142,7 +142,7 @@ class Article < Content
   end
 
   def feed_url(format)
-    "#{permalink_url}.#{format.gsub(/\d/,'')}"
+    "#{permalink_url}.#{format.gsub(/\d/, '')}"
   end
 
   def really_send_pings
@@ -179,7 +179,7 @@ class Article < Content
 
   def self.find_by_published_at
     result = select('published_at').where('published_at is not NULL').where(type: 'Article')
-    result.map{ |d| [d.published_at.strftime('%Y-%m')]}.uniq
+    result.map { |d| [d.published_at.strftime('%Y-%m')] }.uniq
   end
 
   # Finds one article which was posted on a certain date and matches the supplied dashed-title
@@ -205,7 +205,7 @@ class Article < Content
   end
 
   # Fulltext searches the body of published articles
-  def self.search(query, args={})
+  def self.search(query, args = {})
     query_s = query.to_s.strip
     if !query_s.empty? && args.empty?
       Article.searchstring(query)
@@ -237,7 +237,7 @@ class Article < Content
   def html_urls
     urls = Array.new
     html.gsub(/<a\s+[^>]*>/) do |tag|
-      if(tag =~ /\bhref=(["']?)([^ >"]+)\1/)
+      if (tag =~ /\bhref=(["']?)([^ >"]+)\1/)
         urls.push($2.strip)
       end
     end
@@ -334,7 +334,7 @@ class Article < Content
     format_url.gsub!('%month%', sprintf('%.2d', published_at.month))
     format_url.gsub!('%day%', sprintf('%.2d', published_at.day))
     format_url.gsub!('%title%', URI.encode(permalink.to_s))
-    if format_url[0,1] == '/'
+    if format_url[0, 1] == '/'
       format_url[1..-1]
     else
       format_url
@@ -343,7 +343,7 @@ class Article < Content
 
   def html_urls_to_ping
     urls_to_ping = []
-    html_urls.delete_if{|url| already_ping?(url)}.uniq.each do |url_to_ping|
+    html_urls.delete_if { |url| already_ping?(url) }.uniq.each do |url_to_ping|
       urls_to_ping << pings.build('url' => url_to_ping)
     end
     urls_to_ping

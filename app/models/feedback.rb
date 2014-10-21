@@ -22,7 +22,7 @@ class Feedback < ActiveRecord::Base
 
   scope :ham, -> { where("state in ('presumed_ham', 'ham')") }
   scope :spam, -> { where(state: 'spam') }
-  scope :published_since, lambda {|time| ham.where('published_at > ?', time)}
+  scope :published_since, lambda { |time| ham.where('published_at > ?', time) }
   scope :presumed_ham, -> { where(state: 'presumed_ham') }
   scope :presumed_spam, -> { where(state: 'presumed_spam') }
   scope :unapproved, -> { where(status_confirmed: false) }
@@ -59,8 +59,8 @@ class Feedback < ActiveRecord::Base
     article
   end
 
-  def permalink_url(_anchor=:ignored, only_path=false)
-    article.permalink_url("#{self.class.to_s.downcase}-#{id}",only_path)
+  def permalink_url(_anchor = :ignored, only_path = false)
+    article.permalink_url("#{self.class.to_s.downcase}-#{id}", only_path)
   end
 
   def html_postprocess(_field, html)
@@ -82,11 +82,11 @@ class Feedback < ActiveRecord::Base
   end
 
   def akismet_options
-    {comment_type: self.class.to_s.downcase,
+    { comment_type: self.class.to_s.downcase,
      comment_author: originator,
      comment_author_email: email,
      comment_author_url: url,
-     comment_content: body}
+     comment_content: body }
   end
 
   def spam_fields
@@ -109,7 +109,7 @@ class Feedback < ActiveRecord::Base
     end
   end
 
-  def sp_is_spam?(_options={})
+  def sp_is_spam?(_options = {})
     sp = SpamProtection.new(blog)
     Timeout.timeout(defined?($TESTING) ? 10 : 30) do
       spam_fields.any? do |field|
@@ -120,7 +120,7 @@ class Feedback < ActiveRecord::Base
     nil
   end
 
-  def akismet_is_spam?(_options={})
+  def akismet_is_spam?(_options = {})
     return false if akismet.nil?
 
     begin

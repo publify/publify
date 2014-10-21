@@ -2,7 +2,7 @@ class Trigger < ActiveRecord::Base
   belongs_to :pending_item, polymorphic: true
 
   class << self
-    def post_action(due_at, item, method='came_due')
+    def post_action(due_at, item, method = 'came_due')
       create!(due_at: due_at, pending_item: item,
               trigger_method: method)
       fire
@@ -28,7 +28,7 @@ class Trigger < ActiveRecord::Base
       end
     end
 
-    def remove(pending_item, conditions = { })
+    def remove(pending_item, conditions = {})
       return if pending_item.new_record?
       conditions = conditions.merge(pending_item_id: pending_item.id,
                                     pending_item_type: pending_item.class.to_s)

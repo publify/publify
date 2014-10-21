@@ -14,13 +14,13 @@ describe Blog, type: :model do
     end
 
     it 'values boolify like Perl' do
-      {'0 but true' => true, '' => false, 'false' => false, 1 => true, 0 => false, nil => false, 'f' => false }.each do |value, expected|
+      { '0 but true' => true, '' => false, 'false' => false, 1 => true, 0 => false, nil => false, 'f' => false }.each do |value, expected|
         @blog.sp_global = value
         expect(@blog.sp_global).to eq(expected)
       end
     end
 
-    ['','/sub-uri'].each do |sub_url|
+    ['', '/sub-uri'].each do |sub_url|
       describe "when running in with http://myblog.net#{sub_url}" do
 
         before :each do
@@ -211,12 +211,12 @@ http://anotherurl.net/other_line")
   describe '#allow_signup?' do
     context 'with a blog that allow signup' do
       let(:blog) { build(:blog, allow_signup: 1) }
-      it {expect(blog.allow_signup?).to be_truthy}
+      it { expect(blog.allow_signup?).to be_truthy }
     end
 
     context 'with a blog that not allow signup' do
       let(:blog) { build(:blog, allow_signup: 0) }
-      it {expect(blog.allow_signup?).to be_falsey}
+      it { expect(blog.allow_signup?).to be_falsey }
     end
   end
 

@@ -24,7 +24,7 @@ module ContentBase
   # Return HTML for some part of this object.
   def html(field = :all)
     if field == :all
-      generate_html(:all, content_fields.map{|f| self[f].to_s}.join("\n\n"))
+      generate_html(:all, content_fields.map { |f| self[f].to_s }.join("\n\n"))
     elsif html_map(field)
       generate_html(field)
     else

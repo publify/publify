@@ -6,8 +6,8 @@ class TextFilter < ActiveRecord::Base
 
   @text_helper = ContentTextHelpers.new
 
-  def sanitize(*args,&blk)
-    self.class.sanitize(*args,&blk)
+  def sanitize(*args, &blk)
+    self.class.sanitize(*args, &blk)
   end
 
   def self.available_filters
@@ -18,22 +18,22 @@ class TextFilter < ActiveRecord::Base
     available_filters.select { |filter| TextFilterPlugin::Macro > filter }
   end
 
-  TYPEMAP={TextFilterPlugin::Markup => 'markup',
+  TYPEMAP = { TextFilterPlugin::Markup => 'markup',
            TextFilterPlugin::MacroPre => 'macropre',
            TextFilterPlugin::MacroPost => 'macropost',
            TextFilterPlugin::PostProcess => 'postprocess',
-           TextFilterPlugin => 'other'}
+           TextFilterPlugin => 'other' }
 
   def self.available_filter_types
-    filters=available_filters
+    filters = available_filters
     @cached_filter_types ||= {}
 
     unless @cached_filter_types[filters]
-      types={'macropre' => [],
+      types = { 'macropre' => [],
              'macropost' => [],
              'markup' => [],
              'postprocess' => [],
-             'other' => []}
+             'other' => [] }
 
       filters.each { |filter| types[TYPEMAP[filter.superclass]].push(filter) }
 
@@ -46,8 +46,8 @@ class TextFilter < ActiveRecord::Base
     TextFilterPlugin.filter_map
   end
 
-  def self.filter_text(blog, text, content, filters, filterparams={})
-    map=TextFilter.filters_map
+  def self.filter_text(blog, text, content, filters, filterparams = {})
+    map = TextFilter.filters_map
 
     filters.each do |filter|
       next if filter == nil
@@ -79,8 +79,8 @@ class TextFilter < ActiveRecord::Base
 
     help = []
     help.push(filter_map[markup])
-    filter_types['macropre'].sort_by {|f| f.short_name}.each { |f| help.push f }
-    filter_types['macropost'].sort_by {|f| f.short_name}.each { |f| help.push f }
+    filter_types['macropre'].sort_by { |f| f.short_name }.each { |f| help.push f }
+    filter_types['macropost'].sort_by { |f| f.short_name }.each { |f| help.push f }
     filters.each { |f| help.push(filter_map[f.to_s]) }
 
     help_text = help.collect do |f|

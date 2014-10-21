@@ -131,7 +131,7 @@ describe User, type: :model do
 
     it 'should not be able to create another user with the same login' do
       login = @olduser.login
-      u = User.new(login: login) {|u| u.password = u.password_confirmation = 'secure password'}
+      u = User.new(login: login) { |u| u.password = u.password_confirmation = 'secure password' }
 
       expect(u).not_to be_valid
       expect(u.errors['login']).to be_any
@@ -277,7 +277,7 @@ describe User, type: :model do
 
   describe "User's Twitter configuration" do
     it 'A user without twitter_oauth_token or twitter_oauth_token_secret should not have Twitter configured' do
-      user = build(:user, twitter_oauth_token:nil, twitter_oauth_token_secret:nil)
+      user = build(:user, twitter_oauth_token: nil, twitter_oauth_token_secret: nil)
       expect(user.has_twitter_configured?).to eq(false)
     end
 

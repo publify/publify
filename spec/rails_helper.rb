@@ -22,14 +22,14 @@ end
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
-Dir[Rails.root.join('spec/support/**/*.rb')].each {|f| require f}
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 module RSpec
   module Core
     module Hooks
       class HookCollection
         def find_hooks_for(group)
-          self.class.new(select {|hook| hook.options_apply?(group)})
+          self.class.new(select { |hook| hook.options_apply?(group) })
         end
       end
     end
@@ -87,7 +87,7 @@ def assert_rss20 feed, count
   expect(root.css('channel item').count).to eq(count)
 end
 
-def stub_full_article(time=Time.now)
+def stub_full_article(time = Time.now)
   author = FactoryGirl.build_stubbed(User, name: 'User Name')
   text_filter = FactoryGirl.build(:textile)
 
@@ -112,10 +112,10 @@ end
 # Finally, copy src/demo.py into your path as 'feedvalidator', make it executable,
 # and change the first line to something like '#!/usr/bin/python'.
 
-if($validator_installed == nil)
+if ($validator_installed == nil)
   $validator_installed = false
   begin
-    IO.popen('feedvalidator 2> /dev/null','r') do |pipe|
+    IO.popen('feedvalidator 2> /dev/null', 'r') do |pipe|
       if (pipe.read =~ %r{Validating http://www.intertwingly.net/blog/index.})
         puts 'Using locally installed Python feed validator'
         $validator_installed = true
@@ -126,7 +126,7 @@ if($validator_installed == nil)
   end
 end
 
-def assert_feedvalidator(rss, todo=nil)
+def assert_feedvalidator(rss, todo = nil)
   unless $validator_installed
     puts 'Not validating feed because no validator (feedvalidator in python) is installed'
     return
@@ -146,21 +146,21 @@ def assert_feedvalidator(rss, todo=nil)
 
     okay, messages = parse_validator_messages(messages)
 
-    if todo && ! ENV['RUN_TODO_TESTS']
-      assert !okay, messages + "\nTest unexpectedly passed!\nFeed text:\n"+rss
+    if todo && !ENV['RUN_TODO_TESTS']
+      assert !okay, messages + "\nTest unexpectedly passed!\nFeed text:\n" + rss
     else
-      assert okay, messages + "\nFeed text:\n"+rss
+      assert okay, messages + "\nFeed text:\n" + rss
     end
   end
 end
 
 def parse_validator_messages(message)
-  messages=message.split(/\n/).reject do |m|
+  messages = message.split(/\n/).reject do |m|
     m =~ /Feeds should not be served with the "text\/plain" media type/ ||
       m =~ /Self reference doesn't match document location/
   end
 
-  if(messages.size > 1)
+  if (messages.size > 1)
     [false, messages.join("\n")]
   else
     [true, '']
