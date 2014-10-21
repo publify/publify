@@ -27,7 +27,7 @@ class Content < ActiveRecord::Base
   scope :searchstring, lambda { |search_string|
     tokens = search_string.split(' ').collect {|c| "%#{c.downcase}%"}
     where('state = ? AND ' + (['(LOWER(body) LIKE ? OR LOWER(extended) LIKE ? OR LOWER(title) LIKE ?)']*tokens.size).join(' AND '),
-                     "published", *tokens.collect{ |token| [token] * 3 }.flatten)
+                     'published', *tokens.collect{ |token| [token] * 3 }.flatten)
   }
   scope :already_published, lambda { where('published = ? AND published_at < ?', true, Time.now).order(default_order) }
 
@@ -121,8 +121,8 @@ class Content < ActiveRecord::Base
   end
 
   def get_rss_description
-    return "" unless blog.rss_description
-    return "" unless respond_to?(:user) && self.user && self.user.name
+    return '' unless blog.rss_description
+    return '' unless respond_to?(:user) && self.user && self.user.name
 
     rss_desc = blog.rss_description_text
     rss_desc.gsub!('%author%', self.user.name)

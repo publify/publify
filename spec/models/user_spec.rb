@@ -65,7 +65,7 @@ describe User, :type => :model do
       set_password 'a secure password'
     end
 
-    describe "the password" do
+    describe 'the password' do
       it 'can be just right' do
         set_password 'Just right'
         expect(@user).to be_valid
@@ -82,9 +82,9 @@ describe User, :type => :model do
         end
       end
 
-      it "has to match confirmation" do
-        @user.password = "foo"
-        @user.password_confirmation = "bar"
+      it 'has to match confirmation' do
+        @user.password = 'foo'
+        @user.password_confirmation = 'bar'
         expect(@user).not_to be_valid
         expect(@user.errors['password']).to be_any
       end
@@ -113,7 +113,7 @@ describe User, :type => :model do
       expect(@user).not_to be_valid
     end
 
-    describe "#display_name" do
+    describe '#display_name' do
       it 'should not be blank' do
         expect(@user.display_name).not_to be_empty
       end
@@ -145,7 +145,7 @@ describe User, :type => :model do
       @user.save!
     end
 
-    describe "the password" do
+    describe 'the password' do
       { 'just right' => 'Just right',
         'empty' => ''
       }.each do |ok, password|
@@ -165,14 +165,14 @@ describe User, :type => :model do
         end
       end
 
-      it "has to match confirmation" do
-        @user.password = "foo"
-        @user.password_confirmation = "bar"
+      it 'has to match confirmation' do
+        @user.password = 'foo'
+        @user.password_confirmation = 'bar'
         expect(@user).not_to be_valid
         expect(@user.errors['password']).to be_any
       end
 
-      it "is not actually changed when set to empty" do
+      it 'is not actually changed when set to empty' do
         set_password ''
         @user.save!
         expect(User.authenticate(@user.login, '')).to be_nil
@@ -180,8 +180,8 @@ describe User, :type => :model do
       end
     end
 
-    describe "saving twice" do
-      it "should not change the password" do
+    describe 'saving twice' do
+      it 'should not change the password' do
         expect(found = User.authenticate(@user.login, 'a secure password')).to eq(@user)
         found.save
         found.save
@@ -201,9 +201,9 @@ describe User, :type => :model do
     end
   end
 
-  describe "#initialize" do
-    it "accepts a settings field in its parameter hash" do
-      User.new({"firstname" => 'foo'})
+  describe '#initialize' do
+    it 'accepts a settings field in its parameter hash' do
+      User.new({'firstname' => 'foo'})
     end
   end
 
@@ -219,8 +219,8 @@ describe User, :type => :model do
     end
   end
 
-  describe "#generate_password!" do
-    it "set a 7 char length password" do
+  describe '#generate_password!' do
+    it 'set a 7 char length password' do
       user = User.new
       expect(user).to receive(:rand).exactly(7).times.and_return(0)
       expect(user).to receive(:password=).with('a' * 7)
@@ -228,96 +228,96 @@ describe User, :type => :model do
     end
   end
 
-  describe "default_text_filter" do
-    it "returns user text_filter" do
+  describe 'default_text_filter' do
+    it 'returns user text_filter' do
       blog = create(:blog)
       user = build(:user)
       expect(user.default_text_filter.name).to eq(blog.text_filter)
     end
   end
 
-  describe "#first_and_last_name" do
-    context "with first and last name" do
+  describe '#first_and_last_name' do
+    context 'with first and last name' do
       let(:user) { create(:user, firstname: 'Marlon', lastname: 'Brando') }
       it { expect(user.first_and_last_name).to eq('Marlon Brando') }
     end
 
-    context "with firstname without lastname" do
+    context 'with firstname without lastname' do
       let(:user) { create(:user, firstname: 'Marlon', lastname: nil) }
       it { expect(user.first_and_last_name).to eq('') }
     end
   end
 
-  describe "#display_names" do
-    context "with user without nickname, firstname, lastname" do
+  describe '#display_names' do
+    context 'with user without nickname, firstname, lastname' do
       let(:user) { create(:user, nickname: nil, firstname: nil, lastname: nil) }
       it { expect(user.display_names).to eq([user.login]) }
     end
 
-    context "with user with nickname without firstname, lastname" do
+    context 'with user with nickname without firstname, lastname' do
       let(:user) { create(:user, nickname: 'Bob', firstname: nil, lastname: nil) }
       it { expect(user.display_names).to eq([user.login, user.nickname]) }
     end
 
-    context "with user with firstname, without nickname, lastname" do
+    context 'with user with firstname, without nickname, lastname' do
       let(:user) { create(:user, nickname: nil, firstname: 'Robert', lastname: nil) }
       it { expect(user.display_names).to eq([user.login, user.firstname]) }
     end
 
-    context "with user with lastname, without nickname, firstname" do
+    context 'with user with lastname, without nickname, firstname' do
       let(:user) { create(:user, nickname: nil, firstname: nil, lastname: 'Redford') }
       it { expect(user.display_names).to eq([user.login, user.lastname]) }
     end
 
-    context "with user with firstname and lastname, witjout nickname" do
+    context 'with user with firstname and lastname, witjout nickname' do
       let(:user) { create(:user, nickname: nil, firstname: 'Robert', lastname: 'Redford') }
       it { expect(user.display_names).to eq([user.login, user.firstname, user.lastname, "#{user.firstname} #{user.lastname}"]) }
     end
   end
 
   describe "User's Twitter configuration" do
-    it "A user without twitter_oauth_token or twitter_oauth_token_secret should not have Twitter configured" do
+    it 'A user without twitter_oauth_token or twitter_oauth_token_secret should not have Twitter configured' do
       user = build(:user, twitter_oauth_token:nil, twitter_oauth_token_secret:nil)
       expect(user.has_twitter_configured?).to eq(false)
     end
 
-    it "A user with an empty twitter_oauth_token and no twitter_oauth_token_secret should not have Twitter configured" do
-      user = build(:user, twitter_oauth_token: "", twitter_oauth_token_secret: nil)
+    it 'A user with an empty twitter_oauth_token and no twitter_oauth_token_secret should not have Twitter configured' do
+      user = build(:user, twitter_oauth_token: '', twitter_oauth_token_secret: nil)
       expect(user.has_twitter_configured?).to eq(false)
     end
 
-    it "A user with an empty twitter_oauth_token and an empty twitter_oauth_token_secret should not have Twitter configured" do
-      user = build(:user, twitter_oauth_token: "", twitter_oauth_token_secret: "")
+    it 'A user with an empty twitter_oauth_token and an empty twitter_oauth_token_secret should not have Twitter configured' do
+      user = build(:user, twitter_oauth_token: '', twitter_oauth_token_secret: '')
       expect(user.has_twitter_configured?).to eq(false)
     end
 
-    it "A user with a twitter_oauth_token and no twitter_oauth_token_secret should not have Twitter configured" do
-      user = build(:user, twitter_oauth_token: "12345", twitter_oauth_token_secret: '')
+    it 'A user with a twitter_oauth_token and no twitter_oauth_token_secret should not have Twitter configured' do
+      user = build(:user, twitter_oauth_token: '12345', twitter_oauth_token_secret: '')
       expect(user.has_twitter_configured?).to eq(false)
     end
 
-    it "A user with a twitter_oauth_token and an empty twitter_oauth_token_secret should not have Twitter configured" do
-      user = build(:user, twitter_oauth_token: "12345", twitter_oauth_token_secret: "")
+    it 'A user with a twitter_oauth_token and an empty twitter_oauth_token_secret should not have Twitter configured' do
+      user = build(:user, twitter_oauth_token: '12345', twitter_oauth_token_secret: '')
       expect(user.has_twitter_configured?).to eq(false)
     end
 
-    it "A user with a twitter_oauth_token_secret and no twitter_oauth_token should not have Twitter configured" do
-      user = build(:user, twitter_oauth_token: "", twitter_oauth_token_secret: "67890")
+    it 'A user with a twitter_oauth_token_secret and no twitter_oauth_token should not have Twitter configured' do
+      user = build(:user, twitter_oauth_token: '', twitter_oauth_token_secret: '67890')
       expect(user.has_twitter_configured?).to eq(false)
     end
 
-    it "A user with a twitter_oauth_token_secret and an empty twitter_oauth_token should not have Twitter configured" do
-      user = build(:user, twitter_oauth_token_secret: "67890", twitter_oauth_token: "")
+    it 'A user with a twitter_oauth_token_secret and an empty twitter_oauth_token should not have Twitter configured' do
+      user = build(:user, twitter_oauth_token_secret: '67890', twitter_oauth_token: '')
       expect(user.has_twitter_configured?).to eq(false)
     end
 
-    it "A user with a twitter_oauth_token and a twitter_oauth_token_secret should have Twitter configured" do
-      user = build(:user, twitter_oauth_token: "12345", twitter_oauth_token_secret: "67890")
+    it 'A user with a twitter_oauth_token and a twitter_oauth_token_secret should have Twitter configured' do
+      user = build(:user, twitter_oauth_token: '12345', twitter_oauth_token_secret: '67890')
       expect(user.has_twitter_configured?).to eq(true)
     end
   end
 
-  describe "#can_access_to" do
+  describe '#can_access_to' do
     let(:profile) { create(:profile, modules: modules) }
     let(:user) { create(:user, profile: profile) }
 

@@ -4,7 +4,7 @@ describe Admin::FeedbackController, :type => :controller do
 
   render_views
 
-  shared_examples_for "destroy feedback with feedback from own article" do
+  shared_examples_for 'destroy feedback with feedback from own article' do
     it 'should destroy feedback' do
       id = feedback_from_own_article.id
       expect do
@@ -51,7 +51,7 @@ describe Admin::FeedbackController, :type => :controller do
 
     describe 'destroy action' do
 
-      it_should_behave_like "destroy feedback with feedback from own article"
+      it_should_behave_like 'destroy feedback with feedback from own article'
 
       it "should destroy feedback from article doesn't own" do
         id = feedback_from_not_own_article.id
@@ -154,7 +154,7 @@ describe Admin::FeedbackController, :type => :controller do
     describe 'create action' do
 
       def base_comment(options = {})
-        {"body"=>"a new comment", "author"=>"Me", "url"=>"http://publify.co", "email"=>"dev@publify.co"}.merge(options)
+        {'body'=>'a new comment', 'author'=>'Me', 'url'=>'http://publify.co', 'email'=>'dev@publify.co'}.merge(options)
       end
 
       describe 'by get access' do
@@ -194,7 +194,7 @@ describe Admin::FeedbackController, :type => :controller do
           expect do
             post 'create', :article_id => article.id, :comment => base_comment
             expect(response).to redirect_to(:action => 'article', :id => article.id)
-          end.to change { Comment.count(:conditions => {:state => "ham"}) }
+          end.to change { Comment.count(:conditions => {:state => 'ham'}) }
         end
 
       end
@@ -263,7 +263,7 @@ describe Admin::FeedbackController, :type => :controller do
     end
 
     describe 'destroy action' do
-      it_should_behave_like "destroy feedback with feedback from own article"
+      it_should_behave_like 'destroy feedback with feedback from own article'
 
       it "should not destroy feedback doesn't own" do
         id = feedback_from_not_own_article.id
@@ -316,19 +316,19 @@ describe Admin::FeedbackController, :type => :controller do
     end
 
     describe '#bulkops action' do
-      it "redirect to index" do
+      it 'redirect to index' do
         post :bulkops, bulkop_top: 'destroy all spam'
         expect(@response).to redirect_to(action: 'index')
       end
 
-      it "delete all spam" do
+      it 'delete all spam' do
         Feedback.delete_all
         comment = FactoryGirl.create(:comment, state: :spam)
         post :bulkops, bulkop_top: 'Delete all spam'
         expect(Feedback.count).to eq(0)
       end
 
-      it "delete all spam and only confirmed spam" do
+      it 'delete all spam and only confirmed spam' do
         Feedback.delete_all
         FactoryGirl.create(:comment, state: :presumed_spam)
         FactoryGirl.create(:comment, state: :spam)
@@ -338,75 +338,75 @@ describe Admin::FeedbackController, :type => :controller do
         expect(Feedback.count).to eq(3)
       end
 
-      it "mark presumed spam comments as spam" do
+      it 'mark presumed spam comments as spam' do
         comment = FactoryGirl.create(:comment, state: :presumed_spam)
-        post :bulkops, bulkop_top: 'Mark Checked Items as Spam', feedback_check: {comment.id.to_s => "on"}
+        post :bulkops, bulkop_top: 'Mark Checked Items as Spam', feedback_check: {comment.id.to_s => 'on'}
         expect(Feedback.find(comment.id)).to be_spam
       end
 
-      it "mark confirmed spam comments as spam" do
+      it 'mark confirmed spam comments as spam' do
         comment = FactoryGirl.create(:comment, state: :spam)
-        post :bulkops, bulkop_top: 'Mark Checked Items as Spam', feedback_check: {comment.id.to_s => "on"}
+        post :bulkops, bulkop_top: 'Mark Checked Items as Spam', feedback_check: {comment.id.to_s => 'on'}
         expect(Feedback.find(comment.id)).to be_spam
       end
 
-      it "mark presumed ham comments as spam" do
+      it 'mark presumed ham comments as spam' do
         comment = FactoryGirl.create(:comment, state: :presumed_ham)
-        post :bulkops, bulkop_top: 'Mark Checked Items as Spam', feedback_check: {comment.id.to_s => "on"}
+        post :bulkops, bulkop_top: 'Mark Checked Items as Spam', feedback_check: {comment.id.to_s => 'on'}
         expect(Feedback.find(comment.id)).to be_spam
       end
 
-      it "mark ham comments as spam" do
+      it 'mark ham comments as spam' do
         comment = FactoryGirl.create(:comment, state: :ham)
-        post :bulkops, bulkop_top: 'Mark Checked Items as Spam', feedback_check: {comment.id.to_s => "on"}
+        post :bulkops, bulkop_top: 'Mark Checked Items as Spam', feedback_check: {comment.id.to_s => 'on'}
         expect(Feedback.find(comment.id)).to be_spam
       end
 
-      it "mark presumed spam comments as ham" do
+      it 'mark presumed spam comments as ham' do
         comment = FactoryGirl.create(:comment, state: :presumed_spam)
-        post :bulkops, bulkop_top: 'Mark Checked Items as Ham', feedback_check: {comment.id.to_s => "on"}
+        post :bulkops, bulkop_top: 'Mark Checked Items as Ham', feedback_check: {comment.id.to_s => 'on'}
         expect(Feedback.find(comment.id)).to be_ham
       end
 
-      it "mark confirmed spam comments as ham" do
+      it 'mark confirmed spam comments as ham' do
         comment = FactoryGirl.create(:comment, state: :spam)
-        post :bulkops, bulkop_top: 'Mark Checked Items as Ham', feedback_check: {comment.id.to_s => "on"}
+        post :bulkops, bulkop_top: 'Mark Checked Items as Ham', feedback_check: {comment.id.to_s => 'on'}
         expect(Feedback.find(comment.id)).to be_ham
       end
 
-      it "mark presumed ham comments as ham" do
+      it 'mark presumed ham comments as ham' do
         comment = FactoryGirl.create(:comment, state: :presumed_ham)
-        post :bulkops, bulkop_top: 'Mark Checked Items as Ham', feedback_check: {comment.id.to_s => "on"}
+        post :bulkops, bulkop_top: 'Mark Checked Items as Ham', feedback_check: {comment.id.to_s => 'on'}
         expect(Feedback.find(comment.id)).to be_ham
       end
 
-      it "mark ham comments as ham" do
+      it 'mark ham comments as ham' do
         comment = FactoryGirl.create(:comment, state: :ham)
-        post :bulkops, bulkop_top: 'Mark Checked Items as Ham', feedback_check: {comment.id.to_s => "on"}
+        post :bulkops, bulkop_top: 'Mark Checked Items as Ham', feedback_check: {comment.id.to_s => 'on'}
         expect(Feedback.find(comment.id)).to be_ham
       end
 
-      it "confirms presumed spam comments as spam" do
+      it 'confirms presumed spam comments as spam' do
         comment = FactoryGirl.create(:comment, state: :presumed_spam)
-        post :bulkops, bulkop_top: 'Confirm Classification of Checked Items', feedback_check: {comment.id.to_s => "on"}
+        post :bulkops, bulkop_top: 'Confirm Classification of Checked Items', feedback_check: {comment.id.to_s => 'on'}
         expect(Feedback.find(comment.id)).to be_spam
       end
 
-      it "confirms confirmed spam comments as spam" do
+      it 'confirms confirmed spam comments as spam' do
         comment = FactoryGirl.create(:comment, state: :spam)
-        post :bulkops, bulkop_top: 'Confirm Classification of Checked Items', feedback_check: {comment.id.to_s => "on"}
+        post :bulkops, bulkop_top: 'Confirm Classification of Checked Items', feedback_check: {comment.id.to_s => 'on'}
         expect(Feedback.find(comment.id)).to be_spam
       end
 
-      it "confirms presumed ham comments as ham" do
+      it 'confirms presumed ham comments as ham' do
         comment = FactoryGirl.create(:comment, state: :presumed_ham)
-        post :bulkops, bulkop_top: 'Confirm Classification of Checked Items', feedback_check: {comment.id.to_s => "on"}
+        post :bulkops, bulkop_top: 'Confirm Classification of Checked Items', feedback_check: {comment.id.to_s => 'on'}
         expect(Feedback.find(comment.id)).to be_ham
       end
 
-      it "confirms ham comments as ham" do
+      it 'confirms ham comments as ham' do
         comment = FactoryGirl.create(:comment, state: :ham)
-        post :bulkops, bulkop_top: 'Confirm Classification of Checked Items', feedback_check: {comment.id.to_s => "on"}
+        post :bulkops, bulkop_top: 'Confirm Classification of Checked Items', feedback_check: {comment.id.to_s => 'on'}
         expect(Feedback.find(comment.id)).to be_ham
       end
 

@@ -6,8 +6,8 @@ describe Theme, :type => :model do
 
   describe '#layout' do
     it 'returns "layouts/default.html" by default' do
-      theme = Theme.new("test", "test")
-      expect(theme.layout('index')).to eq "layouts/default.html"
+      theme = Theme.new('test', 'test')
+      expect(theme.layout('index')).to eq 'layouts/default.html'
     end
 
     # FIXME: Test pages layout
@@ -39,9 +39,9 @@ describe Theme, :type => :model do
       fake_red_theme_dir = 'fake_red_theme_dir'
       fake_bad_theme_dir = 'fake_bad_theme_dir'
       expect(Dir).to receive(:glob).and_return([fake_blue_theme_dir, fake_bad_theme_dir, fake_red_theme_dir])
-      expect(File).to receive(:readable?).with(fake_blue_theme_dir + "/about.markdown").and_return(true)
-      expect(File).to receive(:readable?).with(fake_bad_theme_dir + "/about.markdown").and_return(false)
-      expect(File).to receive(:readable?).with(fake_red_theme_dir + "/about.markdown").and_return(true)
+      expect(File).to receive(:readable?).with(fake_blue_theme_dir + '/about.markdown').and_return(true)
+      expect(File).to receive(:readable?).with(fake_bad_theme_dir + '/about.markdown').and_return(false)
+      expect(File).to receive(:readable?).with(fake_red_theme_dir + '/about.markdown').and_return(true)
       expect(Theme.search_theme_directory).to eq %w{ fake_blue_theme_dir fake_red_theme_dir }
     end
   end

@@ -9,19 +9,19 @@ module Admin::BaseHelper
     links = []
     links << link_to(t('.write_a_post'), controller: 'content', action: 'new') if current_user.can_access_to_articles?
     links << link_to(t('.write_a_page'), controller: 'pages', action: 'new') if current_user.can_access_to_pages?
-    links << link_to(t(".update_your_profile_or_change_your_password"), controller: 'profiles', action: 'index')
+    links << link_to(t('.update_your_profile_or_change_your_password'), controller: 'profiles', action: 'index')
     links.join(', ')
   end
 
   def show_redirect_actions item
     content_tag(:div, {:class => 'action'}) do
       [ button_to_edit(item),
-        button_to_delete(item) ].join(" ").html_safe
+        button_to_delete(item) ].join(' ').html_safe
     end
   end
 
   def show_rss_description
-    Article.first.get_rss_description rescue ""
+    Article.first.get_rss_description rescue ''
   end
 
   def show_tag_actions item
@@ -29,7 +29,7 @@ module Admin::BaseHelper
       [ button_to_edit(item),
         button_to_delete(item),
         link_to_permalink(item, "#{item.articles.size} <span class='glyphicon glyphicon-link'></span>".html_safe, nil, 'btn btn-success btn-xs').html_safe
-        ].join(" ").html_safe
+        ].join(' ').html_safe
     end
   end
 
@@ -53,7 +53,7 @@ module Admin::BaseHelper
   end
 
   def subtabs_for(current_module)
-    output = ""
+    output = ''
     AccessControl.submenus_for(current_user.profile_label, current_module).each do |m|
       if m.current_url?(params[:controller], params[:action])
         output << content_tag(:li, link_to(m.name, '#'), class: 'active')
@@ -96,7 +96,7 @@ module Admin::BaseHelper
     content_tag(:div, { :class => 'action', :style => '' }) do
       [ button_to_edit(item),
         button_to_delete(item),
-        button_to_short_url(item) ].join(" ").html_safe
+        button_to_short_url(item) ].join(' ').html_safe
     end
   end
 
@@ -115,7 +115,7 @@ module Admin::BaseHelper
     picture = "<a onclick=\"edInsertImageFromCarousel('article_body_and_extended', '#{image.upload.url}');\" />"
     picture << "<img class='tumb' src='#{image.upload.thumb.url}' "
     picture << "alt='#{image.upload.url}' />"
-    picture << "</a>"
+    picture << '</a>'
 
     return picture
   end
@@ -129,7 +129,7 @@ module Admin::BaseHelper
   end
 
   def button_to_short_url(item)
-    return "" if item.short_url.nil?
+    return '' if item.short_url.nil?
     link_to(content_tag(:span, '', class: 'glyphicon glyphicon-link'), item.short_url, {class: 'btn btn-success btn-xs btn-action'})
   end
 

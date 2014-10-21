@@ -18,7 +18,7 @@ class Admin::ResourcesController < Admin::BaseController
       flash[:warning] = I18n.t('admin.resources.upload.warning')
     end
 
-    redirect_to :action => "index"
+    redirect_to :action => 'index'
   end
 
   def index

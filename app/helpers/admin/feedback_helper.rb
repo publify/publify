@@ -7,18 +7,18 @@ module Admin::FeedbackHelper
   end
 
   def show_feedback_actions(item, context='listing')
-    return if current_user.profile.label == "contributor"
+    return if current_user.profile.label == 'contributor'
     content_tag(:div, { :class => 'action', :style => '' }) do
       [content_tag(:small, change_status(item, context)), 
         button_to_edit_comment(item),
         button_to_delete_comment(item),
         button_to_conversation(item)
-        ].join(" ").html_safe
+        ].join(' ').html_safe
     end
   end
   
   def button_to_edit_comment(item)
-    link_to(content_tag(:span, '', class: 'glyphicon glyphicon-pencil'), {controller: "admin/feedback", action: 'edit', id: item.id}, {class: 'btn btn-primary btn-xs btn-action'})
+    link_to(content_tag(:span, '', class: 'glyphicon glyphicon-pencil'), {controller: 'admin/feedback', action: 'edit', id: item.id}, {class: 'btn btn-primary btn-xs btn-action'})
   end
 
   def button_to_delete_comment(item)

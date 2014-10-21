@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-describe TagsController, "/index", :type => :controller do
+describe TagsController, '/index', :type => :controller do
   before do
     create(:blog)
     @tag = create(:tag)
     @tag.articles << create(:article)
   end
 
-  describe "normally" do
+  describe 'normally' do
     before do
       get 'index'
     end
@@ -28,7 +28,7 @@ describe TagsController, 'showing a single tag', :type => :controller do
     get 'show', :id => 'foo'
   end
 
-  describe "with some articles" do
+  describe 'with some articles' do
     before do
       @articles = 2.times.map { FactoryGirl.create(:article) }
       @tag.articles << @articles
@@ -76,7 +76,7 @@ describe TagsController, 'showing a single tag', :type => :controller do
     end
   end
 
-  describe "without articles" do
+  describe 'without articles' do
     # TODO: Perhaps we can show something like 'Nothing tagged with this tag'?
     it 'should redirect to main page' do
       do_get
@@ -111,7 +111,7 @@ describe TagsController, 'showing tag "foo"', :type => :controller do
   end
 end
 
-describe TagsController, "showing a non-existant tag", :type => :controller do
+describe TagsController, 'showing a non-existant tag', :type => :controller do
   # TODO: Perhaps we can show something like 'Nothing tagged with this tag'?
   it 'should redirect to main page' do
     FactoryGirl.create(:blog)
@@ -122,7 +122,7 @@ describe TagsController, "showing a non-existant tag", :type => :controller do
   end
 end
 
-describe TagsController, "password protected article", :type => :controller do
+describe TagsController, 'password protected article', :type => :controller do
   render_views
 
   it 'article in tag should be password protected' do
@@ -130,29 +130,29 @@ describe TagsController, "password protected article", :type => :controller do
     article = create(:article, password: 'password')
     foo = create(:tag, name: 'foo', articles: [article])
     get 'show', id: 'foo'
-    assert_tag tag: "input", attributes: { id: "article_password" }
+    assert_tag tag: 'input', attributes: { id: 'article_password' }
   end
 end
 
-describe TagsController, "SEO Options", :type => :controller do
+describe TagsController, 'SEO Options', :type => :controller do
   before(:each) do
     @blog = FactoryGirl.create(:blog)
     @a = FactoryGirl.create(:article)
     @foo = FactoryGirl.create(:tag, :name => 'foo', :articles => [@a])
   end
 
-  describe "keywords" do
+  describe 'keywords' do
     it 'does not assign keywords when the blog has no keywords' do
       get 'show', :id => 'foo'
 
-      expect(assigns(:keywords)).to eq ""
+      expect(assigns(:keywords)).to eq ''
     end
 
     it "assigns the blog's keywords if present" do
-      @blog.meta_keywords = "foo, bar"
+      @blog.meta_keywords = 'foo, bar'
       @blog.save
       get 'show', :id => 'foo'
-      expect(assigns(:keywords)).to eq "foo, bar"
+      expect(assigns(:keywords)).to eq 'foo, bar'
     end
   end
 end

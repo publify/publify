@@ -5,7 +5,7 @@ describe Admin::NotesController, :type => :controller do
 
   before(:each) { request.session = { user: admin.id } }
 
-  context "with a blog" do
+  context 'with a blog' do
     let(:admin) { create(:user, :as_admin) }
     let!(:blog) { create(:blog) }
 
@@ -20,18 +20,18 @@ describe Admin::NotesController, :type => :controller do
     end
 
     describe 'create' do
-      context "a simple note" do
-        before(:each) { post :create, note: { body: "Emphasis _mine_" } }
+      context 'a simple note' do
+        before(:each) { post :create, note: { body: 'Emphasis _mine_' } }
         it {expect(response).to redirect_to(admin_notes_path)}
-        it {expect(flash[:notice]).to eq(I18n.t("notice.note_successfully_created")) }
+        it {expect(flash[:notice]).to eq(I18n.t('notice.note_successfully_created')) }
       end
 
       it { expect{
-        post :create, note: { body: "Emphasis _mine_" }
+        post :create, note: { body: 'Emphasis _mine_' }
       }.to change{ Note.count }.from(0).to(1) }
     end
 
-    context "with an existing note from current user" do
+    context 'with an existing note from current user' do
       let(:note) { create(:note, user_id: admin) }
 
       describe 'edit' do
@@ -53,7 +53,7 @@ describe Admin::NotesController, :type => :controller do
         it { expect(response).to render_template('show') }
       end
 
-      describe "Destorying a note" do
+      describe 'Destorying a note' do
         before(:each) { post :destroy, id: note.id }
         it { expect(response).to redirect_to(admin_notes_path) }
         it { expect(Note.count).to eq(0) }
@@ -61,20 +61,20 @@ describe Admin::NotesController, :type => :controller do
     end
   end
 
-  context "with a blog with twitter configured" do
+  context 'with a blog with twitter configured' do
     let!(:blog) { create(:blog_with_twitter) }
     let(:admin) { create(:user, :as_admin, :with_twitter) }
 
     describe 'edit' do
-      context "when push to twitter" do
-        it "call note to send to twitter" do
+      context 'when push to twitter' do
+        it 'call note to send to twitter' do
           expect(Note.count).to eq(0)
           twitter_cli = double(twitter_cli)
           expect(Twitter::Client).to receive(:new).and_return(twitter_cli)
           Tweet = Struct.new(:attrs)
           tweet = Tweet.new({id_str: '2344'})
           expect(twitter_cli).to receive(:update).and_return(tweet)
-          post :create, note: { body: "Emphasis _mine_, arguments *strong*" }, push_to_twitter: "true"
+          post :create, note: { body: 'Emphasis _mine_, arguments *strong*' }, push_to_twitter: 'true'
           expect(Note.first.twitter_id).to eq('2344')
         end
       end

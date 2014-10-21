@@ -37,7 +37,7 @@ describe Tag, :type => :model do
     bar = FactoryGirl.create(:tag, :name => 'bar', :articles => [a, b])
     tags = Tag.find_all_with_article_counters
     expect(tags.entries.size).to eq(2)
-    expect(tags.first.name).to eq("foo")
+    expect(tags.first.name).to eq('foo')
     expect(tags.first.article_counter).to eq(3)
     expect(tags.last.name).to eq('bar')
     expect(tags.last.article_counter).to eq(2)
@@ -49,7 +49,7 @@ describe Tag, :type => :model do
   end
 
   describe '#published_articles' do
-    it "should return only published articles" do
+    it 'should return only published articles' do
       published_art = FactoryGirl.create(:article)
       draft_art = FactoryGirl.create(:article, :published_at => nil, :published => false, :state => 'draft')
       art_tag = FactoryGirl.create(:tag, :name => 'art', :articles => [published_art, draft_art])
@@ -78,34 +78,34 @@ describe Tag, :type => :model do
     end
 
 
-    describe "#create_from_article" do
+    describe '#create_from_article' do
       before(:each) { Tag.create_from_article!(article) }
 
-      context "without keywords" do
+      context 'without keywords' do
         let(:article) { create(:article, keywords: nil) }
         it { expect(article.tags).to be_empty }
       end
 
-      context "with a simple keyword" do
-        let(:article) { create(:article, keywords: "foo") }
+      context 'with a simple keyword' do
+        let(:article) { create(:article, keywords: 'foo') }
         it { expect(article.tags.size).to eq(1) }
         it { expect(article.tags.first).to be_kind_of(Tag) }
         it { expect(article.tags.first.name).to eq('foo') }
       end
 
-      context "with two keyword separate by a coma" do
-        let(:article) { create(:article, keywords: "foo, bar") }
+      context 'with two keyword separate by a coma' do
+        let(:article) { create(:article, keywords: 'foo, bar') }
         it { expect(article.tags.size).to eq(2) }
         it { expect(article.tags.map(&:name)).to eq(['foo', 'bar']) }
       end
 
-      context "with two keyword with apostrophe" do
+      context 'with two keyword with apostrophe' do
         let(:article) { create(:article, keywords: "foo, l'bar") }
         it { expect(article.tags.size).to eq(3) }
         it { expect(article.tags.map(&:name)).to eq(['foo', 'l', 'bar']) }
       end
 
-      context "with two identical keywords" do
+      context 'with two identical keywords' do
         let(:article) { create(:article, keywords: "same'same") }
         it { expect(article.tags.size).to eq(1) }
         it { expect(article.tags.map(&:name)).to eq(['same']) }

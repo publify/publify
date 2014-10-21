@@ -16,18 +16,18 @@ describe Admin::ThemesController, :type => :controller do
       get :index
     end
 
-    it "assigns @themes for the :index action" do
+    it 'assigns @themes for the :index action' do
       assert_response :success
       expect(assigns(:themes)).not_to be_nil
     end
   end
 
-  it "redirects to :index after the :switchto action" do
+  it 'redirects to :index after the :switchto action' do
     get :switchto, :theme => 'typographic'
     assert_response :redirect, :action => 'index'
   end
 
-  it "returns succes for the :preview action" do
+  it 'returns succes for the :preview action' do
     get :preview, :theme => 'bootstrap-2'
     assert_response :success
   end  

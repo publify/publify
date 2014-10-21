@@ -18,22 +18,22 @@ class TextFilter < ActiveRecord::Base
     available_filters.select { |filter| TextFilterPlugin::Macro > filter }
   end
 
-  TYPEMAP={TextFilterPlugin::Markup => "markup",
-           TextFilterPlugin::MacroPre => "macropre",
-           TextFilterPlugin::MacroPost => "macropost",
-           TextFilterPlugin::PostProcess => "postprocess",
-           TextFilterPlugin => "other"}
+  TYPEMAP={TextFilterPlugin::Markup => 'markup',
+           TextFilterPlugin::MacroPre => 'macropre',
+           TextFilterPlugin::MacroPost => 'macropost',
+           TextFilterPlugin::PostProcess => 'postprocess',
+           TextFilterPlugin => 'other'}
 
   def self.available_filter_types
     filters=available_filters
     @cached_filter_types ||= {}
 
     unless @cached_filter_types[filters]
-      types={"macropre" => [],
-             "macropost" => [],
-             "markup" => [],
-             "postprocess" => [],
-             "other" => []}
+      types={'macropre' => [],
+             'macropost' => [],
+             'markup' => [],
+             'postprocess' => [],
+             'other' => []}
 
       filters.each { |filter| types[TYPEMAP[filter.superclass]].push(filter) }
 

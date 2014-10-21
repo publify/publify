@@ -7,10 +7,10 @@ class Note < Content
 
   serialize :settings, Hash
 
-  setting :twitter_id, :string, ""
-  setting :in_reply_to_status_id, :string, ""
+  setting :twitter_id, :string, ''
+  setting :in_reply_to_status_id, :string, ''
   setting :in_reply_to_protected, :boolean, false
-  setting :in_reply_to_message, :string, ""
+  setting :in_reply_to_message, :string, ''
 
   validates_presence_of :body
   validates_uniqueness_of :permalink, :guid
@@ -18,7 +18,7 @@ class Note < Content
   after_create :set_permalink, :shorten_url
   before_create :create_guid
 
-  default_scope { order("published_at DESC") }
+  default_scope { order('published_at DESC') }
 
   TWITTER_FTP_URL_LENGTH = 19
   TWITTER_HTTP_URL_LENGTH = 20
@@ -82,7 +82,7 @@ class Note < Content
 
     begin
       options = {}
-      if self.in_reply_to_status_id and self.in_reply_to_status_id != ""
+      if self.in_reply_to_status_id and self.in_reply_to_status_id != ''
         options = {:in_reply_to_status_id => self.in_reply_to_status_id}
         self.in_reply_to_message = twitter.status(self.in_reply_to_status_id).to_json
       end
@@ -134,13 +134,13 @@ class Note < Content
     uris = URI.extract(message, ['http', 'https', 'ftp'])
     uris << prefix
     uris.each do |uri|
-      case uri.split(":")[0]
-      when "https"
-        payload = "-" * TWITTER_HTTPS_URL_LENGTH
-      when "ftp"
-        payload = "-" * TWITTER_FTP_URL_LENGTH
+      case uri.split(':')[0]
+      when 'https'
+        payload = '-' * TWITTER_HTTPS_URL_LENGTH
+      when 'ftp'
+        payload = '-' * TWITTER_FTP_URL_LENGTH
       else
-        payload = "-" * TWITTER_HTTP_URL_LENGTH
+        payload = '-' * TWITTER_HTTP_URL_LENGTH
       end
       message = message.gsub(uri, payload)
     end

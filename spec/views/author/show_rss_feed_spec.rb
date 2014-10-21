@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-describe "author/show_rss_feed.rss.builder", :type => :view do
+describe 'author/show_rss_feed.rss.builder', :type => :view do
   let!(:blog) { create(:blog) }
 
-  describe "rendering articles (with some funny characters)" do
+  describe 'rendering articles (with some funny characters)' do
     before(:each) do
       article1 = stub_full_article(1.minute.ago)
       article1.body = '&eacute;coute!'
@@ -13,16 +13,16 @@ describe "author/show_rss_feed.rss.builder", :type => :view do
       render
     end
 
-    it "creates a valid feed" do
+    it 'creates a valid feed' do
       assert_feedvalidator rendered
     end
 
-    it "creates an RSS feed with two items" do
+    it 'creates an RSS feed with two items' do
       assert_rss20 rendered, 2
     end
 
-    it "renders the article RSS partial twice" do
-      expect(view).to render_template(partial: "shared/_rss_item_article", :count => 2)
+    it 'renders the article RSS partial twice' do
+      expect(view).to render_template(partial: 'shared/_rss_item_article', :count => 2)
     end
   end
 end

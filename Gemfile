@@ -1,29 +1,29 @@
 source 'https://rubygems.org'
 
-if ENV["HEROKU"]
+if ENV['HEROKU']
   ruby '2.1.3'
 
-  gem "pg"
-  gem "thin" # Change this to another web server if you want (ie. unicorn, passenger, puma...)
-  gem "rails_12factor"
+  gem 'pg'
+  gem 'thin' # Change this to another web server if you want (ie. unicorn, passenger, puma...)
+  gem 'rails_12factor'
 else
 
   require 'yaml'
-  env = ENV["RAILS_ENV"] || 'development'
-  dbfile = File.expand_path("../config/database.yml", __FILE__)
+  env = ENV['RAILS_ENV'] || 'development'
+  dbfile = File.expand_path('../config/database.yml', __FILE__)
 
   unless File.exist?(dbfile)
     if ENV['DB']
       FileUtils.cp "config/database.yml.#{ENV['DB'] || 'postgres'}", 'config/database.yml'
     else
-      raise "You need to configure config/database.yml first"
+      raise 'You need to configure config/database.yml first'
     end
   end
 
   conf = YAML.load(File.read(dbfile))
   environment = conf[env]
   adapter = environment['adapter'] if environment
-  raise "You need define an adapter in your database.yml or set your RAILS_ENV variable" if adapter == '' || adapter.nil?
+  raise 'You need define an adapter in your database.yml or set your RAILS_ENV variable' if adapter == '' || adapter.nil?
   case adapter
   when 'sqlite3'
     gem 'sqlite3'
@@ -56,8 +56,8 @@ gem 'carrierwave', '~> 0.10.0'
 gem 'akismet', '~> 1.0'
 gem 'twitter', '~> 5.6.0'
 
-gem "jquery-rails", "~> 3.1.0"
-gem "jquery-ui-rails", "~> 5.0.2"
+gem 'jquery-rails', '~> 3.1.0'
+gem 'jquery-ui-rails', '~> 5.0.2'
 
 gem 'rails-timeago', '~> 2.0'
 
@@ -71,8 +71,8 @@ gem 'actionpack-page_caching', '~> 1.0.2'
 gem 'rails-observers', '~> 0.1.2'
 
 group :assets do
-  gem 'sass-rails', " ~> 4.0.3"
-  gem 'coffee-rails', " ~> 4.0.1"
+  gem 'sass-rails', ' ~> 4.0.3'
+  gem 'coffee-rails', ' ~> 4.0.1'
   gem 'uglifier'
 end
 
@@ -87,6 +87,6 @@ group :development, :test do
 end
 
 # Install gems from each theme
-Dir.glob(File.join(File.dirname(__FILE__), 'themes', '**', "Gemfile")) do |gemfile|
+Dir.glob(File.join(File.dirname(__FILE__), 'themes', '**', 'Gemfile')) do |gemfile|
   eval(IO.read(gemfile), binding)
 end

@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
 
   def set_paths
     prepend_view_path "#{::Rails.root}/themes/#{this_blog.theme}/views"
-    Dir.glob(File.join(::Rails.root.to_s, "lib", "*_sidebar/app/views")).select do |file|
+    Dir.glob(File.join(::Rails.root.to_s, 'lib', '*_sidebar/app/views')).select do |file|
       append_view_path file
     end
   end

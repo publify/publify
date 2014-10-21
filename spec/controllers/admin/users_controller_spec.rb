@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Admin::UsersController, "rough port of the old functional test", :type => :controller do
+describe Admin::UsersController, 'rough port of the old functional test', :type => :controller do
   render_views
 
   describe ' when you are admin' do
@@ -10,13 +10,13 @@ describe Admin::UsersController, "rough port of the old functional test", :type 
       request.session = { :user => @admin.id }
     end
 
-    it "test_index" do
+    it 'test_index' do
       get :index
       assert_template 'index'
       expect(assigns(:users)).not_to be_nil
     end
 
-    it "test_new" do
+    it 'test_new' do
       get :new
       assert_template 'new'
 
@@ -63,11 +63,11 @@ describe Admin::UsersController, "rough port of the old functional test", :type 
       end
     end
 
-    describe "#destroy" do
+    describe '#destroy' do
       let(:user) { create(:user) }
 
-      context "GET" do
-        it "shows the user to be destroyed" do
+      context 'GET' do
+        it 'shows the user to be destroyed' do
           id = user.id
           get :destroy, id: id
           assert_template 'destroy'
@@ -88,7 +88,7 @@ describe Admin::UsersController, "rough port of the old functional test", :type 
 
     it "don't see the list of user" do
       get :index
-      expect(response).to redirect_to(:controller => "/admin/dashboard", :action => "index")
+      expect(response).to redirect_to(:controller => '/admin/dashboard', :action => 'index')
     end
 
     describe 'EDIT Action' do
@@ -104,7 +104,7 @@ describe Admin::UsersController, "rough port of the old functional test", :type 
         end
 
         it 'should redirect to login' do
-          expect(response).to redirect_to(:controller => "/admin/dashboard", :action => "index")
+          expect(response).to redirect_to(:controller => '/admin/dashboard', :action => 'index')
         end
 
         it 'should not change user profile' do

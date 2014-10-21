@@ -29,7 +29,7 @@ describe AccountsController, :type => :controller do
 
     it 'sets publify_user_profile cookie' do
       make_request
-      expect(cookies["publify_user_profile"]).to eq('admin_henri')
+      expect(cookies['publify_user_profile']).to eq('admin_henri')
     end
 
     it 'redirects to /bogus/location' do
@@ -49,7 +49,7 @@ describe AccountsController, :type => :controller do
       expect(response).to redirect_to(:controller => 'admin/dashboard')
     end
 
-    it "should redirect to signup if no users" do
+    it 'should redirect to signup if no users' do
       allow(User).to receive(:count).and_return(0)
       make_request
       expect(response).to redirect_to('/accounts/signup')
@@ -79,7 +79,7 @@ describe AccountsController, :type => :controller do
 
     it 'publify_user_profile cookie should be blank' do
       make_request
-      expect(cookies["publify_user_profile"]).to be_blank
+      expect(cookies['publify_user_profile']).to be_blank
     end
 
     it 'should render login action' do
@@ -128,7 +128,7 @@ describe AccountsController, :type => :controller do
 
     it 'publify_user_profile cookie should be blank' do
       make_request
-      expect(cookies["publify_user_profile"]).to be_blank
+      expect(cookies['publify_user_profile']).to be_blank
     end
 
     it 'should render login action' do
@@ -227,7 +227,7 @@ describe AccountsController, :type => :controller do
     before(:each) do
       create(:blog)
       allow(User).to receive(:count).and_return(0)
-      @user = double("user")
+      @user = double('user')
       allow(@user).to receive(:reload).and_return(@user)
       allow(User).to receive(:new).and_return(@user)
     end
@@ -243,7 +243,7 @@ describe AccountsController, :type => :controller do
     end
   end
 
-  describe "with 0 existing users and unconfigured blog" do
+  describe 'with 0 existing users and unconfigured blog' do
     before(:each) do
       Blog.delete_all
       @blog = Blog.new.save
@@ -331,7 +331,7 @@ describe AccountsController, :type => :controller do
       session[:user_id] = @user.id
       session[:user] = @user.id
 
-      cookies["publify_user_profile"] = 'admin'
+      cookies['publify_user_profile'] = 'admin'
     end
 
     it 'trying to log in once again redirects to admin/dashboard/index' do
@@ -339,7 +339,7 @@ describe AccountsController, :type => :controller do
       expect(response).to redirect_to(:controller => 'admin/dashboard')
     end
 
-    describe "when logging out" do
+    describe 'when logging out' do
       before do
         get 'logout'
       end
@@ -357,27 +357,27 @@ describe AccountsController, :type => :controller do
       end
 
       it 'deletes cookies containing credentials' do
-        expect(cookies["auth_token"]).to eq(nil)
-        expect(cookies["publify_user_profile"]).to eq(nil)
+        expect(cookies['auth_token']).to eq(nil)
+        expect(cookies['publify_user_profile']).to eq(nil)
       end
     end
   end
 
-  describe "#recover_password" do
+  describe '#recover_password' do
     let!(:blog) { create(:blog) }
     let!(:user) { create(:user, :as_admin) }
 
-    context "simply get" do
+    context 'simply get' do
       before(:each) { get :recover_password }
       it { expect(response).to render_template('recover_password') }
     end
 
-    context "post" do
+    context 'post' do
       before(:each) { post :recover_password, user: {login: user.login} }
       it { expect(response).to redirect_to(action: 'login') }
     end
 
-    context "post with an unknown login" do
+    context 'post with an unknown login' do
       before(:each) { post :recover_password, user: {login: 'foobar'} }
       it { expect(response).to render_template('recover_password') }
       it { expect(flash[:error]).to eq(I18n.t('accounts.recover_password.error')) }
