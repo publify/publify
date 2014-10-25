@@ -1,8 +1,7 @@
-<%- for article in @articles %>
-  <div class="post">
-    <%= render article %>
-    <%= render 'article_links', article: article %>
-  </div>
-<% end -%>
+<div class='hfeed'>
+  <%= render @articles %>
+</div>
+<div class='paginate'>
+  <%= paginate(@articles)%>
+</div>
 
-<%= paginate @articles, next_label: "#{t(".next_page")} &raquo;", previous_label: "&laquo; #{t('.previous_page')}" %>

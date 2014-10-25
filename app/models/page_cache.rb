@@ -17,10 +17,6 @@ class PageCache
     self.zap_pages(%w{*})
   end
 
-  def self.sweep_theme_cache
-    self.zap_pages(%w{images/theme/* stylesheets/theme/* javascripts/theme/*})
-  end
-
   def self.zap_pages(paths)
     # Ensure no one is going to wipe his own blog public directory
     # It happened once on a release and was no fun at all

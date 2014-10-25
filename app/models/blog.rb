@@ -49,7 +49,6 @@ class Blog < ActiveRecord::Base
   setting :link_to_author,             :boolean, false
   setting :show_extended_on_rss,       :boolean, true # deprecated but still needed for backward compatibility
   setting :hide_extended_on_rss,       :boolean, false
-  setting :theme,                      :string, 'bootstrap-2'
   setting :plugin_avatar,              :string, ''
   setting :global_pings_disable,       :boolean, false
   setting :ping_urls,                  :string, "http://blogsearch.google.com/ping/RPC2\nhttp://rpc.technorati.com/rpc/ping\nhttp://ping.blo.gs/\nhttp://rpc.weblogs.com/RPC2"
@@ -153,14 +152,6 @@ class Blog < ActiveRecord::Base
   # Check that all required blog settings have a value.
   def configured?
     settings.has_key?('blog_name')
-  end
-
-  # The +Theme+ object for the current theme.
-  def current_theme reload = nil
-    if reload
-      @current_theme = nil
-    end
-    @current_theme ||= Theme.find(theme)
   end
 
   # Generate a URL based on the +base_url+.  This allows us to generate URLs

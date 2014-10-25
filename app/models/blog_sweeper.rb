@@ -52,7 +52,7 @@ class BlogSweeper < ActionController::Caching::Sweeper
     when Tag
       pending_sweeps << :sweep_articles << :sweep_pages
     when Blog, User, Comment, Trackback
-      pending_sweeps << :sweep_all << :sweep_theme
+      pending_sweeps << :sweep_all
     end
     unless controller
       run_pending_page_sweeps
@@ -61,10 +61,6 @@ class BlogSweeper < ActionController::Caching::Sweeper
 
   def sweep_all
     PageCache.sweep_all
-  end
-
-  def sweep_theme
-    PageCache.sweep_theme_cache
   end
 
   def sweep_articles

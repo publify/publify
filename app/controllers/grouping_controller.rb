@@ -1,6 +1,6 @@
 class GroupingController < ContentController
   before_filter :auto_discovery_feed, :only => [:show, :index]
-  layout :theme_layout
+  layout 'default.html.erb'
   cache_sweeper :blog_sweeper
 
   caches_page :index, :show, :if => Proc.new {|c|
