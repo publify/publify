@@ -1,5 +1,5 @@
 class AuthorController < ContentController
-  layout :theme_layout
+  layout 'default.html.erb'
 
   def show
     @author = User.find_by_login(params[:id])

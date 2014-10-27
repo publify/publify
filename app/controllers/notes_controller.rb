@@ -1,7 +1,7 @@
 class NotesController < ContentController
   require 'json'
 
-  layout :theme_layout
+  layout 'default.html.erb'
   cache_sweeper :blog_sweeper
   caches_page :index, :show, :if => Proc.new {|c| c.request.query_string == '' }
 

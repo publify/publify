@@ -1,5 +1,6 @@
-<ol id="commentList" class="comments">
+<ul id="commentList" class="unstyled">
   <% if @article.published_comments.any? -%>
-    <%= render @article.published_comments %>
+  <%= render @article.published_comments %>
   <% end -%>
-</ol>
+</ul>
+

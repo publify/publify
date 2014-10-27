@@ -3,7 +3,7 @@ class ArticlesController < ContentController
   before_filter :auto_discovery_feed, :only => [:show, :index]
   before_filter :verify_config
 
-  layout :theme_layout, except: [:comment_preview, :trackback]
+  layout 'default.html.erb', except: [:comment_preview, :trackback]
 
   cache_sweeper :blog_sweeper
   caches_page :index, :archives, :read, :view_page, :redirect, if: Proc.new {|c| c.request.query_string == ''}

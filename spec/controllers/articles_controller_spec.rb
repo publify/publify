@@ -267,17 +267,6 @@ describe ArticlesController, "previewing", :type => :controller do
 
     before(:each) { @request.session = { user: admin.id } }
 
-    describe 'theme rendering' do
-      render_views
-      with_each_theme do |theme, view_path|
-        it "should render template #{view_path}/articles/read" do
-          blog.theme = theme
-          get :preview, id: article.id
-          expect(response).to render_template('articles/read')
-        end
-      end
-    end
-
     it 'should assigns article define with id' do
       get :preview, :id => article.id
       expect(assigns[:article]).to eq(article)
@@ -451,20 +440,6 @@ describe ArticlesController, "redirecting", :type => :controller do
       end
     end
 
-    describe "theme rendering" do
-      render_views
-
-      let!(:article) { create(:article, :permalink => 'second-blog-article', :published_at => '2004-04-01 02:00:00', :updated_at => '2004-04-01 02:00:00', :created_at => '2004-04-01 02:00:00') }
-
-      with_each_theme do |theme, view_path|
-        it "renders template #{view_path}/articles/read" do
-          blog.theme = theme
-          get :redirect, from: "#{article.permalink}.html"
-          expect(response).to render_template('articles/read')
-        end
-      end
-    end
-
     describe 'rendering as atom feed' do
       let!(:article) { create(:article, :permalink => 'second-blog-article', :published_at => '2004-04-01 02:00:00', :updated_at => '2004-04-01 02:00:00', :created_at => '2004-04-01 02:00:00') }
       let!(:trackback1) { create(:trackback, :article => article, :published_at => Time.now - 1.day, :published => true) }
@@ -603,14 +578,6 @@ describe ArticlesController, "preview page", :type => :controller do
     before(:each) do
       henri = create(:user, :login => 'henri', :profile => create(:profile_admin, :label => Profile::ADMIN))
       @request.session = { :user => henri.id }
-    end
-
-    with_each_theme do |theme, view_path|
-      it "should render template #{view_path}/articles/view_page" do
-        blog.theme = theme
-        get :preview_page, :id => page.id
-        expect(response).to render_template('articles/view_page')
-      end
     end
 
     it 'should assigns article define with id' do

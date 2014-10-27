@@ -66,16 +66,6 @@ Rails.application.routes.draw do
 
   resources :author, only: :show
 
-  # ThemesController
-  scope :controller => 'theme', :filename => /.*/ do
-    get 'stylesheets/theme/:filename', :action => 'stylesheets', :format => false
-    get 'javascripts/theme/:filename', :action => 'javascript', :format => false
-    get 'images/theme/:filename', :action => 'images', :format => false
-  end
-
-  # For the tests
-  get 'theme/static_view_test', :format => false
-
   # For the statuses
   get '/notes', :to => 'notes#index', :format => false
   get '/notes/page/:page', :to => 'notes#index', :format => false
@@ -106,7 +96,7 @@ Rails.application.routes.draw do
   end
 
   # Admin/XController
-  %w{content comments profiles general pages feedback resources sidebar textfilters themes trackbacks users settings tags redirects seo post_types}.each do |i|
+  %w{content comments profiles general pages feedback resources sidebar textfilters trackbacks users settings tags redirects seo post_types}.each do |i|
     match "/admin/#{i}", to: "admin/#{i}#index", format: false, via: [:get, :post, :put, :delete] # TODO: convert this magic catchers to resources item to close un-needed HTTP method
     match "/admin/#{i}(/:action(/:id))", to: "admin/#{i}", action: nil, id: nil, format: false, via: [:get, :post, :put, :delete] # TODO: convert this magic catchers to resources item to close un-needed HTTP method
   end

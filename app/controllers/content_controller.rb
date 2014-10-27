@@ -16,8 +16,6 @@ class ContentController < ApplicationController
   end
 
   include LoginSystem
-  before_filter :setup_themer
-  helper :theme
 
   protected
 
@@ -28,8 +26,5 @@ class ContentController < ApplicationController
       @auto_discovery_url_atom = opts.url_for(:format => 'atom', :only_path => false)
     end
   end
-
-  def theme_layout
-    this_blog.current_theme.layout(self.action_name)
-  end
 end
+

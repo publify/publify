@@ -15,12 +15,8 @@ describe Admin::DashboardController, :type => :controller do
       expect(response.body).to render_template('index')
     end
 
-    it "should have a link to the theme" do
-      expect(response.body).to have_selector("a[href='/admin/themes']", :text => "change your blog presentation")
-    end
-
     it "should have a link to the sidebar" do
-      expect(response.body).to have_selector("a[href='/admin/sidebar']", :text => "enable plugins")
+      expect(response.body).to have_selector("a[href='/admin/sidebar']", :text => "Customize sidebar")
     end
 
     it "should have a link to a new article" do
@@ -74,10 +70,6 @@ describe Admin::DashboardController, :type => :controller do
       expect(response.body).to render_template('index')
     end
 
-    it "should not have a link to the theme" do
-      expect(response.body).not_to have_selector("a[href='/admin/themes']", :text => "change your blog presentation")
-    end
-
     it "should not have a link to the sidebar" do
       expect(response.body).not_to have_selector("a[href='/admin/sidebar']", :text => "enable plugins")
     end
@@ -123,10 +115,6 @@ describe Admin::DashboardController, :type => :controller do
 
     it "should render the index template" do
       expect(response.body).to render_template('index')
-    end
-
-    it "should not have a link to the theme" do
-      expect(response.body).not_to have_selector("a[href='/admin/themes']", :text => "change your blog presentation")
     end
 
     it "should not have a link to the sidebar" do

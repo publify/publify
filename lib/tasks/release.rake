@@ -19,7 +19,7 @@ spec = Gem::Specification.new do |s|
      /database\.sqlite/,
      /\.log$/, /^pkg/, /\.git/, /Gemfile\.lock/, /^vendor\/rails/,
      /^public\/(files|xml|articles|pages|index.html)/,
-     /^public\/(stylesheets|javascripts|images)\/theme/, /\~$/,
+     /\~$/,
      /\/\._/, /\/#/ ].any? {|regex| f =~ regex }
   end
   s.require_path = '.'

@@ -71,10 +71,6 @@ describe 'Given a new blog', :type => :model do
     expect(blog).not_to be_hide_extended_on_rss
   end
 
-  it '#theme should be "Bootstrap 2"' do
-    expect(blog.theme).to eq('bootstrap-2')
-  end
-
   it 'should not use any avatar plugin' do
     expect(blog.plugin_avatar).to eq('')
   end
@@ -299,10 +295,6 @@ describe 'Given a new user', :type => :model do
 
   it 'Jabber is empty' do
     expect(@user.jabber).to eq('')
-  end
-
-  it 'Admin theme should be blue' do
-    expect(@user.admin_theme).to eq('blue')
   end
 
   it 'Twitter account for statuses should be empty' do
