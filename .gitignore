@@ -23,7 +23,6 @@ tmp/*
 nbproject
 public/cache/*
 .rbenv-version
-.ruby-version
 .bundle/
 .sass-cache/
 /vendor/bundle
