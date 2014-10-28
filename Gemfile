@@ -48,5 +48,9 @@ group :development, :test do
   gem 'simplecov', require: false
   gem 'pry-rails'
   gem 'rubocop'
+  gem 'guard-rails'
+  gem 'guard-rspec', require: false
+  gem 'guard-livereload'
+  gem 'guard-bundler'
+  gem 'spring-commands-rspec'
 end
-
