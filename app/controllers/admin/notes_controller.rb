@@ -1,5 +1,5 @@
 class Admin::NotesController < Admin::BaseController
-  layout "administration"
+  layout 'administration'
   cache_sweeper :blog_sweeper
 
   before_filter :load_existing_notes, only: [:index, :edit]
@@ -20,11 +20,11 @@ class Admin::NotesController < Admin::BaseController
     if note.save
       if params[:push_to_twitter] && note.twitter_id.blank?
         unless note.send_to_twitter
-          flash[:error] = I18n.t("errors.problem_sending_to_twitter")
+          flash[:error] = I18n.t('errors.problem_sending_to_twitter')
           flash[:error] += " : #{note.errors.full_messages.join(' ')}"
         end
       end
-      flash[:notice] = I18n.t("notice.note_successfully_created")
+      flash[:notice] = I18n.t('notice.note_successfully_created')
     else
       flash[:error] = note.errors.full_messages
     end
@@ -42,13 +42,13 @@ class Admin::NotesController < Admin::BaseController
 
   def destroy
     @note.destroy
-    flash[:notice] = I18n.t("admin.base.successfully_deleted", name: 'note')
+    flash[:notice] = I18n.t('admin.base.successfully_deleted', name: 'note')
     redirect_to action: 'index'
   end
 
   def show
     unless @note.access_by?(current_user)
-      flash[:error] = I18n.t("admin.base.not_allowed")
+      flash[:error] = I18n.t('admin.base.not_allowed')
       redirect_to action: 'index'
     end
   end

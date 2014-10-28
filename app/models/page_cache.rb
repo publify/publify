@@ -14,17 +14,17 @@ class PageCache
 
   # Delete all file save in path_cache by page_cache system
   def self.sweep_all
-    self.zap_pages(%w{*})
+    zap_pages(%w{*})
   end
 
   def self.zap_pages(paths)
     # Ensure no one is going to wipe his own blog public directory
     # It happened once on a release and was no fun at all
-    return if public_path == "#{::Rails.root.to_s}/public"
+    return if public_path == "#{::Rails.root}/public"
     paths.each {|v|
       FileUtils.rm_rf(Dir.glob(public_path + "/#{v}"))
     }
-    return true
+    true
   end
 
 end

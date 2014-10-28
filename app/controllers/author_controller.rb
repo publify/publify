@@ -13,8 +13,8 @@ class AuthorController < ContentController
     auto_discovery_feed(only_path: false)
 
     respond_to do |format|
-      format.rss { render_feed "rss" }
-      format.atom { render_feed "atom" }
+      format.rss { render_feed 'rss' }
+      format.atom { render_feed 'atom' }
       format.html
     end
   end
@@ -22,6 +22,6 @@ class AuthorController < ContentController
   private
 
   def render_feed format
-    render "show_#{format}_feed", :layout => false
+    render "show_#{format}_feed", layout: false
   end
 end

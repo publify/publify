@@ -1,5 +1,5 @@
 class Tag < ActiveRecord::Base
-  has_and_belongs_to_many :articles, :order => 'created_at DESC', join_table: 'articles_tags'
+  has_and_belongs_to_many :articles, order: 'created_at DESC', join_table: 'articles_tags'
 
   validates_uniqueness_of :name
 
@@ -29,14 +29,14 @@ class Tag < ActiveRecord::Base
   end
 
   def ensure_naming_conventions
-    if self.display_name.blank?
-      self.display_name = self.name
+    if display_name.blank?
+      self.display_name = name
     end
-    self.name = self.display_name.to_url
+    self.name = display_name.to_url
   end
 
   def self.find_all_with_article_counters
-    self.find_by_sql([%{
+    find_by_sql([%{
       SELECT tags.id, tags.name, tags.display_name, COUNT(articles_tags.article_id) AS article_counter
       FROM #{Tag.table_name} tags LEFT OUTER JOIN #{Tag.table_name_prefix}articles_tags#{Tag.table_name_suffix} articles_tags
         ON articles_tags.tag_id = tags.id
@@ -46,11 +46,11 @@ class Tag < ActiveRecord::Base
       GROUP BY tags.id, tags.name, tags.display_name
       ORDER BY article_counter DESC
       LIMIT ? OFFSET ?
-      },true, 1000, 0]).each{|item| item.article_counter = item.article_counter.to_i }
+      }, true, 1000, 0]).each { |item| item.article_counter = item.article_counter.to_i }
   end
 
   def self.find_by_permalink(name)
-    self.find_by_name(name)
+    find_by_name(name)
   end
 
   def self.find_with_char(char)
@@ -58,7 +58,7 @@ class Tag < ActiveRecord::Base
   end
 
   def self.collection_to_string tags
-    tags.map(&:display_name).sort.map { |name| name =~ / / ? "\"#{name}\"" : name }.join ", "
+    tags.map(&:display_name).sort.map { |name| name =~ / / ? "\"#{name}\"" : name }.join ', '
   end
 
   def published_articles
@@ -66,10 +66,10 @@ class Tag < ActiveRecord::Base
   end
 
   def permalink
-    self.name
+    name
   end
 
-  def permalink_url(anchor=nil, only_path=false)
+  def permalink_url(_anchor = nil, only_path = false)
     blog = Blog.default # remove me...
     blog.url_for(controller: 'tags', action: 'show', id: permalink, only_path: only_path)
   end

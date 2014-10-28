@@ -19,4 +19,3 @@ describe "layouts/default.html.erb", :type => :view do
     expect(rendered).to_not have_selector('head>meta[name="keywords"]', visible: false)
   end
 end
-

@@ -9,7 +9,7 @@ class Admin::ProfilesController < Admin::BaseController
       if params[:user][:filename]
         @user.resource = upload_avatar
       end
-      
+
       if @user.save
         current_user = @user
         flash[:success] = I18n.t('admin.profiles.index.success')
@@ -18,7 +18,7 @@ class Admin::ProfilesController < Admin::BaseController
   end
 
   private
-  
+
   def upload_avatar
     file = params[:user][:filename]
 
@@ -28,8 +28,8 @@ class Admin::ProfilesController < Admin::BaseController
       mime = file.content_type.chomp
     end
 
-    Resource.create(:upload => file, :mime => mime, :created_at => Time.now)
+    Resource.create(upload: file, mime: mime, created_at: Time.now)
   end
-  
+
 
 end

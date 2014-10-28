@@ -7,7 +7,7 @@ class BlogSweeper < ActionController::Caching::Sweeper
 
   def run_pending_page_sweeps
     pending_sweeps.each do |each|
-      self.send(each)
+      send(each)
     end
   end
 

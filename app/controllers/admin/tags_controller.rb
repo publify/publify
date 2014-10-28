@@ -1,7 +1,7 @@
 class Admin::TagsController < Admin::BaseController
   cache_sweeper :blog_sweeper
 
-  def index; redirect_to action: 'new' ; end
+  def index; redirect_to action: 'new'; end
   def new; new_or_edit; end
   def edit; new_or_edit; end
 
@@ -25,7 +25,7 @@ class Admin::TagsController < Admin::BaseController
       old_name = @tag.name if @tag.id
 
       if @tag.save
-        Redirect.create(:from_path => "/tag/#{old_name}", :to_path => @tag.permalink_url(nil, true))
+        Redirect.create(from_path: "/tag/#{old_name}", to_path: @tag.permalink_url(nil, true))
         flash[:success] = I18n.t('admin.tags.edit.success')
       end
     end
