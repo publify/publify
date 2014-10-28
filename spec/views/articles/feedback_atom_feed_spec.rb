@@ -12,10 +12,6 @@ describe 'articles/feedback_atom_feed.atom.builder', type: :view do
       render
     end
 
-    it 'should render a valid feed' do
-      assert_feedvalidator rendered
-    end
-
     it 'should render an Atom feed with one item' do
       assert_atom10 rendered, 1
     end
@@ -40,10 +36,6 @@ describe 'articles/feedback_atom_feed.atom.builder', type: :view do
     before(:each) do
       assign(:feedback, [comment])
       render
-    end
-
-    it 'should render a valid feed' do
-      assert_feedvalidator rendered
     end
 
     it 'should render an Atom feed with one item' do

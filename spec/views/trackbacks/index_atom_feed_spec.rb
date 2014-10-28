@@ -12,10 +12,6 @@ describe 'trackbacks/index_atom_feed.atom.builder', type: :view do
       render
     end
 
-    it 'should render a valid feed' do
-      assert_feedvalidator rendered
-    end
-
     it 'shows publify with the current version as the generator' do
       xml = Nokogiri::XML.parse(rendered)
       generator = xml.css('generator').first
