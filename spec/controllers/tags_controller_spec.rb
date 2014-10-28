@@ -44,15 +44,6 @@ describe TagsController, 'showing a single tag', type: :controller do
       expect(assigns[:articles].map(&:id).sort).to eq(@articles.map(&:id).sort)
     end
 
-    it 'should render :show by default' do
-      #TODO Stubbing #template_exists is not enough to fool Rails
-      skip
-      allow(controller).to receive(:template_exists?) \
-        .and_return(true)
-      do_get
-      expect(response).to render_template(:show)
-    end
-
     it 'should fall back to rendering articles/index' do
       allow(controller).to receive(:template_exists?) \
         .and_return(false)

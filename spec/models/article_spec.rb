@@ -239,15 +239,6 @@ describe Article, type: :model do
     assert_sets_trigger Article.create!(title: 'title', body: 'body',
                                         published_at: Time.now + 4.seconds)
   end
-  it 'test_triggers_are_dependent' do
-    #TODO Needs a fix for Rails ticket #5105: has_many: Dependent deleting does not work with STI
-    skip
-    art = Article.create!(title: 'title', body: 'body',
-                          published_at: Time.now + 1.hour)
-    assert_equal 1, Trigger.count
-    art.destroy
-    assert_equal 0, Trigger.count
-  end
 
   def assert_sets_trigger(art)
     assert_equal 1, Trigger.count
