@@ -52,5 +52,6 @@ group :development, :test do
   gem 'guard-rspec', require: false
   gem 'guard-livereload'
   gem 'guard-bundler'
+  gem 'guard-rubocop'
   gem 'spring-commands-rspec'
 end
