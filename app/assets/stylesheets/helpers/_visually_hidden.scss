@@ -1,0 +1,19 @@
+// Use .visually-hidden to hide content from all but screen-reader users
+//
+// Styleguide visually-hidden
+
+@mixin visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  position: absolute;
+}
+
+.visually-hidden {
+  @include visually-hidden;
+}
+

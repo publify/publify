@@ -1,0 +1,15 @@
+@function baseline-unit($multiple) {
+  @if $responsive {
+    @return ($multiple * $vertical-grid-spacing) / $base-font-size + rem;
+  } @else {
+    @return $multiple * $vertical-grid-spacing + px;
+  }
+}
+
+@function px-to-rem($value) {
+  @if $responsive {
+    @return ($value / $base-font-size ) + rem;
+  } @else {
+    @return $value + px;
+  }
+}

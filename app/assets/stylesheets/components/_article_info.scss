@@ -1,0 +1,48 @@
+.article-info__comments {
+  @include inline-block();
+  margin-top: baseline-unit(2);
+  position: relative;
+  color: $white;
+  border-radius: $border-radius;
+  padding: baseline-unit(2) baseline-unit(3);
+  background-color: $tag-secondary-bgcolor--solid;
+
+  &:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    bottom: -16px;
+    right: 10%;
+    height: 20px;
+    border-left: 25px solid $tag-secondary-bgcolor--solid;
+    background-color: $tag-secondary-bgcolor--solid;
+    border-bottom-left-radius: 17px 20px;
+    transform: rotate(13deg);
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    bottom: -30px;
+    right: -34px;
+    width: 60px;
+    height: 30px;
+    background: $white;
+    border-bottom-left-radius: 70px 30px;
+    border-top-left-radius: 13px 20px;
+  }
+}
+
+.article-info__image {
+  float: right;
+  border-radius: 75px;
+  
+  @include respond-to($mq-m) {
+    float: none;
+  }
+}
+
+.article-info__link {
+  display: block;
+}

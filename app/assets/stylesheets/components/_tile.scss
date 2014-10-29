@@ -1,0 +1,33 @@
+.tile {
+  padding: baseline-unit(4);
+}
+
+.tile--article-primary {
+  background-color: $tile--article-primary-bg;
+}
+
+.tile--article-secondary {
+  background-color: $tile--article-secondary-bg;
+}
+
+.tile__heading {
+  @include font-size(30);
+  margin-bottom: baseline-unit(2);
+}
+
+.tile__heading--primary {
+  color: $tile--article-primary-heading-color;
+}
+
+.tile__heading--secondary {
+  color: $tile--article-secondary-heading-color;
+}
+
+.tile__date {
+  @include font-size(18);
+  font-weight: $font-weight-bold;
+}
+
+.tile__date--primary {
+  color: $tile--article-primary-date-color;
+}

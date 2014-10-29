@@ -1,0 +1,23 @@
+.collapsible {
+  // parent class
+}
+
+.collapsible__heading {
+  @include font-size(24);
+  color: $heading-color-secondary;
+}
+
+.collapsible__link {
+  position: relative;
+  display: block;
+  padding-bottom: baseline-unit(1);
+  font-weight: $font-weight-bold;
+  border-bottom: $base-border-thin;
+}
+
+.collapsible__icon {
+  position: absolute;
+  right: -3px;
+  top: -2px;
+  width: 60px;
+}
