@@ -1,0 +1,2 @@
+module StyleguideHelper
+end
