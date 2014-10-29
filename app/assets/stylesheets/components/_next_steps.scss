@@ -1,0 +1,50 @@
+.next-steps {
+  position: relative;
+  background-color: $brand-green;
+  padding: baseline-unit(6);
+  padding-top: baseline-unit(9);
+  margin-top: baseline-unit(12);
+  border-radius: 20px;
+}
+
+.next-steps__heading {
+  @include inline-block();
+  position: absolute;
+  top: -25px;
+  left: 20px;;
+  width: 190px;
+  height: 75px;
+  background: asset-url('ma-says.png') 0 0 no-repeat;
+
+  @include device-pixel-ratio() {
+    background-image: asset-url('ma-says.svg');
+  }
+}
+
+.next-steps__container-link {
+  display: table;
+  width: 100%;
+  font-weight: $font-weight-bold;
+  color: $link-color--negative;
+}
+
+.next-steps__text {
+  @include font-size(22);
+  display: table-cell;
+}
+
+.next-steps__arrow-container {
+  display: table-cell;
+  vertical-align: middle; 
+  padding-left: baseline-unit(6);
+}
+
+.next-steps__arrow {
+  width: 20px;
+  float: right;
+}
+
+.next-steps__arrow-path {
+  stroke: $white;
+  fill: none;
+}
