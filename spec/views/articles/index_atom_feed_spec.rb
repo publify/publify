@@ -25,10 +25,6 @@ describe 'articles/index_atom_feed.atom.builder', type: :view do
       render
     end
 
-    it 'creates a valid feed' do
-      assert_feedvalidator rendered
-    end
-
     it 'creates an atom feed with two items' do
       assert_atom10 rendered, 2
     end

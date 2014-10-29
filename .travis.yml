@@ -1,8 +1,9 @@
 language: ruby
 cache: bundler
+env:
+  - COVERAGE=true
 rvm:
   - 2.1.3
 before_script:
-  - sudo apt-get install python-feedvalidator
   - cp config/database.yml.mysql config/database.yml
   - bundle exec rake db:create db:migrate

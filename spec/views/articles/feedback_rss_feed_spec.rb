@@ -13,10 +13,6 @@ describe 'articles/feedback_rss_feed.rss.builder', type: :view do
       render
     end
 
-    it 'renders a valid feed' do
-      assert_feedvalidator rendered
-    end
-
     it 'renders an RSS feed with two items' do
       assert_rss20 rendered, 2
     end

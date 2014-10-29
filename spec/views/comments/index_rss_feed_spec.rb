@@ -13,7 +13,6 @@ describe 'comments/index_rss_feed.rss.builder', type: :view do
     end
 
     it 'should render a valid rss feed' do
-      assert_feedvalidator rendered
       assert_rss20 rendered, 1
     end
 
