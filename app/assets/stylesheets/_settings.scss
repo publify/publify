@@ -1,0 +1,55 @@
+// Settings - Define the variables for the Marketing Blog porject
+
+$vertical-grid-spacing: 6 !default;
+
+// link color
+$link-color: $deep-cerulean;
+$link-color--negative: $white;
+
+// typography 
+$base-font-size: 16 !default;
+$base-line-height: 1.4;
+
+$base-font-family: 'Museo Sans';
+$base-font-stack: $base-font-family, Helvetica, Arial, sans-serif; 
+
+$font-weight-bold: 700;
+$font-weight-medium: 500;
+$font-weight-light: 300;
+
+$text-color: $nevada;
+
+$heading-color-primary: $astronaut-blue;
+$heading-color-secondary: $outer-space;
+
+$emphasised-text-color: $astronaut-blue; // this is used for introducion text
+
+// ui geometry
+$border-radius: 5px !default;
+
+// ui colors
+$tag-primary-bgcolor--solid: $black;
+$tag-primary-bgcolor--translucent: $black--translucent;
+
+$tag-secondary-bgcolor--solid: $deep-cerulean;
+$tag-secondary-bgcolor--translucent: $deep-cerulean--translucent;
+
+$base-border-thin: 1px solid $silver;
+
+$brand-green: $green-leaf !default;
+
+$tile--article-primary-bg: $elf-green;
+$tile--article-secondary-bg: $white;
+
+$tile--article-primary-heading-color: $white;
+$tile--article-primary-date-color: $aero-blue;
+
+$tile--article-secondary-heading-color: $outer-space;
+
+// breakpoints
+
+$mq-xs: 320px;
+$mq-s: 480px;
+$mq-m: 720px;
+$mq-l: 960px;
+$mq-xl: 1200px;
