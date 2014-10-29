@@ -1,2 +1,37 @@
-<h1>Styleguide#show</h1>
-<p>Find me in app/views/styleguide/show.html.erb</p>
+<main class="l-styleguide">
+  <h1 class="l-styleguide__title">Styleguide</h1>
+
+  <p class="intro">Going to university is all about having a good time, discovering yourself and making new friends, right? Well, yes, but hopefully you'll learn a lot and get a good qualification as well.</p>
+
+  <p>However, if you really want to have a great three years it’s important to budget, because after paying rent you’ll probably end up spending around £600 a month. Here are some tips to help you get the most out of your time away.</p>
+
+  <section class="l-styleguide-section">
+    <h2>Tags</h2>
+    <%= render 'shared/tags' %> 
+  </section>
+
+  <section class="l-styleguide-section">
+    <h2>Article Info</h2>
+    <%= render 'shared/article_info' %>
+  </section>
+
+  <section class="l-styleguide-section">
+    <h2>Inline callout</h2>
+    <%= render 'shared/inline_callout' %>
+  </section>
+
+  <section class="l-styleguide-section">
+    <h2>Collapsible</h2>
+    <%= render 'shared/collapsible' %>
+  </section>
+
+  <section class="l-styleguide-section">
+    <h2>Next steps</h2>
+    <%= render 'shared/next_steps' %>
+  </section>
+
+  <section class="l-styleguide-section">
+    <h2>Tiles</h2>
+    <%= render 'shared/article_tile' %>
+  </section>
+</main>
