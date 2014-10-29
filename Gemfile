@@ -47,7 +47,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.1.0'
   gem 'simplecov', require: false
   gem 'pry-rails'
-  gem 'rubocop'
+  gem 'rubocop', require: false
   gem 'guard-rails'
   gem 'guard-rspec', require: false
   gem 'guard-livereload'
