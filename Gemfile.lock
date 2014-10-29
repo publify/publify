@@ -136,6 +136,9 @@ GEM
     guard-rspec (4.3.1)
       guard (~> 2.1)
       rspec (>= 2.14, < 4.0)
+    guard-rubocop (1.1.0)
+      guard (~> 2.0)
+      rubocop (~> 0.20)
     hike (1.2.3)
     hitimes (1.2.2)
     htmlentities (4.3.2)
@@ -325,6 +328,7 @@ DEPENDENCIES
   guard-livereload
   guard-rails
   guard-rspec
+  guard-rubocop
   htmlentities
   jquery-rails (~> 3.1.0)
   jquery-ui-rails (~> 5.0.2)
