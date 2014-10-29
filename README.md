@@ -16,7 +16,7 @@ The feeling was that we would diverge far enough that tracking/merging upstream 
 
 Publify has been around since 2004 and is the oldest Ruby on Rails open source project alive.
 
-## Installation/Testing
+## Installation
 
 ### Prerequisites
 
@@ -30,3 +30,11 @@ $ rake db:migrate
 $ rake db:seed
 $ rails s
 ```
+
+## Testing
+
+```bash
+$bundle exec rspec
+```
+
+Run with `COVERAGE=true` in your test environment to report on coverage.
