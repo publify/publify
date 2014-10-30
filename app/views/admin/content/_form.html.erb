@@ -36,8 +36,8 @@
   <div class='col-md-8'>
     <%= text_field 'article', 'title', :class => 'form-control', :placeholder => t('.title') %>  
     <div id="editor">
-      <%= text_area('article', 'body_and_extended', {:class => 'form-control ', style: 'height: 360px', placeholder: t('.type_your_post'), :"data-widearea" => "enable"}) %>
-      <%#= render 'admin/shared/macros' %>      
+      <%= cktext_area('article', 'body_and_extended', class: 'form-control', placeholder: t('.type_your_post')) %>
+      <%#= render 'admin/shared/macros' %>
     </div> <!-- End of editor -->
   </div>
 </div>
