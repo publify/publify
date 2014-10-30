@@ -1,0 +1,26 @@
+// The default style for numbered lists. The padding offsets the bullets by 25px;
+//
+// Styleguide ol
+
+ol {
+  @extend %base-font-style;
+  padding: 0 0 0 25px;
+
+  li {
+    margin-bottom: $baseline-unit*2;
+  }
+}
+
+// The default style for unordered lists. The padding offsets the bullets by 25px.
+//
+// Styleguide ul
+
+ul {
+  @extend %base-font-style;
+  margin: $baseline-unit*2 0 $baseline-unit*4 0;
+  padding: 0 0 0 25px;
+
+  li {
+    margin-bottom: $baseline-unit*2;
+  }
+}

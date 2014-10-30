@@ -1,0 +1,46 @@
+// Use clearfix to prevent a container element from collapsing when an internal element is floated.
+//
+// Styleguide clearfix
+
+%clearfix {
+  zoom: 1;
+
+  &:before,
+  &:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    overflow: hidden;
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+%clearfix-with-collapsing-margins {
+  zoom: 1;
+
+  &:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
+}
+
+// Using an include as extending clearfix is not respected in some cases (see _callout)
+@mixin clearfix() {
+  zoom: 1;
+
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}

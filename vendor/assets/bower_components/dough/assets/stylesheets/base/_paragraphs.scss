@@ -1,0 +1,7 @@
+// Our default font-size is 16px at desktop but is smaller on smaller screens. Line-height is proportional to font-size. This is applied to the <body> and all paragraphs.
+//
+// Styleguide p
+
+.editorial p {
+  @extend %paragraph;
+}

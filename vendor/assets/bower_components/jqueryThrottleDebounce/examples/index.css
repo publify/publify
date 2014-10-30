@@ -1,0 +1,551 @@
+/* YUI RESETS */
+
+/*
+Copyright (c) 2008, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.net/yui/license.txt
+version: 2.5.2
+*/
+html{color:#000;background:#FFF;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym {border:0;font-variant:normal;}sup {vertical-align:text-top;}sub {vertical-align:text-bottom;}input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;}input,textarea,select{*font-size:100%;}legend{color:#000;}
+
+/*
+Copyright (c) 2008, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.net/yui/license.txt
+version: 2.5.2
+*/
+body {font:13px/1.231 arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small;}table {font-size:inherit;font:100%;}pre,code,kbd,samp,tt{font-family:monospace;*font-size:108%;line-height:100%;}
+
+/*
+Copyright (c) 2008, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.net/yui/license.txt
+version: 2.5.2
+*/
+h1{font-size:138.5%;}h2{font-size:123.1%;}h3{font-size:108%;}h1,h2,h3{margin:1em 0;}h1,h2,h3,h4,h5,h6,strong{font-weight:bold;}abbr,acronym{border-bottom:1px dotted #000;cursor:help;} em{font-style:italic;}blockquote,ul,ol,dl{margin:1em;}ol,ul,dl{margin-left:2em;}ol li{list-style:decimal outside;}ul li{list-style:disc outside;}dl dd{margin-left:1em;}th,td{border:1px solid #000;padding:.5em;}th{font-weight:bold;text-align:center;}caption{margin-bottom:.5em;text-align:center;}p,fieldset,table,pre{margin-bottom:1em;}input[type=text],input[type=password],textarea{width:12.25em;*width:11.9em;}
+
+/* MISC RESETS */
+
+em, i {
+  font-weight: inherit;
+}
+
+ul, ol {
+  margin-right: 0;
+}
+
+pre {
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+  _white-space: pre;
+}
+
+/* LISTS */
+
+div.nav ul, ul.nav {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+div.nav li, ul.nav li {
+  list-style: none !important;
+  background: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+div.nav-inline ul, ul.nav-inline {
+  width: auto !important;
+}
+
+div.nav-inline li, ul.nav-inline li {
+  display: inline !important;
+}
+
+dl.inline {
+  margin-left: 0;
+}
+
+dl.inline dt,
+dl.inline dd {
+  margin: 0;
+  display: inline;
+}
+
+/* HORIZONTAL RULE */
+
+hr {
+  height: 1px;
+  color: #777;
+}
+
+div.hr {
+  height: 1px;
+  overflow: hidden;
+  border-bottom: 1px solid #777;
+  margin: 0.8em 0;
+}
+
+
+/* GENERAL-PURPOSE CLASSES */
+
+.hidden {
+  display: none !important;
+}
+
+.inline {
+  display: inline !important;
+  float: none !important;
+}
+
+.floatright {
+  display: inline;
+  float: right !important;
+}
+
+.floatleft {
+  display: inline;
+  float: left !important;
+}
+
+.clear {
+  clear: both !important;
+  display: block;
+}
+
+.clearleft {
+  clear: left !important;
+  display: block;
+}
+
+.clearright {
+  clear: right !important;
+  display: block;
+}
+
+.left {
+  text-align: left !important;
+}
+
+.right {
+  text-align: right !important;
+}
+
+.center {
+  text-align: center !important;
+}
+
+.nowrap {
+  white-space: nowrap !important;
+}
+
+.uppercase {
+  text-transform: uppercase !important;
+}
+
+.lowercase {
+  text-transform: lowercase !important;
+}
+
+.nocase {
+  text-transform: default !important;
+}
+
+.bold {
+  font-weight: 700 !important;
+}
+
+.normal {
+  font-weight: 400 !important;
+}
+
+.small {
+  font-size: 86% !important;
+}
+
+@media print {
+  .hidden-print {
+    display: none !important;
+  }
+  .nopagebreak {
+    page-break-inside: avoid !important;
+  }
+}
+
+@media screen {
+  .hidden-screen {
+    display: none !important;
+  }
+}
+
+
+/* HORIZONTAL + VERTICAL CENTERING */
+
+.center1 {
+  text-align: center;
+}
+
+.center2 {
+  #left: 50%;
+}
+
+.center3 {
+  margin: 0 auto;
+  #left: -50%;
+}
+
+.center1, .vcenter1 {
+  display: table;
+  #display: block;
+  #text-align: auto;
+  #position: relative;
+}
+
+.center2, .vcenter2 {
+  display: table-cell;
+  vertical-align: middle;
+  #position: absolute;
+  #top: 50%;
+}
+
+.center3, .vcenter3 {
+  display: block;
+  #position: relative;
+  #top: -50%;
+}
+
+/*
+.center1, .vcenter1 { border: 1px solid #f00 !important; }
+.center2, .vcenter2 { border: 1px solid #0f0 !important; }
+.center3, .vcenter3 { border: 1px solid #00f !important; }
+*/
+
+
+/* CSS BG IMAGE REPLACEMENT */
+
+.bgfx, .bgfx1, .bgfx2 {
+  display: block;
+  width: 300px;
+  height: 50px;
+  padding: 0 !important;
+}
+
+a.bgfx, a.bgfx1, a.bgfx2,
+a.bgfx:hover, a.bgfx1:hover, a.bgfx2:hover {
+  text-decoration: none;
+  cursor: pointer;
+  cursor: hand;
+}
+
+.bgfx {
+  position: relative;
+  overflow: hidden;
+  background: no-repeat 0 0;
+}
+
+.bgfx1, .bgfx2 {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  background: no-repeat 0 0;
+}
+
+
+/* "HIT" LINKS */
+
+.hit, .hit .hit1 {
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  cursor: hand;
+  cursor: pointer;
+  _width: 100%;
+  _height: 100%;
+}
+
+.hit {
+  z-index: 1000;
+}
+
+.hit .hit1 {
+  #background: #fff;
+  #filter: alpha(opacity=1);
+}
+
+
+/* EXAMPLE CSS */
+
+/* http://colorschemedesigner.com/#3s40M--K-BRJD */
+
+.primary-1 { background-color: #008CD0 }
+.primary-2 { background-color: #2C7091 }
+.primary-3 { background-color: #005178 }
+.primary-4 { background-color: #58C0F2 }
+.primary-5 { background-color: #9FD7F2 }
+
+.secondary-a-1 { background-color: #0BE700 }
+.secondary-a-2 { background-color: #36A131 }
+.secondary-a-3 { background-color: #078500 }
+.secondary-a-4 { background-color: #62F85A }
+.secondary-a-5 { background-color: #A7F8A3 }
+
+.secondary-b-1 { background-color: #FE0006 }
+.secondary-b-2 { background-color: #B13639 }
+.secondary-b-3 { background-color: #920004 }
+.secondary-b-4 { background-color: #FF5D61 }
+.secondary-b-5 { background-color: #FFA7A9 }
+
+.complement-1 { background-color: #FF8900 }
+.complement-2 { background-color: #B27836 }
+.complement-3 { background-color: #934F00 }
+.complement-4 { background-color: #FFB45D }
+.complement-5 { background-color: #FFD6A7 }
+
+/*
+bg: #FDEBDC
+bg1: #FFBE7D
+bg2: #FFAB59
+orange: #FF7F00
+brown: #913D00
+lt. brown: #C4884F
+*/
+
+html, body {
+  color: #000;
+  background: #fff;
+  font-family: Arial;
+}
+
+body {
+  font-size: 0.8em;
+  margin: 1em;
+}
+
+h1, h2 {
+  font-family: "Gill Sans", "Gill Sans MT", Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  font-size: 140%;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #FF7F00;
+  margin: 0 0 0.6em;
+}
+
+h1 a {
+  color: #FF7F00;
+}
+
+h1 a:hover {
+  color: #913D00;
+}
+
+h1 .title {
+  color: #913D00;
+}
+
+h1 a.title:hover {
+  color: #FF7F00;
+}
+
+h2 {
+  font-size: 120%;
+  color: #913D00;
+}
+
+h3 {
+  font-size: 100%;
+}
+
+a {
+  color: #913D00;
+}
+
+a:hover {
+  color: #FF7F00;
+}
+
+.divider {
+  color: #C4884F;
+}
+
+#page {
+  width: 700px;
+}
+
+#header h1 {
+  white-space: nowrap;
+}
+
+#footer {
+  clear: both;
+  padding-top: 2em;
+  font-size: 80%;
+  color: #C4884F;
+}
+
+#footer a {
+  color: #C4884F;
+}
+
+#footer a:hover {
+  color: #FF7F00;
+}
+
+#donate {
+  color: #000;
+  background: #fff;
+  border: 1px solid #3D942F;
+  font-size: 80%;
+  padding: 0.5em;
+  float: right;
+  width: 11em;
+  margin: 0 0 1.5em 2em;
+  -moz-box-shadow: 0 0 6px #3D942F;
+  -webkit-box-shadow: 0 0 6px #3D942F;
+  box-shadow: 0 0 6px #3D942F;
+}
+
+#donate form {
+  text-align: center;
+}
+
+#donate .submit {
+  width: 74px;
+  height: 21px;
+}
+
+pre {
+  overflow-x: auto;
+}
+
+pre code {
+  display: block;
+  border: 1px solid transparent;
+  _border: none;
+}
+
+/* ROUNDED BORDERS */
+
+#donate,
+pre,
+.syntaxhighlighter,
+.syntaxhighlighter .toolbar {
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+
+/* PRE/CODE BLOCKS, SYNTAX HIGHLIGHTING */
+
+code, pre {
+  font-family: "Consolas","Monaco","Bitstream Vera Sans Mono","Courier New",Courier,monospace;
+}
+
+a code {
+  color: inherit;
+}
+
+code {
+  color: #913D00;
+  font-size: 12px;
+  font-weight: inherit;
+}
+
+pre {
+  margin: 0 0 0.6em;
+  padding: 0 0.6em;
+  border: 1px solid #C4884F;
+  background: #fee0c5;
+  color: #000;
+}
+
+pre code {
+  color: #000;
+}
+
+pre,
+.syntaxhighlighter, 
+.syntaxhighlighter div, 
+.syntaxhighlighter code, 
+.syntaxhighlighter span {
+  font-size: 11px !important;
+  line-height: 1.5em !important;
+}
+
+pre,
+.syntaxhighlighter,
+.syntaxhighlighter .line:first-child .content {
+  min-height: 2.99em;
+}
+
+.syntaxhighlighter .line:not(:last-child) .content {
+  min-height: 0;
+}
+
+.syntaxhighlighter .content {
+  min-height: 0\9 !important; /* IE6, IE7, IE8 */
+}
+
+.syntaxhighlighter, 
+.syntaxhighlighter code,
+.syntaxhighlighter a {
+  word-wrap: break-word !important;
+}
+
+.syntaxhighlighter .line .content .block {
+  background-position: 0 1.5em !important;
+}
+
+.syntaxhighlighter {
+  width: auto !important;
+  margin: 0 0 0.6em !important;
+  padding: 0 1px !important;
+  background: #fee0c5 !important;
+  border: 1px solid #C4884F !important;
+  _zoom: 1;
+}
+
+.syntaxhighlighter .toolbar {
+  right: 3px !important;
+  top: 3px !important;
+}
+
+.syntaxhighlighter .line .number {
+  color: #C4884F !important;
+}
+
+.syntaxhighlighter .lines .content {
+  border-color: #C4884F !important;
+}
+
+.syntaxhighlighter .lines .line:first-child,
+.syntaxhighlighter .lines .line:first-child .content {
+  -moz-border-radius-topright: 10px;
+  -webkit-border-top-right-radius: 10px;
+}
+
+.syntaxhighlighter .lines .line:last-child,
+.syntaxhighlighter .lines .line:last-child .content {
+  -moz-border-radius-bottomright: 10px;
+  -webkit-border-bottom-right-radius: 10px;
+}
+
+.syntaxhighlighter.nogutter .lines .line:first-child,
+.syntaxhighlighter.nogutter .lines .line:first-child .content {
+  -moz-border-radius-topleft: 10px;
+  -webkit-border-top-left-radius: 10px;
+}
+
+.syntaxhighlighter.nogutter .lines .line:last-child,
+.syntaxhighlighter.nogutter .lines .line:last-child .content {
+  -moz-border-radius-bottomleft: 10px;
+  -webkit-border-bottom-left-radius: 10px;
+}

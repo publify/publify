@@ -1,0 +1,35 @@
+.tabular-tooltip {
+  position: relative; // so that we can absolutely position the yellow 'tooltip' on focus/hover
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    outline: none;
+
+    &:after {
+      display: block;
+      content: attr(title); // fills tooltip element with the "title" attribute from the parent element's HTML tag
+      position: absolute;
+      z-index: 10;
+      top: 0;
+      left: 10px;
+      margin-left: 100%; // absolutely position tooltip a little to the right of parent element
+      width: 250px; // no height - tooltip will be as tall as required to fit all the text
+      background: #fff; // pale yellow
+      border: 1px solid $color-grey-paleo;
+      color: #666; // override default blue link colour
+      padding: 0.8em 1em;
+      -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    // If the element has a "data-tooltip" attribute, we should
+    // use that, rather than the title (the CarCostTooltip module
+    // deletes the "title" attribute in this case, so that you don't
+    // get both browser default and custom CSS tooltips on hover.
+    &[data-tooltip]:after {
+      content: attr(data-tooltip); // uses the "data-tooltip" attribute, instead of the "title"
+    }
+  }
+}

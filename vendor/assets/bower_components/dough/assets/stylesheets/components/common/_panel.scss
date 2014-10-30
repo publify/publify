@@ -1,0 +1,15 @@
+// Basic panel. No responsive or layout behaviour included
+//
+// Styleguide panel
+
+.panel {
+  border-radius: 5px;
+  background-color: $color-panel-background;
+  padding: $baseline-unit*3;
+  margin: $baseline-unit*4 0;
+}
+
+.panel__heading {
+  @extend %heading-extra-small;
+  margin: 0 0 $baseline-unit 0;
+}

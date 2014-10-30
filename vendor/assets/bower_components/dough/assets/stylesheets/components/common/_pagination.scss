@@ -1,0 +1,9 @@
+// Pagination
+//
+// Styleguide pagination
+
+.pagination__counter {
+  @include inline-block;
+  vertical-align: middle;
+  margin: 0 $baseline-unit*3;
+}

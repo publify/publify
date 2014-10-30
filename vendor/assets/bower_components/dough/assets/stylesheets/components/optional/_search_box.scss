@@ -1,0 +1,58 @@
+// Search box that appears in header and in search results page
+//
+// Styleguide Search box
+
+@if $include-search-box {
+
+  .search-box {
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+
+    // nesting the input to be more specific than base style which uses attribute selector
+    .search-box__input {
+      @extend %font-heading-medium;
+      width: 100%;
+      height: $baseline-unit*7;
+      padding-left: $baseline-unit*2;
+      border: 0;
+      background-color: $color-search-input-background;
+
+      &::-webkit-input-placeholder {
+        color: $color-search-text;
+      }
+
+    }
+  }
+
+  .search-box__submit {
+    @extend .unstyled-button;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: $baseline-unit*7;
+    height: $baseline-unit*7;
+    font-size: 24px;
+    color: $color-search-text;
+
+    .icon--search {
+      position: absolute;
+      top: $baseline-unit*2;
+      left: $baseline-unit*2;
+    }
+
+    &:focus {
+      outline: 0;
+      background-color: $color-search-button-focus-background;
+      color: $color-search-button-focus-foreground;
+
+      .icon--search {
+        // changes the search icon to icon--search-white,cannot be extended or will not appear in the Styleguide.
+        background-position: -271px -73px;
+        @include device-pixel-ratio() {
+          background-position: -272px -8px;
+        }
+      }
+    }
+  }
+} // end if statement

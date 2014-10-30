@@ -1,0 +1,131 @@
+
+/**
+ input range styling from
+ http://codepen.io/aronwoost/pen/nlyrf
+ http://brennaobrien.com/blog/2014/05/style-input-type-range-in-every-browser.html
+**/
+@mixin range-track-colors {
+  background-image: image_url('dough/assets/images/1x1_grey.png');
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAMAAAAoyzS7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDIxIDc5LjE1NDkxMSwgMjAxMy8xMC8yOS0xMTo0NzoxNiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjU2MjZFODg3NDE3RjExRTQ5ODdCREJFQTFBNTM0NUQyIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjU2MjZFODg4NDE3RjExRTQ5ODdCREJFQTFBNTM0NUQyIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NTYyNkU4ODU0MTdGMTFFNDk4N0JEQkVBMUE1MzQ1RDIiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NTYyNkU4ODY0MTdGMTFFNDk4N0JEQkVBMUE1MzQ1RDIiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz46xCu4AAAABlBMVEXc4+EAAADBLP7JAAAADElEQVR42mJgAAgwAAACAAFPbVnhAAAAAElFTkSuQmCC');
+  background-color: transparent;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 10px;
+}
+
+.form__input-range {
+  /* iPhone / mobile webkit */
+  @media screen and (max-device-width: $mq-m) {
+    /** have to set bg colour here instead of on track shadow DOM, for Android browser */
+    @include range-track-colors;
+  }
+  -webkit-appearance: none;
+  margin-bottom: $baseline-unit * 2;
+  width: 100%;
+  padding-left:1px;
+  padding-right:1px;
+  margin-top: $baseline-unit * 4;
+  @include respond-to($mq-m) {
+    margin-top: $baseline-unit;
+  }
+}
+
+.form__input-range::-webkit-slider-runnable-track {
+  @include range-track-colors;
+  @include respond-to($mq-m) {
+    height: 7px;
+  }
+}
+
+.form__input-range::-moz-range-track {
+  @include range-track-colors;
+  height: 7px;
+}
+
+.form__input-range::-ms-track {
+  @include range-track-colors;
+  color: transparent;
+  height: 20px;
+}
+
+.form__input-range::-ms-fill-lower,
+.form__input-range::-ms-fill-upper {
+  background: transparent;
+}
+
+.form__input-range::-ms-tooltip {
+  .js & {
+    display: none;
+  }
+}
+
+/* thumb */
+
+@mixin range-thumb-generic {
+  width: 40px;
+  border: 1px solid $color-range-border;
+  background-color: $color-range-thumb-background;
+  @include respond-to($mq-m) {
+    width: 24px;
+  }
+}
+
+@mixin range-thumb-large {
+  height: 40px;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px $color-range-border;
+  @include respond-to($mq-m) {
+    height: 24px;
+  }
+}
+
+.form__input-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  @include range-thumb-generic;
+  @include range-thumb-large;
+  @include respond-to($mq-m) {
+    margin-top: -10px;
+  }
+}
+
+.form__input-range::-moz-range-thumb {
+  @include range-thumb-generic;
+  @include range-thumb-large;
+}
+
+.form__input-range::-ms-thumb {
+  @include range-thumb-generic;
+  height: 20px;
+}
+
+.l-form__range {
+  @include respond-to($mq-m) {
+    width: 50%;
+  }
+}
+
+%input--range {
+  display: inline-block;
+  vertical-align: middle;
+  width: 45%;
+  white-space: nowrap;
+}
+
+.form__range-output-l {
+  @extend %input--range;
+  text-align: right;
+  input {
+    text-align: right;
+  }
+}
+
+.form__range-output-center {
+  @extend %input--range;
+  text-align: center;
+  width: 5%;
+}
+
+.form__range-output-r {
+  @extend %input--range;
+  text-align: left;
+}

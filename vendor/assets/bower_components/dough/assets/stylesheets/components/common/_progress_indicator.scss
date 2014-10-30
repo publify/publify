@@ -1,0 +1,10 @@
+.progress-indicator {
+  @include body(14, 16);
+  display: block;
+  margin-bottom: 0;
+  font-weight: 700;
+  margin-top: 0;
+  @include respond-to($mq-m) {
+    @include body(18, 20);
+  }
+}

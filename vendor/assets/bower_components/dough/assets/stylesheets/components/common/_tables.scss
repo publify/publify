@@ -1,0 +1,65 @@
+// Tables wrapped in a .table-wrapper will scroll horizontally if the table is bigger than the space available for it.
+//
+// Styleguide Scrollable Table
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-wrapper > .table > thead > tr > th,
+.table-wrapper > .table > tbody > tr > th,
+.table-wrapper > .table > tfoot > tr > th,
+.table-wrapper > .table > thead > tr > td,
+.table-wrapper > .table > tbody > tr > td,
+.table-wrapper > .table > tfoot > tr > td {
+  white-space: nowrap;
+}
+
+table {
+  @extend %type-table;
+  text-align: left;
+  margin: $baseline-unit*4 0;
+
+  > p {
+    // NOTE that this is here to override sloppy formatting in the tables where p tags force a large font size.
+    @extend %type-table;
+  }
+
+}
+
+.table--full-width {
+  width: 100%;
+}
+
+
+tr:nth-child(even) {
+  background-color: $color-table-background-alt;
+}
+
+thead > tr {
+  background-color: $color-table-background;
+}
+
+tbody th {
+  text-align: left;
+}
+
+th, td {
+  vertical-align: top;
+  padding: $baseline-unit*2;
+  border-right: 1px solid $color-table-border;
+  width: auto;
+  &:last-child {
+    border-right: 0;
+  }
+}
+
+th,
+th > p {
+  font-weight: 500;
+  // NOTE that this is here to override sloppy formatting in the tables where p tags is not bolded.
+}

@@ -1,0 +1,8 @@
+@mixin inline-block {
+  @if $responsive == true {
+    display: inline-block;
+  } @else {
+    display: inline-block;
+    zoom: 1;
+  }
+}

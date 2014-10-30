@@ -1,0 +1,151 @@
+// Forms
+//
+// .form - Default form form container
+// .form__row - Container for form element(s).
+// .form__row--is-errored - Form item error state
+// .form__label-heading - Form item label
+// .form__hint - Provides further information about an input
+// .form__group - Groups multiple form elements - to be used in conjuction with `<fieldset>`
+// .form__group--inline - Displays the items within form__group horizontally
+// .form__group-item - An item within a form group - stacked vertically by default
+// .form__input-container - Wrapper to group and enable formatting on .form__input-label and .form__input elements
+// .form__input-container .form__input - Input within the container group
+// .form__input-container .form__input-label - Provides additional labelling for an `<input>` - there can be multiple labels of any width
+//
+// Styleguide forms
+
+.form {
+  margin-top: $baseline-unit*6;
+}
+
+.form--collapse {
+  margin-top: 0;
+}
+
+.form__row {
+  @include clearfix();
+  margin-bottom: $baseline-unit*6;
+}
+
+.form__row--collapse {
+  margin-bottom: 0;
+}
+
+.is-errored,
+.form__row--is-errored {
+  border-left: 10px solid $color-validation-border;
+  color: $color-validation-text;
+  padding-left: 10px;
+
+  input[type="text"],
+  input[type="number"],
+  input[type="email"],
+  input[type="search"],
+  input[type="password"],
+  .form__input-container,
+  .form__input-outline {
+    border-color: $color-validation-border;
+    color: $color-validation-text;
+  }
+
+  label {
+    color: $color-validation-text;
+    font-weight: bold;
+  }
+}
+
+.form__label-heading {
+  display: block;
+  padding-bottom: $baseline-unit*2;
+}
+
+
+.form__hint {
+  font-size: 95%; // @TODO Make font-size into a placegolder
+  margin: $baseline-unit*1 0 0;
+}
+
+
+.form__group-item {
+  display: block;
+  margin-bottom: $baseline-unit*2;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.form__group--inline .form__group-item {
+  display: inline-block;
+  margin-right: 15px;
+}
+
+.form__group-input {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+
+.form__input-container {
+  display: table;
+  overflow: hidden;
+  padding-left: 0;
+  padding-right: 0;
+  position: relative;
+  width: 100%;
+}
+
+.form__input-container .form__input {
+  background: transparent;
+  border: none;
+  position: relative;
+  width: 100%;
+  z-index: 2;
+
+  &:focus {
+    background: transparent;
+    border: none;
+    outline: none;
+  }
+}
+
+.form__input-container .form__input-label {
+  padding-left: 5px;
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+  width: 1%;
+  z-index: 2;
+}
+
+.form__input-container .form__input ~ .form__input-label {
+  padding-left: 0;
+  padding-right: 5px;
+}
+
+.form__input-container .form__input,
+.form__input-container .form__input-label,
+.form__input-container .field_with_errors {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.form__input-container .field_with_errors input {
+  display: block;
+  width: 100%;
+}
+
+.form__input-outline {
+  @extend %form-input;
+  display: block;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
+}
+
+.form__input-container .form__input:focus ~ .form__input-outline {
+  @extend %form-input-focus-container
+}

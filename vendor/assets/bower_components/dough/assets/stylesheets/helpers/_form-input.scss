@@ -1,0 +1,16 @@
+%form-input {
+  @extend %font-body;
+  -webkit-appearance: none;
+  background-color: $color-input-background;
+  border: 1px solid $color-input-border-color;
+  border-radius: 0;
+  color: $color-input-text-color;
+  display: inline-block;
+  padding: 0 $baseline-unit;
+  width: 100%;
+}
+
+%form-input-text {
+  height: $baseline-unit*5;
+  line-height: $baseline-unit*5;
+}

@@ -1,0 +1,58 @@
+// Global alerts display important information at the top of the viewport
+//
+// .global-alert--error - Error alert
+// .global-alert--warning - Warning alert
+//
+// Styleguide Global Alert
+
+.global-alert {
+  background: $color-global-alert-message-bg;
+  @include clearfix();
+}
+
+.global-alert__content-container {
+  min-height: $baseline-unit*4;
+  padding: $baseline-unit*2 20px 0 35px;
+  position: relative;
+
+  @include respond-to($mq-m) {
+    min-height: $baseline-unit*8;
+    padding-left: 70px;
+  };
+
+  &:before {
+    background: $color-global-alert-default;
+    bottom: 0;
+    content: '';
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: $baseline-unit*4;
+
+    @include respond-to($mq-m) {
+      width: $baseline-unit*8;
+    };
+  }
+}
+
+.global-alert--error .global-alert__content-container:before {
+  background: $color-global-alert-error;
+}
+
+.global-alert--warning .global-alert__content-container:before{
+  background: $color-global-alert-warning;
+}
+
+.global-alert__heading {
+  display: block;
+  font-weight: 700;
+  margin-bottom: $baseline-unit;
+}
+
+.global-alert__message {
+  @extend %type-small;
+  margin: 0;
+  padding-bottom: $baseline-unit*2;
+}

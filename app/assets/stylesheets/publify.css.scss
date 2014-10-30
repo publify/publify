@@ -14,27 +14,8 @@ $responsive: true;
 @import 'lib/mixins';
 @import 'lib/mediaqueries';
 
-@import 'base/reset';
-@import 'base/type';
-@import 'base/links';
-@import 'base/headings';
+@import 'base/*';
+@import 'helpers/*';
+@import 'layouts/*';
 
-@import 'helpers/clearfix';
-@import 'helpers/inline_block';
-@import 'helpers/unstyled_button';
-@import 'helpers/unstyled_list';
-@import 'helpers/visually_hidden';
-
-@import 'layouts/styleguide';
-@import 'layouts/common';
-@import 'layouts/header';
-@import 'layouts/banner';
-@import 'layouts/article_info';
-@import 'layouts/article';
-
-@import 'components/article_info';
-@import 'components/collapsible';
-@import 'components/inline_callout';
-@import 'components/next_steps';
-@import 'components/tag';
-@import 'components/tile';
+@import 'components/*';

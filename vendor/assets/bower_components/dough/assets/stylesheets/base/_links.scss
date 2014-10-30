@@ -1,0 +1,30 @@
+// Basic primary links and their accompanying hover and focus states
+//
+// :visited - Foo
+// :hover - Foo
+// :focus - Foo
+//
+// Styleguide a
+
+a {
+  color: $color-link-default;
+  text-decoration: none;
+
+  &:visited {
+    color: $color-link-default;
+  }
+
+  &:hover,
+  &:focus {
+    outline: none;
+    color: $color-link-default;
+    text-decoration: underline;
+  }
+
+  // Removes active link colour that is applied in Mobile Safari and adds kerning
+  &[href^=tel] {
+    color: inherit;
+    letter-spacing: -1px;
+    text-decoration: none;
+  }
+}

@@ -1,0 +1,20 @@
+@mixin triangle($triangle-direction, $triangle-height, $triangle-width, $triangle-color) {
+  content: '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+
+  @if ($triangle-direction == top) {
+    border-width: 0 (($triangle-width / 2)* 1px) ($triangle-height * 1px) (($triangle-width / 2)* 1px);
+    border-color: transparent transparent $triangle-color transparent;
+  } @else if ($triangle-direction == right) {
+    border-width: (($triangle-width / 2)* 1px) 0 (($triangle-width / 2)* 1px) ($triangle-height * 1px);
+    border-color: transparent transparent transparent $triangle-color;
+  } @else if ($triangle-direction == bottom) {
+    border-width: ($triangle-height * 1px) (($triangle-width / 2)* 1px) 0 (($triangle-width / 2)* 1px);
+    border-color: $triangle-color transparent transparent transparent;
+  } @else if ($triangle-direction == left) {
+    border-width: (($triangle-width / 2)* 1px) ($triangle-height * 1px) (($triangle-width / 2)* 1px) 0;
+    border-color: transparent $triangle-color transparent transparent;
+  }
+}

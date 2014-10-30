@@ -1,0 +1,22 @@
+// Box used to emphasize text
+//
+// Styleguide inset-block
+
+.inset-block {
+  margin: $baseline-unit*2 0 $baseline-unit*3 0;
+
+  @include respond-to($mq-s) {
+    margin: $baseline-unit*2 0 $baseline-unit*5 0;
+  }
+}
+
+.inset-block__content-container {
+  border-left: 10px solid $color-inset-block-border;
+  padding-left:10px;
+  @include inline-block;
+  padding-right: $baseline-unit*3;
+}
+
+.inset-block__text {
+  margin-bottom: 0;
+}

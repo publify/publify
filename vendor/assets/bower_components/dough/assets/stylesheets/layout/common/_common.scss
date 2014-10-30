@@ -1,0 +1,39 @@
+// Styleguide layout-container
+
+@if $responsive == false {
+  .l-body {
+    min-width: $mq-l;
+  }
+}
+
+.l-padded {
+  padding-left: $baseline-unit;
+  padding-right: $baseline-unit;
+
+  @include respond-to($mq-l) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+// Layout 1 column full width
+//
+// Styleguide layout-1col
+
+.l-1col {
+  @include column(12);
+}
+
+// Layout split
+//
+// Styleguide layout-split
+
+.l-split-start {
+  @include column(6);
+  float: left;
+}
+
+.l-split-end {
+  @include column(6);
+  float: right;
+}
