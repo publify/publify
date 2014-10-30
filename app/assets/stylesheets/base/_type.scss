@@ -14,3 +14,7 @@ body {
   @include font-size(22);
   color: $heading-color-primary;
 }
+
+p {
+  margin-bottom: baseline-unit(4);
+}
