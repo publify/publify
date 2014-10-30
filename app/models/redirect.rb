@@ -4,14 +4,13 @@ class Redirect < ActiveRecord::Base
 
   has_many :redirections
 
-  has_many :contents, :through => :redirections
-
+  has_many :contents, through: :redirections
 
   def full_to_path
-    path = self.to_path
+    path = to_path
     return path if path =~ /^(https?):\/\/([^\/]*)(.*)/
     url_root = Blog.default.root_path
-    path = File.join(url_root, path) unless url_root.nil? or path[0,url_root.length] == url_root
+    path = File.join(url_root, path) unless url_root.nil? or path[0, url_root.length] == url_root
     path
   end
 
@@ -22,9 +21,9 @@ class Redirect < ActiveRecord::Base
       shorten
     end
   end
-  
+
   def to_url
-    File.join(((Blog.default.custom_url_shortener.nil? or Blog.default.custom_url_shortener.empty?) ? Blog.default.base_url : Blog.default.custom_url_shortener), self.from_path)
+    File.join(((Blog.default.custom_url_shortener.nil? or Blog.default.custom_url_shortener.empty?) ? Blog.default.base_url : Blog.default.custom_url_shortener), from_path)
   end
 
   private

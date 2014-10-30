@@ -10,7 +10,7 @@ class SetupController < ApplicationController
 
     @user = User.new(login: 'admin',
                      email: params[:setting][:email],
-                     nickname: "Publify Admin")
+                     nickname: 'Publify Admin')
     @user.generate_password!
     @user.name = @user.login
 
@@ -34,7 +34,7 @@ class SetupController < ApplicationController
       create_first_page @user
     end
 
-    redirect_to controller: "accounts", action: "confirm"
+    redirect_to controller: 'accounts', action: 'confirm'
   end
 
   private
@@ -59,7 +59,7 @@ class SetupController < ApplicationController
   end
 
   def create_first_page user
-    Page.create(name: "about", published: true, title: I18n.t("setup.page.about"), user: user, body: I18n.t("setup.page.body"))
+    Page.create(name: 'about', published: true, title: I18n.t('setup.page.about'), user: user, body: I18n.t('setup.page.body'))
   end
 
   def check_config

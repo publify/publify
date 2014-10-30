@@ -11,7 +11,7 @@ class Profile < ActiveRecord::Base
   end
 
   def modules=(perms)
-    perms = perms.collect {|p| p.to_sym unless p.blank? }.compact if perms
+    perms = perms.collect { |p| p.to_sym unless p.blank? }.compact if perms
     write_attribute(:modules, perms)
   end
 

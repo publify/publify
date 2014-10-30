@@ -2,8 +2,8 @@
 require 'simplecov'
 SimpleCov.start 'rails'
 
-ENV["RAILS_ENV"] ||= 'test'
-require File.expand_path("../../config/environment", __FILE__)
+ENV['RAILS_ENV'] ||= 'test'
+require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'factory_girl'
 require 'rexml/document'
@@ -12,7 +12,7 @@ FactoryGirl.find_definitions
 class EmailNotify
   class << self
     alias real_send_user_create_notification send_user_create_notification
-    def send_user_create_notification user; end
+    def send_user_create_notification _user; end
   end
 end
 
@@ -22,14 +22,14 @@ end
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
-Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 module RSpec
   module Core
     module Hooks
       class HookCollection
         def find_hooks_for(group)
-          self.class.new(select {|hook| hook.options_apply?(group)})
+          self.class.new(select { |hook| hook.options_apply?(group) })
         end
       end
     end
@@ -74,27 +74,27 @@ end
 def assert_atom10 feed, count
   doc = Nokogiri::XML.parse(feed)
   root = doc.css(':root').first
-  expect(root.name).to eq("feed")
-  expect(root.namespace.href).to eq("http://www.w3.org/2005/Atom")
+  expect(root.name).to eq('feed')
+  expect(root.namespace.href).to eq('http://www.w3.org/2005/Atom')
   expect(root.css('entry').count).to eq(count)
 end
 
 def assert_rss20 feed, count
   doc = Nokogiri::XML.parse(feed)
   root = doc.css(':root').first
-  expect(root.name).to eq("rss")
-  expect(root['version']).to eq("2.0")
+  expect(root.name).to eq('rss')
+  expect(root['version']).to eq('2.0')
   expect(root.css('channel item').count).to eq(count)
 end
 
-def stub_full_article(time=Time.now)
-  author = FactoryGirl.build_stubbed(User, :name => "User Name")
+def stub_full_article(time = Time.now)
+  author = FactoryGirl.build_stubbed(User, name: 'User Name')
   text_filter = FactoryGirl.build(:textile)
 
-  a = FactoryGirl.build_stubbed(Article, :published_at => time, :user => author,
-                 :created_at => time, :updated_at => time,
-                 :title => "Foo Bar", :permalink => 'foo-bar',
-                 :guid => time.hash)
+  a = FactoryGirl.build_stubbed(Article, published_at: time, user: author,
+                 created_at: time, updated_at: time,
+                 title: 'Foo Bar', permalink: 'foo-bar',
+                 guid: time.hash)
   allow(a).to receive(:published_comments) { [] }
   allow(a).to receive(:resources) { [FactoryGirl.build(:resource)] }
   allow(a).to receive(:tags) { [FactoryGirl.build(:tag)] }
@@ -104,12 +104,12 @@ end
 
 # test standard view and all themes
 def with_each_theme
-  yield nil, ""
-  Dir.new(File.join(::Rails.root.to_s, "themes")).each do |theme|
+  yield nil, ''
+  Dir.new(File.join(::Rails.root.to_s, 'themes')).each do |theme|
     next if theme =~ /\.\.?/
-    theme_dir = "#{::Rails.root.to_s}/themes/#{theme}"
+    theme_dir = "#{::Rails.root}/themes/#{theme}"
     view_path = "#{theme_dir}/views"
-    if File.exists?("#{theme_dir}/helpers/theme_helper.rb")
+    if File.exist?("#{theme_dir}/helpers/theme_helper.rb")
       require "#{theme_dir}/helpers/theme_helper.rb"
     end
     yield theme, view_path
@@ -126,12 +126,12 @@ end
 # Finally, copy src/demo.py into your path as 'feedvalidator', make it executable,
 # and change the first line to something like '#!/usr/bin/python'.
 
-if($validator_installed == nil)
+if ($validator_installed == nil)
   $validator_installed = false
   begin
-    IO.popen("feedvalidator 2> /dev/null","r") do |pipe|
+    IO.popen('feedvalidator 2> /dev/null', 'r') do |pipe|
       if (pipe.read =~ %r{Validating http://www.intertwingly.net/blog/index.})
-        puts "Using locally installed Python feed validator"
+        puts 'Using locally installed Python feed validator'
         $validator_installed = true
       end
     end
@@ -140,7 +140,7 @@ if($validator_installed == nil)
   end
 end
 
-def assert_feedvalidator(rss, todo=nil)
+def assert_feedvalidator(rss, todo = nil)
   unless $validator_installed
     puts 'Not validating feed because no validator (feedvalidator in python) is installed'
     return
@@ -160,23 +160,23 @@ def assert_feedvalidator(rss, todo=nil)
 
     okay, messages = parse_validator_messages(messages)
 
-    if todo && ! ENV['RUN_TODO_TESTS']
-      assert !okay, messages + "\nTest unexpectedly passed!\nFeed text:\n"+rss
+    if todo && !ENV['RUN_TODO_TESTS']
+      assert !okay, messages + "\nTest unexpectedly passed!\nFeed text:\n" + rss
     else
-      assert okay, messages + "\nFeed text:\n"+rss
+      assert okay, messages + "\nFeed text:\n" + rss
     end
   end
 end
 
 def parse_validator_messages(message)
-  messages=message.split(/\n/).reject do |m|
+  messages = message.split(/\n/).reject do |m|
     m =~ /Feeds should not be served with the "text\/plain" media type/ ||
       m =~ /Self reference doesn't match document location/
   end
 
-  if(messages.size > 1)
+  if (messages.size > 1)
     [false, messages.join("\n")]
   else
-    [true, ""]
+    [true, '']
   end
 end

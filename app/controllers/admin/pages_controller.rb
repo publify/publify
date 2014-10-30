@@ -19,12 +19,12 @@ class Admin::PagesController < Admin::BaseController
     @page.user_id = current_user.id
     @page.text_filter ||= default_textfilter
     @page.published = true unless params[:page].present?
-    
+
     if request.post?
       @page.published_at = Time.now
       if @page.save
         flash[:success] = I18n.t('admin.pages.new.success')
-        redirect_to :action => 'index'
+        redirect_to action: 'index'
       end
     end
   end
@@ -35,7 +35,7 @@ class Admin::PagesController < Admin::BaseController
     @page.text_filter ||= default_textfilter
     if request.post? and @page.save
       flash[:success] = I18n.t('admin.pages.edit.success')
-      redirect_to :action => 'index'
+      redirect_to action: 'index'
     end
   end
 
@@ -49,7 +49,6 @@ class Admin::PagesController < Admin::BaseController
     current_user.text_filter || blog.text_filter
   end
 
-
   def set_macro
     @macros = TextFilter.macro_filters
   end
@@ -60,12 +59,12 @@ class Admin::PagesController < Admin::BaseController
 
   def get_layout
     case action_name
-    when "new", "edit", "create"
-      "editor"
-    when "show"
+    when 'new', 'edit', 'create'
+      'editor'
+    when 'show'
       nil
     else
-      "administration"
+      'administration'
     end
   end
 
