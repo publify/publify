@@ -28,6 +28,8 @@ $emphasised-text-color: $astronaut-blue; // this is used for introducion text
 $border-radius: 5px !default;
 
 // ui colors
+$header-bg-color: $deep-cerulean;
+
 $tag-primary-bgcolor--solid: $black;
 $tag-primary-bgcolor--translucent: $black--translucent;
 
@@ -53,3 +55,9 @@ $mq-s: 480px;
 $mq-m: 720px;
 $mq-l: 960px;
 $mq-xl: 1200px;
+
+// z-indexes
+
+$z-background: 0;
+$z-middleground: 1;
+$z-foreground: 2;
