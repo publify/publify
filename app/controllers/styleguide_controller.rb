@@ -3,4 +3,7 @@ class StyleguideController < ApplicationController
 
   def show
   end
+
+  def article_page
+  end
 end
