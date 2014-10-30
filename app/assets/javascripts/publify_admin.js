@@ -6,7 +6,6 @@
 //= require publify_jquery
 //= require administration_jquery
 //= require_self
-//= require quicktags
 //= require widearea
 //= require tagmanager
 //= require typeahead

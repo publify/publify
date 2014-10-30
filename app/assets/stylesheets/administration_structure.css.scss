@@ -132,20 +132,6 @@ tr .action {
   padding-left: 0;
 }
 
-
-#quicktags {
-  display: none;
-  padding-top: 10px;
-}
-
-#quicktags-block:hover #quicktags {
-  display: block;
-}
-
-#quicktags-block {
-  min-height: 400px;
-}
-
 #error-message-article {
   padding-top: 20px;
 }
@@ -235,5 +221,4 @@ twitter-typeahead {
 
 .tt-hint {
   z-index: -1;
-  
 }
