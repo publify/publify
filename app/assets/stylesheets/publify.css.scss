@@ -26,6 +26,12 @@ $responsive: true;
 @import 'helpers/visually_hidden';
 
 @import 'layouts/styleguide';
+@import 'layouts/common';
+@import 'layouts/header';
+@import 'layouts/banner';
+@import 'layouts/article_info';
+@import 'layouts/article';
+
 @import 'components/article_info';
 @import 'components/collapsible';
 @import 'components/inline_callout';

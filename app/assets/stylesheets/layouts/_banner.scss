@@ -1,0 +1,18 @@
+.l-banner {
+
+  .l-constrained {
+    position: relative;
+  }
+}
+
+.l-banner__image {
+  width: 100%;
+}
+
+.l-banner__tags {
+  z-index: $z-foreground;
+  float: right;
+  position: absolute;
+  bottom: baseline-unit(2);
+  right: 0;
+}

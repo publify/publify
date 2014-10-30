@@ -1,0 +1,6 @@
+.l-article-info {
+  float: left;
+  position: relative;
+  z-index: $z-foreground;
+  top: baseline-unit(-12);
+}
