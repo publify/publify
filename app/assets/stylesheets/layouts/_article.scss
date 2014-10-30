@@ -1,0 +1,11 @@
+.l-article {
+  float: left;
+  margin-top: baseline-unit(12);
+  margin-bottom: baseline-unit(10);
+  margin-left: baseline-unit(20);
+  max-width: 666px;
+
+  p {
+    max-width: 550px;
+  }
+}
