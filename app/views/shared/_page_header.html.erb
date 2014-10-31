@@ -5,15 +5,116 @@
 <%= meta_tag 'google-site-verification', this_blog.google_verification unless this_blog.google_verification.blank?%>
 <meta name="generator" content="Publify <%=PUBLIFY_VERSION%>">
 <%= show_meta_keyword %>
+
 <link rel="EditURI" type="application/rsd+xml" title="RSD" href="<%= url_for :controller => '/xml', :action => 'rsd' %>">
 <%- if feed_atom %>
-  <link rel="alternate" type="application/atom+xml" title="Atom" href="<%= feed_atom %>">
+<link rel="alternate" type="application/atom+xml" title="Atom" href="<%= feed_atom %>">
 <%- end %>
 <%- if feed_rss %>
-  <link rel="alternate" type="application/rss+xml" title="RSS" href="<%= feed_rss %>">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="<%= feed_rss %>">
 <%- end %>
+
 <%= javascript_include_tag :publify %>
-<%= stylesheet_link_tag :publify %>
+
+<%# Basic styles for all devices, doesn't contain anything that could cause rendering issues such as positional info %>
+<%= stylesheet_link_tag 'dough/assets/stylesheets/basic' %>
+
+<%# Fixed width styles and html5shiv for IE7+8 , styles will not include any media queries, but will include .ie specific fixes %>
+<!--[if ( gte IE 7 ) & ( lte IE 8 ) & (!IEMobile) ]>
+<%= stylesheet_link_tag 'dough/assets/stylesheets/font_files' %>
+<%= stylesheet_link_tag 'enhanced_fixed', media: 'all' %>
+<%= javascript_include_tag 'html5shiv/dist/html5shiv.js' %>
+<script>var responsiveStyle = false;</script>
+<![endif]-->
+
+<%# Responsive styles for all modern devices, excluded from older IE version %>
+<!--[if ( !IE ) | ( gte IE 9 ) ]><!-->
+<%= stylesheet_link_tag 'enhanced_responsive', media: 'only all' %>
+<script>var responsiveStyle = true;</script>
+<!--<![endif]-->
+
+<%# START MAS JAVASCRIPT SETUP – Any JS that is required before DOM is created should be in this block includes feature detection, analytics setup, JSON bootstrap %>
+<script type="text/javascript">
+  <%# // Required for Google Tag Manager %>
+  var require = {
+    config: {
+      globals: (function(w, d) {
+      var html, appendFile, bootstrap, fonts, supports;
+
+      <%# // Set variables and default values %>
+      appendFile = function(tag, src, content) {
+        var position = d.getElementsByTagName('script')[0],
+            file = d.createElement(tag);
+            if (tag === 'script') {
+              file.async = true;
+              file.type = "text/javascript";
+            }
+            if (src) file.src = src;
+            if (content) file.innerHTML = content;
+            position.parentNode.insertBefore(file, position);
+          };
+
+          html = d.getElementsByTagName('html')[0];
+
+          bootstrap = {
+            env: '<%= Rails.env %>',
+            timestamp: new Date().getTime(), <%# needs to be run as soon to page load as possible %>
+            i18nLocale: '<%= I18n.locale %>',
+            googleApiCx: '<%= (I18n.locale == :en) ? ENV["GOOGLE_API_CX_EN"] : ENV["GOOGLE_API_CX_CY"] %>'
+          };
+
+          fonts = {
+            url: '<%= stylesheet_path('dough/assets/stylesheets/font_base64') %>',
+            cacheName: 'MAS.fonts',
+            loadClass: 'wf-museosans-n4-active fontsLoaded',
+            localstorage: undefined,
+            loadWithJS: responsiveStyle <%# for responsive load with JS, for fixed load inline in CSS %>
+          };
+
+          <%# Run support tests and cache values %>
+              supports = (function() {
+                var S = {};
+
+                function supportTest(prop, context) {
+                  try {
+                    return prop in context && context[prop] !== null;
+                  } catch (e) {
+                    return false;
+                  }
+                }
+
+                S.js = supportTest('querySelector', d) && supportTest('localStorage', w) && supportTest('addEventListener', w) ? 'advanced' : 'basic';
+                S.touch = supportTest('ontouchstart', w) || supportTest('onmsgesturechange', w);
+                S.localstorage = supportTest('localStorage', w);
+                S.svg = (function() {
+                  return !!d.createElementNS && !!d.createElementNS('http://www.w3.org/2000/svg', "svg").createSVGRect
+                })();
+                S.test = supportTest;
+
+                return S
+              })();
+
+          <%# Run modify DOM and load files %>
+
+          <%# Load font from localStorage %>
+          if (supports.localstorage && localStorage.getItem(fonts.cacheName) !== null) {
+            html.className = html.className += (' ' + fonts.loadClass);
+            appendFile('style', false, localStorage.getItem(fonts.cacheName));
+            fonts.localstorage = true;
+          }
+
+          <%# Return values to be assigned to MAS global namespace %>
+          return {
+            bootstrap: bootstrap,
+            fonts: fonts,
+            supports: supports
+          };
+        })(window, document)
+      }
+   };
+</script>
+<%# END MAS JAVASCRIPT SETUP %>
+
 <%= page_header_includes %>
 <%= timeago_script_tag %>
 <%= use_canonical  if this_blog.use_canonical_url %>

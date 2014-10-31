@@ -9,7 +9,8 @@ Rails.application.configure do
   # Stylesheets
   config.assets.precompile += %w(
     publify.js
-    publify.css
+    enhanced_responsive.css
+    enhanced_fixed.css
     publify_admin.js
     publify_admin.css
     accounts.css
