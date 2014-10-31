@@ -26,6 +26,10 @@
   width: 100%;
   font-weight: $font-weight-bold;
   color: $link-color--negative;
+
+  &:visited {
+    color: $link-color--negative;
+  }
 }
 
 .next-steps__text {

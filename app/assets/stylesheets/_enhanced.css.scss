@@ -8,17 +8,13 @@ $responsive: true;
 @import 'lib/colors';
 @import 'settings';
 
-// import Dough
 @import 'dough/assets/stylesheets/lib';
 @import 'dough/assets/stylesheets/common';
 @import 'dough/assets/stylesheets/optional';
 
 @import 'lib/functions';
 @import 'lib/mixins';
-@import 'lib/mediaqueries';
 
 @import 'base/*';
-@import 'helpers/*';
 @import 'layouts/*';
-
 @import 'components/*';

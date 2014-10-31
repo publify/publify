@@ -7,6 +7,10 @@
   background-color: $tag-secondary-bgcolor--solid;
   background-color: $tag-secondary-bgcolor--translucent;
   border-radius: $border-radius;
+
+  &:visited {
+    color: $white;
+  }
 }
 
 .tag--title {
