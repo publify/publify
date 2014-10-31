@@ -161,6 +161,8 @@ GEM
     kaminari (0.16.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    launchy (2.4.2)
+      addressable (~> 2.3)
     listen (2.7.11)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
@@ -345,6 +347,7 @@ DEPENDENCIES
   jquery-rails (~> 3.1.0)
   jquery-ui-rails (~> 5.0.2)
   kaminari
+  launchy
   mini_magick (~> 3.8.1)
   mysql2
   non-stupid-digest-assets

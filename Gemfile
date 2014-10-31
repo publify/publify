@@ -55,5 +55,6 @@ group :development, :test do
   gem 'guard-bundler'
   gem 'guard-rubocop'
   gem 'spring-commands-rspec'
+  gem 'launchy'
   gem 'poltergeist'
 end
