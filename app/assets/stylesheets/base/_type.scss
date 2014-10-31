@@ -10,7 +10,7 @@ body {
   font-weight: $font-weight-light;
 }
 
-.intro {
+.standfirst {
   @include font-size(22);
   color: $heading-color-primary;
 }
