@@ -18,6 +18,14 @@ describe Tag, :type => :model do
     expect(tag.display_name).to eq('Monty Python')
   end
 
+  it 'display names with colon can be found by dash joined name' do
+    expect(Tag.where(:name => 'SaintSeya:Hades').first).to be_nil
+    tag = Tag.create(:name => 'SaintSeya:Hades')
+    expect(tag).to be_valid
+    expect(tag.name).to eq('saintseya-hades')
+    expect(tag.display_name).to eq('SaintSeya:Hades')
+  end
+
   it 'articles can be tagged' do
     a = Article.create(:title => 'an article')
     foo = FactoryGirl.create(:tag, :name => 'foo')
