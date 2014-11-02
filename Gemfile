@@ -36,7 +36,7 @@ else
   end
 end
 
-gem 'rails', '~> 4.1.1'
+gem 'rails', '~> 4.1.7'
 gem 'htmlentities'
 gem 'bluecloth', '~> 2.1'
 gem 'coderay', '~> 1.1.0'
@@ -83,6 +83,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.1.0'
   gem 'simplecov', :require => false
   gem 'pry-rails'
+  gem 'guard-rspec'
 end
 
 # Install gems from each theme
