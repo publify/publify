@@ -4,7 +4,6 @@ require 'base64'
 class Admin::PagesController < Admin::BaseController
 
   before_filter :set_images, only: [:new, :edit]
-  before_filter :set_macro, only: [:new, :edit]
 
   layout :get_layout
   cache_sweeper :blog_sweeper
@@ -47,10 +46,6 @@ class Admin::PagesController < Admin::BaseController
 
   def default_textfilter
     current_user.text_filter || blog.text_filter
-  end
-
-  def set_macro
-    @macros = TextFilter.macro_filters
   end
 
   def set_images

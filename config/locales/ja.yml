@@ -446,11 +446,6 @@ ja:
         explain_moderate_feedback: "You may want to moderate feedback when turning this on"
         explain_rss_description: "You can use the following tags: %author% (author name), %blog_url% (this blog URL), %blog_name% (this blog title) and %permalink_url% (a link to the article you want to protect)"
     shared:
-      macros:
-        show_help_on_publify_macros: "Publifyマクロのヘルプを表示"
-        name: "名前"
-        description: "説明"
-        tag: "Tag"
       destroy:
         destroy_confirmation: "Destroy confirmation"
         are_you_sure: "Are you sure you want to delete this %{element}"
@@ -459,7 +454,7 @@ ja:
         delete: "削除"
     tags:
       edit:
-        success: "Tag was successfully updated" 
+        success: "Tag was successfully updated"
       new:
         no_tags: "There are no tags yet. Why don't you start and create one?"
         articles: "記事"
@@ -550,11 +545,11 @@ ja:
       bulkops:
         error: "Not implemented"
         success_deleted_spam: "All spam have been deleted"
-        success_mark_as_ham: 
+        success_mark_as_ham:
           zero: "No item selected to mark as Ham"
           one: "Marked 1 item as Ham"
           other: "Marked %{count} items as Ham"
-        success_mark_as_spam: 
+        success_mark_as_spam:
           zero: "No item selected to mark as Spam"
           one: "Marked 1 item as Spam"
           other: "Marked %{count} items as Spam"
