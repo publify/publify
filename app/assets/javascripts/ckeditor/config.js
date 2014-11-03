@@ -14,6 +14,10 @@ CKEDITOR.editorConfig = function(config) {
     {
       name: 'paragraph',
       items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-' ]
+    },
+    {
+      name: 'links',
+      items : [ 'Link','Unlink' ]
     }
   ];
 };
