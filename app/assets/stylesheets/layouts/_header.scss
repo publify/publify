@@ -2,3 +2,34 @@
   background-color: $header-bg-color;
   height: baseline-unit(12);
 }
+
+.l-header__logo {
+  display: none;
+
+  @include respond-to($mq-m) {
+    @include column(3);
+    width: 250px;
+    height: 50px;
+    margin-top: baseline-unit(2);
+    background: asset-url('logo.svg') 0 0 no-repeat;
+  }
+}
+
+.l-header__title {
+  @include column(12);
+  @include font-size(18);
+  font-family: $brand-font;
+  font-weight: $brand-font-weight;
+  margin-top: baseline-unit(4);
+  margin-bottom: 0;
+
+  @include respond-to($mq-m) {
+    @include column(6);
+    @include font-size(28);
+    text-align: center;
+  }
+}
+
+.l-header__title__emphasis {
+  color: $link-color--negative;
+}
