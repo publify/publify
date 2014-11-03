@@ -8,7 +8,7 @@
       <!-- Button trigger modal -->
       <button class="btn btn-success" data-toggle="modal" data-target="#publish">
         <%= controller.action_name == "new" ? t(".publish") : t(".save") %>
-      </button>    
+      </button>
     </span>
   </div>
 </div>
@@ -25,7 +25,6 @@
 
     <div id='editor'>
       <%= cktext_area('page', 'body', class: 'form-control', placeholder: t('.type_your_post')) %>
-      <%#= render 'admin/shared/macros' %>
     </div>
   </div>
 </div>
@@ -47,12 +46,12 @@
             <%= text_field 'page', 'name', :class => 'form-control' %>
           </div>
         </div>
-        
+
         <div class='well'>
           <fieldset>
             <legend><%= t(".publish_settings") %></legend>
             <div class='control-group'>
-              <%= t(".status") %>: <strong><%= (@page.published) ? t(".published") : t(".offline") %></strong> 
+              <%= t(".status") %>: <strong><%= (@page.published) ? t(".published") : t(".offline") %></strong>
               <%= toggle_element('status') %>
               <div id='status' class='collapse'>
                 <label for="page_published" class='checkbox'>
