@@ -43,6 +43,7 @@ RSpec.configure do |config|
   config.use_instantiated_fixtures  = false
   config.fixture_path = "#{::Rails.root}/test/fixtures"
   config.infer_spec_type_from_file_location!
+  config.include SessionHelpers, type: :feature
 
   # shortcuts for factory_girl to use: create / build / build_stubbed
   config.include FactoryGirl::Syntax::Methods
