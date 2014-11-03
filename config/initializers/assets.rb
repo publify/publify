@@ -20,5 +20,7 @@ Rails.application.configure do
     dough/assets/stylesheets/basic.css
     dough/assets/stylesheets/font_files.css
     dough/assets/stylesheets/font_base64.css
+    jquery/dist/jquery.js
+    requirejs/require.js
   )
 end

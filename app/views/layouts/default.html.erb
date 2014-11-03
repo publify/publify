@@ -47,6 +47,9 @@
     </div>
   </div>
   <p style='text-align: center'><small>Powered by <a href='http://publify.co'>Publify</a> | Photo <a href='http://startupstockphotos.com/'>Starup stock photos</a></small></p>
+
+  <%# START RequireJS load of application %>
+  <%= javascript_include_tag 'requirejs/require', data: { main: javascript_path('application') } %>
+  <%# END RequireJS load of application %>
 </body>
 </html>
-
