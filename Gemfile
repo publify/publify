@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 ruby '2.1.3'
 
 gem 'dough-ruby', '~> 4.0', git: 'https://github.com/moneyadviceservice/dough.git'
-gem 'bowndler', git: 'https://github.com/moneyadviceservice/bowndler'
+gem 'bowndler', git: 'https://github.com/moneyadviceservice/bowndler.git'
 
 gem 'mysql2'
 gem 'rails', '~> 4.1.1'
