@@ -449,11 +449,6 @@ nb-NO:
         explain_moderate_feedback: "Det kan være en idé å moderere diskusjoner når du slår på denne"
         explain_rss_description: "Du kan bruke følgende tagger: %author% (forfatternavn), %blog_url% (blogg-URL), %blog_name% (bloggtittel) og %permalink_url% (en lenke til den artikkelen du vil beskytte)"
     shared:
-      macros:
-        show_help_on_publify_macros: "Vis hjelp i Publify-makroer"
-        name: "Navn"
-        description: "Beskrivelse"
-        tag: "Tagg"
       destroy:
         destroy_confirmation: "Bekreft sletting"
         are_you_sure: "Er du sikker på at du vil slette %{element}?"

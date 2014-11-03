@@ -446,11 +446,6 @@ nl:
         explain_moderate_feedback: "You may want to moderate feedback when turning this on"
         explain_rss_description: "You can use the following tags: %author% (author name), %blog_url% (this blog URL), %blog_name% (this blog title) and %permalink_url% (a link to the article you want to protect)"
     shared:
-      macros:
-        show_help_on_publify_macros: "Toon help voor Publify macro's"
-        name: "Naam"
-        description: "Omschrijving"
-        tag: "Tag"
       destroy:
         destroy_confirmation: "Destroy confirmation"
         are_you_sure: "Are you sure you want to delete this %{element}"
@@ -528,7 +523,7 @@ nl:
         type_your_post: "Type your post"
         published: "published"
         offline: "offline"
-      pages: 
+      pages:
         no_pages: "Er zijn nog geen pages. Waarom begin je er niet een te maken?"
     feedback:
       state:
@@ -550,11 +545,11 @@ nl:
       bulkops:
         error: "Niet geimplementeerd"
         success_deleted_spam: "Alle spam is verwijderd"
-        success_mark_as_ham: 
+        success_mark_as_ham:
           zero: "No item selected to mark as Ham"
           one: "1 Item gemarkeerd als Ham"
           other: "%{count} Items gemarkeerd als Ham"
-        success_mark_as_spam: 
+        success_mark_as_spam:
           zero: "No item selected to mark as Spam"
           one: "1 Item gemarkeerd als Spam"
           other: "%{count} Items gemarkeerd als Spam"
