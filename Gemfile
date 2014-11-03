@@ -1,6 +1,9 @@
 source 'https://rubygems.org'
 ruby '2.1.3'
 
+gem 'dough-ruby', '~> 4.0', git: 'https://github.com/moneyadviceservice/dough.git'
+gem 'bowndler', git: 'https://github.com/moneyadviceservice/bowndler'
+
 gem 'mysql2'
 gem 'rails', '~> 4.1.1'
 gem 'htmlentities'
@@ -27,7 +30,7 @@ gem 'rails-timeago', '~> 2.0'
 
 gem 'rails_autolink', '~> 1.1.0'
 gem 'dynamic_form', '~> 1.1.4'
-
+gem 'sass-rails', ' ~> 4.0.3'
 gem 'non-stupid-digest-assets'
 
 # removed from Rails-core as Rails 4.0
@@ -36,7 +39,10 @@ gem 'rails-observers', '~> 0.1.2'
 gem 'ckeditor'
 
 group :assets do
-  gem 'sass-rails', ' ~> 4.0.3'
+  gem 'autoprefixer-rails'
+  gem 'jshint_ruby'
+  gem 'csslint_ruby'
+  gem 'compass-rails'
   gem 'coffee-rails', ' ~> 4.0.1'
   gem 'uglifier'
 end

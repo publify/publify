@@ -1,3 +1,19 @@
+GIT
+  remote: git@github.com:moneyadviceservice/bowndler
+  revision: f836a295f0eac8ba02a6dc4733d000a7f1fc8a00
+  specs:
+    bowndler (1.0.2)
+      thor
+
+GIT
+  remote: https://github.com/moneyadviceservice/dough.git
+  revision: 0a526d307dc175c58ea601494d862b63ee4a558b
+  specs:
+    dough-ruby (4.0.0)
+      activesupport
+      rails (>= 3.2)
+      sass-rails
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -36,6 +52,8 @@ GEM
     ast (2.0.0)
     astrolabe (1.3.0)
       parser (>= 2.2.0.pre.3, < 3.0)
+    autoprefixer-rails (3.1.2.20141016)
+      execjs
     bluecloth (2.2.0)
     buftok (0.2.0)
     builder (3.2.2)
@@ -64,6 +82,14 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
+    compass (0.12.7)
+      chunky_png (~> 1.2)
+      fssm (>= 0.2.7)
+      sass (~> 3.2.19)
+    compass-rails (2.0.0)
+      compass (>= 0.12.2)
+    csslint_ruby (0.0.2)
+      execjs
     daemons (1.1.9)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
@@ -122,6 +148,7 @@ GEM
       fog-core
       nokogiri (~> 1.5, >= 1.5.11)
     formatador (0.2.5)
+    fssm (0.2.10)
     guard (2.7.0)
       formatador (>= 0.2.4)
       listen (~> 2.7)
@@ -157,6 +184,8 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (5.0.2)
       railties (>= 3.2.16)
+    jshint_ruby (0.1)
+      execjs
     json (1.8.1)
     kaminari (0.16.1)
       actionpack (>= 3.0.0)
@@ -328,12 +357,17 @@ DEPENDENCIES
   actionpack-page_caching (~> 1.0.2)
   addressable (~> 2.1)
   akismet (~> 1.0)
+  autoprefixer-rails
   bluecloth (~> 2.1)
+  bowndler!
   capybara
   carrierwave (~> 0.10.0)
   ckeditor
   coderay (~> 1.1.0)
   coffee-rails (~> 4.0.1)
+  compass-rails
+  csslint_ruby
+  dough-ruby (~> 4.0)!
   dynamic_form (~> 1.1.4)
   factory_girl (~> 4.5.0)
   flickraw-cached
@@ -346,6 +380,7 @@ DEPENDENCIES
   htmlentities
   jquery-rails (~> 3.1.0)
   jquery-ui-rails (~> 5.0.2)
+  jshint_ruby
   kaminari
   launchy
   mini_magick (~> 3.8.1)

@@ -1,0 +1,15 @@
+@if $include-panel-footer {
+
+  .panel-footer {
+    @extend %clearfix;
+    background: $color-panel-footer-background;
+    padding: 10px 10px 6px;
+    box-shadow: 0 0 10px rgba(black, 0.1);
+
+    @include respond-to($mq-m) {
+      border-top: 2px solid #eee;
+      box-shadow: none;
+      padding: 40px 0;
+    }
+  }
+} // END @if

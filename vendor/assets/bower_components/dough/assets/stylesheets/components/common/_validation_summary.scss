@@ -1,0 +1,39 @@
+// Box used to present summary of form validation errors
+//
+// Styleguide validation-summary
+
+.validation-summary {
+  margin: $baseline-unit*2 0 $baseline-unit*3 0;
+
+  @include respond-to($mq-s) {
+    margin: $baseline-unit*2 0 $baseline-unit*5 0;
+  }
+
+  &.validation-summary--hidden {
+    display:none;
+  }
+}
+
+.validation-summary__content-container {
+  @extend .is-errored;
+  @include inline-block;
+  background: $color-validation-summary-background;
+  padding-right: $baseline-unit*3;
+}
+
+.validation-summary__title {
+  @extend %font-heading-heavy;
+  margin: 0.75em 0;
+}
+
+.validation-summary__list {
+  margin: $baseline-unit*2 0;
+
+  a {
+     color:$color-validation-text;
+     text-decoration:none;
+     &:hover, &:focus {
+      text-decoration:underline;
+     }
+  }
+}

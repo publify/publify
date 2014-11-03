@@ -1,0 +1,34 @@
+.inline-callout {
+  display: block;
+  overflow: hidden;
+  position: relative;
+  background: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0" y="0" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><line fill="none" stroke="#303030" stroke-miterlimit="10" x1="100" y1="0" x2="0" y2="100"/></svg>');
+  background-size: 25px;
+  padding: baseline-unit(4);
+  margin: baseline-unit(6) 0;
+  cursor: pointer;
+}
+
+.inline-callout__text {
+  @include font-size(24);
+  position: relative;
+  display: block;
+  float: right;
+  text-align: right;
+  padding: baseline-unit(2);
+  background-color: white;
+}
+
+.inline-callout__arrow {
+  float: right;
+  position: relative;
+  width: 20px;
+  top: 0;
+  right: 6px;
+  margin-left: baseline-unit(5);
+}
+
+.inline-callout__arrow-path {
+  fill: none;
+  stroke: $link-color;
+}

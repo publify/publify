@@ -1,0 +1,10 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+div[tabindex="-1"],
+nav[tabindex="-1"] {
+  outline: 0;
+}

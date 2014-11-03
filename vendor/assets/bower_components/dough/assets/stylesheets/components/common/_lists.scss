@@ -1,0 +1,75 @@
+// The basic unordered list style with coloured bullet points
+//
+// Styleguide list
+
+.list {
+  list-style: none;
+
+  > li:before {
+    content: '\2022';
+    color: $color-list-bullet;
+    display: block;
+    position: relative;
+    width: 0;
+    height: 0;
+    left: -20px;
+    top: -1px;
+  }
+}
+
+// A list that has ticks and crosses for bullet points
+//
+// Styleguide list-benefits
+
+// TODO Look to removing the .list--benefits class in the near future once other repos have switched over to .list-benefits
+.list--benefits,
+.list-benefits {
+  list-style: none;
+  padding-left: 0;
+
+  li {
+    padding-left: 30px;
+    position: relative;
+  }
+
+  li:before {
+    @extend .icon;
+    @extend .icon--tick;
+    content: '';
+    color: $color-list-yes;
+    left: 0;
+    position: absolute;
+    top: 3px;
+  }
+
+  .no:before {
+    @extend .icon;
+    @extend .icon--cross;
+  }
+}
+
+.list-benefits--s {
+  margin-bottom: $baseline-unit*2;
+
+  li {
+    @include body(16,24);
+    margin-bottom: 0;
+    padding-left: 18px;
+
+    &:before {
+      @extend .icon--tick-s;
+      top: 7px;
+    }
+  }
+}
+
+// Default list style for editorial content
+.editorial ul {
+  @extend .list;
+}
+
+// Yes/No list style for editorial content
+.editorial .yes-no {
+  padding-left: 0;
+  @extend .list--benefits;
+}

@@ -1,0 +1,16 @@
+$responsive: true;
+
+// lib/colors must be loaded before the settings file
+@import 'lib/colors';
+@import 'settings';
+
+@import 'dough/assets/stylesheets/lib';
+@import 'dough/assets/stylesheets/common';
+@import 'dough/assets/stylesheets/optional';
+
+@import 'lib/functions';
+@import 'lib/mixins';
+
+@import 'base/*';
+@import 'layouts/*';
+@import 'components/*';

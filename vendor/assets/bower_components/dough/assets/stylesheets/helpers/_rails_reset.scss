@@ -1,0 +1,13 @@
+//
+// Temporary css to remove unwanted default Rails behaviour
+// @TODO Remove this file once field_with_errors and error_message have been removed from the Rails build
+
+.field_with_errors {
+  display: inline;
+}
+
+/* @lintingIgnoreBegin */
+.error_message {
+  display: none !important;
+}
+/* @lintingIgnoreEnd */

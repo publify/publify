@@ -1,0 +1,29 @@
+{
+  "name": "dough",
+  "private": true,
+  "ignore": [
+    "**/*",
+    "!assets/**/*",
+    "!bower.json",
+    "!.jscsrc",
+    "!.jshintrc",
+    "!LICENSE",
+    "!README.md"
+  ],
+  "dependencies": {
+    "normalize-css": "~3.0.0",
+    "eventsWithPromises": "https://github.com/moneyadviceservice/eventsWithPromises.git#master",
+    "requirejs": "latest",
+    "jquery": "latest",
+    "jqueryThrottleDebounce": "https://github.com/cowboy/jquery-throttle-debounce.git"
+  },
+  "_release": "0a526d307d",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "0a526d307dc175c58ea601494d862b63ee4a558b"
+  },
+  "_source": "/Users/alexwilliams/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/bundler/gems/dough-0a526d307dc1",
+  "_target": "*",
+  "_originalSource": "/Users/alexwilliams/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/bundler/gems/dough-0a526d307dc1"
+}

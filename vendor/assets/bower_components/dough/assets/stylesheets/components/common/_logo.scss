@@ -1,0 +1,19 @@
+.logo {
+  @include inline-block;
+  background-image: image_url('dough/assets/images/icon-sprite.png');
+  background-repeat: no-repeat;
+  width: 330px;
+  height: 60px;
+
+  @include device-pixel-ratio() {
+    background-size: $sprite-background-size;
+  }
+}
+
+.logo--green {
+  background-position: -686px -360px;
+
+  @include device-pixel-ratio() {
+    background-position: 0px -150px;
+  }
+}

@@ -1,0 +1,16 @@
+//= depend_on_asset dough/assets/fonts/MuseoSans_300.woff
+//= depend_on_asset dough/assets/fonts/MuseoSans_500.woff
+//= depend_on_asset dough/assets/fonts/MuseoSans_700.woff
+
+@mixin base64fontface($name, $file, $weight) {
+  @font-face {
+    font-family: $name;
+    src: asset-data-url($file + '.woff') format('woff');
+    font-weight: $weight;
+    font-style: normal;
+  }
+}
+
+@include base64fontface('museo_sans', 'dough/assets/fonts/MuseoSans_300', 300);
+@include base64fontface('museo_sans', 'dough/assets/fonts/MuseoSans_500', 500);
+@include base64fontface('museo_sans', 'dough/assets/fonts/MuseoSans_700', 700);

@@ -1,0 +1,271 @@
+// We are using a png sprite for our icons to ensure browser compatibility.
+// The sprite contains at two sizes, original and double, to support high density screens.
+//
+// .icon--logo - mas logo (small)
+// .icon--youtube - youtube logo
+// .icon--facebook - facebook icon
+// .icon--twitter - twitter icon
+// .icon--globe - globe icon to symbolise language change
+// .icon--up-arrow - up arrow icon
+// .icon--desktop - desktop computer icon
+// .icon--external-link - icon for an external link
+// .icon--tick - tick icon
+// .icon--tick-s - small tick icon
+// .icon--cross - cross icon
+// .icon--doc - WORD document icon
+// .icon--pdf - PDF document icon
+// .icon--plus - plus icon
+// .icon--minus - minus icon
+// .icon--up-chevron - up chevron icon
+// .icon--down-chevron - down chevron icon
+// .icon--up-chevron-blue - up chevron icon
+// .icon--down-chevron-blue - down chevron icon
+// .icon--left-chevron - left chevron icon
+// .icon--right-chevron - right chevron icon
+// .icon--close - close icon
+// .icon--search - green search icon
+// .icon--search-white - white search icon
+// .icon--account - green person icon
+//
+// Styleguide icons
+
+//= depend_on_asset dough/assets/images/icon-sprite.png
+
+@mixin search-icon-colour($search-icon-colour) {
+  @if ($search-icon-colour == green) {
+    background-position: -172px -268px;
+    @include device-pixel-ratio() {
+      background-position: -172px -104px;
+    }
+  } @else if ($search-icon-colour == white) {
+    background-position: -271px -73px;
+    @include device-pixel-ratio() {
+      background-position: -272px -8px;
+    }
+  }
+}
+
+%icon {
+  // prevent IE8 from breaking when extending .icon into a :before it doesn't understand
+  background-image: image_url('dough/assets/images/icon-sprite.png');
+  background-repeat: no-repeat;
+  @include inline-block;
+}
+
+.icon {
+  background-image: image_url('dough/assets/images/icon-sprite.png');
+  background-repeat: no-repeat;
+  @include inline-block;
+}
+
+.icon--logo {
+  background-position: -233px -266px;
+  width: 56px;
+  height: 26px;
+}
+
+.icon--youtube {
+  background-position: -4px -70px;
+  width: 30px;
+  height: 30px;
+}
+
+.icon--facebook {
+  background-position: -36px -70px;
+  width: 24px;
+  height: 24px;
+}
+
+.icon--twitter {
+  background-position: -69px -70px;
+  width: 26px;
+  height: 25px;
+}
+
+.icon--globe {
+  background-position: -107px -266px;
+  width: 20px;
+  height: 20px;
+}
+
+.icon--up-arrow {
+  background-position: -308px -173px;
+  width: 8px;
+  height: 12px;
+}
+
+.icon--desktop {
+  background-position: -371px -174px;
+  width: 20px;
+  height: 13px;
+
+  // temp style to adjust icon to sit with text
+  position: relative;
+  top: 2px;
+}
+
+.icon--desktop-green {
+  background-position: -437px -174px;
+  width: 16px;
+  height: 13px;
+
+  // temp style to adjust icon to sit with text
+  position: relative;
+  top: 2px;
+}
+
+.icon--external-link {
+  background-position: -8px -170px;
+  width: 18px;
+  height: 18px;
+}
+
+.icon--speech-green {
+  background-position: -402px -72px;
+  width: 20px;
+  height: 18px;
+}
+
+.icon--tick {
+  background-position: -39px -268px;
+  width: 21px;
+  height: 16px;
+}
+
+.icon--tick-s {
+  background-position: -439px -274px;
+  width: 10px;
+  height: 9px;
+}
+
+.icon--accessibility {
+  background-position: -475px -264px;
+  width: 20px;
+  height: 20px;
+}
+
+.icon--cross {
+  background-position: -207px -270px;
+  width: 21px;
+  height: 16px;
+}
+
+.icon--doc {
+  background-position: -108px -171px;
+  width: 18px;
+  height: 18px;
+}
+
+.icon--pdf {
+  background-position: -142px -171px;
+  width: 18px;
+  height: 18px;
+}
+
+.icon--close {
+  background-position: -140px -268px;
+  width: 18px;
+  height: 18px;
+}
+
+.icon--search {
+  background-position: -172px -268px;
+  width: 20px;
+  height: 20px;
+}
+
+.icon--search-white {
+  background-position: -271px -73px;
+  width: 20px;
+  height: 17px;
+}
+
+.icon--clear {
+  vertical-align: middle;
+  background-position: -5px -462px;
+  width: 15px;
+  height: 15px;
+}
+
+// Chevrons
+
+.icon--down-chevron {
+  background-position: -238px -76px;
+  width: 18px;
+  height: 12px;
+}
+
+.icon--up-chevron {
+  background-position: -205px -75px;
+  width: 18px;
+  height: 16px;
+}
+
+.icon--down-chevron-blue {
+  background-position: -517px -76px;
+  width: 18px;
+  height: 12px;
+}
+
+.icon--up-chevron-blue {
+  background-position: -484px -75px;
+  width: 18px;
+  height: 16px;
+}
+
+.icon--left-chevron {
+  background-position: -434px -73px;
+  width: 12px;
+  height: 19px;
+}
+
+.icon--right-chevron {
+  background-position: -453px -73px;
+  width: 12px;
+  height: 19px;
+}
+
+.icon--plus {
+  background-position: -685px -73px;
+  width: 20px;
+  height: 20px;
+}
+
+.icon--minus {
+  background-position: -742px -73px;
+  width: 20px;
+  height: 20px;
+}
+
+.icon--home {
+  background-position: -6px -263px;
+  width: 20px;
+  height: 20px;
+}
+
+.icon--account {
+  background-position: -531px -172px;
+  width: 20px;
+  height: 20px;
+
+  position: relative;
+  top: 2px;
+}
+
+.icon--web-chat {
+  background-position: -909px -204px;
+  width: 80px;
+  height: 70px;
+}
+
+.icon--call-us {
+  background-position: -688px -200px;
+  width: 50px;
+  height: 70px;
+}
+
+.icon--sharing {
+  background-position: -922px -50px;
+  width: 60px;
+  height: 70px;
+}

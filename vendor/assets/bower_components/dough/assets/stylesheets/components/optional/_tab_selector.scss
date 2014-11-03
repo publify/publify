@@ -1,0 +1,205 @@
+// Tab selector, stays as tabs at all viewport widths
+//
+// Styleguide Tab selector
+.tab-selector__triggers-outer {
+  position: relative;
+}
+
+.tab-selector__triggers-inner {
+  .js & {
+    border-bottom: 1px solid $color-tab-selector-border;
+    position: static;
+    &.is-active {
+      background-color: transparent;
+    }
+  }
+}
+
+.tab-selector__icon {
+  display: none;
+}
+
+.tab-selector__trigger-container {
+  visibility: hidden;
+  .js & {
+    display: inline-block;
+  }
+  [data-dough-tabselector-initialised="yes"] & {
+    visibility: visible;
+    &.is-active {
+      display: inline-block;
+    }
+  }
+
+  .tab-selector__trigger {
+    @extend %type;
+    border-color: $color-tab-selector-border;
+    border-style: solid;
+    bottom: -1px;
+    color: $color-tab-selector-text;
+    cursor: pointer;
+    display: inline-block;
+    border-width: 0;
+    padding: $baseline-unit 12px;
+    position: relative;
+    vertical-align: bottom;
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      border-bottom: 1px solid $color-tab-selector-border;
+      width: 100%;
+    }
+    .js & {
+      &.is-active {
+        @extend %font-heading-heavy;
+        background-color: $color-tab-selector-background-active;
+        border-width: 1px 1px 0 1px;
+        border-radius: 5px 5px 0 0;
+        padding-left: 10px;
+        padding-right: 10px;
+        &:after {
+          display: none;
+        }
+        .tab-selector__icon {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.tab-selector__triggers-inner.is-active .tab-selector__trigger-container {
+  .js & {
+    display: inline-block;
+  }
+}
+
+.tab-selector__item-info {
+  @extend .visually-hidden;
+}
+
+// Tab selector, collapsing to dropdown below medium breakpoint
+//
+// Styleguide Tab selector collapsable
+.tab-selector--collapsable {
+  &.is-collapsed {
+
+    .tab-selector__triggers-inner {
+      .js & {
+        background-color: $color-tab-selector-background-active;
+        border-bottom: 0 none;
+        font-size: 0;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        z-index: 3;
+
+        &.is-active {
+          background-color: $color-tab-selector-background;
+          position: absolute;
+          z-index: 4;
+          .tab-selector__icon {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .tab-selector__trigger-container {
+      .js & {
+        list-style: none;
+        display: none;
+        margin-bottom: 0;
+        &.is-active {
+          display: block;
+        }
+        .tab-selector__triggers-inner & {
+          display: block;
+        }
+      }
+
+      .tab-selector__trigger {
+        border-width: 0;
+        padding-right: 35px;
+        padding-left: 12px;
+        position: relative;
+        margin: 0;
+        display: block;
+        text-align: left;
+        width: 100%;
+        .js & {
+          &.is-active {
+            border-width: 1px;
+            border-radius: 5px;
+            .tab-selector__icon {
+              display: block;
+              position: absolute;
+              right: 10px;
+              top: 50%;
+              margin-top: -6px;
+            }
+          }
+        }
+        &:hover,
+        &:visited {
+          color: $color-tab-selector-text;
+          text-decoration: none;
+          background-color: $color-tab-selector-background-active;
+        }
+      }
+    }
+
+    .tab-selector__triggers-inner.is-active .tab-selector__trigger-container {
+      .js & {
+        display: block;
+      }
+    }
+  }
+
+  .tab-selector__icon {
+    @extend .icon--down-chevron-blue;
+  }
+
+  .tab-selector__triggers-inner.is-active .tab-selector__icon {
+    @extend .icon--up-chevron-blue;
+  }
+
+  .tab-selector__item-info {
+    .js & {
+      @include respond-to(0, $mq-m) {
+        clip: auto;
+        float: right;
+        font-size: 0.8em;
+        height: auto;
+        width: auto;
+        position: static;
+      }
+    }
+  }
+
+  .tab-selector__trigger.is-active .tab-selector__item-info {
+    @extend .visually-hidden;
+  }
+}
+
+.tab-selector__target.is-active {
+  padding: $baseline-unit * 2 12px;
+  .js & {
+    display: block;
+  }
+}
+
+.tab-selector__target.is-inactive {
+  .js & {
+    display: none;
+  }
+}
+
+.tab-selector__target-heading {
+  .js & {
+    @extend .visually-hidden;
+  }
+}

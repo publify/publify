@@ -1,0 +1,25 @@
+{
+  "__warning__": [
+    " ************************************************************************** ",
+    " *                                                                        * ",
+    " * WARNING!                                                               * ",
+    " * This file is generated. ANY CHANGES YOU MAKE MAY BE OVERWRITTEN.       * ",
+    " *                                                                        * ",
+    " * To add/edit bower dependencies, please edit bower.json.erb, and run    * ",
+    " * `bowndler bower_configure` to regenerate this file.                    * ",
+    " *                                                                        * ",
+    " ************************************************************************** "
+  ],
+  "name": "publify",
+  "private": true,
+  "ignore": [
+    "*",
+    "!app/assets/**/*",
+    "!vendor/assets/fonts/*"
+  ],
+  "dependencies": {
+    "dough": "/Users/alexwilliams/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/bundler/gems/dough-0a526d307dc1",
+    "requirejs": "2.1.*",
+    "jquery": "1.11.*"
+  }
+}

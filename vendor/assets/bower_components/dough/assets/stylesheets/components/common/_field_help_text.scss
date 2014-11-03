@@ -1,0 +1,19 @@
+.field-help-text {
+  margin-top: -20px;
+  margin-bottom: $baseline-unit*6;
+
+  .js & {
+    @include respond-to($mq-m) {
+      position: absolute;
+      margin-top: $baseline-unit*5;
+
+      &.field-help-text--hidden {
+        @include visually-hidden;
+      }
+    }
+  }
+}
+
+.js .field-help-text--jshide {
+  @include visually-hidden;
+}

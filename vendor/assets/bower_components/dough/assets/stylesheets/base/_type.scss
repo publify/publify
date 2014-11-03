@@ -1,0 +1,17 @@
+body,
+.dough {
+  @extend %type;
+  @extend %font-smoothing;
+  @extend %prevent-text-zooming;
+  color: $color-text-default;
+}
+
+b,
+strong {
+  font-weight: 700;
+}
+
+cite {
+  font-style: normal;
+  @include body(14,18);
+}

@@ -1,0 +1,135 @@
+// Buttons
+//
+// :hover      - green
+// :focus      - green
+// :active     - green
+// .is-disabled - green
+// .button--primary            - yellow
+// .button--primary:hover      - yellow
+// .button--primary:focus      - yellow
+// .button--primary:active     - yellow
+// .button--primary.is-disabled - yellow
+//
+// Styleguide buttons
+
+.button {
+  @extend %type-button;
+  @include inline-block;
+  padding: $button-padding-vertical $button-padding-horizontal;
+  margin-bottom: 0;
+  line-height: inherit;
+  text-align: center;
+  white-space: nowrap;
+  border-radius: $button-border-radius;
+  border: none;
+  background: $color-button-default;
+  border-bottom: $button-border-width solid $color-button-default-border;
+  transition: background 0.2s ease;
+  color: $color-button-text;
+  cursor: pointer;
+  filter: none;
+
+  &:visited {
+    color: $color-button-text;
+  }
+
+  &:focus {
+    @extend %form-input-focus-outline;
+  }
+
+  &:focus,
+  &:hover,
+  &:active {
+    background: $color-button-default-active;
+    border-color: $color-button-default-border-active;
+    text-decoration: none;
+    color: $color-button-text;
+  }
+
+  &:active {
+    padding-top: $button-padding-vertical - $button-border-width;
+    border-bottom-color: $color-button-default-active;
+    border-top: $button-border-width solid $color-button-default-border-active;
+  }
+
+  &.is-disabled,
+  &[disabled] {
+    pointer-events: none;
+    cursor: not-allowed;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background: $color-button-default-disabled;
+    border-color: $color-button-default-border-disabled;
+    color: $color-button-text-disabled;
+  }
+}
+
+.button--primary {
+  background: $color-button-primary;
+  border-bottom-color: $color-button-primary-border;
+
+  &:focus,
+  &:hover,
+  &:active {
+    background: $color-button-primary-active;
+    border-color: $color-button-primary-border-active;
+  }
+
+  &:active {
+    border-bottom-color: $color-button-primary-active;
+    border-top-color: $color-button-primary-border-active;
+  }
+
+  &.is-disabled,
+  &[disabled] {
+    background: $color-button-primary-disabled;
+    border-color: $color-button-primary-border-disabled;
+  }
+}
+
+// Requires the text to be wrapped in a sub-element in order to hide it at small viewport widths
+//
+// Styleguide Direction buttons
+
+.button--compact {
+  cursor: pointer;
+  padding: 12px 8px;
+  height: 52px;
+  min-width: 93px;
+  vertical-align: middle;
+  > .icon {
+    position: relative;
+    top: 5px;
+  }
+}
+
+.button--compact__text {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+// Sits alongside a text input. Button height matches text input height.
+//
+// .button--inline-input
+//
+// Styleguide Inline buttons
+
+.button--inline-input {
+  @extend %type-button-inline-input;
+  height: $input-height;
+  line-height: 0;
+  padding: 8px 10px;
+  vertical-align: top;
+}
+
+// Smaller font / padding
+//
+// .button--small
+//
+// Styleguide Small buttons
+
+.button--small {
+  @extend %type-button-small;
+  line-height: 1;
+  padding: 14px 16px;
+}

@@ -1,0 +1,19 @@
+// Currently we only have styles for H1 - H4
+//
+// Styleguide headings
+
+h1 {
+  @extend %heading-large;
+}
+
+h2 {
+  @extend %heading-medium;
+}
+
+h3 {
+  @extend %heading-small;
+}
+
+h4 {
+  @extend %heading-extra-small;
+}

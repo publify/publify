@@ -1,0 +1,22 @@
+//= depend_on_asset jquery/dist/jquery
+
+<%
+  def requirejs_path(asset)
+    javascript_path(asset).sub(/.js\z/, '')
+  end
+
+  requirejs_config = {
+    baseUrl: (Rails.application.config.action_controller.asset_host || '') + \
+      Rails.application.config.assets.prefix,
+    paths: {
+      # External dependencies
+      jquery: requirejs_path('jquery/dist/jquery')
+    },
+    shim: {}
+  }
+%>
+
+// RequireJS config
+if(window.requirejs) {
+  requirejs.config(<%= JSON.pretty_generate(requirejs_config) %>);
+}

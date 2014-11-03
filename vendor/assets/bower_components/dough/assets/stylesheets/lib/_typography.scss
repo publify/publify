@@ -1,0 +1,215 @@
+// Body Typography
+//
+// Mixin to adjust the font size and line height only. Typically used for one off elements that do not require any top
+// or bottom margins.
+
+@mixin body($font-size, $line-height) {
+  @if $responsive == true {
+    font-size: ($font-size / 16) + rem;
+    line-height: ($line-height / 16) + rem;
+  } @else {
+    font-size: $font-size + px;
+    line-height: $line-height + px;
+  }
+}
+
+// Paragraph Typography
+//
+// Mixin to style paragraph typography. Adjusts the font size and line height but also adjusts the
+// top and bottom margins to help space the paragraphs out appropriately.
+
+@mixin paragraph($font-size, $line-height) {
+  @if $responsive == true {
+    font-size: ($font-size / 16) + rem;
+    line-height: ($line-height / 16) + rem;
+    margin-top: 0;
+    margin-bottom: ($font-size - 6) / 16 + rem;
+  } @else {
+    font-size: $font-size + px;
+    line-height: $line-height + px;
+    margin-top: 0;
+    margin-bottom: ($font-size - 6) + px;
+  }
+}
+
+// Heading Typography
+//
+// Mixin to set the spacing between paragraphs and headings and improve the flow of the document.
+
+@mixin heading($font-size, $line-height) {
+  @if $responsive == true {
+    font-size: ($font-size / 16) + rem;
+    line-height: ($line-height / 16) + rem;
+    margin-top: ($font-size) / 16 + rem;
+    margin-bottom: ($font-size / 2) / 16 + rem;
+
+    @include respond-to($mq-l) {
+      margin-top: ($font-size*1.5) / 16 + rem;
+      margin-bottom: ($font-size / 2) / 16 + rem;
+    }
+
+  } @else {
+    font-size: $font-size + px;
+    line-height: $line-height + px;
+    margin-top: ($font-size*1.5) + px;
+    margin-bottom: ($font-size / 2) + px;
+
+    @include respond-to($mq-l) {
+      margin-top: ($font-size*1.5) + px;
+      margin-bottom: ($font-size / 2) + px;
+    }
+  }
+}
+
+%prevent-text-zooming {
+  // non-standard property to prevent automatic text zooming when changing orientation or viewing mobile
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+%font-smoothing {
+  // doesn't work as well with italics as with regular text
+  -webkit-font-smoothing: antialiased;
+
+  // improves antialiasing in Chrome and Windows
+  text-shadow: 1px 1px transparent;
+}
+
+%font-body {
+  font-family: 'museo_sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
+}
+
+%font-heading-medium {
+  font-family: 'museo_sans', Arial, sans-serif;
+  font-weight: 500;
+}
+
+%font-heading-heavy {
+  font-family: 'museo_sans', Arial, sans-serif;
+  font-weight: 700;
+}
+
+%heading-extra-large,
+.heading-extra-large {
+  @include heading(32, 36);
+  @extend %font-heading-heavy;
+
+  @include respond-to($mq-m) {
+    @include heading(40, 42);
+  }
+}
+
+%heading-large,
+.heading-large {
+  @include heading(32, 36);
+  @extend %font-heading-heavy;
+  color: $color-heading-default;
+
+  @include respond-to($mq-m) {
+    @include heading(40, 48);
+  }
+}
+
+%heading-medium,
+.heading-medium {
+  @include heading(24, 30);
+  @extend %font-heading-heavy;
+  color: $color-heading-medium;
+
+  @include respond-to($mq-m) {
+    @include heading(28, 36);
+  }
+}
+
+%heading-small,
+.heading-small {
+  @extend %font-heading-heavy;
+  @include heading(22, 30);
+  color: $color-heading-default;
+}
+
+%heading-extra-small,
+.heading-extra-small {
+  @extend %font-heading-heavy;
+  @include heading(16, 24);
+  color: $color-heading-extra-small;
+}
+
+%type {
+  @extend %font-body;
+  @include body(16, 24);
+}
+
+%type-small {
+  @include body(14, 18);
+}
+
+%type-table {
+  @include body(14, 18);
+
+  @include respond-to($mq-m) {
+    @include body(16, 24);
+  }
+}
+
+%type-callout {
+  @include body(14, 18);
+  @extend %font-heading-medium;
+
+  @include respond-to($mq-m) {
+    @include body(16, 24);
+  }
+}
+
+%type-button {
+  @extend %font-body;
+  @extend %font-smoothing;
+  @include body(18, 24);
+}
+
+%type-button-small {
+  @extend %font-body;
+  @extend %font-smoothing;
+  @include body(14, 16);
+  @include respond-to($mq-m) {
+    @include body(16, 20);
+  }
+}
+
+%type-button-inline-input {
+  @extend %font-body;
+  @extend %font-smoothing;
+  @include body(16, 16);
+}
+
+%base-font-style {
+  @include body(16, 24);
+
+  @include respond-to($mq-l) {
+    @include body(18, 24);
+  }
+}
+
+%paragraph {
+  @include paragraph(16, 24);
+
+  @include respond-to($mq-l) {
+    @include paragraph(18, 24);
+  }
+}
+
+%paragraph-intro {
+  @extend %font-heading-medium;
+  @include paragraph(18, 24);
+  color: $color-paragraph-intro;
+
+  @include respond-to($mq-l) {
+    @include paragraph(22, 30);
+  }
+}
+
+%paragraph-small {
+  @include paragraph(14, 18);
+}

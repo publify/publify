@@ -1,0 +1,75 @@
+@import 'normalize-css/normalize';
+
+body, .dough {
+  color: #555;
+  font: normal 16px/1.375, "Helvetica Neue", Helvetica, Arial, serif;
+}
+
+h1 {
+  color: #61a612; //$color-green-secondary
+}
+
+h2, h3, h4, h5, h6 {
+  color: #388426; //$color-green-dark
+}
+
+h1 {
+  font-size: 32px;
+}
+
+h2 {
+  font-size: 24px;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+a {
+  color: #1f6faa; // $color-link-default
+  text-decoration: none;
+
+  &:visited {
+    color: #1f6faa; // $color-link-default
+  }
+
+  &:hover,
+  &:focus {
+    outline: none;
+    color: #1f6faa; // $color-link-default
+    text-decoration: underline;
+  }
+}
+
+// Horizontal rule element (default style)
+//
+// Styleguide hr
+
+hr {
+  border-color: #edf0f0; // $color-gray-pale
+  border-style: solid;
+  border-top-width: 1px;
+  border-bottom-width: 0;
+
+}
+
+th, td {
+  font-size: 14px;
+}
+
+.logo {
+  width: 232px;
+  height: 38px;
+}
+
+.intro {
+  font-size: 18px;
+}
+
+.smallprint {
+  font-size: 14px;
+}
