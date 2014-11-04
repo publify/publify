@@ -11,7 +11,7 @@ class Tag < ActiveRecord::Base
     return if article.keywords.nil?
     tags = []
     Tag.transaction do
-      article.keywords.to_s.scan(/((['"]).*?\2|[\.[[:alnum:]]]+)/).collect do |x|
+      article.keywords.to_s.scan(/((['"]).*?\2|[\.:[[:alnum:]]]+)/).collect do |x|
         x.first.tr("\"'", '')
       end.uniq.map do |tagword|
         tagname = tagword.to_url
