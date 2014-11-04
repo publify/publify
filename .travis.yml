@@ -7,3 +7,4 @@ rvm:
 before_script:
   - cp config/database.yml.mysql config/database.yml
   - bundle exec rake db:create db:migrate
+  - bundle exec bowndler update
