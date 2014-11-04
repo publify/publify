@@ -101,6 +101,13 @@ describe Tag, :type => :model do
         it { expect(article.tags.first.name).to eq('foo') }
       end
 
+      context "with a simple keyword, but containing a semi-colon" do
+        let(:article) { create(:article, keywords: "lang:fr") }
+        it { expect(article.tags.size).to eq(1) }
+        it { expect(article.tags.first).to be_kind_of(Tag) }
+        it { expect(article.tags.first.name).to eq('lang-fr') }
+      end
+
       context "with two keyword separate by a coma" do
         let(:article) { create(:article, keywords: "foo, bar") }
         it { expect(article.tags.size).to eq(2) }

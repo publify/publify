@@ -167,6 +167,12 @@ describe Admin::ContentController, :type => :controller do
       assert_equal 2, new_article.tags.size
     end
 
+    it 'should create an article with a uniq Tag instace named lang:FR' do
+      post :create, 'article' => base_article(:keywords => "lang:FR")
+      new_article = Article.last
+      expect(new_article.tags.map {|tag| tag.name}.include?('lang-fr')).to be_truthy
+    end
+
     it "should correctly interpret time zone in :published_at" do
       post :create, 'article' => base_article(:published_at => "February 17, 2011 08:47 PM GMT+0100 (CET)")
       new_article = Article.last
