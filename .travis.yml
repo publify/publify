@@ -7,4 +7,5 @@ rvm:
 before_script:
   - cp config/database.yml.mysql config/database.yml
   - bundle exec rake db:create db:migrate
+  - npm install -g bower
   - bundle exec bowndler update
