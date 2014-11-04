@@ -1,4 +1,7 @@
 CKEDITOR.editorConfig = function (config) {
+  config.filebrowserImageBrowseLinkUrl = '/ckeditor/pictures';
+  config.filebrowserImageBrowseUrl = '/ckeditor/pictures';
+  config.filebrowserImageUploadUrl = '/ckeditor/pictures';
   config.toolbar =
   [
     {
@@ -21,5 +24,5 @@ CKEDITOR.editorConfig = function (config) {
       name: 'insert',
       items: ['Image']
     }
-  ]
-}
+  ];
+};
