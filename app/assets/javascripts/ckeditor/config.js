@@ -1,23 +1,25 @@
-'use strict';
-
-CKEDITOR.editorConfig = function(config) {
+CKEDITOR.editorConfig = function (config) {
   config.toolbar =
   [
     {
       name: 'styles',
-      items : [ 'Format' ]
+      items: ['Format']
     },
     {
       name: 'basicstyles',
-      items : [ 'Bold','Italic','Strike','-','RemoveFormat' ]
+      items: ['Bold', 'Italic', 'Strike', '-', 'RemoveFormat']
     },
     {
       name: 'paragraph',
-      items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-' ]
+      items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-']
     },
     {
       name: 'links',
-      items : [ 'Link','Unlink' ]
+      items: ['Link', 'Unlink']
+    },
+    {
+      name: 'insert',
+      items: ['Image']
     }
-  ];
-};
+  ]
+}
