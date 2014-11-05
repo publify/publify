@@ -5,18 +5,19 @@ if Rails.env.in?(%(test cucumber))
   end
 else
   CarrierWave.configure do |config|
-    if ENV["provider"] == "AWS"
+    if ENV['provider'] == 'Rackspace'
       config.storage = :fog
 
       config.fog_credentials = {
-        :provider               => 'AWS',
-        :aws_access_key_id      => ENV["aws_access_key_id"],
-        :aws_secret_access_key  => ENV["aws_secret_access_key"]
+        provider:           'Rackspace',
+        rackspace_username: ENV['rackspace_username'],
+        rackspace_api_key:  ENV['rackspace_api_key'],
+        rackspace_auth_url: Fog::Rackspace::UK_AUTH_ENDPOINT,
+        rackspace_region:   :lon
       }
 
-      config.fog_directory  = ENV["aws_bucket"]
-      config.fog_public     = true
-      config.fog_attributes = { 'Cache-Control' => 'max-age=315576000' }
+      config.fog_directory = ENV['rackspace_directory']
+      config.asset_host = ENV['rackspace_cnd_host']
     else
       config.storage = :file
       config.permissions = 0666
