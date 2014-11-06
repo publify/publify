@@ -8,4 +8,8 @@ class StyleguideController < ApplicationController
   def article_page
     @page_title = 'Article demo page'
   end
+
+  def home_page
+    @page_title = 'Homepage demo page'
+  end
 end
