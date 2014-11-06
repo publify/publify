@@ -1,0 +1,16 @@
+.l-tiles {
+//  @include column(12);
+}
+
+.l-tile {
+  width: 100%;
+
+  @include respond-to($mq-m) {
+    float: left;
+    width: 50%;
+  }
+
+  @include respond-to($mq-l) {
+    width: 33.3%;
+  }
+}
