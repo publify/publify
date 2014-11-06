@@ -43,21 +43,25 @@ $base-border-thin: 1px solid $silver;
 
 $brand-green: $green-leaf !default;
 
-$tile--article-primary-bg: $elf-green;
-$tile--article-secondary-bg: $white;
+// Tiles
+$article-tile-comments-bg--one: $elf-green;
+$article-tile-comments-bg--two: $eastern-blue;
+$article-tile-comments-bg--three: $bay-of-many;
 
-$tile--article-primary-heading-color: $white;
-$tile--article-primary-date-color: $aero-blue;
+$article-tile-bg--one: $blue-chill;
+$article-tile-bg--two: $white;
+$article-tile-bg--three: $astral;
+
+$article-tile-text--one: $white;
+$article-tile-text--two: $eastern-blue;
+$article-tile-text--three: $outer-space;
+$article-tile-text--four: $french-pass;
+
+$article-tile-date--one: $aero-blue;
+$article-tile-date--two: $aero-blue;
+
 
 $tile--article-secondary-heading-color: $outer-space;
-
-// breakpoints
-
-$mq-xs: 320px;
-$mq-s: 480px;
-$mq-m: 720px;
-$mq-l: 960px;
-$mq-xl: 1200px;
 
 // z-indexes
 
