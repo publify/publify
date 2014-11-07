@@ -11,6 +11,9 @@ db/*.sqlite*
 .DS_Store
 installer/rails_installer.yml
 /public/files
+/public/uploads
+/public/pictures
+/public/attachments
 /public/images/theme
 /public/javascripts/ckeditor/config.js
 /public/javascripts/ckeditor/config.bak
