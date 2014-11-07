@@ -1,0 +1,50 @@
+.sharing {
+  @extend .unstyled-list;
+  overflow: hidden;
+
+  @include respond-to($mq-m) {
+    position: fixed;
+    top: 300px;
+    right: 0;
+  }
+
+  > li {
+    float: left;
+    margin-bottom: 0;
+
+      @include respond-to($mq-m) {
+        float: none;
+      }
+    }
+}
+
+.sharing__button {
+  display: block;
+  width: 30px;
+  height: 30px;
+
+  &:hover,
+  &:focus {
+    opacity: 0.8;
+  }
+}
+
+.sharing__button--facebook {
+  background-color: $facebook-blue;
+}
+
+.sharing__button--twitter {
+  background-color: $twitter-blue;
+}
+
+.sharing__button--google {
+  background-color: $burnt-sienna;
+}
+
+.sharing__button--pinterest {
+  background-color: $pinterest-red;
+}
+
+.sharing__button--other {
+  background-color: $sirocco;
+}

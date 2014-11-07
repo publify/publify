@@ -11,5 +11,12 @@
   <%# START RequireJS load of application %>
   <%= javascript_include_tag 'requirejs/require', data: { main: javascript_path('application') } %>
   <%# END RequireJS load of application %>
+
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script language="javascript">
+    function emailCurrentPage(){
+      window.location.href="mailto:?subject="+document.title+"&body="+escape(window.location.href);
+    }
+  </script>
 </body>
 </html>
