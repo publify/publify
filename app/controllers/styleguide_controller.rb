@@ -1,6 +1,10 @@
 class StyleguideController < ApplicationController
   layout 'styleguide.html.erb'
 
+  def index
+    @page_title = 'Styleguide Index'
+  end
+
   def show
     @page_title = 'Styleguide'
   end
