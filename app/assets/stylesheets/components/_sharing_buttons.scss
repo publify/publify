@@ -1,6 +1,7 @@
 .sharing {
   @extend .unstyled-list;
   overflow: hidden;
+  margin: baseline-unit(2) 0;
 
   @include respond-to($mq-m) {
     position: fixed;
@@ -20,31 +21,62 @@
 
 .sharing__button {
   display: block;
-  width: 30px;
-  height: 30px;
+  width: 44px;
+  height: 44px;
+  background-repeat: no-repeat;
+  background-position: 0 0;
 
   &:hover,
   &:focus {
     opacity: 0.8;
   }
+
+  .ie & {
+    background-image: asset-url('sharing/sharing-sprite.png');
+  }
 }
 
 .sharing__button--facebook {
   background-color: $facebook-blue;
+  background-image: asset-url('sharing/facebook.svg');
 }
 
 .sharing__button--twitter {
   background-color: $twitter-blue;
+  background-image: asset-url('sharing/twitter.svg');
+  .ie & {
+    background-position: -44px 0px;
+  }
 }
 
 .sharing__button--google {
   background-color: $burnt-sienna;
+  background-image: asset-url('sharing/google-plus.svg');
+  .ie & {
+    background-position: -132px 0;
+  }
 }
 
 .sharing__button--pinterest {
   background-color: $pinterest-red;
+  background-image: asset-url('sharing/pinterest.svg');
+  .ie & {
+    background-position: -88px 0;
+  }
 }
 
-.sharing__button--other {
+.sharing__button--email {
   background-color: $sirocco;
+  background-image: asset-url('sharing/email.svg');
+  .ie & {
+    background-position: -220px 0;
+  }
+}
+
+.sharing__button--print {
+  background-color: $sirocco;
+  background-image: asset-url('sharing/print.svg');
+  .ie & {
+    background-position: -176px 0;
+  }
 }
