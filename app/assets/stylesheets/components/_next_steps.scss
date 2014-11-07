@@ -8,16 +8,22 @@
 }
 
 .next-steps__heading {
+  @include font-size(34);
   @include inline-block();
+  color: $heading-color-secondary;
+  font-family: $brand-font;
+  font-weight: $brand-font-weight;
   position: absolute;
   top: -25px;
   left: 20px;;
   width: 190px;
   height: 75px;
+  padding: 4px 20px;
   background: asset-url('ma-says.png') 0 0 no-repeat;
+  background-image: linear-gradient(transparent, transparent), asset-url('ma-says.svg');
 
-  @include device-pixel-ratio() {
-    background-image: asset-url('ma-says.svg');
+  > span {
+    color: $brand-green;
   }
 }
 
@@ -39,7 +45,7 @@
 
 .next-steps__arrow-container {
   display: table-cell;
-  vertical-align: middle; 
+  vertical-align: middle;
   padding-left: baseline-unit(6);
 }
 
