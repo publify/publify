@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
+
   get 'styleguide/show'
   get 'styleguide/article_page'
   get 'styleguide/home_page'
