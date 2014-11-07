@@ -1,6 +1,9 @@
 .l-header {
   background-color: $header-bg-color;
-  height: baseline-unit(12);
+
+  @include respond-to($mq-m) {
+    min-height: baseline-unit(12);
+  }
 }
 
 .l-header__logo {
@@ -15,21 +18,51 @@
   }
 }
 
+.l-header__beta-tag {
+  clear: both;
+  float: left;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: baseline-unit(2);
+  margin-right: baseline-unit(2);
+
+  @include respond-to($mq-m) {
+    margin-top: baseline-unit(18);
+    margin-bottom: baseline-unit(8);
+    text-align: center;
+    float: none;
+  }
+}
+
 .l-header__title {
-  @include column(12);
   @include font-size(18);
   font-family: $brand-font;
   font-weight: $brand-font-weight;
-  margin-top: baseline-unit(4);
+  margin-top: baseline-unit(3);
   margin-bottom: 0;
+  color: $link-color--negative;
 
   @include respond-to($mq-m) {
-    @include column(6);
-    @include font-size(28);
+    @include font-size(48);
+    margin-top: baseline-unit(4);
+    clear: both;
     text-align: center;
   }
 }
 
-.l-header__title__emphasis {
-  color: $link-color--negative;
+.l-header__description {
+  display: none;
+
+  @include respond-to($mq-m) {
+    @include font-size(18);
+    display: block;
+    font-weight: $font-weight-light;
+    text-align: center;
+    color: $link-color--negative;
+    width: 100%;
+    max-width: 530px;
+    margin: 0 auto;
+    margin-top: baseline-unit(4);
+    margin-bottom: baseline-unit(10);
+  }
 }

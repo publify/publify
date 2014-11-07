@@ -1,0 +1,29 @@
+.beta-tag {
+  @include font-size(12);
+  font-family: $brand-font;
+  font-weight: $brand-font-weight;
+  color: $link-color--negative;
+  position: relative;
+
+  @include respond-to($mq-m) {
+    @include font-size(22);
+  }
+}
+
+.beta-tag__logo {
+  position: absolute;
+  width: 40px;
+  top: -12px;
+  left: -3px;
+
+  @include respond-to($mq-m) {
+    width: 100px;
+    top: -36px;
+    left: 50%;
+    margin-left: -50px;
+  }
+}
+
+.beta-tag__stroke {
+  stroke: $white;
+}
