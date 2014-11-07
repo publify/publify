@@ -1,9 +1,0 @@
-img {
-  max-width: 100%;
-
-  // to force the correct aspect ratio
-  height: auto;
-
-  // support scaling images in IE7
-  -ms-interpolation-mode: bicubic;
-}
