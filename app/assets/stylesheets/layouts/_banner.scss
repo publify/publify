@@ -15,12 +15,15 @@
   @include column(12);
   z-index: $z-foreground;
 
-  .tags {
+  .tag-list {
     float: right;
   }
 
   @include respond-to($mq-m) {
-    position: relative;
-    top: baseline-unit(-10);
+    @include column(7);
+    @include push(5);
+    position: absolute;
+    bottom: baseline-unit(2);
+    right: 0;
   }
 }
