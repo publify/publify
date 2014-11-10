@@ -8,15 +8,15 @@
     top: 300px;
     right: 0;
   }
+}
 
-  > li {
-    float: left;
-    margin-bottom: 0;
+.sharing__item {
+  float: left;
+  margin-bottom: 0;
 
-      @include respond-to($mq-m) {
-        float: none;
-      }
-    }
+  @include respond-to($mq-m) {
+    float: none;
+  }
 }
 
 .sharing__button {
