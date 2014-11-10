@@ -3,18 +3,23 @@
 
   @include respond-to($mq-m) {
     @include column(7);
-    @include push(1);
+    @include pull(2);
+    float: right;
   }
 
-  margin-top: baseline-unit(12);
 
   h1, h2, h3, p {
     max-width: 550px;
   }
 }
 
+.l-article--header {
+  margin-top: baseline-unit(13);
+}
+
 .l-article-info {
   @include column(12);
+  margin-bottom: baseline-unit(2);
 
   @include respond-to($mq-m) {
     @include column(2);
