@@ -10,7 +10,7 @@ CKEDITOR.editorConfig = function (config) {
     },
     {
       name: 'basicstyles',
-      items: ['Bold', 'Italic', 'Strike', '-', 'RemoveFormat']
+      items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat']
     },
     {
       name: 'paragraph',
