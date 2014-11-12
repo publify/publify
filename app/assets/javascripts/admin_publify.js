@@ -1,10 +1,10 @@
 /* typewatch() borrowed from http://stackoverflow.com/questions/2219924/idiomatic-jquery-delayed-event-only-after-a-short-pause-in-typing-e-g-timew  */
-var typewatch = (function(){  
+var typewatch = (function(){
   var timer = 0;
   return function(callback, ms){
     clearTimeout (timer);
     timer = setTimeout(callback, ms);
-  }  
+  }
 })();
 
 function autosave_request(e) {
@@ -27,17 +27,20 @@ function set_widerea(element) {
 }
 
 function tag_manager() {
-  var tagApi = jQuery("#article_keywords").tagsManager({
-    prefilled: $('#article_keywords').val()
-  });
+  $.getJSON("/admin/content/auto_complete_for_article_keywords", function (tags) {
+    var tagApi = $("#article_keywords").tagsManager({
+      prefilled: $('#article_keywords').val(),
+      onlyTagList: true,
+      tagList: tags
+    });
 
-  jQuery("#article_keywords").typeahead({
-    name: 'tags',
-    limit: 15,
-    prefetch: '/admin/content/auto_complete_for_article_keywords'
+    $("#article_keywords").typeahead({
+      limit: 15,
+      prefetch:  '/admin/content/auto_complete_for_article_keywords'
     }).on('typeahead:selected', function (e, d) {
       tagApi.tagsManager("pushTag", d.value);
     });
+  });
 }
 
 function save_article_tags() {
@@ -53,17 +56,17 @@ function doneTyping () {
 function set_savebar() {
   var typingTimer;
   var doneTypingInterval = 3000;
-  
+
   $( "#article_body_and_extended" ).keydown(function() {
     $( "#save-bar").fadeOut(2000, function() {
-      
+
     });
     clearTimeout(typingTimer);
   });
- 
+
   $('#article_body_and_extended').keyup(function(){
       typingTimer = setTimeout(doneTyping, doneTypingInterval);
-  }); 
+  });
 }
 
 $(document).ready(function() {
@@ -78,4 +81,4 @@ $(document).ready(function() {
 $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
     event.preventDefault();
     $(this).ekkoLightbox();
-}); 
+});
