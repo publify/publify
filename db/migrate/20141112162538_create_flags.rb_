@@ -1,0 +1,10 @@
+class CreateFlags < ActiveRecord::Migration
+  def change
+    create_table :flags do |t|
+      t.references :feedback
+      t.string :reason, null: false
+
+      t.timestamps
+    end
+  end
+end
