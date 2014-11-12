@@ -34,6 +34,7 @@ AccessControl.map require: [ :admin, :publisher, :contributor ]  do |map|
   # ArticlesController
   map.permission "previews"
   map.permission "articles"
+  map.permission "ckeditor/attachment_files"
 
   map.project_module :articles, nil do |project|
     project.menu    "Articles",       { controller: "admin/content", action: "index" }

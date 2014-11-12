@@ -2,7 +2,7 @@ feature 'Display ckeditor' do
 
   background do
     create(:blog)
-    sign_in
+    sign_in(:as_admin)
   end
 
   scenario 'when user writes an article', js: true do
