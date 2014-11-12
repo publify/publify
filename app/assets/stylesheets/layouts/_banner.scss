@@ -1,4 +1,6 @@
 .l-banner {
+  background-color: $banner-bg-color;
+  min-height: 100px;
 
   .l-constrained {
     position: relative;
@@ -10,9 +12,15 @@
 }
 
 .l-banner__tags {
+  @include column(12);
   z-index: $z-foreground;
-  float: right;
-  position: absolute;
-  bottom: baseline-unit(2);
-  right: 0;
+
+  .tags {
+    float: right;
+  }
+
+  @include respond-to($mq-m) {
+    position: relative;
+    top: baseline-unit(-10);
+  }
 }
