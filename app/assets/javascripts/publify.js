@@ -4,4 +4,3 @@
 //= require rails-timeago-all
 //= require bootstrap
 //= require_self
-// Front javascript manifest
