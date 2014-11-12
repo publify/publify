@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe Admin::BaseHelper, type: :helper do
   describe 'twitter_available?' do
     context 'when blog has twitter configured' do

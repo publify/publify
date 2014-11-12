@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe "layouts/default.html.erb", :type => :view do
   before(:each) do
     assign(:keywords, ["foo", "bar"])

@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe PublifyTime do
   describe 'delta' do
     it 'returns nil when nil year, nil month and nil day' do

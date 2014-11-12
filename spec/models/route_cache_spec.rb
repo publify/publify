@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe RouteCache, type: :model do
 
   it 'test_cache_clear' do

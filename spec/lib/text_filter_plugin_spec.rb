@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe TextFilterPlugin::Macro do
 
   describe '#self.attributes_parse' do

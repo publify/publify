@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe StyleguideController, type: :controller do
 
   before { allow(Blog).to receive(:default) { double(lang: 'en') } }

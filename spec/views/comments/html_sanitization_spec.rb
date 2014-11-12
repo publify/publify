@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 shared_examples_for 'CommentSanitization' do
   before do
     @blog = build_stubbed(:blog)

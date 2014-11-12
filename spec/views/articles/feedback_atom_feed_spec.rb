@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe 'articles/feedback_atom_feed.atom.builder', type: :view do
   let!(:blog) { create :blog }
 

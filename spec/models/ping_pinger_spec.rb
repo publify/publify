@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe 'Ping::Pinger with Test::Unit', type: :model do
   before do
     FactoryGirl.create(:blog)

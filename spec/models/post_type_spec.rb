@@ -1,6 +1,4 @@
 # coding: utf-8
-require 'rails_helper'
-
 describe PostType, type: :model do
   before(:each) do
     FactoryGirl.create(:blog)

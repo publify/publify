@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe 'Given a published article', type: :model do
   before(:each) do
     FactoryGirl.create(:blog)

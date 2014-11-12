@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe TrackbacksController, type: :controller do
   let!(:blog) { create(:blog) }
 

@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe XmlController, type: :routing do
   describe 'routing' do
     it 'recognizes and generates #articlerss' do

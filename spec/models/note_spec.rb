@@ -1,6 +1,4 @@
 # coding: utf-8
-require 'rails_helper'
-
 describe Note, type: :model do
   context 'with a simple blog' do
     let!(:blog) { create(:blog) }

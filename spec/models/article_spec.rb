@@ -1,6 +1,4 @@
 # coding: utf-8
-require 'rails_helper'
-
 describe Article, type: :model do
 
   let!(:blog) { create(:blog) }

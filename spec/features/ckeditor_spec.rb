@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 feature 'Display ckeditor' do
 
   background do

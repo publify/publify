@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe Feedback::States, type: :model do
   before(:each) do
     FactoryGirl.create(:blog)

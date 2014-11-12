@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe 'Given a brand new AmazonSidebar', type: :model do
   before(:each) do
     @sidebar = AmazonSidebar.new

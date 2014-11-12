@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe Admin::FeedbackController, type: :controller do
 
   render_views

@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe ArchivesSidebar do
   let(:sidebar) { ArchivesSidebar.new }
 

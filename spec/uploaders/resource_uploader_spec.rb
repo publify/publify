@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe ResourceUploader do
   describe '.versions' do
     it 'has two versions' do

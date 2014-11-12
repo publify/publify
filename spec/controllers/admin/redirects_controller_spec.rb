@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe Admin::RedirectsController, type: :controller do
   render_views
 

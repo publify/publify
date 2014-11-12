@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe Blog, type: :model do
   describe '#initialize' do
     it 'accepts a settings field in its parameter hash' do

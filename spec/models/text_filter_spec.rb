@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe 'With the list of available filters', type: :model do
 
   attr_reader :blog, :whiteboard

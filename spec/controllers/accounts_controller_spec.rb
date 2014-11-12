@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe AccountsController, type: :controller do
   describe "A successful login with 'Remember me' checked" do
     it 'should not cause password to change' do

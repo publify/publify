@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe AuthorsHelper, type: :helper do
 
   describe 'display_profile_item' do
