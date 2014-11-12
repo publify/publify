@@ -27,7 +27,9 @@ function set_widerea(element) {
 }
 
 function tag_manager() {
-  $.getJSON("/admin/content/auto_complete_for_article_keywords", function (tags) {
+  var tagUrl = "/admin/content/auto_complete_for_article_keywords";
+
+  $.getJSON(tagUrl, function (tags) {
     var tagApi = $("#article_keywords").tagsManager({
       prefilled: $('#article_keywords').val(),
       onlyTagList: true,
@@ -36,7 +38,7 @@ function tag_manager() {
 
     $("#article_keywords").typeahead({
       limit: 15,
-      prefetch:  '/admin/content/auto_complete_for_article_keywords'
+      prefetch: tagUrl
     }).on('typeahead:selected', function (e, d) {
       tagApi.tagsManager("pushTag", d.value);
     });
