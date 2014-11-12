@@ -27,11 +27,6 @@
   background-position: 0 0;
   background-image: asset-url('sharing/sharing-sprite.png');
 
-  &:hover,
-  &:focus {
-    opacity: 0.8;
-  }
-
   .svg & {
     background-position: 0 0;
   }
@@ -39,6 +34,10 @@
 
 .sharing__button--facebook {
   background-color: $facebook-blue;
+  &:hover,
+  &:focus {
+    background-color: $facebook-blue--hover;
+  }
 
   .svg & {
     background-image: asset-url('sharing/facebook.svg');
@@ -48,6 +47,10 @@
 .sharing__button--twitter {
   background-color: $twitter-blue;
   background-position: -44px 0px;
+  &:hover,
+  &:focus {
+    background-color: $twitter-blue--hover;
+  }
 
   .svg & {
     background-image: asset-url('sharing/twitter.svg');
@@ -55,8 +58,12 @@
 }
 
 .sharing__button--google {
-  background-color: $burnt-sienna;
+  background-color: $google-plus-red;
   background-position: -132px 0;
+  &:hover,
+  &:focus {
+    background-color: $google-plus-red--hover;
+  }
 
   .svg & {
     background-image: asset-url('sharing/google-plus.svg');
@@ -66,6 +73,10 @@
 .sharing__button--pinterest {
   background-color: $pinterest-red;
   background-position: -88px 0;
+  &:hover,
+  &:focus {
+    background-color: $pinterest-red--hover;
+  }
 
   .svg & {
     background-image: asset-url('sharing/pinterest.svg');
@@ -73,8 +84,12 @@
 }
 
 .sharing__button--email {
-  background-color: $sirocco;
+  background-color: $email-grey;
   background-position: -220px 0;
+  &:hover,
+  &:focus {
+    background-color: $email-grey--hover;
+  }
 
   .svg & {
     background-image: asset-url('sharing/email.svg');
@@ -82,8 +97,12 @@
 }
 
 .sharing__button--print {
-  background-color: $sirocco;
+  background-color: $print-grey;
   background-position: -176px 0;
+  &:hover,
+  &:focus {
+    background-color: $print-grey--hover;
+  }
 
   .svg & {
     background-image: asset-url('sharing/print.svg');
