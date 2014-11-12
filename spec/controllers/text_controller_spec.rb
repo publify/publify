@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe TextController, type: :controller do
   let!(:blog) { create(:blog) }
 

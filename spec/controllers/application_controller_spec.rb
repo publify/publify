@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe ApplicationController, type: :controller do
   it 'safely caches a page' do
     define_spec_public_cache_directory

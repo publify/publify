@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe Tag, type: :model do
   let!(:blog) { create(:blog) }
 

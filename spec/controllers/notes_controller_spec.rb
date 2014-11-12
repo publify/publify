@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe NotesController, type: :controller do
   render_views
   let!(:blog) { create(:blog) }

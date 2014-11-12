@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe XmlController, type: :controller do
   before do
     create(:blog, base_url: 'http://myblog.net')

@@ -1,6 +1,4 @@
 # coding: utf-8
-require 'rails_helper'
-
 describe String do
   describe '#to_permalink' do
     it 'should build a nice permalink from an accentuated string' do

@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe Comment, type: :model do
   let!(:blog) { build_stubbed :blog }
 

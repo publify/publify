@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe 'Given an empty redirects table', type: :model do
   before(:each) do
     Redirect.delete_all

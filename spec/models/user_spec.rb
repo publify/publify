@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe User, type: :model do
   describe 'FactoryGirl Girl' do
     it 'should user factory valid' do

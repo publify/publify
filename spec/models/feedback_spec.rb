@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe Feedback, type: :model do
   before { create(:blog) }
 

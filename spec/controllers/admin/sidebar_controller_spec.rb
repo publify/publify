@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe Admin::SidebarController, type: :controller do
   before do
     FactoryGirl.create(:blog)

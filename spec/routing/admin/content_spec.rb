@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 # TODO: Clean out non-resourceful routes
 describe 'Admin::ContentController routing', type: :routing do
   it 'routes #new' do

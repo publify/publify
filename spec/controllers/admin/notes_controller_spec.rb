@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe Admin::NotesController, type: :controller do
   render_views
 

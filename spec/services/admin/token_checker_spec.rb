@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe Admin::TokenChecker do
   let(:fixture) { Rails.root.join('spec', 'fixtures', 'secret.token') }
   let(:checker) { Admin::TokenChecker.new(fixture) }

@@ -1,4 +1,3 @@
-require 'rails_helper'
 require 'xmlrpc/client'
 
 describe Ping, type: :model do

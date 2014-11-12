@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe SetupController, type: :controller do
   describe 'when no blog is configured' do
     before do

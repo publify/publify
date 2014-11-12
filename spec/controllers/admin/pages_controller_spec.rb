@@ -1,6 +1,4 @@
 # coding: utf-8
-require 'rails_helper'
-
 describe Admin::PagesController, type: :controller do
   render_views
 

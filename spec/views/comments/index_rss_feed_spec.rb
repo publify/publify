@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe 'comments/index_rss_feed.rss.builder', type: :view do
   let!(:blog) { build_stubbed :blog }
 

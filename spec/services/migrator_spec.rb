@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe Migrator do
   let(:migrator) { Migrator.new }
   let(:migrations_paths) { ['db/migrate'] }

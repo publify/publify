@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe 'Given a new blog', type: :model do
   let!(:blog) { Blog.new }
 
