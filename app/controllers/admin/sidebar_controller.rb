@@ -10,7 +10,7 @@ class Admin::SidebarController < Admin::BaseController
     sidebar_config = params[:configure]
     sidebar = Sidebar.where(id: params[:id]).first
     old_s_index = sidebar.staged_position || sidebar.active_position
-    sidebar.update_attributes sidebar_config[sidebar.id.to_s]
+    sidebar.update_attributes sidebar_config[sidebar.id.to_s].permit!
     respond_to do |format|
       format.js do
         # render partial _target for it
