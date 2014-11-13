@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
 
-  get 'styleguide' => 'styleguide#index'
-  get 'styleguide/show' => 'styleguide#show'
-  get 'styleguide/article_page' => 'styleguide#article_page'
-  get 'styleguide/home_page' => 'styleguide#home_page'
+  scope :controller => 'styleguide', :path => 'styleguide' do
+    get '/', :action => 'index'
+    get 'show', :action => 'show'
+    get 'article_page', :action => 'article_page'
+    get 'home_page', :action => 'home_page'
+  end
 
   # TODO: use only in archive sidebar. See how made other system
   get ':year/:month', :to => 'articles#index', :year => /\d{4}/, :month => /\d{1,2}/, :as => 'articles_by_month', :format => false
@@ -48,19 +50,20 @@ Rails.application.routes.draw do
   # I thinks it's useless. More investigating
   post "trackbacks/:id/:day/:month/:year", :to => 'trackbacks#create', :format => false
 
-  # ArticlesController
-  get '/live_search/', :to => 'articles#live_search', :as => :live_search_articles, :format => false
-  get '/search/:q(.:format)/page/:page', :to => 'articles#search', :as => 'search', defaults: {page: 1}
-  get '/search(/:q(.:format))', :to => 'articles#search'
-  get '/search/', :to => 'articles#search', :as => 'search_base', :format => false
-  get '/archives/', :to => 'articles#archives', :format => false
-  get '/page/:page', :to => 'articles#index', :page => /\d+/, :format => false
-  get '/pages/*name', :to => 'articles#view_page', :format => false
-  get 'previews(/:id)', :to => 'articles#preview', :format => false
-  get 'previews_pages(/:id)', :to => 'articles#preview_page', :format => false
-  get 'check_password', :to => 'articles#check_password', :format => false
-  get 'articles/markup_help/:id', :to => 'articles#markup_help', :format => false
-  get 'articles/tag', :to => 'articles#tag', :format => false
+  controller 'articles', :format => false do
+    get '/live_search/', :action => 'live_search', :as => :live_search_articles
+    get '/search/:q(.:format)/page/:page', :action => 'search', :as => 'search', defaults: {page: 1}
+    get '/search(/:q(.:format))', :action => 'search'
+    get '/search/', :action => 'search', :as => 'search_base'
+    get '/archives/', :action => 'archives'
+    get '/page/:page', :action => 'index', :page => /\d+/
+    get '/pages/*name', :action => 'view_page'
+    get 'previews(/:id)', :action => 'preview'
+    get 'previews_pages(/:id)', :action => 'preview_page'
+    get 'check_password', :action => 'check_password'
+    get 'articles/markup_help/:id', :action => 'markup_help'
+    get 'articles/tag', :action => 'tag'
+  end
 
   # SetupController
   match '/setup', :to => 'setup#index', via: [:get, :post], :format => false
