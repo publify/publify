@@ -1,18 +1,22 @@
+// Black & White
 $white: #FFFFFF !default;
 
 $black: #000000 !default;
 $black--translucent: rgba(0,0,0, .9) !default;
 
+// Greys
 $nevada: #6a6d6d !default;
 $outer-space: #2e3030 !default;
 $alto: #D1D1D1 !default;
 $silver: #cccccc !default;
 $concrete: #f3f3f3;
+$sirocco: #76898c !default;
 
+// Blues
 $deep-cerulean: #0076AB !default;
 $deep-cerulean--translucent: rgba(0, 118, 171, .9) !default;
-$blue-chill: #109e89;
 
+$blue-chill: #109e89;
 $astronaut-blue: #02405C !default;
 $aero-blue: #bcfff3 !default;
 $eastern-blue: #268AB8 !default;
@@ -22,13 +26,12 @@ $french-pass: #c9edfe !default;
 $chambray: #385b8f !default;
 $shakespeare: #4ea7cf !default;
 
-$sirocco: #76898c !default;
-
+// Reds
 $burnt-sienna: #eb745a !default;
 $roof-terracotta: #b43a23;
-
 $milano-red: #b70e09;
 $mojo: #bb3d36 !default;
 
+// Greens
 $green-leaf: #3e8406 !default;
 $elf-green: #0b8573;
