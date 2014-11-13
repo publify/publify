@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  mount Ckeditor::Engine => '/ckeditor'
 
   scope :controller => 'styleguide', :path => 'styleguide' do
     get '/', :action => 'index'
@@ -85,6 +84,7 @@ Rails.application.routes.draw do
   get '/robots', to: 'text#robots', format: 'txt'
 
   namespace :admin do
+    mount Ckeditor::Engine => '/ckeditor'
     get '/', to: 'dashboard#index', as: 'dashboard'
     resources :sidebar, only: [:index, :update, :destroy] do
       collection do
