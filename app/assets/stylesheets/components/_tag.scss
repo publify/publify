@@ -1,32 +1,39 @@
 .tags {
   @extend .unstyled-list;
+
+  display: inline;
+
+  @include respond-to ($mq-m) {
+    display: block;
+  }
 }
 
 .tag__item {
   @include inline-block();
-  margin-bottom: 0;
-  & .is-off {
-    //should this be part of the layout?
-    @extend .visually-hidden;
-  }
-}
-
-.tag__link {
-  @include inline-block();
-  padding: baseline-unit(2) baseline-unit(3);
   margin-right: baseline-unit(1);
   margin-bottom: baseline-unit(2);
   background-color: $tag-secondary-bgcolor--solid;
   background-color: $tag-secondary-bgcolor--translucent;
   border-radius: $border-radius;
-  color: $white;
 
-  &:visited {
-    color: $white;
+  .icon {
+    display: none;
+  }
+
+  .unstyled-button {
+    padding: baseline-unit(2) baseline-unit(3);
+
+    &.is-active {
+      display: none;
+    }
   }
 }
 
-.tag__link--title {
+.tag__item--trigger {
+  margin-right: 0;
+}
+
+.tag__item--title {
   background-color: $tag-primary-bgcolor--solid;
   background-color: $tag-primary-bgcolor--translucent;
 
@@ -35,9 +42,66 @@
   }
 }
 
-.tag__link--more {
+.tags--extra {
+  display: inline;
+
+  .js & {
+    display: none;
+  }
+
+  &.is-active {
+    display: inline;
+
+    .tag__item {
+      animation: fade-in .8s;
+      animation-fill-mode: forwards;
+    }
+
+    @include respond-to ($mq-m) {
+      position: absolute;
+      top: -3.6em;
+    }
+
+    @include respond-to ($mq-l) {
+      top: -3.2em
+    }
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  1% {
+    @include inline-block();
+    opacity: 0;
+  }
+  100% {
+    @include inline-block();
+    opacity: 1;
+  }
+}
+
+.tag__item-content {
+  display: none;
+}
+
+.js .tag__item-content {
+  @include inline-block();
+
   &:before {
-    content: '...';
+    content: "\2026";
     line-height: 0;
+    color: $white;
+  }
+}
+
+.tag__link {
+  display: block;
+  padding: baseline-unit(2) baseline-unit(3);
+  color: $white;
+
+  &:visited {
+    color: $white;
   }
 }
