@@ -1,4 +1,4 @@
-.tags {
+.tag-list {
   @extend .unstyled-list;
 
   display: inline;
@@ -8,7 +8,7 @@
   }
 }
 
-.tag__item {
+.tag-list__item {
   @include inline-block();
   margin-right: baseline-unit(1);
   margin-bottom: baseline-unit(2);
@@ -29,11 +29,11 @@
   }
 }
 
-.tag__item--trigger {
+.tag-list__item--trigger {
   margin-right: 0;
 }
 
-.tag__item--title {
+.tag-list__item--title {
   background-color: $tag-primary-bgcolor--solid;
   background-color: $tag-primary-bgcolor--translucent;
 
@@ -42,7 +42,7 @@
   }
 }
 
-.tags--extra {
+.tag-list--extra {
   display: inline;
 
   .js & {
@@ -52,19 +52,40 @@
   &.is-active {
     display: inline;
 
-    .tag__item {
+    .tag-list__item {
       animation: fade-in .8s;
       animation-fill-mode: forwards;
     }
 
     @include respond-to ($mq-m) {
       position: absolute;
-      top: -3.6em;
+      top: baseline-unit(-9.5);
     }
+  }
+}
 
-    @include respond-to ($mq-l) {
-      top: -3.2em
+.tag-list__item-content {
+  display: none;
+
+  .js & {
+    @include inline-block();
+
+    &:before {
+      content: "\2026";
+      line-height: 0;
+      color: $white;
     }
+  }
+}
+
+.tag-list__link,
+.tag-list__item-inner {
+  display: block;
+  padding: baseline-unit(2) baseline-unit(3);
+  color: $white;
+
+  &:visited {
+    color: $white;
   }
 }
 
@@ -79,29 +100,5 @@
   100% {
     @include inline-block();
     opacity: 1;
-  }
-}
-
-.tag__item-content {
-  display: none;
-}
-
-.js .tag__item-content {
-  @include inline-block();
-
-  &:before {
-    content: "\2026";
-    line-height: 0;
-    color: $white;
-  }
-}
-
-.tag__link {
-  display: block;
-  padding: baseline-unit(2) baseline-unit(3);
-  color: $white;
-
-  &:visited {
-    color: $white;
   }
 }
