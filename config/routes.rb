@@ -84,7 +84,8 @@ Rails.application.routes.draw do
   get '/robots', to: 'text#robots', format: 'txt'
 
   namespace :admin do
-    mount Ckeditor::Engine => '/ckeditor'
+    mount Ckeditor::Engine => '/ckeditor', as: 'ckeditor'
+
     get '/', to: 'dashboard#index', as: 'dashboard'
     resources :sidebar, only: [:index, :update, :destroy] do
       collection do

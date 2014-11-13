@@ -1,6 +1,6 @@
 module SessionHelpers
-  def sign_in
-    user = build(:user, :as_admin)
+  def sign_in(user_type = :as_admin)
+    user = build(:user, user_type)
     password = user.password
     user.save
 
