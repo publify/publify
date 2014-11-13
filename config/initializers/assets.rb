@@ -8,10 +8,8 @@ Rails.application.configure do
 
   # Stylesheets
   config.assets.precompile += %w(
-    publify.js
     enhanced_responsive.css
     enhanced_fixed.css
-    publify_admin.js
     publify_admin.css
     accounts.css
     bootstrap.css
@@ -20,7 +18,21 @@ Rails.application.configure do
     dough/assets/stylesheets/basic.css
     dough/assets/stylesheets/font_files.css
     dough/assets/stylesheets/font_base64.css
+  )
+
+  # Application JavaScript
+  config.assets.precompile += %w(
+    publify.js
+    publify_admin.js
+    components/*.js
+    dough/assets/js/lib/*.js
+    dough/assets/js/components/*.js
+  )
+
+  # Vendor JavaScript
+  config.assets.precompile += %w(
     jquery/dist/jquery.js
+    eventsWithPromises/src/eventsWithPromises.js
     requirejs/require.js
   )
 end
