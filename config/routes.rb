@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
 
-  get 'styleguide' => 'styleguide#index'
-  get 'styleguide/show' => 'styleguide#show'
-  get 'styleguide/article_page' => 'styleguide#article_page'
-  get 'styleguide/home_page' => 'styleguide#home_page'
+  scope :controller => 'styleguide', :path => 'styleguide' do
+    get '/', :action => 'index'
+    get 'show', :action => 'show'
+    get 'article_page', :action => 'article_page'
+    get 'home_page', :action => 'home_page'
+  end
 
   # TODO: use only in archive sidebar. See how made other system
   get ':year/:month', :to => 'articles#index', :year => /\d{4}/, :month => /\d{1,2}/, :as => 'articles_by_month', :format => false
