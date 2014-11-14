@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 feature 'Sharing buttons' do
   let(:original_url) { 'fake_url' }
 
