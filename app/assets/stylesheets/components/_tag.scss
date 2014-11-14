@@ -1,43 +1,65 @@
-.tag-list {
-  @extend .unstyled-list;
-
-  display: inline;
+.tags {
+  width: 100%;
 
   @include respond-to ($mq-m) {
-    display: block;
+    text-align: right;
   }
 }
 
+.tag-list {
+  @extend .unstyled-list;
+  display: inline;
+}
+
 .tag-list__item {
-  @include inline-block();
   margin-right: baseline-unit(1);
   margin-bottom: baseline-unit(2);
+}
+
+.tag-list__item,
+.tag-list__trigger-content {
+  @include inline-block();
   background-color: $tag-secondary-bgcolor--solid;
   background-color: $tag-secondary-bgcolor--translucent;
   border-radius: $border-radius;
+
+  @include respond-to ($mq-m) {
+    margin-left: baseline-unit(1);
+    margin-right: 0;
+  }
+}
+
+.tag-list__trigger {
+  @extend %base-font-style;
+  display: none;
+  margin-bottom: baseline-unit(2);
+
+  .js & {
+    @include inline-block();
+  }
 
   .icon {
     display: none;
   }
 
-  .unstyled-button {
-    padding: baseline-unit(2) baseline-unit(3);
-
-    &.is-active {
+  .unstyled-button.is-active {
       display: none;
-    }
   }
 }
 
-.tag-list__item--trigger {
-  margin-right: 0;
+.tag-list__trigger-content {
+  &:before {
+    content: "\2026";
+    line-height: 0;
+    color: $white;
+  }
 }
 
 .tag-list__item--title {
   background-color: $tag-primary-bgcolor--solid;
   background-color: $tag-primary-bgcolor--translucent;
 
-  @include respond-to ($mq-xs, $mq-m) {
+  @include respond-to ($mq-xs, $mq-m - 0.01) { // needs to go up to, not including
     @include visually-hidden();
   }
 }
@@ -56,36 +78,30 @@
       animation: fade-in .8s;
       animation-fill-mode: forwards;
     }
-
-    @include respond-to ($mq-m) {
-      position: absolute;
-      top: baseline-unit(-9.5);
-    }
-  }
-}
-
-.tag-list__item-content {
-  display: none;
-
-  .js & {
-    @include inline-block();
-
-    &:before {
-      content: "\2026";
-      line-height: 0;
-      color: $white;
-    }
   }
 }
 
 .tag-list__link,
-.tag-list__item-inner {
+.tag-list__item-inner,
+.tag-list__trigger-content {
+  padding: baseline-unit(1) baseline-unit(2);
   display: block;
-  padding: baseline-unit(2) baseline-unit(3);
   color: $white;
 
-  &:visited {
+  &:visited,
+  &:hover {
     color: $white;
+  }
+
+  @include respond-to ($mq-m) {
+    padding: baseline-unit(3) baseline-unit(3);
+  }
+}
+
+.tag-list__trigger-content {
+  @include respond-to ($mq-m) {
+    padding-left: baseline-unit(4);
+    padding-right: baseline-unit(4);
   }
 }
 
