@@ -9,6 +9,6 @@ describe 'Given an empty redirects table', type: :model do
     redirect = Redirect.new(from_path: 'foo/bar', to_path: '/')
 
     expect(redirect).not_to be_valid
-    expect(redirect.errors[:from_path]).to eq(['has already been taken'])
+    expect(redirect.errors[:from_path]).to eq(['From path has already been taken'])
   end
 end

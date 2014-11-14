@@ -24,7 +24,7 @@ describe PostType, type: :model do
     expect { PostType.create!(name: 'test') }.not_to raise_error
     test_type = PostType.new(name: 'test')
     expect(test_type).not_to be_valid
-    expect(test_type.errors[:name]).to eq(['has already been taken'])
+    expect(test_type.errors[:name]).to eq(['Name has already been taken'])
   end
 
 end
