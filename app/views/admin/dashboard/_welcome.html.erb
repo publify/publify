@@ -19,9 +19,9 @@
       <%  if current_user.can_access_to_feedback? %>
         <h4 class='page-header'><%= t(".feedback") %></h4>
         <p><%= link_to(t('.comments_count', count: @statcomments), controller: 'admin/feedback') %></p>
-        <p><%= link_to(t('.approved_count', count: @confirmed), controller: 'admin/feedback', "ham" => "f") %></p>
-        <p><%= link_to(t('.unconfirmed_count', count: @unconfirmed), controller: 'admin/feedback', "presumed_ham" => "f") %></p>
-        <p><%= link_to(t(".spam_count", count: @statspam), controller: 'admin/feedback', "spam" => "f") %></p>
+        <p><%= link_to(t('.approved_count', count: @confirmed), controller: 'admin/feedback', only: 'ham') %></p>
+        <p><%= link_to(t('.unconfirmed_count', count: @unconfirmed), controller: 'admin/feedback', only: 'unapproved') %></p>
+        <p><%= link_to(t(".spam_count", count: @statspam), controller: 'admin/feedback', only: 'spam') %></p>
       <% end %>      
     </div>
   </div>
