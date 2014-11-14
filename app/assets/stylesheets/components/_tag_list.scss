@@ -1,11 +1,3 @@
-.tags {
-  width: 100%;
-
-  @include respond-to ($mq-m) {
-    text-align: right;
-  }
-}
-
 .tag-list {
   @extend .unstyled-list;
   display: inline;

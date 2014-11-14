@@ -38,6 +38,7 @@
   @include respond-to($mq-m) {
     @include column(7);
     @include push(5);
+    text-align: right;
     right: 0;
   }
 }
