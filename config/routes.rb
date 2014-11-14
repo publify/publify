@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  scope controller: 'styleguide', path: 'styleguide' do
+  scope controller: 'styleguide', path: 'styleguide', as: 'styleguide'  do
     get '/', action: 'index'
     get 'show', action: 'show'
     get 'article_page', action: 'article_page'

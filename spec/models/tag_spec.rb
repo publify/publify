@@ -5,7 +5,7 @@ describe Tag, type: :model do
     expect { Tag.create!(name: 'test') }.not_to raise_error
     test_tag = Tag.new(name: 'test')
     expect(test_tag).not_to be_valid
-    expect(test_tag.errors[:name]).to eq(['has already been taken'])
+    expect(test_tag.errors[:name]).to eq(['Name has already been taken'])
   end
 
   it 'display names with spaces can be found by dash joined name' do

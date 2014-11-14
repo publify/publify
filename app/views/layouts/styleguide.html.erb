@@ -1,5 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<!--[if IE 7 ]> <html lang="en" class="ie ie7 no-js"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en" class="ie ie8 no-js"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="ie ie9 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en" class="no-js"><!--<![endif]-->
 <head profile="http://gmpg.org/xfn/11">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= h(page_title) %></title>
@@ -11,5 +16,12 @@
   <%# START RequireJS load of application %>
   <%= javascript_include_tag 'requirejs/require', data: { main: javascript_path('application') } %>
   <%# END RequireJS load of application %>
+
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script language="javascript">
+    function emailCurrentPage(){
+      window.location.href="mailto:?subject="+document.title+"&body="+escape(window.location.href);
+    }
+  </script>
 </body>
 </html>

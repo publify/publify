@@ -35,6 +35,10 @@
 
 <%# START MAS JAVASCRIPT SETUP – Any JS that is required before DOM is created should be in this block includes feature detection, analytics setup, JSON bootstrap %>
 <script type="text/javascript">
+
+<%# // Inline custom Modernizr %>
+<%= raw Rails.application.assets['modernizr/modernizr'] %>
+
 <%# // Required for Google Tag Manager %>
 var MAS = (function(w, d) {
   var html, appendFile, bootstrap, fonts, supports;

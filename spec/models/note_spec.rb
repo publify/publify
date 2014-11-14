@@ -12,7 +12,7 @@ describe Note, type: :model do
       it 'with a nil body, return default error message' do
         note = build(:note, body: nil)
         note.save
-        expect(note.errors[:body]).to eq(["can't be blank"])
+        expect(note.errors[:body]).to eq(["Body can't be blank"])
       end
 
       context 'with an existing note' do
