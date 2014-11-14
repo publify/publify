@@ -36,7 +36,7 @@ gem 'non-stupid-digest-assets'
 # removed from Rails-core as Rails 4.0
 gem 'actionpack-page_caching', '~> 1.0.2'
 gem 'rails-observers', '~> 0.1.2'
-gem 'ckeditor'
+gem 'ckeditor', github: 'moneyadviceservice/ckeditor'
 
 group :assets do
   gem 'autoprefixer-rails'

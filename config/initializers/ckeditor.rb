@@ -6,4 +6,7 @@ Ckeditor.setup do |config|
   config.default_per_page = 24
   config.assets_languages = %w(en uk)
   config.assets_plugins = %w(image)
+  config.authorize_with do
+    redirect_to main_app.accounts_path unless authorized?
+  end
 end
