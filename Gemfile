@@ -37,6 +37,7 @@ gem 'non-stupid-digest-assets'
 gem 'actionpack-page_caching', '~> 1.0.2'
 gem 'rails-observers', '~> 0.1.2'
 gem 'ckeditor', github: 'moneyadviceservice/ckeditor'
+gem 'autoprefixer-rails'
 
 group :assets do
   gem 'autoprefixer-rails'

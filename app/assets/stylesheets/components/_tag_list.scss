@@ -1,0 +1,112 @@
+.tag-list {
+  @extend .unstyled-list;
+  display: inline;
+}
+
+.tag-list__item {
+  margin-right: baseline-unit(1);
+  margin-bottom: baseline-unit(2);
+}
+
+.tag-list__item,
+.tag-list__trigger-content {
+  @include inline-block();
+  background-color: $tag-secondary-bgcolor--solid;
+  background-color: $tag-secondary-bgcolor--translucent;
+  border-radius: $border-radius;
+
+  @include respond-to ($mq-m) {
+    margin-left: baseline-unit(1);
+    margin-right: 0;
+  }
+}
+
+.tag-list__trigger {
+  @extend %base-font-style;
+  display: none;
+  margin-bottom: baseline-unit(2);
+
+  .js & {
+    @include inline-block();
+  }
+
+  .icon {
+    display: none;
+  }
+
+  .unstyled-button.is-active {
+      display: none;
+  }
+}
+
+.tag-list__trigger-content {
+  &:before {
+    content: "\2026";
+    line-height: 0;
+    color: $white;
+  }
+}
+
+.tag-list__item--title {
+  background-color: $tag-primary-bgcolor--solid;
+  background-color: $tag-primary-bgcolor--translucent;
+
+  @include respond-to ($mq-xs, $mq-m - 0.01) { // needs to go up to, not including
+    @include visually-hidden();
+  }
+}
+
+.tag-list--extra {
+  display: inline;
+
+  .js & {
+    display: none;
+  }
+
+  &.is-active {
+    display: inline;
+
+    .tag-list__item {
+      animation: fade-in .8s;
+      animation-fill-mode: forwards;
+    }
+  }
+}
+
+.tag-list__link,
+.tag-list__item-inner,
+.tag-list__trigger-content {
+  padding: baseline-unit(1) baseline-unit(2);
+  display: block;
+  color: $white;
+
+  &:visited,
+  &:hover {
+    color: $white;
+  }
+
+  @include respond-to ($mq-m) {
+    padding: baseline-unit(3) baseline-unit(3);
+  }
+}
+
+.tag-list__trigger-content {
+  @include respond-to ($mq-m) {
+    padding-left: baseline-unit(4);
+    padding-right: baseline-unit(4);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  1% {
+    @include inline-block();
+    opacity: 0;
+  }
+  100% {
+    @include inline-block();
+    opacity: 1;
+  }
+}

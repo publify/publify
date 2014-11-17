@@ -1,26 +1,44 @@
 .l-banner {
-  background-color: $banner-bg-color;
-  min-height: 100px;
+  position: relative;
+
+  @include respond-to($mq-m) {
+    background-color: $banner-bg-color;
+  }
 
   .l-constrained {
-    position: relative;
+    padding-top: baseline-unit(2);
+
+    @include respond-to($mq-s, $mq-m) {
+      min-height: 100px;
+    }
   }
 }
 
 .l-banner__image {
   width: 100%;
+  display: block;
+
+  + .l-constrained {
+    padding-top: 0;
+
+    @include respond-to($mq-m) {
+      background: transparent;
+      position: absolute;
+      bottom: baseline-unit(1);
+    }
+  }
 }
 
 .l-banner__tags {
   @include column(12);
   z-index: $z-foreground;
-
-  .tags {
-    float: right;
-  }
+  position: relative;
+  padding-top: baseline-unit(1);
 
   @include respond-to($mq-m) {
-    position: relative;
-    top: baseline-unit(-10);
+    @include column(7);
+    @include push(5);
+    text-align: right;
+    right: 0;
   }
 }

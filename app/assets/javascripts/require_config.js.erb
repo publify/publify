@@ -10,10 +10,18 @@
       Rails.application.config.assets.prefix,
     paths: {
       # External dependencies
-      jquery: requirejs_path('jquery/dist/jquery')
+      jquery: requirejs_path('jquery/dist/jquery'),
+      eventsWithPromises: requirejs_path('eventsWithPromises/src/eventsWithPromises')
     },
     shim: {}
   }
+
+  # Dough
+  requirejs_config[:paths].merge!({
+    componentLoader: requirejs_path('dough/assets/js/lib/componentLoader'),
+    DoughBaseComponent: requirejs_path('dough/assets/js/components/DoughBaseComponent'),
+    Collapsable: requirejs_path('dough/assets/js/components/Collapsable')
+  })
 %>
 
 // RequireJS config
