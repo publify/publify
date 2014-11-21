@@ -25,3 +25,7 @@ require(['componentLoader', 'eventsWithPromises'], function(componentLoader, eve
     componentLoader.init(data.$container);
   });
 });
+
+require(['StickyHeader'], function(stickyHeader) {
+  new stickyHeader().init()
+});
