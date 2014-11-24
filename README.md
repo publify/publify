@@ -16,22 +16,22 @@ The feeling was that we would diverge far enough that tracking/merging upstream 
 
 Publify has been around since 2004 and is the oldest Ruby on Rails open source project alive.
 
-## Installation
+## How do I run it?
 
-### Prerequisites
+### Installation
+
+#### Prerequisites
 
 Ruby 2.1.3
 
+This repository comes equipped with a self-setup script:
+
 ```bash
-$ bundle install
-$ cp config/database.yml.mysql config/database.yml
-$ rake db:create
-$ rake db:migrate
-$ rake db:seed
+$ ./bin/setup
 $ rails s
 ```
 
-## Testing
+#### Testing
 
 ```bash
 $bundle exec rspec
