@@ -27,17 +27,12 @@
 .l-filter {
   background: #00345a;
   overflow: hidden;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  max-height: 0;
-  transition: max-height 1s cubic-bezier(0, 1, 0, 1);
+  position: relative;
+  opacity: 0;
+  transition: opacity .6s;
 
-  &.is-active {
-    max-height: 500px;
-    transition: max-height 1s;
-    z-index: 1000;
+  .filter-active & {
+    opacity: 1;
   }
 }
 
@@ -80,7 +75,18 @@
   background-color: $header-bg-color;
   overflow: hidden;
   width: 100%;
-  transition: margin 1s;
+  z-index: 1000;
+  margin-top: -198px;
+
+  .scrolling & {
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+
+  &.positioned {
+    transition: margin .6s;
+  }
 
   // @include respond-to($mq-m) {
   //   min-height: baseline-unit(12);
@@ -91,7 +97,7 @@
   }
 
   .filter-active & {
-    margin-top: 198px;
+    margin-top: 0;
   }
 }
 
@@ -102,23 +108,8 @@
 }
 
 .l-header__bottom {
-  background-color: $header-bg-color;
   margin: 0 baseline-unit(2);
   overflow: hidden;
-
-  &.sticky {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    padding: 0 baseline-unit(2.9);
-    margin: 0;
-
-    .filter-active & {
-      top: 198px;
-    }
-  }
 }
 
 .l-logo {
@@ -203,6 +194,16 @@
 
   .icon {
     display: none;
+  }
+}
+
+.l-banner {
+  .scrolling & {
+    margin-top: 131px;
+  }
+
+  .scrolling.filter-active & {
+    margin-top: 332px;
   }
 }
 

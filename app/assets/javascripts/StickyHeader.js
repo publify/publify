@@ -7,8 +7,9 @@ define(['jquery'], function($) {
   'use strict';
 
   var defaultConfig = {
-        'bottomHeaderId' : 'header-bottom',
-        'headerId' : 'header'
+        'topHeaderId' : 'header-top',
+        'headerId' : 'header',
+        'filterClass' : 'l-filter'
       },
 
       /**
@@ -19,32 +20,54 @@ define(['jquery'], function($) {
       };
 
   /**
-   * Init - detect range type support and clone input / label
+   * Init
    * @param {boolean} initialised
    */
   StickyHeader.prototype.init = function() {
-
-    $('.l-header__filter-button').on('click', function () {
+    $('.l-header__filter-button').on('click', $.proxy(function () {
       $('body').toggleClass('filter-active');
-    });
+      this.stickIt();
+    }, this));
 
-    this.headerHeight = $('#' + defaultConfig.headerId).height();
-
-    this.$bottomOfHeader = $('#' + defaultConfig.bottomHeaderId);
+    this.$topOfHeaderHeight = $('#' + defaultConfig.topHeaderId).height() + 1;
     this.$header = $('#' + defaultConfig.headerId);
 
-    this.initialHeaderOffsetTop = this.$bottomOfHeader.offset().top;
+    this.filterHeight = $('.' + defaultConfig.filterClass).height();
+
+    this.$header.css('margin-top', -this.filterHeight);
+    setTimeout($.proxy(function() {
+      this.$header.addClass('positioned');
+    }, this), 0);
 
     setInterval($.proxy(this.stickIt, this), 10);
+    this.stickIt();
   };
 
   StickyHeader.prototype.stickIt = function() {
-    if ($(window).scrollTop() > this.initialHeaderOffsetTop) {
-      this.$bottomOfHeader.addClass('sticky');
-      this.$header.css('height', this.headerHeight);
+    var scrollTop = $(window).scrollTop(),
+        $body = $('body')
+
+    if (scrollTop <= 0) {
+      $body.removeClass('scrolling');
     } else {
-      this.$bottomOfHeader.removeClass('sticky');
-      this.$header.css('height', 'auto');
+      $body.addClass('scrolling');
+    }
+
+    if ($('body').hasClass('filter-active')) {
+      this.$header.css('margin-top', 0);
+    } else {
+      this.$header.css('margin-top', -this.filterHeight);
+    }
+
+    if ($('body').hasClass('filter-active') || scrollTop <= 0) {
+      this.$header.css('top', 0);
+      return;
+    }
+
+    if (scrollTop < this.$topOfHeaderHeight) {
+      this.$header.css('top', -scrollTop);
+    } else {
+      this.$header.css('top', -(this.$topOfHeaderHeight));
     }
   };
 
