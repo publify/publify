@@ -6,12 +6,12 @@ $vertical-grid-spacing: 6 !default;
 $link-color: $deep-cerulean;
 $link-color--negative: $white;
 
-// typography 
+// typography
 $base-font-size: 16 !default;
 $base-line-height: 1.4;
 
 $base-font-family: 'museo_sans';
-$base-font-stack: $base-font-family, Helvetica, Arial, sans-serif; 
+$base-font-stack: $base-font-family, Helvetica, Arial, sans-serif;
 
 $font-weight-bold: 700;
 $font-weight-medium: 500;
@@ -70,3 +70,5 @@ $tile--article-secondary-heading-color: $outer-space;
 $z-background: 0;
 $z-middleground: 1;
 $z-foreground: 2;
+
+$mq-two-col: 768px !default;
