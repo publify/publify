@@ -5,6 +5,7 @@
 .collapsible__heading {
   @include font-size(24);
   color: $heading-color-secondary;
+  margin-bottom: baseline-unit(5);
 }
 
 .collapsible__link {
