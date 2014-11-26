@@ -10,11 +10,6 @@ body {
   font-weight: $font-weight-light;
 }
 
-.standfirst {
-  @include font-size(22);
-  color: $heading-color-primary;
-}
-
 p {
   margin-bottom: baseline-unit(4);
 }
