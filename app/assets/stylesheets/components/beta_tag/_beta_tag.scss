@@ -7,9 +7,9 @@
   padding-left: 3px;
   text-transform: uppercase;
 
-  @include respond-to($mq-m) {
-    @include font-size(22);
-  }
+  // @include respond-to($mq-m) {
+  //   @include font-size(22);
+  // }
 }
 
 .beta-tag__logo {
@@ -18,12 +18,12 @@
   top: -12px;
   left: 0;
 
-  @include respond-to($mq-m) {
-    width: 100px;
-    top: -36px;
-    left: 50%;
-    margin-left: -50px;
-  }
+  // @include respond-to($mq-m) {
+  //   width: 100px;
+  //   top: -36px;
+  //   left: 50%;
+  //   margin-left: -50px;
+  // }
 }
 
 .beta-tag__stroke {

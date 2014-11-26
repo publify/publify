@@ -25,14 +25,13 @@
 }
 
 .l-filter {
-  background: #00345a;
-  overflow: hidden;
-  position: relative;
-  opacity: 0;
-  transition: opacity .6s;
+  display: none;
 
-  .filter-active & {
-    opacity: 1;
+  .js & {
+    display: block;
+    position: relative;
+    background: #00345a;
+    overflow: hidden;
   }
 }
 
@@ -44,12 +43,22 @@
   font-family: $base-font-family;
   font-weight: $font-weight-light;
   color: $link-color--negative;
+
+  @include respond-to($mq-m) {
+    top: baseline-unit(5);
+  }
 }
 
 .l-filter__list {
   @extend .unstyled-list;
   margin: 0 baseline-unit(3.5);
   padding: baseline-unit(5) 0 baseline-unit(4) 0;
+
+  @include respond-to($mq-m) {
+    @include column(9);
+    padding: baseline-unit(4.5) 0 baseline-unit(4.5) 0;
+    float: right;
+  }
 }
 
 .l-filter__list-item {
@@ -57,6 +66,12 @@
   font-family: $base-font-family;
   font-weight: $font-weight-bold;
   text-align: right;
+  color: #7fa8c6;
+
+  @include respond-to($mq-m) {
+    display: inline-block;
+    margin: 0 0 0 baseline-unit(6);
+  }
 }
 
 .l-filter__list-link {
@@ -67,16 +82,12 @@
   }
 }
 
-.l-filter__list-link--selected {
-  color: #7fa8c6;
-}
-
 .l-header {
   background-color: $header-bg-color;
   overflow: hidden;
   width: 100%;
   z-index: 1000;
-  margin-top: -198px;
+  //margin-top: -198px;
 
   .scrolling & {
     position: fixed;
@@ -85,7 +96,7 @@
   }
 
   &.positioned {
-    transition: margin .6s;
+    transition: margin .3s;
   }
 
   // @include respond-to($mq-m) {
@@ -94,10 +105,18 @@
 
   .l-constrained {
     @include column(12);
+    position: relative;
+
+    @include respond-to($mq-m) {
+      display: block;
+      float: none;
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 
   .filter-active & {
-    margin-top: 0;
+    margin-top: 0 !important;
   }
 }
 
@@ -105,16 +124,25 @@
   overflow: hidden;
   border-bottom: 1px solid #1f5d8e;
   margin: 0 baseline-unit(2);
+
+  @include respond-to($mq-m) {
+    border-bottom: 0;
+    display: inline;
+  }
 }
 
 .l-header__bottom {
-  margin: 0 baseline-unit(2);
+  margin: 0 baseline-unit(2) 0;
   overflow: hidden;
+
+  @include respond-to($mq-m) {
+    display: inline;
+  }
 }
 
 .l-logo {
   background: asset-url('logo.svg') no-repeat;
-  margin: baseline-unit(3) 0 baseline-unit(2) 0;
+  margin: baseline-unit(3) 0;
   width: 180px;
   height: 29px;
   float: left;
@@ -127,14 +155,15 @@
 }
 
 .l-header__search-button {
-  display: block;
+  display: inline-block;
   width: 60px;
   height: 48px;
   background: #185786;
   border-radius: 8px;
   margin: baseline-unit(2) 0;
-  float: right;
-  position: relative;
+  position: absolute;
+  top: 0;
+  right: baseline-unit(3);
 
   &:after {
     position: absolute;
@@ -146,11 +175,19 @@
     height: 26px;
     background: asset-url('magnify.svg') no-repeat;
   }
+
+  @include respond-to($mq-m) {
+    position: relative;
+  }
 }
 
 .l-header__beta-tag {
   margin-top: baseline-unit(4);
   float: left;
+
+  // @include respond-to($mq-m) {
+  //   margin: baseline-unit(8) 0 baseline-unit(8) 47%;
+  // }
 }
 
 .l-header__title {
@@ -174,7 +211,7 @@
 }
 
 .l-header__filter-button {
-  margin-top: baseline-unit(1);
+  margin: baseline-unit(1) baseline-unit(.5) 0 0;
   width: 44px;
   height: 44px;
   float: right;
@@ -197,13 +234,20 @@
   }
 }
 
-.l-banner {
-  .scrolling & {
-    margin-top: 131px;
-  }
+.l-header__description {
+  display: none;
 
-  .scrolling.filter-active & {
-    margin-top: 332px;
+  @include respond-to($mq-m) {
+    @include font-size(18);
+    display: block;
+    font-weight: $font-weight-light;
+    text-align: center;
+    color: $link-color--negative;
+    width: 100%;
+    max-width: 530px;
+    margin: 0 auto;
+    margin-top: baseline-unit(4);
+    margin-bottom: baseline-unit(10);
   }
 }
 
@@ -242,22 +286,7 @@
 //   }
 // }
 
-// .l-header__description {
-//   display: none;
 
-//   @include respond-to($mq-m) {
-//     @include font-size(18);
-//     display: block;
-//     font-weight: $font-weight-light;
-//     text-align: center;
-//     color: $link-color--negative;
-//     width: 100%;
-//     max-width: 530px;
-//     margin: 0 auto;
-//     margin-top: baseline-unit(4);
-//     margin-bottom: baseline-unit(10);
-//   }
-// }
 
 
 

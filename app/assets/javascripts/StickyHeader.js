@@ -9,7 +9,11 @@ define(['jquery'], function($) {
   var defaultConfig = {
         'topHeaderId' : 'header-top',
         'headerId' : 'header',
-        'filterClass' : 'l-filter'
+        'filterClass' : 'l-filter',
+        'filterButtonClass': 'l-header__filter-button',
+        'filterActiveClass' : 'filter-active',
+        'scrollingClass': 'scrolling',
+        'shallowHeaderMinWidth': 720
       },
 
       /**
@@ -24,50 +28,83 @@ define(['jquery'], function($) {
    * @param {boolean} initialised
    */
   StickyHeader.prototype.init = function() {
-    $('.l-header__filter-button').on('click', $.proxy(function () {
-      $('body').toggleClass('filter-active');
-      this.stickIt();
-    }, this));
+    this.bindEvents();
+    this.setupVars();
+    this.addPositionedClass();
+    this.monitorStickyness();
+    this.positionFilterOffScreen();
+  };
 
-    this.$topOfHeaderHeight = $('#' + defaultConfig.topHeaderId).height() + 1;
+  StickyHeader.prototype.setupVars = function() {
     this.$header = $('#' + defaultConfig.headerId);
-
-    this.filterHeight = $('.' + defaultConfig.filterClass).height();
-
     this.$header.css('margin-top', -this.filterHeight);
+    this.filterHeight = this.getFilterHeight();
+  };
+
+  StickyHeader.prototype.getFilterHeight = function() {
+    return $('.' + defaultConfig.filterClass).height();
+  }
+
+  StickyHeader.prototype.addPositionedClass = function() {
     setTimeout($.proxy(function() {
       this.$header.addClass('positioned');
     }, this), 0);
+  };
 
-    setInterval($.proxy(this.stickIt, this), 10);
+  StickyHeader.prototype.monitorStickyness = function() {
+    $(window).scroll($.proxy(this.stickIt, this));
+    $(window).resize($.proxy(function() {
+      this.filterHeight = this.getFilterHeight();
+      this.positionFilterOffScreen();
+      this.stickIt();
+    }, this));
     this.stickIt();
+  };
+
+  StickyHeader.prototype.bindEvents = function() {
+    $('.' + defaultConfig.filterButtonClass).on(
+      'click',
+      $.proxy(this.filterButtonFired, this)
+    );
+  };
+
+  StickyHeader.prototype.isFilterActive = function() {
+    return $('body').hasClass(defaultConfig.filterActiveClass);
+  };
+
+  StickyHeader.prototype.filterButtonFired = function() {
+    $('body').toggleClass(defaultConfig.filterActiveClass);
+    this.stickIt();
+  };
+
+  StickyHeader.prototype.isShallowHeader = function() {
+    return $(window).width() >= defaultConfig.shallowHeaderMinWidth;
+  };
+
+  StickyHeader.prototype.heightToFix = function() {
+    return this.isFilterActive() || this.isShallowHeader() ? 1 : $('#' + defaultConfig.topHeaderId).height();
+  };
+
+  StickyHeader.prototype.heightOfFixedHeader = function() {
+    return this.isFilterActive() ? this.$header.height() : (this.$header.height() - this.filterHeight);
+  }
+
+  StickyHeader.prototype.positionFilterOffScreen = function() {
+    this.$header.css('margin-top', -this.filterHeight);
   };
 
   StickyHeader.prototype.stickIt = function() {
     var scrollTop = $(window).scrollTop(),
-        $body = $('body')
+        $body = $('body'),
+        topOfHeaderHeight = this.heightToFix();
 
-    if (scrollTop <= 0) {
-      $body.removeClass('scrolling');
+    if (scrollTop < topOfHeaderHeight) {
+      $body.removeClass(defaultConfig.scrollingClass);
+      $body.css('margin-top', 0);
     } else {
-      $body.addClass('scrolling');
-    }
-
-    if ($('body').hasClass('filter-active')) {
-      this.$header.css('margin-top', 0);
-    } else {
-      this.$header.css('margin-top', -this.filterHeight);
-    }
-
-    if ($('body').hasClass('filter-active') || scrollTop <= 0) {
-      this.$header.css('top', 0);
-      return;
-    }
-
-    if (scrollTop < this.$topOfHeaderHeight) {
-      this.$header.css('top', -scrollTop);
-    } else {
-      this.$header.css('top', -(this.$topOfHeaderHeight));
+      $body.addClass(defaultConfig.scrollingClass);
+      $body.css('margin-top', this.heightOfFixedHeader());
+      this.$header.css('top', -topOfHeaderHeight);
     }
   };
 
