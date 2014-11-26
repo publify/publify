@@ -7,10 +7,6 @@
 
   .l-constrained {
     padding-top: baseline-unit(2);
-
-    @include respond-to($mq-s, $mq-m) {
-      min-height: 100px;
-    }
   }
 }
 
@@ -24,6 +20,7 @@
     @include respond-to($mq-m) {
       background: transparent;
       position: absolute;
+      right: 0;
       bottom: baseline-unit(1);
     }
   }
@@ -36,9 +33,12 @@
   padding-top: baseline-unit(1);
 
   @include respond-to($mq-m) {
-    @include column(7);
-    @include push(5);
     text-align: right;
     right: 0;
+  }
+
+  @include respond-to($mq-two-col) {
+    @include column(9);
+    @include push(2);
   }
 }

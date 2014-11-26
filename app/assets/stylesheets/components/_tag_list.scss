@@ -24,7 +24,7 @@
 .tag-list__trigger {
   @extend %base-font-style;
   display: none;
-  margin-bottom: baseline-unit(2);
+  margin-bottom: baseline-unit(1);
 
   .js & {
     @include inline-block();
@@ -86,6 +86,10 @@
   }
 
   @include respond-to ($mq-m) {
+    padding: baseline-unit(2) baseline-unit(2);
+  }
+
+  @include respond-to ($mq-l) {
     padding: baseline-unit(3) baseline-unit(3);
   }
 }
