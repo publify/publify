@@ -92,7 +92,7 @@ describe 'Given a new blog', type: :model do
   end
 
   it '#date format should be day/month/year hour:minute' do
-    expect(blog.date_format).to eq('%d/%m/%Y')
+    expect(blog.date_format).to eq('%B %d %Y')
     expect(blog.time_format).to eq('%Hh%M')
   end
 
