@@ -9,15 +9,15 @@ else
       config.storage = :fog
 
       config.fog_credentials = {
-        provider:           'Rackspace',
-        rackspace_username: ENV['rackspace_username'],
-        rackspace_api_key:  ENV['rackspace_api_key'],
+        provider:           ENV['FOG_PROVIDER'],
+        rackspace_username: ENV['RACKSPACE_USERNAME'],
+        rackspace_api_key:  ENV['RACKSPACE_API_KEY'],
         rackspace_auth_url: Fog::Rackspace::UK_AUTH_ENDPOINT,
         rackspace_region:   :lon
       }
 
-      config.fog_directory = ENV['rackspace_directory']
-      config.asset_host = ENV['rackspace_cnd_host']
+      config.fog_directory = ENV['FOG_DIRECTORY']
+      config.asset_host = ENV['RACKSPACE_CDN_HOST']
     else
       config.storage = :file
       config.permissions = 0666
