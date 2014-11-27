@@ -32,8 +32,6 @@ module Publify
 
     # Time to step into asset pipeline…
     config.assets.enabled = true
-    config.assets.digest = true
-    config.assets.enabled = true
 
     # Mime type is fully determined by url
     config.action_dispatch.ignore_accept_header = true
