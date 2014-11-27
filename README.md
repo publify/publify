@@ -31,6 +31,8 @@ $ ./bin/setup
 $ rails s
 ```
 
+You'll need to set the environment keys this repo requires in `.env`. If you're a MAS dev, you can grab these over at the [company wiki](https://moneyadviceserviceuk.atlassian.net/wiki/display/DEV/Marketing+Blog+Repo+Credentials).
+
 #### Testing
 
 ```bash
