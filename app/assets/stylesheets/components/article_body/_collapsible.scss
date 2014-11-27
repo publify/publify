@@ -98,11 +98,19 @@ $inline-callout-link-color: $green-leaf;
   }
 }
 
-.plus-icon__horizontal-line {
+.plus-icon__line {
+  stroke: #fff;
+}
+
+.plus-icon__line--horizontal {
   transition: transform .8s;
 
   .is-active & {
     transform-origin: 0 0;
     transform: translate(40px) scaleX(0);
   }
+}
+
+.plus-icon__circle {
+  fill: #0076AB;
 }
