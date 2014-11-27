@@ -25,6 +25,7 @@ tmp/*
 /coverage/
 nbproject
 public/cache/*
+public/assets/*
 .rbenv-version
 .bundle/
 .sass-cache/
