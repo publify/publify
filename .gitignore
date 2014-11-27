@@ -32,6 +32,7 @@ public/cache/*
 /themes/*
 !/themes/bootstrap-2
 gems/
+/.env
 
 # dough related files
 vendor/assets/bower_components

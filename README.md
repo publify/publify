@@ -22,7 +22,10 @@ Publify has been around since 2004 and is the oldest Ruby on Rails open source p
 
 #### Prerequisites
 
-Ruby 2.1.3
+- Ruby 2.1.3
+- Node.js
+- Bower
+- MYSQL
 
 This repository comes equipped with a self-setup script:
 
@@ -30,6 +33,8 @@ This repository comes equipped with a self-setup script:
 $ ./bin/setup
 $ rails s
 ```
+
+You'll need to set the environment keys this repo requires in `.env`. If you're a MAS dev, you can grab these over at the [company wiki](https://moneyadviceserviceuk.atlassian.net/wiki/display/DEV/Marketing+Blog+Repo+Credentials).
 
 #### Testing
 

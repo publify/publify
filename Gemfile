@@ -52,6 +52,7 @@ group :development, :test do
   gem 'thin'
   gem 'factory_girl', '~> 4.5.0'
   gem 'capybara'
+  gem 'dotenv-rails'
   gem 'rspec-rails', '~> 3.1.0'
   gem 'simplecov', require: false
   gem 'pry-rails'
