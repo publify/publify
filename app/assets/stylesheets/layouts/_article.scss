@@ -50,15 +50,4 @@
     @include column(7);
     @include push(3);
   }
-
-  p:first-of-type {
-    @include font-size(22);
-    color: $heading-color-primary;
-    margin-top: 0;
-    float: left;
-  }
-
-  p {
-    @include font-size(18);
-  }
 }
