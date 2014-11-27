@@ -22,7 +22,10 @@ Publify has been around since 2004 and is the oldest Ruby on Rails open source p
 
 #### Prerequisites
 
-Ruby 2.1.3
+- Ruby 2.1.3
+- Node.js
+- Bower
+- MYSQL
 
 This repository comes equipped with a self-setup script:
 
