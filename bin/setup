@@ -11,6 +11,11 @@ bundle install
 # Set up Bower depencencies via Bowndler
 bowndler install
 
+# Set up configurable environment variables
+if [ ! -f .env ]; then
+  cp .sample.env .env
+fi
+
 #Copy over the database details
 cp config/database.yml.mysql config/database.yml
 
