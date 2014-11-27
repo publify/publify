@@ -182,7 +182,7 @@ module ApplicationHelper
     if this_blog.date_format == 'setting_date_format_distance_of_time_in_words'
       timeago_tag timestamp, date_only: false
     else
-      "#{display_date(timestamp)} #{t('helper.at')} #{display_time(timestamp)}"
+      "#{display_date(timestamp)}"
     end
   end
 
