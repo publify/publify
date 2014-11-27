@@ -1,5 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<!--[if IE 7 ]> <html lang="en" class="ie ie7 no-js"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en" class="ie ie8 no-js"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="ie ie9 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en" class="no-js"><!--<![endif]-->
 <head profile="http://gmpg.org/xfn/11">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= h(page_title) %></title>
@@ -8,7 +13,9 @@
 <body>
   <%= render 'shared/header' %>
 
-  <nav class="navbar navbar-default" role="navigation">
+  <%= yield %>
+
+  <!-- <nav class="navbar navbar-default" role="navigation">
     <div class="container">
       <div class='navbar-header'>
         <%= link_to(content_tag(:span, '', class: 'glyphicon glyphicon-th'), this_blog.base_url, class: 'navbar-brand' )%>
@@ -32,26 +39,34 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class='container' id='page'>
+  </div> -->
+
+  <!-- <div class='container' id='page'>
     <div class='col-sm-8'>
-      <%= yield %>
+
     </div>
     <div class='col-sm-3 col-sm-offset-1' id='sidebar'>
       <%= render_sidebars %>
     </div>
-  </div>
+  </div> -->
 
-  <div id='page' class='container'>
+  <!-- <div id='page' class='container'>
     <div class='row'>
       <div class='span1'></div>
       <div class='span7'></div>
     </div>
   </div>
-  <p style='text-align: center'><small>Powered by <a href='http://publify.co'>Publify</a> | <a href="https://www.moneyadviceservice.org.uk/en/static/contact-us#newsletter_signup">Signup to our newsletter</a></small></p>
+  <p style='text-align: center'><small>Powered by <a href='http://publify.co'>Publify</a> | <a href="https://www.moneyadviceservice.org.uk/en/static/contact-us#newsletter_signup">Signup to our newsletter</a></small></p> -->
 
   <%# START RequireJS load of application %>
   <%= javascript_include_tag 'requirejs/require', data: { main: javascript_path('application') } %>
   <%# END RequireJS load of application %>
+
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script language="javascript">
+    function emailCurrentPage(){
+      window.location.href="mailto:?subject="+document.title+"&body="+escape(window.location.href);
+    }
+  </script>
 </body>
 </html>
