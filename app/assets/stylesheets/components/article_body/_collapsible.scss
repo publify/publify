@@ -1,3 +1,5 @@
+$inline-callout-link-color: $green-leaf;
+
 .collapsible {
   margin: baseline-unit(6) 0 baseline-unit(8) 0;
 }
@@ -66,11 +68,11 @@
     margin-bottom: 0;
 
     a {
-      color: $green-leaf;
+      color: $inline-callout-link-color;
     }
 
     .inline-callout__arrow-path {
-      stroke: $green-leaf;
+      stroke: $inline-callout-link-color;
     }
   }
 }
