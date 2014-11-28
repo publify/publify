@@ -43,3 +43,11 @@ $bundle exec rspec
 ```
 
 Run with `COVERAGE=true` in your test environment to report on coverage.
+
+#### Deploying
+
+**Assets**
+
+This repo uses the [asset sync](https://github.com/rumblelabs/asset_sync) gem to synchronise and store assets to Rackspace Cloud Files when deploying. Running `rake assets:precompile` will achieve this.
+
+
