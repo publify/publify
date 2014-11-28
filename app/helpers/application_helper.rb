@@ -57,8 +57,9 @@ module ApplicationHelper
     avatar_class.get_avatar(options)
   end
 
-  def meta_tag(name, value)
-    tag :meta, name: name, content: value unless value.blank?
+  def meta_tag(name, value, property = false)
+    return tag :meta, name: name, content: value unless property || value.blank?
+    tag :meta, property: name, content: value unless value.blank?
   end
 
   def markup_help_popup(markup, text)
