@@ -1,30 +1,53 @@
 .l-article {
   @include column(12);
+  position: relative;
 
   @include respond-to($mq-m) {
-    @include column(7);
-    @include pull(2);
     float: right;
   }
 
-
-  h1, h2, h3, p {
-    max-width: 550px;
+  @include respond-to($mq-l) {
+    h1, h2, h3, p {
+      max-width: 550px;
+    }
   }
 }
 
-.l-article--header {
-  margin-top: baseline-unit(13);
+.l-article__header {
+  margin-top: baseline-unit(2);
+  @include font-size(36);
+  color: $outer-space;
+
+  @include respond-to($mq-two-col) {
+    @include push(3);
+    width: 55%;
+    @include font-size(48);
+    margin-top: baseline-unit(12);
+  }
 }
 
 .l-article-info {
-  @include column(12);
   margin-bottom: baseline-unit(2);
 
-  @include respond-to($mq-m) {
+  @include respond-to($mq-two-col) {
+    position: absolute;
     @include column(2);
-    position: relative;
-    top: baseline-unit(-12);
+    top: baseline-unit(-10);
     z-index: $z-foreground;
+  }
+
+  @include respond-to($mq-l) {
+    top: baseline-unit(-11);
+  }
+
+  @include respond-to($mq-xl) {
+    top: baseline-unit(-13);
+  }
+}
+
+.l-article__body {
+  @include respond-to($mq-two-col) {
+    @include column(7);
+    @include push(3);
   }
 }

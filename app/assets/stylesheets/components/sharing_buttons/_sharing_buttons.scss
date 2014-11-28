@@ -3,7 +3,7 @@
   overflow: hidden;
   margin: baseline-unit(2) 0;
 
-  @include respond-to($mq-m) {
+  @include respond-to($mq-two-col) {
     position: fixed;
     top: 300px;
     right: 0;
@@ -15,7 +15,7 @@
   float: left;
   margin-bottom: 0;
 
-  @include respond-to($mq-m) {
+  @include respond-to($mq-two-col) {
     float: none;
   }
 }

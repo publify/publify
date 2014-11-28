@@ -1,6 +1,9 @@
+.article-info__content:first-of-type {
+  margin-top: 0;
+}
+
 .article-info__comments {
   @include inline-block();
-  margin-top: baseline-unit(2);
   position: relative;
   color: $white;
   border-radius: $border-radius;
@@ -32,13 +35,19 @@
     border-bottom-left-radius: 70px 30px;
     border-top-left-radius: 13px 20px;
   }
+
+  &:hover,
+  &:focus,
+  &:visited {
+    color: $white;
+  }
 }
 
 .article-info__image {
   float: right;
   border-radius: 75px;
-  
-  @include respond-to($mq-m) {
+
+  @include respond-to($mq-two-col) {
     float: none;
   }
 }

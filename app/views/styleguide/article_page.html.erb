@@ -10,42 +10,18 @@
   </div>
 </div>
 
-<main role="main">
+<main role="main" class="l-article">
   <div class="l-constrained">
+    <h1 class="l-article__header">Top student money survival tips</h1>
 
-    <div class="l-article l-article--header">
-      <h1>Top student money survival tips</h1>
+    <div class="l-article__body">
+      <%= render 'shared/article_body' %>
     </div>
 
-    <div class="l-article-info">
+    <aside class="l-article-info">
       <%= render 'shared/article_info' %>
-    </div>
+    </aside>
 
-
-    <div class="l-article">
-      <p class="standfirst">Going to university is all about having a good time, discovering yourself and making new friends, right? Well, yes, but hopefully you’ll learn a lot and get a good qualification as well.</p>
-
-      <p>However, if you really want to have a great three years it’s important to budget, because after paying rent you’ll probably end up spending around £600 a month. Here are some tips to help you get the most out of your time away.</p>
-
-      <h2>Don’t blow your student loan</h2>
-
-      <p>You may feel loaded when your student loan comes through, but don’t blow it in the first few weeks or months. Work out how much you have to spend over the course of your term and stick to your calculations.</p>
-
-      <%= render 'shared/inline_callout' %>
-
-      <p>More than half of the 3,007 people surveyed said they would change life habits, such as cutting back on spending and on trips to the cinema, pub or restaurant, when interest rates start rising. Our Cut-back calculator could prove useful here </p>
-
-      <%= render 'shared/collapsible' %>
-
-      <h2>Work on a budget</h2>
-
-      <p>Establish what you’re likely to spend each week on meals, other food and drinks, travel, downloads and other likely or essential costs. Also, factor in your average spend on occasional expenses, like clothes, books, toiletries and laundry.</p>
-
-      <p>Work out what you’re likely to spend over a term and divide the total by the number of days you’re away at uni or college to give you a daily budget. Be realistic. For instance, if you reckon you’ll spend more at weekends factor that into your calculations. Our Budget calculator can help you plan your spending.</p>
-
-      <%= render 'shared/next_steps' %>
-
-      <%= render 'shared/sharing_buttons' %>
-    </div>
+    <%= render 'shared/sharing_buttons' %>
   </div>
 </main>
