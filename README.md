@@ -1,5 +1,6 @@
 # MAS Marketing Blog
 
+[ ![Codeship Status for moneyadviceservice/publify](https://codeship.com/projects/8a2f2790-5b98-0132-5602-3ea96c7cff98/status)](https://codeship.com/projects/50564)
 [![Build Status](https://travis-ci.org/moneyadviceservice/publify.png)](https://travis-ci.org/moneyadviceservice/publify)
 [![Code Climate](https://codeclimate.com/github/moneyadviceservice/publify.png)](https://codeclimate.com/github/moneyadviceservice/publify)
 [![Dependency Status](https://gemnasium.com/moneyadviceservice/publify.png)](https://gemnasium.com/moneyadviceservice/publify)
