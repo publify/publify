@@ -92,13 +92,13 @@ describe 'Given a new blog', type: :model do
   end
 
   it '#date format should be day/month/year hour:minute' do
-    expect(blog.date_format).to eq('%d/%m/%Y')
+    expect(blog.date_format).to eq('%B %d %Y')
     expect(blog.time_format).to eq('%Hh%M')
   end
 
   it 'Thumb, medium and avatar image size' do
     expect(blog.image_avatar_size).to eq(48)
-    expect(blog.image_thumb_size).to eq(125)
+    expect(blog.image_thumb_size).to eq(150)
     expect(blog.image_medium_size).to eq(600)
   end
 

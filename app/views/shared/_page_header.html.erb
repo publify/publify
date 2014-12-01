@@ -1,3 +1,21 @@
+<%= meta_tag 'og:site_name', this_blog.blog_name, true %>
+<%= meta_tag 'og:title', @article ? @article.title : @page_title, true %>
+<% if @article %>
+  <%= meta_tag 'og:description', @description %>
+  <%= meta_tag 'og:url', @article.permalink_url, true %>
+  <%= meta_tag 'og:image', 'http://placehold.it/1440x488', true %>
+<% end %>
+<%= meta_tag 'og:type', 'article', true %>
+
+<%= meta_tag 'twitter:card', 'summary_large_image' %>
+<% if @article %>
+  <%= meta_tag 'twitter:description', @description %>
+  <%= meta_tag 'twitter:url', @article.permalink_url %>
+<% end %>
+<%= meta_tag 'twitter:title', @article ? @article.title : @page_title %>
+<%= meta_tag 'twitter:image:src', 'http://placehold.it/1440x488' %>
+<%= meta_tag 'twitter:site', '@YourMoneyAdvice' %>
+
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <%= meta_tag 'ICBM', this_blog.geourl_location if this_blog.geourl_location.present? %>
 <%= meta_tag 'description', @description unless @description.blank? %>
@@ -124,6 +142,4 @@ var MAS = (function(w, d) {
 <%= this_blog.custom_tracking_field unless this_blog.custom_tracking_field.blank? %>
 <%= google_analytics %>
 
-<%= meta_tag 'og:site_name', this_blog.blog_name %>
-<%= meta_tag 'og:title', @article ? @article.title : @page_title %>
 <link ref='author' href="humans.txt">

@@ -94,25 +94,25 @@ describe ApplicationHelper, type: :helper do
                         'screen_name' => 'a_screen_name',
                         'entities' => { 'url' => { 'urls' => [{ 'expanded_url' => 'an url' }] } }
                       } } }
-      it 'returns a link with the creation date and time' do
+      it 'returns a link with the creation date' do
         begin
           timezone = Time.zone
           Time.zone = 'UTC'
 
           expect(get_reply_context_twitter_link(reply))
-            .to eq "<a href=\"https://twitter.com/a_screen_name/status/123456789\">23/01/2014 at 13h47</a>"
+            .to eq "<a href=\"https://twitter.com/a_screen_name/status/123456789\">January 23 2014</a>"
         ensure
           Time.zone = timezone
         end
       end
 
-      it 'displays creation date and time in the current time zone' do
+      it 'displays creation date in the current time zone' do
         begin
           timezone = Time.zone
           Time.zone = 'Tokyo'
 
           expect(get_reply_context_twitter_link(reply))
-            .to eq "<a href=\"https://twitter.com/a_screen_name/status/123456789\">23/01/2014 at 22h47</a>"
+            .to eq "<a href=\"https://twitter.com/a_screen_name/status/123456789\">January 23 2014</a>"
         ensure
           Time.zone = timezone
         end

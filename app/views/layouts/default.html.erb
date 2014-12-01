@@ -1,6 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
-<head profile="http://gmpg.org/xfn/11">
+
+<!--[if IE 7 ]> <html lang="en" class="ie ie7 no-js"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en" class="ie ie8 no-js"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="ie ie9 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en" class="no-js" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://opengraphprotocol.org/schema/"><!--<![endif]-->
+<head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= h(page_title) %></title>
   <%= render 'shared/page_header' %>
@@ -8,50 +13,15 @@
 <body>
   <%= render 'shared/header' %>
 
-  <nav class="navbar navbar-default" role="navigation">
-    <div class="container">
-      <div class='navbar-header'>
-        <%= link_to(content_tag(:span, '', class: 'glyphicon glyphicon-th'), this_blog.base_url, class: 'navbar-brand' )%>
-      </div>
-      <ul class='nav navbar-nav pull-right'>
-        <li><%= link_to(t('.statuses'), {controller: 'notes'}) %></li>
-        <li><%= link_to(t('.archives'), {controller: 'articles', action: 'archives'}) %></li>
-        <%- Page.published.each do |page| %>
-        <li><%= link_to_permalink(page, page.title) %></li>
-        <%- end %>
-      </ul>
-    </div>
-  </nav>
+  <%= yield %>
 
-  <div id='logo' class='container'>
-    <div class='row'>
-      <div class='col-lg-12 vertical-container'>
-        <div class='vertical'>
-          <h1><%= link_to(this_blog.blog_name, this_blog.base_url) %></h1>
-          <p class='subtitle'><%= this_blog.blog_subtitle %></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class='container' id='page'>
-    <div class='col-sm-8'>
-      <%= yield %>
-    </div>
-    <div class='col-sm-3 col-sm-offset-1' id='sidebar'>
-      <%= render_sidebars %>
-    </div>
-  </div>
-
-  <div id='page' class='container'>
-    <div class='row'>
-      <div class='span1'></div>
-      <div class='span7'></div>
-    </div>
-  </div>
-  <p style='text-align: center'><small>Powered by <a href='http://publify.co'>Publify</a> | <a href="https://www.moneyadviceservice.org.uk/en/static/contact-us#newsletter_signup">Signup to our newsletter</a></small></p>
-
-  <%# START RequireJS load of application %>
   <%= javascript_include_tag 'requirejs/require', data: { main: javascript_path('application') } %>
-  <%# END RequireJS load of application %>
+
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script>
+    function emailCurrentPage(){
+      window.location.href="mailto:?subject="+document.title+"&body="+escape(window.location.href);
+    }
+  </script>
 </body>
 </html>

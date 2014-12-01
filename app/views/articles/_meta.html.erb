@@ -1,6 +1,21 @@
-<div class='meta'>
-  <p>
-    <small><%= t(".published_on", publish_date_and_time: display_date_and_time(article.published_at), by: "<span class='p-author h-card'>#{article.user.nickname}</span>", tags: (" " + article.tags.map { |tag| link_to tag.display_name, tag.permalink_url(nil, true), :rel => "tag"}.sort.join(", ") unless article.tags.empty?)) %></small>
-  </p>
-</div>
+<div class="article-info">
+  <%= display_user_avatar(article.user, 'thumb', 'article-info__image') %>
 
+  <p class="article-info__content">
+    Published by
+    <a class="article-info__link" href="#"><%= article.user.nickname %></a>
+  </p>
+
+  <p class="article-info__content">
+    Category
+    <a class="article-info__link" href="#">Money saving tips</a>
+  </p>
+
+  <p class="article-info__content">
+    <time datetime="<%= article.published_at %>"><%= display_date_and_time(article.published_at) %></time>
+  </p>
+
+  <% if article.published_comments.size > 0 %>
+    <a class="article-info__comments" href="#comments"><%= article.published_comments.size %> Comment<%= article.published_comments.size > 1 ? 's' : '' %></a>
+  <% end %>
+</div>

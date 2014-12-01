@@ -1,0 +1,24 @@
+<% if tags.count > 0 %>
+  <ul class="tag-list"><li class="tag-list__item tag-list__item--title">
+    <span class="tag-list__item-inner">Tags</span>
+    <% (0..2).each_with_index do |index| %>
+      <% if tags[index] %>
+        <li class="tag-list__item">
+          <a href="<%= tags[index].permalink_url(nil, true) %>" class="tag-list__link"><%= tags[index].display_name %></a>
+      <% end %>
+    <% end %>
+  </ul>
+<% end %>
+<% if tags.count > 3 %>
+  <span class="tag-list__trigger" data-dough-component="Collapsable" data-dough-collapsable-trigger="tags-list">
+    <span class="tag-list__trigger-content">
+      <span class="visually-hidden">View more tags</span>
+    </span>
+  </span>
+  <ul class="tag-list tag-list--extra" data-dough-collapsable-target="tags-list">
+    <% (3..tags.count-1).each do|index| %>
+      <li class="tag-list__item">
+        <a href="<%= tags[index].permalink_url(nil, true) %>" class="tag-list__link"><%= tags[index].display_name %></a>
+    <% end %>
+  </ul>
+<% end %>

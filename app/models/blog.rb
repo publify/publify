@@ -55,10 +55,10 @@ class Blog < ActiveRecord::Base
   setting :send_outbound_pings,        :boolean, true
   setting :email_from,                 :string, 'publify@example.com'
   setting :allow_signup,               :integer, 0
-  setting :date_format,                :string, '%d/%m/%Y'
+  setting :date_format,                :string, '%B %d %Y'
   setting :time_format,                :string, '%Hh%M'
   setting :image_avatar_size,          :integer, 48
-  setting :image_thumb_size,           :integer, 125
+  setting :image_thumb_size,           :integer, 150
   setting :image_medium_size,          :integer, 600
 
   # SEO
