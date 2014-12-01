@@ -205,6 +205,8 @@ GEM
       activesupport (>= 3.0.0)
     launchy (2.4.2)
       addressable (~> 2.3)
+    letter_opener (1.2.0)
+      launchy (~> 2.2)
     listen (2.7.11)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
@@ -212,6 +214,10 @@ GEM
     lumberjack (1.0.9)
     mail (2.6.1)
       mime-types (>= 1.16, < 3)
+    mailjet (1.0.1)
+      activesupport (>= 3.1.0)
+      rack (>= 1.4.0)
+      rest-client
     memoizable (0.4.2)
       thread_safe (~> 0.3, >= 0.3.1)
     method_source (0.8.2)
@@ -227,6 +233,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.1)
+    netrc (0.8.0)
     nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
     non-stupid-digest-assets (1.0.4)
@@ -264,8 +271,13 @@ GEM
     rails-timeago (2.11.1)
       actionpack (>= 3.1)
       activesupport (>= 3.1)
+    rails_12factor (0.0.3)
+      rails_serve_static_assets
+      rails_stdout_logging
     rails_autolink (1.1.6)
       rails (> 3.1)
+    rails_serve_static_assets (0.0.2)
+    rails_stdout_logging (0.0.3)
     railties (4.1.6)
       actionpack (= 4.1.6)
       activesupport (= 4.1.6)
@@ -277,6 +289,9 @@ GEM
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
     recaptcha (0.3.6)
+    rest-client (1.7.2)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
     rspec (3.1.0)
       rspec-core (~> 3.1.0)
       rspec-expectations (~> 3.1.0)
@@ -401,6 +416,8 @@ DEPENDENCIES
   jshint_ruby
   kaminari
   launchy
+  letter_opener
+  mailjet
   mini_magick (~> 3.8.1)
   mysql2
   non-stupid-digest-assets
@@ -409,6 +426,7 @@ DEPENDENCIES
   rails (~> 4.1.1)
   rails-observers (~> 0.1.2)
   rails-timeago (~> 2.0)
+  rails_12factor
   rails_autolink (~> 1.1.0)
   rake (~> 10.3.2)
   recaptcha
