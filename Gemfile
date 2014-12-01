@@ -67,6 +67,7 @@ group :development, :test do
   gem 'spring-commands-rspec'
   gem 'launchy'
   gem 'poltergeist'
+  gem 'letter_opener'
 end
 
 group :staging, :production do
