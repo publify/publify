@@ -34,6 +34,7 @@ gem 'sass-rails', ' ~> 4.0.3'
 gem 'non-stupid-digest-assets'
 gem 'asset_sync'
 gem 'mailjet'
+gem 'thin'
 
 # removed from Rails-core as Rails 4.0
 gem 'actionpack-page_caching', '~> 1.0.2'
@@ -51,7 +52,6 @@ group :assets do
 end
 
 group :development, :test do
-  gem 'thin'
   gem 'factory_girl', '~> 4.5.0'
   gem 'capybara'
   gem 'dotenv-rails'
