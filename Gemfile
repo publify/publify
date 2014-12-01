@@ -33,6 +33,7 @@ gem 'dynamic_form', '~> 1.1.4'
 gem 'sass-rails', ' ~> 4.0.3'
 gem 'non-stupid-digest-assets'
 gem 'asset_sync'
+gem 'mailjet'
 
 # removed from Rails-core as Rails 4.0
 gem 'actionpack-page_caching', '~> 1.0.2'

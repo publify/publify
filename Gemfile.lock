@@ -212,6 +212,10 @@ GEM
     lumberjack (1.0.9)
     mail (2.6.1)
       mime-types (>= 1.16, < 3)
+    mailjet (1.0.1)
+      activesupport (>= 3.1.0)
+      rack (>= 1.4.0)
+      rest-client
     memoizable (0.4.2)
       thread_safe (~> 0.3, >= 0.3.1)
     method_source (0.8.2)
@@ -227,6 +231,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.1)
+    netrc (0.8.0)
     nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
     non-stupid-digest-assets (1.0.4)
@@ -282,6 +287,9 @@ GEM
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
     recaptcha (0.3.6)
+    rest-client (1.7.2)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
     rspec (3.1.0)
       rspec-core (~> 3.1.0)
       rspec-expectations (~> 3.1.0)
@@ -406,6 +414,7 @@ DEPENDENCIES
   jshint_ruby
   kaminari
   launchy
+  mailjet
   mini_magick (~> 3.8.1)
   mysql2
   non-stupid-digest-assets
