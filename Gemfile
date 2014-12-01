@@ -67,3 +67,7 @@ group :development, :test do
   gem 'launchy'
   gem 'poltergeist'
 end
+
+group :staging, :production do
+  gem 'rails_12factor'
+end
