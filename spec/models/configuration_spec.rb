@@ -88,7 +88,7 @@ describe 'Given a new blog', type: :model do
   end
 
   it '#email_from should be publify@example.com' do
-    expect(blog.email_from).to eq('publify@example.com')
+    expect(blog.email_from).to eq('notmonitored@notify.moneyadviceservice.org.uk')
   end
 
   it '#date format should be day/month/year hour:minute' do
