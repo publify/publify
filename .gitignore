@@ -26,6 +26,7 @@ tmp/*
 nbproject
 public/cache/*
 public/assets/*
+!public/assets/*.json
 .rbenv-version
 .bundle/
 .sass-cache/
