@@ -34,5 +34,6 @@ Rails.application.configure do
     jquery/dist/jquery.js
     eventsWithPromises/src/eventsWithPromises.js
     requirejs/require.js
+    rsvp/rsvp.js
   )
 end
