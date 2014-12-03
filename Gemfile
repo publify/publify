@@ -39,7 +39,7 @@ gem 'thin'
 # removed from Rails-core as Rails 4.0
 gem 'actionpack-page_caching', '~> 1.0.2'
 gem 'rails-observers', '~> 0.1.2'
-gem 'ckeditor', github: 'moneyadviceservice/ckeditor'
+gem 'ckeditor', github: 'galetahub/ckeditor'
 gem 'autoprefixer-rails'
 
 group :assets do
