@@ -1,11 +1,9 @@
-<article id="article-<%= article.id %>" class='h-entry hentry h-as-note'>
-  <h2 class='page-header p-name entry-title'><%= link_to_permalink(article,article.title) %></h2>
-  <div class='e-content entry-content article'>
-    <%= render 'articles/protected_article_content', { :article => article } %>
-    <%= render 'articles/meta', article: article %>
-  </div>
-  <div class='comments'>
-    <%= render 'articles/comment_counter', article: article %>
-  </div>
-</article>
+<% class_name = ['one', 'two', 'three'][Random.rand(3)] %>
 
+<div class="l-tile">
+  <div class="article-tile article-tile--<%= class_name %>">
+    <h2><%= link_to_permalink(article, truncate(article.title, length: 53), nil, 'article-tile__heading article-tile__heading--' + class_name) %></h2>
+    <time class="article-tile__date article-tile__date--<%= class_name %>"><%= display_date_and_time(article.published_at) %></time>
+    <%= link_to_permalink(article, article.published_comments.size, 'comments', 'article-tile__comments article-tile__comments--' + class_name) %>
+  </div>
+</div>

@@ -150,25 +150,6 @@
               </div>
             </div>
             <!-- End of date publish -->
-
-            <!-- Start of password block -->
-            <div class='control-group'>
-              <p>
-              <%= t(".visibility") %>: <strong><%= @article.password.nil? || @article.password.empty? ? t(".public") : t(".protected") %></strong>
-              <%= toggle_element('visibility') %>
-              </p>
-              <div id='visibility' class='collapse'>
-                <label for="article_password"><%= t(".password") %></label>
-                <%= text_field 'article', 'password', :class => "form-control" %>
-                <p>
-                <span class="btn btn-mini btn-default">
-                  <%= toggle_element('visibility', t('.ok')) %>
-                </span>
-                </p>
-
-              </div>
-            </div>
-            <!-- End of password block -->
           </fieldset>
         </div>
         <!-- End of publish settings -->
