@@ -6,10 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="imagetoolbar" content="no">
   <%
-      base_path = ''
-  base_path << Rails.application.config.action_controller.asset_host || ''
-  base_path << Rails.application.config.assets.prefix
-  base_path << '/ckeditor/'
+    base_path = ''
+    base_path << (Rails.application.config.action_controller.asset_host || '')
+    base_path << Rails.application.config.assets.prefix
+    base_path << '/ckeditor/'
   %>
   <script>
     var CKEDITOR_BASEPATH = '<%= base_path %>';
