@@ -41,7 +41,7 @@ function save_article_tags() {
   var hiddenArticleKeywords = $('#article_form').find('input[name="hidden-article[keywords]"]').val(),
       keywords = hiddenArticleKeywords.split(',');
 
-  if (hiddenArticleKeywords == "") {
+  if (hiddenArticleKeywords === "") {
     $('#article_keywords').val("");
     return;
   }
