@@ -14,3 +14,4 @@
 //= require lightbox
 
 // Front javascript manifest
+//= require ckeditor/init

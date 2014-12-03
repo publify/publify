@@ -20,10 +20,9 @@ Rails.application.configure do
     dough/assets/stylesheets/font_base64.css
   )
 
-  # Admin JavaScript
-  config.assets.precompile += %w(
-    ckeditor/*
-  )
+  config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
+  config.assets.precompile += Ckeditor.assets
+  config.assets.precompile += %w(ckeditor/*)
 
   # Application JavaScript
   config.assets.precompile += %w(
