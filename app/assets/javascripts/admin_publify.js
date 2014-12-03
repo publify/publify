@@ -7,17 +7,6 @@ var typewatch = (function(){
   }
 })();
 
-function autosave_request(e) {
-  $('#article_form').keyup(function() {
-    typewatch(function() {
-      $.ajax({
-        type: "POST",
-        url: '/admin/content/autosave',
-        data: $("#article_form").serialize()});
-    }, 5000)
-  });
-}
-
 function set_widerea(element) {
   if ($("#article_id").val() == "") {
     wideArea().clearData(element);
@@ -30,6 +19,9 @@ function tag_manager() {
   var tagUrl = "/admin/content/auto_complete_for_article_keywords";
 
   $.getJSON(tagUrl, function (tags) {
+
+    $('#article_keywords').val($('#article_keywords').val().replace(/\"/g,""));
+
     var tagApi = $("#article_keywords").tagsManager({
       prefilled: $('#article_keywords').val(),
       onlyTagList: true,
@@ -46,7 +38,19 @@ function tag_manager() {
 }
 
 function save_article_tags() {
-  $('#article_keywords').val($('#article_form').find('input[name="hidden-article[keywords]"]').val());
+  var hiddenArticleKeywords = $('#article_form').find('input[name="hidden-article[keywords]"]').val(),
+      keywords = hiddenArticleKeywords.split(',');
+
+  if (hiddenArticleKeywords == "") {
+    $('#article_keywords').val("");
+    return;
+  }
+
+  for (keyword in keywords) {
+    keywords[keyword] = '"' + keywords[keyword] + '"'
+  }
+
+  $('#article_keywords').val(keywords.join(','));
 }
 
 function doneTyping () {
@@ -72,7 +76,6 @@ function set_savebar() {
 }
 
 $(document).ready(function() {
-  $('#article_form').each(function(e){autosave_request(e)});
   $('#article_form').submit(function(e){save_article_tags()});
   $('#article_form').each(function(e){tag_manager()});
   $('#article_form').each(function(e){set_widerea($('#article_body_and_extended'))});
