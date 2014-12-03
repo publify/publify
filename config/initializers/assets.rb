@@ -20,6 +20,11 @@ Rails.application.configure do
     dough/assets/stylesheets/font_base64.css
   )
 
+  # Admin JavaScript
+  config.assets.precompile += %w(
+    ckeditor/*
+  )
+
   # Application JavaScript
   config.assets.precompile += %w(
     publify.js

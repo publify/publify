@@ -1,4 +1,5 @@
 CKEDITOR.editorConfig = function (config) {
+  config.customConfig = '/ckeditor/ckeditor';
   config.filebrowserImageBrowseLinkUrl = '/admin/ckeditor/pictures';
   config.filebrowserImageBrowseUrl = '/admin/ckeditor/pictures';
   config.filebrowserImageUploadUrl = '/admin/ckeditor/pictures';
