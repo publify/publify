@@ -263,6 +263,7 @@ fr:
         custom_url_help: "Si vous avez un raccourcisseur personnalisé pour vos URL, renseignez-le ici."
         date_format: "Afficher les dates"
         default_article_show: "nombre de billets affichés sur ma page d'accueil"
+        default_archives_show: "nombre de billets affichés sur ma page d'archives"
         default_feed_show: "articles les plus récents dans le flux"
         display: "Afficher"
         display_settings: "Afficher les paramètres de configuration"

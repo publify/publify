@@ -103,7 +103,7 @@ class ArticlesController < ContentController
   end
 
   def archives
-    limit = this_blog.per_page(params[:format])
+    limit = this_blog.limit_archives_display
     @articles = Article.published.page(params[:page]).per(limit)
     @page_title = this_blog.archives_title_template.to_title(@articles, this_blog, params)
     @keywords = this_blog.meta_keywords
