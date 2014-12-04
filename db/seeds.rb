@@ -8,7 +8,99 @@
 
 Blog.create
 
-tag = Tag.create(name: 'general', display_name: 'General')
+%w(
+  debt
+  borrowing
+  loans
+  payday-loans
+  credit-score
+  credit-rating
+  free-debt-advice
+  bankruptcy
+  remortgage
+  debt-management
+  credit cards
+  work
+  pensions
+  retirement
+  tax
+  self-employed
+  redundancy
+  benefits
+  tax-credits
+  pension-scams
+  state-pension
+  annuity
+  insurance
+  home-insurance
+  buildings-insurance
+  flood-insurance
+  mobile-phones
+  life-insurance
+  ppi
+  critical-illness-insurance
+  car-insurance
+  travel-insurance
+  pet-insurance
+  cars
+  travel
+  car-finance
+  travel-money
+  holidays
+  budgeting
+  managing-money
+  bank-accounts
+  current-accounts
+  debit-cards
+  overdrafts
+  credit-unions
+  premium-bonds
+  id-theft
+  scams
+  your-rights
+  bills
+  prepaid-cards
+  student-finance
+  student-loans
+  christmas
+  council-tax
+  shopping
+  gas
+  electricity
+  water-bill
+  universal-credit
+  child-benefit
+  homes
+  mortgages
+  home-buying
+  first-time-buyer
+  stamp-duty
+  help-to-buy
+  buy-to-let
+  renting
+  savings
+  investing
+  nisa
+  child-trust-funds
+  junior-isas
+  births
+  deaths
+  funeral
+  family
+  divorce
+  separation
+  maternity-pay
+  paternity-pay
+  childcare
+  wills
+  care
+  disability
+  long-term-care
+  wedding
+  how-to
+  having-a-baby
+  news
+).map {|tag| Tag.create(name: tag, display_name: tag.gsub(/-/, " ").titleize) }
 
 PageSidebar.create(active_position: 0, staged_position: 0)
 TagSidebar.create(active_position: 1)
