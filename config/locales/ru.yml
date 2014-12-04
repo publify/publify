@@ -264,6 +264,7 @@ ru:
         custom_url_help: "If you have a custom domain for URL shortening, enter it here."
         date_format: "Date format"
         default_article_show: "articles on the homepage"
+        default_archives_show: "articles on the archives page"
         default_feed_show: "most recent articles in feed"
         display: "Display"
         display_settings: "Display Settings"

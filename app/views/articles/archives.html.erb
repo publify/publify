@@ -22,3 +22,4 @@ for article in @articles
     </div>
   <%- end %>
   <%- end %>
+  +<%= paginate @articles, next_label: "#{t(".next_page")} &raquo;", previous_label: "&laquo; #{t('.previous_page')}" %>
