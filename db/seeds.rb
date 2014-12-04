@@ -32,6 +32,6 @@ admin = Profile.create(label: 'admin', nicename: 'Publify administrator',
 publisher = Profile.create(label: 'publisher', nicename: 'Blog publisher',
                            modules: [:dashboard, :articles, :notes, :pages, :feedback, :media, :profile])
 contributor = Profile.create(label: 'contributor', nicename: 'Contributor',
-                             modules: [:dashboard, :profile ])
+                             modules: [:dashboard, :articles, :notes, :pages, :feedback, :media, :profile])
 
 Dir.mkdir("#{::Rails.root.to_s}/public/files") unless File.directory?("#{::Rails.root.to_s}/public/files")
