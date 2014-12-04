@@ -1,7 +1,19 @@
 .article-tile {
   overflow: hidden;
   position: relative;
-  padding: baseline-unit(6);
+  padding: baseline-unit(13) baseline-unit(5);
+
+  @include respond-to($mq-m) {
+    padding: baseline-unit(16) baseline-unit(5);
+  }
+
+  @include respond-to($mq-l) {
+    padding: baseline-unit(13) baseline-unit(5);
+  }
+
+  @include respond-to($mq-xl) {
+    padding: baseline-unit(18) baseline-unit(6);
+  }
 }
 
 .article-tile--one {
@@ -20,12 +32,14 @@
   @include font-size(30);
   line-height: 1.2;
   display: block;
-  margin-top: baseline-unit(10);
 }
 
 .article-tile__heading--one,
 .article-tile__heading--three {
   color: $article-tile-text--one;
+
+  &:hover,
+  &:focus,
   &:visited {
     color: $article-tile-text--one;
   }
@@ -33,6 +47,9 @@
 
 .article-tile__heading--two {
   color: $article-tile-text--two;
+
+  &:hover,
+  &:focus,
   &:visited {
     color: $article-tile-text--two;
   }
@@ -93,9 +110,14 @@
   position: absolute;
   right: baseline-unit(4);
   bottom: baseline-unit(5);
-  padding: 6px 14px;
+  padding: 7px 14px;
+  min-width: 52px;
+  text-align: center;
   display: block;
   color: $article-tile-text--one;
+
+  &:focus,
+  &:hover,
   &:visited {
     color: $article-tile-text--one;
   }
@@ -112,6 +134,7 @@
     border-color: transparent $article-tile-comments-bg--one transparent transparent;
     position: absolute;
     bottom: -12px;
+    right: 9px;
   }
 }
 

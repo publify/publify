@@ -1,7 +1,8 @@
-<div class='hfeed'>
-  <%= render @articles %>
+<div class="l-constrained">
+  <div class="l-tiles">
+    <%= render @articles %>
+  </div>
+  <div class='paginate'>
+    <%= paginate(@articles)%>
+  </div>
 </div>
-<div class='paginate'>
-  <%= paginate(@articles)%>
-</div>
-

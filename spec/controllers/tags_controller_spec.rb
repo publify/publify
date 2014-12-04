@@ -111,18 +111,6 @@ describe TagsController, 'showing a non-existant tag', type: :controller do
   end
 end
 
-describe TagsController, 'password protected article', type: :controller do
-  render_views
-
-  it 'article in tag should be password protected' do
-    create(:blog)
-    article = create(:article, password: 'password')
-    foo = create(:tag, name: 'foo', articles: [article])
-    get 'show', id: 'foo'
-    assert_tag tag: 'input', attributes: { id: 'article_password' }
-  end
-end
-
 describe TagsController, 'SEO Options', type: :controller do
   before(:each) do
     @blog = FactoryGirl.create(:blog)
