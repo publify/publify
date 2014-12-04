@@ -3,6 +3,11 @@
 
   @include respond-to($mq-m) {
     background-color: $banner-bg-color;
+    min-height: 83px;
+  }
+
+  @include respond-to($mq-l) {
+    min-height: 100px;
   }
 
   .l-constrained {
