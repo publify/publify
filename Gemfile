@@ -68,6 +68,7 @@ group :development, :test do
   gem 'launchy'
   gem 'poltergeist'
   gem 'letter_opener'
+  gem 'foreman'
 end
 
 group :staging, :production do
