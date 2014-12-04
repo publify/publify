@@ -42,6 +42,7 @@ class Blog < ActiveRecord::Base
   setting :text_filter,                :string, 'markdown smartypants'
   setting :comment_text_filter,        :string, 'markdown smartypants'
   setting :limit_article_display,      :integer, 10
+  setting :limit_archives_display,     :integer, 20
   setting :limit_rss_display,          :integer, 10
   setting :default_allow_pings,        :boolean, false
   setting :default_allow_comments,     :boolean, true
@@ -214,7 +215,7 @@ class Blog < ActiveRecord::Base
     return limit_article_display if format.nil? || format == 'html'
     limit_rss_display
   end
-
+  
   def rss_limit_params
     limit = limit_rss_display.to_i
     return limit.zero? \
