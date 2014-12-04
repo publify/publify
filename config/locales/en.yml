@@ -267,7 +267,6 @@ en:
         default_archives_show: "articles on the archives page"
         default_feed_show: "most recent articles in feed"
         display: "Display"
-        display_archives: "Archives : display"
         display_settings: "Display Settings"
         feed_articles: "Article excerpts"
         feed_settings: "RSS Feed Settings"
