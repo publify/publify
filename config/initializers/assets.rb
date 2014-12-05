@@ -31,7 +31,7 @@ Rails.application.configure do
     components/*.js
     dough/assets/js/lib/*.js
     dough/assets/js/components/*.js
-    StickyHeader.js
+    Header.js
   )
 
   # Vendor JavaScript
