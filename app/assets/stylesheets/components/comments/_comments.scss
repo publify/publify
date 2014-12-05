@@ -1,0 +1,17 @@
+.comments {
+  clear: left;
+  background: $concrete;
+  padding: baseline-unit(3);
+
+  @include respond-to($mq-two-col) {
+    @include column(8);
+    @include push(2);
+  }
+
+  .comment-form {
+    h3, p {
+      text-align: center;
+      max-width: none;
+    }
+  }
+}
