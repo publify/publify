@@ -26,6 +26,8 @@
   // }
 }
 
-.beta-tag__stroke {
-  stroke: $white;
+.beta-tag__logo-line {
+  stroke: $beta-color-stroke;
+  stroke-width: 10;
+  stroke-linecap: round;
 }
