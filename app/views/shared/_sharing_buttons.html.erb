@@ -15,6 +15,6 @@
     <a class="sharing__button sharing__button--print t-print-button" href="javascript:window.print()"><span class="visually-hidden">Print this</span></a>
   </li>
   <li class="sharing__item">
-    <a class="sharing__button sharing__button--email t-email-button" href="javascript:emailCurrentPage()"><span class="visually-hidden">Share this by email</span></a>
+    <a class="sharing__button sharing__button--email t-email-button" href="mailto:?subject=<%= u @article.title %>&amp;body=<%= u request.original_url %>"><span class="visually-hidden">Share this by email</span></a>
   </li>
 </ul>
