@@ -55,6 +55,7 @@ To install Publify you need the following:
 
 ```bash
 $ bundle install
+$ rake db:setup
 $ rake db:create
 $ rake db:migrate
 $ rake db:seed
