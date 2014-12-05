@@ -263,6 +263,7 @@ fr:
         custom_url_help: "If you have a custom domain for URL shortening, enter it here."
         date_format: "Afficher les dates"
         default_article_show: "billet sur ma page d'accueil params"
+        default_article_show: "billets sur ma page d'archives"
         default_feed_show: "most recent articles in feed"
         display: "Display"
         display_settings: "Display Settings"
