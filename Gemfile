@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 if ENV["HEROKU"]
-  ruby '2.1.3'
+  ruby '2.1.5'
 
   gem "pg"
   gem "thin" # Change this to another web server if you want (ie. unicorn, passenger, puma...)
@@ -36,7 +36,7 @@ else
   end
 end
 
-gem 'rails', '~> 4.1.7'
+gem 'rails', '~> 4.1.8'
 gem 'htmlentities'
 gem 'bluecloth', '~> 2.1'
 gem 'coderay', '~> 1.1.0'
@@ -47,7 +47,7 @@ gem 'mini_magick', '~> 3.8.1', :require => 'mini_magick'
 gem 'uuidtools', '~> 2.1.1'
 gem 'flickraw-cached'
 gem 'rubypants', '~> 0.2.0'
-gem 'rake', '~> 10.3.2'
+gem 'rake', '~> 10.4.2'
 #gem 'acts_as_list'
 #gem 'acts_as_tree_rails3'
 gem 'fog'
@@ -56,7 +56,7 @@ gem 'carrierwave', '~> 0.10.0'
 gem 'akismet', '~> 1.0'
 gem 'twitter', '~> 5.6.0'
 
-gem "jquery-rails", "~> 3.1.0"
+gem "jquery-rails", "~> 3.1.2"
 gem "jquery-ui-rails", "~> 5.0.2"
 
 gem 'rails-timeago', '~> 2.0'
