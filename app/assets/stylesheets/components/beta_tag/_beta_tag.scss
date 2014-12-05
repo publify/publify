@@ -6,10 +6,6 @@
   position: relative;
   padding-left: 3px;
   text-transform: uppercase;
-
-  // @include respond-to($mq-m) {
-  //   @include font-size(22);
-  // }
 }
 
 .beta-tag__logo {
@@ -17,13 +13,6 @@
   width: 40px;
   top: -12px;
   left: 0;
-
-  // @include respond-to($mq-m) {
-  //   width: 100px;
-  //   top: -36px;
-  //   left: 50%;
-  //   margin-left: -50px;
-  // }
 }
 
 .beta-tag__logo-line {
