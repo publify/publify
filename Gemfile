@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 if ENV["HEROKU"]
-  ruby '2.1.3'
+  ruby '2.1.5'
 
   gem "pg"
   gem "thin" # Change this to another web server if you want (ie. unicorn, passenger, puma...)
