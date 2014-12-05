@@ -1,27 +1,14 @@
-<!-- <div class="grid">
-  <div class="col1"></div>
-  <div class="col2"></div>
-  <div class="col3"></div>
-  <div class="col4"></div>
-  <div class="col5"></div>
-  <div class="col6"></div>
-  <div class="col7"></div>
-  <div class="col8"></div>
-  <div class="col9"></div>
-  <div class="col10"></div>
-  <div class="col11"></div>
-  <div class="col12"></div>
-</div> -->
-
 <header class="l-header" id="header" role="banner">
   <div class="l-filter" data-dough-collapsable-target="filter">
-    <h2 class="l-filter__headline">Filter articles</h2>
-    <ul class="l-filter__list">
-      <li class="l-filter__list-item">All articles</li>
-      <li class="l-filter__list-item"><a href="#" class="l-filter__list-link">News</a></li>
-      <li class="l-filter__list-item"><a href="#" class="l-filter__list-link">Voices</a></li>
-      <li class="l-filter__list-item"><a href="#" class="l-filter__list-link">Money tips</a></li>
-    </ul>
+    <div class="l-constrained">
+      <h2 class="l-filter__headline">Filter articles</h2>
+      <ul class="l-filter__list">
+        <li class="l-filter__list-item">All articles</li>
+        <li class="l-filter__list-item"><a href="#" class="l-filter__list-link">News</a></li>
+        <li class="l-filter__list-item"><a href="#" class="l-filter__list-link">Voices</a></li>
+        <li class="l-filter__list-item"><a href="#" class="l-filter__list-link">Money tips</a></li>
+      </ul>
+    </div>
   </div>
   <div class="l-constrained">
     <div class="l-header__top" id="header-top">
@@ -31,11 +18,16 @@
         </a>
       </div>
     </div>
-    <div class="l-header__bottom" id="header-bottom">
-      <%= render 'shared/beta_logo' %>
-      <h1 class="l-header__title">Your Money advice</h1>
+    <div class="l-header__bottom">
+      <div class="l-header-logo">
+        <%= render 'shared/beta_logo' %>
+        <h1 class="l-header-logo__title"><a href="/" class="l-header-title__link">Your Money advice</a></h1>
+      </div>
       <a href="#" class="l-header__search-button"><span class="visually-hidden">Search</span></a>
-      <span class="l-header__filter-button" data-dough-component="Collapsable" data-dough-collapsable-trigger="filter"><span class="visually-hidden">Article filter options</span></span>
+      <span class="l-header-filter-button" data-dough-component="Collapsable" data-dough-collapsable-trigger="filter">
+        <span class="l-header-filter-button__selected-item">All Articles</span>
+        <span class="visually-hidden">Article filter options</span>
+      </span>
     </div>
 <!--     <p class="l-header__description">Read about all things money and see what everyone else thinks. Our latest blog posts are a good place to start</p> -->
   </div>
