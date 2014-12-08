@@ -49,7 +49,7 @@ Run with `COVERAGE=true` in your test environment to report on coverage.
 
 **Assets**
 
-This repo uses the [asset sync](https://github.com/rumblelabs/asset_sync) gem to synchronise and store assets to Rackspace Cloud Files when deploying. Running `rake assets:precompile` will achieve this.
+This repo uses the [asset sync](https://github.com/rumblelabs/asset_sync) gem to synchronise and store assets to Rackspace Cloud Files when deploying.
 
 **Staging**
 
@@ -57,7 +57,5 @@ This repo uses the [asset sync](https://github.com/rumblelabs/asset_sync) gem to
     * This file should contain the necessary environment variables for deployment
   * Make sure you are working from an up to date version of master
   * Run `./bin/deploy`
-
-Just pushing normally to Github will trigger Codeship to build and automatically push the latest changes to staging should the build pass. Nothing else needs to be done.
 
 
