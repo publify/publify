@@ -12,7 +12,7 @@
 set -e
 
 # Compile assets
-bundle exec rake assets:precompile
+RAILS_ENV=production bundle exec foreman run rake assets:precompile
 
 # Update manifest
 git add public/assets/*.json
