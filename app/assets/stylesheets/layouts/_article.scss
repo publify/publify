@@ -33,6 +33,7 @@
     position: absolute;
     @include column(2);
     top: baseline-unit(-10);
+    left: baseline-unit(15);
     z-index: $z-foreground;
   }
 
