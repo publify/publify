@@ -11,13 +11,10 @@
 
 set -e
 
-# Remove old manifest
-git rm public/assets/manifest-*.json
-
 # Compile assets
-RAILS_ENV=production bundle exec foreman run rake assets:precompile
+bundle exec rake assets:precompile
 
 # Update manifest
-git add public/assets/manifest-*.json
+git add public/assets/*.json
 
 git commit -m 'Update assets manifest'
