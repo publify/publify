@@ -53,7 +53,10 @@ This repo uses the [asset sync](https://github.com/rumblelabs/asset_sync) gem to
 
 **Staging**
 
-1) Run `rake assets:precompile` locally before you decide to push to staging
+  * Make sure you have a copy of `.env` in the project root 
+    * This file should contain the necessary environment variables for deployment
+  * Make sure you are working from an up to date version of master
+  * Run `./bin/deploy`
 
 Just pushing normally to Github will trigger Codeship to build and automatically push the latest changes to staging should the build pass. Nothing else needs to be done.
 

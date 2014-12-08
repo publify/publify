@@ -1,0 +1,23 @@
+#!/usr/bin/env sh
+
+# Basic deploy script to help us precompile the latest assets to our CDN and deploy to our staging environment on
+# Heroku.
+#
+# This script will generate new assets and then send them off to your CDN of choice using `assets_sync` making assets
+# management a little less painful.
+#
+# NOTE: Make sure that you are working with a current master branch
+#
+
+set -e
+
+# Remove old manifest
+git rm public/assets/manifest-*.json
+
+# Compile assets
+RAILS_ENV=production bundle exec foreman run rake assets:precompile
+
+# Update manifest
+git add public/assets/manifest-*.json
+
+git commit -m 'Update assets manifest'
