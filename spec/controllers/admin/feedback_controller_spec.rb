@@ -65,6 +65,12 @@ describe Admin::FeedbackController, :type => :controller do
       end
     end
 
+    describe 'index security' do
+      it "should check domain of the only param" do
+        expect { get :index, {only: 'evil_call'} }.to raise_error(ArgumentError)
+      end
+    end
+
     describe 'index' do
       let!(:spam) { create(:spam_comment) }
       let!(:unapproved) { create(:unconfirmed_comment) }
@@ -81,7 +87,7 @@ describe Admin::FeedbackController, :type => :controller do
         it { expect(assigns(:feedback).size).to eq(4) }
       end
 
-      context 'unaproved' do
+      context 'unapproved' do
         let(:params) { {only: 'unapproved'} }
         it { expect(assigns(:feedback)).to eq([unapproved, presumed_ham, presumed_spam]) }
       end
@@ -100,6 +106,7 @@ describe Admin::FeedbackController, :type => :controller do
         let(:params) { {only: 'presumed_ham'} }
         it { expect(assigns(:feedback)).to eq([unapproved, presumed_ham]) }
       end
+
 
       context 'with an empty page params' do
         let(:params) { {page: ''} }
