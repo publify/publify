@@ -55,7 +55,7 @@ To install Publify you need the following:
 
 ```bash
 $ bundle install
-$ rake db:create
+$ rake db:setup
 $ rake db:migrate
 $ rake db:seed
 $ rake assets:precompile
@@ -76,9 +76,9 @@ You need to setup Amazon S3 storage to be able to upload files on your
 blog. Set Heroku config vars.
 
 ```yaml
-heroku config:set provider=AWS 
-aws_access_key_id=YOUR_AWS_ACCESS_KEY_ID 
-aws_secret_access_key=YOUR_AWS_SECRET_ACCESS_KEY 
+heroku config:set provider=AWS
+aws_access_key_id=YOUR_AWS_ACCESS_KEY_ID
+aws_secret_access_key=YOUR_AWS_SECRET_ACCESS_KEY
 aws_bucket=YOUR_AWS_BUCKET_NAME
 ```
 
