@@ -18,3 +18,4 @@ bundle exec rake assets:precompile
 git add public/assets/*.json
 
 git commit -m 'Update assets manifest'
+git push origin master
