@@ -1,13 +1,13 @@
 class Admin::FeedbackController < Admin::BaseController
   cache_sweeper :blog_sweeper
-  Only_domain = [:unapproved, :presumed_ham, :presumed_spam, :ham, :spam]
+  Only_domain = ['unapproved', 'presumed_ham', 'presumed_spam', 'ham', 'spam']
 
   def index
     scoped_feedback = Feedback
 
     if params[:only].present? 
-      only_param = Only_domain.delete(params[:only].to_sym)
-      raise ArgumentError.new("Unauthorized call: #{params[:only].inspect} ") unless only_param
+      only_param = Only_domain.delete(params[:only]) # never to_sym a request param: symbol are NEVER garbage collected
+      raise ArgumentError.new("Unauthorized call: #{only_param.inspect} ") unless only_param
       scoped_feedback = scoped_feedback.send(only_param)
     end
 
