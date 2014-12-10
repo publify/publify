@@ -24,6 +24,10 @@
 <meta name="generator" content="Publify <%=PUBLIFY_VERSION%>">
 <%= show_meta_keyword %>
 
+<% if @article %>
+  <%= tag :link, :href => request.url, :rel => :canonical %>
+<% end %>
+
 <link rel="EditURI" type="application/rsd+xml" title="RSD" href="<%= url_for :controller => '/xml', :action => 'rsd' %>">
 <%- if feed_atom %>
 <link rel="alternate" type="application/atom+xml" title="Atom" href="<%= feed_atom %>">
