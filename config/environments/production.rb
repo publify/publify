@@ -20,7 +20,7 @@ Rails.application.configure do
   # config.action_dispatch.rack_cache = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this).
-  config.serve_static_assets = false
+  config.serve_static_assets = true
 
   # Enable deflate / gzip compression of controller-generated responses
   config.middleware.use Rack::Deflater
@@ -58,7 +58,7 @@ Rails.application.configure do
   # config.cache_store = :mem_cache_store
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  config.action_controller.asset_host = "https://#{ENV['RACKSPACE_CDN_HOST']}.ssl.cf3.rackcdn.com"
+  #config.action_controller.asset_host = "https://#{ENV['RACKSPACE_CDN_HOST']}.ssl.cf3.rackcdn.com"
 
   # Precompile additional assets.
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
