@@ -133,7 +133,7 @@ describe XmlController, :type => :controller do
 
     it "redirects permanently to the article RSS feed" do
       get :articlerss, :id => @article.id
-      assert_moved_permanently_to @article.feed_url('rss')
+      assert_moved_permanently_to URI.parse(@article.feed_url('rss')).path
     end
   end
 

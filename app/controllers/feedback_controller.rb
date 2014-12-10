@@ -28,7 +28,7 @@ class FeedbackController < ApplicationController
       format.html do
         if params[:article_id]
           article = Article.find(params[:article_id])
-          redirect_to "#{article.permalink_url}\##{@page_title.underscore}"
+          redirect_to "#{URI.parse(article.permalink_url).path}\##{@page_title.underscore}"
         else
           render :text => 'this space left blank'
         end
