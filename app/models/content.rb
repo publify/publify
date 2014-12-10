@@ -37,6 +37,12 @@ class Content < ActiveRecord::Base
 
   serialize :whiteboard
 
+  mount_uploader :hero_image, ContentHeroImageUploader
+  mount_uploader :teaser_image, ContentTeaserImageUploader
+
+  validates :hero_image_alt_text, presence: true, if: Proc.new { |c| c.hero_image.present? }
+  validates :teaser_image_alt_text, presence: true, if: Proc.new { |c| c.teaser_image.present? }
+
   def author=(user)
     if user.respond_to?(:login)
       write_attribute(:author, user.login)

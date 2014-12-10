@@ -222,3 +222,16 @@ twitter-typeahead {
 .tt-hint {
   z-index: -1;
 }
+
+.article-image-fields {
+  margin: 10px 0;
+
+  label {
+    margin: 10px 0 5px 0;
+  }
+
+  img {
+    width: 100%;
+    margin: 10px 0 0 0;
+  }
+}
