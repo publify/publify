@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe XmlController, :type => :controller do
   before do
+    Blog.where(base_url: "http://myblog.net").each(&:destroy)
     create(:blog, base_url: "http://myblog.net")
     allow(Trigger).to receive(:fire) { }
   end
