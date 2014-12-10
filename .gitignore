@@ -25,10 +25,6 @@ tmp/*
 /coverage/
 nbproject
 public/cache/*
-public/assets/*
-public/staging-assets/*
-!public/assets/*.json
-!public/staging-assets/*.json
 .rbenv-version
 .bundle/
 .sass-cache/
