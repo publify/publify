@@ -1,4 +1,8 @@
 <div class="l-banner">
+  <% if @article.hero_image %>
+    <%= image_tag(@article.hero_image.url(:resized), class: 'l-banner__image', alt: @article.hero_image_alt_text) %>
+  <% end %>
+
   <div class="l-constrained">
     <div class="l-banner__tags">
       <%= render 'articles/tag_list', tags: @article.tags %>
