@@ -6,3 +6,6 @@ Frédéric de Villamil (4):
 
 Thomas Lecavelier:
       Fix several vulnerabilities
+      Drop GroupingController which was at this time only used by
+      TagController
+      Update dependencies
