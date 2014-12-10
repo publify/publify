@@ -34,6 +34,42 @@
   </div>
 </div>
 
+<div class="article-image-fields">
+  <div class='row'>
+    <div class='col-md-4'>
+      <label for="article_hero_image">Hero Image</label>
+      <%= file_field 'article', 'hero_image', :class => 'form-control' %>
+      <%= hidden_field 'article', 'hero_image_cache' %>
+      <label for="article_teaser_image_alt_text">Alt Text</label>
+      <%= text_field 'article', 'hero_image_alt_text', :class => 'form-control' %>
+    </div>
+    <div class='col-md-4'>
+      <% if @article.hero_image.present? %>
+        <%= image_tag @article.hero_image.url(:resized) %>
+        <label><%= check_box 'article', 'remove_hero_image' %> Remove?</label>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="article-image-fields">
+  <div class='row'>
+    <div class='col-md-4'>
+      <label for="article_teaser_image">Teaser Image</label>
+      <%= file_field 'article', 'teaser_image', :class => 'form-control' %>
+      <%= hidden_field 'article', 'teaser_image_cache' %>
+      <label for="article_teaser_image_alt_text">Alt Text</label>
+      <%= text_field 'article', 'teaser_image_alt_text', :class => 'form-control' %>
+    </div>
+    <div class='col-md-4'>
+      <% if @article.teaser_image.present? %>
+        <%= image_tag @article.teaser_image.url(:resized) %>
+        <label><%= check_box 'article', 'remove_teaser_image' %> Remove?</label>
+      <% end %>
+    </div>
+  </div>
+</div>
+
 <!-- Modal -->
 <div class="modal fade" id="publishOptions" tabindex="-1" role="dialog" aria-labelledby="publishOptions" aria-hidden="true">
   <div class="modal-dialog">
