@@ -366,7 +366,7 @@ describe ArticlesController, "redirecting", :type => :controller do
       article = create(:article, :permalink => 'second-blog-article', :published_at => '2004-04-01 02:00:00', :updated_at => '2004-04-01 02:00:00', :created_at => '2004-04-01 02:00:00')
       get :redirect, :from => "articles/2004/04/01/second-blog-article"
       assert_response 301
-      expect(response).to redirect_to("http://myblog.net/2004/04/01/second-blog-article")
+      expect(response).to redirect_to("/2004/04/01/second-blog-article")
     end
 
     it 'should redirect to article with url_root' do
@@ -405,12 +405,12 @@ describe ArticlesController, "redirecting", :type => :controller do
       describe "accessing legacy URLs" do
         it 'should redirect from default URL format' do
           get :redirect, :from => "2004/04/01/second-blog-article"
-          expect(response).to redirect_to("http://myblog.net/second-blog-article.html")
+          expect(response).to redirect_to("/second-blog-article.html")
         end
 
         it 'should redirect from old-style URL format with "articles" part' do
           get :redirect, :from => "articles/2004/04/01/second-blog-article"
-          expect(response).to redirect_to("http://myblog.net/second-blog-article.html")
+          expect(response).to redirect_to("/second-blog-article.html")
         end
       end
     end
