@@ -62,7 +62,7 @@
   width: 100%;
   z-index: 1000;
 
-  &.positioned {
+  &.animate {
     transition: margin .3s;
   }
 
@@ -78,8 +78,15 @@
     }
   }
 
-  .filter-active & {
+  &.filter-active {
     margin-top: 0 !important;
+  }
+
+  @include respond-to($mq-m) {
+    &:after {
+      content: "shallow";
+      display: none;
+    }
   }
 }
 

@@ -25,7 +25,3 @@ require(['componentLoader', 'eventsWithPromises'], function(componentLoader, eve
     componentLoader.init(data.$container);
   });
 });
-
-require(['Header'], function(header) {
-  new header().init()
-});
