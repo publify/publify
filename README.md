@@ -45,6 +45,13 @@ $bundle exec rspec
 
 Run with `COVERAGE=true` in your test environment to report on coverage.
 
+```bash
+$ ./node_modules/karma/bin/karma start ./spec/js/karma.conf.js --single-run
+$ ./node_modules/jscs/bin/jscs app/assets/javascripts/components/
+$ ./node_modules/jshint/bin/jshint app/assets/javascripts/components/ --config .jshintrc
+```
+
+
 #### Deploying
 
 **Assets**
