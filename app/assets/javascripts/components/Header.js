@@ -10,7 +10,10 @@ define(['jquery', 'DoughBaseComponent'], function($, DoughBaseComponent) {
 
   var HeaderProto,
   defaultConfig = {
-    'headerMoveTimeout': 2000
+    'headerMoveTimeout': 2000,
+    uiEvents: {
+      'click [data-dough-collapsable-trigger]': '_filterButtonFired'
+    }
   },
 
   /**
@@ -25,7 +28,6 @@ define(['jquery', 'DoughBaseComponent'], function($, DoughBaseComponent) {
 
     this.$htmlAndBody = $('html,body');
     this.$filter = this.$el.find('[data-dough-header-filter]');
-    this.$filterButton = this.$el.find('[data-dough-collapsable-trigger]');
     this.$headerTop = this.$el.find('[data-dough-header-header-top]');
     this.filterActiveClass = this.$el.data('dough-header-filter-active-class');
     this.animateClass = this.$el.data('dough-header-animate-class');
@@ -59,7 +61,6 @@ define(['jquery', 'DoughBaseComponent'], function($, DoughBaseComponent) {
    * Binds UI Events for clicking the filter button or resizing window
    */
   HeaderProto._bindEvents = function() {
-    this.$filterButton.on('click', $.proxy(this._filterButtonFired, this));
     $(window).resize($.proxy(this._positionFilterOffScreen, this));
   };
 
