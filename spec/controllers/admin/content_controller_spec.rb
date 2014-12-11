@@ -285,7 +285,7 @@ describe Admin::ContentController, type: :controller do
       end
 
       it 'should delete draft about this article if update' do
-        attributes = @article.attributes.except('id').merge(state: 'draft', parent_id: @article.id, guid: nil)
+        attributes = @article.attributes.except('id').merge(state: 'draft', parent_id: @article.id, guid: nil, permalink: 'an-article')
         draft = Article.create!(attributes)
         expect do
           put :update, 'id' => @article.id, 'article' => { 'title' => 'new' }
@@ -295,8 +295,8 @@ describe Admin::ContentController, type: :controller do
 
       it 'should delete all draft about this article if update not happen but why not' do
         attributes = @article.attributes.except('id').merge(state: 'draft', parent_id: @article.id, guid: nil)
-        draft = Article.create!(attributes)
-        draft_2 = Article.create!(attributes)
+        draft = Article.create!(attributes.merge(permalink: 'draft-article-1'))
+        draft_2 = Article.create!(attributes.merge(permalink: 'draft-article-2'))
         expect do
           put :update, 'id' => @article.id, 'article' => { 'title' => 'new' }
         end.to change(Article, :count).by(-2)

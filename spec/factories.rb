@@ -62,7 +62,7 @@ FactoryGirl.define do
     body 'A content with several data'
     extended 'extended content for fun'
     guid
-    permalink 'a-big-article'
+    sequence(:permalink) { |n| "a-big-article-#{n}" }
     published_at DateTime.new(2005, 1, 1, 2, 0, 0)
     user
     tags []
@@ -85,6 +85,7 @@ FactoryGirl.define do
   end
 
   factory :content do
+    sequence(:permalink) { |n| "some-content-#{n}" }
   end
 
   factory :post_type do |p|
@@ -136,7 +137,7 @@ FactoryGirl.define do
 
   factory :utf8article, parent: :article do |u|
     u.title 'ルビー'
-    u.permalink 'ルビー'
+    u.sequence(:permalink) { |n| "ルビー#{n}" }
   end
 
   factory :second_article, parent: :article do |a|
@@ -146,7 +147,7 @@ FactoryGirl.define do
   factory :article_with_accent_in_html, parent: :article do |a|
     a.title 'article with accent'
     a.body '&eacute;coute The future is cool!'
-    a.permalink 'article-with-accent'
+    a.sequence(:permalink) { |n| "article-with-accent-#{n}" }
   end
 
   factory :blog do
@@ -286,6 +287,7 @@ http://alsoping.example.com/rpc/ping"
     name { FactoryGirl.generate(:name) }
     title 'Page One Title'
     body { FactoryGirl.generate(:body) }
+    sequence(:permalink) { |n| "a-page-#{n}" }
     created_at '2005-05-05 01:00:01'
     published_at '2005-05-05 01:00:01'
     updated_at '2005-05-05 01:00:01'
