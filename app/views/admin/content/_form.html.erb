@@ -34,10 +34,26 @@
   </div>
 </div>
 
+<div class='row article-core-content'>
+  <div class='col-md-8'>
+    <h3>Core Content (optional)</h3>
+    <p>Either complete both, or leave both empty.</p>
+    <label for="article_core_content_text">Text</label>
+    <%= text_field 'article', 'core_content_text', class: 'form-control' %>
+    <label for="article_core_content_url">URL</label>
+    <%= text_field 'article', 'core_content_url', class: 'form-control', placeholder: 'http://www.moneyadviceservice.org.uk/...' %>
+  </div>
+</div>
+
 <div class="article-image-fields">
   <div class='row'>
+    <div class='col-md-8'>
+      <h3>Hero Image</h3>
+    </div>
+  </div>
+  <div class='row'>
     <div class='col-md-4'>
-      <label for="article_hero_image">Hero Image</label>
+      <label for="article_hero_image">File to Upload</label>
       <%= file_field 'article', 'hero_image', :class => 'form-control' %>
       <%= hidden_field 'article', 'hero_image_cache' %>
       <label for="article_teaser_image_alt_text">Alt Text</label>
@@ -54,8 +70,13 @@
 
 <div class="article-image-fields">
   <div class='row'>
+    <div class='col-md-8'>
+      <h3>Teaser Image</h3>
+    </div>
+  </div>
+  <div class='row'>
     <div class='col-md-4'>
-      <label for="article_teaser_image">Teaser Image</label>
+      <label for="article_teaser_image">File to Upload</label>
       <%= file_field 'article', 'teaser_image', :class => 'form-control' %>
       <%= hidden_field 'article', 'teaser_image_cache' %>
       <label for="article_teaser_image_alt_text">Alt Text</label>
