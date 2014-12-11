@@ -19,6 +19,10 @@
         <div class="article-body">
           <%= render 'articles/article_content', { article: @article } %>
         </div>
+
+        <% if @article.core_content_text %>
+          Core Content: <%= link_to(@article.core_content_text, @article.core_content_url) %>
+        <% end %>
       </div>
 
       <aside class="l-article-info">
