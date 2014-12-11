@@ -45,6 +45,9 @@ class Content < ActiveRecord::Base
 
   validates :permalink, uniqueness: true
 
+  validates :core_content_url, presence: true, if: Proc.new { |c| c.core_content_text.present? }
+  validates :core_content_text, presence: true, if: Proc.new { |c| c.core_content_url.present? }
+
   def author=(user)
     if user.respond_to?(:login)
       write_attribute(:author, user.login)

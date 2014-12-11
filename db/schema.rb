@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141209161347) do
+ActiveRecord::Schema.define(version: 20141211141731) do
 
   create_table "articles_tags", id: false, force: true do |t|
     t.integer "article_id"
@@ -66,6 +66,8 @@ ActiveRecord::Schema.define(version: 20141209161347) do
     t.string   "hero_image_alt_text"
     t.string   "teaser_image"
     t.string   "teaser_image_alt_text"
+    t.string   "core_content_text"
+    t.string   "core_content_url"
   end
 
   add_index "contents", ["published"], name: "index_contents_on_published", using: :btree
