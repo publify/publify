@@ -32,7 +32,6 @@ gem 'rails_autolink', '~> 1.1.0'
 gem 'dynamic_form', '~> 1.1.4'
 gem 'sass-rails', ' ~> 4.0.3'
 gem 'non-stupid-digest-assets'
-gem 'asset_sync'
 gem 'mailjet'
 gem 'thin'
 
