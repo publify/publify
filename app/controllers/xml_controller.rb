@@ -54,12 +54,7 @@ class XmlController < ApplicationController
 
   # TODO: Move redirects into config/routes.rb, if possible
   def articlerss
-    target_article = Article.find(params[:id])
-    if target_article
-      redirect_to(URI.parse(target_article.feed_url('rss')).path, status: :moved_permanently) and return
-    else
-      return render(text: 'Article unknown', status: 404)
-    end
+    redirect_to(URI.parse(Article.find(params[:id]).feed_url('rss')).path, status: :moved_permanently)
   end
 
   def commentrss
