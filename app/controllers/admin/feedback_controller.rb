@@ -6,7 +6,7 @@ class Admin::FeedbackController < Admin::BaseController
     scoped_feedback = Feedback
 
     if params[:only].present? 
-      only_param = Only_domain.delete(params[:only]) # never to_sym a request param: symbol are NEVER garbage collected
+      only_param = Only_domain.dup.delete(params[:only])
       raise ArgumentError.new("Unauthorized call: #{only_param.inspect} ") unless only_param
       scoped_feedback = scoped_feedback.send(only_param)
     end
