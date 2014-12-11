@@ -43,6 +43,8 @@ class Content < ActiveRecord::Base
   validates :hero_image_alt_text, presence: true, if: Proc.new { |c| c.hero_image.present? }
   validates :teaser_image_alt_text, presence: true, if: Proc.new { |c| c.teaser_image.present? }
 
+  validates :permalink, uniqueness: true
+
   def author=(user)
     if user.respond_to?(:login)
       write_attribute(:author, user.login)
