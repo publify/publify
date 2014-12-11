@@ -1,0 +1,56 @@
+.l-footer {
+  background: $concrete;
+  clear: both;
+
+  &:after {
+    display: block;
+    content: "";
+    background: $white asset-url('clouds.svg') no-repeat top center;
+    background-size: contain;
+    width: 100%;
+    height: 71px;
+    margin-bottom: baseline-unit(1);
+
+    @include respond-to($mq-m) {
+      height: 180px;
+    }
+
+    @include respond-to($mq-l) {
+      height: 374px;
+    }
+  }
+}
+
+.l-footer-subheader {
+  margin-top: baseline-unit(6);
+  text-align: center;
+}
+
+.l-footer .article-tile__heading {
+  @include font-size(24);
+}
+
+.l-footer-links {
+  @include column(12);
+  border-bottom: 1px solid #e4e4e4;
+  padding: baseline-unit(3) 0;
+}
+
+.l-footer-link__header {
+  color: $eastern-blue;
+  margin-bottom: 0;
+}
+
+.l-footer-link__list {
+  .js & {
+    display: none;
+  }
+
+  &.is-active {
+    display: block;
+  }
+}
+
+.l-footer-link__list-item-time {
+  display: block;
+}

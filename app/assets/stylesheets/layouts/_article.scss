@@ -5,12 +5,6 @@
   @include respond-to($mq-m) {
     float: right;
   }
-
-  @include respond-to($mq-l) {
-    h1, h2, h3, p {
-      max-width: 550px;
-    }
-  }
 }
 
 .l-article__header {
@@ -23,6 +17,10 @@
     width: 55%;
     @include font-size(48);
     margin-top: baseline-unit(12);
+  }
+
+  @include respond-to($mq-l) {
+    max-width: 550px;
   }
 }
 
@@ -50,5 +48,11 @@
   @include respond-to($mq-two-col) {
     @include column(7);
     @include push(3);
+  }
+
+  @include respond-to($mq-l) {
+    h1, h2, h3, p {
+      max-width: 550px;
+    }
   }
 }
