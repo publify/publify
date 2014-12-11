@@ -24,6 +24,7 @@ installer/rails_installer.yml
 tmp/*
 /coverage/
 nbproject
+node_modules/
 public/cache/*
 .rbenv-version
 .bundle/
