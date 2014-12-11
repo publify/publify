@@ -88,7 +88,10 @@ define(['jquery', 'DoughBaseComponent'], function($, DoughBaseComponent) {
    * Moves the header after a certain amount of time
    */
   HeaderProto._startDelayedHeaderMove = function() {
-    setTimeout($.proxy(this._moveHeader, this), this.config.headerMoveTimeout);
+    setTimeout(
+      $.proxy(this._moveHeader, this),
+      this.config.headerMoveTimeout
+    );
   };
 
   /**
