@@ -7,11 +7,50 @@
     @include column(8);
     @include push(2);
   }
+}
 
-  .comment-form {
-    h3, p {
-      text-align: center;
-      max-width: none;
+.comment-form__headline {
+  margin-top: baseline-unit(4);
+  text-align: center;
+  @include font-size(30);
+  max-width: none;
+}
+
+.comment-form__text {
+  text-align: center;
+  max-width: none;
+}
+
+.comment-form__group {
+  display: none;
+}
+
+.comment-list {
+  @extend .unstyled-list;
+}
+
+.comment-list-item {
+  border-top: 1px solid #e4e4e4;
+
+  &:first-child {
+    border-top: 0;
+  }
+
+  @include respond-to($mq-two-col) {
+    @include push(1);
+    @include pull(1);
+
+    &:first-child {
+      margin-top: baseline-unit(14);
     }
   }
+}
+
+.comment-list-item__headline {
+  color: $outer-space;
+  margin-top: baseline-unit(2);
+}
+
+.comment-list-item__headline-date {
+  font-weight: normal;
 }
