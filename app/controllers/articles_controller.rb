@@ -97,7 +97,7 @@ class ArticlesController < ContentController
     end
 
     r = Redirect.find_by_from_path(from)
-    return redirect_to URI.parse(r.full_to_path).path, status: 301 if r
+    return redirect_to r.full_to_path, status: 301 if r # Let redirection made outside of the blog on purpose (deal with it, Brakeman!)
 
     render "errors/404", status: 404
   end

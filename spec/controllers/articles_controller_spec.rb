@@ -340,7 +340,7 @@ describe ArticlesController, "redirecting", :type => :controller do
         create(:redirect, :from_path => 'foo', :to_path => 'http://some.where/else')
         get :redirect, :from => "foo"
         assert_response 301
-        expect(response).to redirect_to("/else")
+        expect(response).to redirect_to("http://some.where/else")
       end
     end
   end
