@@ -15,8 +15,9 @@
 
   <%= yield %>
 
-  <%= javascript_include_tag 'requirejs/require', data: { main: javascript_path('application') } %>
-
+  <%= javascript_include_tag :publify %>
+  <%= timeago_script_tag %>
   <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <%= javascript_include_tag 'requirejs/require', data: { main: javascript_path('application') } %>
 </body>
 </html>
