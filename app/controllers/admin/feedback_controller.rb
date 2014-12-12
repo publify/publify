@@ -6,9 +6,8 @@ class Admin::FeedbackController < Admin::BaseController
     scoped_feedback = Feedback
 
     if params[:only].present? 
-      only_param = Only_domain.dup.delete(params[:only])
-      raise ArgumentError.new("Unauthorized call: #{only_param.inspect} ") unless only_param
-      scoped_feedback = scoped_feedback.send(only_param)
+      @only_param = Only_domain.dup.delete(params[:only])
+      scoped_feedback = scoped_feedback.send(@only_param) if @only_param
     end
 
     if params[:page].blank? || params[:page] == "0"
