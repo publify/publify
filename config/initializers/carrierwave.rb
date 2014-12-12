@@ -5,7 +5,7 @@ if Rails.env.in?(%(test cucumber))
   end
 else
   CarrierWave.configure do |config|
-    if ENV['provider'] == 'Rackspace'
+    if ENV['FOG_PROVIDER'] == 'Rackspace'
       config.storage = :fog
 
       config.fog_credentials = {
