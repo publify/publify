@@ -68,7 +68,7 @@ class ArticlesController < ContentController
 
   def preview
     @article = Article.last_draft(params[:id])
-    @page_title = this_blog.article_title_template.to_title(@article, this_blog, params)
+    @page_title = @article.title_meta_tag.present? ? @article.title_meta_tag : @article.title
     render 'read'
   end
 
@@ -158,8 +158,8 @@ class ArticlesController < ContentController
   # See an article We need define @article before
   def show_article
     @comment      = Comment.new
-    @page_title   = this_blog.article_title_template.to_title(@article, this_blog, params)
-    @description = this_blog.article_desc_template.to_title(@article, this_blog, params)
+    @page_title   = @article.title_meta_tag.present? ? @article.title_meta_tag : @article.title
+    @description = @article.description_meta_tag
     groupings = @article.tags
     @keywords = groupings.map { |g| g.name }.join(', ')
 

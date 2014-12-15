@@ -429,10 +429,6 @@ describe ArticlesController, 'redirecting', type: :controller do
         it 'should have a canonical url' do
           expect(response.body).to have_selector("head>link[href='#{blog.base_url}/#{article.permalink}.html']", visible: false)
         end
-
-        it 'should have a good title' do
-          expect(response.body).to have_selector('title', text: 'A big article | test blog', visible: false)
-        end
       end
     end
 
