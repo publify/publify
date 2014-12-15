@@ -1,4 +1,4 @@
-if Rails.env.in?(%(test cucumber))
+if Rails.env.in?(%(development test cucumber))
   CarrierWave.configure do |config|
     config.storage = :file
     config.enable_processing = false
