@@ -48,6 +48,9 @@ class Content < ActiveRecord::Base
   validates :core_content_url, presence: true, if: Proc.new { |c| c.core_content_text.present? }
   validates :core_content_text, presence: true, if: Proc.new { |c| c.core_content_url.present? }
 
+  validates :title_meta_tag, length: { maximum: 255 }, allow_blank: true
+  validates :description_meta_tag, length: { maximum: 255 }, allow_blank: true
+
   def author=(user)
     if user.respond_to?(:login)
       write_attribute(:author, user.login)
