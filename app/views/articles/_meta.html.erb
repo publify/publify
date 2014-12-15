@@ -3,7 +3,7 @@
 
   <p class="article-info__content">
     Published by
-    <a class="article-info__link" href="#"><%= article.user.nickname %></a>
+    <a class="article-info__link" href="#"><%= link_to(article.user.nickname, author_path(article.user.login), rel: :author) %></a>
   </p>
 
   <p class="article-info__content">
