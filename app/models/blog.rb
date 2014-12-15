@@ -84,8 +84,6 @@ class Blog < ActiveRecord::Base
   setting :use_meta_keyword,           :boolean, true
   setting :home_title_template,        :string, '%blog_name% | %blog_subtitle%' # spec OK
   setting :home_desc_template,         :string, '%blog_name% | %blog_subtitle% | %meta_keywords%' # OK
-  setting :article_title_template,     :string, '%title% | %blog_name%'
-  setting :article_desc_template,      :string, '%excerpt%'
   setting :page_title_template,        :string, '%title% | %blog_name%'
   setting :page_desc_template,         :string, '%excerpt%'
   setting :paginated_title_template,   :string, '%blog_name% | %blog_subtitle% %page%'

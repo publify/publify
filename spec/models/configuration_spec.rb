@@ -162,11 +162,6 @@ describe 'Given a new blog', type: :model do
     expect(blog.home_desc_template).to eq('%blog_name% | %blog_subtitle% | %meta_keywords%')
   end
 
-  it 'article template is title | blog name with excerpt in the description' do
-    expect(blog.article_title_template).to eq('%title% | %blog_name%')
-    expect(blog.article_desc_template).to eq('%excerpt%')
-  end
-
   it 'page template is title | blog name with excerpt in the description' do
     expect(blog.page_title_template).to eq('%title% | %blog_name%')
     expect(blog.page_desc_template).to eq('%excerpt%')

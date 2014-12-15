@@ -8,6 +8,14 @@
 <%= form_tag :action => 'update' do %>
 
   <fieldset class='form-horizontal'>
+    <legend><%= t(".articles") %></legend>
+    <div class='col-sm-12'>
+      <div class='form-group'>
+        <p>Article titles are set on a per article basis.</p>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset class='form-horizontal'>
     <legend><%= t(".home") %></legend>
     <div class='form-group'>
       <label class='control-label col-sm-2' for="setting_home_title_template"><%= t(".title_template") %></label>
@@ -19,21 +27,6 @@
       <label class='control-label col-sm-2' for="setting_home_desc_template"><%= t(".description_template") %></label>
       <div class='col-sm-5'>
         <%= text_area(:setting, :home_desc_template, :rows => 3, :class => 'form-control')%>
-      </div>
-    </div>
-  </fieldset>
-  <fieldset class='form-horizontal'>
-    <legend><%= t(".articles") %></legend>
-    <div class='form-group'>
-      <label class='control-label col-sm-2' for="setting_article_title_template"><%= t(".title_template") %></label>
-      <div class='col-sm-5'>
-        <%= text_field(:setting, :article_title_template, { :class => 'form-control'})%>
-      </div>
-    </div>
-    <div class='form-group'>
-      <label class='control-label col-sm-2' for="setting_article_desc_template"><%= t(".description_template") %></label>
-      <div class='col-sm-5'>
-        <%= text_area(:setting, :article_desc_template, :rows => 3, :class => 'form-control')%>
       </div>
     </div>
   </fieldset>
