@@ -45,6 +45,16 @@
   </div>
 </div>
 
+<div class='row article-seo'>
+  <div class='col-md-8'>
+    <h3>SEO</h3>
+    <label for="article_title_meta_tag">Page Title (leave empty to use the article's title)</label>
+    <%= text_field 'article', 'title_meta_tag', class: 'form-control' %>
+    <label for="article_description_meta_tag">Meta Description</label>
+    <%= text_field 'article', 'description_meta_tag', class: 'form-control' %>
+  </div>
+</div>
+
 <div class="article-image-fields">
   <div class='row'>
     <div class='col-md-8'>
