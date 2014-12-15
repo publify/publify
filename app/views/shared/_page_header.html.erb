@@ -3,7 +3,7 @@
 <% if @article %>
   <%= meta_tag 'og:description', @description %>
   <%= meta_tag 'og:url', @article.permalink_url, true %>
-  <%= meta_tag 'og:image', 'http://placehold.it/1440x488', true %>
+  <%= meta_tag 'og:image', @article.hero_image.url(:resized), true %>
 <% end %>
 <%= meta_tag 'og:type', 'article', true %>
 
@@ -13,7 +13,7 @@
   <%= meta_tag 'twitter:url', @article.permalink_url %>
 <% end %>
 <%= meta_tag 'twitter:title', @article ? @article.title : @page_title %>
-<%= meta_tag 'twitter:image:src', 'http://placehold.it/1440x488' %>
+<%= meta_tag 'twitter:image:src', @article.hero_image.url(:resized) %>
 <%= meta_tag 'twitter:site', '@YourMoneyAdvice' %>
 
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
