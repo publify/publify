@@ -27,12 +27,14 @@ class Admin::ContentController < Admin::BaseController
 
   def new
     @article = Article::Factory.new(this_blog, current_user).default
+    @article.author ||= current_user
     load_resources
   end
 
   def create
     article_factory = Article::Factory.new(this_blog, current_user)
     @article = article_factory.get_or_build_from(params[:article][:id])
+    @article.author ||= current_user
 
     update_article_attributes
 
@@ -99,7 +101,6 @@ class Admin::ContentController < Admin::BaseController
     @article.attributes = params[:article].permit!
 
     @article.published = false
-    @article.author = current_user
     @article.save_attachments!(params[:attachments])
     @article.state = 'draft' unless @article.state == 'withdrawn'
     @article.text_filter ||= current_user.default_text_filter
@@ -154,7 +155,6 @@ class Admin::ContentController < Admin::BaseController
   def update_article_attributes
     @article.attributes = update_params
     @article.published_at = parse_date_time params[:article][:published_at]
-    @article.author = current_user
     @article.save_attachments!(params[:attachments])
     @article.state = 'draft' if @article.draft
     @article.text_filter ||= current_user.default_text_filter
