@@ -28,18 +28,9 @@
 <div class='row'>
   <div class='col-md-8'>
     <%= text_field 'article', 'title', :class => 'form-control', :placeholder => t('.title') %>
-  </div>
-</div>
-
-<div class='row'>
-  <div class='col-md-8'>
     <div id="editor">
       <%= cktext_area('article', 'body_and_extended', class: 'form-control', placeholder: t('.type_your_post')) %>
     </div> <!-- End of editor -->
-  </div>
-  <div class='col-md-4'>
-    <label for="article_core_author">Author</label>
-    <%= select 'article', 'author', User.all.collect { |u| ["#{u.nickname} (#{u.name})", u.login] }, {}, class: 'form-control' %>
   </div>
 </div>
 
