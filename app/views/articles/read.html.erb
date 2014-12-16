@@ -20,7 +20,7 @@
           <%= render 'articles/article_content', { article: @article } %>
         </div>
 
-        <% if @article.core_content_text %>
+        <% if @article.core_content_text.present? %>
           <p>Core Content: <%= link_to(@article.core_content_text, @article.core_content_url) %></p>
         <% end %>
 
