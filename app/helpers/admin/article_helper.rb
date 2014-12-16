@@ -1,5 +1,7 @@
 module Admin::ArticleHelper
   def possible_related_articles(article)
-    Article.published.order('title ASC').where('id != ?', article)
+    articles = Article.published.order('title ASC')
+    articles = articles.where('id != ?', article) if article.id.present?
+    articles
   end
 end
