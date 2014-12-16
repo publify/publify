@@ -67,7 +67,8 @@ describe Admin::FeedbackController, :type => :controller do
 
     describe 'index security' do
       it "should check domain of the only param" do
-        expect { get :index, {only: 'evil_call'} }.to raise_error(ArgumentError)
+        expect { get :index, {only: 'evil_call'} }.not_to raise_error
+        expect(assigns(:only_param)).to be_nil
       end
     end
 

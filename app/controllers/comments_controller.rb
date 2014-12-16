@@ -22,7 +22,7 @@ class CommentsController < FeedbackController
     if request.xhr?
       render :partial => partial, :object => @comment
     else
-      redirect_to @article.permalink_url
+      redirect_to URI.parse(@article.permalink_url).path
     end
   end
 

@@ -7,6 +7,8 @@ class XmlController < ApplicationController
     'atom10' => 'atom', 'atom03' => 'atom', 'rss20' => 'rss',
     'googlesitemap' => 'googlesitemap', 'rsd' => 'rsd' }
 
+  ACCEPTED_TYPE =  %w{feed comments article tag author trackbacks sitemap}
+
   def feed
     @format = 'rss'
     if params[:format]
@@ -16,15 +18,18 @@ class XmlController < ApplicationController
     end
 
     # TODO: Move redirects into config/routes.rb, if possible
-    case params[:type]
+    param_type = ACCEPTED_TYPE.dup.delete(params[:type])
+    param_id = params[:id]#.present? && params[:id].to_i # Think about a way to secure that to a valid tag/author for int value…
+
+    case param_type
     when 'feed'
       redirect_to controller: 'articles', action: 'index', format: @format, status: :moved_permanently
     when 'comments'
       redirect_to admin_comments_url(format: @format), status: :moved_permanently
     when 'article'
-      redirect_to Article.find(params[:id]).feed_url(@format), status: :moved_permanently
+      redirect_to Article.find(param_id).feed_url(@format), status: :moved_permanently
     when 'tag', 'author'
-      redirect_to self.send("#{params[:type]}_url", params[:id], format: @format), status: :moved_permanently
+      redirect_to self.send("#{param_type}_url", param_id, format: @format), status: :moved_permanently
     when 'trackbacks'
       redirect_to trackbacks_url(format: @format), status: :moved_permanently
     when 'sitemap'
@@ -49,7 +54,7 @@ class XmlController < ApplicationController
 
   # TODO: Move redirects into config/routes.rb, if possible
   def articlerss
-    redirect_to Article.find(params[:id]).feed_url('rss'), status: :moved_permanently
+    redirect_to(URI.parse(Article.find(params[:id]).feed_url('rss')).path, status: :moved_permanently)
   end
 
   def commentrss
