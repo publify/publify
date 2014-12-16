@@ -15,8 +15,3 @@
 
 // Front javascript manifest
 //= require ckeditor/init
-
-$('.content-form-tabs a').click(function (e) {
-  e.preventDefault()
-  $(this).tab('show')
-})
