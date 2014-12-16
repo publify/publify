@@ -21,7 +21,15 @@
         </div>
 
         <% if @article.core_content_text %>
-          Core Content: <%= link_to(@article.core_content_text, @article.core_content_url) %>
+          <p>Core Content: <%= link_to(@article.core_content_text, @article.core_content_url) %></p>
+        <% end %>
+
+        <% if @article.primary_related_content.present? %>
+          <p>Primary Related Content: <%= link_to(@article.primary_related_content.title, @article.primary_related_content.permalink_url) %></p>
+        <% end %>
+
+        <% if @article.secondary_related_content.present? %>
+            <p>Secondary Related Content: <%= link_to(@article.secondary_related_content.title, @article.secondary_related_content.permalink_url) %></p>
         <% end %>
       </div>
 
