@@ -29,6 +29,7 @@
   <li role="presentation" class="active"><a href="#main-details" aria-controls="main-details" role="tab" data-toggle="tab">Main Details</a></li>
   <li role="presentation"><a href="#images" aria-controls="images" role="tab" data-toggle="tab">Images</a></li>
   <li role="presentation"><a href="#core-content" aria-controls="core-content" role="tab" data-toggle="tab">Core Content</a></li>
+  <li role="presentation"><a href="#related-content" aria-controls="related-content" role="tab" data-toggle="tab">Related Blog Posts</a></li>
 </ul>
 
 <div class="article-tab-content tab-content">
@@ -105,6 +106,34 @@
         <%= text_field 'article', 'core_content_text', class: 'form-control' %>
         <label for="article_core_content_url">URL</label>
         <%= text_field 'article', 'core_content_url', class: 'form-control', placeholder: 'http://www.moneyadviceservice.org.uk/...' %>
+      </div>
+    </div>
+  </div>
+  <div role="tabpanel" class="tab-pane" id="related-content">
+    <div class='row article-related-content'>
+      <div class='col-md-12'>
+        <table class="possible-related-content table table-bordered">
+          <tr>
+            <th class="primary">Primary</th>
+            <th class="secondary">Secondary</th>
+            <th>Title</th>
+            <th class="published_at">Published</th>
+          </tr>
+          <tr class="none">
+            <td class="primary"><%= radio_button 'article', 'primary_related_content_id', '' %></td>
+            <td class="secondary"><%= radio_button 'article', 'secondary_related_content_id', '' %></td>
+            <td>None</td>
+            <td class="published_at"></td>
+          </tr>
+          <% possible_related_articles(@article).each do |article| %>
+            <tr>
+              <td class="primary"><%= radio_button 'article', 'primary_related_content_id', article.id %></td>
+              <td class="secondary"><%= radio_button 'article', 'secondary_related_content_id', article.id %></td>
+              <td><%= article.title %></td>
+              <td class="published_at"><%= article.published_at.to_date.to_s %></td>
+            </tr>
+          <% end %>
+        </table>
       </div>
     </div>
   </div>
