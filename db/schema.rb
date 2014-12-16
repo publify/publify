@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141215133903) do
+ActiveRecord::Schema.define(version: 20141216143923) do
 
   create_table "articles_tags", id: false, force: true do |t|
     t.integer "article_id"
@@ -54,14 +54,14 @@ ActiveRecord::Schema.define(version: 20141215133903) do
     t.integer  "text_filter_id"
     t.text     "whiteboard"
     t.string   "name"
-    t.boolean  "published",             default: false
+    t.boolean  "published",                    default: false
     t.boolean  "allow_pings"
     t.boolean  "allow_comments"
     t.datetime "published_at"
     t.string   "state"
     t.integer  "parent_id"
     t.text     "settings"
-    t.string   "post_type",             default: "read"
+    t.string   "post_type",                    default: "read"
     t.string   "hero_image"
     t.string   "hero_image_alt_text"
     t.string   "teaser_image"
@@ -70,6 +70,8 @@ ActiveRecord::Schema.define(version: 20141215133903) do
     t.string   "core_content_url"
     t.string   "title_meta_tag"
     t.string   "description_meta_tag"
+    t.integer  "primary_related_content_id"
+    t.integer  "secondary_related_content_id"
   end
 
   add_index "contents", ["published"], name: "index_contents_on_published", using: :btree

@@ -18,6 +18,9 @@ class Content < ActiveRecord::Base
 
   has_many :triggers, as: :pending_item, dependent: :delete_all
 
+  belongs_to :primary_related_content, :class_name => 'Content'
+  belongs_to :secondary_related_content, :class_name => 'Content'
+
   scope :user_id, lambda { |user_id| where('user_id = ?', user_id) }
   scope :published, lambda { where(published: true, published_at: Time.at(0)..Time.now).order('published_at DESC') }
   scope :published_at, lambda { |time_params| published.where(published_at: PublifyTime.delta(*time_params)).order('published_at DESC') }
