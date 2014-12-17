@@ -11,6 +11,7 @@ Rails.application.configure do
     enhanced_responsive.css
     enhanced_fixed.css
     publify_admin.css
+    editor.css
     accounts.css
     bootstrap.css
     user-styles.css

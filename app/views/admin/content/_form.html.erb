@@ -1,59 +1,70 @@
-<%= hidden_field_tag "user_textfilter", current_user.text_filter_name %>
+<%= hidden_field_tag 'user_textfilter', current_user.text_filter_name %>
 
-<div id="autosave"><%= hidden_field_tag("article[id]", @article.id) if @article.present? %></div>
+<div id='autosave'><%= hidden_field_tag('article[id]', @article.id) if @article.present? %></div>
 
 <div class='row save-bar'>
-  <div class='col-md-8 col-md-offset-2' id="save-bar">
+  <div class='col-md-8 col-md-offset-2' id='save-bar'>
     <div class='pull-right'>
       <%= link_to(t('.cancel'), {action: 'index'}, {class: 'btn btn-default'}) %>
       <span id='preview_link'>
-        <%= link_to(t(".preview"), {controller: '/articles', action: 'preview', id: @article.id}, {target: 'new', class: 'btn btn-default'}) if @article.id %>
+        <%= link_to(t('.preview'), {controller: '/articles', action: 'preview', id: @article.id}, {target: 'new', class: 'btn btn-default'}) if @article.id %>
       </span>
-      <input id='save_draft' type="submit" value="<%= t('.save_as_draft') %>" name="article[draft]" class='btn btn-default'>
+      <input id='save_draft' type='submit' value='<%= t('.save_as_draft') %>' name='article[draft]' class='btn btn-default'>
       <!-- Button trigger modal -->
-      <button class="btn btn-success" data-toggle="modal" data-target="#publishOptions">
-        <%= controller.action_name == "new" ? t(".publish") : t(".save") %>
+      <button class='btn btn-success' data-toggle='modal' data-target='#publishOptions'>
+        <%= controller.action_name == 'new' ? t('.publish') : t('.save') %>
       </button>
     </div>
   </div>
 </div>
 
 <div class='row'>
-  <div class='col-md-8 col-md-offset-2' id="error-message-article">
+  <div class='col-md-8 col-md-offset-2' id='error-message-article'>
     <%= render 'shared/flash', flash: flash %>
     <%= error_messages_for 'article' %>
   </div>
 </div>
 
-<ul class="nav nav-tabs" role="tablist">
-  <li role="presentation" class="active"><a href="#main-details" aria-controls="main-details" role="tab" data-toggle="tab">Main Details</a></li>
-  <li role="presentation"><a href="#images" aria-controls="images" role="tab" data-toggle="tab">Images</a></li>
-  <li role="presentation"><a href="#core-content" aria-controls="core-content" role="tab" data-toggle="tab">Core Content</a></li>
-  <li role="presentation"><a href="#related-content" aria-controls="related-content" role="tab" data-toggle="tab">Related Blog Posts</a></li>
+<ul class='nav nav-tabs' role='tablist'>
+  <li role='presentation' class='active'><a href='#main-details' aria-controls='main-details' role='tab' data-toggle='tab'>Main Details</a></li>
+  <li role='presentation'><a href='#images' aria-controls='images' role='tab' data-toggle='tab'>Images</a></li>
+  <li role='presentation'><a href='#core-content' aria-controls='core-content' role='tab' data-toggle='tab'>Core Content</a></li>
+  <li role='presentation'><a href='#related-content' aria-controls='related-content' role='tab' data-toggle='tab'>Related Blog Posts</a></li>
 </ul>
 
-<div class="article-tab-content tab-content">
-  <div role="tabpanel" class="tab-pane active" id="main-details">
+<div class='row'>
+  <div class='col-md-8'>
+    <%= text_field 'article', 'title', :class => 'form-control', :placeholder => t('.title') %>
+  </div>
+</div>
+
+<div class='article-tab-content tab-content'>
+  <div role='tabpanel' class='tab-pane active' id='main-details'>
     <div class='row'>
       <div class='col-md-8'>
-        <%= text_field 'article', 'title', :class => 'form-control', :placeholder => t('.title') %>
-        <div id="editor">
+        <div id='editor'>
           <%= cktext_area('article', 'body_and_extended', class: 'form-control', placeholder: t('.type_your_post')) %>
         </div> <!-- End of editor -->
+        <div class='article-callout'>
+          <button class='btn btn-success' data-toggle='modal' data-target='#maSays'>MA Says</button>
+        </div>
+        <div class="article-callout">
+          <button class="btn btn-success" data-toggle="modal" data-target="#inlineCallout">Inline Callout</button>
+        </div>
       </div>
     </div>
     <div class='row article-seo'>
       <div class='col-md-8'>
         <h3>SEO</h3>
-        <label for="article_title_meta_tag">Page Title (leave empty to use the article's title)</label>
+        <label for='article_title_meta_tag'>Page Title (leave empty to use the article's title)</label>
         <%= text_field 'article', 'title_meta_tag', class: 'form-control' %>
-        <label for="article_description_meta_tag">Meta Description</label>
+        <label for='article_description_meta_tag'>Meta Description</label>
         <%= text_field 'article', 'description_meta_tag', class: 'form-control' %>
       </div>
     </div>
   </div>
-  <div role="tabpanel" class="tab-pane" id="images">
-    <div class="article-image-fields">
+  <div role='tabpanel' class='tab-pane' id='images'>
+    <div class='article-image-fields'>
       <div class='row'>
         <div class='col-md-8'>
           <h3>Hero Image</h3>
@@ -61,10 +72,10 @@
       </div>
       <div class='row'>
         <div class='col-md-4'>
-          <label for="article_hero_image">File to Upload</label>
+          <label for='article_hero_image'>File to Upload</label>
           <%= file_field 'article', 'hero_image', :class => 'form-control' %>
           <%= hidden_field 'article', 'hero_image_cache' %>
-          <label for="article_teaser_image_alt_text">Alt Text</label>
+          <label for='article_teaser_image_alt_text'>Alt Text</label>
           <%= text_field 'article', 'hero_image_alt_text', :class => 'form-control' %>
         </div>
         <div class='col-md-4'>
@@ -75,7 +86,7 @@
         </div>
       </div>
     </div>
-    <div class="article-image-fields">
+    <div class='article-image-fields'>
       <div class='row'>
         <div class='col-md-8'>
           <h3>Teaser Image</h3>
@@ -83,10 +94,10 @@
       </div>
       <div class='row'>
         <div class='col-md-4'>
-          <label for="article_teaser_image">File to Upload</label>
+          <label for='article_teaser_image'>File to Upload</label>
           <%= file_field 'article', 'teaser_image', :class => 'form-control' %>
           <%= hidden_field 'article', 'teaser_image_cache' %>
-          <label for="article_teaser_image_alt_text">Alt Text</label>
+          <label for='article_teaser_image_alt_text'>Alt Text</label>
           <%= text_field 'article', 'teaser_image_alt_text', :class => 'form-control' %>
         </div>
         <div class='col-md-4'>
@@ -98,39 +109,39 @@
       </div>
     </div>
   </div>
-  <div role="tabpanel" class="tab-pane" id="core-content">
+  <div role='tabpanel' class='tab-pane' id='core-content'>
     <div class='row article-core-content'>
       <div class='col-md-8'>
         <p>Either complete both, or leave both empty.</p>
-        <label for="article_core_content_text">Text</label>
+        <label for='article_core_content_text'>Text</label>
         <%= text_field 'article', 'core_content_text', class: 'form-control' %>
-        <label for="article_core_content_url">URL</label>
+        <label for='article_core_content_url'>URL</label>
         <%= text_field 'article', 'core_content_url', class: 'form-control', placeholder: 'http://www.moneyadviceservice.org.uk/...' %>
       </div>
     </div>
   </div>
-  <div role="tabpanel" class="tab-pane" id="related-content">
+  <div role='tabpanel' class='tab-pane' id='related-content'>
     <div class='row article-related-content'>
       <div class='col-md-12'>
-        <table class="possible-related-content table table-bordered">
+        <table class='possible-related-content table table-bordered'>
           <tr>
-            <th class="primary">Primary</th>
-            <th class="secondary">Secondary</th>
+            <th class='primary'>Primary</th>
+            <th class='secondary'>Secondary</th>
             <th>Title</th>
-            <th class="published_at">Published</th>
+            <th class='published_at'>Published</th>
           </tr>
-          <tr class="none">
-            <td class="primary"><%= radio_button 'article', 'primary_related_content_id', '' %></td>
-            <td class="secondary"><%= radio_button 'article', 'secondary_related_content_id', '' %></td>
+          <tr class='none'>
+            <td class='primary'><%= radio_button 'article', 'primary_related_content_id', '' %></td>
+            <td class='secondary'><%= radio_button 'article', 'secondary_related_content_id', '' %></td>
             <td>None</td>
-            <td class="published_at"></td>
+            <td class='published_at'></td>
           </tr>
           <% possible_related_articles(@article).each do |article| %>
             <tr>
-              <td class="primary"><%= radio_button 'article', 'primary_related_content_id', article.id %></td>
-              <td class="secondary"><%= radio_button 'article', 'secondary_related_content_id', article.id %></td>
+              <td class='primary'><%= radio_button 'article', 'primary_related_content_id', article.id %></td>
+              <td class='secondary'><%= radio_button 'article', 'secondary_related_content_id', article.id %></td>
               <td><%= article.title %></td>
-              <td class="published_at"><%= article.published_at.to_date.to_s %></td>
+              <td class='published_at'><%= article.published_at.to_date.to_s %></td>
             </tr>
           <% end %>
         </table>
@@ -139,29 +150,86 @@
   </div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="publishOptions" tabindex="-1" role="dialog" aria-labelledby="publishOptions" aria-hidden="true">
+<div class="modal fade" id="inlineCallout" tabindex="-1" role="dialog" aria-labelledby="maSays" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title" id="myModalLabel"><%= t('.publish') %>
-        <%= submit_tag(t(".publish"), :class => 'btn btn-success pull-right') %>&nbsp;
-        </h2>
+        <h2>Inline Callout snippet</h2>
       </div>
       <div class="modal-body">
+        <p>Copy the snippet below and paste it to the desireed place by clicking on the 'Source' button.</p>
+        <pre id="ma_says--snippet-container">
+          &lt;div class="snippet inline-callout"&gt;
+            &lt;a class="inline-callout__text" href="<span style="color:white;background:red;">[ENTER URL HERE]</span>"&gt;<span style="color:white;background:red;">[ENTER TEXT HERE]</span>
+
+              &lt;svg class="inline-callout__arrow" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="46.9 -3.6 36 57.1" enable-background="new 46.9 -3.6 36 57.1" xml:space="preserve"&gt;
+                &lt;polyline class="inline-callout__arrow-path" stroke-width="9" stroke-miterlimit="10" points="50,0 76,25 50,50 "/&gt;
+              &lt;/svg&gt;
+            &lt;/a&gt;
+          &lt;/div&gt;
+        </pre>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"><%= t('.cancel') %></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="maSays" tabindex="-1" role="dialog" aria-labelledby="maSays" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>MA Says snippet</h2>
+      </div>
+      <div class='modal-body'>
+        <p>Copy the snippet below and paste it to the desireed place by clicking on the 'Source' button.</p>
+        <pre id='ma_says--snippet-container'>
+&lt;div class=&quot;snippet next-steps&quot;&gt;
+    &lt;span&gt;MA&lt;/span&gt; says
+  &lt;/div&gt;
+
+  &lt;a data-ck href=&quot;<span style='background:red;color:white;'>[ENTER LINK URL HERE]</span>&quot; class=&quot;next-steps__container-link&quot;&gt;
+    &lt;div class=&quot;next-steps__text&quot;&gt;<span style='background:red;color:white;'>[ENTER LINK TEXT HERE]</span>&lt;/div&gt;
+    &lt;div class=&quot;next-steps__arrow-container&quot;&gt;
+      &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; class=&quot;next-steps__arrow&quot; version=&quot;1.1&quot; x=&quot;0px&quot; y=&quot;0px&quot; viewBox=&quot;46.9 -3.6 36 57.1&quot; enable-background=&quot;new 46.9 -3.6 36 57.1&quot; xml:space=&quot;preserve&quot;&gt;
+        &lt;polyline class=&quot;next-steps__arrow-path&quot; stroke-width=&quot;9&quot; stroke-miterlimit=&quot;10&quot; points=&quot;50,0 76,25 50,50 &quot;/&gt;
+      &lt;/svg&gt;
+    &lt;/div&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+        </pre>
+      </div>
+      <div class='modal-footer'>
+        <button type='button' class='btn btn-default' data-dismiss='modal'><%= t('.cancel') %></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class='modal fade' id='publishOptions' tabindex='-1' role='dialog' aria-labelledby='publishOptions' aria-hidden='true'>
+  <div class='modal-dialog'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <h2 class='modal-title' id='myModalLabel'><%= t('.publish') %>
+        <%= submit_tag(t('.publish'), :class => 'btn btn-success pull-right') %>&nbsp;
+        </h2>
+      </div>
+      <div class='modal-body'>
         <div class='well'>
-          <h4><%= t(".tags") %></h4>
+          <h4><%= t('.tags') %></h4>
           <div class='form-group'>
             <%= text_field 'article', 'keywords', {:autocomplete => 'off', :class => 'form-control tm-input'} %>
           </div>
-          <p class='alert alert-warning'><%=t(".tags_explaination") %></p>
+          <p class='alert alert-warning'><%=t('.tags_explaination') %></p>
         </div>
         <% post_types = @post_types || [] %>
         <%- if post_types.size.zero? %>
-          <%= hidden_field_tag "article[post_type]", "read" %>
+          <%= hidden_field_tag 'article[post_type]', 'read' %>
       <%- else %>
           <div class='well'>
-          <h4><%= t(".article_type") %></h4>
+          <h4><%= t('.article_type') %></h4>
           <%= select :article, :post_type, post_types.map{|pt| [pt.name, pt.permalink]}, {include_blank: t('.default')} %>
         </div>
       <%- end %>
@@ -169,11 +237,11 @@
         <!-- Start of publish settings -->
         <div class='well'>
           <fieldset>
-            <legend><%= t(".publish_settings") %></legend>
+            <legend><%= t('.publish_settings') %></legend>
             <!-- Start of permalink box -->
             <div class='control-group'>
               <p>
-              <%= t(".permalink") %>:
+              <%= t('.permalink') %>:
               <%= toggle_element('permalink') %>
               </p>
               <div id='permalink' class='collapse'>
@@ -191,13 +259,13 @@
             <!-- Start of status -->
             <div class='control-group'>
               <p>
-              <%= t(".status") %>: <strong><%= @article.state.to_s.downcase %></strong>
+              <%= t('.status') %>: <strong><%= @article.state.to_s.downcase %></strong>
               <%= toggle_element('status') %>
               </p>
               <div id='status' class='collapse'>
-                <label for="article_published" class='checkbox'>
+                <label for='article_published' class='checkbox'>
                   <%= check_box 'article', 'published'  %>
-                  <%= t(".published") %>
+                  <%= t('.published') %>
                 </label>
                 <p>
                 <span class='btn btn-mini btn-default'>
@@ -211,17 +279,17 @@
             <!-- Start of feedback settings -->
             <div class='control-group'>
               <p>
-              <%= t(".allowed_comments_and_trackbacks", allow_comment: content_tag(:strong, t(".allow_comments_status", count: @article.allow_comments ? 1 : 0)), allow_trackback: content_tag(:strong, t('.allow_pings_status', count: @article.allow_pings ? 1 : 0))) %>
+              <%= t('.allowed_comments_and_trackbacks', allow_comment: content_tag(:strong, t('.allow_comments_status', count: @article.allow_comments ? 1 : 0)), allow_trackback: content_tag(:strong, t('.allow_pings_status', count: @article.allow_pings ? 1 : 0))) %>
               <%= toggle_element('conversation') %>
               </p>
               <div id='conversation' class='collapse'>
-                <label for="article_allow_pings" class='checkbox'>
+                <label for='article_allow_pings' class='checkbox'>
                   <%= check_box 'article', 'allow_pings' %>
-                  <%= t(".allow_trackbacks") %>
+                  <%= t('.allow_trackbacks') %>
                 </label>
-                <label for="article_allow_comments" class='checkbox'>
+                <label for='article_allow_comments' class='checkbox'>
                   <%= check_box 'article', 'allow_comments' %>
-                  <%= t(".allow_comments") %>
+                  <%= t('.allow_comments') %>
                 </label>
                 <p>
                 <span class='btn btn-mini btn-default'>
@@ -235,12 +303,12 @@
             <!-- Start of date publish -->
             <div class='control-group'>
               <p>
-              <%= t(".published") %>
+              <%= t('.published') %>
               <strong>
                 <%- if @article.published %>
                   <%= display_date_and_time(@article.published_at) %>
               <%- else %>
-                  <%= t(".now") %>
+                  <%= t('.now') %>
               <%- end %>
               </strong>
               <%= toggle_element('publish') %>
@@ -248,7 +316,7 @@
               <div id='publish' class='collapse'>
                 <%= text_field 'article', 'published_at' %>
                 <p>
-                <span class="btn btn-mini btn-default">
+                <span class='btn btn-mini btn-default'>
                   <%= toggle_element('publish', t('.ok')) %>
                 </span>
                 </p>
@@ -259,9 +327,9 @@
         </div>
         <!-- End of publish settings -->
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal"><%= t('.cancel') %></button>
-        <%= submit_tag(t(".publish"), :class => 'btn btn-success') %>
+      <div class='modal-footer'>
+        <button type='button' class='btn btn-default' data-dismiss='modal'><%= t('.cancel') %></button>
+        <%= submit_tag(t('.publish'), :class => 'btn btn-success') %>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

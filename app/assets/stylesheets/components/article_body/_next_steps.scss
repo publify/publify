@@ -33,6 +33,8 @@
   font-weight: $font-weight-bold;
   color: $link-color--negative;
 
+  &:link,
+  &:focus,
   &:visited {
     color: $link-color--negative;
   }
