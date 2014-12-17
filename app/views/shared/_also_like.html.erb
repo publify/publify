@@ -1,0 +1,27 @@
+<div class="also-like">
+  <div class="l-constrained">
+    <h4 class="also-like__subheader">You might also like</h4>
+
+    <div class="l-tiles">
+      <div class="l-tile">
+        <div class="article-tile article-tile--two">
+          <h5><a class="article-tile__heading article-tile__heading--two" href="#">Top student money survival tips</a></h5>
+          <time class="article-tile__date article-tile__date--two">24th November</time>
+        </div>
+      </div>
+      <div class="l-tile">
+        <div class="article-tile article-tile--two">
+          <h5><a class="article-tile__heading article-tile__heading--two" href="#">Top student money survival tips</a></h5>
+          <time class="article-tile__date article-tile__date--two">24th November</time>
+        </div>
+      </div>
+      <% if @article.core_content_text %>
+      <div class="l-tile">
+        <div class="article-tile article-tile--mas">
+          <h5><a class="article-tile__heading article-tile__heading--mas" href="<%= @article.core_content_url %>"><%= @article.core_content_text %></a></h5>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

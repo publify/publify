@@ -1,0 +1,21 @@
+.also-like {
+  background: $concrete;
+  clear: both;
+}
+
+.also-like__subheader {
+  margin: baseline-unit(6) 0 baseline-unit(4);
+  text-align: center;
+  @include font-size(24);
+  color: $black;
+  float: left;
+  width: 100%;
+
+  @include respond-to($mq-l) {
+    margin: baseline-unit(10) 0 baseline-unit(7);
+  }
+}
+
+.also-like .article-tile__heading {
+  @include font-size(24);
+}

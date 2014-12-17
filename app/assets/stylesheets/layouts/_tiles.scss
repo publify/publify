@@ -17,38 +17,44 @@
   margin-bottom: 5px;
 
   @include respond-to($mq-m) {
-    width: 50%;
+    .non-article-page & {
+      width: 50%;
+      float: left;
+      min-height: 400px;
 
-    float: left;
-    min-height: 400px;
+      .flexbox & {
+        flex-basis: 50%;
+        float: none;
+        min-height: 0;
+      }
 
-    .flexbox & {
-      flex-basis: 50%;
-      float: none;
-      min-height: 0;
-    }
+      padding-left: 5px;
+      display: flex;
 
-    padding-left: 5px;
-    display: flex;
-
-    &:nth-child(2n-1) {
-      padding-left: 0;
+      &:nth-child(2n-1) {
+        padding-left: 0;
+      }
     }
   }
 
   @include respond-to($mq-l) {
-    width: 33.3%;
-
-    .flexbox & {
-      flex-basis: 33.3%;
-    }
-
-    &:nth-child(2n-1) {
+    .non-article-page &,
+    .article-page & {
+      width: 33.3%;
       padding-left: 5px;
-    }
+      display: flex;
 
-    &:nth-child(3n-2) {
-      padding-left: 0;
+      .flexbox & {
+        flex-basis: 33.3%;
+      }
+
+      &:nth-child(2n-1) {
+        padding-left: 5px;
+      }
+
+      &:nth-child(3n-2) {
+        padding-left: 0;
+      }
     }
   }
 }

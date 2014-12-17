@@ -48,6 +48,7 @@
   @include respond-to($mq-two-col) {
     @include column(7);
     @include push(3);
+    margin-bottom: baseline-unit(4);
   }
 
   @include respond-to($mq-l) {

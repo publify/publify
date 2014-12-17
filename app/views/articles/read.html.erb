@@ -19,18 +19,6 @@
         <div class="article-body">
           <%= render 'articles/article_content', { article: @article } %>
         </div>
-
-        <% if @article.core_content_text.present? %>
-          <p>Core Content: <%= link_to(@article.core_content_text, @article.core_content_url) %></p>
-        <% end %>
-
-        <% if @article.primary_related_content.present? %>
-          <p>Primary Related Content: <%= link_to(@article.primary_related_content.title, @article.primary_related_content.permalink_url) %></p>
-        <% end %>
-
-        <% if @article.secondary_related_content.present? %>
-            <p>Secondary Related Content: <%= link_to(@article.secondary_related_content.title, @article.secondary_related_content.permalink_url) %></p>
-        <% end %>
       </div>
 
       <aside class="l-article-info">
@@ -46,7 +34,7 @@
       <% end %>
 
       <% if @article.allow_comments? or @article.published_comments.size > 0 -%>
-        <div class="comments l-constrained">
+        <div class="comments l-constrained" style="display: none;">
       <% end %>
 
       <% if @article.allow_comments? %>
@@ -62,3 +50,5 @@
     </div>
   </div>
 </main>
+
+<%= render 'shared/also_like' %>
