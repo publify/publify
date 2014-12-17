@@ -54,7 +54,7 @@ gem 'fog'
 gem 'recaptcha', :require => 'recaptcha/rails', :branch => 'rails3'
 gem 'carrierwave', '~> 0.10.0'
 gem 'akismet', '~> 1.0'
-gem 'twitter', '~> 5.6.0'
+gem 'twitter', '~> 5.12.0'
 
 gem "jquery-rails", "~> 3.1.2"
 gem "jquery-ui-rails", "~> 5.0.2"
