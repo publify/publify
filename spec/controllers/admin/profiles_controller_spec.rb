@@ -13,12 +13,11 @@ describe Admin::ProfilesController, :type => :controller do
     end
   end
 
-  # TODO: Make RESTful
   describe "successful POST to index" do
     it "redirects to profile page" do
       request.session = { user: alice.id }
       post :index, user: {email: 'foo@bar.com'}
-      expect(response).to render_template('index')
+      expect(response).to redirect_to('/admin/profiles')
     end
   end
 end
