@@ -214,6 +214,10 @@ module ApplicationHelper
             "https://twitter.com/#{reply['user']['screen_name']}/status/#{reply['id_str']}")
   end
 
+  def latest_articles
+    @latest_articles ||= Article.published.order('published_at DESC').where('id != ?', @article).limit(3)
+  end
+
   private
 
   def feed_for(type)

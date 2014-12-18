@@ -24,18 +24,12 @@
         <h4 class="l-footer-link__header">Latest posts</h4>
 
         <ol class="unstyled-list l-footer-link__list">
-          <li class="l-footer-link__list-item">
-            <a href="#">Come and talk to the Money Advice Service on tour around the UK</a>
-            <time class="l-footer-link__list-item-time">12th October</time>
-          </li>
-          <li class="l-footer-link__list-item">
-            <a href="#">Come and talk to the Money Advice Service on tour around the UK</a>
-            <time class="l-footer-link__list-item-time">12th October</time>
-          </li>
-          <li class="l-footer-link__list-item">
-            <a href="#">Come and talk to the Money Advice Service on tour around the UK</a>
-            <time class="l-footer-link__list-item-time">12th October</time>
-          </li>
+          <% latest_articles.each do |article| %>
+            <li class="l-footer-link__list-item">
+              <%= link_to article.title, article.permalink_url, :title => article.title %>
+              <time class="l-footer-link__list-item-time"><%= "#{article.published_at.day.ordinalize} #{article.published_at.strftime("%B")}" %></time>
+            </li>
+          <% end %>
         </ol>
       </div>
 
