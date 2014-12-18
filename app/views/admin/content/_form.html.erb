@@ -222,7 +222,7 @@
           <div class='form-group'>
             <%= text_field 'article', 'keywords', {:autocomplete => 'off', :class => 'form-control tm-input'} %>
           </div>
-          <p class='alert alert-warning'><%=t('.tags_explaination') %></p>
+          <p class='alert alert-warning' id='tag-help-text'><%=t('.tags_explaination') %></p>
         </div>
         <% post_types = @post_types || [] %>
         <%- if post_types.size.zero? %>

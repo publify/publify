@@ -20,3 +20,7 @@ $('.content-form-tabs a').click(function (e) {
   e.preventDefault()
   $(this).tab('show')
 })
+
+$(function(){
+  $('#tag-help-text').hide();
+});
