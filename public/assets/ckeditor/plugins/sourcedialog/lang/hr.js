@@ -1,0 +1,1 @@
+CKEDITOR.plugins.setLang("sourcedialog","hr",{toolbar:"K\xf4d",title:"K\xf4d"});

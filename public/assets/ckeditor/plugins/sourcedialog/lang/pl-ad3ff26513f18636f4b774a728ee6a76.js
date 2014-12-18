@@ -1,0 +1,1 @@
+CKEDITOR.plugins.setLang("sourcedialog","pl",{toolbar:"\u0179r\xf3d\u0142o dokumentu",title:"\u0179r\xf3d\u0142o dokumentu"});

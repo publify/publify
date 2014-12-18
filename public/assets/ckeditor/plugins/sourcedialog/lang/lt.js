@@ -1,0 +1,1 @@
+CKEDITOR.plugins.setLang("sourcedialog","lt",{toolbar:"\u0160altinis",title:"\u0160altinis"});

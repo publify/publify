@@ -1,0 +1,1 @@
+CKEDITOR.plugins.setLang("sourcedialog","pt-br",{toolbar:"C\xf3digo-Fonte",title:"C\xf3digo-Fonte"});
