@@ -4,24 +4,24 @@
 
   <p class="comment-form__text">If you have a opinion on this why not share it</p>
 
-  <div class='comment-form__group'>
+  <div class="comment-form__group">
     <%= text_field "comment", "author", :class => 'form-control', :placeholder => t(".your_name") %>
   </div>
-  <div class='comment-form__group'>
+  <div class="comment-form__group">
     <%= text_field "comment", "email", :class => 'form-control', :placeholder => t(".email_address") %>
   </div>
-  <div class='comment-form__group'>
+  <div class="comment-form__group">
     <%= text_field "comment", "url", :class => 'form-control', :placeholder => t(".your_website") %>
   </div>
-  <div class='comment-form__group'>
+  <div class="comment-form__group">
     <%= text_area 'comment', 'body', :rows => 8, :class => 'form-control' %>
   </div>
 
   <% if this_blog.use_recaptcha %>
-    <div class='comment-form__group'><%= raw recaptcha_tags :ajax => true %></div>
+    <div class="comment-form__group"><%= raw recaptcha_tags :ajax => true %></div>
   <% end %>
-  <div class='comment-form__group'>
-    <input type='submit' id='form-submit-button' class='btn btn-info' value="<%= t('.comment') %>">
+  <div class="comment-form__group">
+    <input type="submit" id="form-submit-button" class="btn btn-info" value="<%= t('.comment') %>">
   </div>
 </div>
 <% end %>
