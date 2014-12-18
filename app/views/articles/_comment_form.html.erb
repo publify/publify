@@ -2,7 +2,7 @@
 <div id='commentform' class="comment-form">
   <h3 class="comment-form__headline"><%= t(".comment")%></h3>
 
-  <p class="comment-form__text">If you have a opinion on this why not share it</p>
+  <p class="comment-form__text"><%= t(".if_you_have_an_opinion") %></p>
 
   <div class="comment-form__group">
     <%= text_field "comment", "author", :class => 'form-control', :placeholder => t(".your_name") %>
