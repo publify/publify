@@ -1,4 +1,4 @@
-//= depend_on_asset jquery/dist/jquery
+//= depend_on_asset jquery
 //= depend_on_asset components/Header
 
 <%
@@ -11,7 +11,7 @@
       Rails.application.config.assets.prefix,
     paths: {
       # External dependencies
-      jquery: requirejs_path('jquery/dist/jquery'),
+      jquery: requirejs_path('jquery'),
       rsvp: requirejs_path('rsvp/rsvp'),
       eventsWithPromises: requirejs_path('eventsWithPromises/src/eventsWithPromises'),
       Header: requirejs_path('components/Header')

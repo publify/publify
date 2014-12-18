@@ -36,7 +36,7 @@ Rails.application.configure do
 
   # Vendor JavaScript
   config.assets.precompile += %w(
-    jquery/dist/jquery.js
+    jquery.js
     eventsWithPromises/src/eventsWithPromises.js
     requirejs/require.js
     rsvp/rsvp.js
