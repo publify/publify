@@ -215,7 +215,10 @@ module ApplicationHelper
   end
 
   def latest_articles
-    @latest_articles ||= Article.published.order('published_at DESC').where('id != ?', @article).limit(3)
+    return @latest_articles if @latest_articles
+    @latest_articles = Article.published.order('published_at DESC').limit(3)
+    @latest_articles = @latest_articles.where('id != ?', @article) if @article
+    @latest_articles
   end
 
   private
