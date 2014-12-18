@@ -185,35 +185,3 @@
 .l-footer-secondary {
   background: $color-green-primary;
 }
-
-.footer-secondary__list-item {
-  margin-bottom: baseline-unit(2);
-
-  @include respond-to($mq-two-col) {
-    display: inline;
-    margin-right: baseline-unit(3);
-  }
-
-  @include respond-to($mq-l) {
-    margin-top: baseline-unit(2);
-    display: inline-block;
-  }
-}
-
-.footer-secondary__link {
-  color: #fff;
-  font-weight: $font-weight-medium;
-  @include font-size(14);
-
-  &:visited,
-  &:hover,
-  &:link {
-    color: #fff;
-  }
-}
-
-.accessibility-feedback-link .icon--accessibility {
-  position: relative;
-  top: 2px;
-  margin-right: 4px;
-}
