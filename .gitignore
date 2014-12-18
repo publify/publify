@@ -11,6 +11,7 @@ db/*.sqlite*
 .DS_Store
 installer/rails_installer.yml
 /public/files
+/public/assets
 /public/uploads
 /public/pictures
 /public/attachments
