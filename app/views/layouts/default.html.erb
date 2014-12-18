@@ -10,10 +10,12 @@
   <title><%= h(page_title) %></title>
   <%= render 'shared/page_header' %>
 </head>
-<body>
+<body class="<%= !@article ? 'non-article-page' : 'article-page' %>">
   <%= render 'shared/header' %>
 
   <%= yield %>
+
+  <%= render 'shared/footer' %>
 
   <%= javascript_include_tag :publify %>
   <%= timeago_script_tag %>

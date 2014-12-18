@@ -29,6 +29,10 @@
   background-color: $article-tile-bg--three;
 }
 
+.article-tile--mas {
+  background-color: $article-tile-bg--mas;
+}
+
 .article-tile__heading {
   @include font-size(30);
   line-height: 1.2;
@@ -56,6 +60,16 @@
   }
 }
 
+.article-tile__heading--mas {
+  color: $article-tile-text--mas;
+
+  &:hover,
+  &:focus,
+  &:visited {
+    color: $article-tile-text--mas;
+  }
+}
+
 .article-tile__date {
   @include font-size(18);
   font-weight: $font-weight-bold;
@@ -71,6 +85,10 @@
 
 .article-tile__date--three {
   color: $article-tile-text--four;
+}
+
+.article-tile__date--mas {
+  color: $article-tile-text--mas;
 }
 
 .article-tile__rating {
