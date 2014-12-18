@@ -13,6 +13,7 @@ class Admin::ProfilesController < Admin::BaseController
       if @user.save
         current_user = @user
         flash[:success] = I18n.t('admin.profiles.index.success')
+        redirect_to '/admin/profiles'
       end
     end
   end
