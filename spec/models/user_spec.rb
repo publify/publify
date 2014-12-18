@@ -276,43 +276,43 @@ describe User, :type => :model do
   end
 
   describe "User's Twitter configuration" do
-    it "A user without twitter_oauth_token or twitter_oauth_token_secret should not have Twitter configured" do
-      user = build(:user, twitter_oauth_token:nil, twitter_oauth_token_secret:nil)
+    it "A user without twitter_access_token or twitter_access_token_secret should not have Twitter configured" do
+      user = build(:user, twitter_access_token:nil, twitter_access_token_secret:nil)
       expect(user.has_twitter_configured?).to eq(false)
     end
 
-    it "A user with an empty twitter_oauth_token and no twitter_oauth_token_secret should not have Twitter configured" do
-      user = build(:user, twitter_oauth_token: "", twitter_oauth_token_secret: nil)
+    it "A user with an empty twitter_access_token and no twitter_access_token_secret should not have Twitter configured" do
+      user = build(:user, twitter_access_token: "", twitter_access_token_secret: nil)
       expect(user.has_twitter_configured?).to eq(false)
     end
 
-    it "A user with an empty twitter_oauth_token and an empty twitter_oauth_token_secret should not have Twitter configured" do
-      user = build(:user, twitter_oauth_token: "", twitter_oauth_token_secret: "")
+    it "A user with an empty twitter_access_token and an empty twitter_access_token_secret should not have Twitter configured" do
+      user = build(:user, twitter_access_token: "", twitter_access_token_secret: "")
       expect(user.has_twitter_configured?).to eq(false)
     end
 
-    it "A user with a twitter_oauth_token and no twitter_oauth_token_secret should not have Twitter configured" do
-      user = build(:user, twitter_oauth_token: "12345", twitter_oauth_token_secret: '')
+    it "A user with a twitter_access_token and no twitter_access_token_secret should not have Twitter configured" do
+      user = build(:user, twitter_access_token: "12345", twitter_access_token_secret: '')
       expect(user.has_twitter_configured?).to eq(false)
     end
 
-    it "A user with a twitter_oauth_token and an empty twitter_oauth_token_secret should not have Twitter configured" do
-      user = build(:user, twitter_oauth_token: "12345", twitter_oauth_token_secret: "")
+    it "A user with a twitter_access_token and an empty twitter_access_token_secret should not have Twitter configured" do
+      user = build(:user, twitter_access_token: "12345", twitter_access_token_secret: "")
       expect(user.has_twitter_configured?).to eq(false)
     end
 
-    it "A user with a twitter_oauth_token_secret and no twitter_oauth_token should not have Twitter configured" do
-      user = build(:user, twitter_oauth_token: "", twitter_oauth_token_secret: "67890")
+    it "A user with a twitter_access_token_secret and no twitter_access_token should not have Twitter configured" do
+      user = build(:user, twitter_access_token: "", twitter_access_token_secret: "67890")
       expect(user.has_twitter_configured?).to eq(false)
     end
 
-    it "A user with a twitter_oauth_token_secret and an empty twitter_oauth_token should not have Twitter configured" do
-      user = build(:user, twitter_oauth_token_secret: "67890", twitter_oauth_token: "")
+    it "A user with a twitter_access_token_secret and an empty twitter_access_token should not have Twitter configured" do
+      user = build(:user, twitter_access_token_secret: "67890", twitter_access_token: "")
       expect(user.has_twitter_configured?).to eq(false)
     end
 
-    it "A user with a twitter_oauth_token and a twitter_oauth_token_secret should have Twitter configured" do
-      user = build(:user, twitter_oauth_token: "12345", twitter_oauth_token_secret: "67890")
+    it "A user with a twitter_access_token and a twitter_access_token_secret should have Twitter configured" do
+      user = build(:user, twitter_access_token: "12345", twitter_access_token_secret: "67890")
       expect(user.has_twitter_configured?).to eq(true)
     end
   end

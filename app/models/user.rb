@@ -37,8 +37,8 @@ class User < ActiveRecord::Base
   setting :jabber,                     :string, ''
   setting :admin_theme,                :string,  'blue'
   setting :twitter_account,            :string, ''
-  setting :twitter_oauth_token,        :string, ''
-  setting :twitter_oauth_token_secret, :string, ''
+  setting :twitter_access_token,        :string, ''
+  setting :twitter_access_token_secret, :string, ''
   setting :twitter_profile_image,      :string, ''
 
   # echo "publify" | sha1sum -
@@ -189,7 +189,7 @@ class User < ActiveRecord::Base
   end
 
   def has_twitter_configured?
-    self.twitter_oauth_token.present? && self.twitter_oauth_token_secret.present?
+    self.twitter_access_token.present? && self.twitter_access_token_secret.present?
   end
 
   protected

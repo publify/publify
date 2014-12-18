@@ -43,8 +43,8 @@ FactoryGirl.define do
     end
 
     trait :with_twitter do
-      twitter_oauth_token "oauth_token"
-      twitter_oauth_token_secret "oauth_token"
+      twitter_access_token "access_token"
+      twitter_access_token_secret "access_token_secret"
     end
 
     trait :as_admin do
