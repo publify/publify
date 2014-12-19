@@ -23,7 +23,11 @@ describe CampaignLink, type: :model do
 
       it { is_expected.not_to be_valid }
     end
+
+    context 'when campaign id is not present' do
+      before { campaign_link.campaign_id = nil }
+
+      it { is_expected.not_to be_valid }
+    end
   end
-
-
 end

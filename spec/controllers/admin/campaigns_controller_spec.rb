@@ -115,6 +115,4 @@ describe Admin::CampaignsController, type: :controller do
 
 
   end
-
-
 end

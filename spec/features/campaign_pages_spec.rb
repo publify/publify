@@ -79,5 +79,4 @@ feature 'Campaigns' do
   def and_i_delete_a_campaign
     campaigns_page.delete.click
   end
-
 end

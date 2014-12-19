@@ -1,5 +1,6 @@
 class Admin::CampaignsController < ApplicationController
   layout 'administration'
+
   before_action :find_campaign, only: [:edit, :update, :destroy]
 
   def index
