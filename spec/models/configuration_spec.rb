@@ -310,11 +310,11 @@ describe 'Given a new user', :type => :model do
   end
 
   it 'Twitter oauth token should be empty' do
-    expect(@user.twitter_oauth_token).to eq('')
+    expect(@user.twitter_access_token).to eq('')
   end
 
   it 'Twitter oauth secret token should be empty' do
-    expect(@user.twitter_oauth_token_secret).to eq('')
+    expect(@user.twitter_access_token_secret).to eq('')
   end
 
   it 'Twitter profile image should be empty' do
