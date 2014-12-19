@@ -53,9 +53,7 @@ end
 
 group :development, :test do
   gem 'factory_girl', '~> 4.5.0'
-  gem 'capybara'
   gem 'dotenv-rails'
-  gem 'rspec-rails', '~> 3.1.0'
   gem 'simplecov', require: false
   gem 'pry-rails'
   gem 'rubocop', require: false
@@ -67,8 +65,14 @@ group :development, :test do
   gem 'spring-commands-rspec'
   gem 'launchy'
   gem 'poltergeist'
-  gem 'letter_opener'
   gem 'foreman'
+end
+
+group :test do
+  gem 'site_prism'
+  gem 'capybara'
+  gem 'rspec-rails', '~> 3.1.0'
+  gem 'letter_opener'
 end
 
 group :staging, :production do
