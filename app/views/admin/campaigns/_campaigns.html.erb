@@ -1,0 +1,18 @@
+<%- if @campaigns.empty? %>
+<tr>
+  <td colspan="5">
+    <%= t(".no_campaigns") %>
+  </td>
+</tr>
+<%- end %>
+
+<% @campaigns.each do |campaign| %>
+  <tr>
+    <td>
+      <%= link_to_edit campaign.title, campaign %>
+      <%= show_actions_for_campaign campaign %>
+    </td>
+    <td><%= campaign.active?%></td>
+    <td><%= l(campaign.created_at) %></td>
+  </tr>
+<% end %>

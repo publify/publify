@@ -95,6 +95,7 @@ Rails.application.routes.draw do
 
     resources :notes, except: [:new]
     resource :cache, controller: 'cache', only: [:show, :destroy]
+    resources :campaigns
   end
 
   # Work around the Bad URI bug

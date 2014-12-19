@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141216143923) do
+ActiveRecord::Schema.define(version: 20141222163214) do
 
   create_table "articles_tags", id: false, force: true do |t|
     t.integer "article_id"
@@ -21,6 +21,27 @@ ActiveRecord::Schema.define(version: 20141216143923) do
   create_table "blogs", force: true do |t|
     t.text   "settings"
     t.string "base_url"
+  end
+
+  create_table "campaign_links", force: true do |t|
+    t.string   "title"
+    t.string   "url"
+    t.string   "link_type"
+    t.integer  "campaign_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "campaign_links", ["campaign_id"], name: "index_campaign_links_on_campaign_id", using: :btree
+
+  create_table "campaigns", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.boolean  "active",              default: false
+    t.string   "hero_image"
+    t.string   "hero_image_alt_text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "ckeditor_assets", force: true do |t|
