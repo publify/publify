@@ -87,7 +87,9 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'moneyadviceservice.org.uk' }
   config.action_mailer.delivery_method = :mailjet
 
-  config.middleware.use '::Rack::Auth::Basic' do |u, p|
-    [u,p] == [ENV['BASIC_AUTH_USER'], ENV['BASIC_AUTH_PASSWORD']]
+  if ENV['BASIC_AUTH_ENABLED']
+    config.middleware.use '::Rack::Auth::Basic' do |u, p|
+      [u,p] == [ENV['BASIC_AUTH_USER'], ENV['BASIC_AUTH_PASSWORD']]
+    end
   end
 end
