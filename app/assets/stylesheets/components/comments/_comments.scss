@@ -9,20 +9,59 @@
   }
 }
 
-.comment-form__headline {
+.comments__headline {
   margin-top: baseline-unit(4);
   text-align: center;
   @include font-size(30);
   max-width: none;
 }
 
-.comment-form__text {
+.comments__text {
   text-align: center;
   max-width: none;
 }
 
+.comment-form {
+  @include row();
+}
+
+.comment-form__group--body {
+  @include column(12);
+}
+
+.comment-form__group--author, .comment-form__group--email_address {
+  @include column(12);
+
+  @include respond-to($mq-two-col) {
+    @include column(8);
+    @include push(2);
+    @include pull(2);
+  }
+}
+
+.comment-form__group--submit {
+  @include column(12);
+  text-align: right;
+  margin-top: $baseline-unit*4;
+
+  @include respond-to($mq-two-col) {
+    @include column(8);
+    @include push(2);
+    @include pull(2);
+  }
+}
+
 .comment-form__group {
-  display: none;
+  .comment-form__text-field, .comment-form__text-area {
+    border-width: 0;
+    margin-top: $baseline-unit;
+    margin-bottom: $baseline-unit*2;
+    padding: $baseline-unit*2;
+  }
+}
+
+.comment-form__submit-button {
+  margin-left: $baseline-unit*3;
 }
 
 .comment-list {
@@ -31,10 +70,7 @@
 
 .comment-list-item {
   border-top: 1px solid $comment-list-item-border;
-
-  &:first-child {
-    border-top: 0;
-  }
+  padding-top: baseline-unit(2);
 
   @include respond-to($mq-two-col) {
     @include push(1);
@@ -42,6 +78,10 @@
 
     &:first-child {
       margin-top: baseline-unit(14);
+    }
+
+    &:last-child {
+      margin-bottom: baseline-unit(14);
     }
   }
 }

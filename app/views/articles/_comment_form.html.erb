@@ -1,28 +1,25 @@
 <%= form_tag @article.comment_url do %>
-<div id="commentform" class="comment-form">
-  <h3 class="comment-form__headline"><%= t(".comment")%></h3>
+  <div class="comment-form">
+    <div class="comment-form__group comment-form__group--body">
+      <%= text_area 'comment', 'body', :rows => 8, :class => 'form-control comment-form__text-area', :placeholder => t(".your_comment") %>
+    </div>
 
-  <p class="comment-form__text"><%= t(".if_you_have_an_opinion") %></p>
+    <div class="comment-form__group comment-form__group--author">
+      <%= label "comment", "author", t(".your_name") %>
+      <%= text_field "comment", "author", :class => 'form-control comment-form__text-field' %>
+    </div>
 
-  <div class="comment-form__group">
-    <%= text_field "comment", "author", :class => 'form-control', :placeholder => t(".your_name") %>
-  </div>
-  <div class="comment-form__group">
-    <%= text_field "comment", "email", :class => 'form-control', :placeholder => t(".email_address") %>
-  </div>
-  <div class="comment-form__group">
-    <%= text_field "comment", "url", :class => 'form-control', :placeholder => t(".your_website") %>
-  </div>
-  <div class="comment-form__group">
-    <%= text_area 'comment', 'body', :rows => 8, :class => 'form-control' %>
-  </div>
+    <div class="comment-form__group comment-form__group--email_address">
+      <%= label "comment", "email", t(".your_email_address") %>
+      <%= text_field "comment", "email", :class => 'form-control comment-form__text-field' %>
+    </div>
 
-  <% if this_blog.use_recaptcha %>
-    <div class="comment-form__group"><%= raw recaptcha_tags :ajax => true %></div>
-  <% end %>
-  <div class="comment-form__group">
-    <input type="submit" id="form-submit-button" class="btn btn-info" value="<%= t('.comment') %>">
+    <% if this_blog.use_recaptcha %>
+      <div class="comment-form__group"><%= raw recaptcha_tags :ajax => true %></div>
+    <% end %>
+
+    <div class="comment-form__group comment-form__group--submit">
+      <%= link_to t('.cancel'), '#' %> <input class="button button--primary comment-form__submit-button" type="submit" value="<%= t('.post_comment') %>">
+    </div>
   </div>
-</div>
 <% end %>
-
