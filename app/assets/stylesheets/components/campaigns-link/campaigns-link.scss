@@ -1,0 +1,53 @@
+.campaigns-link {
+  @include font-size(22);
+  line-height: 1.2;
+  font-weight: 700;
+  color: $eastern-blue;
+  display: table;
+  width: 100%;
+  position: relative;
+  min-height: 34px;
+}
+
+.campaigns-link__text {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.campaigns-link__arrow {
+  width: 30px;
+  height: 34px;
+  position: relative;
+  fill: $eastern-blue;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.campaigns-link__arrow__icon {
+  float: right;
+  width: 21px;
+  height: 34px;
+}
+
+.campaigns-link--ma-says {
+  color: $olive-drab;
+  padding-top: 1.6em;
+
+  &:visited,
+  &:hover,
+  &:active, {
+    color: $olive-drab;
+  }
+}
+
+.campaigns-link--ma-says .campaigns-link__arrow {
+  fill: $olive-drab;
+}
+
+.campaigns-link--ma-says .ma-says {
+  @include font-size(17);
+  position: absolute;
+  top: 0;
+  left: 0;
+
+}

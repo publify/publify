@@ -1,0 +1,63 @@
+.l-campaigns {
+    @include clearfix();
+    background: $gallery;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.l-campaigns__hero {
+  background: $white;
+  height: 0;
+  padding-bottom: 32.7288%;
+  position: relative;
+}
+
+.l-campaigns__hero img {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.l-campaigns__intro,
+.l-campaigns__links {
+  @include column(12);
+
+  @include respond-to($mq-l) {
+    @include column(6);
+  }
+}
+
+.l-campaigns__intro__heading {
+  @include font-size(48);
+  line-height: 1.1;
+  font-family: $brand-font;
+  font-weight: 700;
+  color: $eastern-blue;
+}
+
+.l-campaigns__intro__content {
+  @include font-size(22);
+  color: $astronaut-blue;
+}
+
+.l-campaigns__intro {
+  margin-top: $baseline_unit*8;
+  margin-bottom: $baseline_unit*6;
+}
+
+.l-campaigns__links {
+  list-style: none;
+  padding-left: 0;
+
+  @include respond-to($mq-l) {
+    margin-top: $baseline_unit*10;
+    margin-bottom: $baseline_unit*8;
+  }
+}
+
+.l-campaigns__links__item {
+  margin-bottom: $baseline_unit*6;
+}
