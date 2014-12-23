@@ -2,6 +2,8 @@ class Campaign < ActiveRecord::Base
 
   has_one :primary_link, class_name: "CampaignLink"
   has_one :secondary_link, class_name: "CampaignLink"
+  accepts_nested_attributes_for :primary_link
+  accepts_nested_attributes_for :secondary_link
 
   validates :title, presence: true, length: { maximum: 29 }
   validates :description, presence: true, length: { maximum: 187 }

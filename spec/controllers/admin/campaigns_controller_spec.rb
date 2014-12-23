@@ -9,7 +9,19 @@ describe Admin::CampaignsController, type: :controller do
   describe '#index' do
     before(:each) { get :index }
 
-    specify { expect(response).to be_success }
-    specify { expect(response).to render_template('index') }
+    it { expect(response).to be_success }
+    it { expect(response).to render_template('index') }
+  end
+
+  describe '#new' do
+    context 'using GET' do
+      before(:each) { get :new }
+
+      it { expect(response).to be_success }
+      it { expect(response).to render_template('new') }
+      it { expect(assigns(:campaign)).to_not be_nil }
+    end
+
+
   end
 end
