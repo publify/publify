@@ -363,7 +363,7 @@ describe ArticlesController, "redirecting", :type => :controller do
   describe 'accessing old-style URL with "articles" as the first part' do
     it 'should redirect to article' do
       create(:blog)
-      article = create(:article, :permalink => 'second-blog-article', :published_at => '2004-04-01 02:00:00', :updated_at => '2004-04-01 02:00:00', :created_at => '2004-04-01 02:00:00')
+      article = create(:article, :permalink => 'second-blog-article', :published_at => DateTime.new(2004,4,1,2,0,0), :updated_at => '2004-04-01 02:00:00', :created_at => '2004-04-01 02:00:00')
       get :redirect, :from => "articles/2004/04/01/second-blog-article"
       assert_response 301
       expect(response).to redirect_to("/2004/04/01/second-blog-article")
@@ -371,7 +371,7 @@ describe ArticlesController, "redirecting", :type => :controller do
 
     it 'should redirect to article with url_root' do
       b = build_stubbed(:blog, :base_url => "http://test.host/blog")
-      article = create(:article, :permalink => 'second-blog-article', :published_at => '2004-04-01 02:00:00', :updated_at => '2004-04-01 02:00:00', :created_at => '2004-04-01 02:00:00')
+      article = create(:article, :permalink => 'second-blog-article', :published_at => DateTime.new(2004,4,1,2,0,0), :updated_at => '2004-04-01 02:00:00', :created_at => '2004-04-01 02:00:00')
       get :redirect, :from => "articles/2004/04/01/second-blog-article"
       assert_response 301
       expect(response).to redirect_to("http://test.host/blog/2004/04/01/second-blog-article")
@@ -379,7 +379,7 @@ describe ArticlesController, "redirecting", :type => :controller do
 
     it 'should redirect to article with articles in url_root' do
       b = build_stubbed(:blog, :base_url => "http://test.host/aaa/articles/bbb")
-      article = create(:article, :permalink => 'second-blog-article', :published_at => '2004-04-01 02:00:00', :updated_at => '2004-04-01 02:00:00', :created_at => '2004-04-01 02:00:00')
+      article = create(:article, :permalink => 'second-blog-article', :published_at => DateTime.new(2004,4,1,2,0,0), :updated_at => '2004-04-01 02:00:00', :created_at => '2004-04-01 02:00:00')
       get :redirect, :from => "articles/2004/04/01/second-blog-article"
       assert_response 301
       expect(response).to redirect_to("http://test.host/aaa/articles/bbb/2004/04/01/second-blog-article")
@@ -395,7 +395,7 @@ describe ArticlesController, "redirecting", :type => :controller do
     end
 
     context "with an article" do
-      let!(:article) { create(:article, :permalink => 'second-blog-article', :published_at => '2004-04-01 02:00:00', :updated_at => '2004-04-01 02:00:00', :created_at => '2004-04-01 02:00:00') }
+      let!(:article) { create(:article, :permalink => 'second-blog-article', :published_at => DateTime.new(2004,4,1,2,0,0), :updated_at => '2004-04-01 02:00:00', :created_at => '2004-04-01 02:00:00') }
 
       context "try redirect to an unknow location" do
         before(:each) { get :redirect, from: "#{article.permalink}/foo/bar" }
@@ -404,6 +404,8 @@ describe ArticlesController, "redirecting", :type => :controller do
 
       describe "accessing legacy URLs" do
         it 'should redirect from default URL format' do
+          expect(article.published_at).to eq('2004-04-01 02:00:00')
+
           get :redirect, :from => "2004/04/01/second-blog-article"
           expect(response).to redirect_to("/second-blog-article.html")
         end
