@@ -66,13 +66,13 @@ group :development, :test do
   gem 'launchy'
   gem 'poltergeist'
   gem 'foreman'
+  gem 'letter_opener'
 end
 
 group :test do
   gem 'site_prism'
   gem 'capybara'
   gem 'rspec-rails', '~> 3.1.0'
-  gem 'letter_opener'
 end
 
 group :staging, :production do
