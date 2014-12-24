@@ -5,6 +5,8 @@ class Campaign < ActiveRecord::Base
   accepts_nested_attributes_for :primary_link
   accepts_nested_attributes_for :secondary_link
 
+  mount_uploader :hero_image, CampaignHeroImageUploader
+
   validates :title, presence: true, length: { maximum: 29 }
   validates :description, presence: true, length: { maximum: 187 }
 
