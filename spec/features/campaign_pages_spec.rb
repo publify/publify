@@ -1,7 +1,8 @@
 feature 'Campaigns' do
-  let(:campaigns_page)     { CampaignsPage.new }
-  let(:new_campaigns_page) { NewCampaignsPage.new }
-  let!(:fake_campaign)     { create(:campaign, title: 'Save money at the supermarket', active: true) }
+  let(:campaigns_page)          { CampaignsPage.new }
+  let(:new_campaigns_page)      { NewCampaignsPage.new }
+  let(:existing_campaigns_page) { ExistingCampaignsPage.new }
+  let!(:fake_campaign)          { create(:campaign, title: 'Save money at the supermarket', active: true) }
 
   background do
     create(:blog)
@@ -17,7 +18,13 @@ feature 'Campaigns' do
   scenario 'an an admin, i am able to create a campaign' do
     when_i_view_the_new_campaigns_page
     and_i_create_a_new_campaign
-    then_i_see_a_successful_confirmation
+    then_i_see_a_successful_confirmation('Campaign created successfully')
+  end
+
+  scenario 'an an admin, i am able to update a campaign' do
+    when_i_view_an_existing_campaign
+    and_i_update_the_campaign
+    then_i_see_a_successful_confirmation('Campaign updated successfully')
   end
 
   def when_i_view_the_campaigns_page
@@ -46,8 +53,18 @@ feature 'Campaigns' do
     new_campaigns_page.submit.click
   end
 
-  def then_i_see_a_successful_confirmation
-    expect(page).to have_content('Campaign created successfully')
+  def then_i_see_a_successful_confirmation(message)
+    expect(page).to have_content(message)
+  end
+
+  def when_i_view_an_existing_campaign
+    existing_campaigns_page.load(id: fake_campaign.id)
+    expect(existing_campaigns_page).to be_displayed
+  end
+
+  def and_i_update_the_campaign
+    existing_campaigns_page.campaign_title.set 'University fees rising'
+    existing_campaigns_page.submit.click
   end
 
 end
