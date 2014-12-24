@@ -33,6 +33,7 @@ class ArticlesController < ContentController
     @description = @description.to_title(@articles, this_blog, params)
 
     @keywords = this_blog.meta_keywords
+    @lead_campaign = Campaign.lead.first
 
     suffix = (params[:page].nil? and params[:year].nil?) ? '' : '/'
 

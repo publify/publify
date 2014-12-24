@@ -1,8 +1,21 @@
-<div class="l-index">
-  <div class="l-constrained">
-    <div class="l-tiles">
-      <%= render @articles %>
-      <%= paginate @articles, views_prefix: 'archives' %>
-    </div>
+<div class="l-constrained">
+  <div>
+    <% if @lead_campaign.hero_image.present? %>
+      <%= image_tag @lead_campaign.hero_image.url(:resized) %>
+    <% end %>
+    <%= @lead_campaign.title %>
+    <%= @lead_campaign.description %>
+    <% if @lead_campaign.primary_link.present? %>
+      <%= link_to @lead_campaign.primary_link.title, @lead_campaign.primary_link.url %>
+    <% end %>
+    <% if @lead_campaign.secondary_link.present? %>
+     <%= link_to @lead_campaign.secondary_link.title, @lead_campaign.secondary_link.url %>
+    <% end %>
+  </div>
+  <div class="l-tiles">
+    <%= render @articles %>
+  </div>
+  <div class='paginate'>
+    <%= paginate @articles, views_prefix: 'archives' %>
   </div>
 </div>
