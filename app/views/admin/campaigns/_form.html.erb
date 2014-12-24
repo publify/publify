@@ -1,4 +1,4 @@
-<%= form_for([:admin, @campaign]) do |f| %>
+<%= form_for([:admin, @campaign], :html => {:multipart => true}) do |f| %>
   <% if @campaign.errors.any? %>
     <div class="error_messages">
       <h2><%= pluralize(@campaign.errors.count, "error") %> prohibited this campaign from being saved:</h2>
@@ -21,6 +21,7 @@
   <div class="form-group">
     <label for="exampleInputFile">Hero Image</label>
     <%= file_field :hero_image, 'hero_image', :class => 'form-control' %>
+    <%= f.hidden_field :hero_image_cache %>
     <p class="help-block">Recommended size: 1440x480</p>
   </div>
   <div class="form-group">
@@ -28,7 +29,7 @@
     <%= f.text_field :hero_image_alt_text, class: 'form-control', placeholder: 'Alt text for the image' %>
   </div>
   <div class="checkbox">
-    <%= check_box_tag(:active) %>
+    <%= check_box_tag(:active, params[:active]) %>
     <%= label_tag(:active, "Active") %>
   </div>
   <%= f.fields_for :primary_link do |builder| %>

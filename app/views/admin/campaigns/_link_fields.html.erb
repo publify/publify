@@ -1,6 +1,6 @@
 <div class="form-group">
   <%= label_tag(:link_type, "#{link_order} Link Type") %>
-  <%= f.select(:link_type, options_for_select([['Ma Says', 1], ['Blog Article', 2], ['External', 3]], 1), {}, {class: 'form-control'}) %>
+  <%= f.select(:link_type, options_for_select([['Ma Says', 'ma'], ['Blog Article', 'article'], ['External', 'external']], 'ma'), {}, {class: 'form-control'}) %>
 </div>
 
 <div class="form-group">
