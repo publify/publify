@@ -3,6 +3,8 @@ describe Admin::CampaignsController, type: :controller do
 
   let!(:blog) { create(:blog) }
   let!(:user) { create(:user, :as_admin) }
+  let(:valid_campaign)   { FactoryGirl.attributes_for(:campaign) }
+  let(:invalid_campaign) { FactoryGirl.attributes_for(:campaign, title: 'Save money at the supermarket and this is a very long title that cannot be saved') }
 
   before(:each) { request.session = { user: user.id } }
 
@@ -25,16 +27,13 @@ describe Admin::CampaignsController, type: :controller do
 
   describe "#create" do
     context 'with valid attributes' do
-      let(:valid_campaign)   { { title: 'Save money at the supermarket', description: 'blah' } }
-      let(:invalid_campaign) { { title: 'Save money at the supermarket and this is a very long title that cannot be saved', description: 'blah' } }
-
       it "creates a new campaign" do
         expect{
           post :create, campaign: valid_campaign
         }.to change(Campaign, :count).by(1)
       end
 
-      it "redirects to the new campaign" do
+      it "redirects to the campaigns index" do
         post :create, campaign: valid_campaign
         expect(response).to redirect_to admin_campaigns_path
       end
@@ -53,4 +52,50 @@ describe Admin::CampaignsController, type: :controller do
       end
     end
   end
+
+  describe "#update" do
+    before(:each) do
+      @campaign = create(:campaign)
+    end
+
+    context 'with valid attributes' do
+      it "locates the requested @campaign" do
+        put :update, id: @campaign, campaign: valid_campaign
+        expect(assigns(:campaign)).to eq(@campaign)
+      end
+
+      it "changes @campaign's attributes" do
+        put :update, id: @campaign,
+          campaign: FactoryGirl.attributes_for(:campaign, title: 'New awesome campaign title')
+        @campaign.reload
+        expect(@campaign.title).to eq('New awesome campaign title')
+      end
+
+      it "redirects to the campaigns index" do
+        put :update, id: @campaign, campaign: valid_campaign
+        expect(response).to redirect_to admin_campaigns_path
+      end
+    end
+
+    context 'with invalid attributes' do
+      it "locates the requested @campaign" do
+        put :update, id: @campaign, campaign: invalid_campaign
+        expect(assigns(:campaign)).to eq(@campaign)
+      end
+
+      it "does not change @campaign's attributes" do
+        put :update, id: @campaign,
+          campaign: invalid_campaign
+        @campaign.reload
+        expect(@campaign.title).not_to eq(invalid_campaign[:title])
+      end
+
+      it "re-renders the edit method" do
+        put :update, id: @campaign, campaign: invalid_campaign
+        expect(response).to render_template :edit
+      end
+    end
+  end
+
+
 end

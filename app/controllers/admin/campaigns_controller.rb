@@ -1,5 +1,7 @@
 class Admin::CampaignsController < ApplicationController
   layout 'administration'
+  before_action :find_campaign, only: [:edit, :update]
+
   def index
     @campaigns = Campaign.all
   end
@@ -20,11 +22,27 @@ class Admin::CampaignsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @campaign.update_attributes(campaign_params)
+      flash[:success] = "Campaign updated successfully"
+      redirect_to admin_campaigns_path
+    else
+      render 'edit'
+    end
+  end
+
   private
 
   def campaign_params
     params.require(:campaign).permit(:title, :description, :hero_image, :hero_image_alt_text, :active,
                   primary_link_attributes: [:link_type, :title, :url],
                   secondary_link_attributes: [:link_type, :title, :url] )
+  end
+
+  def find_campaign
+    @campaign = Campaign.find(params[:id])
   end
 end
