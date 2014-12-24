@@ -20,13 +20,22 @@
   </div>
   <div class="form-group">
     <label for="exampleInputFile">Hero Image</label>
-    <%= file_field :hero_image, 'hero_image', :class => 'form-control' %>
+    <%= file_field :hero_image, :class => 'form-control' %>
     <%= f.hidden_field :hero_image_cache %>
     <p class="help-block">Recommended size: 1440x480</p>
   </div>
   <div class="form-group">
     <%= f.label :hero_image_alt_text %>
     <%= f.text_field :hero_image_alt_text, class: 'form-control', placeholder: 'Alt text for the image' %>
+  </div>
+  <div class="article-image-fields">
+    <div class='row'>
+      <div class='col-md-8'>
+        <% if @campaign.hero_image.present? %>
+          <%= image_tag @campaign.hero_image.url(:resized) %>
+        <% end %>
+      </div>
+    </div>
   </div>
   <div class="checkbox">
     <%= check_box_tag(:active, params[:active]) %>
