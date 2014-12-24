@@ -21,7 +21,36 @@ describe Admin::CampaignsController, type: :controller do
       it { expect(response).to render_template('new') }
       it { expect(assigns(:campaign)).to_not be_nil }
     end
+  end
 
+  describe "#create" do
+    context 'with valid attributes' do
+      let(:valid_campaign)   { { title: 'Save money at the supermarket', description: 'blah' } }
+      let(:invalid_campaign) { { title: 'Save money at the supermarket and this is a very long title that cannot be saved', description: 'blah' } }
 
+      it "creates a new campaign" do
+        expect{
+          post :create, campaign: valid_campaign
+        }.to change(Campaign, :count).by(1)
+      end
+
+      it "redirects to the new campaign" do
+        post :create, campaign: valid_campaign
+        expect(response).to redirect_to admin_campaigns_path
+      end
+
+      context "with invalid attributes" do
+        it "does not save the new campaign" do
+          expect{
+            post :create, campaign: invalid_campaign
+          }.to_not change(Campaign,:count)
+        end
+
+        it "re-renders the new method" do
+          post :create, campaign: invalid_campaign
+          expect(response).to render_template :new
+        end
+      end
+    end
   end
 end
