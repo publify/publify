@@ -21,7 +21,11 @@
   <div class="form-group">
     <label for="exampleInputFile">Hero Image</label>
     <%= file_field :hero_image, 'hero_image', :class => 'form-control' %>
-    <p class="help-block">Recommended size: 1440x488</p>
+    <p class="help-block">Recommended size: 1440x480</p>
+  </div>
+  <div class="form-group">
+    <%= f.label :hero_image_alt_text %>
+    <%= f.text_field :hero_image_alt_text, class: 'form-control', placeholder: 'Alt text for the image' %>
   </div>
   <div class="checkbox">
     <%= check_box_tag(:active) %>
