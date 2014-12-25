@@ -36,7 +36,7 @@ else
   end
 end
 
-gem 'rails', '~> 4.1.8'
+gem 'rails', '~> 4.2.0'
 gem 'htmlentities'
 gem 'bluecloth', '~> 2.1'
 gem 'coderay', '~> 1.1.0'
