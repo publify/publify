@@ -70,7 +70,7 @@ class Article < Content
                                        :handles       => [:withdraw,
                                                           :post_trigger,
                                                           :send_pings, :send_notifications,
-                                                          :published_at=, :just_published?])
+                                                          :published_at=, :published=, :just_published?])
 
   def initialize(*args)
     super
@@ -255,14 +255,6 @@ class Article < Content
   def in_feedback_window?
     self.blog.sp_article_auto_close.zero? ||
       self.published_at.to_i > self.blog.sp_article_auto_close.days.ago.to_i
-  end
-
-  def cast_to_boolean(value)
-    ActiveRecord::ConnectionAdapters::Column.value_to_boolean(value)
-  end
-  # Cast the input value for published= before passing it to the state.
-  def published=(newval)
-    state.published = cast_to_boolean(newval)
   end
 
   def content_fields
