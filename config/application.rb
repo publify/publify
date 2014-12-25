@@ -35,6 +35,9 @@ module Publify
 
     # Mime type is fully determined by url
     config.action_dispatch.ignore_accept_header = true
+
+    # Do not swallow errors in after_commit/after_rollback callbacks.
+    config.active_record.raise_in_transactional_callbacks = true
   end
 
   # Load included libraries.
