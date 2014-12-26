@@ -135,7 +135,7 @@ describe TagsController, "password protected article", :type => :controller do
     article = create(:article, password: 'password')
     foo = create(:tag, name: 'foo', articles: [article])
     get 'show', id: 'foo'
-    assert_tag tag: "input", attributes: { id: "article_password" }
+    assert_select('input[id="article_password"]')
   end
 end
 
