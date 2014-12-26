@@ -161,14 +161,19 @@ describe Article, :type => :model do
       let(:referenced_url) { 'http://anotherblog.org/a-post' }
       let!(:blog) { create(:blog, send_outbound_pings: 1) }
 
+      # FIXME: This spec is way too complex
       it 'sends a pingback to urls linked in the body' do
         expect(ActiveRecord::Base.observers).to include(:email_notifier)
         expect(ActiveRecord::Base.observers).to include(:web_notifier)
-        a = Article.new :body => %{<a href="#{referenced_url}">}, :title => 'Test the pinging', :published => true
-        mock_ping = double('ping')
-        allow(a.pings).to receive(:build) { double 'other ping' }
-        allow(a.pings).to receive(:build).with("url" => referenced_url).and_return mock_ping
-        expect(mock_ping).to receive(:send_pingback_or_trackback).with(%r{http://myblog.net/\d{4}/\d{2}/\d{2}/test-the-pinging})
+        a = Article.new(:body => %{<a href="#{referenced_url}">},
+                        :title => 'Test the pinging',
+                        :published => true)
+
+        mock_pinger = instance_double('Ping::Pinger')
+        allow(Ping::Pinger).to receive(:new).
+          with(%r{http://myblog.net/\d{4}/\d{2}/\d{2}/test-the-pinging}, Ping).
+          and_return mock_pinger
+        expect(mock_pinger).to receive(:send_pingback_or_trackback)
 
         expect(a.html_urls.size).to eq(1)
         a.save!
