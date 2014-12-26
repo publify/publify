@@ -2,7 +2,6 @@ require 'rails_helper'
 
 describe TagsController, "/index", :type => :controller do
   before do
-    
     create(:blog)
     @tag = create(:tag)
     @tag.articles << create(:article)
@@ -21,7 +20,6 @@ end
 
 describe TagsController, 'showing a single tag', :type => :controller do
   before do
-    
     FactoryGirl.create(:blog)
     @tag = FactoryGirl.create(:tag, :name => 'Foo')
   end
@@ -92,7 +90,6 @@ end
 describe TagsController, 'showing tag "foo"', :type => :controller do
   render_views
 
-  
   let!(:blog) { FactoryGirl.create(:blog) }
 
   before(:each) do
@@ -117,7 +114,6 @@ end
 describe TagsController, "showing a non-existant tag", :type => :controller do
   # TODO: Perhaps we can show something like 'Nothing tagged with this tag'?
   it 'should redirect to main page' do
-    
     FactoryGirl.create(:blog)
     get 'show', :id => 'thistagdoesnotexist'
 
@@ -130,7 +126,6 @@ describe TagsController, "password protected article", :type => :controller do
   render_views
 
   it 'article in tag should be password protected' do
-    
     create(:blog)
     article = create(:article, password: 'password')
     foo = create(:tag, name: 'foo', articles: [article])
@@ -141,7 +136,6 @@ end
 
 describe TagsController, "SEO Options", :type => :controller do
   before(:each) do
-    
     @blog = FactoryGirl.create(:blog)
     @a = FactoryGirl.create(:article)
     @foo = FactoryGirl.create(:tag, :name => 'foo', :articles => [@a])
