@@ -37,16 +37,6 @@ class Note < Content
     PublifyApp::Textfilter::Twitterfilter.filtertext(nil,nil,html,nil).nofollowify
   end
 
-  def initialize(*args)
-    super
-    # Yes, this is weird - PDC
-    begin
-      self.settings ||= {}
-    rescue Exception => e
-      self.settings = {}
-    end
-  end
-
   def truncate(message, length)
     if message[length + 1] == ' '
       message[0..length]

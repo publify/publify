@@ -50,11 +50,6 @@ class User < ActiveRecord::Base
 
   attr_accessor :last_venue
 
-  def initialize(*args)
-    super
-    self.settings ||= {}
-  end
-
   def first_and_last_name
     return '' unless firstname.present? && lastname.present?
     "#{firstname} #{lastname}"

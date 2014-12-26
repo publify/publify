@@ -115,16 +115,6 @@ class Blog < ActiveRecord::Base
 
   validate :permalink_has_identifier
 
-  def initialize(*args)
-    super
-    # Yes, this is weird - PDC
-    begin
-      self.settings ||= {}
-    rescue Exception => e
-      self.settings = {}
-    end
-  end
-
   # The default Blog. This is the lowest-numbered blog, almost always
   # id==1. This should be the only blog as well.
   def self.default
