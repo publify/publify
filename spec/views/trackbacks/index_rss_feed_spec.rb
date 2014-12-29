@@ -6,7 +6,7 @@ describe 'trackbacks/index_rss_feed.rss.builder', type: :view do
     let(:trackback) { FactoryGirl.build(:trackback, article: article) }
 
     before(:each) do
-      assign(:items, [trackback])
+      assign(:trackbacks, [trackback])
       render
     end
 

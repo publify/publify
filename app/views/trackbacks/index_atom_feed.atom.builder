@@ -1,7 +1,7 @@
 atom_feed do |feed|
-  render "shared/atom_header", {feed: feed, items: @items}
+  render "shared/atom_header", {feed: feed, items: @trackbacks}
 
-  @items.each do |item|
-    render "shared/atom_item_trackback", {feed: feed, item: item}
+  @trackbacks.each do |trackback|
+    render "shared/atom_item_trackback", {feed: feed, item: trackback}
   end
 end

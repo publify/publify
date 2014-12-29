@@ -6,7 +6,7 @@ describe 'comments/index_rss_feed.rss.builder', type: :view do
     let(:comment) { FactoryGirl.build_stubbed(:comment, article: article, body: 'Comment body', guid: '12313123123123123') }
 
     before(:each) do
-      assign(:items, [comment])
+      assign(:comments, [comment])
       render
     end
 

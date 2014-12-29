@@ -6,7 +6,7 @@ describe 'comments/index_atom_feed.atom.builder', type: :view do
     let(:comment) { build(:comment, article: article, body: 'Comment body', guid: '12313123123123123') }
 
     before(:each) do
-      assign(:items, [comment])
+      assign(:comments, [comment])
       render
     end
 

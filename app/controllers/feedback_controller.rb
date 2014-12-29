@@ -43,7 +43,7 @@ class FeedbackController < ApplicationController
   def render_feed(format, collection)
     ivar_name = "@#{self.class.to_s.sub(/Controller$/, '').underscore}"
     instance_variable_set(ivar_name, collection)
-    render "index_#{format}_feed"
+    render "index_#{format}_feed", layout: false
   end
 
 end

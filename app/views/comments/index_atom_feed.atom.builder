@@ -1,8 +1,8 @@
 atom_feed do |feed|
-  render "shared/atom_header", {feed: feed, items: @items}
+  render "shared/atom_header", {feed: feed, items: @comments}
 
-  @items.each do |item|
-    render "shared/atom_item_comment", {feed: feed, item: item}
+  @comments.each do |comment|
+    render "shared/atom_item_comment", {feed: feed, item: comment}
   end
 end
 

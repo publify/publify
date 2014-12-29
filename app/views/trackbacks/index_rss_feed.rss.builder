@@ -12,8 +12,8 @@ xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/",
     xml.ttl "40"
     xml.description this_blog.blog_subtitle
 
-    @items.each do |item|
-      render "shared/rss_item_trackback", {feed: xml, item: item}
+    @trackbacks.each do |trackback|
+      render "shared/rss_item_trackback", {feed: xml, item: trackback}
     end
   end
 end

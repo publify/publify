@@ -6,7 +6,7 @@ describe 'trackbacks/index_atom_feed.atom.builder', type: :view do
     let(:trackback) { create(:trackback, article: article) }
 
     before(:each) do
-      assign(:items, [trackback])
+      assign(:trackbacks, [trackback])
       render
     end
 
