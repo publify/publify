@@ -20,14 +20,7 @@ describe CommentsController, type: :controller do
     it 'should redirect to the article' do
       article = create(:article, created_at: '2005-01-01 02:00:00')
       post :create, comment: { body: 'content', author: 'bob' }, article_id: article.id
-      expect(response).to redirect_to("#{blog.base_url}/#{article.created_at.year}/#{sprintf('%.2d', article.created_at.month)}/#{sprintf('%.2d', article.created_at.day)}/#{article.permalink}")
-    end
-  end
-
-  describe 'AJAX creation' do
-    it 'should render the comment partial' do
-      xhr :post, :create, comment: { body: 'content', author: 'bob' }, article_id: create(:article).id
-      expect(response).to render_template('articles/_comment')
+      expect(response).to redirect_to("#{blog.base_url}/#{article.created_at.year}/#{sprintf('%.2d', article.created_at.month)}/#{sprintf('%.2d', article.created_at.day)}/#{article.permalink}#comment-#{article.comments.last.id}")
     end
   end
 

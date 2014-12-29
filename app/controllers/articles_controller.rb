@@ -157,7 +157,7 @@ class ArticlesController < ContentController
 
   # See an article We need define @article before
   def show_article
-    @comment      = Comment.new
+    @comment      = Comment.new(article: @article)
     @page_title   = @article.title_meta_tag.present? ? @article.title_meta_tag : @article.title
     @description = @article.description_meta_tag
     groupings = @article.tags

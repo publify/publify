@@ -1,21 +1,27 @@
-<%= form_tag @article.comment_url do %>
+<%= form_for @comment, url: @article.comment_url + '#comments', builder: Dough::Forms::Builders::Validation do |f| %>
   <div class="comment-form">
+    <% if f.object.errors.present? %>
+      <div class="comment-form__errors">
+        <%= f.validation_summary %>
+      </div>
+    <% end %>
+
     <div class="comment-form__group comment-form__group--body">
-      <%= text_area 'comment', 'body', :rows => 8, :class => 'form-control comment-form__text-area', :placeholder => t(".your_comment") %>
+      <%= f.text_area :body, :rows => 8, class: 'form-control comment-form__text-area', placeholder: t('.your_comment') %>
     </div>
 
     <div class="comment-form__group comment-form__group--author">
-      <%= label "comment", "author", t(".your_name") %>
-      <%= text_field "comment", "author", :class => 'form-control comment-form__text-field' %>
+      <%= f.label :author, t('.your_name') %>
+      <%= f.text_field :author, class: 'form-control comment-form__text-field' %>
     </div>
 
     <div class="comment-form__group comment-form__group--email_address">
-      <%= label "comment", "email", t(".your_email_address") %>
-      <%= text_field "comment", "email", :class => 'form-control comment-form__text-field' %>
+      <%= f.label :email, t('.your_email_address') %>
+      <%= f.text_field :email, class: 'form-control comment-form__text-field' %>
     </div>
 
     <% if this_blog.use_recaptcha %>
-      <div class="comment-form__group"><%= raw recaptcha_tags :ajax => true %></div>
+      <div class="comment-form__group"><%= raw recaptcha_tags ajax: true %></div>
     <% end %>
 
     <div class="comment-form__group comment-form__group--submit">

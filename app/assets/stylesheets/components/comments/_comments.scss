@@ -25,6 +25,10 @@
   @include row();
 }
 
+.comment-form__errors {
+  @include column(12);
+}
+
 .comment-form__group--body {
   @include column(12);
 }

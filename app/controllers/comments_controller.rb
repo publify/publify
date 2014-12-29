@@ -1,6 +1,8 @@
 class CommentsController < FeedbackController
   before_filter :get_article, only: [:create, :preview]
 
+  layout 'default.html.erb'
+
   def create
     @comment = @article.with_options(new_comment_defaults) do |art|
       art.add_comment(params[:comment].slice(:body, :author, :email, :url))
@@ -15,15 +17,16 @@ class CommentsController < FeedbackController
 
     set_cookies_for @comment
 
-    partial = '/articles/comment_failed'
     if recaptcha_ok_for?(@comment)  && @comment.save
-      partial = '/articles/comment'
-    end
-    if request.xhr?
-      render partial: partial, object: @comment
+      redirect_to @article.permalink_url + "#comment-#{@comment.id}"
     else
-      redirect_to @article.permalink_url
+      @page_title = @article.title_meta_tag.present? ? @article.title_meta_tag : @article.title
+      @description = @article.description_meta_tag
+      @keywords = @article.tags.map { |g| g.name }.join(', ')
+
+      render "articles/#{@article.post_type}"
     end
+
   end
 
   def preview
