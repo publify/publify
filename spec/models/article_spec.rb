@@ -574,7 +574,7 @@ describe Article, type: :model do
       a.save!
 
       assert_equal 0, a.published_comments.size
-      c = a.comments.build(body: 'foo', author: 'bob', published: true, published_at: Time.now)
+      c = a.comments.build(body: 'foo', author: 'bob', email: 'bob@foo.com', published: true, published_at: Time.now)
       assert c.published?
       c.save!
       a.reload

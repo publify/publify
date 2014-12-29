@@ -6,7 +6,7 @@ describe Comment, type: :model do
   end
 
   def valid_comment(options = {})
-    Comment.new({ author: 'Bob', article: published_article, body: 'nice post', ip: '1.2.3.4' }.merge(options))
+    Comment.new({ author: 'Bob', email: 'bob@foo.com', article: published_article, body: 'nice post', ip: '1.2.3.4' }.merge(options))
   end
 
   describe '#permalink_url' do

@@ -237,6 +237,7 @@ http://alsoping.example.com/rpc/ping"
     association :text_filter, factory: :textile
     author 'Bob Foo'
     url 'http://fakeurl.com'
+    email 'bob@foo.com'
     body 'Test <a href="http://fakeurl.co.uk">body</a>'
     created_at '2005-01-01 02:00:00'
     updated_at '2005-01-01 02:00:00'
