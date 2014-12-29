@@ -51,7 +51,6 @@ group :assets do
 end
 
 group :development, :test do
-  gem 'pry-byebug'
   gem 'factory_girl', '~> 4.5.0'
   gem 'capybara'
   gem 'dotenv-rails'
@@ -72,6 +71,6 @@ group :development, :test do
 end
 
 group :staging, :production do
-  #gem 'pg'
+  gem 'pg'
   gem 'rails_12factor'
 end
