@@ -1,5 +1,5 @@
 <li class="comment-list-item" id="comment-<%= comment.id %>">
-  <h4 class="comment-list-item__headline"><%= h(comment.author) %> / <span class="comment-list-item__headline-date"><%= display_date_and_time comment.created_at %></span></h4>
+  <h4 class="comment-list-item__headline"><%= h(comment.author) %> / <span class="comment-list-item__headline-date"><%= display_comment_timestamp(comment) %></span></h4>
   <%= comment.html %>
 
   <%- unless comment.published %>
