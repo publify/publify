@@ -15,7 +15,8 @@ class CommentsController < FeedbackController
       end
     end
 
-    set_cookies_for @comment
+    session[:author] = @comment.author  if @comment.author.present?
+    session[:email] = @comment.email if @comment.email.present?
 
     if recaptcha_ok_for?(@comment)  && @comment.save
       redirect_to @article.permalink_url + "#comment-#{@comment.id}"
@@ -69,14 +70,6 @@ class CommentsController < FeedbackController
 
   def set_headers
     headers['Content-Type'] = 'text/html; charset=utf-8'
-  end
-
-  def set_cookies_for comment
-    add_to_cookies(:author, comment.author)
-    add_to_cookies(:url, comment.url)
-    if !comment.email.blank?
-      add_to_cookies(:gravatar_id, Digest::MD5.hexdigest(comment.email.strip))
-    end
   end
 
   def get_article

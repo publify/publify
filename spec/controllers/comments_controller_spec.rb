@@ -12,9 +12,8 @@ describe CommentsController, type: :controller do
       it { expect(assigns[:article]).to eq(article) }
       it { expect(article.comments.size).to eq(1) }
       it { expect(article.comments.last.author).to eq('bob') }
-      it { expect(cookies['author']).to eq('bob') }
-      it { expect(cookies['gravatar_id']).to eq(Digest::MD5.hexdigest('bob@home')) }
-      it { expect(cookies['url']).to eq('http://bobs.home/') }
+      it { expect(session['author']).to eq('bob') }
+      it { expect(session['email']).to eq('bob@home') }
     end
 
     it 'should redirect to the article' do
