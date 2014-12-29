@@ -12,6 +12,11 @@ en:
     content:
       pages: "Pages"
   activerecord:
+    attributes:
+      comment:
+        author: "Your name"
+        body: "The comment body"
+        email: "Your email address"
     errors:
       template:
         header: ""
