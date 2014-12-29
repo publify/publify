@@ -18,7 +18,7 @@ describe XmlController, type: :controller do
 
       it 'redirects comments feed to Comments RSS feed' do
         get :feed, type: 'comments'
-        assert_moved_permanently_to admin_comments_url(format: :rss)
+        assert_moved_permanently_to comments_url(format: :rss)
       end
 
       it 'redirects trackbacks feed to TrackbacksController RSS feed' do
@@ -40,7 +40,7 @@ describe XmlController, type: :controller do
 
       it 'redirects comments feed to comments RSS feed' do
         get :feed, format: 'rss20', type: 'comments'
-        assert_moved_permanently_to admin_comments_url(format: :rss)
+        assert_moved_permanently_to comments_url(format: :rss)
       end
 
       it 'redirects trackbacks feed to TrackbacksController RSS feed' do
@@ -62,7 +62,7 @@ describe XmlController, type: :controller do
 
       it 'redirects comments feed to comments Atom feed' do
         get :feed, format: 'atom10', type: 'comments'
-        assert_moved_permanently_to admin_comments_url(format: 'atom')
+        assert_moved_permanently_to comments_url(format: 'atom')
       end
 
       it 'redirects trackbacks feed to TrackbacksController Atom feed' do
@@ -137,7 +137,7 @@ describe XmlController, type: :controller do
   describe '#commentrss' do
     it 'redirects permanently to the comment RSS feed' do
       get :commentrss, id: 1
-      assert_moved_permanently_to admin_comments_url(format: 'rss')
+      assert_moved_permanently_to comments_url(format: 'rss')
     end
   end
 

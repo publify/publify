@@ -37,7 +37,7 @@ Rails.application.routes.draw do
   get 'xml/feed', to: 'xml#feed'
 
   # CommentsController
-  resources :comments, as: 'admin_comments' do
+  resources :comments do
     collection do
       match :preview, via: [:get, :post, :put, :delete]
     end
