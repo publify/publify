@@ -68,6 +68,7 @@ class ArticlesController < ContentController
 
   def preview
     @article = Article.last_draft(params[:id])
+    @comment = Comment.new
     @page_title = @article.title_meta_tag.present? ? @article.title_meta_tag : @article.title
     render 'read'
   end
