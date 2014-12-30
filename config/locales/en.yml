@@ -301,6 +301,7 @@ en:
         disable_trackbacks_sitewide: "Disable trackbacks site-wide"
         explain_disable_trackbacks: "This setting allows you to disable trackbacks for every article in your blog.  It won't remove existing trackbacks, but it will prevent any further attempt to add a trackback anywhere on your blog."
         comments_filter: "Comments filter"
+        comments_filter_info: "Links will always be given a nofollow attribute, regardless of filter choice."
         avatars_provider: "Avatars provider"
         spam: "Spam"
         spam_protection: "Spam protection"
