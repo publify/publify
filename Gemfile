@@ -36,6 +36,10 @@ else
   end
 end
 
+gem 'sqlite3'
+gem 'newrelic_rpm'
+gem 'rollbar', '~> 1.2.7'
+
 gem 'rails', '~> 4.1.8'
 gem 'htmlentities'
 gem 'bluecloth', '~> 2.1'
@@ -65,8 +69,6 @@ gem 'rails_autolink', '~> 1.1.0'
 gem 'dynamic_form', '~> 1.1.4'
 
 gem 'non-stupid-digest-assets'
-
-gem 'newrelic_rpm'
 
 # removed from Rails-core as Rails 4.0
 gem 'actionpack-page_caching', '~> 1.0.2'
