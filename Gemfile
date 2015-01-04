@@ -36,7 +36,6 @@ else
   end
 end
 
-gem 'sqlite3'
 gem 'newrelic_rpm'
 gem 'rollbar', '~> 1.2.7'
 

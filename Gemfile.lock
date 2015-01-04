@@ -295,7 +295,6 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
-    sqlite3 (1.3.10)
     subexec (0.2.3)
     thin (1.6.3)
       daemons (~> 1.0, >= 1.0.9)
@@ -368,7 +367,6 @@ DEPENDENCIES
   rubypants (~> 0.2.0)
   sass-rails (~> 4.0.3)
   simplecov
-  sqlite3
   thin
   twitter (~> 5.12.0)
   uglifier
