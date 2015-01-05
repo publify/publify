@@ -1,8 +1,8 @@
 method: :smtp
 settings:
-  :address: mail.example.com
-  :port:    25
-  :domain:  example.com
-# :authentication:  :login
-# :user_name: bob
-# :password: bobsyouruncle
+  :address: <%= ENV["EMAIL_SERVER"] %>
+  :port:    <%= ENV["EMAIL_PORT"] %>
+  :domain:  <%= ENV["EMAIL_DOMAIN"] %>
+	:authentication:  :login
+	:user_name: <%= ENV["EMAIL_USER"] %>
+	:password: <%= ENV["EMAIL_PASSWORD"] %>
