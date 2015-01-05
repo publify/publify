@@ -52,7 +52,7 @@
   }
 
   @include respond-to($mq-l) {
-    h1, h2, h3, p {
+    h1, h2, h3, p, ul, ol {
       max-width: 550px;
     }
   }
