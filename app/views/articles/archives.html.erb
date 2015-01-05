@@ -9,7 +9,8 @@
   <%- for article in @articles %>
     <div class="archivepost">
       <h3><%= link_to_permalink(article,h(article.title)) %></h3>
-      <p><%= link_to(article.author, author_path(article.author)) %> - <%= article.published_at.strftime("#{article.published_at.day.ordinalize} %b %Y") %></p>
+      <p>
+        <%= link_to(article.author, author_path(id: article.author)) if article.author %> - <%= article.published_at.strftime("#{article.published_at.day.ordinalize} %b %Y") %></p>
       <%- if article.body %>
       <p><%= article.body %></p>
       <% end %>
