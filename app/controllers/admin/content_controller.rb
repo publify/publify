@@ -35,6 +35,7 @@ class Admin::ContentController < Admin::BaseController
     @article = article_factory.get_or_build_from(params[:article][:id])
 
     update_article_attributes
+    @article.author = current_user
 
     if @article.save
       flash[:success] = I18n.t('admin.content.create.success')
@@ -154,7 +155,6 @@ class Admin::ContentController < Admin::BaseController
   def update_article_attributes
     @article.attributes = update_params
     @article.published_at = parse_date_time params[:article][:published_at]
-    @article.author = current_user
     @article.save_attachments!(params[:attachments])
     @article.state = 'draft' if @article.draft
     @article.text_filter ||= current_user.default_text_filter
