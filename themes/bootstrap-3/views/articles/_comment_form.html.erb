@@ -1,0 +1,24 @@
+<%= form_tag @article.comment_url do %>
+<div id='commentform'>
+  <h3><%= t(".comment")%> <em><%=@article.title%></em></h3>
+  <div class='form-group'>
+  <%= text_field "comment", "author", :class => 'form-control', :placeholder => t(".your_name") %>  	
+  </div>
+  <div class='form-group'>
+    <%= text_field "comment", "email", :class => 'form-control', :placeholder => t(".email_address") %>
+  </div>
+  <div class='form-group'>
+  <%= text_field "comment", "url", :class => 'form-control', :placeholder => t(".your_website") %>
+  </div>
+  <div class='form-group'>
+    <%= text_area 'comment', 'body', :rows => 8, :class => 'form-control' %>
+  </div>
+
+  <% if this_blog.use_recaptcha %>
+  <div class='form-group'><%= raw recaptcha_tags :ajax => true %></div>
+  <% end %>
+  <div class='form-actions'>
+    <input type='submit' id='form-submit-button' class='btn btn-info' value="<%= t('.comment') %>">
+  </div>
+</div>
+<% end %>
