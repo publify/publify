@@ -363,14 +363,15 @@ describe Admin::ContentController, type: :controller do
           expect(@orig.body).not_to eq('update')
         end
 
-        it 'redirects to the index' do
-          expect(response).to redirect_to(action: 'index')
-        end
-
         it 'creates a draft' do
           draft = Article.child_of(@orig.id).first
           expect(draft.parent_id).to eq(@orig.id)
           expect(draft).not_to be_published
+        end
+
+        it 'redirects back to the draft edit page' do
+          draft = Article.child_of(@orig.id).first
+          expect(response).to redirect_to(action: 'edit', id: draft)
         end
       end
     end
@@ -431,7 +432,7 @@ describe Admin::ContentController, type: :controller do
         let!(:article) { create(:article, body: 'another *textile* test', user: user) }
         let!(:body) { 'not the *same* text' }
         before(:each) { put :update, id: article.id, article: { body: body, text_filter: 'textile' } }
-        it { expect(response).to redirect_to(action: 'index') }
+        it { expect(response).to redirect_to(action: 'edit', id: article.id) }
         it { expect(article.reload.text_filter.name).to eq('textile') }
         it { expect(article.reload.body).to eq(body) }
       end
