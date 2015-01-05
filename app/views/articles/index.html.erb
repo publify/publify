@@ -1,17 +1,5 @@
 <div class="l-constrained">
-  <div>
-    <% if @lead_campaign.hero_image.present? %>
-      <%= image_tag @lead_campaign.hero_image.url(:resized) %>
-    <% end %>
-    <%= @lead_campaign.title %>
-    <%= @lead_campaign.description %>
-    <% if @lead_campaign.primary_link.present? %>
-      <%= link_to @lead_campaign.primary_link.title, @lead_campaign.primary_link.url %>
-    <% end %>
-    <% if @lead_campaign.secondary_link.present? %>
-     <%= link_to @lead_campaign.secondary_link.title, @lead_campaign.secondary_link.url %>
-    <% end %>
-  </div>
+  <%= render 'shared/lead_campaign' if @lead_campaign %>
   <div class="l-tiles">
     <%= render @articles %>
   </div>
