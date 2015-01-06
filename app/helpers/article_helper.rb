@@ -11,4 +11,21 @@ module ArticleHelper
       end
     end
   end
+
+  def report_comment_link(comment)
+    mail_to ENV['REPORT_COMMENT_EMAIL_ADDRESS'],
+            t('.report_comment'),
+            subject: "Reported comment in article '#{comment.article.title}'",
+            body: report_comment_email_template(comment)
+  end
+
+  private
+
+  def report_comment_email_template(comment)
+    <<-EOS
+      Reported comment: #{comment.article.permalink_url + "#comment-#{comment.id}"}
+
+      Please enter any further notes below:
+    EOS
+  end
 end

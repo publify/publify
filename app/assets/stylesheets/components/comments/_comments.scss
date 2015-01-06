@@ -99,3 +99,8 @@
 .comment-list-item__headline-date {
   font-weight: normal;
 }
+
+.comment-list-item__report-link {
+  margin-top: baseline-unit(1);
+  font-size: $base-font-size + px;
+}
