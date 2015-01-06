@@ -309,6 +309,12 @@ http://alsoping.example.com/rpc/ping"
   factory :unpublished_note, :parent => :note do |n|
     n.published false
   end
+  
+  factory :sidebar do
+    active_position 1
+    config ({"title"=>"Links", "body"=>"some links"})
+    type "StaticSidebar"
+  end
 
   factory :trackback do |t|
     published true
