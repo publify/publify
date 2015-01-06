@@ -75,6 +75,10 @@ $inline-callout-link-color: $green-leaf;
       stroke: $inline-callout-link-color;
     }
   }
+
+  p:first-of-type {
+    @include font-size(18);
+  }
 }
 
 .plus-icon {
