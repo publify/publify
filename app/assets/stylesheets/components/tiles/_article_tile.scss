@@ -3,6 +3,11 @@
   position: relative;
   width: 100%;
   padding: baseline-unit(13) baseline-unit(5);
+  min-height: 400px;
+
+  .flexbox & {
+    min-height: 0;
+  }
 
   @include respond-to($mq-m) {
     padding: baseline-unit(16) baseline-unit(5);

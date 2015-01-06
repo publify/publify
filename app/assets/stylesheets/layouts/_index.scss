@@ -1,0 +1,26 @@
+.l-index-archive {
+  @include column(12);
+}
+
+.l-index-archive__link {
+  background: $deep-cerulean;
+  padding: baseline-unit(3);
+  display: block;
+  margin-top: -5px;
+  @include font-size(30);
+  text-align: center;
+  width: 100%;
+
+  &:link,
+  &:hover,
+  &:focus,
+  &:visited {
+    color: $white;
+  }
+}
+
+.l-index-archive__link-arrow {
+  margin-top: 3px;
+  width: 20px;
+  float: right;
+}

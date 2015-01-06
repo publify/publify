@@ -1,22 +1,31 @@
-<h2>Archive</h2>
-
-<%- if @articles.empty? %>
-  <div class="post">
-  <p><%= t(".no_articles_found")%></p>
-</div>
-<%- else %>
+<div class="l-results">
   <div class="l-constrained">
-  <%- for article in @articles %>
-    <div class="archivepost">
-      <h3><%= link_to_permalink(article,h(article.title)) %></h3>
-      <p>
-        <%= link_to(article.author, author_path(id: article.author)) if article.author %> - <%= article.published_at.strftime("#{article.published_at.day.ordinalize} %b %Y") %></p>
-      <%- if article.body %>
-      <p><%= article.body %></p>
-      <% end %>
-    </div>
-  <%- end %>
-  </div>
-<%- end %>
+    <h1 class="l-results__title">Archive</h1>
 
-<%= paginate @articles %>
+    <%- if @articles.empty? %>
+      <p><%= t(".no_articles_found")%></p>
+    <%- else %>
+      <%- for article in @articles %>
+        <div class="l-results-item">
+          <h2 class="l-results-item__header"><%= link_to_permalink(article,h(article.title)) %></h2>
+          <div class="l-results-item__author">
+            <%= link_to(article.author, author_path(id: article.author)) if article.author %> - <%= article.published_at.strftime("#{article.published_at.day.ordinalize} %b %Y") %>
+          </div>
+        </div>
+      <%- end %>
+    <%- end %>
+  </div>
+
+  <% if @articles.total_pages > 1 %>
+    <nav class="l-results-pagination">
+      <p class="l-results-pagination__text">Page <%= @articles.current_page %> of <%= @articles.total_pages %></p>
+
+      <% if !@articles.first_page? %>
+        <a href="/archives?page=<%= @articles.current_page-1 %>" class="button">&lt; Previous</a>
+      <% end %>
+      <% if !@articles.last_page? %>
+        <a href="/archives?page=<%= @articles.current_page+1 %>" class="button">Next &gt;</a>
+      <% end %>
+    </nav>
+  <% end %>
+</div>
