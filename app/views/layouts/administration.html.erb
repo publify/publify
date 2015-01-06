@@ -42,6 +42,16 @@
     </div>
     <div class="collapse navbar-collapse" id="sidebar-top">
       <ul class='nav navbar-nav'>
+        <li class='dropdown'>
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <%= t("admin.menu.campaigns")%>
+            <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+            <li><%= link_to(t("admin.menu.all_campaigns"), {controller: 'admin/campaigns', action: 'index'}) %></li>
+            <li><%= link_to(t("admin.menu.new_campaign"), {controller: 'admin/campaigns', action: 'new'}) %></li>
+          </ul>
+        </li>
         <% for pm in current_user.project_modules %>
           <% if AccessControl.submenus_for(current_user.profile_label, pm.name.to_sym).size == 0 %>
             <%= tab_for(pm) %>
@@ -83,6 +93,7 @@
               <b class="caret"></b>
             </a>
           <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+            <li><%= link_to(t("admin.menu.new_campaign"), {controller: 'admin/campaigns', action: 'new'}) %></li>
             <li><%= link_to(t("admin.menu.new_article"), {controller: 'content', action: 'new'}) %></li>
             <li><%= link_to(t("admin.menu.new_page"), {controller: 'pages', actions: 'new'}) %></li>
             <li><%= link_to(t("admin.menu.new_media"), {controller: 'resources', action: 'index'}) %></li>
