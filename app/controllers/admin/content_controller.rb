@@ -39,7 +39,7 @@ class Admin::ContentController < Admin::BaseController
 
     if @article.save
       flash[:success] = I18n.t('admin.content.create.success')
-      redirect_to action: 'index'
+      redirect_to action: 'edit', id: @article
     else
       @article.keywords = Tag.collection_to_string @article.tags
       load_resources

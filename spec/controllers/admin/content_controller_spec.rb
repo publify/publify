@@ -101,10 +101,10 @@ describe Admin::ContentController, type: :controller do
       end
 
       context 'classic' do
-
+        let(:created_article) { Article.last }
         before(:each) { post :create, article: article_params }
 
-        it { expect(response).to redirect_to(action: :index) }
+        it { expect(response).to redirect_to(action: :edit, id: created_article.id) }
         it { expect(flash[:success]).to eq(I18n.t('admin.content.create.success')) }
 
         it { expect(assigns(:article)).to be_published }
