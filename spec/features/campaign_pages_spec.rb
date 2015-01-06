@@ -29,7 +29,6 @@ feature 'Campaigns' do
 
   scenario 'as an admin, i am able to delete a campaign' do
     when_i_view_the_campaigns_page
-    save_and_open_page
     and_i_delete_a_campaign
     then_i_see_a_successful_confirmation('Campaign deleted successfully')
   end
