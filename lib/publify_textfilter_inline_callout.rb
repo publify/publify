@@ -6,15 +6,14 @@ class PublifyApp
 
       def self.help_text
         %{
-You can use `<publify:inlinecallout>` to display a Ma Says snippet.  Example:
+You can use the following code to display an inline callout snippet. Example:
 
-    <publify:inlinecallout url="https://www.moneyadviceservice.org.uk/en/campaigns/saving-for-a-holiday">
-      Saving for a Holiday
-    </publify:inlinecallout>}
+<hr class="snippet" data-snippet-name="inlinecallout" data-snippet-text="Saving for a Holiday" data-snippet-url="https://www.moneyadviceservice.org.uk/en/campaigns/saving-for-a-holiday" />}
       end
 
-      def self.macrofilter(_, _, attrib, _, text)
-        url = attrib['url']
+      def self.macrofilter(_, _, attrib, _)
+        url = attrib['data-snippet-url']
+        text = attrib['data-snippet-text']
 
         "<div class=\"snippet inline-callout\">
            <a class=\"inline-callout__text\" href=\"#{url}\">#{text}
@@ -23,6 +22,17 @@ You can use `<publify:inlinecallout>` to display a Ma Says snippet.  Example:
              </svg>
            </a>
          </div>"
+      end
+
+      def self.filtertext(blog, content, text, params)
+        filterparams = params[:filterparams]
+        regex = /<hr class="snippet" data-snippet-name="#{short_name}"([ \t][^>]*)?\/>/m
+
+        new_text = text.gsub(regex) do |match|
+          macrofilter(blog,content,attributes_parse($1.to_s),params)
+        end
+
+        new_text
       end
     end
   end

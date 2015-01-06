@@ -5,7 +5,6 @@ CKEDITOR.editorConfig = function (config) {
   config.filebrowserBrowseUrl = 'admin/ckeditor/attachment_files';
   config.filebrowserUploadUrl = 'admin/ckeditor/attachment_files';
   config.extraPlugins = 'sourcedialog';
-  config.protectedSource.push(/<a data-ck[^>]+>[\s\S]+?<\/a>/g);
   config.allowedContent = true;
   config.contentsCss = '/assets/ckeditor/editor.css';
   config.toolbar =
