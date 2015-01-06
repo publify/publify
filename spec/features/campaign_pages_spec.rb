@@ -27,6 +27,13 @@ feature 'Campaigns' do
     then_i_see_a_successful_confirmation('Campaign updated successfully')
   end
 
+  scenario 'as an admin, i am able to delete a campaign' do
+    when_i_view_the_campaigns_page
+    save_and_open_page
+    and_i_delete_a_campaign
+    then_i_see_a_successful_confirmation('Campaign deleted successfully')
+  end
+
   def when_i_view_the_campaigns_page
     expect(campaigns_page).to be_displayed
   end
@@ -65,6 +72,10 @@ feature 'Campaigns' do
   def and_i_update_the_campaign
     existing_campaigns_page.campaign_title.set 'University fees rising'
     existing_campaigns_page.submit.click
+  end
+
+  def and_i_delete_a_campaign
+    campaigns_page.delete.click
   end
 
 end

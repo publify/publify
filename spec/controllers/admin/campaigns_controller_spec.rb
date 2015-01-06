@@ -97,5 +97,24 @@ describe Admin::CampaignsController, type: :controller do
     end
   end
 
+  describe "#destroy" do
+    before(:each) do
+      @campaign = create(:campaign)
+    end
+
+    it "deletes the campaign" do
+      expect{
+          delete :destroy, id: @campaign
+        }.to change(Campaign, :count).by(-1)
+    end
+
+    it "redirects to campaigns#index" do
+      delete :destroy, id: @campaign
+      expect(response).to redirect_to admin_campaigns_path
+    end
+
+
+  end
+
 
 end

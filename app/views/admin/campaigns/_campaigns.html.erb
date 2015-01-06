@@ -10,7 +10,10 @@
   <tr>
     <td>
       <%= link_to_edit campaign.title, campaign %>
-      <%= show_actions_for_campaign campaign %>
+      <div class="action">
+        <%= button_to_edit_campaign campaign %>
+        <%= button_to_delete_campaign campaign %>
+      </div>
     </td>
     <td><%= campaign.active?%></td>
     <td><%= l(campaign.created_at) %></td>

@@ -20,7 +20,7 @@
   </div>
   <div class="form-group">
     <label for="exampleInputFile">Hero Image</label>
-    <%= file_field :hero_image, :class => 'form-control' %>
+    <%= f.file_field :hero_image, :class => 'form-control' %>
     <%= f.hidden_field :hero_image_cache %>
     <p class="help-block">Recommended size: 1440x480</p>
   </div>

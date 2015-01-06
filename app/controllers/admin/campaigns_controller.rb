@@ -1,6 +1,6 @@
 class Admin::CampaignsController < ApplicationController
   layout 'administration'
-  before_action :find_campaign, only: [:edit, :update]
+  before_action :find_campaign, only: [:edit, :update, :destroy]
 
   def index
     @campaigns = Campaign.all
@@ -32,6 +32,12 @@ class Admin::CampaignsController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    @campaign.destroy
+    flash[:success] = "Campaign deleted successfully"
+    redirect_to admin_campaigns_path
   end
 
   private
