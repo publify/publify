@@ -1,0 +1,22 @@
+.l-page {
+  @include column(12);
+
+  @include respond-to($mq-xl) {
+    @include column(8);
+    @include push(2);
+  }
+}
+
+.l-page__header {
+  margin-top: baseline-unit(3);
+  @include font-size(36);
+  color: $outer-space;
+
+  @include respond-to($mq-l) {
+    @include font-size(48);
+  }
+}
+
+.l-page__body {
+  @include font-size(18);
+}

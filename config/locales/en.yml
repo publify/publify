@@ -101,7 +101,8 @@ en:
       comments: "Comments"
       leave_a_response: "Leave a response"
       what_do_you_think: "What do you think?"
-      if_you_have_an_opinion: "If you have a opinion on this why not share it"
+      really_want_to_share_your_views: "We really want you to share your views, but please remember to be nice ☺<br />Check out our"
+      full_commenting_guidelines: "full commenting guidelines"
       rss_feed: "RSS feed"
       comments_are_disabled: "Comments are disabled"
     comment_form:
@@ -126,6 +127,8 @@ en:
       your_message: "Your message"
       comment_markup_help: "Comment Markup Help"
       preview_comment: "Preview comment"
+      by_clicking_on: "By clicking on 'Post Comment', you're agreeing to our "
+      commenting_policy: "Commenting Policy"
     article_links:
       comments:
         zero: "no comments"

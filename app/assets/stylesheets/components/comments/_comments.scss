@@ -33,9 +33,9 @@
   @include column(12);
 }
 
-.comment-form__group--author, .comment-form__group--email_address {
-  @include column(12);
-
+.comment-form__group--author,
+.comment-form__group--email_address,
+.comment-form__group--policy {
   @include respond-to($mq-two-col) {
     @include column(8);
     @include push(2);
@@ -56,7 +56,8 @@
 }
 
 .comment-form__group {
-  .comment-form__text-field, .comment-form__text-area {
+  .comment-form__text-field,
+  .comment-form__text-area {
     border-width: 0;
     margin-top: $baseline-unit;
     margin-bottom: $baseline-unit*2;

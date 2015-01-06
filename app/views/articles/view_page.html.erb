@@ -1,3 +1,9 @@
-<h1 class='page-header'><%= link_to_permalink(@page, @page.title) %></h1>
-<%= @page.html %>
+<div class="l-page">
+  <div class="l-constrained">
+    <h1 class="l-page__header"><%= @page.title %></h1>
+    <div class="l-page__body">
+      <%= @page.html %>
+    </div>
+  </div>
+</div>
 
