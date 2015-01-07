@@ -55,6 +55,11 @@ class User < ActiveRecord::Base
     self.settings ||= {}
   end
 
+  def full_display_name
+    return display_name unless firstname.present? && lastname.present?
+    "#{firstname} #{lastname}"
+  end
+
   def first_and_last_name
     return '' unless firstname.present? && lastname.present?
     "#{firstname} #{lastname}"
