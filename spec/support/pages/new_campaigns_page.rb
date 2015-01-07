@@ -4,7 +4,7 @@ class NewCampaignsPage < SitePrism::Page
 
   element :campaign_title, "#campaign_title"
   element :description, "#campaign_description"
-  element :active, "#active"
+  element :active, "#campaign_active"
 
   element :primary_link_type, "#campaign_primary_link_attributes_link_type"
   element :primary_link_title, "#campaign_primary_link_attributes_title"

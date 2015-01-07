@@ -38,7 +38,7 @@
     </div>
   </div>
   <div class="checkbox">
-    <%= check_box_tag(:active, params[:active]) %>
+    <%= f.check_box(:active) %>
     <%= label_tag(:active, "Active") %>
   </div>
   <%= f.fields_for :primary_link do |builder| %>
