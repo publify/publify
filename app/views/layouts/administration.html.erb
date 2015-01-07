@@ -4,26 +4,26 @@
   <meta http-equiv="Content-type" content="text/html; charset=utf-8">
   <title><%= this_blog.blog_name %> – <%= controller.controller_name %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="apple-touch-icon-57x57.png" />
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114.png" />
-  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72.png" />
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144x144.png" />
-  <link rel="apple-touch-icon-precomposed" sizes="60x60" href="apple-touch-icon-60x60.png" />
-  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="apple-touch-icon-120x120.png" />
-  <link rel="apple-touch-icon-precomposed" sizes="76x76" href="apple-touch-icon-76x76.png" />
-  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="apple-touch-icon-152x152.png" />
-  <link rel="icon" type="image/png" href="favicon-196x196.png" sizes="196x196" />
-  <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
-  <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
-  <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
-  <link rel="icon" type="image/png" href="favicon-128.png" sizes="128x128" />
-  <meta name="application-name" content="&nbsp;"/>
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/apple-touch-icon-60x60.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+  <link rel="icon" type="image/png" href="/favicon-196x196.png" sizes="196x196" />
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+  <link rel="icon" type="image/png" href="/favicon-128.png" sizes="128x128" />
+  <meta name="application-name" content="Your Money Advice"/>
   <meta name="msapplication-TileColor" content="#FFFFFF" />
-  <meta name="msapplication-TileImage" content="mstile-144x144.png" />
-  <meta name="msapplication-square70x70logo" content="mstile-70x70.png" />
-  <meta name="msapplication-square150x150logo" content="mstile-150x150.png" />
-  <meta name="msapplication-wide310x150logo" content="mstile-310x150.png" />
-  <meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
+  <meta name="msapplication-square70x70logo" content="/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/mstile-310x310.png" />
   <meta http-equiv="imagetoolbar" content="no">
   <%= stylesheet_link_tag 'publify_admin' %>
   <%= javascript_include_tag 'publify_admin' %>
@@ -32,7 +32,7 @@
 <body>
   <nav class='navbar navbar-default navbar-fixed-top' role="navigation">
     <div class="navbar-header">
-      <%= link_to content_tag(:span, '', class: 'glyphicon glyphicon-home'), {controller: 'admin/dashboard'}, {class: "navbar-brand"} %>      
+      <%= link_to content_tag(:span, '', class: 'glyphicon glyphicon-home'), {controller: 'admin/dashboard'}, {class: "navbar-brand"} %>
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#sidebar-top">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
@@ -58,7 +58,7 @@
           <%end %>
         <% end %>
       </ul>
-      <ul class='nav navbar-nav pull-right'>        
+      <ul class='nav navbar-nav pull-right'>
         <li class='dropdown'>
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">
             <%= t("admin.menu.logged_in_as", login: current_user.display_name) %>
@@ -105,7 +105,7 @@
         <%- end %>
         <%= yield  %>
       </div>
-    </div>  
+    </div>
   <footer>
     <div class='row'>
       <div class='col-md-12'>
