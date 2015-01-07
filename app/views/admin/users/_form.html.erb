@@ -27,22 +27,22 @@
     </div>
   </div>
   <% if controller.controller_name == 'users' %>
-  <div class='form-group'>
-    <label class='control-label col-sm-2' for="user_profile"><%= t('.profile')%></label>
-    <div class='col-sm-5'>
-      <%= select("user", "profile_id", @profiles.collect {|p| [t("profile.#{p.label}"), p.id ] }, { include_blank: false }, class: 'form-control') %>
+    <div class='form-group'>
+      <label class='control-label col-sm-2' for="user_profile"><%= t('.profile')%></label>
+      <div class='col-sm-5'>
+        <%= select("user", "profile_id", @profiles.collect {|p| [t("profile.#{p.label}"), p.id ] }, { include_blank: false }, class: 'form-control') %>
+      </div>
     </div>
-  </div>
-  <div class='form-group'>
-    <label class='control-label col-sm-2' for="user_state"><%= t('.user_status')%></label>
-    <div class='col-sm-5'>
-      <select name="user[state]" class='form-control'>
-        <%- User::STATUS.each do |state| %>
-          <option value="<%= state %>" <%= 'selected' if @user.state == state %>><%= t("user.status.#{state}")%></option>
-      <%- end %>
-      </select>
+    <div class='form-group'>
+      <label class='control-label col-sm-2' for="user_state"><%= t('.user_status')%></label>
+      <div class='col-sm-5'>
+        <select name="user[state]" class='form-control'>
+          <%- User::STATUS.each do |state| %>
+            <option value="<%= state %>" <%= 'selected' if @user.state == state %>><%= t("user.status.#{state}")%></option>
+          <%- end %>
+        </select>
+      </div>
     </div>
-  </div>
   <% end %>
 </fieldset>
 
@@ -67,14 +67,14 @@
     </div>
   </div>
   <% unless @user.login.nil? %>
-  <div class='form-group'>
-    <label class='control-label col-sm-2' for="user_name"><%= t('.display_name')%></label>
-    <div class='col-sm-5'>
-      <select name="user[name]" id="user_name" class='form-control'>
-        <%= options_for_select(@user.display_names, @user.name) %>
-      </select>
+    <div class='form-group'>
+      <label class='control-label col-sm-2' for="user_name"><%= t('.display_name')%></label>
+      <div class='col-sm-5'>
+        <select name="user[name]" id="user_name" class='form-control'>
+          <%= options_for_select(@user.display_names, @user.name) %>
+        </select>
+      </div>
     </div>
-  </div>
   <% end %>
   <div class='form-group'>
     <label class='control-label col-sm-2' for="text_filter"><%= t('.article_filter')%></label>
@@ -87,17 +87,17 @@
 </fieldset>
 
 <% unless controller.controller_name == 'users'%>
-<fieldset class='form-horizontal'>
-  <legend><%= t('.avatar') %></legend>
-  <p><%= display_user_avatar(current_user, 'thumb') %> <%= t('.avatar_current') %></p>
-  <div class='form-group'>
-    <label class='control-label col-sm-2' for="avatar"><%= t('.upload')%></label>
-    <div class='col-sm-5'>
-      <%= file_field('user', 'filename', {:class => 'input-file'}) -%>
-      <p class='help-block'><%= t('.upload_file') %></p>
+  <fieldset class='form-horizontal'>
+    <legend><%= t('.avatar') %></legend>
+    <p><%= display_user_avatar(current_user, 'thumb') %> <%= t('.avatar_current') %></p>
+    <div class='form-group'>
+      <label class='control-label col-sm-2' for="avatar"><%= t('.upload')%></label>
+      <div class='col-sm-5'>
+        <%= file_field('user', 'filename', {:class => 'input-file'}) -%>
+        <p class='help-block'><%= t('.upload_file') %></p>
+      </div>
     </div>
-  </div>
-</fieldset>
+  </fieldset>
 <% end %>
 
 <fieldset class='form-horizontal'>
@@ -122,51 +122,27 @@
 </fieldset>
 
 <% unless controller.controller_name == 'users'%>
-<fieldset class='form-horizontal'>
-  <legend><%= t('.contact_settings')%></legend>
-  <div class='alert alert-info'><%= t('.contact_explain', link: link_to(t('.author_page'), author_path(id: current_user.login))) %></div>
-  <div class='form-group'>
+  <fieldset class='form-horizontal'>
+    <legend><%= t('.contact_settings')%></legend>
+    <div class='alert alert-info'><%= t('.contact_explain', link: link_to(t('.author_page'), author_path(id: current_user.login))) %></div>
     <div class='form-group'>
-      <label class='control-label col-sm-2' for="user_description"><%= t('.about')%></label>
-      <div class='col-sm-5'>
-        <%= text_area('user', 'description', {:class => 'form-control', :rows => 5}) %>
+      <div class='form-group'>
+        <label class='control-label col-sm-2' for="user_description"><%= t('.about')%></label>
+        <div class='col-sm-5'>
+          <%= text_area('user', 'description', {:class => 'form-control', :rows => 5}) %>
+        </div>
       </div>
-    </div>
-    <label class='control-label col-sm-2' for="user_url"><%= t('.website')%></label>
-    <div class='col-sm-5'>
-      <%= text_field('user', 'url', {:class => 'form-control'}) %>
-    </div>
-    </div>
-    <div class='form-group'>
-      <label class='control-label col-sm-2' for="user_msn"><%= t('.msn')%></label>
+      <label class='control-label col-sm-2' for="user_url"><%= t('.website')%></label>
       <div class='col-sm-5'>
-        <%= text_field('user', 'msn', {:class => 'form-control'}) %>
-      </div>
-    </div>
-    <div class='form-group'>
-      <label class='control-label col-sm-2' for="user_yahoo"><%= t('.yahoo')%></label>
-      <div class='col-sm-5'>
-        <%= text_field('user', 'yahoo', {:class => 'form-control'}) %>
-      </div>
-    </div>
-    <div class='form-group'>
-      <label class='control-label col-sm-2' for="user_jabber"><%= t('.jabber')%></label>
-      <div class='col-sm-5'>
-        <%= text_field('user', 'jabber', {:class => 'form-control'}) %>
-      </div>
-    </div>
-    <div class='form-group'>
-      <label class='control-label col-sm-2' for="user_aim"><%= t('.aim')%></label>
-      <div class='col-sm-5'>
-        <%= text_field('user', 'aim', {:class => 'form-control'}) %>
+        <%= text_field('user', 'url', {:class => 'form-control'}) %>
       </div>
     </div>
   </fieldset>
-  <% end %>
+<% end %>
 
-  <div class='form-actions'>
-    <hr>
-    <%= link_to(t(".cancel"), {action: 'index'}) %>
-    <%= t(".or") %>
-    <%= submit_tag(t(".save"), class: 'btn btn-success') %>
-  </div>
+<div class='form-actions'>
+  <hr>
+  <%= link_to(t(".cancel"), {action: 'index'}) %>
+  <%= t(".or") %>
+  <%= submit_tag(t(".save"), class: 'btn btn-success') %>
+</div>
