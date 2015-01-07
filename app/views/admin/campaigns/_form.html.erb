@@ -1,7 +1,6 @@
-<%= form_for([:admin, @campaign], :html => {:multipart => true}) do |f| %>
+<%= form_for([:admin, @campaign], html: {multipart: true}) do |f| %>
   <% if @campaign.errors.any? %>
     <div class="error_messages">
-      <h2><%= pluralize(@campaign.errors.count, "error") %> prohibited this campaign from being saved:</h2>
       <ul>
       <% @campaign.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
