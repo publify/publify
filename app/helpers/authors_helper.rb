@@ -3,9 +3,9 @@ module AuthorsHelper
   def display_profile_item(item, item_desc)
     return unless item.present?
     item = link_to(item, item) if is_url?(item)
-    content_tag :li do
-      "#{item_desc} #{item.html_safe}".html_safe
-    end
+    dt = content_tag :dt, item_desc
+    dd = content_tag :dd, item.html_safe
+    "#{dt} #{dd}"
   end
 
   def is_url?(str)

@@ -9,3 +9,7 @@
     @include font-size(18);
   }
 }
+
+.article-body--author-bio {
+  color: $heading-color-primary;
+}

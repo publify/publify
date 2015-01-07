@@ -46,6 +46,17 @@
   @include font-size(16);
 }
 
+.l-results-item__published {
+  @include font-size(16);
+  margin-top: baseline-unit(1);
+}
+
+.l-results-item__comments {
+  @include font-size(16);
+  display: block;
+  margin-top: baseline-unit(2);
+}
+
 .l-results-pagination {
   margin-bottom: baseline-unit(3);
 

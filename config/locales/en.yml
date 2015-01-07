@@ -180,7 +180,7 @@ en:
         designed_by: "Designed by %{designed_by}"
     administration:
       new: "New"
-  authors:
+  author:
     show:
       contact_information: "Contact information"
       web_site: "Web site:"
@@ -189,10 +189,14 @@ en:
       yahoo: "Yahoo:"
       aim: "AIM:"
       twitter: "Twitter:"
-      this_author_has_not_published_any_article_yet: "This author has not published any article yet"
+      this_author_has_not_published_any_article_yet: "This author has not published any posts yet"
       posted_in: "posted in"
       next_page: "Next page"
       previous_page: "Previous page"
+      latest_posts: "Latest posts"
+      comments:
+        one: "1 comment"
+        other: "%{count} comments"
   admin:
     base:
       restart_application: "For security reasons, you should restart your Publify application. Enjoy your blogging experience."
@@ -900,7 +904,7 @@ en:
     formats:
       default: "%m/%d/%Y %H:%M"
       short: "%m/%d/%y"
-      with_spaces: "%d %B %y"
+      with_spaces: "%d %b %Y"
       letters_month_with_year: "%m %Y"
   date:
     month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]

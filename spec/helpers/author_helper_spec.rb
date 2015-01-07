@@ -1,9 +1,14 @@
 describe AuthorsHelper, type: :helper do
 
   describe 'display_profile_item' do
-    it 'should display the item as a list item if show_item is true' do
+    it 'should display the item title as a dt if show_item is true' do
       item = display_profile_item('my@jabber.org', 'Jabber:')
-      expect(item).to have_selector('li', text: 'Jabber: my@jabber.org')
+      expect(item).to have_selector('dt', text: 'Jabber')
+    end
+
+    it 'should display the item value as a dd if show_item is true' do
+      item = display_profile_item('my@jabber.org', 'Jabber:')
+      expect(item).to have_selector('dd', text: 'my@jabber.org')
     end
 
     it 'should NOT display the item empty' do
@@ -13,7 +18,7 @@ describe AuthorsHelper, type: :helper do
 
     it 'should display a link if the item is an url' do
       item = display_profile_item('http://twitter.com/mytwitter', 'Twitter:')
-      expect(item).to have_selector('li') do
+      expect(item).to have_selector('dd') do
         have_selector('a', text: 'http://twitter.com/mytwitter')
       end
     end

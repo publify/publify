@@ -1,39 +1,73 @@
-<div class="post">
-  <h2><%= @author.nickname %></h2>
-  <%= display_user_avatar(@author, 'thumb', 'alignright') %>
 
-  <%= author_description @author %>
-
-  <h2><%= t(".contact_information") %></h2>
-  <ul>
-    <%= display_profile_item @author.url, t(".web_site") %>
-    <%= display_profile_item @author.msn, t(".msn") %>
-    <%= display_profile_item @author.yahoo, t(".yahoo") %>
-    <%= display_profile_item @author.jabber, t(".jabber") %>
-    <%= display_profile_item @author.aim, t(".aim") %>
-  </ul>
-</div>
-
-<% if @articles.empty? -%>
-  <div class="post">
-  <p><%= t(".this_author_has_not_published_any_article_yet")%></p>
-</div>
-<% else
-currentmonth = 0
-currentyear = 0
-for article in @articles
-  if (article.published_at.month != currentmonth || article.published_at.year != currentyear)
-    currentmonth = article.published_at.month
-    currentyear = article.published_at.year -%>
-  <h3 class="archivemonth"><%= l(article.published_at, format: :letters_month_with_year) %></h3>
-  <% end -%>
-    <div class="archivepost">
-      <%= article.published_at.mday %> -
-      <%= link_to_permalink(article,h(article.title)) %>
-      <% if !article.tags.empty? %> <%= t(".posted_in") %>
-        <%= article.tags.collect {|c| link_to_permalink c,c.name }.join(", ") -%>
-    <% end -%>
+<div class="l-banner">
+  <div class="l-constrained">
+    <div class="l-banner__tags">
     </div>
-  <% end %>
-    <%= paginate @articles, :next_label => "#{t(".next_page")} &raquo;", :previous_label => "&laquo; #{t('.previous_page')}" %>
-  <%  end -%>
+  </div>
+</div>
+
+<main role="main" class="l-article l-article--author-page">
+  <div class="l-constrained">
+    <h1 class="l-article__header"><%= @author.nickname %></h1>
+
+    <div class="l-article__body article-body article-body--author-bio">
+      <% if @author.description.present? %>
+        <%= simple_format @author.description %>
+      <% end %>
+    </div>
+
+    <div class="l-results">
+      <h2 class="l-results__title"><%= t('.latest_posts')%></h2>
+
+      <% if @articles.empty? %>
+        <p><%= t(".no_articles_found")%></p>
+      <% else %>
+        <% @articles.each do |article| %>
+          <div class="l-results-item">
+            <h3 class="l-results-item__header">
+              <%= link_to_permalink(article,h(article.title)) %>
+            </h3>
+            <div class="l-results-item__published">
+              <%= l(article.published_at, format: :with_spaces) %>
+            </div>
+            <a class="l-results-item__comments comments-count" href="<%= article.permalink_url('comments') %>">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 22 21" enable-background="new 0 0 22 21" xml:space="preserve" class="comments-count__icon">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M19.5 0h-17C1.1 0 0 1.1 0 2.5v12C0 15.9 1.1 17 2.5 17h17 c1.4 0 2.5-1.1 2.5-2.5v-12C22 1.1 20.9 0 19.5 0z"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M2.5 8.5c0 0 8 4 3 12.5c0 0 9.7-1.8 10-12L2.5 8.5z"/>
+              </svg>
+              <%= t('.comments', count: article.comments.count) %>
+            </a>
+          </div>
+        <% end %>
+      <% end %>
+
+      <% if @articles.total_pages > 1 %>
+        <nav class="l-results-pagination">
+          <p class="l-results-pagination__text">Page <%= @articles.current_page %> of <%= @articles.total_pages %></p>
+
+          <% unless @articles.first_page? %>
+            <a href="/archives?page=<%= @articles.current_page-1 %>" class="button">&lt; Previous</a>
+          <% end %>
+          <% unless @articles.last_page? %>
+            <a href="/archives?page=<%= @articles.current_page+1 %>" class="button">Next &gt;</a>
+          <% end %>
+        </nav>
+      <% end %>
+    </div>
+
+    <aside class="l-article-info">
+      <div class="author-info">
+        <%= display_user_avatar(@author, 'thumb', 'article-info__image') %>
+        <dl class="article-info__contacts">
+          <%= display_profile_item @author.url, t('.web_site') %>
+          <%= display_profile_item @author.msn, t('.msn') %>
+          <%= display_profile_item @author.yahoo, t('.yahoo') %>
+          <%= display_profile_item @author.jabber, t('.jabber') %>
+          <%= display_profile_item @author.aim, t('.aim') %>
+          <%= display_profile_item @author.twitter, t('.twitter') %>
+        </dl>
+      </div>
+    </aside>
+
+  </div>
+</main>
