@@ -107,9 +107,8 @@ describe 'Given a new blog', type: :model do
     expect(blog.meta_keywords).to eq('')
   end
 
-  it 'Google analytics and Webmaster toold should be empty' do
+  it 'Google analytics tools should be empty' do
     expect(blog.google_verification).to eq('')
-    expect(blog.google_analytics).to eq('')
   end
 
   it '#feedburner should be empty' do

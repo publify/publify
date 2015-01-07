@@ -38,7 +38,6 @@ describe Admin::SettingsController, type: :controller do
                      'authenticity_token' => 'f9ed457901b96c65e99ecb73991b694bd6e7c56b',
                      'setting' => { 'permalink_format' => '/%title%.html',
                                  'unindex_categories' => '1',
-                                 'google_analytics' => '',
                                  'meta_keywords' => 'my keywords',
                                  'meta_description' => '',
                                  'rss_description' => '1',

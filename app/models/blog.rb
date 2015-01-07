@@ -64,7 +64,6 @@ class Blog < ActiveRecord::Base
   # SEO
   setting :meta_description,           :string, ''
   setting :meta_keywords,              :string, ''
-  setting :google_analytics,           :string, ''
   setting :feedburner_url,             :string, ''
   setting :rss_description,            :boolean, false
   setting :rss_description_text,       :string, "<hr /><p><small>Original article written by %author% and published on <a href='%blog_url%'>%blog_name%</a> | <a href='%permalink_url%'>direct link to this article</a> | If you are reading this article anywhere other than on <a href='%blog_url%'>%blog_name%</a>, it has been illegally reproduced and without proper authorization.</small></p>"
