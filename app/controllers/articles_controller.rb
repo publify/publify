@@ -45,6 +45,9 @@ class ArticlesController < ContentController
         auto_discovery_feed(only_path: false)
         render_articles_feed('rss')
       end
+      format.json do
+        render_articles_feed('json')
+      end
     end
   end
 

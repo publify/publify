@@ -110,6 +110,10 @@ def assert_rss20 feed, count
   expect(root.css('channel item').count).to eq(count)
 end
 
+def assert_json feed, count
+  expect(JSON.parse(feed).count).to eq(count)
+end
+
 def stub_full_article(time = Time.now)
   author = FactoryGirl.build_stubbed(User, name: 'User Name')
   text_filter = FactoryGirl.build(:textile)

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   get 'articles.:format', to: 'articles#index', constraints: { format: 'rss' }, as: 'rss'
   get 'articles.:format', to: 'articles#index', constraints: { format: 'atom' }, as: 'atom'
+  get 'articles.:format', to: 'articles#index', constraints: { format: 'json' }, as: 'json'
 
   scope controller: 'xml', path: 'xml' do
     get 'articlerss/:id/feed.xml', action: 'articlerss', format: false

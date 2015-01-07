@@ -215,6 +215,13 @@ describe ArticlesController, 'feeds', type: :controller do
     expect(assigns(:articles)).to eq([article1, article2])
   end
 
+  specify '/articles.json => a JSON serialized object' do
+    get 'index', format: 'json'
+    expect(response).to be_success
+    expect(response).to render_template('index_json_feed', layout: false)
+    expect(assigns(:articles)).to eq([article1, article2])
+  end
+
   specify 'atom feed for archive should be valid' do
     get 'index', year: 2004, month: 4, format: 'atom'
     expect(response).to render_template('index_atom_feed', layout: false)
