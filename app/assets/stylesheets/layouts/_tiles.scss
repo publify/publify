@@ -58,8 +58,8 @@
   }
 }
 
-.l-tile__archive {
-  float: right !important;
+.l-tile--archive {
+  float: right;
 
   @include respond-to($mq-m) {
     .flexbox & {
@@ -67,6 +67,10 @@
       float: none;
     }
 
-    padding-left: 5px !important;
+    &:nth-child(3n-2) {
+      .non-article-page & {
+        padding-left: 5px;
+      }
+    }
   }
 }
