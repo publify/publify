@@ -43,9 +43,9 @@ class Admin::CampaignsController < ApplicationController
   private
 
   def campaign_params
-    params.require(:campaign).permit(:title, :description, :hero_image, :hero_image_alt_text, :active,
-                  primary_link_attributes: [:link_type, :title, :url],
-                  secondary_link_attributes: [:link_type, :title, :url] )
+    params.require(:campaign).permit(:title, :description, :hero_image, :hero_image_alt_text, :active, :hero_image_cache,
+                  primary_link_attributes: [:link_type, :title, :url, :id],
+                  secondary_link_attributes: [:link_type, :title, :url, :id] )
   end
 
   def find_campaign
