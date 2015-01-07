@@ -17,19 +17,18 @@
   margin-bottom: 5px;
 
   @include respond-to($mq-m) {
+    float: left;
+
     .non-article-page & {
       width: 50%;
-      float: left;
-      min-height: 400px;
+      padding-left: 5px;
 
       .flexbox & {
         flex-basis: 50%;
         float: none;
         min-height: 0;
+        display: flex;
       }
-
-      padding-left: 5px;
-      display: flex;
 
       &:nth-child(2n-1) {
         padding-left: 0;
@@ -40,12 +39,12 @@
   @include respond-to($mq-l) {
     .non-article-page &,
     .article-page & {
-      width: 33.3%;
+      width: 33.333%;
       padding-left: 5px;
-      display: flex;
 
       .flexbox & {
-        flex-basis: 33.3%;
+        display: flex;
+        flex-basis: 33.333%;
       }
 
       &:nth-child(2n-1) {
@@ -54,6 +53,23 @@
 
       &:nth-child(3n-2) {
         padding-left: 0;
+      }
+    }
+  }
+}
+
+.l-tile--archive {
+  float: right;
+
+  @include respond-to($mq-m) {
+    .flexbox & {
+      margin-left: auto;
+      float: none;
+    }
+
+    &:nth-child(3n-2) {
+      .non-article-page & {
+        padding-left: 5px;
       }
     }
   }
