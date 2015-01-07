@@ -20,10 +20,10 @@
     <nav class="l-results-pagination">
       <p class="l-results-pagination__text">Page <%= @articles.current_page %> of <%= @articles.total_pages %></p>
 
-      <% if !@articles.first_page? %>
+      <% unless @articles.first_page? %>
         <a href="/archives?page=<%= @articles.current_page-1 %>" class="button">&lt; Previous</a>
       <% end %>
-      <% if !@articles.last_page? %>
+      <% unless @articles.last_page? %>
         <a href="/archives?page=<%= @articles.current_page+1 %>" class="button">Next &gt;</a>
       <% end %>
     </nav>
