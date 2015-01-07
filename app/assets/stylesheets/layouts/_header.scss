@@ -189,6 +189,7 @@
 }
 
 .l-header-title__link {
+  &:link,
   &:focus,
   &:hover,
   &:visited {
