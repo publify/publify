@@ -46,7 +46,7 @@ class Content < ActiveRecord::Base
   validates :hero_image_alt_text, presence: true, if: Proc.new { |c| c.hero_image.present? }
   validates :teaser_image_alt_text, presence: true, if: Proc.new { |c| c.teaser_image.present? }
 
-  validates :permalink, uniqueness: true
+  validates :permalink, uniqueness: true, if: :published?
 
   validates :core_content_url, presence: true, if: Proc.new { |c| c.core_content_text.present? }
   validates :core_content_text, presence: true, if: Proc.new { |c| c.core_content_url.present? }
