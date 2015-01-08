@@ -38,12 +38,30 @@
   margin-bottom: 0;
 }
 
-.l-footer-link__list {
+.l-footer-link__list, .l-footer-social__list-item {
   margin-top: baseline-unit(2);
 
   @include respond-to($mq-m) {
     margin-top: baseline-unit(5);
+    margin-bottom: baseline-unit(5);
   }
+}
+
+.l-footer-social__list-item {
+  float: left;
+  margin-right: 15px;
+}
+
+.l-footer-social__list-item.twitter {
+  width: 20%;
+}
+
+.l-footer-social__list-item.facebook {
+  width: 8%;
+}
+
+.l-footer-social__list-item.youtube {
+  width: 41%;
 }
 
 .l-footer-links-section--helpful {
