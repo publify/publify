@@ -3,7 +3,7 @@ require 'base64'
 module Admin; end
 
 class Admin::ContentController < Admin::BaseController
-  layout :get_layout
+  layout 'administration'
 
   cache_sweeper :blog_sweeper
 
@@ -162,16 +162,5 @@ class Admin::ContentController < Admin::BaseController
 
   def update_params
     params.require(:article).except(:id).permit!
-  end
-
-  def get_layout
-    case action_name
-    when 'new', 'edit', 'create'
-      'editor'
-    when 'show', 'autosave'
-      nil
-    else
-      'administration'
-    end
   end
 end
