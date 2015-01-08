@@ -14,7 +14,9 @@ class Admin::ContentController < Admin::BaseController
 
   def index
     @search = params[:search] ? params[:search] : {}
-    @articles = Article.search_with(@search).page(params[:page]).per(this_blog.admin_display_elements)
+    @articles = Article.search_with(@search)
+    @articles = @articles.where('parent_id IS NULL')
+    @articles = @articles.page(params[:page]).per(this_blog.admin_display_elements)
 
     if request.xhr?
       respond_to do |format|
