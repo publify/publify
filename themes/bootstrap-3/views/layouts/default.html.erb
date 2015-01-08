@@ -15,9 +15,6 @@
       <ul class='nav navbar-nav pull-right'>
         <li><%= link_to(t('.statuses'), {controller: 'notes'}) %></li>
         <li><%= link_to(t('.archives'), {controller: 'articles', action: 'archives'}) %></li>
-        <%- Page.published.each do |page| %>
-        <li><%= link_to_permalink(page, page.title) %></li>
-        <%- end %>
       </ul>
     </div>
   </nav>
