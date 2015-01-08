@@ -3,7 +3,7 @@
 <div id='autosave'><%= hidden_field_tag('article[id]', @article.id) if @article.present? %></div>
 
 <div class='row save-bar'>
-  <div class='col-md-8 col-md-offset-2' id='save-bar'>
+  <div class='col-md-12' id='save-bar'>
     <div class='pull-right'>
       <%= link_to(t('.cancel'), {action: 'index'}, {class: 'btn btn-default'}) %>
       <span id='preview_link'>
@@ -19,29 +19,23 @@
 </div>
 
 <div class='row'>
-  <div class='col-md-8 col-md-offset-2' id='error-message-article'>
-    <%= render 'shared/flash', flash: flash %>
-    <%= error_messages_for 'article' %>
-  </div>
-</div>
-
-<ul class='nav nav-tabs' role='tablist'>
-  <li role='presentation' class='active'><a href='#main-details' aria-controls='main-details' role='tab' data-toggle='tab'>Main Details</a></li>
-  <li role='presentation'><a href='#images' aria-controls='images' role='tab' data-toggle='tab'>Images</a></li>
-  <li role='presentation'><a href='#core-content' aria-controls='core-content' role='tab' data-toggle='tab'>Core Content</a></li>
-  <li role='presentation'><a href='#related-content' aria-controls='related-content' role='tab' data-toggle='tab'>Related Blog Posts</a></li>
-</ul>
-
-<div class='row'>
-  <div class='col-md-8'>
+  <div class='col-md-12'>
     <%= text_field 'article', 'title', :class => 'form-control', :placeholder => t('.title') %>
   </div>
 </div>
 
+<ul class='nav nav-tabs' role='tablist'>
+  <li role='presentation' class='active'><a href='#main-details' aria-controls='main-details' role='tab' data-toggle='tab'>Article Content</a></li>
+  <li role='presentation'><a href='#images' aria-controls='images' role='tab' data-toggle='tab'>Images</a></li>
+  <li role='presentation'><a href='#seo' aria-controls='seo' role='tab' data-toggle='tab'>SEO</a></li>
+  <li role='presentation'><a href='#core-content' aria-controls='core-content' role='tab' data-toggle='tab'>Core Content</a></li>
+  <li role='presentation'><a href='#related-content' aria-controls='related-content' role='tab' data-toggle='tab'>Related Blog Posts</a></li>
+</ul>
+
 <div class='article-tab-content tab-content'>
   <div role='tabpanel' class='tab-pane active' id='main-details'>
     <div class='row'>
-      <div class='col-md-8'>
+      <div class='col-md-12'>
         <div id='editor'>
           <%= cktext_area('article', 'body_and_extended', class: 'form-control', placeholder: t('.type_your_post')) %>
         </div> <!-- End of editor -->
@@ -53,32 +47,23 @@
         </div>
       </div>
     </div>
-    <div class='row article-seo'>
-      <div class='col-md-8'>
-        <h3>SEO</h3>
-        <label for='article_title_meta_tag'>Page Title (leave empty to use the article's title)</label>
-        <%= text_field 'article', 'title_meta_tag', class: 'form-control' %>
-        <label for='article_description_meta_tag'>Meta Description</label>
-        <%= text_field 'article', 'description_meta_tag', class: 'form-control' %>
-      </div>
-    </div>
   </div>
   <div role='tabpanel' class='tab-pane' id='images'>
     <div class='article-image-fields'>
       <div class='row'>
-        <div class='col-md-8'>
+        <div class='col-md-6'>
           <h3>Hero Image</h3>
         </div>
       </div>
       <div class='row'>
-        <div class='col-md-4'>
+        <div class='col-md-6'>
           <label for='article_hero_image'>File to Upload</label>
           <%= file_field 'article', 'hero_image', :class => 'form-control' %>
           <%= hidden_field 'article', 'hero_image_cache' %>
           <label for='article_teaser_image_alt_text'>Alt Text</label>
           <%= text_field 'article', 'hero_image_alt_text', :class => 'form-control' %>
         </div>
-        <div class='col-md-4'>
+        <div class='col-md-6'>
           <% if @article.hero_image.present? %>
               <%= image_tag @article.hero_image.url(:resized) %>
               <label><%= check_box 'article', 'remove_hero_image' %> Remove?</label>
@@ -88,19 +73,19 @@
     </div>
     <div class='article-image-fields'>
       <div class='row'>
-        <div class='col-md-8'>
+        <div class='col-md-12'>
           <h3>Teaser Image</h3>
         </div>
       </div>
       <div class='row'>
-        <div class='col-md-4'>
+        <div class='col-md-6'>
           <label for='article_teaser_image'>File to Upload</label>
           <%= file_field 'article', 'teaser_image', :class => 'form-control' %>
           <%= hidden_field 'article', 'teaser_image_cache' %>
           <label for='article_teaser_image_alt_text'>Alt Text</label>
           <%= text_field 'article', 'teaser_image_alt_text', :class => 'form-control' %>
         </div>
-        <div class='col-md-4'>
+        <div class='col-md-6'>
           <% if @article.teaser_image.present? %>
               <%= image_tag @article.teaser_image.url(:resized) %>
               <label><%= check_box 'article', 'remove_teaser_image' %> Remove?</label>
@@ -109,9 +94,19 @@
       </div>
     </div>
   </div>
+  <div role='tabpanel' class='tab-pane' id='seo'>
+    <div class='row article-seo'>
+      <div class='col-md-6'>
+        <label for='article_title_meta_tag'>Page Title (leave empty to use the article's title)</label>
+        <%= text_field 'article', 'title_meta_tag', class: 'form-control' %>
+        <label for='article_description_meta_tag'>Meta Description</label>
+        <%= text_field 'article', 'description_meta_tag', class: 'form-control' %>
+      </div>
+    </div>
+  </div>
   <div role='tabpanel' class='tab-pane' id='core-content'>
     <div class='row article-core-content'>
-      <div class='col-md-8'>
+      <div class='col-md-12'>
         <p>Either complete both, or leave both empty.</p>
         <label for='article_core_content_text'>Text</label>
         <%= text_field 'article', 'core_content_text', class: 'form-control' %>
