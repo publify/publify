@@ -49,7 +49,8 @@
   }
 }
 
-.l-article__body {
+.l-article__body,
+.l-article__results {
   @include respond-to($mq-two-col) {
     @include column(7);
     @include push(3);

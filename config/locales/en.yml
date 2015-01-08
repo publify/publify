@@ -90,6 +90,9 @@ en:
     archives:
       posted_in: "Posted in"
       no_articles_found: "No articles found"
+      comments:
+        one: "1 comment"
+        other: "%{count} comments"
     read:
       comments_are_disabled: "Comments are disabled"
       trackbacks_for: "Trackbacks for"

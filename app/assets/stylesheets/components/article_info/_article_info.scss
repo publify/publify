@@ -51,15 +51,3 @@
 .article-info__link {
   display: block;
 }
-
-.article-info__contacts {
-  dt {
-    color: $contact-info-title-color;
-  }
-
-  dd {
-    color: $contact-info-value-color;
-    margin-left: 0;
-    margin-bottom: baseline-unit(2);
-  }
-}
