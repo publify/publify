@@ -12,7 +12,7 @@
       <input id='save_draft' type='submit' value='<%= t('.save_as_draft') %>' name='article[draft]' class='btn btn-default'>
       <!-- Button trigger modal -->
       <button class='btn btn-success' data-toggle='modal' data-target='#publishOptions'>
-        <%= controller.action_name == 'new' ? t('.publish') : t('.save') %>
+        <%= ['new', 'create'].include?(controller.action_name) ? t('.publish') : t('.save') %>
       </button>
     </div>
   </div>
