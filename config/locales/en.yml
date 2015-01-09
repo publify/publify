@@ -717,6 +717,7 @@ en:
       index:
         published: "Published"
         new_article: "New article"
+        any_state: "Any state"
         all_articles: "All articles"
         manage_articles: "Manage articles"
         withdrawn: "Withdrawn"
