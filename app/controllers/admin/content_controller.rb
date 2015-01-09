@@ -80,9 +80,13 @@ class Admin::ContentController < Admin::BaseController
       end
       if @article.draft?
         flash[:success] = I18n.t('admin.content.update.success.draft')
+      elsif @article.withdrawn?
+        flash[:success] = I18n.t('admin.content.update.success.withdrawn')
       else
         if (@article.previous_changes['state'] || []).include?('draft')
           flash[:success] = I18n.t('admin.content.update.success.published')
+        elsif (@article.previous_changes['state'] || []).include?('withdrawn')
+          flash[:success] = I18n.t('admin.content.update.success.published_withdrawn')
         else
           flash[:success] = I18n.t('admin.content.update.success.published_updated')
         end
@@ -124,7 +128,13 @@ class Admin::ContentController < Admin::BaseController
 
   def update_article_attributes
     # Setting the state triggers an override of #published_at= so needs to be be done early
-    @article.state = params[:draft] ? 'draft' : 'published'
+    @article.state = if params[:draft]
+                       'draft'
+                     elsif params[:withdraw]
+                       'withdrawn'
+                     else
+                       'published'
+                     end
     @article.attributes = update_params
     @article.published_at = parse_date_time params[:article][:published_at]
     @article.save_attachments!(params[:attachments])

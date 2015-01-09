@@ -706,6 +706,8 @@ en:
           draft: "Draft article succesfully updated"
           published: "Draft article successfully published"
           published_updated: "Published article was successfully updated"
+          published_withdrawn: "Withdrawn article was successfully republished and is now visible to visitors"
+          withdrawn: "Published article was successfully withdrawn and is no longer visible to visitors"
       access_granted:
         error: "Error, you are not allowed to perform this action"
       autosave:
@@ -736,6 +738,8 @@ en:
         publish: "Publish"
         update_published: "Update published article"
         publish_draft: "Publish draft"
+        withdraw: "Withdraw"
+        reinstate_withdrawn: "Reinstate withdrawn article"
         default: "Default"
         cancel: "Cancel"
         allow_comments_status:

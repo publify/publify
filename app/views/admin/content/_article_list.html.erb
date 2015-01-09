@@ -12,7 +12,11 @@
     <%- if article.published %>
       <%= link_to_permalink(article, article.title, nil, 'published')%>
     <%- else %>
-      <strong class="label label-info">Draft:</strong>
+      <%- if article.draft? %>
+        <strong class="label label-info">Draft</strong>
+      <%- elsif article.withdrawn? %>
+        <strong class="label label-danger">Withdrawn</strong>
+      <%- end %>
       <%= link_to(article.title, {controller: '/articles', action: "preview", id: article.id}, {class: 'unpublished', target: '_new'}) %>
     <%- end %>
     <%= show_actions article %>

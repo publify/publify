@@ -186,20 +186,26 @@
       <input id='save_draft' type='submit' value='<%= draft_button_text %>' name='draft' class='btn btn-default'>
     <% end %>
 
+    <% if @article.published? %>
+      <input id='save_and_withdraw' type='submit' value='<%= t('.withdraw') %>' name='withdraw' class='btn btn-default'>
+    <% end %>
+
     <% if @article.new_record? %>
       <% publish_button_text = t('.publish') %>
     <% else %>
       <% if @article.draft? %>
         <% publish_button_text = t('.publish_draft') %>
-      <% else %>
+      <% elsif @article.published? %>
         <% publish_button_text = t('.update_published') %>
+      <% elsif @article.withdrawn? %>
+        <% publish_button_text = t('.reinstate_withdrawn') %>
       <% end %>
     <% end %>
     <input id='save_and_publish' type='submit' value='<%= publish_button_text %>' class='btn btn-default'>
 
     <% if !@article.new_record? %>
       or
-      <% if @article.draft? %>
+      <% if @article.draft? || @article.withdrawn? %>
         <%= link_to t('.preview'), { controller: '/articles', action: 'preview', id: @article.id }, target: 'blank' %>
       <% else %>
         <%= link_to t('.view'), @article.permalink_url, target: 'blank' %>

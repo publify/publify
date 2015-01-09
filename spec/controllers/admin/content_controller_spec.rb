@@ -280,6 +280,34 @@ describe Admin::ContentController, type: :controller do
           end
         end
       end
+
+      describe 'withdrawing a published article' do
+        before do
+          put(:update,
+              id: @article.id,
+              article: { id: @article.id },
+              withdraw: '')
+          @article.reload
+        end
+
+        it 'sets the published flag to false' do
+          expect(@article.published).to be_falsy
+        end
+      end
+
+      describe 'reinstating a withdrawn article' do
+        before do
+          @article.update_attribute(:state, 'withdrawn')
+          put(:update,
+              id: @article.id,
+              article: { id: @article.id })
+          @article.reload
+        end
+
+        it 'sets the published flag to true' do
+          expect(@article.published).to be_truthy
+        end
+      end
     end
 
     describe 'auto_complete_for_article_keywords action' do
