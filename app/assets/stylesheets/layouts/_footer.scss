@@ -40,10 +40,42 @@
 
 .l-footer-link__list {
   margin-top: baseline-unit(2);
+  margin-bottom: baseline-unit(4);
 
   @include respond-to($mq-m) {
     margin-top: baseline-unit(5);
+    margin-bottom: baseline-unit(5);
   }
+}
+
+.l-footer-social__list-item {
+  float: left;
+  margin-top: baseline-unit(2);
+  margin-right: 15px;
+
+  @include respond-to($mq-l) {
+    margin-right: 20px;
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
+    svg {
+      fill: $link-color;
+    }
+  }
+}
+
+.l-footer-social__list-item.twitter {
+  width: 32px;
+}
+
+.l-footer-social__list-item.facebook {
+  width: 13px;
+}
+
+.l-footer-social__list-item.youtube {
+  width: 72px;
 }
 
 .l-footer-links-section--helpful {
