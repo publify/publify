@@ -7,7 +7,7 @@
     <% end %>
 
     <div class="comment-form__group comment-form__group--body">
-      <%= f.text_area :body, :rows => 8, class: 'form-control comment-form__text-area', placeholder: t('.your_comment') %>
+      <%= f.text_area :body, :rows => 8, class: 'form-control comment-form__text-area', placeholder: t('.your_comment'), :autocomplete => "disabled" %>
     </div>
 
     <div class="comment-form__group comment-form__group--author">
