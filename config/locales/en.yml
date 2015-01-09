@@ -698,9 +698,14 @@ en:
         latest_comments: "Latest Comments"
     content:
       create:
-        success: "Article was successfully created"
+        success:
+          draft: "Draft article successfully created"
+          published: "Article successfully created and published"
       update:
-        success: "Article was successfully updated"
+        success:
+          draft: "Draft article succesfully updated"
+          published: "Draft article successfully published"
+          published_updated: "Published article was successfully updated"
       access_granted:
         error: "Error, you are not allowed to perform this action"
       autosave:
@@ -724,8 +729,13 @@ en:
       form:
         article_type: "Article type"
         now: "now"
-        preview: "Preview"
-        save: "Save"
+        preview: "preview this article"
+        view: "view live article"
+        save_as_draft: "Save as draft"
+        update_draft: "Update draft"
+        publish: "Publish"
+        update_published: "Update published article"
+        publish_draft: "Publish draft"
         default: "Default"
         cancel: "Cancel"
         allow_comments_status:
@@ -735,26 +745,26 @@ en:
           zero: "disabled"
           one: "enabled"
         public: "Public"
-        publish: "Publish"
         title: "Title"
         images: "Images"
         publish_settings: "Publish settings"
         status: "Status"
-        published: "Published"
+        published: "Published at Timestamp (for display and sorting)"
         allowed_comments_and_trackbacks: "Comments are %{allow_comment} and trackbacks are %{allow_trackback}"
         change: "Change"
+        publish_at_note: "If left blank, populates automatically with the current time when publishing"
         allow_trackbacks: "Allow trackbacks"
         allow_comments: "Allow comments"
         ok: "OK"
         visibility: "Visibility"
         password: "Password"
-        permalink: "Permalink"
+        permalink: "Permalink (URL Slug)"
         article_filter: "Article filter"
-        save_as_draft: "Save as draft"
         categories: "Categories"
         tags: "Tags"
         tags_explaination: "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;."
         type_your_post: "Type your post"
+        close_modal: "Close"
       categories:
         new_category: "New Category"
     categories:

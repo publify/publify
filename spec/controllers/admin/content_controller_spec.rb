@@ -50,38 +50,6 @@ describe Admin::ContentController, type: :controller do
       end
     end
 
-    describe '#autosave' do
-      context 'first time save' do
-        it { expect{
-          xhr :post, :autosave, article: attributes_for(:article)
-        }.to change(Article, :count).from(1).to(2) }
-
-        it { expect{
-          xhr :post, :autosave, article: attributes_for(:article, :with_tags)
-        }.to change(Tag, :count).from(0).to(2) }
-      end
-
-      context 'second call to save' do
-        let!(:draft) { create(:article, published: false, state: 'draft') }
-        it { expect{
-          xhr :post, :autosave, article: { id: draft.id, body_and_extended: 'new body' }
-        }.to_not change(Article, :count) }
-      end
-
-      context 'with an other existing draft' do
-        let!(:draft) { create(:article, published: false, state: 'draft', body: 'existing body') }
-        it { expect{
-          xhr :post, :autosave, article: attributes_for(:article)
-        }.to change(Article, :count).from(2).to(3) }
-
-        it 'dont replace existing draft' do
-          xhr :post, :autosave, article: attributes_for(:article)
-          expect(assigns(:article).id).to_not eq(draft.id)
-          expect(assigns(:article).body).to_not eq(draft.body)
-        end
-      end
-    end
-
     describe 'new' do
       before(:each) { get :new }
       it { expect(response).to be_success }
@@ -102,22 +70,26 @@ describe Admin::ContentController, type: :controller do
 
       context 'classic' do
         let(:created_article) { Article.last }
-        before(:each) { post :create, article: article_params }
+        let(:params) { { article: article_params } }
+
+        before(:each) { post :create, params }
 
         it { expect(response).to redirect_to(action: :edit, id: created_article.id) }
-        it { expect(flash[:success]).to eq(I18n.t('admin.content.create.success')) }
+        it { expect(flash[:success]).to eq(I18n.t('admin.content.create.success.published')) }
 
         it { expect(assigns(:article)).to be_published }
         it { expect(assigns(:article).user).to eq(user) }
 
         context 'when doing a draft' do
-          let(:article_params) { { title: 'posted via tests!', body: 'a good boy', state: 'draft' } }
+          let(:article_params) { { title: 'posted via tests!', body: 'a good boy' } }
+          let(:params) { { article: article_params, draft: '' } }
+
           it { expect(assigns(:article)).to_not be_published }
         end
       end
 
       context 'write for futur' do
-        let(:article_params) { { title: 'posted via tests!', body: 'a good boy', state: 'draft', published_at: (Time.now + 1.hour).to_s } }
+        let(:article_params) { { title: 'posted via tests!', body: 'a good boy', published_at: (Time.now + 1.hour).to_s } }
 
         it { expect{
           post :create, article: article_params
@@ -194,21 +166,6 @@ describe Admin::ContentController, type: :controller do
       expect(new_article.html(:extended)).to eq '<p><em>foo</em></p>'
     end
 
-    context 'with a previously autosaved draft' do
-      before do
-        @draft = create(:article, body: 'draft', state: 'draft', published: false)
-        post(:create, article: { id: @draft.id, body: 'update', published: true })
-      end
-
-      it 'updates the draft' do
-        expect(Article.find(@draft.id).body).to eq 'update'
-      end
-
-      it 'makes the draft published' do
-        expect(Article.find(@draft.id)).to be_published
-      end
-    end
-
     describe 'with an unrelated draft in the database' do
       before do
         @draft = create(:article, state: 'draft')
@@ -216,7 +173,7 @@ describe Admin::ContentController, type: :controller do
 
       describe 'saving new article as draft' do
         it 'leaves the original draft in existence' do
-          post :create, article: base_article(draft: 'save as draft')
+          post :create, article: base_article, draft: ''
           expect(assigns(:article).id).not_to eq(@draft.id)
           expect(Article.find(@draft.id)).not_to be_nil
         end
@@ -304,26 +261,6 @@ describe Admin::ContentController, type: :controller do
         expect(Article).not_to be_exists(id: draft_2.id)
       end
 
-      describe 'publishing a published article with an autosaved draft' do
-        before do
-          @orig = create(:article)
-          @draft = create(:article, parent_id: @orig.id, state: 'draft', published: false)
-          put(:update,
-              id: @orig.id,
-              article: { id: @draft.id, body: 'update' })
-        end
-
-        it 'updates the original' do
-          expect(Article.find(@orig.id).body).to eq('update')
-        end
-
-        it 'deletes the draft' do
-          assert_raises ActiveRecord::RecordNotFound do
-            Article.find(@draft.id)
-          end
-        end
-      end
-
       describe 'publishing a draft copy of a published article' do
         before do
           @orig = create(:article)
@@ -341,37 +278,6 @@ describe Admin::ContentController, type: :controller do
           assert_raises ActiveRecord::RecordNotFound do
             Article.find(@draft.id)
           end
-        end
-      end
-
-      describe 'saving a published article as draft' do
-        before do
-          @orig = create(:article)
-          put(:update,
-              id: @orig.id,
-              article: { title: @orig.title, draft: 'draft',
-                           body: 'update' })
-        end
-
-        it 'leaves the original published' do
-          @orig.reload
-          expect(@orig.published).to eq(true)
-        end
-
-        it 'leaves the original as is' do
-          @orig.reload
-          expect(@orig.body).not_to eq('update')
-        end
-
-        it 'creates a draft' do
-          draft = Article.child_of(@orig.id).first
-          expect(draft.parent_id).to eq(@orig.id)
-          expect(draft).not_to be_published
-        end
-
-        it 'redirects back to the draft edit page' do
-          draft = Article.child_of(@orig.id).first
-          expect(response).to redirect_to(action: 'edit', id: draft)
         end
       end
     end

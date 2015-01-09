@@ -60,6 +60,7 @@ module Article::States
   class Published < Base
     def enter_hook
       super
+      content.just_changed_published_status = true
       content[:published] = true
       content[:published_at] ||= Time.now
     end

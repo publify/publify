@@ -2,22 +2,6 @@
 
 <div id='autosave'><%= hidden_field_tag('article[id]', @article.id) if @article.present? %></div>
 
-<div class='row save-bar'>
-  <div class='col-md-12' id='save-bar'>
-    <div class='pull-right'>
-      <%= link_to(t('.cancel'), {action: 'index'}, {class: 'btn btn-default'}) %>
-      <span id='preview_link'>
-        <%= link_to(t('.preview'), {controller: '/articles', action: 'preview', id: @article.id}, {target: 'new', class: 'btn btn-default'}) if @article.id %>
-      </span>
-      <input id='save_draft' type='submit' value='<%= t('.save_as_draft') %>' name='article[draft]' class='btn btn-default'>
-      <!-- Button trigger modal -->
-      <button class='btn btn-success' data-toggle='modal' data-target='#publishOptions'>
-        <%= ['new', 'create'].include?(controller.action_name) ? t('.publish') : t('.save') %>
-      </button>
-    </div>
-  </div>
-</div>
-
 <div class='row'>
   <div class='col-md-12'>
     <%= text_field 'article', 'title', :class => 'form-control', :placeholder => t('.title') %>
@@ -25,11 +9,13 @@
 </div>
 
 <ul class='nav nav-tabs' role='tablist'>
-  <li role='presentation' class='active'><a href='#main-details' aria-controls='main-details' role='tab' data-toggle='tab'>Article Content</a></li>
+  <li role='presentation' class='active'><a href='#main-details' aria-controls='main-details' role='tab' data-toggle='tab'>Main Content</a></li>
   <li role='presentation'><a href='#images' aria-controls='images' role='tab' data-toggle='tab'>Images</a></li>
   <li role='presentation'><a href='#seo' aria-controls='seo' role='tab' data-toggle='tab'>SEO</a></li>
   <li role='presentation'><a href='#core-content' aria-controls='core-content' role='tab' data-toggle='tab'>Core Content</a></li>
   <li role='presentation'><a href='#related-content' aria-controls='related-content' role='tab' data-toggle='tab'>Related Blog Posts</a></li>
+  <li role='presentation'><a href='#tags' aria-controls='tags' role='tab' data-toggle='tab'>Tags</a></li>
+  <li role='presentation'><a href='#settings' aria-controls='settings' role='tab' data-toggle='tab'>Settings</a></li>
 </ul>
 
 <div class='article-tab-content tab-content'>
@@ -97,6 +83,8 @@
   <div role='tabpanel' class='tab-pane' id='seo'>
     <div class='row article-seo'>
       <div class='col-md-6'>
+        <label for="article_permalink"><%= t('.permalink') %></label>
+        <%= text_field 'article', 'permalink', :autocomplete => 'off', :class => 'form-control' %>
         <label for='article_title_meta_tag'>Page Title (leave empty to use the article's title)</label>
         <%= text_field 'article', 'title_meta_tag', class: 'form-control' %>
         <label for='article_description_meta_tag'>Meta Description</label>
@@ -143,6 +131,81 @@
       </div>
     </div>
   </div>
+  <div role='tabpanel' class='tab-pane' id='tags'>
+    <div class='row'>
+      <div class='col-md-12'>
+        <h4><%= t('.tags') %></h4>
+        <div class='form-group'>
+          <%= text_field 'article', 'keywords', {:autocomplete => 'off', :class => 'form-control tm-input'} %>
+        </div>
+        <p class='alert alert-warning' id='tag-help-text'><%=t('.tags_explaination') %></p>
+      </div>
+    </div>
+  </div>
+  <div role='tabpanel' class='tab-pane' id='settings'>
+    <div class='row'>
+      <div class='col-md-12'>
+        <%- if @post_types.blank? %>
+          <%= hidden_field_tag 'article[post_type]', 'read' %>
+        <%- else %>
+            <div class='col-md-6'>
+              <label for="article_post_type"><%= t('.article_type') %></label>
+              <%= select :article, :post_type, @post_types.map{|pt| [pt.name, pt.permalink]}, {include_blank: t('.default')} %>
+            </div>
+        <%- end %>
+
+        <div class='col-md-6'>
+          <div class="form-row">
+            <label for="article_published_at"><%= t('.published') %></label>
+            <%= text_field 'article', 'published_at', :class => 'form-control' %>
+            <small><%= t('.publish_at_note') %></small>
+          </div>
+          <div class="form-row">
+            <%= check_box 'article', 'allow_pings' %>
+            <label for="article_allow_pings"><%= t('.allow_trackbacks') %></label>
+          </div>
+          <div class="form-row">
+            <%= check_box 'article', 'allow_comments' %>
+            <label for="article_allow_comments"><%= t('.allow_comments') %></label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class='row save-bar'>
+  <div class='col-md-12' id='save-bar'>
+    <% if @article.new_record? || @article.draft? %>
+      <% if @article.new_record? %>
+        <% draft_button_text = t('.save_as_draft') %>
+      <% else %>
+        <% draft_button_text = t('.update_draft') %>
+      <% end %>
+
+      <input id='save_draft' type='submit' value='<%= draft_button_text %>' name='draft' class='btn btn-default'>
+    <% end %>
+
+    <% if @article.new_record? %>
+      <% publish_button_text = t('.publish') %>
+    <% else %>
+      <% if @article.draft? %>
+        <% publish_button_text = t('.publish_draft') %>
+      <% else %>
+        <% publish_button_text = t('.update_published') %>
+      <% end %>
+    <% end %>
+    <input id='save_and_publish' type='submit' value='<%= publish_button_text %>' class='btn btn-default'>
+
+    <% if !@article.new_record? %>
+      or
+      <% if @article.draft? %>
+        <%= link_to t('.preview'), { controller: '/articles', action: 'preview', id: @article.id }, target: 'blank' %>
+      <% else %>
+        <%= link_to t('.view'), @article.permalink_url, target: 'blank' %>
+      <% end %>
+    <% end %>
+  </div>
 </div>
 
 <div class="modal fade" id="inlineCallout" tabindex="-1" role="dialog" aria-labelledby="maSays" aria-hidden="true">
@@ -158,7 +221,7 @@
         </pre>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal"><%= t('.cancel') %></button>
+        <button type="button" class="btn btn-default" data-dismiss="modal"><%= t('.close_modal') %></button>
       </div>
     </div>
   </div>
@@ -177,136 +240,8 @@
         </pre>
       </div>
       <div class='modal-footer'>
-        <button type='button' class='btn btn-default' data-dismiss='modal'><%= t('.cancel') %></button>
+        <button type='button' class='btn btn-default' data-dismiss='modal'><%= t('.close_modal') %></button>
       </div>
     </div>
   </div>
 </div>
-
-<!-- Modal -->
-<div class='modal fade' id='publishOptions' tabindex='-1' role='dialog' aria-labelledby='publishOptions' aria-hidden='true'>
-  <div class='modal-dialog'>
-    <div class='modal-content'>
-      <div class='modal-header'>
-        <h2 class='modal-title' id='myModalLabel'><%= t('.publish') %>
-        <%= submit_tag(t('.publish'), :class => 'btn btn-success pull-right') %>&nbsp;
-        </h2>
-      </div>
-      <div class='modal-body'>
-        <div class='well'>
-          <h4><%= t('.tags') %></h4>
-          <div class='form-group'>
-            <%= text_field 'article', 'keywords', {:autocomplete => 'off', :class => 'form-control tm-input'} %>
-          </div>
-          <p class='alert alert-warning' id='tag-help-text'><%=t('.tags_explaination') %></p>
-        </div>
-        <% post_types = @post_types || [] %>
-        <%- if post_types.size.zero? %>
-          <%= hidden_field_tag 'article[post_type]', 'read' %>
-      <%- else %>
-          <div class='well'>
-          <h4><%= t('.article_type') %></h4>
-          <%= select :article, :post_type, post_types.map{|pt| [pt.name, pt.permalink]}, {include_blank: t('.default')} %>
-        </div>
-      <%- end %>
-
-        <!-- Start of publish settings -->
-        <div class='well'>
-          <fieldset>
-            <legend><%= t('.publish_settings') %></legend>
-            <!-- Start of permalink box -->
-            <div class='control-group'>
-              <p>
-              <%= t('.permalink') %>:
-              <%= toggle_element('permalink') %>
-              </p>
-              <div id='permalink' class='collapse'>
-                <div class='form-group'>
-                  <%= text_field 'article', 'permalink', {:autocomplete => 'off', :class => 'form-control'} %>
-                </div>
-                <p>
-                <span class='btn btn-mini btn-default'>
-                  <%= toggle_element('permalink', t('.ok')) %>
-                </span>
-                </p>
-              </div>
-            </div>
-            <!-- End of permalink box -->
-            <!-- Start of status -->
-            <div class='control-group'>
-              <p>
-              <%= t('.status') %>: <strong><%= @article.state.to_s.downcase %></strong>
-              <%= toggle_element('status') %>
-              </p>
-              <div id='status' class='collapse'>
-                <label for='article_published' class='checkbox'>
-                  <%= check_box 'article', 'published'  %>
-                  <%= t('.published') %>
-                </label>
-                <p>
-                <span class='btn btn-mini btn-default'>
-                  <%= toggle_element('status', t('.ok')) %>
-                </span>
-                </p>
-              </div>
-            </div>
-            <!-- End of status -->
-
-            <!-- Start of feedback settings -->
-            <div class='control-group'>
-              <p>
-              <%= t('.allowed_comments_and_trackbacks', allow_comment: content_tag(:strong, t('.allow_comments_status', count: @article.allow_comments ? 1 : 0)), allow_trackback: content_tag(:strong, t('.allow_pings_status', count: @article.allow_pings ? 1 : 0))) %>
-              <%= toggle_element('conversation') %>
-              </p>
-              <div id='conversation' class='collapse'>
-                <label for='article_allow_pings' class='checkbox'>
-                  <%= check_box 'article', 'allow_pings' %>
-                  <%= t('.allow_trackbacks') %>
-                </label>
-                <label for='article_allow_comments' class='checkbox'>
-                  <%= check_box 'article', 'allow_comments' %>
-                  <%= t('.allow_comments') %>
-                </label>
-                <p>
-                <span class='btn btn-mini btn-default'>
-                  <%= toggle_element('conversation', t('.ok')) %>
-                </span>
-                </p>
-              </div>
-            </div>
-            <!-- End of feedback settings -->
-
-            <!-- Start of date publish -->
-            <div class='control-group'>
-              <p>
-              <%= t('.published') %>
-              <strong>
-                <%- if @article.published %>
-                  <%= display_date_and_time(@article.published_at) %>
-              <%- else %>
-                  <%= t('.now') %>
-              <%- end %>
-              </strong>
-              <%= toggle_element('publish') %>
-              </p>
-              <div id='publish' class='collapse'>
-                <%= text_field 'article', 'published_at' %>
-                <p>
-                <span class='btn btn-mini btn-default'>
-                  <%= toggle_element('publish', t('.ok')) %>
-                </span>
-                </p>
-              </div>
-            </div>
-            <!-- End of date publish -->
-          </fieldset>
-        </div>
-        <!-- End of publish settings -->
-      </div>
-      <div class='modal-footer'>
-        <button type='button' class='btn btn-default' data-dismiss='modal'><%= t('.cancel') %></button>
-        <%= submit_tag(t('.publish'), :class => 'btn btn-success') %>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->

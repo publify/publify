@@ -59,7 +59,7 @@ class Article < Content
 
   setting :password, :string, ''
 
-  attr_accessor :draft, :keywords
+  attr_accessor :keywords
 
   include Article::States
 

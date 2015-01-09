@@ -40,7 +40,11 @@ class Admin::ContentController < Admin::BaseController
     @article.author = current_user
 
     if @article.save
-      flash[:success] = I18n.t('admin.content.create.success')
+      if @article.draft?
+        flash[:success] = I18n.t('admin.content.create.success.draft')
+      else
+        flash[:success] = I18n.t('admin.content.create.success.published')
+      end
       redirect_to action: 'edit', id: @article
     else
       @article.keywords = Tag.collection_to_string @article.tags
@@ -62,10 +66,8 @@ class Admin::ContentController < Admin::BaseController
     id = params[:article][:id] || params[:id]
     @article = Article.find(id)
 
-    if params[:article][:draft]
-      get_fresh_or_existing_draft_for_article
-    else
-      if not @article.parent_id.nil?
+    unless params[:draft]
+      if @article.parent_id.present?
         @article = Article.find(@article.parent_id)
       end
     end
@@ -73,10 +75,18 @@ class Admin::ContentController < Admin::BaseController
     update_article_attributes
 
     if @article.save
-      unless @article.draft
+      if !params[:draft]
         Article.where(parent_id: @article.id).map(&:destroy)
       end
-      flash[:success] = I18n.t('admin.content.update.success')
+      if @article.draft?
+        flash[:success] = I18n.t('admin.content.update.success.draft')
+      else
+        if (@article.previous_changes['state'] || []).include?('draft')
+          flash[:success] = I18n.t('admin.content.update.success.published')
+        else
+          flash[:success] = I18n.t('admin.content.update.success.published_updated')
+        end
+      end
       redirect_to action: 'edit', id: @article
     else
       @article.keywords = Tag.collection_to_string @article.tags
@@ -89,49 +99,7 @@ class Admin::ContentController < Admin::BaseController
     destroy_a(Article)
   end
 
-  def autosave
-    return false unless request.xhr?
-
-    id = params[:article][:id] || params[:id]
-
-    article_factory = Article::Factory.new(this_blog, current_user)
-    @article = article_factory.get_or_build_from(id)
-
-    get_fresh_or_existing_draft_for_article
-
-    @article.attributes = params[:article].permit!
-
-    @article.published = false
-    @article.author = current_user
-    @article.save_attachments!(params[:attachments])
-    @article.state = 'draft' unless @article.state == 'withdrawn'
-    @article.text_filter ||= current_user.default_text_filter
-
-    if @article.title.blank?
-      lastid = Article.order('id desc').first.id
-      @article.title = 'Draft article ' + lastid.to_s
-    end
-
-    if @article.save
-      flash[:success] = I18n.t('admin.content.autosave.success')
-      @must_update_calendar = (params[:article][:published_at] and params[:article][:published_at].to_time.to_i < Time.now.to_time.to_i and @article.parent_id.nil?)
-      respond_to do |format|
-        format.js
-      end
-    end
-  end
-
   protected
-
-  def get_fresh_or_existing_draft_for_article
-    if @article.published and @article.id
-      parent_id = @article.id
-      @article = Article.drafts.child_of(parent_id).first || Article.new
-      @article.allow_comments = this_blog.default_allow_comments
-      @article.allow_pings    = this_blog.default_allow_pings
-      @article.parent_id      = parent_id
-    end
-  end
 
   attr_accessor :resources, :resource
 
@@ -155,10 +123,11 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def update_article_attributes
+    # Setting the state triggers an override of #published_at= so needs to be be done early
+    @article.state = params[:draft] ? 'draft' : 'published'
     @article.attributes = update_params
     @article.published_at = parse_date_time params[:article][:published_at]
     @article.save_attachments!(params[:attachments])
-    @article.state = 'draft' if @article.draft
     @article.text_filter ||= current_user.default_text_filter
   end
 
