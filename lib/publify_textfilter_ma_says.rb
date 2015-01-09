@@ -17,16 +17,16 @@ You can use the following code to display a Ma Says snippet. Example:
         text = attrib['data-snippet-text']
 
         "<div class=\"snippet next-steps\">
-           <div class=\"next-steps__heading\">
-             <span>MA</span> says
+           <div class=\"next-steps__heading ma-says\">
+             <span class=\"ma-says__ma\">MA</span> says
            </div>
 
            <a href=\"#{url}\" class=\"next-steps__container-link\">
              <div class=\"next-steps__text\">#{text}</div>
              <div class=\"next-steps__arrow-container\">
-               <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"next-steps__arrow\" version=\"1.1\" x=\"0px\" y=\"0px\" viewBox=\"46.9 -3.6 36 57.1\" enable-background=\"new 46.9 -3.6 36 57.1\" xml:space=\"preserve\">
-                 <polyline class=\"next-steps__arrow-path\" stroke-width=\"9\" stroke-miterlimit=\"10\" points=\"50,0 76,25 50,50 \"/>
-               </svg>
+              <svg class=\"next-steps__arrow\">
+                <use xlink:href=\"#svg-arrow-right\"></use>
+              </svg>
              </div>
            </a>
          </div>"

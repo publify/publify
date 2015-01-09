@@ -6,6 +6,12 @@
   position: relative;
   padding-left: 3px;
   text-transform: uppercase;
+
+  .homepage & {
+    @include respond-to($mq-l) {
+      @include font-size(16);
+    }
+  }
 }
 
 .beta-tag__logo {
@@ -13,6 +19,23 @@
   width: 40px;
   top: -12px;
   left: 0;
+
+  .homepage & {
+    left: 43%;
+
+    @include respond-to(353) {
+      left: 44%;
+    }
+
+    @include respond-to($mq-m) {
+      left: 45%;
+    }
+
+    @include respond-to($mq-l) {
+      width: 60px;
+      left: 44%;
+    }
+  }
 }
 
 .beta-tag__logo-line {
