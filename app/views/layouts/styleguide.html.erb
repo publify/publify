@@ -13,6 +13,7 @@
 <body>
   <%= yield %>
 
+  <%= render 'shared/svg_sprite' %>
   <%= javascript_include_tag 'requirejs/require', data: { main: javascript_path('application') } %>
 
   <script src="https://apis.google.com/js/platform.js" async defer></script>

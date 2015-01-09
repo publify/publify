@@ -219,4 +219,7 @@ class ArticlesController < ContentController
     render 'articles/error', status: 200
   end
 
+  def use_custom_header?
+    action_name == 'index'
+  end
 end

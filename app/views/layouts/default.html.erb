@@ -31,13 +31,14 @@
   <title><%= h(page_title) %></title>
   <%= render 'shared/page_header' %>
 </head>
-<body class="<%= !@article ? 'non-article-page' : 'article-page' %>">
+<body class="<%= use_custom_header? ? 'homepage' : '' %> <%= !@article ? 'non-article-page' : 'article-page' %>">
   <%= render 'shared/header' %>
 
   <%= yield %>
 
   <%= render 'shared/footer' %>
 
+  <%= render 'shared/svg_sprite' %>
   <%= javascript_include_tag :publify %>
   <%= timeago_script_tag %>
   <script src="https://apis.google.com/js/platform.js" async defer></script>
