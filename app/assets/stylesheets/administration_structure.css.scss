@@ -213,6 +213,7 @@ twitter-typeahead {
 
 .save-bar {
   height: 40px;
+  padding-top: 10px;
 }
 
 .gravatar {
@@ -274,4 +275,8 @@ table.possible-related-content {
     width: 150px;
     text-align: center;
   }
+}
+
+#article_title {
+  margin-bottom: 10px;
 }

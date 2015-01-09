@@ -3,7 +3,7 @@ require 'base64'
 module Admin; end
 
 class Admin::ContentController < Admin::BaseController
-  layout :get_layout
+  layout 'administration'
 
   cache_sweeper :blog_sweeper
 
@@ -14,7 +14,9 @@ class Admin::ContentController < Admin::BaseController
 
   def index
     @search = params[:search] ? params[:search] : {}
-    @articles = Article.search_with(@search).page(params[:page]).per(this_blog.admin_display_elements)
+    @articles = Article.search_with(@search)
+    @articles = @articles.where('parent_id IS NULL')
+    @articles = @articles.page(params[:page]).per(this_blog.admin_display_elements)
 
     if request.xhr?
       respond_to do |format|
@@ -38,7 +40,11 @@ class Admin::ContentController < Admin::BaseController
     @article.author = current_user
 
     if @article.save
-      flash[:success] = I18n.t('admin.content.create.success')
+      if @article.draft?
+        flash[:success] = I18n.t('admin.content.create.success.draft')
+      else
+        flash[:success] = I18n.t('admin.content.create.success.published')
+      end
       redirect_to action: 'edit', id: @article
     else
       @article.keywords = Tag.collection_to_string @article.tags
@@ -60,10 +66,8 @@ class Admin::ContentController < Admin::BaseController
     id = params[:article][:id] || params[:id]
     @article = Article.find(id)
 
-    if params[:article][:draft]
-      get_fresh_or_existing_draft_for_article
-    else
-      if not @article.parent_id.nil?
+    unless params[:draft]
+      if @article.parent_id.present?
         @article = Article.find(@article.parent_id)
       end
     end
@@ -71,10 +75,22 @@ class Admin::ContentController < Admin::BaseController
     update_article_attributes
 
     if @article.save
-      unless @article.draft
+      if !params[:draft]
         Article.where(parent_id: @article.id).map(&:destroy)
       end
-      flash[:success] = I18n.t('admin.content.update.success')
+      if @article.draft?
+        flash[:success] = I18n.t('admin.content.update.success.draft')
+      elsif @article.withdrawn?
+        flash[:success] = I18n.t('admin.content.update.success.withdrawn')
+      else
+        if (@article.previous_changes['state'] || []).include?('draft')
+          flash[:success] = I18n.t('admin.content.update.success.published')
+        elsif (@article.previous_changes['state'] || []).include?('withdrawn')
+          flash[:success] = I18n.t('admin.content.update.success.published_withdrawn')
+        else
+          flash[:success] = I18n.t('admin.content.update.success.published_updated')
+        end
+      end
       redirect_to action: 'edit', id: @article
     else
       @article.keywords = Tag.collection_to_string @article.tags
@@ -87,49 +103,7 @@ class Admin::ContentController < Admin::BaseController
     destroy_a(Article)
   end
 
-  def autosave
-    return false unless request.xhr?
-
-    id = params[:article][:id] || params[:id]
-
-    article_factory = Article::Factory.new(this_blog, current_user)
-    @article = article_factory.get_or_build_from(id)
-
-    get_fresh_or_existing_draft_for_article
-
-    @article.attributes = params[:article].permit!
-
-    @article.published = false
-    @article.author = current_user
-    @article.save_attachments!(params[:attachments])
-    @article.state = 'draft' unless @article.state == 'withdrawn'
-    @article.text_filter ||= current_user.default_text_filter
-
-    if @article.title.blank?
-      lastid = Article.order('id desc').first.id
-      @article.title = 'Draft article ' + lastid.to_s
-    end
-
-    if @article.save
-      flash[:success] = I18n.t('admin.content.autosave.success')
-      @must_update_calendar = (params[:article][:published_at] and params[:article][:published_at].to_time.to_i < Time.now.to_time.to_i and @article.parent_id.nil?)
-      respond_to do |format|
-        format.js
-      end
-    end
-  end
-
   protected
-
-  def get_fresh_or_existing_draft_for_article
-    if @article.published and @article.id
-      parent_id = @article.id
-      @article = Article.drafts.child_of(parent_id).first || Article.new
-      @article.allow_comments = this_blog.default_allow_comments
-      @article.allow_pings    = this_blog.default_allow_pings
-      @article.parent_id      = parent_id
-    end
-  end
 
   attr_accessor :resources, :resource
 
@@ -153,25 +127,21 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def update_article_attributes
+    # Setting the state triggers an override of #published_at= so needs to be be done early
+    @article.state = if params[:draft]
+                       'draft'
+                     elsif params[:withdraw]
+                       'withdrawn'
+                     else
+                       'published'
+                     end
     @article.attributes = update_params
     @article.published_at = parse_date_time params[:article][:published_at]
     @article.save_attachments!(params[:attachments])
-    @article.state = 'draft' if @article.draft
     @article.text_filter ||= current_user.default_text_filter
   end
 
   def update_params
     params.require(:article).except(:id).permit!
-  end
-
-  def get_layout
-    case action_name
-    when 'new', 'edit', 'create'
-      'editor'
-    when 'show', 'autosave'
-      nil
-    else
-      'administration'
-    end
   end
 end
