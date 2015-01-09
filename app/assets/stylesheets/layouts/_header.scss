@@ -183,6 +183,15 @@
   @include respond-to($mq-m) {
     position: absolute;
     top: 0;
+    left: 31%;
+
+    .homepage & {
+      left: 0;
+      position: relative;
+    }
+  }
+
+  @include respond-to($mq-l) {
     left: 38%;
 
     .homepage & {
@@ -222,6 +231,19 @@
 
 .l-header-logo-beta__text {
   fill: $white;
+
+  .homepage & {
+    width: 100%;
+
+    @include respond-to($mq-m) {
+      margin-top: baseline-unit(2);
+      margin-bottom: baseline-unit(3);
+    }
+
+    @include respond-to($mq-l) {
+      line-height: baseline-unit(6);
+    }
+  }
 }
 
 .l-header-logo__title {

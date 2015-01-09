@@ -71,4 +71,9 @@ class ApplicationController < ActionController::Base
   def generate_popular_articles
     @popular_articles = PopularArticle.last || PopularArticle.new
   end
+
+  def use_custom_header?
+    false
+  end
+  helper_method :use_custom_header?
 end
