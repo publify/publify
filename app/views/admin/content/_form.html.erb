@@ -2,6 +2,14 @@
 
 <div id='autosave'><%= hidden_field_tag('article[id]', @article.id) if @article.present? %></div>
 
+<% if @article.errors.present? %>
+  <div class='row'>
+    <div class='col-md-8 col-md-offset-2' id='error-message-article'>
+      <%= error_messages_for 'article', header_message: 'The following prevented your article being saved:' %>
+    </div>
+  </div>
+<% end %>
+
 <div class='row'>
   <div class='col-md-12'>
     <%= text_field 'article', 'title', :class => 'form-control', :placeholder => t('.title') %>

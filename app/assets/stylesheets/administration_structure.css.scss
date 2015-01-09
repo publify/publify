@@ -133,7 +133,17 @@ tr .action {
 }
 
 #error-message-article {
-  padding-top: 20px;
+  padding: 0 20px 10px 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: #a94442;
+  background-color: #f2dede;
+  border: 1px solid #ebccd1;
+  border-radius: 5px;
+
+  h2 {
+    font-size: 20px;
+  }
 }
 
 
