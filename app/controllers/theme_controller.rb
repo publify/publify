@@ -5,7 +5,7 @@ class ThemeController < ContentController
   end
 
   def javascript
-    render_theme_item(:javascript, params[:filename], 'text/javascript; charset=utf-8')
+    render_theme_item(:javascripts, params[:filename], 'text/javascript; charset=utf-8')
   end
 
   def images
