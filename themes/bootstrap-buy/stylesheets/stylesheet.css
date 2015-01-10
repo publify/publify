@@ -536,6 +536,11 @@ header a.button {
   right: 0;
   background: transparent url(/images/theme/github-button.png) 0 0 no-repeat;
 }
+header a.links {
+	text-decoration: underline;
+	color: #fff;
+}
+
 aside a.button {
   display: block;
   width: 138px;
@@ -657,7 +662,6 @@ form {
 #main-content h3:before {
   padding-right: 0.3em;
   margin-left: -2em;
-  content: "///";
   color: #9ddcff;
 }
 
@@ -673,7 +677,6 @@ form {
 h4:before {
   padding-right: 0.3em;
   margin-left: -2.8em;
-  content: "////";
   color: #9ddcff;
 }
 
@@ -687,7 +690,6 @@ h4:before {
 h5:before {
   padding-right: 0.3em;
   margin-left: -3.2em;
-  content: "/////";
   color: #9ddcff;
 }
 
@@ -701,7 +703,6 @@ h5:before {
 h6:before {
   padding-right: 0.3em;
   margin-left: -3.7em;
-  content: "//////";
   color: #9ddcff;
 }
 

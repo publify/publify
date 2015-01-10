@@ -1,6 +1,5 @@
-<%= form_tag @article.comment_url do %>
-<div id='commentform'>
-  <h3><%= t(".comment")%> <em><%=@article.title%></em></h3>
+<%= form_tag(@article.comment_url, :class=>"bootstrap-frm") do %>
+  <h1><%= t(".comment")%> <em><%=@article.title%></em></h1>
   <div class='form-group'>
   <%= text_field "comment", "author", :class => 'form-control', :placeholder => t(".your_name") %>  	
   </div>
@@ -20,5 +19,4 @@
   <div class='form-actions'>
     <input type='submit' id='form-submit-button' class='btn btn-info' value="<%= t('.comment') %>">
   </div>
-</div>
 <% end %>

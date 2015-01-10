@@ -5,7 +5,7 @@
   <meta charset='utf-8'>
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <%= stylesheet_link_tag "/stylesheets/theme/print.css", "/stylesheets/theme/pygment_trac.css", "/stylesheets/theme/stylesheet.css", :media => 'all', :type => "text/css" %>
+  <%= stylesheet_link_tag "/stylesheets/theme/print.css", "/stylesheets/theme/pygment_trac.css", "/stylesheets/theme/stylesheet.css", "/stylesheets/theme/bootstrap-form.css", :media => 'all', :type => "text/css" %>
 
 	<link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
 	
@@ -22,9 +22,11 @@
   <body>
     <header>
       <div class="inner">
-        <h1><%= this_blog.blog_name %></h1>
+        <%= link_to("<h1>#{this_blog.blog_name}</h1>".html_safe, this_blog.base_url) %>
         <h2><%= this_blog.blog_subtitle %></h2>
         <a href="https://github.com/pfonseca/publify" class="button"><small>View site on</small> GitHub</a>
+	      <%= link_to(t('.statuses'), {controller: 'notes'}, :class => "links") %>
+	      <%= link_to(t('.archives'), {controller: 'articles', action: 'archives'}, :class => "links") %>
       </div>
     </header>
 
@@ -37,14 +39,18 @@
        </section>
 
         <aside id="sidebar">
-          <a href="https://github.com/jasonlong/architect-theme/archive/master.zip" class="button">
-            <small>Download</small>
-            .zip file
-          </a>
-          <a href="https://github.com/jasonlong/architect-theme/archive/master.tar.gz" class="button">
-            <small>Download</small>
-            .tar.gz file
-          </a>
+					
+					<h3 class="sidebar-title">
+					  <label for="q">Search</label>
+					</h3>
+					<form accept-charset="UTF-8" action="/search" id="sform" method="get" class="bootstrap-frm"><div style="display:none"><input name="utf8" type="hidden" value="✓"></div>
+					  <input type="text" id="q" name="q" value="" size="15">
+					  <input type="submit" value="Search">
+					</form>
+					
+					
+					<%= render_sidebars %>
+					
 
           <p class="repo-owner"><a href="https://github.com/jasonlong/architect-theme">architect-theme</a> is maintained by <a href="https://github.com/jasonlong">jasonlong</a>.</p>
 
