@@ -30,5 +30,6 @@ public/cache/*
 /themes/*
 !/themes/bootstrap-2
 !/themes/bootstrap-3
+!/themes/bootstrap-buy
 gems/
 .vagrant/
