@@ -39,3 +39,7 @@
   </div>
   <% end -%>
 </div>
+
+					<% if logged_in? %>
+						<%= link_to("Edit", "/admin/content/edit/#{@article.id}", {class: 'btn btn-primary btn-xs btn-action'}) %>
+					<% end %>
