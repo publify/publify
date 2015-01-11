@@ -107,7 +107,7 @@ Rails.application.routes.draw do
 
   # Admin/XController
   %w{content profiles pages feedback resources sidebar textfilters themes users settings tags redirects seo post_types}.each do |i|
-    match "/admin/#{i}", controller: "admin/#{i}#index", format: false, via: [:get, :post, :put, :delete] # TODO: convert this magic catchers to resources item to close un-needed HTTP method
+    match "/admin/#{i}", controller: "admin/#{i}", action: :index, format: false, via: [:get, :post, :put, :delete] # TODO: convert this magic catchers to resources item to close un-needed HTTP method
     match "/admin/#{i}(/:action(/:id))", controller: "admin/#{i}", action: nil, id: nil, format: false, via: [:get, :post, :put, :delete] # TODO: convert this magic catchers to resources item to close un-needed HTTP method
   end
 
