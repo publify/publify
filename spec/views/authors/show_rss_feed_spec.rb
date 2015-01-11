@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "author/show_rss_feed.rss.builder", :type => :view do
+describe "authors/show_rss_feed.rss.builder", :type => :view do
   let!(:blog) { create(:blog) }
 
   describe "rendering articles (with some funny characters)" do
