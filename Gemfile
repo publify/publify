@@ -91,6 +91,7 @@ end
 
 group :test do
   gem 'feedjira'
+  gem "codeclimate-test-reporter", require: nil
 end
 
 # Install gems from each theme
