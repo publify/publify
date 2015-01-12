@@ -79,6 +79,13 @@ def assert_atom10 feed, count
   expect(doc.entries.count).to eq count
 end
 
+def assert_correct_atom_generator feed
+  xml = Nokogiri::XML.parse(feed)
+  generator = xml.css("generator").first
+  expect(generator.content).to eq("Publify")
+  expect(generator["version"]).to eq(PUBLIFY_VERSION)
+end
+
 def assert_rss20 feed, count
   doc = Feedjira::Feed.parse(feed)
   expect(doc).to be_instance_of Feedjira::Parser::RSS
