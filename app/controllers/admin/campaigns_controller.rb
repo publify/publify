@@ -8,8 +8,8 @@ class Admin::CampaignsController < ApplicationController
 
   def new
     @campaign = Campaign.new
-    @campaign.primary_link = CampaignLink.new
-    @campaign.secondary_link = CampaignLink.new
+    @campaign.build_primary_link
+    @campaign.build_secondary_link
   end
 
   def create
@@ -44,8 +44,8 @@ class Admin::CampaignsController < ApplicationController
 
   def campaign_params
     params.require(:campaign).permit(:title, :description, :hero_image, :hero_image_alt_text, :active, :hero_image_cache,
-                  primary_link_attributes: [:link_type, :title, :url, :id],
-                  secondary_link_attributes: [:link_type, :title, :url, :id] )
+                  primary_link_attributes: [:link_type, :title, :url, :id, :campaign_id],
+                  secondary_link_attributes: [:link_type, :title, :url, :id, :campaign_id] )
   end
 
   def find_campaign
