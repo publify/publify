@@ -66,6 +66,7 @@ end
 
 # TODO: Clean up use of these Test::Unit style expectations
 def assert_xml(xml)
+  expect(xml).not_to be_empty
   expect do
     assert REXML::Document.new(xml)
   end.not_to raise_error
