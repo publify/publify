@@ -12,36 +12,19 @@
       </div>
       <ul class="l-campaigns__links">
         <% if @lead_campaign.primary_link.present? %>
-          <li class="l-campaigns__links__item l-campaigns__links__item--ma-says">
-            <a href="<%= @lead_campaign.primary_link.url %>" class="campaigns-link campaigns-link--ma-says">
-              <span class="ma-says">
-                <span class="ma-says__ma">MA</span> says
-              </span>
-              <span class="campaigns-link__text">
-                <%= @lead_campaign.primary_link.title %>
-              </span>
-              <span class="campaigns-link__arrow">
-                <svg class="campaigns-link__arrow__icon">
-                  <use xlink:href="#svg-arrow-right"></use>
-                </svg>
-              </span>
-            </a>
-          </li>
+          <% if @lead_campaign.primary_link.link_type == 'ma says' %>
+            <%= render 'shared/campaign_link_masays', :link => @lead_campaign.primary_link %>
+          <% else %>
+            <%= render 'shared/campaign_link_article', :link => @lead_campaign.primary_link %>
+          <% end %>
         <% end %>
         <% if @lead_campaign.secondary_link.present? %>
-          <li class="l-campaigns__links__item">
-            <a href="<%= @lead_campaign.secondary_link.url %>" class="campaigns-link">
-              <span class="campaigns-link__text">
-                <%= @lead_campaign.secondary_link.title %>
-              </span>
-              <span class="campaigns-link__arrow">
-                <svg class="campaigns-link__arrow__icon">
-                  <use xlink:href="#svg-arrow-right"></use>
-                </svg>
-              </span>
-            </a>
-          </li>
-         <% end %>
+          <% if @lead_campaign.secondary_link.link_type == 'ma says' %>
+            <%= render 'shared/campaign_link_masays', :link => @lead_campaign.secondary_link %>
+          <% else %>
+            <%= render 'shared/campaign_link_article', :link => @lead_campaign.secondary_link %>
+          <% end %>
+        <% end %>
       </ul>
     </div>
   </div>
