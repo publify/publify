@@ -64,7 +64,7 @@ Rails.application.routes.draw do
   get '/tag/:id/page/:page', :to => 'tags#show', :format => false
   get '/tags/page/:page', :to => 'tags#index', :format => false
 
-  resources :author, only: :show
+  resources :authors, path: 'author', only: :show
 
   # ThemesController
   scope :controller => 'theme', :filename => /.*/ do
