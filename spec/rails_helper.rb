@@ -142,6 +142,13 @@ if($validator_installed == nil)
 end
 
 def assert_feedvalidator(rss, todo=nil)
+  result = Feedjira::Feed.parse(rss)
+  expect(result).not_to be_nil
+  expect(result.title).not_to be_nil
+  assert_feedvalidator_old(rss, todo)
+end
+
+def assert_feedvalidator_old(rss, todo=nil)
   unless $validator_installed
     puts 'Not validating feed because no validator (feedvalidator in python) is installed'
     return

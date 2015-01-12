@@ -89,6 +89,10 @@ group :development, :test do
   gem 'quiet_assets'
 end
 
+group :test do
+  gem 'feedjira'
+end
+
 # Install gems from each theme
 Dir.glob(File.join(File.dirname(__FILE__), 'themes', '**', "Gemfile")) do |gemfile|
   eval(IO.read(gemfile), binding)
