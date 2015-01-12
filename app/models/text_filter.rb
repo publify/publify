@@ -1,8 +1,8 @@
 require 'net/http'
 
 class TextFilter < ActiveRecord::Base
-  serialize :filters
-  serialize :params
+  serialize :filters, Array
+  serialize :params, Hash
 
   @text_helper = ContentTextHelpers.new
 

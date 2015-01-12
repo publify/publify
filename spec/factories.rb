@@ -96,8 +96,8 @@ FactoryGirl.define do
     name "markdown"
     description "Markdown"
     markup 'markdown'
-    filters '--- []'
-    params '--- {}'
+    filters []
+    params {}
 
     after :stub do |filter|
       TextFilter.stub(:find_by_name).with(filter.name) { filter }
