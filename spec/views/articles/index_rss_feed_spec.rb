@@ -14,11 +14,7 @@ describe "articles/index_rss_feed.rss.builder", :type => :view do
       render
     end
 
-    it "creates a valid feed" do
-      assert_feedvalidator rendered
-    end
-
-    it "creates an RSS feed with two items" do
+    it "creates a valid RSS feed with two items" do
       assert_rss20 rendered, 2
     end
 
@@ -191,8 +187,8 @@ describe "articles/index_rss_feed.rss.builder", :type => :view do
       render
     end
 
-    it "creates a valid feed" do
-      assert_feedvalidator rendered
+    it "creates a valid RSS feed with one item" do
+      assert_rss20 rendered, 1
     end
   end
 

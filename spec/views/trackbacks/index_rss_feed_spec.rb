@@ -12,8 +12,7 @@ describe "trackbacks/index_rss_feed.rss.builder", :type => :view do
       render
     end
 
-    it "should render a valid rss feed" do
-      assert_feedvalidator rendered
+    it "renders a valid rss feed with one entry" do
       assert_rss20 rendered, 1
     end
 

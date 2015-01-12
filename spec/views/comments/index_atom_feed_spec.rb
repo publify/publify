@@ -12,10 +12,6 @@ describe "comments/index_atom_feed.atom.builder", :type => :view do
       render
     end
 
-    it "should render a valid feed" do
-      assert_feedvalidator rendered
-    end
-
     it "shows publify with the current version as the generator" do
       xml = Nokogiri::XML.parse(rendered)
       generator = xml.css("generator").first
@@ -23,7 +19,7 @@ describe "comments/index_atom_feed.atom.builder", :type => :view do
       expect(generator["version"]).to eq(PUBLIFY_VERSION)
     end
 
-    it "should render an Atom feed with one item" do
+    it "renders a valid Atom feed with one item" do
       assert_atom10 rendered, 1
     end
 
