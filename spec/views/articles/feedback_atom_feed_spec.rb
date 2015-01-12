@@ -12,23 +12,18 @@ describe "articles/feedback_atom_feed.atom.builder", :type => :view do
       render
     end
 
-    it "should render a valid feed" do
-      assert_feedvalidator rendered
-    end
-
-    it "should render an Atom feed with one item" do
+    it "renders a valid Atom feed with one item" do
       assert_atom10 rendered, 1
     end
 
     describe "the trackback entry" do
       it "should have all the required attributes" do
-        xml = Nokogiri::XML.parse(rendered)
-        entry_xml = xml.css("entry").first
+        entry_xml = Feedjira::Feed.parse(rendered).entries.first
 
-        expect(entry_xml.css("title").first.content).to eq(
+        expect(entry_xml.title).to eq(
           "Trackback from #{trackback.blog_name}: #{trackback.title} on #{article.title}"
         )
-        expect(entry_xml.css("id").first.content).to eq("urn:uuid:dsafsadffsdsf")
+        expect(entry_xml.entry_id).to eq("urn:uuid:dsafsadffsdsf")
       end
     end
   end
@@ -42,11 +37,7 @@ describe "articles/feedback_atom_feed.atom.builder", :type => :view do
       render
     end
 
-    it "should render a valid feed" do
-      assert_feedvalidator rendered
-    end
-
-    it "should render an Atom feed with one item" do
+    it "renders a valid Atom feed with one item" do
       assert_atom10 rendered, 1
     end
   end

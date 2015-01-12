@@ -12,12 +12,7 @@ describe "shared/_atom_header.atom.builder", :type => :view do
           locals: { feed: xml, items: [] }
       end
 
-      xml = Nokogiri::XML.parse(xml.target!)
-      generator = xml.css("generator").first
-
-      expect(generator).to_not be_nil
-      expect(generator.content).to eq("Publify")
-      expect(generator["version"]).to eq(PUBLIFY_VERSION)
+      assert_correct_atom_generator xml.target!
     end
   end
 end

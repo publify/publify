@@ -89,7 +89,10 @@ group :development, :test do
   gem 'quiet_assets'
 end
 
-gem "codeclimate-test-reporter", group: :test, require: nil
+group :test do
+  gem 'feedjira'
+  gem "codeclimate-test-reporter", require: nil
+end
 
 # Install gems from each theme
 Dir.glob(File.join(File.dirname(__FILE__), 'themes', '**', "Gemfile")) do |gemfile|
