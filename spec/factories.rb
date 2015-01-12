@@ -108,7 +108,7 @@ FactoryGirl.define do
     m.name "smartypants"
     m.description "SmartyPants"
     m.markup 'none'
-    m.filters %q{ [:smartypants].to_yaml.inspect }
+    m.filters [:smartypants]
   end
 
   factory 'markdown smartypants', :parent => :smartypants do |m|
