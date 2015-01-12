@@ -78,6 +78,21 @@ class Admin::ContentController < Admin::BaseController
       if !params[:draft]
         Article.where(parent_id: @article.id).map(&:destroy)
       end
+
+      # When trying to use the standard carrierwave methods to remove attachments, something
+      # is causing it to try to remove items from the cdn twice.  The following approach works
+      # around this by removing the image from the cdn manually, then updating the column without
+      # triggering any callbacks (which is where the extra cdn call seems to come from).
+      if params[:remove_hero_image]
+        @article.hero_image.remove!
+        @article.update_column(:hero_image, nil)
+      end
+
+      if params[:remove_teaser_image]
+        @article.teaser_image.remove!
+        @article.update_column(:teaser_image, nil)
+      end
+
       if @article.draft?
         flash[:success] = I18n.t('admin.content.update.success.draft')
       elsif @article.withdrawn?

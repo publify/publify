@@ -60,7 +60,7 @@
         <div class='col-md-6'>
           <% if @article.hero_image.present? %>
               <%= image_tag @article.hero_image.url(:resized) %>
-              <label><%= check_box 'article', 'remove_hero_image' %> Remove?</label>
+              <label><%= check_box_tag :remove_hero_image %> Remove?</label>
           <% end %>
         </div>
       </div>
@@ -82,7 +82,7 @@
         <div class='col-md-6'>
           <% if @article.teaser_image.present? %>
               <%= image_tag @article.teaser_image.url(:resized) %>
-              <label><%= check_box 'article', 'remove_teaser_image' %> Remove?</label>
+              <label><%= check_box_tag :remove_teaser_image %> Remove?</label>
           <% end %>
         </div>
       </div>
