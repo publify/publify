@@ -73,19 +73,18 @@ def assert_xml(xml)
 end
 
 def assert_atom10 feed, count
-  doc = Nokogiri::XML.parse(feed)
-  root = doc.css(':root').first
-  expect(root.name).to eq("feed")
-  expect(root.namespace.href).to eq("http://www.w3.org/2005/Atom")
-  expect(root.css('entry').count).to eq(count)
+  doc = Feedjira::Feed.parse(feed)
+  expect(doc).to be_instance_of Feedjira::Parser::Atom
+  expect(doc.title).not_to be_nil
+  expect(doc.entries.count).to eq count
 end
 
 def assert_rss20 feed, count
-  doc = Nokogiri::XML.parse(feed)
-  root = doc.css(':root').first
-  expect(root.name).to eq("rss")
-  expect(root['version']).to eq("2.0")
-  expect(root.css('channel item').count).to eq(count)
+  doc = Feedjira::Feed.parse(feed)
+  expect(doc).to be_instance_of Feedjira::Parser::RSS
+  expect(doc.version).to eq "2.0"
+  expect(doc.title).not_to be_nil
+  expect(doc.entries.count).to eq count
 end
 
 def stub_full_article(time=Time.now)
