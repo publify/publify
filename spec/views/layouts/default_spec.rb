@@ -3,6 +3,7 @@ describe "layouts/default.html.erb", :type => :view do
     assign(:keywords, ["foo", "bar"])
     assign(:auto_discovery_url_atom, "")
     assign(:auto_discovery_url_rss, "")
+    allow(view).to receive(:use_custom_header?).and_return(false)
   end
 
   it "has keyword meta tag when use_meta_keyword set to true" do
