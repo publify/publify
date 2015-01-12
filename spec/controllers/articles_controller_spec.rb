@@ -10,7 +10,11 @@ describe ArticlesController, 'base', type: :controller do
 
   describe 'index' do
     let!(:article) { create(:article) }
-    before(:each) { get :index }
+
+    before(:each) do
+    allow(Campaign.lead).to receive(:first).and_return(double(:campaign, active: true, title: 'foo', description: 'Something cool'))
+      get :index 
+    end
 
     it { expect(response).to render_template(:index) }
     it { expect(assigns[:articles]).to_not be_empty }
