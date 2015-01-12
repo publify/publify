@@ -1,5 +1,6 @@
-<% class_name = %w(one two three).sample %>
-
+<%
+  class_name = %w(one two three two three one one two three two three one)[index]
+%>
 <div class="l-tile">
   <div class="article-tile article-tile--<%= class_name %>">
     <h2><%= link_to truncate(article.title, length: 53), article.permalink_url, { :class => 'article-tile__heading article-tile__heading--' + class_name, :title => article.title } %></h2>

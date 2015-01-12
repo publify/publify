@@ -549,6 +549,16 @@ en:
         offline: "offline"
       pages:
         no_pages: "There are no pages yet. Why don't you start and create one?"
+    campaigns:
+      index:
+        new_campaign: "New Campaign"
+        manage_campaigns: "Manage campaigns"
+        new_campaign: "New Campaign"
+        title: "Title"
+        active: "Active?"
+        created_on: "Created On"
+      campaigns:
+        no_campaigns: "There are no campaigns yet. Why don't you start and create one?"
     feedback:
       state:
         unclassified: "Unclassified"
@@ -791,6 +801,9 @@ en:
       in_page_plugins: "In page plugins"
       sidebar_plugins: "Sidebar plugins"
       logged_in_as: "Logged in as %{login}"
+      campaigns: "Campaigns"
+      all_campaigns: "All Campaigns"
+      new_campaign: "New Campaign"
       new_article: "New Article"
       new_page: "New Page"
       new_media: "New Media"

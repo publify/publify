@@ -327,3 +327,18 @@ http://alsoping.example.com/rpc/ping"
     updated_at Time.now
   end
 end
+
+FactoryGirl.define do
+  factory :campaign do
+    title 'Save money at the supermarket'
+    description 'Going to university is all about having a good time, discovering yourself and making new friends, right? Well, yes but hopefully you will learn a lot and get a good qualification as well.'
+    active false
+  end
+
+  factory :campaign_link  do
+    title 'Smart shopping: simple tips and tricks to save you money'
+    url 'http//www.example.com'
+    link_type 'ma_says'
+    campaign
+  end
+end

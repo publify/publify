@@ -1,0 +1,75 @@
+.l-campaigns {
+  @include clearfix();
+  background: $white;
+}
+
+.l-campaigns__hero {
+  @include column(12);
+  background: $white;
+  height: 0;
+  padding-bottom: 32.7288%;
+  position: relative;
+}
+
+.l-campaigns__panel {
+  background: $gallery;
+  overflow: hidden;
+  @include column(12);
+}
+
+.l-campaigns__intro,
+.l-campaigns__links {
+  margin: 0 baseline_unit(5);
+
+  @include respond-to($mq-l) {
+    @include column(6);
+  }
+}
+
+.l-campaigns__intro__heading {
+  @include font-size(36);
+
+  @include respond-to($mq-l) {
+    @include font-size(48);
+  }
+
+  line-height: 1.1;
+  font-family: $brand-font;
+  font-weight: 700;
+  color: $eastern-blue;
+}
+
+.l-campaigns__intro__content {
+  @include font-size(22);
+  color: $astronaut-blue;
+}
+
+.l-campaigns__intro {
+  margin-top: baseline_unit(8);
+
+  @include respond-to($mq-l) {
+    margin-bottom: baseline_unit(6);
+  }
+}
+
+.l-campaigns__links {
+  list-style: none;
+  padding-left: 0;
+
+  @include respond-to($mq-l) {
+    margin-top: baseline_unit(10);
+    margin-bottom: baseline_unit(8);
+  }
+}
+
+.l-campaigns__links__item--ma-says {
+  display: none;
+
+  @include respond-to($mq-l) {
+    display: block;
+  }
+}
+
+.l-campaigns__links__item {
+  margin-bottom: baseline_unit(6);
+}

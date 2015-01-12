@@ -1,0 +1,48 @@
+<div class="l-campaigns">
+  <div class="l-constrained">
+    <div class="l-campaigns__hero">
+      <% if @lead_campaign.hero_image.present? %>
+        <%= image_tag @lead_campaign.hero_image.url(:resized) %>
+      <% end %>
+    </div>
+    <div class="l-campaigns__panel">
+      <div class="l-campaigns__intro">
+        <h2 class="l-campaigns__intro__heading"><%= @lead_campaign.title %></h2>
+        <p class="l-campaigns__intro__content"><%= @lead_campaign.description %></p>
+      </div>
+      <ul class="l-campaigns__links">
+        <% if @lead_campaign.primary_link.present? %>
+          <li class="l-campaigns__links__item l-campaigns__links__item--ma-says">
+            <a href="<%= @lead_campaign.primary_link.url %>" class="campaigns-link campaigns-link--ma-says">
+              <span class="ma-says">
+                <span class="ma-says__ma">MA</span> says
+              </span>
+              <span class="campaigns-link__text">
+                <%= @lead_campaign.primary_link.title %>
+              </span>
+              <span class="campaigns-link__arrow">
+                <svg class="campaigns-link__arrow__icon">
+                  <use xlink:href="#svg-arrow-right"></use>
+                </svg>
+              </span>
+            </a>
+          </li>
+        <% end %>
+        <% if @lead_campaign.secondary_link.present? %>
+          <li class="l-campaigns__links__item">
+            <a href="<%= @lead_campaign.secondary_link.url %>" class="campaigns-link">
+              <span class="campaigns-link__text">
+                <%= @lead_campaign.secondary_link.title %>
+              </span>
+              <span class="campaigns-link__arrow">
+                <svg class="campaigns-link__arrow__icon">
+                  <use xlink:href="#svg-arrow-right"></use>
+                </svg>
+              </span>
+            </a>
+          </li>
+         <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

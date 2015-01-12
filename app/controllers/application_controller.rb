@@ -59,4 +59,9 @@ class ApplicationController < ActionController::Base
   def this_blog
     @blog ||= Blog.default
   end
+
+  def use_custom_header?
+    false
+  end
+  helper_method :use_custom_header?
 end

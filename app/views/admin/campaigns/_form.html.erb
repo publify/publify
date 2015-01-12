@@ -1,0 +1,52 @@
+<%= form_for([:admin, @campaign], html: {multipart: true}) do |f| %>
+  <% if @campaign.errors.any? %>
+    <div class="error_messages">
+      <ul>
+      <% @campaign.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: 'form-control', placeholder: 'Name of the campaign' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_area :description, class: 'form-control', rows: 3, placeholder: 'Campaign description' %>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputFile">Hero Image</label>
+    <%= f.file_field :hero_image, :class => 'form-control' %>
+    <%= f.hidden_field :hero_image_cache %>
+    <p class="help-block">Recommended size: 1440x480</p>
+  </div>
+  <div class="form-group">
+    <%= f.label :hero_image_alt_text %>
+    <%= f.text_field :hero_image_alt_text, class: 'form-control', placeholder: 'Alt text for the image' %>
+  </div>
+  <div class="article-image-fields">
+    <div class='row'>
+      <div class='col-md-8'>
+        <% if @campaign.hero_image.present? %>
+          <%= image_tag @campaign.hero_image.url(:resized) %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="checkbox">
+    <%= f.check_box(:active) %>
+    <%= label_tag(:active, "Active") %>
+  </div>
+  <%= f.fields_for :primary_link do |builder| %>
+    <%= render 'link_fields', f: builder, link_order: 'Primary' %>
+  <% end %>
+  <%= f.fields_for :secondary_link do |builder| %>
+    <%= render 'link_fields', f: builder, link_order: 'Secondary' %>
+  <% end %>
+
+  <%= f.submit "Save", class: 'btn btn-success', :disable_with => 'Creating...' %>
+<% end %>
+

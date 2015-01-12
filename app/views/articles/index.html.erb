@@ -1,7 +1,11 @@
+<%= render 'shared/campaigns' if @lead_campaign %>
+
 <div class="l-index">
   <div class="l-constrained">
     <div class="l-tiles">
-      <%= render @articles %>
+      <% @articles.each_with_index do |article, index| %>
+        <%= render :partial => 'article', :object => article, :locals => { :index => index } %>
+      <% end %>
       <%= paginate @articles, views_prefix: 'archives' %>
     </div>
   </div>

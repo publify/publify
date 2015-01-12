@@ -1,7 +1,9 @@
 <div class="l-index">
   <div class="l-constrained">
     <div class="l-tiles">
-      <%= render @articles %>
+      <% @articles.each_with_index do |article, index| %>
+        <%= render :partial => '/articles/article', :object => article, :locals => { :index => index } %>
+      <% end %>
       <%= paginate @articles, views_prefix: 'tags' %>
     </div>
   </div>
