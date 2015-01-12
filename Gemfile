@@ -89,6 +89,8 @@ group :development, :test do
   gem 'quiet_assets'
 end
 
+gem "codeclimate-test-reporter", group: :test, require: nil
+
 # Install gems from each theme
 Dir.glob(File.join(File.dirname(__FILE__), 'themes', '**', "Gemfile")) do |gemfile|
   eval(IO.read(gemfile), binding)
