@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150112112946) do
+ActiveRecord::Schema.define(version: 20150112125050) do
 
   create_table "articles_tags", id: false, force: true do |t|
     t.integer "article_id"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20150112112946) do
   end
 
   add_index "campaign_links", ["campaign_id"], name: "index_campaign_links_on_campaign_id", using: :btree
+  add_index "campaign_links", ["primary"], name: "index_campaign_links_on_primary", using: :btree
 
   create_table "campaigns", force: true do |t|
     t.string   "title"
