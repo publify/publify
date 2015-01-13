@@ -19,7 +19,7 @@ class NotificationMailer < ActionMailer::Base
   def notif_user(user)
     @user = user
     @blog = Blog.default
-    build_mail @blog, @user, "Welcome to Publify"
+    build_mail @blog, @user, 'Welcome to Publify'
   end
 
   private

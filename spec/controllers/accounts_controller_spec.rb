@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-describe AccountsController, :type => :controller do
+describe AccountsController, type: :controller do
   describe "A successful login with 'Remember me' checked" do
     it 'should not cause password to change' do
       create(:blog)
       allow(User).to receive(:salt).and_return('change-me')
-      henri = create(:user, :login => 'henri', :password => 'testagain')
-      post 'login', {:user => {:login => 'henri', :password => 'testagain'}, :remember_me => '1'}
+      henri = create(:user, login: 'henri', password: 'testagain')
+      post 'login', user: { login: 'henri', password: 'testagain' }, remember_me: '1'
       expect(request.session[:user_id]).to eq(henri.id)
     end
   end
@@ -15,11 +15,11 @@ describe AccountsController, :type => :controller do
     before(:each) do
       create(:blog)
       allow(User).to receive(:salt).and_return('change-me')
-      @henri = create(:user, :login => 'henri', :password => 'testagain', :profile => create(:profile_admin, :label => 'admin_henri'))
+      @henri = create(:user, login: 'henri', password: 'testagain', profile: create(:profile_admin, label: 'admin_henri'))
     end
 
     def make_request
-      post 'login', {:user => {:login => 'henri', :password => 'testagain'}}
+      post 'login', user: { login: 'henri', password: 'testagain' }
     end
 
     it 'session gets a user' do
@@ -29,7 +29,7 @@ describe AccountsController, :type => :controller do
 
     it 'sets publify_user_profile cookie' do
       make_request
-      expect(cookies["publify_user_profile"]).to eq('admin_henri')
+      expect(cookies['publify_user_profile']).to eq('admin_henri')
     end
 
     it 'redirects to /bogus/location' do
@@ -40,16 +40,16 @@ describe AccountsController, :type => :controller do
 
     it 'redirects to /admin if no return' do
       make_request
-      expect(response).to redirect_to(:controller => 'admin/dashboard')
+      expect(response).to redirect_to(controller: 'admin/dashboard')
     end
 
     it 'redirects to /admin if no return and you are logged in' do
       session[:user_id] = session[:user] = @henri.id
       make_request
-      expect(response).to redirect_to(:controller => 'admin/dashboard')
+      expect(response).to redirect_to(controller: 'admin/dashboard')
     end
 
-    it "should redirect to signup if no users" do
+    it 'should redirect to signup if no users' do
       allow(User).to receive(:count).and_return(0)
       make_request
       expect(response).to redirect_to('/accounts/signup')
@@ -64,7 +64,7 @@ describe AccountsController, :type => :controller do
     end
 
     def make_request
-      post 'login', {:user => {:login => 'inactive', :password => 'longtest'}}
+      post 'login', user: { login: 'inactive', password: 'longtest' }
     end
 
     it 'no user id goes in the session' do
@@ -79,7 +79,7 @@ describe AccountsController, :type => :controller do
 
     it 'publify_user_profile cookie should be blank' do
       make_request
-      expect(cookies["publify_user_profile"]).to be_blank
+      expect(cookies['publify_user_profile']).to be_blank
     end
 
     it 'should render login action' do
@@ -96,7 +96,7 @@ describe AccountsController, :type => :controller do
     end
 
     def make_request
-      post 'login', {:user => {:login => nil, :password => nil}}
+      post 'login', user: { login: nil, password: nil }
     end
 
     it 'should render login action' do
@@ -113,7 +113,7 @@ describe AccountsController, :type => :controller do
     end
 
     def make_request
-      post 'login', {:user => {:login => 'bob', :password => 'test'}}
+      post 'login', user: { login: 'bob', password: 'test' }
     end
 
     it 'no user in goes in the session' do
@@ -128,7 +128,7 @@ describe AccountsController, :type => :controller do
 
     it 'publify_user_profile cookie should be blank' do
       make_request
-      expect(cookies["publify_user_profile"]).to be_blank
+      expect(cookies['publify_user_profile']).to be_blank
     end
 
     it 'should render login action' do
@@ -143,13 +143,13 @@ describe AccountsController, :type => :controller do
     it 'should redirect to login' do
       allow(User).to receive(:count).and_return(1)
       get 'index'
-      expect(response).to redirect_to(:action => 'login')
+      expect(response).to redirect_to(action: 'login')
     end
 
     it 'should redirect to signup' do
       allow(User).to receive(:count).and_return(0)
       get 'index'
-      expect(response).to redirect_to(:action => 'signup')
+      expect(response).to redirect_to(action: 'signup')
     end
   end
 
@@ -171,13 +171,13 @@ describe AccountsController, :type => :controller do
 
     it 'should render action :signup' do
       get 'login'
-      expect(response).to redirect_to(:action => 'signup')
+      expect(response).to redirect_to(action: 'signup')
       expect(assigns[:login]).to be_nil
     end
 
     it 'should render :signup' do
       get 'recover_password'
-      expect(response).to redirect_to(:action => 'signup')
+      expect(response).to redirect_to(action: 'signup')
     end
   end
 
@@ -190,21 +190,21 @@ describe AccountsController, :type => :controller do
     describe 'GET signup' do
       it 'should redirect to login' do
         get 'signup'
-        expect(response).to redirect_to(:action => 'login')
+        expect(response).to redirect_to(action: 'login')
       end
     end
 
     describe 'POST signup without allow_signup' do
       it 'should redirect to login' do
-        post 'signup', {'user' =>  {'login' => 'newbob'}}
-        expect(response).to redirect_to(:action => 'login')
+        post 'signup', 'user' =>  { 'login' => 'newbob' }
+        expect(response).to redirect_to(action: 'login')
       end
     end
   end
 
   describe 'with > 0 existing user and allow_signup = 1' do
     before(:each) do
-      @blog = create(:blog, :allow_signup => 1)
+      @blog = create(:blog, allow_signup: 1)
       allow(User).to receive(:count).and_return(1)
     end
 
@@ -217,8 +217,8 @@ describe AccountsController, :type => :controller do
 
     describe 'POST signup with allow_signup' do
       it 'should redirect to login' do
-        post 'signup', {'user' =>  {'login' => 'newbob', 'email' => 'newbob@mail.com'}}
-        expect(response).to redirect_to(:action => 'confirm')
+        post 'signup', 'user' =>  { 'login' => 'newbob', 'email' => 'newbob@mail.com' }
+        expect(response).to redirect_to(action: 'confirm')
       end
     end
 
@@ -227,7 +227,7 @@ describe AccountsController, :type => :controller do
     before(:each) do
       create(:blog)
       allow(User).to receive(:count).and_return(0)
-      @user = double("user")
+      @user = double('user')
       allow(@user).to receive(:reload).and_return(@user)
       allow(User).to receive(:new).and_return(@user)
     end
@@ -243,7 +243,7 @@ describe AccountsController, :type => :controller do
     end
   end
 
-  describe "with 0 existing users and unconfigured blog" do
+  describe 'with 0 existing users and unconfigured blog' do
     before(:each) do
       Blog.delete_all
       @blog = Blog.new.save
@@ -253,33 +253,33 @@ describe AccountsController, :type => :controller do
     describe 'when GET signup' do
       before { get 'signup' }
       it 'redirects to setup' do
-        expect(response).to redirect_to(:controller => 'setup', :action => 'index')
+        expect(response).to redirect_to(controller: 'setup', action: 'index')
       end
     end
 
     describe 'when POST signup' do
       before do
-        post 'signup', {'user' =>  {'login' => 'newbob', 'password' => 'newpassword',
-          'password_confirmation' => 'newpassword'}}
+        post 'signup', 'user' =>  { 'login' => 'newbob', 'password' => 'newpassword',
+          'password_confirmation' => 'newpassword' }
       end
       it 'redirects to setup' do
-        expect(response).to redirect_to(:controller => 'setup', :action => 'index')
+        expect(response).to redirect_to(controller: 'setup', action: 'index')
       end
     end
 
     describe 'when GET login' do
       before { get 'login' }
       it 'redirects to setup' do
-        expect(response).to redirect_to(:controller => 'setup', :action => 'index')
+        expect(response).to redirect_to(controller: 'setup', action: 'index')
       end
     end
 
     describe 'when POST login' do
       before do
-        post 'login', {'user' =>  {'login' => 'newbob', 'password' => 'newpassword'}}
+        post 'login', 'user' =>  { 'login' => 'newbob', 'password' => 'newpassword' }
       end
       it 'redirects to setup' do
-        expect(response).to redirect_to(:controller => 'setup', :action => 'index')
+        expect(response).to redirect_to(controller: 'setup', action: 'index')
       end
     end
   end
@@ -306,7 +306,7 @@ describe AccountsController, :type => :controller do
 
     it 'redirects to /account/confirm' do
       post 'signup', params
-      expect(response).to redirect_to(:action => 'confirm')
+      expect(response).to redirect_to(action: 'confirm')
     end
 
     it 'session gets a user' do
@@ -315,8 +315,8 @@ describe AccountsController, :type => :controller do
     end
 
     def params
-      {'user' =>  {'login' => 'newbob', 'password' => 'newpassword',
-  'password_confirmation' => 'newpassword'}}
+      { 'user' =>  { 'login' => 'newbob', 'password' => 'newpassword',
+  'password_confirmation' => 'newpassword' } }
     end
   end
 
@@ -331,15 +331,15 @@ describe AccountsController, :type => :controller do
       session[:user_id] = @user.id
       session[:user] = @user.id
 
-      cookies["publify_user_profile"] = 'admin'
+      cookies['publify_user_profile'] = 'admin'
     end
 
     it 'trying to log in once again redirects to admin/dashboard/index' do
       get 'login'
-      expect(response).to redirect_to(:controller => 'admin/dashboard')
+      expect(response).to redirect_to(controller: 'admin/dashboard')
     end
 
-    describe "when logging out" do
+    describe 'when logging out' do
       before do
         get 'logout'
       end
@@ -353,32 +353,32 @@ describe AccountsController, :type => :controller do
       end
 
       it 'redirects to the login action' do
-        expect(response).to redirect_to(:action => 'login')
+        expect(response).to redirect_to(action: 'login')
       end
 
       it 'deletes cookies containing credentials' do
-        expect(cookies["auth_token"]).to eq(nil)
-        expect(cookies["publify_user_profile"]).to eq(nil)
+        expect(cookies['auth_token']).to eq(nil)
+        expect(cookies['publify_user_profile']).to eq(nil)
       end
     end
   end
 
-  describe "#recover_password" do
+  describe '#recover_password' do
     let!(:blog) { create(:blog) }
     let!(:user) { create(:user, :as_admin) }
 
-    context "simply get" do
+    context 'simply get' do
       before(:each) { get :recover_password }
       it { expect(response).to render_template('recover_password') }
     end
 
-    context "post" do
-      before(:each) { post :recover_password, user: {login: user.login} }
+    context 'post' do
+      before(:each) { post :recover_password, user: { login: user.login } }
       it { expect(response).to redirect_to(action: 'login') }
     end
 
-    context "post with an unknown login" do
-      before(:each) { post :recover_password, user: {login: 'foobar'} }
+    context 'post with an unknown login' do
+      before(:each) { post :recover_password, user: { login: 'foobar' } }
       it { expect(response).to render_template('recover_password') }
       it { expect(flash[:error]).to eq(I18n.t('accounts.recover_password.error')) }
     end

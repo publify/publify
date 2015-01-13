@@ -9,11 +9,9 @@ module AuthorsHelper
   end
 
   def is_url?(str)
-    begin
-      [URI::HTTP, URI::HTTPS].include?(URI.parse(str.to_s).class)
-    rescue URI::InvalidURIError
-      false
-    end
+    [URI::HTTP, URI::HTTPS].include?(URI.parse(str.to_s).class)
+  rescue URI::InvalidURIError
+    false
   end
 
   def author_description(user)

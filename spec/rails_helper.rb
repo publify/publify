@@ -2,8 +2,8 @@
 require 'simplecov'
 SimpleCov.start 'rails'
 
-ENV["RAILS_ENV"] ||= 'test'
-require File.expand_path("../../config/environment", __FILE__)
+ENV['RAILS_ENV'] ||= 'test'
+require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'factory_girl'
 require 'rexml/document'
@@ -12,7 +12,7 @@ FactoryGirl.find_definitions
 class EmailNotify
   class << self
     alias real_send_user_create_notification send_user_create_notification
-    def send_user_create_notification user; end
+    def send_user_create_notification _user; end
   end
 end
 
@@ -22,14 +22,14 @@ end
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
-Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 module RSpec
   module Core
     module Hooks
       class HookCollection
         def find_hooks_for(group)
-          self.class.new(select {|hook| hook.options_apply?(group)})
+          self.class.new(select { |hook| hook.options_apply?(group) })
         end
       end
     end
@@ -81,27 +81,27 @@ end
 
 def assert_correct_atom_generator feed
   xml = Nokogiri::XML.parse(feed)
-  generator = xml.css("generator").first
-  expect(generator.content).to eq("Publify")
-  expect(generator["version"]).to eq(PUBLIFY_VERSION)
+  generator = xml.css('generator').first
+  expect(generator.content).to eq('Publify')
+  expect(generator['version']).to eq(PUBLIFY_VERSION)
 end
 
 def assert_rss20 feed, count
   doc = Feedjira::Feed.parse(feed)
   expect(doc).to be_instance_of Feedjira::Parser::RSS
-  expect(doc.version).to eq "2.0"
+  expect(doc.version).to eq 2.0'
   expect(doc.title).not_to be_nil
   expect(doc.entries.count).to eq count
 end
 
-def stub_full_article(time=Time.now)
-  author = FactoryGirl.build_stubbed(User, :name => "User Name")
+def stub_full_article(time = Time.now)
+  author = FactoryGirl.build_stubbed(User, name: 'User Name')
   text_filter = FactoryGirl.build(:textile)
 
-  a = FactoryGirl.build_stubbed(Article, :published_at => time, :user => author,
-                 :created_at => time, :updated_at => time,
-                 :title => "Foo Bar", :permalink => 'foo-bar',
-                 :guid => time.hash)
+  a = FactoryGirl.build_stubbed(Article, published_at: time, user: author,
+                 created_at: time, updated_at: time,
+                 title: 'Foo Bar', permalink: 'foo-bar',
+                 guid: time.hash)
   allow(a).to receive(:published_comments) { [] }
   allow(a).to receive(:resources) { [FactoryGirl.build(:resource)] }
   allow(a).to receive(:tags) { [FactoryGirl.build(:tag)] }
@@ -111,12 +111,12 @@ end
 
 # test standard view and all themes
 def with_each_theme
-  yield nil, ""
-  Dir.new(File.join(::Rails.root.to_s, "themes")).each do |theme|
+  yield nil, ''
+  Dir.new(File.join(::Rails.root.to_s, 'themes')).each do |theme|
     next if theme =~ /\.\.?/
-    theme_dir = "#{::Rails.root.to_s}/themes/#{theme}"
+    theme_dir = "#{::Rails.root}/themes/#{theme}"
     view_path = "#{theme_dir}/views"
-    if File.exists?("#{theme_dir}/helpers/theme_helper.rb")
+    if File.exist?("#{theme_dir}/helpers/theme_helper.rb")
       require "#{theme_dir}/helpers/theme_helper.rb"
     end
     yield theme, view_path

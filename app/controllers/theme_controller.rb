@@ -13,7 +13,7 @@ class ThemeController < ContentController
   end
 
   def error
-    render :nothing => true, :status => 404
+    render nothing: true, status: 404
   end
 
   def static_view_test
@@ -23,18 +23,18 @@ class ThemeController < ContentController
 
   def render_theme_item(type, file, mime = nil)
     mime ||= mime_for(file)
-    if file.split(%r{[\\/]}).include?("..")
-      return (render "errors/404", :status => 404)
+    if file.split(%r{[\\/]}).include?('..')
+      return (render 'errors/404', status: 404)
     end
 
     src = this_blog.current_theme.path + "/#{type}/#{file}"
-    return (render :text => "Not Found", :status => 404) unless File.exists? src
+    return (render text: 'Not Found', status: 404) unless File.exist? src
 
     if perform_caching
       cache_page File.read(src)
     end
 
-    send_file(src, :type => mime, :disposition => 'inline', :stream => true)
+    send_file(src, type: mime, disposition: 'inline', stream: true)
   end
 
   def mime_for(filename)
@@ -56,4 +56,3 @@ class ThemeController < ContentController
     end
   end
 end
-

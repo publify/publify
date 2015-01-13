@@ -11,7 +11,7 @@ class Page < Content
   after_save :shorten_url
 
   def set_permalink
-    self.name = self.title.to_permalink if self.name.blank?
+    self.name = title.to_permalink if name.blank?
   end
 
   def initialize(*args)
@@ -19,7 +19,7 @@ class Page < Content
     # Yes, this is weird - PDC
     begin
       self.settings ||= {}
-    rescue Exception => e
+    rescue => e
       self.settings = {}
     end
   end
@@ -34,13 +34,13 @@ class Page < Content
     super(search_hash).order('title ASC')
   end
 
-  def permalink_url(anchor=nil, only_path=false)
+  def permalink_url(anchor = nil, only_path = false)
     blog.url_for(
-      :controller => '/articles',
-      :action => 'view_page',
-      :name => name,
-      :anchor => anchor,
-      :only_path => only_path
+      controller: '/articles',
+      action: 'view_page',
+      name: name,
+      anchor: anchor,
+      only_path: only_path
     )
   end
 
