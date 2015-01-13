@@ -323,4 +323,10 @@ http://alsoping.example.com/rpc/ping"
     created_at Time.now
     updated_at Time.now
   end
+
+  factory :sidebar do
+    active_position 1
+    config({'title' => 'Links', 'body' => 'some links'})
+    type 'StaticSidebar'
+  end
 end
