@@ -5,10 +5,12 @@ describe 'comments/index_atom_feed.atom.builder', type: :view do
 
   describe 'rendering comments with one comment' do
     let(:article) { stub_full_article }
-    let(:comment) { build_stubbed(:comment,
-                                  article: article,
-                                  body: 'Comment body',
-                                  guid: '12313123123123123') }
+    let(:comment) do
+      build_stubbed(:comment,
+                    article: article,
+                    body: 'Comment body',
+                    guid: '12313123123123123')
+    end
 
     before(:each) do
       assign(:items, [comment])

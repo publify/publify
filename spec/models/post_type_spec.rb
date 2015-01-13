@@ -28,5 +28,4 @@ describe PostType, type: :model do
     expect(test_type).not_to be_valid
     expect(test_type.errors[:name]).to eq(['has already been taken'])
   end
-
 end

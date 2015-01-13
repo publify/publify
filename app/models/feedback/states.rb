@@ -4,14 +4,28 @@ module Feedback::States
     alias_method :content, :model
 
     # Callback handlers
-    def before_save_handler; true; end
-    def after_initialize_handler; true; end
+    def before_save_handler
+      true
+    end
 
-    def post_trigger;          true; end
-    def send_notifications;    true; end
-    def report_classification; true; end
+    def after_initialize_handler
+      true
+    end
+
+    def post_trigger
+      true
+    end
+
+    def send_notifications
+      true
+    end
+
+    def report_classification
+      true
+    end
 
     def withdraw;                    end
+
     def confirm_classification;      end
 
     def mark_as_spam
@@ -52,8 +66,8 @@ module Feedback::States
 
     def classify_content
       content.state = case content.classify
-                      when :ham;  :just_presumed_ham
-                      when :spam; :presumed_spam
+                      when :ham then  :just_presumed_ham
+                      when :spam then :presumed_spam
                       else        :presumed_spam
                       end
     end
@@ -87,7 +101,9 @@ module Feedback::States
       content[:status_confirmed] = false
     end
 
-    def published?; true; end
+    def published?
+      true
+    end
 
     def just_published?
       content.just_changed_published_status?
@@ -134,8 +150,13 @@ module Feedback::States
       content[:status_confirmed] = true
     end
 
-    def published?;        true; end
-    def status_confirmed?; true; end
+    def published?
+      true
+    end
+
+    def status_confirmed?
+      true
+    end
 
     def mark_as_ham;             end
 
@@ -169,7 +190,9 @@ module Feedback::States
       content[:status_confirmed] = false
     end
 
-    def spam?; true; end
+    def spam?
+      true
+    end
 
     def mark_as_ham
       content.state = :just_marked_as_ham
@@ -198,6 +221,7 @@ module Feedback::States
       content.just_changed_published_status = true
       content.state = :spam
     end
+
     def to_s
       'just_marked_as_spam'
     end
@@ -210,8 +234,13 @@ module Feedback::States
       content[:status_confirmed] = true
     end
 
-    def spam?;             true; end
-    def status_confirmed?; true; end
+    def spam?
+      true
+    end
+
+    def status_confirmed?
+      true
+    end
 
     def mark_as_spam;            end
 
@@ -219,6 +248,7 @@ module Feedback::States
       content.report_as_spam if content.just_changed_published_status?
       true
     end
+
     def to_s
       'spam'
     end

@@ -8,7 +8,7 @@ class Admin::ContentController < Admin::BaseController
   cache_sweeper :blog_sweeper
 
   def auto_complete_for_article_keywords
-    @items = Tag.select(:display_name).order(:display_name).map { |t| t.display_name }
+    @items = Tag.select(:display_name).order(:display_name).map(&:display_name)
     render inline: '<%= @items %>'
   end
 
@@ -62,7 +62,7 @@ class Admin::ContentController < Admin::BaseController
     if params[:article][:draft]
       get_fresh_or_existing_draft_for_article
     else
-      if not @article.parent_id.nil?
+      unless @article.parent_id.nil?
         @article = Article.find(@article.parent_id)
       end
     end
@@ -121,7 +121,7 @@ class Admin::ContentController < Admin::BaseController
   protected
 
   def get_fresh_or_existing_draft_for_article
-    if @article.published and @article.id
+    if @article.published && @article.id
       parent_id = @article.id
       @article = Article.drafts.child_of(parent_id).first || Article.new
       @article.allow_comments = this_blog.default_allow_comments

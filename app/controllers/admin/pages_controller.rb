@@ -2,7 +2,6 @@
 require 'base64'
 
 class Admin::PagesController < Admin::BaseController
-
   before_filter :set_images, only: [:new, :edit]
   before_filter :set_macro, only: [:new, :edit]
 
@@ -33,7 +32,7 @@ class Admin::PagesController < Admin::BaseController
     @page = Page.find(params[:id])
     @page.attributes = params[:page].permit! if params[:page]
     @page.text_filter ||= default_textfilter
-    if request.post? and @page.save
+    if request.post? && @page.save
       flash[:success] = I18n.t('admin.pages.edit.success')
       redirect_to action: 'index'
     end
@@ -67,5 +66,4 @@ class Admin::PagesController < Admin::BaseController
       'administration'
     end
   end
-
 end

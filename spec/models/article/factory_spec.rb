@@ -15,7 +15,6 @@ describe Article::Builder, type: :model do
   end
 
   describe '#get_or_build' do
-
     context 'with an existing article' do
       let(:article) { FactoryGirl.create(:article) }
       it { expect(factory.get_or_build_from(article.id)).to eq(article) }
@@ -78,7 +77,5 @@ describe Article::Builder, type: :model do
 
       it { expect(factory.match_permalink_format(url, format)).to eq(article) }
     end
-
   end
-
 end

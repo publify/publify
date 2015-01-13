@@ -3,7 +3,6 @@ require 'xmlrpc/client'
 
 describe Ping, type: :model do
   describe 'Given a post which references a pingback enabled article' do
-
     let(:pingback_target) { 'http://anotherblog.org/xml-rpc' }
     let(:referenced_url) { 'http://anotherblog.org/a-post' }
     let(:referrer_url) { 'http://myblog.net/referring-post' }
@@ -21,8 +20,8 @@ describe Ping, type: :model do
 
       it 'Pingback sent to url found in referenced body' do
         expect(mock_response).to receive(:[]).with('X-Pingback').at_least(:once).and_return(nil)
-        expect(mock_response).to receive(:body).at_least(:once)
-          .and_return(%{<link rel="pingback" href="#{pingback_target}" />})
+        expect(mock_response).to receive(:body).at_least(:once).
+          and_return(%(<link rel="pingback" href="#{pingback_target}" />))
         expect(mock_xmlrpc_response).to receive(:call).with('pingback.ping', referrer_url, referenced_url)
         make_and_send_ping
       end

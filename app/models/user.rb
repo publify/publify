@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
 
   serialize :settings, Hash
 
-  STATUS = ['active', 'inactive']
+  STATUS = %w(active inactive)
 
   attr_accessor :filename
 
@@ -61,7 +61,7 @@ class User < ActiveRecord::Base
   end
 
   def display_names
-    [:login, :nickname, :firstname, :lastname, :first_and_last_name].map { |f| send(f) }.delete_if { |e| e.empty? }
+    [:login, :nickname, :firstname, :lastname, :first_and_last_name].map { |f| send(f) }.delete_if(&:empty?)
   end
 
   def self.authenticate(login, pass)
@@ -109,7 +109,7 @@ class User < ActiveRecord::Base
 
   def self.find_by_permalink(permalink)
     find_by_login(permalink).tap do |user|
-      raise ActiveRecord::RecordNotFound unless user
+      fail ActiveRecord::RecordNotFound unless user
     end
   end
 
@@ -141,9 +141,7 @@ class User < ActiveRecord::Base
     'author'
   end
 
-  def password=(newpass)
-    @password = newpass
-  end
+  attr_writer :password
 
   def password(cleartext = nil)
     if cleartext
@@ -240,7 +238,7 @@ class User < ActiveRecord::Base
 
   validates_uniqueness_of :login, on: :create
   validates_uniqueness_of :email, on: :create
-  validates_length_of :password, within: 5..40, if: Proc.new { |user|
+  validates_length_of :password, within: 5..40, if: proc { |user|
     user.read_attribute('password').nil? or user.password.to_s.length > 0
   }
 

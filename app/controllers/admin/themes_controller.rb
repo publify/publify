@@ -30,6 +30,6 @@ class Admin::ThemesController < Admin::BaseController
   protected
 
   def zap_theme_caches
-    FileUtils.rm_rf(%w{stylesheets javascript images}.collect { |v| page_cache_directory + "/#{v}/theme" })
+    FileUtils.rm_rf(%w(stylesheets javascript images).collect { |v| page_cache_directory + "/#{v}/theme" })
   end
 end

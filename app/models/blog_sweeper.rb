@@ -33,7 +33,7 @@ class BlogSweeper < ActionController::Caching::Sweeper
   end
 
   def after_save(record)
-    expire_for(record) unless (record.is_a?(Article) and record.state == :draft)
+    expire_for(record) unless record.is_a?(Article) && record.state == :draft
   end
 
   def after_destroy(record)
@@ -72,7 +72,7 @@ class BlogSweeper < ActionController::Caching::Sweeper
   end
 
   def sweep_pages
-    PageCache.zap_pages(%w{pages}) unless Blog.default.nil?
+    PageCache.zap_pages(%w(pages)) unless Blog.default.nil?
   end
 
   def logger
@@ -80,6 +80,7 @@ class BlogSweeper < ActionController::Caching::Sweeper
   end
 
   private
+
   def callback(timing)
     super
     if timing == :after

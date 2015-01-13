@@ -18,7 +18,7 @@ describe 'comments/index_rss_feed.rss.builder', type: :view do
 
     describe 'the comment entry' do
       let(:rendered_entry) { Feedjira::Feed.parse(rendered).entries.first }
-      let(:xml_entry) { Nokogiri::XML.parse(rendered).css("item").first }
+      let(:xml_entry) { Nokogiri::XML.parse(rendered).css('item').first }
 
       it 'should have all the required attributes' do
         expect(rendered_entry.title).to eq "Comment on #{article.title} by #{comment.author}"

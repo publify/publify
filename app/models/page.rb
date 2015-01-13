@@ -43,5 +43,4 @@ class Page < Content
       only_path: only_path
     )
   end
-
 end

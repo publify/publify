@@ -13,10 +13,10 @@ module Admin::BaseHelper
     links.join(', ')
   end
 
-  def show_redirect_actions item
+  def show_redirect_actions(item)
     content_tag(:div, class: 'action') do
       [button_to_edit(item),
-        button_to_delete(item)].join(' ').html_safe
+       button_to_delete(item)].join(' ').html_safe
     end
   end
 
@@ -24,11 +24,11 @@ module Admin::BaseHelper
     Article.first.get_rss_description rescue ''
   end
 
-  def show_tag_actions item
+  def show_tag_actions(item)
     content_tag(:div, class: 'action') do
       [button_to_edit(item),
-        button_to_delete(item),
-        link_to_permalink(item, "#{item.articles.size} <span class='glyphicon glyphicon-link'></span>".html_safe, nil, 'btn btn-success btn-xs').html_safe
+       button_to_delete(item),
+       link_to_permalink(item, "#{item.articles.size} <span class='glyphicon glyphicon-link'></span>".html_safe, nil, 'btn btn-success btn-xs').html_safe
       ].join(' ').html_safe
     end
   end
@@ -44,7 +44,7 @@ module Admin::BaseHelper
         return 'will_change alert-warning'
       end
     else
-      raise sidebar.admin_state.inspect
+      fail sidebar.admin_state.inspect
     end
   end
 
@@ -65,12 +65,12 @@ module Admin::BaseHelper
   end
 
   def link_to_edit(label, record, controller = controller.controller_name)
-    link_to label, { controller: controller, action: 'edit', id: record.id }, class: 'edit'
+    link_to label, { controller: controller, action: 'edit', id: record.id }, { class: 'edit' }
   end
 
   def link_to_edit_with_profiles(label, record, controller = controller.controller_name)
     if current_user.admin? || current_user.id == record.user_id
-      link_to label, { controller: controller, action: 'edit', id: record.id }, class: 'edit'
+      link_to label, { controller: controller, action: 'edit', id: record.id }, { class: 'edit' }
     end
   end
 
@@ -92,11 +92,11 @@ module Admin::BaseHelper
     end
   end
 
-  def show_actions item
+  def show_actions(item)
     content_tag(:div, class: 'action', style: '') do
       [button_to_edit(item),
-        button_to_delete(item),
-        button_to_short_url(item)].join(' ').html_safe
+       button_to_delete(item),
+       button_to_short_url(item)].join(' ').html_safe
     end
   end
 
@@ -121,11 +121,11 @@ module Admin::BaseHelper
   end
 
   def button_to_edit(item)
-    link_to(content_tag(:span, '', class: 'glyphicon glyphicon-pencil'), { action: 'edit', id: item.id }, class: 'btn btn-primary btn-xs btn-action')
+    link_to(content_tag(:span, '', class: 'glyphicon glyphicon-pencil'), { action: 'edit', id: item.id }, { class: 'btn btn-primary btn-xs btn-action' })
   end
 
   def button_to_delete(item)
-    link_to(content_tag(:span, '', class: 'glyphicon glyphicon-trash'), { action: 'destroy', id: item.id }, class: 'btn btn-danger btn-xs btn-action')
+    link_to(content_tag(:span, '', class: 'glyphicon glyphicon-trash'), { action: 'destroy', id: item.id }, { class: 'btn btn-danger btn-xs btn-action' })
   end
 
   def button_to_short_url(item)
@@ -136,5 +136,4 @@ module Admin::BaseHelper
   def twitter_available?(blog, user)
     blog.has_twitter_configured? && user.has_twitter_configured?
   end
-
 end

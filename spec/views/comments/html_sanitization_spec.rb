@@ -87,7 +87,7 @@ end
 describe 'XSS2', type: :view do
   it_should_behave_like 'CommentSanitization'
   def comment_options
-    { body: %{<a href="#" onclick="javascript">bad link</a>} }
+    { body: %(<a href="#" onclick="javascript">bad link</a>) }
   end
 end
 
@@ -95,7 +95,7 @@ describe 'XSS2', type: :view do
   it_should_behave_like 'CommentSanitization'
 
   def comment_options
-    { body: %{<a href="javascript:bad">bad link</a>} }
+    { body: %(<a href="javascript:bad">bad link</a>) }
   end
 end
 
@@ -103,7 +103,7 @@ describe 'Comment with bare http URL', type: :view do
   it_should_behave_like 'CommentSanitization'
 
   def comment_options
-    { body: %{http://www.example.com} }
+    { body: %(http://www.example.com) }
   end
 end
 
@@ -111,7 +111,7 @@ describe 'Comment with bare email address', type: :view do
   it_should_behave_like 'CommentSanitization'
 
   def comment_options
-    { body: %{foo@example.com} }
+    { body: %(foo@example.com) }
   end
 end
 
@@ -204,7 +204,7 @@ end
 describe 'XSS2 with dofollow', type: :view do
   it_should_behave_like 'CommentSanitizationWithDofollow'
   def comment_options
-    { body: %{<a href="#" onclick="javascript">bad link</a>} }
+    { body: %(<a href="#" onclick="javascript">bad link</a>) }
   end
 end
 
@@ -212,7 +212,7 @@ describe 'XSS2 with dofollow', type: :view do
   it_should_behave_like 'CommentSanitizationWithDofollow'
 
   def comment_options
-    { body: %{<a href="javascript:bad">bad link</a>} }
+    { body: %(<a href="javascript:bad">bad link</a>) }
   end
 end
 
@@ -220,7 +220,7 @@ describe 'Comment with bare http URL with dofollow', type: :view do
   it_should_behave_like 'CommentSanitizationWithDofollow'
 
   def comment_options
-    { body: %{http://www.example.com} }
+    { body: %(http://www.example.com) }
   end
 end
 
@@ -228,6 +228,6 @@ describe 'Comment with bare email address with dofollow', type: :view do
   it_should_behave_like 'CommentSanitizationWithDofollow'
 
   def comment_options
-    { body: %{foo@example.com} }
+    { body: %(foo@example.com) }
   end
 end

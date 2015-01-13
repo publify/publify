@@ -78,6 +78,5 @@ describe Page, type: :model do
       let(:page) { create(:page, published: false) }
       it { expect(page.redirects).to be_empty }
     end
-
   end
 end

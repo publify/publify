@@ -46,5 +46,4 @@ class FeedbackController < ApplicationController
     instance_variable_set(ivar_name, collection)
     render "index_#{format}_feed"
   end
-
 end

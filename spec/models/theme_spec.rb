@@ -28,8 +28,8 @@ describe Theme, type: :model do
 
   describe '.theme_from_path' do
     it 'finds the correct theme' do
-      expect(Theme.theme_from_path(::Rails.root.to_s + 'themes/bootstrap-2').name)
-        .to eq 'bootstrap-2'
+      expect(Theme.theme_from_path(::Rails.root.to_s + 'themes/bootstrap-2').name).
+        to eq 'bootstrap-2'
     end
   end
 
@@ -42,7 +42,7 @@ describe Theme, type: :model do
       expect(File).to receive(:readable?).with(fake_blue_theme_dir + '/about.markdown').and_return(true)
       expect(File).to receive(:readable?).with(fake_bad_theme_dir + '/about.markdown').and_return(false)
       expect(File).to receive(:readable?).with(fake_red_theme_dir + '/about.markdown').and_return(true)
-      expect(Theme.search_theme_directory).to eq %w{ fake_blue_theme_dir fake_red_theme_dir }
+      expect(Theme.search_theme_directory).to eq %w(fake_blue_theme_dir fake_red_theme_dir)
     end
   end
 

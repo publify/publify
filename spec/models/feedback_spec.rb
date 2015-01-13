@@ -28,7 +28,6 @@ describe Feedback, type: :model do
   end
 
   describe 'scopes' do
-
     describe '#comments' do
       context 'with 1 comments' do
         let!(:comment) { create(:comment) }

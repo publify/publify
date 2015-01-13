@@ -42,12 +42,15 @@ describe Trigger, type: :model do
       let!(:item) { create :content }
       let!(:other_item) { create :content }
 
-      let!(:trigger_item_foo) {
-        Trigger.create due_at: 1.day.from_now, pending_item: item, trigger_method: 'foo' }
-      let!(:trigger_item_bar) {
-        Trigger.create due_at: 1.day.from_now, pending_item: item, trigger_method: 'bar' }
-      let!(:trigger_other_item_foo) {
-        Trigger.create due_at: 1.day.from_now, pending_item: other_item, trigger_method: 'foo' }
+      let!(:trigger_item_foo) do
+        Trigger.create due_at: 1.day.from_now, pending_item: item, trigger_method: 'foo'
+      end
+      let!(:trigger_item_bar) do
+        Trigger.create due_at: 1.day.from_now, pending_item: item, trigger_method: 'bar'
+      end
+      let!(:trigger_other_item_foo) do
+        Trigger.create due_at: 1.day.from_now, pending_item: other_item, trigger_method: 'foo'
+      end
 
       it 'removes the trigger for the given item and condition' do
         Trigger.remove item, trigger_method: 'foo'

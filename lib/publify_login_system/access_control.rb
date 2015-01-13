@@ -36,12 +36,12 @@ module AccessControl
   def self.search_plugins_directory
     plugins_root = File.join(::Rails.root.to_s, 'vendor', 'plugins')
     Dir.glob("#{plugins_root}/publify_plugin_*").select do |file|
-      File.readable?(File.join(plugin_admin_controller_path(file), file.split("#{plugins_root}/publify_plugin_").second + "_controller.rb"))
+      File.readable?(File.join(plugin_admin_controller_path(file), file.split("#{plugins_root}/publify_plugin_").second + '_controller.rb'))
     end.compact
   end
 
   def self.submenus_for(profile, current_module)
-    project_module(profile, current_module).submenus.select{|sbm| sbm.name.present? }
+    project_module(profile, current_module).submenus.select { |sbm| sbm.name.present? }
   end
 
   def self.get_plugin_litteral_name(plugin)
@@ -75,7 +75,7 @@ module AccessControl
   end
 
   def self.plugin_admin_controller_path(plugin)
-    File.join("#{plugin}", "lib", "app", "controllers", "admin")
+    File.join("#{plugin}", 'lib', 'app', 'controllers', 'admin')
   end
 
   class Mapper
@@ -105,26 +105,26 @@ module AccessControl
   class ProjectModule
     attr_reader :name, :menus, :submenus, :controllers
 
-    def initialize(name, controller=nil)
+    def initialize(name, controller = nil)
       @name = name
       @controllers, @menus, @submenus = [], [], []
       @controllers << controller
     end
-    
+
     def menu_name
       menus.first.name
     end
-  
+
     def menu_url
       menus.first.url
     end
 
-    def menu(name, url, options={})
+    def menu(name, url, options = {})
       url = set_controller_from_url(url)
       @menus << Menu.new(name, url, options)
     end
 
-    def submenu(name, url, options={})
+    def submenu(name, url, options = {})
       url = set_controller_from_url(url)
       @submenus << Menu.new(name, url, options)
     end
@@ -167,5 +167,4 @@ module AccessControl
       @url[:controller] == controller && @url[:action] == action
     end
   end
-
 end

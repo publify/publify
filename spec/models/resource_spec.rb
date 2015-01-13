@@ -22,7 +22,6 @@ describe Resource, type: :model do
         image_resource = FactoryGirl.create(:resource, mime: 'image/jpeg')
         expect(Resource.images).to eq([image_resource])
       end
-
     end
 
     describe '#by_filename' do
@@ -49,6 +48,5 @@ describe Resource, type: :model do
         expect(Resource.without_images_by_filename).to eq([a_resource, b_resource])
       end
     end
-
   end
 end

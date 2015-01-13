@@ -38,7 +38,6 @@ describe Admin::PagesController, type: :controller do
     end
 
     context 'using post' do
-
       def base_page(options = {})
         { title: 'posted via tests!',
           body: 'A good body',
@@ -67,12 +66,11 @@ describe Admin::PagesController, type: :controller do
       end
 
       it 'should create a page published in the future without a redirect' do
-        #TODO :published_at parameter is currently ignored
+        # TODO :published_at parameter is currently ignored
         skip
         post(:new, 'page' => base_page(published_at: (Time.now + 1.hour).to_s))
         expect(assigns(:page).redirects.count).to eq(0)
       end
-
     end
   end
 

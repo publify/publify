@@ -47,7 +47,6 @@ module ConfigManager
         retval
       end
     end
-
   end
 
   def canonicalize(key, value)

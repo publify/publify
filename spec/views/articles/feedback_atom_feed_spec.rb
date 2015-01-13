@@ -23,7 +23,7 @@ describe 'articles/feedback_atom_feed.atom.builder', type: :view do
         expect(entry_xml.title).to eq(
           "Trackback from #{trackback.blog_name}: #{trackback.title} on #{article.title}"
         )
-        expect(entry_xml.entry_id).to eq("urn:uuid:dsafsadffsdsf")
+        expect(entry_xml.entry_id).to eq('urn:uuid:dsafsadffsdsf')
       end
     end
   end

@@ -1,11 +1,11 @@
 class Admin::FeedbackController < Admin::BaseController
   cache_sweeper :blog_sweeper
-  Only_domain = ['unapproved', 'presumed_ham', 'presumed_spam', 'ham', 'spam']
+  Only_domain = %w(unapproved presumed_ham presumed_spam ham spam)
 
   def index
     scoped_feedback = Feedback
 
-    if params[:only].present? 
+    if params[:only].present?
       @only_param = Only_domain.dup.delete(params[:only])
       scoped_feedback = scoped_feedback.send(@only_param) if @only_param
     end
@@ -42,7 +42,7 @@ class Admin::FeedbackController < Admin::BaseController
     @comment = @article.comments.build(params[:comment].permit!)
     @comment.user_id = current_user.id
 
-    if request.post? and @comment.save
+    if request.post? && @comment.save
       # We should probably wave a spam filter over this, but for now, just mark it as published.
       @comment.mark_as_ham
       @comment.save!
@@ -67,7 +67,7 @@ class Admin::FeedbackController < Admin::BaseController
       return
     end
     comment.attributes = params[:comment].permit!
-    if request.post? and comment.save
+    if request.post? && comment.save
       flash[:success] = I18n.t('admin.feedback.update.success')
       redirect_to action: 'article', id: comment.article.id
     else
@@ -93,7 +93,6 @@ class Admin::FeedbackController < Admin::BaseController
     template = @feedback.change_state!
 
     respond_to do |format|
-
       if params[:context] != 'listing'
         @comments = Comment.last_published
         page.replace_html('commentList', partial: 'admin/dashboard/comment')
@@ -166,5 +165,4 @@ class Admin::FeedbackController < Admin::BaseController
     @unexpired = false
     PageCache.sweep_all
   end
-
 end

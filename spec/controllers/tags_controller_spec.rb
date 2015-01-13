@@ -2,7 +2,6 @@ require 'rails_helper'
 
 describe TagsController, '/index', type: :controller do
   before do
-    
     create(:blog)
     @tag = create(:tag)
     @tag.articles << create(:article)
@@ -21,7 +20,6 @@ end
 
 describe TagsController, 'showing a single tag', type: :controller do
   before do
-    
     FactoryGirl.create(:blog)
     @tag = FactoryGirl.create(:tag, name: 'Foo')
   end
@@ -37,7 +35,7 @@ describe TagsController, 'showing a single tag', type: :controller do
     end
 
     it 'should be successful' do
-      do_get()
+      do_get
       expect(response).to be_success
     end
 
@@ -47,17 +45,17 @@ describe TagsController, 'showing a single tag', type: :controller do
     end
 
     it 'should render :show by default' do
-      #TODO Stubbing #template_exists is not enough to fool Rails
+      # TODO Stubbing #template_exists is not enough to fool Rails
       skip
-      allow(controller).to receive(:template_exists?) \
-        .and_return(true)
+      allow(controller).to receive(:template_exists?). \
+        and_return(true)
       do_get
       expect(response).to render_template(:show)
     end
 
     it 'should fall back to rendering articles/index' do
-      allow(controller).to receive(:template_exists?) \
-        .and_return(false)
+      allow(controller).to receive(:template_exists?). \
+        and_return(false)
       do_get
       expect(response).to render_template('articles/index')
     end
@@ -92,11 +90,10 @@ end
 describe TagsController, 'showing tag "foo"', type: :controller do
   render_views
 
-  
   let!(:blog) { FactoryGirl.create(:blog) }
 
   before(:each) do
-    #TODO need to add default article into tag_factory build to remove this :articles =>...
+    # TODO need to add default article into tag_factory build to remove this :articles =>...
     foo = FactoryGirl.create(:tag, name: 'foo', articles: [FactoryGirl.create(:article)])
     get 'show', id: 'foo'
   end
@@ -117,7 +114,6 @@ end
 describe TagsController, 'showing a non-existant tag', type: :controller do
   # TODO: Perhaps we can show something like 'Nothing tagged with this tag'?
   it 'should redirect to main page' do
-    
     FactoryGirl.create(:blog)
     get 'show', id: 'thistagdoesnotexist'
 
@@ -130,7 +126,6 @@ describe TagsController, 'password protected article', type: :controller do
   render_views
 
   it 'article in tag should be password protected' do
-    
     create(:blog)
     article = create(:article, password: 'password')
     foo = create(:tag, name: 'foo', articles: [article])
@@ -141,7 +136,6 @@ end
 
 describe TagsController, 'SEO Options', type: :controller do
   before(:each) do
-    
     @blog = FactoryGirl.create(:blog)
     @a = FactoryGirl.create(:article)
     @foo = FactoryGirl.create(:tag, name: 'foo', articles: [@a])

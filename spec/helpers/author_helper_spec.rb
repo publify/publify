@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe AuthorsHelper, type: :helper do
-
   describe 'display_profile_item' do
     it 'should display the item as a list item if show_item is true' do
       item = display_profile_item('my@jabber.org', 'Jabber:')
@@ -55,5 +54,4 @@ describe AuthorsHelper, type: :helper do
       end
     end
   end
-
 end

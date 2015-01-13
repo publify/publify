@@ -14,9 +14,17 @@ module Article::States
       ::Rails.logger.debug("#{content} entering state #{self.class}")
     end
 
-    def post_trigger; true; end
-    def send_notifications; true; end
-    def send_pings; true; end
+    def post_trigger
+      true
+    end
+
+    def send_notifications
+      true
+    end
+
+    def send_pings
+      true
+    end
 
     def withdraw
     end
@@ -65,7 +73,7 @@ module Article::States
     end
 
     def published=(boolean)
-      if !boolean
+      unless boolean
         content.state = :just_withdrawn
       end
     end

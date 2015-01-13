@@ -1,7 +1,15 @@
 class Admin::RedirectsController < Admin::BaseController
-  def index; redirect_to action: 'new'; end
-  def edit; new_or_edit;  end
-  def new; new_or_edit;  end
+  def index
+    redirect_to action: 'new'
+  end
+
+  def edit
+    new_or_edit
+  end
+
+  def new
+    new_or_edit
+  end
 
   def destroy
     @record = Redirect.find(params[:id])
@@ -13,6 +21,7 @@ class Admin::RedirectsController < Admin::BaseController
   end
 
   private
+
   def new_or_edit
     @redirects = Redirect.where('origin is null').order('id desc').page(params[:page]).per(this_blog.admin_display_elements)
 
@@ -33,5 +42,4 @@ class Admin::RedirectsController < Admin::BaseController
       render 'new'
     end
   end
-
 end

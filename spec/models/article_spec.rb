@@ -2,7 +2,6 @@
 require 'rails_helper'
 
 describe Article, type: :model do
-
   let!(:blog) { create(:blog) }
 
   it 'test_content_fields' do
@@ -167,7 +166,7 @@ describe Article, type: :model do
 
         expect(ActiveRecord::Base.observers).to include(:email_notifier)
         expect(ActiveRecord::Base.observers).to include(:web_notifier)
-        a = Article.new(body: %{<a href="#{referenced_url}">},
+        a = Article.new(body: %(<a href="#{referenced_url}">),
                         title: 'Test the pinging',
                         published: true)
 
@@ -229,7 +228,6 @@ describe Article, type: :model do
   end
 
   it 'test_just_published_flag' do
-
     art = Article.new(title: 'title', body: 'body', published: true)
 
     assert art.just_changed_published_status?
@@ -253,7 +251,7 @@ describe Article, type: :model do
                                         published_at: Time.now + 4.seconds)
   end
   it 'test_triggers_are_dependent' do
-    #TODO Needs a fix for Rails ticket #5105: has_many: Dependent deleting does not work with STI
+    # TODO Needs a fix for Rails ticket #5105: has_many: Dependent deleting does not work with STI
     skip
     art = Article.create!(title: 'title', body: 'body',
                           published_at: Time.now + 1.hour)
@@ -293,8 +291,8 @@ describe Article, type: :model do
 
       a = build(:article)
       users = a.interested_users
-      logins = users.map { |u| u.login }.sort
-      expect(logins).to eq ['alice', 'henri']
+      logins = users.map(&:login).sort
+      expect(logins).to eq %w(alice henri)
     end
   end
 
@@ -332,7 +330,6 @@ describe Article, type: :model do
       article = build(:article, author: @alice)
       expect(article).to be_access_by(@alice)
     end
-
   end
 
   describe 'body_and_extended' do
@@ -355,7 +352,6 @@ describe Article, type: :model do
   end
 
   describe '#search' do
-
     describe 'with one word and result' do
       it 'should have two items' do
         create(:article, extended: 'extended talk')
@@ -772,7 +768,6 @@ describe Article, type: :model do
         expect(Article.new(allow_pings: nil).allow_pings?).to be_falsey
       end
     end
-
   end
 
   describe '#find_by_published_at' do
@@ -796,7 +791,6 @@ describe Article, type: :model do
         expect(result.sort).to eq [['2010-11'], ['2002-04']].sort
       end
     end
-
   end
 
   describe 'published_since' do
@@ -880,19 +874,19 @@ describe Article, type: :model do
     context 'with two keyword separate by a space' do
       let(:article) { build(:article, keywords: 'foo bar') }
       it { expect(article.tags.size).to eq(2) }
-      it { expect(article.tags.map(&:name)).to eq(['foo', 'bar']) }
+      it { expect(article.tags.map(&:name)).to eq(%w(foo bar)) }
     end
 
     context 'with two keyword separate by a coma' do
       let(:article) { build(:article, keywords: 'foo, bar') }
       it { expect(article.tags.size).to eq(2) }
-      it { expect(article.tags.map(&:name)).to eq(['foo', 'bar']) }
+      it { expect(article.tags.map(&:name)).to eq(%w(foo bar)) }
     end
 
     context 'with two keyword with apostrophe' do
       let(:article) { build(:article, keywords: "foo, l'bar") }
       it { expect(article.tags.size).to eq(3) }
-      it { expect(article.tags.map(&:name)).to eq(['foo', 'l', 'bar']) }
+      it { expect(article.tags.map(&:name)).to eq(%w(foo l bar)) }
     end
 
     context 'with two identical keywords' do

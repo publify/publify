@@ -8,8 +8,8 @@ describe 'shared/_atom_header.atom.builder', type: :view do
       xml = ::Builder::XmlMarkup.new
       xml.foo do
         render partial: 'shared/atom_header',
-          formats: [:atom], handlers: [:builder],
-          locals: { feed: xml, items: [] }
+               formats: [:atom], handlers: [:builder],
+               locals: { feed: xml, items: [] }
       end
 
       assert_correct_atom_generator xml.target!

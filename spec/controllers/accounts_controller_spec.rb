@@ -86,7 +86,6 @@ describe AccountsController, type: :controller do
       make_request
       expect(response).to render_template(:login)
     end
-
   end
 
   describe 'Login with nil user and password' do
@@ -221,7 +220,6 @@ describe AccountsController, type: :controller do
         expect(response).to redirect_to(action: 'confirm')
       end
     end
-
   end
   describe 'GET signup with 0 existing users' do
     before(:each) do
@@ -260,7 +258,7 @@ describe AccountsController, type: :controller do
     describe 'when POST signup' do
       before do
         post 'signup', 'user' =>  { 'login' => 'newbob', 'password' => 'newpassword',
-          'password_confirmation' => 'newpassword' }
+                                    'password_confirmation' => 'newpassword' }
       end
       it 'redirects to setup' do
         expect(response).to redirect_to(controller: 'setup', action: 'index')
@@ -316,7 +314,7 @@ describe AccountsController, type: :controller do
 
     def params
       { 'user' =>  { 'login' => 'newbob', 'password' => 'newpassword',
-  'password_confirmation' => 'newpassword' } }
+                     'password_confirmation' => 'newpassword' } }
     end
   end
 

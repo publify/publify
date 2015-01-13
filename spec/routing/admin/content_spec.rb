@@ -4,7 +4,7 @@ require 'rails_helper'
 describe 'Admin::ContentController routing', type: :routing do
   it 'routes #new' do
     expect(get: '/admin/content/new').to route_to(controller: 'admin/content',
-                                                    action: 'new', id: nil)
+                                                  action: 'new', id: nil)
   end
 
   it 'routes #autosave' do
@@ -13,6 +13,6 @@ describe 'Admin::ContentController routing', type: :routing do
 
   it 'routes #auto_complete_for_article_keywords' do
     expect(get: '/admin/content/auto_complete_for_article_keywords').to route_to(controller: 'admin/content',
-                                                                                   action: 'auto_complete_for_article_keywords', id: nil)
+                                                                                 action: 'auto_complete_for_article_keywords', id: nil)
   end
 end

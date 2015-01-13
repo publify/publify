@@ -13,11 +13,11 @@ class Blog < ActiveRecord::Base
 
   default_scope -> { order('id') }
 
-  validate(on: :create) { |blog|
+  validate(on: :create) do |blog|
     unless Blog.count.zero?
       blog.errors.add(:base, 'There can only be one...')
     end
-  }
+  end
 
   validates :blog_name, presence: true
 
@@ -157,7 +157,7 @@ class Blog < ActiveRecord::Base
   end
 
   # The +Theme+ object for the current theme.
-  def current_theme reload = nil
+  def current_theme(reload = nil)
     if reload
       @current_theme = nil
     end
@@ -192,7 +192,7 @@ class Blog < ActiveRecord::Base
       end
       Rails.cache.read(cache_key)
     else
-      raise "Invalid URL in url_for: #{options.inspect}"
+      fail "Invalid URL in url_for: #{options.inspect}"
     end
   end
 
@@ -250,8 +250,8 @@ class Blog < ActiveRecord::Base
   end
 
   def has_twitter_configured?
-    return false if twitter_consumer_key.nil? or twitter_consumer_secret.nil?
-    return false if twitter_consumer_key.empty? or twitter_consumer_secret.empty?
+    return false if twitter_consumer_key.nil? || twitter_consumer_secret.nil?
+    return false if twitter_consumer_key.empty? || twitter_consumer_secret.empty?
     true
   end
 
@@ -268,11 +268,10 @@ class Blog < ActiveRecord::Base
   def split_base_url
     unless @split_base_url
       unless base_url =~ /(https?):\/\/([^\/]*)(.*)/
-        raise "Invalid base_url: #{base_url}"
+        fail "Invalid base_url: #{base_url}"
       end
-      @split_base_url = { protocol: $1, host_with_port: $2, root_path: $3.gsub(%r{/$}, '') }
+      @split_base_url = { protocol: Regexp.last_match[1], host_with_port: Regexp.last_match[2], root_path: Regexp.last_match[3].gsub(%r{/$}, '') }
     end
     @split_base_url
   end
-
 end

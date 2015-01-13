@@ -24,7 +24,6 @@ describe Admin::SeoController, type: :controller do
   end
 
   describe 'update' do
-
     before(:each) { post :update, from: 'permalinks', setting: { permalink_format: format } }
 
     context 'simple title format' do
@@ -40,5 +39,4 @@ describe Admin::SeoController, type: :controller do
       it { expect(flash[:error]).to eq(I18n.t('admin.settings.update.error', messages: I18n.t('errors.permalink_need_a_title'))) }
     end
   end
-
 end

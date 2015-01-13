@@ -34,7 +34,6 @@ describe Admin::PostTypesController, type: :controller do
       before(:each) { get :edit, post_type: { name: 'new post type' } }
       it { expect(response).to render_template('new') }
     end
-
   end
 
   describe 'new' do

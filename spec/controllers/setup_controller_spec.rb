@@ -18,8 +18,9 @@ describe SetupController, type: :controller do
     end
 
     describe 'POST setup' do
-      let(:post_setup_index) {
-        post 'index', setting: { blog_name: 'Foo', email: 'foo@bar.net' } }
+      let(:post_setup_index) do
+        post 'index', setting: { blog_name: 'Foo', email: 'foo@bar.net' }
+      end
 
       context 'when a first article exists' do
         before do
@@ -27,8 +28,10 @@ describe SetupController, type: :controller do
           post_setup_index
         end
 
-        specify { expect(response).to redirect_to(controller: 'accounts',
-                                                  action: 'confirm') }
+        specify do
+          expect(response).to redirect_to(controller: 'accounts',
+                                          action: 'confirm')
+        end
 
         it 'should correctly initialize blog and users' do
           expect(Blog.default.blog_name).to eq('Foo')
@@ -49,8 +52,10 @@ describe SetupController, type: :controller do
           post_setup_index
         end
 
-        specify { expect(response).to redirect_to(controller: 'accounts',
-                                                  action: 'confirm') }
+        specify do
+          expect(response).to redirect_to(controller: 'accounts',
+                                          action: 'confirm')
+        end
 
         it 'should correctly initialize blog and users' do
           expect(Blog.default.blog_name).to eq('Foo')

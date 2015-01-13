@@ -3,7 +3,7 @@ class NotesController < ContentController
 
   layout :theme_layout
   cache_sweeper :blog_sweeper
-  caches_page :index, :show, if: Proc.new { |c| c.request.query_string == '' }
+  caches_page :index, :show, if: proc { |c| c.request.query_string == '' }
 
   after_filter :set_blog_infos
 
@@ -37,5 +37,4 @@ class NotesController < ContentController
     @page_title = this_blog.statuses_title_template.to_title(@notes, this_blog, params)
     @description = this_blog.statuses_desc_template.to_title(@notes, this_blog, params)
   end
-
 end

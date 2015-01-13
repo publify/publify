@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe 'With the list of available filters', type: :model do
-
   attr_reader :blog, :whiteboard
   before(:each) do
     @blog = build_stubbed(:blog)
@@ -61,7 +60,6 @@ describe 'With the list of available filters', type: :model do
       text = filter_text('A test tweet with a https://link.com', [:twitterfilter])
       expect(text).to eq("A test tweet with a <a href='https://link.com'>https://link.com</a>")
     end
-
   end
 
   describe '#filter_text' do
@@ -105,9 +103,7 @@ describe 'With the list of available filters', type: :model do
     end
 
     describe 'specific publify tags' do
-
       describe 'flickr' do
-
         it 'should show with default settings' do
           assert_equal "<div style=\"float:left\" class=\"flickrplugin\"><a href=\"http://www.flickr.com/users/scottlaird/31366117\"><img src=\"//photos23.flickr.com/31366117_b1a791d68e_s.jpg\" width=\"75\" height=\"75\" alt=\"Matz\" title=\"Matz\"/></a><p class=\"caption\" style=\"width:75px\">This is Matz, Ruby's creator</p></div>",
                        filter_text('<publify:flickr img="31366117" size="Square" style="float:left"/>',
@@ -130,33 +126,31 @@ describe 'With the list of available filters', type: :model do
         end
 
         it 'broken_flickr_link' do
-          assert_equal %{<div class='broken_flickr_link'>\`notaflickrid\' could not be displayed because: <br />Photo not found</div>},
+          assert_equal %(<div class='broken_flickr_link'>`notaflickrid' could not be displayed because: <br />Photo not found</div>),
                        filter_text('<publify:flickr img="notaflickrid" />',
                                    [:macropre, :macropost],
                                    'flickr-user' => 'scott@sigkill.org')
         end
       end
-
-    end #flickr
+    end # flickr
 
     describe 'code textfilter' do
       describe 'single line' do
         it 'should made nothin if no args' do
-          expect(filter_text('<publify:code>foo-code</publify:code>', [:macropre, :macropost])).to eq(%{<div class="CodeRay"><pre><notextile>foo-code</notextile></pre></div>})
+          expect(filter_text('<publify:code>foo-code</publify:code>', [:macropre, :macropost])).to eq(%(<div class="CodeRay"><pre><notextile>foo-code</notextile></pre></div>))
         end
 
         it 'should parse ruby lang' do
-          expect(filter_text('<publify:code lang="ruby">foo-code</publify:code>', [:macropre, :macropost])).to eq(%{<div class="CodeRay"><pre><notextile><span class=\"CodeRay\">foo-code</span></notextile></pre></div>})
+          expect(filter_text('<publify:code lang="ruby">foo-code</publify:code>', [:macropre, :macropost])).to eq(%(<div class="CodeRay"><pre><notextile><span class="CodeRay">foo-code</span></notextile></pre></div>))
         end
 
         it 'should parse ruby and xml in same sentence but not in same place' do
-          expect(filter_text('<publify:code lang="ruby">foo-code</publify:code> blah blah <publify:code lang="xml">zzz</publify:code>', [:macropre, :macropost])).to eq(%{<div class="CodeRay"><pre><notextile><span class="CodeRay">foo-code</span></notextile></pre></div> blah blah <div class="CodeRay"><pre><notextile><span class="CodeRay">zzz</span></notextile></pre></div>})
+          expect(filter_text('<publify:code lang="ruby">foo-code</publify:code> blah blah <publify:code lang="xml">zzz</publify:code>', [:macropre, :macropost])).to eq(%(<div class="CodeRay"><pre><notextile><span class="CodeRay">foo-code</span></notextile></pre></div> blah blah <div class="CodeRay"><pre><notextile><span class="CodeRay">zzz</span></notextile></pre></div>))
         end
-
       end
       describe 'multiline' do
         it 'should render ruby' do
-          expect(filter_text(%{
+          expect(filter_text(%(
 <publify:code lang="ruby">
 class Foo
   def bar
@@ -164,16 +158,16 @@ class Foo
   end
 end
 </publify:code>
-          }, [:macropre, :macropost])).to eq(%{
+                    ), [:macropre, :macropost])).to eq(%(
 <div class=\"CodeRay\"><pre><notextile><span class=\"CodeRay\"><span class=\"keyword\">class</span> <span class=\"class\">Foo</span>
   <span class=\"keyword\">def</span> <span class=\"function\">bar</span>
     <span class=\"instance-variable\">@a</span> = <span class=\"string\"><span class=\"delimiter\">&quot;</span><span class=\"content\">zzz</span><span class=\"delimiter\">&quot;</span></span>
   <span class=\"keyword\">end</span>
 <span class=\"keyword\">end</span></span></notextile></pre></div>
-          })
+                    ))
         end
-      end #multiline
-    end #code textfilter
+      end # multiline
+    end # code textfilter
 
     it 'test_code_plus_markup_chain' do
       build_stubbed :textile
@@ -262,7 +256,6 @@ _footer text here_
         end
       end
     end
-
   end # #filter_text
 
   it '#filter text by name' do
@@ -270,5 +263,4 @@ _footer text here_
     result = TextFilter.filter_text_by_name(blog, '*"foo"*', 'markdown smartypants')
     expect(result).to eq('<p><em>&#8220;foo&#8221;</em></p>')
   end
-
 end

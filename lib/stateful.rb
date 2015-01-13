@@ -8,14 +8,13 @@ module Stateful
       self.class.to_s.demodulize
     end
 
-    def exit_hook(target_state)
+    def exit_hook(_target_state)
       ::Rails.logger.debug("#{model} leaving state #{self}")
     end
 
     def enter_hook
       ::Rails.logger.debug("#{model} entering state #{self}")
     end
-
 
     def method_missing(predicate, *args)
       if predicate.to_s.last == '?'
@@ -38,6 +37,7 @@ module Stateful
     end
 
     private
+
     attr_reader :model
   end
 
@@ -50,7 +50,7 @@ module Stateful
       options.assert_valid_keys(:valid_states, :handles, :initial_state)
 
       unless states = options[:valid_states]
-        raise "You must specify at least one state"
+        fail 'You must specify at least one state'
       end
       states        = states.collect &:to_sym
 
@@ -62,7 +62,7 @@ module Stateful
       state_reader_method(field, states, initial_state)
 
       delegations.each do |value|
-        delegate value, :to => field
+        delegate value, to: field
       end
     end
 
@@ -81,7 +81,7 @@ module Stateful
       end_meth
     end
 
-    def state_writer_method(name, states, initial_state)
+    def state_writer_method(name, states, _initial_state)
       module_eval <<-end_meth
         def #{name}=(state)
           case state

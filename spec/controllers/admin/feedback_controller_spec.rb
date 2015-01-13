@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe Admin::FeedbackController, type: :controller do
-
   render_views
 
   shared_examples_for 'destroy feedback with feedback from own article' do
@@ -33,7 +32,6 @@ describe Admin::FeedbackController, type: :controller do
   end
 
   describe 'logged in admin user' do
-
     before(:each) do
       create(:blog)
       @admin = create(:user, :as_admin)
@@ -50,7 +48,6 @@ describe Admin::FeedbackController, type: :controller do
     end
 
     describe 'destroy action' do
-
       it_should_behave_like 'destroy feedback with feedback from own article'
 
       it "should destroy feedback from article doesn't own" do
@@ -66,8 +63,8 @@ describe Admin::FeedbackController, type: :controller do
     end
 
     describe 'index security' do
-      it "should check domain of the only param" do
-        expect { get :index, {only: 'evil_call'} }.not_to raise_error
+      it 'should check domain of the only param' do
+        expect { get :index, only: 'evil_call' }.not_to raise_error
         expect(assigns(:only_param)).to be_nil
       end
     end
@@ -108,16 +105,13 @@ describe Admin::FeedbackController, type: :controller do
         it { expect(assigns(:feedback)).to eq([unapproved, presumed_ham]) }
       end
 
-
       context 'with an empty page params' do
         let(:params) { { page: '' } }
         it { expect(assigns(:feedback).size).to eq(4) }
       end
-
     end
 
     describe 'article action' do
-
       def should_success_with_article_view(response)
         expect(response).to be_success
         expect(response).to render_template('article')
@@ -152,24 +146,22 @@ describe Admin::FeedbackController, type: :controller do
       end
 
       it 'should redirect_to index if bad article id' do
-        expect{
-          get :article, id: 102302
-        }.to raise_error(ActiveRecord::RecordNotFound)
+        expect do
+          get :article, id: 102_302
+        end.to raise_error(ActiveRecord::RecordNotFound)
       end
-
     end
 
     describe 'create action' do
-
       def base_comment(options = {})
         { 'body' => 'a new comment', 'author' => 'Me', 'url' => 'http://publify.co', 'email' => 'dev@publify.co' }.merge(options)
       end
 
       describe 'by get access' do
         it "should raise ActiveRecordNotFound if article doesn't exist" do
-          expect {
-            get 'create', article_id: 120431, comment: base_comment
-          }.to raise_error(ActiveRecord::RecordNotFound)
+          expect do
+            get 'create', article_id: 120_431, comment: base_comment
+          end.to raise_error(ActiveRecord::RecordNotFound)
         end
 
         it 'should not create comment' do
@@ -179,14 +171,13 @@ describe Admin::FeedbackController, type: :controller do
             expect(response).to redirect_to(action: 'article', id: article.id)
           end.not_to change(Comment, :count)
         end
-
       end
 
       describe 'by post access' do
         it "should raise ActiveRecord::RecordNotFound if article doesn't exist" do
-          expect {
-            post 'create', article_id: 123104, comment: base_comment
-          }.to raise_error(ActiveRecord::RecordNotFound)
+          expect do
+            post 'create', article_id: 123_104, comment: base_comment
+          end.to raise_error(ActiveRecord::RecordNotFound)
         end
 
         it 'should create comment' do
@@ -204,9 +195,7 @@ describe Admin::FeedbackController, type: :controller do
             expect(response).to redirect_to(action: 'article', id: article.id)
           end.to change { Comment.count(conditions: { state: 'ham' }) }
         end
-
       end
-
     end
 
     describe 'edit action' do
@@ -222,14 +211,13 @@ describe Admin::FeedbackController, type: :controller do
     end
 
     describe 'update action' do
-
       it 'should update comment if post request' do
         article = FactoryGirl.create(:article)
         comment = FactoryGirl.create(:comment, article: article)
         post 'update', id: comment.id,
                        comment: { author: 'Bob Foo2',
-                                    url: 'http://fakeurl.com',
-                                    body: 'updated comment' }
+                                  url: 'http://fakeurl.com',
+                                  body: 'updated comment' }
         expect(response).to redirect_to(action: 'article', id: article.id)
         comment.reload
         expect(comment.body).to eq('updated comment')
@@ -239,21 +227,19 @@ describe Admin::FeedbackController, type: :controller do
         comment = FactoryGirl.create(:comment)
         get 'update', id: comment.id,
                       comment: { author: 'Bob Foo2',
-                                   url: 'http://fakeurl.com',
-                                   body: 'updated comment' }
+                                 url: 'http://fakeurl.com',
+                                 body: 'updated comment' }
         expect(response).to redirect_to(action: 'edit', id: comment.id)
         comment.reload
         expect(comment.body).not_to eq('updated comment')
       end
-
     end
   end
 
   describe 'publisher access' do
-
     before :each do
       FactoryGirl.create(:blog)
-      #TODO remove this delete_all after removing all fixture
+      # TODO remove this delete_all after removing all fixture
       Profile.delete_all
       @publisher = FactoryGirl.create(:user, profile: FactoryGirl.create(:profile_publisher))
       request.session = { user: @publisher.id }
@@ -283,7 +269,6 @@ describe Admin::FeedbackController, type: :controller do
     end
 
     describe 'edit action' do
-
       it 'should not edit comment no own article' do
         get 'edit', id: feedback_from_not_own_article.id
         expect(response).to redirect_to(action: 'index')
@@ -296,16 +281,14 @@ describe Admin::FeedbackController, type: :controller do
         expect(assigns(:comment)).to eq(feedback_from_own_article)
         expect(assigns(:article)).to eq(feedback_from_own_article.article)
       end
-
     end
 
     describe 'update action' do
-
       it 'should update comment if own article' do
         post 'update', id: feedback_from_own_article.id,
                        comment: { author: 'Bob Foo2',
-                                    url: 'http://fakeurl.com',
-                                    body: 'updated comment' }
+                                  url: 'http://fakeurl.com',
+                                  body: 'updated comment' }
         expect(response).to redirect_to(action: 'article', id: feedback_from_own_article.article.id)
         feedback_from_own_article.reload
         expect(feedback_from_own_article.body).to eq('updated comment')
@@ -314,8 +297,8 @@ describe Admin::FeedbackController, type: :controller do
       it 'should not update comment if not own article' do
         post 'update', id: feedback_from_not_own_article.id,
                        comment: { author: 'Bob Foo2',
-                                    url: 'http://fakeurl.com',
-                                    body: 'updated comment' }
+                                  url: 'http://fakeurl.com',
+                                  body: 'updated comment' }
         expect(response).to redirect_to(action: 'index')
         feedback_from_not_own_article.reload
         expect(feedback_from_not_own_article.body).not_to eq('updated comment')
@@ -416,7 +399,6 @@ describe Admin::FeedbackController, type: :controller do
         post :bulkops, bulkop_top: 'Confirm Classification of Checked Items', feedback_check: { comment.id.to_s => 'on' }
         expect(Feedback.find(comment.id)).to be_ham
       end
-
     end
   end
 end

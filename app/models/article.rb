@@ -21,12 +21,12 @@ class Article < Content
   has_many :comments, -> { order('created_at ASC') }, dependent: :destroy do
     # Get only ham or presumed_ham comments
     def ham
-      where(state: ['presumed_ham', 'ham'])
+      where(state: %w(presumed_ham ham))
     end
 
     # Get only spam or presumed_spam comments
     def spam
-      where(state: ['presumed_spam', 'spam'])
+      where(state: %w(presumed_spam spam))
     end
   end
 
@@ -48,13 +48,13 @@ class Article < Content
   scope :pending, lambda { where('state = ? and published_at > ?', 'publication_pending', Time.now).order('published_at DESC') }
 
   scope :bestof, ->() {
-    joins(:feedback)
-      .where('feedback.published' => true, 'feedback.type' => 'Comment',
-            'contents.published' => true)
-      .group('contents.id')
-      .order('count(feedback.id) DESC')
-      .select('contents.*, count(feedback.id) as comment_count')
-      .limit(5)
+    joins(:feedback).
+      where('feedback.published' => true, 'feedback.type' => 'Comment',
+            'contents.published' => true).
+      group('contents.id').
+      order('count(feedback.id) DESC').
+      select('contents.*, count(feedback.id) as comment_count').
+      limit(5)
   }
 
   setting :password, :string, ''
@@ -106,7 +106,7 @@ class Article < Content
   def self.search_with(params)
     params ||= {}
     scoped = super(params)
-    if ['no_draft', 'drafts', 'published', 'withdrawn', 'pending'].include?(params[:state])
+    if %w(no_draft drafts published withdrawn pending).include?(params[:state])
       scoped = scoped.send(params[:state])
     end
 
@@ -201,7 +201,7 @@ class Article < Content
       return article if article
     end
 
-    raise ActiveRecord::RecordNotFound
+    fail ActiveRecord::RecordNotFound
   end
 
   # Fulltext searches the body of published articles
@@ -235,10 +235,10 @@ class Article < Content
   end
 
   def html_urls
-    urls = Array.new
+    urls = []
     html.gsub(/<a\s+[^>]*>/) do |tag|
-      if (tag =~ /\bhref=(["']?)([^ >"]+)\1/)
-        urls.push($2.strip)
+      if tag =~ /\bhref=(["']?)([^ >"]+)\1/
+        urls.push(Regexp.last_match[2].strip)
       end
     end
     urls.uniq
@@ -279,14 +279,14 @@ class Article < Content
 
   # Split apart value around a "\<!--more-->" comment and assign it to our
   # #body and #extended fields.
-  def body_and_extended= value
+  def body_and_extended=(value)
     parts = value.split(/\n?<!--more-->\n?/, 2)
     self.body = parts[0]
     self.extended = parts[1] || ''
   end
 
   def password_protected?
-    not password.blank?
+    !password.blank?
   end
 
   def add_comment(params)
@@ -314,7 +314,7 @@ class Article < Content
   protected
 
   def set_published_at
-    if published and self[:published_at].nil?
+    if published && self[:published_at].nil?
       self[:published_at] = created_at || Time.now
     end
   end

@@ -56,7 +56,6 @@ describe Note, type: :model do
     end
 
     describe 'scopes' do
-
       describe '#published' do
         let(:now) { DateTime.new(2012, 5, 20, 14, 23) }
         let(:note) { create(:note, published_at: now - 1.minute) }
@@ -78,29 +77,29 @@ describe Note, type: :model do
     describe 'send_to_twitter' do
       context 'with a simple note' do
         let(:note) { build(:note) }
-      context 'with twitter configured for blog and user' do
-        before(:each) do
-          expect_any_instance_of(Blog).to receive(:has_twitter_configured?).and_return(true)
-          expect_any_instance_of(User).to receive(:has_twitter_configured?).and_return(true)
+        context 'with twitter configured for blog and user' do
+          before(:each) do
+            expect_any_instance_of(Blog).to receive(:has_twitter_configured?).and_return(true)
+            expect_any_instance_of(User).to receive(:has_twitter_configured?).and_return(true)
+          end
+
+          it { expect(note.send_to_twitter).to be_falsey }
         end
 
-        it { expect(note.send_to_twitter).to be_falsey }
-      end
-
-      context 'with twitter not configured for blog' do
-        before(:each) do
-          expect_any_instance_of(Blog).to receive(:has_twitter_configured?).and_return(false)
+        context 'with twitter not configured for blog' do
+          before(:each) do
+            expect_any_instance_of(Blog).to receive(:has_twitter_configured?).and_return(false)
+          end
+          it { expect(note.send_to_twitter).to be_falsey }
         end
-        it { expect(note.send_to_twitter).to be_falsey }
-      end
 
-      context 'with a twitter configured for blog but not user' do
-        before(:each) do
-          expect_any_instance_of(Blog).to receive(:has_twitter_configured?).and_return(true)
-          expect_any_instance_of(User).to receive(:has_twitter_configured?).and_return(false)
+        context 'with a twitter configured for blog but not user' do
+          before(:each) do
+            expect_any_instance_of(Blog).to receive(:has_twitter_configured?).and_return(true)
+            expect_any_instance_of(User).to receive(:has_twitter_configured?).and_return(false)
+          end
+          it { expect(note.send_to_twitter).to be_falsey }
         end
-        it { expect(note.send_to_twitter).to be_falsey }
-      end
       end
 
       context 'with a more than 140 char note' do
@@ -118,7 +117,6 @@ describe Note, type: :model do
 
         it { expect(note.errors.full_messages).to eq(['Message Status is over 140 characters.']) }
       end
-
     end
 
     describe 'twitter_url' do

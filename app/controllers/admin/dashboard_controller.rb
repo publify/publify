@@ -76,7 +76,9 @@ class Admin::DashboardController < Admin::BaseController
   end
 
   class RssItem < Struct.new(:link, :title, :description, :description_link, :date, :author)
-    def to_s; title end
+    def to_s
+      title
+    end
   end
 
   def parse_rss(body)

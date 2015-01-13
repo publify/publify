@@ -70,7 +70,7 @@ describe ArticlesController, 'base', type: :controller do
 
         it 'should have content markdown interpret and without html tag' do
           expect(response.body).to have_selector('div') do |div|
-            expect(div).to match(%Q{in markdown format * we * use [ok](http://blog.ok.com) to define a link})
+            expect(div).to match(%{in markdown format * we * use [ok](http://blog.ok.com) to define a link})
           end
         end
       end
@@ -92,13 +92,10 @@ describe ArticlesController, 'base', type: :controller do
       get 'search', q: 'abcdefghijklmnopqrstuvwxyz'
       expect(response).to render_template('articles/error', layout: false)
     end
-
   end
 
   describe '#livesearch action' do
-
     describe 'with a query with several words' do
-
       before(:each) do
         create(:article, body: 'hello world and im herer')
         create(:article, title: 'hello', body: 'worldwide')
@@ -128,7 +125,6 @@ describe ArticlesController, 'base', type: :controller do
       it 'should assign @search the search string' do
         expect(assigns[:search]).to be_equal(controller.params[:q])
       end
-
     end
   end
 
@@ -147,7 +143,6 @@ describe ArticlesController, 'base', type: :controller do
   end
 
   describe 'index for a month' do
-
     before(:each) do
       create(:article, published_at: Time.utc(2004, 4, 23))
       get 'index', year: 2004, month: 4
@@ -173,7 +168,6 @@ describe ArticlesController, 'base', type: :controller do
       end
     end
   end
-
 end
 
 describe ArticlesController, 'nosettings', type: :controller do
@@ -186,7 +180,6 @@ describe ArticlesController, 'nosettings', type: :controller do
 end
 
 describe ArticlesController, 'nousers', type: :controller do
-
   let!(:blog) { create(:blog) }
 
   it 'redirects to signup' do
@@ -290,7 +283,6 @@ describe ArticlesController, 'previewing', type: :controller do
 end
 
 describe ArticlesController, 'redirecting', type: :controller do
-
   describe 'with explicit redirects' do
     it 'should redirect from known URL' do
       build_stubbed(:blog)
@@ -414,7 +406,6 @@ describe ArticlesController, 'redirecting', type: :controller do
     end
 
     describe 'accessing an article' do
-
       let!(:article) { create(:article, permalink: 'second-blog-article', published_at: '2004-04-01 02:00:00', updated_at: '2004-04-01 02:00:00', created_at: '2004-04-01 02:00:00') }
       before(:each) do
         get :redirect, from: "#{article.permalink}.html"
@@ -454,19 +445,19 @@ describe ArticlesController, 'redirecting', type: :controller do
 
       let!(:article) { create(:article, permalink: 'second-blog-article', published_at: '2004-04-01 02:00:00', updated_at: '2004-04-01 02:00:00', created_at: '2004-04-01 02:00:00') }
 
-      with_each_theme do |theme, view_path|
+      with_each_theme do |theme, _view_path|
         context "for theme #{theme}" do
           before do
             blog.theme = theme
             blog.save!
           end
 
-          it "renders without errors when no comments or trackbacks are present" do
+          it 'renders without errors when no comments or trackbacks are present' do
             get :redirect, from: "#{article.permalink}.html"
             expect(response).to be_success
           end
 
-          it "renders without errors when comments and trackbacks are present" do
+          it 'renders without errors when comments and trackbacks are present' do
             create :trackback, article: article
             create :comment, article: article
             get :redirect, from: "#{article.permalink}.html"

@@ -2,7 +2,6 @@
 
 # Factory definitions
 FactoryGirl.define do
-
   sequence :name do |n|; "name_#{n}"; end
   sequence :body do |n|; "body #{n}" * (n + 3 % 5); end
   sequence :user do |n|; "user#{n}"; end
@@ -54,7 +53,6 @@ FactoryGirl.define do
     trait :as_publisher do
       association :profile, factory: :profile_publisher
     end
-
   end
 
   factory :article do
@@ -210,7 +208,7 @@ http://alsoping.example.com/rpc/ping"
 
   factory :tag do |tag|
     tag.name { FactoryGirl.generate(:name) }
-    tag.display_name { |a| a.name }
+    tag.display_name(&:name)
   end
 
   factory :resource do |r|
@@ -326,7 +324,7 @@ http://alsoping.example.com/rpc/ping"
 
   factory :sidebar do
     active_position 1
-    config({'title' => 'Links', 'body' => 'some links'})
+    config('title' => 'Links', 'body' => 'some links')
     type 'StaticSidebar'
   end
 end

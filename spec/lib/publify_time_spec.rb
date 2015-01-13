@@ -41,7 +41,6 @@ describe PublifyTime do
       end_at   = start_at.end_of_day
       expect(PublifyTime.delta('2009', '01', '01')).to eq(start_at..end_at)
     end
-
   end
 
   describe 'delta_like' do
@@ -62,7 +61,6 @@ describe PublifyTime do
       end_at   = start_at.end_of_day
       expect(PublifyTime.delta_like('2013-08-01')).to eq(start_at..end_at)
     end
-
   end
 end
 

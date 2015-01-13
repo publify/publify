@@ -1,5 +1,4 @@
 module AuthorsHelper
-
   def display_profile_item(item, item_desc)
     return unless item.present?
     item = link_to(item, item) if is_url?(item)

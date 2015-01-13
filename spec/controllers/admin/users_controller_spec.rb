@@ -25,12 +25,11 @@ describe Admin::UsersController, 'rough port of the old functional test', type: 
     end
 
     describe '#EDIT action' do
-
       describe 'with POST request' do
         it 'should redirect to index' do
           post :edit, id: @admin.id, user: { login: 'errand',
-                                                   email: 'corey@test.com', password: 'testpass',
-                                                   password_confirmation: 'testpass' }
+                                             email: 'corey@test.com', password: 'testpass',
+                                             password_confirmation: 'testpass' }
           expect(response).to redirect_to(action: 'index')
         end
       end
@@ -59,7 +58,6 @@ describe Admin::UsersController, 'rough port of the old functional test', type: 
           end
           it_should_behave_like 'edit admin render'
         end
-
       end
     end
 
@@ -79,7 +77,6 @@ describe Admin::UsersController, 'rough port of the old functional test', type: 
   end
 
   describe 'when you are not admin' do
-
     before :each do
       create(:blog)
       user = create(:user)
@@ -92,7 +89,6 @@ describe Admin::UsersController, 'rough port of the old functional test', type: 
     end
 
     describe 'EDIT Action' do
-
       describe 'try update another user' do
         before do
           @admin_profile = create(:profile_admin)

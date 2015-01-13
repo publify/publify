@@ -26,12 +26,17 @@ class Note < Content
   TWITTER_LINK_LENGTH = 22
 
   def set_permalink
-    self.permalink = "#{id}-#{body.to_permalink[0..79]}" if permalink.nil? or permalink.empty?
+    self.permalink = "#{id}-#{body.to_permalink[0..79]}" if permalink.nil? || permalink.empty?
     save
   end
 
-  def categories; []; end
-  def tags; []; end
+  def categories
+    []
+  end
+
+  def tags
+    []
+  end
 
   def html_preprocess(_field, html)
     PublifyApp::Textfilter::Twitterfilter.filtertext(nil, nil, html, nil).nofollowify
@@ -82,7 +87,7 @@ class Note < Content
 
     begin
       options = {}
-      if in_reply_to_status_id and in_reply_to_status_id != ''
+      if in_reply_to_status_id && in_reply_to_status_id != ''
         options = { in_reply_to_status_id: in_reply_to_status_id }
         self.in_reply_to_message = twitter.status(in_reply_to_status_id).to_json
       end
@@ -131,7 +136,7 @@ class Note < Content
   private
 
   def too_long?(message)
-    uris = URI.extract(message, ['http', 'https', 'ftp'])
+    uris = URI.extract(message, %w(http https ftp))
     uris << prefix
     uris.each do |uri|
       case uri.split(':')[0]

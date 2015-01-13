@@ -11,7 +11,7 @@ class Admin::UsersController < Admin::BaseController
     @user.text_filter = TextFilter.find_by_name(this_blog.text_filter)
     setup_profiles
     @user.name = @user.login
-    if request.post? and @user.save
+    if request.post? && @user.save
       flash[:success] = I18n.t('admin.users.new.success')
       redirect_to action: 'index'
     end
@@ -22,7 +22,7 @@ class Admin::UsersController < Admin::BaseController
 
     setup_profiles
     @user.attributes = params[:user].permit! if params[:user]
-    if request.post? and @user.save
+    if request.post? && @user.save
       if @user.id = current_user.id
         current_user = @user
       end

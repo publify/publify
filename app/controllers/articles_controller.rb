@@ -6,7 +6,7 @@ class ArticlesController < ContentController
   layout :theme_layout, except: [:comment_preview, :trackback]
 
   cache_sweeper :blog_sweeper
-  caches_page :index, :archives, :read, :view_page, :redirect, if: Proc.new { |c| c.request.query_string == '' }
+  caches_page :index, :archives, :read, :view_page, :redirect, if: proc { |c| c.request.query_string == '' }
 
   helper :'admin/base'
 
@@ -34,7 +34,7 @@ class ArticlesController < ContentController
 
     @keywords = this_blog.meta_keywords
 
-    suffix = (params[:page].nil? and params[:year].nil?) ? '' : '/'
+    suffix = (params[:page].nil? && params[:year].nil?) ? '' : '/'
 
     respond_to do |format|
       format.html { render_paginated_index }
@@ -162,7 +162,7 @@ class ArticlesController < ContentController
     @page_title   = this_blog.article_title_template.to_title(@article, this_blog, params)
     @description = this_blog.article_desc_template.to_title(@article, this_blog, params)
     groupings = @article.tags
-    @keywords = groupings.map { |g| g.name }.join(', ')
+    @keywords = groupings.map(&:name).join(', ')
 
     auto_discovery_feed
     respond_to do |format|
@@ -175,15 +175,15 @@ class ArticlesController < ContentController
     error!
   end
 
-  def render_articles_feed format
-    if this_blog.feedburner_url.empty? or request.env['HTTP_USER_AGENT'] =~ /FeedBurner/i
+  def render_articles_feed(format)
+    if this_blog.feedburner_url.empty? || request.env['HTTP_USER_AGENT'] =~ /FeedBurner/i
       render "index_#{format}_feed", layout: false
     else
       redirect_to "http://feeds2.feedburner.com/#{this_blog.feedburner_url}"
     end
   end
 
-  def render_feedback_feed format
+  def render_feedback_feed(format)
     @feedback = @article.published_feedback
     render "feedback_#{format}_feed", layout: false
   end
@@ -214,5 +214,4 @@ class ArticlesController < ContentController
     @message = I18n.t('errors.no_posts_found')
     render 'articles/error', status: 200
   end
-
 end

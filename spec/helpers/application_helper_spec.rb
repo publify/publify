@@ -4,7 +4,7 @@ require 'rails_helper'
 class TestBrokenSidebar < Sidebar
   description 'Invalid test sidebar'
   def parse_request(_contents, _request_params)
-    raise "I'm b0rked!"
+    fail "I'm b0rked!"
   end
 end
 
@@ -84,25 +84,27 @@ describe ApplicationHelper, type: :helper do
 
       it "returns a link to the reply's user if no URL is given" do
         reply = { 'user' => { 'name' => 'truc', 'entities' => {} } }
-        expect(get_reply_context_url(reply))
-          .to eq "<a href=\"https://twitter.com/truc\">truc</a>"
+        expect(get_reply_context_url(reply)).
+          to eq "<a href=\"https://twitter.com/truc\">truc</a>"
       end
     end
 
     describe '#get_reply_context_twitter_link' do
-      let(:reply) { { 'id_str' => '123456789',
-                      'created_at' => 'Thu Jan 23 13:47:00 +0000 2014',
-                      'user' => {
-                        'screen_name' => 'a_screen_name',
-                        'entities' => { 'url' => { 'urls' => [{ 'expanded_url' => 'an url' }] } }
-                      } } }
+      let(:reply) do
+        { 'id_str' => '123456789',
+          'created_at' => 'Thu Jan 23 13:47:00 +0000 2014',
+          'user' => {
+            'screen_name' => 'a_screen_name',
+            'entities' => { 'url' => { 'urls' => [{ 'expanded_url' => 'an url' }] } }
+          } }
+      end
       it 'returns a link with the creation date and time' do
         begin
           timezone = Time.zone
           Time.zone = 'UTC'
 
-          expect(get_reply_context_twitter_link(reply))
-            .to eq "<a href=\"https://twitter.com/a_screen_name/status/123456789\">23/01/2014 at 13h47</a>"
+          expect(get_reply_context_twitter_link(reply)).
+            to eq "<a href=\"https://twitter.com/a_screen_name/status/123456789\">23/01/2014 at 13h47</a>"
         ensure
           Time.zone = timezone
         end
@@ -113,8 +115,8 @@ describe ApplicationHelper, type: :helper do
           timezone = Time.zone
           Time.zone = 'Tokyo'
 
-          expect(get_reply_context_twitter_link(reply))
-            .to eq "<a href=\"https://twitter.com/a_screen_name/status/123456789\">23/01/2014 at 22h47</a>"
+          expect(get_reply_context_twitter_link(reply)).
+            to eq "<a href=\"https://twitter.com/a_screen_name/status/123456789\">23/01/2014 at 22h47</a>"
         ensure
           Time.zone = timezone
         end
@@ -158,7 +160,6 @@ describe ApplicationHelper, type: :helper do
   end
 
   describe '#display_date' do
-
     ['%d/%m/%y', '%m/%m/%y', '%d %b %Y', '%b %d %Y', '%I:%M%p', '%H:%M', '%Hh%M'].each do |spec|
       it "use #{spec} format from blog to render date" do
         create(:blog, date_format: spec)
@@ -167,5 +168,4 @@ describe ApplicationHelper, type: :helper do
       end
     end
   end
-
 end

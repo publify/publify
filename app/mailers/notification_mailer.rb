@@ -24,11 +24,11 @@ class NotificationMailer < ActionMailer::Base
 
   private
 
-  def make_subject blog, subject
+  def make_subject(blog, subject)
     "[#{blog.blog_name}] #{subject}"
   end
 
-  def build_mail blog, user, subject
+  def build_mail(blog, user, subject)
     headers['X-Mailer'] = "Publify #{PUBLIFY_VERSION}"
     mail(from: blog.email_from,
          to: user.email,

@@ -8,9 +8,17 @@ class Admin::SettingsController < Admin::BaseController
     load_settings
   end
 
-  def write; load_settings end
-  def feedback; load_settings end
-  def display; load_settings end
+  def write
+    load_settings
+  end
+
+  def feedback
+    load_settings
+  end
+
+  def display
+    load_settings
+  end
 
   def update
     if request.post?
@@ -34,6 +42,7 @@ class Admin::SettingsController < Admin::BaseController
   end
 
   private
+
   def load_settings
     @setting = this_blog
   end

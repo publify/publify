@@ -110,7 +110,7 @@ describe 'Given an unpublished spammy trackback', type: :model do
   before(:each) do
     FactoryGirl.create(:blog)
     @trackback = FactoryGirl.create(:trackback, published: false,
-      state: 'presumed_spam', status_confirmed: false)
+                                                state: 'presumed_spam', status_confirmed: false)
   end
 
   it 'changing it does not alter the cache' do

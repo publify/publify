@@ -54,27 +54,31 @@ describe Admin::ContentController, type: :controller do
 
     describe '#autosave' do
       context 'first time save' do
-        it { expect{
-          xhr :post, :autosave, article: attributes_for(:article)
-        }.to change(Article, :count).from(1).to(2) }
+        it do
+          expect do
+            xhr :post, :autosave, article: attributes_for(:article)
+          end.to change(Article, :count).from(1).to(2) end
 
-        it { expect{
-          xhr :post, :autosave, article: attributes_for(:article, :with_tags)
-        }.to change(Tag, :count).from(0).to(2) }
+        it do
+          expect do
+            xhr :post, :autosave, article: attributes_for(:article, :with_tags)
+          end.to change(Tag, :count).from(0).to(2) end
       end
 
       context 'second call to save' do
         let!(:draft) { create(:article, published: false, state: 'draft') }
-        it { expect{
-          xhr :post, :autosave, article: { id: draft.id, body_and_extended: 'new body' }
-        }.to_not change(Article, :count) }
+        it do
+          expect do
+            xhr :post, :autosave, article: { id: draft.id, body_and_extended: 'new body' }
+          end.to_not change(Article, :count) end
       end
 
       context 'with an other existing draft' do
         let!(:draft) { create(:article, published: false, state: 'draft', body: 'existing body') }
-        it { expect{
-          xhr :post, :autosave, article: attributes_for(:article)
-        }.to change(Article, :count).from(2).to(3) }
+        it do
+          expect do
+            xhr :post, :autosave, article: attributes_for(:article)
+          end.to change(Article, :count).from(2).to(3) end
 
         it 'dont replace existing draft' do
           xhr :post, :autosave, article: attributes_for(:article)
@@ -93,17 +97,16 @@ describe Admin::ContentController, type: :controller do
     end
 
     describe '#create' do
-
       let(:article_params) { { title: 'posted via tests!', body: 'a good boy' } }
 
       context 'create an article' do
-        it { expect{
-          post :create, article: article_params
-        }.to change(Article, :count).from(1).to(2) }
+        it do
+          expect do
+            post :create, article: article_params
+          end.to change(Article, :count).from(1).to(2) end
       end
 
       context 'classic' do
-
         before(:each) { post :create, article: article_params }
 
         it { expect(response).to redirect_to(action: :index) }
@@ -121,17 +124,20 @@ describe Admin::ContentController, type: :controller do
       context 'write for futur' do
         let(:article_params) { { title: 'posted via tests!', body: 'a good boy', state: 'draft', published_at: (Time.now + 1.hour).to_s } }
 
-        it { expect{
-          post :create, article: article_params
-        }.to change(Article, :count).from(1).to(2) }
+        it do
+          expect do
+            post :create, article: article_params
+          end.to change(Article, :count).from(1).to(2) end
 
-        it { expect{
-          post :create, article: article_params
-        }.to_not change(Redirection, :count) }
+        it do
+          expect do
+            post :create, article: article_params
+          end.to_not change(Redirection, :count) end
 
-        it { expect{
-          post :create, article: article_params
-        }.to change(Trigger, :count).from(0).to(1) }
+        it do
+          expect do
+            post :create, article: article_params
+          end.to change(Trigger, :count).from(0).to(1) end
       end
     end
   end
@@ -168,9 +174,9 @@ describe Admin::ContentController, type: :controller do
     end
 
     it 'should create an article with a uniq Tag instace named lang:FR' do
-      post :create, 'article' => base_article(:keywords => "lang:FR")
+      post :create, 'article' => base_article(keywords: 'lang:FR')
       new_article = Article.last
-      expect(new_article.tags.map {|tag| tag.name}.include?('lang-fr')).to be_truthy
+      expect(new_article.tags.map(&:name).include?('lang-fr')).to be_truthy
     end
 
     it 'should correctly interpret time zone in :published_at' do
@@ -358,7 +364,7 @@ describe Admin::ContentController, type: :controller do
           put(:update,
               id: @orig.id,
               article: { title: @orig.title, draft: 'draft',
-                           body: 'update' })
+                         body: 'update' })
         end
 
         it 'leaves the original published' do

@@ -22,7 +22,6 @@ describe Blog, type: :model do
 
     ['', '/sub-uri'].each do |sub_url|
       describe "when running in with http://myblog.net#{sub_url}" do
-
         before :each do
           @base_url = "http://myblog.net#{sub_url}"
           @blog.base_url = @base_url
@@ -46,9 +45,9 @@ describe Blog, type: :model do
   end
 
   describe 'The first blog' do
-    before(:each) {
+    before(:each) do
       @blog = FactoryGirl.create :blog
-    }
+    end
 
     it 'should be the only blog allowed' do
       expect(Blog.new).not_to be_valid
@@ -88,12 +87,11 @@ describe Blog, type: :model do
   end
 
   describe 'Valid permalink in blog' do
-
     before :each do
       @blog = Blog.new
     end
 
-    def set_permalink permalink
+    def set_permalink(permalink)
       @blog.permalink_format = permalink
     end
 
@@ -116,7 +114,6 @@ describe Blog, type: :model do
       @blog.permalink_format = '/toto/%year%/%month/%day%'
       expect(@blog).not_to be_valid
     end
-
   end
 
   describe '.meta_keywords' do

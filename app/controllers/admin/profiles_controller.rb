@@ -31,6 +31,4 @@ class Admin::ProfilesController < Admin::BaseController
 
     Resource.create(upload: file, mime: mime, created_at: Time.now)
   end
-
-
 end

@@ -26,9 +26,10 @@ describe Admin::NotesController, type: :controller do
         it { expect(flash[:notice]).to eq(I18n.t('notice.note_successfully_created')) }
       end
 
-      it { expect{
-        post :create, note: { body: 'Emphasis _mine_' }
-      }.to change { Note.count }.from(0).to(1) }
+      it do
+        expect do
+          post :create, note: { body: 'Emphasis _mine_' }
+        end.to change { Note.count }.from(0).to(1) end
     end
 
     context 'with an existing note from current user' do

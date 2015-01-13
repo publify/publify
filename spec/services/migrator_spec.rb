@@ -15,11 +15,11 @@ describe Migrator do
   describe '#pending_migrations' do
     it 'asks ActiveRecord::Migrator to look up pending migrations in db/migrate' do
       ar_migrator = double('activerecord migrator')
-      expect(ar_migrator).to receive(:pending_migrations).and_return ['a_migration', 'another_migration']
+      expect(ar_migrator).to receive(:pending_migrations).and_return %w(a_migration another_migration)
 
       expect(ActiveRecord::Migrator).to receive(:new).with(:up, all_migrations).and_return ar_migrator
 
-      expect(migrator.pending_migrations).to eq ['a_migration', 'another_migration']
+      expect(migrator.pending_migrations).to eq %w(a_migration another_migration)
     end
   end
 
@@ -32,7 +32,7 @@ describe Migrator do
     end
 
     context 'when there are pending migrations' do
-      let(:pending_migrations) { ['a_migration', 'another_migration'] }
+      let(:pending_migrations) { %w(a_migration another_migration) }
       it 'returns true' do
         expect(migrator.migrations_pending?).to be_truthy
       end

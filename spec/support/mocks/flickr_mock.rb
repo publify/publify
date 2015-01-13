@@ -1,4 +1,4 @@
-#remove_const "Flickr"
+# remove_const "Flickr"
 
 class FlickRaw::Flickr
   def initialize
@@ -21,7 +21,7 @@ class FlickRaw::Flickr
   class Photo
     def initialize(photoid)
       unless photoid == '31366117'
-        raise 'Photo not found'
+        fail 'Photo not found'
       end
     end
 

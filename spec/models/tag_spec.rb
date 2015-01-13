@@ -19,8 +19,8 @@ describe Tag, type: :model do
   end
 
   it 'display names with colon can be found by dash joined name' do
-    expect(Tag.where(:name => 'SaintSeya:Hades').first).to be_nil
-    tag = Tag.create(:name => 'SaintSeya:Hades')
+    expect(Tag.where(name: 'SaintSeya:Hades').first).to be_nil
+    tag = Tag.create(name: 'SaintSeya:Hades')
     expect(tag).to be_valid
     expect(tag.name).to eq('saintseya-hades')
     expect(tag.display_name).to eq('SaintSeya:Hades')
@@ -66,7 +66,6 @@ describe Tag, type: :model do
   end
 
   context 'with tags foo, bar and bazz' do
-
     before do
       @foo = FactoryGirl.create(:tag, name: 'foo')
       @bar = FactoryGirl.create(:tag, name: 'bar')
@@ -100,8 +99,8 @@ describe Tag, type: :model do
         it { expect(article.tags.first.name).to eq('foo') }
       end
 
-      context "with a simple keyword, but containing a semi-colon" do
-        let(:article) { create(:article, keywords: "lang:fr") }
+      context 'with a simple keyword, but containing a semi-colon' do
+        let(:article) { create(:article, keywords: 'lang:fr') }
         it { expect(article.tags.size).to eq(1) }
         it { expect(article.tags.first).to be_kind_of(Tag) }
         it { expect(article.tags.first.name).to eq('lang-fr') }
@@ -110,13 +109,13 @@ describe Tag, type: :model do
       context 'with two keyword separate by a coma' do
         let(:article) { create(:article, keywords: 'foo, bar') }
         it { expect(article.tags.size).to eq(2) }
-        it { expect(article.tags.map(&:name)).to eq(['foo', 'bar']) }
+        it { expect(article.tags.map(&:name)).to eq(%w(foo bar)) }
       end
 
       context 'with two keyword with apostrophe' do
         let(:article) { create(:article, keywords: "foo, l'bar") }
         it { expect(article.tags.size).to eq(3) }
-        it { expect(article.tags.map(&:name)).to eq(['foo', 'l', 'bar']) }
+        it { expect(article.tags.map(&:name)).to eq(%w(foo l bar)) }
       end
 
       context 'with two identical keywords' do
@@ -125,6 +124,5 @@ describe Tag, type: :model do
         it { expect(article.tags.map(&:name)).to eq(['same']) }
       end
     end
-
   end
 end

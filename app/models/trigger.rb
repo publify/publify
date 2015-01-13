@@ -14,7 +14,7 @@ class Trigger < ActiveRecord::Base
     rescue
       migrator = Migrator.new
 
-      if !migrator.pending_migrations.empty?
+      unless migrator.pending_migrations.empty?
         starting_version = migrator.current_schema_version
         migrator.migrate
 

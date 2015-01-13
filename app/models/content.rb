@@ -33,7 +33,8 @@ class Content < ActiveRecord::Base
 
   scope :published_at_like, lambda { |date_at|
     where(published_at: (PublifyTime.delta_like(date_at))
-  )}
+  )
+  }
 
   serialize :whiteboard
 
@@ -49,7 +50,7 @@ class Content < ActiveRecord::Base
   # Set the text filter for this object.
   # NOTE: Due to how Rails injects association methods, this cannot be put in ContentBase
   # TODO: Allowing assignment of a string here is not very clean.
-  def text_filter= filter
+  def text_filter=(filter)
     filter_object = filter.to_text_filter
     if filter_object
       self.text_filter_id = filter_object.id
@@ -104,7 +105,7 @@ class Content < ActiveRecord::Base
   end
 
   def whiteboard
-    self[:whiteboard] ||= Hash.new
+    self[:whiteboard] ||= {}
   end
 
   def withdraw!
@@ -139,10 +140,9 @@ class Content < ActiveRecord::Base
 
   def short_url
     # Double check because of crappy data in my own old database
-    return unless published and redirects.size > 0
+    return unless published && redirects.size > 0
     redirects.last.to_url
   end
-
 end
 
 class Object

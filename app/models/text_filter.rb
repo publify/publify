@@ -19,10 +19,10 @@ class TextFilter < ActiveRecord::Base
   end
 
   TYPEMAP = { TextFilterPlugin::Markup => 'markup',
-           TextFilterPlugin::MacroPre => 'macropre',
-           TextFilterPlugin::MacroPost => 'macropost',
-           TextFilterPlugin::PostProcess => 'postprocess',
-           TextFilterPlugin => 'other' }
+              TextFilterPlugin::MacroPre => 'macropre',
+              TextFilterPlugin::MacroPost => 'macropost',
+              TextFilterPlugin::PostProcess => 'postprocess',
+              TextFilterPlugin => 'other' }
 
   def self.available_filter_types
     filters = available_filters
@@ -30,10 +30,10 @@ class TextFilter < ActiveRecord::Base
 
     unless @cached_filter_types[filters]
       types = { 'macropre' => [],
-             'macropost' => [],
-             'markup' => [],
-             'postprocess' => [],
-             'other' => [] }
+                'macropost' => [],
+                'markup' => [],
+                'postprocess' => [],
+                'other' => [] }
 
       filters.each { |filter| types[TYPEMAP[filter.superclass]].push(filter) }
 
@@ -50,7 +50,7 @@ class TextFilter < ActiveRecord::Base
     map = TextFilter.filters_map
 
     filters.each do |filter|
-      next if filter == nil
+      next if filter.nil?
       begin
         filter_class = map[filter.to_s]
         next unless filter_class
@@ -79,8 +79,8 @@ class TextFilter < ActiveRecord::Base
 
     help = []
     help.push(filter_map[markup])
-    filter_types['macropre'].sort_by { |f| f.short_name }.each { |f| help.push f }
-    filter_types['macropost'].sort_by { |f| f.short_name }.each { |f| help.push f }
+    filter_types['macropre'].sort_by(&:short_name).each { |f| help.push f }
+    filter_types['macropost'].sort_by(&:short_name).each { |f| help.push f }
     filters.each { |f| help.push(filter_map[f.to_s]) }
 
     help_text = help.collect do |f|
@@ -103,7 +103,9 @@ class TextFilter < ActiveRecord::Base
     help_text
   end
 
-  def to_s; name; end
+  def to_s
+    name
+  end
 
   def to_text_filter
     self

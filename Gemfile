@@ -16,14 +16,14 @@ else
     if ENV['DB']
       FileUtils.cp "config/database.yml.#{ENV['DB'] || 'postgres'}", 'config/database.yml'
     else
-      raise 'You need to configure config/database.yml first'
+      fail 'You need to configure config/database.yml first'
     end
   end
 
   conf = YAML.load(File.read(dbfile))
   environment = conf[env]
   adapter = environment['adapter'] if environment
-  raise 'You need define an adapter in your database.yml or set your RAILS_ENV variable' if adapter == '' || adapter.nil?
+  fail 'You need define an adapter in your database.yml or set your RAILS_ENV variable' if adapter == '' || adapter.nil?
   case adapter
   when 'sqlite3'
     gem 'sqlite3'
@@ -32,7 +32,7 @@ else
   when 'mysql2'
     gem 'mysql2'
   else
-    raise "Don't know what gem to use for adapter #{adapter}"
+    fail "Don't know what gem to use for adapter #{adapter}"
   end
 end
 
@@ -48,16 +48,16 @@ gem 'uuidtools', '~> 2.1.1'
 gem 'flickraw-cached'
 gem 'rubypants', '~> 0.2.0'
 gem 'rake', '~> 10.4.2'
-#gem 'acts_as_list'
-#gem 'acts_as_tree_rails3'
+# gem 'acts_as_list'
+# gem 'acts_as_tree_rails3'
 gem 'fog'
 gem 'recaptcha', require: 'recaptcha/rails', branch: 'rails3'
 gem 'carrierwave', '~> 0.10.0'
 gem 'akismet', '~> 1.0'
 gem 'twitter', '~> 5.12.0'
 
-gem "jquery-rails", "~> 3.1.2"
-gem "jquery-ui-rails", "~> 5.0.2"
+gem 'jquery-rails', '~> 3.1.2'
+gem 'jquery-ui-rails', '~> 5.0.2'
 
 gem 'rails-timeago', '~> 2.0'
 
@@ -92,7 +92,7 @@ end
 
 group :test do
   gem 'feedjira'
-  gem "codeclimate-test-reporter", require: nil
+  gem 'codeclimate-test-reporter', require: nil
 end
 
 # Install gems from each theme

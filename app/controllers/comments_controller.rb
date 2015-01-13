@@ -6,7 +6,7 @@ class CommentsController < FeedbackController
       art.add_comment(params[:comment].slice(:body, :author, :email, :url))
     end
 
-    unless current_user.nil? or session[:user_id].nil?
+    unless current_user.nil? || session[:user_id].nil?
       # maybe useless, but who knows ?
       if current_user.id == session[:user_id]
         @comment.user_id = current_user.id
@@ -27,7 +27,7 @@ class CommentsController < FeedbackController
   end
 
   def preview
-    if !session
+    unless session
       session session: new
     end
 
@@ -49,7 +49,7 @@ class CommentsController < FeedbackController
 
   protected
 
-  def recaptcha_ok_for? comment
+  def recaptcha_ok_for?(comment)
     use_recaptcha = Blog.default.settings['use_recaptcha']
     ((use_recaptcha && verify_recaptcha(model: comment)) || !use_recaptcha)
   end
@@ -68,10 +68,10 @@ class CommentsController < FeedbackController
     headers['Content-Type'] = 'text/html; charset=utf-8'
   end
 
-  def set_cookies_for comment
+  def set_cookies_for(comment)
     add_to_cookies(:author, comment.author)
     add_to_cookies(:url, comment.url)
-    if !comment.email.blank?
+    unless comment.email.blank?
       add_to_cookies(:gravatar_id, Digest::MD5.hexdigest(comment.email.strip))
     end
   end

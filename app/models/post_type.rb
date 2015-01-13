@@ -12,5 +12,4 @@ class PostType < ActiveRecord::Base
   def sanitize_title
     self.permalink = name.to_permalink
   end
-
 end

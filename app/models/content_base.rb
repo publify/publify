@@ -1,5 +1,5 @@
 module ContentBase
-  def self.included base
+  def self.included(base)
     base.extend ClassMethods
   end
 
@@ -28,7 +28,7 @@ module ContentBase
     elsif html_map(field)
       generate_html(field)
     else
-      raise "Unknown field: #{field.inspect} in content.html"
+      fail "Unknown field: #{field.inspect} in content.html"
     end
   end
 
@@ -51,12 +51,12 @@ module ContentBase
     html
   end
 
-  def html_map field
+  def html_map(field)
     content_fields.include? field
   end
 
   def excerpt_text(length = 160)
-    if respond_to?(:excerpt) and (excerpt || '') != ''
+    if respond_to?(:excerpt) && (excerpt || '') != ''
       text = generate_html(:excerpt, excerpt)
     else
       text = html(:all)
@@ -88,7 +88,7 @@ module ContentBase
   end
 
   module ClassMethods
-    def content_fields *attribs
+    def content_fields(*attribs)
       class_eval "def content_fields; #{attribs.inspect}; end"
     end
 

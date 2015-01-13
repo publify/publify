@@ -4,9 +4,7 @@ require 'digest/sha1'
 
 module ApplicationHelper
   # Need to rewrite this one, quick hack to test my changes.
-  def page_title
-    @page_title
-  end
+  attr_reader :page_title
 
   def render_sidebars(*sidebars)
     (sidebars.blank? ? Sidebar.order(:active_position) : sidebars).map do |sb|
@@ -44,15 +42,15 @@ module ApplicationHelper
   end
 
   def articles?
-    not Article.first.nil?
+    !Article.first.nil?
   end
 
   def trackbacks?
-    not Trackback.first.nil?
+    !Trackback.first.nil?
   end
 
   def comments?
-    not Comment.first.nil?
+    !Comment.first.nil?
   end
 
   def render_to_string(*args, &block)
@@ -81,7 +79,7 @@ module ApplicationHelper
   end
 
   def markup_help_popup(markup, text)
-    if markup and markup.commenthelp.size > 1
+    if markup && markup.commenthelp.size > 1
       "<a href=\"#{url_for controller: 'articles', action: 'markup_help', id: markup.id}\" onclick=\"return popup(this, 'Publify Markup Help')\">#{text}</a>"
     else
       ''
@@ -132,8 +130,8 @@ module ApplicationHelper
   end
 
   def author_picture(status)
-    return if status.user.twitter_profile_image.nil? or status.user.twitter_profile_image.empty?
-    return if status.twitter_id.nil? or status.twitter_id.empty?
+    return if status.user.twitter_profile_image.nil? || status.user.twitter_profile_image.empty?
+    return if status.twitter_id.nil? || status.twitter_id.empty?
 
     image_tag(status.user.twitter_profile_image, class: 'alignleft', alt: status.user.nickname)
   end
@@ -158,7 +156,7 @@ module ApplicationHelper
   end
 
   def page_header_includes
-    content_array.collect { |c| c.whiteboard }.collect do |w|
+    content_array.collect(&:whiteboard).collect do |w|
       w.select { |k, _v| k =~ /^page_header_/ }.collect do |_, v|
         v = v.chomp
         # trim the same number of spaces from the beginning of each line
@@ -237,9 +235,9 @@ module ApplicationHelper
   def feed_for(type)
     if params[:action] == 'search'
       url_for(only_path: false, format: type, q: params[:q])
-    elsif not @article.nil?
+    elsif !@article.nil?
       @article.feed_url(type)
-    elsif not @auto_discovery_url_atom.nil?
+    elsif !@auto_discovery_url_atom.nil?
       instance_variable_get("@auto_discovery_url_#{type}")
     end
   end
@@ -251,7 +249,7 @@ module ApplicationHelper
     if item.password_protected?
       "<p>This article is password protected. Please <a href='#{item.permalink_url}'>fill in your password</a> to read it</p>"
     elsif this_blog.hide_extended_on_rss
-      if item.excerpt? and item.excerpt.length > 0 then
+      if item.excerpt? && item.excerpt.length > 0
         item.excerpt
       else
         html(item, :body)
@@ -260,5 +258,4 @@ module ApplicationHelper
       html(item, :all)
     end
   end
-
 end

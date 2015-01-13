@@ -16,7 +16,8 @@ class Profile < ActiveRecord::Base
   end
 
   def project_modules
-    modules.collect { |mod|
-      AccessControl.project_module(label, mod) }.uniq.compact
+    modules.collect do |mod|
+      AccessControl.project_module(label, mod)
+    end.uniq.compact
   end
 end

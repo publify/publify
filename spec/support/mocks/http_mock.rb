@@ -21,11 +21,10 @@ module Net
       @pings << request
 
       yield request
-
     end
 
-    def self.pings
-      @pings
+    class << self
+      attr_reader :pings
     end
 
     def self.next_response=(mock_response)

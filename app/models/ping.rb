@@ -22,21 +22,15 @@ class Ping < ActiveRecord::Base
       if response['X-Pingback']
         response['X-Pingback']
       elsif response.body =~ /<link rel="pingback" href="([^"]+)" ?\/?>/
-        $1
+        Regexp.last_match[1]
       end
     end
 
-    def origin_url
-      @origin_url
-    end
+    attr_reader :origin_url
 
-    def response
-      @response
-    end
+    attr_reader :response
 
-    def ping
-      @ping
-    end
+    attr_reader :ping
 
     def send_xml_rpc(*args)
       ping.send(:send_xml_rpc, *args)
@@ -90,7 +84,7 @@ class Ping < ActiveRecord::Base
     def initialize(origin_url, ping)
       @origin_url = origin_url
       @ping       = ping
-      #Add this call to text filter cause of a strange thing around text_filter. Need to clean text_filter usage !
+      # Add this call to text filter cause of a strange thing around text_filter. Need to clean text_filter usage !
       ping.article.default_text_filter
       ping.article.text_filter
       # Make sure these are fetched now for thread safety purposes.

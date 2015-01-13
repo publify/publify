@@ -33,7 +33,6 @@ describe NotesController, type: :controller do
     end
 
     context 'in reply' do
-
       let(:reply) { { 'id_str' => '123456789', 'created_at' => DateTime.new(2014, 1, 23, 13, 47), 'user' => { 'screen_name' => 'a screen name', 'entities' => { 'url' => { 'urls' => [{ 'expanded_url' => 'an url' }] } } } } }
 
       let(:permalink) { "#{create(:note, in_reply_to_message: reply.to_json).id}-this-is-a-note" }

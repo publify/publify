@@ -1,13 +1,13 @@
 class XmlController < ApplicationController
-  caches_page :feed, if: Proc.new {|c|
+  caches_page :feed, if: proc {|c|
     c.request.query_string == ''
   }
 
   NORMALIZED_FORMAT_FOR = { 'atom' => 'atom', 'rss' => 'rss',
-    'atom10' => 'atom', 'atom03' => 'atom', 'rss20' => 'rss',
-    'googlesitemap' => 'googlesitemap', 'rsd' => 'rsd' }
+                            'atom10' => 'atom', 'atom03' => 'atom', 'rss20' => 'rss',
+                            'googlesitemap' => 'googlesitemap', 'rsd' => 'rsd' }
 
-  ACCEPTED_TYPE =  %w{feed comments article tag author trackbacks sitemap}
+  ACCEPTED_TYPE =  %w(feed comments article tag author trackbacks sitemap)
 
   def feed
     @format = 'rss'
@@ -19,7 +19,7 @@ class XmlController < ApplicationController
 
     # TODO: Move redirects into config/routes.rb, if possible
     param_type = ACCEPTED_TYPE.dup.delete(params[:type])
-    param_id = params[:id]#.present? && params[:id].to_i # Think about a way to secure that to a valid tag/author for int value…
+    param_id = params[:id] # .present? && params[:id].to_i # Think about a way to secure that to a valid tag/author for int value…
 
     case param_type
     when 'feed'
@@ -33,7 +33,7 @@ class XmlController < ApplicationController
     when 'trackbacks'
       redirect_to trackbacks_url(format: @format), status: :moved_permanently
     when 'sitemap'
-      @items = Array.new
+      @items = []
       @blog = this_blog
 
       @feed_title = this_blog.blog_name
@@ -68,5 +68,4 @@ class XmlController < ApplicationController
   def rsd
     render 'rsd', formats: [:rsd], handlers: [:builder]
   end
-
 end

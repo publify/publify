@@ -24,9 +24,9 @@ describe Comment, type: :model do
   end
 
   describe '#save' do
-    before(:each) {
+    before(:each) do
       allow(blog).to receive(:sp_article_auto_close) { 300 }
-    }
+    end
     it 'should save good comment' do
       c = build(:comment, url: 'http://www.google.de', article: published_article)
       assert c.save
@@ -65,7 +65,6 @@ describe Comment, type: :model do
       expect(c.save).not_to be_truthy
       expect(c.errors).not_to be_empty
     end
-
   end
 
   describe '#create' do
@@ -96,7 +95,7 @@ describe Comment, type: :model do
 
   describe '#spam?' do
     it 'should reject spam rbl' do
-      c = valid_comment(author: 'Spammer', body: %{This is just some random text. &lt;a href="http://chinaaircatering.com"&gt;without any senses.&lt;/a&gt;. Please disregard.}, url: 'http://buy-computer.us')
+      c = valid_comment(author: 'Spammer', body: %(This is just some random text. &lt;a href="http://chinaaircatering.com"&gt;without any senses.&lt;/a&gt;. Please disregard.), url: 'http://buy-computer.us')
       should_be_spam(c)
     end
 
@@ -107,7 +106,7 @@ describe Comment, type: :model do
     end
 
     it 'should reject spam with uri limit' do
-      c = valid_comment(author: 'Yet Another Spammer', body: %{ <a href="http://www.one.com/">one</a> <a href="http://www.two.com/">two</a> <a href="http://www.three.com/">three</a> <a href="http://www.four.com/">four</a> }, url: 'http://www.uri-limit.com')
+      c = valid_comment(author: 'Yet Another Spammer', body: %( <a href="http://www.one.com/">one</a> <a href="http://www.two.com/">two</a> <a href="http://www.three.com/">three</a> <a href="http://www.four.com/">four</a> ), url: 'http://www.uri-limit.com')
       should_be_spam(c)
     end
 
@@ -115,7 +114,6 @@ describe Comment, type: :model do
       expect(comment).to be_spam
       expect(comment).not_to be_status_confirmed
     end
-
   end
 
   it 'should have good relation' do
@@ -200,7 +198,6 @@ describe Comment, type: :model do
       assert comment.published?
       assert comment.ham?
       assert comment.status_confirmed?
-
     end
   end
 
@@ -242,5 +239,4 @@ describe Comment, type: :model do
       expect(Comment.last_published).to eq([comment_6, comment_5, comment_4, comment_3, comment_2])
     end
   end
-
 end

@@ -5,7 +5,7 @@ describe 'articles/index_rss_feed.rss.builder', type: :view do
   let!(:blog) { build_stubbed :blog }
 
   let(:rendered_entry) { Feedjira::Feed.parse(rendered).entries.first }
-  let(:xml_entry) { Nokogiri::XML.parse(rendered).css("item").first }
+  let(:xml_entry) { Nokogiri::XML.parse(rendered).css('item').first }
 
   describe 'rendering articles (with some funny characters)' do
     before do
@@ -41,7 +41,7 @@ describe 'articles/index_rss_feed.rss.builder', type: :view do
 
     it "has a link to the article's comment section" do
       render
-      expect(xml_entry.css("comments").first.content).to eq(@article.permalink_url + "#comments")
+      expect(xml_entry.css('comments').first.content).to eq(@article.permalink_url + '#comments')
     end
 
     describe 'with an author without email set' do
@@ -132,7 +132,6 @@ describe 'articles/index_rss_feed.rss.builder', type: :view do
         expect(rendered_entry.summary).to match(/rss description/)
       end
     end
-
   end
 
   describe 'rendering a password protected article' do
@@ -213,5 +212,4 @@ describe 'articles/index_rss_feed.rss.builder', type: :view do
       end
     end
   end
-
 end

@@ -28,12 +28,12 @@ module PublifyPlugins
       class << self
         def available_plugins(kind = nil)
           return @@registered.inspect unless kind
-          raise ArgumentError.new "#{kind} is not part of available plugins targets (#{KINDS.map(&:to_s).join(',')})" unless KINDS.include?(kind)
+          fail ArgumentError.new "#{kind} is not part of available plugins targets (#{KINDS.map(&:to_s).join(',')})" unless KINDS.include?(kind)
           @@registered ? @@registered[kind] : nil
         end
 
         def register(klass)
-          raise ArgumentError.new "#{klass.kind.to_s} is not part of available plugins targets (#{KINDS.map(&:to_s).join(',')})" unless KINDS.include?(klass.kind)
+          fail ArgumentError.new "#{klass.kind} is not part of available plugins targets (#{KINDS.map(&:to_s).join(',')})" unless KINDS.include?(klass.kind)
           @@registered[klass.kind] ||= []
           @@registered[klass.kind] << klass
           @@registered[klass.kind]
@@ -41,32 +41,30 @@ module PublifyPlugins
       end
 
       private
+
       def initialize
-        raise 'No instance allowed.'
+        fail 'No instance allowed.'
       end
     end
   end # Defined
 
   class Base
-
     class << self
       attr_accessor :name
       attr_accessor :description
-      attr_reader   :registered
+      attr_reader :registered
 
       def kind
         :void
       end
-
     end # << self
 
     def initialize(h = {})
       h = h.dup
       kind = h.delete(:kind)
-      raise ArgumentError.new "#{kind} is not part of available plugins targets (#{KINDS.map(&:to_s).join(',')})" unless KINDS.include?(kind)
+      fail ArgumentError.new "#{kind} is not part of available plugins targets (#{KINDS.map(&:to_s).join(',')})" unless KINDS.include?(kind)
       @kind = kind
-      raise ArgumentError.new "Too many keys in PublifyPlugins::Base hash: I don't know what to do with your remainder: #{h.inspect}" unless h.empty?
+      fail ArgumentError.new "Too many keys in PublifyPlugins::Base hash: I don't know what to do with your remainder: #{h.inspect}" unless h.empty?
     end
-
   end
 end
