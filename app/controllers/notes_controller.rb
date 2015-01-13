@@ -3,7 +3,7 @@ class NotesController < ContentController
 
   layout :theme_layout
   cache_sweeper :blog_sweeper
-  caches_page :index, :show, :if => Proc.new {|c| c.request.query_string == '' }
+  caches_page :index, :show, if: proc { |c| c.request.query_string == '' }
 
   after_filter :set_blog_infos
 
@@ -11,7 +11,7 @@ class NotesController < ContentController
     @notes = Note.published.page(params[:page]).per(this_blog.limit_article_display)
 
     if @notes.empty?
-      @message = I18n.t("errors.no_notes_found")
+      @message = I18n.t('errors.no_notes_found')
       render 'notes/error', status: 200
     end
   end
@@ -26,7 +26,7 @@ class NotesController < ContentController
         return
       end
     else
-      render "errors/404", status: 404
+      render 'errors/404', status: 404
     end
   end
 
@@ -37,5 +37,4 @@ class NotesController < ContentController
     @page_title = this_blog.statuses_title_template.to_title(@notes, this_blog, params)
     @description = this_blog.statuses_desc_template.to_title(@notes, this_blog, params)
   end
-
 end

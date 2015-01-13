@@ -4,7 +4,7 @@ class Admin::ResourcesController < Admin::BaseController
   cache_sweeper :blog_sweeper
 
   def upload
-    if ! params[:upload].blank?
+    if !params[:upload].blank?
       file = params[:upload][:filename]
 
       unless file.content_type
@@ -12,13 +12,13 @@ class Admin::ResourcesController < Admin::BaseController
       else
         mime = file.content_type.chomp
       end
-      @up = Resource.create(:upload => file, :mime => mime, :created_at => Time.now)
+      @up = Resource.create(upload: file, mime: mime, created_at: Time.now)
       flash[:success] = I18n.t('admin.resources.upload.success')
     else
       flash[:warning] = I18n.t('admin.resources.upload.warning')
     end
 
-    redirect_to :action => "index"
+    redirect_to action: 'index'
   end
 
   def index
@@ -30,20 +30,18 @@ class Admin::ResourcesController < Admin::BaseController
     position = params[:position].to_i
     @resources = Resource.without_images.by_created_at.limit(10).offset(position)
 
-    render 'get_thumbnails', :layout => false
+    render 'get_thumbnails', layout: false
   end
 
   def destroy
-    begin
-      @record = Resource.find(params[:id])
-      mime = @record.mime
-      return(render 'admin/shared/destroy') unless request.post?
+    @record = Resource.find(params[:id])
+    mime = @record.mime
+    return(render 'admin/shared/destroy') unless request.post?
 
-      @record.destroy
-      flash[:notice] = I18n.t('admin.resources.destroy.notice')
-      redirect_to :action => 'index'
-    rescue
-      raise
-    end
+    @record.destroy
+    flash[:notice] = I18n.t('admin.resources.destroy.notice')
+    redirect_to action: 'index'
+  rescue
+    raise
   end
 end

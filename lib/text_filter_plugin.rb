@@ -7,7 +7,7 @@ class TextFilterPlugin
 
   @@filter_map = {}
   def self.inherited(sub)
-    if sub.to_s =~ /^Plugin/ or sub.to_s =~ /^PublifyApp::Textfilter/
+    if sub.to_s =~ /^Plugin/ || sub.to_s =~ /^PublifyApp::Textfilter/
       name = sub.short_name
       @@filter_map[name] = sub
     end
@@ -17,8 +17,8 @@ class TextFilterPlugin
     @@filter_map
   end
 
-  plugin_display_name "Unknown Text Filter"
-  plugin_description "Unknown Text Filter Description"
+  plugin_display_name 'Unknown Text Filter'
+  plugin_description 'Unknown Text Filter Description'
 
   def self.reloadable?
     false
@@ -27,10 +27,10 @@ class TextFilterPlugin
   # The name that needs to be used when refering to the plugin's
   # controller in render statements
   def self.component_name
-    if (self.to_s =~ /::([a-zA-Z]+)$/)
-      "plugins/textfilters/#{$1}".downcase
+    if to_s =~ /::([a-zA-Z]+)$/
+      "plugins/textfilters/#{Regexp.last_match[1]}".downcase
     else
-      raise "I don't know who I am: #{self.to_s}"
+      raise "I don't know who I am: #{self}"
     end
   end
 
@@ -45,7 +45,7 @@ class TextFilterPlugin
   end
 
   def self.help_text
-    ""
+    ''
   end
 
   def self.sanitize(*args)
@@ -58,7 +58,7 @@ class TextFilterPlugin
   end
 
   # Look up a config paramater, falling back to the default as needed.
-  def self.config_value(params,name)
+  def self.config_value(params, name)
     params[:filterparams][name] || default_config[name][:default]
   end
 
@@ -74,16 +74,16 @@ class TextFilterPlugin::Macro < TextFilterPlugin
   # Utility function -- hand it a XML string like <a href="foo" title="bar">
   # and it'll give you back { "href" => "foo", "title" => "bar" }
   def self.attributes_parse(string)
-    attributes = Hash.new
+    attributes = {}
 
     string.gsub(/([^ =]+="[^"]*")/) do |match|
-      key,value = match.split(/=/,2)
-      attributes[key] = value.gsub(/"/,'')
+      key, value = match.split(/=/, 2)
+      attributes[key] = value.gsub(/"/, '')
     end
 
     string.gsub(/([^ =]+='[^']*')/) do |match|
-      key,value = match.split(/=/,2)
-      attributes[key] = value.gsub(/'/,'')
+      key, value = match.split(/=/, 2)
+      attributes[key] = value.gsub(/'/, '')
     end
 
     attributes
@@ -95,11 +95,11 @@ class TextFilterPlugin::Macro < TextFilterPlugin
     regex2 = /<publify:#{short_name}([ \t][^>]*)?>(.*?)<\/publify:#{short_name}>/m
 
     new_text = text.gsub(regex1) do |match|
-      macrofilter(blog,content,attributes_parse(match),params)
+      macrofilter(blog, content, attributes_parse(match), params)
     end
 
-    new_text = new_text.gsub(regex2) do |match|
-      macrofilter(blog,content,attributes_parse($1.to_s),params,$2.to_s)
+    new_text = new_text.gsub(regex2) do |_match|
+      macrofilter(blog, content, attributes_parse(Regexp.last_match[1].to_s), params, Regexp.last_match[2].to_s)
     end
 
     new_text
@@ -118,29 +118,29 @@ end
 class PublifyApp
   class Textfilter
     class MacroPost < TextFilterPlugin
-      plugin_display_name "MacroPost"
-      plugin_description "Macro expansion meta-filter (post-markup)"
+      plugin_display_name 'MacroPost'
+      plugin_description 'Macro expansion meta-filter (post-markup)'
 
-      def self.filtertext(blog,content,text,params)
+      def self.filtertext(blog, content, text, params)
         filterparams = params[:filterparams]
 
         macros = TextFilter.available_filter_types['macropost']
-        macros.inject(text) do |text,macro|
-          macro.filtertext(blog,content,text,params)
+        macros.inject(text) do |text, macro|
+          macro.filtertext(blog, content, text, params)
         end
       end
     end
 
     class MacroPre < TextFilterPlugin
-      plugin_display_name "MacroPre"
-      plugin_description "Macro expansion meta-filter (pre-markup)"
+      plugin_display_name 'MacroPre'
+      plugin_description 'Macro expansion meta-filter (pre-markup)'
 
-      def self.filtertext(blog,content,text,params)
+      def self.filtertext(blog, content, text, params)
         filterparams = params[:filterparams]
 
         macros = TextFilter.available_filter_types['macropre']
-        macros.inject(text) do |text,macro|
-          macro.filtertext(blog,content,text,params)
+        macros.inject(text) do |text, macro|
+          macro.filtertext(blog, content, text, params)
         end
       end
     end

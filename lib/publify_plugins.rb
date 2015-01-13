@@ -33,7 +33,7 @@ module PublifyPlugins
         end
 
         def register(klass)
-          raise ArgumentError.new "#{klass.kind.to_s} is not part of available plugins targets (#{KINDS.map(&:to_s).join(',')})" unless KINDS.include?(klass.kind)
+          raise ArgumentError.new "#{klass.kind} is not part of available plugins targets (#{KINDS.map(&:to_s).join(',')})" unless KINDS.include?(klass.kind)
           @@registered[klass.kind] ||= []
           @@registered[klass.kind] << klass
           @@registered[klass.kind]
@@ -41,6 +41,7 @@ module PublifyPlugins
       end
 
       private
+
       def initialize
         raise 'No instance allowed.'
       end
@@ -48,16 +49,14 @@ module PublifyPlugins
   end # Defined
 
   class Base
-
     class << self
       attr_accessor :name
       attr_accessor :description
-      attr_reader   :registered
+      attr_reader :registered
 
       def kind
         :void
       end
-
     end # << self
 
     def initialize(h = {})
@@ -67,6 +66,5 @@ module PublifyPlugins
       @kind = kind
       raise ArgumentError.new "Too many keys in PublifyPlugins::Base hash: I don't know what to do with your remainder: #{h.inspect}" unless h.empty?
     end
-
   end
 end

@@ -3,18 +3,18 @@ class SetupController < ApplicationController
   layout 'accounts'
 
   def index
-    return if not request.post?
+    return unless request.post?
 
     this_blog.blog_name = params[:setting][:blog_name]
     this_blog.base_url = blog_base_url
 
     @user = User.new(login: 'admin',
                      email: params[:setting][:email],
-                     nickname: "Publify Admin")
+                     nickname: 'Publify Admin')
     @user.generate_password!
     @user.name = @user.login
 
-    unless this_blog.valid? and @user.valid?
+    unless this_blog.valid? && @user.valid?
       redirect_to action: 'index'
       return
     end
@@ -34,13 +34,13 @@ class SetupController < ApplicationController
       create_first_page @user
     end
 
-    redirect_to controller: "accounts", action: "confirm"
+    redirect_to controller: 'accounts', action: 'confirm'
   end
 
   private
 
   # FIXME: Move to a setup concern that coordinates first blog, user, and post
-  def update_or_create_first_post_with_user user
+  def update_or_create_first_post_with_user(user)
     art = Article.first
     if art
       art.user = user
@@ -58,8 +58,8 @@ class SetupController < ApplicationController
     end
   end
 
-  def create_first_page user
-    Page.create(name: "about", published: true, title: I18n.t("setup.page.about"), user: user, body: I18n.t("setup.page.body"))
+  def create_first_page(user)
+    Page.create(name: 'about', published: true, title: I18n.t('setup.page.about'), user: user, body: I18n.t('setup.page.body'))
   end
 
   def check_config

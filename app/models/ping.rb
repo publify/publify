@@ -9,36 +9,28 @@ class Ping < ActiveRecord::Base
     attr_accessor :blog
 
     def send_pingback_or_trackback
-      begin
-        @response = Net::HTTP.get_response(URI.parse(ping.url))
-        send_pingback or send_trackback
-      rescue Timeout::Error => err
-        Rails.logger.info "Sending pingback or trackback timed out"
-        return
-      rescue => err
-        Rails.logger.info "Sending pingback or trackback failed with error: #{err}"
-      end
+      @response = Net::HTTP.get_response(URI.parse(ping.url))
+      send_pingback or send_trackback
+    rescue Timeout::Error => err
+      Rails.logger.info 'Sending pingback or trackback timed out'
+      return
+    rescue => err
+      Rails.logger.info "Sending pingback or trackback failed with error: #{err}"
     end
 
     def pingback_url
-      if response["X-Pingback"]
-        response["X-Pingback"]
+      if response['X-Pingback']
+        response['X-Pingback']
       elsif response.body =~ /<link rel="pingback" href="([^"]+)" ?\/?>/
-        $1
+        Regexp.last_match[1]
       end
     end
 
-    def origin_url
-      @origin_url
-    end
+    attr_reader :origin_url
 
-    def response
-      @response
-    end
+    attr_reader :response
 
-    def ping
-      @ping
-    end
+    attr_reader :ping
 
     def send_xml_rpc(*args)
       ping.send(:send_xml_rpc, *args)
@@ -48,9 +40,9 @@ class Ping < ActiveRecord::Base
       rdfs = response.body.scan(/<rdf:RDF.*?<\/rdf:RDF>/m)
       rdfs.each do |rdf|
         xml = REXML::Document.new(rdf)
-        xml.elements.each("//rdf:Description") do |desc|
-          if rdfs.size == 1 || desc.attributes["dc:identifier"] == ping.url
-            return desc.attributes["trackback:ping"]
+        xml.elements.each('//rdf:Description') do |desc|
+          if rdfs.size == 1 || desc.attributes['dc:identifier'] == ping.url
+            return desc.attributes['trackback:ping']
           end
         end
       end
@@ -60,7 +52,7 @@ class Ping < ActiveRecord::Base
 
     def send_pingback
       if pingback_url
-        send_xml_rpc(pingback_url, "pingback.ping", origin_url, ping.url)
+        send_xml_rpc(pingback_url, 'pingback.ping', origin_url, ping.url)
         true
       else
         false
@@ -92,7 +84,7 @@ class Ping < ActiveRecord::Base
     def initialize(origin_url, ping)
       @origin_url = origin_url
       @ping       = ping
-      #Add this call to text filter cause of a strange thing around text_filter. Need to clean text_filter usage !
+      # Add this call to text filter cause of a strange thing around text_filter. Need to clean text_filter usage !
       ping.article.default_text_filter
       ping.article.text_filter
       # Make sure these are fetched now for thread safety purposes.
@@ -110,7 +102,7 @@ class Ping < ActiveRecord::Base
 
   def send_weblogupdatesping(server_url, origin_url)
     t = Thread.start(article.blog.blog_name) do |blog_name|
-      send_xml_rpc(self.url, "weblogUpdates.ping", blog_name, server_url, origin_url)
+      send_xml_rpc(url, 'weblogUpdates.ping', blog_name, server_url, origin_url)
     end
     t
   end
@@ -118,16 +110,14 @@ class Ping < ActiveRecord::Base
   protected
 
   def send_xml_rpc(xml_rpc_url, name, *args)
-    begin
-      server = XMLRPC::Client.new2(URI.parse(xml_rpc_url).to_s)
+    server = XMLRPC::Client.new2(URI.parse(xml_rpc_url).to_s)
 
-      begin
-        result = server.call(name, *args)
-      rescue XMLRPC::FaultException => e
-        logger.error(e)
-      end
-    rescue Exception => e
+    begin
+      result = server.call(name, *args)
+    rescue XMLRPC::FaultException => e
       logger.error(e)
     end
+  rescue => e
+    logger.error(e)
   end
 end
