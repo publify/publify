@@ -1,5 +1,13 @@
 .l-index {
   background: $concrete;
+
+  margin-top: baseline-unit(-20);
+  padding-top: baseline-unit(20);
+
+  @include respond-to($mq-l) {
+    margin-top: baseline-unit(-28);
+    padding-top: baseline-unit(28);
+  }
 }
 
 .l-index-archive {

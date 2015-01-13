@@ -88,6 +88,14 @@
       display: none;
     }
   }
+
+  @include respond-to($mq-l) {
+    padding-bottom: baseline-unit(2);
+
+    .homepage & {
+      padding-bottom: 0;
+    }
+  }
 }
 
 .l-header__top {
@@ -102,6 +110,8 @@
 
     .homepage & {
       display: block;
+      margin-left: 0;
+      margin-right: 0;
     }
   }
 }
@@ -133,6 +143,12 @@
 
   @include respond-to($mq-m) {
     margin-left: baseline-unit(3);
+  }
+
+  @include respond-to($mq-l) {
+    width: 240px;
+    height: 37px;
+    margin: baseline-unit(2) 0 baseline-unit(2) baseline-unit(3);
   }
 }
 
@@ -188,23 +204,36 @@
   }
 }
 
-.l-header-logo__beta {
-  margin-top: baseline-unit(5);
-  margin-bottom: baseline-unit(5);
+.l-header-logo-beta {
+  margin-top: baseline-unit(3);
   float: left;
+  width: 40px;
+  height: 40px;
 
   .homepage & {
     width: 100%;
+    margin-top: baseline-unit(2);
+    margin-bottom: baseline-unit(3);
 
     @include respond-to($mq-m) {
-      margin-top: baseline-unit(2);
-      margin-bottom: baseline-unit(3);
+
     }
 
     @include respond-to($mq-l) {
-      line-height: baseline-unit(6);
+      width: 100%;
+      height: 60px;
     }
   }
+}
+
+.l-header-logo-beta__line {
+  stroke: $picton-blue;
+  stroke-width: 20;
+  stroke-linecap: round;
+}
+
+.l-header-logo-beta__text {
+  fill: $white;
 }
 
 .l-header-logo__title {
