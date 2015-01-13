@@ -27,7 +27,7 @@
           <% latest_articles.each do |article| %>
             <li class="l-footer-link__list-item">
               <%= link_to article.title, article.permalink_url, :title => article.title %>
-              <time class="l-footer-link__list-item-time"><%= "#{article.published_at.day.ordinalize} #{article.published_at.strftime("%B")}" %></time>
+              <time class="l-footer-link__list-item-time"><%= "#{display_date(article.published_at)}" %></time>
             </li>
           <% end %>
         </ol>
