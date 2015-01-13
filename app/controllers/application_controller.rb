@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   include ::LoginSystem
   protect_from_forgery only: [:edit, :update, :delete]
 
+  force_ssl :if => :ssl_available?
+
   before_filter :reset_local_cache, :fire_triggers, :load_lang, :set_paths
   after_filter :reset_local_cache
 
@@ -58,6 +60,10 @@ class ApplicationController < ActionController::Base
 
   def this_blog
     @blog ||= Blog.default
+  end
+
+  def ssl_available?
+    Rails.env.production?
   end
 
   def use_custom_header?
