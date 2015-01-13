@@ -7,6 +7,10 @@
   }
 }
 
+.l-article__inner {
+  position: relative;
+}
+
 .l-article--author-page {
   min-height: baseline-unit(100);
   margin-bottom: baseline-unit(8)
@@ -36,7 +40,7 @@
     position: absolute;
     @include column(2);
     top: baseline-unit(-10);
-    left: baseline-unit(15);
+    left: 0;
     z-index: $z-foreground;
   }
 
@@ -52,7 +56,7 @@
 .l-article__body,
 .l-article__results {
   @include respond-to($mq-two-col) {
-    @include column(7);
+    @include column(9);
     @include push(3);
     margin-bottom: baseline-unit(4);
   }
