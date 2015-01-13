@@ -46,3 +46,5 @@ Style/MultilineOperationIndentation:
 # Always use raise to raise exceptions
 Style/SignalException:
   EnforcedStyle: only_raise
+
+inherit_from: .rubocop_todo.yml
