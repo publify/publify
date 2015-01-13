@@ -66,25 +66,32 @@ end
 
 # TODO: Clean up use of these Test::Unit style expectations
 def assert_xml(xml)
+  expect(xml).not_to be_empty
   expect do
     assert REXML::Document.new(xml)
   end.not_to raise_error
 end
 
 def assert_atom10 feed, count
-  doc = Nokogiri::XML.parse(feed)
-  root = doc.css(':root').first
-  expect(root.name).to eq("feed")
-  expect(root.namespace.href).to eq("http://www.w3.org/2005/Atom")
-  expect(root.css('entry').count).to eq(count)
+  doc = Feedjira::Feed.parse(feed)
+  expect(doc).to be_instance_of Feedjira::Parser::Atom
+  expect(doc.title).not_to be_nil
+  expect(doc.entries.count).to eq count
+end
+
+def assert_correct_atom_generator feed
+  xml = Nokogiri::XML.parse(feed)
+  generator = xml.css("generator").first
+  expect(generator.content).to eq("Publify")
+  expect(generator["version"]).to eq(PUBLIFY_VERSION)
 end
 
 def assert_rss20 feed, count
-  doc = Nokogiri::XML.parse(feed)
-  root = doc.css(':root').first
-  expect(root.name).to eq("rss")
-  expect(root['version']).to eq("2.0")
-  expect(root.css('channel item').count).to eq(count)
+  doc = Feedjira::Feed.parse(feed)
+  expect(doc).to be_instance_of Feedjira::Parser::RSS
+  expect(doc.version).to eq "2.0"
+  expect(doc.title).not_to be_nil
+  expect(doc.entries.count).to eq count
 end
 
 def stub_full_article(time=Time.now)
@@ -113,70 +120,5 @@ def with_each_theme
       require "#{theme_dir}/helpers/theme_helper.rb"
     end
     yield theme, view_path
-  end
-end
-
-# This test now has optional support for validating the generated RSS feeds.
-# Since Ruby doesn't have a RSS/Atom validator, I'm using the Python source
-# for http://feedvalidator.org and calling it via 'system'.
-#
-# To install the validator, download the source from
-# http://sourceforge.net/cvs/?group_id=99943
-# Then copy src/feedvalidator and src/rdflib into a Python lib directory.
-# Finally, copy src/demo.py into your path as 'feedvalidator', make it executable,
-# and change the first line to something like '#!/usr/bin/python'.
-
-if($validator_installed == nil)
-  $validator_installed = false
-  begin
-    IO.popen("feedvalidator 2> /dev/null","r") do |pipe|
-      if (pipe.read =~ %r{Validating http://www.intertwingly.net/blog/index.})
-        puts "Using locally installed Python feed validator"
-        $validator_installed = true
-      end
-    end
-  rescue
-    nil
-  end
-end
-
-def assert_feedvalidator(rss, todo=nil)
-  unless $validator_installed
-    puts 'Not validating feed because no validator (feedvalidator in python) is installed'
-    return
-  end
-
-  begin
-    file = Tempfile.new(['publify-feed-test', '.xml'])
-    filename = file.path
-    file.write(rss)
-    file.close
-
-    messages = ''
-
-    IO.popen("feedvalidator file://#{filename}") do |pipe|
-      messages = pipe.read
-    end
-
-    okay, messages = parse_validator_messages(messages)
-
-    if todo && ! ENV['RUN_TODO_TESTS']
-      assert !okay, messages + "\nTest unexpectedly passed!\nFeed text:\n"+rss
-    else
-      assert okay, messages + "\nFeed text:\n"+rss
-    end
-  end
-end
-
-def parse_validator_messages(message)
-  messages=message.split(/\n/).reject do |m|
-    m =~ /Feeds should not be served with the "text\/plain" media type/ ||
-      m =~ /Self reference doesn't match document location/
-  end
-
-  if(messages.size > 1)
-    [false, messages.join("\n")]
-  else
-    [true, ""]
   end
 end

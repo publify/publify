@@ -140,7 +140,7 @@ class Admin::FeedbackController < Admin::BaseController
     when 'Delete all spam'
       if request.post?
         Feedback.delete_all(['state = ?', 'spam'])
-        flash[:success] = I18n.t('admin.feedback.bulkops.success')
+        flash[:success] = I18n.t('admin.feedback.bulkops.success_deleted_spam')
       end
     else
       flash[:error] = I18n.t('admin.feedback.bulkops.error')

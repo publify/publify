@@ -96,8 +96,8 @@ FactoryGirl.define do
     name "markdown"
     description "Markdown"
     markup 'markdown'
-    filters '--- []'
-    params '--- {}'
+    filters []
+    params {}
 
     after :stub do |filter|
       TextFilter.stub(:find_by_name).with(filter.name) { filter }
@@ -108,7 +108,7 @@ FactoryGirl.define do
     m.name "smartypants"
     m.description "SmartyPants"
     m.markup 'none'
-    m.filters %q{ [:smartypants].to_yaml.inspect }
+    m.filters [:smartypants]
   end
 
   factory 'markdown smartypants', :parent => :smartypants do |m|

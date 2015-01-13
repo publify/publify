@@ -38,9 +38,11 @@
     <%= t(".use_the_following_link_to_trackback")%>:<br>
     <span class="light-bg"><%= @article.trackback_url %></span>
     </p>
-  <%= content_tag(:ol,
-        render("trackback", :collection => @article.published_trackbacks),
-        :id => 'trackbackList', :class => 'trackback-list') unless @article.published_trackbacks.blank? %>
+    <%- unless @article.published_trackbacks.blank? %>
+      <ol id="trackbackList" class="trackback-list">
+        <%= render(partial: "trackback", collection: @article.published_trackbacks) %>
+      </ol>
+    <% end -%>
 <% end -%>
 
 <p class="postmetadata alt">

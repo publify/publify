@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe AuthorController, :type => :controller do
+describe AuthorsController, :type => :controller do
   let!(:blog) { create(:blog, limit_article_display: 1) }
   let(:now) { DateTime.new(2012,12,23,3,45) }
 

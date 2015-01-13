@@ -3,6 +3,8 @@ require 'rails_helper'
 describe "articles/index_atom_feed.atom.builder", :type => :view do
   let!(:blog) { build_stubbed :blog }
 
+  let(:rendered_entry) { Feedjira::Feed.parse(rendered).entries.first }
+
   describe "with no items" do
     before(:each) do
       assign(:articles, [])
@@ -25,11 +27,7 @@ describe "articles/index_atom_feed.atom.builder", :type => :view do
       render
     end
 
-    it "creates a valid feed" do
-      assert_feedvalidator rendered
-    end
-
-    it "creates an atom feed with two items" do
+    it "creates a valid atom feed with two items" do
       assert_atom10 rendered, 2
     end
 
@@ -49,7 +47,7 @@ describe "articles/index_atom_feed.atom.builder", :type => :view do
 
     it "has the correct id" do
       render
-      expect(rendered_entry.css("id").first.content).to eq("urn:uuid:#{@article.guid}")
+      expect(rendered_entry.entry_id).to eq("urn:uuid:#{@article.guid}")
     end
 
     describe "on a blog that shows extended content in feeds" do
@@ -59,11 +57,11 @@ describe "articles/index_atom_feed.atom.builder", :type => :view do
       end
 
       it "shows the body and extended content in the feed" do
-        expect(rendered_entry.css("content").first.content).to match(/public info.*and more/m)
+        expect(rendered_entry.content).to match(/public info.*and more/m)
       end
 
       it "does not have a summary element in addition to the content element" do
-        expect(rendered_entry.css("summary")).to be_empty
+        expect(rendered_entry.summary).to be_nil
       end
     end
 
@@ -75,21 +73,21 @@ describe "articles/index_atom_feed.atom.builder", :type => :view do
       it "shows only the body content in the feed if there is no excerpt" do
         render
         entry = rendered_entry
-        expect(entry.css("content").first.content).to match(/public info/)
-        expect(entry.css("content").first.content).not_to match(/public info.*and more/m)
+        expect(entry.content).to match(/public info/)
+        expect(entry.content).not_to match(/public info.*and more/m)
       end
 
       it "shows the excerpt instead of the body content in the feed, if there is an excerpt" do
         @article.excerpt = "excerpt"
         render
         entry = rendered_entry
-        expect(entry.css("content").first.content).to match(/excerpt/)
-        expect(entry.css("content").first.content).not_to match(/public info/)
+        expect(entry.content).to match(/excerpt/)
+        expect(entry.content).not_to match(/public info/)
       end
 
       it "does not have a summary element in addition to the content element" do
         render
-        expect(rendered_entry.css("summary")).to be_empty
+        expect(rendered_entry.summary).to be_nil
       end
     end
 
@@ -101,11 +99,11 @@ describe "articles/index_atom_feed.atom.builder", :type => :view do
       end
 
       it "shows the body content in the feed" do
-        expect(rendered_entry.css("content").first.content).to match(/public info/)
+        expect(rendered_entry.content).to match(/public info/)
       end
 
       it "shows the RSS description in the feed" do
-        expect(rendered_entry.css("content").first.content).to match(/rss description/)
+        expect(rendered_entry.content).to match(/rss description/)
       end
     end
 
@@ -127,13 +125,13 @@ describe "articles/index_atom_feed.atom.builder", :type => :view do
       end
 
       it "shows only a link to the article" do
-        expect(rendered_entry.css("content").first.content).to eq(
+        expect(rendered_entry.content).to eq(
           "<p>This article is password protected. Please <a href='#{@article.permalink_url}'>fill in your password</a> to read it</p>"
         )
       end
 
       it "does not have a summary element in addition to the content element" do
-        expect(rendered_entry.css("summary")).to be_empty
+        expect(rendered_entry.summary).to be_nil
       end
 
       it "does not show any secret bits anywhere" do
@@ -148,24 +146,19 @@ describe "articles/index_atom_feed.atom.builder", :type => :view do
       end
 
       it "shows only a link to the article" do
-        expect(rendered_entry.css("content").first.content).to eq(
+        expect(rendered_entry.content).to eq(
           "<p>This article is password protected. Please <a href='#{@article.permalink_url}'>fill in your password</a> to read it</p>"
         )
       end
 
       it "does not have a summary element in addition to the content element" do
-        expect(rendered_entry.css("summary")).to be_empty
+        expect(rendered_entry.summary).to be_nil
       end
 
       it "does not show any secret bits anywhere" do
         expect(rendered).not_to match(/secret/)
       end
     end
-  end
-
-  def rendered_entry
-    parsed = Nokogiri::XML.parse(rendered)
-    parsed.css("entry").first
   end
 
   describe "#title" do
@@ -177,12 +170,12 @@ describe "articles/index_atom_feed.atom.builder", :type => :view do
 
     context "with a note" do
       let(:article) { create(:note) }
-      it { expect(rendered_entry.css("title").text).to eq(article.body) }
+      it { expect(rendered_entry.title).to eq(article.body) }
     end
 
     context "with an article" do
       let(:article) { create(:article) }
-      it { expect(rendered_entry.css("title").text).to eq(article.title) }
+      it { expect(rendered_entry.title).to eq(article.title) }
     end
   end
 end
