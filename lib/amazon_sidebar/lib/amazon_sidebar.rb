@@ -14,3 +14,4 @@ class AmazonSidebar < Sidebar
     self.asins = asin_list.uniq.compact[0,maxlinks.to_i]
   end
 end
+Sidebar.register_sidebar AmazonSidebar

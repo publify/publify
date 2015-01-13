@@ -4,3 +4,5 @@ class MetaSidebar < Sidebar
 
   setting :title, 'Meta'
 end
+
+Sidebar.register_sidebar MetaSidebar

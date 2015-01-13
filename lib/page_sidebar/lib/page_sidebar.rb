@@ -8,3 +8,5 @@ class PageSidebar < Sidebar
     @pages ||= Page.published.order(:title)
   end
 end
+
+Sidebar.register_sidebar PageSidebar

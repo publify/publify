@@ -8,3 +8,5 @@ class AuthorsSidebar < Sidebar
     @authors = User.find(:all, :conditions => {:state => 'active'}, :order => 'name')
   end
 end
+
+Sidebar.register_sidebar AuthorsSidebar

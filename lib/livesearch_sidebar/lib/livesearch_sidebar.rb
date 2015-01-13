@@ -3,3 +3,5 @@ class LivesearchSidebar < Sidebar
 
   setting :title, 'Search'
 end
+
+Sidebar.register_sidebar LivesearchSidebar

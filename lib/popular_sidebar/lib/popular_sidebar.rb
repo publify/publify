@@ -9,3 +9,5 @@ class PopularSidebar < Sidebar
     @popular = Article.bestof.limit(5)
   end
 end
+
+Sidebar.register_sidebar PopularSidebar

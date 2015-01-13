@@ -41,3 +41,5 @@ class ArchivesSidebar < Sidebar
     end
   end
 end
+
+Sidebar.register_sidebar ArchivesSidebar
