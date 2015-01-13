@@ -36,7 +36,7 @@ class BackpackAPI
       connect(true)
       request(path, parameters, true)
     else
-      fail "Error occured (#{response.code}): #{response.body}"
+      raise "Error occured (#{response.code}): #{response.body}"
     end
   end
   alias_method :r, :request

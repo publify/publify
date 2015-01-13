@@ -28,12 +28,12 @@ module PublifyPlugins
       class << self
         def available_plugins(kind = nil)
           return @@registered.inspect unless kind
-          fail ArgumentError.new "#{kind} is not part of available plugins targets (#{KINDS.map(&:to_s).join(',')})" unless KINDS.include?(kind)
+          raise ArgumentError.new "#{kind} is not part of available plugins targets (#{KINDS.map(&:to_s).join(',')})" unless KINDS.include?(kind)
           @@registered ? @@registered[kind] : nil
         end
 
         def register(klass)
-          fail ArgumentError.new "#{klass.kind} is not part of available plugins targets (#{KINDS.map(&:to_s).join(',')})" unless KINDS.include?(klass.kind)
+          raise ArgumentError.new "#{klass.kind} is not part of available plugins targets (#{KINDS.map(&:to_s).join(',')})" unless KINDS.include?(klass.kind)
           @@registered[klass.kind] ||= []
           @@registered[klass.kind] << klass
           @@registered[klass.kind]
@@ -43,7 +43,7 @@ module PublifyPlugins
       private
 
       def initialize
-        fail 'No instance allowed.'
+        raise 'No instance allowed.'
       end
     end
   end # Defined
@@ -62,9 +62,9 @@ module PublifyPlugins
     def initialize(h = {})
       h = h.dup
       kind = h.delete(:kind)
-      fail ArgumentError.new "#{kind} is not part of available plugins targets (#{KINDS.map(&:to_s).join(',')})" unless KINDS.include?(kind)
+      raise ArgumentError.new "#{kind} is not part of available plugins targets (#{KINDS.map(&:to_s).join(',')})" unless KINDS.include?(kind)
       @kind = kind
-      fail ArgumentError.new "Too many keys in PublifyPlugins::Base hash: I don't know what to do with your remainder: #{h.inspect}" unless h.empty?
+      raise ArgumentError.new "Too many keys in PublifyPlugins::Base hash: I don't know what to do with your remainder: #{h.inspect}" unless h.empty?
     end
   end
 end

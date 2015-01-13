@@ -7,7 +7,7 @@ class IPSocket
     when *%w(bofh.org.uk.multi.surbl.org www.bofh.org.uk.multi.surbl.org)
       '10.10.10.10'
     else
-      fail SocketError.new('getaddrinfo: Name or service not known')
+      raise SocketError.new('getaddrinfo: Name or service not known')
     end
   end
 end

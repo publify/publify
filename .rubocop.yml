@@ -42,3 +42,7 @@ Style/FormatString:
 # harder to keep a sane line length.
 Style/MultilineOperationIndentation:
   EnforcedStyle: indented
+
+# Always use raise to raise exceptions
+Style/SignalException:
+  EnforcedStyle: only_raise

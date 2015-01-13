@@ -44,7 +44,7 @@ module Admin::BaseHelper
         return 'will_change alert-warning'
       end
     else
-      fail sidebar.admin_state.inspect
+      raise sidebar.admin_state.inspect
     end
   end
 

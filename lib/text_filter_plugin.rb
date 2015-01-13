@@ -30,7 +30,7 @@ class TextFilterPlugin
     if to_s =~ /::([a-zA-Z]+)$/
       "plugins/textfilters/#{Regexp.last_match[1]}".downcase
     else
-      fail "I don't know who I am: #{self}"
+      raise "I don't know who I am: #{self}"
     end
   end
 

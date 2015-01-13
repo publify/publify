@@ -28,7 +28,7 @@ module ContentBase
     elsif html_map(field)
       generate_html(field)
     else
-      fail "Unknown field: #{field.inspect} in content.html"
+      raise "Unknown field: #{field.inspect} in content.html"
     end
   end
 

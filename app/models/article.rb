@@ -201,7 +201,7 @@ class Article < Content
       return article if article
     end
 
-    fail ActiveRecord::RecordNotFound
+    raise ActiveRecord::RecordNotFound
   end
 
   # Fulltext searches the body of published articles

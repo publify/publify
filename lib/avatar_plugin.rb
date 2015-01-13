@@ -7,11 +7,11 @@ module PublifyPlugins
     end
 
     def self.get_avatar(_options = {})
-      fail NotImplementedError
+      raise NotImplementedError
     end
 
     def self.name
-      fail NotImplementedError
+      raise NotImplementedError
     end
   end
 end

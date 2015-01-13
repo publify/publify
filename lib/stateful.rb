@@ -50,7 +50,7 @@ module Stateful
       options.assert_valid_keys(:valid_states, :handles, :initial_state)
 
       unless states = options[:valid_states]
-        fail 'You must specify at least one state'
+        raise 'You must specify at least one state'
       end
       states        = states.collect &:to_sym
 

@@ -192,7 +192,7 @@ class Blog < ActiveRecord::Base
       end
       Rails.cache.read(cache_key)
     else
-      fail "Invalid URL in url_for: #{options.inspect}"
+      raise "Invalid URL in url_for: #{options.inspect}"
     end
   end
 
@@ -268,7 +268,7 @@ class Blog < ActiveRecord::Base
   def split_base_url
     unless @split_base_url
       unless base_url =~ /(https?):\/\/([^\/]*)(.*)/
-        fail "Invalid base_url: #{base_url}"
+        raise "Invalid base_url: #{base_url}"
       end
       @split_base_url = { protocol: Regexp.last_match[1], host_with_port: Regexp.last_match[2], root_path: Regexp.last_match[3].gsub(%r{/$}, '') }
     end

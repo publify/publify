@@ -297,6 +297,6 @@ class Sidebar < ActiveRecord::Base
   def admin_state
     return :active if active_position && (staged_position == active_position || staged_position.nil?)
     return :will_change_position if active_position != staged_position
-    fail "Oups, ask ook to set an admin_state for this: #{{ active: active_position, staged: staged_position }}"
+    raise "Oups, ask ook to set an admin_state for this: #{{ active: active_position, staged: staged_position }}"
   end
 end

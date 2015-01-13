@@ -109,7 +109,7 @@ class User < ActiveRecord::Base
 
   def self.find_by_permalink(permalink)
     find_by_login(permalink).tap do |user|
-      fail ActiveRecord::RecordNotFound unless user
+      raise ActiveRecord::RecordNotFound unless user
     end
   end
 

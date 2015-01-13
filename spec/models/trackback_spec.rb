@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Trackback, 'With the various trackback filters loaded and DNS mocked out appropriately', type: :model do
   before(:each) do
-    allow(IPSocket).to receive(:getaddress) { fail SocketError.new('getaddrinfo: Name or service not known') }
+    allow(IPSocket).to receive(:getaddress) { raise SocketError.new('getaddrinfo: Name or service not known') }
     FactoryGirl.create(:blog)
     @blog = Blog.default
     @blog.sp_global = true

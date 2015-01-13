@@ -16,14 +16,14 @@ else
     if ENV['DB']
       FileUtils.cp "config/database.yml.#{ENV['DB'] || 'postgres'}", 'config/database.yml'
     else
-      fail 'You need to configure config/database.yml first'
+      raise 'You need to configure config/database.yml first'
     end
   end
 
   conf = YAML.load(File.read(dbfile))
   environment = conf[env]
   adapter = environment['adapter'] if environment
-  fail 'You need define an adapter in your database.yml or set your RAILS_ENV variable' if adapter == '' || adapter.nil?
+  raise 'You need define an adapter in your database.yml or set your RAILS_ENV variable' if adapter == '' || adapter.nil?
   case adapter
   when 'sqlite3'
     gem 'sqlite3'
@@ -32,7 +32,7 @@ else
   when 'mysql2'
     gem 'mysql2'
   else
-    fail "Don't know what gem to use for adapter #{adapter}"
+    raise "Don't know what gem to use for adapter #{adapter}"
   end
 end
 
