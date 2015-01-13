@@ -208,7 +208,7 @@ http://alsoping.example.com/rpc/ping"
 
   factory :tag do |tag|
     tag.name { FactoryGirl.generate(:name) }
-    tag.display_name(&:name)
+    tag.display_name { |a| a.name }
   end
 
   factory :resource do |r|
