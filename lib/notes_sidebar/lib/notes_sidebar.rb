@@ -9,3 +9,5 @@ class NotesSidebar < Sidebar
     @notes = Note.published.page(params[:page]).per(count)
   end
 end
+
+Sidebar.register_sidebar NotesSidebar

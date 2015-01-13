@@ -23,3 +23,5 @@ class TagSidebar < Sidebar
     80
   end
 end
+
+Sidebar.register_sidebar TagSidebar
