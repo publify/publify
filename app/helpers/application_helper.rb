@@ -156,10 +156,16 @@ module ApplicationHelper
     end
   end
 
+  def display_article_date(article)
+    date = article.published_at
+    article_date = date.strftime("#{date.day.ordinalize} %B")
+    article_date = "#{article_date} #{date.year}" if date.year != Date.today.year
+    article_date
+  end
+
+
   def display_date(date)
-    display_date = date.strftime("#{date.day.ordinalize} %B")
-    display_date = "#{display_date} #{date.year}" if date.year != Time.now.year
-    display_date
+    l(date, format: this_blog.date_format)
   end
 
   def display_time(time)

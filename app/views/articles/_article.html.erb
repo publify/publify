@@ -5,7 +5,7 @@
   <div class="article-tile article-tile--<%= class_name %>">
     <h2><%= link_to truncate(article.title, length: 53), article.permalink_url, { :class => 'article-tile__heading article-tile__heading--' + class_name, :title => article.title } %></h2>
 
-    <time class="article-tile__date article-tile__date--<%= class_name %>"><%= display_date_and_time(article.published_at) %></time>
+    <time class="article-tile__date article-tile__date--<%= class_name %>"><%= display_article_date(article) %></time>
     <%= link_to_permalink(article, article.published_comments.size, 'comments', 'article-tile__comments article-tile__comments--' + class_name) %>
   </div>
 </div>
