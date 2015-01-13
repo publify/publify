@@ -88,6 +88,7 @@ en:
       read_full_article: "Read full article"
       comments: "Comments"
     archives:
+      title: "All Articles"
       posted_in: "Posted in"
       no_articles_found: "No articles found"
       comments:
