@@ -118,8 +118,8 @@ TextFilter.create(name: 'markdown smartypants', description: 'Markdown with Smar
                   markup: 'markdown', filters: [:smartypants], params: {})
 TextFilter.create(name: 'textile', description: 'Textile',
                   markup: 'textile', filters: [], params: {})
-TextFilter.create(name: 'only links', description: 'Strip out all tags except for links',
-                  markup: 'none', filters: [:onlylinks], params: {})
+TextFilter.create(name: 'links bold italic', description: 'Only Links (with nofollow added), bold and italic tags permitted',
+                  markup: 'none', filters: [:linksbolditalic], params: {})
 
 admin = Profile.create(label: 'admin', nicename: 'Publify administrator',
                        modules: [:dashboard, :articles, :notes, :pages, :feedback, :media, :sidebar, :profile, :users, :settings, :seo])
