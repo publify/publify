@@ -163,6 +163,8 @@ describe Article, :type => :model do
 
       # FIXME: This spec is way too complex
       it 'sends a pingback to urls linked in the body' do
+        expect(Thread.list.count).to eq 3
+
         expect(ActiveRecord::Base.observers).to include(:email_notifier)
         expect(ActiveRecord::Base.observers).to include(:web_notifier)
         a = Article.new(:body => %{<a href="#{referenced_url}">},
@@ -177,6 +179,12 @@ describe Article, :type => :model do
 
         expect(a.html_urls.size).to eq(1)
         a.save!
+
+        10.times do
+          break if Thread.list.count <= 3
+          sleep 0.1
+        end
+
         expect(a).to be_just_published
         a = Article.find(a.id)
         expect(a).not_to be_just_published
