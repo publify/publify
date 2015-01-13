@@ -89,7 +89,7 @@ end
 def assert_rss20 feed, count
   doc = Feedjira::Feed.parse(feed)
   expect(doc).to be_instance_of Feedjira::Parser::RSS
-  expect(doc.version).to eq 2.0'
+  expect(doc.version).to eq '2.0'
   expect(doc.title).not_to be_nil
   expect(doc.entries.count).to eq count
 end
