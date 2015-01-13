@@ -1,3 +1,4 @@
+<% cache(@article) do %>
 <div>
   <%= render @articles %>
 </div>
@@ -5,3 +6,4 @@
   <%= paginate(@articles)%>
 </div>
 
+<% end %>
