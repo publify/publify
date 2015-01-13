@@ -106,7 +106,6 @@ describe 'articles/index_atom_feed.atom.builder', type: :view do
         expect(rendered_entry.content).to match(/rss description/)
       end
     end
-
   end
 
   describe 'rendering a password protected article' do
@@ -162,7 +161,6 @@ describe 'articles/index_atom_feed.atom.builder', type: :view do
   end
 
   describe '#title' do
-
     before(:each) do
       assign(:articles, [article])
       render

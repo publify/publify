@@ -11,8 +11,8 @@ FactoryGirl.find_definitions
 
 class EmailNotify
   class << self
-    alias real_send_user_create_notification send_user_create_notification
-    def send_user_create_notification _user; end
+    alias_method :real_send_user_create_notification, :send_user_create_notification
+    def send_user_create_notification(_user); end
   end
 end
 
@@ -72,21 +72,21 @@ def assert_xml(xml)
   end.not_to raise_error
 end
 
-def assert_atom10 feed, count
+def assert_atom10(feed, count)
   doc = Feedjira::Feed.parse(feed)
   expect(doc).to be_instance_of Feedjira::Parser::Atom
   expect(doc.title).not_to be_nil
   expect(doc.entries.count).to eq count
 end
 
-def assert_correct_atom_generator feed
+def assert_correct_atom_generator(feed)
   xml = Nokogiri::XML.parse(feed)
   generator = xml.css('generator').first
   expect(generator.content).to eq('Publify')
   expect(generator['version']).to eq(PUBLIFY_VERSION)
 end
 
-def assert_rss20 feed, count
+def assert_rss20(feed, count)
   doc = Feedjira::Feed.parse(feed)
   expect(doc).to be_instance_of Feedjira::Parser::RSS
   expect(doc.version).to eq '2.0'
@@ -99,9 +99,9 @@ def stub_full_article(time = Time.now)
   text_filter = FactoryGirl.build(:textile)
 
   a = FactoryGirl.build_stubbed(Article, published_at: time, user: author,
-                 created_at: time, updated_at: time,
-                 title: 'Foo Bar', permalink: 'foo-bar',
-                 guid: time.hash)
+                                         created_at: time, updated_at: time,
+                                         title: 'Foo Bar', permalink: 'foo-bar',
+                                         guid: time.hash)
   allow(a).to receive(:published_comments) { [] }
   allow(a).to receive(:resources) { [FactoryGirl.build(:resource)] }
   allow(a).to receive(:tags) { [FactoryGirl.build(:tag)] }
