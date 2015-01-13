@@ -209,8 +209,8 @@ http://alsoping.example.com/rpc/ping"
   end
 
   factory :tag do |tag|
-    tag.name {FactoryGirl.generate(:name)}
-    tag.display_name { |a| a.name }
+    tag.name { FactoryGirl.generate(:name) }
+    tag.display_name { |a| a.name } # rubocop:disable Style/SymbolProc
   end
 
   factory :resource do |r|
