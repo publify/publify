@@ -120,7 +120,13 @@ Common attributes:
         end
 
         set_whiteboard blog, content unless content.nil?
-        %{<a href="#{displayurl}" data-toggle="#{rel}" title="#{title}"><img src="#{thumburl}" #{%{class="#{theclass}" } unless theclass.nil?}#{%{width="#{width}" } unless width.nil?}#{%{height="#{height}" } unless height.nil?}alt="#{alt}" title="#{title}"/></a>#{captioncode}}
+
+        img_attrs = %(src="#{thumburl}")
+        img_attrs << %( class="#{theclass}") if theclass
+        img_attrs << %( width="#{width}") if width
+        img_attrs << %( height="#{height}") if height
+        img_attrs << %( alt="#{alt}" title="#{title}")
+        %(<a href="#{displayurl}" data-toggle="#{rel}" title="#{title}"><img #{img_attrs}/></a>#{captioncode})
       end
 
       def self.set_whiteboard(blog, content)
