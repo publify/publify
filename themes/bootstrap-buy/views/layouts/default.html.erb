@@ -52,9 +52,9 @@
 					  <input type="submit" value="Search">
 					</form>
 					
-					
-					<%= render_sidebars %>
-					
+					<% cache do %>
+						<%= render_sidebars %>
+					<% end %>
 
           <p class="repo-owner"><a href="https://github.com/jasonlong/architect-theme">architect-theme</a> is maintained by <a href="https://github.com/jasonlong">jasonlong</a>.</p>
 
