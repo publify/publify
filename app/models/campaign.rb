@@ -7,7 +7,7 @@ class Campaign < ActiveRecord::Base
 
   mount_uploader :hero_image, CampaignHeroImageUploader
 
-  validates :title, presence: true, length: { maximum: 29 }
+  validates :title, presence: true, length: { maximum: 35 }
   validates :description, presence: true, length: { maximum: 187 }
 
   before_save :disable_other_campaigns

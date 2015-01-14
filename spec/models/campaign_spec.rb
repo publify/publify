@@ -26,7 +26,7 @@ describe Campaign, type: :model do
     end
 
     context 'when title is too long' do
-      before { campaign.title = "a" * 30  }
+      before { campaign.title = "a" * 36  }
 
       it { is_expected.not_to be_valid }
     end
