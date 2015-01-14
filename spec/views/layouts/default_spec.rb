@@ -6,6 +6,7 @@ describe "layouts/default.html.erb", :type => :view do
     allow(view).to receive(:use_custom_header?).and_return(false)
     assign(:popular_articles, PopularArticle.new)
     allow(view).to receive(:use_custom_header?).and_return(false)
+    assign(:popular_articles, PopularArticle.new)
   end
 
   it "has keyword meta tag when use_meta_keyword set to true" do
