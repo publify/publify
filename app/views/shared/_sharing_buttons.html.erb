@@ -3,7 +3,7 @@
     <a class="sharing__button sharing__button--facebook t-facebook-button" href="https://www.facebook.com/sharer.php?u=<%= u request.original_url %>" target="_blank"><span class="visually-hidden">Share on facebook</span></a>
   </li>
   <li class="sharing__item">
-    <a class="sharing__button sharing__button--twitter t-twitter-button" href="https://twitter.com/share" target="_blank"><span class="visually-hidden">Share on twitter</span></a>
+    <a class="sharing__button sharing__button--twitter t-twitter-button" href="https://twitter.com/share?text=<%= u(@article.title) %>" data-text="Checking out this page about the Tweet Button" target="_blank"><span class="visually-hidden">Share on twitter</span></a>
   </li>
   <li class="sharing__item">
     <a class="sharing__button sharing__button--pinterest t-pinterest-button" href="http://www.pinterest.com/pin/create/link/?url=<%= u request.original_url %>"><span class="visually-hidden">Share on pinterest</span></a>
