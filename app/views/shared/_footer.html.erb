@@ -5,18 +5,12 @@
         <h3 class="l-footer-link__header">What's popular</h3>
 
         <ol class="unstyled-list l-footer-link__list">
-          <li class="l-footer-link__list-item">
-            <a href="/to-fix-or-not-to-fix-is-a-ten-year-mortgage-too-long">To fix or not to fix… is a ten year mortgage too long?</a>
-            <time class="l-footer-link__list-item-time">24th January</time>
-          </li>
-          <li class="l-footer-link__list-item">
-            <a href="/the-online-tax-return-deadline-is-looming-missing-it-could-be-costly">The online tax return deadline is looming. Missing it could be costly…</a>
-            <time class="l-footer-link__list-item-time">23rd January</time>
-          </li>
-          <li class="l-footer-link__list-item">
-            <a href="/buying-a-house-why-you-shouldnt-change-your-mobile">Buying a house? Why you shouldn’t change your mobile</a>
-            <time class="l-footer-link__list-item-time">9th January</time>
-          </li>
+          <% @popular_articles.articles.each do |article| %>
+            <li class="l-footer-link__list-item">
+              <%= link_to article.title, article.permalink_url, :title => article.title %>
+              <time class="l-footer-link__list-item-time"><%= "#{article.published_at.day.ordinalize} #{article.published_at.strftime("%B")}" %></time>
+            </li>
+          <% end %>
         </ol>
       </div>
 

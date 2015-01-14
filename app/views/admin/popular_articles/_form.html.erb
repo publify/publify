@@ -1,0 +1,22 @@
+<div id='autosave'><%= hidden_field_tag('article[id]', @article.id) if @article.present? %></div>
+
+<div class='row save-bar'>
+  <div class='col-md-8 col-md-offset-2' id='save-bar'>
+    <div class='pull-right'>
+      <%= submit_tag 'save' %>
+    </div>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='col-md-8 col-md-offset-2' id='error-message-article'>
+    <%= render 'shared/flash', flash: flash %>
+    <%= error_messages_for 'popular_article' %>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='col-md-8'>
+    <%= collection_select(:popular_article, :article_ids, Article.published.order(published_at: :desc), :id, :title, {include_blank: false}, {:multiple => true}) %>
+  </div>
+</div>

@@ -1,4 +1,5 @@
 class ContentController < ApplicationController
+
   class ExpiryFilter
     def before(_controller)
       @request_time = Time.now

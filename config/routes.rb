@@ -87,6 +87,9 @@ Rails.application.routes.draw do
     mount Ckeditor::Engine => '/ckeditor', as: 'ckeditor'
 
     get '/', to: 'dashboard#index', as: 'dashboard'
+
+    resources :popular_articles, only: [:new, :create]
+
     resources :sidebar, only: [:index, :update, :destroy] do
       collection do
         put :sortable
