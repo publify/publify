@@ -23,7 +23,6 @@ feature 'Sharing buttons' do
     expect(page).to have_css('.t-sharing')
     expect(page).to have_css('.t-facebook-button')
     expect(page).to have_css('.t-twitter-button')
-    expect(page.find('a.t-pinterest-button')['href']).to include(original_url)
     expect(page.find('a.t-google-button')['href']).to include(original_url)
     expect(page).to have_css('.t-print-button')
     expect(page).to have_css('.t-email-button')
