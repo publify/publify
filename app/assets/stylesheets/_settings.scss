@@ -17,7 +17,8 @@ $font-weight-bold: 700;
 $font-weight-medium: 500;
 $font-weight-light: 300;
 
-$brand-font: 'museo_slab';
+$brand-font-family: 'museo_slab';
+$brand-font-stack: $brand-font-family, Helvetica, Arial, sans-serif;
 $brand-font-weight: 900;
 
 $text-color: $nevada;
