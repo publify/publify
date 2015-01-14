@@ -21,11 +21,11 @@
     <%- end %>
     <%= show_actions article %>
   </td>
-  <td>
+  <td class="author">
     <%= author_link(article)%><br>
     <small><%= l(article.published_at) %></small>
   </td>
-  <td>
+  <td class="comments">
     <%= (article.allow_comments?) ? link_to("#{article.comments.ham.size.to_s} <i class='glyphicon glyphicon-comment'></i>".html_safe, :controller => '/admin/feedback', :id => article.id, :action => 'article') : '-' %> </td>
 </tr>
 <% end %>

@@ -290,3 +290,17 @@ table.possible-related-content {
 #article_title {
   margin-bottom: 10px;
 }
+
+table.article-list {
+  tr {
+    td.author {
+      width: 150px;
+      text-align: center;
+    }
+
+    td.comments {
+      width: 150px;
+      text-align: center;
+    }
+  }
+}
