@@ -12,6 +12,6 @@
         <%= t('.on') %> <%= l(comment.created_at) %>
       </small>
     </p>
-    <%= comment.html(:all) %>
+    <%= simple_format(comment.html(:all)) %>
     <%= show_feedback_actions comment %>
   </td>
