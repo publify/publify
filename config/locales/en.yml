@@ -813,7 +813,7 @@ en:
       logout: "Log out &raquo;"
       home: "Home"
       dashboard: "Dashboard"
-      powered_by: "is proudly powered by"
+      powered_by: "is powered by"
     cache:
       show:
         stats: "There are currently %{files_count} files in cache for a total amount of %{size} Kb"
