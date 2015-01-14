@@ -20,18 +20,18 @@
     float: left;
 
     .non-article-page & {
-      width: 50%;
-      padding-left: 5px;
+      width: 49.75%;
+      margin-right: .5%;
 
       .flexbox & {
-        flex-basis: 50%;
+        display: flex;
+        flex-basis: 49.75%;
         float: none;
         min-height: 0;
-        display: flex;
       }
 
-      &:nth-child(2n-1) {
-        padding-left: 0;
+      &:nth-child(2n) {
+        margin-right: 0;
       }
     }
   }
@@ -39,37 +39,44 @@
   @include respond-to($mq-l) {
     .non-article-page &,
     .article-page & {
-      width: 33.333%;
-      padding-left: 5px;
+      width: 33%;
+      margin-right: .5%;
 
       .flexbox & {
         display: flex;
-        flex-basis: 33.333%;
+        flex-basis: 33%;
+        float: none;
+        min-height: 0;
       }
 
-      &:nth-child(2n-1) {
-        padding-left: 5px;
+      &:nth-child(2n) {
+        margin-right: .5%;
       }
 
-      &:nth-child(3n-2) {
-        padding-left: 0;
+      &:nth-child(3n) {
+        margin-right: 0;
       }
     }
   }
 }
 
 .l-tile--archive {
-  float: right;
+  .non-article-page & {
+    float: right;
 
-  @include respond-to($mq-m) {
-    .flexbox & {
-      margin-left: auto;
-      float: none;
+    @include respond-to($mq-m) {
+      margin-right: 0;
+
+      .flexbox & {
+        margin-left: auto;
+        float: none;
+        flex-basis: 49.75%;
+      }
     }
 
-    &:nth-child(3n-2) {
-      .non-article-page & {
-        padding-left: 5px;
+    @include respond-to($mq-l) {
+      .flexbox & {
+        flex-basis: 33%;
       }
     }
   }

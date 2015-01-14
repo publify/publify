@@ -4,8 +4,8 @@
   display: block;
   overflow: hidden;
   position: relative;
-  background: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0" y="0" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><line fill="none" stroke="%23303030" stroke-miterlimit="10" x1="100" y1="0" x2="0" y2="100"/></svg>');
-  background-size: 25px;
+  background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjxzdmcgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNDAiIGhlaWdodD0iNTAiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgNDAgNTAiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxsaW5lIHN0cm9rZT0iI2NlY2VjZSIgc3Ryb2tlLXdpZHRoPSIyIiB4MT0iMCIgeTE9IjUxIiB4Mj0iNDAiIHkyPSItMSIgLz48L3N2Zz4NCg==');
+  background-size: 20px 26px;
   padding: baseline-unit(4);
   margin: baseline-unit(6) 0;
   max-width: $callout-max-width;
@@ -26,6 +26,7 @@
   float: right;
   position: absolute;
   width: 20px;
+  height: 32px;
   top: 30%;
   right: 17px;
   margin-left: baseline-unit(5);

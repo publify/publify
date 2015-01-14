@@ -52,6 +52,7 @@
   float: left;
   margin-top: baseline-unit(2);
   margin-right: 15px;
+  height: 32px;
 
   @include respond-to($mq-l) {
     margin-right: 20px;
