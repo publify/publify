@@ -4,7 +4,8 @@ if ENV["HEROKU"]
   ruby '2.1.5'
 
   gem "pg"
-  gem "thin" # Change this to another web server if you want (ie. unicorn, passenger, puma...)
+  gem 'unicorn'
+  gem 'rack-timeout'
   gem "rails_12factor"
 else
 
@@ -69,6 +70,7 @@ gem 'dynamic_form', '~> 1.1.4'
 
 gem 'non-stupid-digest-assets'
 
+
 # removed from Rails-core as Rails 4.0
 gem 'actionpack-page_caching', '~> 1.0.2'
 gem 'rails-observers', '~> 0.1.2'
@@ -80,7 +82,7 @@ group :assets do
 end
 
 group :development, :test do
-  gem 'thin'
+  gem 'unicorn'
   gem 'factory_girl', '~> 4.5.0'
   gem 'capybara'
   gem 'rspec-rails', '~> 3.1.0'
