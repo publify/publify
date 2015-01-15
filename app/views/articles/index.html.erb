@@ -1,6 +1,6 @@
 <%= render 'shared/campaigns' if @lead_campaign %>
 
-<div class="l-index">
+<div class="l-index<%= ' l-index--campaign' if @lead_campaign %>">
   <div class="l-constrained">
     <div class="l-tiles">
       <% @articles.each_with_index do |article, index| %>
