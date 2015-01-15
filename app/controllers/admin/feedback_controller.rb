@@ -2,10 +2,24 @@ class Admin::FeedbackController < Admin::BaseController
   cache_sweeper :blog_sweeper
 
   def index
-    scoped_feedback = Feedback
+    scoped_feedback = Feedback.unscope(:order)
 
     if params[:only].present?
       scoped_feedback = scoped_feedback.send(params[:only])
+    end
+
+    if params[:sort_by].present? && params[:sort_by] == 'commenter'
+      if params[:sort_order].present? && params[:sort_order] == 'desc'
+        scoped_feedback = scoped_feedback.order('author DESC')
+      else
+        scoped_feedback = scoped_feedback.order('author ASC')
+      end
+    else
+      if params[:sort_order].present? && params[:sort_order] == 'desc'
+        scoped_feedback = scoped_feedback.order('created_at DESC')
+      else
+        scoped_feedback = scoped_feedback.order('created_at ASC')
+      end
     end
 
     if params[:page].blank? || params[:page] == '0'

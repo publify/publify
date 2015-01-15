@@ -15,6 +15,12 @@
     <div class="panel-heading">
       <div class='pull-right'>
         <div class='form-group'>
+          <%= select_tag('sort_by', options_for_select([['Sort by comment time', 'commented_at'], ['Sort by commenter name', 'commenter']], params[:sort_by]), {:class => 'form-control'}) %>
+        </div>
+        <div class='form-group'>
+          <%= select_tag('sort_order', options_for_select([['Ascending', 'asc'], ['Descending', 'desc']], params[:sort_order]), {:class => 'form-control'}) %>
+        </div>
+        <div class='form-group'>
           <%= select_tag('only', options_for_select([['Presumed Ham', 'presumed_ham'], ['Ham', 'ham'], ['Presumed Spam', 'presumed_spam'], ['Spam', 'spam']], params[:only]), {prompt: 'All', :class => 'form-control'}) %>
         </div>
         <div class='form-group'>
