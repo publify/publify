@@ -5,7 +5,6 @@
 </h2>
 <% end %>
 
-<%= render 'shared/flash', flash: flash %>
 <%= form_tag({action: 'index'}, method: :get, class: 'form-inline') do %>
   <p>
     <%= link_to(t(".all"), {controller: 'admin/feedback', action: :index}, {class: 'label label-default'}) %>
