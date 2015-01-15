@@ -88,7 +88,7 @@ describe ArticlesController, 'base', type: :controller do
 
     it 'search with empty result' do
       get 'search', q: 'abcdefghijklmnopqrstuvwxyz'
-      expect(response).to render_template('articles/error', layout: false)
+      expect(response).to render_template('articles/search', layout: true)
     end
 
   end
