@@ -612,10 +612,10 @@ en:
         comments_for: "Comments for %{article_link}"
       button:
         select_action: "Select action"
-        delete_checked_items: "Delete Checked Items"
-        delete_all_spam: "Delete all spam"
-        mark_checked_items_as_spam: "Mark Checked Items as Spam"
-        mark_checked_items_as_ham: "Mark Checked Items as Ham"
+        delete_checked_items: "Delete Checked"
+        delete_all_spam: "Delete All Spam"
+        mark_checked_items_as_spam: "Mark Checked as Spam"
+        mark_checked_items_as_ham: "Mark Checked as Ham"
         submit: "Submit"
       spam:
         this_comment_by_was_flagged_as_spam: "This comment by %{author} was flagged as spam, %{cancel_link}?"
