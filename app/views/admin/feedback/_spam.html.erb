@@ -14,8 +14,7 @@
   </p>
   <p>
     <small>
-      <%= t(".this_comment_by_was_flagged_as_spam", author: comment.author, cancel_link: link_to(t('.cancel'), url: {action: 'change_state', id: comment.id, remote: true})) %> 
-      <%= toggle_element "feedback_#{comment.id}" %>
+      <%= t(".this_comment_by_was_flagged_as_spam", author: comment.author, cancel_link: link_to(t('.cancel'), { action: 'change_state', id: comment.id, context: :listing }, remote: true)) %>
     </small>
   </p>
 </td>
