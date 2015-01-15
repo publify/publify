@@ -1,7 +1,9 @@
 <%- if flash %>
   <%- flash.each do |alert_level, message| %>
-    <div id="flash" class='alert alert-<%= flash[:error] ? 'danger' : 'success'%>'>
-      <a class='close' href='#'>×</a>
+    <div id="flash" class='fade in alert alert-<%= flash[:error] ? 'danger' : 'success'%>'>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
       <p class="<%= alert_level.to_s.downcase %>">
         <%= message %>
       </p>
