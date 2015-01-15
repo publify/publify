@@ -111,6 +111,8 @@ Rails.application.routes.draw do
     match "/admin/#{i}(/:action(/:id))", to: "admin/#{i}", action: nil, id: nil, format: false, via: [:get, :post, :put, :delete] # TODO: convert this magic catchers to resources item to close un-needed HTTP method
   end
 
+  match "/admin/articles/:article_id/feedback", to: "admin/feedback#index", format: false, via: :get, as: :article_feedback
+
   root to: 'articles#index', format: false
 
   get '*from', to: 'articles#redirect', format: false

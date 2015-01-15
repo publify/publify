@@ -86,7 +86,7 @@ describe Admin::FeedbackController, type: :controller do
 
       context 'spam' do
         let(:params) { { only: 'spam' } }
-        it { expect(assigns(:feedback)).to eq([spam]) }
+        it { expect(assigns(:feedback)).to eq([spam, presumed_spam]) }
       end
 
       context 'presumed_spam' do
@@ -102,49 +102,6 @@ describe Admin::FeedbackController, type: :controller do
       context 'with an empty page params' do
         let(:params) { { page: '' } }
         it { expect(assigns(:feedback).size).to eq(4) }
-      end
-
-    end
-
-    describe 'article action' do
-
-      def should_success_with_article_view(response)
-        expect(response).to be_success
-        expect(response).to render_template('article')
-      end
-
-      it 'should see all feedback on one article' do
-        article = FactoryGirl.create(:article)
-        FactoryGirl.create(:comment, article: article)
-        FactoryGirl.create(:comment, article: article)
-        get :article, id: article.id
-        should_success_with_article_view(response)
-        expect(assigns(:article)).to eq(article)
-        expect(assigns(:feedback).size).to eq(2)
-      end
-
-      it 'should see only spam feedback on one article' do
-        article = FactoryGirl.create(:article)
-        FactoryGirl.create(:comment, state: 'spam', article: article)
-        get :article, id: article.id, spam: 'y'
-        should_success_with_article_view(response)
-        expect(assigns(:article)).to eq(article)
-        expect(assigns(:feedback).size).to eq(1)
-      end
-
-      it 'should see only ham feedback on one article' do
-        article = FactoryGirl.create(:article)
-        comment = FactoryGirl.create(:comment, article: article)
-        get :article, id: article.id, ham: 'y'
-        should_success_with_article_view(response)
-        expect(assigns(:article)).to eq(article)
-        expect(assigns(:feedback).size).to eq(1)
-      end
-
-      it 'should redirect_to index if bad article id' do
-        expect{
-          get :article, id: 102302
-        }.to raise_error(ActiveRecord::RecordNotFound)
       end
 
     end

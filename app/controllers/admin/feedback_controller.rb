@@ -2,10 +2,31 @@ class Admin::FeedbackController < Admin::BaseController
   cache_sweeper :blog_sweeper
 
   def index
-    scoped_feedback = Feedback
+    if params[:article_id]
+      @article = Article.find(params[:article_id])
+      scoped_feedback = @article.comments
+    else
+      scoped_feedback = Feedback
+    end
+
+    scoped_feedback = scoped_feedback.unscope(:order)
 
     if params[:only].present?
       scoped_feedback = scoped_feedback.send(params[:only])
+    end
+
+    if params[:sort_by].present? && params[:sort_by] == 'commenter'
+      if params[:sort_order].present? && params[:sort_order] == 'desc'
+        scoped_feedback = scoped_feedback.order('author DESC')
+      else
+        scoped_feedback = scoped_feedback.order('author ASC')
+      end
+    else
+      if params[:sort_order].present? && params[:sort_order] == 'desc'
+        scoped_feedback = scoped_feedback.order('created_at DESC')
+      else
+        scoped_feedback = scoped_feedback.order('created_at ASC')
+      end
     end
 
     if params[:page].blank? || params[:page] == '0'
@@ -71,17 +92,6 @@ class Admin::FeedbackController < Admin::BaseController
     else
       redirect_to action: 'edit', id: comment.id
     end
-  end
-
-  def article
-    @article = Article.find(params[:id])
-    if params[:ham] && params[:spam].blank?
-      @feedback = @article.comments.ham
-    end
-    if params[:spam] && params[:ham].blank?
-      @feedback = @article.comments.spam
-    end
-    @feedback ||= @article.comments
   end
 
   def change_state

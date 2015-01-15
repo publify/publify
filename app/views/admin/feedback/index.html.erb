@@ -1,33 +1,51 @@
 <%- content_for :page_heading do %>
 <h2>
   <i class="glyphicon glyphicon-large glyphicon-comment"></i>
-  <%= t(".feedback") %>
+  <% if @article %>
+      <%= t(".comments_for", title: @article.title) %>
+  <% else %>
+    <%= t(".feedback") %>
+  <% end %>
 </h2>
 <% end %>
 
-<%= render 'shared/flash', flash: flash %>
 <%= form_tag({action: 'index'}, method: :get, class: 'form-inline') do %>
-  <p>
-    <%= link_to(t(".all"), {controller: 'admin/feedback', action: :index}, {class: 'label label-default'}) %>
-    <%= link_to(t(".unapproved_comments"), {controller: 'admin/feedback', action: :index, only: 'unapproved'}, {class: 'label label-info'}) %>
-    <%= link_to(t(".presumed_ham"), {controller: 'admin/feedback', action: :index, only: 'presumed_ham'}, {class: 'label label-primary'}) %>
-    <%= link_to(t(".ham"), {controller: 'admin/feedback', action: :index, only: 'ham'}, {class: 'label label-success'}) %>
-    <%= link_to(t(".presumed_spam"), {controller: 'admin/feedback', action: :index, only: 'presumed_spam'}, {class: 'label label-warning'}) %>
-    <%= link_to(t(".spam"), {controller: 'admin/feedback', action: :index, only: 'spam'}, {class: 'label label-danger'}) %>
-  </p>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class='pull-right'>
+        <div class='form-group'>
+          <%= select_tag('sort_by', options_for_select([['Sort by comment time', 'commented_at'], ['Sort by commenter name', 'commenter']], params[:sort_by]), {:class => 'form-control'}) %>
+        </div>
+        <div class='form-group'>
+          <%= select_tag('sort_order', options_for_select([['Ascending', 'asc'], ['Descending', 'desc']], params[:sort_order]), {:class => 'form-control'}) %>
+        </div>
+        <div class='form-group'>
+          <%= select_tag('only', options_for_select([['Presumed Ham', 'presumed_ham'], ['Ham', 'ham'], ['Presumed Spam', 'presumed_spam'], ['Spam', 'spam']], params[:only]), {prompt: 'All', :class => 'form-control'}) %>
+        </div>
+        <div class='form-group'>
+          <%= submit_tag('Update', {:class => 'btn btn-success'}) %>
+        </div>
+      </div>
+      <br style='clear: both'>
+    </div>
+  </div>
 <% end %>
 
 <%= form_tag({:action => 'bulkops'}, {class: 'form-inline'}) do %>
 
   <%= hidden_field_tag "page", params[:page]%>
 
-  <%= render 'button', { :position => 'top' } %>          
-  <table class='table hover'>
+  <table class='table hover feedback-list'>
     <thead>
-      <tr class='noborder'>
-        <th colspan='5'>
+      <tr class="check-all">
+        <th>
           <input type="checkbox" name="checkall" id="checkall" onclick="check_all(this);">
-          <%= t(".select_all") %>
+        </th>
+        <th class="label-column" colspan="3">
+          <label for="checkall"><%= t(".select_all") %></label>
+        </th>
+        <th class="help-column">
+          <a data-toggle='modal' data-target='#about-spam-filtering'>Presumed ham / spam?</a>
         </th>
       </tr>
     </thead>
@@ -41,13 +59,12 @@
     <% @feedback.each do |comment| %>
       <%= render 'feedback', {:comment => comment} %>
     <% end %>
-    <%= display_pagination(@feedback, 5) %>
-    <tr>
-      <th><input type="checkbox" name="checkall" id="checkall" onclick="check_all(this);"></th>
-      <th colspan='4'><%= t(".select_all") %></th>
-    </tr>
   </table>
+
   <%= render 'button', { position: 'bottom' } %>
+
+  <%= display_pagination(@feedback, this_blog.admin_display_elements) %>
+
 <% end %>
 
-<br class='clear'>
+<%= render 'help' %>

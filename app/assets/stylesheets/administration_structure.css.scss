@@ -304,3 +304,42 @@ table.article-list {
     }
   }
 }
+
+table.feedback-list {
+  margin-bottom: 10px;
+
+  tr {
+    td.action {
+      text-align: center;
+      width: 25px;
+    }
+
+    td.state {
+      text-align: center;
+      width: 50px;
+    }
+
+    &.check-all {
+      th.label-column {
+        margin: 0;
+
+        label {
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  th.help-column {
+    text-align: right;
+    width: 300px;
+  }
+}
+
+.feedback-panel {
+  margin: 10px 0 10px -5px;
+}
+
+nav.pagination {
+  margin: 5px 0;
+}
