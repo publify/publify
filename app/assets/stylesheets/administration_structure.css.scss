@@ -304,3 +304,17 @@ table.article-list {
     }
   }
 }
+
+table.feedback-list {
+  tr {
+    td.action {
+      text-align: center;
+      width: 25px;
+    }
+
+    td.state {
+      text-align: center;
+      width: 50px;
+    }
+  }
+}
