@@ -316,5 +316,15 @@ table.feedback-list {
       text-align: center;
       width: 50px;
     }
+
+    &.check-all {
+      th.label-column {
+        margin: 0;
+
+        label {
+          margin: 0;
+        }
+      }
+    }
   }
 }

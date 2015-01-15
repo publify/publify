@@ -22,10 +22,12 @@
 
   <table class='table hover feedback-list'>
     <thead>
-      <tr class='noborder'>
-        <th colspan='5'>
+      <tr class="check-all">
+        <th>
           <input type="checkbox" name="checkall" id="checkall" onclick="check_all(this);">
-          <%= t(".select_all") %>
+        </th>
+        <th class="label-column" colspan="4">
+          <label for="checkall"><%= t(".select_all") %></label>
         </th>
       </tr>
     </thead>
