@@ -12,7 +12,7 @@ module Admin::FeedbackHelper
       [content_tag(:small, change_status(item, context)),
        button_to_edit_comment(item),
        button_to_delete_comment(item),
-       button_to_conversation(item)
+       button_to_actual_comment(item)
       ].join(' ').html_safe
     end
   end
@@ -25,8 +25,8 @@ module Admin::FeedbackHelper
     link_to(content_tag(:span, '', class: 'glyphicon glyphicon-trash'), { controller: 'admin/feedback', action: 'destroy', id: item.id }, class: 'btn btn-danger btn-xs btn-action')
   end
 
-  def button_to_conversation(item)
-    link_to(content_tag(:span, '', class: 'glyphicon glyphicon-share-alt'), { controller: 'admin/feedback', action: 'article', id: item.article_id }, class: 'btn btn-default btn-xs btn-action')
+  def button_to_actual_comment(item)
+    link_to(content_tag(:span, '', class: 'glyphicon glyphicon-share-alt'), item.permalink_url, class: 'btn btn-default btn-xs btn-action')
   end
 
   def change_status(item, context = 'listing')
