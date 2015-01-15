@@ -8,7 +8,6 @@
   <p>
     <small>
       <%= t('.by:')%> <%= mail_to h(comment.email), h(comment.author) %>
-      <%= link_to "(#{h(comment.url)})".html_safe, comment.url unless comment.url.blank? %>
       <%= t('.on') %> <%= l(comment.created_at) %>
     </small>
   </p>
