@@ -306,6 +306,8 @@ table.article-list {
 }
 
 table.feedback-list {
+  margin-bottom: 10px;
+
   tr {
     td.action {
       text-align: center;
@@ -327,4 +329,12 @@ table.feedback-list {
       }
     }
   }
+}
+
+.feedback-panel {
+  margin: 5px 0;
+}
+
+nav.pagination {
+  margin: 5px 0;
 }
