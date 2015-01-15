@@ -53,8 +53,7 @@ class ArticlesController < ContentController
   end
 
   def search
-    @articles = this_blog.articles_matching(params[:q], page: params[:page], per_page: this_blog.per_page(params[:format]))
-    return error! if @articles.empty?
+    @articles = this_blog.articles_matching(params[:q], page: params[:page], per: 7)
     @page_title = this_blog.search_title_template.to_title(@articles, this_blog, params)
     @description = this_blog.search_desc_template.to_title(@articles, this_blog, params)
     respond_to do |format|

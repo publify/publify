@@ -72,6 +72,10 @@ en:
     search:
       next_page: "Next page"
       previous_page: "Previous page"
+      search_results_for: "Search"
+      results:
+        one: "1 result"
+        other: "%{count} results"
     comment_preview:
       is_about_to_say: "is about to say"
     meta:

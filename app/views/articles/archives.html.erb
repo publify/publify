@@ -15,12 +15,12 @@
               <p><%= article.description_meta_tag %></p>
             <% end %>
             <a class="results-list-item__comments comments-count" href="<%= article.permalink_url('comments') %>">
-                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 22 21" enable-background="new 0 0 22 21" xml:space="preserve" class="comments-count__icon">
-                  <path fill-rule="evenodd" clip-rule="evenodd" d="M19.5 0h-17C1.1 0 0 1.1 0 2.5v12C0 15.9 1.1 17 2.5 17h17 c1.4 0 2.5-1.1 2.5-2.5v-12C22 1.1 20.9 0 19.5 0z"/>
-                  <path fill-rule="evenodd" clip-rule="evenodd" d="M2.5 8.5c0 0 8 4 3 12.5c0 0 9.7-1.8 10-12L2.5 8.5z"/>
-                </svg>
-                <%= t('.comments', count: article.comments.count) %>
-              </a>
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 22 21" enable-background="new 0 0 22 21" xml:space="preserve" class="comments-count__icon">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M19.5 0h-17C1.1 0 0 1.1 0 2.5v12C0 15.9 1.1 17 2.5 17h17 c1.4 0 2.5-1.1 2.5-2.5v-12C22 1.1 20.9 0 19.5 0z"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M2.5 8.5c0 0 8 4 3 12.5c0 0 9.7-1.8 10-12L2.5 8.5z"/>
+              </svg>
+              <%= t('.comments', count: article.comments.count) %>
+            </a>
           </div>
         <%- end %>
       <%- end %>

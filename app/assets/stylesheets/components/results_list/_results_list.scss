@@ -1,3 +1,7 @@
+.results-list {
+  margin-bottom: baseline-unit(6);
+}
+
 .results-list__title {
   margin-top: baseline-unit(3);
   color: $astronaut-blue;
@@ -63,4 +67,9 @@
 .results-list-pagination__text {
   margin-top: baseline-unit(3);
   margin-bottom: baseline-unit(2);
+}
+
+.results-list__count {
+  color: $black;
+  font-weight: bold;
 }

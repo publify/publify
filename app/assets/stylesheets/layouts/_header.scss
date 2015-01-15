@@ -101,8 +101,6 @@
 .l-header__top {
   overflow: hidden;
   border-bottom: 1px solid #1f5d8e;
-  margin-left: baseline-unit(3);
-  margin-right: baseline-unit(3);
 
   @include respond-to($mq-m) {
     border-bottom: 0;
@@ -118,8 +116,6 @@
 
 .l-header__bottom {
   overflow: hidden;
-  margin-left: baseline-unit(3);
-  margin-right: baseline-unit(3);
 
   @include respond-to($mq-m) {
     display: inline;
@@ -136,18 +132,18 @@
 
 .l-logo {
   background: asset-url('logo.svg') no-repeat;
-  margin: baseline-unit(4) 0;
-  width: 180px;
+  margin: baseline-unit(3) 0 baseline-unit(4) 0;
+  width: 175px;
   height: 29px;
   float: left;
 
   @include respond-to($mq-m) {
-    margin-left: baseline-unit(3);
+    margin-top: baseline-unit(2);
+    width: 240px;
+    height: 37px;
   }
 
   @include respond-to($mq-l) {
-    width: 240px;
-    height: 37px;
     margin: baseline-unit(2) 0 baseline-unit(2) baseline-unit(3);
   }
 }
@@ -167,7 +163,7 @@
   margin: baseline-unit(2) 0;
   position: absolute;
   top: 0;
-  right: baseline-unit(3);
+  right: 0;
 
   &:after {
     position: absolute;
@@ -179,10 +175,6 @@
     height: 26px;
     background: asset-url('magnify.svg') no-repeat;
   }
-
-  @include respond-to($mq-m) {
-    right: baseline-unit(25);
-  }
 }
 
 .l-header-logo {
@@ -191,21 +183,17 @@
   @include respond-to($mq-m) {
     position: absolute;
     top: 0;
-    left: 31%;
+    left: 38%;
 
     .homepage & {
       left: 0;
       position: relative;
     }
   }
-
-  @include respond-to($mq-l) {
-    left: 38%;
-  }
 }
 
 .l-header-logo-beta {
-  margin-top: baseline-unit(3);
+  margin-top: baseline-unit(2.5);
   float: left;
   width: 40px;
   height: 40px;
@@ -239,7 +227,7 @@
 .l-header-logo__title {
   @include font-size(18);
   margin-left: baseline-unit(2);
-  margin-top: baseline-unit(4.5);
+  margin-top: baseline-unit(4);
   margin-bottom: baseline-unit(4);
   font-family: $brand-font-stack;
   font-weight: $brand-font-weight;
