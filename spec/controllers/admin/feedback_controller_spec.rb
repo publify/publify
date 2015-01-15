@@ -86,7 +86,7 @@ describe Admin::FeedbackController, type: :controller do
 
       context 'spam' do
         let(:params) { { only: 'spam' } }
-        it { expect(assigns(:feedback)).to eq([spam]) }
+        it { expect(assigns(:feedback)).to eq([spam, presumed_spam]) }
       end
 
       context 'presumed_spam' do
