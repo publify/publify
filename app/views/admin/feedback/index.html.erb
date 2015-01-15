@@ -30,8 +30,11 @@
         <th>
           <input type="checkbox" name="checkall" id="checkall" onclick="check_all(this);">
         </th>
-        <th class="label-column" colspan="4">
+        <th class="label-column" colspan="3">
           <label for="checkall"><%= t(".select_all") %></label>
+        </th>
+        <th class="help-column">
+          <a data-toggle='modal' data-target='#about-spam-filtering'>Presumed ham / spam?</a>
         </th>
       </tr>
     </thead>
@@ -52,3 +55,5 @@
   <%= display_pagination(@feedback, this_blog.admin_display_elements) %>
 
 <% end %>
+
+<%= render 'help' %>

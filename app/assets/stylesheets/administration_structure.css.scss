@@ -329,6 +329,11 @@ table.feedback-list {
       }
     }
   }
+
+  th.help-column {
+    text-align: right;
+    width: 300px;
+  }
 }
 
 .feedback-panel {
