@@ -9,7 +9,7 @@
 <% @campaigns.each do |campaign| %>
   <tr>
     <td>
-      <%= link_to_edit campaign.title, campaign %>
+      <%= link_to campaign.title, edit_admin_campaign_path(campaign), class: 'edit' %>
       <div class="action">
         <%= button_to_edit_campaign campaign %>
         <%= button_to_delete_campaign campaign %>
