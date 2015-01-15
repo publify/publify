@@ -10,7 +10,6 @@
 <% end %>
 
 <%= form_tag({action: 'index'}, method: :get, class: 'form-inline') do %>
-  <%= hidden_field_tag(:article_id, params[:article_id]) if params[:article_id] %>
   <div class="panel panel-default">
     <div class="panel-heading">
       <div class='pull-right'>

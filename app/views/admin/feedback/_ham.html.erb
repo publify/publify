@@ -4,7 +4,7 @@
     <p class='action'><span class='label <%= comment_class comment.state.to_s.downcase %>'><%= t("admin.feedback.state.#{comment.state}") %></span></p>
   </td>
   <td colspan='4'>
-    <%= link_to comment.article.title, :controller => 'feedback', :action => 'article', :id => comment.article_id %>
+    <%= link_to comment.article.title, article_feedback_path(comment.article) %>
     <p>
       <small>
         <%= t('.by:')%> <%= comment.author %> - <%= mail_to comment.email %>
