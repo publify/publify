@@ -7,7 +7,7 @@
     <%= link_to comment.article.title, :controller => 'feedback', :action => 'article', :id => comment.article_id %>
     <p>
       <small>
-        <%= t('.by:')%> <%= mail_to h(comment.email), h(comment.author) %>
+        <%= t('.by:')%> <%= comment.author %> - <%= mail_to comment.email %>
         <%= t('.on') %> <%= l(comment.created_at) %>
       </small>
     </p>
