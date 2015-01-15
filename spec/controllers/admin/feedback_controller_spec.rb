@@ -110,7 +110,7 @@ describe Admin::FeedbackController, type: :controller do
 
       def should_success_with_article_view(response)
         expect(response).to be_success
-        expect(response).to render_template('article')
+        expect(response).to render_template('index')
       end
 
       it 'should see all feedback on one article' do

@@ -1,7 +1,11 @@
 <%- content_for :page_heading do %>
 <h2>
   <i class="glyphicon glyphicon-large glyphicon-comment"></i>
-  <%= t(".feedback") %>
+  <% if @article %>
+      <%= t(".comments_for", title: @article.title) %>
+  <% else %>
+    <%= t(".feedback") %>
+  <% end %>
 </h2>
 <% end %>
 

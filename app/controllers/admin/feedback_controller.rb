@@ -81,7 +81,15 @@ class Admin::FeedbackController < Admin::BaseController
     if params[:spam] && params[:ham].blank?
       @feedback = @article.comments.spam
     end
+    if params[:page].blank? || params[:page] == '0'
+      params.delete(:page)
+    end
+
     @feedback ||= @article.comments
+
+    @feedback = @feedback.paginated(params[:page], this_blog.admin_display_elements)
+
+    render :template => 'admin/feedback/index'
   end
 
   def change_state
