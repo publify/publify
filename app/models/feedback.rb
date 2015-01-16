@@ -133,6 +133,8 @@ class Feedback < ActiveRecord::Base
   end
 
   def is_profane?
+    return false if webpurify_client.nil?
+
     begin
       Timeout.timeout(defined?($TESTING) ? 30 : 60) do
         webpurify_client.check(html.strip_html)
