@@ -78,7 +78,7 @@ class Tag < ActiveRecord::Base
     self.select('tags.*, COUNT(articles_tags.tag_id) AS tag_count').
          joins('INNER JOIN articles_tags ON tags.id = articles_tags.tag_id').
          joins('INNER JOIN contents ON contents.id = articles_tags.article_id').
-         group(:name).
+         group('tags.name').
          where('contents.published = ?', true).
          order('tag_count DESC').
          limit(limit)
