@@ -90,7 +90,9 @@ en:
       or_trackback: "or a %{trackback} from your own site"
       trackback: "trackback"
       read_full_article: "Read full article"
-      comments: "Comments"
+      comments:
+        one: "comment"
+        other: "comments"
     archives:
       title: "All Articles"
       posted_in: "Posted in"
