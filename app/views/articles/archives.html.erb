@@ -9,7 +9,10 @@
           <div class="results-list-item">
             <h2 class="results-list-item__header"><%= link_to_permalink(article,h(article.title)) %></h2>
             <div class="results-list-item__author">
-              <%= link_to(article.user.nickname, author_path(id: article.author)) if article.author %> - <%= display_article_date(article) %>
+              <% if article.author %>
+                <span class="visually-hidden"><%= t(".published_by") %></span> <a href="<%= author_path(id: article.author) %>"><%= article.user.nickname %></a> -
+              <% end %>
+              <%= display_article_date(article) %>
             </div>
             <% if article.description_meta_tag.present? %>
               <p><%= article.description_meta_tag %></p>
