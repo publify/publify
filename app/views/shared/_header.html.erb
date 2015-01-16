@@ -39,14 +39,10 @@
       <div class="l-header-logo">
         <%= render 'shared/beta_logo' %>
         <% if use_custom_header? %>
-          <h1 class="l-header-logo__title">
+          <h1 class="l-header-logo__title">Your Money Advice</h1>
         <% else %>
           <span class="l-header-logo__title">
-        <% end %>
-          <a href="/" class="l-header-title__link">Your Money Advice</a>
-        <% if use_custom_header? %>
-          </h1>
-        <% else %>
+            <a href="/" class="l-header-title__link">Your Money Advice <span class="visually-hidden">home page</span></a>
           </span>
         <% end %>
       </div>
