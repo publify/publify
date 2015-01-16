@@ -38,7 +38,17 @@
     <div class="l-header__bottom">
       <div class="l-header-logo">
         <%= render 'shared/beta_logo' %>
-        <span class="l-header-logo__title"><a href="/" class="l-header-title__link">Your Money Advice</a></span>
+        <% if use_custom_header? %>
+          <h1 class="l-header-logo__title">
+        <% else %>
+          <span class="l-header-logo__title">
+        <% end %>
+          <a href="/" class="l-header-title__link">Your Money Advice</a>
+        <% if use_custom_header? %>
+          </h1>
+        <% else %>
+          </span>
+        <% end %>
       </div>
       <% if use_custom_header? %>
         <p class="l-header__description">Tips, news and views on all things money from mortgages and savings to budgeting and benefits.</p>

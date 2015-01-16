@@ -94,6 +94,7 @@
 }
 
 .comment-list-item__headline {
+  @include body(16, 20);
   color: $outer-space;
   margin-top: baseline-unit(2);
 }
