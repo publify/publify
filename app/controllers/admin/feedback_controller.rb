@@ -9,24 +9,10 @@ class Admin::FeedbackController < Admin::BaseController
       scoped_feedback = Feedback
     end
 
-    scoped_feedback = scoped_feedback.unscope(:order)
+    scoped_feedback = scoped_feedback.unscope(:order).order(order_sql)
 
     if params[:only].present?
       scoped_feedback = scoped_feedback.send(params[:only])
-    end
-
-    if params[:sort_by].present? && params[:sort_by] == 'commenter'
-      if params[:sort_order].present? && params[:sort_order] == 'desc'
-        scoped_feedback = scoped_feedback.order('author DESC')
-      else
-        scoped_feedback = scoped_feedback.order('author ASC')
-      end
-    else
-      if params[:sort_order].present? && params[:sort_order] == 'desc'
-        scoped_feedback = scoped_feedback.order('created_at DESC')
-      else
-        scoped_feedback = scoped_feedback.order('created_at ASC')
-      end
     end
 
     if params[:page].blank? || params[:page] == '0'
@@ -163,21 +149,40 @@ class Admin::FeedbackController < Admin::BaseController
   protected
 
   def sort_order
-    if params[:sort_by].present? && params[:sort_by] == 'commenter'
-      'commenter'
+    if params[:sort_order].present?
+      params[:sort_order]
+    else
+      if sort_by == 'commented_at'
+        'desc'
+      else
+        'asc'
+      end
+    end
+  end
+  helper_method :sort_order
+
+  def sort_by
+    if params[:sort_by].present?
+      params[:sort_by]
     else
       'commented_at'
     end
   end
+  helper_method :sort_by
 
-  def sort_by
-    if params[:sort_order].present?
-      if params[:sort_by]
-        params[:sort_by]
-      else
+  def order_sql
+    order_sql = case sort_by
+                  when 'commented_at'
+                    'created_at'
+                  when 'commenter'
+                    'author'
+                end
 
-    else
-      'commented_at'
+    case sort_order
+      when 'asc'
+        order_sql + ' ASC'
+      when 'desc'
+        order_sql + ' DESC'
     end
   end
 
