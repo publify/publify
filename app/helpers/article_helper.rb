@@ -19,10 +19,6 @@ module ArticleHelper
             body: report_comment_email_template(comment)
   end
 
-  def top_tags
-    @top_tags ||= Tag.with_counts(6)
-  end
-
   private
 
   def report_comment_email_template(comment)
