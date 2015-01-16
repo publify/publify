@@ -6,6 +6,8 @@
     <h2><%= link_to truncate(article.title, length: 53), article.permalink_url, { :class => 'article-tile__heading article-tile__heading--' + class_name, :title => article.title } %></h2>
 
     <time class="article-tile__date article-tile__date--<%= class_name %>"><%= display_article_date(article) %></time>
-    <%= link_to_permalink(article, article.published_comments.size, 'comments', 'article-tile__comments article-tile__comments--' + class_name) if article.published_comments.size > 0 %>
+    <% if article.published_comments.size > 0 %>
+      <a href="<%= article.permalink_url('comments', true) %>" class="article-tile__comments article-tile__comments--<%= class_name %>"><%= article.published_comments.size %><span class="visually-hidden"> <%= t(".comments", count: article.published_comments.size) %></span></a>
+    <% end %>
   </div>
 </div>
