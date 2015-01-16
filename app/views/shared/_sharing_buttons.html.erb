@@ -1,20 +1,20 @@
 <ul class="sharing t-sharing">
   <li class="sharing__item">
-    <a class="sharing__button sharing__button--facebook t-facebook-button" href="https://www.facebook.com/sharer.php?u=<%= u request.original_url %>" target="_blank"><span class="visually-hidden">Share on facebook</span></a>
+    <a class="sharing__button sharing__button--facebook t-facebook-button" href="https://www.facebook.com/sharer.php?u=<%= u request.original_url %>" target="_blank"><span class="visually-hidden">Share this article on Facebook</span></a>
   </li>
   <li class="sharing__item">
-    <a class="sharing__button sharing__button--twitter t-twitter-button" href="https://twitter.com/share?text=<%= @article ? u(@article.title) : '' %>" data-text="Checking out this page about the Tweet Button" target="_blank"><span class="visually-hidden">Share on twitter</span></a>
+    <a class="sharing__button sharing__button--twitter t-twitter-button" href="https://twitter.com/share?text=<%= @article ? u(@article.title) : '' %>" data-text="Checking out this page about the Tweet Button" target="_blank"><span class="visually-hidden">Share this article on Twitter</span></a>
   </li>
   <li class="sharing__item">
-    <a class="sharing__button sharing__button--pinterest t-pinterest-button" href="http://www.pinterest.com/pin/create/button/?url=<%= u request.original_url %>&amp;media=<%= @article && @article.hero_image.present? ? u(@article.hero_image.url(:resized)) : '' %>"><span class="visually-hidden">Share on pinterest</span></a>
+    <a class="sharing__button sharing__button--pinterest t-pinterest-button" href="http://www.pinterest.com/pin/create/button/?url=<%= u request.original_url %>&amp;media=<%= @article && @article.hero_image.present? ? u(@article.hero_image.url(:resized)) : '' %>"><span class="visually-hidden">Share this article on Pinterest</span></a>
   </li>
   <li class="sharing__item">
-    <a class="sharing__button sharing__button--google t-google-button" href="https://plus.google.com/share?url=<%= u request.original_url %>" target="_blank"></a>
+    <a class="sharing__button sharing__button--google t-google-button" href="https://plus.google.com/share?url=<%= u request.original_url %>" target="_blank"><span class="visually-hidden">Share this article on Google+</a></a>
   </li>
   <li class="sharing__item">
-    <a class="sharing__button sharing__button--print t-print-button" href="javascript:window.print()"><span class="visually-hidden">Print this</span></a>
+    <a class="sharing__button sharing__button--print t-print-button" href="javascript:window.print()"><span class="visually-hidden">Print this article</span></a>
   </li>
   <li class="sharing__item">
-    <a class="sharing__button sharing__button--email t-email-button" href="mailto:?subject=<%= @article ? u(@article.title) : '' %>&amp;body=<%= u request.original_url %>"><span class="visually-hidden">Share this by email</span></a>
+    <a class="sharing__button sharing__button--email t-email-button" href="mailto:?subject=<%= @article ? u(@article.title) : '' %>&amp;body=<%= u request.original_url %>"><span class="visually-hidden">Share this article by email</span></a>
   </li>
 </ul>
