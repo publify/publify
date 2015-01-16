@@ -212,13 +212,13 @@
   @include font-size(30);
   line-height: baseline-unit(6);
   display: inline;
-  color: #000;
+  color: $black;
 
   &:before {
     @include font-size(25);
     display: inline-block;
     content: "•";
-    color: #fff;
+    color: $white;
     margin: 0 baseline-unit(2);
   }
 
