@@ -4,6 +4,7 @@
   <div class="l-constrained">
     <div class="l-tiles">
       <% @articles.each_with_index do |article, index| %>
+        <%= render 'popular_tags' if index === 2 %>
         <%= render :partial => 'article', :object => article, :locals => { :index => index } %>
       <% end %>
       <%= paginate @articles, views_prefix: 'archives' %>

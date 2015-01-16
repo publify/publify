@@ -33,6 +33,13 @@
   background-color: $article-tile-bg--three;
 }
 
+.article-tile--popular {
+  background-color: $article-tile-bg--popular;
+
+  padding-top: baseline-unit(5);
+  padding-bottom: baseline-unit(5);
+}
+
 .article-tile--mas {
   background-color: $article-tile-bg--mas;
 }
@@ -41,6 +48,12 @@
   @include font-size(30);
   line-height: 1.2;
   display: block;
+
+  .article-tile--popular & {
+    text-transform: uppercase;
+    @include font-size(18);
+    color: $black;
+  }
 }
 
 .article-tile__heading--one,
@@ -189,3 +202,43 @@
   }
 }
 
+.article-tile-list {
+  list-style: none;
+  padding: 0;
+  margin-top: baseline-unit(9);
+}
+
+.article-tile-list__item {
+  @include font-size(30);
+  line-height: baseline-unit(6);
+  display: inline;
+  color: $black;
+
+  &:before {
+    @include font-size(25);
+    display: inline-block;
+    content: "•";
+    color: $white;
+    margin: 0 baseline-unit(2);
+  }
+
+  &:first-child {
+    &:before {
+      content: "";
+      margin: 0;
+    }
+  }
+
+  &:nth-child(2n) {
+    font-weight: $font-weight-bold;
+  }
+}
+
+.artile-tile-list__item-link {
+  &:link,
+  &:visited,
+  &:hover,
+  &:focus {
+    color: $black;
+  }
+}

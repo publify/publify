@@ -1,0 +1,11 @@
+<div class="l-tile">
+  <div class="article-tile article-tile--popular">
+    <h2 class="article-tile__heading">Popular</h2>
+
+    <ol class="article-tile-list">
+      <% top_tags.each do |tag| %>
+        <li class="article-tile-list__item"><%= link_to tag.name, tag.permalink_url(nil, true), class: 'artile-tile-list__item-link' %></li>
+      <% end %>
+    </ol>
+  </div>
+</div>
