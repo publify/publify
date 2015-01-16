@@ -25,6 +25,7 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
+    CFPropertyList (2.2.8)
     RedCloth (4.2.9)
     actionmailer (4.1.8)
       actionpack (= 4.1.8)
@@ -115,38 +116,58 @@ GEM
     equalizer (0.0.9)
     erubis (2.7.0)
     eventmachine (1.0.3)
-    excon (0.40.0)
+    excon (0.42.1)
     execjs (2.2.2)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.6)
+    fission (0.5.0)
+      CFPropertyList (~> 2.2)
     flickraw (0.9.8)
     flickraw-cached (20120701)
       flickraw (>= 0.9)
-    fog (1.24.0)
-      fog-brightbox
-      fog-core (~> 1.23)
+    fog (1.26.0)
+      fog-atmos
+      fog-brightbox (~> 0.4)
+      fog-core (~> 1.27, >= 1.27.1)
+      fog-ecloud
       fog-json
+      fog-profitbricks
       fog-radosgw (>= 0.0.2)
       fog-sakuracloud (>= 0.0.4)
       fog-softlayer
+      fog-storm_on_demand
+      fog-terremark
+      fog-vmfusion
+      fog-voxel
+      fog-xml (~> 0.1.1)
       ipaddress (~> 0.5)
       nokogiri (~> 1.5, >= 1.5.11)
-    fog-brightbox (0.6.1)
+    fog-atmos (0.1.0)
+      fog-core
+      fog-xml
+    fog-brightbox (0.7.1)
       fog-core (~> 1.22)
       fog-json
-      inflecto
-    fog-core (1.24.0)
+      inflecto (~> 0.0.2)
+    fog-core (1.27.2)
       builder
       excon (~> 0.38)
       formatador (~> 0.2)
       mime-types
       net-scp (~> 1.1)
       net-ssh (>= 2.1.3)
+    fog-ecloud (0.0.2)
+      fog-core
+      fog-xml
     fog-json (1.0.0)
       multi_json (~> 1.0)
+    fog-profitbricks (0.0.1)
+      fog-core
+      fog-xml
+      nokogiri
     fog-radosgw (0.0.3)
       fog-core (>= 1.21.0)
       fog-json
@@ -154,10 +175,22 @@ GEM
     fog-sakuracloud (0.1.1)
       fog-core
       fog-json
-    fog-softlayer (0.3.22)
+    fog-softlayer (0.3.26)
       fog-core
       fog-json
-    fog-xml (0.1.0)
+    fog-storm_on_demand (0.1.0)
+      fog-core
+      fog-json
+    fog-terremark (0.0.3)
+      fog-core
+      fog-xml
+    fog-vmfusion (0.0.1)
+      fission
+      fog-core
+    fog-voxel (0.0.2)
+      fog-core
+      fog-xml
+    fog-xml (0.1.1)
       fog-core
       nokogiri (~> 1.5, >= 1.5.11)
     foreman (0.76.0)
@@ -192,7 +225,7 @@ GEM
     http (0.5.1)
       http_parser.rb
     http_parser.rb (0.6.0)
-    i18n (0.6.11)
+    i18n (0.7.0)
     inflecto (0.0.2)
     ipaddress (0.8.0)
     jbuilder (2.2.6)
@@ -205,7 +238,7 @@ GEM
       railties (>= 3.2.16)
     jshint_ruby (0.1)
       execjs
-    json (1.8.1)
+    json (1.8.2)
     kaminari (0.16.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -230,24 +263,24 @@ GEM
     mime-types (2.4.3)
     mini_magick (3.8.1)
       subexec (~> 0.2.1)
-    mini_portile (0.6.0)
-    minitest (5.4.3)
+    mini_portile (0.6.2)
+    minitest (5.5.0)
     multi_json (1.10.1)
     multipart-post (2.0.0)
     mysql2 (0.3.16)
     naught (1.0.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
-    net-ssh (2.9.1)
+    net-ssh (2.9.2)
     netrc (0.8.0)
-    nokogiri (1.6.3.1)
-      mini_portile (= 0.6.0)
+    nokogiri (1.6.5)
+      mini_portile (~> 0.6.0)
     non-stupid-digest-assets (1.0.4)
     orm_adapter (0.5.0)
     parser (2.2.0.pre.5)
       ast (>= 1.1, < 3.0)
       slop (~> 3.4, >= 3.4.5)
-    pg (0.17.1)
+    pg (0.18.1)
     poltergeist (1.5.1)
       capybara (~> 2.1)
       cliver (~> 0.3.1)
@@ -383,6 +416,8 @@ GEM
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     uuidtools (2.1.5)
+    webpurify (0.5.2)
+      json
     websocket-driver (0.3.5)
     xpath (2.0.0)
       nokogiri (~> 1.3)
@@ -450,3 +485,4 @@ DEPENDENCIES
   twitter (~> 5.6.0)
   uglifier
   uuidtools (~> 2.1.1)
+  webpurify
