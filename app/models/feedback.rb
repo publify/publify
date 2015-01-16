@@ -102,7 +102,7 @@ class Feedback < ActiveRecord::Base
     end
 
     # Yeah, three state logic is evil...
-    case sp_is_spam? || akismet_is_spam?
+    case sp_is_spam? || akismet_is_spam? || is_profane?
     when nil; :spam
     when true; :spam
     when false; :ham
@@ -126,6 +126,16 @@ class Feedback < ActiveRecord::Base
     begin
       Timeout.timeout(defined?($TESTING) ? 30 : 60) do
         akismet.comment_check(ip, user_agent, akismet_options)
+      end
+    rescue Timeout::Error
+      nil
+    end
+  end
+
+  def is_profane?
+    begin
+      Timeout.timeout(defined?($TESTING) ? 30 : 60) do
+        webpurify_client.check(html.strip_html)
       end
     rescue Timeout::Error
       nil
@@ -208,5 +218,11 @@ class Feedback < ActiveRecord::Base
     rescue
       nil
     end
+  end
+
+  def webpurify_client
+    @webpurify_client ||= if ENV['WEBPURIFY_API_KEY']
+                            ::WebPurify::Client.new(api_key: ENV['WEBPURIFY_API_KEY'], endpoint: :eu)
+                          end
   end
 end
