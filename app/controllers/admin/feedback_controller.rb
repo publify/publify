@@ -162,6 +162,25 @@ class Admin::FeedbackController < Admin::BaseController
 
   protected
 
+  def sort_order
+    if params[:sort_by].present? && params[:sort_by] == 'commenter'
+      'commenter'
+    else
+      'commented_at'
+    end
+  end
+
+  def sort_by
+    if params[:sort_order].present?
+      if params[:sort_by]
+        params[:sort_by]
+      else
+
+    else
+      'commented_at'
+    end
+  end
+
   def update_feedback(items, method)
     items.each do |value|
       value.send(method)
