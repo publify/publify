@@ -8,6 +8,15 @@
   p, li {
     @include font-size(18);
   }
+
+  a:not([href*="moneyadviceservice.org.uk"]):after {
+    content: "";
+    display: inline-block;
+    width: 18px;
+    height: 14px;
+    padding-left: baseline-unit(1);
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjxzdmcgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgdmlld0JveD0iMCAwIDE1LjggMTUuOCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMTUuOCAxNS44IiB4bWw6c3BhY2U9InByZXNlcnZlIj48Zz48bGluZSBmaWxsPSJub25lIiBzdHJva2U9IiMxZjZmYWEiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHgxPSIxMy43IiB5MT0iMiIgeDI9IjcuOCIgeTI9IjcuOSIvPjxwb2x5bGluZSBmaWxsPSJub25lIiBzdHJva2U9IiMxZjZmYWEiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHBvaW50cz0iNC41LDEgMSwxIDEsMTQuOCAxNC44LDE0LjggMTQuOCwxMSAJIi8+PHBvbHlsaW5lIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzFmNmZhYSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgcG9pbnRzPSIxNC44LDYgMTQuOCwxIDkuNSwxIi8+PC9nPjwvc3ZnPg0K) no-repeat top right;
+  }
 }
 
 .article-body--author-bio {
