@@ -6,16 +6,20 @@
       </div>
     <% end %>
 
-    <div class="comment-form__group comment-form__group--body">
-      <%= f.text_area :body, :rows => 8, class: 'form-control comment-form__text-area', placeholder: t('.your_comment'), :autocomplete => "disabled" %>
+    <div class="comment-form__group comment-form__group--body<%= ' form__row--is-errored' if f.object.errors.include?(:body) %>">
+      <%= f.errors_for :body %>
+      <%= f.label :body, t('.your_comment') %>
+      <%= f.text_area :body, :rows => 4, class: 'form-control comment-form__text-area', :autocomplete => "disabled" %>
     </div>
 
-    <div class="comment-form__group comment-form__group--author">
+    <div class="comment-form__group comment-form__group--author<%= ' form__row--is-errored' if f.object.errors.include?(:author) %>">
+      <%= f.errors_for :author %>
       <%= f.label :author, t('.your_name') %>
       <%= f.text_field :author, class: 'form-control comment-form__text-field' %>
     </div>
 
-    <div class="comment-form__group comment-form__group--email_address">
+    <div class="comment-form__group comment-form__group--email_address<%= ' form__row--is-errored' if f.object.errors.include?(:email) %>">
+      <%= f.errors_for :email %>
       <%= f.label :email, t('.your_email_address') %>
       <%= f.text_field :email, class: 'form-control comment-form__text-field' %>
     </div>
