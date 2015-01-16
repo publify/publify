@@ -60,7 +60,6 @@
 .comment-form__group {
   .comment-form__text-field,
   .comment-form__text-area {
-    border-width: 0;
     margin-top: $baseline-unit;
     margin-bottom: $baseline-unit*2;
     padding: $baseline-unit*2;
@@ -106,4 +105,17 @@
 .comment-list-item__report-link {
   margin-top: baseline-unit(1);
   font-size: $base-font-size + px;
+}
+
+.comments .form__row--is-errored {
+  .comment-form__text-field,
+  .comment-form__text-area {
+    color: $error_color;
+    border-color: $error_color;
+  }
+}
+
+.comments .validation-summary__error {
+  margin-top: 0;
+  margin-bottom: $baseline-unit;
 }
