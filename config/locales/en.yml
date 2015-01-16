@@ -97,6 +97,7 @@ en:
       title: "All Articles"
       posted_in: "Posted in"
       no_articles_found: "No articles found"
+      published_by: "Published by"
       comments:
         one: "1 comment"
         other: "%{count} comments"
