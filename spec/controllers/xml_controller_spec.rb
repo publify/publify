@@ -153,6 +153,7 @@ describe XmlController, :type => :controller do
 
   # TODO: make this more robust
   describe "#rsd" do
+    render_views
     before do
       get :rsd
     end
@@ -168,6 +169,7 @@ describe XmlController, :type => :controller do
 
   # TODO: make this more robust
   describe "#feed with googlesitemap format" do
+    render_views
     before do
       FactoryGirl.create(:tag)
       get :feed, :format => 'googlesitemap', :type => 'sitemap'

@@ -1,4 +1,4 @@
-class AuthorController < ContentController
+class AuthorsController < ContentController
   layout :theme_layout
 
   def show

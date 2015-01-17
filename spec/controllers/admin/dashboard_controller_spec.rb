@@ -52,11 +52,11 @@ describe Admin::DashboardController, :type => :controller do
     end
 
     it "should have a link to Spam" do
-      expect(response.body).to have_selector("a[href='/admin/feedback?spam=f']", :text => "no spam")
+      expect(response.body).to have_selector("a[href='/admin/feedback?only=spam']", text: "no spam")
     end
 
     it "should have a link to Spam queue" do
-      expect(response.body).to have_selector("a[href='/admin/feedback?presumed_ham=f']", :text => "no unconfirmed")
+      expect(response.body).to have_selector("a[href='/admin/feedback?only=unapproved']", text: "no unconfirmed")
     end
   end
 
@@ -103,11 +103,11 @@ describe Admin::DashboardController, :type => :controller do
     end
 
     it "should have a link to Spam" do
-      expect(response.body).to have_selector("a[href='/admin/feedback?spam=f']", :text => "no spam")
+      expect(response.body).to have_selector("a[href='/admin/feedback?only=spam']", text: "no spam")
     end
 
     it "should have a link to Spam queue" do
-      expect(response.body).to have_selector("a[href='/admin/feedback?presumed_ham=f']", :text => "no unconfirmed")
+      expect(response.body).to have_selector("a[href='/admin/feedback?only=unapproved']", text: "no unconfirmed")
     end
   end
 
@@ -158,11 +158,11 @@ describe Admin::DashboardController, :type => :controller do
     end
 
     it "should not have a link to Spam" do
-      expect(response.body).not_to have_selector("a[href='/admin/feedback?published=f']", :text => "Spam comments:")
+      expect(response.body).not_to have_selector("a[href='/admin/feedback?only=spam']", text: "no spam")
     end
 
     it "should not have a link to Spam queue" do
-      expect(response.body).not_to have_selector("a[href='/admin/feedback?presumed_spam=f']", :text => "In your spam queue:")
+      expect(response.body).not_to have_selector("a[href='/admin/feedback?only=unapproved']", text: "no unconfirmed")
     end
   end
 end

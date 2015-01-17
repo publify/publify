@@ -3,7 +3,20 @@ require 'rails_helper'
 describe Sidebar, :type => :model do
   describe "#available_sidebars" do
     it "finds at least the standard sidebars" do
-      assert Sidebar.available_sidebars.size >= 6
+      expect(Sidebar.available_sidebars).to include(
+        AmazonSidebar,
+        ArchivesSidebar,
+        AuthorsSidebar,
+        LivesearchSidebar,
+        MetaSidebar,
+        NotesSidebar,
+        PageSidebar,
+        PopularSidebar,
+        SearchSidebar,
+        StaticSidebar,
+        TagSidebar,
+        XmlSidebar
+      )
     end
   end
 

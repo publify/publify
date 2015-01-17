@@ -457,10 +457,23 @@ describe ArticlesController, "redirecting", :type => :controller do
       let!(:article) { create(:article, :permalink => 'second-blog-article', :published_at => '2004-04-01 02:00:00', :updated_at => '2004-04-01 02:00:00', :created_at => '2004-04-01 02:00:00') }
 
       with_each_theme do |theme, view_path|
-        it "renders template #{view_path}/articles/read" do
-          blog.theme = theme
-          get :redirect, from: "#{article.permalink}.html"
-          expect(response).to render_template('articles/read')
+        context "for theme #{theme}" do
+          before do
+            blog.theme = theme
+            blog.save!
+          end
+
+          it "renders without errors when no comments or trackbacks are present" do
+            get :redirect, from: "#{article.permalink}.html"
+            expect(response).to be_success
+          end
+
+          it "renders without errors when comments and trackbacks are present" do
+            create :trackback, article: article
+            create :comment, article: article
+            get :redirect, from: "#{article.permalink}.html"
+            expect(response).to be_success
+          end
         end
       end
     end

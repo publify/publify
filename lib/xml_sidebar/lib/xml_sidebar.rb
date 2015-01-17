@@ -18,5 +18,6 @@ class XmlSidebar < Sidebar
     strip_format.gsub!('2.0', '')
     strip_format
   end
-
 end
+
+Sidebar.register_sidebar XmlSidebar

@@ -4,6 +4,9 @@ require 'rails_helper'
 describe "articles/index_rss_feed.rss.builder", :type => :view do
   let!(:blog) { build_stubbed :blog }
 
+  let(:rendered_entry) { Feedjira::Feed.parse(rendered).entries.first }
+  let(:xml_entry) { Nokogiri::XML.parse(rendered).css("item").first }
+
   describe "rendering articles (with some funny characters)" do
     before do
       article1 = stub_full_article(1.minute.ago)
@@ -14,11 +17,7 @@ describe "articles/index_rss_feed.rss.builder", :type => :view do
       render
     end
 
-    it "creates a valid feed" do
-      assert_feedvalidator rendered
-    end
-
-    it "creates an RSS feed with two items" do
+    it "creates a valid RSS feed with two items" do
       assert_rss20 rendered, 2
     end
 
@@ -37,12 +36,12 @@ describe "articles/index_rss_feed.rss.builder", :type => :view do
 
     it "has the correct guid" do
       render
-      expect(rendered_entry.css("guid").first.content).to eq("urn:uuid:#{@article.guid}")
+      expect(rendered_entry.entry_id).to eq "urn:uuid:#{@article.guid}"
     end
 
     it "has a link to the article's comment section" do
       render
-      expect(rendered_entry.css("comments").first.content).to eq(@article.permalink_url + "#comments")
+      expect(xml_entry.css("comments").first.content).to eq(@article.permalink_url + "#comments")
     end
 
     describe "with an author without email set" do
@@ -52,7 +51,7 @@ describe "articles/index_rss_feed.rss.builder", :type => :view do
       end
 
       it "does not have an author entry" do
-        expect(rendered_entry.css("author")).to be_empty
+        expect(rendered_entry.author).to be_nil
       end
     end
 
@@ -68,11 +67,11 @@ describe "articles/index_rss_feed.rss.builder", :type => :view do
         end
 
         it "has an author entry" do
-          expect(rendered_entry.css("author")).not_to be_empty
+          expect(rendered_entry.author).not_to be_empty
         end
 
         it "has the author's email in the author entry" do
-          expect(rendered_entry.css("author").first.content).to match(/foo@bar.com/)
+          expect(rendered_entry.author).to match(/foo@bar.com/)
         end
       end
 
@@ -83,7 +82,7 @@ describe "articles/index_rss_feed.rss.builder", :type => :view do
         end
 
         it "does not have an author entry" do
-          expect(rendered_entry.css("author")).to be_empty
+          expect(rendered_entry.author).to be_nil
         end
       end
     end
@@ -95,7 +94,7 @@ describe "articles/index_rss_feed.rss.builder", :type => :view do
       end
 
       it "shows the body and extended content in the feed" do
-        expect(rendered_entry.css("description").first.content).to match(/public info.*and more/m)
+        expect(rendered_entry.summary).to match(/public info.*and more/m)
       end
     end
 
@@ -106,17 +105,15 @@ describe "articles/index_rss_feed.rss.builder", :type => :view do
 
       it "shows only the body content in the feed if there is no excerpt" do
         render
-        entry = rendered_entry
-        expect(entry.css("description").first.content).to match(/public info/)
-        expect(entry.css("description").first.content).not_to match(/public info.*and more/m)
+        expect(rendered_entry.summary).to match(/public info/)
+        expect(rendered_entry.summary).not_to match(/public info.*and more/m)
       end
 
       it "shows the excerpt instead of the body content in the feed, if there is an excerpt" do
         @article.excerpt = "excerpt"
         render
-        entry = rendered_entry
-        expect(entry.css("description").first.content).to match(/excerpt/)
-        expect(entry.css("description").first.content).not_to match(/public info/)
+        expect(rendered_entry.summary).to match(/excerpt/)
+        expect(rendered_entry.summary).not_to match(/public info/)
       end
     end
 
@@ -128,11 +125,11 @@ describe "articles/index_rss_feed.rss.builder", :type => :view do
       end
 
       it "shows the body content in the feed" do
-        expect(rendered_entry.css("description").first.content).to match(/public info/)
+        expect(rendered_entry.summary).to match(/public info/)
       end
 
       it "shows the RSS description in the feed" do
-        expect(rendered_entry.css("description").first.content).to match(/rss description/)
+        expect(rendered_entry.summary).to match(/rss description/)
       end
     end
 
@@ -154,7 +151,7 @@ describe "articles/index_rss_feed.rss.builder", :type => :view do
       end
 
       it "shows only a link to the article" do
-        expect(rendered_entry.css("description").first.content).to eq(
+        expect(rendered_entry.summary).to eq(
           "<p>This article is password protected. Please <a href='#{@article.permalink_url}'>fill in your password</a> to read it</p>"
         )
       end
@@ -171,7 +168,7 @@ describe "articles/index_rss_feed.rss.builder", :type => :view do
       end
 
       it "shows only a link to the article" do
-        expect(rendered_entry.css("description").first.content).to eq(
+        expect(rendered_entry.summary).to eq(
           "<p>This article is password protected. Please <a href='#{@article.permalink_url}'>fill in your password</a> to read it</p>"
         )
       end
@@ -191,14 +188,9 @@ describe "articles/index_rss_feed.rss.builder", :type => :view do
       render
     end
 
-    it "creates a valid feed" do
-      assert_feedvalidator rendered
+    it "creates a valid RSS feed with one item" do
+      assert_rss20 rendered, 1
     end
-  end
-
-  def rendered_entry
-    parsed = Nokogiri::XML.parse(rendered)
-    parsed.css("item").first
   end
 
   describe "#title" do
@@ -209,12 +201,16 @@ describe "articles/index_rss_feed.rss.builder", :type => :view do
 
     context "with a note" do
       let(:article) { create(:note) }
-      it { expect(rendered_entry.css("title").text).to eq(article.body) }
+      it "is equal to the note body" do
+        expect(rendered_entry.title).to eq(article.body)
+      end
     end
 
     context "with an article" do
       let(:article) { create(:article) }
-      it { expect(rendered_entry.css("title").text).to eq(article.title) }
+      it "is equal to the article title" do
+        expect(rendered_entry.title).to eq(article.title)
+      end
     end
   end
 
