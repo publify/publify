@@ -1,4 +1,4 @@
-<div class="l-index">
+<main id="main" tabindex="-1" class="l-index">
   <div class="l-constrained">
     <div class="l-tiles">
       <% @articles.each_with_index do |article, index| %>
@@ -7,4 +7,4 @@
       <%= paginate @articles, views_prefix: 'tags' %>
     </div>
   </div>
-</div>
+</main>
