@@ -1,0 +1,14 @@
+.skip-to-link {
+  white-space: nowrap;
+  display: block;
+  padding: 0.375rem;
+  position: absolute;
+  top: -1000px;
+  left: 0;
+  background-color: $gallery;
+  z-index: $z-foreground;
+
+  &:focus {
+    top: 0;
+  }
+}
