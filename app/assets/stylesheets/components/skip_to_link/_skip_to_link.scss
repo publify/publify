@@ -12,3 +12,7 @@
     top: 0;
   }
 }
+
+main[tabindex="-1"] {
+  outline: 0;
+}
