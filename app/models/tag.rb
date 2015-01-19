@@ -75,10 +75,10 @@ class Tag < ActiveRecord::Base
   end
 
   def self.with_counts(limit = 10)
-    self.select('tags.*, COUNT(articles_tags.tag_id) AS tag_count').
+    self.select('tags.id, tags.name, COUNT(articles_tags.tag_id) AS tag_count').
          joins('INNER JOIN articles_tags ON tags.id = articles_tags.tag_id').
          joins('INNER JOIN contents ON contents.id = articles_tags.article_id').
-         group('articles_tags.tag_id').
+         group('articles_tags.tag_id, tags.name, tags.id').
          where('contents.published = ?', true).
          order('tag_count DESC').
          limit(limit)
