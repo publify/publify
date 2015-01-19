@@ -1,7 +1,8 @@
 .sharing {
   @extend .unstyled-list;
   overflow: hidden;
-  margin: baseline-unit(6) 0;
+  margin: baseline-unit(12) 0 baseline-unit(6);
+  clear: both;
 
   @include respond-to($mq-two-col) {
     margin: baseline-unit(2) 0;
