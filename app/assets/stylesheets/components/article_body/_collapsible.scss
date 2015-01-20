@@ -8,6 +8,10 @@ $inline-callout-link-color: $green-leaf;
   @include font-size(24);
   color: $heading-color-secondary;
   margin-bottom: baseline-unit(5);
+
+  .js & {
+    margin-bottom: baseline-unit(8);
+  }
 }
 
 .collapsible__trigger {
@@ -28,6 +32,8 @@ $inline-callout-link-color: $green-leaf;
     text-align: left;
     padding-bottom: baseline-unit(4);
     background: linear-gradient(to bottom, transparent 60%, $silver 60%, $silver 61%, transparent 61%);
+    position: relative;
+    bottom:baseline-unit(5.6);
   }
 }
 
@@ -64,20 +70,13 @@ $inline-callout-link-color: $green-leaf;
   }
 
   .inline-callout {
-    padding-bottom: baseline-unit(16);
+    padding-bottom: baseline-unit(10);
     margin-bottom: 0;
-
-    a {
-      color: $inline-callout-link-color;
-    }
-
-    .inline-callout__arrow-path {
-      stroke: $inline-callout-link-color;
-    }
   }
 
   p:first-of-type {
     @include font-size(18);
+    color: inherit;
   }
 }
 

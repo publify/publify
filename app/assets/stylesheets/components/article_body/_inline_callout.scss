@@ -22,6 +22,15 @@
   background-color: white;
 }
 
+.inline-callout__text[href^="http://www.moneyadviceservice.org.uk"],
+.inline-callout__text[href^="https://www.moneyadviceservice.org.uk"] {
+  color: $inline-callout-link-color;
+
+  .inline-callout__arrow-path {
+    stroke: $inline-callout-link-color;
+  }
+}
+
 .inline-callout__arrow {
   float: right;
   position: absolute;
