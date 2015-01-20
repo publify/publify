@@ -22,7 +22,9 @@
   margin: 0 baseline_unit(5);
 
   @include respond-to($mq-l) {
-    @include column(6);
+    display: inline;
+    float: left;
+    width: 43%;
   }
 }
 
@@ -59,6 +61,7 @@
   @include respond-to($mq-l) {
     margin-top: baseline_unit(10);
     margin-bottom: baseline_unit(8);
+    float: right;
   }
 }
 
