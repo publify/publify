@@ -1,4 +1,111 @@
+$less-than-mq-l: ($mq-l) - .01;
+
+@mixin article-tile--green {
+  background-color: $article-tile-bg--green;
+}
+
+@mixin article-tile--white {
+  background-color: $article-tile-bg--white;
+}
+
+@mixin article-tile--blue {
+  background-color: $article-tile-bg--blue;
+}
+
+@mixin article-tile--mas {
+  background-color: $article-tile-bg--mas;
+}
+
+@mixin article-tile--popular {
+  background-color: $article-tile-bg--popular;
+
+  padding-top: baseline-unit(5);
+  padding-bottom: baseline-unit(5);
+}
+
+@mixin article-tile__heading--green {
+  color: $article-tile-text--green;
+
+  &:hover,
+  &:focus,
+  &:visited {
+    color: $article-tile-text--green;
+  }
+}
+
+@mixin article-tile__heading--white {
+  color: $article-tile-text--white;
+
+  &:hover,
+  &:focus,
+  &:visited {
+    color: $article-tile-text--white;
+  }
+}
+
+@mixin article-tile__heading--blue {
+  @include article-tile__heading--green; // same colour as green
+}
+
+@mixin article-tile__heading--mas {
+  color: $article-tile-text--mas;
+
+  &:hover,
+  &:focus,
+  &:visited {
+    color: $article-tile-text--mas;
+  }
+}
+
+@mixin article-tile__heading--popular {
+  text-transform: uppercase;
+  @include font-size(18);
+  color: $black;
+
+  &:hover {
+    color: $black;
+  }
+}
+
+@mixin article-tile__date--green {
+  color: $article-tile-date--green;
+}
+
+@mixin article-tile__date--white {
+  color: $article-tile-date--white;
+}
+
+@mixin article-tile__date--blue {
+  color: $article-tile-date--blue;
+}
+
+@mixin article-tile__comments--green {
+  background-color: $article-tile-comments-bg--green;
+
+  &:before {
+    border-color: transparent $article-tile-comments-bg--green transparent transparent;
+  }
+}
+
+@mixin article-tile__comments--white {
+  background-color: $article-tile-comments-bg--white;
+
+  &:before {
+    border-color: transparent $article-tile-comments-bg--white transparent transparent;
+  }
+}
+
+@mixin article-tile__comments--blue {
+  background-color: $article-tile-comments-bg--blue;
+
+  &:before {
+    border-color: transparent $article-tile-comments-bg--blue transparent transparent;
+  }
+}
+
 .article-tile {
+  @include article-tile--blue;
+
   position: relative;
   width: 100%;
   padding: baseline-unit(13) baseline-unit(5);
@@ -19,93 +126,134 @@
   @include respond-to($mq-xl) {
     padding: baseline-unit(18) baseline-unit(6);
   }
-}
 
-.article-tile--one {
-  background-color: $article-tile-bg--one;
-}
+  @include respond-to(0, $less-than-mq-l) {
+    .non-article-page .l-tile:nth-child(3n-2) & { // 1,4,7,10 etc...
+      @include article-tile--blue;
+    }
 
-.article-tile--two {
-  background-color: $article-tile-bg--two;
-}
+    .non-article-page .l-tile:nth-child(3n-1) & { // 2,5,8,11 etc...
+      @include article-tile--white;
+    }
 
-.article-tile--three {
-  background-color: $article-tile-bg--three;
-}
+    .non-article-page .l-tile:nth-child(3n) & { // 3,6,9 etc...
+      @include article-tile--green;
+    }
+  }
 
-.article-tile--popular {
-  background-color: $article-tile-bg--popular;
+  @include respond-to($mq-l) {
+    .non-article-page .l-tile:nth-child(6n+1) &, // 1,6,7,12
+    .non-article-page .l-tile:nth-child(6) &,
+    .non-article-page .l-tile:nth-child(12) & {
+      @include article-tile--green;
+    }
 
-  padding-top: baseline-unit(5);
-  padding-bottom: baseline-unit(5);
-}
+    .non-article-page .l-tile:nth-child(2) &, // 2,4,8,10
+    .non-article-page .l-tile:nth-child(4) &,
+    .non-article-page .l-tile:nth-child(8) &,
+    .non-article-page .l-tile:nth-child(10) & {
+      @include article-tile--white;
+    }
+  }
 
-.article-tile--mas {
-  background-color: $article-tile-bg--mas;
+  .non-article-page .l-tile:nth-child(3) & { // 3
+    @include article-tile--popular;
+  }
+
+  .article-page & {
+    @include article-tile--white;
+  }
+
+  .article-page .l-tile:nth-child(3) & {
+    @include article-tile--mas;
+  }
 }
 
 .article-tile__heading {
+  @include article-tile__heading--blue;
   @include font-size(30);
   line-height: 1.2;
   display: block;
 
-  .article-tile--popular & {
-    text-transform: uppercase;
-    @include font-size(18);
-    color: $black;
+  @include respond-to(0, $less-than-mq-l) {
+    .non-article-page .l-tile:nth-child(3n-2) & { // 1,4,7,10 etc...
+      @include article-tile__heading--green;
+    }
+
+    .non-article-page .l-tile:nth-child(3n-1) & { // 2,5,8,11 etc...
+      @include article-tile__heading--white;
+    }
+
+    .non-article-page .l-tile:nth-child(3n) & { // 3,6,9 etc...
+      @include article-tile__heading--blue;
+    }
   }
-}
 
-.article-tile__heading--one,
-.article-tile__heading--three {
-  color: $article-tile-text--one;
+  @include respond-to($mq-l) {
+    .non-article-page .l-tile:nth-child(6n+1) &, // 1,6,7,12
+    .non-article-page .l-tile:nth-child(6) &,
+    .non-article-page .l-tile:nth-child(12) & {
+      @include article-tile__heading--green;
+    }
 
-  &:hover,
-  &:focus,
-  &:visited {
-    color: $article-tile-text--one;
+    .non-article-page .l-tile:nth-child(2) &, // 2,4,8,10
+    .non-article-page .l-tile:nth-child(4) &,
+    .non-article-page .l-tile:nth-child(8) &,
+    .non-article-page .l-tile:nth-child(10) & {
+      @include article-tile__heading--white;
+    }
   }
-}
 
-.article-tile__heading--two {
-  color: $article-tile-text--two;
-
-  &:hover,
-  &:focus,
-  &:visited {
-    color: $article-tile-text--two;
+  .non-article-page .l-tile:nth-child(3) & { // 3
+    @include article-tile__heading--popular;
   }
-}
 
-.article-tile__heading--mas {
-  color: $article-tile-text--mas;
+  .article-page & {
+    @include article-tile__heading--white;
+  }
 
-  &:hover,
-  &:focus,
-  &:visited {
-    color: $article-tile-text--mas;
+  .article-page .l-tile:nth-child(3) & { // 3
+    @include article-tile__heading--mas;
   }
 }
 
 .article-tile__date {
+  @include article-tile__date--blue;
   @include font-size(18);
   font-weight: $font-weight-bold;
-}
 
-.article-tile__date--one {
-  color: $article-tile-date--one;
-}
+  @include respond-to(0, $less-than-mq-l) {
+    .non-article-page .l-tile:nth-child(3n-2) & { // 1,4,7,10 etc...
+      @include article-tile__date--green
+    }
 
-.article-tile__date--two {
-  color: $article-tile-text--three;
-}
+    .non-article-page .l-tile:nth-child(3n-1) & { // 2,5,8,11 etc...
+      @include article-tile__date--white;
+    }
 
-.article-tile__date--three {
-  color: $article-tile-text--mas;
-}
+    .non-article-page .l-tile:nth-child(3n) & { // 3,6,9 etc...
+      @include article-tile__date--blue;
+    }
+  }
 
-.article-tile__date--mas {
-  color: $article-tile-text--mas;
+  @include respond-to($mq-l) {
+    .non-article-page .l-tile:nth-child(6n+1) &, // 1,6,7,12
+    .non-article-page .l-tile:nth-child(6) &,
+    .non-article-page .l-tile:nth-child(12) & {
+      @include article-tile__date--green;
+    }
+
+    .non-article-page .l-tile:nth-child(2) &, // 2,4,8,10
+    .non-article-page .l-tile:nth-child(4) &,
+    .non-article-page .l-tile:nth-child(8) &,
+    .non-article-page .l-tile:nth-child(10) & {
+      @include article-tile__date--white;
+    }
+  }
+
+  .article-page & {
+    @include article-tile__date--white;
+  }
 }
 
 .article-tile__rating {
@@ -116,16 +264,16 @@
 }
 
 .article-tile__rating--one {
-  color: $article-tile-text--one;
+  color: $article-tile-text--green;
   &:visited {
-    color: $article-tile-text--one;
+    color: $article-tile-text--green;
   }
 }
 
 .article-tile__rating--two {
-  color: $article-tile-text--three;
+  color: $article-tile-text--blue;
   &:visited {
-    color: $article-tile-text--three;
+    color: $article-tile-text--blue;
   }
 }
 
@@ -141,6 +289,7 @@
 }
 
 .article-tile__comments {
+  @include article-tile__comments--blue;
   @include font-size(18);
   font-weight: $font-weight-bold;
   position: absolute;
@@ -150,55 +299,52 @@
   min-width: 52px;
   text-align: center;
   display: block;
-  color: $article-tile-text--one;
+  color: $article-tile-text--green;
 
   &:focus,
   &:hover,
   &:visited {
-    color: $article-tile-text--one;
+    color: $article-tile-text--green;
   }
-}
 
-.article-tile__comments--one {
-  background-color: $article-tile-comments-bg--one;
   &:before {
     content: '';
     width: 0;
     height: 0;
     border-style: solid;
     border-width: 0 24px 12px 0;
-    border-color: transparent $article-tile-comments-bg--one transparent transparent;
     position: absolute;
     bottom: -12px;
     right: 9px;
   }
-}
 
-.article-tile__comments--two {
-  background-color: $article-tile-comments-bg--two;
-  &:before {
-    content: '';
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 0 24px 12px 0;
-    border-color: transparent $article-tile-comments-bg--two transparent transparent;
-    position: absolute;
-    bottom: -12px;
+  @include respond-to(0, $less-than-mq-l) {
+    .non-article-page .l-tile:nth-child(3n-2) & { // 1,4,7,10 etc...
+      @include article-tile__comments--blue;
+    }
+
+    .non-article-page .l-tile:nth-child(3n-1) & { // 2,5,8,11 etc...
+      @include article-tile__comments--white;
+    }
+
+    .non-article-page .l-tile:nth-child(3n) & { // 3,6,9 etc...
+      @include article-tile__comments--green;
+    }
   }
-}
 
-.article-tile__comments--three {
-  background-color: $article-tile-comments-bg--three;
-  &:before {
-    content: '';
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 0 24px 12px 0;
-    border-color: transparent $article-tile-comments-bg--three transparent transparent;
-    position: absolute;
-    bottom: -12px;
+  @include respond-to($mq-l) {
+    .non-article-page .l-tile:nth-child(6n+1) &, // 1,6,7,12
+    .non-article-page .l-tile:nth-child(6) &,
+    .non-article-page .l-tile:nth-child(12) & {
+      @include article-tile__comments--green;
+    }
+
+    .non-article-page .l-tile:nth-child(2) &, // 2,4,8,10
+    .non-article-page .l-tile:nth-child(4) &,
+    .non-article-page .l-tile:nth-child(8) &,
+    .non-article-page .l-tile:nth-child(10) & {
+      @include article-tile__comments--white;
+    }
   }
 }
 

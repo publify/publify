@@ -47,24 +47,26 @@ $brand-green: $green-leaf !default;
 $banner-bg-color: $concrete;
 
 // Tiles
-$article-tile-comments-bg--one: $deep-sea-green;
-$article-tile-comments-bg--two: $eastern-blue;
-$article-tile-comments-bg--three: $bay-of-many;
+$article-tile-bg--green: $elf-green;
+$article-tile-text--green: $white;
+$article-tile-date--green: $white;
+$article-tile-comments-bg--green: $deep-sea-green;
 
-$article-tile-bg--one: $elf-green;
-$article-tile-bg--two: $white;
-$article-tile-bg--three: $matisse;
+$article-tile-bg--white: $white;
+$article-tile-text--white: $eastern-blue;
+$article-tile-date--white: $outer-space;
+$article-tile-comments-bg--white: $eastern-blue;
+
+$article-tile-bg--blue: $matisse;
+$article-tile-text--blue: $white;
+$article-tile-date--blue: $white;
+$article-tile-comments-bg--blue: $bay-of-many;
+
 $article-tile-bg--mas: $atlantis;
-$article-tile-bg--popular: $cream-can;
-
-$article-tile-text--one: $white;
-$article-tile-text--two: $eastern-blue;
-$article-tile-text--three: $outer-space;
-$article-tile-text--four: $french-pass;
 $article-tile-text--mas: $white;
 
-$article-tile-date--one: $white;
-$article-tile-date--two: $aero-blue;
+$article-tile-bg--popular: $cream-can;
+
 $article-tile-date--mas: $white;
 
 

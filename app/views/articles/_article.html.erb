@@ -1,13 +1,10 @@
-<%
-  class_name = %w(one two three two three one one two three two three one)[index]
-%>
 <div class="l-tile">
-  <div class="article-tile article-tile--<%= class_name %>">
-    <h2><%= link_to truncate(article.title, length: 53), article.permalink_url, { :class => 'article-tile__heading article-tile__heading--' + class_name, :title => article.title } %></h2>
+  <div class="article-tile">
+    <h2><%= link_to truncate(article.title, length: 53), article.permalink_url, { :class => 'article-tile__heading', :title => article.title } %></h2>
 
-    <time class="article-tile__date article-tile__date--<%= class_name %>"><%= display_article_date(article) %></time>
+    <time class="article-tile__date"><%= display_article_date(article) %></time>
     <% if article.published_comments.size > 0 %>
-      <a href="<%= article.permalink_url('comments', true) %>" class="article-tile__comments article-tile__comments--<%= class_name %>"><%= article.published_comments.size %><span class="visually-hidden"> <%= t(".comments", count: article.published_comments.size) %></span></a>
+      <a href="<%= article.permalink_url('comments', true) %>" class="article-tile__comments"><%= article.published_comments.size %><span class="visually-hidden"> <%= t(".comments", count: article.published_comments.size) %></span></a>
     <% end %>
   </div>
 </div>
