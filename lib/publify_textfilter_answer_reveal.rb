@@ -8,9 +8,9 @@ class PublifyApp
 
       def self.help_text
         %{
-You can use the following code to display an inline callout snippet. Example:
+        You can use the following code to display an inline callout snippet. Example:
 
-<hr class="snippet" data-snippet-name="answerreveal" data-snippet-question="[ENTER QUESTION TEXT HERE]" data-snippet-answer="[ENTER ANSWER TEXT HERE]" data-snippet-callout-text="[ENTER CALLOUT TEXT HERE]" data-snippet-callout-url="[ENTER CALLOUT URL HERE]" />
+        <hr class="snippet" data-snippet-name="answerreveal" data-snippet-question="[ENTER QUESTION TEXT HERE]" data-snippet-answer="[ENTER ANSWER TEXT HERE]" data-snippet-callout-text="[ENTER CALLOUT TEXT HERE]" data-snippet-callout-url="[ENTER CALLOUT URL HERE]" />
         }
       end
 
@@ -22,7 +22,7 @@ You can use the following code to display an inline callout snippet. Example:
 
         answer = answer.gsub(/^/,"<p>").gsub(/\\n/,"</p><p>").gsub(/$/, "</p>")
 
-        callout_id = Digest::SHA256.hexdigest answer
+        callout_id = Digest::SHA256.hexdigest(answer)
 
         "<div class=\"collapsible\">
           <h3 class=\"collapsible__heading\">#{question}</h3>
@@ -54,8 +54,6 @@ You can use the following code to display an inline callout snippet. Example:
         new_text = text.gsub(regex) do |match|
           macrofilter(blog,content,attributes_parse($1.to_s),params)
         end
-
-        new_text
       end
     end
   end
