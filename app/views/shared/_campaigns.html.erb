@@ -1,10 +1,19 @@
-<div class="l-campaigns">
-  <div class="l-constrained">
+<div class="l-campaigns<%=  @lead_campaign.full_bleed ? ' l-campaign--fullbleed' : '' %>">
+  <% if @lead_campaign.full_bleed %>
     <div class="l-campaigns__hero">
       <% if @lead_campaign.hero_image.present? %>
         <%= image_tag @lead_campaign.hero_image.url(:resized) %>
       <% end %>
     </div>
+  <% end %>
+  <div class="l-constrained">
+    <% unless @lead_campaign.full_bleed %>
+      <div class="l-campaigns__hero l-campaign__hero--restrict">
+        <% if @lead_campaign.hero_image.present? %>
+          <%= image_tag @lead_campaign.hero_image.url(:resized) %>
+        <% end %>
+      </div>
+    <% end %>
     <div class="l-campaigns__panel">
       <div class="l-campaigns__intro">
         <h2 class="l-campaigns__intro__heading"><%= @lead_campaign.title %></h2>

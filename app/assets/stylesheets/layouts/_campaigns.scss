@@ -3,18 +3,47 @@
   background: $white;
 }
 
+.l-campaign--fullbleed {
+  background: $concrete;
+  position: relative;
+
+  .l-constrained {
+    position: relative;
+    margin-top: baseline_unit(-4);
+
+    @include respond-to($mq-m) {
+      margin-top: -60px;
+    }
+
+    @include respond-to($mq-l) {
+      margin-top: -105px;
+    }
+  }
+}
+
 .l-campaigns__hero {
+  position: relative;
+
+  img {
+    width: 100%;
+  }
+}
+
+.l-campaign__hero--restrict {
   @include column(12);
   background: $white;
   height: 0;
   padding-bottom: 32.7288%;
-  position: relative;
 }
 
 .l-campaigns__panel {
   background: $gallery;
   overflow: hidden;
   @include column(12);
+
+  .l-campaign--fullbleed & {
+    background: $white;
+  }
 }
 
 .l-campaigns__intro,
