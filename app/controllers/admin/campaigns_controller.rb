@@ -43,7 +43,7 @@ class Admin::CampaignsController < ApplicationController
   private
 
   def campaign_params
-    params.require(:campaign).permit(:title, :description, :hero_image, :hero_image_alt_text, :active, :hero_image_cache,
+    params.require(:campaign).permit(:title, :description, :hero_image, :hero_image_alt_text, :active, :hero_image_cache, :full_bleed,
                   primary_link_attributes: [:link_type, :title, :url, :id, :campaign_id],
                   secondary_link_attributes: [:link_type, :title, :url, :id, :campaign_id] )
   end

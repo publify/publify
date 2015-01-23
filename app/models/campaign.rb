@@ -9,6 +9,8 @@ class Campaign < ActiveRecord::Base
 
   validates :title, presence: true, length: { maximum: 35 }
   validates :description, presence: true, length: { maximum: 187 }
+  validates :hero_image, presence: true
+  validates :hero_image_alt_text, presence: true
 
   before_save :disable_other_campaigns
 

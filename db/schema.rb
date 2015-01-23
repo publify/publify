@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150112125050) do
+ActiveRecord::Schema.define(version: 20150123105303) do
 
   create_table "articles_tags", id: false, force: true do |t|
     t.integer "article_id"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20150112125050) do
     t.datetime "updated_at"
     t.integer  "primary_link_id"
     t.integer  "secondary_link_id"
+    t.boolean  "full_bleed"
   end
 
   create_table "ckeditor_assets", force: true do |t|
