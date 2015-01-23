@@ -50,6 +50,9 @@ feature 'Campaigns' do
     new_campaigns_page.campaign_title.set 'Save money at the supermarket'
     new_campaigns_page.description.set 'Going to university is all about having a good time, discovering yourself and making new friends, right?'
     new_campaigns_page.active.set(true)
+    new_campaigns_page.hero_image.set Rails.root + 'app/assets/images/campaigns-hero-placeholder.png'
+    new_campaigns_page.full_bleed.set(true)
+    new_campaigns_page.hero_image_alt_text.set 'alt text'
     new_campaigns_page.primary_link_type.select 'ma says'
     new_campaigns_page.primary_link_title.set 'Smart shopping: simple tips and tricks to save you money'
     new_campaigns_page.primary_link_url.set 'http//www.example.com'

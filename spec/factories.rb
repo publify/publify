@@ -332,6 +332,8 @@ FactoryGirl.define do
   factory :campaign do
     title 'Save money at the supermarket'
     description 'Going to university is all about having a good time, discovering yourself and making new friends, right? Well, yes but hopefully you will learn a lot and get a good qualification as well.'
+    hero_image Rack::Test::UploadedFile.new((File.join(Rails.root, 'app', 'assets', 'images', 'campaigns-hero-placeholder.png')))
+    hero_image_alt_text 'alt text'
     active false
   end
 
