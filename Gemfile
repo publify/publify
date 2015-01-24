@@ -36,47 +36,50 @@ else
   end
 end
 
-gem 'rails', '~> 4.1.8'
-gem 'htmlentities'
-gem 'bluecloth', '~> 2.1'
-gem 'coderay', '~> 1.1.0'
-gem 'kaminari'
+gem 'rails', '~> 4.2.0'
+
+# Use SCSS for stylesheets
+gem 'sass-rails', '~> 5.0'
+# Use Uglifier as compressor for JavaScript assets
+gem 'uglifier', '>= 1.3.0'
+
+# Use jquery as the JavaScript library
+gem 'jquery-rails', '~> 3.1.2'
+
+gem 'jquery-ui-rails', '~> 5.0.2'
 gem 'RedCloth', '~> 4.2.8'
+gem 'actionpack-page_caching', '~> 1.0.2' # removed from Rails-core as Rails 4.0
 gem 'addressable', '~> 2.1', :require => 'addressable/uri'
-gem 'mini_magick', '~> 3.8.1', :require => 'mini_magick'
-gem 'uuidtools', '~> 2.1.1'
-gem 'flickraw-cached'
-gem 'rubypants', '~> 0.2.0'
-gem 'rake', '~> 10.4.2'
-#gem 'acts_as_list'
-#gem 'acts_as_tree_rails3'
-gem 'fog'
-gem 'recaptcha', :require => 'recaptcha/rails', :branch => 'rails3'
-gem 'carrierwave', '~> 0.10.0'
 gem 'akismet', '~> 1.0'
-gem 'twitter', '~> 5.12.0'
-
-gem "jquery-rails", "~> 3.1.2"
-gem "jquery-ui-rails", "~> 5.0.2"
-
-gem 'rails-timeago', '~> 2.0'
-
-gem 'rails_autolink', '~> 1.1.0'
+gem 'bluecloth', '~> 2.1'
+gem 'carrierwave', '~> 0.10.0'
+gem 'coderay', '~> 1.1.0'
 gem 'dynamic_form', '~> 1.1.4'
-
+gem 'flickraw-cached'
+gem 'fog'
+gem 'htmlentities'
+gem 'kaminari'
+gem 'mini_magick', '~> 3.8.1', :require => 'mini_magick'
 gem 'non-stupid-digest-assets'
-
-# removed from Rails-core as Rails 4.0
-gem 'actionpack-page_caching', '~> 1.0.2'
 gem 'rails-observers', '~> 0.1.2'
-
-group :assets do
-  gem 'sass-rails', " ~> 4.0.3"
-  gem 'coffee-rails', " ~> 4.0.1"
-  gem 'uglifier'
-end
+gem 'rails-timeago', '~> 2.0'
+gem 'rails_autolink', '~> 1.1.0'
+gem 'rake', '~> 10.4.2'
+gem 'recaptcha', :require => 'recaptcha/rails', :branch => 'rails3'
+gem 'rubypants', '~> 0.2.0'
+gem 'twitter', '~> 5.12.0'
+gem 'uuidtools', '~> 2.1.1'
 
 group :development, :test do
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug'
+
+  # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'web-console', '~> 2.0'
+
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
+
   gem 'thin'
   gem 'factory_girl', '~> 4.5.0'
   gem 'capybara'

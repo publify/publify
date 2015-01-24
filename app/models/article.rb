@@ -37,7 +37,7 @@ class Article < Content
   has_and_belongs_to_many :tags, join_table: 'articles_tags'
 
   before_create :create_guid
-  before_save :set_published_at, :ensure_settings_type, :set_permalink
+  before_save :set_published_at, :set_permalink
   after_save :post_trigger, :keywords_to_tags, :shorten_url
 
   scope :drafts, lambda { where(state: 'draft').order('created_at DESC') }
@@ -70,17 +70,7 @@ class Article < Content
                                        :handles       => [:withdraw,
                                                           :post_trigger,
                                                           :send_pings, :send_notifications,
-                                                          :published_at=, :just_published?])
-
-  def initialize(*args)
-    super
-    # Yes, this is weird - PDC
-    begin
-      self.settings ||= {}
-    rescue
-      self.settings = {}
-    end
-  end
+                                                          :published_at=, :published=, :just_published?])
 
   def set_permalink
     return if self.state == 'draft' || self.permalink.present?
@@ -257,14 +247,6 @@ class Article < Content
       self.published_at.to_i > self.blog.sp_article_auto_close.days.ago.to_i
   end
 
-  def cast_to_boolean(value)
-    ActiveRecord::ConnectionAdapters::Column.value_to_boolean(value)
-  end
-  # Cast the input value for published= before passing it to the state.
-  def published=(newval)
-    state.published = cast_to_boolean(newval)
-  end
-
   def content_fields
     [:body, :extended]
   end
@@ -319,13 +301,6 @@ class Article < Content
   def set_published_at
     if self.published and self[:published_at].nil?
       self[:published_at] = self.created_at || Time.now
-    end
-  end
-
-  def ensure_settings_type
-    if settings.is_a?(String)
-      # Any dump access forcing de-serialization
-      password.blank?
     end
   end
 

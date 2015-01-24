@@ -101,14 +101,14 @@ Rails.application.routes.draw do
   # Work around the Bad URI bug
   %w{ accounts files sidebar }.each do |i|
     get "#{i}", :to => "#{i}#index", :format => false
-    match "#{i}(/:action)", :to => i, :format => false, via: [:get, :post, :put, :delete] # TODO: convert this magic catchers to resources item to close un-needed HTTP method
-    match "#{i}(/:action(/:id))", :to => i, :id => nil, :format => false, via: [:get, :post, :put, :delete] # TODO: convert this magic catchers to resources item to close un-needed HTTP method
+    match "#{i}(/:action)", :controller => i, :format => false, via: [:get, :post, :put, :delete] # TODO: convert this magic catchers to resources item to close un-needed HTTP method
+    match "#{i}(/:action(/:id))", :controller => i, :id => nil, :format => false, via: [:get, :post, :put, :delete] # TODO: convert this magic catchers to resources item to close un-needed HTTP method
   end
 
   # Admin/XController
   %w{content profiles pages feedback resources sidebar textfilters themes users settings tags redirects seo post_types}.each do |i|
-    match "/admin/#{i}", to: "admin/#{i}#index", format: false, via: [:get, :post, :put, :delete] # TODO: convert this magic catchers to resources item to close un-needed HTTP method
-    match "/admin/#{i}(/:action(/:id))", to: "admin/#{i}", action: nil, id: nil, format: false, via: [:get, :post, :put, :delete] # TODO: convert this magic catchers to resources item to close un-needed HTTP method
+    match "/admin/#{i}", controller: "admin/#{i}", action: :index, format: false, via: [:get, :post, :put, :delete] # TODO: convert this magic catchers to resources item to close un-needed HTTP method
+    match "/admin/#{i}(/:action(/:id))", controller: "admin/#{i}", action: nil, id: nil, format: false, via: [:get, :post, :put, :delete] # TODO: convert this magic catchers to resources item to close un-needed HTTP method
   end
 
   root :to  => 'articles#index', :format => false
