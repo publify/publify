@@ -44,7 +44,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails', '~> 3.1.2'
+gem 'jquery-rails', '~> 4.0.3'
 
 gem 'jquery-ui-rails', '~> 5.0.2'
 gem 'RedCloth', '~> 4.2.8'
@@ -59,7 +59,7 @@ gem 'flickraw-cached'
 gem 'fog'
 gem 'htmlentities'
 gem 'kaminari'
-gem 'mini_magick', '~> 3.8.1', :require => 'mini_magick'
+gem 'mini_magick', '~> 4.0.2', :require => 'mini_magick'
 gem 'non-stupid-digest-assets'
 gem 'rails-observers', '~> 0.1.2'
 gem 'rails-timeago', '~> 2.0'
@@ -67,7 +67,7 @@ gem 'rails_autolink', '~> 1.1.0'
 gem 'rake', '~> 10.4.2'
 gem 'recaptcha', :require => 'recaptcha/rails', :branch => 'rails3'
 gem 'rubypants', '~> 0.2.0'
-gem 'twitter', '~> 5.12.0'
+gem 'twitter', '~> 5.13.0'
 gem 'uuidtools', '~> 2.1.1'
 
 group :development, :test do
