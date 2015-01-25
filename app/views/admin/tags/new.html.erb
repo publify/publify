@@ -26,7 +26,6 @@
         <tr class='noborder'>
           <th><%= t('.display_name') %></th>
           <th><%= t('.name')  %></th>
-          <th><%= t('.articles') %></th>
         </tr>
       </thead>
       <%- if @tags.empty? %>
@@ -43,7 +42,6 @@
           <%= show_tag_actions tag %>
         </td>
         <td><%= tag.name %></td>
-        <td><%= tag.published_articles.count.to_s %></td>
       </tr>
     <% end %>
       <%= display_pagination(@tags, 3)%>
