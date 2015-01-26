@@ -1,3 +1,5 @@
+$inline-callout-link-color: $green-leaf;
+
 .collapsible {
   margin: baseline-unit(6) 0 baseline-unit(8) 0;
 }
@@ -6,19 +8,112 @@
   @include font-size(24);
   color: $heading-color-secondary;
   margin-bottom: baseline-unit(5);
+
+  .js & {
+    margin-bottom: baseline-unit(8);
+  }
 }
 
-.collapsible__link {
-  position: relative;
-  display: block;
-  padding-bottom: baseline-unit(1);
+.collapsible__trigger {
+  display: none;
+
+  .js & {
+    display: block;
+    position: relative;
+    transition: margin .5s;
+  }
+
+  .icon {
+    display: none;
+  }
+
+  .unstyled-button {
+    width: 100%;
+    text-align: left;
+    padding-bottom: baseline-unit(4);
+    background: linear-gradient(to bottom, transparent 60%, $silver 60%, $silver 61%, transparent 61%);
+    position: relative;
+    bottom:baseline-unit(5.6);
+  }
+}
+
+.collapsible__trigger-text {
+  display: inline-block;
+  padding: baseline-unit(1) baseline-unit(2) baseline-unit(1) 0;
+  background: $white;
+  color: $deep-cerulean;
   font-weight: $font-weight-bold;
-  border-bottom: $base-border-thin;
+
+  .is-active & {
+    display: none;
+  }
 }
 
-.collapsible__icon {
+.collapsible__trigger-text--hide {
+  display: none;
+
+  .is-active & {
+    display: inline-block;
+  }
+}
+
+.collapsible__reveal {
+  .js & {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0, 1.05, 0, 1);
+  }
+
+  &.is-active {
+    max-height: 1500px;
+    transition: max-height 1s;
+  }
+
+  .inline-callout {
+    padding-bottom: baseline-unit(10);
+    margin-bottom: 0;
+  }
+
+  p:first-of-type {
+    @include font-size(18);
+    color: inherit;
+  }
+}
+
+.plus-icon {
   position: absolute;
-  right: -3px;
-  top: -2px;
+  right: 0;
+  top: 2px;
   width: 60px;
+}
+
+.plus-icon__origin {
+  transform: translate(40px, 40px);
+}
+
+.plus-icon__lines {
+  transition: transform .8s;
+  transform: rotate(0deg) translate(-40px, -40px);
+  transform-origin: 0 0;
+
+  .is-active & {
+    transform: rotate(90deg) translate(-40px, -40px);
+  }
+}
+
+.plus-icon__line {
+  stroke: #fff;
+}
+
+.plus-icon__line--horizontal {
+  transition: transform .8s;
+
+  .is-active & {
+    transform-origin: 0 0;
+    transform: translate(40px) scaleX(0);
+  }
+}
+
+.plus-icon__circle {
+  fill: #0076AB;
 }

@@ -6070,6 +6070,14 @@ button.close {
   padding: 20px;
 }
 
+.modal-body__code {
+  width: 100%;
+  height: 100px;
+  border: 0;
+  resize: none;
+  font-family: courier;
+}
+
 .modal-footer {
   padding: 19px 20px 20px;
   margin-top: 15px;
