@@ -1,6 +1,6 @@
 <li class="comment-list-item" id="comment-<%= comment.id %>">
   <span class="comment-list-item__headline"><%= h(comment.author) %> / <span class="comment-list-item__headline-date"><%= display_comment_timestamp(comment) %></span></span>
-  <%= simple_format(comment.html) %>
+  <%= simple_format(comment.html, {}, sanitize: false) %>
   <div class="comment-list-item__report-link"><%= report_comment_link(comment) %></div>
   <%- unless comment.published %>
     <div class="spamwarning"><%= t(".this_comment_has_been_flagged_for_moderator_approval") %></div>
