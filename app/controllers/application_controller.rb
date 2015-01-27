@@ -6,8 +6,6 @@ class ApplicationController < ActionController::Base
   include ::LoginSystem
   protect_from_forgery only: [:edit, :update, :delete]
 
-  force_ssl :if => :ssl_available?
-
   before_filter :reset_local_cache, :fire_triggers, :load_lang, :set_paths
   before_filter :generate_popular_articles
   after_filter :reset_local_cache
