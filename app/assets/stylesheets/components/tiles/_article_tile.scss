@@ -156,7 +156,7 @@ $less-than-mq-l: ($mq-l) - .01;
     }
   }
 
-  .non-article-page .l-tile:nth-child(3) & { // 3
+  .homepage .l-tile:nth-child(3) & { // 3
     @include article-tile--popular;
   }
 
@@ -204,7 +204,7 @@ $less-than-mq-l: ($mq-l) - .01;
     }
   }
 
-  .non-article-page .l-tile:nth-child(3) & { // 3
+  .homepage .l-tile:nth-child(3) & { // 3
     @include article-tile__heading--popular;
   }
 
