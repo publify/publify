@@ -14,7 +14,7 @@ module Publify
 
     #define default secret token to avoid information duplication
     $default_token = "08aac1f2d29e54c90efa24a4aefef843ab62da7a2610d193bc0558a50254c7debac56b48ffd0b5990d6ed0cbecc7dc08dce1503b6b864d580758c3c46056729a"
-    
+
     # Setup the cache path
     config.action_controller.page_cache_directory = "#{::Rails.root.to_s}/public/cache/"
     config.cache_store=:file_store, "#{::Rails.root.to_s}/public/cache/"
@@ -35,6 +35,9 @@ module Publify
 
     # Mime type is fully determined by url
     config.action_dispatch.ignore_accept_header = true
+
+    # Do not swallow errors in after_commit/after_rollback callbacks.
+    config.active_record.raise_in_transactional_callbacks = true
   end
 
   # Load included libraries.
@@ -61,6 +64,7 @@ module Publify
   require 'bare_migration'
   require 'publify_version'
   require 'rails_patch/active_support'
+  require 'rails_patch/active_record'
 
   require 'publify_login_system'
 

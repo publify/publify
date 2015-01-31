@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   belongs_to :profile
   belongs_to :text_filter
   belongs_to :resource
-  
+
   delegate :name, :to => :text_filter, :prefix => true
   delegate :label, :to => :profile, :prefix => true
 
@@ -49,11 +49,6 @@ class User < ActiveRecord::Base
   end
 
   attr_accessor :last_venue
-
-  def initialize(*args)
-    super
-    self.settings ||= {}
-  end
 
   def first_and_last_name
     return '' unless firstname.present? && lastname.present?

@@ -46,7 +46,7 @@ The demo is reset every 2 hours.
 To install Publify you need the following:
 
 -   Ruby 2.0, 2.1 or 2.2
--   Ruby On Rails 4.1.8
+-   Ruby On Rails 4.2.0
 -   A database engine, MySQL, PgSQL or SQLite3
 
 1.  Unzip Publify archive

@@ -14,16 +14,6 @@ class Page < Content
     self.name = self.title.to_permalink if self.name.blank?
   end
 
-  def initialize(*args)
-    super
-    # Yes, this is weird - PDC
-    begin
-      self.settings ||= {}
-    rescue Exception => e
-      self.settings = {}
-    end
-  end
-
   content_fields :body
 
   def self.default_order

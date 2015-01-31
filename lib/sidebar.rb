@@ -1,5 +1,5 @@
 class Sidebar < ActiveRecord::Base
-  serialize :config
+  serialize :config, Hash
 
   class Field
     attr_accessor :key
@@ -228,26 +228,8 @@ class Sidebar < ActiveRecord::Base
     Blog.default
   end
 
-  def initialize(*args)
-    if block_given?
-      super(*args) { |instance| yield instance }
-    else
-      super(*args)
-    end
-    self.class.fields.each do |field|
-      unless config.has_key?(field.key)
-        config[field.key] = field.default
-      end
-    end
-  end
-
-
   def publish
     self.active_position = self.staged_position
-  end
-
-  def config
-    self[:config] ||= { }
   end
 
   def html_id

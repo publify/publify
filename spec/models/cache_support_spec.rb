@@ -58,7 +58,7 @@ end
 describe "Given an unpublished spammy comment", :type => :model do
   before(:each) do
     FactoryGirl.create(:blog)
-    @comment = FactoryGirl.create(:comment, 
+    @comment = FactoryGirl.create(:comment,
         :published => false,
         :state => 'presumed_spam',
         :status_confirmed => false)
