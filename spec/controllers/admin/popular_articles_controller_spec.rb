@@ -19,7 +19,7 @@ describe Admin::PopularArticlesController do
         3.times { create(:article) }
       end
 
-      let(:popular_article) { PopularArticle.new(article_ids: Article.all.collect(&:id)) }
+      let(:popular_article) { PopularArticle.new(article_ids: Article.pluck(:id)) }
 
       it 'the existing popular article list will be found' do
         allow(PopularArticle).to receive(:last).and_return(popular_article)
@@ -37,7 +37,7 @@ describe Admin::PopularArticlesController do
         3.times { create(:article) }
       end
 
-      let(:popular_article_params) { { article_ids: Article.all.collect(&:id) } }
+      let(:popular_article) { PopularArticle.new(article_ids: Article.pluck(:id)) }
 
       it 'must have 3 articles' do
         post :create, { popular_article: popular_article_params }
@@ -54,7 +54,7 @@ describe Admin::PopularArticlesController do
       it 'a new popular articles list will be generated' do
         expect(PopularArticle).to receive(:new).at_least(:once).and_return PopularArticle.new
 
-        post :create, { popular_article: { article_ids: Article.all.collect(&:id) } }
+        post :create, { popular_article: { article_ids: Article.pluck(:id) } }
       end
     end
 
@@ -70,7 +70,7 @@ describe Admin::PopularArticlesController do
 
         expect(PopularArticle).to receive(:last)
         expect(PopularArticle).not_to receive(:new)
-        post :create, { popular_article: { article_ids: Article.all.collect(&:id) } }
+        post :create, { popular_article: { article_ids: Article.pluck(:id) } }
       end
     end
   end

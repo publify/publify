@@ -4,6 +4,24 @@ require 'spec_helper'
 describe PopularArticle do
   let!(:blog) { create(:blog) }
 
+  describe '#last_or_initialize' do
+    context 'popular article list not created' do
+      it 'creates a new popular article list' do
+        expect(PopularArticle).to receive(:new)
+        PopularArticle.last_or_initialize
+      end
+    end
+
+    context 'popular article list already created' do
+      it 'retrieves the existing popular article list' do
+        PopularArticle.create
+
+        expect(PopularArticle).to receive(:last)
+        PopularArticle.last_or_initialize
+      end
+    end
+  end
+
   describe '#articles' do
     before :each do
       3.times { create(:article) }
@@ -15,7 +33,7 @@ describe PopularArticle do
     end
 
     it 'must have 3 articles' do
-      subject.update_attributes(article_ids: Article.all.collect(&:id))
+      subject.update_attributes(article_ids: Article.pluck(:id))
       expect(subject.articles.size).to eq(3)
     end
 
