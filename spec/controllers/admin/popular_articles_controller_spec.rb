@@ -37,10 +37,8 @@ describe Admin::PopularArticlesController do
         3.times { create(:article) }
       end
 
-      let(:popular_article) { PopularArticle.new(article_ids: Article.pluck(:id)) }
-
       it 'must have 3 articles' do
-        post :create, { popular_article: popular_article_params }
+        post :create, { popular_article: { article_ids: Article.pluck(:id) } }
 
         expect(response).to redirect_to(admin_dashboard_path)
       end

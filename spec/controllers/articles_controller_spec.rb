@@ -1,6 +1,7 @@
 # coding: utf-8
 describe ArticlesController, 'base', type: :controller do
   let!(:blog) { create(:blog) }
+  let!(:campaign) { create(:campaign) }
   let!(:user) { create :user }
 
   describe 'tag' do
@@ -12,7 +13,8 @@ describe ArticlesController, 'base', type: :controller do
     let!(:article) { create(:article) }
 
     before(:each) do
-    allow(Campaign.lead).to receive(:first).and_return(double(:campaign, active: true, title: 'foo', description: 'Something cool'))
+      allow(Campaign).to receive(:lead).and_return(campaign)
+
       get :index 
     end
 
@@ -152,6 +154,7 @@ describe ArticlesController, 'base', type: :controller do
 
     before(:each) do
       create(:article, published_at: Time.utc(2004, 4, 23))
+      allow(Campaign).to receive(:lead).and_return(campaign)
       get 'index', year: 2004, month: 4
     end
 
