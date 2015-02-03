@@ -14,7 +14,7 @@ class Campaign < ActiveRecord::Base
 
   before_save :disable_other_campaigns
 
-  scope :lead, -> { where(active: true).last }
+  scope :lead, -> { where(active: true) }
 
   def disable_other_campaigns
     Campaign.where.not(id: self.id).update_all(active: false)

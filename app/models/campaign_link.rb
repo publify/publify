@@ -4,5 +4,4 @@ class CampaignLink < ActiveRecord::Base
   LINK_TYPE_OPTIONS = ["ma says", "article", "external"]
 
   validates :title, length: { maximum: 77 }
-  validates :campaign_id, presence: true
 end

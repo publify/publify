@@ -13,7 +13,7 @@ describe ArticlesController, 'base', type: :controller do
     let!(:article) { create(:article) }
 
     before(:each) do
-      allow(Campaign).to receive(:lead).and_return(campaign)
+      allow(Campaign).to receive(:lead).and_return([campaign])
 
       get :index 
     end
@@ -154,7 +154,7 @@ describe ArticlesController, 'base', type: :controller do
 
     before(:each) do
       create(:article, published_at: Time.utc(2004, 4, 23))
-      allow(Campaign).to receive(:lead).and_return(campaign)
+      allow(Campaign).to receive(:lead).and_return([campaign])
       get 'index', year: 2004, month: 4
     end
 
