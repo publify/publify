@@ -192,6 +192,8 @@ en:
     administration:
       new: "New"
   author:
+      footer_management: "Footer Management"
+  authors:
     show:
       contact_information: "Contact information"
       web_site: "Web site:"

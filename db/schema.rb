@@ -103,6 +103,11 @@ ActiveRecord::Schema.define(version: 20150123105303) do
   add_index "contents", ["published"], name: "index_contents_on_published", using: :btree
   add_index "contents", ["text_filter_id"], name: "index_contents_on_text_filter_id", using: :btree
 
+  create_table "contents_popular_articles", force: true do |t|
+    t.integer "article_id",         null: false
+    t.integer "popular_article_id", null: false
+  end
+
   create_table "feedback", force: true do |t|
     t.string   "type"
     t.string   "title"
@@ -143,6 +148,9 @@ ActiveRecord::Schema.define(version: 20150123105303) do
   end
 
   add_index "pings", ["article_id"], name: "index_pings_on_article_id", using: :btree
+
+  create_table "popular_articles", force: true do |t|
+  end
 
   create_table "post_types", force: true do |t|
     t.string "name"

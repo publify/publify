@@ -24,6 +24,4 @@ describe CampaignLink, type: :model do
       it { is_expected.not_to be_valid }
     end
   end
-
-
 end

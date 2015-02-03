@@ -68,6 +68,7 @@ group :development, :test do
   gem 'poltergeist'
   gem 'foreman'
   gem 'letter_opener'
+  gem 'database_cleaner'
 end
 
 group :test do

@@ -1,6 +1,7 @@
 # coding: utf-8
 describe ArticlesController, 'base', type: :controller do
   let!(:blog) { create(:blog) }
+  let!(:campaign) { create(:campaign) }
   let!(:user) { create :user }
 
   describe 'tag' do
@@ -10,7 +11,12 @@ describe ArticlesController, 'base', type: :controller do
 
   describe 'index' do
     let!(:article) { create(:article) }
-    before(:each) { get :index }
+
+    before(:each) do
+      allow(Campaign).to receive(:lead).and_return([campaign])
+
+      get :index 
+    end
 
     it { expect(response).to render_template(:index) }
     it { expect(assigns[:articles]).to_not be_empty }
@@ -148,6 +154,7 @@ describe ArticlesController, 'base', type: :controller do
 
     before(:each) do
       create(:article, published_at: Time.utc(2004, 4, 23))
+      allow(Campaign).to receive(:lead).and_return([campaign])
       get 'index', year: 2004, month: 4
     end
 

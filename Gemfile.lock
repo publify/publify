@@ -102,6 +102,7 @@ GEM
     csslint_ruby (0.0.2)
       execjs
     daemons (1.1.9)
+    database_cleaner (1.4.0)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     diff-lcs (1.2.5)
@@ -440,6 +441,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.1)
   compass-rails
   csslint_ruby
+  database_cleaner
   dotenv-rails
   dough-ruby (~> 4.0)!
   dynamic_form (~> 1.1.4)

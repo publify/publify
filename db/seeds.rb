@@ -122,7 +122,7 @@ TextFilter.create(name: 'links bold italic', description: 'Only Links (with nofo
                   markup: 'none', filters: [:linksbolditalic], params: {})
 
 admin = Profile.create(label: 'admin', nicename: 'Publify administrator',
-                       modules: [:dashboard, :articles, :notes, :pages, :feedback, :media, :sidebar, :profile, :users, :settings, :seo])
+                       modules: [:dashboard, :articles, :notes, :pages, :feedback, :media, :sidebar, :profile, :users, :settings, :seo, :popular_articles])
 publisher = Profile.create(label: 'publisher', nicename: 'Blog publisher',
                            modules: [:dashboard, :articles, :notes, :pages, :feedback, :media, :profile])
 contributor = Profile.create(label: 'contributor', nicename: 'Contributor',
