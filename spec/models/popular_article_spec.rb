@@ -24,7 +24,7 @@ describe PopularArticle do
 
   describe '#articles' do
     before :each do
-      3.times { create(:article) }
+      create_list(:article, 3)
     end
 
     it 'has the most popular articles' do
@@ -39,11 +39,11 @@ describe PopularArticle do
 
     context 'invalid popular article' do
       it 'has less than 3 articles' do
-        2.times { create(:article) }
+        create_list(:article, 2)
         expect(subject).to be_invalid
       end
       it 'has more than 3 articles' do
-        4.times { create(:article) }
+        create_list(:article, 4)
         expect(subject).to be_invalid
       end
     end

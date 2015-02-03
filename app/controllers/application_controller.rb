@@ -68,10 +68,6 @@ class ApplicationController < ActionController::Base
 
   helper_method :use_custom_header?
 
-  def generate_popular_articles
-    @popular_articles = PopularArticle.last || PopularArticle.new
-  end
-
   def ssl_available?
     Rails.env.production?
   end

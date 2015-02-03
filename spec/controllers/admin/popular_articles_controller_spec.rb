@@ -16,7 +16,7 @@ describe Admin::PopularArticlesController do
 
     context 'popular articles already created' do
       before(:each) do
-        3.times { create(:article) }
+        create_list(:article, 3)
       end
 
       let(:popular_article) { PopularArticle.new(article_ids: Article.pluck(:id)) }
@@ -34,7 +34,7 @@ describe Admin::PopularArticlesController do
   describe "#create" do
     context 'valid popular article list' do
       before(:each) do
-        3.times { create(:article) }
+        create_list(:article, 3)
       end
 
       it 'must have 3 articles' do
@@ -46,7 +46,7 @@ describe Admin::PopularArticlesController do
 
     context 'popular articles never created' do
       before :each do
-        3.times { create(:article) }
+        create_list(:article, 3)
       end
 
       it 'a new popular articles list will be generated' do
@@ -58,7 +58,7 @@ describe Admin::PopularArticlesController do
 
     context 'popular articles already created' do
       before(:each) do
-        3.times { create(:article) }
+        create_list(:article, 3)
       end
 
       let(:popular_article) { PopularArticle.new(article_ids: Article.all.collect(&:id)) }
