@@ -7,8 +7,6 @@ if ENV["HEROKU"]
   gem 'unicorn'
   gem 'rack-timeout'
   gem "rails_12factor"
-  
-  gem 'kgio', '~> 2.9.2'
 else
 
   require 'yaml'
@@ -29,7 +27,7 @@ else
   raise "You need define an adapter in your database.yml or set your RAILS_ENV variable" if adapter == '' || adapter.nil?
   case adapter
   when 'sqlite3'
-    gem 'sqlite3'
+    #gem 'sqlite3'
   when 'postgresql'
     gem 'pg'
   when 'mysql2'
