@@ -7,6 +7,8 @@ if ENV["HEROKU"]
   gem 'unicorn'
   gem 'rack-timeout'
   gem "rails_12factor"
+  
+  gem 'kgio', '~> 2.9.3'
 else
 
   require 'yaml'
