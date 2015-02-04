@@ -43,6 +43,10 @@ gem 'rails-observers', '~> 0.1.2'
 gem 'ckeditor', github: 'galetahub/ckeditor'
 gem 'autoprefixer-rails'
 
+gem 'oauth2', '1.0.0'
+gem 'google-api-client', '0.7.1'
+gem 'legato', '0.4.0'
+
 group :assets do
   gem 'autoprefixer-rails'
   gem 'jshint_ruby'

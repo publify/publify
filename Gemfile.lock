@@ -61,6 +61,10 @@ GEM
     ast (2.0.0)
     astrolabe (1.3.0)
       parser (>= 2.2.0.pre.3, < 3.0)
+    autoparse (0.3.3)
+      addressable (>= 2.3.1)
+      extlib (>= 0.9.15)
+      multi_json (>= 1.0.0)
     autoprefixer-rails (3.1.2.20141016)
       execjs
     bluecloth (2.2.0)
@@ -119,6 +123,7 @@ GEM
     eventmachine (1.0.3)
     excon (0.42.1)
     execjs (2.2.2)
+    extlib (0.9.16)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
     faraday (0.9.0)
@@ -199,6 +204,17 @@ GEM
       thor (~> 0.19.1)
     formatador (0.2.5)
     fssm (0.2.10)
+    google-api-client (0.7.1)
+      addressable (>= 2.3.2)
+      autoparse (>= 0.3.3)
+      extlib (>= 0.9.15)
+      faraday (>= 0.9.0)
+      jwt (>= 0.1.5)
+      launchy (>= 2.1.1)
+      multi_json (>= 1.0.0)
+      retriable (>= 1.4)
+      signet (>= 0.5.0)
+      uuidtools (>= 2.1.0)
     guard (2.7.0)
       formatador (>= 0.2.4)
       listen (~> 2.7)
@@ -240,11 +256,14 @@ GEM
     jshint_ruby (0.1)
       execjs
     json (1.8.2)
+    jwt (1.2.0)
     kaminari (0.16.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     launchy (2.4.2)
       addressable (~> 2.3)
+    legato (0.4.0)
+      multi_json
     letter_opener (1.2.0)
       launchy (~> 2.2)
     listen (2.7.11)
@@ -267,6 +286,7 @@ GEM
     mini_portile (0.6.2)
     minitest (5.5.0)
     multi_json (1.10.1)
+    multi_xml (0.5.5)
     multipart-post (2.0.0)
     mysql2 (0.3.16)
     naught (1.0.0)
@@ -277,6 +297,12 @@ GEM
     nokogiri (1.6.5)
       mini_portile (~> 0.6.0)
     non-stupid-digest-assets (1.0.4)
+    oauth2 (1.0.0)
+      faraday (>= 0.8, < 0.10)
+      jwt (~> 1.0)
+      multi_json (~> 1.3)
+      multi_xml (~> 0.5)
+      rack (~> 1.2)
     orm_adapter (0.5.0)
     parser (2.2.0.pre.5)
       ast (>= 1.1, < 3.0)
@@ -333,6 +359,7 @@ GEM
     rest-client (1.7.2)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
+    retriable (1.4.1)
     rspec (3.1.0)
       rspec-core (~> 3.1.0)
       rspec-expectations (~> 3.1.0)
@@ -367,6 +394,12 @@ GEM
       sass (~> 3.2.2)
       sprockets (~> 2.8, < 3.0)
       sprockets-rails (~> 2.0)
+    signet (0.6.0)
+      addressable (~> 2.3)
+      extlib (~> 0.9)
+      faraday (~> 0.9)
+      jwt (~> 1.0)
+      multi_json (~> 1.10)
     simple_oauth (0.2.0)
     simplecov (0.9.1)
       docile (~> 1.1.0)
@@ -449,6 +482,7 @@ DEPENDENCIES
   flickraw-cached
   fog
   foreman
+  google-api-client (= 0.7.1)
   guard-bundler
   guard-livereload
   guard-rails
@@ -461,11 +495,13 @@ DEPENDENCIES
   jshint_ruby
   kaminari
   launchy
+  legato (= 0.4.0)
   letter_opener
   mailjet
   mini_magick (~> 3.8.1)
   mysql2
   non-stupid-digest-assets
+  oauth2 (= 1.0.0)
   pg
   poltergeist
   pry-rails
