@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery only: [:edit, :update, :delete]
 
   before_filter :reset_local_cache, :fire_triggers, :load_lang, :set_paths
-  before_filter :generate_popular_articles
   after_filter :reset_local_cache
 
   class << self
@@ -76,8 +75,4 @@ class ApplicationController < ActionController::Base
     false
   end
   helper_method :use_custom_header?
-
-  def generate_popular_articles
-    @popular_articles = PopularArticle.last || PopularArticle.new
-  end
 end
