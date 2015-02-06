@@ -110,6 +110,9 @@
 }
 
 .l-footer-clouds__image {
+  width: 100%;
+  height: 30%;
+
   @include respond-to($mq-xl) {
     max-width: 2000px;
     margin: 0 auto;
@@ -188,6 +191,7 @@
   @include column(12);
   margin: baseline-unit(3) 0 0;
   max-width: 288px;
+  height: 45px;
 }
 
 .l-footer-secondary__list--left {
