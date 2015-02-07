@@ -227,7 +227,7 @@ en:
         to: "To"
         leave_empty_to_shorten_a_link: "Leave empty to shorten a link"
     themes:
-      siwtchto:
+      switchto:
         success: "Theme selection updated"
       index:
         choose_a_theme: "Choose a theme"
