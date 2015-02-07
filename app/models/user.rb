@@ -233,15 +233,14 @@ class User < ActiveRecord::Base
     self.profile ||= Profile.find_by_label(User.count.zero? ? 'admin' : 'contributor')
   end
 
-  validates_uniqueness_of :login, :on => :create
-  validates_uniqueness_of :email, :on => :create
-  validates_length_of :password, :within => 5..40, :if => Proc.new { |user|
+  validates :login, uniqueness: true, :on => :create
+  validates :email, uniqueness: true, :on => :create
+  validates :password, length: { in: 5..40 }, if: Proc.new { |user|
     user.read_attribute('password').nil? or user.password.to_s.length > 0
   }
 
-  validates_presence_of :login
-  validates_presence_of :email
+  validates :email, :login, presence: true
 
   validates_confirmation_of :password
-  validates_length_of :login, :within => 3..40
+  validates :login, length: { in: 3..40 }
 end

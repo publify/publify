@@ -1,6 +1,6 @@
 class Page < Content
-  validates_presence_of :title, :body
-  validates_uniqueness_of :name
+  validates :title, :body, presence: true
+  validates :name, uniqueness: true
 
   include ConfigManager
 
