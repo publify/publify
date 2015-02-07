@@ -5,7 +5,7 @@ class NotesController < ContentController
   cache_sweeper :blog_sweeper
   caches_page :index, :show, :if => Proc.new {|c| c.request.query_string == '' }
 
-  after_filter :set_blog_infos
+  after_action :set_blog_infos
 
   def index
     @notes = Note.published.page(params[:page]).per(this_blog.limit_article_display)

@@ -3,8 +3,8 @@ require 'base64'
 
 class Admin::PagesController < Admin::BaseController
 
-  before_filter :set_images, only: [:new, :edit]
-  before_filter :set_macro, only: [:new, :edit]
+  before_action :set_images, only: [:new, :edit]
+  before_action :set_macro, only: [:new, :edit]
 
   layout :get_layout
   cache_sweeper :blog_sweeper

@@ -1,5 +1,5 @@
 class SetupController < ApplicationController
-  before_filter :check_config, only: 'index'
+  before_action :check_config, only: 'index'
   layout 'accounts'
 
   def index

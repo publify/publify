@@ -1,5 +1,5 @@
 class CommentsController < FeedbackController
-  before_filter :get_article, only: [:create, :preview]
+  before_action :get_article, only: [:create, :preview]
 
   def create
     @comment = @article.with_options(new_comment_defaults) do |art|

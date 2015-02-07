@@ -3,9 +3,9 @@ class Admin::BaseController < ApplicationController
   @@look_for_migrations = true
   layout 'administration'
 
-  before_filter :login_required, :except => [ :login, :signup ]
-  before_filter :look_for_needed_db_updates, :except => [:login, :signup, :update_database, :migrate]
-  before_filter :check_and_generate_secret_token, :except => [:login, :signup, :update_database, :migrate]
+  before_action :login_required, :except => [ :login, :signup ]
+  before_action :look_for_needed_db_updates, :except => [:login, :signup, :update_database, :migrate]
+  before_action :check_and_generate_secret_token, :except => [:login, :signup, :update_database, :migrate]
 
   private
 
