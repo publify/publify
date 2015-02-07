@@ -10,8 +10,8 @@ class Article < Content
 
   content_fields :body, :extended
 
-  validates_uniqueness_of :guid
-  validates_presence_of :title
+  validates :guid, uniqueness: true
+  validates :title, presence: true
 
   has_many :pings, -> { order('created_at ASC') }, dependent: :destroy
   has_many :trackbacks, -> { order('created_at ASC') }, dependent: :destroy

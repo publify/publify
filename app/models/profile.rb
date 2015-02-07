@@ -1,6 +1,6 @@
 class Profile < ActiveRecord::Base
   serialize :modules
-  validates_uniqueness_of :label
+  validates :label, uniqueness: true
 
   ADMIN = 'admin'
   PUBLISHER = 'publisher'

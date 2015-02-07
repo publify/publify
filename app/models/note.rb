@@ -12,8 +12,8 @@ class Note < Content
   setting :in_reply_to_protected, :boolean, false
   setting :in_reply_to_message, :string, ""
 
-  validates_presence_of :body
-  validates_uniqueness_of :permalink, :guid
+  validates :body, presence: true
+  validates :permalink, :guid, uniqueness: true
 
   after_create :set_permalink, :shorten_url
   before_create :create_guid

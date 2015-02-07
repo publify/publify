@@ -4,7 +4,7 @@ require 'timeout'
 class Comment < Feedback
   belongs_to :user
   content_fields :body
-  validates_presence_of :author, :body
+  validates :author, :body, presence: true
 
   attr_accessor :referrer, :permalink
 
