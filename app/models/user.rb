@@ -241,6 +241,6 @@ class User < ActiveRecord::Base
 
   validates :email, :login, presence: true
 
-  validates_confirmation_of :password
+  validates :password, confirmation: true
   validates :login, length: { in: 3..40 }
 end
