@@ -1,7 +1,7 @@
 class ArticlesController < ContentController
-  before_filter :login_required, :only => [:preview, :preview_page]
-  before_filter :auto_discovery_feed, :only => [:show, :index]
-  before_filter :verify_config
+  before_action :login_required, :only => [:preview, :preview_page]
+  before_action :auto_discovery_feed, :only => [:show, :index]
+  before_action :verify_config
 
   layout :theme_layout, except: [:comment_preview, :trackback]
 

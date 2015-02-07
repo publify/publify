@@ -1,8 +1,8 @@
 class AccountsController < ApplicationController
 
-  before_filter :verify_config
-  before_filter :verify_users, only: [:login, :recover_password]
-  before_filter :redirect_if_already_logged_in, only: :login
+  before_action :verify_config
+  before_action :verify_users, only: [:login, :recover_password]
+  before_action :redirect_if_already_logged_in, only: :login
 
   def index
     if User.count.zero?

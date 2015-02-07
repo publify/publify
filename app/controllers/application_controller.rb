@@ -5,8 +5,8 @@ class ApplicationController < ActionController::Base
   include ::LoginSystem
   protect_from_forgery :only => [:edit, :update, :delete]
 
-  before_filter :reset_local_cache, :fire_triggers, :load_lang, :set_paths
-  after_filter :reset_local_cache
+  before_action :reset_local_cache, :fire_triggers, :load_lang, :set_paths
+  after_action :reset_local_cache
 
   class << self
     unless self.respond_to? :template_root

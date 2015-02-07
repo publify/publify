@@ -1,6 +1,6 @@
 class Admin::SeoController < Admin::BaseController
   cache_sweeper :blog_sweeper
-  before_filter :set_setting, only: [:index, :titles]
+  before_action :set_setting, only: [:index, :titles]
 
   def index
   end
