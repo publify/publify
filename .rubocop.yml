@@ -1,0 +1,48 @@
+# Default style guide 'https://github.com/bbatsov/ruby-style-guide'.
+
+AllCops:
+  Exclude:
+  - 'bin/**/*'
+  - 'config/**/*'
+  - 'db/**/*'
+  - 'tmp/**/*'
+  - 'vendor/**/*'
+
+# Documenting all classes is not common in Rails projects.
+Documentation:
+  Enabled: false
+
+# Provides more information, while still being displayable in modern wide-screen.
+Metrics/LineLength:
+  Max: 120
+
+# Allow the use of 'and' 'or' in control structures.
+Style/AndOr:
+  EnforcedStyle: conditionals
+
+# Allow multiple Hash parameters to look similar
+Style/BracesAroundHashParameters:
+  EnforcedStyle: context_dependent
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/CollectionMethods:
+  Enabled: false
+
+# Place . on the previous line
+Style/DotPosition:
+  EnforcedStyle: trailing
+
+# Allows format strings with: format, sprintf or percent.
+Style/FormatString:
+  Enabled: false
+
+# Multi-line operations should be simply indented. Aligning them makes it even
+# harder to keep a sane line length.
+Style/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
+# Always use raise to raise exceptions
+Style/SignalException:
+  EnforcedStyle: only_raise
