@@ -13,8 +13,9 @@ Documentation:
   Enabled: false
 
 # Provides more information, while still being displayable in modern wide-screen.
-Metrics/LineLength:
-  Max: 120
+# TODO: Re-enable once linelength has been fixed everywhere.
+# Metrics/LineLength:
+#   Max: 120
 
 # Allow the use of 'and' 'or' in control structures.
 Style/AndOr:
@@ -46,3 +47,5 @@ Style/MultilineOperationIndentation:
 # Always use raise to raise exceptions
 Style/SignalException:
   EnforcedStyle: only_raise
+
+inherit_from: .rubocop_todo.yml
