@@ -14,10 +14,10 @@ class PublifyTime
   def self.delta_like(str)
     case str
     when /(\d{4})-(\d{2})-(\d{2})/
-      delta(Regexp.last_match(1),Regexp.last_match(2),Regexp.last_match(3))
+      delta(Regexp.last_match(1), Regexp.last_match(2), Regexp.last_match(3))
 
     when /(\d{4})-(\d{2})/
-      delta(Regexp.last_match(1),Regexp.last_match(2))
+      delta(Regexp.last_match(1), Regexp.last_match(2))
 
     when /(\d{4})/
       delta(Regexp.last_match(1))
@@ -26,6 +26,4 @@ class PublifyTime
       str
     end
   end
-
-
 end

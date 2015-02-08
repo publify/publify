@@ -1,14 +1,14 @@
 require 'rails_helper'
 
-describe Comment, :type => :model do
+describe Comment, type: :model do
   let!(:blog) { build_stubbed :blog }
 
   def published_article
-    build_stubbed(:article, :published_at => Time.now - 1.hour)
+    build_stubbed(:article, published_at: Time.now - 1.hour)
   end
 
-  def valid_comment(options={})
-    Comment.new({:author => 'Bob', :article => published_article, :body => 'nice post', :ip => '1.2.3.4'}.merge(options))
+  def valid_comment(options = {})
+    Comment.new({ author: 'Bob', article: published_article, body: 'nice post', ip: '1.2.3.4' }.merge(options))
   end
 
   describe '#permalink_url' do
@@ -24,30 +24,30 @@ describe Comment, :type => :model do
   end
 
   describe '#save' do
-    before(:each) {
+    before(:each) do
       allow(blog).to receive(:sp_article_auto_close) { 300 }
-    }
+    end
     it 'should save good comment' do
-      c = build(:comment, :url => "http://www.google.de", :article => published_article)
+      c = build(:comment, url: 'http://www.google.de', article: published_article)
       assert c.save
-      assert_equal "http://www.google.de", c.url
+      assert_equal 'http://www.google.de', c.url
     end
 
     it 'should save spam comment' do
-      c = build(:comment, :body => 'test <a href="http://fakeurl.com">body</a>', :article => published_article)
+      c = build(:comment, body: 'test <a href="http://fakeurl.com">body</a>', article: published_article)
       assert c.save
-      assert_equal "http://fakeurl.com", c.url
+      assert_equal 'http://fakeurl.com', c.url
     end
 
     it 'should not save in invalid article' do
-      c = valid_comment(:author => "Old Spammer", :body => "Old trackback body", :article => build(:article, :state => 'draft'))
+      c = valid_comment(author: 'Old Spammer', body: 'Old trackback body', article: build(:article, state: 'draft'))
 
-      assert ! c.save
+      assert !c.save
       assert c.errors['article_id'].any?
     end
 
     it 'should change old comment' do
-      c = build(:comment, :body => 'Comment body <em>italic</em> <strong>bold</strong>', :article => published_article)
+      c = build(:comment, body: 'Comment body <em>italic</em> <strong>bold</strong>', article: published_article)
       assert c.save
       assert c.errors.empty?
     end
@@ -61,11 +61,10 @@ describe Comment, :type => :model do
     it 'should not save with article not allow comment'  do
       allow(blog).to receive(:sp_article_auto_close) { 1 }
 
-      c = build(:comment, :article => build_stubbed(:article, :allow_comments => false))
+      c = build(:comment, article: build_stubbed(:article, allow_comments: false))
       expect(c.save).not_to be_truthy
       expect(c.errors).not_to be_empty
     end
-
   end
 
   describe '#create' do
@@ -76,19 +75,19 @@ describe Comment, :type => :model do
     end
 
     it 'preserves urls starting with https://' do
-      c = valid_comment(:url => 'https://example.com/')
+      c = valid_comment(url: 'https://example.com/')
       c.save
       expect(c.url).to eq('https://example.com/')
     end
 
     it 'preserves urls starting with http://' do
-      c = valid_comment(:url => 'http://example.com/')
+      c = valid_comment(url: 'http://example.com/')
       c.save
       expect(c.url).to eq('http://example.com/')
     end
 
     it 'prepends http:// to urls without protocol' do
-      c = valid_comment(:url => 'example.com')
+      c = valid_comment(url: 'example.com')
       c.save
       expect(c.url).to eq('http://example.com')
     end
@@ -96,18 +95,18 @@ describe Comment, :type => :model do
 
   describe '#spam?' do
     it 'should reject spam rbl' do
-      c = valid_comment(:author => "Spammer", :body => %{This is just some random text. &lt;a href="http://chinaaircatering.com"&gt;without any senses.&lt;/a&gt;. Please disregard.}, :url => "http://buy-computer.us")
+      c = valid_comment(author: 'Spammer', body: %(This is just some random text. &lt;a href="http://chinaaircatering.com"&gt;without any senses.&lt;/a&gt;. Please disregard.), url: 'http://buy-computer.us')
       should_be_spam(c)
     end
 
     it 'should not define spam a comment rbl with lookup succeeds' do
-      c = valid_comment(:author => "Not a Spammer", :body => "Useful commentary!", :url => "http://www.bofh.org.uk")
+      c = valid_comment(author: 'Not a Spammer', body: 'Useful commentary!', url: 'http://www.bofh.org.uk')
       expect(c).not_to be_spam
       expect(c).not_to be_status_confirmed
     end
 
     it 'should reject spam with uri limit' do
-      c = valid_comment(:author => "Yet Another Spammer", :body => %{ <a href="http://www.one.com/">one</a> <a href="http://www.two.com/">two</a> <a href="http://www.three.com/">three</a> <a href="http://www.four.com/">four</a> }, :url => "http://www.uri-limit.com")
+      c = valid_comment(author: 'Yet Another Spammer', body: %( <a href="http://www.one.com/">one</a> <a href="http://www.two.com/">two</a> <a href="http://www.three.com/">three</a> <a href="http://www.four.com/">four</a> ), url: 'http://www.uri-limit.com')
       should_be_spam(c)
     end
 
@@ -115,12 +114,11 @@ describe Comment, :type => :model do
       expect(comment).to be_spam
       expect(comment).not_to be_status_confirmed
     end
-
   end
 
   it 'should have good relation' do
     article = build_stubbed(:article)
-    comment = build_stubbed(:comment, :article => article)
+    comment = build_stubbed(:comment, article: article)
     assert comment.article
     assert_equal article, comment.article
   end
@@ -128,12 +126,12 @@ describe Comment, :type => :model do
   describe 'reject xss' do
     before(:each) do
       @comment = Comment.new do |c|
-        c.body = "Test foo <script>do_evil();</script>"
+        c.body = 'Test foo <script>do_evil();</script>'
         c.author = 'Bob'
         c.article = build_stubbed(:article)
       end
     end
-    ['','textile','markdown','smartypants','markdown smartypants'].each do |filter|
+    ['', 'textile', 'markdown', 'smartypants', 'markdown smartypants'].each do |filter|
       it "should reject with filter '#{filter}'" do
         # XXX: This makes sure text filter can be 'found' in the database
         # FIXME: TextFilter objects should not be in the database!
@@ -149,15 +147,15 @@ describe Comment, :type => :model do
 
   describe 'change state' do
     it 'should become unpublished if withdrawn' do
-      c = build_stubbed :comment, :published => true, :published_at => Time.now
+      c = build_stubbed :comment, published: true, published_at: Time.now
       assert c.withdraw!
-      assert ! c.published?
+      assert !c.published?
       assert c.spam?
       assert c.status_confirmed?
     end
 
     it 'should becomes confirmed if withdrawn' do
-      unconfirmed = build_stubbed(:comment, :state => 'presumed_ham')
+      unconfirmed = build_stubbed(:comment, state: 'presumed_ham')
       expect(unconfirmed).not_to be_status_confirmed
       unconfirmed.withdraw!
       expect(unconfirmed).to be_status_confirmed
@@ -179,19 +177,19 @@ describe Comment, :type => :model do
 
     it 'should mark comment as presumably spam' do
       comment = Comment.new do |c|
-        c.body = "Test foo"
+        c.body = 'Test foo'
         c.author = 'Bob'
         c.article = build_stubbed(:article)
       end
 
-      assert ! comment.published?
+      assert !comment.published?
       assert comment.spam?
-      assert ! comment.status_confirmed?
+      assert !comment.status_confirmed?
     end
 
     it 'should save comment as confirmed ham' do
       comment = Comment.new do |c|
-        c.body = "Test foo"
+        c.body = 'Test foo'
         c.author = 'Henri'
         c.article = build_stubbed(:article)
         c.user = build_stubbed(:user)
@@ -200,20 +198,19 @@ describe Comment, :type => :model do
       assert comment.published?
       assert comment.ham?
       assert comment.status_confirmed?
-
     end
   end
 
-  describe "spam", integration: true do
-    it "returns only spam comment" do
+  describe 'spam', integration: true do
+    it 'returns only spam comment' do
       comment = create(:comment, state: 'spam')
       ham_comment = create(:comment, state: 'ham')
       expect(Comment.spam).to eq([comment])
     end
   end
 
-  describe "not_spam", integration: true do
-    it "returns all comment that not_spam" do
+  describe 'not_spam', integration: true do
+    it 'returns all comment that not_spam' do
       comment = create(:comment, state: 'spam')
       ham_comment = create(:comment, state: 'ham')
       presumed_spam_comment = create(:comment, state: 'presumed_spam')
@@ -221,8 +218,8 @@ describe Comment, :type => :model do
     end
   end
 
-  describe "presumed_spam", integration: true do
-    it "returns only presumed_spam" do
+  describe 'presumed_spam', integration: true do
+    it 'returns only presumed_spam' do
       comment = create(:comment, state: 'spam')
       ham_comment = create(:comment, state: 'ham')
       presumed_spam_comment = create(:comment, state: 'presumed_spam')
@@ -230,17 +227,16 @@ describe Comment, :type => :model do
     end
   end
 
-  describe "last_published", integration: true do
-    it "respond only 5 last_published" do
+  describe 'last_published', integration: true do
+    it 'respond only 5 last_published' do
       date = DateTime.new(2012, 12, 23, 12, 47)
-      comment_1 = create(:comment, body: "1", published: true, created_at: date + 1.day)
-      comment_4 = create(:comment, body: "4", published: true, created_at: date + 4.day)
-      comment_2 = create(:comment, body: "2", published: true, created_at: date + 2.day)
-      comment_6 = create(:comment, body: "6", published: true, created_at: date + 6.day)
-      comment_3 = create(:comment, body: "3", published: true, created_at: date + 3.day)
-      comment_5 = create(:comment, body: "5", published: true, created_at: date + 5.day)
+      comment_1 = create(:comment, body: '1', published: true, created_at: date + 1.day)
+      comment_4 = create(:comment, body: '4', published: true, created_at: date + 4.day)
+      comment_2 = create(:comment, body: '2', published: true, created_at: date + 2.day)
+      comment_6 = create(:comment, body: '6', published: true, created_at: date + 6.day)
+      comment_3 = create(:comment, body: '3', published: true, created_at: date + 3.day)
+      comment_5 = create(:comment, body: '5', published: true, created_at: date + 5.day)
       expect(Comment.last_published).to eq([comment_6, comment_5, comment_4, comment_3, comment_2])
     end
   end
-
 end

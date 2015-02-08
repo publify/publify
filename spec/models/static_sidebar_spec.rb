@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Given a new StaticSidebar', :type => :model do
+describe 'Given a new StaticSidebar', type: :model do
   before(:each) { @sb = StaticSidebar.new }
 
   it 'title should be Links' do
