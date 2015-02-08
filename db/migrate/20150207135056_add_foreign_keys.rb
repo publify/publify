@@ -1,18 +1,17 @@
 class AddForeignKeys < ActiveRecord::Migration
   def change
-    add_foreign_key :tags, :articles_tags
-    add_foreign_key :contents, :articles_tags
-    add_foreign_key :text_filters, :contents
-    add_foreign_key :users, :contents
-    add_foreign_key :contents, :feedback
-    add_foreign_key :text_filters, :feedback
-    add_foreign_key :users, :feedback
-    add_foreign_key :contents, :pings
-    add_foreign_key :contents, :redirections
-    add_foreign_key :redirects, :redirections
-    add_foreign_key :contents, :resources
-    add_foreign_key :profiles, :users
-    add_foreign_key :resources, :users
-    add_foreign_key :text_filters, :users
+    add_foreign_key :articles_tags, :tags
+    add_foreign_key :articles_tags, :contents, column: :article_id
+    add_foreign_key :contents, :text_filters
+    add_foreign_key :contents, :users
+    add_foreign_key :feedback, :contents, column: :article_id
+    add_foreign_key :feedback, :text_filters
+    add_foreign_key :feedback, :users
+    add_foreign_key :pings, :contents, column: :article_id
+    add_foreign_key :redirections, :contents
+    add_foreign_key :redirections, :redirects
+    add_foreign_key :resources, :contents, column: :article_id
+    add_foreign_key :users, :profiles
+    add_foreign_key :users, :resources
  end
 end
