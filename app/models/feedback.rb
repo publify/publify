@@ -16,13 +16,13 @@ class Feedback < ActiveRecord::Base
   before_save :correct_url, :before_save_handler
   after_save :post_trigger, :report_classification, :invalidates_cache?
   after_initialize :after_initialize_handler
-  after_destroy lambda { |c|  c.invalidates_cache?(true) }
+  after_destroy ->(c) {  c.invalidates_cache?(true) }
 
   default_scope { order('created_at DESC') }
 
   scope :ham, -> { where("state in ('presumed_ham', 'ham')") }
   scope :spam, -> { where(state: 'spam') }
-  scope :published_since, lambda { |time| ham.where('published_at > ?', time) }
+  scope :published_since, ->(time) { ham.where('published_at > ?', time) }
   scope :presumed_ham, -> { where(state: 'presumed_ham') }
   scope :presumed_spam, -> { where(state: 'presumed_spam') }
   scope :unapproved, -> { where(status_confirmed: false) }

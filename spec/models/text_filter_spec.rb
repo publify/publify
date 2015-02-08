@@ -5,7 +5,7 @@ describe 'With the list of available filters', type: :model do
   before(:each) do
     @blog = build_stubbed(:blog)
     @filters = TextFilter.available_filters
-    @whiteboard = Hash.new
+    @whiteboard = {}
   end
 
   describe '#available_filters' do

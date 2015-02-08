@@ -57,7 +57,7 @@ class SpamProtection
       return scan_ip(host) if host =~ Format::IP_ADDRESS
 
       host_parts = host.split('.').reverse
-      domain = Array.new
+      domain = []
 
       # Check for two level TLD
       (SECOND_LEVEL.include?(host_parts[1]) ? 3 : 2).times do

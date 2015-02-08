@@ -8,7 +8,7 @@ class Content < ActiveRecord::Base
 
   # TODO: Move these calls to ContentBase
   after_save :invalidates_cache?
-  after_destroy lambda { |c|  c.invalidates_cache?(true) }
+  after_destroy ->(c) {  c.invalidates_cache?(true) }
 
   belongs_to :text_filter
   belongs_to :user
@@ -18,18 +18,18 @@ class Content < ActiveRecord::Base
 
   has_many :triggers, as: :pending_item, dependent: :delete_all
 
-  scope :user_id, lambda { |user_id| where('user_id = ?', user_id) }
-  scope :published, lambda { where(published: true, published_at: Time.at(0)..Time.now).order('published_at DESC') }
-  scope :published_at, lambda { |time_params| published.where(published_at: PublifyTime.delta(*time_params)).order('published_at DESC') }
-  scope :not_published, lambda { where('published = ?', false) }
-  scope :draft, lambda { where('state = ?', 'draft') }
-  scope :no_draft, lambda { where('state <> ?', 'draft').order('published_at DESC') }
+  scope :user_id, ->(user_id) { where('user_id = ?', user_id) }
+  scope :published, -> { where(published: true, published_at: Time.at(0)..Time.now).order('published_at DESC') }
+  scope :published_at, ->(time_params) { published.where(published_at: PublifyTime.delta(*time_params)).order('published_at DESC') }
+  scope :not_published, -> { where('published = ?', false) }
+  scope :draft, -> { where('state = ?', 'draft') }
+  scope :no_draft, -> { where('state <> ?', 'draft').order('published_at DESC') }
   scope :searchstring, lambda { |search_string|
     tokens = search_string.split(' ').collect { |c| "%#{c.downcase}%" }
     where('state = ? AND ' + (['(LOWER(body) LIKE ? OR LOWER(extended) LIKE ? OR LOWER(title) LIKE ?)'] * tokens.size).join(' AND '),
           'published', *tokens.collect { |token| [token] * 3 }.flatten)
   }
-  scope :already_published, lambda { where('published = ? AND published_at < ?', true, Time.now).order(default_order) }
+  scope :already_published, -> { where('published = ? AND published_at < ?', true, Time.now).order(default_order) }
 
   scope :published_at_like, lambda { |date_at|
     where(published_at: (PublifyTime.delta_like(date_at))
