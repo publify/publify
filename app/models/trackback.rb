@@ -2,6 +2,7 @@ require_dependency 'spam_protection'
 
 class Trackback < Feedback
   content_fields :excerpt
+  
   validates :title, :excerpt, :url, presence: true
 
   #attr_accessible :url, :blog_name, :title, :excerpt, :ip, :published, :article_id

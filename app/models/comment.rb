@@ -2,11 +2,14 @@ require_dependency 'spam_protection'
 require 'timeout'
 
 class Comment < Feedback
-  belongs_to :user
-  content_fields :body
-  validates :author, :body, presence: true
 
   attr_accessor :referrer, :permalink
+  
+  content_fields :body
+  
+  belongs_to :user
+  
+  validates :author, :body, presence: true
 
   scope :spam, lambda { where(state: 'spam') }
   scope :not_spam, lambda { where("state != 'spam'")}

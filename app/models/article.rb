@@ -10,14 +10,7 @@ class Article < Content
 
   content_fields :body, :extended
 
-  validates :guid, uniqueness: true
-  validates :title, presence: true
-
-  has_many :pings, -> { order('created_at ASC') }, dependent: :destroy
-  has_many :trackbacks, -> { order('created_at ASC') }, dependent: :destroy
-  has_many :feedback, -> { order('created_at DESC') }
-  has_many :resources, -> {order("created_at DESC") }, dependent: :nullify
-  has_many :triggers, as: :pending_item
+  has_and_belongs_to_many :tags, join_table: 'articles_tags'
   has_many :comments, -> {order('created_at ASC')}, dependent: :destroy do
     # Get only ham or presumed_ham comments
     def ham
@@ -29,13 +22,18 @@ class Article < Content
       where(state: ["presumed_spam", "spam"])
     end
   end
-
+  has_many :feedback, -> { order('created_at DESC') }
+  has_many :pings, -> { order('created_at ASC') }, dependent: :destroy
   has_many :published_comments,    -> { where(published: true).order('created_at ASC') }, class_name: "Comment"
-  has_many :published_trackbacks,  -> { where(published: true).order('created_at ASC') }, class_name: "Trackback"
   has_many :published_feedback,    -> { where(published: true).order('created_at ASC') }, class_name: "Feedback"
+  has_many :published_trackbacks,  -> { where(published: true).order('created_at ASC') }, class_name: "Trackback"
+  has_many :resources, -> {order("created_at DESC") }, dependent: :nullify
+  has_many :trackbacks, -> { order('created_at ASC') }, dependent: :destroy
+  has_many :triggers, as: :pending_item
 
-  has_and_belongs_to_many :tags, join_table: 'articles_tags'
-
+  validates :guid, uniqueness: true
+  validates :title, presence: true
+  
   before_create :create_guid
   before_save :set_published_at, :set_permalink
   after_save :post_trigger, :keywords_to_tags, :shorten_url

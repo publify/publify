@@ -1,11 +1,10 @@
 class Redirect < ActiveRecord::Base
-  validates :from_path, uniqueness: true
-  validates :to_path, presence: true
-
+  
+  has_many :contents, :through => :redirections
   has_many :redirections
 
-  has_many :contents, :through => :redirections
-
+  validates :from_path, uniqueness: true
+  validates :to_path, presence: true
 
   def full_to_path
     path = self.to_path

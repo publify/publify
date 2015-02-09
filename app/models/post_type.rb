@@ -1,8 +1,9 @@
 # coding: utf-8
 class PostType < ActiveRecord::Base
-  validates :name, uniqueness: true
   validates :name, presence: true
+  validates :name, uniqueness: true
   validate :name_is_not_read
+  
   before_save :sanitize_title
   
   def name_is_not_read
