@@ -1,8 +1,8 @@
 class Page < Content
-  validates :title, :body, presence: true
-  validates :name, uniqueness: true
-
   include ConfigManager
+  
+  validates :name, uniqueness: true
+  validates :title, :body, presence: true
 
   serialize :settings, Hash
   setting :password, :string, ''

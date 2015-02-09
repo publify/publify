@@ -4,6 +4,9 @@ class Note < Content
   require 'uri'
   include PublifyGuid
   include ConfigManager
+  
+  validates :body, presence: true
+  validates :permalink, :guid, uniqueness: true
 
   serialize :settings, Hash
 
@@ -12,8 +15,6 @@ class Note < Content
   setting :in_reply_to_protected, :boolean, false
   setting :in_reply_to_message, :string, ""
 
-  validates :body, presence: true
-  validates :permalink, :guid, uniqueness: true
 
   after_create :set_permalink, :shorten_url
   before_create :create_guid

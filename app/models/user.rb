@@ -5,17 +5,15 @@ class User < ActiveRecord::Base
   include ConfigManager
 
   belongs_to :profile
-  belongs_to :text_filter
   belongs_to :resource
-
-  delegate :name, :to => :text_filter, :prefix => true
-  delegate :label, :to => :profile, :prefix => true
-
+  belongs_to :text_filter
+  has_many :articles
   has_many :notifications, :foreign_key => 'notify_user_id'
   has_many :notify_contents, -> { uniq }, :through => :notifications,
     :source => 'notify_content'
 
-  has_many :articles
+  delegate :name, :to => :text_filter, :prefix => true
+  delegate :label, :to => :profile, :prefix => true
 
   serialize :settings, Hash
 

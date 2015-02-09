@@ -6,17 +6,15 @@ class Content < ActiveRecord::Base
 
   include ContentBase
 
+  belongs_to :text_filter
+  belongs_to :user
+  has_many :redirections
+  has_many :redirects, :through => :redirections, :dependent => :destroy
+  has_many :triggers, :as => :pending_item, :dependent => :delete_all
+  
   # TODO: Move these calls to ContentBase
   after_save :invalidates_cache?
   after_destroy lambda { |c|  c.invalidates_cache?(true) }
-
-  belongs_to :text_filter
-  belongs_to :user
-
-  has_many :redirections
-  has_many :redirects, :through => :redirections, :dependent => :destroy
-
-  has_many :triggers, :as => :pending_item, :dependent => :delete_all
 
   scope :user_id, lambda { |user_id| where('user_id = ?', user_id) }
   scope :published, lambda { where(published: true, published_at: Time.at(0)..Time.now).order('published_at DESC') }

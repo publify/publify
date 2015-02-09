@@ -2,13 +2,13 @@ require_dependency 'spam_protection'
 class Feedback < ActiveRecord::Base
   self.table_name = "feedback"
 
-  belongs_to :text_filter
-  belongs_to :article
-
   include PublifyGuid
   include Stateful
   include ContentBase
   include States
+  
+  belongs_to :article
+  belongs_to :text_filter
 
   validate :feedback_not_closed, :on => :create
 
