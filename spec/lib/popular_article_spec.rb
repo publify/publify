@@ -7,7 +7,9 @@ describe PopularArticle do
 
   describe '#find' do
     before(:each) do
-      allow(GoogleAnalytics::API).to receive(:fetch_article_page_views).and_return(popular_articles)
+      allow(GoogleAnalytics::API)
+        .to receive(:fetch_article_page_views)
+        .and_return(popular_articles)
     end
 
     let(:popular_articles) {
