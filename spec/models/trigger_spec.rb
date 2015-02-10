@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Trigger, :type => :model do
+describe Trigger, type: :model do
   before(:each) do
     FactoryGirl.create :blog
     @page = FactoryGirl.create :page, published: false
@@ -37,24 +37,27 @@ describe Trigger, :type => :model do
     expect(@page).to be_published
   end
 
-  describe ".remove" do
-    context "with several existing triggers" do
+  describe '.remove' do
+    context 'with several existing triggers' do
       let!(:item) { create :content }
       let!(:other_item) { create :content }
 
-      let!(:trigger_item_foo) {
-        Trigger.create due_at: 1.day.from_now, pending_item: item, trigger_method: 'foo' }
-      let!(:trigger_item_bar) {
-        Trigger.create due_at: 1.day.from_now, pending_item: item, trigger_method: 'bar' }
-      let!(:trigger_other_item_foo) {
-        Trigger.create due_at: 1.day.from_now, pending_item: other_item, trigger_method: 'foo' }
+      let!(:trigger_item_foo) do
+        Trigger.create due_at: 1.day.from_now, pending_item: item, trigger_method: 'foo'
+      end
+      let!(:trigger_item_bar) do
+        Trigger.create due_at: 1.day.from_now, pending_item: item, trigger_method: 'bar'
+      end
+      let!(:trigger_other_item_foo) do
+        Trigger.create due_at: 1.day.from_now, pending_item: other_item, trigger_method: 'foo'
+      end
 
-      it "removes the trigger for the given item and condition" do
+      it 'removes the trigger for the given item and condition' do
         Trigger.remove item, trigger_method: 'foo'
         expect(Trigger.all).to match_array([trigger_item_bar, trigger_other_item_foo])
       end
 
-      it "removes the triggers for the given item" do
+      it 'removes the triggers for the given item' do
         Trigger.remove item
         expect(Trigger.all).to match_array([trigger_other_item_foo])
       end

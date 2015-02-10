@@ -1,7 +1,7 @@
 class Admin::TokenChecker
   attr_reader :file
 
-  def initialize(file = File.join(Rails.root, "config", "secret.token"))
+  def initialize(file = File.join(Rails.root, 'config', 'secret.token'))
     @file = file
   end
 
@@ -10,7 +10,7 @@ class Admin::TokenChecker
   end
 
   def needs_token_generation?
-    return true unless File.exists? file
+    return true unless File.exist? file
     File.read(@file).chomp == $default_token
   end
 

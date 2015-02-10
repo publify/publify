@@ -4,14 +4,28 @@ module Feedback::States
     alias_method :content, :model
 
     # Callback handlers
-    def before_save_handler; true; end
-    def after_initialize_handler; true; end
+    def before_save_handler
+      true
+    end
 
-    def post_trigger;          true; end
-    def send_notifications;    true; end
-    def report_classification; true; end
+    def after_initialize_handler
+      true
+    end
+
+    def post_trigger
+      true
+    end
+
+    def send_notifications
+      true
+    end
+
+    def report_classification
+      true
+    end
 
     def withdraw;                    end
+
     def confirm_classification;      end
 
     def mark_as_spam
@@ -26,7 +40,7 @@ module Feedback::States
   class Unclassified < Base
     def after_initialize_handler
       enter_hook
-      return true
+      true
     end
 
     def enter_hook
@@ -46,14 +60,14 @@ module Feedback::States
     end
 
     def spam?
-      classify_content;
+      classify_content
       content.spam?
     end
 
     def classify_content
       content.state = case content.classify
-                      when :ham;  :just_presumed_ham
-                      when :spam; :presumed_spam
+                      when :ham then  :just_presumed_ham
+                      when :spam then :presumed_spam
                       else        :presumed_spam
                       end
     end
@@ -63,7 +77,7 @@ module Feedback::States
     end
 
     def to_s
-      "unclassified"
+      'unclassified'
     end
   end
 
@@ -76,7 +90,7 @@ module Feedback::States
     end
 
     def to_s
-      "just_presumed_ham"
+      'just_presumed_ham'
     end
   end
 
@@ -87,7 +101,9 @@ module Feedback::States
       content[:status_confirmed] = false
     end
 
-    def published?; true; end
+    def published?
+      true
+    end
 
     def just_published?
       content.just_changed_published_status?
@@ -106,12 +122,12 @@ module Feedback::States
     end
 
     def to_s
-      "presumed_ham"
+      'presumed_ham'
     end
 
     def send_notifications
       content.really_send_notifications if content.just_changed_published_status
-      return true
+      true
     end
   end
 
@@ -123,7 +139,7 @@ module Feedback::States
     end
 
     def to_s
-      "just_marked_as_ham"
+      'just_marked_as_ham'
     end
   end
 
@@ -134,8 +150,13 @@ module Feedback::States
       content[:status_confirmed] = true
     end
 
-    def published?;        true; end
-    def status_confirmed?; true; end
+    def published?
+      true
+    end
+
+    def status_confirmed?
+      true
+    end
 
     def mark_as_ham;             end
 
@@ -158,7 +179,7 @@ module Feedback::States
     end
 
     def to_s
-      "ham"
+      'ham'
     end
   end
 
@@ -169,7 +190,9 @@ module Feedback::States
       content[:status_confirmed] = false
     end
 
-    def spam?; true; end
+    def spam?
+      true
+    end
 
     def mark_as_ham
       content.state = :just_marked_as_ham
@@ -188,7 +211,7 @@ module Feedback::States
     end
 
     def to_s
-      "presumed_spam"
+      'presumed_spam'
     end
   end
 
@@ -198,8 +221,9 @@ module Feedback::States
       content.just_changed_published_status = true
       content.state = :spam
     end
+
     def to_s
-      "just_marked_as_spam"
+      'just_marked_as_spam'
     end
   end
 
@@ -210,8 +234,13 @@ module Feedback::States
       content[:status_confirmed] = true
     end
 
-    def spam?;             true; end
-    def status_confirmed?; true; end
+    def spam?
+      true
+    end
+
+    def status_confirmed?
+      true
+    end
 
     def mark_as_spam;            end
 
@@ -219,8 +248,9 @@ module Feedback::States
       content.report_as_spam if content.just_changed_published_status?
       true
     end
+
     def to_s
-      "spam"
+      'spam'
     end
   end
 end

@@ -1,9 +1,7 @@
 require 'rails_helper'
 
-describe PageCache, :type => :model do
-
+describe PageCache, type: :model do
   describe 'PageCache#self.sweep_all' do
-
     before(:each) do
       all_files = ['/index.html', '/articles.rss', '/sitemap.xml']
       @all_paths = []
@@ -19,5 +17,4 @@ describe PageCache, :type => :model do
       end
     end
   end
-
 end

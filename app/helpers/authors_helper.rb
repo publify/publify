@@ -1,5 +1,4 @@
 module AuthorsHelper
-
   def display_profile_item(item, item_desc)
     return unless item.present?
     item = link_to(item, item) if is_url?(item)
@@ -9,11 +8,9 @@ module AuthorsHelper
   end
 
   def is_url?(str)
-    begin
-      [URI::HTTP, URI::HTTPS].include?(URI.parse(str.to_s).class)
-    rescue URI::InvalidURIError
-      false
-    end
+    [URI::HTTP, URI::HTTPS].include?(URI.parse(str.to_s).class)
+  rescue URI::InvalidURIError
+    false
   end
 
   def author_description(user)

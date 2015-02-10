@@ -5,11 +5,11 @@ class Admin::CacheController < Admin::BaseController
     @cache_size = 0
     @cache_number = 0
 
-    FileUtils.mkdir_p(Publify::Application.config.action_controller.page_cache_directory) unless File.exists?(Publify::Application.config.action_controller.page_cache_directory)
+    FileUtils.mkdir_p(Publify::Application.config.action_controller.page_cache_directory) unless File.exist?(Publify::Application.config.action_controller.page_cache_directory)
 
     Find.find(Publify::Application.config.action_controller.page_cache_directory) do |path|
       if FileTest.directory?(path)
-        if File.basename(path)[0] == ?.
+        if File.basename(path)[0] == '.'
           Find.prune
         else
           next

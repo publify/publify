@@ -1,6 +1,6 @@
 require_dependency 'spam_protection'
 class Feedback < ActiveRecord::Base
-  self.table_name = "feedback"
+  self.table_name = 'feedback'
 
   belongs_to :text_filter
   belongs_to :article
@@ -10,35 +10,35 @@ class Feedback < ActiveRecord::Base
   include ContentBase
   include States
 
-  validate :feedback_not_closed, :on => :create
+  validate :feedback_not_closed, on: :create
 
   before_create :create_guid, :article_allows_this_feedback
   before_save :correct_url, :before_save_handler
   after_save :post_trigger, :report_classification, :invalidates_cache?
   after_initialize :after_initialize_handler
-  after_destroy lambda { |c|  c.invalidates_cache?(true) }
+  after_destroy ->(c) {  c.invalidates_cache?(true) }
 
   default_scope { order('created_at DESC') }
 
   scope :ham, -> { where("state in ('presumed_ham', 'ham')") }
   scope :spam, -> { where(state: 'spam') }
-  scope :published_since, lambda {|time| ham.where('published_at > ?', time)}
+  scope :published_since, ->(time) { ham.where('published_at > ?', time) }
   scope :presumed_ham, -> { where(state: 'presumed_ham') }
   scope :presumed_spam, -> { where(state: 'presumed_spam') }
   scope :unapproved, -> { where(status_confirmed: false) }
 
- has_state(:state,
-            :valid_states => [:unclassified, :presumed_spam, :just_marked_as_spam, :spam, :just_presumed_ham, :presumed_ham, :just_marked_as_ham, :ham],
-            :handles => [:published?, :status_confirmed?, :just_published?,
-                         :mark_as_ham, :mark_as_spam, :confirm_classification,
-                         :withdraw,
-                         :before_save_handler, :after_initialize_handler,
-                         :send_notifications, :post_trigger, :report_classification])
+  has_state(:state,
+            valid_states: [:unclassified, :presumed_spam, :just_marked_as_spam, :spam, :just_presumed_ham, :presumed_ham, :just_marked_as_ham, :ham],
+            handles: [:published?, :status_confirmed?, :just_published?,
+                      :mark_as_ham, :mark_as_spam, :confirm_classification,
+                      :withdraw,
+                      :before_save_handler, :after_initialize_handler,
+                      :send_notifications, :post_trigger, :report_classification])
 
   def self.paginated(page, per_page)
     page(page).per(per_page)
   end
- 
+
   def self.comments
     Comment.where(published: true).order('created_at DESC')
   end
@@ -59,18 +59,18 @@ class Feedback < ActiveRecord::Base
     article
   end
 
-  def permalink_url(anchor=:ignored, only_path=false)
-    article.permalink_url("#{self.class.to_s.downcase}-#{id}",only_path)
+  def permalink_url(_anchor = :ignored, only_path = false)
+    article.permalink_url("#{self.class.to_s.downcase}-#{id}", only_path)
   end
 
-  def html_postprocess(field, html)
+  def html_postprocess(_field, html)
     helper = ContentTextHelpers.new
     helper.sanitize(helper.auto_link(html)).nofollowify
   end
 
   def correct_url
     return if url.blank?
-    self.url = "http://" + url.to_s unless url =~ %r{^https?://}
+    self.url = 'http://' + url.to_s unless url =~ %r{^https?://}
   end
 
   def article_allows_this_feedback
@@ -82,11 +82,11 @@ class Feedback < ActiveRecord::Base
   end
 
   def akismet_options
-    {:comment_type => self.class.to_s.downcase,
-     :comment_author => originator,
-     :comment_author_email => email,
-     :comment_author_url => url,
-     :comment_content => body}
+    { comment_type: self.class.to_s.downcase,
+      comment_author: originator,
+      comment_author_email: email,
+      comment_author_url: url,
+      comment_content: body }
   end
 
   def spam_fields
@@ -95,7 +95,7 @@ class Feedback < ActiveRecord::Base
 
   def classify
     begin
-      return :ham if self.user_id
+      return :ham if user_id
       return :spam if blog.default_moderate_comments
       return :ham unless blog.sp_global
     rescue NoMethodError
@@ -103,24 +103,24 @@ class Feedback < ActiveRecord::Base
 
     # Yeah, three state logic is evil...
     case sp_is_spam? || akismet_is_spam?
-    when nil; :spam
-    when true; :spam
-    when false; :ham
+    when nil then :spam
+    when true then :spam
+    when false then :ham
     end
   end
 
-  def sp_is_spam?(options={})
+  def sp_is_spam?(_options = {})
     sp = SpamProtection.new(blog)
     Timeout.timeout(defined?($TESTING) ? 10 : 30) do
       spam_fields.any? do |field|
-        sp.is_spam?(self.send(field))
+        sp.is_spam?(send(field))
       end
     end
   rescue Timeout::Error
     nil
   end
 
-  def akismet_is_spam?(options={})
+  def akismet_is_spam?(_options = {})
     return false if akismet.nil?
 
     begin
@@ -163,13 +163,13 @@ class Feedback < ActiveRecord::Base
     report_as('ham')
   end
 
-  def report_as spam_or_ham
+  def report_as(spam_or_ham)
     return if akismet.nil?
     begin
-      Timeout.timeout(defined?($TESTING) ? 5 : 3600) {
+      Timeout.timeout(defined?($TESTING) ? 5 : 3600) do
         akismet.send("submit_#{spam_or_ham}",
                      ip, user_agent, akismet_options)
-      }
+      end
     rescue Timeout::Error
       nil
     end
@@ -182,7 +182,7 @@ class Feedback < ActiveRecord::Base
 
   def confirm_classification!
     confirm_classification
-    self.save
+    save
   end
 
   def feedback_not_closed
@@ -192,11 +192,12 @@ class Feedback < ActiveRecord::Base
   end
 
   private
+
   @@akismet = nil
 
   def akismet
     @@akismet = akismet_client if @@akismet.nil?
-    return @@akismet == false ? nil : @@akismet
+    @@akismet == false ? nil : @@akismet
   end
 
   def akismet_client

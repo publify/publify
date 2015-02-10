@@ -30,7 +30,7 @@ class FeedbackController < ApplicationController
           article = Article.find(params[:article_id])
           redirect_to "#{URI.parse(article.permalink_url).path}\##{@page_title.underscore}"
         else
-          render :text => 'this space left blank'
+          render text: 'this space left blank'
         end
       end
       feedbacks = Feedback.from(controller_name, params[:article_id]).limit(this_blog.per_page(params[:format]))
@@ -46,5 +46,4 @@ class FeedbackController < ApplicationController
     instance_variable_set(ivar_name, collection)
     render "index_#{format}_feed"
   end
-
 end

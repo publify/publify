@@ -1,16 +1,15 @@
 require 'rails_helper'
 require 'xmlrpc/client'
 
-describe Ping, :type => :model do
+describe Ping, type: :model do
   describe 'Given a post which references a pingback enabled article' do
-
     let(:pingback_target) { 'http://anotherblog.org/xml-rpc' }
     let(:referenced_url) { 'http://anotherblog.org/a-post' }
     let(:referrer_url) { 'http://myblog.net/referring-post' }
     let(:mock_response) { double('response') }
     let(:mock_xmlrpc_response) { double('xmlrpc_response') }
 
-    context "with a default blog" do
+    context 'with a default blog' do
       let!(:blog) { create(:blog) }
 
       it 'Pingback sent to url found in referenced header' do
@@ -22,7 +21,7 @@ describe Ping, :type => :model do
       it 'Pingback sent to url found in referenced body' do
         expect(mock_response).to receive(:[]).with('X-Pingback').at_least(:once).and_return(nil)
         expect(mock_response).to receive(:body).at_least(:once).
-          and_return(%{<link rel="pingback" href="#{pingback_target}" />})
+          and_return(%(<link rel="pingback" href="#{pingback_target}" />))
         expect(mock_xmlrpc_response).to receive(:call).with('pingback.ping', referrer_url, referenced_url)
         make_and_send_ping
       end
@@ -32,21 +31,21 @@ describe Ping, :type => :model do
       expect(Net::HTTP).to receive(:get_response).and_return(mock_response)
       expect(XMLRPC::Client).to receive(:new2).with(pingback_target).and_return(mock_xmlrpc_response)
 
-      ping = FactoryGirl.create(:article).pings.build("url" => referenced_url)
+      ping = FactoryGirl.create(:article).pings.build('url' => referenced_url)
       expect(ping).to be_instance_of(Ping)
       expect(ping.url).to eq(referenced_url)
       ping.send_pingback_or_trackback(referrer_url).join
     end
   end
 
-  describe "An article links to another article, which contains a trackback URL" do
+  describe 'An article links to another article, which contains a trackback URL' do
     let(:referenced_url) { 'http://anotherblog.org/a-post' }
-    let(:trackback_url) { "http://anotherblog.org/a-post/trackback" }
+    let(:trackback_url) { 'http://anotherblog.org/a-post/trackback' }
     let!(:blog) { create(:blog) }
 
     it 'Trackback URL is detected and pinged' do
       referrer_url = 'http://myblog.net/referring-post'
-      post = "title=Article+1%21&excerpt=body&url=http://myblog.net/referring-post&blog_name=test+blog"
+      post = 'title=Article+1%21&excerpt=body&url=http://myblog.net/referring-post&blog_name=test+blog'
       article = create(:article, title: 'Article 1!', body: 'body', permalink: 'referring-post')
       make_and_send_ping(post, article, referrer_url)
     end
@@ -55,9 +54,9 @@ describe Ping, :type => :model do
       # TODO: Assert the following:
       # contents(:xmltest).body = originally seen on <a href="http://blog.rubyonrails.org/">blog.rubyonrails.org</a>
 
-      article = create(:article, title: "Associations aren't :dependent => true anymore", excerpt: "A content with several data")
+      article = create(:article, title: "Associations aren't :dependent => true anymore", excerpt: 'A content with several data')
       post = "title=#{CGI.escape(article.title)}"
-      post << "&excerpt=#{CGI.escape("A content with several data")}" # not original text see if normal ?
+      post << "&excerpt=#{CGI.escape('A content with several data')}" # not original text see if normal ?
       post << "&url=#{article.permalink_url}"
       post << "&blog_name=#{CGI.escape('test blog')}"
 
@@ -68,9 +67,9 @@ describe Ping, :type => :model do
       # TODO: Assert the following:
       # contents(:markdown_article) #in markdown format\n * we\n * use\n [ok](http://blog.ok.com) to define a link
 
-      article = create(:article, title: "How made link with markdown", excerpt: "A content with several data" )
+      article = create(:article, title: 'How made link with markdown', excerpt: 'A content with several data')
       post = "title=#{CGI.escape(article.title)}"
-      post << "&excerpt=#{CGI.escape("A content with several data")}" # not original text see if normal ?
+      post << "&excerpt=#{CGI.escape('A content with several data')}" # not original text see if normal ?
       post << "&url=#{article.permalink_url}"
       post << "&blog_name=#{CGI.escape('test blog')}"
 
@@ -116,7 +115,7 @@ describe Ping, :type => :model do
       expect(XMLRPC::Client).to receive(:new2).with('http://rpc.technorati.com/rpc/ping').and_return(mock)
       expect(mock).to receive(:call).with('weblogUpdates.ping', 'test blog', 'http://myblog.net', 'http://myblog.net/new-post')
 
-      ping = create(:article).pings.build("url" => "http://rpc.technorati.com/rpc/ping")
+      ping = create(:article).pings.build('url' => 'http://rpc.technorati.com/rpc/ping')
       ping.send_weblogupdatesping('http://myblog.net', 'http://myblog.net/new-post').join
     end
   end

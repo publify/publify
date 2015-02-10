@@ -1,19 +1,19 @@
 class Admin::FeedbackController < Admin::BaseController
   cache_sweeper :blog_sweeper
-  Only_domain = ['unapproved', 'presumed_ham', 'presumed_spam', 'ham', 'spam']
+  Only_domain = %w(unapproved presumed_ham presumed_spam ham spam)
 
   def index
     scoped_feedback = Feedback
 
-    if params[:only].present? 
+    if params[:only].present?
       @only_param = Only_domain.dup.delete(params[:only])
       scoped_feedback = scoped_feedback.send(@only_param) if @only_param
     end
 
-    if params[:page].blank? || params[:page] == "0"
+    if params[:page].blank? || params[:page] == '0'
       params.delete(:page)
     end
-    
+
     @feedback = scoped_feedback.paginated(params[:page], this_blog.admin_display_elements)
   end
 
@@ -42,20 +42,20 @@ class Admin::FeedbackController < Admin::BaseController
     @comment = @article.comments.build(params[:comment].permit!)
     @comment.user_id = current_user.id
 
-    if request.post? and @comment.save
+    if request.post? && @comment.save
       # We should probably wave a spam filter over this, but for now, just mark it as published.
       @comment.mark_as_ham
       @comment.save!
       flash[:success] = I18n.t('admin.feedback.create.success')
     end
-    redirect_to :action => 'article', :id => @article.id
+    redirect_to action: 'article', id: @article.id
   end
 
   def edit
     @comment = Comment.find(params[:id])
     @article = @comment.article
     unless @article.access_by? current_user
-      redirect_to :action => 'index'
+      redirect_to action: 'index'
       return
     end
   end
@@ -63,11 +63,11 @@ class Admin::FeedbackController < Admin::BaseController
   def update
     comment = Comment.find(params[:id])
     unless comment.article.access_by? current_user
-      redirect_to :action => 'index'
+      redirect_to action: 'index'
       return
     end
     comment.attributes = params[:comment].permit!
-    if request.post? and comment.save
+    if request.post? && comment.save
       flash[:success] = I18n.t('admin.feedback.update.success')
       redirect_to action: 'article', id: comment.article.id
     else
@@ -86,7 +86,6 @@ class Admin::FeedbackController < Admin::BaseController
     @feedback ||= @article.comments
   end
 
-
   def change_state
     return unless request.xhr?
 
@@ -94,26 +93,25 @@ class Admin::FeedbackController < Admin::BaseController
     template = @feedback.change_state!
 
     respond_to do |format|
-      
       if params[:context] != 'listing'
         @comments = Comment.last_published
-        page.replace_html('commentList', :partial => 'admin/dashboard/comment')
+        page.replace_html('commentList', partial: 'admin/dashboard/comment')
       else
-        if template == "ham"
+        if template == 'ham'
           format.js { render 'ham' }
         else
-          format.js { render 'spam'}
-        end        
+          format.js { render 'spam' }
+        end
       end
     end
   end
 
   def bulkops
-    ids = (params[:feedback_check]||{}).keys.map(&:to_i)
+    ids = (params[:feedback_check] || {}).keys.map(&:to_i)
     items = Feedback.find(ids)
     @unexpired = true
 
-    bulkop = (params[:bulkop_top]||{}).empty? ? params[:bulkop_bottom] : params[:bulkop_top]
+    bulkop = (params[:bulkop_top] || {}).empty? ? params[:bulkop_bottom] : params[:bulkop_top]
 
     case bulkop
     when 'Delete Checked Items'
@@ -167,5 +165,4 @@ class Admin::FeedbackController < Admin::BaseController
     @unexpired = false
     PageCache.sweep_all
   end
-
 end

@@ -1,7 +1,7 @@
 class PublifyApp
   class Textfilter
     class Markdown < TextFilterPlugin::Markup
-      plugin_display_name "Markdown"
+      plugin_display_name 'Markdown'
       plugin_description 'Markdown markup language from <a href="http://daringfireball.com/">Daring Fireball</a>'
 
       def self.help_text
@@ -28,7 +28,7 @@ is available from the author's site, but here's a short summary:
         }
       end
 
-      def self.filtertext(blog,content,text,params)
+      def self.filtertext(_blog, _content, text, _params)
         # FIXME: Workaround for BlueCloth not interpreting <publify:foo> as an
         # HTML tag. See <http://deveiate.org/projects/BlueCloth/ticket/70>.
         escaped_macros = text.gsub(%r{(</?publify):}, '\1X')

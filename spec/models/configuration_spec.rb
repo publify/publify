@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Given a new blog', :type => :model do
+describe 'Given a new blog', type: :model do
   let!(:blog) { Blog.new }
 
   it '#blog_name should be My Shiny Weblog!' do
@@ -28,19 +28,19 @@ describe 'Given a new blog', :type => :model do
     expect(blog).not_to be_sp_global
   end
 
-  it "#sp_article_auto_close should be 0" do
+  it '#sp_article_auto_close should be 0' do
     expect(blog.sp_article_auto_close).to eq(0)
   end
 
-  it "#sp_url_limit should be 0" do
+  it '#sp_url_limit should be 0' do
     expect(blog.sp_url_limit).to eq(0)
   end
 
-  it "#sp_akismet_key should be blank" do
+  it '#sp_akismet_key should be blank' do
     expect(blog.sp_akismet_key).to eq('')
   end
 
-  it "#use_recaptcha should be false" do
+  it '#use_recaptcha should be false' do
     expect(blog).not_to be_use_recaptcha
   end
 
@@ -164,71 +164,71 @@ describe 'Given a new blog', :type => :model do
   end
 
   it 'home display template is blog name | blog description | meta keywords' do
-    expect(blog.home_title_template).to eq("%blog_name% | %blog_subtitle%")
-    expect(blog.home_desc_template).to eq("%blog_name% | %blog_subtitle% | %meta_keywords%")
+    expect(blog.home_title_template).to eq('%blog_name% | %blog_subtitle%')
+    expect(blog.home_desc_template).to eq('%blog_name% | %blog_subtitle% | %meta_keywords%')
   end
 
   it 'article template is title | blog name with excerpt in the description' do
-    expect(blog.article_title_template).to eq("%title% | %blog_name%")
-    expect(blog.article_desc_template).to eq("%excerpt%")
+    expect(blog.article_title_template).to eq('%title% | %blog_name%')
+    expect(blog.article_desc_template).to eq('%excerpt%')
   end
 
   it 'page template is title | blog name with excerpt in the description' do
-    expect(blog.page_title_template).to eq("%title% | %blog_name%")
-    expect(blog.page_desc_template).to eq("%excerpt%")
+    expect(blog.page_title_template).to eq('%title% | %blog_name%')
+    expect(blog.page_desc_template).to eq('%excerpt%')
   end
 
   it 'paginated template is title | blog name | page with keywords in the description' do
-    expect(blog.paginated_title_template).to eq("%blog_name% | %blog_subtitle% %page%")
-    expect(blog.paginated_desc_template).to eq("%blog_name% | %blog_subtitle% | %meta_keywords% %page%")
+    expect(blog.paginated_title_template).to eq('%blog_name% | %blog_subtitle% %page%')
+    expect(blog.paginated_desc_template).to eq('%blog_name% | %blog_subtitle% | %meta_keywords% %page%')
   end
 
   it 'tags title template is Tag: name | blog_name | page' do
-    expect(blog.tag_title_template).to eq("Tag: %name% | %blog_name% %page%")
+    expect(blog.tag_title_template).to eq('Tag: %name% | %blog_name% %page%')
   end
 
   it 'tags description template is name | description | blog description page' do
-    expect(blog.tag_desc_template).to eq("%name% | %blog_name% | %blog_subtitle% %page%")
+    expect(blog.tag_desc_template).to eq('%name% | %blog_name% | %blog_subtitle% %page%')
   end
 
   it 'author title template is name | blog_name' do
-    expect(blog.author_title_template).to eq("%author% | %blog_name%")
+    expect(blog.author_title_template).to eq('%author% | %blog_name%')
   end
 
   it 'author description template is name | blog name | blog description page' do
-    expect(blog.author_desc_template).to eq("%author% | %blog_name% | %blog_subtitle%")
+    expect(blog.author_desc_template).to eq('%author% | %blog_name% | %blog_subtitle%')
   end
 
   it 'archives title template is Archives for blog name date page' do
-    expect(blog.archives_title_template).to eq("Archives for %blog_name% %date% %page%")
+    expect(blog.archives_title_template).to eq('Archives for %blog_name% %date% %page%')
   end
 
   it 'archives description template is Archives for blog name date page blog description' do
-    expect(blog.archives_desc_template).to eq("Archives for %blog_name% %date% %page% %blog_subtitle%")
+    expect(blog.archives_desc_template).to eq('Archives for %blog_name% %date% %page% %blog_subtitle%')
   end
 
   it 'search title template is Archives for blog name date page' do
-    expect(blog.search_title_template).to eq("Results for %search% | %blog_name% %page%")
+    expect(blog.search_title_template).to eq('Results for %search% | %blog_name% %page%')
   end
 
   it 'search description template is Archives for blog name date page blog description' do
-    expect(blog.search_desc_template).to eq("Results for %search% | %blog_name% | %blog_subtitle% %page%")
+    expect(blog.search_desc_template).to eq('Results for %search% | %blog_name% | %blog_subtitle% %page%')
   end
 
   it 'status list title is Statuses | blog name page' do
-    expect(blog.statuses_title_template).to eq("Notes | %blog_name% %page%")
+    expect(blog.statuses_title_template).to eq('Notes | %blog_name% %page%')
   end
 
   it 'status list description  is Notes | blog name | blog subtitle page' do
-    expect(blog.statuses_desc_template).to eq("Notes | %blog_name% | %blog_subtitle% %page%")
+    expect(blog.statuses_desc_template).to eq('Notes | %blog_name% | %blog_subtitle% %page%')
   end
 
   it 'a single status title is status content | blog name' do
-    expect(blog.status_title_template).to eq("%body% | %blog_name%")
+    expect(blog.status_title_template).to eq('%body% | %blog_name%')
   end
 
   it 'status list description  is status content' do
-    expect(blog.status_desc_template).to eq("%excerpt%")
+    expect(blog.status_desc_template).to eq('%excerpt%')
   end
 
   it 'custom tracking fiels is empty' do
@@ -252,7 +252,7 @@ describe 'Given a new blog', :type => :model do
   end
 end
 
-describe 'Given a new user', :type => :model do
+describe 'Given a new user', type: :model do
   before(:each) do
     @user = User.new
   end
@@ -322,7 +322,7 @@ describe 'Given a new user', :type => :model do
   end
 end
 
-describe 'Given a new article', :type => :model do
+describe 'Given a new article', type: :model do
   before(:each) do
     @article = Article.new
   end
@@ -332,7 +332,7 @@ describe 'Given a new article', :type => :model do
   end
 end
 
-describe 'Given a new page', :type => :model do
+describe 'Given a new page', type: :model do
   before(:each) do
     @page = Page.new
   end
@@ -342,24 +342,24 @@ describe 'Given a new page', :type => :model do
   end
 end
 
-describe "Given a new status", :type => :model do
+describe 'Given a new status', type: :model do
   before(:each) do
     @note = Note.new
   end
 
-  it "should not have a twitter id set" do
-    expect(@note.twitter_id).to eq("")
+  it 'should not have a twitter id set' do
+    expect(@note.twitter_id).to eq('')
   end
 
-  it "should not reply to another one" do
-    expect(@note.in_reply_to_status_id).to eq("")
+  it 'should not reply to another one' do
+    expect(@note.in_reply_to_status_id).to eq('')
   end
 
-  it "should not have a reply context message" do
-    expect(@note.in_reply_to_message).to eq("")
+  it 'should not have a reply context message' do
+    expect(@note.in_reply_to_message).to eq('')
   end
 
-  it "should not have a reply context protected" do
+  it 'should not have a reply context protected' do
     expect(@note.in_reply_to_protected).to eq(false)
   end
 end
