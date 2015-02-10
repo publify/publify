@@ -1,7 +1,5 @@
 describe Admin::FeedbackController, type: :controller do
 
-  render_views
-
   shared_examples_for 'destroy feedback with feedback from own article' do
     it 'should destroy feedback' do
       id = feedback_from_own_article.id

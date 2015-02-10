@@ -1,6 +1,4 @@
 describe Admin::PostTypesController, type: :controller do
-  render_views
-
   before do
     create(:blog)
     user = create(:user, :as_admin)

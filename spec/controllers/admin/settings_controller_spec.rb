@@ -1,5 +1,4 @@
 describe Admin::SettingsController, type: :controller do
-  render_views
 
   before(:each) do
     create(:blog)

@@ -1,6 +1,4 @@
 describe Admin::RedirectsController, type: :controller do
-  render_views
-
   before do
     FactoryGirl.create(:blog)
     #TODO Delete after removing fixtures
