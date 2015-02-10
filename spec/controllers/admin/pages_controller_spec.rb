@@ -1,7 +1,5 @@
 # coding: utf-8
 describe Admin::PagesController, type: :controller do
-  render_views
-
   let!(:blog) { create(:blog) }
   let!(:user) { create(:user, :as_admin) }
 

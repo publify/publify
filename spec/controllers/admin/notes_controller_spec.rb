@@ -1,5 +1,4 @@
 describe Admin::NotesController, type: :controller do
-  render_views
 
   before(:each) { request.session = { user: admin.id } }
 

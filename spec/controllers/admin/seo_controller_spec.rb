@@ -1,6 +1,4 @@
 describe Admin::SeoController, type: :controller do
-  render_views
-
   let!(:blog) { create(:blog) }
   let(:admin) { create(:user, :as_admin) }
 
