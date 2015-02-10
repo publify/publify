@@ -1,12 +1,15 @@
 # Filters added to this controller apply to all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
 
+require File.join(Rails.root, 'lib', 'popular_article')
+
 class ApplicationController < ActionController::Base
 
   include ::LoginSystem
   protect_from_forgery only: [:edit, :update, :delete]
 
   before_filter :reset_local_cache, :fire_triggers, :load_lang, :set_paths
+  before_filter :generate_popular_articles
   after_filter :reset_local_cache
 
   class << self
@@ -75,4 +78,8 @@ class ApplicationController < ActionController::Base
     false
   end
   helper_method :use_custom_header?
+
+  def generate_popular_articles
+    @popular_articles = MostPopularArticle.last
+  end
 end

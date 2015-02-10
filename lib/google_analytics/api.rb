@@ -8,7 +8,7 @@ module GoogleAnalytics
       profile = user.profiles.first
 
       results = GoogleAnalytics::Page.popular_articles(profile)
-      results[0..2]
+      results
     end
 
     def self.new_oauth2_token
