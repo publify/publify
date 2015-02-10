@@ -24,7 +24,7 @@ class AccountsController < ApplicationController
   end
 
   def signup
-    unless User.count.zero? or this_blog.allow_signup == 1
+    unless User.count.zero? || this_blog.allow_signup == 1
       redirect_to :action => 'login'
       return
     end

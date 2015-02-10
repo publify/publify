@@ -26,7 +26,7 @@ class Note < Content
   TWITTER_LINK_LENGTH = 22
 
   def set_permalink
-    self.permalink = "#{self.id}-#{self.body.to_permalink[0..79]}" if self.permalink.nil? or self.permalink.empty?
+    self.permalink = "#{self.id}-#{self.body.to_permalink[0..79]}" if self.permalink.nil? || self.permalink.empty?
     self.save
   end
 
@@ -72,7 +72,7 @@ class Note < Content
 
     begin
       options = {}
-      if self.in_reply_to_status_id and self.in_reply_to_status_id != ""
+      if self.in_reply_to_status_id && self.in_reply_to_status_id != ""
         options = {:in_reply_to_status_id => self.in_reply_to_status_id}
         self.in_reply_to_message = twitter.status(self.in_reply_to_status_id).to_json
       end

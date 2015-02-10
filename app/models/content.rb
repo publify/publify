@@ -139,7 +139,7 @@ class Content < ActiveRecord::Base
 
   def short_url
     # Double check because of crappy data in my own old database
-    return unless self.published and self.redirects.size > 0
+    return unless self.published && self.redirects.size > 0
     self.redirects.last.to_url
   end
 

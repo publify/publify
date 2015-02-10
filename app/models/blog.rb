@@ -240,8 +240,8 @@ class Blog < ActiveRecord::Base
   end
 
   def has_twitter_configured?
-    return false if self.twitter_consumer_key.nil? or self.twitter_consumer_secret.nil?
-    return false if self.twitter_consumer_key.empty? or self.twitter_consumer_secret.empty?
+    return false if self.twitter_consumer_key.nil? || self.twitter_consumer_secret.nil?
+    return false if self.twitter_consumer_key.empty? || self.twitter_consumer_secret.empty?
     true
   end
 

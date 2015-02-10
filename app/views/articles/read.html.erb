@@ -22,7 +22,7 @@
 
 <%= render 'article_links', article: @article %>
 
-<%- if @article.allow_comments? or @article.published_comments.size > 0 %>
+<%- if @article.allow_comments? || @article.published_comments.size > 0 %>
   <a name="comments"></a><h4 class="blueblk"><%= t('.comments') %></h4>
   <%- unless @article.comments_closed? %>
     <p class="postmetadata alt">

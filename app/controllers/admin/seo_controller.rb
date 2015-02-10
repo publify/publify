@@ -10,8 +10,8 @@ class Admin::SeoController < Admin::BaseController
       update_settings
     else
       set_setting
-      if @setting.permalink_format != '/%year%/%month%/%day%/%title%' and
-        @setting.permalink_format != '/%year%/%month%/%title%' and
+      if @setting.permalink_format != '/%year%/%month%/%day%/%title%' &&
+        @setting.permalink_format != '/%year%/%month%/%title%' &&
         @setting.permalink_format != '/%title%'
         @setting.custom_permalink = @setting.permalink_format
         @setting.permalink_format = 'custom'
@@ -28,7 +28,7 @@ class Admin::SeoController < Admin::BaseController
   private
 
   def update_settings
-    if params[:setting]['permalink_format'] and params[:setting]['permalink_format'] == 'custom'
+    if params[:setting]['permalink_format'] && params[:setting]['permalink_format'] == 'custom'
       params[:setting]['permalink_format'] = params[:setting]['custom_permalink']
     end
     update_settings_with!(params[:setting])

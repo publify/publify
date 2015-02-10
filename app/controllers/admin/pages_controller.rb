@@ -33,7 +33,7 @@ class Admin::PagesController < Admin::BaseController
     @page = Page.find(params[:id])
     @page.attributes = params[:page].permit! if params[:page]
     @page.text_filter ||= default_textfilter
-    if request.post? and @page.save
+    if request.post? && @page.save
       flash[:success] = I18n.t('admin.pages.edit.success')
       redirect_to :action => 'index'
     end

@@ -236,7 +236,7 @@ class User < ActiveRecord::Base
   validates :login, uniqueness: true, :on => :create
   validates :email, uniqueness: true, :on => :create
   validates :password, length: { in: 5..40 }, if: Proc.new { |user|
-    user.read_attribute('password').nil? or user.password.to_s.length > 0
+    user.read_attribute('password').nil? || user.password.to_s.length > 0
   }
 
   validates :email, :login, presence: true

@@ -14,7 +14,7 @@ class SetupController < ApplicationController
     @user.generate_password!
     @user.name = @user.login
 
-    unless this_blog.valid? and @user.valid?
+    unless this_blog.valid? && @user.valid?
       redirect_to action: 'index'
       return
     end
