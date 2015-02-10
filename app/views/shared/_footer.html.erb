@@ -2,6 +2,7 @@
   <div class="l-footer-links">
     <div class="l-constrained">
       <div class="l-footer-links-section">
+        <% unless @popular_articles.empty? %>
         <h3 class="l-footer-link__header">What's popular</h3>
 
         <% @popular_articles.each do |article| %>
@@ -9,6 +10,7 @@
             <%= link_to article.title, article.permalink_url, title: article.title %>
             <time class="l-footer-link__list-item-time"><%= "#{display_article_date(article)}" %></time>
           </li>
+        <% end %>
         <% end %>
       </div>
 
