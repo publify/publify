@@ -80,6 +80,6 @@ class ApplicationController < ActionController::Base
   helper_method :use_custom_header?
 
   def generate_popular_articles
-    @popular_articles = MostPopularArticle.last
+    @popular_articles = MostPopularArticle.last || []
   end
 end
