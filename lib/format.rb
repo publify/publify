@@ -1,8 +1,6 @@
 module Format
-
   EMAIL = /^[_a-z0-9\+\.\-]+\@[_a-z0-9\-]+\.[_a-z0-9\.\-]+$/i
   PASSWORD = /^[\_a-zA-Z0-9\.\-]+$/
-
 
   # matches everything to the last \ or / in a string.
   # can chop of path of a filename like this : '/tobi/home/tobi.jpg'.sub(/^.*[\\\/]/,'') => tobi.jpg

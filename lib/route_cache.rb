@@ -9,7 +9,7 @@ class RouteCache
     @cache[key.inspect]
   end
 
-  def self.[]=(key,value)
-    @cache[key.inspect]=value
+  def self.[]=(key, value)
+    @cache[key.inspect] = value
   end
 end

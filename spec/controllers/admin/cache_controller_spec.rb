@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Admin::CacheController, :type => :controller do
+describe Admin::CacheController, type: :controller do
   render_views
   let!(:blog) { create(:blog) }
 

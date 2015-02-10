@@ -8,32 +8,33 @@ class Content < ActiveRecord::Base
 
   # TODO: Move these calls to ContentBase
   after_save :invalidates_cache?
-  after_destroy lambda { |c|  c.invalidates_cache?(true) }
+  after_destroy ->(c) {  c.invalidates_cache?(true) }
 
   belongs_to :text_filter
   belongs_to :user
 
   has_many :redirections
-  has_many :redirects, :through => :redirections, :dependent => :destroy
+  has_many :redirects, through: :redirections, dependent: :destroy
 
-  has_many :triggers, :as => :pending_item, :dependent => :delete_all
+  has_many :triggers, as: :pending_item, dependent: :delete_all
 
-  scope :user_id, lambda { |user_id| where('user_id = ?', user_id) }
-  scope :published, lambda { where(published: true, published_at: Time.at(0)..Time.now).order('published_at DESC') }
-  scope :published_at, lambda {|time_params| published.where(published_at: PublifyTime.delta(*time_params)).order('published_at DESC')}
-  scope :not_published, lambda { where('published = ?', false) }
-  scope :draft, lambda { where('state = ?', 'draft') }
-  scope :no_draft, lambda { where('state <> ?', 'draft').order('published_at DESC') }
+  scope :user_id, ->(user_id) { where('user_id = ?', user_id) }
+  scope :published, -> { where(published: true, published_at: Time.at(0)..Time.now).order('published_at DESC') }
+  scope :published_at, ->(time_params) { published.where(published_at: PublifyTime.delta(*time_params)).order('published_at DESC') }
+  scope :not_published, -> { where('published = ?', false) }
+  scope :draft, -> { where('state = ?', 'draft') }
+  scope :no_draft, -> { where('state <> ?', 'draft').order('published_at DESC') }
   scope :searchstring, lambda { |search_string|
-    tokens = search_string.split(' ').collect {|c| "%#{c.downcase}%"}
-    where('state = ? AND ' + (['(LOWER(body) LIKE ? OR LOWER(extended) LIKE ? OR LOWER(title) LIKE ?)']*tokens.size).join(' AND '),
-                     "published", *tokens.collect{ |token| [token] * 3 }.flatten)
+    tokens = search_string.split(' ').collect { |c| "%#{c.downcase}%" }
+    where('state = ? AND ' + (['(LOWER(body) LIKE ? OR LOWER(extended) LIKE ? OR LOWER(title) LIKE ?)'] * tokens.size).join(' AND '),
+          'published', *tokens.collect { |token| [token] * 3 }.flatten)
   }
-  scope :already_published, lambda { where('published = ? AND published_at < ?', true, Time.now).order(default_order) }
+  scope :already_published, -> { where('published = ? AND published_at < ?', true, Time.now).order(default_order) }
 
   scope :published_at_like, lambda { |date_at|
-    where(:published_at => (PublifyTime.delta_like(date_at))
-  )}
+    where(published_at: (PublifyTime.delta_like(date_at))
+  )
+  }
 
   serialize :whiteboard
 
@@ -49,7 +50,7 @@ class Content < ActiveRecord::Base
   # Set the text filter for this object.
   # NOTE: Due to how Rails injects association methods, this cannot be put in ContentBase
   # TODO: Allowing assignment of a string here is not very clean.
-  def text_filter= filter
+  def text_filter=(filter)
     filter_object = filter.to_text_filter
     if filter_object
       self.text_filter_id = filter_object.id
@@ -59,30 +60,30 @@ class Content < ActiveRecord::Base
   end
 
   def shorten_url
-    return unless self.published
+    return unless published
 
     r = Redirect.new
     r.from_path = r.shorten
-    r.to_path = self.permalink_url
+    r.to_path = permalink_url
 
     # This because updating self.redirects.first raises ActiveRecord::ReadOnlyRecord
-    unless (red = self.redirects.first).nil?
-      return if red.to_path == self.permalink_url
+    unless (red = redirects.first).nil?
+      return if red.to_path == permalink_url
       r.from_path = red.from_path
       red.destroy
-      self.redirects.clear # not sure we need this one
+      redirects.clear # not sure we need this one
     end
 
-    self.redirects << r
+    redirects << r
   end
 
-  def self.find_already_published(limit)
+  def self.find_already_published(_limit)
     where('published_at < ?', Time.now).limit(1000).order('created_at DESC')
   end
 
   def self.search_with(params)
     params ||= {}
-    scoped = self.unscoped
+    scoped = unscoped
     if params[:searchstring].present?
       scoped = scoped.searchstring(params[:searchstring])
     end
@@ -104,11 +105,11 @@ class Content < ActiveRecord::Base
   end
 
   def whiteboard
-    self[:whiteboard] ||= Hash.new
+    self[:whiteboard] ||= {}
   end
 
   def withdraw!
-    self.withdraw
+    withdraw
     self.save!
   end
 
@@ -121,15 +122,15 @@ class Content < ActiveRecord::Base
   end
 
   def get_rss_description
-    return "" unless blog.rss_description
-    return "" unless respond_to?(:user) && self.user && self.user.name
+    return '' unless blog.rss_description
+    return '' unless respond_to?(:user) && user && user.name
 
     rss_desc = blog.rss_description_text
-    rss_desc.gsub!('%author%', self.user.name)
+    rss_desc.gsub!('%author%', user.name)
     rss_desc.gsub!('%blog_url%', blog.base_url)
     rss_desc.gsub!('%blog_name%', blog.blog_name)
-    rss_desc.gsub!('%permalink_url%', self.permalink_url)
-    return rss_desc
+    rss_desc.gsub!('%permalink_url%', permalink_url)
+    rss_desc
   end
 
   # TODO: Perhaps permalink_url should produce valid URI's instead of IRI's
@@ -139,15 +140,14 @@ class Content < ActiveRecord::Base
 
   def short_url
     # Double check because of crappy data in my own old database
-    return unless self.published and self.redirects.size > 0
-    self.redirects.last.to_url
+    return unless published && redirects.size > 0
+    redirects.last.to_url
   end
-
 end
 
 class Object
   def to_text_filter
-    TextFilter.find_by_name(self.to_s) || TextFilter.find_by_name('none')
+    TextFilter.find_by_name(to_s) || TextFilter.find_by_name('none')
   end
 end
 
