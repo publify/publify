@@ -1,6 +1,8 @@
 # Filters added to this controller apply to all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
 
+require File.join(Rails.root, 'lib', 'popular_article')
+
 class ApplicationController < ActionController::Base
 
   include ::LoginSystem
@@ -78,6 +80,6 @@ class ApplicationController < ActionController::Base
   helper_method :use_custom_header?
 
   def generate_popular_articles
-    @popular_articles = PopularArticle.last || PopularArticle.new
+    @popular_articles = MostPopularArticle.last || []
   end
 end

@@ -76,30 +76,6 @@ describe TagsController, 'showing a single tag', type: :controller do
   end
 end
 
-describe TagsController, 'showing tag "foo"', type: :controller do
-  render_views
-
-  let!(:blog) { FactoryGirl.create(:blog) }
-
-  before(:each) do
-    #TODO need to add default article into tag_factory build to remove this :articles =>...
-    foo = FactoryGirl.create(:tag, name: 'foo', articles: [FactoryGirl.create(:article)])
-    get 'show', id: 'foo'
-  end
-
-  it 'should have good rss feed link in head' do
-    expect(response.body).to have_selector("head>link[href='http://test.host/tag/foo.rss'][rel=alternate][type='application/rss+xml'][title=RSS]", visible: false)
-  end
-
-  it 'should have good atom feed link in head' do
-    expect(response.body).to have_selector("head>link[href='http://test.host/tag/foo.atom'][rel=alternate][type='application/atom+xml'][title=Atom]", visible: false)
-  end
-
-  it 'should have a canonical URL' do
-    expect(response.body).to have_selector("head>link[href='#{blog.base_url}/tag/foo']", visible: false)
-  end
-end
-
 describe TagsController, 'showing a non-existant tag', type: :controller do
   # TODO: Perhaps we can show something like 'Nothing tagged with this tag'?
   it 'should redirect to main page' do

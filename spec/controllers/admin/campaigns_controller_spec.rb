@@ -1,5 +1,4 @@
 describe Admin::CampaignsController, type: :controller do
-  render_views
 
   let!(:blog) { create(:blog) }
   let!(:user) { create(:user, :as_admin) }

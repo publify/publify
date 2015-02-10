@@ -14,32 +14,13 @@ describe ArticlesController, 'base', type: :controller do
 
     before(:each) do
       allow(Campaign).to receive(:lead).and_return([campaign])
+      allow(PopularArticle).to receive(:find).and_return([])
 
       get :index 
     end
 
     it { expect(response).to render_template(:index) }
     it { expect(assigns[:articles]).to_not be_empty }
-
-    context 'with the view rendered' do
-      render_views
-
-      it 'should have good link feed rss' do
-        expect(response.body).to have_selector('head>link[href="http://test.host/articles.rss"]', visible: false)
-      end
-
-      it 'should have good link feed atom' do
-        expect(response.body).to have_selector('head>link[href="http://test.host/articles.atom"]', visible: false)
-      end
-
-      it 'should have a canonical url' do
-        expect(response.body).to have_selector("head>link[href='#{blog.base_url}/']", visible: false)
-      end
-
-      it 'should have good title' do
-        expect(response.body).to have_selector('title', text: 'test blog | test subtitles', visible: false)
-      end
-    end
   end
 
   describe '#search action' do
@@ -53,31 +34,6 @@ describe ArticlesController, 'base', type: :controller do
 
       it { expect(response).to render_template(:search) }
       it { expect(assigns[:articles]).to_not be_nil }
-
-      context 'with the view rendered' do
-        render_views
-        it 'should have good feed rss link' do
-          expect(response.body).to have_selector('head>link[href="http://test.host/search/a.rss"]', visible: false)
-        end
-
-        it 'should have good feed atom link' do
-          expect(response.body).to have_selector('head>link[href="http://test.host/search/a.atom"]', visible: false)
-        end
-
-        it 'should have a canonical url' do
-          expect(response.body).to have_selector("head>link[href='#{blog.base_url}/search/a']", visible: false)
-        end
-
-        it 'should have a good title' do
-          expect(response.body).to have_selector('title', text: 'Results for a | test blog', visible: false)
-        end
-
-        it 'should have content markdown interpret and without html tag' do
-          expect(response.body).to have_selector('div') do |div|
-            expect(div).to match(%Q{in markdown format * we * use [ok](http://blog.ok.com) to define a link})
-          end
-        end
-      end
     end
 
     it 'should render feed rss by search' do
@@ -122,13 +78,6 @@ describe ArticlesController, 'base', type: :controller do
         expect(response).to render_template('live_search')
       end
 
-      context 'with the view rendered' do
-        render_views
-        it 'should not have h3 tag' do
-          expect(response.body).to have_selector('h3')
-        end
-      end
-
       it 'should assign @search the search string' do
         expect(assigns[:search]).to be_equal(controller.params[:q])
       end
@@ -137,16 +86,12 @@ describe ArticlesController, 'base', type: :controller do
   end
 
   describe '#archives' do
-    render_views
     it 'works' do
       3.times { create(:article) }
       get 'archives'
       expect(response).to render_template(:archives)
       expect(assigns[:articles]).not_to be_nil
       expect(assigns[:articles]).not_to be_empty
-
-      expect(response.body).to have_selector("head>link[href='#{blog.base_url}/archives']", visible: false)
-      expect(response.body).to have_selector('title', text: 'Archives for test blog', visible: false)
     end
   end
 
@@ -165,17 +110,6 @@ describe ArticlesController, 'base', type: :controller do
     it 'should contain some articles' do
       expect(assigns[:articles]).not_to be_nil
       expect(assigns[:articles]).not_to be_empty
-    end
-
-    context 'with the view rendered' do
-      render_views
-      it 'should have a canonical url' do
-        expect(response.body).to have_selector("head>link[href='#{blog.base_url}/2004/4']", visible: false)
-      end
-
-      it 'should have a good title' do
-        expect(response.body).to have_selector('title', text: 'Archives for test blog', visible: false)
-      end
     end
   end
 
@@ -427,22 +361,6 @@ describe ArticlesController, 'redirecting', type: :controller do
 
       it 'should assign article1 to @article' do
         expect(assigns(:article)).to eq(article)
-      end
-
-      describe 'the resulting page' do
-        render_views
-
-        it 'should have good rss feed link' do
-          expect(response.body).to have_selector("head>link[href=\"http://myblog.net/#{article.permalink}.html.rss\"]", visible: false)
-        end
-
-        it 'should have good atom feed link' do
-          expect(response.body).to have_selector("head>link[href=\"http://myblog.net/#{article.permalink}.html.atom\"]", visible: false)
-        end
-
-        it 'should have a canonical url' do
-          expect(response.body).to have_selector("head>link[href='#{blog.base_url}/#{article.permalink}.html']", visible: false)
-        end
       end
     end
 

@@ -1,6 +1,4 @@
 describe Admin::UsersController, 'rough port of the old functional test', type: :controller do
-  render_views
-
   describe ' when you are admin' do
     before(:each) do
       create(:blog)
