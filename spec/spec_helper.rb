@@ -70,6 +70,17 @@ RSpec.configure do |config|
     # TODO: Enable this and fix the resulting problems
     # mocks.verify_partial_doubles = true
   end
+
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:transaction)
+  end
+
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
 end
 
 def define_spec_public_cache_directory
