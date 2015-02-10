@@ -81,7 +81,7 @@ module ApplicationHelper
   end
 
   def markup_help_popup(markup, text)
-    if markup and markup.commenthelp.size > 1
+    if markup && markup.commenthelp.size > 1
       "<a href=\"#{url_for :controller => 'articles', :action => 'markup_help', :id => markup.id}\" onclick=\"return popup(this, 'Publify Markup Help')\">#{text}</a>"
     else
       ''
@@ -132,8 +132,8 @@ module ApplicationHelper
   end
 
   def author_picture(status)
-    return if status.user.twitter_profile_image.nil? or status.user.twitter_profile_image.empty?
-    return if status.twitter_id.nil? or status.twitter_id.empty?
+    return if status.user.twitter_profile_image.nil? || status.user.twitter_profile_image.empty?
+    return if status.twitter_id.nil? || status.twitter_id.empty?
 
     image_tag(status.user.twitter_profile_image , class: "alignleft", alt: status.user.nickname)
   end
@@ -251,7 +251,7 @@ module ApplicationHelper
     if item.password_protected?
       "<p>This article is password protected. Please <a href='#{item.permalink_url}'>fill in your password</a> to read it</p>"
     elsif this_blog.hide_extended_on_rss
-      if item.excerpt? and item.excerpt.length>0 then
+      if item.excerpt? && item.excerpt.length>0 then
         item.excerpt
       else
         html(item, :body)

@@ -111,7 +111,7 @@ class Admin::ContentController < Admin::BaseController
 
     if @article.save
       flash[:success] = I18n.t('admin.content.autosave.success')
-      @must_update_calendar = (params[:article][:published_at] and params[:article][:published_at].to_time.to_i < Time.now.to_time.to_i and @article.parent_id.nil?)
+      @must_update_calendar = (params[:article][:published_at] && params[:article][:published_at].to_time.to_i < Time.now.to_time.to_i && @article.parent_id.nil?)
       respond_to do |format|
         format.js
       end
@@ -121,7 +121,7 @@ class Admin::ContentController < Admin::BaseController
   protected
 
   def get_fresh_or_existing_draft_for_article
-    if @article.published and @article.id
+    if @article.published && @article.id
       parent_id = @article.id
       @article = Article.drafts.child_of(parent_id).first || Article.new
       @article.allow_comments = this_blog.default_allow_comments

@@ -42,7 +42,7 @@ class Admin::FeedbackController < Admin::BaseController
     @comment = @article.comments.build(params[:comment].permit!)
     @comment.user_id = current_user.id
 
-    if request.post? and @comment.save
+    if request.post? && @comment.save
       # We should probably wave a spam filter over this, but for now, just mark it as published.
       @comment.mark_as_ham
       @comment.save!
@@ -67,7 +67,7 @@ class Admin::FeedbackController < Admin::BaseController
       return
     end
     comment.attributes = params[:comment].permit!
-    if request.post? and comment.save
+    if request.post? && comment.save
       flash[:success] = I18n.t('admin.feedback.update.success')
       redirect_to action: 'article', id: comment.article.id
     else
@@ -124,7 +124,7 @@ class Admin::FeedbackController < Admin::BaseController
       flash[:success] = I18n.t('admin.feedback.bulkops.success_deleted', count: count)
 
       items.each do |i|
-        i.invalidates_cache? or next
+        i.invalidates_cache? || next
         flush_cache
         return
       end
@@ -158,7 +158,7 @@ class Admin::FeedbackController < Admin::BaseController
   def update_feedback(items, method)
     items.each do |value|
       value.send(method)
-      @unexpired && value.invalidates_cache? or next
+      @unexpired && value.invalidates_cache? || next
       flush_cache
     end
   end

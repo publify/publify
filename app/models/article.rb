@@ -299,7 +299,7 @@ class Article < Content
   protected
 
   def set_published_at
-    if self.published and self[:published_at].nil?
+    if self.published && self[:published_at].nil?
       self[:published_at] = self.created_at || Time.now
     end
   end

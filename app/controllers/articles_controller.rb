@@ -34,7 +34,7 @@ class ArticlesController < ContentController
 
     @keywords = this_blog.meta_keywords
 
-    suffix = (params[:page].nil? and params[:year].nil?) ? "" : "/"
+    suffix = (params[:page].nil? && params[:year].nil?) ? "" : "/"
 
     respond_to do |format|
       format.html { render_paginated_index }
@@ -176,7 +176,7 @@ class ArticlesController < ContentController
   end
 
   def render_articles_feed format
-    if this_blog.feedburner_url.empty? or request.env["HTTP_USER_AGENT"] =~ /FeedBurner/i
+    if this_blog.feedburner_url.empty? || request.env["HTTP_USER_AGENT"] =~ /FeedBurner/i
       render "index_#{format}_feed", :layout => false
     else
       redirect_to "http://feeds2.feedburner.com/#{this_blog.feedburner_url}"
