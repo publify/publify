@@ -11,15 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150207135056) do
+ActiveRecord::Schema.define(version: 20150207131657) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "articles_tags", id: false, force: :cascade do |t|
     t.integer "article_id"
     t.integer "tag_id"
   end
 
-  add_index "articles_tags", ["article_id"], name: "index_articles_tags_on_article_id"
-  add_index "articles_tags", ["tag_id"], name: "index_articles_tags_on_tag_id"
+  add_index "articles_tags", ["article_id"], name: "index_articles_tags_on_article_id", using: :btree
+  add_index "articles_tags", ["tag_id"], name: "index_articles_tags_on_tag_id", using: :btree
 
   create_table "blogs", force: :cascade do |t|
     t.text   "settings"
@@ -51,10 +54,10 @@ ActiveRecord::Schema.define(version: 20150207135056) do
     t.string   "post_type",      default: "read"
   end
 
-  add_index "contents", ["id", "type"], name: "index_contents_on_id_and_type"
-  add_index "contents", ["published"], name: "index_contents_on_published"
-  add_index "contents", ["text_filter_id"], name: "index_contents_on_text_filter_id"
-  add_index "contents", ["user_id"], name: "index_contents_on_user_id"
+  add_index "contents", ["id", "type"], name: "index_contents_on_id_and_type", using: :btree
+  add_index "contents", ["published"], name: "index_contents_on_published", using: :btree
+  add_index "contents", ["text_filter_id"], name: "index_contents_on_text_filter_id", using: :btree
+  add_index "contents", ["user_id"], name: "index_contents_on_user_id", using: :btree
 
   create_table "feedback", force: :cascade do |t|
     t.string   "type"
@@ -80,16 +83,16 @@ ActiveRecord::Schema.define(version: 20150207135056) do
     t.string   "user_agent"
   end
 
-  add_index "feedback", ["article_id"], name: "index_feedback_on_article_id"
-  add_index "feedback", ["id", "type"], name: "index_feedback_on_id_and_type"
-  add_index "feedback", ["text_filter_id"], name: "index_feedback_on_text_filter_id"
-  add_index "feedback", ["user_id"], name: "index_feedback_on_user_id"
+  add_index "feedback", ["article_id"], name: "index_feedback_on_article_id", using: :btree
+  add_index "feedback", ["id", "type"], name: "index_feedback_on_id_and_type", using: :btree
+  add_index "feedback", ["text_filter_id"], name: "index_feedback_on_text_filter_id", using: :btree
+  add_index "feedback", ["user_id"], name: "index_feedback_on_user_id", using: :btree
 
   create_table "page_caches", force: :cascade do |t|
     t.string "name"
   end
 
-  add_index "page_caches", ["name"], name: "index_page_caches_on_name"
+  add_index "page_caches", ["name"], name: "index_page_caches_on_name", using: :btree
 
   create_table "pings", force: :cascade do |t|
     t.integer  "article_id"
@@ -97,7 +100,7 @@ ActiveRecord::Schema.define(version: 20150207135056) do
     t.datetime "created_at"
   end
 
-  add_index "pings", ["article_id"], name: "index_pings_on_article_id"
+  add_index "pings", ["article_id"], name: "index_pings_on_article_id", using: :btree
 
   create_table "post_types", force: :cascade do |t|
     t.string "name"
@@ -121,8 +124,8 @@ ActiveRecord::Schema.define(version: 20150207135056) do
     t.integer "redirect_id"
   end
 
-  add_index "redirections", ["content_id"], name: "index_redirections_on_content_id"
-  add_index "redirections", ["redirect_id"], name: "index_redirections_on_redirect_id"
+  add_index "redirections", ["content_id"], name: "index_redirections_on_content_id", using: :btree
+  add_index "redirections", ["redirect_id"], name: "index_redirections_on_redirect_id", using: :btree
 
   create_table "redirects", force: :cascade do |t|
     t.string   "from_path"
@@ -149,7 +152,7 @@ ActiveRecord::Schema.define(version: 20150207135056) do
     t.boolean  "itunes_explicit"
   end
 
-  add_index "resources", ["article_id"], name: "index_resources_on_article_id"
+  add_index "resources", ["article_id"], name: "index_resources_on_article_id", using: :btree
 
   create_table "sidebars", force: :cascade do |t|
     t.integer "active_position"
@@ -158,7 +161,7 @@ ActiveRecord::Schema.define(version: 20150207135056) do
     t.string  "type"
   end
 
-  add_index "sidebars", ["id", "type"], name: "index_sidebars_on_id_and_type"
+  add_index "sidebars", ["id", "type"], name: "index_sidebars_on_id_and_type", using: :btree
 
   create_table "sitealizer", force: :cascade do |t|
     t.string   "path"
@@ -192,7 +195,7 @@ ActiveRecord::Schema.define(version: 20150207135056) do
     t.string   "trigger_method"
   end
 
-  add_index "triggers", ["pending_item_id", "pending_item_type"], name: "index_triggers_on_pending_item_id_and_pending_item_type"
+  add_index "triggers", ["pending_item_id", "pending_item_type"], name: "index_triggers_on_pending_item_id_and_pending_item_type", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "login"
@@ -212,8 +215,8 @@ ActiveRecord::Schema.define(version: 20150207135056) do
     t.integer  "resource_id"
   end
 
-  add_index "users", ["profile_id"], name: "index_users_on_profile_id"
-  add_index "users", ["resource_id"], name: "index_users_on_resource_id"
-  add_index "users", ["text_filter_id"], name: "index_users_on_text_filter_id"
+  add_index "users", ["profile_id"], name: "index_users_on_profile_id", using: :btree
+  add_index "users", ["resource_id"], name: "index_users_on_resource_id", using: :btree
+  add_index "users", ["text_filter_id"], name: "index_users_on_text_filter_id", using: :btree
 
 end
