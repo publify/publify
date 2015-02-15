@@ -33,16 +33,16 @@
       <div class='checkbox'>
         <label>
           <%= check_box(:setting, :statuses_in_timeline) %>
-          <%= t('.status_main_feed')%>            
+          <%= t('.status_main_feed')%>
         </label>
       </div>
     </div>
   </div>
   <div class='form-group'>
     <label class='control-label col-sm-2'><%= t('.date_format')%></label>
-    <div class='col-sm-5'>    
-      <%= select(:setting, :date_format, { 
-        Time.now.strftime('%d/%m/%Y') => '%d/%m/%Y', 
+    <div class='col-sm-5'>
+      <%= select(:setting, :date_format, {
+        Time.now.strftime('%d/%m/%Y') => '%d/%m/%Y',
         Time.now.strftime('%m/%d/%Y') => '%m/%d/%Y',
         Time.now.strftime('%d %b %Y') => '%d %b %Y',
         Time.now.strftime('%d %B %Y') => '%d %B %Y',
@@ -54,8 +54,8 @@
   <div class='form-group'>
     <label class='control-label col-sm-2'><%= t('.time_format')%></label>
     <div class='col-sm-5'>
-      <%= select(:setting, :time_format, { 
-        Time.now.strftime('%Hh%M') => '%Hh%M', 
+      <%= select(:setting, :time_format, {
+        Time.now.strftime('%Hh%M') => '%Hh%M',
         Time.now.strftime('%H:%M') => '%H:%M',
         Time.now.strftime('%I:%M%p') => '%I:%M%p'})
       %>
@@ -75,7 +75,7 @@
   <div class='form-group'>
     <label class='control-label col-sm-2' for="setting_limit_rss_display"><%= t('.display')%> </label>
     <div class='col-sm-1'>
-      <%= text_field(:setting, :limit_rss_display, {:size => 4, :class => 'form-control'})%>        
+      <%= text_field(:setting, :limit_rss_display, {:size => 4, :class => 'form-control'})%>
     </div>
     <div class='pull-left'>
         <span class='help-block'><%= t('.default_feed_show')%></span>
@@ -89,7 +89,7 @@
           <%= check_box(:setting, :hide_extended_on_rss) %>
           <%= t('.feed_excerpts_only')%>
         </label>
-      </div>        
+      </div>
     </div>
   </div>
   <div class='form-group'>

@@ -22,7 +22,7 @@
         <p><%= link_to(t('.approved_count', count: @confirmed), controller: 'admin/feedback', only: 'ham') %></p>
         <p><%= link_to(t('.unconfirmed_count', count: @unconfirmed), controller: 'admin/feedback', only: 'unapproved') %></p>
         <p><%= link_to(t(".spam_count", count: @statspam), controller: 'admin/feedback', only: 'spam') %></p>
-      <% end %>      
+      <% end %>
     </div>
   </div>
 </div>
