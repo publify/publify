@@ -7,6 +7,7 @@ class AddMissingIndexes < ActiveRecord::Migration
     add_index :contents, [:id, :type]
     add_index :articles_tags, :tag_id
     add_index :articles_tags, :article_id
+    add_index :profiles_rights, :profile_id
     add_index :users, :profile_id
     add_index :users, :text_filter_id
     add_index :users, :resource_id
