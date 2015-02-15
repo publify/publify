@@ -1,4 +1,4 @@
-class FixesNotesRedirects < ActiveRecord::Migration  
+class FixesNotesRedirects < ActiveRecord::Migration
   def self.up
     say "Fixes notes redirects, it may take some time"
 

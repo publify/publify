@@ -8,7 +8,7 @@
       <!-- Button trigger modal -->
       <button class="btn btn-success" data-toggle="modal" data-target="#publish">
         <%= controller.action_name == "new" ? t(".publish") : t(".save") %>
-      </button>    
+      </button>
     </span>
   </div>
 </div>
@@ -25,7 +25,7 @@
       <script type="text/javascript">edToolbar('page_body', '<%= @page.text_filter %>');</script>
     </div>
   </div>
-  
+
   <div class='col-md-8'>
     <%= text_field 'page', 'title', :class => 'form-control', :placeholder => t('.title')  %>
 
@@ -53,12 +53,12 @@
             <%= text_field 'page', 'name', :class => 'form-control' %>
           </div>
         </div>
-        
+
         <div class='well'>
           <fieldset>
             <legend><%= t(".publish_settings") %></legend>
             <div class='control-group'>
-              <%= t(".status") %>: <strong><%= (@page.published) ? t(".published") : t(".offline") %></strong> 
+              <%= t(".status") %>: <strong><%= (@page.published) ? t(".published") : t(".offline") %></strong>
               <%= toggle_element('status') %>
               <div id='status' class='collapse'>
                 <label for="page_published" class='checkbox'>

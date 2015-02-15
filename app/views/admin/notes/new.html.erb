@@ -2,7 +2,7 @@
 <h2>
   <i class="glyphicon glyphicon-large glyphicon-th-list"></i>
   <%= t(".notes") %>
-</h2>  
+</h2>
 <% end %>
 
 <div class='row'>
@@ -10,7 +10,7 @@
     <%= form_tag :action=>"edit", :id => @note.id do %>
       <input type="hidden" name="note[text_filter]" id="note_textfilter" value="<%= current_user.text_filter_name %>">
       <div class='form-group'>
-        <%= text_area(:note, :body, {class: 'form-control', rows: '7', placeholder: t(".compose_new_note")}) %>  
+        <%= text_area(:note, :body, {class: 'form-control', rows: '7', placeholder: t(".compose_new_note")}) %>
       </div>
 
       <fieldset class="hidden-phone">
@@ -43,7 +43,7 @@
         </div>
         <div class='form-group'>
           <label for='note_published_at'><%= t(".publish_at") %></label>
-          <%= text_field 'note', 'published_at', {:class => 'form-control datepicker'} %>  
+          <%= text_field 'note', 'published_at', {:class => 'form-control datepicker'} %>
         </div>
         <div class='form-group'>
           <%= link_to(t(".cancel"), {action: 'index'}) %>
