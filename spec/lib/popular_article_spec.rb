@@ -5,7 +5,7 @@ describe PopularArticle do
 
   subject { described_class }
 
-  describe '#find' do
+  describe '#generate' do
     before(:each) do
       allow(GoogleAnalytics::API)
         .to receive(:fetch_article_page_views)
@@ -37,26 +37,29 @@ describe PopularArticle do
       ]
     }
 
-    let(:found_articles) {
+    let!(:found_articles) {
+      create(:article, permalink: 'how-haggling-can-help-you-pay-less-for-a-second-hand-car', published_at: Time.utc(2004, 6, 1))
+      create(:article, permalink: 'foo-article', published_at: Time.utc(2004, 6, 1))
+      create(:article, permalink: 'woo-article', published_at: Time.utc(2004, 6, 1))
+      create(:article, permalink: 'bar-article', published_at: Time.utc(2004, 6, 1))
     }
 
     it 'gets the most popular blog articles' do
       expect(GoogleAnalytics::API).to receive(:fetch_article_page_views).and_return(popular_articles)
-      subject.find
+
+      subject.generate
     end
 
-    it 'finds the 3 most popular articles by default' do
-      expect(subject.find.size).to eql(3)
+    it 'generates the 3 most popular articles by default' do
+      allow(GoogleAnalytics::API).to receive(:fetch_article_page_views).and_return(popular_articles)
+
+      expect(subject.generate.size).to eql(3)
     end
 
     it 'looks up each article' do
-      found_articles = [
-        create(:article, permalink: 'how-haggling-can-help-you-pay-less-for-a-second-hand-car', published_at: Time.utc(2004, 6, 1)),
-        create(:article, permalink: 'foo-article', published_at: Time.utc(2004, 6, 1)),
-        create(:article, permalink: 'woo-article', published_at: Time.utc(2004, 6, 1)),
-        create(:article, permalink: 'bar-article', published_at: Time.utc(2004, 6, 1))
-      ]
-      expect(subject.find).to eql(found_articles[0..2])
+      allow(GoogleAnalytics::API).to receive(:fetch_article_page_views).and_return(popular_articles)
+
+      expect(subject.generate).not_to be_empty
     end
   end
 end

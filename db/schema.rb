@@ -104,6 +104,8 @@ ActiveRecord::Schema.define(version: 20150212170710) do
   add_index "contents", ["text_filter_id"], name: "index_contents_on_text_filter_id", using: :btree
 
   create_table "contents_most_popular_articles", force: true do |t|
+    t.integer "article_id"
+    t.integer "most_popular_article_id"
   end
 
   create_table "feedback", force: true do |t|
@@ -132,6 +134,9 @@ ActiveRecord::Schema.define(version: 20150212170710) do
 
   add_index "feedback", ["article_id"], name: "index_feedback_on_article_id", using: :btree
   add_index "feedback", ["text_filter_id"], name: "index_feedback_on_text_filter_id", using: :btree
+
+  create_table "most_popular_articles", force: true do |t|
+  end
 
   create_table "page_caches", force: true do |t|
     t.string "name"
