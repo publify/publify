@@ -1,7 +1,9 @@
 describe "layouts/default.html.erb", :type => :view do
+  let(:popular_articles) { double(:most_popular_article, articles: []) }
+
   before(:each) do
     assign(:keywords, ["foo", "bar"])
-    assign(:popular_articles, [])
+    assign(:popular_articles, popular_articles)
     assign(:auto_discovery_url_atom, "")
     assign(:auto_discovery_url_rss, "")
     allow(view).to receive(:use_custom_header?).and_return(false)
