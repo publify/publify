@@ -11,6 +11,6 @@ class PopularArticle
   def self.collect_articles(popular_articles, articles_to_return)
     popular_articles.collect do |article|
       Article.find_by(permalink: article[:label])
-    end.slice(0, articles_to_return)
+    end.slice(0, articles_to_return).compact
   end
 end
