@@ -1,9 +1,9 @@
 require 'google_analytics/api'
 
 class PopularArticle
-  def self.find(articles_to_return=3)
+  def self.generate(articles_to_return=3)
     popular_articles = GoogleAnalytics::API.fetch_article_page_views
-    collect_articles(popular_articles, articles_to_return) || []
+    collect_articles(popular_articles, articles_to_return)
   end
 
   protected
