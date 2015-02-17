@@ -3,26 +3,30 @@
     <div class="l-constrained">
       <div class="l-footer-links-section">
         <% unless @popular_articles.articles.empty? %>
-        <h3 class="l-footer-link__header">What's popular</h3>
+          <h3 class="l-footer-link__header">What's popular</h3>
 
-        <% @popular_articles.articles.each do |article| %>
-          <li class="l-footer-link__list-item">
-            <%= link_to article.title, article.permalink_url, title: article.title %>
-            <time class="l-footer-link__list-item-time"><%= "#{display_article_date(article)}" %></time>
-          </li>
-        <% end %>
+          <ol class="unstyled-list l-footer-link__list">
+            <% @popular_articles.articles.each do |article| %>
+              <li class="l-footer-link__list-item">
+                <%= link_to article.title, article.permalink_url, title: article.title %>
+                <time class="l-footer-link__list-item-time"><%= "#{display_article_date(article)}" %></time>
+              </li>
+            <% end %>
+          </ol>
         <% end %>
       </div>
 
       <div class="l-footer-links-section">
         <h3 class="l-footer-link__header">Latest posts</h3>
 
-        <% latest_articles.each do |article| %>
-          <li class="l-footer-link__list-item">
-            <%= link_to article.title, article.permalink_url, title: article.title %>
-            <time class="l-footer-link__list-item-time"><%= "#{display_article_date(article)}" %></time>
-          </li>
-        <% end %>
+        <ol class="unstyled-list l-footer-link__list">
+          <% latest_articles.each do |article| %>
+            <li class="l-footer-link__list-item">
+              <%= link_to article.title, article.permalink_url, title: article.title %>
+              <time class="l-footer-link__list-item-time"><%= "#{display_article_date(article)}" %></time>
+            </li>
+          <% end %>
+        </ol>
       </div>
 
       <div class="l-footer-links-section l-footer-links-section--helpful">
