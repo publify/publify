@@ -24,7 +24,6 @@
 #       it work.
 # TODO: Create a test framework.
 
-
 # To use:
 #
 # - Create bare inner classes instead of models in your migration script.
@@ -55,7 +54,6 @@
 # - Now your Article module can change all it wants and your migration
 #   script will still work.
 
-
 module BareMigration
   def self.append_features(base)
     base.extend(ClassMethods)
@@ -77,13 +75,13 @@ module BareMigration
     # find.  (todo: make STI work again)
     def instantiate_without_callbacks(record)
       object = allocate
-      object.instance_variable_set("@attributes", record)
+      object.instance_variable_set('@attributes', record)
       object
     end
 
-    def find_and_update(find_type=:all, *rest, &update_block)
-      self.transaction do
-        self.find(find_type, *rest).each do |item|
+    def find_and_update(find_type = :all, *rest, &update_block)
+      transaction do
+        find(find_type, *rest).each do |item|
           update_block[item]
           item.save!
         end
@@ -97,13 +95,13 @@ class ActiveRecord::Migration
     method = method.to_s
     method.sub!(/^add_/, 'remove_') || method.sub!(/^remove_/, 'add_') ||
       method.sub!(/^create/, 'drop') || method.sub!(/^drop/, 'create') ||
-        method.sub!(/^rename_column/, 'reverse_columns')
+      method.sub!(/^rename_column/, 'reverse_columns')
   end
 
   def self.modify_schema(method, *args)
     case method.to_s
     when 'create_table'
-      block = args.last.is_a?(Proc) ? args.pop : Proc.new {|t| nil}
+      block = args.last.is_a?(Proc) ? args.pop : proc { |_t| nil }
       create_table *args, &block
     when 'remove_column'
       remove_column args[0], args[1]
@@ -127,10 +125,10 @@ class ActiveRecord::Migration
           spec[1] = spec[1].table_name.to_sym
         end
       end
-      colspecs.each {|spec| modify_schema(*spec) }
+      colspecs.each { |spec| modify_schema(*spec) }
       updated_classes.uniq!
       if updated_classes.size == 1 && block && block.arity == 1
-        say "About to call find_and_update"
+        say 'About to call find_and_update'
         updated_classes.first.find_and_update(:all, &block)
       else
         block.call if block

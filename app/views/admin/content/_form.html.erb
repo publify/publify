@@ -13,15 +13,15 @@
       <!-- Button trigger modal -->
       <button class="btn btn-success" data-toggle="modal" data-target="#publishOptions">
         <%= controller.action_name == "new" ? t(".publish") : t(".save") %>
-      </button>    
-    </div>  
+      </button>
+    </div>
   </div>
 </div>
 
 <div class='row'>
   <div class='col-md-8 col-md-offset-2' id="error-message-article">
     <%= render 'shared/flash', flash: flash %>
-    <%= error_messages_for 'article' %>        
+    <%= error_messages_for 'article' %>
   </div>
 </div>
 
@@ -34,10 +34,10 @@
   </div>
 
   <div class='col-md-8'>
-    <%= text_field 'article', 'title', :class => 'form-control', :placeholder => t('.title') %>  
+    <%= text_field 'article', 'title', :class => 'form-control', :placeholder => t('.title') %>
     <div id="editor">
       <%= text_area('article', 'body_and_extended', {:class => 'form-control ', style: 'height: 360px', placeholder: t('.type_your_post'), :"data-widearea" => "enable"}) %>
-      <%#= render 'admin/shared/macros' %>      
+      <%#= render 'admin/shared/macros' %>
     </div> <!-- End of editor -->
   </div>
 </div>
@@ -76,7 +76,7 @@
             <!-- Start of permalink box -->
             <div class='control-group'>
               <p>
-              <%= t(".permalink") %>: 
+              <%= t(".permalink") %>:
               <%= toggle_element('permalink') %>
               </p>
               <div id='permalink' class='collapse'>
@@ -138,7 +138,7 @@
             <!-- Start of date publish -->
             <div class='control-group'>
               <p>
-              <%= t(".published") %> 
+              <%= t(".published") %>
               <strong>
                 <%- if @article.published %>
                   <%= display_date_and_time(@article.published_at) %>
@@ -179,7 +179,7 @@
             <!-- End of password block -->
           </fieldset>
         </div>
-        <!-- End of publish settings -->           
+        <!-- End of publish settings -->
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal"><%= t('.cancel') %></button>

@@ -4,9 +4,7 @@ require 'digest/sha1'
 
 module ApplicationHelper
   # Need to rewrite this one, quick hack to test my changes.
-  def page_title
-    @page_title
-  end
+  attr_reader :page_title
 
   def render_sidebars(*sidebars)
     (sidebars.blank? ? Sidebar.order(:active_position) : sidebars).map do |sb|
@@ -35,35 +33,35 @@ module ApplicationHelper
     rails_root = File.expand_path(::Rails.root.to_s)
     if view_root =~ /^#{Regexp.escape(rails_root)}/
       new_root = view_root[rails_root.size..-1]
-      new_root.sub! %r{^/?vendor/}, ""
-      new_root.sub! %r{/views}, ""
-      new_root = File.join(this_blog.current_theme.path, "views", new_root)
-      view_root = new_root if File.exists?(File.join(new_root, "content.rhtml"))
+      new_root.sub! %r{^/?vendor/}, ''
+      new_root.sub! %r{/views}, ''
+      new_root = File.join(this_blog.current_theme.path, 'views', new_root)
+      view_root = new_root if File.exist?(File.join(new_root, 'content.rhtml'))
     end
-    render_to_string(:file => "#{view_root}/content.rhtml", :locals => sidebar.to_locals_hash, :layout => false)
+    render_to_string(file: "#{view_root}/content.rhtml", locals: sidebar.to_locals_hash, layout: false)
   end
 
   def articles?
-    not Article.first.nil?
+    !Article.first.nil?
   end
 
   def trackbacks?
-    not Trackback.first.nil?
+    !Trackback.first.nil?
   end
 
   def comments?
-    not Comment.first.nil?
+    !Comment.first.nil?
   end
 
   def render_to_string(*args, &block)
     controller.send(:render_to_string, *args, &block)
   end
 
-  def link_to_permalink(item, title, anchor=nil, style=nil, nofollow=nil, only_path=false)
+  def link_to_permalink(item, title, anchor = nil, style = nil, nofollow = nil, only_path = false)
     options = {}
     options[:class] = style if style
-    options[:rel] = "nofollow" if nofollow
-    link_to title, item.permalink_url(anchor,only_path), options
+    options[:rel] = 'nofollow' if nofollow
+    link_to title, item.permalink_url(anchor, only_path), options
   end
 
   def avatar_tag(options = {})
@@ -77,12 +75,12 @@ module ApplicationHelper
   end
 
   def meta_tag(name, value)
-    tag :meta, :name => name, :content => value unless value.blank?
+    tag :meta, name: name, content: value unless value.blank?
   end
 
   def markup_help_popup(markup, text)
-    if markup and markup.commenthelp.size > 1
-      "<a href=\"#{url_for :controller => 'articles', :action => 'markup_help', :id => markup.id}\" onclick=\"return popup(this, 'Publify Markup Help')\">#{text}</a>"
+    if markup && markup.commenthelp.size > 1
+      "<a href=\"#{url_for controller: 'articles', action: 'markup_help', id: markup.id}\" onclick=\"return popup(this, 'Publify Markup Help')\">#{text}</a>"
     else
       ''
     end
@@ -93,7 +91,7 @@ module ApplicationHelper
     tag = []
     tag << %{ onmouseover="if (getCookie('publify_user_profile') == 'admin') { $('#{admin_id}').show(); }" }
     tag << %{ onmouseout="$('#{admin_id}').hide();" }
-    tag.join " "
+    tag.join ' '
   end
 
   def feed_title
@@ -106,11 +104,11 @@ module ApplicationHelper
     end
   end
 
-  def html(content, what = :all, deprecated = false)
+  def html(content, what = :all, _deprecated = false)
     content.html(what)
   end
 
-  def display_user_avatar(user, size='avatar', klass='alignleft')
+  def display_user_avatar(user, size = 'avatar', klass = 'alignleft')
     if user.resource.present?
       avatar_path = case size
                     when 'thumb'
@@ -132,10 +130,10 @@ module ApplicationHelper
   end
 
   def author_picture(status)
-    return if status.user.twitter_profile_image.nil? or status.user.twitter_profile_image.empty?
-    return if status.twitter_id.nil? or status.twitter_id.empty?
+    return if status.user.twitter_profile_image.nil? || status.user.twitter_profile_image.empty?
+    return if status.twitter_id.nil? || status.twitter_id.empty?
 
-    image_tag(status.user.twitter_profile_image , class: "alignleft", alt: status.user.nickname)
+    image_tag(status.user.twitter_profile_image, class: 'alignleft', alt: status.user.nickname)
   end
 
   def google_analytics
@@ -158,12 +156,12 @@ module ApplicationHelper
   end
 
   def page_header_includes
-    content_array.collect { |c| c.whiteboard }.collect do |w|
-      w.select {|k,v| k =~ /^page_header_/}.collect do |_,v|
+    content_array.collect(&:whiteboard).collect do |w|
+      w.select { |k, _v| k =~ /^page_header_/ }.collect do |_, v|
         v = v.chomp
         # trim the same number of spaces from the beginning of each line
         # this way plugins can indent nicely without making ugly source output
-        spaces = /\A[ \t]*/.match(v)[0].gsub(/\t/, "  ")
+        spaces = /\A[ \t]*/.match(v)[0].gsub(/\t/, '  ')
         v.gsub!(/^#{spaces}/, '  ') # add 2 spaces to line up with the assumed position of the surrounding tags
       end
     end.flatten.uniq.join("\n")
@@ -190,7 +188,7 @@ module ApplicationHelper
   end
 
   def display_date(date)
-    l(date, :format => this_blog.date_format)
+    l(date, format: this_blog.date_format)
   end
 
   def display_time(time)
@@ -216,15 +214,15 @@ module ApplicationHelper
 
   def stop_index_robots?(blog)
     stop = (params[:year].present? || params[:page].present?)
-    stop = blog.unindex_tags if controller_name == "tags"
-    stop = blog.unindex_categories if controller_name == "categories"
+    stop = blog.unindex_tags if controller_name == 'tags'
+    stop = blog.unindex_categories if controller_name == 'categories'
     stop
   end
 
   def get_reply_context_url(reply)
     link_to(reply['user']['name'], reply['user']['entities']['url']['urls'][0]['expanded_url'])
   rescue
-     link_to(reply['user']['name'], "https://twitter.com/#{reply['user']['name']}")
+    link_to(reply['user']['name'], "https://twitter.com/#{reply['user']['name']}")
   end
 
   def get_reply_context_twitter_link(reply)
@@ -237,9 +235,9 @@ module ApplicationHelper
   def feed_for(type)
     if params[:action] == 'search'
       url_for(only_path: false, format: type, q: params[:q])
-    elsif not @article.nil?
+    elsif !@article.nil?
       @article.feed_url(type)
-    elsif not @auto_discovery_url_atom.nil?
+    elsif !@auto_discovery_url_atom.nil?
       instance_variable_get("@auto_discovery_url_#{type}")
     end
   end
@@ -251,7 +249,7 @@ module ApplicationHelper
     if item.password_protected?
       "<p>This article is password protected. Please <a href='#{item.permalink_url}'>fill in your password</a> to read it</p>"
     elsif this_blog.hide_extended_on_rss
-      if item.excerpt? and item.excerpt.length>0 then
+      if item.excerpt? && item.excerpt.length > 0
         item.excerpt
       else
         html(item, :body)
@@ -260,5 +258,4 @@ module ApplicationHelper
       html(item, :all)
     end
   end
-
 end

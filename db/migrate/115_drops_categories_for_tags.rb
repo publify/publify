@@ -3,12 +3,12 @@ class DropsCategoriesForTags < ActiveRecord::Migration
     belongs_to :article
     belongs_to :category
   end
-  
+
   class Category < ActiveRecord::Base
     has_many :categorizations
     has_many :articles, :through => :categorizations
   end
-  
+
   def up
     # First, we migrate categories into tags
     Category.find_each do |cat|
@@ -16,7 +16,7 @@ class DropsCategoriesForTags < ActiveRecord::Migration
       tag = Tag.find_or_create_by(name: cat.permalink) do |tg|
         tg.display_name = cat.name
       end
-      
+
       redirect = Redirect.create(from_path: "category/#{cat.permalink}",
                                  to_path: File.join(Blog.default.base_url, "tag", tag.name))
       cat.articles.each do |article|

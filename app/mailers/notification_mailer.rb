@@ -19,16 +19,16 @@ class NotificationMailer < ActionMailer::Base
   def notif_user(user)
     @user = user
     @blog = Blog.default
-    build_mail @blog, @user, "Welcome to Publify"
+    build_mail @blog, @user, 'Welcome to Publify'
   end
 
   private
 
-  def make_subject blog, subject
+  def make_subject(blog, subject)
     "[#{blog.blog_name}] #{subject}"
   end
 
-  def build_mail blog, user, subject
+  def build_mail(blog, user, subject)
     headers['X-Mailer'] = "Publify #{PUBLIFY_VERSION}"
     mail(from: blog.email_from,
          to: user.email,

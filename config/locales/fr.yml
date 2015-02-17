@@ -3,7 +3,7 @@ fr:
     content:
       rss_feed: "RSS Feed"
       admin: "Admin"
-      powered_by_publify: "Developpé avec Publify"
+      powered_by_publify: "Développé avec Publify"
       search: "Rechercher"
   search_sidebar:
     content:
@@ -43,7 +43,7 @@ fr:
       your_mail: "Votre email"
     page:
       about: "À propos de"
-      body: "Ceci est un exemple de page Publify. Vous pouvez la modifier pour écrire des informations sur vous ou sur votre blog, afin que vos lecteurs sachent qui vous êtes. Vous pouvez créer autant que pages que vous voulez et gérer tout votre contenu dans Publify."
+      body: "Ceci est un exemple de page Publify. Vous pouvez la modifier pour écrire des informations sur vous ou sur votre blog, afin que vos lecteurs sachent qui vous êtes. Vous pouvez créer autant de pages que vous voulez et gérer tout votre contenu dans Publify."
   comments:
     comment:
       by: "par"
@@ -139,7 +139,7 @@ fr:
     contributor: "Contributeur"
   user:
     status:
-      active: "actif"
+      active: "Actif"
       inactive: "Inactif"
   notice:
     note_successfully_updated: "Ce billet a été mis à jour avec succès"
@@ -186,7 +186,7 @@ fr:
       cant_generate_secret: "Erreur: impossible de générer un jeton secret. La sécurité est menacée. Merci de modifier le contenu de %{checker_file} "
       successfully_saved: "%{element} a été enregistré avec succès."
       unsuccessfully_saved: "%{element} n'a pas pu être enregistré."
-      not_allowed: "Erreur, vous n'êtes autorisé à raliser cette action"
+      not_allowed: "Erreur, vous n'êtes pas autorisé à réaliser cette action"
       successfully_deleted: "%{name} a été supprimé avec succès"
     notes:
       header:
@@ -194,10 +194,10 @@ fr:
       form:
         now: "Maintenant"
         no_notes: "Il n'y a pas encore de notes, pourquoi ne pas en créer une ? "
-        how_to_setup_twitter: "Si vous voulez publiez de courts status sur Twitter, vous devez %{twitter_settings_link} que Twitter vous a fourni %{twitter_registration_link}."
-        fill_the_twitter_credentials: "Reseignez les informations sur l'auteur"
+        how_to_setup_twitter: "Si vous voulez publiez de courts statuts sur Twitter, vous devez %{twitter_settings_link} que Twitter vous a fourni %{twitter_registration_link}."
+        fill_the_twitter_credentials: "Renseignez les informations sur l'auteur"
         registered_your_application: "Votre application a été enregistrée"
-        compose_new_note: "Ecrire un nouveau billet"
+        compose_new_note: "Écrire un nouveau billet"
         publish_settings: "Paramètres de publication"
         posse_to_twitter: "POSSE to twitter"
         in_reply_to: "En réponse à"
@@ -270,10 +270,10 @@ fr:
         feed_articles: "Exergues des articles"
         feed_settings: "Configuration du flux RSS"
         feed_excerpts_only: "Tronquer les articles dans le flux RSS"
-        feedburner_help: "Renseignez votre identifiant FeedBurner si vous souhaitez votre compte Google FeedBurner au lieu d'utiliser le flux URL de Publify."
+        feedburner_help: "Renseignez votre identifiant FeedBurner si vous souhaitez utiliser votre compte Google FeedBurner au lieu du flux URL de Publify."
         feedburner_id: "Identifiant Feedburner"
         publishing_options: "Options de publication"
-        status_main_feed: "Afficher les status dans le flux principal"
+        status_main_feed: "Afficher les statuts dans le flux principal"
         statuses: "Notes"
         time_format: "Afficher les heures"
       feedback:
@@ -396,7 +396,7 @@ fr:
         replaced_with_the_current_year: "Remplacé par l'année en cours"
         replaced_with_the_current_page_number: "Remplacé par le numéro de la page"
         replaced_by_the_archive_date: "Remplacé par la date de l'archive"
-        replaced_by_the_content_body: "Remplacé par le coprs de texte"
+        replaced_by_the_content_body: "Remplacé par le corps de texte"
       permalinks:
         cancel: "Annuler"
         or: "ou"
@@ -444,10 +444,10 @@ fr:
         google_webmaster_tools_validation_link: "Lien de validation des Google Webmaster Tools."
         custom_tracking_code: "Code de tracking personnalisé"
         explain: "Ici, vous pouve ajouter tout ce que vous souhaitez voir apparaître dans l'en-tête de votre blog, comme le code de suivi d'un service de statistiques."
-        explain_category_index: "Sélectionner cette option ajoutera le métalabel <code>noindex, follow</code> dans toutes les pages de chaque categorie. Cela les enlevera des moteurs de recherches et préviendra ainsi des problèmes de contenu dupliqué."
-        explain_tag_index: "Sélectionner cette option ajoutera le métalabel <code>noindex, follow</code> dans toutes les pages de chaque label. Cela les enlevera des moteurs de recherches et préviendra ainsi des problèmes de contenu dupliqué."
+        explain_category_index: "Sélectionner cette option ajoutera le métalabel <code>noindex, follow</code> dans toutes les pages de chaque catégorie. Cela les enlèvera des moteurs de recherche et préviendra ainsi des problèmes de contenu dupliqué."
+        explain_tag_index: "Sélectionner cette option ajoutera le métalabel <code>noindex, follow</code> dans toutes les pages de chaque label. Cela les enlèvera des moteurs de recherche et préviendra ainsi des problèmes de contenu dupliqué."
         explain_moderate_feedback: "Si vous activez cette option, peut-être devriez-vous également activer la modération des commentaires."
-        explain_rss_description: "Vous pouvez utliser les tags suivants : %author% (nom de l'auteur), %blog_url% (URL du blog), %blog_name% (nom du blog) and %permalink_url% (lien vers l'article que vous souhaitez protéger)"
+        explain_rss_description: "Vous pouvez utliser les tags suivants : %author% (nom de l'auteur), %blog_url% (URL du blog), %blog_name% (nom du blog) et %permalink_url% (lien vers l'article que vous souhaitez protéger)"
     shared:
       macros:
         show_help_on_publify_macros: "Afficher l'aide sur les macros Publify"
@@ -488,10 +488,10 @@ fr:
         content_type: "Type de contenu"
         file_size: "Taille du fichier"
         date: "Date"
-        are_you_sure: "Êtes-vous certain ?"
+        are_you_sure: "Êtes-vous sûr ?"
         thumbnail: "Vignette"
         medium_size: "Taille moyenne"
-        original_size: "Taille originale="
+        original_size: "Taille originale"
     post_types:
       new:
         cancel: "Annuler"
@@ -554,7 +554,7 @@ fr:
         error: "Non implémenté"
         success_deleted_spam: "Tous les spams ont été supprimés"
         success_mark_as_ham:
-          zero: "Aucun élément sélectionné comme marqué comme valide"
+          zero: "Aucun élément sélectionné pour être identifié comme valide"
           one: "1 élément marqué comme valide"
           other: "%{count} éléments marqués comme valides"
         success_mark_as_spam:
@@ -658,8 +658,8 @@ fr:
           one: "1 spam"
           other: "%{count} spams"
       overview:
-        dashboard_explain: "Voici un rapide aperçu de ce que peut faire votre blog Publify. Peux-être voulez vous %{available_actions}"
-        write_a_post: "Ecrire un article"
+        dashboard_explain: "Voici un rapide aperçu de ce que peut faire votre blog Publify. Peut-être voulez-vous %{available_actions}"
+        write_a_post: "Écrire un article"
         write_a_page: "Publier une page statique"
         update_your_profile_or_change_your_password: "Mettre votre profil à jour ou changer votre mot de passe"
         customization_explain: "Vous pouvez également faire un peu de personnalisation, %{theme_link}, %{sidebar_link}"
@@ -690,7 +690,7 @@ fr:
       autosave:
         success: "L'article a été sauvergardé avec succès"
       article_list:
-        no_articles: "Il n'y a pas encore de articles, pourquoi ne pas en créer un ? "
+        no_articles: "Il n'y a pas encore de articles, pourquoi ne pas en créer un ?"
       index:
         published: "Publié"
         new_article: "Nouvel article"
@@ -774,7 +774,7 @@ fr:
         stats: "Il y a actuellement %{files_count} fichiers en cache pour un total de %{size} kilo octets."
         sweep_cache: "Vider le cache"
         cache: "Cache"
-        explaination: "Afin d'économiser des ressources, Publify génère des fichiers statiques avec votre contenu. Ces fichiers sont supprimés lors d'une nouvelle publication. Vous pouvez cependant les effacer vous même."
+        explaination: "Afin d'économiser des ressources, Publify génère des fichiers statiques avec votre contenu. Ces fichiers sont supprimés lors d'une nouvelle publication. Vous pouvez cependant les effacer vous-même."
       destroy:
         success: "Le cache a été vidé avec succès"
         error: "Oups, un problème s'est produit et le cache n'a pas pu être vidé correctement"
@@ -797,7 +797,7 @@ fr:
         state: "État"
         user_state: "%{state}"
       form:
-        how_to_setup_twitter: "Si vous souhaitez publier des courts status sur Twitter, vous devez fournir %{twitter_settings_link} que Twitter vous a envoyé après que vous %{twitter_registration_link}."
+        how_to_setup_twitter: "Si vous souhaitez publier des courts statuts sur Twitter, vous devez fournir %{twitter_settings_link} que Twitter vous a envoyé après que vous %{twitter_registration_link}."
         fill_the_twitter_credentials: "fill in the oauth credentials"
         registered_your_application: "Votre application a été enregistrée"
         cancel: "Annuler"
@@ -833,7 +833,7 @@ fr:
         twitter_oauth_secret: "Question secrète Twitter"
         contact_settings: "Paramètres de contact"
         contact_explain: "Cette information sera affichée sur %{link}"
-        author_page: "Page auteur"
+        author_page: "page de l'auteur"
         about: "Biographie"
         website: "Site web"
         msn: "MSN Messenger ID"

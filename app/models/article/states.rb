@@ -6,7 +6,7 @@ module Article::States
       self.class.to_s.demodulize
     end
 
-    def exit_hook(target)
+    def exit_hook(_target)
       ::Rails.logger.debug("#{content} leaving state #{self.class}")
     end
 
@@ -14,9 +14,17 @@ module Article::States
       ::Rails.logger.debug("#{content} entering state #{self.class}")
     end
 
-    def post_trigger; true; end
-    def send_notifications; true; end
-    def send_pings; true; end
+    def post_trigger
+      true
+    end
+
+    def send_notifications
+      true
+    end
+
+    def send_pings
+      true
+    end
 
     def withdraw
     end
@@ -33,7 +41,7 @@ module Article::States
       if boolean
         content.state = :just_published
       end
-      return boolean
+      boolean
     end
 
     def published_at=(new_time)
@@ -57,7 +65,6 @@ module Article::States
     end
   end
 
-
   class Published < Base
     def enter_hook
       super
@@ -66,7 +73,7 @@ module Article::States
     end
 
     def published=(boolean)
-      if !boolean
+      unless boolean
         content.state = :just_withdrawn
       end
     end
@@ -120,7 +127,7 @@ module Article::States
     def published_at=(new_time)
       new_time = (new_time.to_time rescue nil)
       content[:published_at] = new_time
-      Trigger.remove(content, :trigger_method => 'publish!')
+      Trigger.remove(content, trigger_method: 'publish!')
       return if new_time.nil? || new_time <= Time.now
       content.state = :publication_pending
     end
@@ -142,7 +149,7 @@ module Article::States
     def published_at=(new_time)
       new_time = (new_time.to_time rescue nil)
       content[:published_at] = new_time
-      Trigger.remove(content, :trigger_method => 'publish!')
+      Trigger.remove(content, trigger_method: 'publish!')
       if new_time.nil?
         content.state = :draft
       elsif new_time <= Time.now

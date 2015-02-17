@@ -2,14 +2,14 @@ require_dependency 'spam_protection'
 
 class Trackback < Feedback
   content_fields :excerpt
-  validates_presence_of :title, :excerpt, :url
+  validates :title, :excerpt, :url, presence: true
 
-  #attr_accessible :url, :blog_name, :title, :excerpt, :ip, :published, :article_id
+  # attr_accessible :url, :blog_name, :title, :excerpt, :ip, :published, :article_id
 
   def initialize(*args, &block)
     super(*args, &block)
-    self.title ||= self.url
-    self.blog_name ||= ""
+    self.title ||= url
+    self.blog_name ||= ''
   end
 
   before_create :process_trackback
@@ -17,7 +17,7 @@ class Trackback < Feedback
   def process_trackback
     if excerpt.length >= 251
       # this limits excerpt to 250 chars, including the trailing "..."
-      self.excerpt = excerpt[0..246] << "..."
+      self.excerpt = excerpt[0..246] << '...'
     end
   end
 
@@ -29,7 +29,7 @@ class Trackback < Feedback
 
   def blog_allows_feedback?
     return true unless blog.global_pings_disable
-    errors.add(:article, "Pings are disabled")
+    errors.add(:article, 'Pings are disabled')
     false
   end
 
@@ -45,7 +45,7 @@ class Trackback < Feedback
     self.excerpt = newval
   end
 
-  def rss_author(xml)
+  def rss_author(_xml)
   end
 
   def rss_title(xml)
@@ -56,4 +56,3 @@ class Trackback < Feedback
     "Trackback from #{blog_name}: #{title} on #{article.title}"
   end
 end
-

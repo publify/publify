@@ -6,7 +6,7 @@ class DropsTypoReferencesForPublify < ActiveRecord::Migration
   end
   class Page < Content
   end
-  
+
   def self.up
     say "Removes references to typo:something from articles, pages, feedback"
     unless Blog.default.nil?
@@ -14,7 +14,7 @@ class DropsTypoReferencesForPublify < ActiveRecord::Migration
       blog.plugin_avatar = "PublifyPlugins::Gravatar" if blog.plugin_avatar == "TypoPlugins::Gravatar"
       blog.save!
     end
-    
+
     Article.find_each do |art|
       art.body.gsub!("<typo:", "<publify:")
       art.body.gsub!("</typo:", "</publify:")
@@ -24,7 +24,7 @@ class DropsTypoReferencesForPublify < ActiveRecord::Migration
       art.excerpt.gsub!("</typo:", "</publify:")
       art.save!
     end
-    
+
     Page.find_each do |page|
       page.body.gsub!("<typo:", "<publify:")
       page.body.gsub!("</typo:", "</publify:")
@@ -40,7 +40,7 @@ class DropsTypoReferencesForPublify < ActiveRecord::Migration
       feedback.body.gsub!("</typo:", "</publify:")
       feedback.save!
     end
-    
+
   end
 
   def self.down
