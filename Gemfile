@@ -3,9 +3,10 @@ source 'https://rubygems.org'
 if ENV['HEROKU']
   ruby '2.1.5'
 
-  gem 'pg'
-  gem 'thin' # Change this to another web server if you want (ie. unicorn, passenger, puma...)
-  gem 'rails_12factor'
+  gem "pg"
+  gem 'unicorn'
+  gem 'rack-timeout'
+  gem "rails_12factor"
 else
 
   require 'yaml'
@@ -26,7 +27,7 @@ else
   raise 'You need define an adapter in your database.yml or set your RAILS_ENV variable' if adapter == '' || adapter.nil?
   case adapter
   when 'sqlite3'
-    gem 'sqlite3'
+    #gem 'sqlite3'
   when 'postgresql'
     gem 'pg'
   when 'mysql2'
@@ -35,6 +36,9 @@ else
     raise "Don't know what gem to use for adapter #{adapter}"
   end
 end
+
+gem 'newrelic_rpm'
+gem 'rollbar', '~> 1.2.7'
 
 gem 'rails', '~> 4.2.0'
 
@@ -73,6 +77,8 @@ gem 'uuidtools', '~> 2.1.1'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'ruby-poker'
+  gem 'sqlite3'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'

@@ -1,0 +1,7 @@
+<form action="/poker/index" method="get">
+	Cards: <input type="text" value="<%= @cards %>" name="cards" id="cards"> <input type="submit" value="Submit" />
+</form>
+<br/><br/>
+
+<%= @hand.rank unless @hand.nil?  %>
+

@@ -22,7 +22,6 @@ tmp/*
 /coverage/
 nbproject
 public/cache/*
-Gemfile.lock
 .rbenv-version
 .ruby-version
 .bundle/
@@ -30,4 +29,7 @@ Gemfile.lock
 /vendor/bundle
 /themes/*
 !/themes/bootstrap-2
+!/themes/bootstrap-3
+!/themes/bootstrap-buy
 gems/
+.vagrant/

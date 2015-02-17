@@ -1,0 +1,7 @@
+<div class='hfeed'>
+  <%= render :partial => 'article', :collection => @articles %>
+</div>
+
+<div id='paginate'>
+<%= paginate @articles, { :previous_label => t('.previous'), :next_label => t('.next')  } %>
+</div>

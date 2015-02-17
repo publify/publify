@@ -1,0 +1,6 @@
+<h1 class='page-header'><%= link_to_permalink(@page, @page.title) %></h1>
+<%= @page.html %>
+					<% if logged_in? %>
+						<br/><br/>
+						<%= link_to("Edit", "/admin/pages/edit/#{@page.id}", {class: 'btn btn-primary btn-xs btn-action'}) %>
+					<% end %>
