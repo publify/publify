@@ -86,18 +86,19 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '/', to: 'dashboard#index', as: 'dashboard'
-    resources :sidebar, only: [:index, :update, :destroy] do
-      collection do
-        put :sortable
-      end
-    end
+
+    get 'cache', to: 'cache#show'
+    delete 'cache', to: 'cache#destroy'
 
     resources :notes, except: [:new]
 
     resources :post_types, only: [:index, :new, :edit, :create, :update, :destroy], format: false
 
-    get 'cache', to: 'cache#show'
-    delete 'cache', to: 'cache#destroy'
+    resources :sidebar, only: [:index, :update, :destroy] do
+      collection do
+        put :sortable
+      end
+    end
   end
 
   # Work around the Bad URI bug
