@@ -41,7 +41,7 @@ AccessControl.map require: [ :admin, :publisher, :contributor ]  do |map|
     project.submenu "Feedback",       { controller: "admin/feedback", action: "index" }
     project.submenu "Tags",           { controller: "admin/tags", action: "index" }
     project.submenu "Article Types",  { controller: "admin/post_types", action: "new" }
-    project.submenu "Redirects",      { controller: "admin/redirects", action: "new" }
+    project.submenu "Redirects",      { controller: "admin/redirects", action: "index" }
   end
 
   map.project_module :pages, nil do |project|
