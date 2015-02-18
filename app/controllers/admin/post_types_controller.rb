@@ -7,6 +7,10 @@ class Admin::PostTypesController < Admin::BaseController
     @post_type = PostType.new
   end
 
+  def new
+    redirect_to admin_post_types_url
+  end
+
   def edit
     @post_types = PostType.all
   end
