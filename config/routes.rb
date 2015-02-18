@@ -92,7 +92,7 @@ Rails.application.routes.draw do
 
     resources :notes, except: [:new]
 
-    resources :post_types, only: [:index, :new, :edit, :create, :update, :destroy], format: false
+    resources :post_types, only: [:index, :edit, :create, :update, :destroy], format: false
 
     resources :redirects, only: [:index, :edit, :create, :update, :destroy], format: false
 
