@@ -94,6 +94,8 @@ Rails.application.routes.draw do
 
     resources :notes, except: [:new]
 
+    resources :post_types, only: [:index, :edit, :create, :update, :destroy], format: false
+
     get 'cache', to: 'cache#show'
     delete 'cache', to: 'cache#destroy'
   end
@@ -106,12 +108,12 @@ Rails.application.routes.draw do
   end
 
   # Admin/XController
-  %w{content profiles pages feedback resources sidebar textfilters themes users settings tags redirects seo post_types}.each do |i|
+  %w{content profiles pages feedback resources sidebar textfilters themes users settings tags redirects seo}.each do |i|
     match "/admin/#{i}", controller: "admin/#{i}", action: :index, format: false, via: [:get, :post, :put, :delete] # TODO: convert this magic catchers to resources item to close un-needed HTTP method
     match "/admin/#{i}(/:action(/:id))", controller: "admin/#{i}", action: nil, id: nil, format: false, via: [:get, :post, :put, :delete] # TODO: convert this magic catchers to resources item to close un-needed HTTP method
   end
 
-  root :to  => 'articles#index', :format => false
+  root 'articles#index'
 
-  get '*from', :to => 'articles#redirect', :format => false
+  get '*from', to: 'articles#redirect', format: false
 end
