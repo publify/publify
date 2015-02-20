@@ -101,6 +101,9 @@ Rails.application.routes.draw do
         put :sortable
       end
     end
+
+    resources :tags, only: [:index, :edit, :create, :update, :destroy], format: false
+
   end
 
   # Work around the Bad URI bug

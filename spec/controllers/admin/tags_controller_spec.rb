@@ -1,55 +1,65 @@
 require 'rails_helper'
 
 describe Admin::TagsController, type: :controller do
+  render_views
+  
   let!(:blog) { create(:blog) }
   let!(:user) { create(:user, login: 'henri', profile: create(:profile_admin)) }
 
   before { request.session = { user: user.id } }
 
-  describe 'index' do
-    before(:each) { get :index }
-    it { expect(response).to redirect_to(action: 'new') }
+  describe 'GET #index' do
+    it 'responds successfully with an HTTP 200 status code' do
+      get :index
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+    end
+
+    it 'renders the index template' do
+      get :index
+      expect(response).to render_template('index')
+    end
   end
 
-  context 'with a tag' do
-    let(:tag) { create(:tag) }
+  describe 'create a new tag' do
+    it 'should create a tag and redirect to #index' do
+      expect do
+        post :create, tag: { display_name: 'new_tag' }
+        expect(response).to redirect_to(action: 'index')
+        expect(Tag.count).to eq(1)
+        expect(Tag.first.display_name).to eq('new_tag')
+      end.to change(Tag, :count)
+    end
+  end
 
-    describe 'edit' do
-      before(:each) { get :edit, id: tag.id }
-
-      it { expect(response).to be_success }
-      it { expect(response).to render_template('new') }
-      it { expect(assigns(:tag)).to be_valid }
+  describe 'GET #edit' do
+    before(:each) do
+      get :edit, id: FactoryGirl.create(:tag).id
     end
 
-    describe 'destroy' do
-      context 'with a get' do
-        before(:each) { get :destroy, id: tag.id }
-
-        it { expect(response).to be_success }
-        it { expect(response).to render_template('destroy') }
-        it { expect(assigns(:record)).to be_valid }
-
-        context 'with view' do
-          render_views
-          it { expect(response.body).to have_selector("form[action='/admin/tags/destroy/#{tag.id}'][method='post']") }
-        end
-      end
-
-      context 'with a post' do
-        before(:each) { post :destroy, id: tag.id, tag: { display_name: 'Foo Bar' } }
-        it { expect(response).to redirect_to(action: 'index') }
-        it { expect(Tag.count).to eq(0) }
-      end
+    it 'renders the edit template with an HTTP 200 status code' do
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+      expect(response).to render_template("edit")
     end
+  end
 
-    describe 'update' do
-      before(:each) { post :edit, id: tag.id, tag: { display_name: 'Foo Bar' } }
-      it { expect(response).to be_success }
-      it { expect(tag.reload.name).to eq('foo-bar') }
-      it { expect(tag.reload.display_name).to eq('Foo Bar') }
-      it { expect(Redirect.count).to eq(1) }
-      it { expect(Redirect.first.to_path).to eq('/tag/foo-bar') }
+  describe '#update an existing tag' do
+    it 'should update a tag and redirect to #index' do
+      @test_id = FactoryGirl.create(:tag).id
+      post :update, id: @test_id, tag: { display_name: 'another_name' }
+      assert_response :redirect, action: 'index'
+      expect(Tag.count).to eq(1)
+      expect(Tag.find(@test_id).display_name).to eq('another_name')
+    end
+  end
+
+  describe 'destroy a tag' do
+    it 'should destroy the tag and redirect to #index' do
+      @test_id = FactoryGirl.create(:tag).id
+      post :destroy, id: @test_id
+      expect(response).to redirect_to(action: 'index')
+      expect(Tag.count).to eq(0)
     end
   end
 end
