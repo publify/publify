@@ -20,57 +20,17 @@ describe Admin::UsersController, 'rough port of the old functional test', type: 
       get :new
       assert_template 'new'
 
-      post :new, user: { login: 'errand', email: 'corey@test.com', password: 'testpass', password_confirmation: 'testpass', profile_id: 1, nickname: 'fooo', firstname: 'bar' }
+      post :create, user: { login: 'errand', email: 'corey@test.com', password: 'testpass', password_confirmation: 'testpass', profile_id: 1, nickname: 'fooo', firstname: 'bar' }
       expect(response).to redirect_to(action: 'index')
     end
 
     describe '#EDIT action' do
       describe 'with POST request' do
         it 'should redirect to index' do
-          post :edit, id: @admin.id, user: { login: 'errand',
+          post :update, id: @admin.id, user: { login: 'errand',
                                              email: 'corey@test.com', password: 'testpass',
                                              password_confirmation: 'testpass' }
           expect(response).to redirect_to(action: 'index')
-        end
-      end
-
-      describe 'with GET request' do
-        shared_examples_for 'edit admin render' do
-          it 'should render template edit' do
-            assert_template 'edit'
-          end
-
-          it 'should assigns tobi user' do
-            assert assigns(:user).valid?
-            expect(assigns(:user)).to eq(@admin)
-          end
-        end
-        describe 'with no id params' do
-          before do
-            get :edit
-          end
-          it_should_behave_like 'edit admin render'
-        end
-
-        describe 'with id params' do
-          before do
-            get :edit, id: @admin.id
-          end
-          it_should_behave_like 'edit admin render'
-        end
-      end
-    end
-
-    describe '#destroy' do
-      let(:user) { create(:user) }
-
-      context 'GET' do
-        it 'shows the user to be destroyed' do
-          id = user.id
-          get :destroy, id: id
-          assert_template 'destroy'
-          assert assigns(:record).valid?
-          expect { User.find(id) }.to_not raise_error
         end
       end
     end
