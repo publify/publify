@@ -1,10 +1,16 @@
 <main id="main" tabindex="-1" class="l-index">
-  <div class="l-constrained">
-    <div class="l-tiles">
-      <% @articles.each_with_index do |article, index| %>
-        <%= render :partial => '/articles/article', :object => article, :locals => { :index => index } %>
-      <% end %>
-      <%= paginate @articles, views_prefix: 'tags' %>
+  <div class="l-tiles">
+    <div class="l-tiles-title">
+      Articles tagged as
+      <h1 class="l-tiles-title__header"><%= @grouping.display_name %></h1>
+    </div>
+    <div class="l-constrained">
+      <div class="l-tiles__inner">
+        <% @articles.each_with_index do |article, index| %>
+          <%= render partial: '/articles/article', object: article, locals: { index: index } %>
+        <% end %>
+        <%= paginate @articles, views_prefix: 'tags' %>
+      </div>
     </div>
   </div>
 </main>
