@@ -129,15 +129,15 @@ $less-than-mq-l: ($mq-l) - .01;
 
   @include respond-to(0, $less-than-mq-l) {
     .non-article-page .l-tile:nth-child(3n-2) & { // 1,4,7,10 etc...
-      @include article-tile--blue;
+      @include article-tile--green;
     }
 
     .non-article-page .l-tile:nth-child(3n-1) & { // 2,5,8,11 etc...
-      @include article-tile--white;
+      @include article-tile--blue;
     }
 
     .non-article-page .l-tile:nth-child(3n) & { // 3,6,9 etc...
-      @include article-tile--green;
+      @include article-tile--white;
     }
   }
 
@@ -181,11 +181,11 @@ $less-than-mq-l: ($mq-l) - .01;
     }
 
     .non-article-page .l-tile:nth-child(3n-1) & { // 2,5,8,11 etc...
-      @include article-tile__heading--white;
+      @include article-tile__heading--blue;
     }
 
     .non-article-page .l-tile:nth-child(3n) & { // 3,6,9 etc...
-      @include article-tile__heading--blue;
+      @include article-tile__heading--white;
     }
   }
 
@@ -228,11 +228,11 @@ $less-than-mq-l: ($mq-l) - .01;
     }
 
     .non-article-page .l-tile:nth-child(3n-1) & { // 2,5,8,11 etc...
-      @include article-tile__date--white;
+      @include article-tile__date--blue;
     }
 
     .non-article-page .l-tile:nth-child(3n) & { // 3,6,9 etc...
-      @include article-tile__date--blue;
+      @include article-tile__date--white;
     }
   }
 
@@ -320,15 +320,15 @@ $less-than-mq-l: ($mq-l) - .01;
 
   @include respond-to(0, $less-than-mq-l) {
     .non-article-page .l-tile:nth-child(3n-2) & { // 1,4,7,10 etc...
-      @include article-tile__comments--blue;
+      @include article-tile__comments--green;
     }
 
     .non-article-page .l-tile:nth-child(3n-1) & { // 2,5,8,11 etc...
-      @include article-tile__comments--white;
+      @include article-tile__comments--blue;
     }
 
     .non-article-page .l-tile:nth-child(3n) & { // 3,6,9 etc...
-      @include article-tile__comments--green;
+      @include article-tile__comments--white;
     }
   }
 
