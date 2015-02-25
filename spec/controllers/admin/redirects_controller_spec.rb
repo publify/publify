@@ -28,7 +28,7 @@ describe Admin::RedirectsController, type: :controller do
     it 'should create a new redirect and redirect to #index' do
       expect do
         post :create, 'redirect' => { from_path: 'some/place',
-                                    to_path: 'somewhere/else' }
+                                      to_path: 'somewhere/else' }
         assert_response :redirect, action: 'index'
       end.to change(Redirect, :count)
     end
@@ -36,7 +36,7 @@ describe Admin::RedirectsController, type: :controller do
     it 'should create a redirect with an empty from path and redirect to #index' do
       expect do
         post :create, 'redirect' => { from_path: '',
-                                    to_path: 'somewhere/different' }
+                                      to_path: 'somewhere/different' }
         assert_response :redirect, action: 'index'
       end.to change(Redirect, :count)
     end
@@ -50,7 +50,7 @@ describe Admin::RedirectsController, type: :controller do
     it 'renders the edit template with an HTTP 200 status code' do
       expect(response).to be_success
       expect(response).to have_http_status(200)
-      expect(response).to render_template("edit")
+      expect(response).to render_template('edit')
     end
   end
 

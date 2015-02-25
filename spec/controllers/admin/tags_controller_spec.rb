@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Admin::TagsController, type: :controller do
   render_views
-  
+
   let!(:blog) { create(:blog) }
   let!(:user) { create(:user, login: 'henri', profile: create(:profile_admin)) }
 
@@ -40,7 +40,7 @@ describe Admin::TagsController, type: :controller do
     it 'renders the edit template with an HTTP 200 status code' do
       expect(response).to be_success
       expect(response).to have_http_status(200)
-      expect(response).to render_template("edit")
+      expect(response).to render_template('edit')
     end
   end
 

@@ -28,8 +28,8 @@ describe Admin::UsersController, 'rough port of the old functional test', type: 
       describe 'with POST request' do
         it 'should redirect to index' do
           post :update, id: @admin.id, user: { login: 'errand',
-                                             email: 'corey@test.com', password: 'testpass',
-                                             password_confirmation: 'testpass' }
+                                               email: 'corey@test.com', password: 'testpass',
+                                               password_confirmation: 'testpass' }
           expect(response).to redirect_to(action: 'index')
         end
       end

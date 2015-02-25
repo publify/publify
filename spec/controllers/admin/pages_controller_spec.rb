@@ -88,7 +88,7 @@ describe Admin::PagesController, type: :controller do
 
   describe '#update' do
     let!(:page) { create(:page) }
-    
+
     context 'should update a post' do
       before(:each) do
         post :update, id: page.id, page: { name: 'markdown-page', title: 'Markdown Page', body: 'Adding a [link](http://www.publify.co/) here' }
