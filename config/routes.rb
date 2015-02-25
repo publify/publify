@@ -90,7 +90,7 @@ Rails.application.routes.draw do
     get 'cache', to: 'cache#show'
     delete 'cache', to: 'cache#destroy'
 
-    resources :notes, except: [:new]
+    resources :notes, only: [:index, :new, :edit, :create, :update, :destroy], format: false
 
     resources :pages, only: [:index, :new, :edit, :create, :update, :destroy], format: false
 
