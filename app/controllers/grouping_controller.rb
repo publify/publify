@@ -36,8 +36,7 @@ class GroupingController < ContentController
       @keywords = ''
       @keywords << @grouping.keywords unless @grouping.keywords.blank?
       @keywords << this_blog.meta_keywords unless this_blog.meta_keywords.blank?
-      limit = this_blog.per_page(params[:format])
-      @articles = @grouping.articles.published.page(params[:page]).per(limit)
+      @articles = @grouping.articles.published.page(params[:page]).per(12)
     end
     respond_to do |format|
       format.html do
