@@ -60,6 +60,8 @@ en:
       there_is_no_tags: "There is no tag"
       next_page: "Next page"
       previous_page: "Previous page"
+    show:
+      articles_tagged_as: Articles tagged as
   helper:
     at: "at"
   articles:

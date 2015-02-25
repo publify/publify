@@ -183,7 +183,7 @@
   @include respond-to($mq-m) {
     position: absolute;
     top: 0;
-    left: 31%;
+    left: 35%;
 
     .homepage & {
       left: 0;
@@ -193,11 +193,10 @@
 
   @include respond-to($mq-l) {
     left: 38%;
+  }
 
-    .homepage & {
-      left: 0;
-      position: relative;
-    }
+  @include respond-to($mq-xl) {
+    left: 40%;
   }
 }
 

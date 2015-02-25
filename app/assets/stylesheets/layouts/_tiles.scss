@@ -1,6 +1,14 @@
-.l-tiles {
+.l-tiles__inner {
   @include column(12);
-  margin-top: 5px;
+  margin-top: baseline-unit(4);
+
+  .homepage & {
+    margin-top: 5px;
+  }
+
+  @include respond-to($mq-m) {
+    margin-top: baseline-unit(9);
+  }
 
   .flexbox & {
     flex-wrap: wrap;
@@ -10,6 +18,31 @@
       display: flex;
     }
   }
+}
+
+.l-tiles-title {
+  background: $header-bg-color;
+  color: $white;
+  text-transform: uppercase;
+  font-weight: $brand-font-weight;
+  text-align: center;
+  padding-top: baseline-unit(3);
+  padding-bottom: baseline-unit(5);
+
+  @include respond-to($mq-m) {
+    padding-top: baseline-unit(7);
+    padding-bottom: baseline-unit(9);
+  }
+}
+
+.l-tiles-title__header {
+  @include font-size(36);
+  color: $white;
+  font-family: $brand-font-stack;
+  font-weight: $brand-font-weight;
+  padding-bottom: baseline-unit(2);
+  margin-bottom: 0;
+  text-transform: initial;
 }
 
 .l-tile {
