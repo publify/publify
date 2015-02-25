@@ -13,10 +13,10 @@ describe Admin::ProfilesController, type: :controller do
     end
   end
 
-  describe 'successful POST to index' do
+  describe 'successful POST to update' do
     it 'redirects to profile page' do
       request.session = { user: alice.id }
-      post :index, user: { email: 'foo@bar.com' }
+      post :update, id: alice.id, user: { email: 'foo@bar.com' }
       expect(response).to redirect_to('/admin/profiles')
     end
   end
