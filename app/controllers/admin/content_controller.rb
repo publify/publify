@@ -7,11 +7,6 @@ class Admin::ContentController < Admin::BaseController
 
   cache_sweeper :blog_sweeper
 
-  def auto_complete_for_article_keywords
-    @items = Tag.select(:display_name).order(:display_name).map(&:display_name)
-    render inline: '<%= @items %>'
-  end
-
   def index
     @search = params[:search] ? params[:search] : {}
     @articles = Article.search_with(@search).page(params[:page]).per(this_blog.admin_display_elements)
@@ -30,6 +25,14 @@ class Admin::ContentController < Admin::BaseController
     load_resources
   end
 
+  def edit
+    return unless access_granted?(params[:id])
+    @article = Article.find(params[:id])
+    @article.text_filter ||= current_user.default_text_filter
+    @article.keywords = Tag.collection_to_string @article.tags
+    load_resources
+  end
+
   def create
     article_factory = Article::Factory.new(this_blog, current_user)
     @article = article_factory.get_or_build_from(params[:article][:id])
@@ -44,14 +47,6 @@ class Admin::ContentController < Admin::BaseController
       load_resources
       render 'new'
     end
-  end
-
-  def edit
-    return unless access_granted?(params[:id])
-    @article = Article.find(params[:id])
-    @article.text_filter ||= current_user.default_text_filter
-    @article.keywords = Tag.collection_to_string @article.tags
-    load_resources
   end
 
   def update
@@ -84,6 +79,11 @@ class Admin::ContentController < Admin::BaseController
 
   def destroy
     destroy_a(Article)
+  end
+
+  def auto_complete_for_article_keywords
+    @items = Tag.select(:display_name).order(:display_name).map(&:display_name)
+    render inline: '<%= @items %>'
   end
 
   def autosave

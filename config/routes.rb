@@ -90,7 +90,14 @@ Rails.application.routes.draw do
     get 'cache', to: 'cache#show'
     delete 'cache', to: 'cache#destroy'
 
-    resources :notes, only: [:index, :new, :edit, :create, :update, :destroy], format: false
+    resources :content, only: [:index, :new, :edit, :create, :update, :destroy], format: false do
+      collection do
+        get 'auto_complete_for_article_keywords'
+        post 'autosave'
+      end
+    end
+
+    resources :notes, only: [:index, :show, :edit, :create, :update, :destroy], format: false
 
     resources :pages, only: [:index, :new, :edit, :create, :update, :destroy], format: false
 
@@ -119,7 +126,7 @@ Rails.application.routes.draw do
   end
 
   # Admin/XController
-  %w{content feedback resources sidebar textfilters themes settings seo}.each do |i|
+  %w{feedback resources sidebar textfilters themes settings seo}.each do |i|
     match "/admin/#{i}", controller: "admin/#{i}", action: :index, format: false, via: [:get, :post, :put, :delete] # TODO: convert this magic catchers to resources item to close un-needed HTTP method
     match "/admin/#{i}(/:action(/:id))", controller: "admin/#{i}", action: nil, id: nil, format: false, via: [:get, :post, :put, :delete] # TODO: convert this magic catchers to resources item to close un-needed HTTP method
   end
