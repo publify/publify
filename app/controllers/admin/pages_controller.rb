@@ -31,7 +31,7 @@ class Admin::PagesController < Admin::BaseController
     @page.user_id = current_user.id
 
     if @page.save
-      redirect_to admin_pages_url, notice: 'Page was successfully created.'
+      redirect_to admin_pages_url, notice: I18n.t('admin.pages.new.success')
     else
       render :new
     end
@@ -40,7 +40,7 @@ class Admin::PagesController < Admin::BaseController
   def update
     @page.text_filter ||= default_textfilter
     if @page.update(page_params)
-      redirect_to admin_pages_url, notice: 'Page was successfully updated.'
+      redirect_to admin_pages_url, notice: I18n.t('admin.pages.edit.success')
     else
       render :edit
     end

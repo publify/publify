@@ -25,8 +25,7 @@ class Admin::TagsController < Admin::BaseController
     old_name = @tag.name
     if @tag.update(tag_params)
       Redirect.create(from_path: "/tag/#{old_name}", to_path: @tag.permalink_url(nil, true))
-      flash[:success] = I18n.t('admin.tags.edit.success')
-      redirect_to admin_tags_url, notice: 'Tag was successfully updated.'
+      redirect_to admin_tags_url, notice: I18n.t('admin.tags.edit.success')
     else
       render :edit
     end

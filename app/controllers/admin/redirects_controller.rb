@@ -30,7 +30,7 @@ class Admin::RedirectsController < Admin::BaseController
 
   def destroy
     @redirect.destroy
-    redirect_to admin_redirects_url, notice: 'Redirect was successfully destroyed.'
+    redirect_to admin_redirects_url, notice: I18n.t('admin.redirects.destroy.success')
   end
 
   private

@@ -21,7 +21,7 @@ class Admin::UsersController < Admin::BaseController
     @user = User.new(user_params)
     @user.name = @user.login
     if @user.save
-      redirect_to admin_users_url, notice: 'User was successfully created.'
+      redirect_to admin_users_url, notice: I18n.t('admin.users.new.success')
     else
       render :new
     end

@@ -13,7 +13,7 @@ class Admin::ProfilesController < Admin::BaseController
     end
 
     if @user.update(user_params)
-      redirect_to admin_profiles_url, notice: 'Profile was successfully updated.'
+      redirect_to admin_profiles_url, notice: I18n.t('admin.profiles.index.success')
     else
       render :index
     end
