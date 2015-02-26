@@ -18,7 +18,7 @@ class Admin::NotesController < Admin::BaseController
 
   def edit
   end
-  
+
   def create
     note = Publisher.new(current_user).new_note
 
