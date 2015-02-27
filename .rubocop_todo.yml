@@ -66,11 +66,6 @@ Style/AccessorMethodName:
 Style/Blocks:
   Enabled: false
 
-# Offense count: 4
-# Configuration parameters: IndentWhenRelativeTo, SupportedStyles, IndentOneStep.
-Style/CaseIndentation:
-  Enabled: false
-
 # Offense count: 10
 Style/ClassVars:
   Enabled: false

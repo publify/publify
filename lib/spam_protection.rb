@@ -15,9 +15,9 @@ class SpamProtection
 
     reason = catch(:hit) do
       case string
-        when Format::IP_ADDRESS then scan_ip(string)
-        when Format::HTTP_URI then scan_uris([string]) rescue URI::InvalidURIError
-        else scan_text(string)
+      when Format::IP_ADDRESS then scan_ip(string)
+      when Format::HTTP_URI then scan_uris([string]) rescue URI::InvalidURIError
+      else scan_text(string)
       end
     end
 
