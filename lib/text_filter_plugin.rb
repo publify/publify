@@ -52,8 +52,6 @@ class TextFilterPlugin
     (@sanitizer ||= HTML::WhiteListSanitizer.new).sanitize(*args)
   end
 
-  private
-
   def self.default_helper_module!
   end
 

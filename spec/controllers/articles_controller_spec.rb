@@ -510,24 +510,6 @@ describe ArticlesController, 'redirecting', type: :controller do
       assert_response 404
     end
   end
-
-  describe 'with a custom format with several fixed parts and several variables' do
-    let!(:blog) { create(:blog, permalink_format: '/foo/bar/%year%/%month%/%title%') }
-    let!(:article) { create(:article) }
-
-    # TODO: Think about allowing this, and changing find_by_params_hash to match.
-    if false
-      it 'should find the article if the url matches all fixed parts and no variable components' do
-        get :redirect, from: 'foo/bar'
-        expect(response).to be_success
-      end
-
-      it 'should not find the article if the url does not match all fixed component' do
-        get :redirect, from: 'foo'
-        assert_response 404
-      end
-    end
-  end
 end
 
 describe ArticlesController, 'password protected', type: :controller do

@@ -8,8 +8,12 @@ AllCops:
   - 'tmp/**/*'
   - 'vendor/**/*'
 
+# Allow if (foo = get_foo) style
+Lint/AssignmentInCondition:
+  AllowSafeAssignment: true
+
 # Documenting all classes is not common in Rails projects.
-Documentation:
+Style/Documentation:
   Enabled: false
 
 # Provides more information, while still being displayable in modern wide-screen.

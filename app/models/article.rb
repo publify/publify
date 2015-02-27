@@ -82,16 +82,14 @@ class Article < Content
   end
 
   def post_type
-    _post_type = read_attribute(:post_type)
-    _post_type = 'read' if _post_type.blank?
-    _post_type
+    post_type = read_attribute(:post_type)
+    post_type = 'read' if post_type.blank?
+    post_type
   end
 
   def self.last_draft(article_id)
     article = Article.find(article_id)
-    while article.has_child?
-      article = Article.child_of(article.id).first
-    end
+    article = Article.child_of(article.id).first while article.has_child?
     article
   end
 

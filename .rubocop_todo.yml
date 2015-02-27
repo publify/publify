@@ -5,20 +5,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 2
-Lint/AmbiguousOperator:
-  Enabled: false
-
-# Offense count: 3
-# Configuration parameters: AllowSafeAssignment.
-Lint/AssignmentInCondition:
-  Enabled: false
-
-# Offense count: 1
-# Configuration parameters: AlignWith, SupportedStyles.
-Lint/EndAlignment:
-  Enabled: false
-
 # Offense count: 3
 Lint/Eval:
   Enabled: false
@@ -27,28 +13,12 @@ Lint/Eval:
 Lint/HandleExceptions:
   Enabled: false
 
-# Offense count: 1
-Lint/LiteralInCondition:
-  Enabled: false
-
-# Offense count: 1
-Lint/LiteralInInterpolation:
-  Enabled: false
-
 # Offense count: 5
 Lint/RescueException:
   Enabled: false
 
 # Offense count: 3
 Lint/ShadowingOuterLocalVariable:
-  Enabled: false
-
-# Offense count: 1
-Lint/UnderscorePrefixedVariableName:
-  Enabled: false
-
-# Offense count: 1
-Lint/UselessAccessModifier:
   Enabled: false
 
 # Offense count: 52
@@ -91,10 +61,6 @@ Metrics/PerceivedComplexity:
 Style/AccessorMethodName:
   Enabled: false
 
-# Offense count: 1
-Style/AsciiComments:
-  Enabled: false
-
 # Offense count: 11
 # Cop supports --auto-correct.
 Style/Blocks:
@@ -111,10 +77,6 @@ Style/ClassVars:
 
 # Offense count: 1
 Style/ConstantName:
-  Enabled: false
-
-# Offense count: 1
-Style/EndOfLine:
   Enabled: false
 
 # Offense count: 11
@@ -135,14 +97,6 @@ Style/IfUnlessModifier:
 # Offense count: 2
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 Style/MethodName:
-  Enabled: false
-
-# Offense count: 1
-Style/MultilineBlockChain:
-  Enabled: false
-
-# Offense count: 1
-Style/OpMethod:
   Enabled: false
 
 # Offense count: 6
@@ -171,9 +125,4 @@ Style/SingleLineBlockParams:
 
 # Offense count: 2
 Style/StructInheritance:
-  Enabled: false
-
-# Offense count: 1
-# Configuration parameters: MaxLineLength.
-Style/WhileUntilModifier:
   Enabled: false

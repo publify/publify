@@ -102,7 +102,7 @@ class ActiveRecord::Migration
     case method.to_s
     when 'create_table'
       block = args.last.is_a?(Proc) ? args.pop : proc { |_t| nil }
-      create_table *args, &block
+      create_table(*args, &block)
     when 'remove_column'
       remove_column args[0], args[1]
     when 'reverse_columns'
