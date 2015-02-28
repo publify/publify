@@ -259,7 +259,7 @@ _footer text here_
   end # #filter_text
 
   it '#filter text by name' do
-    t = build_stubbed('markdown smartypants')
+    build_stubbed('markdown smartypants')
     result = TextFilter.filter_text_by_name(blog, '*"foo"*', 'markdown smartypants')
     expect(result).to eq('<p><em>&#8220;foo&#8221;</em></p>')
   end

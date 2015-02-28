@@ -11,12 +11,12 @@ describe Article, type: :model do
 
   describe '#permalink_url' do
     describe 'with hostname' do
-      subject { Article.new(permalink: 'article-3', published_at: Time.utc(2004, 6, 1)).permalink_url(anchor = nil, only_path = false) }
+      subject { Article.new(permalink: 'article-3', published_at: Time.utc(2004, 6, 1)).permalink_url(nil, false) }
       it { is_expected.to eq('http://myblog.net/2004/06/01/article-3') }
     end
 
     describe 'without hostname' do
-      subject { Article.new(permalink: 'article-3', published_at: Time.utc(2004, 6, 1)).permalink_url(anchor = nil, only_path = true) }
+      subject { Article.new(permalink: 'article-3', published_at: Time.utc(2004, 6, 1)).permalink_url(nil, true) }
       it { is_expected.to eq('/2004/06/01/article-3') }
     end
 
@@ -25,21 +25,21 @@ describe Article, type: :model do
     describe 'with a multibyte permalink' do
       subject { Article.new(permalink: 'ルビー', published_at: Time.utc(2004, 6, 1)) }
       it 'escapes the multibyte characters' do
-        expect(subject.permalink_url(anchor = nil, only_path = true)).to eq('/2004/06/01/%E3%83%AB%E3%83%93%E3%83%BC')
+        expect(subject.permalink_url(nil, true)).to eq('/2004/06/01/%E3%83%AB%E3%83%93%E3%83%BC')
       end
     end
 
     describe 'with a permalink containing a space' do
       subject { Article.new(permalink: 'hello there', published_at: Time.utc(2004, 6, 1)) }
       it "escapes the space as '%20', not as '+'" do
-        expect(subject.permalink_url(anchor = nil, only_path = true)).to eq('/2004/06/01/hello%20there')
+        expect(subject.permalink_url(nil, true)).to eq('/2004/06/01/hello%20there')
       end
     end
 
     describe 'with a permalink containing a plus' do
       subject { Article.new(permalink: 'one+two', published_at: Time.utc(2004, 6, 1)) }
       it 'does not escape the plus' do
-        expect(subject.permalink_url(anchor = nil, only_path = true)).to eq('/2004/06/01/one+two')
+        expect(subject.permalink_url(nil, true)).to eq('/2004/06/01/one+two')
       end
     end
   end
@@ -291,8 +291,7 @@ describe Article, type: :model do
 
       a = build(:article)
       users = a.interested_users
-      logins = users.map(&:login).sort
-      expect(logins).to eq %w(alice henri)
+      expect(users).to match_array [alice, henri]
     end
   end
 
@@ -310,9 +309,8 @@ describe Article, type: :model do
 
   it 'should get only ham not spam comment' do
     article = create(:article)
-    allow(article).to receive(:allow_comments?).and_return(true)
     ham_comment = create(:comment, article: article)
-    spam_comment = create(:spam_comment, article: article)
+    create(:spam_comment, article: article)
     expect(article.comments.ham).to eq([ham_comment])
     expect(article.comments.count).to eq(2)
   end
@@ -805,7 +803,7 @@ describe Article, type: :model do
     end
 
     it 'returns only article that was published since last visit' do
-      already_seen_article = create(:article, published_at: time - 2.hours)
+      create(:article, published_at: time - 2.hours)
       article = create(:article, published_at: time + 2.hours)
       expect(Article.published_since(time)).to eq [article]
     end
@@ -817,8 +815,7 @@ describe Article, type: :model do
     end
 
     it 'returns article with comment count field' do
-      comment = create(:comment)
-      article = comment.article
+      create(:comment)
       expect(Article.bestof.first.comment_count.to_i).to eq 1
     end
 

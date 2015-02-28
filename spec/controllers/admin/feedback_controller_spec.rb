@@ -112,37 +112,34 @@ describe Admin::FeedbackController, type: :controller do
     end
 
     describe 'article action' do
+      let(:article) { create(:article) }
+      let!(:ham) { create(:comment, article: article) }
+      let!(:spam) { create(:comment, article: article, state: 'spam') }
+
       def should_success_with_article_view(response)
         expect(response).to be_success
         expect(response).to render_template('article')
       end
 
       it 'should see all feedback on one article' do
-        article = FactoryGirl.create(:article)
-        FactoryGirl.create(:comment, article: article)
-        FactoryGirl.create(:comment, article: article)
         get :article, id: article.id
         should_success_with_article_view(response)
         expect(assigns(:article)).to eq(article)
-        expect(assigns(:feedback).size).to eq(2)
+        expect(assigns(:feedback)).to match_array [ham, spam]
       end
 
       it 'should see only spam feedback on one article' do
-        article = FactoryGirl.create(:article)
-        FactoryGirl.create(:comment, state: 'spam', article: article)
         get :article, id: article.id, spam: 'y'
         should_success_with_article_view(response)
         expect(assigns(:article)).to eq(article)
-        expect(assigns(:feedback).size).to eq(1)
+        expect(assigns(:feedback)).to match_array [spam]
       end
 
       it 'should see only ham feedback on one article' do
-        article = FactoryGirl.create(:article)
-        comment = FactoryGirl.create(:comment, article: article)
         get :article, id: article.id, ham: 'y'
         should_success_with_article_view(response)
         expect(assigns(:article)).to eq(article)
-        expect(assigns(:feedback).size).to eq(1)
+        expect(assigns(:feedback)).to match_array [ham]
       end
 
       it 'should redirect_to index if bad article id' do
@@ -313,7 +310,7 @@ describe Admin::FeedbackController, type: :controller do
 
       it 'delete all spam' do
         Feedback.delete_all
-        comment = FactoryGirl.create(:comment, state: :spam)
+        FactoryGirl.create(:comment, state: :spam)
         post :bulkops, bulkop_top: 'Delete all spam'
         expect(Feedback.count).to eq(0)
       end

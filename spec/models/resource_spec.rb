@@ -11,14 +11,14 @@ describe Resource, type: :model do
     describe '#without_images' do
       it 'should list resource that are not image (based on mime type)' do
         other_resource = FactoryGirl.create(:resource, mime: 'text/css')
-        image_resource = FactoryGirl.create(:resource, mime: 'image/jpeg')
+        FactoryGirl.create(:resource, mime: 'image/jpeg')
         expect(Resource.without_images).to eq([other_resource])
       end
     end
 
     describe '#images' do
       it 'should list only images (based on mime type)' do
-        other_resource = FactoryGirl.create(:resource, mime: 'text/css')
+        FactoryGirl.create(:resource, mime: 'text/css')
         image_resource = FactoryGirl.create(:resource, mime: 'image/jpeg')
         expect(Resource.images).to eq([image_resource])
       end
@@ -42,7 +42,7 @@ describe Resource, type: :model do
 
     describe '#without_images_by_filename' do
       it 'should combine 2 scopes' do
-        image_resource = FactoryGirl.create(:resource, mime: 'image/jpeg')
+        FactoryGirl.create(:resource, mime: 'image/jpeg')
         b_resource = FactoryGirl.create(:resource, mime: 'text/html', upload: file_upload('b'))
         a_resource = FactoryGirl.create(:resource, mime: 'text/html', upload: file_upload('a'))
         expect(Resource.without_images_by_filename).to eq([a_resource, b_resource])

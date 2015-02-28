@@ -28,13 +28,13 @@ class CommentsController < FeedbackController
     session session: new unless session
 
     comment_params = params[:comment]
-    if (params_comment[:body].blank? rescue true)
+    if (comment_params[:body].blank? rescue true)
       render nothing: true
       return
     end
 
     set_headers
-    @comment = Comment.new(params_comment)
+    @comment = Comment.new(comment_params)
 
     return render text: 'Comments are closed' if @article.comments_closed?
 

@@ -36,7 +36,6 @@ class Admin::ResourcesController < Admin::BaseController
 
   def destroy
     @record = Resource.find(params[:id])
-    mime = @record.mime
     return(render 'admin/shared/destroy') unless request.post?
 
     @record.destroy

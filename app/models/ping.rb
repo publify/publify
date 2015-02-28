@@ -11,7 +11,7 @@ class Ping < ActiveRecord::Base
     def send_pingback_or_trackback
       @response = Net::HTTP.get_response(URI.parse(ping.url))
       send_pingback or send_trackback
-    rescue Timeout::Error => err
+    rescue Timeout::Error
       Rails.logger.info 'Sending pingback or trackback timed out'
       return
     rescue => err
@@ -74,7 +74,7 @@ class Ping < ActiveRecord::Base
       path = trackback_uri.path
       path += "?#{trackback_uri.query}" if trackback_uri.query
 
-      net_request = Net::HTTP.start(trackback_uri.host, trackback_uri.port) do |http|
+      Net::HTTP.start(trackback_uri.host, trackback_uri.port) do |http|
         http.post(path, post, 'Content-type' => 'application/x-www-form-urlencoded; charset=utf-8')
       end
     end
@@ -113,7 +113,7 @@ class Ping < ActiveRecord::Base
     server = XMLRPC::Client.new2(URI.parse(xml_rpc_url).to_s)
 
     begin
-      result = server.call(name, *args)
+      server.call(name, *args)
     rescue XMLRPC::FaultException => e
       logger.error(e)
     end

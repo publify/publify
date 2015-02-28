@@ -65,7 +65,8 @@ Common attributes:
       end
 
       def self.macrofilter(blog, content, attrib, _params, _text = '')
-        style         = attrib['style']
+        # FIXME: style is not used
+        # style         = attrib['style']
         caption       = attrib['caption']
         title         = attrib['title']
         alt           = attrib['alt']

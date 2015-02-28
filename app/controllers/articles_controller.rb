@@ -34,8 +34,6 @@ class ArticlesController < ContentController
 
     @keywords = this_blog.meta_keywords
 
-    suffix = (params[:page].nil? && params[:year].nil?) ? '' : '/'
-
     respond_to do |format|
       format.html { render_paginated_index }
       format.atom do

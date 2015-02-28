@@ -84,9 +84,7 @@ class Admin::DashboardController < Admin::BaseController
   def parse_rss(body)
     xml = REXML::Document.new(body.force_encoding('ISO-8859-1').encode('UTF-8'))
 
-    items        = []
-    link         = REXML::XPath.match(xml, '//channel/link/text()').first.value rescue ''
-    title        = REXML::XPath.match(xml, '//channel/title/text()').first.value rescue ''
+    items = []
 
     REXML::XPath.each(xml, '//item/') do |elem|
       item = RssItem.new

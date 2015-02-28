@@ -52,7 +52,7 @@ describe User, type: :model do
     end
 
     it 'authenticate? works as expected' do
-      bob = create(:user, login: 'bob', password: 'testtest')
+      create(:user, login: 'bob', password: 'testtest')
       expect(User).to be_authenticate('bob', 'testtest')
       expect(User).not_to be_authenticate('bob', 'duff password')
     end
