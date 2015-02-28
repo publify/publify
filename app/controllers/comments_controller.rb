@@ -36,11 +36,9 @@ class CommentsController < FeedbackController
     set_headers
     @comment = Comment.new(params_comment)
 
-    if @article.comments_closed?
-      render text: 'Comment are closed'
-    else
-      render 'articles/comment_preview', locals: { comment: @comment }
-    end
+    return render text: 'Comments are closed' if @article.comments_closed?
+
+    render 'articles/comment_preview', locals: { comment: @comment }
   end
 
   protected
