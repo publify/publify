@@ -14,10 +14,10 @@ class ArticlesController < ContentController
     conditions = (Blog.default.statuses_in_timeline) ? ['type in (?, ?)', 'Article', 'Note'] : ['type = ?', 'Article']
 
     limit = this_blog.per_page(params[:format])
-    unless params[:year].blank?
-      @articles = Content.published_at(params.values_at(:year, :month, :day)).where(conditions).page(params[:page]).per(limit)
-    else
+    if params[:year].blank?
       @articles = Content.published.where(conditions).page(params[:page]).per(limit)
+    else
+      @articles = Content.published_at(params.values_at(:year, :month, :day)).where(conditions).page(params[:page]).per(limit)
     end
 
     @page_title = this_blog.home_title_template

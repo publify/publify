@@ -7,10 +7,10 @@ class Admin::ResourcesController < Admin::BaseController
     if !params[:upload].blank?
       file = params[:upload][:filename]
 
-      unless file.content_type
-        mime = 'text/plain'
-      else
+      if file.content_type
         mime = file.content_type.chomp
+      else
+        mime = 'text/plain'
       end
       @up = Resource.create(upload: file, mime: mime, created_at: Time.now)
       flash[:success] = I18n.t('admin.resources.upload.success')

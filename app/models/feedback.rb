@@ -186,9 +186,7 @@ class Feedback < ActiveRecord::Base
   end
 
   def feedback_not_closed
-    if article.comments_closed?
-      errors.add(:article_id, 'Comment are closed')
-    end
+    errors.add(:article_id, 'Comment are closed') if article.comments_closed?
   end
 
   private

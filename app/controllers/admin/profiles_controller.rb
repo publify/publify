@@ -6,10 +6,7 @@ class Admin::ProfilesController < Admin::BaseController
     @profiles = Profile.order('id')
     @user.attributes = params[:user].permit! if params[:user]
     if request.post?
-      if params[:user][:filename]
-        @user.resource = upload_avatar
-      end
-
+      @user.resource = upload_avatar if params[:user][:filename]
       if @user.save
         current_user = @user
         flash[:success] = I18n.t('admin.profiles.index.success')
@@ -23,10 +20,10 @@ class Admin::ProfilesController < Admin::BaseController
   def upload_avatar
     file = params[:user][:filename]
 
-    unless file.content_type
-      mime = 'text/plain'
-    else
+    if file.content_type
       mime = file.content_type.chomp
+    else
+      mime = 'text/plain'
     end
 
     Resource.create(upload: file, mime: mime, created_at: Time.now)

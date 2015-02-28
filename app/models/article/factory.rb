@@ -44,7 +44,7 @@ class Article::Factory
       requested_article(article_params)
     rescue
       # Not really good.
-      # TODO :Check in request_article type of DATA made in next step
+      # TODO: Check in request_article type of DATA made in next step
     end
   end
 

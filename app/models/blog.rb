@@ -14,9 +14,7 @@ class Blog < ActiveRecord::Base
   default_scope -> { order('id') }
 
   validate(on: :create) do |blog|
-    unless Blog.count.zero?
-      blog.errors.add(:base, 'There can only be one...')
-    end
+    blog.errors.add(:base, 'There can only be one...') unless Blog.count.zero?
   end
 
   validates :blog_name, presence: true
@@ -131,9 +129,7 @@ class Blog < ActiveRecord::Base
     end
     settings[:blog_id] = id
     article = Article.find(settings[:article_id])
-    unless article.allow_pings?
-      throw :error, 'Trackback not saved'
-    end
+    throw :error, 'Trackback not saved' unless article.allow_pings?
     article.trackbacks.create!(settings)
   end
 
@@ -148,9 +144,7 @@ class Blog < ActiveRecord::Base
 
   # The +Theme+ object for the current theme.
   def current_theme(reload = nil)
-    if reload
-      @current_theme = nil
-    end
+    @current_theme = nil if reload
     @current_theme ||= Theme.find(theme)
   end
 
@@ -208,9 +202,11 @@ class Blog < ActiveRecord::Base
 
   def rss_limit_params
     limit = limit_rss_display.to_i
-    limit.zero? \
-      ? {} \
-      : { limit: limit }
+    if limit.zero?
+      {}
+    else
+      { limit: limit }
+    end
   end
 
   def permalink_has_identifier

@@ -38,9 +38,7 @@ module Article::States
     end
 
     def published=(boolean)
-      if boolean
-        content.state = :just_published
-      end
+      content.state = :just_published if boolean
       boolean
     end
 
@@ -73,9 +71,7 @@ module Article::States
     end
 
     def published=(boolean)
-      unless boolean
-        content.state = :just_withdrawn
-      end
+      content.state = :just_withdrawn unless boolean
     end
 
     def withdraw
@@ -86,9 +82,7 @@ module Article::States
       new_time = (new_time.to_time rescue nil)
       return if new_time.nil?
       content[:published_at] = new_time
-      if new_time > Time.now
-        content.state = :publication_pending
-      end
+      content.state = :publication_pending if new_time > Time.now
     end
 
     def send_notifications
@@ -174,9 +168,7 @@ module Article::States
     end
 
     def published=(boolean)
-      if boolean
-        content.state = :just_published
-      end
+      content.state = :just_published if boolean
     end
 
     def published_at=(new_time)

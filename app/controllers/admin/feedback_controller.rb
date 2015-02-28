@@ -1,18 +1,16 @@
 class Admin::FeedbackController < Admin::BaseController
   cache_sweeper :blog_sweeper
-  Only_domain = %w(unapproved presumed_ham presumed_spam ham spam)
+  ONLY_DOMAIN = %w(unapproved presumed_ham presumed_spam ham spam)
 
   def index
     scoped_feedback = Feedback
 
     if params[:only].present?
-      @only_param = Only_domain.dup.delete(params[:only])
+      @only_param = ONLY_DOMAIN.dup.delete(params[:only])
       scoped_feedback = scoped_feedback.send(@only_param) if @only_param
     end
 
-    if params[:page].blank? || params[:page] == '0'
-      params.delete(:page)
-    end
+    params.delete(:page) if params[:page].blank? || params[:page] == '0'
 
     @feedback = scoped_feedback.paginated(params[:page], this_blog.admin_display_elements)
   end
@@ -77,12 +75,8 @@ class Admin::FeedbackController < Admin::BaseController
 
   def article
     @article = Article.find(params[:id])
-    if params[:ham] && params[:spam].blank?
-      @feedback = @article.comments.ham
-    end
-    if params[:spam] && params[:ham].blank?
-      @feedback = @article.comments.spam
-    end
+    @feedback = @article.comments.ham if params[:ham] && params[:spam].blank?
+    @feedback = @article.comments.spam if params[:spam] && params[:ham].blank?
     @feedback ||= @article.comments
   end
 

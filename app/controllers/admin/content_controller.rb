@@ -62,17 +62,13 @@ class Admin::ContentController < Admin::BaseController
     if params[:article][:draft]
       get_fresh_or_existing_draft_for_article
     else
-      unless @article.parent_id.nil?
-        @article = Article.find(@article.parent_id)
-      end
+      @article = Article.find(@article.parent_id) unless @article.parent_id.nil?
     end
 
     update_article_attributes
 
     if @article.save
-      unless @article.draft
-        Article.where(parent_id: @article.id).map(&:destroy)
-      end
+      Article.where(parent_id: @article.id).map(&:destroy) unless @article.draft
       flash[:success] = I18n.t('admin.content.update.success')
       redirect_to action: 'index'
     else

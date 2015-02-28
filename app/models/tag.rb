@@ -29,9 +29,7 @@ class Tag < ActiveRecord::Base
   end
 
   def ensure_naming_conventions
-    if display_name.blank?
-      self.display_name = name
-    end
+    self.display_name = name if display_name.blank?
     self.name = display_name.to_url
   end
 
