@@ -117,7 +117,3 @@ Style/RescueModifier:
 # Configuration parameters: Methods.
 Style/SingleLineBlockParams:
   Enabled: false
-
-# Offense count: 2
-Style/StructInheritance:
-  Enabled: false

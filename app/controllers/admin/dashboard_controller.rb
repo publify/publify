@@ -75,7 +75,7 @@ class Admin::DashboardController < Admin::BaseController
     []
   end
 
-  class RssItem < Struct.new(:link, :title, :description, :description_link, :date, :author)
+  RssItem = Struct.new(:link, :title, :description, :description_link, :date, :author) do
     def to_s
       title
     end
