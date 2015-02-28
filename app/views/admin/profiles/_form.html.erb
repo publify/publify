@@ -1,4 +1,4 @@
-<%= form_for([:admin, @user]) do |f| %>
+<%= form_for([:admin, @user], url: admin_profile_path(current_user)) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -214,6 +214,6 @@
     <hr>
     <%= link_to(t(".cancel"), {action: 'index'}) %>
     <%= t(".or") %>
-    <%= submit_tag(t(".save"), class: 'btn btn-success') %>
+    <%= submit_tag("Save", class: 'btn btn-success') %>
   </div>
 <% end %>

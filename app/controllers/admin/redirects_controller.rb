@@ -1,45 +1,47 @@
 class Admin::RedirectsController < Admin::BaseController
+  before_action :set_redirect, only: [:edit, :update, :destroy]
+
   def index
-    redirect_to action: 'new'
+    @redirects = Redirect.where('origin is null').order('id desc').page(params[:page]).per(this_blog.admin_display_elements)
+    @redirect = Redirect.new
   end
 
   def edit
-    new_or_edit
+    @redirects = Redirect.where('origin is null').order('id desc').page(params[:page]).per(this_blog.admin_display_elements)
   end
 
-  def new
-    new_or_edit
+  def create
+    @redirect = Redirect.new(redirect_params)
+
+    if @redirect.save
+      redirect_to admin_redirects_url, notice: 'Redirect was successfully created.'
+    else
+      render :index
+    end
+  end
+
+  def update
+    if @redirect.update(redirect_params)
+      redirect_to admin_redirects_url, notice: 'Redirect was successfully updated.'
+    else
+      render :edit
+    end
   end
 
   def destroy
-    @record = Redirect.find(params[:id])
-    return(render 'admin/shared/destroy') unless request.post?
-
-    @record.destroy
-    flash[:success] = I18n.t('admin.redirects.destroy.success')
-    redirect_to action: 'index'
+    @redirect.destroy
+    redirect_to admin_redirects_url, notice: I18n.t('admin.redirects.destroy.success')
   end
 
   private
 
-  def new_or_edit
-    @redirects = Redirect.where('origin is null').order('id desc').page(params[:page]).per(this_blog.admin_display_elements)
+  # Use callbacks to share common setup or constraints between actions.
+  def set_redirect
+    @redirect = Redirect.find(params[:id])
+  end
 
-    @redirect = case params[:id]
-    when nil
-      Redirect.new
-    else
-      Redirect.find(params[:id])
-    end
-
-    @redirect.attributes = params[:redirect].permit! if params[:redirect]
-    if @redirect.from_path.nil? || @redirect.from_path.empty?
-      @redirect.from_path = @redirect.shorten
-    end
-    if request.post?
-      save_a(@redirect, 'redirection')
-    else
-      render 'new'
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def redirect_params
+    params.require(:redirect).permit(:from_path, :to_path)
   end
 end

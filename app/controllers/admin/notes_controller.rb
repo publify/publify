@@ -9,6 +9,16 @@ class Admin::NotesController < Admin::BaseController
     @note = Publisher.new(current_user).new_note
   end
 
+  def show
+    unless @note.access_by?(current_user)
+      flash[:error] = I18n.t('admin.base.not_allowed')
+      redirect_to action: 'index'
+    end
+  end
+
+  def edit
+  end
+
   def create
     note = Publisher.new(current_user).new_note
 
@@ -31,9 +41,6 @@ class Admin::NotesController < Admin::BaseController
     redirect_to action: :index
   end
 
-  def edit
-  end
-
   def update
     @note.attributes = params[:note].permit!
     @note.save
@@ -44,13 +51,6 @@ class Admin::NotesController < Admin::BaseController
     @note.destroy
     flash[:notice] = I18n.t('admin.base.successfully_deleted', name: 'note')
     redirect_to action: 'index'
-  end
-
-  def show
-    unless @note.access_by?(current_user)
-      flash[:error] = I18n.t('admin.base.not_allowed')
-      redirect_to action: 'index'
-    end
   end
 
   private

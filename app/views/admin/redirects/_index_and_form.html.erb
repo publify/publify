@@ -1,4 +1,4 @@
-<%- content_for :page_heading do %>
+<% content_for :page_heading do %>
 <h2>
   <i class="glyphicon glyphicon-large glyphicon-share-alt"></i>
   <%= t(".redirects") %>
@@ -7,22 +7,30 @@
 
 <div class='row'>
   <div class='col-md-4'>
-    <%= form_tag :action=>"edit", :id => @redirect.id do %>
-      <%= error_messages_for 'redirect' %>
-      <div class='form-group'>
-        <%= text_field :redirect, :from_path, class: 'form-control', placeholder: "#{t(".from")} #{this_blog.base_url}/" %>
+    <%= form_for([:admin, @redirect]) do |f| %>
+
+      <% if @redirect.errors.any? %>
+        <ul>
+          <% @redirect.errors.full_messages.each do |redirect| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+
+      <div class="form-group">
+        <%= f.text_field :from_path, class: 'form-control', placeholder: "From #{this_blog.base_url}/" %>
       </div>
       <p class='help-block'>
         <small><%= t(".leave_empty_to_shorten_a_link") %></small>
       </p>
-      <div class='form-group'>
-        <%= text_field :redirect, :to_path, :class => 'form-control', placeholder: t(".to") %>
+      <div class="form-group">
+        <%= f.text_field :to_path, class: 'form-control', placeholder: "To" %>
       </div>
-      <div class='form-group'>
+      <div class="form-group">
         <hr>
         <%= link_to(t(".cancel"), {action: 'index'}) %>
         <%= t(".or") %>
-        <%= submit_tag(t(".save"), class: 'btn btn-success') %>
+        <%= f.submit "Save", class: 'btn btn-success' %>
       </div>
     <% end %>
   </div>
@@ -35,13 +43,13 @@
           <th><%= t(".to") %></th>
         </tr>
       </thead>
-      <%- if @redirects.empty? %>
+      <% if @redirects.empty? %>
       <tr>
         <td colspan="2">
           <%= t(".no_redirects") %>
         </td>
       </tr>
-      <%- end %>
+      <% end %>
       <% for redirect in @redirects %>
       <tr>
         <td>
@@ -51,7 +59,7 @@
         <td><%= link_to(redirect.to_path, redirect.to_path) %></td>
       </tr>
       <% end %>
-      <%= display_pagination(@redirects, 2)%>
+      <%= display_pagination(@redirects, 2) %>
     </table>
   </div>
 </div>

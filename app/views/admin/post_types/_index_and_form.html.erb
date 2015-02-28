@@ -1,0 +1,65 @@
+<% content_for :page_heading do %>
+<h2>
+  <i class="glyphicon glyphicon-large glyphicon-cog"></i>
+  <%= t(".post_types") %>
+</h2>
+<% end %>
+
+<div class='row'>
+  <div class='col-md-4'>
+    <%= form_for([:admin, @post_type]) do |f| %>
+
+      <% if @post_type.errors.any? %>
+        <ul>
+          <% @post_type.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+
+      <div class="form-group">
+        <%= f.text_field :name, class: 'form-control', placeholder: "Name" %>
+      </div>
+      <div class="form-group">
+        <%= f.text_area :description, rows: 5, class: 'form-control', placeholder: "Description" %>
+      </div>
+      <div class="form-group">
+        <hr>
+        <%= link_to(t(".cancel"), {action: 'index'}) %>
+        <%= t(".or") %>
+        <%= f.submit "Save", class: 'btn btn-success' %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="col-md-8">
+    <table class='table table-hover'>
+      <thead>
+        <tr class='noborder'>
+          <th><%= t(".name") %></th>
+          <th><%= t(".description") %></th>
+          <th><%= t(".template_name") %></th>
+        </tr>
+      </thead>
+      <tr class='shade'>
+        <td><%= t(".default") %></td>
+        <td><%= t(".publify_default_post_type") %></td>
+        <td>read</td>
+      </tr>
+      <% @post_types.each do |post_type| %>
+        <tr>
+          <td>
+            <%= post_type.name %><br>
+            <div class='action'>
+              <%= link_to content_tag(:span, '', class: 'glyphicon glyphicon-pencil'), edit_admin_post_type_path(post_type), { class: 'btn btn-primary btn-xs btn-action' } %>
+              <%= link_to content_tag(:span, '', class: 'glyphicon glyphicon-trash'), admin_post_type_path(post_type), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs btn-action' %>
+            </div>
+          </td>
+          <td><%= post_type.description %></td>
+          <td><%= post_type.permalink %></td>
+        </tr>
+      <% end %>
+    </table>
+    <p class="help-block"><%= t(".explain") %></p>
+  </div>
+</div>
