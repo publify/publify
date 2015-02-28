@@ -54,9 +54,7 @@ class BlogSweeper < ActionController::Caching::Sweeper
     when Blog, User, Comment, Trackback
       pending_sweeps << :sweep_all << :sweep_theme
     end
-    unless controller
-      run_pending_page_sweeps
-    end
+    run_pending_page_sweeps unless controller
   end
 
   def sweep_all
@@ -83,8 +81,6 @@ class BlogSweeper < ActionController::Caching::Sweeper
 
   def callback(timing)
     super
-    if timing == :after
-      run_pending_page_sweeps
-    end
+    run_pending_page_sweeps if timing == :after
   end
 end

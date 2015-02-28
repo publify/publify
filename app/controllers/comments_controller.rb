@@ -8,9 +8,7 @@ class CommentsController < FeedbackController
 
     unless current_user.nil? || session[:user_id].nil?
       # maybe useless, but who knows ?
-      if current_user.id == session[:user_id]
-        @comment.user_id = current_user.id
-      end
+      @comment.user_id = current_user.id if current_user.id == session[:user_id]
     end
 
     set_cookies_for @comment
@@ -27,9 +25,7 @@ class CommentsController < FeedbackController
   end
 
   def preview
-    unless session
-      session session: new
-    end
+    session session: new unless session
 
     comment_params = params[:comment]
     if (params_comment[:body].blank? rescue true)
@@ -40,10 +36,10 @@ class CommentsController < FeedbackController
     set_headers
     @comment = Comment.new(params_comment)
 
-    unless @article.comments_closed?
-      render 'articles/comment_preview', locals: { comment: @comment }
-    else
+    if @article.comments_closed?
       render text: 'Comment are closed'
+    else
+      render 'articles/comment_preview', locals: { comment: @comment }
     end
   end
 

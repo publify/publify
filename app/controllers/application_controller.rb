@@ -46,9 +46,7 @@ class ApplicationController < ActionController::Base
   end
 
   def reset_local_cache
-    unless session
-      session session: new
-    end
+    session session: new unless session
     @current_user = nil
   end
 

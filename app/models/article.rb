@@ -217,9 +217,7 @@ class Article < Content
   end
 
   def notify_user_via_email(user)
-    if user.notify_via_email?
-      EmailNotify.send_article(self, user)
-    end
+    EmailNotify.send_article(self, user) if user.notify_via_email?
   end
 
   def comments_closed?

@@ -251,7 +251,7 @@ describe Article, type: :model do
                                         published_at: Time.now + 4.seconds)
   end
   it 'test_triggers_are_dependent' do
-    # TODO Needs a fix for Rails ticket #5105: has_many: Dependent deleting does not work with STI
+    # TODO: Needs a fix for Rails ticket #5105: has_many: Dependent deleting does not work with STI
     skip
     art = Article.create!(title: 'title', body: 'body',
                           published_at: Time.now + 1.hour)

@@ -239,7 +239,7 @@ describe Admin::FeedbackController, type: :controller do
   describe 'publisher access' do
     before :each do
       FactoryGirl.create(:blog)
-      # TODO remove this delete_all after removing all fixture
+      # TODO: remove this delete_all after removing all fixture
       Profile.delete_all
       @publisher = FactoryGirl.create(:user, profile: FactoryGirl.create(:profile_publisher))
       request.session = { user: @publisher.id }
