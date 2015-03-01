@@ -9,10 +9,6 @@
 Lint/Eval:
   Enabled: false
 
-# Offense count: 3
-Lint/ShadowingOuterLocalVariable:
-  Enabled: false
-
 # Offense count: 97
 Metrics/AbcSize:
   Max: 72

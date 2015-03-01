@@ -131,10 +131,12 @@ describe User, type: :model do
 
     it 'should not be able to create another user with the same login' do
       login = @olduser.login
-      u = User.new(login: login) { |u| u.password = u.password_confirmation = 'secure password' }
+      new_user = User.new(login: login) do |u|
+        u.password = u.password_confirmation = 'secure password'
+      end
 
-      expect(u).not_to be_valid
-      expect(u.errors['login']).to be_any
+      expect(new_user).not_to be_valid
+      expect(new_user.errors['login']).not_to be_empty
     end
   end
 
