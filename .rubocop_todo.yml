@@ -54,10 +54,6 @@ Style/Blocks:
 Style/ClassVars:
   Enabled: false
 
-# Offense count: 1
-Style/ConstantName:
-  Enabled: false
-
 # Offense count: 11
 # Configuration parameters: AllowedVariables.
 Style/GlobalVars:

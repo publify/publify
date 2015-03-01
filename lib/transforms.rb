@@ -1,6 +1,6 @@
 # coding: utf-8
 class String
-  Accents = { %w(á à â ä ã Ã Ä Â À) => 'a',
+  ACCENTS = { %w(á à â ä ã Ã Ä Â À) => 'a',
               %w(é è ê ë Ë É È Ê) => 'e',
               %w(í ì î ï I Î Ì) => 'i',
               %w(ó ò ô ö õ Õ Ö Ô Ò) => 'o',
@@ -12,8 +12,8 @@ class String
 
   def to_permalink
     string = self
-    Accents.keys.each do |key|
-      string = string.tr(key.join, Accents[key])
+    ACCENTS.each do |key, value|
+      string = string.tr(key.join, value)
     end
     string = string.tr("'", '-')
     string.gsub(/<[^>]*>/, '').to_url
