@@ -41,7 +41,5 @@ class Admin::ResourcesController < Admin::BaseController
     @record.destroy
     flash[:notice] = I18n.t('admin.resources.destroy.notice')
     redirect_to action: 'index'
-  rescue
-    raise
   end
 end
