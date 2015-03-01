@@ -69,11 +69,6 @@ Style/GuardClause:
 Style/IfUnlessModifier:
   Enabled: false
 
-# Offense count: 2
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-Style/MethodName:
-  Enabled: false
-
 # Offense count: 6
 # Configuration parameters: NamePrefix, NamePrefixBlacklist.
 Style/PredicateName:
