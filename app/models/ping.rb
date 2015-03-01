@@ -111,13 +111,8 @@ class Ping < ActiveRecord::Base
 
   def send_xml_rpc(xml_rpc_url, name, *args)
     server = XMLRPC::Client.new2(URI.parse(xml_rpc_url).to_s)
-
-    begin
-      server.call(name, *args)
-    rescue XMLRPC::FaultException => e
-      logger.error(e)
-    end
-  rescue Exception => e
+    server.call(name, *args)
+  rescue => e
     logger.error(e)
   end
 end

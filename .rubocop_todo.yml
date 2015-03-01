@@ -9,14 +9,6 @@
 Lint/Eval:
   Enabled: false
 
-# Offense count: 4
-Lint/HandleExceptions:
-  Enabled: false
-
-# Offense count: 5
-Lint/RescueException:
-  Enabled: false
-
 # Offense count: 3
 Lint/ShadowingOuterLocalVariable:
   Enabled: false

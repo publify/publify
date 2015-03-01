@@ -71,7 +71,7 @@ This macro takes a number of parameters:
 
           "<div style=\"#{style}\" class=\"flickrplugin\"><a href=\"#{imagelink}\"><img src=\"#{imageurl}\" width=\"#{width}\" height=\"#{height}\" alt=\"#{alt}\" title=\"#{title}\"/></a>#{captioncode}</div>"
 
-        rescue Exception => e
+        rescue => e
           logger.info e.message
           %(<div class='broken_flickr_link'>`#{img}' could not be displayed because: <br />#{CGI.escapeHTML(e.message)}</div>)
         end
