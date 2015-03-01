@@ -7,7 +7,7 @@ class TrackbacksController < FeedbackController
         # Part of the trackback spec... not sure what we should be doing here though.
       else
         begin
-          @trackback =  this_blog.ping_article!(
+          @trackback = this_blog.ping_article!(
             params.merge(ip: request.remote_ip, published: true))
           ''
       rescue ActiveRecord::RecordNotFound, ActiveRecord::StatementInvalid

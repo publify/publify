@@ -121,8 +121,8 @@ class Admin::ContentController < Admin::BaseController
       parent_id = @article.id
       @article = Article.drafts.child_of(parent_id).first || Article.new
       @article.allow_comments = this_blog.default_allow_comments
-      @article.allow_pings    = this_blog.default_allow_pings
-      @article.parent_id      = parent_id
+      @article.allow_pings = this_blog.default_allow_pings
+      @article.parent_id = parent_id
     end
   end
 

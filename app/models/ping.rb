@@ -83,13 +83,13 @@ class Ping < ActiveRecord::Base
 
     def initialize(origin_url, ping)
       @origin_url = origin_url
-      @ping       = ping
+      @ping = ping
       # Add this call to text filter cause of a strange thing around text_filter. Need to clean text_filter usage !
       ping.article.default_text_filter
       ping.article.text_filter
       # Make sure these are fetched now for thread safety purposes.
       self.article = ping.article
-      self.blog    = article.blog
+      self.blog = article.blog
     end
   end
 

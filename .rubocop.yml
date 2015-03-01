@@ -33,11 +33,15 @@ Style/ClassAndModuleChildren:
   Enabled: false
 
 Style/CollectionMethods:
-  Enabled: false
+  Enabled: true
 
 # Place . on the previous line
 Style/DotPosition:
   EnforcedStyle: trailing
+
+# Do not use unnecessary spacing.
+Style/ExtraSpacing:
+  Enabled: true
 
 # Allows format strings with: format, sprintf or percent.
 Style/FormatString:

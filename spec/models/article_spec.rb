@@ -208,7 +208,7 @@ describe Article, type: :model do
       a = Article.create(title: 'Some title', body: 'some text', published: true)
       expect(a.redirects.first).not_to be_nil
       expect(a.redirects.first.to_path).to eq(a.permalink_url)
-      r  = a.redirects.first.from_path
+      r = a.redirects.first.from_path
 
       a.permalink = 'some-new-permalink'
       a.save
@@ -652,7 +652,7 @@ describe Article, type: :model do
           article.really_send_pings
         end
 
-        it 'do nothing when urls already list in article.pings (already ping ?)'  do
+        it 'do nothing when urls already list in article.pings (already ping ?)' do
           ping = OpenStruct.new(url: 'an_url_to_ping')
           expect_any_instance_of(Blog).to receive(:urls_to_ping_for).and_return([ping])
           expect(article).to receive(:html_urls_to_ping).and_return(['an_url_to_ping'])
@@ -661,7 +661,7 @@ describe Article, type: :model do
           article.really_send_pings
         end
 
-        it "calls send_weblogupdatesping when it's not already done"  do
+        it "calls send_weblogupdatesping when it's not already done" do
           new_ping = OpenStruct.new
           urls_to_ping = [new_ping]
           expect_any_instance_of(Blog).to receive(:urls_to_ping_for).and_return(urls_to_ping)
@@ -672,7 +672,7 @@ describe Article, type: :model do
           article.really_send_pings
         end
 
-        it "calls send_pingback_or_trackback when it's not already done"  do
+        it "calls send_pingback_or_trackback when it's not already done" do
           expect_any_instance_of(Blog).to receive(:urls_to_ping_for).and_return([])
           new_ping = OpenStruct.new
           expect(article).to receive(:html_urls_to_ping).and_return([new_ping])

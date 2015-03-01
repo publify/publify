@@ -86,11 +86,11 @@ class Admin::DashboardController < Admin::BaseController
 
     REXML::XPath.each(xml, '//item/') do |elem|
       item = RssItem.new
-      item.title       = REXML::XPath.match(elem, 'title/text()').first.value rescue ''
-      item.link        = REXML::XPath.match(elem, 'link/text()').first.value rescue ''
+      item.title = REXML::XPath.match(elem, 'title/text()').first.value rescue ''
+      item.link = REXML::XPath.match(elem, 'link/text()').first.value rescue ''
       item.description = REXML::XPath.match(elem, 'description/text()').first.value rescue ''
-      item.author      = REXML::XPath.match(elem, 'dc:publisher/text()').first.value rescue ''
-      item.date        = Time.mktime(*ParseDate.parsedate(REXML::XPath.match(elem, 'dc:date/text()').first.value)) rescue Date.parse(REXML::XPath.match(elem, 'pubDate/text()').first.value) rescue Time.now
+      item.author = REXML::XPath.match(elem, 'dc:publisher/text()').first.value rescue ''
+      item.date = Time.mktime(*ParseDate.parsedate(REXML::XPath.match(elem, 'dc:date/text()').first.value)) rescue Date.parse(REXML::XPath.match(elem, 'pubDate/text()').first.value) rescue Time.now
 
       item.description_link = item.description
       item.description.gsub!(/<\/?a\b.*?>/, '') # remove all <a> tags

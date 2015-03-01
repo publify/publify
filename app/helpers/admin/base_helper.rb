@@ -75,25 +75,25 @@ module Admin::BaseHelper
   end
 
   def text_filter_options
-    TextFilter.all.collect do |filter|
+    TextFilter.all.map do |filter|
       [filter.description, filter]
     end
   end
 
   def text_filter_options_with_id
-    TextFilter.all.collect do |filter|
+    TextFilter.all.map do |filter|
       [filter.description, filter.id]
     end
   end
 
   def plugin_options(kind)
-    PublifyPlugins::Keeper.available_plugins(kind).collect do |plugin|
+    PublifyPlugins::Keeper.available_plugins(kind).map do |plugin|
       [plugin.name, plugin.to_s]
     end
   end
 
   def show_actions(item)
-    content_tag(:div,  class: 'action', style: '') do
+    content_tag(:div, class: 'action', style: '') do
       [button_to_edit(item),
        button_to_delete(item),
        button_to_short_url(item)].join(' ').html_safe

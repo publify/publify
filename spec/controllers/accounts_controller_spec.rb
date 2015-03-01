@@ -195,7 +195,7 @@ describe AccountsController, type: :controller do
 
     describe 'POST signup without allow_signup' do
       it 'should redirect to login' do
-        post 'signup', 'user' =>  { 'login' => 'newbob' }
+        post 'signup', 'user' => { 'login' => 'newbob' }
         expect(response).to redirect_to(action: 'login')
       end
     end
@@ -216,7 +216,7 @@ describe AccountsController, type: :controller do
 
     describe 'POST signup with allow_signup' do
       it 'should redirect to login' do
-        post 'signup', 'user' =>  { 'login' => 'newbob', 'email' => 'newbob@mail.com' }
+        post 'signup', 'user' => { 'login' => 'newbob', 'email' => 'newbob@mail.com' }
         expect(response).to redirect_to(action: 'confirm')
       end
     end
@@ -257,8 +257,8 @@ describe AccountsController, type: :controller do
 
     describe 'when POST signup' do
       before do
-        post 'signup', 'user' =>  { 'login' => 'newbob', 'password' => 'newpassword',
-                                    'password_confirmation' => 'newpassword' }
+        post 'signup', 'user' => { 'login' => 'newbob', 'password' => 'newpassword',
+                                   'password_confirmation' => 'newpassword' }
       end
       it 'redirects to setup' do
         expect(response).to redirect_to(controller: 'setup', action: 'index')
@@ -274,7 +274,7 @@ describe AccountsController, type: :controller do
 
     describe 'when POST login' do
       before do
-        post 'login', 'user' =>  { 'login' => 'newbob', 'password' => 'newpassword' }
+        post 'login', 'user' => { 'login' => 'newbob', 'password' => 'newpassword' }
       end
       it 'redirects to setup' do
         expect(response).to redirect_to(controller: 'setup', action: 'index')
@@ -313,8 +313,8 @@ describe AccountsController, type: :controller do
     end
 
     def params
-      { 'user' =>  { 'login' => 'newbob', 'password' => 'newpassword',
-                     'password_confirmation' => 'newpassword' } }
+      { 'user' => { 'login' => 'newbob', 'password' => 'newpassword',
+                    'password_confirmation' => 'newpassword' } }
     end
   end
 

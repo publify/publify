@@ -24,9 +24,9 @@ module Feedback::States
       true
     end
 
-    def withdraw;                    end
+    def withdraw; end
 
-    def confirm_classification;      end
+    def confirm_classification; end
 
     def mark_as_spam
       content.state = :just_marked_as_spam
@@ -66,9 +66,9 @@ module Feedback::States
 
     def classify_content
       content.state = case content.classify
-                      when :ham then  :just_presumed_ham
+                      when :ham then :just_presumed_ham
                       when :spam then :presumed_spam
-                      else        :presumed_spam
+                      else :presumed_spam
                       end
     end
 
@@ -158,7 +158,7 @@ module Feedback::States
       true
     end
 
-    def mark_as_ham;             end
+    def mark_as_ham; end
 
     def just_published?
       content.just_changed_published_status?
@@ -242,7 +242,7 @@ module Feedback::States
       true
     end
 
-    def mark_as_spam;            end
+    def mark_as_spam; end
 
     def report_classification
       content.report_as_spam if content.just_changed_published_status?

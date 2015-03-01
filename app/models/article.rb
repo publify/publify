@@ -30,9 +30,9 @@ class Article < Content
     end
   end
 
-  has_many :published_comments,    -> { where(published: true).order('created_at ASC') }, class_name: 'Comment'
-  has_many :published_trackbacks,  -> { where(published: true).order('created_at ASC') }, class_name: 'Trackback'
-  has_many :published_feedback,    -> { where(published: true).order('created_at ASC') }, class_name: 'Feedback'
+  has_many :published_comments, -> { where(published: true).order('created_at ASC') }, class_name: 'Comment'
+  has_many :published_trackbacks, -> { where(published: true).order('created_at ASC') }, class_name: 'Trackback'
+  has_many :published_feedback, -> { where(published: true).order('created_at ASC') }, class_name: 'Feedback'
 
   has_and_belongs_to_many :tags, join_table: 'articles_tags'
 
@@ -82,7 +82,7 @@ class Article < Content
   end
 
   def post_type
-    post_type = read_attribute(:post_type)
+    post_type = self[:post_type]
     post_type = 'read' if post_type.blank?
     post_type
   end

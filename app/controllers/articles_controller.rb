@@ -147,7 +147,7 @@ class ArticlesController < ContentController
   private
 
   def verify_config
-    if  !this_blog.configured?
+    if !this_blog.configured?
       redirect_to controller: 'setup', action: 'index'
     elsif User.count == 0
       redirect_to controller: 'accounts', action: 'signup'
@@ -158,8 +158,8 @@ class ArticlesController < ContentController
 
   # See an article We need define @article before
   def show_article
-    @comment      = Comment.new
-    @page_title   = this_blog.article_title_template.to_title(@article, this_blog, params)
+    @comment = Comment.new
+    @page_title = this_blog.article_title_template.to_title(@article, this_blog, params)
     @description = this_blog.article_desc_template.to_title(@article, this_blog, params)
     groupings = @article.tags
     @keywords = groupings.map(&:name).join(', ')
@@ -168,8 +168,8 @@ class ArticlesController < ContentController
     respond_to do |format|
       format.html { render "articles/#{@article.post_type}" }
       format.atom { render_feedback_feed('atom') }
-      format.rss  { render_feedback_feed('rss') }
-      format.xml  { render_feedback_feed('atom') }
+      format.rss { render_feedback_feed('rss') }
+      format.xml { render_feedback_feed('atom') }
     end
   rescue ActiveRecord::RecordNotFound
     error!
