@@ -87,7 +87,7 @@ describe Admin::FeedbackController, type: :controller do
 
       context 'unapproved' do
         let(:params) { { only: 'unapproved' } }
-        it { expect(assigns(:feedback)).to eq([unapproved, presumed_ham, presumed_spam]) }
+        it { expect(assigns(:feedback)).to match_array([unapproved, presumed_ham, presumed_spam]) }
       end
 
       context 'spam' do
@@ -102,7 +102,7 @@ describe Admin::FeedbackController, type: :controller do
 
       context 'presumed_ham' do
         let(:params) { { only: 'presumed_ham' } }
-        it { expect(assigns(:feedback)).to eq([unapproved, presumed_ham]) }
+        it { expect(assigns(:feedback)).to match_array([unapproved, presumed_ham]) }
       end
 
       context 'with an empty page params' do

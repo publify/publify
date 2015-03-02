@@ -108,14 +108,16 @@ class ArticlesController < ContentController
     @description = this_blog.archives_desc_template.to_title(@articles, this_blog, params)
   end
 
+  # FIXME: Belongs in CommentsController
   def comment_preview
-    if (params[:comment][:body].blank? rescue true)
+    comment_params = params[:comment] || {}
+    if comment_params[:body].blank?
       render nothing: true
       return
     end
 
     headers['Content-Type'] = 'text/html; charset=utf-8'
-    @comment = Comment.new(params[:comment])
+    @comment = Comment.new(comment_params)
   end
 
   def tag

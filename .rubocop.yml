@@ -48,6 +48,12 @@ Style/FormatString:
 Style/MultilineOperationIndentation:
   EnforcedStyle: indented
 
+# FIXME: Clean up the excluded files
+Style/RescueModifier:
+  Exclude:
+  - lib/spam_protection.rb
+  - app/controllers/admin/dashboard_controller.rb
+
 # Always use raise to raise exceptions
 Style/SignalException:
   EnforcedStyle: only_raise

@@ -28,7 +28,7 @@ class CommentsController < FeedbackController
     session session: new unless session
 
     comment_params = params[:comment]
-    if (comment_params[:body].blank? rescue true)
+    if comment_params[:body].blank?
       render nothing: true
       return
     end

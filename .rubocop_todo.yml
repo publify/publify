@@ -84,10 +84,6 @@ Style/RaiseArgs:
 Style/RegexpLiteral:
   Enabled: false
 
-# Offense count: 20
-Style/RescueModifier:
-  Enabled: false
-
 # Offense count: 1
 # Configuration parameters: Methods.
 Style/SingleLineBlockParams:
