@@ -65,7 +65,7 @@ Rails.application.routes.draw do
 
   resources :authors, path: 'author', only: :show
 
-  # ThemesController
+  # ThemeController
   scope controller: 'theme', filename: /.*/ do
     get 'stylesheets/theme/:filename', action: 'stylesheets', format: false
     get 'javascripts/theme/:filename', action: 'javascript', format: false
