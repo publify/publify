@@ -65,7 +65,7 @@ Rails.application.routes.draw do
 
   resources :authors, path: 'author', only: :show
 
-  # ThemesController
+  # ThemeController
   scope controller: 'theme', filename: /.*/ do
     get 'stylesheets/theme/:filename', action: 'stylesheets', format: false
     get 'javascripts/theme/:filename', action: 'javascript', format: false
@@ -82,6 +82,21 @@ Rails.application.routes.draw do
 
   get '/humans', to: 'text#humans', format: 'txt'
   get '/robots', to: 'text#robots', format: 'txt'
+
+  # TODO: Check which of these routes are not needed.
+  resources :accounts, only: [:index], format: false do
+    collection do
+      get 'confirm'
+      get 'login'
+      post 'login'
+      get 'signup'
+      post 'signup'
+      get 'recover_password'
+      post 'recover_password'
+      get 'logout'
+      post 'logout'
+    end
+  end
 
   namespace :admin do
     get '/', to: 'dashboard#index', as: 'dashboard'
@@ -115,13 +130,6 @@ Rails.application.routes.draw do
     resources :tags, only: [:index, :edit, :create, :update, :destroy], format: false
 
     resources :users, only: [:index, :new, :edit, :create, :update, :destroy], format: false
-  end
-
-  # Work around the Bad URI bug
-  %w{ accounts files sidebar }.each do |i|
-    get "#{i}", to: "#{i}#index", format: false
-    match "#{i}(/:action)", controller: i, format: false, via: [:get, :post, :put, :delete] # TODO: convert this magic catchers to resources item to close un-needed HTTP method
-    match "#{i}(/:action(/:id))", :controller => i, :id => nil, format: false, via: [:get, :post, :put, :delete] # TODO: convert this magic catchers to resources item to close un-needed HTTP method
   end
 
   # Admin/XController
