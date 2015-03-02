@@ -87,7 +87,7 @@ module Admin::BaseHelper
   end
 
   def plugin_options(kind)
-    r = PublifyPlugins::Keeper.available_plugins(kind).collect do |plugin|
+    PublifyPlugins::Keeper.available_plugins(kind).collect do |plugin|
       [plugin.name, plugin.to_s]
     end
   end

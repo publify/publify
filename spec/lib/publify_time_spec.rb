@@ -41,6 +41,10 @@ describe PublifyTime do
       end_at   = start_at.end_of_day
       expect(PublifyTime.delta('2009', '01', '01')).to eq(start_at..end_at)
     end
+
+    it 'returns nil when year, month and day are not numeric' do
+      expect(PublifyTime.delta 'foo', 'bar', 'baz').to be_nil
+    end
   end
 
   describe 'delta_like' do

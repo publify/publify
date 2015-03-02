@@ -15,9 +15,9 @@ class SpamProtection
 
     reason = catch(:hit) do
       case string
-        when Format::IP_ADDRESS then scan_ip(string)
-        when Format::HTTP_URI then scan_uris([string]) rescue URI::InvalidURIError
-        else scan_text(string)
+      when Format::IP_ADDRESS then scan_ip(string)
+      when Format::HTTP_URI then scan_uris([string])
+      else scan_text(string)
       end
     end
 
@@ -80,7 +80,7 @@ class SpamProtection
             throw :hit,
                   "#{rbl} positively resolved subdomain #{d} => #{response}"
           end
-        rescue SocketError
+        rescue SocketError # rubocop:disable Lint/HandleExceptions
           # NXDOMAIN response => negative:  d is not in RBL
         end
       end

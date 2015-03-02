@@ -30,10 +30,12 @@ module Admin::FeedbackHelper
   end
 
   def change_status(item, context = 'listing')
-    status = (item.state.to_s.downcase =~ /spam/) ? :ham : :spam
-    klass = (item.state.to_s.downcase =~ /spam/) ? 'up' : 'down'
-    klass2 = (item.state.to_s.downcase =~ /spam/) ? 'success' : 'warning'
+    spammy = item.state.to_s.downcase =~ /spam/
+    direction = spammy ? 'up' : 'down'
+    button_type = spammy ? 'success' : 'warning'
 
-    link_to(content_tag(:span, '', class: "glyphicon glyphicon-thumbs-#{klass}"), { controller: 'admin/feedback', action: 'change_state', id: item.id, context: context }, { class: "btn btn-#{klass2} btn-xs btn-action", remote: true })
+    link_to(content_tag(:span, '', class: "glyphicon glyphicon-thumbs-#{direction}"),
+            { controller: 'admin/feedback', action: 'change_state', id: item.id, context: context },
+            { class: "btn btn-#{button_type} btn-xs btn-action", remote: true })
   end
 end

@@ -4,6 +4,7 @@ class PublifyTime
     year  = year.to_i          unless year.nil?
     month = month.to_i         unless month.nil?
     day   = day.to_i           unless day.nil?
+    return nil if year.zero?
     from  = Time.zone.local(year, month, day)
     to    = from.end_of_year
     to    = from.end_of_month  unless month.blank?

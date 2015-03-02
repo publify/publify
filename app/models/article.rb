@@ -82,16 +82,14 @@ class Article < Content
   end
 
   def post_type
-    _post_type = read_attribute(:post_type)
-    _post_type = 'read' if _post_type.blank?
-    _post_type
+    post_type = read_attribute(:post_type)
+    post_type = 'read' if post_type.blank?
+    post_type
   end
 
   def self.last_draft(article_id)
     article = Article.find(article_id)
-    while article.has_child?
-      article = Article.child_of(article.id).first
-    end
+    article = Article.child_of(article.id).first while article.has_child?
     article
   end
 
@@ -105,6 +103,7 @@ class Article < Content
     scoped.order('created_at DESC')
   end
 
+  # FIXME: Use keyword params to clean up call sites.
   def permalink_url(anchor = nil, only_path = false)
     @cached_permalink_url ||= {}
     @cached_permalink_url["#{anchor}#{only_path}"] ||= blog.url_for(permalink_url_options, anchor: anchor, only_path: only_path)
@@ -143,7 +142,7 @@ class Article < Content
     blog.urls_to_ping_for(self).each do |url_to_ping|
       begin
         url_to_ping.send_weblogupdatesping(blog.base_url, permalink_url)
-      rescue Exception => e
+      rescue => e
         logger.error(e)
         # in case the remote server doesn't respond or gives an error,
         # we should throw an xmlrpc error here.
@@ -153,8 +152,8 @@ class Article < Content
     html_urls_to_ping.each do |url_to_ping|
       begin
         url_to_ping.send_pingback_or_trackback(permalink_url)
-      rescue Exception => exception
-        logger.error(exception)
+      rescue => e
+        logger.error(e)
         # in case the remote server doesn't respond or gives an error,
         # we should throw an xmlrpc error here.
       end
@@ -192,8 +191,6 @@ class Article < Content
       article = published.where(req_params).first
       return article if article
     end
-
-    raise ActiveRecord::RecordNotFound
   end
 
   # Fulltext searches the body of published articles

@@ -40,12 +40,7 @@ class Article::Factory
         return
       end
     end
-    begin
-      requested_article(article_params)
-    rescue
-      # Not really good.
-      # TODO: Check in request_article type of DATA made in next step
-    end
+    requested_article(article_params)
   end
 
   def requested_article(params = {})

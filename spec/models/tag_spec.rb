@@ -41,8 +41,8 @@ describe Tag, type: :model do
     a = FactoryGirl.create(:article, title: 'an article a')
     b = FactoryGirl.create(:article, title: 'an article b')
     c = FactoryGirl.create(:article, title: 'an article c')
-    foo = FactoryGirl.create(:tag, name: 'foo', articles: [a, b, c])
-    bar = FactoryGirl.create(:tag, name: 'bar', articles: [a, b])
+    FactoryGirl.create(:tag, name: 'foo', articles: [a, b, c])
+    FactoryGirl.create(:tag, name: 'bar', articles: [a, b])
     tags = Tag.find_all_with_article_counters
     expect(tags.entries.size).to eq(2)
     expect(tags.first.name).to eq('foo')

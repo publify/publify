@@ -29,9 +29,6 @@ class Admin::UsersController < Admin::BaseController
 
   def update
     if @user.update(user_params)
-      if @user.id = current_user.id
-        current_user = @user
-      end
       redirect_to admin_users_url, notice: 'User was successfully updated.'
     else
       render :edit

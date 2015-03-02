@@ -28,8 +28,8 @@ module Stateful
       end
     end
 
-    def ==(other_state)
-      self.class == other_state.class
+    def ==(other)
+      self.class == other.class
     end
 
     def hash
@@ -49,13 +49,12 @@ module Stateful
     def has_state(field, options = {})
       options.assert_valid_keys(:valid_states, :handles, :initial_state)
 
-      unless states = options[:valid_states]
+      unless (states = options[:valid_states])
         raise 'You must specify at least one state'
       end
-      states        = states.collect &:to_sym
 
+      states        = states.collect(&:to_sym)
       delegations   = Set.new(options[:handles]) + states.collect { |value| "#{value}?" }
-
       initial_state = options[:initial_state] || states.first
 
       state_writer_method(field, states, initial_state)

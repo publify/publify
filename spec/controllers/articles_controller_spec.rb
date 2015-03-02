@@ -353,23 +353,23 @@ describe ArticlesController, 'redirecting', type: :controller do
   describe 'accessing old-style URL with "articles" as the first part' do
     it 'should redirect to article' do
       create(:blog)
-      article = create(:article, permalink: 'second-blog-article', published_at: '2004-04-01 02:00:00', updated_at: '2004-04-01 02:00:00', created_at: '2004-04-01 02:00:00')
+      create(:article, permalink: 'second-blog-article', published_at: '2004-04-01 02:00:00', updated_at: '2004-04-01 02:00:00', created_at: '2004-04-01 02:00:00')
       get :redirect, from: 'articles/2004/04/01/second-blog-article'
       assert_response 301
       expect(response).to redirect_to('/2004/04/01/second-blog-article')
     end
 
     it 'should redirect to article with url_root' do
-      b = build_stubbed(:blog, base_url: 'http://test.host/blog')
-      article = create(:article, permalink: 'second-blog-article', published_at: '2004-04-01 02:00:00', updated_at: '2004-04-01 02:00:00', created_at: '2004-04-01 02:00:00')
+      build_stubbed(:blog, base_url: 'http://test.host/blog')
+      create(:article, permalink: 'second-blog-article', published_at: '2004-04-01 02:00:00', updated_at: '2004-04-01 02:00:00', created_at: '2004-04-01 02:00:00')
       get :redirect, from: 'articles/2004/04/01/second-blog-article'
       assert_response 301
       expect(response).to redirect_to('http://test.host/blog/2004/04/01/second-blog-article')
     end
 
     it 'should redirect to article with articles in url_root' do
-      b = build_stubbed(:blog, base_url: 'http://test.host/aaa/articles/bbb')
-      article = create(:article, permalink: 'second-blog-article', published_at: '2004-04-01 02:00:00', updated_at: '2004-04-01 02:00:00', created_at: '2004-04-01 02:00:00')
+      build_stubbed(:blog, base_url: 'http://test.host/aaa/articles/bbb')
+      create(:article, permalink: 'second-blog-article', published_at: '2004-04-01 02:00:00', updated_at: '2004-04-01 02:00:00', created_at: '2004-04-01 02:00:00')
       get :redirect, from: 'articles/2004/04/01/second-blog-article'
       assert_response 301
       expect(response).to redirect_to('http://test.host/aaa/articles/bbb/2004/04/01/second-blog-article')
@@ -508,24 +508,6 @@ describe ArticlesController, 'redirecting', type: :controller do
     it 'should not find the article if the url does not match the fixed component' do
       get :redirect, from: "bar/#{article.permalink}"
       assert_response 404
-    end
-  end
-
-  describe 'with a custom format with several fixed parts and several variables' do
-    let!(:blog) { create(:blog, permalink_format: '/foo/bar/%year%/%month%/%title%') }
-    let!(:article) { create(:article) }
-
-    # TODO: Think about allowing this, and changing find_by_params_hash to match.
-    if false
-      it 'should find the article if the url matches all fixed parts and no variable components' do
-        get :redirect, from: 'foo/bar'
-        expect(response).to be_success
-      end
-
-      it 'should not find the article if the url does not match all fixed component' do
-        get :redirect, from: 'foo'
-        assert_response 404
-      end
     end
   end
 end

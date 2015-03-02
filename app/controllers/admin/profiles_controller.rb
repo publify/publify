@@ -22,11 +22,11 @@ class Admin::ProfilesController < Admin::BaseController
   def upload_avatar
     file = params[:user][:filename]
 
-    if file.content_type
-      mime = file.content_type.chomp
-    else
-      mime = 'text/plain'
-    end
+    mime = if file.content_type
+             file.content_type.chomp
+           else
+             'text/plain'
+           end
 
     Resource.create(upload: file, mime: mime, created_at: Time.now)
   end

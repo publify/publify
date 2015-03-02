@@ -94,12 +94,9 @@ class Feedback < ActiveRecord::Base
   end
 
   def classify
-    begin
-      return :ham if user_id
-      return :spam if blog.default_moderate_comments
-      return :ham unless blog.sp_global
-    rescue NoMethodError
-    end
+    return :ham if user_id
+    return :spam if blog.default_moderate_comments
+    return :ham unless blog.sp_global
 
     # Yeah, three state logic is evil...
     case sp_is_spam? || akismet_is_spam?

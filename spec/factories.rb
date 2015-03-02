@@ -173,6 +173,7 @@ http://alsoping.example.com/rpc/ping"
     lang 'en_US'
 
     after :stub do |blog|
+      # FIXME: It's very confusing that build_stubbed sets the default blog.
       Blog.stub(:default) { blog }
       [blog.text_filter, blog.comment_text_filter].uniq.each do |filter|
         build_stubbed filter

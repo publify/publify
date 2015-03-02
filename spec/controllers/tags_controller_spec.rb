@@ -94,7 +94,7 @@ describe TagsController, 'showing tag "foo"', type: :controller do
 
   before(:each) do
     # TODO: need to add default article into tag_factory build to remove this :articles =>...
-    foo = FactoryGirl.create(:tag, name: 'foo', articles: [FactoryGirl.create(:article)])
+    FactoryGirl.create(:tag, name: 'foo', articles: [FactoryGirl.create(:article)])
     get 'show', id: 'foo'
   end
 
@@ -128,7 +128,7 @@ describe TagsController, 'password protected article', type: :controller do
   it 'article in tag should be password protected' do
     create(:blog)
     article = create(:article, password: 'password')
-    foo = create(:tag, name: 'foo', articles: [article])
+    create(:tag, name: 'foo', articles: [article])
     get 'show', id: 'foo'
     assert_select('input[id="article_password"]')
   end

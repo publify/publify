@@ -52,8 +52,6 @@ class TextFilterPlugin
     (@sanitizer ||= HTML::WhiteListSanitizer.new).sanitize(*args)
   end
 
-  private
-
   def self.default_helper_module!
   end
 
@@ -90,7 +88,6 @@ class TextFilterPlugin::Macro < TextFilterPlugin
   end
 
   def self.filtertext(blog, content, text, params)
-    filterparams = params[:filterparams]
     regex1 = /<publify:#{short_name}(?:[ \t][^>]*)?\/>/
     regex2 = /<publify:#{short_name}([ \t][^>]*)?>(.*?)<\/publify:#{short_name}>/m
 
@@ -122,11 +119,9 @@ class PublifyApp
       plugin_description 'Macro expansion meta-filter (post-markup)'
 
       def self.filtertext(blog, content, text, params)
-        filterparams = params[:filterparams]
-
         macros = TextFilter.available_filter_types['macropost']
-        macros.inject(text) do |text, macro|
-          macro.filtertext(blog, content, text, params)
+        macros.inject(text) do |new_text, macro|
+          macro.filtertext(blog, content, new_text, params)
         end
       end
     end
@@ -136,11 +131,9 @@ class PublifyApp
       plugin_description 'Macro expansion meta-filter (pre-markup)'
 
       def self.filtertext(blog, content, text, params)
-        filterparams = params[:filterparams]
-
         macros = TextFilter.available_filter_types['macropre']
-        macros.inject(text) do |text, macro|
-          macro.filtertext(blog, content, text, params)
+        macros.inject(text) do |new_text, macro|
+          macro.filtertext(blog, content, new_text, params)
         end
       end
     end

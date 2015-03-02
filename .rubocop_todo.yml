@@ -5,54 +5,8 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 2
-Lint/AmbiguousOperator:
-  Enabled: false
-
-# Offense count: 3
-# Configuration parameters: AllowSafeAssignment.
-Lint/AssignmentInCondition:
-  Enabled: false
-
-# Offense count: 1
-# Configuration parameters: AlignWith, SupportedStyles.
-Lint/EndAlignment:
-  Enabled: false
-
 # Offense count: 3
 Lint/Eval:
-  Enabled: false
-
-# Offense count: 4
-Lint/HandleExceptions:
-  Enabled: false
-
-# Offense count: 1
-Lint/LiteralInCondition:
-  Enabled: false
-
-# Offense count: 1
-Lint/LiteralInInterpolation:
-  Enabled: false
-
-# Offense count: 5
-Lint/RescueException:
-  Enabled: false
-
-# Offense count: 3
-Lint/ShadowingOuterLocalVariable:
-  Enabled: false
-
-# Offense count: 1
-Lint/UnderscorePrefixedVariableName:
-  Enabled: false
-
-# Offense count: 1
-Lint/UselessAccessModifier:
-  Enabled: false
-
-# Offense count: 52
-Lint/UselessAssignment:
   Enabled: false
 
 # Offense count: 97
@@ -91,30 +45,13 @@ Metrics/PerceivedComplexity:
 Style/AccessorMethodName:
   Enabled: false
 
-# Offense count: 1
-Style/AsciiComments:
-  Enabled: false
-
 # Offense count: 11
 # Cop supports --auto-correct.
 Style/Blocks:
   Enabled: false
 
-# Offense count: 4
-# Configuration parameters: IndentWhenRelativeTo, SupportedStyles, IndentOneStep.
-Style/CaseIndentation:
-  Enabled: false
-
 # Offense count: 10
 Style/ClassVars:
-  Enabled: false
-
-# Offense count: 1
-Style/ConstantName:
-  Enabled: false
-
-# Offense count: 1
-Style/EndOfLine:
   Enabled: false
 
 # Offense count: 11
@@ -132,19 +69,6 @@ Style/GuardClause:
 Style/IfUnlessModifier:
   Enabled: false
 
-# Offense count: 2
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-Style/MethodName:
-  Enabled: false
-
-# Offense count: 1
-Style/MultilineBlockChain:
-  Enabled: false
-
-# Offense count: 1
-Style/OpMethod:
-  Enabled: false
-
 # Offense count: 6
 # Configuration parameters: NamePrefix, NamePrefixBlacklist.
 Style/PredicateName:
@@ -160,20 +84,7 @@ Style/RaiseArgs:
 Style/RegexpLiteral:
   Enabled: false
 
-# Offense count: 20
-Style/RescueModifier:
-  Enabled: false
-
 # Offense count: 1
 # Configuration parameters: Methods.
 Style/SingleLineBlockParams:
-  Enabled: false
-
-# Offense count: 2
-Style/StructInheritance:
-  Enabled: false
-
-# Offense count: 1
-# Configuration parameters: MaxLineLength.
-Style/WhileUntilModifier:
   Enabled: false

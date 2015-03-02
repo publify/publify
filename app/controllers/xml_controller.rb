@@ -12,14 +12,13 @@ class XmlController < ApplicationController
   def feed
     @format = 'rss'
     if params[:format]
-      unless @format = NORMALIZED_FORMAT_FOR[params[:format]]
-        return render(text: 'Unsupported format', status: 404)
-      end
+      @format = NORMALIZED_FORMAT_FOR[params[:format]]
+      return render(text: 'Unsupported format', status: 404) unless @format
     end
 
     # TODO: Move redirects into config/routes.rb, if possible
     param_type = ACCEPTED_TYPE.dup.delete(params[:type])
-    param_id = params[:id] # .present? && params[:id].to_i # Think about a way to secure that to a valid tag/author for int value…
+    param_id = params[:id] # .present? && params[:id].to_i # Think about a way to secure that to a valid tag/author for int value ...
 
     case param_type
     when 'feed'

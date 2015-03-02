@@ -33,17 +33,15 @@ class Admin::DashboardController < Admin::BaseController
   end
 
   def publify_version
-    publify_version = nil
-    version = PUBLIFY_VERSION.to_s.split('.')
+    version = nil
     begin
-      url = 'http://blog.publify.co/version.txt'
-      open(url) do |http|
+      open(PUBLIFY_VERSION_URL) do |http|
         publify_version = http.read[0..5]
         version = publify_version.split('.')
       end
     rescue
+      return
     end
-
     if version[0].to_i > TYPO_MAJOR.to_i
       flash[:error] = I18n.t('admin.dashboard.publify_version.error')
     elsif version[1].to_i > TYPO_SUB.to_i
@@ -75,7 +73,7 @@ class Admin::DashboardController < Admin::BaseController
     []
   end
 
-  class RssItem < Struct.new(:link, :title, :description, :description_link, :date, :author)
+  RssItem = Struct.new(:link, :title, :description, :description_link, :date, :author) do
     def to_s
       title
     end
@@ -84,9 +82,7 @@ class Admin::DashboardController < Admin::BaseController
   def parse_rss(body)
     xml = REXML::Document.new(body.force_encoding('ISO-8859-1').encode('UTF-8'))
 
-    items        = []
-    link         = REXML::XPath.match(xml, '//channel/link/text()').first.value rescue ''
-    title        = REXML::XPath.match(xml, '//channel/title/text()').first.value rescue ''
+    items = []
 
     REXML::XPath.each(xml, '//item/') do |elem|
       item = RssItem.new

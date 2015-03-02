@@ -8,8 +8,12 @@ AllCops:
   - 'tmp/**/*'
   - 'vendor/**/*'
 
+# Allow if (foo = get_foo) style
+Lint/AssignmentInCondition:
+  AllowSafeAssignment: true
+
 # Documenting all classes is not common in Rails projects.
-Documentation:
+Style/Documentation:
   Enabled: false
 
 # Provides more information, while still being displayable in modern wide-screen.
@@ -43,6 +47,12 @@ Style/FormatString:
 # harder to keep a sane line length.
 Style/MultilineOperationIndentation:
   EnforcedStyle: indented
+
+# FIXME: Clean up the excluded files
+Style/RescueModifier:
+  Exclude:
+  - lib/spam_protection.rb
+  - app/controllers/admin/dashboard_controller.rb
 
 # Always use raise to raise exceptions
 Style/SignalException:
