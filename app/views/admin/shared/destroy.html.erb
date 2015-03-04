@@ -1,11 +1,11 @@
-<%- content_for :page_heading do %>
+<% content_for :page_heading do %>
   <i class="icon-large"></i>
   <h2 class="page-title"><%= t('.destroy_confirmation') %></h2>
 <% end %>
 
 <div class='well'>
   <p>
-    <%= t(".are_you_sure", element: @record.class.name.downcase)%>
+    <%= t(".are_you_sure", element: @record.class.name.downcase) %>
   </p>
 
   <%= form_tag action: "destroy", id: @record.id do %>

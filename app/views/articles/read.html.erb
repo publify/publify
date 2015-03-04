@@ -4,9 +4,9 @@
        xmlns:dc="http://purl.org/dc/elements/1.1/">
 <rdf:Description
     rdf:about=""
-<%- if @article.allow_pings? %>
+<% if @article.allow_pings? %>
     trackback:ping="<%= @article.trackback_url %>"
-<%- end %>
+<% end %>
     dc:title="<%=h @article.title.gsub(/-+/, '-') %>"
     dc:identifier="<%= @article.permalink_url %>"
     dc:description="<%=h (html(@article).strip_html[0..255]).gsub(/-+/, '-') %>"
@@ -22,40 +22,40 @@
 
 <%= render 'article_links', article: @article %>
 
-<%- if @article.allow_comments? or @article.published_comments.size > 0 %>
+<% if @article.allow_comments? or @article.published_comments.size > 0 %>
   <a name="comments"></a><h4 class="blueblk"><%= t('.comments') %></h4>
-  <%- unless @article.comments_closed? %>
+  <% unless @article.comments_closed? %>
     <p class="postmetadata alt">
       <small><a href="#respond"><%= t(".leave_a_response")%></a></small>
     </p>
-  <% end -%>
+  <% end %>
   <%= render "articles/comment_list" %>
-<% end -%>
+<% end %>
 
-<%- if @article.allow_pings? %>
+<% if @article.allow_pings? %>
   <a name="trackbacks"></a><h4 class="blueblk"><%= t(".trackbacks")%></h4>
   <p>
     <%= t(".use_the_following_link_to_trackback")%>:<br>
     <span class="light-bg"><%= @article.trackback_url %></span>
     </p>
-    <%- unless @article.published_trackbacks.blank? %>
+    <% unless @article.published_trackbacks.blank? %>
       <ol id="trackbackList" class="trackback-list">
         <%= render(partial: "trackback", collection: @article.published_trackbacks) %>
       </ol>
-    <% end -%>
-<% end -%>
+    <% end %>
+<% end %>
 
 <p class="postmetadata alt">
   <small>
   <a href="<%= @article.feed_url('rss') %>" title="RSS Feed"><%= t(".rss_feed")%></a>
-<%- if @article.allow_pings? -%>
+<% if @article.allow_pings? %>
   <a href="<%= @article.trackback_url %>" ><%= t(".trackback_uri")%></a>
-<%- end %>
+<% end %>
   </small>
 </p>
 
-<% unless @article.comments_closed? -%>
+<% unless @article.comments_closed? %>
   <%= render 'comment_form' %>
-<% else -%>
+<% else %>
   <p><%= t(".comments_are_disabled")%></p>
-<% end -%>
+<% end %>

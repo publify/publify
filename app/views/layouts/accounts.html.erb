@@ -23,9 +23,9 @@
             <%= yield %>
           </div>
         </div>
-        <%- if content_for?(:account_links) %>
+        <% if content_for?(:account_links) %>
             <%= yield :account_links %>
-        <%- end %>
+        <% end %>
       </div>
     </div>
   </div>

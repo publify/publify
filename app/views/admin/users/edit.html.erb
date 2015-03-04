@@ -1,7 +1,7 @@
-<%- content_for :page_heading do %>
-<i class="icon-large icon-user-add"></i>
-<h2 class="page-title"><%= t(".edit_user") %></h2>
-<%- end %>
+<% content_for :page_heading do %>
+  <i class="icon-large icon-user-add"></i>
+  <h2 class="page-title"><%= t(".edit_user") %></h2>
+<% end %>
 
 <%= form_tag :action=>"update", :id => @user.id do %>
   <%= render :partial => "form" %>
