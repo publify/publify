@@ -27,7 +27,7 @@ describe Admin::ThemesController, type: :controller do
     assert_response :redirect, action: 'index'
   end
 
-  it 'returns succes for the :preview action' do
+  it 'returns success for the :preview action' do
     get :preview, theme: 'bootstrap-2'
     assert_response :success
   end
