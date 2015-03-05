@@ -111,6 +111,16 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :feedback, only: [:index, :edit, :create, :update, :destroy], format: false do
+      collection do
+        post 'bulkops'
+      end
+      member do
+        get 'article'
+        post 'change_state'
+      end
+    end
+
     resources :notes, only: [:index, :show, :edit, :create, :update, :destroy], format: false
 
     resources :pages, only: [:index, :new, :edit, :create, :update, :destroy], format: false
@@ -172,7 +182,7 @@ Rails.application.routes.draw do
   end
 
   # Admin/XController
-  %w{feedback}.each do |i|
+  %w{}.each do |i|
     match "/admin/#{i}", controller: "admin/#{i}", action: :index, format: false, via: [:get, :post, :put, :delete] # TODO: convert this magic catchers to resources item to close un-needed HTTP method
     match "/admin/#{i}(/:action(/:id))", controller: "admin/#{i}", action: nil, id: nil, format: false, via: [:get, :post, :put, :delete] # TODO: convert this magic catchers to resources item to close un-needed HTTP method
   end
