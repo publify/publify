@@ -143,6 +143,7 @@ Rails.application.routes.draw do
 
     resources :sidebar, only: [:index, :update, :destroy] do
       collection do
+        put :publish
         put :sortable
       end
     end
@@ -164,7 +165,7 @@ Rails.application.routes.draw do
   end
 
   # Admin/XController
-  %w{feedback resources sidebar}.each do |i|
+  %w{feedback resources}.each do |i|
     match "/admin/#{i}", controller: "admin/#{i}", action: :index, format: false, via: [:get, :post, :put, :delete] # TODO: convert this magic catchers to resources item to close un-needed HTTP method
     match "/admin/#{i}(/:action(/:id))", controller: "admin/#{i}", action: nil, id: nil, format: false, via: [:get, :post, :put, :delete] # TODO: convert this magic catchers to resources item to close un-needed HTTP method
   end
