@@ -8,7 +8,8 @@
     <%= t(".are_you_sure", element: @record.class.name.downcase)%>
   </p>
 
-  <%= form_tag action: "destroy", id: @record.id do %>
+  <%= form_tag({action: "destroy", id: @record.id}, {method: 'delete'}) do %>
+    <%= hidden_field_tag :confirmed, 'yes' %>
     <hr>
     <div class='form-actions'>
       <%= t(".action_or_other", first_action: link_to(t(".cancel"), {action: 'index'}), second_action: submit_tag(t(".delete"), class: "btn btn-danger")) %>
