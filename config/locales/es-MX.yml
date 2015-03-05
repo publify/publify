@@ -4,13 +4,13 @@ es-MX:
       rss_feed: "RSS Feed"
       admin: "Admin"
       powered_by_publify: "Powered by Publify"
-      search: "Search"
+      search: "Buscar"
   search_sidebar:
     content:
-      search: "Search"
+      search: "Buscar"
   page_sidebar:
     content:
-      pages: "Pages"
+      pages: "P&aacute;ginas"
   activerecord:
     errors:
       template:
@@ -20,76 +20,76 @@ es-MX:
         article:
           attributes:
             title:
-              blank: "can't be blank"
+              blank: "no puede ser vac&iacute;o"
   datetime:
     distance_in_words:
-      x_days: "Distance in words"
+      x_days: "Distancia en palabras"
   errors:
     404:
-      page_not_found: "Page not found"
-      the_page_you_are_looking_for: "The page you are looking for has moved or does not exist."
+      page_not_found: "P&aacute;gina no encontrada"
+      the_page_you_are_looking_for: "La p&aacute;gina que est&aacute; buscando ha sido movida o no existe."
   setup:
     confirm:
-      you_have_successfully_signed_up: "You have successfully signed up"
+      you_have_successfully_signed_up: "Ud. ha sido autenticado exit&oacute;samente"
       login: "Login: %{user}"
-      password: "Password: %{pass}"
-      dont_lose_the_mail_sent: "Don't lose the mail sent at %{email} or you won't be able to login anymore"
-      proceed_to: "Proceed to %{link}"
+      password: "Contrase&ntilde;a: %{pass}"
+      dont_lose_the_mail_sent: "No pierda el correo enviado a %{email} o no podr&aacute; volver a acceder en el futuro"
+      proceed_to: "Proceda a %{link}"
       admin: "admin"
     index:
-      blog_name: "Blog name"
-      save: "Save"
-      welcome_to_your_blog_setup: "Welcome to your blog setup"
-      your_mail: "Your email"
+      blog_name: "Nombre del Blog"
+      save: "Guardar"
+      welcome_to_your_blog_setup: "Bienvenido a la configuraci&oacute;n de su blog"
+      your_mail: "Su correo electr&oacute;nico"
     page:
-      about: "About"
-      body: "This is an example of a Publify page. You can edit this to write information about yourself or your site so readers know who you are. You can create as many pages as this one as you like and manage all of your content inside Publify."
+      about: "Acerca"
+      body: "Este es un ejemplo de una p&aacute;gina en Publify.  Ud. puede editarla para escribir informaci&oacute;n acerca de usted o su sitio para que los lectores sepan quien es usted.  Usted puede crear tantas p&aacute;ginas como esta para manejar todo el contenido dentro de Publify."
   comments:
     comment:
       by: "por"
       said: "dijo"
-      this_comment_has_been_flagged_for_moderator_approval: "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it"
+      this_comment_has_been_flagged_for_moderator_approval: "Este comentario ha sido marcado para aprobaci&oacute;n del moderador.  Este no aparecer&aacute; en este blog hasta qye el autor lo apruebe"
   tags:
     index:
-      there_is_no_tags: "There is no tag"
-      next_page: "Next page"
-      previous_page: "Previous page"
+      there_is_no_tags: "No existen Tags"
+      next_page: "Siguiente p&aacute;gina"
+      previous_page: "P&aacute;gina anterior"
   helper:
-    at: "at"
+    at: "a"
   articles:
     password_form:
-      submit: "Submit"
+      submit: "Enviar"
     index:
-      next_page: "Next page"
-      previous_page: "Previous page"
-      page: "page"
+      next_page: "Siguiente p&aacute;gina"
+      previous_page: "P&aacute;gina anterior"
+      page: "p&aacute;gina"
     search:
-      next_page: "Next page"
-      previous_page: "Previous page"
+      next_page: "Siguiente p&aacute;gina"
+      previous_page: "P&aacute;gina anterior"
     comment_preview:
       is_about_to_say: "est&aacute; a punto de decir"
     meta:
-      published_on: "Published on %{publish_date_and_time} by %{by}, tags %{tags}"
+      published_on: "Publicado el %{publish_date_and_time} por %{by}, tags %{tags}"
     article:
       posted_by: "Publicado por"
-      this_entry_was_posted_on: "This entry was posted on %{published_at}"
-      you_can_follow_entries_through_the: "You can follow any response to this entry through the %{feed}"
+      this_entry_was_posted_on: "Esta entrada fue publicada en %{published_at}"
+      you_can_follow_entries_through_the: "Usted puede seguir cualquier respuesta a esta entrada por el %{feed}"
       atom_feed: "Atom feed"
-      you_can_leave_a: "You can leave a %{comment}"
-      comment: "comment"
+      you_can_leave_a: "Usted puede dejar un %{comment}"
+      comment: "comentario"
       or_trackback: "or a %{trackback} from your own site"
       trackback: "trackback"
-      read_full_article: "Read full article"
+      read_full_article: "Leer el art&iacute;culo completo"
       comments: "Comentarios"
     archives:
-      posted_in: "Posted in"
+      posted_in: "Publicado en"
       no_articles_found: "No se encontraron art&iacute;culos"
     read:
-      comments_are_disabled: "Comments are disabled"
-      trackbacks_for: "Trackbacks for"
-      trackbacks_are_disabled: "Trackbacks are disabled"
-      if_you_liked_this_article_you_can: "If you liked this article you can %{add_twitter}"
-      add_me_to_twitter: "add me to Twitter"
+      comments_are_disabled: "Comentarios deshabilitados"
+      trackbacks_for: "Trackbacks para"
+      trackbacks_are_disabled: "Trackbacks deshabilitados"
+      if_you_liked_this_article_you_can: "Si le gust&oacute; este art&iacute;culo, usted puede %{add_twitter}"
+      add_me_to_twitter: "agregame en Twitter"
       use_the_following_link_to_trackback: "Usa el siguiente link para crear un trackback desde tu propio sitio"
       trackbacks: "Trackbacks"
       edit: "Edit"
@@ -98,21 +98,21 @@ es-MX:
       rss_feed: "Feed RSS para este art&iacute;culo"
       comments_are_disabled: "Los comentarios est&aacute;n deshabilitados"
     comment_form:
-      required: "required"
-      leave_a_comment: "Leave a comment"
-      comment_author: "Name %{author}"
+      required: "requerido"
+      leave_a_comment: "Deje un comentario"
+      comment_author: "Nombre %{author}"
       email: "Email"
       website: "Website"
-      comments: "comments"
-      markdown_enabled: "Markdown enabled"
-      textile_enabled: "Textile enabled"
-      never_displayed: "never displayed"
-      comment: "comment"
-      email_address: "Email address"
-      your_website: "Your website"
-      leave_url_email: "leave url/email"
+      comments: "comentarios"
+      markdown_enabled: "Markdown habilitado"
+      textile_enabled: "Textile habilitado"
+      never_displayed: "nunca desplegado"
+      comment: "comentario"
+      email_address: "Email"
+      your_website: "Tu sitio web"
+      leave_url_email: "deja un url/email"
       your_name: "Tu nombre"
-      your_blog: "tu blog"
+      your_blog: "Tu blog"
       your_email: "Tu email"
       your_message: "Tu comentario"
       comment_markup_help: "Ayuda del marcado"
@@ -124,7 +124,7 @@ es-MX:
         other: "%{count} Comentarios"
     comment_counter:
       comments:
-        zero: "no Comentarios"
+        zero: "Sin Comentarios"
         one: "1 Comentario"
         other: "%{count} Comentarios"
   notes:
@@ -132,7 +132,7 @@ es-MX:
       next_page: "Next page"
       previous_page: "Previous page"
     note:
-      view_on_twitter: "View on Twitter"
+      view_on_twitter: "Ver en Twitter"
   profile:
     admin: "Publify administrator"
     publisher: "Blog publisher"
@@ -142,8 +142,8 @@ es-MX:
       active: "Active"
       inactive: "Inactive"
   notice:
-    note_successfully_updated: "Note was successfully updated"
-    note_successfully_created: "Note was successfully created"
+    note_successfully_updated: "Nota actualizada exit&oacute;samente"
+    note_successfully_created: "Nota creada exit&oacute;samente"
   errors:
     problem_sending_to_twitter: "Oooops something wrong happened"
     you_are_not_allowed: "Error, you are not allowed to perform this action"
@@ -190,15 +190,15 @@ es-MX:
       successfully_deleted: "This %{name} was deleted successfully"
     notes:
       header:
-        notes: "Notes"
+        notes: "Notas"
       form:
         now: "Now"
-        no_notes: "There are no notes yet. Why don't you start and create one?"
+        no_notes: "No existen notas a&uacute;n. Por qu&eacute; no empieza creando una?"
         how_to_setup_twitter: "If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."
         fill_the_twitter_credentials: "fill in the oauth credentials"
         registered_your_application: "registered your application"
-        compose_new_note: "Compose new note"
-        publish_settings: "Publish settings"
+        compose_new_note: "Componer una nueva nota"
+        publish_settings: "Configurar Publicaciones"
         posse_to_twitter: "POSSE to twitter"
         in_reply_to: "In reply to"
         tweet_id_like: "Tweet id like 123456"
@@ -261,6 +261,7 @@ es-MX:
         custom_url_help: "If you have a custom domain for URL shortening, enter it here."
         date_format: "Date format"
         default_article_show: "articles on the homepage"
+        default_archives_show: "articles on the archives page"
         default_feed_show: "most recent articles in feed"
         display: "Display"
         display_settings: "Display Settings"
@@ -343,8 +344,8 @@ es-MX:
         may_take_a_moment: "puede tomar un momento"
       index:
         cancel: "Cancelar"
-        or: "or"
-        update_settings: "Update settings"
+        or: "o"
+        update_settings: "Acutalizar preferencias"
         general_settings: "Preferencias generales"
         your_blog: "Tu sitio"
         blog_name: "Nombre del blog"
@@ -356,7 +357,7 @@ es-MX:
         explain_allow_users_to_register: "This will allow users to register themselves as contributors, an unprivileged account level which grants them no rights beyond owning a profile on the site. If you don't want users to register, you can add them via <em>Manage users</em> under <em>Settings</em>."
         source_email: "Email remitente"
         email_address_used_to_notify: "Email address used by Publify to send notifications"
-        items_to_display_in_admin_lists: "Items to display in admin lists"
+        items_to_display_in_admin_lists: "Items a desplegar en listados de administrador"
     seo:
       titles:
         cancel: "Cancelar"
@@ -550,11 +551,11 @@ es-MX:
       bulkops:
         error: "Not implemented"
         success_deleted_spam: "All spam have been deleted"
-        success_mark_as_ham: 
+        success_mark_as_ham:
           zero: "No item selected to mark as Ham"
           one: "Marked 1 item as Ham"
           other: "Marked %{count} items as Ham"
-        success_mark_as_spam: 
+        success_mark_as_spam:
           zero: "No item selected to mark as Spam"
           one: "Marked 1 item as Spam"
           other: "Marked %{count} items as Spam"
@@ -655,15 +656,14 @@ es-MX:
           one: "1 spam"
           other: "%{count} spam"
       overview:
-        dashboard_explain: "This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %{available_actions}"
-        write_a_post: "write a post"
-        write_a_page: "write a page"
-        update_your_profile_or_change_your_password: "update your profile or change your password"
-        customization_explain: "You can also do a bit of design, %{theme_link} or %{sidebar_link}."
-        change_your_blog_presentation: "change your blog presentation"
-        enable_plugins: "enable plugins"
-        help_explain: "If you need help, %{doc_link}."
-        read_our_documentation: "read our documentation"
+        dashboard_explain: "Este lugar da una vista r&aacute;pida de tu blog de Publify y de lo que puedes hacer. Quiz&aacute;s querr&aacute;s %{available_actions}"
+        write_a_page: "escribir una pagina"
+        update_your_profile_or_change_your_password: "actualizar tu perfil o cambiar su contrasena"
+        customization_explain: "Puedes hacer algo de dise&ntilde;o, %{theme_link} o %{sidebar_link}."
+        change_your_blog_presentation: "cambiar la presentacion del blog"
+        enable_plugins: "habilitar plugins"
+        help_explain: "Si necesitas ayuda, %{doc_link}."
+        read_our_documentation: "lea nuestra documentacion"
       inbound:
         inbound_links: "Inbound links"
         you_have_no_internet_connection: "You have no internet connection"
@@ -868,23 +868,23 @@ es-MX:
     logout:
       notice: "Successfully logged out"
   langs:
-    da_DK: "Danish"
-    de_DE: "German"
-    en_US: "English (US)"
-    es_MX: "Spanish (Mexican)"
-    fr_FR: "French"
-    he_IL: "Hebrew"
-    it_IT: "Italian"
-    ja_JP: "Japanese"
-    lt_LT: "Lithuanian"
-    nb_NO: "Norwegian"
-    nl_NL: "Nederland"
-    pl_PL: "Polish"
-    ro_RO: "Romanian"
-    ru_RU: "Russian"
-    zh_TW: "Chinese"
-    zh_CN: "Simple Chinese"
-    pt_BR: "Portuguese (Brazilian)"
+    da_DK: "Dan&eacute;s"
+    de_DE: "Alem&aacute;n"
+    en_US: "Ingl&eacute;s (US)"
+    es_MX: "Espa&ntilde;ol (Mejicano)"
+    fr_FR: "Franc&eacute;s"
+    he_IL: "Hebreo"
+    it_IT: "Italiano"
+    ja_JP: "Japon&eacute;s"
+    lt_LT: "Lithuanio"
+    nb_NO: "Noruego"
+    nl_NL: "Holand&eacute;s"
+    pl_PL: "Polaco"
+    ro_RO: "Rumano"
+    ru_RU: "Ruso"
+    zh_TW: "Chino"
+    zh_CN: "Chino Simple"
+    pt_BR: "Portugu&eacute;s (Brasilero)"
   time:
     formats:
       default: "%m/%d/%Y %H:%M"

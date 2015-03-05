@@ -1,16 +1,16 @@
 class Admin::TokenChecker
   attr_reader :file
 
-  def initialize(file = File.join(Rails.root, "config", "secret.token"))
+  def initialize(file = File.join(Rails.root, 'config', 'secret.token'))
     @file = file
   end
 
   def safe_token_in_use?
-    Publify::Application.config.secret_token != $default_token
+    Publify::Application.config.secret_key_base != $default_token
   end
 
   def needs_token_generation?
-    return true unless File.exists? file
+    return true unless File.exist? file
     File.read(@file).chomp == $default_token
   end
 

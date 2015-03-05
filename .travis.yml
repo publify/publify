@@ -1,12 +1,17 @@
+sudo: false
 language: ruby
+cache: bundler
 rvm:
-  - 2.1.1
   - 2.0.0
+  - 2.1
+  - 2.2
 env:
   - DB=sqlite
   - DB=mysql
   - DB=postgresql
-
 before_script:
-  - sudo apt-get install python-feedvalidator
   - bundle exec rake db:create db:migrate
+
+addons:
+  code_climate:
+    repo_token: 8850bccc6911d74965627b1fafe753beb368fab00d33de0c7576c6598fc1220e

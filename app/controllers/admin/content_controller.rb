@@ -7,18 +7,13 @@ class Admin::ContentController < Admin::BaseController
 
   cache_sweeper :blog_sweeper
 
-  def auto_complete_for_article_keywords
-    @items = Tag.find(:all, select: :display_name, order: :display_name).map {|t| t.display_name}
-    render inline: "<%= @items %>"
-  end
-
   def index
     @search = params[:search] ? params[:search] : {}
     @articles = Article.search_with(@search).page(params[:page]).per(this_blog.admin_display_elements)
 
     if request.xhr?
       respond_to do |format|
-        format.js {  }
+        format.js {}
       end
     else
       @article = Article.new(params[:article])
@@ -27,6 +22,14 @@ class Admin::ContentController < Admin::BaseController
 
   def new
     @article = Article::Factory.new(this_blog, current_user).default
+    load_resources
+  end
+
+  def edit
+    return unless access_granted?(params[:id])
+    @article = Article.find(params[:id])
+    @article.text_filter ||= current_user.default_text_filter
+    @article.keywords = Tag.collection_to_string @article.tags
     load_resources
   end
 
@@ -46,14 +49,6 @@ class Admin::ContentController < Admin::BaseController
     end
   end
 
-  def edit
-    return unless access_granted?(params[:id])
-    @article = Article.find(params[:id])
-    @article.text_filter ||= current_user.default_text_filter
-    @article.keywords = Tag.collection_to_string @article.tags
-    load_resources
-  end
-
   def update
     return unless access_granted?(params[:id])
     id = params[:article][:id] || params[:id]
@@ -62,19 +57,15 @@ class Admin::ContentController < Admin::BaseController
     if params[:article][:draft]
       get_fresh_or_existing_draft_for_article
     else
-      if not @article.parent_id.nil?
-        @article = Article.find(@article.parent_id)
-      end
+      @article = Article.find(@article.parent_id) unless @article.parent_id.nil?
     end
 
     update_article_attributes
 
     if @article.save
-      unless @article.draft
-        Article.where(parent_id: @article.id).map(&:destroy)
-      end
+      Article.where(parent_id: @article.id).map(&:destroy) unless @article.draft
       flash[:success] = I18n.t('admin.content.update.success')
-      redirect_to :action => 'index'
+      redirect_to action: 'index'
     else
       @article.keywords = Tag.collection_to_string @article.tags
       load_resources
@@ -86,9 +77,14 @@ class Admin::ContentController < Admin::BaseController
     destroy_a(Article)
   end
 
+  def auto_complete_for_article_keywords
+    @items = Tag.select(:display_name).order(:display_name).map(&:display_name)
+    render inline: '<%= @items %>'
+  end
+
   def autosave
     return false unless request.xhr?
-    
+
     id = params[:article][:id] || params[:id]
 
     article_factory = Article::Factory.new(this_blog, current_user)
@@ -96,17 +92,17 @@ class Admin::ContentController < Admin::BaseController
 
     get_fresh_or_existing_draft_for_article
 
-    @article.attributes = params[:article]
+    @article.attributes = params[:article].permit!
 
     @article.published = false
     @article.author = current_user
     @article.save_attachments!(params[:attachments])
-    @article.state = "draft" unless @article.state == "withdrawn"
+    @article.state = 'draft' unless @article.state == 'withdrawn'
     @article.text_filter ||= current_user.default_text_filter
 
     if @article.title.blank?
-      lastid = Article.find(:first, :order => 'id DESC').id
-      @article.title = "Draft article " + lastid.to_s
+      lastid = Article.order('id desc').first.id
+      @article.title = 'Draft article ' + lastid.to_s
     end
 
     if @article.save
@@ -121,7 +117,7 @@ class Admin::ContentController < Admin::BaseController
   protected
 
   def get_fresh_or_existing_draft_for_article
-    if @article.published and @article.id
+    if @article.published && @article.id
       parent_id = @article.id
       @article = Article.drafts.child_of(parent_id).first || Article.new
       @article.allow_comments = this_blog.default_allow_comments
@@ -135,7 +131,7 @@ class Admin::ContentController < Admin::BaseController
   private
 
   def load_resources
-    @post_types = PostType.find(:all)
+    @post_types = PostType.all
     @images = Resource.images_by_created_at.page(params[:page]).per(10)
     @resources = Resource.without_images_by_filename
     @macros = TextFilter.macro_filters
@@ -153,22 +149,26 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def update_article_attributes
-    @article.attributes = params[:article]
+    @article.attributes = update_params
     @article.published_at = parse_date_time params[:article][:published_at]
     @article.author = current_user
     @article.save_attachments!(params[:attachments])
-    @article.state = "draft" if @article.draft
+    @article.state = 'draft' if @article.draft
     @article.text_filter ||= current_user.default_text_filter
   end
-  
+
+  def update_params
+    params.require(:article).except(:id).permit!
+  end
+
   def get_layout
     case action_name
-    when "new", "edit", "create"
-      "editor"
-    when "show", "autosave"
+    when 'new', 'edit', 'create'
+      'editor'
+    when 'show', 'autosave'
       nil
     else
-      "administration"
+      'administration'
     end
   end
 end

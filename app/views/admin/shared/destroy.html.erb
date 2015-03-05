@@ -9,10 +9,9 @@
   </p>
 
   <%= form_tag action: "destroy", id: @record.id do %>
-    <hr />
+    <hr>
     <div class='form-actions'>
       <%= t(".action_or_other", first_action: link_to(t(".cancel"), {action: 'index'}), second_action: submit_tag(t(".delete"), class: "btn btn-danger")) %>
     </div>
   <% end %>
-  
 </div>

@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Admin::PostTypesController do
+describe Admin::PostTypesController, type: :controller do
   render_views
 
   before do
@@ -9,52 +9,58 @@ describe Admin::PostTypesController do
     request.session = { user: user.id }
   end
 
-  describe 'index' do
-    before(:each) { get :index }
-    it { expect(response).to redirect_to(action: 'new') }
+  describe 'GET #index' do
+    it 'responds successfully with an HTTP 200 status code' do
+      get :index
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+    end
+
+    it 'renders the index template' do
+      get :index
+      expect(response).to render_template('index')
+    end
   end
 
-  describe :edit do
-    context "when create a new one" do
-      before(:each) {post :edit, post_type: {name: "new post type"}}
-      it { expect(response).to redirect_to(action: 'index') }
-      it { expect(PostType.count).to eq(1) }
-      it { expect(PostType.first.name).to eq("new post type") }
+  describe 'create a new post_type' do
+    it 'should create a post and redirect to #index' do
+      expect do
+        post :create, post_type: { name: 'new post type' }
+        expect(response).to redirect_to(action: 'index')
+        expect(PostType.count).to eq(1)
+        expect(PostType.first.name).to eq('new post type')
+      end.to change(PostType, :count)
     end
-
-    context "when update an existing one" do
-      let(:post_type) { create(:post_type, name: 'a name') }
-      before(:each) {post :edit, id: post_type.id, post_type: {name: 'an other name'}}
-      it { expect(response).to redirect_to(action: 'index') }
-      it { expect(PostType.count).to eq(1) }
-      it { expect(PostType.first.name).to eq('an other name') }
-    end
-
-    context "when edit with a get method" do
-      before(:each) {get :edit, post_type: {name: "new post type"}}
-      it { expect(response).to render_template('new') }
-    end
-
   end
 
-  describe 'new' do
-    before(:each) { get :new }
-    it { expect(response).to render_template('new')}
-  end
-
-  describe 'destroy' do
-    let!(:post_type) { create(:post_type) }
-
-    context "with a get method" do
-      before(:each) { get :destroy, id: post_type.id }
-      it { expect(response).to be_success }
-      it { expect(response).to render_template('destroy') }
+  describe 'GET #edit' do
+    before(:each) do
+      get :edit, id: FactoryGirl.create(:post_type).id
     end
 
-    context "with a post method" do
-      before(:each) { post :destroy, id: post_type.id }
-      it { expect(response).to redirect_to(action: 'index') }
-      it { expect(PostType.count).to eq(0) }
+    it 'renders the edit template with an HTTP 200 status code' do
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+      expect(response).to render_template('edit')
+    end
+  end
+
+  describe '#update an existing post_type' do
+    it 'should update a post_type and redirect to #index' do
+      @test_id = FactoryGirl.create(:post_type).id
+      post :update, id: @test_id, post_type: { name: 'another name' }
+      assert_response :redirect, action: 'index'
+      expect(PostType.count).to eq(1)
+      expect(PostType.first.name).to eq('another name')
+    end
+  end
+
+  describe 'destroy a post_type' do
+    it 'should destroy the post_type and redirect to #index' do
+      @test_id = FactoryGirl.create(:post_type).id
+      post :destroy, id: @test_id
+      expect(response).to redirect_to(action: 'index')
+      expect(PostType.count).to eq(0)
     end
   end
 end

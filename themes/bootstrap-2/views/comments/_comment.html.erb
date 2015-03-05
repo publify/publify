@@ -1,0 +1,14 @@
+<li class='list-unstyled' id="comment-<%= comment.id %>">
+  <%= avatar_tag(:email => comment.email, :url => comment.url, :class => 'img-circle pull-left gravatar') %>
+  <div class='content'>
+    <h4>
+      <%= t(".by") %> <%= (comment.url.blank?) ? h(comment.author) : link_to(h(comment.author), comment.url).nofollowify %>
+      <%= display_date_and_time comment.created_at %>
+    </h4>
+    <%= comment.html %>
+    <%- unless comment.published %>
+      <div class="spamwarning"><%= t(".this_comment_has_been_flagged_for_moderator_approval") %></div>
+    <%- end %>
+    <hr>
+  </div>
+</li>

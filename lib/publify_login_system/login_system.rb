@@ -30,21 +30,21 @@ module LoginSystem
     def access_denied
       respond_to do |accepts|
         accepts.html do
-          #store_location
+          # store_location
           session[:return_to] = request.fullpath
           if logged_in?
             flash[:error] = "You're not allowed to perform this action"
-            redirect_to :controller => "admin/dashboard", :action => "index"
-          elsif User.find(:first)
-            redirect_to :controller => "/accounts", :action => "login"
+            redirect_to controller: 'admin/dashboard', action: 'index'
+          elsif User.first
+            redirect_to controller: '/accounts', action: 'login'
           else
-            redirect_to :controller => "/accounts", :action => "signup"
+            redirect_to controller: '/accounts', action: 'signup'
           end
         end
         accepts.xml do
-          headers["Status"]           = "Unauthorized"
-          headers["WWW-Authenticate"] = %(Basic realm="Web Password")
-          render :text => "Could't authenticate you", :status => '401 Unauthorized'
+          headers['Status']           = 'Unauthorized'
+          headers['WWW-Authenticate'] = %(Basic realm="Web Password")
+          render text: "Could't authenticate you", status: '401 Unauthorized'
         end
       end
       false
@@ -72,17 +72,18 @@ module LoginSystem
       user = cookies[:auth_token] && User.find_by_remember_token(cookies[:auth_token])
       if user && user.remember_token?
         user.remember_me
-        cookies[:auth_token] = { :value => user.remember_token, :expires => user.remember_token_expires_at }
+        cookies[:auth_token] = { value: user.remember_token, expires: user.remember_token_expires_at }
         self.current_user = user
       end
     end
 
   private
+
     @@http_auth_headers = %w(X-HTTP_AUTHORIZATION HTTP_AUTHORIZATION Authorization)
     # gets BASIC auth info
     def get_auth_data
-      auth_key  = @@http_auth_headers.detect { |h| request.env.has_key?(h) }
+      auth_key  = @@http_auth_headers.detect { |h| request.env.key?(h) }
       auth_data = request.env[auth_key].to_s.split unless auth_key.blank?
-      return auth_data && auth_data[0] == 'Basic' ? Base64.decode64(auth_data[1]).split(':')[0..1] : [nil, nil]
+      auth_data && auth_data[0] == 'Basic' ? Base64.decode64(auth_data[1]).split(':')[0..1] : [nil, nil]
     end
 end

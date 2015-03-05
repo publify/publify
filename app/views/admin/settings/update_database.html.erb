@@ -1,8 +1,8 @@
 <%- content_for :page_heading do %>
-  <h2>
-    <i class="glyphicon glyphicon-large glyphicon-cog"></i>
-    <%= t(".database_migration") %>
-  </h2>
+<h2>
+  <i class="glyphicon glyphicon-large glyphicon-cog"></i>
+  <%= t(".database_migration") %>
+</h2>
 <% end %>
 
 <div class='alert alert-warning'>
@@ -30,7 +30,7 @@
       <p><strong><%= t(".you_are_up_to_date")%></strong></p>
     </div>
     <% else %>
-    <hr />
+    <hr>
     <%= submit_tag(t(".update_database_now"), class: 'btn btn-success') %>
     <small><%= t(".may_take_a_moment")%></small>
     <% end %>

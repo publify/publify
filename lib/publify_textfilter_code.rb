@@ -4,28 +4,28 @@ require 'htmlentities'
 class PublifyApp
   class Textfilter
     class Code < TextFilterPlugin::MacroPre
-      plugin_display_name "Code"
-      plugin_description "Apply coderay highlighting to a code block"
+      plugin_display_name 'Code'
+      plugin_description 'Apply coderay highlighting to a code block'
 
-      DEFAULT_OPTIONS = {:css => :class,
-        :wrap => :span,
-        :line_numbers => nil,
-        :tab_width => 2,
-        :bold_every => 5,
-        :hint => false,
-        :line_number_start => 1}
+      DEFAULT_OPTIONS = { css: :class,
+                          wrap: :span,
+                          line_numbers: nil,
+                          tab_width: 2,
+                          bold_every: 5,
+                          hint: false,
+                          line_number_start: 1 }
 
       def self.help_text
         %{
-You can use `<typo:code>` to include syntax-highlighted code blocks.  Example:
+You can use `<publify:code>` to include syntax-highlighted code blocks.  Example:
 
-    <typo:code lang="ruby">
+    <publify:code lang="ruby">
     class Foo
       def bar
         "abcde"
       end
     end
-    </typo:code>
+    </publify:code>
 
 This uses the Ruby [Syntax](http://coderay.rubychan.de) module.  Options:
 
@@ -38,29 +38,29 @@ PHP (&#42;), Python (&#42;), RHTML, Ruby, Scheme, SQL (&#42;), XHTML, XML, YAML.
 }
       end
 
-      def self.macrofilter(blog, content, attrib, params, text="")
+      def self.macrofilter(_blog, _content, attrib, _params, text = '')
         lang       = attrib['lang']
         title      = attrib['title']
-        if attrib['linenumber'] == "true"
-          options = DEFAULT_OPTIONS.merge(:line_numbers => :table,
-                                  :wrap => :div)
+        if attrib['linenumber'] == 'true'
+          options = DEFAULT_OPTIONS.merge(line_numbers: :table,
+                                          wrap: :div)
         else
           options = DEFAULT_OPTIONS
         end
 
-        text = text.to_s.gsub(/\r/,'').gsub(/\A\n/,'').chomp
+        text = text.to_s.gsub(/\r/, '').gsub(/\A\n/, '').chomp
 
         begin
           text = CodeRay.scan(text, lang.downcase.to_sym).span(options)
         rescue
-          text = HTMLEntities.new("xhtml1").encode(text)
+          text = HTMLEntities.new('xhtml1').encode(text)
         end
         text = "<notextile>#{text}</notextile>"
 
-        if(title)
-          titlecode="<div class=\"codetitle\">#{title}</div>"
+        if title
+          titlecode = "<div class=\"codetitle\">#{title}</div>"
         else
-          titlecode=''
+          titlecode = ''
         end
 
         "<div class=\"CodeRay\"><pre>#{titlecode}#{text}</pre></div>"

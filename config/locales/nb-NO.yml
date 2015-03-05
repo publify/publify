@@ -264,6 +264,7 @@ nb-NO:
         custom_url_help: "Hvis du har et eget domene for URL-krymping, skriv det her"
         date_format: "Datoformat"
         default_article_show: "artikler på åpningssiden"
+        default_archives_show: "articles on the archives pages"
         default_feed_show: "siste artikler i feeden"
         display: "Vis"
         display_settings: "Innstillinger for visning"

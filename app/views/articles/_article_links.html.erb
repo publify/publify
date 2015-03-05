@@ -1,7 +1,7 @@
 <p class="meta">
   <%= t(".tags") + " " + article.tags.map { |tag| link_to tag.display_name, tag.permalink_url(nil, true), rel: "tag"}.sort.join(", ") if article.tags.any? %>
 
-  <%= link_to(t('.comments', count: article.published_comments.size), article.permalink_url('comments', true)) if article.allow_comments? %> 
-  
-  <%= link_to(t('.trackbacks', count: article.published_trackbacks.size), article.permalink_url('trackbacks', true)) if article.allow_pings? %> 
+  <%= link_to(t('.comments', count: article.published_comments.size), article.permalink_url('comments', true)) if article.allow_comments? %>
+
+  <%= link_to(t('.trackbacks', count: article.published_trackbacks.size), article.permalink_url('trackbacks', true)) if article.allow_pings? %>
 </p>

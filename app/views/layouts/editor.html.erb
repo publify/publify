@@ -1,11 +1,10 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
   <title><%= this_blog.blog_name %> – <%= controller.controller_name %></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="imagetoolbar" content="no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="imagetoolbar" content="no">
   <%= stylesheet_link_tag 'publify_admin' %>
   <%= javascript_include_tag 'publify_admin' %>
   <style type="text/css">
@@ -23,7 +22,6 @@
       src: local('Open Sans Bold'), local('OpenSans-Bold'), url(<%= File.join(this_blog.base_url, 'stylesheets', 'fonts', 'open-sans-bold.woff') %>) format('woff');
     }
   </style>
-  
 </head>
 <body>
   <div id='main'>

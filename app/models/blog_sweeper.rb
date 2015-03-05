@@ -7,7 +7,7 @@ class BlogSweeper < ActionController::Caching::Sweeper
 
   def run_pending_page_sweeps
     pending_sweeps.each do |each|
-      self.send(each)
+      send(each)
     end
   end
 
@@ -33,7 +33,7 @@ class BlogSweeper < ActionController::Caching::Sweeper
   end
 
   def after_save(record)
-    expire_for(record) unless (record.is_a?(Article) and record.state == :draft)
+    expire_for(record) unless record.is_a?(Article) && record.state == :draft
   end
 
   def after_destroy(record)
@@ -54,9 +54,7 @@ class BlogSweeper < ActionController::Caching::Sweeper
     when Blog, User, Comment, Trackback
       pending_sweeps << :sweep_all << :sweep_theme
     end
-    unless controller
-      run_pending_page_sweeps
-    end
+    run_pending_page_sweeps unless controller
   end
 
   def sweep_all
@@ -72,7 +70,7 @@ class BlogSweeper < ActionController::Caching::Sweeper
   end
 
   def sweep_pages
-    PageCache.zap_pages(%w{pages}) unless Blog.default.nil?
+    PageCache.zap_pages(%w(pages)) unless Blog.default.nil?
   end
 
   def logger
@@ -80,10 +78,9 @@ class BlogSweeper < ActionController::Caching::Sweeper
   end
 
   private
+
   def callback(timing)
     super
-    if timing == :after
-      run_pending_page_sweeps
-    end
+    run_pending_page_sweeps if timing == :after
   end
 end

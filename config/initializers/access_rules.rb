@@ -40,8 +40,8 @@ AccessControl.map require: [ :admin, :publisher, :contributor ]  do |map|
     project.submenu "New Article",    { controller: "admin/content", action: "new" }
     project.submenu "Feedback",       { controller: "admin/feedback", action: "index" }
     project.submenu "Tags",           { controller: "admin/tags", action: "index" }
-    project.submenu "Article Types",  { controller: "admin/post_types", action: "new" }
-    project.submenu "Redirects",      { controller: "admin/redirects", action: "new" }
+    project.submenu "Article Types",  { controller: "admin/post_types", action: "index" }
+    project.submenu "Redirects",      { controller: "admin/redirects", action: "index" }
   end
 
   map.project_module :pages, nil do |project|
@@ -81,7 +81,7 @@ AccessControl.map require: [ :admin, :publisher, :contributor ]  do |map|
 
   map.project_module :seo, nil do |project|
     project.menu    "SEO",  { controller: "admin/seo", action: "index" }
-    project.submenu "Global SEO settings",  { controller: "admin/seo", action: "index" }    
+    project.submenu "Global SEO settings",  { controller: "admin/seo", action: "index" }
     project.submenu "Permalinks",           { controller: "admin/seo", action: "permalinks" }
     project.submenu "Titles",               { controller: "admin/seo", action: "titles" }
   end

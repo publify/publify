@@ -1,9 +1,7 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe PageCache do
-
+describe PageCache, type: :model do
   describe 'PageCache#self.sweep_all' do
-
     before(:each) do
       all_files = ['/index.html', '/articles.rss', '/sitemap.xml']
       @all_paths = []
@@ -15,9 +13,8 @@ describe PageCache do
     it 'should destroy all file in cache directory with path' do
       PageCache.sweep_all
       @all_paths.each do |path|
-        File.should_not be_exist(path)
+        expect(File).not_to be_exist(path)
       end
     end
   end
-
 end

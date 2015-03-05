@@ -1,0 +1,65 @@
+<% content_for :page_heading do %>
+<h2>
+  <i class="glyphicon glyphicon-large glyphicon-share-alt"></i>
+  <%= t(".redirects") %>
+</h2>
+<% end %>
+
+<div class='row'>
+  <div class='col-md-4'>
+    <%= form_for([:admin, @redirect]) do |f| %>
+
+      <% if @redirect.errors.any? %>
+        <ul>
+          <% @redirect.errors.full_messages.each do |redirect| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+
+      <div class="form-group">
+        <%= f.text_field :from_path, class: 'form-control', placeholder: "From #{this_blog.base_url}/" %>
+      </div>
+      <p class='help-block'>
+        <small><%= t(".leave_empty_to_shorten_a_link") %></small>
+      </p>
+      <div class="form-group">
+        <%= f.text_field :to_path, class: 'form-control', placeholder: "To" %>
+      </div>
+      <div class="form-group">
+        <hr>
+        <%= link_to(t(".cancel"), {action: 'index'}) %>
+        <%= t(".or") %>
+        <%= f.submit "Save", class: 'btn btn-success' %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class='col-md-8'>
+    <table class="table table-hover">
+      <thead>
+        <tr class='noborder'>
+          <th><%= t(".from") %></th>
+          <th><%= t(".to") %></th>
+        </tr>
+      </thead>
+      <% if @redirects.empty? %>
+      <tr>
+        <td colspan="2">
+          <%= t(".no_redirects") %>
+        </td>
+      </tr>
+      <% end %>
+      <% for redirect in @redirects %>
+      <tr>
+        <td>
+          <%= link_to("#{redirect.to_url}", "#{redirect.to_url}") %>
+          <%= show_redirect_actions redirect %>
+        </td>
+        <td><%= link_to(redirect.to_path, redirect.to_path) %></td>
+      </tr>
+      <% end %>
+      <%= display_pagination(@redirects, 2) %>
+    </table>
+  </div>
+</div>

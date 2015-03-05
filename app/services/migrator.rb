@@ -8,17 +8,18 @@ class Migrator
   end
 
   def pending_migrations
-    migrator = ActiveRecord::Migrator.new(:up, migrations_path)
+    all_migrations = ActiveRecord::Migrator.migrations(migrations_paths)
+    migrator = ActiveRecord::Migrator.new(:up, all_migrations)
     migrator.pending_migrations
   end
 
   def migrate
-    ActiveRecord::Migrator.migrate(migrations_path)
+    ActiveRecord::Migrator.migrate(migrations_paths)
   end
 
   private
 
-  def migrations_path
-    Rails.root + 'db' + 'migrate'
+  def migrations_paths
+    ActiveRecord::Migrator.migrations_paths
   end
 end

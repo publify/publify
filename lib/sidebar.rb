@@ -1,5 +1,5 @@
 class Sidebar < ActiveRecord::Base
-  serialize :config
+  serialize :config, Hash
 
   class Field
     attr_accessor :key
@@ -9,7 +9,7 @@ class Sidebar < ActiveRecord::Base
     include ActionView::Helpers::FormTagHelper
     include ActionView::Helpers::FormOptionsHelper
 
-    def initialize(key, default, options = { })
+    def initialize(key, default, options = {})
       @key, @default, @options = key.to_s, default, options
     end
 
@@ -17,17 +17,17 @@ class Sidebar < ActiveRecord::Base
       options[:label] || key.humanize.gsub(/url/i, 'URL')
     end
 
-    def label_html(sidebar)
+    def label_html(_sidebar)
       content_tag('label', label)
     end
 
     def input_html(sidebar)
-      text_field_tag(input_name(sidebar), sidebar.config[key], { :class => 'form-control'})
+      text_field_tag(input_name(sidebar), sidebar.config[key],  class: 'form-control')
     end
 
     def line_html(sidebar)
       html = label_html(sidebar)
-      html << content_tag(:div,  input_html(sidebar), :class => 'form-group')
+      html << content_tag(:div,  input_html(sidebar), class: 'form-group')
     end
 
     def input_name(sidebar)
@@ -48,7 +48,7 @@ class Sidebar < ActiveRecord::Base
 
     class TextAreaField < self
       def input_html(sidebar)
-        html_options = { "rows" => "10", "class" => "form-control" }.update(options.stringify_keys)
+        html_options = { 'rows' => '10', 'class' => 'form-control' }.update(options.stringify_keys)
         text_area_tag(input_name(sidebar), sidebar.config[key], html_options)
       end
     end
@@ -60,7 +60,7 @@ class Sidebar < ActiveRecord::Base
           radio_button_tag(input_name(sidebar), value,
                            value == sidebar.config[key], options) +
             content_tag('label', label_for(choice))
-        end.join("<br />")
+        end.join('<br />')
       end
 
       def label_for(choice)
@@ -74,14 +74,14 @@ class Sidebar < ActiveRecord::Base
 
     class CheckBoxField < self
       def line_html(sidebar)
-        hidden_field_tag(input_name(sidebar),0) +
+        hidden_field_tag(input_name(sidebar), 0) +
           content_tag('label',
                       "#{check_box_tag(input_name(sidebar), 1, sidebar.config[key], options)} #{label}".html_safe)
       end
 
       def canonicalize(value)
         case value
-        when "0"
+        when '0'
           false
         else
           true
@@ -115,33 +115,11 @@ class Sidebar < ActiveRecord::Base
     end
   end
 
-  def self.find *args
-    begin
-      super
-    rescue ActiveRecord::SubclassNotFound
-      available = available_sidebars.map {|klass| klass.to_s}
-      self.inheritance_column = :bogus
-      super.each do |record|
-        unless available.include? record.type
-          record.delete
-        end
-      end
-      self.inheritance_column = :type
-      super
-    end
-  end
-
-  def self.find_all_visible
-    where('active_position is not null').order('active_position')
-  end
-
-  def self.find_all_staged
-    where('staged_position is not null').order('staged_position')
-  end
+  scope :valid, ->() { where(type: available_sidebar_types) }
 
   def self.ordered_sidebars
     os = []
-    Sidebar.all.each do |s| 
+    Sidebar.valid.each do |s|
       if s.staged_position
         os[s.staged_position] = ((os[s.staged_position] || []) << s).uniq
       elsif s.active_position
@@ -158,7 +136,7 @@ class Sidebar < ActiveRecord::Base
     delete_all('active_position is null and staged_position is null')
   end
 
-  def self.setting(key, default=nil, options = { })
+  def self.setting(key, default = nil, options = {})
     key = key.to_s
 
     return if instance_methods.include?(key)
@@ -166,15 +144,15 @@ class Sidebar < ActiveRecord::Base
     fields << Field.build(key, default, options)
     fieldmap.update(key => fields.last)
 
-    self.send(:define_method, key) do
-      if config.has_key? key
+    send(:define_method, key) do
+      if config.key? key
         config[key]
       else
         default
       end
     end
 
-    self.send(:define_method, "#{key}=") do |newval|
+    send(:define_method, "#{key}=") do |newval|
       config[key] = newval
     end
   end
@@ -196,11 +174,11 @@ class Sidebar < ActiveRecord::Base
   end
 
   def self.short_name
-    self.to_s.underscore.split(%r{_}).first
+    to_s.underscore.split(%r{_}).first
   end
 
   def self.path_name
-    self.to_s.underscore
+    to_s.underscore
   end
 
   def self.display_name(new_dn = nil)
@@ -208,12 +186,32 @@ class Sidebar < ActiveRecord::Base
     @display_name || short_name.humanize
   end
 
-  def self.available_sidebars
-    Sidebar.descendants.sort_by { |klass| klass.to_s }
+  class << self
+    attr_accessor :view_root
+
+    # TODO: Avoid making this available from subclasses
+    def register_sidebar(klass)
+      registered_sidebars << klass
+      @available_sidebar_types = nil
+    end
+
+    def available_sidebars
+      registered_sidebars.sort_by(&:to_s)
+    end
+
+    def available_sidebar_types
+      registered_sidebars.map(&:to_s).sort
+    end
+
+    private
+
+    def registered_sidebars
+      @registered_sidebars ||= []
+    end
   end
 
-  def self.fields=(newval)
-    @fields = newval
+  class << self
+    attr_writer :fields
   end
 
   def self.apply_staging_on_active!
@@ -226,45 +224,19 @@ class Sidebar < ActiveRecord::Base
     end
   end
 
-  class << self
-    attr_accessor :view_root
-  end
-
   def blog
     Blog.default
   end
 
-  def initialize(*args)
-    if block_given?
-      super(*args) { |instance| yield instance }
-    else
-      super(*args)
-    end
-    self.class.fields.each do |field|
-      unless config.has_key?(field.key)
-        config[field.key] = field.default
-      end
-    end
-  end
-
-
   def publish
-    self.active_position = self.staged_position
-  end
-
-  def config
-    self[:config] ||= { }
-  end
-
-  def sidebar_controller
-    @sidebar_controller ||= SidebarController.available_sidebars.find { |s| s.short_name == self.controller }
+    self.active_position = staged_position
   end
 
   def html_id
     short_name + '-' + id.to_s
   end
 
-  def parse_request(contents, params)
+  def parse_request(_contents, _params)
   end
 
   def fields
@@ -296,7 +268,7 @@ class Sidebar < ActiveRecord::Base
   end
 
   def to_locals_hash
-    fields.inject({ :sidebar => self }) do |hash, field|
+    fields.inject(sidebar: self) do |hash, field|
       hash.merge(field.key => config[field.key])
     end
   end
@@ -308,6 +280,6 @@ class Sidebar < ActiveRecord::Base
   def admin_state
     return :active if active_position && (staged_position == active_position || staged_position.nil?)
     return :will_change_position if active_position != staged_position
-    raise "Oups, ask ook to set an admin_state for this: #{{active: active_position, staged: staged_position}}"
+    raise "Unknown admin_state: active: #{active_position}, staged: #{staged_position}"
   end
 end

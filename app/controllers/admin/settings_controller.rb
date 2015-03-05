@@ -2,15 +2,21 @@ class Admin::SettingsController < Admin::BaseController
   cache_sweeper :blog_sweeper
 
   def index
-    if this_blog.base_url.blank?
-      this_blog.base_url = blog_base_url
-    end
+    this_blog.base_url = blog_base_url if this_blog.base_url.blank?
     load_settings
   end
 
-  def write; load_settings end
-  def feedback; load_settings end
-  def display; load_settings end
+  def write
+    load_settings
+  end
+
+  def feedback
+    load_settings
+  end
+
+  def display
+    load_settings
+  end
 
   def update
     if request.post?
@@ -29,11 +35,12 @@ class Admin::SettingsController < Admin::BaseController
   def migrate
     if request.post?
       migrator.migrate
-      redirect_to :action => 'update_database'
+      redirect_to action: 'update_database'
     end
   end
 
   private
+
   def load_settings
     @setting = this_blog
   end

@@ -1,139 +1,138 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe AccountsController do
+describe AccountsController, type: :controller do
   describe "A successful login with 'Remember me' checked" do
     it 'should not cause password to change' do
       create(:blog)
-      User.stub(:salt).and_return('change-me')
-      henri = create(:user, :login => 'henri', :password => 'testagain')
-      post 'login', {:user => {:login => 'henri', :password => 'testagain'}, :remember_me => '1'}
-      request.session[:user_id].should == henri.id
+      allow(User).to receive(:salt).and_return('change-me')
+      henri = create(:user, login: 'henri', password: 'testagain')
+      post 'login', user: { login: 'henri', password: 'testagain' }, remember_me: '1'
+      expect(request.session[:user_id]).to eq(henri.id)
     end
   end
 
   describe 'A successfully authenticated login' do
     before(:each) do
       create(:blog)
-      User.stub(:salt).and_return('change-me')
-      @henri = create(:user, :login => 'henri', :password => 'testagain', :profile => create(:profile_admin, :label => 'admin_henri'))
+      allow(User).to receive(:salt).and_return('change-me')
+      @henri = create(:user, login: 'henri', password: 'testagain', profile: create(:profile_admin, label: 'admin_henri'))
     end
 
     def make_request
-      post 'login', {:user => {:login => 'henri', :password => 'testagain'}}
+      post 'login', user: { login: 'henri', password: 'testagain' }
     end
 
     it 'session gets a user' do
       make_request
-      request.session[:user_id].should == @henri.id
+      expect(request.session[:user_id]).to eq(@henri.id)
     end
 
     it 'sets publify_user_profile cookie' do
       make_request
-      cookies["publify_user_profile"].should == 'admin_henri'
+      expect(cookies['publify_user_profile']).to eq('admin_henri')
     end
 
     it 'redirects to /bogus/location' do
       request.session[:return_to] = '/bogus/location'
       make_request
-      response.should redirect_to('/bogus/location')
+      expect(response).to redirect_to('/bogus/location')
     end
 
     it 'redirects to /admin if no return' do
       make_request
-      response.should redirect_to(:controller => 'admin/dashboard')
+      expect(response).to redirect_to(controller: 'admin/dashboard')
     end
 
     it 'redirects to /admin if no return and you are logged in' do
       session[:user_id] = session[:user] = @henri.id
       make_request
-      response.should redirect_to(:controller => 'admin/dashboard')
+      expect(response).to redirect_to(controller: 'admin/dashboard')
     end
 
-    it "should redirect to signup if no users" do
-      User.stub(:count).and_return(0)
+    it 'should redirect to signup if no users' do
+      allow(User).to receive(:count).and_return(0)
       make_request
-      response.should redirect_to('/accounts/signup')
+      expect(response).to redirect_to('/accounts/signup')
     end
   end
 
   describe 'User is inactive' do
     before(:each) do
       create(:blog)
-      User.stub(:authenticate).and_return(nil)
-      User.stub(:count).and_return(1)
+      allow(User).to receive(:authenticate).and_return(nil)
+      allow(User).to receive(:count).and_return(1)
     end
 
     def make_request
-      post 'login', {:user => {:login => 'inactive', :password => 'longtest'}}
+      post 'login', user: { login: 'inactive', password: 'longtest' }
     end
 
     it 'no user id goes in the session' do
       make_request
-      request.session[:user_id].should be_nil
+      expect(request.session[:user_id]).to be_nil
     end
 
     it 'login should == "inactive"' do
       make_request
-      assigns[:login].should == 'inactive'
+      expect(assigns[:login]).to eq('inactive')
     end
 
     it 'publify_user_profile cookie should be blank' do
       make_request
-      cookies["publify_user_profile"].should be_blank
+      expect(cookies['publify_user_profile']).to be_blank
     end
 
     it 'should render login action' do
       make_request
-      response.should render_template(:login)
+      expect(response).to render_template(:login)
     end
-
   end
 
   describe 'Login with nil user and password' do
     before(:each) do
       create(:blog)
-      User.stub(:count).and_return(1)
+      allow(User).to receive(:count).and_return(1)
     end
 
     def make_request
-      post 'login', {:user => {:login => nil, :password => nil}}
+      post 'login', user: { login: nil, password: nil }
     end
 
     it 'should render login action' do
       make_request
-      response.should render_template(:login)
+      expect(response).to render_template(:login)
     end
   end
 
   describe 'Login gets the wrong password' do
     before(:each) do
       create(:blog)
-      User.stub(:authenticate).and_return(nil)
-      User.stub(:count).and_return(1)
+      allow(User).to receive(:authenticate).and_return(nil)
+      allow(User).to receive(:count).and_return(1)
     end
 
     def make_request
-      post 'login', {:user => {:login => 'bob', :password => 'test'}}
+      post 'login', user: { login: 'bob', password: 'test' }
     end
 
     it 'no user in goes in the session' do
       make_request
-      request.session[:user_id].should be_nil
+      expect(request.session[:user_id]).to be_nil
     end
 
     it 'login should == "bob"' do
       make_request
-      assigns[:login].should == 'bob'
+      expect(assigns[:login]).to eq('bob')
     end
 
     it 'publify_user_profile cookie should be blank' do
       make_request
-      cookies["publify_user_profile"].should be_blank
+      expect(cookies['publify_user_profile']).to be_blank
     end
 
     it 'should render login action' do
       make_request
-      response.should render_template(:login)
+      expect(response).to render_template(:login)
     end
   end
 
@@ -141,109 +140,108 @@ describe AccountsController do
     let!(:blog) { create(:blog) }
 
     it 'should redirect to login' do
-      User.stub(:count).and_return(1)
+      allow(User).to receive(:count).and_return(1)
       get 'index'
-      response.should redirect_to(:action => 'login')
+      expect(response).to redirect_to(action: 'login')
     end
 
     it 'should redirect to signup' do
-      User.stub(:count).and_return(0)
+      allow(User).to receive(:count).and_return(0)
       get 'index'
-      response.should redirect_to(:action => 'signup')
+      expect(response).to redirect_to(action: 'signup')
     end
   end
 
   describe 'GET /login' do
     it 'should render action :login' do
       create(:blog)
-      User.stub(:count).and_return(1)
+      allow(User).to receive(:count).and_return(1)
       get 'login'
-      response.should render_template(:login)
-      assigns[:login].should be_nil
+      expect(response).to render_template(:login)
+      expect(assigns[:login]).to be_nil
     end
   end
 
   describe 'GET /login with 0 existing users' do
     before(:each) do
       create(:blog)
-      User.stub(:count).and_return(0)
+      allow(User).to receive(:count).and_return(0)
     end
 
     it 'should render action :signup' do
       get 'login'
-      response.should redirect_to(:action => 'signup')
-      assigns[:login].should be_nil
+      expect(response).to redirect_to(action: 'signup')
+      expect(assigns[:login]).to be_nil
     end
 
     it 'should render :signup' do
       get 'recover_password'
-      response.should redirect_to(:action => 'signup')
+      expect(response).to redirect_to(action: 'signup')
     end
   end
 
   describe 'with >0 existing user and allow_signup = 0' do
     before(:each) do
       @blog = create(:blog)
-      User.stub(:count).and_return(1)
+      allow(User).to receive(:count).and_return(1)
     end
 
     describe 'GET signup' do
       it 'should redirect to login' do
         get 'signup'
-        response.should redirect_to(:action => 'login')
+        expect(response).to redirect_to(action: 'login')
       end
     end
 
     describe 'POST signup without allow_signup' do
       it 'should redirect to login' do
-        post 'signup', {'user' =>  {'login' => 'newbob'}}
-        response.should redirect_to(:action => 'login')
+        post 'signup', 'user' =>  { 'login' => 'newbob' }
+        expect(response).to redirect_to(action: 'login')
       end
     end
   end
 
   describe 'with > 0 existing user and allow_signup = 1' do
     before(:each) do
-      @blog = create(:blog, :allow_signup => 1)
-      User.stub(:count).and_return(1)
+      @blog = create(:blog, allow_signup: 1)
+      allow(User).to receive(:count).and_return(1)
     end
 
     describe 'GET signup with allow_signup' do
       it 'should redirect to login' do
         get 'signup'
-        response.should render_template('signup')
+        expect(response).to render_template('signup')
       end
     end
 
     describe 'POST signup with allow_signup' do
       it 'should redirect to login' do
-        post 'signup', {'user' =>  {'login' => 'newbob', 'email' => 'newbob@mail.com'}}
-        response.should redirect_to(:action => 'confirm')
+        post 'signup', 'user' =>  { 'login' => 'newbob', 'email' => 'newbob@mail.com' }
+        expect(response).to redirect_to(action: 'confirm')
       end
     end
-
   end
   describe 'GET signup with 0 existing users' do
     before(:each) do
       create(:blog)
-      User.stub(:count).and_return(0)
-      @user = double("user")
-      @user.stub(:reload).and_return(@user)
-      User.stub(:new).and_return(@user)
+      allow(User).to receive(:count).and_return(0)
+      @user = double('user')
+      allow(@user).to receive(:reload).and_return(@user)
+      allow(User).to receive(:new).and_return(@user)
     end
 
     it 'sets @user' do
       get 'signup'
-      assigns[:user].should == @user
+      expect(assigns[:user]).to eq(@user)
     end
 
     it 'renders action signup' do
       get 'signup'
-      response.should render_template(:signup)
+      expect(response).to render_template(:signup)
     end
   end
 
-  describe "with 0 existing users and unconfigured blog" do
+  describe 'with 0 existing users and unconfigured blog' do
     before(:each) do
       Blog.delete_all
       @blog = Blog.new.save
@@ -253,33 +251,33 @@ describe AccountsController do
     describe 'when GET signup' do
       before { get 'signup' }
       it 'redirects to setup' do
-        response.should redirect_to(:controller => 'setup', :action => 'index')
+        expect(response).to redirect_to(controller: 'setup', action: 'index')
       end
     end
 
     describe 'when POST signup' do
       before do
-        post 'signup', {'user' =>  {'login' => 'newbob', 'password' => 'newpassword',
-          'password_confirmation' => 'newpassword'}}
+        post 'signup', 'user' =>  { 'login' => 'newbob', 'password' => 'newpassword',
+                                    'password_confirmation' => 'newpassword' }
       end
       it 'redirects to setup' do
-        response.should redirect_to(:controller => 'setup', :action => 'index')
+        expect(response).to redirect_to(controller: 'setup', action: 'index')
       end
     end
 
     describe 'when GET login' do
       before { get 'login' }
       it 'redirects to setup' do
-        response.should redirect_to(:controller => 'setup', :action => 'index')
+        expect(response).to redirect_to(controller: 'setup', action: 'index')
       end
     end
 
     describe 'when POST login' do
       before do
-        post 'login', {'user' =>  {'login' => 'newbob', 'password' => 'newpassword'}}
+        post 'login', 'user' =>  { 'login' => 'newbob', 'password' => 'newpassword' }
       end
       it 'redirects to setup' do
-        response.should redirect_to(:controller => 'setup', :action => 'index')
+        expect(response).to redirect_to(controller: 'setup', action: 'index')
       end
     end
   end
@@ -287,36 +285,36 @@ describe AccountsController do
   describe 'POST signup with 0 existing users' do
     before(:each) do
       create(:blog)
-      User.stub(:count).and_return(0)
+      allow(User).to receive(:count).and_return(0)
       @user = build_stubbed(User)
-      @user.stub(:login).and_return('newbob')
-      @user.stub(:generate_password!).and_return(true)
-      @user.stub(:name=).and_return(true)
-      User.stub(:new).and_return(@user)
-      User.stub(:authenticate).and_return(@user)
-      @user.stub(:save).and_return(@user)
+      allow(@user).to receive(:login).and_return('newbob')
+      allow(@user).to receive(:generate_password!).and_return(true)
+      allow(@user).to receive(:name=).and_return(true)
+      allow(User).to receive(:new).and_return(@user)
+      allow(User).to receive(:authenticate).and_return(@user)
+      allow(@user).to receive(:save).and_return(@user)
     end
 
     it 'creates and saves a user' do
-      User.should_receive(:new).and_return(@user)
-      @user.should_receive(:save).and_return(@user)
+      expect(User).to receive(:new).and_return(@user)
+      expect(@user).to receive(:save).and_return(@user)
       post 'signup', params
-      assigns[:user].should == @user
+      expect(assigns[:user]).to eq(@user)
     end
 
     it 'redirects to /account/confirm' do
       post 'signup', params
-      response.should redirect_to(:action => 'confirm')
+      expect(response).to redirect_to(action: 'confirm')
     end
 
     it 'session gets a user' do
       post 'signup', params
-      request.session[:user_id].should == @user.id
+      expect(request.session[:user_id]).to eq(@user.id)
     end
 
     def params
-      {'user' =>  {'login' => 'newbob', 'password' => 'newpassword',
-  'password_confirmation' => 'newpassword'}}
+      { 'user' =>  { 'login' => 'newbob', 'password' => 'newpassword',
+                     'password_confirmation' => 'newpassword' } }
     end
   end
 
@@ -331,54 +329,54 @@ describe AccountsController do
       session[:user_id] = @user.id
       session[:user] = @user.id
 
-      cookies["publify_user_profile"] = 'admin'
+      cookies['publify_user_profile'] = 'admin'
     end
 
     it 'trying to log in once again redirects to admin/dashboard/index' do
       get 'login'
-      response.should redirect_to(:controller => 'admin/dashboard')
+      expect(response).to redirect_to(controller: 'admin/dashboard')
     end
 
-    describe "when logging out" do
+    describe 'when logging out' do
       before do
         get 'logout'
       end
 
       it 'deletes the session[:user_id]' do
-        session[:user_id].should be_blank
+        expect(session[:user_id]).to be_blank
       end
 
       it 'deletes the session[:user]' do
-        session[:user].should be_blank
+        expect(session[:user]).to be_blank
       end
 
       it 'redirects to the login action' do
-        response.should redirect_to(:action => 'login')
+        expect(response).to redirect_to(action: 'login')
       end
 
       it 'deletes cookies containing credentials' do
-        cookies["auth_token"].should == nil
-        cookies["publify_user_profile"].should == nil
+        expect(cookies['auth_token']).to eq(nil)
+        expect(cookies['publify_user_profile']).to eq(nil)
       end
     end
   end
 
-  describe :recover_password do
+  describe '#recover_password' do
     let!(:blog) { create(:blog) }
     let!(:user) { create(:user, :as_admin) }
 
-    context "simply get" do
+    context 'simply get' do
       before(:each) { get :recover_password }
       it { expect(response).to render_template('recover_password') }
     end
 
-    context "post" do
-      before(:each) { post :recover_password, user: {login: user.login} }
+    context 'post' do
+      before(:each) { post :recover_password, user: { login: user.login } }
       it { expect(response).to redirect_to(action: 'login') }
     end
 
-    context "post with an unknown login" do
-      before(:each) { post :recover_password, user: {login: 'foobar'} }
+    context 'post with an unknown login' do
+      before(:each) { post :recover_password, user: { login: 'foobar' } }
       it { expect(response).to render_template('recover_password') }
       it { expect(flash[:error]).to eq(I18n.t('accounts.recover_password.error')) }
     end

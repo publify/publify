@@ -43,7 +43,7 @@ en:
       your_mail: "Your email"
     page:
       about: "About"
-      body: "This is an example of a Publify page. You can edit this to write information about yourself or your site so readers know who you are. You can create as many pages as this one as you like and manage all of your content inside Publify."
+      body: "This is an example of a Publify page. You can edit this to write information about yourself or your site so readers know who you are. You can create as many pages as you like and manage all of your content inside Publify."
   comments:
     comment:
       said: "said"
@@ -89,7 +89,7 @@ en:
       trackbacks_for: "Trackbacks for"
       trackbacks_are_disabled: "Trackbacks are disabled"
       if_you_liked_this_article_you_can: "If you liked this article you can %{add_twitter}"
-      add_me_to_twitter: "add me to Twitter"
+      add_me_to_twitter: "follow me on Twitter"
       use_the_following_link_to_trackback: "Use the following link to trackback from your own site"
       trackbacks: "Trackbacks"
       edit: "Edit"
@@ -145,11 +145,11 @@ en:
     note_successfully_updated: "Note was successfully updated"
     note_successfully_created: "Note was successfully created"
   errors:
-    problem_sending_to_twitter: "Oooops something wrong happened"
+    problem_sending_to_twitter: "Oooops something went wrong!"
     you_are_not_allowed: "Error, you are not allowed to perform this action"
     article_type_already_exist: "This article type already exists"
     permalink_need_a_title: "You need a permalink format with an identifier : %%title%%"
-    cant_end_with_rss_or_atom: "Can't end in .rss or .atom. These are reserved to be used for feed URLs"
+    cant_end_with_rss_or_atom: "Can't end in .rss or .atom. These are reserved for feed URLs"
     render_sidebar: "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually"
     no_posts_found: "No posts found..."
     no_notes_found: "No notes found..."
@@ -176,7 +176,7 @@ en:
       yahoo: "Yahoo:"
       aim: "AIM:"
       twitter: "Twitter:"
-      this_author_has_not_published_any_article_yet: "This author has not published any article yet"
+      this_author_has_not_published_any_article_yet: "This author has not published any articles yet"
       posted_in: "posted in"
       next_page: "Next page"
       previous_page: "Previous page"
@@ -194,12 +194,12 @@ en:
       form:
         now: "Now"
         compose_new_note: "Compose new note"
-        no_notes: "There are no notes yet. Why don't you start and create one?"
+        no_notes: "There are no notes yet. Why don't you create one?"
         how_to_setup_twitter: "If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."
-        fill_the_twitter_credentials: "fill in the oauth credentials"
+        fill_the_twitter_credentials: "fill in the OAuth credentials"
         registered_your_application: "registered your application"
         publish_settings: "Publish settings"
-        posse_to_twitter: "POSSE to twitter"
+        posse_to_twitter: "POSSE to Twitter"
         tweet_id_like: "Tweet id like 123456"
         in_reply_to: "In reply to"
         permanent_link: "Permanent link"
@@ -210,15 +210,15 @@ en:
         publish: "Publish"
       show:
         destroy_confirmation: "Destroy confirmation"
-        are_you_sure: "Are you sure you want to delete this note"
+        are_you_sure: "Are you sure you want to delete this note?"
         action_or_other: "%{first_action} or %{second_action}"
         cancel: "Cancel"
         delete: "Delete"
     redirects:
       destroy:
-        success: 'Redirection was successfully deleted.'
+        success: "Redirection was successfully deleted."
       new:
-        no_redirects: "There are no redirects yet. Why don't you start and create one?"
+        no_redirects: "There are no redirects yet. Why don't you create one?"
         cancel: "Cancel"
         save: "Save"
         or: "or"
@@ -227,7 +227,7 @@ en:
         to: "To"
         leave_empty_to_shorten_a_link: "Leave empty to shorten a link"
     themes:
-      siwtchto:
+      switchto:
         success: "Theme selection updated"
       index:
         choose_a_theme: "Choose a theme"
@@ -253,7 +253,7 @@ en:
         update: 'Update'
     settings:
       update:
-        success: "Config updated."
+        success: "Configuration updated."
         error: "Error: %{messages}"
       display:
         cancel: "Cancel"
@@ -264,6 +264,7 @@ en:
         custom_url_help: "If you have a custom domain for URL shortening, enter it here."
         date_format: "Date format"
         default_article_show: "articles on the homepage"
+        default_archives_show: "articles on the archives page"
         default_feed_show: "most recent articles in feed"
         display: "Display"
         display_settings: "Display Settings"
@@ -286,7 +287,7 @@ en:
         comments: "Comments"
         enable_comments_by_default: "Enable comments by default"
         enable_feedback_moderation: "Enable feedback moderation"
-        explain_feedback_moderation: "You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it."
+        explain_feedback_moderation: "You can enable site-wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it."
         trackbacks: "Trackbacks"
         enable_trackbacks_by_default: "Enable Trackbacks by default"
         disable_trackbacks_sitewide: "Disable trackbacks site-wide"
@@ -310,7 +311,7 @@ en:
         remember_to_set_your_recaptcha: "Remember to set your reCaptcha keys inside config/initializers/recaptcha.rb"
       write:
         how_to_setup_twitter: "If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."
-        fill_the_twitter_credentials: "fill in the oauth credentials"
+        fill_the_twitter_credentials: "fill in the OAuth credentials"
         registered_your_application: "registered your application"
         cancel: "Cancel"
         or: "or"
@@ -456,7 +457,7 @@ en:
         tag: "Tag"
       destroy:
         destroy_confirmation: "Destroy confirmation"
-        are_you_sure: "Are you sure you want to delete this %{element}"
+        are_you_sure: "Are you sure you want to delete this %{element}?"
         action_or_other: "%{first_action} or %{second_action}"
         cancel: "Cancel"
         delete: "Delete"
@@ -464,7 +465,7 @@ en:
       edit:
         success: "Tag was successfully updated"
       new:
-        no_tags: "There are no tags yet. Why don't you start and create one?"
+        no_tags: "There are no tags yet. Why don't you create one?"
         articles: "Articles"
         display_name: "Display Name"
         manage_tags: "Manage Tags"
@@ -479,7 +480,7 @@ en:
       destroy:
         notice: "File has been deleted"
       index:
-        no_resources: "There are no resources yet. Why don't you start and create one?"
+        no_resources: "There are no resources yet. Why don't you create one?"
         media_library: "Media Library"
         upload_a_file_to_your_site: "Upload a File to your Site"
         upload: "Upload"
@@ -532,7 +533,7 @@ en:
         published: "published"
         offline: "offline"
       pages:
-        no_pages: "There are no pages yet. Why don't you start and create one?"
+        no_pages: "There are no pages yet. Why don't you create one?"
     feedback:
       state:
         unclassified: "Unclassified"
@@ -564,7 +565,7 @@ en:
         success_classification: "Confirmed classification of %{count} item(s)"
         success_deleted: "Deleted %{count} item(s)"
       index:
-        no_feedback: "There are no feedback yet. Why don't you start and create one?"
+        no_feedback: "There is no feedback yet. Why don't you create some?"
         feedback: "Feedback"
         all: "All"
         unapproved_comments: "Unapproved comments"
@@ -579,7 +580,7 @@ en:
         article: "Article"
         select_all: "Select all"
       article:
-        no_feedback: "There are no feedback yet. Why don't you start and create one?"
+        no_feedback: "There is no feedback yet. Why don't you create some?"
         comments_for: "Comments for %{title}"
         status: "Status"
         comment_author: "Comment Author"
@@ -608,17 +609,17 @@ en:
         cancel: "Cancel"
     dashboard:
       publify_version:
-        error: "You are late from at least one major version of Publify. You should upgrade immediately. Download and install <a href='http://publify.co/stable.tgz'>the latest Publify version</a>"
-        warning: "There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
-        notice: "There's a new version of Publify available. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
+        error: "You are at least one major version of Publify out of date. You should upgrade immediately. Download and install <a href='http://publify.co/stable.tgz'>the latest Publify version</a>"
+        warning: "There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a>?"
+        notice: "There's a new version of Publify available. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a>?"
       index:
         welcome_back: "Welcome back, %{user_name}!"
       drafts:
         your_drafts: "Your drafts"
-        no_drafts_yet: "No drafts yet, why don't you start and write one"
+        no_drafts_yet: "No drafts yet, why don't you write one"
       welcome:
         today: "Today"
-        articles_and_comments_count_since: "%{articles_count} articles and %{comments_count} comments were posted since your last connexion"
+        articles_and_comments_count_since: "%{articles_count} articles and %{comments_count} comments were posted since your last login"
         running_publify: "You're running Publify %{version}"
         content: "Content"
         articles_count:
@@ -626,9 +627,9 @@ en:
           one: "1 article"
           other: "%{count} articles"
         your_articles_count:
-          zero: "no article writen by you"
-          one: "1 article writen by you"
-          other: "%{count} articles writen by you"
+          zero: "no article written by you"
+          one: "1 article written by you"
+          other: "%{count} articles written by you"
         drafts_count:
           zero: "no draft"
           one: "1 draft"
@@ -690,7 +691,7 @@ en:
       autosave:
         success: "Article was successfully saved"
       article_list:
-        no_articles: "There are no articles yet. Why don't you start and create one?"
+        no_articles: "There are no articles yet. Why don't you create one?"
       index:
         published: "Published"
         new_article: "New article"
@@ -776,7 +777,7 @@ en:
         cache: "Cache"
         explaination: "To save on resources, Publify generates static files along with your content. These files are deleted when a new article is created. You can, at any time, delete these files yourself."
       destroy:
-        success: "Cache has been sweeped"
+        success: "Cache has been cleared"
         error: "Cache could not be cleared"
     users:
       edit:
@@ -797,7 +798,7 @@ en:
         state: "State"
       form:
         how_to_setup_twitter: "If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."
-        fill_the_twitter_credentials: "fill in the oauth credentials"
+        fill_the_twitter_credentials: "fill in the OAuth credentials"
         registered_your_application: "registered your application"
         cancel: "Cancel"
         or: "or"

@@ -3,8 +3,8 @@ require 'net/http'
 class PublifyApp
   class Textfilter
     class Lightbox < TextFilterPlugin::MacroPost
-      plugin_display_name "Lightbox"
-      plugin_description "Automatically generate tags for images displayed in a lightbox"
+      plugin_display_name 'Lightbox'
+      plugin_description 'Automatically generate tags for images displayed in a lightbox'
 
       def self.help_text
         %{
@@ -64,8 +64,11 @@ Common attributes:
 }
       end
 
-      def self.macrofilter(blog,content,attrib,params,text="")
-        style         = attrib['style']
+      # FIXME: content is only ever used to set the style and js
+      # links in the header.
+      def self.macrofilter(blog, content, attrib, _params, _text = '')
+        # FIXME: style is not used
+        # style         = attrib['style']
         caption       = attrib['caption']
         title         = attrib['title']
         alt           = attrib['alt']
@@ -76,22 +79,24 @@ Common attributes:
 
         img           = attrib['img']
         if img
-          thumbsize     = attrib['thumbsize'] || "square"
-          displaysize   = attrib['displaysize'] || "original"
+          thumbsize     = attrib['thumbsize'] || 'square'
+          displaysize   = attrib['displaysize'] || 'original'
 
           FlickRaw.api_key = FLICKR_KEY
           FlickRaw.shared_secret = FLICKR_SECRET
-          flickrimage = flickr.photos.getInfo(:photo_id => img)
-          sizes = flickr.photos.getSizes(:photo_id => img)
+          flickrimage = flickr.photos.getInfo(photo_id: img)
+          sizes = flickr.photos.getSizes(photo_id: img)
 
-          thumbdetails = sizes.find {|s| s['label'].downcase == thumbsize.downcase } || sizes.first
-          displaydetails = sizes.find {|s| s['label'].downcase == displaysize.downcase } || sizes.first
+          thumbdetails = sizes.find { |s| s['label'].downcase == thumbsize.downcase } || sizes.first
+          displaydetails = sizes.find { |s| s['label'].downcase == displaysize.downcase } || sizes.first
 
           width  = thumbdetails['width']
           height = thumbdetails['height']
-          thumburl    = thumbdetails['source']
 
-          displayurl    = displaydetails['source']
+          # use protocol-relative URL after getting the source address
+          # so not to break HTTPS support
+          thumburl = thumbdetails['source'].sub(/^https?:/, '')
+          displayurl = displaydetails['source'].sub(/^https?:/, '')
 
           caption ||= flickrimage.description
           title ||= flickrimage.title
@@ -109,18 +114,25 @@ Common attributes:
           end
         end
 
-        rel = (set.blank?) ? "lightbox" : "lightbox[#{set}]"
+        rel = (set.blank?) ? 'lightbox' : "lightbox[#{set}]"
 
-        if(caption.blank?)
-          captioncode=""
+        if caption.blank?
+          captioncode = ''
         else
           captioncode = "<p class=\"caption\" style=\"width:#{width}px\">#{caption}</p>"
         end
 
         set_whiteboard blog, content unless content.nil?
-        %{<a href="#{displayurl}" data-toggle="#{rel}" title="#{title}"><img src="#{thumburl}" #{%{class="#{theclass}" } unless theclass.nil?}#{%{width="#{width}" } unless width.nil?}#{%{height="#{height}" } unless height.nil?}alt="#{alt}" title="#{title}"/></a>#{captioncode}}
+
+        img_attrs = %(src="#{thumburl}")
+        img_attrs << %( class="#{theclass}") if theclass
+        img_attrs << %( width="#{width}") if width
+        img_attrs << %( height="#{height}") if height
+        img_attrs << %( alt="#{alt}" title="#{title}")
+        %(<a href="#{displayurl}" data-toggle="#{rel}" title="#{title}"><img #{img_attrs}/></a>#{captioncode})
       end
 
+      # FIXME: Too complex. Why not make these available always?
       def self.set_whiteboard(blog, content)
         content.whiteboard['page_header_lightbox'] = <<-HTML
           <link href="#{blog.base_url}/stylesheets/lightbox.css" media="all" rel="Stylesheet" type="text/css" />

@@ -11,7 +11,7 @@
     dc:identifier="<%= @article.permalink_url %>"
     dc:description="<%=h (html(@article).strip_html[0..255]).gsub(/-+/, '-') %>"
     dc:creator="<%= h @article.author %>"
-    dc:date="<%= @article.updated_at.xmlschema %>" />
+    dc:date="<%= @article.updated_at.xmlschema %>">
 </rdf:RDF>
 -->
 
@@ -35,12 +35,14 @@
 <%- if @article.allow_pings? %>
   <a name="trackbacks"></a><h4 class="blueblk"><%= t(".trackbacks")%></h4>
   <p>
-    <%= t(".use_the_following_link_to_trackback")%>:<br/>
+    <%= t(".use_the_following_link_to_trackback")%>:<br>
     <span class="light-bg"><%= @article.trackback_url %></span>
     </p>
-  <%= content_tag(:ol,
-        render("trackback", :collection => @article.published_trackbacks),
-        :id => 'trackbackList', :class => 'trackback-list') unless @article.published_trackbacks.blank? %>
+    <%- unless @article.published_trackbacks.blank? %>
+      <ol id="trackbackList" class="trackback-list">
+        <%= render(partial: "trackback", collection: @article.published_trackbacks) %>
+      </ol>
+    <% end -%>
 <% end -%>
 
 <p class="postmetadata alt">

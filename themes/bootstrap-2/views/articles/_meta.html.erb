@@ -1,0 +1,5 @@
+<div class='meta'>
+  <p>
+    <small><%= t(".published_on", publish_date_and_time: display_date_and_time(article.published_at), by: "<span class='p-author h-card'>#{article.user.nickname}</span>", tags: (" " + article.tags.map { |tag| link_to tag.display_name, tag.permalink_url(nil, true), :rel => "tag"}.sort.join(", ") unless article.tags.empty?)) %></small>
+  </p>
+</div>

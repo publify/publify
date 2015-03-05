@@ -1,73 +1,90 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Sidebar do
-  describe "#available_sidebars" do
-    it "finds at least the standard sidebars" do
-      assert Sidebar.available_sidebars.size >= 6
+describe Sidebar, type: :model do
+  describe '#available_sidebars' do
+    it 'finds at least the standard sidebars' do
+      expect(Sidebar.available_sidebars).to include(
+        AmazonSidebar,
+        ArchivesSidebar,
+        AuthorsSidebar,
+        LivesearchSidebar,
+        MetaSidebar,
+        NotesSidebar,
+        PageSidebar,
+        PopularSidebar,
+        SearchSidebar,
+        StaticSidebar,
+        TagSidebar,
+        XmlSidebar
+      )
     end
   end
 
-  describe "#find_all_visible" do
-    before do
-      AmazonSidebar.new(:active_position => 1).save
-      AuthorsSidebar.new().save
-    end
+  describe '#ordered_sidebars' do
+    context 'with several sidebars with different positions' do
+      let(:amazon_sidebar) { AmazonSidebar.new(staged_position: 2) }
+      let(:archives_sidebar) { ArchivesSidebar.new(active_position: 1) }
 
-    it "returns only the sidebar with active position" do
-      sidebars = Sidebar.find_all_visible
-      sidebars.size.should == 1
-      sidebars.first.class.should == AmazonSidebar
-    end
-  end
+      before do
+        amazon_sidebar.save
+        archives_sidebar.save
+      end
 
-  describe "#find with an invalid sidebar in the database" do
-    before do
-      Sidebar.class_eval { self.inheritance_column = :bogus }
-      Sidebar.new(:type => "AmazonSidebar").save
-      Sidebar.new(:type => "FooBarSidebar").save
-      Sidebar.class_eval { self.inheritance_column = :type }
-    end
-
-    it "skips the invalid active sidebar" do
-      sidebars = Sidebar.find :all
-      sidebars.size.should == 1
-      sidebars.first.class.should == AmazonSidebar
-    end
-  end
-
-  describe "#content_partial" do
-    it "bases the partial name on the class name" do
-      AmazonSidebar.new.content_partial.should == "/amazon_sidebar/content"
-    end
-  end
-
-  describe "::setting" do
-    let(:dummy_sidebar) do
-      Class.new(Sidebar) do
-        setting :foo, "default-foo"
+      it 'resturns the sidebars ordered by position' do
+        sidebars = Sidebar.ordered_sidebars
+        expect(sidebars).to eq([archives_sidebar, amazon_sidebar])
       end
     end
 
-    it "creates a reader method with default value on instances" do
-      dummy = dummy_sidebar.new
-      dummy.foo.should eq "default-foo"
+    context 'with an invalid sidebar in the database' do
+      before do
+        Sidebar.class_eval { self.inheritance_column = :bogus }
+        Sidebar.new(type: 'AmazonSidebar', staged_position: 1).save
+        Sidebar.new(type: 'FooBarSidebar', staged_position: 2).save
+        Sidebar.class_eval { self.inheritance_column = :type }
+      end
+
+      it 'skips the invalid active sidebar' do
+        sidebars = Sidebar.ordered_sidebars
+        expect(sidebars.size).to eq(1)
+        expect(sidebars.first.class).to eq(AmazonSidebar)
+      end
+    end
+  end
+
+  describe '#content_partial' do
+    it 'bases the partial name on the class name' do
+      expect(AmazonSidebar.new.content_partial).to eq('/amazon_sidebar/content')
+    end
+  end
+
+  describe '::setting' do
+    let(:dummy_sidebar) do
+      Class.new(Sidebar) do
+        setting :foo, 'default-foo'
+      end
     end
 
-    it "creates a writer method on instances" do
+    it 'creates a reader method with default value on instances' do
       dummy = dummy_sidebar.new
-      dummy.foo = "adjusted-foo"
-      dummy.foo.should eq "adjusted-foo"
+      expect(dummy.foo).to eq 'default-foo'
     end
 
-    it "provides the default value to instances created earlier" do
+    it 'creates a writer method on instances' do
+      dummy = dummy_sidebar.new
+      dummy.foo = 'adjusted-foo'
+      expect(dummy.foo).to eq 'adjusted-foo'
+    end
+
+    it 'provides the default value to instances created earlier' do
       dummy = dummy_sidebar.new
 
       dummy_sidebar.instance_eval do
-        setting :bar, "default-bar"
+        setting :bar, 'default-bar'
       end
 
-      dummy.config.should_not have_key("bar")
-      dummy.bar.should eq "default-bar"
+      expect(dummy.config).not_to have_key('bar')
+      expect(dummy.bar).to eq 'default-bar'
     end
   end
 end

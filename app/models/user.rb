@@ -7,20 +7,19 @@ class User < ActiveRecord::Base
   belongs_to :profile
   belongs_to :text_filter
   belongs_to :resource
-  
-  delegate :name, :to => :text_filter, :prefix => true
-  delegate :label, :to => :profile, :prefix => true
 
-  has_many :notifications, :foreign_key => 'notify_user_id'
-  has_many :notify_contents, :through => :notifications,
-    :source => 'notify_content',
-    :uniq => true
+  delegate :name, to: :text_filter, prefix: true
+  delegate :label, to: :profile, prefix: true
+
+  has_many :notifications, foreign_key: 'notify_user_id'
+  has_many :notify_contents, -> { uniq }, through: :notifications,
+                                          source: 'notify_content'
 
   has_many :articles
 
   serialize :settings, Hash
 
-  STATUS = ['active', 'inactive']
+  STATUS = %w(active inactive)
 
   attr_accessor :filename
 
@@ -51,28 +50,23 @@ class User < ActiveRecord::Base
 
   attr_accessor :last_venue
 
-  def initialize(*args)
-    super
-    self.settings ||= {}
-  end
-
   def first_and_last_name
     return '' unless firstname.present? && lastname.present?
     "#{firstname} #{lastname}"
   end
 
   def display_names
-    [:login, :nickname, :firstname, :lastname, :first_and_last_name].map{|f| send(f)}.delete_if{|e| e.empty?}
+    [:login, :nickname, :firstname, :lastname, :first_and_last_name].map { |f| send(f) }.delete_if(&:empty?)
   end
 
   def self.authenticate(login, pass)
-    where("login = ? AND password = ? AND state = ?", login, password_hash(pass), 'active').first
+    where('login = ? AND password = ? AND state = ?', login, password_hash(pass), 'active').first
   end
 
   def update_connection_time
     self.last_venue = last_connection
     self.last_connection = Time.now
-    self.save
+    save
   end
 
   # These create and unset the fields required for remembering users between browser closes
@@ -87,13 +81,13 @@ class User < ActiveRecord::Base
   def remember_me_until(time)
     self.remember_token_expires_at = time
     self.remember_token            = Digest::SHA1.hexdigest("#{email}--#{remember_token_expires_at}")
-    save(:validate => false)
+    save(validate: false)
   end
 
   def forget_me
     self.remember_token_expires_at = nil
     self.remember_token            = nil
-    save(:validate => false)
+    save(validate: false)
   end
 
   def default_text_filter
@@ -101,7 +95,7 @@ class User < ActiveRecord::Base
   end
 
   def self.authenticate?(login, pass)
-    user = self.authenticate(login, pass)
+    user = authenticate(login, pass)
     return false if user.nil?
     return true if user.login == login
 
@@ -109,7 +103,7 @@ class User < ActiveRecord::Base
   end
 
   def self.find_by_permalink(permalink)
-    self.find_by_login(permalink).tap do |user|
+    find_by_login(permalink).tap do |user|
       raise ActiveRecord::RecordNotFound unless user
     end
   end
@@ -142,15 +136,13 @@ class User < ActiveRecord::Base
     'author'
   end
 
-  def password=(newpass)
-    @password = newpass
-  end
+  attr_writer :password
 
   def password(cleartext = nil)
     if cleartext
       @password.to_s
     else
-      @password || read_attribute("password")
+      @password || read_attribute('password')
     end
   end
 
@@ -177,20 +169,20 @@ class User < ActiveRecord::Base
   end
 
   def update_twitter_profile_image(img)
-    return if self.twitter_profile_image == img
+    return if twitter_profile_image == img
     self.twitter_profile_image = img
-    self.save
+    save
   end
 
   def generate_password!
-    chars = ("a".."z").to_a + ("A".."Z").to_a + ("0".."9").to_a
-    newpass = ""
-    1.upto(7) { |i| newpass << chars[rand(chars.size-1)] }
+    chars = ('a'..'z').to_a + ('A'..'Z').to_a + ('0'..'9').to_a
+    newpass = ''
+    1.upto(7) { |_i| newpass << chars[rand(chars.size - 1)] }
     self.password = newpass
   end
 
   def has_twitter_configured?
-    self.twitter_oauth_token.present? && self.twitter_oauth_token_secret.present?
+    twitter_oauth_token.present? && twitter_oauth_token_secret.present?
   end
 
   protected
@@ -215,7 +207,7 @@ class User < ActiveRecord::Base
   # password
   def crypt_password
     EmailNotify.send_user_create_notification self
-    write_attribute "password", password_hash(password(true))
+    write_attribute 'password', password_hash(password(true))
     @password = nil
   end
 
@@ -226,8 +218,8 @@ class User < ActiveRecord::Base
   # password and just reset it to the old value.
   def crypt_unless_empty
     if password(true).empty?
-      user = self.class.find(self.id)
-      write_attribute "password", user.password
+      user = self.class.find(id)
+      write_attribute 'password', user.password
     else
       crypt_password
     end
@@ -239,15 +231,14 @@ class User < ActiveRecord::Base
     self.profile ||= Profile.find_by_label(User.count.zero? ? 'admin' : 'contributor')
   end
 
-  validates_uniqueness_of :login, :on => :create
-  validates_uniqueness_of :email, :on => :create
-  validates_length_of :password, :within => 5..40, :if => Proc.new { |user|
+  validates :login, uniqueness: true, on: :create
+  validates :email, uniqueness: true, on: :create
+  validates :password, length: { in: 5..40 }, if: proc { |user|
     user.read_attribute('password').nil? or user.password.to_s.length > 0
   }
 
-  validates_presence_of :login
-  validates_presence_of :email
+  validates :email, :login, presence: true
 
-  validates_confirmation_of :password
-  validates_length_of :login, :within => 3..40
+  validates :password, confirmation: true
+  validates :login, length: { in: 3..40 }
 end

@@ -1,0 +1,10 @@
+Description:
+    Generate Sidebar plugin for Typo
+
+Example:
+    rails generate sidebar ThingSidebar
+
+    This will create:
+        lib/thing_sidebar/lib/thing_sidebar.rb
+        lib/thing_sidebar/app/views/thing_sidebar/_content.html.erb
+        spec/models/thing_sidebar_spec.rb

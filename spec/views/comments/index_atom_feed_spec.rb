@@ -1,43 +1,38 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe "comments/index_atom_feed.atom.builder" do
+describe 'comments/index_atom_feed.atom.builder', type: :view do
   let!(:blog) { build_stubbed :blog }
 
-  describe "rendering comments with one comment" do
+  describe 'rendering comments with one comment' do
     let(:article) { stub_full_article }
-    let(:comment) { build(:comment, article: article, body: "Comment body", guid: '12313123123123123') }
+    let(:comment) do
+      build_stubbed(:comment,
+                    article: article,
+                    body: 'Comment body',
+                    guid: '12313123123123123')
+    end
 
     before(:each) do
       assign(:items, [comment])
       render
     end
 
-    it "should render a valid feed" do
-      assert_feedvalidator rendered
+    it 'shows publify with the current version as the generator' do
+      assert_correct_atom_generator rendered
     end
 
-    it "shows publify with the current version as the generator" do
-      xml = Nokogiri::XML.parse(rendered)
-      generator = xml.css("generator").first
-      generator.content.should == "Publify"
-      generator["version"].should == PUBLIFY_VERSION
-    end
-
-    it "should render an Atom feed with one item" do
+    it 'renders a valid Atom feed with one item' do
       assert_atom10 rendered, 1
     end
 
-    describe "the comment entry" do
-      it "should have all the required attributes" do
-        xml = Nokogiri::XML.parse(rendered)
-        entry_xml = xml.css("entry").first
+    describe 'the comment entry' do
+      let(:rendered_entry) { Feedjira::Feed.parse(rendered).entries.first }
 
-        entry_xml.css("title").first.content.should ==
-          "Comment on #{article.title} by #{comment.author}"
-        entry_xml.css("id").first.content.should == "urn:uuid:12313123123123123"
-        entry_xml.css("content").first.content.should == "<p>Comment body</p>"
-        link_xml = entry_xml.css("link").first
-        link_xml["href"].should == "#{article.permalink_url}#comment-#{comment.id}"
+      it 'should have all the required attributes' do
+        expect(rendered_entry.title).to eq "Comment on #{article.title} by #{comment.author}"
+        expect(rendered_entry.entry_id).to eq 'urn:uuid:12313123123123123'
+        expect(rendered_entry.content).to eq '<p>Comment body</p>'
+        expect(rendered_entry.links.first).to eq "#{article.permalink_url}#comment-#{comment.id}"
       end
     end
   end
