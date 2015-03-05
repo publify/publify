@@ -33,7 +33,6 @@
         <tr class='noborder'>
           <th><%= t('.display_name') %></th>
           <th><%= t('.name')  %></th>
-          <th><%= t('.articles') %></th>
         </tr>
       </thead>
       <% if @tags.empty? %>
@@ -52,7 +51,6 @@
             <%= link_to_permalink(tag, "#{tag.articles.size} <span class='glyphicon glyphicon-link'></span>".html_safe, nil, 'btn btn-success btn-xs').html_safe %>
           </td>
           <td><%= tag.name %></td>
-          <td><%= tag.published_articles.count.to_s %></td>
         </tr>
       <% end %>
       <%= display_pagination(@tags, 3) %>
