@@ -176,7 +176,7 @@ Rails.application.routes.draw do
         get 'preview'
         get 'switchto'
       end
-    end 
+    end
 
     resources :users, only: [:index, :new, :edit, :create, :update, :destroy], format: false
   end
