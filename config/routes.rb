@@ -99,7 +99,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    get '/', to: 'dashboard#index', as: 'dashboard'
+    root 'dashboard#index', as: 'dashboard'
 
     get 'cache', to: 'cache#show'
     delete 'cache', to: 'cache#destroy'
