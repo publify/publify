@@ -101,8 +101,8 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'dashboard#index', as: 'dashboard'
 
-    get 'cache', to: 'cache#show'
-    delete 'cache', to: 'cache#destroy'
+    get 'cache', to: 'cache#show', format: false
+    delete 'cache', to: 'cache#destroy', format: false
 
     resources :content, only: [:index, :new, :edit, :create, :update, :destroy], format: false do
       collection do
