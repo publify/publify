@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   get 'xml/feed', to: 'xml#feed'
 
   # CommentsController
-  resources :comments, as: 'admin_comments' do
+  resources :comments, as: 'admin_comments', only: [:index, :create] do
     collection do
       match :preview, via: [:get, :post, :put, :delete]
     end
@@ -58,7 +58,7 @@ Rails.application.routes.draw do
   match '/setup', to: 'setup#index', via: [:get, :post], format: false
 
   # TagsController (imitate inflected_resource)
-  resources :tags, except: [:show, :update, :destroy, :edit]
+  resources :tags, only: [:index, :create, :new]
   resources :tags, path: 'tag', only: [:show, :edit, :update, :destroy]
   get '/tag/:id/page/:page', to: 'tags#show', format: false
   get '/tags/page/:page', to: 'tags#index', format: false
