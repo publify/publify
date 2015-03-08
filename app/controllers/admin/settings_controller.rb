@@ -35,7 +35,7 @@ class Admin::SettingsController < Admin::BaseController
   def migrate
     if request.post?
       migrator.migrate
-      redirect_to action: 'update_database'
+      redirect_to update_database_admin_settings_url
     end
   end
 

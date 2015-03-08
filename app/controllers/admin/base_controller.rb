@@ -41,7 +41,7 @@ class Admin::BaseController < ApplicationController
   def look_for_needed_db_updates
     migrator = Migrator.new
     if migrator.migrations_pending?
-      redirect_to controller: '/admin/settings', action: 'update_database'
+      redirect_to update_database_admin_settings_url
     end
   end
 

@@ -20,7 +20,7 @@ class Admin::FeedbackController < Admin::BaseController
 
     unless @record.article.user_id == current_user.id
       unless current_user.admin?
-        return redirect_to controller: 'admin/feedback', action: :index
+        return redirect_to admin_feedback_index_url
       end
     end
 
@@ -53,7 +53,7 @@ class Admin::FeedbackController < Admin::BaseController
     @comment = Comment.find(params[:id])
     @article = @comment.article
     unless @article.access_by? current_user
-      redirect_to action: 'index'
+      redirect_to admin_feedback_index_url
       return
     end
   end
@@ -61,7 +61,7 @@ class Admin::FeedbackController < Admin::BaseController
   def update
     comment = Comment.find(params[:id])
     unless comment.article.access_by? current_user
-      redirect_to action: 'index'
+      redirect_to admin_feedback_index_url
       return
     end
     comment.attributes = params[:comment].permit!
