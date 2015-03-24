@@ -105,7 +105,6 @@ GEM
       compass (>= 0.12.2)
     csslint_ruby (0.0.2)
       execjs
-    daemons (1.1.9)
     database_cleaner (1.4.0)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
@@ -260,6 +259,7 @@ GEM
     kaminari (0.16.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    kgio (2.9.3)
     launchy (2.4.2)
       addressable (~> 2.3)
     legato (0.4.0)
@@ -351,6 +351,7 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rainbow (2.0.0)
+    raindrops (0.13.0)
     rake (10.3.2)
     rb-fsevent (0.9.4)
     rb-inotify (0.9.5)
@@ -423,10 +424,6 @@ GEM
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
     subexec (0.2.3)
-    thin (1.6.3)
-      daemons (~> 1.0, >= 1.0.9)
-      eventmachine (~> 1.0)
-      rack (~> 1.0)
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
@@ -449,6 +446,10 @@ GEM
     uglifier (2.5.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    unicorn (4.8.3)
+      kgio (~> 2.6)
+      rack
+      raindrops (~> 0.7)
     uuidtools (2.1.5)
     webpurify (0.5.2)
       json
@@ -519,8 +520,8 @@ DEPENDENCIES
   simplecov
   site_prism
   spring-commands-rspec
-  thin
   twitter (~> 5.6.0)
   uglifier
+  unicorn
   uuidtools (~> 2.1.1)
   webpurify
