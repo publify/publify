@@ -4,12 +4,12 @@ describe Admin::TokenChecker do
 
   describe '#safe_token_in_use?' do
     it 'returns false with the default token loaded' do
-      Publify::Application.config.secret_token = $default_token
+      Publify::Application.config.secret_key_base = $default_token
       expect(checker.safe_token_in_use?).to be_falsey
     end
 
     it 'returns true with some other token loaded' do
-      Publify::Application.config.secret_token = 'foo'
+      Publify::Application.config.secret_key_base = 'foo'
       expect(checker.safe_token_in_use?).to be_truthy
     end
   end
