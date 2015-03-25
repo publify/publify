@@ -36,6 +36,7 @@ gem 'sass-rails', ' ~> 4.0.3'
 gem 'non-stupid-digest-assets'
 gem 'mailjet'
 gem 'unicorn'
+gem 'responders', '~> 2.0'
 
 # removed from Rails-core as Rails 4.0
 gem 'actionpack-page_caching', '~> 1.0.2'
