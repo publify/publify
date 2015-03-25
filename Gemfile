@@ -48,14 +48,12 @@ gem 'oauth2', '1.0.0'
 gem 'google-api-client', '0.7.1'
 gem 'legato', '0.4.0'
 
-group :assets do
-  gem 'autoprefixer-rails'
-  gem 'jshint_ruby'
-  gem 'csslint_ruby'
-  gem 'compass-rails'
-  gem 'coffee-rails', ' ~> 4.0.1'
-  gem 'uglifier'
-end
+gem 'autoprefixer-rails'
+gem 'jshint_ruby'
+gem 'csslint_ruby'
+gem 'compass-rails'
+gem 'coffee-rails', ' ~> 4.0.1'
+gem 'uglifier'
 
 group :development, :test do
   gem 'factory_girl', '~> 4.5.0'
