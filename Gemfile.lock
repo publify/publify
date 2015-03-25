@@ -119,7 +119,7 @@ GEM
       http_parser.rb (~> 0.6.0)
     equalizer (0.0.9)
     erubis (2.7.0)
-    eventmachine (1.0.3)
+    eventmachine (1.0.7)
     excon (0.42.1)
     execjs (2.2.2)
     extlib (0.9.16)
