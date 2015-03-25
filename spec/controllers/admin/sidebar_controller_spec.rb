@@ -13,8 +13,7 @@ describe Admin::SidebarController, type: :controller do
     it 'test_index' do
       get :index
       assert_template 'index'
-      assert_tag tag: 'div',
-                 attributes: { id: 'sidebar-config' }
+      assert_select 'div[id="sidebar-config"]'
     end
   end
 end
