@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
-ruby '2.1.3'
+ruby '2.2.0'
 
 gem 'dough-ruby', '~> 4.0', git: 'https://github.com/moneyadviceservice/dough.git', require: 'dough'
 gem 'bowndler', git: 'https://github.com/moneyadviceservice/bowndler.git'
 
 gem 'mysql2'
-gem 'rails', '~> 4.1.1'
+gem 'rails', '~> 4.2.1'
 gem 'htmlentities'
 gem 'bluecloth', '~> 2.1'
 gem 'coderay', '~> 1.1.0'
@@ -36,6 +36,7 @@ gem 'sass-rails', ' ~> 4.0.3'
 gem 'non-stupid-digest-assets'
 gem 'mailjet'
 gem 'unicorn'
+gem 'responders', '~> 2.0'
 
 # removed from Rails-core as Rails 4.0
 gem 'actionpack-page_caching', '~> 1.0.2'
@@ -47,14 +48,12 @@ gem 'oauth2', '1.0.0'
 gem 'google-api-client', '0.7.1'
 gem 'legato', '0.4.0'
 
-group :assets do
-  gem 'autoprefixer-rails'
-  gem 'jshint_ruby'
-  gem 'csslint_ruby'
-  gem 'compass-rails'
-  gem 'coffee-rails', ' ~> 4.0.1'
-  gem 'uglifier'
-end
+gem 'autoprefixer-rails'
+gem 'jshint_ruby'
+gem 'csslint_ruby'
+gem 'compass-rails'
+gem 'coffee-rails', ' ~> 4.0.1'
+gem 'uglifier'
 
 group :development, :test do
   gem 'factory_girl', '~> 4.5.0'
