@@ -28,6 +28,8 @@ Publify has been around since 2004 and is the oldest Ruby on Rails open source p
 - Bower
 - MYSQL
 
+Note: Make sure you've added all the required API keys for the app to work properly. 
+
 This repository comes equipped with a self-setup script:
 
 ```bash

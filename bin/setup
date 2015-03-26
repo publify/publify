@@ -22,6 +22,9 @@ cp config/database.yml.mysql config/database.yml
 # Set up database and add any development seed data
 rake db:create db:migrate db:seed db:test:prepare
 
+#Load popular articles
+rake generate_popular_articles
+
 # Set up staging and production git remotes.
 git remote add staging git@heroku.com:mas-marketing-blog-staging.git || true
 git remote add production git@heroku.com:mas-marketing-blog.git || true
