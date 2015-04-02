@@ -1,0 +1,8 @@
+<% unless current_page.last? %>
+  <li class="results-list-pagination-item">
+    <a href="<%= url %>" class="button" rel="next">
+      <span class="results-list-pagination-item__text"><%= raw(t 'views.pagination.next') %> <span class="visually-hidden">page</span></span>
+      <span class="icon icon--right-chevron"></span>
+    </a>
+  </li>
+<% end %>

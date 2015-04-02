@@ -182,6 +182,7 @@ en:
   views:
     pagination:
       truncate: "Truncate"
+      previous: "Previous"
       next: "Next"
       last: "Last"
   layouts:

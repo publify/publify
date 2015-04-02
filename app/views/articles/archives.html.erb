@@ -27,19 +27,7 @@
           </div>
         <%- end %>
       <%- end %>
-
-      <% if @articles.total_pages > 1 %>
-        <nav class="results-list-pagination">
-          <p class="results-list-pagination__text">Page <%= @articles.current_page %> of <%= @articles.total_pages %></p>
-
-          <% unless @articles.first_page? %>
-            <a href="/archives?page=<%= @articles.current_page-1 %>" class="button">&lt; Previous</a>
-          <% end %>
-          <% unless @articles.last_page? %>
-            <a href="/archives?page=<%= @articles.current_page+1 %>" class="button">Next &gt;</a>
-          <% end %>
-        </nav>
-      <% end %>
+      <%= paginate @articles, :window => 1, next_label: "#{t(".next_page")} &raquo;", previous_label: "&laquo; #{t('.previous_page')}" %>
     </div>
   </div>
 </main>
