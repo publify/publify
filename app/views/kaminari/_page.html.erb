@@ -1,0 +1,9 @@
+<% if page.current? %>
+  <li class="results-list-pagination-item">
+    <%= content_tag :span, content_tag(:span, "page ", class: "visually-hidden") + page.to_s, rel: (page.next? ? 'next' : (page.prev? ? 'prev' : nil)), class: "results-list-pagination-item__link" %>
+  </li>
+<% else %>
+  <li class="results-list-pagination-item">
+    <%= link_to content_tag(:span, "page ", class: "visually-hidden") + page.to_s, url, rel: (page.next? ? 'next' : (page.prev? ? 'prev' : nil)), class: "results-list-pagination-item__nonlink" %>
+  </li>
+<% end %>

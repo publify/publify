@@ -6,11 +6,6 @@
     @include column(6);
     @include push(3);
   }
-
-  .pagination {
-    clear: both;
-    float: right;
-  }
 }
 
 .l-results__title {

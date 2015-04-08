@@ -1,0 +1,8 @@
+<% unless current_page.first? %>
+  <li class="results-list-pagination-item">
+    <a href="<%= url %>" class="button" rel="prev">
+      <span class="icon icon--left-chevron"></span>
+      <span class="results-list-pagination-item__text"><%= raw(t 'views.pagination.previous') %> <span class="visually-hidden">page</span></span>
+    </a>
+  </li>
+<% end %>
