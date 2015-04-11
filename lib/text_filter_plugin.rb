@@ -120,7 +120,7 @@ class PublifyApp
 
       def self.filtertext(blog, content, text, params)
         macros = TextFilter.available_filter_types['macropost']
-        macros.inject(text) do |new_text, macro|
+        macros.reduce(text) do |new_text, macro|
           macro.filtertext(blog, content, new_text, params)
         end
       end
@@ -132,7 +132,7 @@ class PublifyApp
 
       def self.filtertext(blog, content, text, params)
         macros = TextFilter.available_filter_types['macropre']
-        macros.inject(text) do |new_text, macro|
+        macros.reduce(text) do |new_text, macro|
           macro.filtertext(blog, content, new_text, params)
         end
       end

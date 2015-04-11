@@ -1,5 +1,5 @@
 <div class="hfeed">
-  <% for note in @notes -%>
+  <% for note in @notes %>
   <div class='h-entry hentry h-as-note'>
     <article>
       <p class='p-name entry-title e-content entry-content article'><%= note.html(:body) %></p>
@@ -9,7 +9,7 @@
     </article>
         <hr>
   </div>
-  <% end -%>
+  <% end %>
 </div>
 
 <%= paginate @notes, :next_label => "#{t(".next_page")} &raquo;", :previous_label => "&laquo; #{t('.previous_page')}" %>

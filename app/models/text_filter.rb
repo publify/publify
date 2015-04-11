@@ -83,7 +83,7 @@ class TextFilter < ActiveRecord::Base
     filter_types['macropost'].sort_by(&:short_name).each { |f| help.push f }
     filters.each { |f| help.push(filter_map[f.to_s]) }
 
-    help_text = help.collect do |f|
+    help_text = help.map do |f|
       f.help_text.blank? ? '' : "<h3>#{f.display_name}</h3>\n#{BlueCloth.new(f.help_text).to_html}\n"
     end
 
@@ -96,7 +96,7 @@ class TextFilter < ActiveRecord::Base
     help = [filter_map[markup]]
     filters.each { |f| help.push(filter_map[f.to_s]) }
 
-    help_text = help.collect do |f|
+    help_text = help.map do |f|
       f.help_text.blank? ? '' : "#{BlueCloth.new(f.help_text).to_html}\n"
     end.join("\n")
 

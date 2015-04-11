@@ -2,14 +2,14 @@
 
 # Factory definitions
 FactoryGirl.define do
-  sequence :name do |n|; "name_#{n}"; end
-  sequence :body do |n|; "body #{n}" * (n + 3 % 5); end
-  sequence :user do |n|; "user#{n}"; end
-  sequence :email do |n|; "user#{n}@example.com"; end
-  sequence :guid do |n|; "deadbeef#{n}"; end
-  sequence :label do |n|; "lab_#{n}"; end
-  sequence :file_name do |f|; "file_name_#{f}"; end
-  sequence :time do |n|; DateTime.new(2012, 3, 26, 19, 56) - n; end
+  sequence(:name) { |n| "name_#{n}" }
+  sequence(:body) { |n| "body #{n}" * (n + 3 % 5) }
+  sequence(:user) { |n| "user#{n}" }
+  sequence(:email) { |n| "user#{n}@example.com" }
+  sequence(:guid) { |n| "deadbeef#{n}" }
+  sequence(:label) { |n| "lab_#{n}" }
+  sequence(:file_name) { |f| "file_name_#{f}" }
+  sequence(:time) { |n| DateTime.new(2012, 3, 26, 19, 56) - n }
 
   factory :user do
     login { FactoryGirl.generate(:user) }

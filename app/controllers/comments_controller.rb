@@ -14,7 +14,7 @@ class CommentsController < FeedbackController
     set_cookies_for @comment
 
     partial = '/articles/comment_failed'
-    if recaptcha_ok_for?(@comment)  && @comment.save
+    if recaptcha_ok_for?(@comment) && @comment.save
       partial = '/articles/comment'
     end
     if request.xhr?

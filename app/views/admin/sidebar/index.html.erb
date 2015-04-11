@@ -1,7 +1,7 @@
-<%- content_for :page_heading do %>
-<i class="icon-large icon-sidebar"></i>
-<h2 class="page-title"><%= t(".sidebar") %></h2>
-<%- end %>
+<% content_for :page_heading do %>
+  <i class="icon-large icon-sidebar"></i>
+  <h2 class="page-title"><%= t(".sidebar") %></h2>
+<% end %>
 
 <div class='alert alert-info'>
   <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -16,7 +16,7 @@
     <%= t(".or") %>
     <%= submit_tag(t('.publish_changes'), class: 'btn btn-success') %>
   </div>
-<%- end -%>
+<% end %>
 
 <div id="messages">&nbsp;</div>
 

@@ -49,7 +49,7 @@ class TagsController < ContentController
         render 'articles/index_atom_feed', layout: false
       end
 
-      format.rss  do
+      format.rss do
         @articles = @articles[0, this_blog.limit_rss_display]
         render 'articles/index_rss_feed', layout: false
       end
@@ -76,7 +76,7 @@ class TagsController < ContentController
 
   def show_page_title_for(_grouping, _page)
     if grouping_name.singularize == 'Tag'
-      @page_title   = this_blog.tag_title_template.to_title(@grouping, this_blog, params)
+      @page_title = this_blog.tag_title_template.to_title(@grouping, this_blog, params)
       @description = this_blog.tag_title_template.to_title(@grouping, this_blog, params)
     end
   end

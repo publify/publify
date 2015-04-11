@@ -9,7 +9,7 @@
         <%= link_to t(".no_drafts_yet"), controller: 'content', action: 'new' %> ?
         </li>
       <% else %>
-        <% for post in @drafts -%>
+        <% for post in @drafts %>
           <li>
           <h5>
             <%= link_to(post.title, controller: "admin/content", action: "edit", id: post.id) %>

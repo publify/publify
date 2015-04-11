@@ -38,12 +38,12 @@ This macro takes a number of parameters:
       end
 
       def self.macrofilter(_blog, _content, attrib, _params, _text = '')
-        img     = attrib['img']
-        size    = attrib['size'] || 'square'
-        style   = attrib['style']
+        img = attrib['img']
+        size = attrib['size'] || 'square'
+        style = attrib['style']
         caption = attrib['caption']
-        title   = attrib['title']
-        alt     = attrib['alt']
+        title = attrib['title']
+        alt = attrib['alt']
 
         begin
           FlickRaw.api_key = FLICKR_KEY
@@ -51,17 +51,17 @@ This macro takes a number of parameters:
           flickrimage = flickr.photos.getInfo(photo_id: img)
           sizes = flickr.photos.getSizes(photo_id: img)
 
-          details     = sizes.find { |s| s['label'].downcase == size.downcase } || sizes.first
-          width       = details['width']
-          height      = details['height']
+          details = sizes.find { |s| s['label'].downcase == size.downcase } || sizes.first
+          width = details['width']
+          height = details['height']
           # use protocol-relative URL after getting the source address
           # so not to break HTTPS support
-          imageurl    = details['source'].sub(/^https?:/, '')
+          imageurl = details['source'].sub(/^https?:/, '')
           imagelink = flickrimage.urls.find { |u| u.type == 'photopage' }.to_s
 
-          caption   ||= sanitize(CGI.unescapeHTML(flickrimage.description)) unless flickrimage.description.blank?
-          title     ||= flickrimage.title
-          alt       ||= title
+          caption ||= sanitize(CGI.unescapeHTML(flickrimage.description)) unless flickrimage.description.blank?
+          title ||= flickrimage.title
+          alt ||= title
 
           if caption.blank?
             captioncode = ''

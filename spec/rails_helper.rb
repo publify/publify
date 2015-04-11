@@ -38,7 +38,7 @@ end
 
 RSpec.configure do |config|
   config.use_transactional_fixtures = true
-  config.use_instantiated_fixtures  = false
+  config.use_instantiated_fixtures = false
   config.fixture_path = "#{::Rails.root}/test/fixtures"
   config.infer_spec_type_from_file_location!
 

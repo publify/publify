@@ -24,22 +24,22 @@ class User < ActiveRecord::Base
   attr_accessor :filename
 
   # Settings
-  setting :notify_watch_my_articles,   :boolean, true
-  setting :firstname,                  :string, ''
-  setting :lastname,                   :string, ''
-  setting :nickname,                   :string, ''
-  setting :description,                :string, ''
-  setting :url,                        :string, ''
-  setting :msn,                        :string, ''
-  setting :aim,                        :string, ''
-  setting :yahoo,                      :string, ''
-  setting :twitter,                    :string, ''
-  setting :jabber,                     :string, ''
-  setting :admin_theme,                :string,  'blue'
-  setting :twitter_account,            :string, ''
-  setting :twitter_oauth_token,        :string, ''
+  setting :notify_watch_my_articles, :boolean, true
+  setting :firstname, :string, ''
+  setting :lastname, :string, ''
+  setting :nickname, :string, ''
+  setting :description, :string, ''
+  setting :url, :string, ''
+  setting :msn, :string, ''
+  setting :aim, :string, ''
+  setting :yahoo, :string, ''
+  setting :twitter, :string, ''
+  setting :jabber, :string, ''
+  setting :admin_theme, :string, 'blue'
+  setting :twitter_account, :string, ''
+  setting :twitter_oauth_token, :string, ''
   setting :twitter_oauth_token_secret, :string, ''
-  setting :twitter_profile_image,      :string, ''
+  setting :twitter_profile_image, :string, ''
 
   # echo "publify" | sha1sum -
   class_attribute :salt
@@ -80,13 +80,13 @@ class User < ActiveRecord::Base
 
   def remember_me_until(time)
     self.remember_token_expires_at = time
-    self.remember_token            = Digest::SHA1.hexdigest("#{email}--#{remember_token_expires_at}")
+    self.remember_token = Digest::SHA1.hexdigest("#{email}--#{remember_token_expires_at}")
     save(validate: false)
   end
 
   def forget_me
     self.remember_token_expires_at = nil
-    self.remember_token            = nil
+    self.remember_token = nil
     save(validate: false)
   end
 
@@ -108,9 +108,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def project_modules
-    profile.project_modules
-  end
+  delegate :project_modules, to: :profile
 
   AccessControl.available_modules.each do |m|
     define_method("can_access_to_#{m}?") { can_access_to?(m) }
@@ -142,7 +140,7 @@ class User < ActiveRecord::Base
     if cleartext
       @password.to_s
     else
-      @password || read_attribute('password')
+      @password || self[:password]
     end
   end
 
@@ -207,7 +205,7 @@ class User < ActiveRecord::Base
   # password
   def crypt_password
     EmailNotify.send_user_create_notification self
-    write_attribute 'password', password_hash(password(true))
+    self[:password] = password_hash(password(true))
     @password = nil
   end
 
@@ -219,7 +217,7 @@ class User < ActiveRecord::Base
   def crypt_unless_empty
     if password(true).empty?
       user = self.class.find(id)
-      write_attribute 'password', user.password
+      self[:password] = user.password
     else
       crypt_password
     end

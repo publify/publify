@@ -11,9 +11,9 @@
   <%= author_picture note %>
   <%= note.html(:body) %>
   <%= link_to_permalink(note, display_date_and_time(note.published_at)) %>
-  <%- unless note.twitter_id.blank? %>
+  <% unless note.twitter_id.blank? %>
     <%=  " | #{link_to(t(".view_on_twitter"), note.twitter_url, {class: 'u-syndication', rel: 'syndication'})}" %>
-<%- end %>
+<% end %>
 </div>
-<%- end %>
-<%- end %>
+<% end %>
+<% end %>

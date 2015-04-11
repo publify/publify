@@ -1,8 +1,8 @@
-<% for article in @articles -%>
+<% for article in @articles %>
  <div class="post">
    <h2><%= link_to_permalink article,article.title %></h2>
    <%= article.html(:body).gsub(/<\/?[^>]*>/, "").slice(0..300) %>...
   </div>
-<% end -%>
+<% end %>
 
 <%= paginate @articles, :next_label => "#{t(".next_page")} &raquo;", :previous_label => "&laquo; #{t('.previous_page')}" %>

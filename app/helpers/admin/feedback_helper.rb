@@ -8,7 +8,7 @@ module Admin::FeedbackHelper
 
   def show_feedback_actions(item, context = 'listing')
     return if current_user.profile.label == 'contributor'
-    content_tag(:div,  class: 'action', style: '') do
+    content_tag(:div, class: 'action', style: '') do
       [content_tag(:small, change_status(item, context)),
        button_to_edit_comment(item),
        button_to_delete_comment(item),

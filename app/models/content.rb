@@ -8,7 +8,7 @@ class Content < ActiveRecord::Base
 
   # TODO: Move these calls to ContentBase
   after_save :invalidates_cache?
-  after_destroy ->(c) {  c.invalidates_cache?(true) }
+  after_destroy ->(c) { c.invalidates_cache?(true) }
 
   belongs_to :text_filter
   belongs_to :user
@@ -25,9 +25,9 @@ class Content < ActiveRecord::Base
   scope :draft, -> { where('state = ?', 'draft') }
   scope :no_draft, -> { where('state <> ?', 'draft').order('published_at DESC') }
   scope :searchstring, lambda { |search_string|
-    tokens = search_string.split(' ').collect { |c| "%#{c.downcase}%" }
+    tokens = search_string.split(' ').map { |c| "%#{c.downcase}%" }
     where('state = ? AND ' + (['(LOWER(body) LIKE ? OR LOWER(extended) LIKE ? OR LOWER(title) LIKE ?)'] * tokens.size).join(' AND '),
-          'published', *tokens.collect { |token| [token] * 3 }.flatten)
+          'published', *tokens.map { |token| [token] * 3 }.flatten)
   }
   scope :already_published, -> { where('published = ? AND published_at < ?', true, Time.now).order(default_order) }
 
@@ -40,10 +40,10 @@ class Content < ActiveRecord::Base
 
   def author=(user)
     if user.respond_to?(:login)
-      write_attribute(:author, user.login)
+      self[:author] = user.login
       self.user = user
     elsif user.is_a?(String)
-      write_attribute(:author, user)
+      self[:author] = user
     end
   end
 

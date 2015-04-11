@@ -1,4 +1,4 @@
-<%- content_for :page_heading do %>
+<% content_for :page_heading do %>
 <h2>
   <i class="glyphicon glyphicon-large glyphicon-th-list"></i>
   <%= t(".notes") %>
@@ -15,11 +15,11 @@
 
       <fieldset class="hidden-phone">
         <legend><%= t(".publish_settings") %></legend>
-        <%- unless twitter_available?(this_blog, current_user) %>
+        <% unless twitter_available?(this_blog, current_user) %>
         <p class='alert alert-warning'>
           <%= t(".how_to_setup_twitter", twitter_settings_link: link_to(t(".fill_the_twitter_credentials"), controller: 'admin/settings', action: 'write'), twitter_registration_link: link_to(t(".registered_your_application"), "https://dev.twitter.com/apps/new")) %>
         </p>
-        <%- else %>
+        <% else %>
         <div class="checkbox">
           <label for="push_to_twitter">
             <%= check_box_tag 'push_to_twitter', true, @note.twitter_id.blank?, {disabled: !twitter_available?(this_blog, current_user)}  %>
@@ -30,7 +30,7 @@
           <label for="note_in_reply_to_status_id"><%= t(".in_reply_to")%></label>
           <%= text_field 'note', 'in_reply_to_status_id', :class => 'form-control', :placeholder => t(".tweet_id_like"), disabled: !twitter_available?(this_blog, current_user) %>
         </div>
-        <%- end %>
+        <% end %>
         <div class='form-group'>
           <label for="note_permalink"><%= t(".permanent_link")%></label>
           <%= text_field 'note', 'permalink', :class => 'form-control' %>
@@ -56,13 +56,13 @@
 
   <div class='col-md-8'>
     <table class="table table-striped">
-      <%- if @notes.empty? %>
+      <% if @notes.empty? %>
       <tr>
         <td colspan="2">
           <%= t(".no_notes") %>
         </td>
       </tr>
-      <%- end %>
+      <% end %>
 
       <% for status in @notes %>
       <tr>

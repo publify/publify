@@ -1,8 +1,8 @@
-<%- content_for :page_heading do %>
-<h2 class="page-title">
-  <i class="glyphicon glyphicon-large glyphicon-comment"></i>
-  <%= t(".comments_for", article_link: link_to(h(@comment.article.title), controller: '/admin/content', action: 'edit', id: @comment.article.id).html_safe) %>
-</h2>
+<% content_for :page_heading do %>
+  <h2 class="page-title">
+    <i class="glyphicon glyphicon-large glyphicon-comment"></i>
+    <%= t(".comments_for", article_link: link_to(h(@comment.article.title), controller: '/admin/content', action: 'edit', id: @comment.article.id).html_safe) %>
+  </h2>
 <% end %>
 
 <%= form_tag :action => "update", :id => @comment.id do %>
@@ -11,16 +11,16 @@
   <%= hidden_field_tag 'article_id', @article.id %>
 
   <fieldset>
-    <legend><%= t(".edit_a_comment")%></legend>
+    <legend><%= t(".edit_a_comment") %></legend>
     <div class='row'>
       <div class="form-group col-md-4">
-        <label for="comment_author" class='control-label'><%= t(".author")%></label>
+        <label for="comment_author" class='control-label'><%= t(".author") %></label>
         <%= text_field 'comment', 'author', :class => 'form-control' %>
       </div>
     </div>
     <div class='row'>
       <div class='form-group col-md-4'>
-        <label for="comment_email" class='control-label'><%= t(".email")%></label>
+        <label for="comment_email" class='control-label'><%= t(".email") %></label>
           <%= text_field 'comment', 'email', :class => 'form-control' %>
       </div>
     </div>
@@ -45,5 +45,4 @@
     </div>
     </div>
   </fieldset>
-
 <% end %>

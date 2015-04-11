@@ -78,11 +78,11 @@
         <div style='margin-top:20px'>
           <%= render 'shared/flash', flash: flash %>
         </div>
-        <%- if content_for?(:page_heading) %>
+        <% if content_for?(:page_heading) %>
           <div class='page-header'>
             <%= yield :page_heading %>
           </div>
-        <%- end %>
+        <% end %>
         <%= yield  %>
       </div>
     </div>

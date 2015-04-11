@@ -122,10 +122,10 @@ class Admin::FeedbackController < Admin::BaseController
       end
     when 'Mark Checked Items as Ham'
       update_feedback(items, :mark_as_ham!)
-      flash[:success] =  I18n.t('admin.feedback.bulkops.success_mark_as_ham', count: ids.size)
+      flash[:success] = I18n.t('admin.feedback.bulkops.success_mark_as_ham', count: ids.size)
     when 'Mark Checked Items as Spam'
       update_feedback(items, :mark_as_spam!)
-      flash[:success] =  I18n.t('admin.feedback.bulkops.success_mark_as_spam', count: ids.size)
+      flash[:success] = I18n.t('admin.feedback.bulkops.success_mark_as_spam', count: ids.size)
     when 'Confirm Classification of Checked Items'
       update_feedback(items, :confirm_classification!)
       flash[:success] = I18n.t('admin.feedback.bulkops.success_classification', count: ids.size)

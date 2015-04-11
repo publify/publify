@@ -1,15 +1,15 @@
 <div class="post">
   <h2 class="title"><%= @page_title %></h2>
-  <%- unless @tags.empty? %>
+  <% unless @tags.empty? %>
     <ul>
-      <%- for tag in @tags.sort_by{|grp|grp.display_name} %>
+      <% for tag in @tags.sort_by{|grp|grp.display_name} %>
         <li>
           <%= link_to_permalink(tag, tag.display_name) %>
         </li>
-      <%- end %>
+      <% end %>
     </ul>
-  <%- else %>
-    <p><%= t(".there_is_no_tags")%></p>
-  <%- end %>
+  <% else %>
+    <p><%= t(".there_is_no_tags") %></p>
+  <% end %>
 </div>
 <p><%= paginate(@tags, right: "#{t(".next_page")} &raquo;", left: "&laquo; #{t('.previous_page')}") %></p>

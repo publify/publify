@@ -53,8 +53,8 @@ module Stateful
         raise 'You must specify at least one state'
       end
 
-      states        = states.collect(&:to_sym)
-      delegations   = Set.new(options[:handles]) + states.collect { |value| "#{value}?" }
+      states = states.map(&:to_sym)
+      delegations = Set.new(options[:handles]) + states.map { |value| "#{value}?" }
       initial_state = options[:initial_state] || states.first
 
       state_writer_method(field, states, initial_state)

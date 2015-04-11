@@ -22,12 +22,12 @@ class Sidebar < ActiveRecord::Base
     end
 
     def input_html(sidebar)
-      text_field_tag(input_name(sidebar), sidebar.config[key],  class: 'form-control')
+      text_field_tag(input_name(sidebar), sidebar.config[key], class: 'form-control')
     end
 
     def line_html(sidebar)
       html = label_html(sidebar)
-      html << content_tag(:div,  input_html(sidebar), class: 'form-group')
+      html << content_tag(:div, input_html(sidebar), class: 'form-group')
     end
 
     def input_name(sidebar)
@@ -55,7 +55,7 @@ class Sidebar < ActiveRecord::Base
 
     class RadioField < self
       def input_html(sidebar)
-        options[:choices].collect do |choice|
+        options[:choices].map do |choice|
           value = value_for(choice)
           radio_button_tag(input_name(sidebar), value,
                            value == sidebar.config[key], options) +
@@ -268,7 +268,7 @@ class Sidebar < ActiveRecord::Base
   end
 
   def to_locals_hash
-    fields.inject(sidebar: self) do |hash, field|
+    fields.reduce(sidebar: self) do |hash, field|
       hash.merge(field.key => config[field.key])
     end
   end
