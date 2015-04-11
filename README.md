@@ -14,11 +14,14 @@ or [clone the Publify repository](https://github.com/publify/publify.git).
 
 ## What's Publify?
 
-Publify is a simple but full featured web publishing software. It's built around a blogging engine and a small message system connected to Twitter.
+Publify is a simple but full featured web publishing software. It's built
+around a blogging engine and a small message system connected to Twitter.
 
-Publify follows the principles of the IndieWeb, which are self hosting your Web site, and Publish On your Own Site, Syndicate Everywhere.
+Publify follows the principles of the IndieWeb, which are self hosting your Web
+site, and Publish On your Own Site, Syndicate Everywhere.
 
-Publify has been around since 2004 and is the oldest Ruby on Rails open source project alive.
+Publify has been around since 2004 and is the oldest Ruby on Rails open source
+project alive.
 
 ## Features
 
@@ -28,7 +31,9 @@ Publify has been around since 2004 and is the oldest Ruby on Rails open source p
 - A widgets system and a plugin API
 - Custom themes
 - Advanced SEO capabilities
-- Multilingual : Publify is (more or less) translated in English, French, German, Danish, Norwegian, Japanese, Hebrew, Simplified Chinese, Mexican Spanish, Italian, Lithuanian, Dutch, Polish, Romanian…
+- Multilingual : Publify is (more or less) translated in English, French,
+  German, Danish, Norwegian, Japanese, Hebrew, Simplified Chinese, Mexican
+  Spanish, Italian, Lithuanian, Dutch, Polish, Romanian…
 
 ## Demo site
 
@@ -63,9 +68,7 @@ $ rake assets:precompile
 $ rails server
 ```
 
-You can now launch you browser and access to 127.0.0.1:3000.
-
-
+You can now launch you browser and access 127.0.0.1:3000.
 
 ## Install Publify on Heroku
 
@@ -98,8 +101,9 @@ heroku config:set HEROKU=true
 
 Push the repository to Heroku.
 
-When deploying for the first time, Heroku will automatically add a Database plugin to your instance and links it to the application.
-After the first deployment, don't forget to run the database migration and seed.
+When deploying for the first time, Heroku will automatically add a Database
+plugin to your instance and links it to the application. After the first
+deployment, don't forget to run the database migration and seed.
 
 ```bash
 heroku run rake db:migrate db:seed
