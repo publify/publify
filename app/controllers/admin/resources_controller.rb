@@ -19,7 +19,7 @@ class Admin::ResourcesController < Admin::BaseController
       flash[:warning] = I18n.t('admin.resources.upload.warning')
     end
 
-    redirect_to action: 'index'
+    redirect_to admin_resources_url
   end
 
   def index
@@ -40,6 +40,6 @@ class Admin::ResourcesController < Admin::BaseController
 
     @record.destroy
     flash[:notice] = I18n.t('admin.resources.destroy.notice')
-    redirect_to action: 'index'
+    redirect_to admin_resources_url
   end
 end

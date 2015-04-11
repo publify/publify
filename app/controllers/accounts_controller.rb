@@ -5,9 +5,9 @@ class AccountsController < ApplicationController
 
   def index
     if User.count.zero?
-      redirect_to action: 'signup'
+      redirect_to signup_accounts_url
     else
-      redirect_to action: 'login'
+      redirect_to login_accounts_url
     end
   end
 
@@ -24,7 +24,7 @@ class AccountsController < ApplicationController
 
   def signup
     unless User.count.zero? || this_blog.allow_signup == 1
-      redirect_to action: 'login'
+      redirect_to login_accounts_url
       return
     end
 
@@ -39,7 +39,7 @@ class AccountsController < ApplicationController
       self.current_user = @user
       session[:user_id] = @user.id
 
-      redirect_to controller: 'accounts', action: 'confirm'
+      redirect_to confirm_accounts_url
       return
     end
   end
@@ -52,7 +52,7 @@ class AccountsController < ApplicationController
       @user.generate_password!
       @user.save
       flash[:notice] = t('accounts.recover_password.notice')
-      redirect_to action: 'login'
+      redirect_to login_accounts_url
     else
       flash[:error] = t('accounts.recover_password.error')
     end
@@ -65,7 +65,7 @@ class AccountsController < ApplicationController
     session[:user_id] = nil
     cookies.delete :auth_token
     cookies.delete :publify_user_profile
-    redirect_to action: 'login'
+    redirect_to login_accounts_url
   end
 
   private

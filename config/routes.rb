@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   get 'xml/feed', to: 'xml#feed'
 
   # CommentsController
-  resources :comments, as: 'admin_comments' do
+  resources :comments, as: 'admin_comments', only: [:index, :create] do
     collection do
       match :preview, via: [:get, :post, :put, :delete]
     end
@@ -58,7 +58,7 @@ Rails.application.routes.draw do
   match '/setup', to: 'setup#index', via: [:get, :post], format: false
 
   # TagsController (imitate inflected_resource)
-  resources :tags, except: [:show, :update, :destroy, :edit]
+  resources :tags, only: [:index, :create, :new]
   resources :tags, path: 'tag', only: [:show, :edit, :update, :destroy]
   get '/tag/:id/page/:page', to: 'tags#show', format: false
   get '/tags/page/:page', to: 'tags#index', format: false
@@ -99,15 +99,25 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    get '/', to: 'dashboard#index', as: 'dashboard'
+    root 'dashboard#index', as: 'dashboard'
 
-    get 'cache', to: 'cache#show'
-    delete 'cache', to: 'cache#destroy'
+    get 'cache', to: 'cache#show', format: false
+    delete 'cache', to: 'cache#destroy', format: false
 
     resources :content, only: [:index, :new, :edit, :create, :update, :destroy], format: false do
       collection do
         get 'auto_complete_for_article_keywords'
         post 'autosave'
+      end
+    end
+
+    resources :feedback, only: [:index, :edit, :create, :update, :destroy], format: false do
+      collection do
+        post 'bulkops'
+      end
+      member do
+        get 'article'
+        post 'change_state'
       end
     end
 
@@ -121,21 +131,54 @@ Rails.application.routes.draw do
 
     resources :redirects, only: [:index, :edit, :create, :update, :destroy], format: false
 
+    resources :resources, only: [:index, :destroy], format: false do
+      collection do
+        get 'get_thumbnails'
+        post 'upload'
+      end
+    end
+
+    resources :seo, only: [:index], format: false do
+      collection do
+        get 'permalinks'
+        get 'titles'
+        post 'permalinks'
+        post 'update'
+      end
+    end
+
+    resources :settings, only: [:index], format: false do
+      collection do
+        get 'display'
+        get 'feedback'
+        get 'update_database'
+        get 'write'
+        post 'migrate'
+        post 'update'
+      end
+    end
+
     resources :sidebar, only: [:index, :update, :destroy] do
       collection do
+        put :publish
         put :sortable
       end
     end
 
     resources :tags, only: [:index, :edit, :create, :update, :destroy], format: false
 
-    resources :users, only: [:index, :new, :edit, :create, :update, :destroy], format: false
-  end
+    # TODO: Work out if post is actually used or not.
+    get 'textfilters/macro_help(/:id)', to: 'textfilters#macro_help', id: nil, format: false
+    post 'textfilters/macro_help(/:id)', to: 'textfilters#macro_help', id: nil, format: false
 
-  # Admin/XController
-  %w{feedback resources sidebar textfilters themes settings seo}.each do |i|
-    match "/admin/#{i}", controller: "admin/#{i}", action: :index, format: false, via: [:get, :post, :put, :delete] # TODO: convert this magic catchers to resources item to close un-needed HTTP method
-    match "/admin/#{i}(/:action(/:id))", controller: "admin/#{i}", action: nil, id: nil, format: false, via: [:get, :post, :put, :delete] # TODO: convert this magic catchers to resources item to close un-needed HTTP method
+    resources :themes, only: [:index], format: false do
+      collection do
+        get 'preview'
+        get 'switchto'
+      end
+    end
+
+    resources :users, only: [:index, :new, :edit, :create, :update, :destroy], format: false
   end
 
   root 'articles#index'
