@@ -4,8 +4,9 @@
 
 ### Download
 
-You can download Publify [stable release](http://publify.co/stable.tgz) or [clone Publify
-repository](https://github.com/publify/publify.git).
+You can download the latest
+Publify [stable release (8.1.1)](https://github.com/publify/publify/archive/v8.1.1.tar.gz)
+or [clone the Publify repository](https://github.com/publify/publify.git).
 
 [![Build Status](https://travis-ci.org/publify/publify.png)](https://travis-ci.org/publify/publify)
 [![Code Climate](https://codeclimate.com/github/publify/publify.png)](https://codeclimate.com/github/publify/publify)
