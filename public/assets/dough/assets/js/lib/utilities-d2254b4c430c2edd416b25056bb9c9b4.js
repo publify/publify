@@ -1,0 +1,1 @@
+define([],function(){"use strict";return{currencyToInteger:function(e){return parseInt(e.replace(/[\xa3,]/g,""),10)},numberToCurrency:function(e){var r="\\d(?=(\\d{3})+$)";return"\xa3"+Math.round(e).toFixed(0).replace(new RegExp(r,"g"),"$&,")}}});

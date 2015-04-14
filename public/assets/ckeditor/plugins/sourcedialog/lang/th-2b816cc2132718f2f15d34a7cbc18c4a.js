@@ -1,0 +1,1 @@
+CKEDITOR.plugins.setLang("sourcedialog","th",{toolbar:"\u0e14\u0e39\u0e23\u0e2b\u0e31\u0e2a HTML",title:"\u0e14\u0e39\u0e23\u0e2b\u0e31\u0e2a HTML"});
