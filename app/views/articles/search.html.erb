@@ -41,7 +41,7 @@
         <%- end %>
       <%- end %>
 
-      <%= paginate @articles, :window => 2, next_label: "#{t(".next_page")} &raquo;", previous_label: "&laquo; #{t('.previous_page')}" if @articles.length > 0 %>
+      <%= paginate @articles, :window => 1, next_label: "#{t(".next_page")} &raquo;", previous_label: "&laquo; #{t('.previous_page')}" if @articles.length > 0 %>
     </div>
   </div>
 </main>
