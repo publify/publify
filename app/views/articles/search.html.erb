@@ -2,7 +2,7 @@
   <div class="l-constrained">
     <div class="results-list">
       <h1 class="results-list__title"><%= t('.search_results_for')%> <% if params[:q] %>'<%= h(params[:q]) %>'<% end %></h1>
-      <form class="search-form">
+      <form class="search-form" action="/search">
         <div class="form__row">
           <label for="q" class="form__label-heading">Search term</label>
           <input class="search-form__input" type="text" name="q" id="q" value="<%= h(params[:q]) %>" />
