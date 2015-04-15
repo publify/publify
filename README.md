@@ -36,6 +36,8 @@ This repository comes equipped with a self-setup script:
 $ ./bin/setup
 $ rails s
 ```
+##### `pg` gem issues on Mac OSx
+When running the setup script you may run into an install issue with the *pg* (PostgreSQL) gem. If this occurs, you'll need to install it first via Homebrew `brew install postgresql` and then run the setup again.
 
 You'll need to set the environment keys this repo requires in `.env` (which is auto generated when you run the setup script). If you're a MAS dev, you can grab these over at the [company wiki](https://moneyadviceserviceuk.atlassian.net/wiki/display/DEV/Marketing+Blog+Repo+Credentials).
 
