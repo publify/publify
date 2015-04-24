@@ -109,6 +109,10 @@ Rails.application.routes.draw do
         get 'auto_complete_for_article_keywords'
         post 'autosave'
       end
+      member do
+        get 'destroy'
+        post 'destroy'
+      end
     end
 
     resources :feedback, only: [:index, :edit, :create, :update, :destroy], format: false do
