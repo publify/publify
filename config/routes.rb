@@ -109,6 +109,10 @@ Rails.application.routes.draw do
         get 'auto_complete_for_article_keywords'
         post 'autosave'
       end
+      member do
+        get 'destroy'
+        post 'destroy'
+      end
     end
 
     resources :feedback, only: [:index, :edit, :create, :update, :destroy], format: false do
@@ -123,7 +127,12 @@ Rails.application.routes.draw do
 
     resources :notes, only: [:index, :show, :edit, :create, :update, :destroy], format: false
 
-    resources :pages, only: [:index, :new, :edit, :create, :update, :destroy], format: false
+    resources :pages, only: [:index, :new, :edit, :create, :update, :destroy], format: false do
+      member do
+        get 'destroy'
+        post 'destroy'
+      end
+    end
 
     resources :post_types, only: [:index, :edit, :create, :update, :destroy], format: false
 
@@ -165,7 +174,12 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :tags, only: [:index, :edit, :create, :update, :destroy], format: false
+    resources :tags, only: [:index, :edit, :create, :update, :destroy], format: false do
+      member do
+        get 'destroy'
+        post 'destroy'
+      end
+    end
 
     # TODO: Work out if post is actually used or not.
     get 'textfilters/macro_help(/:id)', to: 'textfilters#macro_help', id: nil, format: false

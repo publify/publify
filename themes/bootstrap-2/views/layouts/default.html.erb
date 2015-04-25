@@ -9,9 +9,9 @@
 <body>
   <nav class="navbar navbar-default" role="navigation">
     <div class="container">
-      <div class='navbar-header'>
+      <!--div class='navbar-header'>
         <%= link_to(content_tag(:span, '', class: 'glyphicon glyphicon-th'), this_blog.base_url, class: 'navbar-brand' )%>
-      </div>
+      </div-->
       <ul class='nav navbar-nav pull-right'>
         <li><%= link_to(t('.statuses'), {controller: 'notes'}) %></li>
         <li><%= link_to(t('.archives'), {controller: 'articles', action: 'archives'}) %></li>
@@ -25,9 +25,10 @@
   <div id='logo' class='container'>
     <div class='row'>
       <div class='col-lg-12 vertical-container'>
-        <div class='vertical'>
-          <h1><%= link_to(this_blog.blog_name, this_blog.base_url) %></h1>
-          <p class='subtitle'><%= this_blog.blog_subtitle %></p>
+        <!--div class='vertical'-->
+        <!div class='blog_title'>
+          <h3><%= link_to(this_blog.blog_name, this_blog.base_url) %></h3>
+          <!--p class='subtitle'><%= this_blog.blog_subtitle %></p-->
         </div>
       </div>
     </div>
@@ -47,6 +48,10 @@
       <div class='span7'></div>
     </div>
   </div>
-  <p style='text-align: center'><small>Powered by <a href='http://publify.co'>Publify</a> | Photo <a href='http://startupstockphotos.com/'>Startup stock photos</a></small></p>
+  <p style='text-align: center'>
+	  <small>Powered by <a href='http://publify.co'>Publify</a> 
+	  	<!-- | Photo <a href='http://startupstockphotos.com/'>Startup stock photos</a> -->
+  	 </small>
+  </p>
 </body>
 </html>
