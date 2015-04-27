@@ -145,6 +145,10 @@ Rails.application.routes.draw do
         get 'get_thumbnails'
         post 'upload'
       end
+      member do
+        get 'destroy'
+        post 'destroy'
+      end
     end
 
     resources :seo, only: [:index], format: false do
