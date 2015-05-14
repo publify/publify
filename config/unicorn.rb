@@ -1,6 +1,6 @@
 # https://devcenter.heroku.com/articles/rails-unicorn
 
-worker_processes (ENV["UNICORN_WORKERS"] || 3).to_i
+worker_processes (ENV["UNICORN_WORKERS"] || 2).to_i
 timeout (ENV["UNICORN_TIMEOUT"] || 20).to_i
 preload_app true
 
