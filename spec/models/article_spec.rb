@@ -171,19 +171,17 @@ describe Article, type: :model do
         allow(mock_pinger).to receive(:send_pingback_or_trackback)
 
         article.save!
+
+        10.times do
+          break if Thread.list.count == 1
+          sleep 0.1
+        end
       end
 
       it 'lets a Ping::Pinger object send pingback to the external URLs' do
         expect(Ping::Pinger).to have_received(:new).
           with(article.permalink_url, Ping)
         expect(mock_pinger).to have_received :send_pingback_or_trackback
-      end
-
-      after do
-        10.times do
-          break if Thread.list.count == 1
-          sleep 0.1
-        end
       end
     end
   end
