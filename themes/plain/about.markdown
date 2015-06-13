@@ -1,4 +1,4 @@
 #### Plain theme for Publify
 
-Plain is a theme for Publify consisting only of the default templates. In a way,
-it is the themeless theme.
+Plain is a theme for Publify consisting only of the default templates and a
+sprinkle of CSS to make it look nice.
