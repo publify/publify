@@ -51,7 +51,9 @@
             <%= link_to(t(".medium_size"), upload.upload.medium.url) %> |
             <%= link_to(t(".original_size"), upload.upload.url) %> |
           <% end %>
-          <%= link_to(t(".delete"), { action: 'destroy', id: upload.id, search: params[:search], page: params[:page] },  confirm: t(".are_you_sure"), method: :post) %>
+          <%= link_to(t(".delete"),
+                      { action: 'destroy', id: upload.id, search: params[:search], page: params[:page] },
+                      confirm: t(".are_you_sure"), method: :delete) %>
         </small>
       </p>
     </td>

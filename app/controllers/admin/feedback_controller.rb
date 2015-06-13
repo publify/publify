@@ -24,8 +24,6 @@ class Admin::FeedbackController < Admin::BaseController
       end
     end
 
-    return(render 'admin/shared/destroy') unless request.post?
-
     begin
       @record.destroy
       flash[:success] = I18n.t('admin.feedback.destroy.success')

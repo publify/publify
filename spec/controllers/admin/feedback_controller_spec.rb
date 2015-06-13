@@ -7,7 +7,7 @@ describe Admin::FeedbackController, type: :controller do
     it 'should destroy feedback' do
       id = feedback_from_own_article.id
       expect do
-        post 'destroy', id: id
+        delete 'destroy', id: id
       end.to change(Feedback, :count)
       expect do
         Feedback.find(feedback_from_own_article.id)
@@ -15,19 +15,8 @@ describe Admin::FeedbackController, type: :controller do
     end
 
     it 'should redirect to feedback from article' do
-      post 'destroy', id: feedback_from_own_article.id
+      delete 'destroy', id: feedback_from_own_article.id
       expect(response).to redirect_to(controller: 'admin/feedback', action: 'article', id: feedback_from_own_article.article.id)
-    end
-
-    it 'should not destroy feedback in get request' do
-      id = feedback_from_own_article.id
-      expect do
-        get 'destroy', id: id
-      end.not_to change(Feedback, :count)
-      expect do
-        Feedback.find(feedback_from_own_article.id)
-      end.not_to raise_error
-      expect(response).to render_template 'destroy'
     end
   end
 
@@ -53,7 +42,7 @@ describe Admin::FeedbackController, type: :controller do
       it "should destroy feedback from article doesn't own" do
         id = feedback_from_not_own_article.id
         expect do
-          post 'destroy', id: id
+          delete 'destroy', id: id
         end.to change(Feedback, :count)
         expect do
           Feedback.find(feedback_from_not_own_article.id)

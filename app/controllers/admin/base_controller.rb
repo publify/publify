@@ -33,7 +33,6 @@ class Admin::BaseController < ApplicationController
       flash[:error] = I18n.t('admin.base.not_allowed')
       return(redirect_to action: 'index')
     end
-    return render('admin/shared/destroy') unless request.post?
     @record.destroy
     flash[:notice] = I18n.t('admin.base.successfully_deleted', name: controller_name.humanize)
     redirect_to action: 'index'

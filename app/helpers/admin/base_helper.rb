@@ -125,7 +125,13 @@ module Admin::BaseHelper
   end
 
   def button_to_delete(item)
-    link_to(content_tag(:span, '', class: 'glyphicon glyphicon-trash'), { action: 'destroy', id: item.id }, { class: 'btn btn-danger btn-xs btn-action' })
+    confirm_text = t("admin.shared.destroy.are_you_sure",
+                     element: item.class.name.downcase)
+    link_to(
+      content_tag(:span, '', class: 'glyphicon glyphicon-trash'),
+      { action: 'destroy', id: item.id },
+      { class: 'btn btn-danger btn-xs btn-action', method: :delete,
+        data: { confirm: confirm_text } })
   end
 
   def button_to_short_url(item)
