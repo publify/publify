@@ -10,7 +10,7 @@
 </div>
 <p class='help-block'></p>
 
-<%= form_tag(url_for(:action=>'publish'), :method => :post, :class => 'spinner') do %>
+<%= form_tag(url_for(action: 'publish'), method: :put, class: 'spinner') do %>
   <div class='form-actions'>
     <%= link_to(t(".cancel"), {action: 'index'}) %>
     <%= t(".or") %>
@@ -22,7 +22,7 @@
 
 <%= render partial: 'config' %>
 
-<%= form_tag(url_for(:action=>'publish'), :method => :post, :class => 'spinner') do %>
+<%= form_tag(url_for(action: 'publish'), method: :put, class: 'spinner') do %>
   <div class='form-group'>
     <%= link_to(t(".cancel"), {action: 'index'}) %>
     <%= t(".or") %>
