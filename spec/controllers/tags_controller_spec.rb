@@ -45,19 +45,16 @@ describe TagsController, 'showing a single tag', type: :controller do
     end
 
     it 'should render :show by default' do
-      # TODO: Stubbing #template_exists is not enough to fool Rails
-      skip
-      allow(controller).to receive(:template_exists?). \
-        and_return(true)
       do_get
       expect(response).to render_template(:show)
     end
 
-    it 'should fall back to rendering articles/index' do
-      allow(controller).to receive(:template_exists?). \
-        and_return(false)
+    it 'should render the tag template if present' do
+      # NOTE: Stubbing Object under test :-(.
+      allow(controller).to receive(:template_exists?).and_return(true)
+      allow(controller).to receive(:render)
       do_get
-      expect(response).to render_template('articles/index')
+      expect(controller).to have_received(:render).with('foo')
     end
 
     it 'should set the page title to "Tag foo"' do
