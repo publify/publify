@@ -30,7 +30,7 @@ class TagsController < ContentController
     respond_to do |format|
       format.html do
         if @articles.empty?
-          redirect_to this_blog.base_url, status: 301
+          render 'errors/404', status: 404
         else
           render template_name(params[:id])
         end

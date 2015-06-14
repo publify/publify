@@ -74,12 +74,10 @@ describe TagsController, 'showing a single tag', type: :controller do
   end
 
   describe 'without articles' do
-    # TODO: Perhaps we can show something like 'Nothing tagged with this tag'?
     it 'should redirect to main page' do
       do_get
 
-      expect(response.status).to eq(301)
-      expect(response).to redirect_to(Blog.default.base_url)
+      expect(response.status).to eq(404)
     end
   end
 end
