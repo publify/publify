@@ -35,7 +35,7 @@ class Admin::FeedbackController < Admin::BaseController
 
   def create
     @article = Article.find(params[:article_id])
-    @comment = @article.comments.build(params[:comment].permit!)
+    @comment = @article.comments.build(comment_params)
     @comment.user_id = current_user.id
 
     if request.post? && @comment.save
@@ -62,7 +62,7 @@ class Admin::FeedbackController < Admin::BaseController
       redirect_to admin_feedback_index_url
       return
     end
-    comment.attributes = params[:comment].permit!
+    comment.attributes = comment_params
     if request.post? && comment.save
       flash[:success] = I18n.t('admin.feedback.update.success')
       redirect_to action: 'article', id: comment.article.id
@@ -143,7 +143,11 @@ class Admin::FeedbackController < Admin::BaseController
     end
   end
 
-  protected
+  private
+
+  def comment_params
+    params.require(:comment).permit(:author, :email, :url, :body)
+  end
 
   def update_feedback(items, method)
     items.each do |value|
