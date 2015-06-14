@@ -22,17 +22,28 @@ class Admin::SeoController < Admin::BaseController
   def update
     update_settings if request.post?
   rescue ActiveRecord::RecordInvalid
-    render params[:from]
+    render originating_action
   end
 
   private
+
+  SECTION_MAP = {
+    'index' => :index,
+    'titles' => :titles,
+    'permalinks' => :permalinks,
+  }
+
+  # TODO: Use section param instead of using a different action for each
+  def originating_action
+    SECTION_MAP[params[:from]] || :index
+  end
 
   def update_settings
     if params[:setting]['permalink_format'] && params[:setting]['permalink_format'] == 'custom'
       params[:setting]['permalink_format'] = params[:setting]['custom_permalink']
     end
     update_settings_with!(params[:setting])
-    redirect_to action: params[:from]
+    redirect_to action: originating_action
   end
 
   def set_setting
