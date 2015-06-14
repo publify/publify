@@ -1,49 +1,41 @@
 class Admin::SeoController < Admin::BaseController
   cache_sweeper :blog_sweeper
-  before_action :set_setting, only: [:index, :titles]
+  before_action :set_setting
+  before_action :set_section
 
-  def index
-  end
-
-  def permalinks
-    if request.post?
-      update_settings
-    else
-      set_setting
-      if @setting.permalink_format != '/%year%/%month%/%day%/%title%' &&
-          @setting.permalink_format != '/%year%/%month%/%title%' &&
-          @setting.permalink_format != '/%title%'
-        @setting.custom_permalink = @setting.permalink_format
-        @setting.permalink_format = 'custom'
-      end
+  def show
+    if @setting.permalink_format != '/%year%/%month%/%day%/%title%' &&
+      @setting.permalink_format != '/%year%/%month%/%title%' &&
+      @setting.permalink_format != '/%title%'
+      @setting.custom_permalink = @setting.permalink_format
+      @setting.permalink_format = 'custom'
     end
   end
 
   def update
-    update_settings if request.post?
-  rescue ActiveRecord::RecordInvalid
-    render originating_action
+    if settings_params[:permalink_format] == 'custom'
+      settings_params[:permalink_format] = settings_params[:custom_permalink]
+    end
+    if @setting.update_attributes(settings_params)
+      flash[:success] = I18n.t('admin.settings.update.success')
+      redirect_to admin_seo_path(section: @section)
+    else
+      flash[:error] = I18n.t('admin.settings.update.error', messages: this_blog.errors.full_messages.join(', '))
+      render :show
+    end
   end
 
   private
 
-  SECTION_MAP = {
-    'index' => :index,
-    'titles' => :titles,
-    'permalinks' => :permalinks,
-  }
-
-  # TODO: Use section param instead of using a different action for each
-  def originating_action
-    SECTION_MAP[params[:from]] || :index
+  def settings_params
+    @settings_params ||= params.require(:setting).permit!
   end
 
-  def update_settings
-    if params[:setting]['permalink_format'] && params[:setting]['permalink_format'] == 'custom'
-      params[:setting]['permalink_format'] = params[:setting]['custom_permalink']
-    end
-    update_settings_with!(params[:setting])
-    redirect_to action: originating_action
+  VALID_SECTIONS = ['general', 'titles', 'permalinks']
+
+  def set_section
+    section = params[:section]
+    @section = VALID_SECTIONS.include?(section) ? section : 'general'
   end
 
   def set_setting
