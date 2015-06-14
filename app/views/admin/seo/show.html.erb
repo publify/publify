@@ -3,9 +3,9 @@
     <i class="glyphicon glyphicon-large glyphicon-cog"></i>
     <%=
       case @section
-      when 'general' then t(".global_settings")
       when 'titles' then t(".title_settings")
       when 'permalinks' then t(".permalinks")
+      else t(".global_settings")
       end
     %>
   </h2>
@@ -14,7 +14,13 @@
 <%= error_messages_for 'blog' %>
 
 <%= form_tag admin_seo_path, method: :put do %>
-  <%= render partial: @section %>
+  <%=
+    case @section
+    when 'titles' then render 'titles'
+    when 'permalinks' then render 'permalinks'
+    else render 'general'
+    end
+  %>
 
   <%= hidden_field_tag 'section', @section %>
   <div class='form-group'>
