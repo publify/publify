@@ -46,8 +46,8 @@ he-IL:
       body: "This is an example of a Publify page. You can edit this to write information about yourself or your site so readers know who you are. You can create as many pages as this one as you like and manage all of your content inside Publify."
   comments:
     comment:
-      by: "by"
       said: "said"
+      by: "by"
       this_comment_has_been_flagged_for_moderator_approval: "תגובה זו הועברה לביקורת. היא לא תופיע בבלוג עד אשר הכותב יאשר אותה"
   tags:
     index:
@@ -193,15 +193,15 @@ he-IL:
         notes: "Notes"
       form:
         now: "Now"
-        no_notes: "There are no notes yet. Why don't you start and create one?"
-        how_to_setup_twitter: "If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."
-        fill_the_twitter_credentials: "fill in the oauth credentials"
-        registered_your_application: "registered your application"
         compose_new_note: "Compose new note"
+        no_notes: "There are no notes yet. Why don't you create one?"
+        how_to_setup_twitter: "If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."
+        fill_the_twitter_credentials: "fill in the OAuth credentials"
+        registered_your_application: "registered your application"
         publish_settings: "Publish settings"
-        posse_to_twitter: "POSSE to twitter"
-        in_reply_to: "In reply to"
+        posse_to_twitter: "POSSE to Twitter"
         tweet_id_like: "Tweet id like 123456"
+        in_reply_to: "In reply to"
         permanent_link: "Permanent link"
         published: "פורסם"
         publish_at: "פורסם בתאריך"
@@ -235,23 +235,26 @@ he-IL:
         active_theme: "%{name} - עיצוב פעיל"
     profiles:
       index:
-        success: "המשתמש עודכן בהצלחה"
         your_profile: "Your profile"
+        success: "המשתמש עודכן בהצלחה"
     sidebar:
       index:
         sidebar: "תיבת צד"
-        error: "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually"
         drag_some_plugins_here: "גרור חלק מהתוספים כדי למלא את תיבת הצד"
-        cancel: "בטל"
+        error: "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually"
         or: "or"
+        cancel: "בטל"
         explain_how_its_works: "גרור והשלך כדי לשנות את פריטי תיבת הצד המוצגת בבלוג שלך. כדי להסיר פריטים מתיבת הצד, לחץ על הסר. השינויים נשמרים מיידית אבל לא מופעלים עד שתלחץ על הכפתור 'פרסם'."
         publish_changes: "פרסם שינויים"
         available_items: "פריטים זמינים"
         active_sidebar_items: "הפעל פריטי תיבת צד"
         download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
+      target_sidebar:
+        update: 'Update'
     settings:
       update:
         success: "ההגדרה עודכנה."
+        error: "Error: %{messages}"
       display:
         cancel: "בטל"
         or: "or"
@@ -363,7 +366,10 @@ he-IL:
         cancel: "בטל"
         or: "or"
         update_settings: "Update settings"
+        global_settings: "Global settings"
         title_settings: "Title settings"
+        permalinks: "Permalinks"
+      titles:
         home: "בית"
         title_template: "Title template"
         description_template: "Description template"
@@ -379,9 +385,9 @@ he-IL:
         short_statuses: "Short statuses"
         help_on_title_settings: "Help on title settings"
         these_tags_can_be_included: "These tags can be included in your templates and will be replaced when displaying the page."
+        replaced_with_the_title_of_the_article_page: "Replaced with the title of the article/page"
         the_blog_s_name: "The blog's name"
         the_blog_s_tagline_description: "The blog's tagline / description"
-        replaced_with_the_title_of_the_article_page: "Replaced with the title of the article/page"
         replaced_with_the_post_page_excerpt: "Replaced with the post/page excerpt"
         replaced_with_the_article_tags: "Replaced with the article tags (comma separated)"
         replaced_with_the_article_categories: "Replaced with the article categories (comma separated)"
@@ -396,11 +402,7 @@ he-IL:
         replaced_by_the_archive_date: "Replaced by the archive date"
         replaced_by_the_content_body: "Replaced by the content body"
       permalinks:
-        cancel: "בטל"
-        or: "or"
-        update_settings: "Update settings"
         explain: "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links."
-        permalinks: "Permalinks"
         permalink_format: "Permalink format"
         date_and_title: "Date and title"
         month_and_title: "Month and title"
@@ -413,14 +415,10 @@ he-IL:
         your_article_month: "your article month of publication."
         your_article_day: "your article day of publication."
         help_on_permalink_settings: "Help on permalink settings"
-      index:
+      general:
         human: "Human"
         humans_txt: "Human"
         explain_humans_txt: "It's an initiative for knowing the people behind a website. It's a TXT file that contains information about the different people who have contributed to building the website. http://humanstxt.org/"
-        cancel: "בטל"
-        or: "or"
-        update_settings: "Update settings"
-        global_settings: "Global settings"
         general_settings: "הגדרות כלליות"
         meta_keywords: "Meta keywords"
         use_meta_keywords: "Use meta keywords"
@@ -460,7 +458,7 @@ he-IL:
         delete: "מחק"
     tags:
       edit:
-        success: "התוית עודכנה בהצלחה." 
+        success: "התוית עודכנה בהצלחה."
       new:
         no_tags: "There are no tags yet. Why don't you start and create one?"
         articles: "כתבות"
@@ -551,17 +549,18 @@ he-IL:
       bulkops:
         error: "לא מיושם"
         success_deleted_spam: "All spam have been deleted"
-        success_mark_as_ham: 
+        success_mark_as_ham:
           zero: "No item selected to mark as Ham"
           one: "Marked 1 item as Ham"
           other: "סומנו %{count} פריטים כלא ספאם"
-        success_mark_as_spam: 
+        success_mark_as_spam:
           zero: "No item selected to mark as Spam"
           one: "Marked 1 item as Spam"
           other: "סומנו %{count} פריטים כספאם"
         success_classification: "אומת הסיווג של %{count} פריטים."
         success_deleted: "נמחקו %{count} פריטים"
       index:
+        no_feedback: "There is no feedback yet. Why don't you create some?"
         feedback: "משוב"
         all: "All"
         unapproved_comments: "תגובות לא מאושרות"
@@ -575,9 +574,8 @@ he-IL:
         comment: "תגובה"
         article: "כתבה"
         select_all: "Select all"
-        no_feedback: "There are no feedback yet. Why don't you start and create one?"
       article:
-        no_feedback: "There are no feedback yet. Why don't you start and create one?"
+        no_feedback: "There is no feedback yet. Why don't you create some?"
         comments_for: "תגובות עבור %{title}"
         status: "מצב"
         comment_author: "Comment Author"
@@ -605,10 +603,11 @@ he-IL:
         this_comment_by_was_flagged_as_spam: "This comment by %{author} was flagged as spam, %{cancel_link}?"
         cancel: "בטל"
     dashboard:
+      publify_version:
+        error: "You are at least one major version of Publify out of date. You should upgrade immediately. Download and install <a href='http://publify.co/stable.tgz'>the latest Publify version</a>"
+        warning: "There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a>?"
+        notice: "There's a new version of Publify available. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a>?"
       index:
-        error: "You are late from at least one major version of Publify. You should upgrade immediately. Download and install <a href='http://publify.co/stable.tgz'>the latest Publify version</a>"
-        warning: "There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
-        notice: "There's a new version of Publify available. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
         welcome_back: "ברוך הבא, %{user_name}!"
       drafts:
         your_drafts: "Your drafts"
@@ -861,13 +860,13 @@ he-IL:
       reset_my_password: "Reset my password"
       notice: "An email has been successfully sent to your address with your new password"
       error: "Oops, something wrong just happened"
+    logout:
+      notice: "התנתקת מהמערכת בהצלחה"
     signup:
       title: "הירשם"
       username: "שם משתמש"
       email: "דואל"
       signup: "הירשם"
-    logout:
-      notice: "התנתקת מהמערכת בהצלחה"
   langs:
     da_DK: "Danish"
     de_DE: "German"
@@ -890,6 +889,7 @@ he-IL:
     formats:
       default: "%m/%d/%Y %H:%M"
       short: "%m/%d/%y"
+      with_spaces: "%d %B %y"
       letters_month_with_year: "%m %Y"
   date:
     month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]
