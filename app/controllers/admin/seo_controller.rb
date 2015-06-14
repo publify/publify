@@ -20,7 +20,8 @@ class Admin::SeoController < Admin::BaseController
       flash[:success] = I18n.t('admin.settings.update.success')
       redirect_to admin_seo_path(section: @section)
     else
-      flash[:error] = I18n.t('admin.settings.update.error', messages: this_blog.errors.full_messages.join(', '))
+      flash[:error] = I18n.t('admin.settings.update.error',
+                             messages: this_blog.errors.full_messages.join(', '))
       render :show
     end
   end
