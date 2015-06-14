@@ -7,6 +7,7 @@ da:
       search: "Search"
   search_sidebar:
     content:
+      search: "Search"
   page_sidebar:
     content:
       pages: "Pages"
@@ -61,10 +62,10 @@ da:
     index:
       next_page: "Next page"
       previous_page: "Previous page"
+      page: "page"
     search:
       next_page: "Next page"
       previous_page: "Previous page"
-      page: "page"
     comment_preview:
       is_about_to_say: "vil gerne sige"
     meta:
@@ -192,15 +193,15 @@ da:
         notes: "Notes"
       form:
         now: "Now"
+        compose_new_note: "Compose new note"
         no_notes: "There are no notes yet. Why don't you start and create one?"
         how_to_setup_twitter: "If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."
         fill_the_twitter_credentials: "fill in the oauth credentials"
         registered_your_application: "registered your application"
-        compose_new_note: "Compose new note"
         publish_settings: "Publish settings"
         posse_to_twitter: "POSSE to twitter"
-        in_reply_to: "In reply to"
         tweet_id_like: "Tweet id like 123456"
+        in_reply_to: "In reply to"
         permanent_link: "Permanent link"
         published: "Offentliggjort"
         publish_at: "Offentliggjort den"
@@ -234,13 +235,13 @@ da:
         active_theme: "%{name} - Aktiv tema"
     profiles:
       index:
-        success: "User details updated"
         your_profile: "Din profil"
+        success: "User details updated"
     sidebar:
       index:
-        error: "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually"
         sidebar: "Sidebar"
         drag_some_plugins_here: "Træk plugins herover for at fylde din sidebar"
+        error: "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually"
         or: "or"
         cancel: "Anuller"
         explain_how_its_works: "Træk og slip for at ændre indholdsoversigten der vises på denne blog. Du kan fjerne elementer fra indholdsoversigten bare ved at klikke fjern. Ændringer gemmes med det samme, men ikke aktiveret, før du klikker på 'Offentliggør' knappen."
@@ -248,6 +249,8 @@ da:
         available_items: "Tilgængelige objekter"
         active_sidebar_items: "Aktive sidebar objekter"
         download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
+      target_sidebar:
+        update: "Update"
     settings:
       update:
         success: "Config updated."
@@ -358,11 +361,14 @@ da:
         email_address_used_to_notify: "E-mail adresse der bruges af Publify til at sende meddelelser"
         items_to_display_in_admin_lists: "Items to display in admin lists"
     seo:
-      titles:
+      show:
         cancel: "Anuller"
         or: "or"
         update_settings: "Update settings"
+        global_settings: "Global settings"
         title_settings: "Title settings"
+        permalinks: "Permalinks"
+      titles:
         home: "Home"
         title_template: "Title template"
         description_template: "Description template"
@@ -395,31 +401,23 @@ da:
         replaced_by_the_archive_date: "Replaced by the archive date"
         replaced_by_the_content_body: "Replaced by the content body"
       permalinks:
-        cancel: "Anuller"
-        or: "or"
-        update_settings: "Update settings"
         explain: "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links."
-        permalinks: "Permalinks"
         permalink_format: "Permalink format"
         date_and_title: "Date and title"
         month_and_title: "Month and title"
         title_only: "Title only"
         custom: "Custom"
         sample: "Here are some examples to get you started."
-        you_can_custom_your_url_structure: "You can custom your URL structure using the following tags:"
+        you_can_custom_your_url_structure: "You can customize your URL structure using the following tags:"
         your_article_slug: "your article slug. <strong>Using this slug is mandatory</strong>."
         your_article_year: "your article year of publication."
         your_article_month: "your article month of publication."
         your_article_day: "your article day of publication."
         help_on_permalink_settings: "Help on permalink settings"
-      index:
-        cancel: "Anuller"
+      general:
         human: "Human"
         humans_txt: "Human"
         explain_humans_txt: "It's an initiative for knowing the people behind a website. It's a TXT file that contains information about the different people who have contributed to building the website. http://humanstxt.org/"
-        or: "or"
-        update_settings: "Update settings"
-        global_settings: "Global settings"
         general_settings: "Generelle indstillinger"
         meta_keywords: "Meta keywords"
         use_meta_keywords: "Use meta keywords"
@@ -459,9 +457,9 @@ da:
         delete: "Slet"
     tags:
       edit:
-        success: "Tag was successfully updated" 
+        success: "Tag was successfully updated"
       new:
-        no_tags: "There are no tags yet. Why don't you start and create one?"
+        no_tags: "There are no tags yet. Why don't you create one?"
         articles: "Artikler"
         display_name: "Vis navn"
         manage_tags: "Administrer Tags"
@@ -476,7 +474,7 @@ da:
       destroy:
         notice: "File has been deleted"
       index:
-        no_resources: "There are no resources yet. Why don't you start and create one?"
+        no_resources: "There are no resources yet. Why don't you create one?"
         media_library: "Media Library"
         upload_a_file_to_your_site: "Upload en fil til din side"
         upload: "Upload"
@@ -561,6 +559,7 @@ da:
         success_classification: "Confirmed classification of %{count} item(s)"
         success_deleted: "Deleted %{count} item(s)"
       index:
+        no_feedback: "There is no feedback yet. Why don't you create some?"
         feedback: "Diskussion"
         all: "All"
         unapproved_comments: "Unapproved comments"
@@ -574,9 +573,8 @@ da:
         comment: "Comment"
         article: "Artikel"
         select_all: "Select all"
-        no_feedback: "There are no feedback yet. Why don't you start and create one?"
       article:
-        no_feedback: "There are no feedback yet. Why don't you start and create one?"
+        no_feedback: "There is no feedback yet. Why don't you create some?"
         comments_for: "Kommentarer for %{title}"
         status: "Status"
         comment_author: "Comment Author"
@@ -604,10 +602,11 @@ da:
         this_comment_by_was_flagged_as_spam: "This comment by %{author} was flagged as spam, %{cancel_link}?"
         cancel: "Anuller"
     dashboard:
+      publify_version:
+        error: "You are at least one major version of Publify out of date. You should upgrade immediately. Download and install <a href='http://publify.co/stable.tgz'>the latest Publify version</a>"
+        warning: "There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a>?"
+        notice: "There's a new version of Publify available. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a>?"
       index:
-        error: "You are late from at least one major version of Publify. You should upgrade immediately. Download and install <a href='http://publify.co/stable.tgz'>the latest Publify version</a>"
-        warning: "There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
-        notice: "There's a new version of Publify available. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
         welcome_back: "Velkommen tilbage, %{user_name}!"
       drafts:
         your_drafts: "Your drafts"
@@ -681,7 +680,6 @@ da:
         success: "Article was successfully created"
       update:
         success: "Article was successfully updated"
-        error: "Error, you are not allowed to perform this action"
       edit:
         error: "Error, you are not allowed to perform this action"
       autosave:
@@ -706,9 +704,9 @@ da:
         article_type: "Article type"
         now: "now"
         preview: "Preview"
-        cancel: "Anuller"
         save: "Gem"
         default: "Default"
+        cancel: "Anuller"
         allow_comments_status:
           zero: "disabled"
           one: "aktiveret"
@@ -777,11 +775,11 @@ da:
         error: "Cache could not be cleared"
     users:
       edit:
-        success: "User was successfully updated"
         edit_user: "Rediger bruger"
+        success: "User was successfully updated"
       new:
-        success: "User was successfully created"
         add_user: "Add User"
+        success: "User was successfully created"
       index:
         login: "Log ind"
         users: "Brugere"
@@ -798,8 +796,8 @@ da:
         fill_the_twitter_credentials: "fill in the oauth credentials"
         registered_your_application: "registered your application"
         cancel: "Anuller"
-        save: "Gem"
         or: "or"
+        save: "Gem"
         user_status: "User Status"
         account_settings: "Account Settings"
         login: "Log ind"
@@ -889,6 +887,7 @@ da:
     formats:
       default: "%m/%d/%Y %H:%M"
       short: "%m/%d/%y"
+      with_spaces: "%d %B %y"
       letters_month_with_year: "%m %Y"
   date:
     month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]
