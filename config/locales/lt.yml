@@ -193,20 +193,21 @@ lt:
         notes: "Notes"
       form:
         now: "Now"
-        no_notes: "There are no notes yet. Why don't you start and create one?"
-        how_to_setup_twitter: "If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."
-        fill_the_twitter_credentials: "fill in the oauth credentials"
-        registered_your_application: "registered your application"
         compose_new_note: "Compose new note"
+        no_notes: "There are no notes yet. Why don't you create one?"
+        how_to_setup_twitter: "If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."
+        fill_the_twitter_credentials: "fill in the OAuth credentials"
+        registered_your_application: "registered your application"
         publish_settings: "Publish settings"
-        posse_to_twitter: "POSSE to twitter"
-        in_reply_to: "In reply to"
+        posse_to_twitter: "POSSE to Twitter"
         tweet_id_like: "Tweet id like 123456"
+        in_reply_to: "In reply to"
         permanent_link: "Permanent link"
         published: "Publikuotas"
         publish_at: "Publikuotas"
         cancel: "Baigti"
         or: "or"
+        publish: "Publikuoti"
       show:
         destroy_confirmation: "Destroy confirmation"
         are_you_sure: "Are you sure you want to delete this note"
@@ -234,13 +235,13 @@ lt:
         active_theme: "%{name} - Aktives Motiv"
     profiles:
       index:
-        success: "User details updated"
         your_profile: "Your profile"
+        success: "User details updated"
     sidebar:
       index:
-        error: "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually"
         sidebar: "Sidebar"
         drag_some_plugins_here: "Ziehen Sie Plugins hierher, um sie in die Seitenleiste aufzunehmen"
+        error: "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually"
         or: "or"
         cancel: "Baigti"
         explain_how_its_works: "Verwenden Sie Drag&Drop, um die Einträge der Seitenleiste ihres Blogs zu ändern. Um Einträge zu löschen, klicken Sie auf 'remove'. Änderungen sind hier sofort sichtbar, werden aber erst permanent aktiviert, wenn Sie 'Änderungen veröffentlichen' klicken."
@@ -248,9 +249,12 @@ lt:
         available_items: "Verfügbare Einträge"
         active_sidebar_items: "Aktive Einträge der Seitenleiste"
         download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
+      target_sidebar:
+        update: 'Update'
     settings:
       update:
-        success: "Config updated."
+        success: "Configuration updated."
+        error: "Error: %{messages}"
       display:
         cancel: "Baigti"
         or: "or"
@@ -358,11 +362,14 @@ lt:
         email_address_used_to_notify: "Email Adresse, die Publify beim Versenden von Benachrichtigungen verwenden soll"
         items_to_display_in_admin_lists: "Items to display in admin lists"
     seo:
-      titles:
+      show:
         cancel: "Baigti"
         or: "or"
         update_settings: "Update settings"
+        global_settings: "Global settings"
         title_settings: "Title settings"
+        permalinks: "Permalinks"
+      titles:
         home: "Home"
         title_template: "Title template"
         description_template: "Description template"
@@ -395,11 +402,7 @@ lt:
         replaced_by_the_archive_date: "Replaced by the archive date"
         replaced_by_the_content_body: "Replaced by the content body"
       permalinks:
-        cancel: "Baigti"
-        or: "or"
-        update_settings: "Update settings"
         explain: "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links."
-        permalinks: "Permalinks"
         permalink_format: "Permalink format"
         date_and_title: "Date and title"
         month_and_title: "Month and title"
@@ -412,14 +415,10 @@ lt:
         your_article_month: "your article month of publication."
         your_article_day: "your article day of publication."
         help_on_permalink_settings: "Help on permalink settings"
-      index:
+      general:
         human: "Human"
         humans_txt: "Human"
         explain_humans_txt: "It's an initiative for knowing the people behind a website. It's a TXT file that contains information about the different people who have contributed to building the website. http://humanstxt.org/"
-        cancel: "Baigti"
-        or: "or"
-        update_settings: "Update settings"
-        global_settings: "Global settings"
         general_settings: "Pagrindiniai nustatymai"
         meta_keywords: "Meta keywords"
         use_meta_keywords: "Use meta keywords"
@@ -507,29 +506,29 @@ lt:
       edit:
         success: "Page has been updated"
       index:
-        manage_pages: "Manage pages"
+        manage_pages: "Valdyti puslapius"
         new_page: "New Page"
-        title: "Title"
-        permalink: "Permalink"
-        author: "Author"
+        title: "Pavadinimas"
+        permalink: "Nuoroda"
+        author: "Autorius"
         date: "Date"
       form:
         cancel: "Baigti"
         change: "Change"
         publish: "Publikuoti"
-        title: "Title"
+        title: "Pavadinimas"
         images: "Images"
         publish_settings: "Publish settings"
-        status: "Status"
-        online: "Online"
-        article_filter: "Article filter"
+        status: "Statusas"
+        online: "Pasiekiamas"
+        article_filter: "Straipsnių filtras"
         permanent_link: "Permanent link"
         page_with_action_name: "%{action} page"
         type_your_post: "Type your post"
         published: "published"
         offline: "offline"
       pages:
-        no_pages: "There are no pages yet. Why don't you start and create one?"
+        no_pages: "There are no pages yet. Why don't you create one?"
     feedback:
       state:
         unclassified: "Unclassified"
@@ -561,7 +560,8 @@ lt:
         success_classification: "Confirmed classification of %{count} item(s)"
         success_deleted: "Deleted %{count} item(s)"
       index:
-        feedback: "Feedback"
+        no_feedback: "There is no feedback yet. Why don't you create some?"
+        feedback: "Atsiliepimas"
         all: "All"
         unapproved_comments: "Unapproved comments"
         ham: "Ham"
@@ -569,22 +569,21 @@ lt:
         presumed_ham: "Presumed ham"
         presumed_spam: "Presumed spam"
         search: "Search"
-        status: "Status"
+        status: "Statusas"
         comment_author: "Comment Author"
         comment: "Comment"
         article: "Article"
         select_all: "Select all"
-        no_feedback: "There are no feedback yet. Why don't you start and create one?"
       article:
-        no_feedback: "There are no feedback yet. Why don't you start and create one?"
-        comments_for: "Comments for %{title}"
-        status: "Status"
+        no_feedback: "There is no feedback yet. Why don't you create some?"
+        comments_for: "Komentarai %{title}"
+        status: "Statusas"
         comment_author: "Comment Author"
         comment: "Comment"
         add_a_comment: "Add a comment"
-        author: "Author"
+        author: "Autorius"
         email: "El. pašto adresas"
-        url: "Url"
+        url: "Url adresas"
         your_comment: "Your comment"
         action_or_other: "%{first_action} arba %{second_action}"
         cancel: "Baigti"
@@ -604,10 +603,11 @@ lt:
         this_comment_by_was_flagged_as_spam: "This comment by %{author} was flagged as spam, %{cancel_link}?"
         cancel: "Baigti"
     dashboard:
+      publify_version:
+        error: "You are at least one major version of Publify out of date. You should upgrade immediately. Download and install <a href='http://publify.co/stable.tgz'>the latest Publify version</a>"
+        warning: "There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a>?"
+        notice: "There's a new version of Publify available. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a>?"
       index:
-        error: "You are late from at least one major version of Publify. You should upgrade immediately. Download and install <a href='http://publify.co/stable.tgz'>the latest Publify version</a>"
-        warning: "There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
-        notice: "There's a new version of Publify available. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
         welcome_back: "Welcome back, %{user_name}!"
       drafts:
         your_drafts: "Your drafts"
@@ -637,9 +637,9 @@ lt:
           zero: "no note"
           one: "1 note"
           other: "%{count} notes"
-        feedback: "Feedback"
+        feedback: "Atsiliepimas"
         comments_count:
-          zero: "no comment"
+          zero: "nėra komentarų"
           one: "1 comment"
           other: "%{count} comments"
         approved_count:
@@ -681,13 +681,12 @@ lt:
         success: "Article was successfully created"
       update:
         success: "Article was successfully updated"
-        error: "Error, you are not allowed to perform this action"
-      edit:
+      access_granted:
         error: "Error, you are not allowed to perform this action"
       autosave:
         success: "Article was successfully saved"
       article_list:
-        no_articles: "There are no articles yet. Why don't you start and create one?"
+        no_articles: "There are no articles yet. Why don't you create one?"
       index:
         published: "Publikuotas"
         new_article: "New article"
@@ -697,7 +696,7 @@ lt:
         drafts: "Drafts"
         publication_pending: "Publication pending"
         search: "Search"
-        title: "Title"
+        title: "Pavadinimas"
         select_a_category: "Select a category"
         select_an_author: "Select an author"
         publication_date: "Publication date"
@@ -715,235 +714,6 @@ lt:
         allow_pings_status:
           zero: "disabled"
           one: "enabled"
-        public: "Public"
-        publish: "Publikuoti"
-        title: "Title"
-        images: "Images"
-        publish_settings: "Publish settings"
-        status: "Status"
-        published: "Publikuotas"
-        allowed_comments_and_trackbacks: "Comments are %{allow_comment} and trackbacks are %{allow_trackback}"
-        change: "Change"
-        allow_trackbacks: "Allow trackbacks"
-        allow_comments: "Allow comments"
-        ok: "OK"
-        visibility: "Visibility"
-        password: "Password"
-        permalink: "Permalink"
-        article_filter: "Article filter"
-        save_as_draft: "Save as draft"
-        categories: "Categories"
-        tags: "Žymės"
-        tags_explaination: "Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;."
-      categories:
-        new_category: "New Category"
-    categories:
-      new:
-        categories: "Categories"
-        cancel: "Baigti"
-        save: "Saugoti"
-        or: "or"
-        name: "Vardas"
-        keywords: "Keywords"
-        permalink: "Permalink"
-        explaination: "Your category slug. Leave empty if you don't know what to put here"
-        description: "Beschreibung"
-        title: "Title"
-    menu:
-      help: "Help"
-      documentation: "Documentation"
-      report_a_bug: "Report a bug"
-      in_page_plugins: "In page plugins"
-      sidebar_plugins: "Sidebar plugins"
-      logged_in_as: "Logged in as %{login}"
-      new_article: "New Article"
-      profile: "Profile"
-      logout: "Log out &raquo;"
-      home: "Home"
-      dashboard: "Dashboard"
-      powered_by: "is proudly powered by"
-    cache:
-      show:
-        stats: "There are currently %{files_count} files in cache for a total amount of %{size} Kb"
-        sweep_cache: "Sweep cache"
-        cache: "Cache"
-        explaination: "To save on resources, Publify generates static files along with your content. These files are deleted when a new article is created. You can, at any time, delete these files yourself."
-      destroy:
-        success: "Cache has been sweeped"
-        error: "Cache could not be cleared"
-  accounts:
-    back_to: "&larr; Back to %{place}"
-    back_to_login: "Back to login"
-    create_account: "Create an account"
-    lost_my_password: "I've lost my password"
-    login:
-      title: "Prisijungimas"
-      login: "Prisijungimas"
-      password: "Password"
-      remember_me: "Remember me"
-      sign_in: "Sign in"
-      success: "Login successful"
-      error: "Login unsuccessful"
-    confirm:
-      proceed_to: "Proceed to %{link}"
-      admin: "admin"
-    recover_password:
-      title: "Recover your password"
-      username_or_email: "Username or email"
-      reset_my_password: "Reset my password"
-      notice: "An email has been successfully sent to your address with your new password"
-      error: "Oops, something wrong just happened"
-    signup:
-      title: "Signup"
-      username: "Username"
-      email: "El. pašto adresas"
-      signup: "Signup"
-    logout:
-      notice: "Successfully logged out"
-    post_types:
-      new:
-        post_types: "Post Types"
-        name: "Vardas"
-        description: "Beschreibung"
-        template_name: "Template name"
-        default: "Default"
-        publify_default_post_type: "Publify default post type"
-        explain: "The template name is the filename Publify will look for when calling an article of that type. It should be in your theme under views/articles/template name.html.erb"
-    pages:
-      index:
-        manage_pages: "Valdyti puslapius"
-        new_page: "New Page"
-        title: "Pavadinimas"
-        permalink: "Nuoroda"
-        author: "Autorius"
-        date: "Date"
-      form:
-        publish: "Publikuoti"
-        title: "Pavadinimas"
-        images: "Images"
-        publish_settings: "Publish settings"
-        status: "Statusas"
-        online: "Pasiekiamas"
-        article_filter: "Straipsnių filtras"
-        permanent_link: "Permanent link"
-        page_with_action_name: "%{action} page"
-    feedback:
-      index:
-        feedback: "Atsiliepimas"
-        all: "All"
-        unapproved_comments: "Unapproved comments"
-        ham: "Ham"
-        spam: "Spam"
-        presumed_ham: "Presumed ham"
-        presumed_spam: "Presumed spam"
-        search: "Search"
-        status: "Statusas"
-        comment_author: "Comment Author"
-        comment: "Comment"
-        article: "Article"
-        select_all: "Select all"
-      article:
-        comments_for: "Komentarai %{title}"
-        status: "Statusas"
-        comment_author: "Comment Author"
-        comment: "Comment"
-        add_a_comment: "Add a comment"
-        author: "Autorius"
-        email: "El. pašto adresas"
-        url: "Url adresas"
-        your_comment: "Your comment"
-        action_or_other: "%{first_action} arba %{second_action}"
-        cancel: "Baigti"
-        save: "Saugoti"
-      button:
-        select_action: "Select action"
-        delete_checked_items: "Delete Checked Items"
-        delete_all_spam: "Delete all spam"
-        mark_checked_items_as_spam: "Mark Checked Items as Spam"
-        mark_checked_items_as_ham: "Mark Checked Items as Ham"
-        submit: "Submit"
-      feedback:
-        this_comment_by_was_flagged_as_spam: "This comment by %{author} was flagged as spam, %{cancel_link}?"
-        cancel: "Baigti"
-    dashboard:
-      drafts:
-        your_drafts: "Your drafts"
-        no_drafts_yet: "No drafts yet, why don't you start and write one"
-      welcome:
-        today: "Today"
-        articles_and_comments_count_since: "%{articles_count} articles and %{comments_count} comments were posted since your last connexion"
-        running_publify: "You're running Publify %{version}"
-        content: "Content"
-        articles_count:
-          zero: "no article"
-          one: "1 article"
-          other: "%{count} articles"
-        your_articles_count:
-          zero: "no article writen by you"
-          one: "1 article writen by you"
-          other: "%{count} articles writen by you"
-        drafts_count:
-          zero: "no draft"
-          one: "1 draft"
-          other: "%{count} drafts"
-        pages_count:
-          zero: "no page"
-          one: "1 page"
-          other: "%{count} pages"
-        notes_count:
-          zero: "no note"
-          one: "1 note"
-          other: "%{count} notes"
-        feedback: "Atsiliepimas"
-        comments_count:
-          zero: "nėra komentarų"
-          one: "1 comment"
-          other: "%{count} comments"
-        approved_count:
-          zero: "no approved"
-          other: "%{count} approved"
-        unconfirmed_count:
-          zero: "no unconfirmed"
-          other: "%{count} unconfirmed"
-        spam_count:
-          zero: "no spam"
-          other: "%{count} spam"
-      overview:
-        dashboard_explain: "This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %{available_actions}"
-        write_a_post: "write a post"
-        write_a_page: "write a page"
-        update_your_profile_or_change_your_password: "update your profile or change your password"
-        customization_explain: "You can also do a bit of design, %{theme_link} or %{sidebar_link}."
-        change_your_blog_presentation: "change your blog presentation"
-        enable_plugins: "enable plugins"
-        help_explain: "If you need help, %{doc_link}."
-        read_our_documentation: "read our documentation"
-      inbound:
-        inbound_links: "Inbound links"
-        you_have_no_internet_connection: "You have no internet connection"
-        no_one_made_link_to_you_yet: "No one made a link to you yet"
-        made_a_link_to_you_on: "made a link to you on"
-        at_an_unknown_date: "at an unknown date"
-        at: "at"
-      comment:
-        no_comments_yet: "No comments yet"
-        by: "By"
-    content:
-      index:
-        published: "Publikuotas"
-        new_article: "New article"
-        all_articles: "All articles"
-        manage_articles: "Manage articles"
-        withdrawn: "Withdrawn"
-        drafts: "Drafts"
-        publication_pending: "Publication pending"
-        search: "Search"
-        title: "Pavadinimas"
-        select_a_category: "Select a category"
-        select_an_author: "Select an author"
-        publication_date: "Publication date"
-        filter: "Filter"
-      form:
         public: "Public"
         publish: "Publikuoti"
         title: "Pavadinimas"
@@ -969,6 +739,9 @@ lt:
         new_category: "New Category"
     categories:
       new:
+        cancel: "Baigti"
+        save: "Saugoti"
+        or: "or"
         categories: "Categories"
         name: "Vardas"
         keywords: "Keywords"
@@ -993,18 +766,21 @@ lt:
       dashboard: "Dashboard"
       powered_by: "is proudly powered by"
     cache:
-      index:
-        stats: "Es sind %{files_count} Einträge im Cache"
+      show:
+        stats: "There are currently %{files_count} files in cache for a total amount of %{size} Kb"
         sweep_cache: "Sweep cache"
         cache: "Cache"
-        explanations: "To save on resources, Publify generates static files along with your content. These files are deleted when a new article is created. You can, at any time, delete these files yourself."
+        explaination: "To save on resources, Publify generates static files along with your content. These files are deleted when a new article is created. You can, at any time, delete these files yourself."
+      destroy:
+        success: "Cache has been cleared"
+        error: "Cache could not be cleared"
     users:
       edit:
-        success: "User was successfully updated"
         edit_user: "Benutzer bearbeiten"
+        success: "User was successfully updated"
       new:
-        success: "User was successfully created"
         add_user: "Add User"
+        success: "User was successfully created"
       index:
         login: "Prisijungimas"
         users: "Vartotojai"
@@ -1021,8 +797,8 @@ lt:
         fill_the_twitter_credentials: "fill in the oauth credentials"
         registered_your_application: "registered your application"
         cancel: "Baigti"
-        save: "Saugoti"
         or: "or"
+        save: "Saugoti"
         user_status: "User Status"
         account_settings: "Account Settings"
         login: "Prisijungimas"
@@ -1067,17 +843,26 @@ lt:
     create_account: "Create an account"
     lost_my_password: "I've lost my password"
     login:
+      title: "Prisijungimas"
       login: "Prisijungimas"
       password: "slaptažodis"
       remember_me: "Remember me"
       sign_in: "Sign in"
+      success: "Login successful"
+      error: "Login unsuccessful"
     confirm:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
     recover_password:
+      title: "Recover your password"
       username_or_email: "Username or email"
       reset_my_password: "Reset my password"
+      notice: "An email has been successfully sent to your address with your new password"
+      error: "Oops, something wrong just happened"
+    logout:
+      notice: "Successfully logged out"
     signup:
+      title: "Signup"
       username: "Vartotojo vardas"
       email: "El. pašto adresas"
       signup: "Registracija"
@@ -1103,6 +888,7 @@ lt:
     formats:
       default: "%m/%d/%Y %H:%M"
       short: "%m/%d/%y"
+      with_spaces: "%d %B %y"
       letters_month_with_year: "%m %Y"
   date:
     month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]

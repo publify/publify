@@ -254,6 +254,7 @@ fr:
     settings:
       update:
         success: "Configuration mise à jour."
+        error: "Erreur: %{messages}"
       display:
         cancel: "Annuler"
         or: "ou"
@@ -361,11 +362,14 @@ fr:
         email_address_used_to_notify: "Adresse courriel utilisée par Publify pour l'envoi d'alertes"
         items_to_display_in_admin_lists: "Nombre d'éléments à afficher dans les listes"
     seo:
-      titles:
+      show:
         cancel: "Annuler"
         or: "ou"
         update_settings: "Mettre les paramètres à jour"
+        global_settings: "Options générales"
         title_settings: "Paramétrage des titres"
+        permalinks: "Permaliens"
+      titles:
         home: "Page d'accueil"
         title_template: "Titre"
         description_template: "Description"
@@ -398,11 +402,7 @@ fr:
         replaced_by_the_archive_date: "Remplacé par la date de l'archive"
         replaced_by_the_content_body: "Remplacé par le corps de texte"
       permalinks:
-        cancel: "Annuler"
-        or: "ou"
-        update_settings: "Mettre les paramètres à jour"
         explain: "Les exemples ci-dessous vous aideront à démarrer. Publify vous offre la possibilité de créer une structure d'URL personnalisée pour vos liens permanents et vos archives. Cela peut vous permettre d'améliorer l'esthétique, l'utilisabilité et la viralité de vos liens."
-        permalinks: "Permaliens"
         permalink_format: "Format des permaliens"
         date_and_title: "Date et titre"
         month_and_title: "Mois et titre"
@@ -415,14 +415,10 @@ fr:
         your_article_month: "Le mois de publication de votre article."
         your_article_day: "Le jour de publication de votre article."
         help_on_permalink_settings: "Aide sur le paramétrage des permaliens"
-      index:
+      general:
         human: "Humain"
         humans_txt: "Humain"
         explain_humans_txt: "Il s'agit d'une initiative pour connaître les personnes derrière un site Internet. Il s'agit d'un fichier TXT qui contient des informations à propos des différentes personnes qui ont contribué à construire le site. http://humanstxt.org/"
-        cancel: "Annuler"
-        or: "ou"
-        update_settings: "Mettre les paramètres à jour"
-        global_settings: "Options générales"
         general_settings: "Options générales"
         meta_keywords: "Meta mots-clés"
         use_meta_keywords: "Utiliser les meta mots-clés"
@@ -564,6 +560,7 @@ fr:
         success_classification: "Classification de %{count} élément(s) confirmée"
         success_deleted: "%{count} élément(s) supprimés"
       index:
+        no_feedback: "Il n'y a pas encore de commentaires, pourquoi ne pas en créer un ? "
         feedback: "Commentaires"
         all: "Tous"
         unapproved_comments: "Commentaires non validés"
@@ -577,7 +574,6 @@ fr:
         comment: "Commentaire"
         article: "Article"
         select_all: "Tout sélectionner"
-        no_feedback: "Il n'y a pas encore de commentaires, pourquoi ne pas en créer un ? "
       article:
         no_feedback: "Il n'y a pas encore de commentaires, pourquoi ne pas en créer un ? "
         comments_for: "Commentaire sur %{title}"
@@ -607,10 +603,11 @@ fr:
         this_comment_by_was_flagged_as_spam: "Ce commentaire de %{author} a été marqué comme spam, %{cancel_link} ?"
         cancel: "Annuler"
     dashboard:
-      index:
+      publify_version:
         error: "Vous avez au moins une version majeure de Publify de retard. Vous devriez immédiatement vous mettre à jour. Téléchargez et installez <a href='http://publify.co/stable.tgz'>la dernière version de Publify</a>"
         warning: "Une nouvelle version de Publify est disponible. Celle-ci contient probablement d'importants correctifs. Pourquoi ne téléchargeriez-vous pas <a href='http://publify.co/stable.tgz'>la dernière version de Publify</a> ?"
         notice: "Une nouvelle version de Publify est disponible. Pouquoi n'installeriez-vous pas <a href='http://publify.co/stable.tgz'>la dernière version de Publify</a> ?"
+      index:
         welcome_back: "Bienvenue, %{user_name} !"
       drafts:
         your_drafts: "Vos brouillons"
@@ -684,8 +681,7 @@ fr:
         success: "Cet article a été créé avec succès"
       update:
         success: "Cet article a été mis à jour avec succès"
-        error: "Erreur, vous n'avez pas les droits requis pour effectuer cette action"
-      edit:
+      access_granted:
         error: "Erreur, vous n'avez pas les droits requis pour effectuer cette action"
       autosave:
         success: "L'article a été sauvergardé avec succès"
@@ -795,7 +791,6 @@ fr:
         articles: "Articles"
         comments: "Commentaires"
         state: "État"
-        user_state: "%{state}"
       form:
         how_to_setup_twitter: "Si vous souhaitez publier des courts statuts sur Twitter, vous devez fournir %{twitter_settings_link} que Twitter vous a envoyé après que vous %{twitter_registration_link}."
         fill_the_twitter_credentials: "fill in the oauth credentials"
@@ -863,13 +858,13 @@ fr:
       reset_my_password: "Me renvoyer un mot de passe"
       notice: "Un courrier vous a été envoyé avec votre nouveau mot de passe"
       error: "Désolé, une erreur vient de se produire"
+    logout:
+      notice: "Vous êtes maintenant déconnecté"
     signup:
       title: "s'identifier"
       username: "Identifiant"
       email: "Email"
       signup: "S'inscrire"
-    logout:
-      notice: "Vous êtes maintenant déconnecté"
   langs:
     da_DK: "Danois"
     de_DE: "Allemand"

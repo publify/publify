@@ -138,14 +138,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :seo, only: [:index], format: false do
-      collection do
-        get 'permalinks'
-        get 'titles'
-        post 'permalinks'
-        post 'update'
-      end
-    end
+    resource :seo, controller: 'seo', only: [:show, :update], format: false
 
     resources :settings, only: [:index], format: false do
       collection do
