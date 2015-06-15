@@ -107,13 +107,11 @@ describe TagsController, 'showing tag "foo"', type: :controller do
 end
 
 describe TagsController, 'showing a non-existant tag', type: :controller do
-  # TODO: Perhaps we can show something like 'Nothing tagged with this tag'?
-  it 'should redirect to main page' do
+  it 'should signal not found' do
     FactoryGirl.create(:blog)
     get 'show', id: 'thistagdoesnotexist'
 
-    expect(response.status).to eq(301)
-    expect(response).to redirect_to(Blog.default.base_url)
+    expect(response.status).to eq(404)
   end
 end
 
