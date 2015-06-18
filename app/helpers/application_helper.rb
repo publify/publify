@@ -41,6 +41,13 @@ module ApplicationHelper
     render_to_string(file: "#{view_root}/content.rhtml", locals: sidebar.to_locals_hash, layout: false)
   end
 
+  def themeable_stylesheet_link_tag(name)
+    src = this_blog.current_theme.path + "/stylesheets/#{name}.css"
+    if File.exist? src
+      stylesheet_link_tag "/stylesheets/theme/#{name}.css"
+    end
+  end
+
   def articles?
     !Article.first.nil?
   end
