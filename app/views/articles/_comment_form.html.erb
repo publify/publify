@@ -1,6 +1,6 @@
-<%= form_tag @article.comment_url do %>
+<%= form_tag @article.comment_url, remote: true do %>
   <div class="comment-box">
-    <div id="errors"></div>
+    <div id="errors" style="display: none"></div>
     <div id="preview" style="display: none"></div>
 
     <a name="respond"></a>

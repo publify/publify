@@ -117,6 +117,8 @@ en:
       your_message: "Your message"
       comment_markup_help: "Comment Markup Help"
       preview_comment: "Preview comment"
+    comment_errors:
+      message: "Oops, something wrong happened, the comment could not be saved."
     article_links:
       comments:
         zero: "no comments"
