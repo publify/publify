@@ -1,4 +1,4 @@
-<%= form_tag url: @article.comment_url, position: :bottom, update: {success: 'commentList'}, loading: "loading()", complete: "complete(request)", failure: "failure(request)", html: {id: "commentform",class: "commentform"} do %>
+<%= form_tag @article.comment_url do %>
   <div class="comment-box">
     <div id="errors"></div>
     <div id="preview" style="display: none"></div>
