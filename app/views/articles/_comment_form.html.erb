@@ -10,7 +10,7 @@
         <td>
           <%= text_field "comment", "author", size: 20 %>
           <small>
-            <%= link_to '#', onclick: "$('.optional_field').toggle();return false" do %>
+            <%= link_to '#', onclick: "$('.optional_field').fadeToggle();return false" do %>
               (<%= t(".leave_url_email") %> &#187;)
             <% end %>
           </small>
