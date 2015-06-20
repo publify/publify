@@ -1,3 +1,4 @@
 $('#errors').hide().html('');
 var comment = "<%= j render @comment %>";
 $('#commentList').prepend(comment);
+$('#comment_form')[0].reset();
