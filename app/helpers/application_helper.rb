@@ -49,15 +49,15 @@ module ApplicationHelper
   end
 
   def articles?
-    !Article.first.nil?
+    Article.any?
   end
 
   def trackbacks?
-    !Trackback.first.nil?
+    Trackback.any?
   end
 
   def comments?
-    !Comment.first.nil?
+    Comment.any?
   end
 
   def render_to_string(*args, &block)
