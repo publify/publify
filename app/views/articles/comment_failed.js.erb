@@ -1,2 +1,3 @@
 var message = "<%= j render 'articles/comment_errors', comment: @comment %>";
-$('#errors').html(message).fadeIn();
+$('#preview').hide();
+$('#errors').hide().html(message).fadeIn();
