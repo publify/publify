@@ -50,3 +50,8 @@ h1 a:hover, h2 a:hover {
 .footer {
   clear: both;
 }
+
+/* Admin tools */
+.admintools {
+  float: right;
+}
