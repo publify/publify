@@ -3,7 +3,7 @@ class ArticlesController < ContentController
   before_action :auto_discovery_feed, only: [:show, :index]
   before_action :verify_config
 
-  layout :theme_layout, except: [:comment_preview, :trackback]
+  layout :theme_layout, except: [:trackback]
 
   cache_sweeper :blog_sweeper
   caches_page :index, :archives, :read, :view_page, :redirect, if: proc { |c| c.request.query_string == '' }
@@ -106,18 +106,6 @@ class ArticlesController < ContentController
     @page_title = this_blog.archives_title_template.to_title(@articles, this_blog, params)
     @keywords = this_blog.meta_keywords
     @description = this_blog.archives_desc_template.to_title(@articles, this_blog, params)
-  end
-
-  # FIXME: Belongs in CommentsController
-  def comment_preview
-    comment_params = params[:comment] || {}
-    if comment_params[:body].blank?
-      render nothing: true
-      return
-    end
-
-    headers['Content-Type'] = 'text/html; charset=utf-8'
-    @comment = Comment.new(comment_params)
   end
 
   def tag
