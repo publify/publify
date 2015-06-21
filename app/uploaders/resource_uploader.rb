@@ -1,14 +1,4 @@
 class ResourceUploader < CarrierWave::Uploader::Base
-  # To handle Base64 uploads...
-  class FilelessIO < StringIO
-    attr_accessor :original_filename
-
-    def initialize(data, filename)
-      super(data)
-      @original_filename = filename
-    end
-  end
-
   include CarrierWave::MiniMagick
 
   def store_dir
