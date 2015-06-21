@@ -17,10 +17,9 @@ class CommentsController < FeedbackController
     if recaptcha_ok_for?(@comment) && @comment.save
       partial = '/articles/comment'
     end
-    if request.xhr?
-      render partial: partial, object: @comment
-    else
-      redirect_to URI.parse(@article.permalink_url).path
+    respond_to do |format|
+      format.js { render partial }
+      format.html { redirect_to URI.parse(@article.permalink_url).path }
     end
   end
 
