@@ -9,7 +9,7 @@ h1 a, h2 a {
 h1 a:hover, h2 a:hover {
   text-decoration: underline;
 }
-.header, .footer {
+div.header, div.footer {
   text-align: center;
 }
 #errors {
@@ -22,32 +22,32 @@ h1 a:hover, h2 a:hover {
 /*
  * Simple horizontal layout based on a 20 4 20 4 20 grid
  */
-.container {
+div.container {
   max-width: 44rem;
   margin-left: auto;
   margin-right: auto;
 }
-.sidebar {
+div.sidebar {
   max-width: 20rem;
   display: inline-block;
 }
-.content, .sidebar {
+div.content, div.sidebar {
   margin-bottom: 2rem;
 }
 
 @media(min-width: 68rem) {
-  .container {
+  div.container {
     max-width: 68rem;
   }
-  .content {
+  div.content {
     width: 44rem;
     float: left;
   }
-  .sidebar {
+  div.sidebar {
     margin-left: 4rem;
   }
 }
-.footer {
+div.footer {
   clear: both;
 }
 
