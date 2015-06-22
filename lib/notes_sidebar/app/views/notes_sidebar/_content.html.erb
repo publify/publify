@@ -1,10 +1,4 @@
 <% unless sidebar.notes.blank? %>
-<style type='text/css'>
-.statuses_sidebar {
-  border-bottom: #eee 1px solid;
-  font-size: 0.9em;
-}
-</style>
   <h3 class="sidebar-title"><%= sidebar.title %></h3>
   <div class="sidebar-body">
     <% sidebar.notes.each do |note| %>
