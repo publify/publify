@@ -1,11 +1,13 @@
 <h3 class="sidebar-title"><%= sidebar.title %></h3>
-<ul class='popular_sidebar'>
-  <% if sidebar.popular.empty? || sidebar.popular.size == 0 %>
-  <li class='alert'><%= t(".nothing_to_show_yet") %> !</li>
-  <% else %>
-    <% sidebar.popular.each do |article| %>
-    <%= sprintf("%s (%s)", link_to_permalink(article, article.title), t(".comments", count: article.comment_count)) %>
+<div class="sidemenu-content">
+  <ul class="popular_sidebar">
+    <% if sidebar.popular.empty? || sidebar.popular.size == 0 %>
+      <li class="alert"><%= t(".nothing_to_show_yet") %> !</li>
+    <% else %>
+      <% sidebar.popular.each do |article| %>
+        <%= sprintf("%s (%s)", link_to_permalink(article, article.title), t(".comments", count: article.comment_count)) %>
+      <% end %>
     <% end %>
-  <% end %>
-  </li>
-</ul>
+    </li>
+  </ul>
+</div>
