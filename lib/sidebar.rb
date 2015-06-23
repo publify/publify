@@ -218,7 +218,6 @@ class Sidebar < ActiveRecord::Base
     Sidebar.transaction do
       Sidebar.all.each do |s|
         s.active_position = s.staged_position
-        s.staged_position = nil
         s.save!
       end
     end
