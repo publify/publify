@@ -30,16 +30,6 @@ class Admin::SettingsController < Admin::BaseController
     end
   end
 
-  def update_database
-    @current_version = migrator.current_schema_version
-    @needed_migrations = migrator.pending_migrations
-  end
-
-  def migrate
-    migrator.migrate
-    redirect_to update_database_admin_settings_url
-  end
-
   private
 
   VALID_ACTIONS = %w(index write feedback display)
@@ -58,9 +48,5 @@ class Admin::SettingsController < Admin::BaseController
 
   def load_settings
     @setting = this_blog
-  end
-
-  def migrator
-    @migrator ||= Migrator.new
   end
 end

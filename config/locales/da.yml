@@ -233,6 +233,19 @@ da:
         choose_a_theme: "Vælg et tema"
         use_this_theme: "Use this theme"
         active_theme: "%{name} - Aktiv tema"
+    migrations:
+      show:
+        database_migration: "Database migration"
+        information: "Information"
+        current_database_version: "Nuværende database version"
+        you_are_up_to_date: "Du er up to date!"
+        migrations: "Migrations"
+        migration_pending:
+          one: "There is one migration pending."
+          other: "There are %{count} migrations pending."
+        needed_migrations: "Manglende migrations"
+        update_database_now: "Updatér database nu"
+        may_take_a_moment: "Det varer et øjeblik"
     profiles:
       index:
         your_profile: "Din profil"
@@ -333,18 +346,6 @@ da:
         publish_on_twitter: "Publish on Twitter"
         twitter_consumer_key: "Twitter consumer key"
         twitter_consumer_secret: "Twitter consumer secret"
-      update_database:
-        database_migration: "Database migration"
-        information: "Information"
-        current_database_version: "Nuværende database version"
-        you_are_up_to_date: "Du er up to date!"
-        migrations: "Migrations"
-        migration_pending:
-          one: "There is one migration pending."
-          other: "There are %{count} migrations pending."
-        needed_migrations: "Manglende migrations"
-        update_database_now: "Updatér database nu"
-        may_take_a_moment: "Det varer et øjeblik"
       index:
         cancel: "Anuller"
         or: "or"

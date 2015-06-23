@@ -139,12 +139,12 @@ Rails.application.routes.draw do
     end
 
     resource :seo, controller: 'seo', only: [:show, :update], format: false
+    resource :migrations, only: [:show, :update]
 
     resources :settings, only: [:index], format: false do
       collection do
         get 'display'
         get 'feedback'
-        get 'update_database'
         get 'write'
         post 'migrate'
         post 'update'

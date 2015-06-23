@@ -233,6 +233,19 @@ ru:
         choose_a_theme: "Choose a theme"
         use_this_theme: "Use this theme"
         active_theme: "%{name} - Active theme"
+    migrations:
+      show:
+        database_migration: "Database migration"
+        information: "Information"
+        current_database_version: "Current database version"
+        you_are_up_to_date: "You are up to date!"
+        migrations: "Migrations"
+        migration_pending:
+          one: "There is one migration pending."
+          other: "There are %{count} migrations pending."
+        needed_migrations: "Needed migrations"
+        update_database_now: "Update database now"
+        may_take_a_moment: "may take a moment"
     profiles:
       index:
         your_profile: "Ваш профиль"
@@ -333,18 +346,6 @@ ru:
         publish_on_twitter: "Publish on Twitter"
         twitter_consumer_key: "Twitter consumer key"
         twitter_consumer_secret: "Twitter consumer secret"
-      update_database:
-        database_migration: "Database migration"
-        information: "Information"
-        current_database_version: "Current database version"
-        you_are_up_to_date: "You are up to date!"
-        migrations: "Migrations"
-        migration_pending:
-          one: "There is one migration pending."
-          other: "There are %{count} migrations pending."
-        needed_migrations: "Needed migrations"
-        update_database_now: "Update database now"
-        may_take_a_moment: "may take a moment"
       index:
         cancel: "Отменить"
         or: "or"

@@ -233,6 +233,19 @@ he-IL:
         choose_a_theme: "בחר עיצוב"
         use_this_theme: "Use this theme"
         active_theme: "%{name} - עיצוב פעיל"
+    migrations:
+      show:
+        database_migration: "עדכוני בסיס הנתונים"
+        information: "מידע"
+        current_database_version: "גרסת בסיס הנתונים הנוכחית"
+        you_are_up_to_date: "בסיס הנתונים שלך מעודכן !"
+        migrations: "Migrations"
+        migration_pending:
+          one: "There is one migration pending."
+          other: "There are %{count} migrations pending."
+        needed_migrations: "עדכונים נדרשים"
+        update_database_now: "עדכן את בסיס הנתונים"
+        may_take_a_moment: "ייתכן כי ייקח זמן מה"
     profiles:
       index:
         your_profile: "Your profile"
@@ -333,18 +346,6 @@ he-IL:
         publish_on_twitter: "Publish on Twitter"
         twitter_consumer_key: "Twitter consumer key"
         twitter_consumer_secret: "Twitter consumer secret"
-      update_database:
-        database_migration: "עדכוני בסיס הנתונים"
-        information: "מידע"
-        current_database_version: "גרסת בסיס הנתונים הנוכחית"
-        you_are_up_to_date: "בסיס הנתונים שלך מעודכן !"
-        migrations: "Migrations"
-        migration_pending:
-          one: "There is one migration pending."
-          other: "There are %{count} migrations pending."
-        needed_migrations: "עדכונים נדרשים"
-        update_database_now: "עדכן את בסיס הנתונים"
-        may_take_a_moment: "ייתכן כי ייקח זמן מה"
       index:
         cancel: "בטל"
         or: "or"

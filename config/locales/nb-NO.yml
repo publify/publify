@@ -233,6 +233,19 @@ nb-NO:
         choose_a_theme: "Velg et tema"
         use_this_theme: "Velg dette temaet"
         active_theme: "%{name} - Aktivt tema"
+    migrations:
+      show:
+        database_migration: "Databaseoppgradering"
+        information: "Informasjon"
+        current_database_version: "Nåværende databaseversjon"
+        you_are_up_to_date: "Du er oppdatert!"
+        migrations: "Oppgraderinger"
+        migration_pending:
+          one: "Du har en ventende databaseoppgradering."
+          other: "Det er %{count} ventende databaseoppgraderinger."
+        needed_migrations: "Manglende oppgraderinger"
+        update_database_now: "Oppdater database nå"
+        may_take_a_moment: "kan ta et øyeblikk"
     profiles:
       index:
         your_profile: "Din profil"
@@ -333,18 +346,6 @@ nb-NO:
         publish_on_twitter: "Publiser til Twitter"
         twitter_consumer_key: "Twitter forbruker/API-nøkkel"
         twitter_consumer_secret: "Twitter forbruker/API-hemmelighet"
-      update_database:
-        database_migration: "Databaseoppgradering"
-        information: "Informasjon"
-        current_database_version: "Nåværende databaseversjon"
-        you_are_up_to_date: "Du er oppdatert!"
-        migrations: "Oppgraderinger"
-        migration_pending:
-          one: "Du har en ventende databaseoppgradering."
-          other: "Det er %{count} ventende databaseoppgraderinger."
-        needed_migrations: "Manglende oppgraderinger"
-        update_database_now: "Oppdater database nå"
-        may_take_a_moment: "kan ta et øyeblikk"
       index:
         cancel: "Avbryt"
         or: "eller"
@@ -897,3 +898,4 @@ nb-NO:
   date:
     month_names: [~, Januar, Februar, Mars, April, Mai, Juni, Juli, August, September, Oktober, November, Desember]
     abbr_month_names: [~, Jan, Feb, Mar, Apr, Mai, Jun, Jul, Aug, Sep, Okt, Nov, Des]
+

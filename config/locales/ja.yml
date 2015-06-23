@@ -233,6 +233,19 @@ ja:
         choose_a_theme: "テーマの選択"
         use_this_theme: "Use this theme"
         active_theme: "%{name} - 現在のテーマ"
+    migrations:
+      show:
+        database_migration: "データベースマイグレーション"
+        information: "インフォメーション"
+        current_database_version: "現在のデータベースのバージョン"
+        you_are_up_to_date: "最新です!"
+        migrations: "Migrations"
+        migration_pending:
+          one: "There is one migration pending."
+          other: "There are %{count} migrations pending."
+        needed_migrations: "マイグレーションが必要です"
+        update_database_now: "データベースを今すぐ更新"
+        may_take_a_moment: "少しお待ちください"
     profiles:
       index:
         success: "プロフィールが更新されました"
@@ -333,18 +346,6 @@ ja:
         publish_on_twitter: "Publish on Twitter"
         twitter_consumer_key: "Twitter consumer key"
         twitter_consumer_secret: "Twitter consumer secret"
-      update_database:
-        database_migration: "データベースマイグレーション"
-        information: "インフォメーション"
-        current_database_version: "現在のデータベースのバージョン"
-        you_are_up_to_date: "最新です!"
-        migrations: "Migrations"
-        migration_pending:
-          one: "There is one migration pending."
-          other: "There are %{count} migrations pending."
-        needed_migrations: "マイグレーションが必要です"
-        update_database_now: "データベースを今すぐ更新"
-        may_take_a_moment: "少しお待ちください"
       index:
         cancel: "キャンセル"
         or: "or"

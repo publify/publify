@@ -233,6 +233,19 @@ pl:
         choose_a_theme: "Choose a theme"
         use_this_theme: "Use this theme"
         active_theme: "%{name} - Temat aktywny"
+    migrations:
+      show:
+        database_migration: "Migruj bazę danych"
+        information: "Informacja"
+        current_database_version: "Aktualna wersja bazy danych"
+        you_are_up_to_date: "Wszystko jest aktualne!"
+        migrations: "Migrations"
+        migration_pending:
+          one: "There is one migration pending."
+          other: "There are %{count} migrations pending."
+        needed_migrations: "Potrzebne migracje"
+        update_database_now: "Aktualizuj bazę danych"
+        may_take_a_moment: "może zająć dłuższą chwilę"
     profiles:
       index:
         your_profile: "Your profile"
@@ -333,18 +346,6 @@ pl:
         publish_on_twitter: "Publish on Twitter"
         twitter_consumer_key: "Twitter consumer key"
         twitter_consumer_secret: "Twitter consumer secret"
-      update_database:
-        database_migration: "Migruj bazę danych"
-        information: "Informacja"
-        current_database_version: "Aktualna wersja bazy danych"
-        you_are_up_to_date: "Wszystko jest aktualne!"
-        migrations: "Migrations"
-        migration_pending:
-          one: "There is one migration pending."
-          other: "There are %{count} migrations pending."
-        needed_migrations: "Potrzebne migracje"
-        update_database_now: "Aktualizuj bazę danych"
-        may_take_a_moment: "może zająć dłuższą chwilę"
       index:
         cancel: "Anuluj"
         or: "or"

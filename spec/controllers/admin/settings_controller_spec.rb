@@ -30,11 +30,6 @@ describe Admin::SettingsController, type: :controller do
     it { expect(response).to render_template('feedback') }
   end
 
-  describe '#update"database' do
-    before(:each) { get :update_database }
-    it { expect(response).to render_template('update_database') }
-  end
-
   describe '#update' do
     before do
       post :update, setting: { blog_name: 'New name'}

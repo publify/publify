@@ -233,6 +233,19 @@ zh-TW:
         choose_a_theme: "選擇主題"
         use_this_theme: "Use this theme"
         active_theme: "%{name} - 執行中主題"
+    migrations:
+      show:
+        database_migration: "資料庫移動"
+        information: "資訊"
+        current_database_version: "當前的資料庫版本"
+        you_are_up_to_date: "你現在是最新的狀態"
+        migrations: "Migrations"
+        migration_pending:
+          one: "There is one migration pending."
+          other: "There are %{count} migrations pending."
+        needed_migrations: "必要的移動"
+        update_database_now: "現在更新資料庫"
+        may_take_a_moment: "需要稍等一下"
     profiles:
       index:
         success: "User details updated"
@@ -330,18 +343,6 @@ zh-TW:
         publish_on_twitter: "Publish on Twitter"
         twitter_consumer_key: "Twitter consumer key"
         twitter_consumer_secret: "Twitter consumer secret"
-      update_database:
-        database_migration: "資料庫移動"
-        information: "資訊"
-        current_database_version: "當前的資料庫版本"
-        you_are_up_to_date: "你現在是最新的狀態"
-        migrations: "Migrations"
-        migration_pending:
-          one: "There is one migration pending."
-          other: "There are %{count} migrations pending."
-        needed_migrations: "必要的移動"
-        update_database_now: "現在更新資料庫"
-        may_take_a_moment: "需要稍等一下"
       index:
         cancel: "取消"
         or: "or"
