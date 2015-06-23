@@ -3,8 +3,9 @@ require 'rails_helper'
 describe Admin::SettingsController, type: :controller do
   render_views
 
+  let!(:blog) { create(:blog) }
+
   before(:each) do
-    create(:blog)
     alice = create(:user, :as_admin, login: 'alice')
     request.session = { user: alice.id }
   end
@@ -14,23 +15,38 @@ describe Admin::SettingsController, type: :controller do
     it { expect(response).to render_template('index') }
   end
 
-  describe 'write action' do
+  describe '#write' do
     before(:each) { get :write }
     it { expect(response).to render_template('write') }
   end
 
-  describe 'display action' do
+  describe '#display' do
     before(:each) { get :display }
     it { expect(response).to render_template('display') }
   end
 
-  describe 'feedback action' do
+  describe '#feedback' do
     before(:each) { get :feedback }
     it { expect(response).to render_template('feedback') }
   end
 
-  describe 'update database action' do
+  describe '#update"database' do
     before(:each) { get :update_database }
     it { expect(response).to render_template('update_database') }
+  end
+
+  describe '#update' do
+    before do
+      post :update, setting: { blog_name: 'New name'}
+    end
+
+    it 'updates the settings' do
+      expect(blog.reload.blog_name).to eq 'New name'
+    end
+
+    it 'redirects to :index by default' do
+      # FIXME: Make this a named route
+      expect(response).to redirect_to('/admin/settings')
+    end
   end
 end

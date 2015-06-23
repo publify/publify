@@ -19,7 +19,8 @@ class Admin::SettingsController < Admin::BaseController
   end
 
   def update
-    if @estting.update_attributes(params[:setting])
+    load_settings
+    if @setting.update_attributes(settings_params)
       flash[:success] = I18n.t('admin.settings.update.success')
       redirect_to action: action_param
     else
@@ -43,11 +44,15 @@ class Admin::SettingsController < Admin::BaseController
 
   VALID_ACTIONS = %w(index write feedback display)
 
+  def settings_params
+    @settings_params ||= params.require(:setting).permit!
+  end
+
   def action_param
     @action_param ||=
       begin
         value = params[:from]
-        VALID_SECTIONS.include?(value) ? value : 'index'
+        VALID_ACTIONS.include?(value) ? value : 'index'
       end
   end
 
