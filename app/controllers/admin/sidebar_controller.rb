@@ -60,7 +60,7 @@ class Admin::SidebarController < Admin::BaseController
     @ordered_sidebars = Sidebar.ordered_sidebars
     @available = Sidebar.available_sidebars
     respond_to do |format|
-      format.json do
+      format.js do
         render json: { html: render_to_string('admin/sidebar/_config.html.erb', layout: false) }
       end
       format.html do
