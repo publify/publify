@@ -154,7 +154,7 @@ Rails.application.routes.draw do
     resources :sidebar, only: [:index, :update, :destroy] do
       collection do
         put :publish
-        put :sortable
+        post :sortable
       end
     end
 
