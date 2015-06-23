@@ -6,7 +6,7 @@ var bind_sortable = function() {
 
       $.ajax({
         data: data,
-        type: 'PUT',
+        type: 'POST',
         dataType: 'json',
         url: '/admin/sidebar/sortable',
         statusCode: {
