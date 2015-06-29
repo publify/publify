@@ -1,32 +1,34 @@
-<h3><%= t(".syndicate")%></h3>
-<ul>
-  <%- if sidebar.articles %>
-    <li>
-    <a href="<%= url_for controller: 'articles', action: 'index', :format => sidebar.format_strip %>" title="Articles feed">
-      <%= t(".articles")%>
-    </a>
-    </li>
-  <% end %>
-  <%- if sidebar.comments %>
-    <li>
-    <a href="<%= admin_comments_url(:format=>sidebar.format_strip) %>" title="Comments feed">
-      <%= t(".comments")%>
-    </a>
-    </li>
-  <% end %>
-  <%- if sidebar.trackbacks -%>
-    <li>
-    <a href="<%= url_for controller: 'xml', action: 'feed', format: sidebar.format_strip, type: 'trackbacks' %>" title="Trackbacks feed">
-      <%= t(".trackbacks")%>
-    </a>
-    </li>
-  <% end %>
-  <%- if sidebar.tag_feeds and controller.controller_name == 'tags' and controller.action_name == 'show' %>
-    <% format = (sidebar.format_strip == 'rss') ? @auto_discovery_url_rss : @auto_discovery_url_atom  %>
-    <%= content_tag(:li, t(".tag",  link: link_to(@grouping.display_name, format))) %>
-  <% end %>
-  <%- if sidebar.article_comments and controller.controller_name == 'redirect' %>
-    <% format = (sidebar.format_strip == 'rss') ? @auto_discovery_url_rss : @auto_discovery_url_atom  %>
-    <%= content_tag(:li, link_to(@article.title, format)) %>
-  <% end %>
-</ul>
+<h3 class="sidebar-title"><%= t(".syndicate")%></h3>
+<div class="sidebar-body">
+  <ul>
+    <% if sidebar.articles %>
+      <li>
+        <a href="<%= url_for controller: 'articles', action: 'index', :format => sidebar.format_strip %>" title="Articles feed">
+          <%= t(".articles") %>
+        </a>
+      </li>
+    <% end %>
+    <% if sidebar.comments %>
+      <li>
+        <a href="<%= admin_comments_url(:format=>sidebar.format_strip) %>" title="Comments feed">
+          <%= t(".comments") %>
+        </a>
+      </li>
+    <% end %>
+    <% if sidebar.trackbacks %>
+      <li>
+        <a href="<%= url_for controller: 'xml', action: 'feed', format: sidebar.format_strip, type: 'trackbacks' %>" title="Trackbacks feed">
+          <%= t(".trackbacks")%>
+        </a>
+      </li>
+    <% end %>
+    <% if sidebar.tag_feeds and controller.controller_name == 'tags' and controller.action_name == 'show' %>
+      <% format = (sidebar.format_strip == 'rss') ? @auto_discovery_url_rss : @auto_discovery_url_atom  %>
+      <%= content_tag(:li, t(".tag",  link: link_to(@grouping.display_name, format))) %>
+    <% end %>
+    <% if sidebar.article_comments and controller.controller_name == 'redirect' %>
+      <% format = (sidebar.format_strip == 'rss') ? @auto_discovery_url_rss : @auto_discovery_url_atom  %>
+      <%= content_tag(:li, link_to(@article.title, format)) %>
+    <% end %>
+  </ul>
+</div>

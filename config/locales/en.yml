@@ -117,6 +117,8 @@ en:
       your_message: "Your message"
       comment_markup_help: "Comment Markup Help"
       preview_comment: "Preview comment"
+    comment_errors:
+      message: "Oops, something wrong happened, the comment could not be saved."
     article_links:
       comments:
         zero: "no comments"
@@ -233,6 +235,19 @@ en:
         choose_a_theme: "Choose a theme"
         use_this_theme: "Use this theme"
         active_theme: "%{name} - Active theme"
+    migrations:
+      show:
+        database_migration: "Database migration"
+        information: "Information"
+        current_database_version: "Current database version"
+        you_are_up_to_date: "You are up to date!"
+        migrations: "Migrations"
+        migration_pending:
+          one: "There is one migration pending."
+          other: "There are %{count} migrations pending."
+        needed_migrations: "Needed migrations"
+        update_database_now: "Update database now"
+        may_take_a_moment: "may take a moment"
     profiles:
       index:
         your_profile: "Your profile"
@@ -333,18 +348,6 @@ en:
         publish_on_twitter: "Publish on Twitter"
         twitter_consumer_key: "Twitter consumer key"
         twitter_consumer_secret: "Twitter consumer secret"
-      update_database:
-        database_migration: "Database migration"
-        information: "Information"
-        current_database_version: "Current database version"
-        you_are_up_to_date: "You are up to date!"
-        migrations: "Migrations"
-        migration_pending:
-          one: "There is one migration pending."
-          other: "There are %{count} migrations pending."
-        needed_migrations: "Needed migrations"
-        update_database_now: "Update database now"
-        may_take_a_moment: "may take a moment"
       index:
         cancel: "Cancel"
         or: "or"
@@ -362,11 +365,14 @@ en:
         email_address_used_to_notify: "Email address used by Publify to send notifications"
         items_to_display_in_admin_lists: "Items to display in admin lists"
     seo:
-      titles:
+      show:
         cancel: "Cancel"
         or: "or"
         update_settings: "Update settings"
+        global_settings: "Global settings"
         title_settings: "Title settings"
+        permalinks: "Permalinks"
+      titles:
         home: "Home"
         title_template: "Title template"
         description_template: "Description template"
@@ -399,11 +405,7 @@ en:
         replaced_by_the_archive_date: "Replaced by the archive date"
         replaced_by_the_content_body: "Replaced by the content body"
       permalinks:
-        cancel: "Cancel"
-        or: "or"
-        update_settings: "Update settings"
         explain: "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links."
-        permalinks: "Permalinks"
         permalink_format: "Permalink format"
         date_and_title: "Date and title"
         month_and_title: "Month and title"
@@ -416,14 +418,10 @@ en:
         your_article_month: "your article month of publication."
         your_article_day: "your article day of publication."
         help_on_permalink_settings: "Help on permalink settings"
-      index:
+      general:
         human: "Human"
         humans_txt: "Human"
         explain_humans_txt: "It's an initiative for knowing the people behind a website. It's a TXT file that contains information about the different people who have contributed to building the website. http://humanstxt.org/"
-        cancel: "Cancel"
-        or: "or"
-        update_settings: "Update settings"
-        global_settings: "Global settings"
         general_settings: "General settings"
         meta_keywords: "Meta keywords"
         use_meta_keywords: "Use meta keywords"

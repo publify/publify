@@ -1,7 +1,7 @@
-<%- if @comments.size == 0 %>
+<% if @comments.size == 0 %>
   <li class='alert alert-info'><%= t(".no_comments_yet") %></li>
-<%- else %>
-  <%- for comment in @comments %>
+<% else %>
+  <% for comment in @comments %>
     <li id='feedback_<%= comment.id %>'>
     <%= avatar_tag(:email => comment.email, :url => comment.url, class: 'pull-left img-circle gravatar') %>
     <h5>

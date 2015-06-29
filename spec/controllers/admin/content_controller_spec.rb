@@ -452,38 +452,19 @@ describe Admin::ContentController, type: :controller do
     end
 
     describe '#destroy' do
-      context 'with post method' do
-        context 'with an article from other user' do
-          let(:article) { create(:article, user: create(:user, login: 'other_user')) }
+      context 'with an article from other user' do
+        let(:article) { create(:article, user: create(:user, login: 'other_user')) }
 
-          before(:each) { post :destroy, id: article.id }
-          it { expect(response).to redirect_to(action: 'index') }
-          it { expect(Article.count).to eq(1) }
-        end
-
-        context 'with an article from user' do
-          let(:article) { create(:article, user: user) }
-          before(:each) { post :destroy, id: article.id }
-          it { expect(response).to redirect_to(action: 'index') }
-          it { expect(Article.count).to eq(0) }
-        end
+        before(:each) { delete :destroy, id: article.id }
+        it { expect(response).to redirect_to(action: 'index') }
+        it { expect(Article.count).to eq(1) }
       end
 
-      context 'with get method' do
-        context 'with an article from other user' do
-          let(:article) { create(:article, user: create(:user, login: 'other_user')) }
-
-          before(:each) { get :destroy, id: article.id }
-          it { expect(response).to redirect_to(action: 'index') }
-          it { expect(Article.count).to eq(1) }
-        end
-
-        context 'with an article from user' do
-          let(:article) { create(:article, user: user) }
-          before(:each) { get :destroy, id: article.id }
-          it { expect(response).to render_template('admin/shared/destroy') }
-          it { expect(Article.count).to eq(1) }
-        end
+      context 'with an article from user' do
+        let(:article) { create(:article, user: user) }
+        before(:each) { delete :destroy, id: article.id }
+        it { expect(response).to redirect_to(action: 'index') }
+        it { expect(Article.count).to eq(0) }
       end
     end
   end

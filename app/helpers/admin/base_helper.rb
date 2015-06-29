@@ -55,7 +55,7 @@ module Admin::BaseHelper
   def subtabs_for(current_module)
     output = ''
     AccessControl.submenus_for(current_user.profile_label, current_module).each do |m|
-      if m.current_url?(params[:controller], params[:action])
+      if current_page? m.url
         output << content_tag(:li, link_to(m.name, '#'), class: 'active')
       else
         output << content_tag(:li, link_to(m.name, m.url))
@@ -75,25 +75,25 @@ module Admin::BaseHelper
   end
 
   def text_filter_options
-    TextFilter.all.collect do |filter|
+    TextFilter.all.map do |filter|
       [filter.description, filter]
     end
   end
 
   def text_filter_options_with_id
-    TextFilter.all.collect do |filter|
+    TextFilter.all.map do |filter|
       [filter.description, filter.id]
     end
   end
 
   def plugin_options(kind)
-    PublifyPlugins::Keeper.available_plugins(kind).collect do |plugin|
+    PublifyPlugins::Keeper.available_plugins(kind).map do |plugin|
       [plugin.name, plugin.to_s]
     end
   end
 
   def show_actions(item)
-    content_tag(:div,  class: 'action', style: '') do
+    content_tag(:div, class: 'action', style: '') do
       [button_to_edit(item),
        button_to_delete(item),
        button_to_short_url(item)].join(' ').html_safe
@@ -125,7 +125,13 @@ module Admin::BaseHelper
   end
 
   def button_to_delete(item)
-    link_to(content_tag(:span, '', class: 'glyphicon glyphicon-trash'), { action: 'destroy', id: item.id }, { class: 'btn btn-danger btn-xs btn-action' })
+    confirm_text = t("admin.shared.destroy.are_you_sure",
+                     element: item.class.name.downcase)
+    link_to(
+      content_tag(:span, '', class: 'glyphicon glyphicon-trash'),
+      { action: 'destroy', id: item.id },
+      { class: 'btn btn-danger btn-xs btn-action', method: :delete,
+        data: { confirm: confirm_text } })
   end
 
   def button_to_short_url(item)

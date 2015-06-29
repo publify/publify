@@ -28,6 +28,6 @@ class Admin::CacheController < Admin::BaseController
     rescue
       flash[:error] = t('admin.cache.destroy.error')
     end
-    redirect_to action: :show
+    redirect_to admin_cache_url
   end
 end

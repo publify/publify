@@ -27,6 +27,7 @@ AccessControl.map require: [ :admin, :publisher, :contributor ]  do |map|
   map.permission "admin/dashboard"
   map.permission "admin/textfilters"
   map.permission "admin/profiles"
+  map.permission "admin/migrations"
 
   # FIXME: For previews, during production 'previews' is needed, during
   # test, 'articles' is needed. Proposed solution: move previews to
@@ -80,9 +81,9 @@ AccessControl.map require: [ :admin, :publisher, :contributor ]  do |map|
   end
 
   map.project_module :seo, nil do |project|
-    project.menu    "SEO",  { controller: "admin/seo", action: "index" }
-    project.submenu "Global SEO settings",  { controller: "admin/seo", action: "index" }
-    project.submenu "Permalinks",           { controller: "admin/seo", action: "permalinks" }
-    project.submenu "Titles",               { controller: "admin/seo", action: "titles" }
+    project.menu    "SEO",  { controller: "admin/seo", action: "show" }
+    project.submenu "Global SEO settings",  { controller: "admin/seo", action: "show", section: 'general' }
+    project.submenu "Permalinks",           { controller: "admin/seo", action: 'show', section: "permalinks" }
+    project.submenu "Titles",               { controller: "admin/seo", action: 'show', section: "titles" }
   end
 end

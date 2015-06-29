@@ -1,19 +1,15 @@
 <% unless sidebar.notes.blank? %>
-<style type='text/css'>
-.statuses_sidebar {
-  border-bottom: #eee 1px solid;
-  font-size: 0.9em;
-}
-</style>
-<h3 class="sidebar-title"><%= sidebar.title %></h3>
-<% sidebar.notes.each do |note| %>
-  <div class='statuses_sidebar'>
-  <%= author_picture note %>
-  <%= note.html(:body) %>
-  <%= link_to_permalink(note, display_date_and_time(note.published_at)) %>
-  <%- unless note.twitter_id.blank? %>
-    <%=  " | #{link_to(t(".view_on_twitter"), note.twitter_url, {class: 'u-syndication', rel: 'syndication'})}" %>
-<%- end %>
-</div>
-<%- end %>
-<%- end %>
+  <h3 class="sidebar-title"><%= sidebar.title %></h3>
+  <div class="sidebar-body">
+    <% sidebar.notes.each do |note| %>
+      <div class="statuses_sidebar">
+        <%= author_picture note %>
+        <%= note.html(:body) %>
+        <%= link_to_permalink(note, display_date_and_time(note.published_at)) %>
+        <% unless note.twitter_id.blank? %>
+          <%=  " | #{link_to(t(".view_on_twitter"), note.twitter_url, {class: 'u-syndication', rel: 'syndication'})}" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

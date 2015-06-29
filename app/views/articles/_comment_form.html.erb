@@ -1,6 +1,6 @@
-<%= form_tag url: @article.comment_url, position: :bottom, update: {success: 'commentList'}, loading: "loading()", complete: "complete(request)", failure: "failure(request)", html: {id: "commentform",class: "commentform"} do %>
+<%= form_tag @article.comment_url, id: 'comment_form', remote: true do %>
   <div class="comment-box">
-    <div id="errors"></div>
+    <div id="errors" style="display: none"></div>
     <div id="preview" style="display: none"></div>
 
     <a name="respond"></a>
@@ -10,17 +10,17 @@
         <td>
           <%= text_field "comment", "author", size: 20 %>
           <small>
-            <%= link_to '#', onclick: "$('.optional_field').toggle()" do %>
+            <%= link_to '#', onclick: "$('.optional_field').fadeToggle();return false" do %>
               (<%= t(".leave_url_email") %> &#187;)
-            <%- end %>
+            <% end %>
           </small>
         </td>
       </tr>
-      <tr class="optional_field">
+      <tr class="optional_field" style="display: none">
         <td><p><label for="comment_url"><%= t(".your_blog")%></label></p></td>
         <td> <%= text_field "comment", "url" %></td>
       </tr>
-      <tr class="optional_field">
+      <tr class="optional_field" style="display: none">
         <td><p><label for="comment_email"><%= t(".your_email")%></label></p></td>
         <td> <%= text_field "comment", "email" %></td>
       </tr>
@@ -38,9 +38,8 @@
       <% end %>
       <tr>
         <td colspan="2" id="frm-btns">
-          <span id="comment_loading" style="display:none;"><%= image_tag "spinner.gif" %></span>&nbsp;&nbsp;
           <%= markup_help_popup TextFilter.find_by_name(this_blog.comment_text_filter), t(".comment_markup_help") %>
-          <a href="#" onclick="new Ajax.Updater('preview', '<%= @article.preview_comment_url %>',  {asynchronous:true, evalScripts:true, parameters:Form.serialize('commentform'), onComplete:function(request){Element.show('preview')}}); return false;"><%= t(".preview_comment")%></a>
+          <a href="#" onclick="$.post('<%= @article.preview_comment_url %>', $('#comment_form').serialize());return false"><%= t(".preview_comment")%></a>
           <input type="submit" name="submit" id="form-submit-button" value="submit" class="button">
         </td>
       </tr>

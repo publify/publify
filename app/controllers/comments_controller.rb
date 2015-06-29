@@ -14,31 +14,24 @@ class CommentsController < FeedbackController
     set_cookies_for @comment
 
     partial = '/articles/comment_failed'
-    if recaptcha_ok_for?(@comment)  && @comment.save
+    if recaptcha_ok_for?(@comment) && @comment.save
       partial = '/articles/comment'
     end
-    if request.xhr?
-      render partial: partial, object: @comment
-    else
-      redirect_to URI.parse(@article.permalink_url).path
+    respond_to do |format|
+      format.js { render partial }
+      format.html { redirect_to URI.parse(@article.permalink_url).path }
     end
   end
 
   def preview
-    session session: new unless session
+    return render text: 'Comments are closed' if @article.comments_closed?
 
-    comment_params = params[:comment]
     if comment_params[:body].blank?
       render nothing: true
       return
     end
 
-    set_headers
     @comment = Comment.new(comment_params)
-
-    return render text: 'Comments are closed' if @article.comments_closed?
-
-    render 'articles/comment_preview', locals: { comment: @comment }
   end
 
   protected
@@ -58,10 +51,6 @@ class CommentsController < FeedbackController
       permalink: @article.permalink_url }.stringify_keys
   end
 
-  def set_headers
-    headers['Content-Type'] = 'text/html; charset=utf-8'
-  end
-
   def set_cookies_for(comment)
     add_to_cookies(:author, comment.author)
     add_to_cookies(:url, comment.url)
@@ -72,5 +61,9 @@ class CommentsController < FeedbackController
 
   def get_article
     @article = Article.find(params[:article_id])
+  end
+
+  def comment_params
+    @comment_params ||= params.require(:comment).permit(:body, :author, :email, :url)
   end
 end

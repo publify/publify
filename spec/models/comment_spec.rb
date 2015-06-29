@@ -58,7 +58,7 @@ describe Comment, type: :model do
       expect(c.errors).to be_empty
     end
 
-    it 'should not save with article not allow comment'  do
+    it 'should not save with article not allow comment' do
       allow(blog).to receive(:sp_article_auto_close) { 1 }
 
       c = build(:comment, article: build_stubbed(:article, allow_comments: false))

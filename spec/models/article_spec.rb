@@ -158,37 +158,46 @@ describe Article, type: :model do
     context 'with a blog that sends outbound pings' do
       let(:referenced_url) { 'http://anotherblog.org/a-post' }
       let!(:blog) { create(:blog, send_outbound_pings: 1) }
+      let(:mock_pinger) { instance_double('Ping::Pinger') }
+      let(:article) { Article.new(body: %(<a href="#{referenced_url}">),
+                                  title: 'Test the pinging',
+                                  published: true) }
 
-      # FIXME: This spec is way too complex
-      it 'sends a pingback to urls linked in the body' do
-        expect(Thread.list.count).to eq 3
+      before do
+        # Check supposition
+        expect(Thread.list.count).to eq 1
 
-        expect(ActiveRecord::Base.observers).to include(:email_notifier)
-        expect(ActiveRecord::Base.observers).to include(:web_notifier)
-        a = Article.new(body: %(<a href="#{referenced_url}">),
-                        title: 'Test the pinging',
-                        published: true)
+        allow(Ping::Pinger).to receive(:new).and_return mock_pinger
+        allow(mock_pinger).to receive(:send_pingback_or_trackback)
 
-        mock_pinger = instance_double('Ping::Pinger')
-        allow(Ping::Pinger).to receive(:new).
-          with(%r{http://myblog.net/\d{4}/\d{2}/\d{2}/test-the-pinging}, Ping).
-          and_return mock_pinger
-        expect(mock_pinger).to receive(:send_pingback_or_trackback)
-
-        expect(a.html_urls.size).to eq(1)
-        a.save!
+        article.save!
 
         10.times do
-          break if Thread.list.count <= 3
+          break if Thread.list.count == 1
           sleep 0.1
         end
-
-        expect(a).to be_just_published
-        a = Article.find(a.id)
-        expect(a).not_to be_just_published
-        # Saving again will not resend the pings
-        a.save
       end
+
+      it 'lets a Ping::Pinger object send pingback to the external URLs' do
+        expect(Ping::Pinger).to have_received(:new).
+          with(article.permalink_url, Ping)
+        expect(mock_pinger).to have_received :send_pingback_or_trackback
+      end
+    end
+  end
+
+  describe '#just_published' do
+    it 'is true when the article has just been saved as published' do
+      article = Article.new(body: 'bar bar', title: 'Foo', published: true)
+      article.save
+      expect(article).to be_just_published
+    end
+
+    it 'is false when a published article is loaded' do
+      article = Article.new(body: 'bar bar', title: 'Foo', published: true)
+      article.save!
+      article = Article.find(article.id)
+      expect(article).not_to be_just_published
     end
   end
 
@@ -208,7 +217,7 @@ describe Article, type: :model do
       a = Article.create(title: 'Some title', body: 'some text', published: true)
       expect(a.redirects.first).not_to be_nil
       expect(a.redirects.first.to_path).to eq(a.permalink_url)
-      r  = a.redirects.first.from_path
+      r = a.redirects.first.from_path
 
       a.permalink = 'some-new-permalink'
       a.save
@@ -652,7 +661,7 @@ describe Article, type: :model do
           article.really_send_pings
         end
 
-        it 'do nothing when urls already list in article.pings (already ping ?)'  do
+        it 'do nothing when urls already list in article.pings (already ping ?)' do
           ping = OpenStruct.new(url: 'an_url_to_ping')
           expect_any_instance_of(Blog).to receive(:urls_to_ping_for).and_return([ping])
           expect(article).to receive(:html_urls_to_ping).and_return(['an_url_to_ping'])
@@ -661,7 +670,7 @@ describe Article, type: :model do
           article.really_send_pings
         end
 
-        it "calls send_weblogupdatesping when it's not already done"  do
+        it "calls send_weblogupdatesping when it's not already done" do
           new_ping = OpenStruct.new
           urls_to_ping = [new_ping]
           expect_any_instance_of(Blog).to receive(:urls_to_ping_for).and_return(urls_to_ping)
@@ -672,7 +681,7 @@ describe Article, type: :model do
           article.really_send_pings
         end
 
-        it "calls send_pingback_or_trackback when it's not already done"  do
+        it "calls send_pingback_or_trackback when it's not already done" do
           expect_any_instance_of(Blog).to receive(:urls_to_ping_for).and_return([])
           new_ping = OpenStruct.new
           expect(article).to receive(:html_urls_to_ping).and_return([new_ping])

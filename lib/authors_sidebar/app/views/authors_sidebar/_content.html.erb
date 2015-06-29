@@ -1,11 +1,13 @@
-<% unless sidebar.authors.blank? -%>
-<h3><%= t(".authors")%></h3>
-<ul id="categories">
-<% for user in sidebar.authors -%>
-  <li>
-    <% count = "(#{user.articles.count})" %>
-    <%= link_to "#{h(user.name)} #{count if sidebar.count}", author_path(id: user.login)  %>
-  </li>
-  <% end %>
-</ul>
+<% unless sidebar.authors.blank? %>
+  <h3 class="sidebar-title"><%= t(".authors")%></h3>
+  <div class="sidebar-body">
+    <ul id="categories">
+      <% for user in sidebar.authors %>
+        <li>
+          <% count = "(#{user.articles.count})" %>
+          <%= link_to "#{h(user.name)} #{count if sidebar.count}", author_path(id: user.login)  %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>

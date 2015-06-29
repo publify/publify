@@ -23,7 +23,8 @@ class Redirect < ActiveRecord::Base
   end
 
   def to_url
-    File.join(((Blog.default.custom_url_shortener.nil? || Blog.default.custom_url_shortener.empty?) ? Blog.default.base_url : Blog.default.custom_url_shortener), from_path)
+    blog = Blog.default
+    File.join((blog.custom_url_shortener.blank? ? blog.base_url : blog.custom_url_shortener), from_path)
   end
 
   private

@@ -43,11 +43,11 @@ pl:
       your_mail: "Your email"
     page:
       about: "About"
-      body: "This is an example of a Publify page. You can edit this to write information about yourself or your site so readers know who you are. You can create as many pages as this one as you like and manage all of your content inside Publify."
+      body: "This is an example of a Publify page. You can edit this to write information about yourself or your site so readers know who you are. You can create as many pages as you like and manage all of your content inside Publify."
   comments:
     comment:
-      by: "przez"
       said: "powiedział"
+      by: "przez"
       this_comment_has_been_flagged_for_moderator_approval: "Ten komentarz oczekuje na akceptację.  Nie ukaże się do czasu zaakceptowania przez autora."
   tags:
     index:
@@ -193,15 +193,15 @@ pl:
         notes: "Notes"
       form:
         now: "Now"
+        compose_new_note: "Compose new note"
         no_notes: "There are no notes yet. Why don't you start and create one?"
         how_to_setup_twitter: "If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."
         fill_the_twitter_credentials: "fill in the oauth credentials"
         registered_your_application: "registered your application"
-        compose_new_note: "Compose new note"
         publish_settings: "Publish settings"
         posse_to_twitter: "POSSE to twitter"
-        in_reply_to: "In reply to"
         tweet_id_like: "Tweet id like 123456"
+        in_reply_to: "In reply to"
         permanent_link: "Permanent link"
         published: "Opublikowane"
         publish_at: "Opublikowane dnia"
@@ -233,15 +233,28 @@ pl:
         choose_a_theme: "Choose a theme"
         use_this_theme: "Use this theme"
         active_theme: "%{name} - Temat aktywny"
+    migrations:
+      show:
+        database_migration: "Migruj bazę danych"
+        information: "Informacja"
+        current_database_version: "Aktualna wersja bazy danych"
+        you_are_up_to_date: "Wszystko jest aktualne!"
+        migrations: "Migrations"
+        migration_pending:
+          one: "There is one migration pending."
+          other: "There are %{count} migrations pending."
+        needed_migrations: "Potrzebne migracje"
+        update_database_now: "Aktualizuj bazę danych"
+        may_take_a_moment: "może zająć dłuższą chwilę"
     profiles:
       index:
-        success: "User details updated"
         your_profile: "Your profile"
+        success: "User details updated"
     sidebar:
       index:
-        error: "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually"
         sidebar: "Sidebar"
         drag_some_plugins_here: "Przeciągnij i upuść wtyczki na pasek boczny"
+        error: "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually"
         or: "or"
         cancel: "Anuluj"
         explain_how_its_works: "Przeciągnij i upuść pozycje, które mają być wyświetlone na blogu. By usunąć pozycję naciśnij *Usuń*. Zmiany są zapisywane od razu, lecz nie są aktywne do momentu kliknięcia 'Publikuj zmiany'"
@@ -249,9 +262,12 @@ pl:
         available_items: "Dostępne elementy"
         active_sidebar_items: "Aktywne elementy paska"
         download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
+      target_sidebar:
+        update: 'Update'
     settings:
       update:
         success: "konfiguracja zaktualizowana."
+        error: "Error: %{messages}"
       display:
         cancel: "Anuluj"
         or: "or"
@@ -330,18 +346,6 @@ pl:
         publish_on_twitter: "Publish on Twitter"
         twitter_consumer_key: "Twitter consumer key"
         twitter_consumer_secret: "Twitter consumer secret"
-      update_database:
-        database_migration: "Migruj bazę danych"
-        information: "Informacja"
-        current_database_version: "Aktualna wersja bazy danych"
-        you_are_up_to_date: "Wszystko jest aktualne!"
-        migrations: "Migrations"
-        migration_pending:
-          one: "There is one migration pending."
-          other: "There are %{count} migrations pending."
-        needed_migrations: "Potrzebne migracje"
-        update_database_now: "Aktualizuj bazę danych"
-        may_take_a_moment: "może zająć dłuższą chwilę"
       index:
         cancel: "Anuluj"
         or: "or"
@@ -359,11 +363,14 @@ pl:
         email_address_used_to_notify: "Adres email używany przez Publify do wysyłania powiadomień"
         items_to_display_in_admin_lists: "Items to display in admin lists"
     seo:
-      titles:
+      show:
         cancel: "Anuluj"
         or: "or"
         update_settings: "Update settings"
+        global_settings: "Global settings"
         title_settings: "Title settings"
+        permalinks: "Permalinks"
+      titles:
         home: "Home"
         title_template: "Title template"
         description_template: "Description template"
@@ -396,11 +403,7 @@ pl:
         replaced_by_the_archive_date: "Replaced by the archive date"
         replaced_by_the_content_body: "Replaced by the content body"
       permalinks:
-        cancel: "Anuluj"
-        or: "or"
-        update_settings: "Update settings"
         explain: "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links."
-        permalinks: "Permalinks"
         permalink_format: "Permalink format"
         date_and_title: "Date and title"
         month_and_title: "Month and title"
@@ -417,10 +420,6 @@ pl:
         human: "Human"
         humans_txt: "Human"
         explain_humans_txt: "It's an initiative for knowing the people behind a website. It's a TXT file that contains information about the different people who have contributed to building the website. http://humanstxt.org/"
-        cancel: "Anuluj"
-        or: "or"
-        update_settings: "Update settings"
-        global_settings: "Global settings"
         general_settings: "Ustawienia ogólne"
         meta_keywords: "Meta keywords"
         use_meta_keywords: "Use meta keywords"
@@ -562,6 +561,7 @@ pl:
         success_classification: "Confirmed classification of %{count} item(s)"
         success_deleted: "Deleted %{count} item(s)"
       index:
+        no_feedback: "There is no feedback yet. Why don't you create some?"
         feedback: "Komentarze"
         all: "All"
         unapproved_comments: "Unapproved comments"
@@ -575,7 +575,6 @@ pl:
         comment: "Comment"
         article: "Article"
         select_all: "Select all"
-        no_feedback: "There are no feedback yet. Why don't you start and create one?"
       article:
         no_feedback: "There are no feedback yet. Why don't you start and create one?"
         comments_for: "Komentarze do %{title}"
@@ -605,10 +604,11 @@ pl:
         this_comment_by_was_flagged_as_spam: "This comment by %{author} was flagged as spam, %{cancel_link}?"
         cancel: "Anuluj"
     dashboard:
+      publify_version:
+        error: "You are at least one major version of Publify out of date. You should upgrade immediately. Download and install <a href='http://publify.co/stable.tgz'>the latest Publify version</a>"
+        warning: "There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a>?"
+        notice: "There's a new version of Publify available. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a>?"
       index:
-        error: "You are late from at least one major version of Publify. You should upgrade immediately. Download and install <a href='http://publify.co/stable.tgz'>the latest Publify version</a>"
-        warning: "There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
-        notice: "There's a new version of Publify available. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
         welcome_back: "Witamy spowrotem, %{user_name}!"
       drafts:
         your_drafts: "Your drafts"
@@ -682,8 +682,7 @@ pl:
         success: "Article was successfully created"
       update:
         success: "Article was successfully updated"
-        error: "Error, you are not allowed to perform this action"
-      edit:
+      access_granted:
         error: "Error, you are not allowed to perform this action"
       autosave:
         success: "Article was successfully saved"
@@ -778,11 +777,11 @@ pl:
         error: "Cache could not be cleared"
     users:
       edit:
-        success: "User was successfully updated"
         edit_user: "Zmień dane użytkownika"
+        success: "User was successfully updated"
       new:
-        success: "User was successfully created"
         add_user: "Add User"
+        success: "User was successfully created"
       index:
         login: "login"
         users: "Użytkownicy"
@@ -793,14 +792,13 @@ pl:
         articles: "Artykułów"
         comments: "Comments"
         state: "State"
-        user_state: "%{state} użytkownicy"
       form:
         how_to_setup_twitter: "If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."
-        fill_the_twitter_credentials: "fill in the oauth credentials"
+        fill_the_twitter_credentials: "fill in the OAuth credentials"
         registered_your_application: "registered your application"
         cancel: "Anuluj"
-        save: "Zapisz"
         or: "or"
+        save: "Zapisz"
         user_status: "User Status"
         account_settings: "Account Settings"
         login: "Login"
@@ -861,13 +859,13 @@ pl:
       reset_my_password: "Reset my password"
       notice: "An email has been successfully sent to your address with your new password"
       error: "Oops, something wrong just happened"
+    logout:
+      notice: "Successfully logged out"
     signup:
       title: "Zapisz się"
       username: "Użytkownik"
       email: "Email"
       signup: "Zapisz się"
-    logout:
-      notice: "Successfully logged out"
   langs:
     da_DK: "Danish"
     de_DE: "German"
@@ -890,6 +888,7 @@ pl:
     formats:
       default: "%m/%d/%Y %H:%M"
       short: "%m/%d/%y"
+      with_spaces: "%d %B %y"
       letters_month_with_year: "%m %Y"
   date:
     month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]

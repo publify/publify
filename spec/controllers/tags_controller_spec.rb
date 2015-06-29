@@ -45,19 +45,16 @@ describe TagsController, 'showing a single tag', type: :controller do
     end
 
     it 'should render :show by default' do
-      # TODO: Stubbing #template_exists is not enough to fool Rails
-      skip
-      allow(controller).to receive(:template_exists?). \
-        and_return(true)
       do_get
       expect(response).to render_template(:show)
     end
 
-    it 'should fall back to rendering articles/index' do
-      allow(controller).to receive(:template_exists?). \
-        and_return(false)
+    it 'should render the tag template if present' do
+      # NOTE: Stubbing Object under test :-(.
+      allow(controller).to receive(:template_exists?).and_return(true)
+      allow(controller).to receive(:render)
       do_get
-      expect(response).to render_template('articles/index')
+      expect(controller).to have_received(:render).with('foo')
     end
 
     it 'should set the page title to "Tag foo"' do
@@ -77,12 +74,10 @@ describe TagsController, 'showing a single tag', type: :controller do
   end
 
   describe 'without articles' do
-    # TODO: Perhaps we can show something like 'Nothing tagged with this tag'?
     it 'should redirect to main page' do
       do_get
 
-      expect(response.status).to eq(301)
-      expect(response).to redirect_to(Blog.default.base_url)
+      expect(response.status).to eq(404)
     end
   end
 end
@@ -112,13 +107,11 @@ describe TagsController, 'showing tag "foo"', type: :controller do
 end
 
 describe TagsController, 'showing a non-existant tag', type: :controller do
-  # TODO: Perhaps we can show something like 'Nothing tagged with this tag'?
-  it 'should redirect to main page' do
+  it 'should signal not found' do
     FactoryGirl.create(:blog)
     get 'show', id: 'thistagdoesnotexist'
 
-    expect(response.status).to eq(301)
-    expect(response).to redirect_to(Blog.default.base_url)
+    expect(response.status).to eq(404)
   end
 end
 

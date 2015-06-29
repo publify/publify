@@ -68,19 +68,19 @@ Common attributes:
       # links in the header.
       def self.macrofilter(blog, content, attrib, _params, _text = '')
         # FIXME: style is not used
-        # style         = attrib['style']
-        caption       = attrib['caption']
-        title         = attrib['title']
-        alt           = attrib['alt']
-        theclass      = attrib['class']
-        set           = attrib['set']
-        thumburl      = ''
-        displayurl    = ''
+        # style = attrib['style']
+        caption = attrib['caption']
+        title = attrib['title']
+        alt = attrib['alt']
+        theclass = attrib['class']
+        set = attrib['set']
+        thumburl = ''
+        displayurl = ''
 
-        img           = attrib['img']
+        img = attrib['img']
         if img
-          thumbsize     = attrib['thumbsize'] || 'square'
-          displaysize   = attrib['displaysize'] || 'original'
+          thumbsize = attrib['thumbsize'] || 'square'
+          displaysize = attrib['displaysize'] || 'original'
 
           FlickRaw.api_key = FLICKR_KEY
           FlickRaw.shared_secret = FLICKR_SECRET
@@ -90,7 +90,7 @@ Common attributes:
           thumbdetails = sizes.find { |s| s['label'].downcase == thumbsize.downcase } || sizes.first
           displaydetails = sizes.find { |s| s['label'].downcase == displaysize.downcase } || sizes.first
 
-          width  = thumbdetails['width']
+          width = thumbdetails['width']
           height = thumbdetails['height']
 
           # use protocol-relative URL after getting the source address

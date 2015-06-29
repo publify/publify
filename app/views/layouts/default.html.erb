@@ -1,31 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <%= render 'shared/page_header' %>
-  <title><%=h page_title %></title>
-</head>
+  <head>
+    <%= render 'shared/page_header' %>
+    <%= themeable_stylesheet_link_tag :theme %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%=h page_title %></title>
+  </head>
 
-<body>
-  <div id="header">
-    <h1><%= link_to this_blog.blog_name, this_blog.base_url %></h1>
-    <p class="desc"><%= this_blog.blog_subtitle %></p>
-  </div>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1><%= link_to this_blog.blog_name, this_blog.base_url %></h1>
+        <p class="desc"><%= this_blog.blog_subtitle %></p>
+      </div>
 
-  <div id="page">
-    <div id="content">
-      <%= yield %>
+      <div class="content">
+        <%= yield %>
+      </div>
+
+      <div class="sidebar">
+        <%= render_sidebars %>
+      </div>
+
+      <div class="footer">
+        <p class="legal">
+        <%= t(".powered_by", powered_by: link_to('Publify', 'http://publify.co')) %>
+        </p>
+      </div>
     </div>
-
-    <div id="sidebar">
-      <%= render_sidebars %>
-    </div>
-
-    <div id="footer">
-      <p id="legal">
-      <%= t(".powered_by", powered_by: link_to('Publify', 'http://publify.co')) %>
-      </p>
-    </div>
-  </div>
-</body>
+  </body>
 </html>
-

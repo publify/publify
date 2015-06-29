@@ -3,7 +3,7 @@
 
 class ApplicationController < ActionController::Base
   include ::LoginSystem
-  protect_from_forgery only: [:edit, :update, :delete]
+  protect_from_forgery with: :exception, only: [:edit, :update, :delete]
 
   before_action :reset_local_cache, :fire_triggers, :load_lang, :set_paths
   after_action :reset_local_cache

@@ -26,7 +26,7 @@ class Note < Content
   TWITTER_LINK_LENGTH = 22
 
   def set_permalink
-    self.permalink = "#{id}-#{body.to_permalink[0..79]}" if permalink.nil? || permalink.empty?
+    self.permalink = "#{id}-#{body.to_permalink[0..79]}" if permalink.blank?
     save
   end
 

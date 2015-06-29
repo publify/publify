@@ -39,8 +39,8 @@ PHP (&#42;), Python (&#42;), RHTML, Ruby, Scheme, SQL (&#42;), XHTML, XML, YAML.
       end
 
       def self.macrofilter(_blog, _content, attrib, _params, text = '')
-        lang       = attrib['lang']
-        title      = attrib['title']
+        lang = attrib['lang']
+        title = attrib['title']
         if attrib['linenumber'] == 'true'
           options = DEFAULT_OPTIONS.merge(line_numbers: :table,
                                           wrap: :div)

@@ -1,9 +1,9 @@
-<%- content_for :page_heading do %>
+<% content_for :page_heading do %>
 <h2 class="page-title">
   <i class="glyphicon glyphicon-large glyphicon-comment"></i>
   <%= t(".comments_for", title: @article.title) %>
 </h2>
-<%- end %>
+<% end %>
 
 <%= form_tag({action: 'bulkops'}, {class: 'form-inline'}) do %>
 
@@ -20,19 +20,19 @@
         </th>
       </tr>
     </thead>
-    <%- if @feedback.empty? %>
-    <tr>
-      <td colspan="5">
-        <%= t(".no_feedback") %>
-      </td>
-    </tr>
-    <%- end %>
+    <% if @feedback.empty? %>
+      <tr>
+        <td colspan="5">
+          <%= t(".no_feedback") %>
+        </td>
+      </tr>
+    <% end %>
 
     <% @feedback.each do |comment| %>
       <%= render 'feedback', {:comment => comment} %>
     <% end %>
   </table>
-<%end%>
+<% end %>
 
 <%= form_tag :action => "create" do %>
   <%= hidden_field_tag('article_id', @article.id) %>

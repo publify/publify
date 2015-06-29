@@ -23,7 +23,7 @@ module AccessControl
   end
 
   def self.human_roles
-    roles.collect(&:to_s).collect(&:humanize)
+    roles.map(&:to_s).map(&:humanize)
   end
 
   def self.allowed_controllers(role, project_modules)
@@ -82,7 +82,7 @@ module AccessControl
     attr_reader :project_modules, :roles
 
     def initialize(hash)
-      @roles = hash[:require].is_a?(Array) ? hash[:require].collect { |r| r.to_s.downcase.to_sym } : [hash[:require].to_s.downcase.to_sym]
+      @roles = hash[:require].is_a?(Array) ? hash[:require].map { |r| r.to_s.downcase.to_sym } : [hash[:require].to_s.downcase.to_sym]
       @project_modules = []
       @controllers = []
     end
@@ -161,10 +161,6 @@ module AccessControl
 
     def uid
       @name.to_s.downcase.gsub(/[^a-z0-9]+/, '').gsub(/-+$/, '').gsub(/^-+$/, '')
-    end
-
-    def current_url?(controller, action)
-      @url[:controller] == controller && @url[:action] == action
     end
   end
 end

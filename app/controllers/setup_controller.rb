@@ -15,7 +15,7 @@ class SetupController < ApplicationController
     @user.name = @user.login
 
     unless this_blog.valid? && @user.valid?
-      redirect_to action: 'index'
+      redirect_to setup_url
       return
     end
 
@@ -34,7 +34,7 @@ class SetupController < ApplicationController
       create_first_page @user
     end
 
-    redirect_to controller: 'accounts', action: 'confirm'
+    redirect_to confirm_accounts_url
   end
 
   private

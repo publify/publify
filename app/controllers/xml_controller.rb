@@ -7,7 +7,7 @@ class XmlController < ApplicationController
                             'atom10' => 'atom', 'atom03' => 'atom', 'rss20' => 'rss',
                             'googlesitemap' => 'googlesitemap', 'rsd' => 'rsd' }
 
-  ACCEPTED_TYPE =  %w(feed comments article tag author trackbacks sitemap)
+  ACCEPTED_TYPE = %w(feed comments article tag author trackbacks sitemap)
 
   def feed
     @format = 'rss'

@@ -1,11 +1,13 @@
 <% unless sidebar.archives.blank? %>
-<h3 class="sidebar-title"><%= sidebar.title %></h3>
-<ul id="archives">
-  <% sidebar.archives.each do |month| %>
-    <% counter = sidebar.show_count ? "<em>(#{month[:article_count]})</em>" : "" %>
-    <li>
-      <%= link_to"#{month[:name]} #{counter}".html_safe,  articles_by_month_path(month[:year], "%02i" % month[:month]) %>
-    </li>
-  <% end %>
-</ul>
+  <h3 class="sidebar-title"><%= sidebar.title %></h3>
+  <div class="sidebar-body">
+    <ul id="archives">
+      <% sidebar.archives.each do |month| %>
+        <% counter = sidebar.show_count ? "<em>(#{month[:article_count]})</em>" : "" %>
+        <li>
+          <%= link_to"#{month[:name]} #{counter}".html_safe,  articles_by_month_path(month[:year], "%02i" % month[:month]) %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>

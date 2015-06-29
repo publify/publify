@@ -5,4 +5,7 @@ $(document).ready(function(){
 
   // DatePickers
   $('.datepicker').datepicker();
+
+  // DropDown
+  $(".dropdown-toggle").dropdown();
 });

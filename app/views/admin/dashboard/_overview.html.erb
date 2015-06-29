@@ -6,11 +6,11 @@
   <p>
     <%= t(".dashboard_explain", available_actions: dashboard_action_links) %>
   </p>
-  <%- if current_user.can_access_to_themes? %>
+  <% if current_user.can_access_to_themes? %>
   <p>
     <%= t(".customization_explain", theme_link: link_to(t(".change_your_blog_presentation"), controller: 'themes'), sidebar_link: link_to(t(".enable_plugins"), controller: 'sidebar')) %>
   </p>
-  <%- end %>
+  <% end %>
   <p>
   <%= t(".help_explain", doc_link: link_to(t('.read_our_documentation'), 'http://publify.co')) %>
   </p>

@@ -43,11 +43,11 @@ it:
       your_mail: "Your email"
     page:
       about: "About"
-      body: "This is an example of a Publify page. You can edit this to write information about yourself or your site so readers know who you are. You can create as many pages as this one as you like and manage all of your content inside Publify."
+      body: "This is an example of a Publify page. You can edit this to write information about yourself or your site so readers know who you are. You can create as many pages as you like and manage all of your content inside Publify."
   comments:
     comment:
-      by: "da"
       said: "dice"
+      by: "da"
       this_comment_has_been_flagged_for_moderator_approval: "This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it"
   tags:
     index:
@@ -193,15 +193,15 @@ it:
         notes: "Notes"
       form:
         now: "Now"
-        no_notes: "There are no notes yet. Why don't you start and create one?"
-        how_to_setup_twitter: "If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."
-        fill_the_twitter_credentials: "fill in the oauth credentials"
-        registered_your_application: "registered your application"
         compose_new_note: "Compose new note"
+        no_notes: "There are no notes yet. Why don't you create one?"
+        how_to_setup_twitter: "If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."
+        fill_the_twitter_credentials: "fill in the OAuth credentials"
+        registered_your_application: "registered your application"
         publish_settings: "Publish settings"
-        posse_to_twitter: "POSSE to twitter"
-        in_reply_to: "In reply to"
+        posse_to_twitter: "POSSE to Twitter"
         tweet_id_like: "Tweet id like 123456"
+        in_reply_to: "In reply to"
         permanent_link: "Permanent link"
         published: "Pubblicato"
         publish_at: "Pubblicato il"
@@ -210,7 +210,7 @@ it:
         publish: "Pubblica"
       show:
         destroy_confirmation: "Destroy confirmation"
-        are_you_sure: "Are you sure you want to delete this note"
+        are_you_sure: "Are you sure you want to delete this note?"
         action_or_other: "%{first_action} o %{second_action}"
         cancel: "Annulla"
         delete: "Elimina"
@@ -218,7 +218,7 @@ it:
       destroy:
         success: 'Redirection was successfully deleted.'
       new:
-        no_redirects: "There are no redirects yet. Why don't you start and create one?"
+        no_redirects: "There are no redirects yet. Why don't you create one?"
         cancel: "Annulla"
         save: "Salva"
         or: "or"
@@ -233,25 +233,41 @@ it:
         choose_a_theme: "Seleziona un tema"
         use_this_theme: "Use this theme"
         active_theme: "%{name} - Tema Attivo"
+    migrations:
+      show:
+        database_migration: "Migrazione del database"
+        information: "Informazioni"
+        current_database_version: "Versione corrente del database"
+        you_are_up_to_date: "Aggiornato!"
+        migrations: "Migrations"
+        migration_pending:
+          one: "There is one migration pending."
+          other: "There are %{count} migrations pending."
+        needed_migrations: "Necessarie migrazioni"
+        update_database_now: "Aggiorna il tuo database ora"
+        may_take_a_moment: "attendi alcuni istanti"
     profiles:
       index:
-        success: "User details updated"
         your_profile: "Your profile"
+        success: "User details updated"
     sidebar:
       index:
-        error: "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually"
         sidebar: "Sidebar"
         drag_some_plugins_here: "Trascina alcuni plugins qui per popolare la tua sidebar"
-        cancel: "Annulla"
+        error: "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually"
         or: "or"
+        cancel: "Annulla"
         explain_how_its_works: "Trascina e rilascia per cambiare gli elementi visualizzati nella sidebar del tuo blog. Per rimuorverli clicca su annulla Cambiamenti perche' comunque non sono salvati automaticamente ma devi cliccare il bottone 'Pubblica'"
         publish_changes: "Pubblica cambiamenti"
         available_items: "Elementi disponibili"
         active_sidebar_items: "Attiva elementi Sidebar"
         download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
+      target_sidebar:
+        update: 'Update'
     settings:
       update:
         success: "Configurazione aggiornata."
+        error: "Error: %{messages}"
       display:
         cancel: "Annulla"
         or: "or"
@@ -261,7 +277,7 @@ it:
         custom_url_help: "If you have a custom domain for URL shortening, enter it here."
         date_format: "Date format"
         default_article_show: "articles on the homepage"
-        default_archives_show: "articles on the  archives page"
+        default_archives_show: "articles on the archives page"
         default_feed_show: "most recent articles in feed"
         display: "Display"
         display_settings: "Display Settings"
@@ -330,18 +346,6 @@ it:
         publish_on_twitter: "Publish on Twitter"
         twitter_consumer_key: "Twitter consumer key"
         twitter_consumer_secret: "Twitter consumer secret"
-      update_database:
-        database_migration: "Migrazione del database"
-        information: "Informazioni"
-        current_database_version: "Versione corrente del database"
-        you_are_up_to_date: "Aggiornato!"
-        migrations: "Migrations"
-        migration_pending:
-          one: "There is one migration pending."
-          other: "There are %{count} migrations pending."
-        needed_migrations: "Necessarie migrazioni"
-        update_database_now: "Aggiorna il tuo database ora"
-        may_take_a_moment: "attendi alcuni istanti"
       index:
         cancel: "Annulla"
         or: "or"
@@ -359,11 +363,14 @@ it:
         email_address_used_to_notify: "Indirizzo email usato dal blog per inviare le notifiche"
         items_to_display_in_admin_lists: "Items to display in admin lists"
     seo:
-      titles:
+      show:
         cancel: "Annulla"
         or: "or"
         update_settings: "Update settings"
+        global_settings: "Global settings"
         title_settings: "Title settings"
+        permalinks: "Permalinks"
+      titles:
         home: "Home"
         title_template: "Title template"
         description_template: "Description template"
@@ -396,11 +403,7 @@ it:
         replaced_by_the_archive_date: "Replaced by the archive date"
         replaced_by_the_content_body: "Replaced by the content body"
       permalinks:
-        cancel: "Annulla"
-        or: "or"
-        update_settings: "Update settings"
         explain: "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links."
-        permalinks: "Permalinks"
         permalink_format: "Permalink format"
         date_and_title: "Date and title"
         month_and_title: "Month and title"
@@ -413,14 +416,10 @@ it:
         your_article_month: "your article month of publication."
         your_article_day: "your article day of publication."
         help_on_permalink_settings: "Help on permalink settings"
-      index:
+      general:
         human: "Human"
         humans_txt: "Human"
         explain_humans_txt: "It's an initiative for knowing the people behind a website. It's a TXT file that contains information about the different people who have contributed to building the website. http://humanstxt.org/"
-        cancel: "Annulla"
-        or: "or"
-        update_settings: "Update settings"
-        global_settings: "Global settings"
         general_settings: "Configurazione generale"
         meta_keywords: "Meta keywords"
         use_meta_keywords: "Use meta keywords"
@@ -562,6 +561,7 @@ it:
         success_classification: "Conferma classificazione di %{count} elementi"
         success_deleted: "Deleted %{count} item(s)"
       index:
+        no_feedback: "There is no feedback yet. Why don't you create some?"
         feedback: "Commenti"
         all: "All"
         unapproved_comments: "Unapproved comments"
@@ -575,9 +575,8 @@ it:
         comment: "Comment"
         article: "Article"
         select_all: "Select all"
-        no_feedback: "There are no feedback yet. Why don't you start and create one?"
       article:
-        no_feedback: "There are no feedback yet. Why don't you start and create one?"
+        no_feedback: "There is no feedback yet. Why don't you create some?"
         comments_for: "Commenti per %{title}"
         status: "Stato"
         comment_author: "Comment Author"
@@ -605,10 +604,11 @@ it:
         this_comment_by_was_flagged_as_spam: "This comment by %{author} was flagged as spam, %{cancel_link}?"
         cancel: "Annulla"
     dashboard:
+      publify_version:
+        error: "You are at least one major version of Publify out of date. You should upgrade immediately. Download and install <a href='http://publify.co/stable.tgz'>the latest Publify version</a>"
+        warning: "There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a>?"
+        notice: "There's a new version of Publify available. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a>?"
       index:
-        error: "You are late from at least one major version of Publify. You should upgrade immediately. Download and install <a href='http://publify.co/stable.tgz'>the latest Publify version</a>"
-        warning: "There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
-        notice: "There's a new version of Publify available. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?"
         welcome_back: "Welcome back, %{user_name}!"
       drafts:
         your_drafts: "Your drafts"
@@ -682,13 +682,12 @@ it:
         success: "Article was successfully created"
       update:
         success: "Article was successfully updated"
-        error: "Error, you are not allowed to perform this action"
-      edit:
+      access_granted:
         error: "Error, you are not allowed to perform this action"
       autosave:
         success: "Article was successfully saved"
       article_list:
-        no_articles: "There are no articles yet. Why don't you start and create one?"
+        no_articles: "There are no articles yet. Why don't you create one?"
       index:
         published: "Pubblicato"
         new_article: "New article"
@@ -778,11 +777,11 @@ it:
         error: "Cache could not be cleared"
     users:
       edit:
-        success: "User was successfully updated"
         edit_user: "Modifica utente"
+        success: "User was successfully updated"
       new:
-        success: "User was successfully created"
         add_user: "Aggiungi Utente"
+        success: "User was successfully created"
       index:
         login: "login"
         users: "Utenti"
@@ -793,14 +792,13 @@ it:
         articles: "Articoli"
         comments: "Commenti"
         state: "State"
-        user_state: "%{state} user"
       form:
         how_to_setup_twitter: "If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."
         fill_the_twitter_credentials: "fill in the oauth credentials"
         registered_your_application: "registered your application"
         cancel: "Annulla"
-        save: "Salva"
         or: "or"
+        save: "Salva"
         user_status: "User Status"
         account_settings: "Account Settings"
         login: "Login"
@@ -861,13 +859,13 @@ it:
       reset_my_password: "Reset my password"
       notice: "An email has been successfully sent to your address with your new password"
       error: "Oops, something wrong just happened"
+    logout:
+      notice: "Sei correttamente uscito"
     signup:
       title: "Iscrizione"
       username: "Nome Utente"
       email: "Email"
       signup: "Iscrizione"
-    logout:
-      notice: "Sei correttamente uscito"
   langs:
     da_DK: "Danish"
     de_DE: "German"
@@ -890,6 +888,7 @@ it:
     formats:
       default: "%m/%d/%Y %H:%M"
       short: "%m/%d/%y"
+      with_spaces: "%d %B %y"
       letters_month_with_year: "%m %Y"
   date:
     month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]

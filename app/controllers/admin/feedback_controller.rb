@@ -20,11 +20,9 @@ class Admin::FeedbackController < Admin::BaseController
 
     unless @record.article.user_id == current_user.id
       unless current_user.admin?
-        return redirect_to controller: 'admin/feedback', action: :index
+        return redirect_to admin_feedback_index_url
       end
     end
-
-    return(render 'admin/shared/destroy') unless request.post?
 
     begin
       @record.destroy
@@ -37,7 +35,7 @@ class Admin::FeedbackController < Admin::BaseController
 
   def create
     @article = Article.find(params[:article_id])
-    @comment = @article.comments.build(params[:comment].permit!)
+    @comment = @article.comments.build(comment_params)
     @comment.user_id = current_user.id
 
     if request.post? && @comment.save
@@ -53,7 +51,7 @@ class Admin::FeedbackController < Admin::BaseController
     @comment = Comment.find(params[:id])
     @article = @comment.article
     unless @article.access_by? current_user
-      redirect_to action: 'index'
+      redirect_to admin_feedback_index_url
       return
     end
   end
@@ -61,10 +59,10 @@ class Admin::FeedbackController < Admin::BaseController
   def update
     comment = Comment.find(params[:id])
     unless comment.article.access_by? current_user
-      redirect_to action: 'index'
+      redirect_to admin_feedback_index_url
       return
     end
-    comment.attributes = params[:comment].permit!
+    comment.attributes = comment_params
     if request.post? && comment.save
       flash[:success] = I18n.t('admin.feedback.update.success')
       redirect_to action: 'article', id: comment.article.id
@@ -122,10 +120,10 @@ class Admin::FeedbackController < Admin::BaseController
       end
     when 'Mark Checked Items as Ham'
       update_feedback(items, :mark_as_ham!)
-      flash[:success] =  I18n.t('admin.feedback.bulkops.success_mark_as_ham', count: ids.size)
+      flash[:success] = I18n.t('admin.feedback.bulkops.success_mark_as_ham', count: ids.size)
     when 'Mark Checked Items as Spam'
       update_feedback(items, :mark_as_spam!)
-      flash[:success] =  I18n.t('admin.feedback.bulkops.success_mark_as_spam', count: ids.size)
+      flash[:success] = I18n.t('admin.feedback.bulkops.success_mark_as_spam', count: ids.size)
     when 'Confirm Classification of Checked Items'
       update_feedback(items, :confirm_classification!)
       flash[:success] = I18n.t('admin.feedback.bulkops.success_classification', count: ids.size)
@@ -145,7 +143,11 @@ class Admin::FeedbackController < Admin::BaseController
     end
   end
 
-  protected
+  private
+
+  def comment_params
+    params.require(:comment).permit(:author, :email, :url, :body)
+  end
 
   def update_feedback(items, method)
     items.each do |value|

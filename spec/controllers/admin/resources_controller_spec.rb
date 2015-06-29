@@ -23,28 +23,13 @@ describe Admin::ResourcesController, type: :controller do
     end
   end
 
-  describe 'test_destroy_image with get' do
-    before(:each) do
-      @res_id = FactoryGirl.create(:resource).id
-      get :destroy, id: @res_id
+  describe '#destroy' do
+    it 'redirects to the index' do
+      res_id = FactoryGirl.create(:resource).id
+
+      delete :destroy, id: res_id
+      expect(response).to redirect_to(action: 'index')
     end
-
-    it 'should render template destroy' do
-      assert_response :success
-      assert_template 'destroy'
-    end
-
-    it 'should have a valid file' do
-      expect(Resource.find(@res_id)).not_to be_nil
-      expect(assigns(:record)).not_to be_nil
-    end
-  end
-
-  it 'test_destroy_image with POST' do
-    res_id = FactoryGirl.create(:resource).id
-
-    post :destroy, id: res_id
-    expect(response).to redirect_to(action: 'index')
   end
 
   it 'test_upload' do

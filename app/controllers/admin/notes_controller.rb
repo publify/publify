@@ -12,7 +12,7 @@ class Admin::NotesController < Admin::BaseController
   def show
     unless @note.access_by?(current_user)
       flash[:error] = I18n.t('admin.base.not_allowed')
-      redirect_to action: 'index'
+      redirect_to admin_notes_url
     end
   end
 
@@ -38,19 +38,19 @@ class Admin::NotesController < Admin::BaseController
     else
       flash[:error] = note.errors.full_messages
     end
-    redirect_to action: :index
+    redirect_to admin_notes_url
   end
 
   def update
     @note.attributes = params[:note].permit!
     @note.save
-    redirect_to action: :index
+    redirect_to admin_notes_url
   end
 
   def destroy
     @note.destroy
     flash[:notice] = I18n.t('admin.base.successfully_deleted', name: 'note')
-    redirect_to action: 'index'
+    redirect_to admin_notes_url
   end
 
   private

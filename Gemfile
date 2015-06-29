@@ -36,7 +36,7 @@ else
   end
 end
 
-gem 'rails', '~> 4.2.0'
+gem 'rails', '~> 4.2.2'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -46,7 +46,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails', '~> 4.0.3'
+gem 'jquery-rails', '~> 4.0.4'
 
 gem 'jquery-ui-rails', '~> 5.0.2'
 gem 'RedCloth', '~> 4.2.8'
@@ -61,7 +61,7 @@ gem 'flickraw-cached'
 gem 'fog'
 gem 'htmlentities'
 gem 'kaminari'
-gem 'mini_magick', '~> 4.0.2', require: 'mini_magick'
+gem 'mini_magick', '~> 4.2.7', require: 'mini_magick'
 gem 'non-stupid-digest-assets'
 gem 'rails-observers', '~> 0.1.2'
 gem 'rails-timeago', '~> 2.0'
@@ -77,7 +77,7 @@ group :development, :test do
   gem 'byebug'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+  gem 'web-console', '~> 2.1.3'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
@@ -85,7 +85,7 @@ group :development, :test do
   gem 'thin'
   gem 'factory_girl', '~> 4.5.0'
   gem 'capybara'
-  gem 'rspec-rails', '~> 3.1.0'
+  gem 'rspec-rails', '~> 3.3.1'
   gem 'simplecov', require: false
   gem 'pry-rails'
   gem 'rubocop', require: false

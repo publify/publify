@@ -7,14 +7,14 @@
         <p><%= sidebar.description %></p>
       </div>
     <div>
-      <%- sidebar.class.fields.each do |row| %>
-      <%= row.line_html(sidebar) %>
-      <%- end %>
-      <%- if sidebar.class.fields.length > 0 -%>
-      <p>
-        <%= submit_tag t('.update') %>
-      </p>
-      <%- end -%>
+      <% sidebar.class.fields.each do |row| %>
+        <%= row.line_html(sidebar) %>
+      <% end %>
+      <% if sidebar.class.fields.length > 0 %>
+        <p>
+          <%= submit_tag t('.update') %>
+        </p>
+      <% end %>
     </div>
-  <%- end -%>
+  <% end %>
 </li>

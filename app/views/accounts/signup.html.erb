@@ -1,20 +1,20 @@
-<%- content_for :page_title do %>
+<% content_for :page_title do %>
   <%= "#{this_blog.blog_name} - #{t('.title')}" %>
-<%- end %>
+<% end %>
 
 <%= form_tag action: "signup" do %>
 <fieldset>
   <div class="form-group">
-    <%= text_field(:user, :login, {class: 'form-control', placeholder: t(".username") })%>
+    <%= text_field(:user, :login, {class: 'form-control', placeholder: t(".username") }) %>
   </div>
   <div class="form-group">
-    <%= text_field(:user, :email, {class: 'form-control', placeholder: t(".email") })%>
+    <%= text_field(:user, :email, {class: 'form-control', placeholder: t(".email") }) %>
   </div>
-  <input type="submit" id="submit" class='btn btn-lg btn-success btn-block' value="<%= t('.signup')%>">
+  <input type="submit" id="submit" class='btn btn-lg btn-success btn-block' value="<%= t('.signup') %>">
 </fieldset>
 <% end %>
 
-<%- content_for :account_links do %>
+<% content_for :account_links do %>
   <small><%= link_to(t("accounts.lost_my_password"), action: 'recover_password') %></small>
   <br>
   <small><%= link_to(t("accounts.back_to_login"), action: 'login') %></small>

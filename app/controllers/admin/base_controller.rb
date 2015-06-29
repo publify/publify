@@ -4,8 +4,8 @@ class Admin::BaseController < ApplicationController
   layout 'administration'
 
   before_action :login_required, except: [:login, :signup]
-  before_action :look_for_needed_db_updates, except: [:login, :signup, :update_database, :migrate]
-  before_action :check_and_generate_secret_token, except: [:login, :signup, :update_database, :migrate]
+  before_action :look_for_needed_db_updates, except: [:login, :signup]
+  before_action :check_and_generate_secret_token, except: [:login, :signup]
 
   private
 
@@ -33,7 +33,6 @@ class Admin::BaseController < ApplicationController
       flash[:error] = I18n.t('admin.base.not_allowed')
       return(redirect_to action: 'index')
     end
-    return render('admin/shared/destroy') unless request.post?
     @record.destroy
     flash[:notice] = I18n.t('admin.base.successfully_deleted', name: controller_name.humanize)
     redirect_to action: 'index'
@@ -41,9 +40,7 @@ class Admin::BaseController < ApplicationController
 
   def look_for_needed_db_updates
     migrator = Migrator.new
-    if migrator.migrations_pending?
-      redirect_to controller: '/admin/settings', action: 'update_database'
-    end
+    redirect_to admin_migrations_path if migrator.migrations_pending?
   end
 
   def check_and_generate_secret_token

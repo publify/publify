@@ -263,6 +263,7 @@ describe ArticlesController, 'previewing', type: :controller do
       with_each_theme do |theme, view_path|
         it "should render template #{view_path}/articles/read" do
           blog.theme = theme
+          blog.save!
           get :preview, id: article.id
           expect(response).to render_template('articles/read')
         end
@@ -592,6 +593,7 @@ describe ArticlesController, 'preview page', type: :controller do
     with_each_theme do |theme, view_path|
       it "should render template #{view_path}/articles/view_page" do
         blog.theme = theme
+        blog.save!
         get :preview_page, id: page.id
         expect(response).to render_template('articles/view_page')
       end

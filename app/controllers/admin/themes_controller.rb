@@ -14,7 +14,9 @@ class Admin::ThemesController < Admin::BaseController
   end
 
   def preview
-    send_file "#{Theme.themes_root}/#{params[:theme]}/preview.png", type: 'image/png', disposition: 'inline', stream: false
+    theme = Theme.find(params[:theme])
+    send_file File.join(theme.path, "preview.png"),
+      type: 'image/png', disposition: 'inline', stream: false
   end
 
   def switchto
@@ -24,12 +26,12 @@ class Admin::ThemesController < Admin::BaseController
     this_blog.current_theme(:reload)
     flash[:success] = I18n.t('admin.themes.switchto.success')
     require "#{this_blog.current_theme.path}/helpers/theme_helper.rb" if File.exist? "#{this_blog.current_theme.path}/helpers/theme_helper.rb"
-    redirect_to action: 'index'
+    redirect_to admin_themes_url
   end
 
   protected
 
   def zap_theme_caches
-    FileUtils.rm_rf(%w(stylesheets javascript images).collect { |v| page_cache_directory + "/#{v}/theme" })
+    FileUtils.rm_rf(%w(stylesheets javascript images).map { |v| page_cache_directory + "/#{v}/theme" })
   end
 end

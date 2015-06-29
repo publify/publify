@@ -233,6 +233,19 @@ nl:
         choose_a_theme: "Kies een thema"
         use_this_theme: "Use this theme"
         active_theme: "%{name} - Actieve thema's"
+    migrations:
+      show:
+        database_migration: "Database migratie"
+        information: "Informatie"
+        current_database_version: "Huidige database versie"
+        you_are_up_to_date: "Je bent bij de tijd!"
+        migrations: "Migrations"
+        migration_pending:
+          one: "There is one migration pending."
+          other: "There are %{count} migrations pending."
+        needed_migrations: "Benodigde migraties"
+        update_database_now: "Werk database nu bij"
+        may_take_a_moment: "kan even duren"
     profiles:
       index:
         success: "Gebruiker is succesvol bijgewerkt"
@@ -249,6 +262,8 @@ nl:
         available_items: "Beschikbare dingen"
         active_sidebar_items: "Actieve zijbalk dingen"
         download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
+      target_sidebar:
+        update: 'Bijwerken'
     settings:
       update:
         success: "configuratie bijgewerkt"
@@ -330,18 +345,6 @@ nl:
         publish_on_twitter: "Publish on Twitter"
         twitter_consumer_key: "Twitter consumer key"
         twitter_consumer_secret: "Twitter consumer secret"
-      update_database:
-        database_migration: "Database migratie"
-        information: "Informatie"
-        current_database_version: "Huidige database versie"
-        you_are_up_to_date: "Je bent bij de tijd!"
-        migrations: "Migrations"
-        migration_pending:
-          one: "There is one migration pending."
-          other: "There are %{count} migrations pending."
-        needed_migrations: "Benodigde migraties"
-        update_database_now: "Werk database nu bij"
-        may_take_a_moment: "kan even duren"
       index:
         cancel: "Terug"
         or: "or"

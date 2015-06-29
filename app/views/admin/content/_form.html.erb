@@ -142,7 +142,7 @@
             </div>
             <div class="control-group">
               <p>
-                <%= t('.visibility') %>: <strong><%= @article.password.nil? || @article.password.empty? ? t('.public') : t('.protected') %></strong>
+                <%= t('.visibility') %>: <strong><%= @article.password.blank? ? t('.public') : t('.protected') %></strong>
                 <%= toggle_element('visibility') %>
               </p>
               <div id="visibility" class="collapse">

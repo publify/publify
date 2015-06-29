@@ -31,7 +31,7 @@ class Theme
   end
 
   def self.theme_path(name)
-    themes_root + '/' + name
+    File.join(themes_root, name)
   end
 
   def self.theme_from_path(path)
