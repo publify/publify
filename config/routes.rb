@@ -70,6 +70,7 @@ Rails.application.routes.draw do
     get 'stylesheets/theme/:filename', action: 'stylesheets', format: false
     get 'javascripts/theme/:filename', action: 'javascript', format: false
     get 'images/theme/:filename', action: 'images', format: false
+    get 'fonts/theme/:filename', action: 'fonts', format: false
   end
 
   # For the tests
