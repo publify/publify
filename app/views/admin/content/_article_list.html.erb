@@ -5,15 +5,18 @@
     </td>
   </tr>
 <% end %>
+
 <% for article in @articles %>
   <tr>
+    <td>
+      <%= show_actions article %>
+    </td>
     <td>
       <% if article.published %>
         <%= link_to_permalink(article, article.title, nil, 'published')%>
       <% else %>
         <%= link_to(article.title, {controller: '/articles', action: "preview", id: article.id}, {class: 'unpublished', target: '_new'}) %>
       <% end %>
-      <%= show_actions article %>
     </td>
     <td>
       <%= author_link(article)%><br>
