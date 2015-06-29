@@ -9,6 +9,7 @@
 <table class="table table-hover">
   <thead>
     <tr>
+      <th>Actions</th>
       <th><%= t(".login") %></th>
       <th><%= t(".name") %></th>
       <th><%= t(".email") %></th>
@@ -21,11 +22,14 @@
   <% for user in @users %>
     <tr>
       <td>
-        <%= link_to user.login, author_path(id: user.login) %>
         <div class='action'>
           <%= link_to(content_tag(:span, '', class: 'glyphicon glyphicon-pencil'), edit_admin_user_path(user), class: 'btn btn-primary btn-xs btn-action' ) %>
           <%= link_to(content_tag(:span, '', class: 'glyphicon glyphicon-link'), author_path(id:user.login), class: 'btn btn-success btn-xs btn-action' ) %>
         </div>
+      </td>
+      <td>
+        <%= link_to user.login, author_path(id: user.login) %>
+
       </td>
       <td><%= user.nickname %></td>
       <td><%= mail_to user.email, user.email %></td>
