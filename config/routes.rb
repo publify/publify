@@ -25,8 +25,6 @@ Rails.application.routes.draw do
     end
   end
 
-  # get 'admin/page/:id' as 'pages#show'
-
   get 'xml/rsd', to: 'xml#rsd', format: false
   get 'xml/feed', to: 'xml#feed'
 
