@@ -37,10 +37,6 @@ class Admin::PagesController < Admin::BaseController
     end
   end
 
-  def show
-    @page = Page.find(params[:id])
-  end
-
   def update
     @page.text_filter ||= default_textfilter
     if @page.update(page_params)
