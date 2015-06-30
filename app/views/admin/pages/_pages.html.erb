@@ -9,8 +9,10 @@
 <% for page in @pages %>
   <tr>
     <td>
-      <%= link_to_edit_with_profiles page.title, page %>
       <%= show_actions page %>
+    </td>
+    <td>
+      <%= link_to_permalink(page, page.title) %>
     </td>
     <td>
       <%= author_link(page) %><br>
