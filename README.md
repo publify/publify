@@ -51,9 +51,12 @@ The demo is reset every 2 hours.
 
 To install Publify you need the following:
 
--   Ruby 2.0, 2.1 or 2.2
--   Ruby On Rails 4.2.0
--   A database engine, MySQL, PgSQL or SQLite3
+- Ruby 2.0, 2.1 or 2.2
+- Ruby On Rails 4.2.0
+- A database engine, MySQL, PgSQL or SQLite3
+- A compatible JavaScript installation for asset compilation. See [the execjs
+  readme](https://github.com/sstephenson/execjs#readme) for details.
+- ImageMagick (used by mini_magick).
 
 1.  Unzip Publify archive
 2.  Rename database.yml.yourEngine as database.yml
