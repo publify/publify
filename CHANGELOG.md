@@ -2,11 +2,49 @@
 
 ## Unreleased
 
-Thomas Lecavelier:
-* Fix several vulnerabilities
-* Drop GroupingController which was at this time only used by
-  TagController
+### Breaking/large changes
+* Update rails, jquery-rails and web-console to avoid security vulnerabilities
 * Update dependencies
+* Update to Rails 4.2
+* Support Ruby 2.2
+* Roll up migrations up to 113 according to our [upgrade
+  policy](https://github.com/publify/publify/wiki/Upgrading). You must now
+  first upgrade to at least version 7 before upgrading to the latest version.
+* Replace default theme bootstrap with bootstrap-2
+* Add a Plain theme demonstrating the use of Publify's default templates
+* Use HTML instead of XHTML in views
+
+### Other changes
+* Indicate dependency on external JS runtime
+* Several improvements to the Admin UI
+* Update pt-BR translations
+* Update nl translations
+* Update fr translations
+* Update en translations
+* Update es-MX translations
+* Changed navbar to dropdown onhover
+* Improve Publify's default templates
+* Fix sidebar administration
+* Various cleanups and improvements of code and specs
+* Fix several vulnerabilities reported by brakeman
+* Use more resourceful routes
+* Fix editing users in Admin
+* Add foreign keys and indexes to the schema
+* Add a CONTRIBUTING.md file to help contributors
+* Remove test dependency on feedvalidator
+* Various small bug fixes
+* Remove old API links from RSD view
+* Remove outdated schemas rake task
+* Improve installation instructions
+* Paginate article archives pages
+* Handle tags that contain colons
+* Ensure cache path exists
+* Several theme fixes
+* Use protocol-relative URIs for Flickr images
+* Update text filter help texts to use 'publify'
+* Restore hiding/showing of optional comment fields
+* Use rails-timeago to provide time ago display
+* Adding new Publify favicon
 
 ## 8.1.1
 
