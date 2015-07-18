@@ -127,7 +127,6 @@ class Blog < ActiveRecord::Base
     unless global_pings_enabled? && settings.key?(:url) && settings.key?(:article_id)
       throw :error, 'Invalid trackback or trackbacks not enabled'
     end
-    settings[:blog_id] = id
     article = Article.find(settings[:article_id])
     throw :error, 'Trackback not saved' unless article.allow_pings?
     article.trackbacks.create!(settings)
