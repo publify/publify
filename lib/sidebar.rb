@@ -1,6 +1,8 @@
 class Sidebar < ActiveRecord::Base
   serialize :config, Hash
 
+  belongs_to :blog
+
   class Field
     attr_accessor :key
     attr_accessor :options

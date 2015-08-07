@@ -205,4 +205,14 @@ class Feedback < ActiveRecord::Base
       nil
     end
   end
+
+  # TODO: Deprecated
+  def blog_id
+    article.blog_id if article.present?
+  end
+
+  # TODO: Deprecated
+  def blog
+    article.blog if article.present?
+  end
 end

@@ -12,6 +12,7 @@ class Content < ActiveRecord::Base
 
   belongs_to :text_filter
   belongs_to :user
+  belongs_to :blog
 
   has_one :redirect, dependent: :destroy
 

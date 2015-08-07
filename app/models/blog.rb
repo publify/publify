@@ -9,6 +9,17 @@ class Blog < ActiveRecord::Base
   include ConfigManager
   include Rails.application.routes.url_helpers
 
+  has_many :contents
+  has_many :articles
+  has_many :feedback, through: :articles
+
+  has_many(:published_articles,
+           ->() { includes(:tags).where(:published => true).order('contents.published_at DESC') },
+           :class_name => "Article")
+
+  has_many :pages
+  has_many :sidebars, ->() { order('active_position ASC') }
+
   attr_accessor :custom_permalink
 
   default_scope -> { order('id') }
