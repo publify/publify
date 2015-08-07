@@ -13,8 +13,7 @@ class Content < ActiveRecord::Base
   belongs_to :text_filter
   belongs_to :user
 
-  has_many :redirections
-  has_many :redirects, through: :redirections, dependent: :destroy
+  has_one :redirect, dependent: :destroy
 
   has_many :triggers, as: :pending_item, dependent: :delete_all
 
@@ -62,19 +61,16 @@ class Content < ActiveRecord::Base
   def shorten_url
     return unless published
 
-    r = Redirect.new
-    r.from_path = r.shorten
-    r.to_path = permalink_url
-
-    # This because updating self.redirects.first raises ActiveRecord::ReadOnlyRecord
-    unless (red = redirects.first).nil?
-      return if red.to_path == permalink_url
-      r.from_path = red.from_path
-      red.destroy
-      redirects.clear # not sure we need this one
+    if redirect.present?
+      return if redirect.to_path == permalink_url
+      redirect.to_path = permalink_url
+      redirect.save
+    else
+      r = Redirect.new
+      r.from_path = r.shorten
+      r.to_path = permalink_url
+      self.redirect = r
     end
-
-    redirects << r
   end
 
   def self.find_already_published(_limit)
@@ -140,8 +136,8 @@ class Content < ActiveRecord::Base
 
   def short_url
     # Double check because of crappy data in my own old database
-    return unless published && redirects.size > 0
-    redirects.last.to_url
+    return unless published && redirect.present?
+    redirect.to_url
   end
 end
 

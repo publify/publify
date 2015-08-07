@@ -68,15 +68,15 @@ describe Page, type: :model do
     end
   end
 
-  describe 'redirects' do
+  describe '#redirect' do
     context 'with a simple page' do
       let(:page) { create(:page) }
-      it { expect(page.redirects.first.to_path).to eq(page.permalink_url) }
+      it { expect(page.redirect.to_path).to eq(page.permalink_url) }
     end
 
     context 'with an unpublished page' do
       let(:page) { create(:page, published: false) }
-      it { expect(page.redirects).to be_empty }
+      it { expect(page.redirect).to be_blank }
     end
   end
 end

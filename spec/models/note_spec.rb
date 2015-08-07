@@ -7,8 +7,8 @@ describe Note, type: :model do
 
     describe 'validations' do
       it { expect(build(:note)).to be_valid }
-      it { expect(build(:note).redirects).to be_empty }
-      it { expect(create(:note).redirects).to_not be_empty }
+      it { expect(build(:note).redirect).to be_blank }
+      it { expect(create(:note).redirect).to_not be_blank }
       it { expect(build(:note, body: nil)).to be_invalid }
 
       it 'with a nil body, return default error message' do
@@ -40,19 +40,19 @@ describe Note, type: :model do
 
         context 'with a blog that have a custome url shortener' do
           let(:url_shortener) { 'shor.tl' }
-          it { expect(note.short_link).to eq("#{url_shortener} #{note.redirects.first.from_path}") }
+          it { expect(note.short_link).to eq("#{url_shortener} #{note.redirect.from_path}") }
         end
 
         context 'with a blog that have a custome url shortener' do
           let(:url_shortener) { nil }
-          it { expect(note.short_link).to eq("mybaseurl.net #{note.redirects.first.from_path}") }
+          it { expect(note.short_link).to eq("mybaseurl.net #{note.redirect.from_path}") }
         end
       end
     end
 
-    describe 'redirects' do
+    describe '#redirect' do
       let(:note) { create(:note) }
-      it { expect(note.redirects.map(&:to_path)).to eq([note.permalink_url]) }
+      it { expect(note.redirect.to_path).to eq note.permalink_url }
     end
 
     describe 'scopes' do
@@ -146,22 +146,22 @@ describe Note, type: :model do
 
       context 'with a short message much more than 114 char' do
         let(:tweet) { 'A very big(10) message with lot of text (40)inside just to try the shortener and (80)the new link that publify must create and add at the end' }
-        let(:expected_tweet) { "A very big(10) message with lot of text (40)inside just to try the shortener and (80)the new link that publify... (#{note.redirects.first.to_url})" }
+        let(:expected_tweet) { "A very big(10) message with lot of text (40)inside just to try the shortener and (80)the new link that publify... (#{note.redirect.to_url})" }
         it { expect(note.twitter_message).to eq(expected_tweet) }
         it { expect(note.twitter_message.length).to eq(140) }
       end
 
       context 'With a test message from production...' do
         let(:tweet) { "Le dojo de nantes, c'est comme au McDo, sans les odeurs, et en plus rigolo: RT @abailly Ce midi c'est coding dojo à la Cantine #Nantes. Pour s'inscrire si vous voulez c'est ici: http://cantine.atlantic2.org/evenements/coding-dojo-8/ … Sinon venez comme vous êtes" }
-        let(:expected_tweet) { "Le dojo de nantes, c'est comme au McDo, sans les odeurs, et en plus rigolo: RT @abailly Ce midi c'est coding... (#{note.redirects.first.to_url})" }
-        it { expect(note.twitter_message).to eq("Le dojo de nantes, c'est comme au McDo, sans les odeurs, et en plus rigolo: RT @abailly Ce midi c'est coding... (#{note.redirects.first.to_url})") }
+        let(:expected_tweet) { "Le dojo de nantes, c'est comme au McDo, sans les odeurs, et en plus rigolo: RT @abailly Ce midi c'est coding... (#{note.redirect.to_url})" }
+        it { expect(note.twitter_message).to eq("Le dojo de nantes, c'est comme au McDo, sans les odeurs, et en plus rigolo: RT @abailly Ce midi c'est coding... (#{note.redirect.to_url})") }
         it { expect(note.twitter_message).to eq(expected_tweet) }
         it { expect(note.twitter_message.length).to eq(138) }
       end
 
       context 'with a bug message' do
         let(:tweet) { "\"JSFuck is an esoteric and educational programming style based on the atomic parts of JavaScript. It uses only six different characters to write and execute code.\" http://www.jsfuck.com/ " }
-        let(:expected_tweet) { "\"JSFuck is an esoteric and educational programming style based on the atomic parts of JavaScript. It uses only... (#{note.redirects.first.to_url})" }
+        let(:expected_tweet) { "\"JSFuck is an esoteric and educational programming style based on the atomic parts of JavaScript. It uses only... (#{note.redirect.to_url})" }
 
         it { expect(note.twitter_message).to eq(expected_tweet) }
         it { expect(note.twitter_message.length).to eq(140) }
@@ -169,7 +169,7 @@ describe Note, type: :model do
 
       context "don't cut word" do
         let(:tweet) { "Le #mobprogramming c'est un peu comme faire un dojo sur une journée entière (ça permet sûrement de faire des petites journées ;-))" }
-        let(:expected_tweet) { "Le #mobprogramming c'est un peu comme faire un dojo sur une journée entière (ça permet sûrement de faire des... (#{note.redirects.first.to_url})" }
+        let(:expected_tweet) { "Le #mobprogramming c'est un peu comme faire un dojo sur une journée entière (ça permet sûrement de faire des... (#{note.redirect.to_url})" }
 
         it { expect(note.twitter_message).to eq(expected_tweet) }
         it { expect(note.twitter_message.length).to eq(138) }
@@ -177,7 +177,7 @@ describe Note, type: :model do
 
       context 'shortner host is count as an url for twitter' do
         let(:tweet) { 'RT @stephaneducasse http://pharocloud.com is so cool. I love love such idea and I wish them success. Excellent work.' }
-        let(:expected_tweet) { "RT @stephaneducasse http://pharocloud.com is so cool. I love love such idea and I wish them success. Excellent... (#{note.redirects.first.to_url})" }
+        let(:expected_tweet) { "RT @stephaneducasse http://pharocloud.com is so cool. I love love such idea and I wish them success. Excellent... (#{note.redirect.to_url})" }
 
         it { expect(note.twitter_message).to eq(expected_tweet) }
         it { expect(note.twitter_message.length).to eq(140) }
