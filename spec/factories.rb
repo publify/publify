@@ -71,6 +71,7 @@ FactoryGirl.define do
     state :published
     allow_pings true
     association :text_filter, factory: :textile
+    blog_id { Blog.first_or_create.id }
 
     trait :with_tags do
       keywords 'a tag'
@@ -327,5 +328,6 @@ http://alsoping.example.com/rpc/ping"
     active_position 1
     config('title' => 'Links', 'body' => 'some links')
     type 'StaticSidebar'
+    blog { Blog.first }
   end
 end

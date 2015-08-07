@@ -27,7 +27,7 @@ describe Tag, type: :model do
   end
 
   it 'articles can be tagged' do
-    a = Article.create(title: 'an article')
+    a = Article.create(title: 'an article', blog: create(:blog))
     foo = FactoryGirl.create(:tag, name: 'foo')
     bar = FactoryGirl.create(:tag, name: 'bar')
     a.tags << foo

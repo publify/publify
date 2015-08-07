@@ -112,6 +112,7 @@ describe Article, type: :model do
     it 'is called upon saving the article' do
       a = Article.new(title: 'space separated')
       expect(a.permalink).to be_nil
+      a.blog = create(:blog)
       a.save
       expect(a.permalink).to eq('space-separated')
     end
@@ -162,6 +163,7 @@ describe Article, type: :model do
       let(:article) do
         Article.new(body: %(<a href="#{referenced_url}">),
                     title: 'Test the pinging',
+                    blog_id: 1,
                     published: true)
       end
 
@@ -238,7 +240,8 @@ describe Article, type: :model do
   end
 
   it 'test_just_published_flag' do
-    art = Article.new(title: 'title', body: 'body', published: true)
+    art = Article.new(title: 'title', blog_id: 1,
+                      body: 'body', published: true)
 
     assert art.just_changed_published_status?
     assert art.save
@@ -246,24 +249,28 @@ describe Article, type: :model do
     art = Article.find(art.id)
     assert !art.just_changed_published_status?
 
-    art = Article.create!(title: 'title2', body: 'body', published: false)
+    art = Article.create!(title: 'title2', body: 'body',
+                          blog_id: 1, published: false)
 
     assert !art.just_changed_published_status?
   end
 
   it 'test_future_publishing' do
     assert_sets_trigger(Article.create!(title: 'title', body: 'body',
-                                        published: true, published_at: Time.now + 4.seconds))
+                                        published: true, blog_id: 1,
+                                        published_at: Time.now + 4.seconds))
   end
 
   it 'test_future_publishing_without_published_flag' do
     assert_sets_trigger Article.create!(title: 'title', body: 'body',
+                                        blog_id: 1,
                                         published_at: Time.now + 4.seconds)
   end
   it 'test_triggers_are_dependent' do
     # TODO: Needs a fix for Rails ticket #5105: has_many: Dependent deleting does not work with STI
     skip
     art = Article.create!(title: 'title', body: 'body',
+                          blog_id: 1,
                           published_at: Time.now + 1.hour)
     assert_equal 1, Trigger.count
     art.destroy

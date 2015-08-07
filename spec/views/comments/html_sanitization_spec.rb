@@ -3,7 +3,7 @@ require 'rails_helper'
 shared_examples_for 'CommentSanitization' do
   before do
     @blog = build_stubbed(:blog)
-    @article = build_stubbed(:article, created_at: Time.now, published_at: Time.now)
+    @article = build_stubbed(:article, created_at: Time.now, published_at: Time.now, blog: @blog)
     allow(Article).to receive(:find).and_return(@article)
     @blog.plugin_avatar = ''
     @blog.lang = 'en_US'
