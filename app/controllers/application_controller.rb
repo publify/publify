@@ -53,14 +53,15 @@ class ApplicationController < ActionController::Base
   # The base URL for this request, calculated by looking up the URL for the main
   # blog index page.
   def blog_base_url
-    url_for(controller: '/articles').gsub(%r{/$}, '')
+    url_for(controller: '/articles', action: 'index').gsub(%r{/$},'')
   end
 
   def add_to_cookies(name, value, path = nil, _expires = nil)
     cookies[name] = { value: value, path: path || "/#{controller_name}", expires: 6.weeks.from_now }
   end
 
+  # Find the blog whose base_url matches the current location.
   def this_blog
-    @blog ||= Blog.default
+    @blog ||= Blog.find_blog(blog_base_url)
   end
 end
