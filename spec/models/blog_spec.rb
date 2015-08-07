@@ -49,8 +49,8 @@ describe Blog, type: :model do
       @blog = FactoryGirl.create :blog
     end
 
-    it 'should be the only blog allowed' do
-      expect(Blog.new).not_to be_valid
+    it 'should allow another blog to be created' do
+      expect(Blog.new).to be_valid
     end
   end
 

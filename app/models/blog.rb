@@ -13,10 +13,6 @@ class Blog < ActiveRecord::Base
 
   default_scope -> { order('id') }
 
-  validate(on: :create) do |blog|
-    blog.errors.add(:base, 'There can only be one...') unless Blog.count.zero?
-  end
-
   validates :blog_name, presence: true
 
   serialize :settings, Hash
@@ -114,7 +110,7 @@ class Blog < ActiveRecord::Base
   validate :permalink_has_identifier
 
   # The default Blog. This is the lowest-numbered blog, almost always
-  # id==1. This should be the only blog as well.
+  # id==1.
   def self.default
     first
   rescue
