@@ -3,7 +3,7 @@ class Admin::FeedbackController < Admin::BaseController
   ONLY_DOMAIN = %w(unapproved presumed_ham presumed_spam ham spam)
 
   def index
-    scoped_feedback = Feedback
+    scoped_feedback = this_blog.feedback
 
     if params[:only].present?
       @only_param = ONLY_DOMAIN.dup.delete(params[:only])
@@ -70,7 +70,7 @@ class Admin::FeedbackController < Admin::BaseController
   end
 
   def article
-    @article = Article.find(params[:id])
+    @article = this_blog.articles.find(params[:id])
     @feedback = @article.comments.ham if params[:ham] && params[:spam].blank?
     @feedback = @article.comments.spam if params[:spam] && params[:ham].blank?
     @feedback ||= @article.comments

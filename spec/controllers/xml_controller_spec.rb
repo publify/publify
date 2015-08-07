@@ -88,8 +88,7 @@ describe XmlController, type: :controller do
 
     describe 'for an article' do
       before do
-        @article = build_stubbed(:article, published_at: Time.now, permalink: 'foo')
-        allow(Article).to receive(:find) { @article }
+        @article = create(:article, published_at: Time.now, permalink: 'foo')
       end
 
       describe 'without format parameter' do

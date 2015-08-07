@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe "CommentClosing from Test::Unit; no I don't know why it's in article_closing_spec.rb", type: :model do
   def an_article(options = {})
-    Article.create(options.reverse_merge(user_id: 1, body: 'Foo', title: 'Bar'))
+    @blog.articles.create(options.reverse_merge(:user_id => 1, :body => 'Foo', :title => 'Bar'))
   end
 
   before(:each) do
