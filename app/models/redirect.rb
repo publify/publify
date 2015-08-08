@@ -1,8 +1,10 @@
 class Redirect < ActiveRecord::Base
+  belongs_to :contents
+  belongs_to :blog
+
   validates :from_path, uniqueness: true
   validates :to_path, presence: true
-
-  belongs_to :contents
+  validates :blog, presence: true
 
   def full_to_path
     path = to_path

@@ -67,7 +67,7 @@ class Content < ActiveRecord::Base
       redirect.to_path = permalink_url
       redirect.save
     else
-      r = Redirect.new
+      r = Redirect.new(blog: blog)
       r.from_path = r.shorten
       r.to_path = permalink_url
       self.redirect = r

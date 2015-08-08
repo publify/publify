@@ -225,9 +225,10 @@ http://alsoping.example.com/rpc/ping"
     a.size 600
   end
 
-  factory :redirect do |r|
-    r.from_path 'foo/bar'
-    r.to_path '/someplace/else'
+  factory :redirect do
+    from_path 'foo/bar'
+    to_path '/someplace/else'
+    blog { Blog.first || create(:blog) }
   end
 
   factory :comment do
