@@ -4,8 +4,9 @@ class Tag < ActiveRecord::Base
 
   validates :name, uniqueness: { scope: :blog_id }
   validates :blog, presence: true
+  validates :name, presence: true
 
-  before_save :ensure_naming_conventions
+  before_validation :ensure_naming_conventions
 
   attr_accessor :description, :keywords
 
@@ -33,7 +34,7 @@ class Tag < ActiveRecord::Base
 
   def ensure_naming_conventions
     self.display_name = name if display_name.blank?
-    self.name = display_name.to_url
+    self.name = display_name.to_url unless display_name.blank?
   end
 
   def self.find_all_with_article_counters
