@@ -1,5 +1,3 @@
-Fix password protection, which is certainly totally broken
-
 AdminSidebar:
 - On the fly save of params
 - CSS
