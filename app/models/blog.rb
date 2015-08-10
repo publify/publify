@@ -18,6 +18,8 @@ class Blog < ActiveRecord::Base
            :class_name => "Article")
 
   has_many :pages
+  has_many :tags
+
   has_many :redirects
   has_many :sidebars, ->() { order('active_position ASC') }
 

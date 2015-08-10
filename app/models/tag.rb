@@ -1,7 +1,9 @@
 class Tag < ActiveRecord::Base
+  belongs_to :blog
   has_and_belongs_to_many :articles, order: 'created_at DESC', join_table: 'articles_tags'
 
-  validates :name, uniqueness: true
+  validates :name, uniqueness: { scope: :blog_id }
+  validates :blog, presence: true
 
   before_save :ensure_naming_conventions
 
@@ -16,7 +18,7 @@ class Tag < ActiveRecord::Base
       end
       tagwords.uniq.each do |tagword|
         tagname = tagword.to_url
-        tags << find_or_create_by(name: tagname) do |tag|
+        tags << article.blog.tags.find_or_create_by(name: tagname) do |tag|
           tag.display_name = tagword
         end
       end

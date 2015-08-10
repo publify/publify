@@ -12,7 +12,7 @@ class Admin::TagsController < Admin::BaseController
   end
 
   def create
-    @tag = Tag.new(tag_params)
+    @tag = this_blog.tags.new(tag_params)
 
     if @tag.save
       redirect_to admin_tags_url, notice: 'Tag was successfully created.'
