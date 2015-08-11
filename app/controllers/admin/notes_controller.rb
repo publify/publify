@@ -6,7 +6,7 @@ class Admin::NotesController < Admin::BaseController
   before_action :find_note, only: [:edit, :update, :show, :destroy]
 
   def index
-    @note = Publisher.new(current_user).new_note
+    @note = new_note
   end
 
   def show
@@ -20,7 +20,7 @@ class Admin::NotesController < Admin::BaseController
   end
 
   def create
-    note = Publisher.new(current_user).new_note
+    note = new_note
 
     note.published = true
     note.published_at = parse_date_time params[:note][:published_at]
@@ -61,5 +61,10 @@ class Admin::NotesController < Admin::BaseController
 
   def find_note
     @note = Note.find(params[:id])
+  end
+
+  def new_note
+    this_blog.notes.build(author: current_user,
+                          text_filter: current_user.text_filter)
   end
 end

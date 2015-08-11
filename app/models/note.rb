@@ -39,7 +39,7 @@ class Note < Content
   end
 
   def html_preprocess(_field, html)
-    PublifyApp::Textfilter::Twitterfilter.filtertext(nil, nil, html, nil).nofollowify
+    PublifyApp::Textfilter::Twitterfilter.filtertext(nil, nil, html, nil).nofollowify(blog)
   end
 
   def truncate(message, length)
@@ -65,12 +65,12 @@ class Note < Content
   end
 
   def send_to_twitter
-    return false unless Blog.default.has_twitter_configured?
+    return false unless blog.has_twitter_configured?
     return false unless user.has_twitter_configured?
 
     twitter = Twitter::REST::Client.new do |config|
-      config.consumer_key = Blog.default.twitter_consumer_key
-      config.consumer_secret = Blog.default.twitter_consumer_secret
+      config.consumer_key = blog.twitter_consumer_key
+      config.consumer_secret = blog.twitter_consumer_secret
       config.access_token = user.twitter_oauth_token
       config.access_token_secret = user.twitter_oauth_token_secret
     end
@@ -115,12 +115,14 @@ class Note < Content
 
   def short_link
     path = redirect.from_path
-    prefix.sub!(/^https?\:\/\//, '')
     "#{prefix} #{path}"
   end
 
   def prefix
-    blog.custom_url_shortener.present? ? blog.custom_url_shortener : blog.base_url
+    # FIXME: Move to Blog
+    shortener_url =
+      blog.custom_url_shortener.present? ? blog.custom_url_shortener : blog.base_url
+    shortener_url.sub(/^https?\:\/\//, '')
   end
 
   private

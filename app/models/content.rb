@@ -14,6 +14,8 @@ class Content < ActiveRecord::Base
   belongs_to :user
   belongs_to :blog
 
+  validates :blog, presence: true
+
   has_one :redirect, dependent: :destroy
 
   has_many :triggers, as: :pending_item, dependent: :delete_all
@@ -31,10 +33,7 @@ class Content < ActiveRecord::Base
   }
   scope :already_published, -> { where('published = ? AND published_at < ?', true, Time.now).order(default_order) }
 
-  scope :published_at_like, lambda { |date_at|
-    where(published_at: (PublifyTime.delta_like(date_at))
-         )
-  }
+  scope :published_at_like, ->(date_at) { where(published_at: PublifyTime.delta_like(date_at)) }
 
   serialize :whiteboard
 
@@ -85,7 +84,7 @@ class Content < ActiveRecord::Base
       scoped = scoped.searchstring(params[:searchstring])
     end
 
-    if params[:published_at].present? && /(\d\d\d\d)-(\d\d)/ =~ params[:published_at]
+    if params[:published_at].present? && %r{(\d\d\d\d)-(\d\d)} =~ params[:published_at]
       scoped = scoped.published_at_like(params[:published_at])
     end
 

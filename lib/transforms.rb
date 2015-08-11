@@ -1,4 +1,5 @@
 # coding: utf-8
+# FIXME: Replace with helpers and/or methods provided by Rails
 class String
   ACCENTS = { %w(á à â ä ã Ã Ä Â À) => 'a',
               %w(é è ê ë Ë É È Ê) => 'e',
@@ -31,14 +32,12 @@ class String
 
   # A quick and dirty fix to add 'nofollow' to any urls in a string.
   # Decidedly unsafe, but will have to do for now.
-  def nofollowify
-    return self if Blog.default.dofollowify
+  # TODO: Move to a helper
+  def nofollowify(blog)
+    return self if blog.dofollowify
     gsub(/<a(.*?)>/i, '<a\1 rel="nofollow">')
   end
 
-  # I pass settings as a parametre to avoid calling Blog.default (and another
-  #  database call) everytime I want to use to_title
-  # Not sure on this one though.
   def to_title(item, settings, params)
     s = self
 

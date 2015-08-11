@@ -24,14 +24,14 @@ describe String do
       @blog.dofollowify = false
       @blog.save
 
-      expect('<a href="http://myblog.net">my blog</a>'.nofollowify).to eq('<a href="http://myblog.net" rel="nofollow">my blog</a>')
+      expect('<a href="http://myblog.net">my blog</a>'.nofollowify(@blog)).to eq('<a href="http://myblog.net" rel="nofollow">my blog</a>')
     end
 
     it 'with dofollowify enabled, links should be nofollowed' do
       @blog.dofollowify = true
       @blog.save
 
-      expect('<a href="http://myblog.net">my blog</a>'.nofollowify).to eq('<a href="http://myblog.net">my blog</a>')
+      expect('<a href="http://myblog.net">my blog</a>'.nofollowify(@blog)).to eq('<a href="http://myblog.net">my blog</a>')
     end
   end
 

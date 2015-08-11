@@ -4,8 +4,8 @@ describe SetupController, type: :controller do
   describe 'when no blog is configured' do
     before do
       # Set up database similar to result of seeding
-      Blog.new.save
-      create :tag
+      @blog = Blog.create
+      create :tag, blog: @blog
       create :none
     end
 
@@ -24,7 +24,7 @@ describe SetupController, type: :controller do
 
       context 'when a first article exists' do
         before do
-          Article.create(title: 'First post').save!
+          Blog.first.articles.create(title: 'First post').save!
           post_setup_index
         end
 
@@ -34,7 +34,7 @@ describe SetupController, type: :controller do
         end
 
         it 'should correctly initialize blog and users' do
-          expect(Blog.default.blog_name).to eq('Foo')
+          expect(Blog.first.blog_name).to eq('Foo')
           admin = User.find_by_login('admin')
           expect(admin).not_to be_nil
           expect(admin.email).to eq('foo@bar.net')
@@ -58,7 +58,7 @@ describe SetupController, type: :controller do
         end
 
         it 'should correctly initialize blog and users' do
-          expect(Blog.default.blog_name).to eq('Foo')
+          expect(Blog.first.blog_name).to eq('Foo')
           admin = User.find_by_login('admin')
           expect(admin).not_to be_nil
           expect(admin.email).to eq('foo@bar.net')
@@ -110,7 +110,7 @@ describe SetupController, type: :controller do
       specify { expect(response).to redirect_to(controller: 'articles', action: 'index') }
 
       it 'should not initialize blog and users' do
-        expect(Blog.default.blog_name).not_to eq('Foo')
+        expect(Blog.first.blog_name).not_to eq('Foo')
         admin = User.find_by_login('admin')
         expect(admin).to be_nil
       end

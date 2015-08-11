@@ -10,4 +10,8 @@ class Resource < ActiveRecord::Base
 
   scope :without_images_by_filename, -> { without_images.by_filename }
   scope :images_by_created_at, -> { images.by_created_at }
+
+  def blog
+    article.blog
+  end
 end

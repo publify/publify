@@ -117,8 +117,8 @@ end
 
 shared_examples_for 'CommentSanitizationWithDofollow' do
   before do
-    @blog = FactoryGirl.create(:blog)
-    @article = FactoryGirl.create(:article, created_at: Time.now, published_at: Time.now)
+    @blog = create(:blog)
+    @article = create(:article, created_at: Time.now, published_at: Time.now, blog: @blog)
     allow(Article).to receive(:find).and_return(@article)
     @blog.plugin_avatar = ''
     @blog.lang = 'en_US'

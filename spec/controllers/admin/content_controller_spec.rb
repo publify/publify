@@ -3,7 +3,6 @@ require 'rails_helper'
 describe Admin::ContentController, type: :controller do
   render_views
 
-  let!(:blog) { create(:blog) }
   let!(:article) { create(:article) }
 
   context 'as publisher (admin can do the same)' do
@@ -56,12 +55,14 @@ describe Admin::ContentController, type: :controller do
       context 'first time save' do
         it do
           expect do
-            xhr :post, :autosave, article: attributes_for(:article)
+            # TODO: Fix factory so we don't need to except :blog
+            xhr :post, :autosave, article: attributes_for(:article).except(:blog)
           end.to change(Article, :count).from(1).to(2) end
 
         it do
           expect do
-            xhr :post, :autosave, article: attributes_for(:article, :with_tags)
+            # TODO: Fix factory so we don't need to except :blog
+            xhr :post, :autosave, article: attributes_for(:article, :with_tags).except(:blog)
           end.to change(Tag, :count).from(0).to(2) end
       end
 
@@ -77,11 +78,13 @@ describe Admin::ContentController, type: :controller do
         let!(:draft) { create(:article, published: false, state: 'draft', body: 'existing body') }
         it do
           expect do
-            xhr :post, :autosave, article: attributes_for(:article)
+            # TODO: Fix factory so we don't need to except :blog
+            xhr :post, :autosave, article: attributes_for(:article).except(:blog)
           end.to change(Article, :count).from(2).to(3) end
 
         it 'dont replace existing draft' do
-          xhr :post, :autosave, article: attributes_for(:article)
+          # TODO: Fix factory so we don't need to except :blog
+          xhr :post, :autosave, article: attributes_for(:article).except(:blog)
           expect(assigns(:article).id).to_not eq(draft.id)
           expect(assigns(:article).body).to_not eq(draft.body)
         end

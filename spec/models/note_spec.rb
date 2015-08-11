@@ -43,7 +43,7 @@ describe Note, type: :model do
           it { expect(note.short_link).to eq("#{url_shortener} #{note.redirect.from_path}") }
         end
 
-        context 'with a blog that have a custome url shortener' do
+        context 'with a blog that does not have a custome url shortener' do
           let(:url_shortener) { nil }
           it { expect(note.short_link).to eq("mybaseurl.net #{note.redirect.from_path}") }
         end
@@ -126,7 +126,7 @@ describe Note, type: :model do
 
     describe 'default_text_filter' do
       let(:note) { build(:note) }
-      it { expect(note.default_text_filter.name).to eq(Blog.default.text_filter) }
+      it { expect(note.default_text_filter.name).to eq(note.blog.text_filter) }
     end
 
     describe 'twitter_message' do
@@ -154,7 +154,6 @@ describe Note, type: :model do
       context 'With a test message from production...' do
         let(:tweet) { "Le dojo de nantes, c'est comme au McDo, sans les odeurs, et en plus rigolo: RT @abailly Ce midi c'est coding dojo à la Cantine #Nantes. Pour s'inscrire si vous voulez c'est ici: http://cantine.atlantic2.org/evenements/coding-dojo-8/ … Sinon venez comme vous êtes" }
         let(:expected_tweet) { "Le dojo de nantes, c'est comme au McDo, sans les odeurs, et en plus rigolo: RT @abailly Ce midi c'est coding... (#{note.redirect.to_url})" }
-        it { expect(note.twitter_message).to eq("Le dojo de nantes, c'est comme au McDo, sans les odeurs, et en plus rigolo: RT @abailly Ce midi c'est coding... (#{note.redirect.to_url})") }
         it { expect(note.twitter_message).to eq(expected_tweet) }
         it { expect(note.twitter_message.length).to eq(138) }
       end
@@ -175,7 +174,7 @@ describe Note, type: :model do
         it { expect(note.twitter_message.length).to eq(138) }
       end
 
-      context 'shortner host is count as an url for twitter' do
+      context 'shortener host name is counted as an url by twitter' do
         let(:tweet) { 'RT @stephaneducasse http://pharocloud.com is so cool. I love love such idea and I wish them success. Excellent work.' }
         let(:expected_tweet) { "RT @stephaneducasse http://pharocloud.com is so cool. I love love such idea and I wish them success. Excellent... (#{note.redirect.to_url})" }
 

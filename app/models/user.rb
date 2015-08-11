@@ -1,6 +1,7 @@
 require 'digest/sha1'
 
 # Publify user.
+# TODO: Should belong to a blog
 class User < ActiveRecord::Base
   include ConfigManager
 

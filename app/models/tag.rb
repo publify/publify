@@ -72,7 +72,6 @@ class Tag < ActiveRecord::Base
   end
 
   def permalink_url(_anchor = nil, only_path = false)
-    blog = Blog.default # remove me...
     blog.url_for(controller: 'tags', action: 'show', id: permalink, only_path: only_path)
   end
 end

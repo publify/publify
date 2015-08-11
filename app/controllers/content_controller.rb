@@ -17,7 +17,6 @@ class ContentController < ApplicationController
 
   include LoginSystem
   before_action :setup_themer
-  helper :theme
 
   protected
 

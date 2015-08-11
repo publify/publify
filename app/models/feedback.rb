@@ -65,7 +65,7 @@ class Feedback < ActiveRecord::Base
 
   def html_postprocess(_field, html)
     helper = ContentTextHelpers.new
-    helper.sanitize(helper.auto_link(html)).nofollowify
+    helper.sanitize(helper.auto_link(html)).nofollowify(blog)
   end
 
   def correct_url
@@ -186,6 +186,11 @@ class Feedback < ActiveRecord::Base
     errors.add(:article_id, 'Comment are closed') if article.comments_closed?
   end
 
+  # TODO: Require article to be present
+  def blog
+    article.blog if article.present?
+  end
+
   private
 
   @@akismet = nil
@@ -206,13 +211,7 @@ class Feedback < ActiveRecord::Base
     end
   end
 
-  # TODO: Deprecated
   def blog_id
     article.blog_id if article.present?
-  end
-
-  # TODO: Deprecated
-  def blog
-    article.blog if article.present?
   end
 end

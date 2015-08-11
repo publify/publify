@@ -11,7 +11,7 @@ class ArticlesController < ContentController
   helper :'admin/base'
 
   def index
-    conditions = (Blog.default.statuses_in_timeline) ? ['type in (?, ?)', 'Article', 'Note'] : ['type = ?', 'Article']
+    conditions = (this_blog.statuses_in_timeline) ? ['type in (?, ?)', 'Article', 'Note'] : ['type = ?', 'Article']
 
     limit = this_blog.per_page(params[:format])
     if params[:year].blank?

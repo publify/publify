@@ -3,6 +3,8 @@
 require 'digest/sha1'
 
 module ApplicationHelper
+  include BlogHelper
+
   # Need to rewrite this one, quick hack to test my changes.
   attr_reader :page_title
 
@@ -210,10 +212,6 @@ module ApplicationHelper
   def show_meta_keyword
     return unless this_blog.use_meta_keyword
     meta_tag 'keywords', @keywords unless @keywords.blank?
-  end
-
-  def this_blog
-    @blog ||= Blog.default
   end
 
   def stop_index_robots?(blog)

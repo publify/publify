@@ -2,42 +2,42 @@
 require 'rails_helper'
 
 describe Article, type: :model do
-  let!(:blog) { create(:blog) }
+  let(:blog) { create(:blog) }
 
   it 'test_content_fields' do
-    a = Article.new
+    a = blog.articles.build
     assert_equal [:body, :extended], a.content_fields
   end
 
   describe '#permalink_url' do
     describe 'with hostname' do
-      subject { Article.new(permalink: 'article-3', published_at: Time.utc(2004, 6, 1)).permalink_url(nil, false) }
+      subject { blog.articles.build(permalink: 'article-3', published_at: Time.utc(2004, 6, 1)).permalink_url(nil, false) }
       it { is_expected.to eq('http://myblog.net/2004/06/01/article-3') }
     end
 
     describe 'without hostname' do
-      subject { Article.new(permalink: 'article-3', published_at: Time.utc(2004, 6, 1)).permalink_url(nil, true) }
+      subject { blog.articles.build(permalink: 'article-3', published_at: Time.utc(2004, 6, 1)).permalink_url(nil, true) }
       it { is_expected.to eq('/2004/06/01/article-3') }
     end
 
     # NOTE: URLs must not have any multibyte characters in them. The
     # browser may display them differently, though.
     describe 'with a multibyte permalink' do
-      subject { Article.new(permalink: 'ルビー', published_at: Time.utc(2004, 6, 1)) }
+      subject { blog.articles.build(permalink: 'ルビー', published_at: Time.utc(2004, 6, 1)) }
       it 'escapes the multibyte characters' do
         expect(subject.permalink_url(nil, true)).to eq('/2004/06/01/%E3%83%AB%E3%83%93%E3%83%BC')
       end
     end
 
     describe 'with a permalink containing a space' do
-      subject { Article.new(permalink: 'hello there', published_at: Time.utc(2004, 6, 1)) }
+      subject { blog.articles.build(permalink: 'hello there', published_at: Time.utc(2004, 6, 1)) }
       it "escapes the space as '%20', not as '+'" do
         expect(subject.permalink_url(nil, true)).to eq('/2004/06/01/hello%20there')
       end
     end
 
     describe 'with a permalink containing a plus' do
-      subject { Article.new(permalink: 'one+two', published_at: Time.utc(2004, 6, 1)) }
+      subject { blog.articles.build(permalink: 'one+two', published_at: Time.utc(2004, 6, 1)) }
       it 'does not escape the plus' do
         expect(subject.permalink_url(nil, true)).to eq('/2004/06/01/one+two')
       end
@@ -46,7 +46,7 @@ describe Article, type: :model do
 
   describe '#initialize' do
     it 'accepts a settings field in its parameter hash' do
-      Article.new('password' => 'foo')
+      blog.articles.build('password' => 'foo')
     end
   end
 
@@ -63,7 +63,7 @@ describe Article, type: :model do
   end
 
   it 'test_create' do
-    a = Article.new
+    a = blog.articles.build
     a.user_id = 1
     a.body = 'Foo'
     a.title = 'Zzz'
@@ -94,23 +94,23 @@ describe Article, type: :model do
 
   describe '#stripped_title' do
     it 'works for simple cases' do
-      assert_equal 'article-1', Article.new(title: 'Article 1!').title.to_permalink
-      assert_equal 'article-2', Article.new(title: 'Article 2!').title.to_permalink
-      assert_equal 'article-3', Article.new(title: 'Article 3!').title.to_permalink
+      assert_equal 'article-1', blog.articles.build(title: 'Article 1!').title.to_permalink
+      assert_equal 'article-2', blog.articles.build(title: 'Article 2!').title.to_permalink
+      assert_equal 'article-3', blog.articles.build(title: 'Article 3!').title.to_permalink
     end
 
     it 'strips html' do
-      a = Article.new(title: 'This <i>is</i> a <b>test</b>')
+      a = blog.articles.build(title: 'This <i>is</i> a <b>test</b>')
       assert_equal 'this-is-a-test', a.title.to_permalink
     end
 
     it 'does not escape multibyte characters' do
-      a = Article.new(title: 'ルビー')
+      a = blog.articles.build(title: 'ルビー')
       expect(a.title.to_permalink).to eq('ルビー')
     end
 
     it 'is called upon saving the article' do
-      a = Article.new(title: 'space separated')
+      a = blog.articles.build(title: 'space separated')
       expect(a.permalink).to be_nil
       a.blog = create(:blog)
       a.save
@@ -121,7 +121,7 @@ describe Article, type: :model do
   describe 'the html_urls method' do
     before do
       allow(blog).to receive(:text_filter_object) { TextFilter.new(filters: []) }
-      @article = Article.new
+      @article = blog.articles.build
     end
 
     it 'extracts URLs from the generated body html' do
@@ -161,7 +161,7 @@ describe Article, type: :model do
       let!(:blog) { create(:blog, send_outbound_pings: 1) }
       let(:mock_pinger) { instance_double('Ping::Pinger') }
       let(:article) do
-        Article.new(body: %(<a href="#{referenced_url}">),
+         blog.articles.build(body: %(<a href="#{referenced_url}">),
                     title: 'Test the pinging',
                     blog_id: 1,
                     published: true)
@@ -192,13 +192,13 @@ describe Article, type: :model do
 
   describe '#just_published' do
     it 'is true when the article has just been saved as published' do
-      article = Article.new(body: 'bar bar', title: 'Foo', published: true)
+      article = blog.articles.build(body: 'bar bar', title: 'Foo', published: true)
       article.save
       expect(article).to be_just_published
     end
 
     it 'is false when a published article is loaded' do
-      article = Article.new(body: 'bar bar', title: 'Foo', published: true)
+      article = blog.articles.build(body: 'bar bar', title: 'Foo', published: true)
       article.save!
       article = Article.find(article.id)
       expect(article).not_to be_just_published
@@ -207,18 +207,18 @@ describe Article, type: :model do
 
   describe 'Testing redirects' do
     it 'a new published article gets a redirect' do
-      a = Article.create(title: 'Some title', body: 'some text', published: true)
+      a = blog.articles.create!(title: 'Some title', body: 'some text', published: true)
       expect(a.redirect).not_to be_nil
       expect(a.redirect.to_path).to eq(a.permalink_url)
     end
 
     it 'a new unpublished article should not get a redirect' do
-      a = Article.create(title: 'Some title', body: 'some text', published: false)
+      a = blog.articles.create!(title: 'Some title', body: 'some text', published: false)
       expect(a.redirect).to be_nil
     end
 
     it 'Changin a published article permalink url should only change the to redirection' do
-      a = Article.create(title: 'Some title', body: 'some text', published: true)
+      a = blog.articles.create!(title: 'Some title', body: 'some text', published: true)
       expect(a.redirect).not_to be_nil
       expect(a.redirect.to_path).to eq(a.permalink_url)
       r = a.redirect.from_path
@@ -240,7 +240,7 @@ describe Article, type: :model do
   end
 
   it 'test_just_published_flag' do
-    art = Article.new(title: 'title', blog_id: 1,
+    art = blog.articles.build(title: 'title',
                       body: 'body', published: true)
 
     assert art.just_changed_published_status?
@@ -249,28 +249,26 @@ describe Article, type: :model do
     art = Article.find(art.id)
     assert !art.just_changed_published_status?
 
-    art = Article.create!(title: 'title2', body: 'body',
-                          blog_id: 1, published: false)
+    art = blog.articles.create!(title: 'title2', body: 'body',
+                          published: false)
 
     assert !art.just_changed_published_status?
   end
 
   it 'test_future_publishing' do
-    assert_sets_trigger(Article.create!(title: 'title', body: 'body',
-                                        published: true, blog_id: 1,
+    assert_sets_trigger(blog.articles.create!(title: 'title', body: 'body',
+                                        published: true,
                                         published_at: Time.now + 4.seconds))
   end
 
   it 'test_future_publishing_without_published_flag' do
-    assert_sets_trigger Article.create!(title: 'title', body: 'body',
-                                        blog_id: 1,
+    assert_sets_trigger blog.articles.create!(title: 'title', body: 'body',
                                         published_at: Time.now + 4.seconds)
   end
   it 'test_triggers_are_dependent' do
     # TODO: Needs a fix for Rails ticket #5105: has_many: Dependent deleting does not work with STI
     skip
-    art = Article.create!(title: 'title', body: 'body',
-                          blog_id: 1,
+    art = blog.articles.create!(title: 'title', body: 'body',
                           published_at: Time.now + 1.hour)
     assert_equal 1, Trigger.count
     art.destroy
@@ -349,7 +347,7 @@ describe Article, type: :model do
 
   describe 'body_and_extended' do
     before :each do
-      @article = Article.new(
+      @article = blog.articles.build(
         body: 'basic text',
         extended: 'extended text to explain more and more how Publify is wonderful')
     end
@@ -378,7 +376,7 @@ describe Article, type: :model do
 
   describe 'body_and_extended=' do
     before :each do
-      @article = Article.new
+      @article = blog.articles.build
     end
 
     it 'should split apart values at <!--more-->' do
@@ -605,7 +603,7 @@ describe Article, type: :model do
 
   describe '#published_comments' do
     it 'should not include withdrawn comments' do
-      a = Article.new(title: 'foo')
+      a = blog.articles.build(title: 'foo')
       a.save!
 
       assert_equal 0, a.published_comments.size
@@ -650,7 +648,7 @@ describe Article, type: :model do
 
   describe '.really_send_pings' do
     context 'given a new article' do
-      let(:article) { Article.new }
+      let(:article) { blog.articles.build(blog: blog) }
 
       it 'return nil and do nothing when blog should not send_outbound_pings' do
         expect_any_instance_of(Blog).to receive(:send_outbound_pings).and_return(false)
@@ -743,44 +741,44 @@ describe Article, type: :model do
 
   describe '.allow_comments?' do
     it 'true if article set to true' do
-      expect(Article.new(allow_comments: true).allow_comments?).to be_truthy
+      expect(blog.articles.build(allow_comments: true).allow_comments?).to be_truthy
     end
 
     it 'false if article set to false' do
-      expect(Article.new(allow_comments: false).allow_comments?).to be_falsey
+      expect(blog.articles.build(allow_comments: false).allow_comments?).to be_falsey
     end
 
     context 'given an article with no allow comments state' do
       it 'returns true when blog default allow comments is true' do
         expect_any_instance_of(Blog).to receive(:default_allow_comments).and_return(true)
-        expect(Article.new(allow_comments: nil).allow_comments?).to be_truthy
+        expect(blog.articles.build(allow_comments: nil).allow_comments?).to be_truthy
       end
 
       it 'returns false when blog default allow comments is true' do
         expect_any_instance_of(Blog).to receive(:default_allow_comments).and_return(false)
-        expect(Article.new(allow_comments: nil).allow_comments?).to be_falsey
+        expect(blog.articles.build(allow_comments: nil).allow_comments?).to be_falsey
       end
     end
   end
 
   describe '.allow_pings?' do
     it 'true if article set to true' do
-      expect(Article.new(allow_pings: true).allow_pings?).to be_truthy
+      expect(blog.articles.build(allow_pings: true).allow_pings?).to be_truthy
     end
 
     it 'false if article set to false' do
-      expect(Article.new(allow_pings: false).allow_pings?).to be_falsey
+      expect(blog.articles.build(allow_pings: false).allow_pings?).to be_falsey
     end
 
     context 'given an article with no allow pings state' do
       it 'returns true when blog default allow pings is true' do
         expect_any_instance_of(Blog).to receive(:default_allow_pings).and_return(true)
-        expect(Article.new(allow_pings: nil).allow_pings?).to be_truthy
+        expect(blog.articles.build(allow_pings: nil).allow_pings?).to be_truthy
       end
 
       it 'returns false when blog default allow pings is true' do
         expect_any_instance_of(Blog).to receive(:default_allow_pings).and_return(false)
-        expect(Article.new(allow_pings: nil).allow_pings?).to be_falsey
+        expect(blog.articles.build(allow_pings: nil).allow_pings?).to be_falsey
       end
     end
   end

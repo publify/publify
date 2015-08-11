@@ -19,6 +19,7 @@ class Blog < ActiveRecord::Base
 
   has_many :pages
   has_many :tags
+  has_many :notes
 
   has_many :redirects
   has_many :sidebars, ->() { order('active_position ASC') }
@@ -122,21 +123,13 @@ class Blog < ActiveRecord::Base
   setting :statuses_in_timeline, :boolean, true
 
   validate :permalink_has_identifier
+  #validates :base_url, presence: true
 
-  # Find the Blog that matches a specific base URL.  If no Blog object is found
-  # that matches, then grab the default blog.  If *that* fails, then create a new
-  # Blog.  The last case should only be used when Typo is first installed.
+  # Find the Blog that matches a specific base URL. If no Blog object is found
+  # that matches, then grab the first blog. If *that* fails, then create a new
+  # Blog. The last case should only be used when Publify is first installed.
   def self.find_blog(base_url)
-    (Blog.find_by_base_url(base_url) rescue nil)|| Blog.default || Blog.new
-  end
-
-  # The default Blog. This is the lowest-numbered blog, almost always
-  # id==1.
-  def self.default
-    first
-  rescue
-    logger.warn 'You have no blog installed.'
-    nil
+    (Blog.find_by_base_url(base_url) rescue nil)|| Blog.first || Blog.new
   end
 
   # In settings with :article_id

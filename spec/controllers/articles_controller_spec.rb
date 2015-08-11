@@ -309,7 +309,7 @@ describe ArticlesController, 'redirecting', type: :controller do
     # redirects?
     describe 'and non-empty relative_url_root' do
       before do
-        build_stubbed(:blog, base_url: 'http://test.host/blog')
+        create(:blog, base_url: 'http://test.host/blog')
         create(:user)
       end
 
@@ -361,7 +361,7 @@ describe ArticlesController, 'redirecting', type: :controller do
     end
 
     it 'should redirect to article with url_root' do
-      build_stubbed(:blog, base_url: 'http://test.host/blog')
+      create(:blog, base_url: 'http://test.host/blog')
       create(:article, permalink: 'second-blog-article', published_at: Time.utc(2004, 4, 1))
       get :redirect, from: 'articles/2004/04/01/second-blog-article'
       assert_response 301
@@ -369,7 +369,7 @@ describe ArticlesController, 'redirecting', type: :controller do
     end
 
     it 'should redirect to article with articles in url_root' do
-      build_stubbed(:blog, base_url: 'http://test.host/aaa/articles/bbb')
+      create(:blog, base_url: 'http://test.host/aaa/articles/bbb')
       create(:article, permalink: 'second-blog-article', published_at: Time.utc(2004, 4, 1))
       get :redirect, from: 'articles/2004/04/01/second-blog-article'
       assert_response 301

@@ -3,8 +3,6 @@ require 'rails_helper'
 
 describe Content, type: :model do
   context 'with a simple blog' do
-    let!(:blog) { create(:blog) }
-
     describe '#author=' do
       let(:content) { Content.new }
 
@@ -24,26 +22,28 @@ describe Content, type: :model do
     end
 
     describe '#short_url' do
-      before do
-        @content = FactoryGirl.build_stubbed :content,
-                                             published: true,
-                                             redirect: FactoryGirl.build_stubbed(:redirect, from_path: 'foo', to_path: 'bar')
-      end
+      let(:redirect) { build_stubbed(:redirect, from_path: 'foo', to_path: 'bar', blog: blog) }
+      let(:content) {
+        build_stubbed(:content,
+                      blog: blog,
+                      published: true,
+                      redirect: redirect)
+      }
 
       describe 'normally' do
-        let!(:blog) { create(:blog, base_url: 'http://myblog.net') }
+        let(:blog) { build_stubbed(:blog, base_url: 'http://myblog.net') }
 
         it "returns the blog's base url combined with the redirection's from path" do
-          expect(@content).to be_published
-          expect(@content.short_url).to eq('http://myblog.net/foo')
+          expect(content).to be_published
+          expect(content.short_url).to eq('http://myblog.net/foo')
         end
       end
 
       describe 'when the blog is in a sub-uri' do
-        let!(:blog) { create(:blog, base_url: 'http://myblog.net/blog') }
+        let(:blog) { build_stubbed(:blog, base_url: 'http://myblog.net/blog') }
 
         it 'includes the sub-uri path' do
-          expect(@content.short_url).to eq('http://myblog.net/blog/foo')
+          expect(content.short_url).to eq('http://myblog.net/blog/foo')
         end
       end
     end

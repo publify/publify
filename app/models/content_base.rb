@@ -3,10 +3,6 @@ module ContentBase
     base.extend ClassMethods
   end
 
-  def blog
-    @blog ||= Blog.default
-  end
-
   attr_accessor :just_changed_published_status
   alias_method :just_changed_published_status?, :just_changed_published_status
 

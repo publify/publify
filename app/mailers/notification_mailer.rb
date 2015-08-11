@@ -18,7 +18,8 @@ class NotificationMailer < ActionMailer::Base
 
   def notif_user(user)
     @user = user
-    @blog = Blog.default
+    # TODO: Make user blog-dependent
+    @blog = Blog.first
     build_mail @blog, @user, 'Welcome to Publify'
   end
 

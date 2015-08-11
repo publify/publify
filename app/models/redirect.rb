@@ -9,7 +9,7 @@ class Redirect < ActiveRecord::Base
   def full_to_path
     path = to_path
     return path if path =~ /^(https?):\/\/([^\/]*)(.*)/
-    url_root = Blog.default.root_path
+    url_root = blog.root_path
     path = File.join(url_root, path) unless url_root.nil? || path[0, url_root.length] == url_root
     path
   end
@@ -22,8 +22,8 @@ class Redirect < ActiveRecord::Base
     end
   end
 
+  # TODO: This name is confusing. Rename to +from_url+.
   def to_url
-    blog = Blog.default
     File.join((blog.custom_url_shortener.blank? ? blog.base_url : blog.custom_url_shortener), from_path)
   end
 

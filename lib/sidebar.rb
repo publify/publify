@@ -227,10 +227,6 @@ class Sidebar < ActiveRecord::Base
     end
   end
 
-  def blog
-    Blog.default
-  end
-
   def publish
     self.active_position = staged_position
   end
