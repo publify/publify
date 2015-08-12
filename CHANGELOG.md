@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+* Restore hiding of automatic redirects from admin interface (mvz)
+* Fix broken stylesheet link in bootstrap2 theme (hmallett)
+* Create a fonts folder for themes, to replicate the Rails default (hmallet)
+
 ### Breaking/large changes
 * Update rails, jquery-rails and web-console to avoid security vulnerabilities
 * Update dependencies
@@ -45,7 +49,6 @@
 * Restore hiding/showing of optional comment fields
 * Use rails-timeago to provide time ago display
 * Adding new Publify favicon
-* Restore hiding of automatic redirects from admin interface
 
 ## 8.1.1
 
