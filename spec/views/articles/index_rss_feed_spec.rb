@@ -121,8 +121,10 @@ describe 'articles/index_rss_feed.rss.builder', type: :view do
     end
 
     describe 'on a blog that has an RSS description set' do
-      let(:blog) { create :blog, rss_description: true,
-                   rss_description_text: 'rss description' }
+      let(:blog) {
+        create :blog, rss_description: true,
+                      rss_description_text: 'rss description'
+      }
       before do
         render
       end

@@ -84,7 +84,7 @@ class Content < ActiveRecord::Base
       scoped = scoped.searchstring(params[:searchstring])
     end
 
-    if params[:published_at].present? && %r{(\d\d\d\d)-(\d\d)} =~ params[:published_at]
+    if params[:published_at].present? && /(\d\d\d\d)-(\d\d)/ =~ params[:published_at]
       scoped = scoped.published_at_like(params[:published_at])
     end
 

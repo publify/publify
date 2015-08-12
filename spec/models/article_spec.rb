@@ -160,12 +160,12 @@ describe Article, type: :model do
       let(:referenced_url) { 'http://anotherblog.org/a-post' }
       let!(:blog) { create(:blog, send_outbound_pings: 1) }
       let(:mock_pinger) { instance_double('Ping::Pinger') }
-      let(:article) do
-         blog.articles.build(body: %(<a href="#{referenced_url}">),
-                    title: 'Test the pinging',
-                    blog_id: 1,
-                    published: true)
-      end
+      let(:article) {
+        blog.articles.build(body: %(<a href="#{referenced_url}">),
+                            title: 'Test the pinging',
+                            blog_id: 1,
+                            published: true)
+      }
 
       before do
         # Check supposition
@@ -241,7 +241,7 @@ describe Article, type: :model do
 
   it 'test_just_published_flag' do
     art = blog.articles.build(title: 'title',
-                      body: 'body', published: true)
+                              body: 'body', published: true)
 
     assert art.just_changed_published_status?
     assert art.save
@@ -250,26 +250,26 @@ describe Article, type: :model do
     assert !art.just_changed_published_status?
 
     art = blog.articles.create!(title: 'title2', body: 'body',
-                          published: false)
+                                published: false)
 
     assert !art.just_changed_published_status?
   end
 
   it 'test_future_publishing' do
     assert_sets_trigger(blog.articles.create!(title: 'title', body: 'body',
-                                        published: true,
-                                        published_at: Time.now + 4.seconds))
+                                              published: true,
+                                              published_at: Time.now + 4.seconds))
   end
 
   it 'test_future_publishing_without_published_flag' do
     assert_sets_trigger blog.articles.create!(title: 'title', body: 'body',
-                                        published_at: Time.now + 4.seconds)
+                                              published_at: Time.now + 4.seconds)
   end
   it 'test_triggers_are_dependent' do
     # TODO: Needs a fix for Rails ticket #5105: has_many: Dependent deleting does not work with STI
     skip
     art = blog.articles.create!(title: 'title', body: 'body',
-                          published_at: Time.now + 1.hour)
+                                published_at: Time.now + 1.hour)
     assert_equal 1, Trigger.count
     art.destroy
     assert_equal 0, Trigger.count
