@@ -1,17 +1,13 @@
 require 'rails_helper'
 
 describe Admin::RedirectsController, type: :controller do
-  render_views
-
   before do
     FactoryGirl.create(:blog)
-    # TODO: Delete after removing fixtures
-    Profile.delete_all
     henri = FactoryGirl.create(:user, login: 'henri', profile: FactoryGirl.create(:profile_admin, label: Profile::ADMIN))
     request.session = { user: henri.id }
   end
 
-  describe 'GET #index' do
+  describe '#index' do
     it 'responds successfully with an HTTP 200 status code' do
       get :index
       expect(response).to be_success
@@ -22,9 +18,29 @@ describe Admin::RedirectsController, type: :controller do
       get :index
       expect(response).to render_template('index')
     end
+
+    it 'assigns only redirects that are not linked to content' do
+      create(:article)
+      redirect = create(:redirect)
+      get :index
+      expect(assigns(:redirects)).to match_array [redirect]
+    end
+
+    context 'when rendering the view' do
+      render_views
+
+      it 'renders properly with no redirects present' do
+        expect { get :index }.not_to raise_error
+      end
+
+      it 'renders properly with redirects present' do
+        create :redirect
+        expect { get :index }.not_to raise_error
+      end
+    end
   end
 
-  describe 'create a new redirect' do
+  describe '#create' do
     it 'should create a new redirect and redirect to #index' do
       expect do
         post :create, 'redirect' => { from_path: 'some/place',

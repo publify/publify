@@ -58,19 +58,19 @@ describe Admin::PagesController, type: :controller do
 
       it 'should create a published page with a redirect' do
         post(:create, 'page' => base_page)
-        expect(assigns(:page).redirects.count).to eq(1)
+        expect(assigns(:page).redirect).not_to be_nil
       end
 
       it 'should create an unpublished page without a redirect' do
         post(:create, 'page' => base_page(state: :unpublished, published: false))
-        expect(assigns(:page).redirects.count).to eq(0)
+        expect(assigns(:page).redirect).to be_nil
       end
 
       it 'should create a page published in the future without a redirect' do
         # TODO: published_at parameter is currently ignored
         skip
         post(:create, 'page' => base_page(published_at: (Time.now + 1.hour).to_s))
-        expect(assigns(:page).redirects.count).to eq(0)
+        expect(assigns(:page).redirect).to be_nil
       end
     end
   end

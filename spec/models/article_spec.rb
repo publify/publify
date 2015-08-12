@@ -204,26 +204,26 @@ describe Article, type: :model do
   describe 'Testing redirects' do
     it 'a new published article gets a redirect' do
       a = Article.create(title: 'Some title', body: 'some text', published: true)
-      expect(a.redirects.first).not_to be_nil
-      expect(a.redirects.first.to_path).to eq(a.permalink_url)
+      expect(a.redirect).not_to be_nil
+      expect(a.redirect.to_path).to eq(a.permalink_url)
     end
 
     it 'a new unpublished article should not get a redirect' do
       a = Article.create(title: 'Some title', body: 'some text', published: false)
-      expect(a.redirects.first).to be_nil
+      expect(a.redirect).to be_nil
     end
 
     it 'Changin a published article permalink url should only change the to redirection' do
       a = Article.create(title: 'Some title', body: 'some text', published: true)
-      expect(a.redirects.first).not_to be_nil
-      expect(a.redirects.first.to_path).to eq(a.permalink_url)
-      r = a.redirects.first.from_path
+      expect(a.redirect).not_to be_nil
+      expect(a.redirect.to_path).to eq(a.permalink_url)
+      r = a.redirect.from_path
 
       a.permalink = 'some-new-permalink'
       a.save
-      expect(a.redirects.first).not_to be_nil
-      expect(a.redirects.first.to_path).to eq(a.permalink_url)
-      expect(a.redirects.first.from_path).to eq(r)
+      expect(a.redirect).not_to be_nil
+      expect(a.redirect.to_path).to eq(a.permalink_url)
+      expect(a.redirect.from_path).to eq(r)
     end
   end
 

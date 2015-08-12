@@ -93,7 +93,7 @@ describe Admin::ContentController, type: :controller do
       it { expect(response).to be_success }
       it { expect(response).to render_template('new') }
       it { expect(assigns(:article)).to_not be_nil }
-      it { expect(assigns(:article).redirects).to be_empty }
+      it { expect(assigns(:article).redirect).to be_nil }
     end
 
     describe '#create' do
@@ -132,7 +132,7 @@ describe Admin::ContentController, type: :controller do
         it do
           expect do
             post :create, article: article_params
-          end.to_not change(Redirection, :count) end
+          end.to_not change(Redirect, :count) end
 
         it do
           expect do

@@ -53,8 +53,8 @@ class Note < Content
   def twitter_message
     base_message = body.strip_html
     if too_long?("#{base_message} (#{short_link})")
-      max_length = 140 - "... (#{redirects.first.to_url})".length - 1
-      "#{truncate(base_message, max_length)}... (#{redirects.first.to_url})"
+      max_length = 140 - "... (#{redirect.to_url})".length - 1
+      "#{truncate(base_message, max_length)}... (#{redirect.to_url})"
     else
       "#{base_message} (#{short_link})"
     end
@@ -114,7 +114,7 @@ class Note < Content
   end
 
   def short_link
-    path = redirects.first.from_path
+    path = redirect.from_path
     prefix.sub!(/^https?\:\/\//, '')
     "#{prefix} #{path}"
   end
