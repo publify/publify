@@ -183,12 +183,12 @@ class Article < Content
     req_params[:published_at] = date_range if date_range
 
     return if req_params.empty? # no search if no params send
-    article = published.where(req_params).first
+    article = published.find_by(req_params)
     return article if article
 
     if params[:title]
       req_params[:permalink] = CGI.escape(params[:title])
-      article = published.where(req_params).first
+      article = published.find_by(req_params)
       return article if article
     end
   end

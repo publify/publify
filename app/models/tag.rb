@@ -26,7 +26,7 @@ class Tag < ActiveRecord::Base
   end
 
   def self.find_by_name_or_display_name(tagname, name)
-    where(%(name = ? OR display_name = ? OR display_name = ?), tagname, tagname, name).first
+    find_by(%(name = ? OR display_name = ? OR display_name = ?), tagname, tagname, name)
   end
 
   def ensure_naming_conventions

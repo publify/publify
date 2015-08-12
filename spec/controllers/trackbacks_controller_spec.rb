@@ -28,7 +28,7 @@ describe TrackbacksController, type: :controller do
     let(:article) { create :article }
     it 'creates a Trackback when given valid params' do
       post :create, article_id: article.id, blog_name: 'Foo',
-        excerpt: 'Tracking you back!', title: 'Bar', url: 'http://www.foo.com/bar'
+                    excerpt: 'Tracking you back!', title: 'Bar', url: 'http://www.foo.com/bar'
       expect(Trackback.last.excerpt).to eq 'Tracking you back!'
     end
   end

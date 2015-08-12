@@ -5,7 +5,8 @@ class Theme
   attr_accessor :name, :path, :description_html
 
   def initialize(name, path)
-    @name, @path = name, path
+    @name = name
+    @path = path
   end
 
   def layout(action = :default)

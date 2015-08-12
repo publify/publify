@@ -1,6 +1,6 @@
 class Admin::MigrationsController < Admin::BaseController
   cache_sweeper :blog_sweeper
-  skip_before_filter :look_for_needed_db_updates
+  skip_before_action :look_for_needed_db_updates
 
   def show
     @current_version = migrator.current_schema_version
@@ -18,4 +18,3 @@ class Admin::MigrationsController < Admin::BaseController
     @migrator ||= Migrator.new
   end
 end
-

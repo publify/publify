@@ -107,7 +107,9 @@ module AccessControl
 
     def initialize(name, controller = nil)
       @name = name
-      @controllers, @menus, @submenus = [], [], []
+      @controllers = []
+      @menus = []
+      @submenus = []
       @controllers << controller
     end
 

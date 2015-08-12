@@ -8,7 +8,8 @@ class BackpackAPI
   attr_accessor :username, :token, :current_page_id
 
   def initialize(username, token)
-    @username, @token = username, token
+    @username = username
+    @token = token
     connect
   end
 

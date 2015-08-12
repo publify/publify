@@ -10,7 +10,9 @@ class Sidebar < ActiveRecord::Base
     include ActionView::Helpers::FormOptionsHelper
 
     def initialize(key, default, options = {})
-      @key, @default, @options = key.to_s, default, options
+      @key = key.to_s
+      @default = default
+      @options = options
     end
 
     def label
@@ -174,7 +176,7 @@ class Sidebar < ActiveRecord::Base
   end
 
   def self.short_name
-    to_s.underscore.split(%r{_}).first
+    to_s.underscore.split(/_/).first
   end
 
   def self.path_name

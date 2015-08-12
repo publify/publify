@@ -2,7 +2,8 @@ class Article::Factory
   attr_reader :blog, :user
 
   def initialize(blog, user)
-    @blog, @user = blog, user
+    @blog = blog
+    @user = user
   end
 
   def default

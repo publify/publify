@@ -21,7 +21,7 @@ describe Admin::SeoController, type: :controller do
       before { get :show, section: :permalinks }
 
       it 'renders the general section' do
-      expect(response).to render_template('_permalinks')
+        expect(response).to render_template('_permalinks')
       end
     end
 
