@@ -11,7 +11,9 @@ module ConfigManager
 
     def setting(name, type = :object, default = nil)
       item = Item.new
-      item.name, item.ruby_type, item.default = name.to_s, type, default
+      item.name = name.to_s
+      item.ruby_type = type
+      item.default = default
       fields[name.to_s] = item
       add_setting_accessor(item)
     end

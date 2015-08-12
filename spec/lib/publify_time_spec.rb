@@ -88,7 +88,9 @@ describe 'find Article date range ' do
       @a.save!
 
       params = @a.permalink_url.gsub('http://myblog.net/', '').split('/')
-      @year, @month, @day = params[0], params[1], params[2]
+      @year = params[0]
+      @month = params[1]
+      @day = params[2]
     end
 
     it 'delta given year' do
@@ -131,7 +133,9 @@ describe 'find Article date range ' do
       @a.save!
 
       params = @a.permalink_url.gsub('http://myblog.net/', '').split('/')
-      @year, @month, @day = params[0], params[1], params[2]
+      @year = params[0]
+      @month = params[1]
+      @day = params[2]
     end
 
     it 'delta given year' do

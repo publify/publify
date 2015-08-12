@@ -32,7 +32,7 @@ describe Admin::SettingsController, type: :controller do
 
   describe '#update' do
     before do
-      post :update, setting: { blog_name: 'New name'}
+      post :update, setting: { blog_name: 'New name' }
     end
 
     it 'updates the settings' do

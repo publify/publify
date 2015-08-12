@@ -159,9 +159,11 @@ describe Article, type: :model do
       let(:referenced_url) { 'http://anotherblog.org/a-post' }
       let!(:blog) { create(:blog, send_outbound_pings: 1) }
       let(:mock_pinger) { instance_double('Ping::Pinger') }
-      let(:article) { Article.new(body: %(<a href="#{referenced_url}">),
-                                  title: 'Test the pinging',
-                                  published: true) }
+      let(:article) do
+        Article.new(body: %(<a href="#{referenced_url}">),
+                    title: 'Test the pinging',
+                    published: true)
+      end
 
       before do
         # Check supposition

@@ -20,9 +20,7 @@ class FlickRaw::Flickr
 
   class Photo
     def initialize(photoid)
-      unless photoid == '31366117'
-        raise 'Photo not found'
-      end
+      raise 'Photo not found' unless photoid == '31366117'
     end
 
     def description

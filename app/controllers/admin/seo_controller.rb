@@ -5,8 +5,8 @@ class Admin::SeoController < Admin::BaseController
 
   def show
     if @setting.permalink_format != '/%year%/%month%/%day%/%title%' &&
-      @setting.permalink_format != '/%year%/%month%/%title%' &&
-      @setting.permalink_format != '/%title%'
+        @setting.permalink_format != '/%year%/%month%/%title%' &&
+        @setting.permalink_format != '/%title%'
       @setting.custom_permalink = @setting.permalink_format
       @setting.permalink_format = 'custom'
     end
@@ -32,7 +32,7 @@ class Admin::SeoController < Admin::BaseController
     @settings_params ||= params.require(:setting).permit!
   end
 
-  VALID_SECTIONS = ['general', 'titles', 'permalinks']
+  VALID_SECTIONS = %w(general titles permalinks)
 
   def set_section
     section = params[:section]

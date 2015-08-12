@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
   end
 
   def self.authenticate(login, pass)
-    where('login = ? AND password = ? AND state = ?', login, password_hash(pass), 'active').first
+    find_by('login = ? AND password = ? AND state = ?', login, password_hash(pass), 'active')
   end
 
   def update_connection_time

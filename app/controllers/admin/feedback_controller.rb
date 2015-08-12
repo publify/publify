@@ -19,9 +19,7 @@ class Admin::FeedbackController < Admin::BaseController
     @record = Feedback.find params[:id]
 
     unless @record.article.user_id == current_user.id
-      unless current_user.admin?
-        return redirect_to admin_feedback_index_url
-      end
+      return redirect_to admin_feedback_index_url unless current_user.admin?
     end
 
     begin

@@ -15,8 +15,8 @@ class Admin::ThemesController < Admin::BaseController
 
   def preview
     theme = Theme.find(params[:theme])
-    send_file File.join(theme.path, "preview.png"),
-      type: 'image/png', disposition: 'inline', stream: false
+    send_file File.join(theme.path, 'preview.png'),
+              type: 'image/png', disposition: 'inline', stream: false
   end
 
   def switchto

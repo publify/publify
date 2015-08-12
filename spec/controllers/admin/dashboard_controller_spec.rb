@@ -169,9 +169,11 @@ describe Admin::DashboardController, type: :controller do
   describe '#index' do
     context 'with pending migrations' do
       let!(:blog) { create(:blog) }
-      let(:user) { create(:user,
-                          login: 'henri',
-                          profile: create(:profile_admin, label: Profile::ADMIN)) }
+      let(:user) do
+        create(:user,
+               login: 'henri',
+               profile: create(:profile_admin, label: Profile::ADMIN))
+      end
       let(:migrator) { double('migrator') }
 
       before do
