@@ -45,6 +45,7 @@
 * Restore hiding/showing of optional comment fields
 * Use rails-timeago to provide time ago display
 * Adding new Publify favicon
+* Restore hiding of automatic redirects from admin interface
 
 ## 8.1.1
 
