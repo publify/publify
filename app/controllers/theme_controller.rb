@@ -11,6 +11,10 @@ class ThemeController < ContentController
     render_theme_item(:images, params[:filename])
   end
 
+  def fonts
+    render_theme_item(:fonts, params[:filename])
+  end
+
   def error
     render nothing: true, status: 404
   end
