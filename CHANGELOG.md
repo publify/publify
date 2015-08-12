@@ -6,6 +6,7 @@
 * Fix broken stylesheet link in bootstrap2 theme (hmallett)
 * Create a fonts folder for themes, to replicate the Rails default (hmallet)
 * Update rubocop todo and use rubocop in travis (whithajess)
+* Autocorrect rubocop offenses (mvz)
 
 ### Breaking/large changes
 * Update rails, jquery-rails and web-console to avoid security vulnerabilities
