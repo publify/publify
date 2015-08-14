@@ -121,6 +121,26 @@ describe ApplicationHelper, type: :helper do
     end
   end
 
+  describe '#nofollowify_links' do
+    before(:each) do
+      @blog = FactoryGirl.create :blog
+    end
+
+    it 'with dofollowify disabled, links should be nofollowed' do
+      @blog.dofollowify = false
+      @blog.save
+
+      expect(nofollowify_links('<a href="http://myblog.net">my blog</a>')).to eq('<a href="http://myblog.net" rel="nofollow">my blog</a>')
+    end
+
+    it 'with dofollowify enabled, links should be nofollowed' do
+      @blog.dofollowify = true
+      @blog.save
+
+      expect(nofollowify_links('<a href="http://myblog.net">my blog</a>')).to eq('<a href="http://myblog.net">my blog</a>')
+    end
+  end
+
   context 'SidebarHelper' do
     before do
       allow(controller).to receive(:render_to_string).and_return 'Rendered'

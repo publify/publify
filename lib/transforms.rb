@@ -30,14 +30,6 @@ class String
     s.strip.tr_s(' ', '-').tr(' ', '-').sub(/^$/, '-')
   end
 
-  # A quick and dirty fix to add 'nofollow' to any urls in a string.
-  # Decidedly unsafe, but will have to do for now.
-  # TODO: Move to a helper
-  def nofollowify(blog)
-    return self if blog.dofollowify
-    gsub(/<a(.*?)>/i, '<a\1 rel="nofollow">')
-  end
-
   def to_title(item, settings, params)
     s = self
 

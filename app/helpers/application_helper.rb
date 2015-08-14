@@ -260,4 +260,12 @@ module ApplicationHelper
       html(item, :all)
     end
   end
+
+  def nofollowify_links(string)
+    if this_blog.dofollowify
+      string
+    else
+      string.gsub(/<a(.*?)>/i, '<a\1 rel="nofollow">')
+    end
+  end
 end

@@ -66,7 +66,7 @@ class Feedback < ActiveRecord::Base
 
   def html_postprocess(_field, html)
     helper = ContentTextHelpers.new
-    helper.sanitize(helper.auto_link(html)).nofollowify(blog)
+    helper.sanitize(helper.auto_link(html))
   end
 
   def correct_url
