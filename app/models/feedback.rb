@@ -11,6 +11,7 @@ class Feedback < ActiveRecord::Base
   include States
 
   validate :feedback_not_closed, on: :create
+  validates :article, presence: true
 
   before_create :create_guid, :article_allows_this_feedback
   before_save :correct_url, :before_save_handler
@@ -186,9 +187,8 @@ class Feedback < ActiveRecord::Base
     errors.add(:article_id, 'Comment are closed') if article.comments_closed?
   end
 
-  # TODO: Require article to be present
   def blog
-    article.blog if article.present?
+    article.blog
   end
 
   private
