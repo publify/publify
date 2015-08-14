@@ -254,6 +254,10 @@ class Blog < ActiveRecord::Base
     allow_signup == 1
   end
 
+  def shortener_url
+    custom_url_shortener.present? ? custom_url_shortener : base_url
+  end
+
   private
 
   def host_with_port

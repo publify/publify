@@ -119,10 +119,7 @@ class Note < Content
   end
 
   def prefix
-    # FIXME: Move to Blog
-    shortener_url =
-      blog.custom_url_shortener.present? ? blog.custom_url_shortener : blog.base_url
-    shortener_url.sub(/^https?\:\/\//, '')
+    blog.shortener_url.sub(/^https?\:\/\//, '')
   end
 
   private
