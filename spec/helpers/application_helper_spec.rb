@@ -122,9 +122,8 @@ describe ApplicationHelper, type: :helper do
   end
 
   context 'SidebarHelper' do
-    # XXX: Ugh. Needed to break tight coupling :-(.
-    def render_to_string(options)
-      "Rendered #{options[:file] || options[:partial]}."
+    before do
+      allow(controller).to receive(:render_to_string).and_return 'Rendered'
     end
 
     describe '#render_sidebars' do
