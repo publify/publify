@@ -4,7 +4,7 @@
   <footer>
     <small>
       <%= link_to_permalink(note, display_date_and_time(note.published_at)) %> |
-      <%= link_to note.redirect.to_url, note.redirect.to_url %> |
+      <%= link_to note.redirect.from_url, note.redirect.from_url %> |
       <%= author_link note %>
       <% unless note.twitter_id.blank? %>
         <%=  " | #{link_to(t(".view_on_twitter"), note.twitter_url, {class: 'u-syndication', rel: 'syndication'})}" %>

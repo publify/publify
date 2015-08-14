@@ -137,7 +137,7 @@ class Content < ActiveRecord::Base
   def short_url
     # Double check because of crappy data in my own old database
     return unless published && redirect.present?
-    redirect.to_url
+    redirect.from_url
   end
 end
 

@@ -146,21 +146,21 @@ describe Note, type: :model do
 
       context 'with a short message much more than 114 char' do
         let(:tweet) { 'A very big(10) message with lot of text (40)inside just to try the shortener and (80)the new link that publify must create and add at the end' }
-        let(:expected_tweet) { "A very big(10) message with lot of text (40)inside just to try the shortener and (80)the new link that publify... (#{note.redirect.to_url})" }
+        let(:expected_tweet) { "A very big(10) message with lot of text (40)inside just to try the shortener and (80)the new link that publify... (#{note.redirect.from_url})" }
         it { expect(note.twitter_message).to eq(expected_tweet) }
         it { expect(note.twitter_message.length).to eq(140) }
       end
 
       context 'With a test message from production...' do
         let(:tweet) { "Le dojo de nantes, c'est comme au McDo, sans les odeurs, et en plus rigolo: RT @abailly Ce midi c'est coding dojo à la Cantine #Nantes. Pour s'inscrire si vous voulez c'est ici: http://cantine.atlantic2.org/evenements/coding-dojo-8/ … Sinon venez comme vous êtes" }
-        let(:expected_tweet) { "Le dojo de nantes, c'est comme au McDo, sans les odeurs, et en plus rigolo: RT @abailly Ce midi c'est coding... (#{note.redirect.to_url})" }
+        let(:expected_tweet) { "Le dojo de nantes, c'est comme au McDo, sans les odeurs, et en plus rigolo: RT @abailly Ce midi c'est coding... (#{note.redirect.from_url})" }
         it { expect(note.twitter_message).to eq(expected_tweet) }
         it { expect(note.twitter_message.length).to eq(138) }
       end
 
       context 'with a bug message' do
         let(:tweet) { "\"JSFuck is an esoteric and educational programming style based on the atomic parts of JavaScript. It uses only six different characters to write and execute code.\" http://www.jsfuck.com/ " }
-        let(:expected_tweet) { "\"JSFuck is an esoteric and educational programming style based on the atomic parts of JavaScript. It uses only... (#{note.redirect.to_url})" }
+        let(:expected_tweet) { "\"JSFuck is an esoteric and educational programming style based on the atomic parts of JavaScript. It uses only... (#{note.redirect.from_url})" }
 
         it { expect(note.twitter_message).to eq(expected_tweet) }
         it { expect(note.twitter_message.length).to eq(140) }
@@ -168,7 +168,7 @@ describe Note, type: :model do
 
       context "don't cut word" do
         let(:tweet) { "Le #mobprogramming c'est un peu comme faire un dojo sur une journée entière (ça permet sûrement de faire des petites journées ;-))" }
-        let(:expected_tweet) { "Le #mobprogramming c'est un peu comme faire un dojo sur une journée entière (ça permet sûrement de faire des... (#{note.redirect.to_url})" }
+        let(:expected_tweet) { "Le #mobprogramming c'est un peu comme faire un dojo sur une journée entière (ça permet sûrement de faire des... (#{note.redirect.from_url})" }
 
         it { expect(note.twitter_message).to eq(expected_tweet) }
         it { expect(note.twitter_message.length).to eq(138) }
@@ -176,7 +176,7 @@ describe Note, type: :model do
 
       context 'shortener host name is counted as an url by twitter' do
         let(:tweet) { 'RT @stephaneducasse http://pharocloud.com is so cool. I love love such idea and I wish them success. Excellent work.' }
-        let(:expected_tweet) { "RT @stephaneducasse http://pharocloud.com is so cool. I love love such idea and I wish them success. Excellent... (#{note.redirect.to_url})" }
+        let(:expected_tweet) { "RT @stephaneducasse http://pharocloud.com is so cool. I love love such idea and I wish them success. Excellent... (#{note.redirect.from_url})" }
 
         it { expect(note.twitter_message).to eq(expected_tweet) }
         it { expect(note.twitter_message.length).to eq(140) }

@@ -22,8 +22,11 @@ class Redirect < ActiveRecord::Base
     end
   end
 
-  # TODO: This name is confusing. Rename to +from_url+.
   def to_url
+    raise 'Use #from_url'
+  end
+
+  def from_url
     File.join((blog.custom_url_shortener.blank? ? blog.base_url : blog.custom_url_shortener), from_path)
   end
 
