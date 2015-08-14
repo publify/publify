@@ -2,7 +2,7 @@ module Admin::BaseHelper
   include ActionView::Helpers::DateHelper
 
   def toggle_element(element, label = t('.change'))
-    link_to(label, "##{element}", "data-toggle": :collapse)
+    link_to label, "##{element}", data: { toggle: :collapse }
   end
 
   def dashboard_action_links
