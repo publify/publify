@@ -187,9 +187,7 @@ class Feedback < ActiveRecord::Base
     errors.add(:article_id, 'Comment are closed') if article.comments_closed?
   end
 
-  def blog
-    article.blog
-  end
+  delegate :blog, to: :article
 
   private
 

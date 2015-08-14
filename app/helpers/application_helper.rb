@@ -48,18 +48,6 @@ module ApplicationHelper
     stylesheet_link_tag "/stylesheets/theme/#{name}.css" if File.exist? src
   end
 
-  def articles?
-    Article.any?
-  end
-
-  def trackbacks?
-    Trackback.any?
-  end
-
-  def comments?
-    Comment.any?
-  end
-
   def render_to_string(*args, &block)
     controller.send(:render_to_string, *args, &block)
   end
