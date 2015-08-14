@@ -55,14 +55,12 @@ describe Admin::ContentController, type: :controller do
       context 'first time save' do
         it do
           expect do
-            # TODO: Fix factory so we don't need to except :blog
-            xhr :post, :autosave, article: attributes_for(:article).except(:blog)
+            xhr :post, :autosave, article: attributes_for(:article)
           end.to change(Article, :count).from(1).to(2) end
 
         it do
           expect do
-            # TODO: Fix factory so we don't need to except :blog
-            xhr :post, :autosave, article: attributes_for(:article, :with_tags).except(:blog)
+            xhr :post, :autosave, article: attributes_for(:article, :with_tags)
           end.to change(Tag, :count).from(0).to(2) end
       end
 
@@ -78,13 +76,11 @@ describe Admin::ContentController, type: :controller do
         let!(:draft) { create(:article, published: false, state: 'draft', body: 'existing body') }
         it do
           expect do
-            # TODO: Fix factory so we don't need to except :blog
-            xhr :post, :autosave, article: attributes_for(:article).except(:blog)
+            xhr :post, :autosave, article: attributes_for(:article)
           end.to change(Article, :count).from(2).to(3) end
 
         it 'dont replace existing draft' do
-          # TODO: Fix factory so we don't need to except :blog
-          xhr :post, :autosave, article: attributes_for(:article).except(:blog)
+          xhr :post, :autosave, article: attributes_for(:article)
           expect(assigns(:article).id).to_not eq(draft.id)
           expect(assigns(:article).body).to_not eq(draft.body)
         end

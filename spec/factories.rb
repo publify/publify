@@ -71,7 +71,14 @@ FactoryGirl.define do
     state :published
     allow_pings true
     association :text_filter, factory: :textile
-    blog { Blog.first || create(:blog) }
+
+    after :build do |article|
+      article.blog ||= Blog.first || create(:blog)
+    end
+
+    after :stub do |article|
+      article.blog ||= Blog.first || create(:blog)
+    end
 
     trait :with_tags do
       keywords 'a tag'
