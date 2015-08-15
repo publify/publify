@@ -5,7 +5,7 @@
 ### Download
 
 You can download the latest
-Publify [stable release (8.1.1)](https://github.com/publify/publify/archive/v8.1.1.tar.gz)
+Publify [stable release (8.2.0)](https://github.com/publify/publify/archive/v8.2.0.tar.gz)
 or [clone the Publify repository](https://github.com/publify/publify.git).
 
 [![Build Status](https://travis-ci.org/publify/publify.png?branch=master)](https://travis-ci.org/publify/publify)
