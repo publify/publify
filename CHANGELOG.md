@@ -1,56 +1,57 @@
 # Changelog
 
-## Unreleased
+## 8.2.0
 
+### Breaking/large changes
+* Update rails, jquery-rails and web-console to avoid security vulnerabilities (mvz)
+* Update dependencies (mvz, fdv)
+* Update to Rails 4.2 (mvz)
+* Roll up migrations up to 113 according to our
+  [upgrade policy](https://github.com/publify/publify/wiki/Upgrading).
+  You must now first upgrade to at least version 7 before upgrading to the
+  latest version. (mvz)
+* Replace default theme bootstrap with bootstrap-2 (fdv)
+* Add a Plain theme demonstrating the use of Publify's default templates (mvz)
+* Use HTML instead of XHTML in views (fdv)
+
+### Other changes
 * Restore hiding of automatic redirects from admin interface (mvz)
 * Fix broken stylesheet link in bootstrap2 theme (hmallett)
 * Create a fonts folder for themes, to replicate the Rails default (hmallet)
 * Update rubocop todo and use rubocop in travis (whithajess)
 * Autocorrect rubocop offenses (mvz)
-
-### Breaking/large changes
-* Update rails, jquery-rails and web-console to avoid security vulnerabilities
-* Update dependencies
-* Update to Rails 4.2
-* Support Ruby 2.2
-* Roll up migrations up to 113 according to our [upgrade
-  policy](https://github.com/publify/publify/wiki/Upgrading). You must now
-  first upgrade to at least version 7 before upgrading to the latest version.
-* Replace default theme bootstrap with bootstrap-2
-* Add a Plain theme demonstrating the use of Publify's default templates
-* Use HTML instead of XHTML in views
-
-### Other changes
-* Indicate dependency on external JS runtime
+* Support Ruby 2.2 (mvz)
+* Indicate dependency on external JS runtime (mvz)
 * Several improvements to the Admin UI
-* Update pt-BR translations
-* Update nl translations
-* Update fr translations
-* Update en translations
-* Update es-MX translations
-* Changed navbar to dropdown onhover
+* Update pt-BR translations (ramirovjr)
+* Update nl translations (mvz)
+* Update fr translations (Stephanyan, giniouxe)
+* Update en translations (hmallett, stevenwilkin)
+* Update es-MX translations (hernamvel)
+* Changed navbar to dropdown onhover (jacemonje)
 * Improve Publify's default templates
-* Fix sidebar administration
+* Fix sidebar administration (mvz)
 * Various cleanups and improvements of code and specs
-* Fix several vulnerabilities reported by brakeman
-* Use more resourceful routes
-* Fix editing users in Admin
-* Add foreign keys and indexes to the schema
-* Add a CONTRIBUTING.md file to help contributors
-* Remove test dependency on feedvalidator
+* Fix several vulnerabilities reported by brakeman (mvz)
+* Use more resourceful routes (hmallett)
+* Fix editing users in Admin (pacergh)
+* Add foreign keys and indexes to the schema (hmallett)
+* Add a CONTRIBUTING.md file to help contributors (randomecho)
+* Remove test dependency on feedvalidator (mvz)
+* Remove old API links from RSD view (mvz)
+* Remove outdated schemas rake task (stevenwilkin)
+* Improve installation instructions (giniouxe)
+* Paginate article archives pages (giniouxe)
+* Handle tags that contain colons (ook)
+* Ensure cache path exists (pvcarrera)
+* Use protocol-relative URIs for Flickr images (flameeyes)
+* Update text filter help texts to use 'publify' (mvz)
+* Restore hiding/showing of optional comment fields (mvz)
+* Use rails-timeago to provide time ago display (mvz)
+* Adding new Publify favicon (fdv)
+* Fix typo (garethrees)
 * Various small bug fixes
-* Remove old API links from RSD view
-* Remove outdated schemas rake task
-* Improve installation instructions
-* Paginate article archives pages
-* Handle tags that contain colons
-* Ensure cache path exists
 * Several theme fixes
-* Use protocol-relative URIs for Flickr images
-* Update text filter help texts to use 'publify'
-* Restore hiding/showing of optional comment fields
-* Use rails-timeago to provide time ago display
-* Adding new Publify favicon
 
 ## 8.1.1
 
