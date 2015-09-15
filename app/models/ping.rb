@@ -94,9 +94,7 @@ class Ping < ActiveRecord::Base
   end
 
   def send_pingback_or_trackback(origin_url)
-    t = Thread.start(Pinger.new(origin_url, self)) do |pinger|
-      pinger.send_pingback_or_trackback
-    end
+    t = Thread.start(Pinger.new(origin_url, self), &:send_pingback_or_trackback)
     t
   end
 
