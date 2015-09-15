@@ -68,6 +68,8 @@ module Publify
 
   require 'publify_login_system'
 
+  require 'active_support_patch'
+
   Date::DATE_FORMATS.merge!(
     :long_weekday => '%a %B %e, %Y %H:%M'
   )
