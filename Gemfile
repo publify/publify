@@ -24,12 +24,14 @@ else
   environment = conf[env]
   adapter = environment['adapter'] if environment
   raise 'You need define an adapter in your database.yml or set your RAILS_ENV variable' if adapter == '' || adapter.nil?
+  puts "Found adapter '#{adapter}' for '#{env}'"
   case adapter
   when 'sqlite3'
     gem 'sqlite3'
   when 'postgresql'
     gem 'pg'
   when 'mysql2'
+    puts 'Adding mysql2 to the bundle!'
     gem 'mysql2'
   else
     raise "Don't know what gem to use for adapter #{adapter}"
