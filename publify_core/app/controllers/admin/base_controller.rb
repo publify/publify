@@ -9,7 +9,6 @@ class Admin::BaseController < BaseController
 
   before_action :login_required, except: [:login, :signup]
   before_action :look_for_needed_db_updates, except: [:login, :signup]
-  before_action :check_and_generate_secret_token, except: [:login, :signup]
 
   private
 
@@ -38,17 +37,5 @@ class Admin::BaseController < BaseController
   def look_for_needed_db_updates
     migrator = Migrator.new
     redirect_to admin_migrations_path if migrator.migrations_pending?
-  end
-
-  def check_and_generate_secret_token
-    checker = Admin::TokenChecker.new
-    return if checker.safe_token_in_use?
-
-    begin
-      checker.generate_token
-      flash[:notice] = I18n.t('admin.base.restart_application')
-    rescue
-      flash[:error] = I18n.t('admin.base.cant_generate_secret', checker_file: checker.file)
-    end
   end
 end
