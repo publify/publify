@@ -661,14 +661,14 @@ nb-NO:
           one: "1 spam"
           other: "%{count} spam"
       overview:
-        dashboard_explain: "Her får du en rask oversikt over hva som foregår på din Publify-blogg og hva du kan gjøre. Kanskje du ønsker å %{available_actions}."
+        dashboard_explain_html: "Her får du en rask oversikt over hva som foregår på din Publify-blogg og hva du kan gjøre. Kanskje du ønsker å %{available_actions}."
         write_a_post: "skrive en artikkel"
         write_a_page: "skrive en side"
         update_your_profile_or_change_your_password: "oppdatere profilen din eller endre passordet ditt"
-        customization_explain: "Du kan også tilpasse utseendet, %{theme_link} eller %{sidebar_link}."
+        customization_explain_html: "Du kan også tilpasse utseendet, %{theme_link} eller %{sidebar_link}."
         change_your_blog_presentation: "endre utseende på bloggen din"
         enable_plugins: "aktivere plugins"
-        help_explain: "Hvis du trenger hjelp, %{doc_link}."
+        help_explain_html: "Hvis du trenger hjelp, %{doc_link}."
         read_our_documentation: "les dokumentasjonen vår"
       inbound:
         inbound_links: "Innkommende lenker"
