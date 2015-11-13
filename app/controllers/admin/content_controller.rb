@@ -79,7 +79,7 @@ class Admin::ContentController < Admin::BaseController
 
   def auto_complete_for_article_keywords
     @items = Tag.select(:display_name).order(:display_name).map(&:display_name)
-    render inline: '<%= @items %>'
+    render json: @items
   end
 
   def autosave
