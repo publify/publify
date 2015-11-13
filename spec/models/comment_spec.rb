@@ -230,11 +230,11 @@ describe Comment, type: :model do
   describe 'last_published', integration: true do
     let(:date) { DateTime.new(2012, 12, 23, 12, 47) }
     let!(:comment_1) { create(:comment, body: '1', published: true, created_at: date + 1.day) }
-    let!(:comment_4) { create(:comment, body: '4', published: true, created_at: date + 4.day) }
-    let!(:comment_2) { create(:comment, body: '2', published: true, created_at: date + 2.day) }
-    let!(:comment_6) { create(:comment, body: '6', published: true, created_at: date + 6.day) }
-    let!(:comment_3) { create(:comment, body: '3', published: true, created_at: date + 3.day) }
-    let!(:comment_5) { create(:comment, body: '5', published: true, created_at: date + 5.day) }
+    let!(:comment_4) { create(:comment, body: '4', published: true, created_at: date + 4.days) }
+    let!(:comment_2) { create(:comment, body: '2', published: true, created_at: date + 2.days) }
+    let!(:comment_6) { create(:comment, body: '6', published: true, created_at: date + 6.days) }
+    let!(:comment_3) { create(:comment, body: '3', published: true, created_at: date + 3.days) }
+    let!(:comment_5) { create(:comment, body: '5', published: true, created_at: date + 5.days) }
 
     it 'respond only 5 last_published' do
       expect(Comment.last_published).to eq([comment_6, comment_5, comment_4, comment_3, comment_2])

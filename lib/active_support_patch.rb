@@ -5,7 +5,10 @@ module ActionView
       # See https://github.com/rails/rails/pull/21402
       # TODO: Remove once this is part of a Rails release.
       def mail_to(email_address, name = nil, html_options = {}, &block)
-        html_options, name = name, nil if block_given?
+        if block_given?
+          html_options = name
+          name = nil
+        end
         html_options = (html_options || {}).stringify_keys
 
         extras = %w( cc bcc body subject ).map! { |item|
