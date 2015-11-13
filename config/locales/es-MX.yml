@@ -656,14 +656,14 @@ es-MX:
           one: "1 spam"
           other: "%{count} spam"
       overview:
-        dashboard_explain: "Este lugar da una vista r&aacute;pida de tu blog de Publify y de lo que puedes hacer. Quiz&aacute;s querr&aacute;s %{available_actions}"
+        dashboard_explain_html: "Este lugar da una vista r&aacute;pida de tu blog de Publify y de lo que puedes hacer. Quiz&aacute;s querr&aacute;s %{available_actions}"
         write_a_post: "write a post"
         write_a_page: "escribir una pagina"
         update_your_profile_or_change_your_password: "actualizar tu perfil o cambiar su contrasena"
-        customization_explain: "Puedes hacer algo de dise&ntilde;o, %{theme_link} o %{sidebar_link}."
+        customization_explain_html: "Puedes hacer algo de dise&ntilde;o, %{theme_link} o %{sidebar_link}."
         change_your_blog_presentation: "cambiar la presentacion del blog"
         enable_plugins: "habilitar plugins"
-        help_explain: "Si necesitas ayuda, %{doc_link}."
+        help_explain_html: "Si necesitas ayuda, %{doc_link}."
         read_our_documentation: "lea nuestra documentacion"
       inbound:
         inbound_links: "Inbound links"

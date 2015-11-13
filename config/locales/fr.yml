@@ -656,14 +656,14 @@ fr:
           one: "1 spam"
           other: "%{count} spams"
       overview:
-        dashboard_explain: "Voici un rapide aperçu de ce que peut faire votre blog Publify. Peut-être voulez-vous %{available_actions}"
+        dashboard_explain_html: "Voici un rapide aperçu de ce que peut faire votre blog Publify. Peut-être voulez-vous %{available_actions}"
         write_a_post: "Écrire un article"
         write_a_page: "Publier une page statique"
         update_your_profile_or_change_your_password: "Mettre votre profil à jour ou changer votre mot de passe"
-        customization_explain: "Vous pouvez également faire un peu de personnalisation, %{theme_link}, %{sidebar_link}"
+        customization_explain_html: "Vous pouvez également faire un peu de personnalisation, %{theme_link}, %{sidebar_link}"
         change_your_blog_presentation: "changer l'apparence de votre blog"
         enable_plugins: "Activer des plugins"
-        help_explain: "Si vous avez besoin d'aide, vous pouvez %{doc_link}."
+        help_explain_html: "Si vous avez besoin d'aide, vous pouvez %{doc_link}."
         read_our_documentation: "Consulter notre documentation"
       inbound:
         inbound_links: "Liens entrants"

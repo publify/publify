@@ -399,7 +399,7 @@ describe Admin::ContentController, type: :controller do
       it 'should return foo for keywords fo' do
         get :auto_complete_for_article_keywords, article: { keywords: 'fo' }
         expect(response).to be_success
-        expect(response.body).to eq("[\"bar\", \"bazz\", \"foo\"]")
+        expect(response.body).to eq("[\"bar\",\"bazz\",\"foo\"]")
       end
     end
   end
