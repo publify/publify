@@ -61,7 +61,7 @@ module Admin::BaseHelper
         output << content_tag(:li, link_to(m.name, m.url))
       end
     end
-    output
+    output.html_safe
   end
 
   def link_to_edit(label, record, controller_name = controller.controller_name)
