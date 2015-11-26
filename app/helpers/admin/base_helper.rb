@@ -28,10 +28,6 @@ module Admin::BaseHelper
     end
   end
 
-  def link_to_edit(label, record, controller_name = controller.controller_name)
-    link_to label, { controller: controller_name, action: 'edit', id: record.id }, { class: 'edit' }
-  end
-
   def text_filter_options
     TextFilter.all.map do |filter|
       [filter.description, filter]
