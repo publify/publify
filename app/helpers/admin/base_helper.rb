@@ -13,10 +13,6 @@ module Admin::BaseHelper
     safe_join(links, ', ')
   end
 
-  def show_rss_description
-    Article.first.get_rss_description rescue ''
-  end
-
   def class_for_admin_state(sidebar, this_position)
     case sidebar.admin_state
     when :active
