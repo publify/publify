@@ -83,7 +83,7 @@ group :development, :test do
   gem 'thin'
   gem 'factory_girl', '~> 4.5.0'
   gem 'capybara'
-  gem 'rspec-rails', '~> 3.3.1'
+  gem 'rspec-rails', '~> 3.4.0'
   gem 'simplecov', require: false
   gem 'pry-rails'
   gem 'rubocop', '~> 0.35.1', require: false
