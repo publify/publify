@@ -61,15 +61,6 @@ module Admin::BaseHelper
     end
   end
 
-  def show_thumbnail_for_editor(image)
-    picture = "<a onclick=\"edInsertImageFromCarousel('article_body_and_extended', '#{image.upload.url}');\" />"
-    picture << "<img class='tumb' src='#{image.upload.thumb.url}' "
-    picture << "alt='#{image.upload.url}' />"
-    picture << '</a>'
-
-    picture
-  end
-
   def button_to_edit(item)
     link_to(content_tag(:span, '', class: 'glyphicon glyphicon-pencil'), { action: 'edit', id: item.id }, { class: 'btn btn-primary btn-xs btn-action' })
   end
