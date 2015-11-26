@@ -28,22 +28,6 @@ module Admin::BaseHelper
     end
   end
 
-  def tab_for(current_module)
-    content_tag(:li, link_to(current_module.menu_name, current_module.menu_url))
-  end
-
-  def subtabs_for(current_module)
-    output = ''
-    AccessControl.submenus_for(current_user.profile_label, current_module).each do |m|
-      if current_page? m.url
-        output << content_tag(:li, link_to(m.name, '#'), class: 'active')
-      else
-        output << content_tag(:li, link_to(m.name, m.url))
-      end
-    end
-    output.html_safe
-  end
-
   def link_to_edit(label, record, controller_name = controller.controller_name)
     link_to label, { controller: controller_name, action: 'edit', id: record.id }, { class: 'edit' }
   end
