@@ -48,9 +48,9 @@ module Admin::BaseHelper
 
   def show_actions(item)
     content_tag(:div, class: 'action', style: '') do
-      [button_to_edit(item),
-       button_to_delete(item),
-       button_to_short_url(item)].join(' ').html_safe
+      safe_join [button_to_edit(item),
+                 button_to_delete(item),
+                 button_to_short_url(item)], ' '
     end
   end
 
