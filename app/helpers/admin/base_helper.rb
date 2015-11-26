@@ -13,13 +13,6 @@ module Admin::BaseHelper
     safe_join(links, ', ')
   end
 
-  def show_redirect_actions(item)
-    content_tag(:div, class: 'action') do
-      [button_to_edit(item),
-       button_to_delete(item)].join(' ').html_safe
-    end
-  end
-
   def show_rss_description
     Article.first.get_rss_description rescue ''
   end
