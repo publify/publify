@@ -155,10 +155,6 @@ module ApplicationHelper
     end
   end
 
-  def use_canonical
-    "<link rel='canonical' href='#{this_blog.base_url + request.fullpath}' />".html_safe
-  end
-
   def page_header_includes
     content_array.map(&:whiteboard).map do |w|
       w.select { |k, _v| k =~ /^page_header_/ }.map do |_, v|
