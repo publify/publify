@@ -32,12 +32,6 @@ module Admin::BaseHelper
     link_to label, { controller: controller_name, action: 'edit', id: record.id }, { class: 'edit' }
   end
 
-  def link_to_edit_with_profiles(label, record, controller_name = controller.controller_name)
-    if current_user.admin? || current_user.id == record.user_id
-      link_to label, { controller: controller_name, action: 'edit', id: record.id }, { class: 'edit' }
-    end
-  end
-
   def text_filter_options
     TextFilter.all.map do |filter|
       [filter.description, filter]
