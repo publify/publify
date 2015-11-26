@@ -17,15 +17,6 @@ module Admin::BaseHelper
     Article.first.get_rss_description rescue ''
   end
 
-  def show_tag_actions(item)
-    content_tag(:div, class: 'action') do
-      [button_to_edit(item),
-       button_to_delete(item),
-       link_to_permalink(item, "#{item.articles.size} <span class='glyphicon glyphicon-link'></span>".html_safe, nil, 'btn btn-success btn-xs').html_safe
-      ].join(' ').html_safe
-    end
-  end
-
   def class_for_admin_state(sidebar, this_position)
     case sidebar.admin_state
     when :active
