@@ -27,13 +27,6 @@ class Admin::ResourcesController < Admin::BaseController
     @resources = Resource.order('created_at DESC').page(params[:page]).per(this_blog.admin_display_elements)
   end
 
-  def get_thumbnails
-    position = params[:position].to_i
-    @resources = Resource.without_images.by_created_at.limit(10).offset(position)
-
-    render 'get_thumbnails', layout: false
-  end
-
   def destroy
     @record = Resource.find(params[:id])
     @record.destroy

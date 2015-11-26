@@ -134,7 +134,6 @@ Rails.application.routes.draw do
 
     resources :resources, only: [:index, :destroy], format: false do
       collection do
-        get 'get_thumbnails'
         post 'upload'
       end
     end
