@@ -163,7 +163,7 @@ it:
       html:
         home: "Home"
         statuses: "Statuses"
-        powered_by: "Powered by %{powered_by}"
+        powered_by_html: "Powered by %{powered_by}"
         designed_by: "Designed by %{designed_by}"
     administration:
       new: "Nuovo"

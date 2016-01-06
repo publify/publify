@@ -163,7 +163,7 @@ nb-NO:
       html:
         home: "Hjem"
         statuses: "Statusoppdateringer"
-        powered_by: "Drives av %{powered_by}"
+        powered_by_html: "Drives av %{powered_by}"
         designed_by: "Utformet av %{designed_by}"
     administration:
       new: "Ny"
