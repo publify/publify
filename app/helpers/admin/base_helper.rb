@@ -13,26 +13,6 @@ module Admin::BaseHelper
     safe_join(links, ', ')
   end
 
-  def show_redirect_actions(item)
-    content_tag(:div, class: 'action') do
-      [button_to_edit(item),
-       button_to_delete(item)].join(' ').html_safe
-    end
-  end
-
-  def show_rss_description
-    Article.first.get_rss_description rescue ''
-  end
-
-  def show_tag_actions(item)
-    content_tag(:div, class: 'action') do
-      [button_to_edit(item),
-       button_to_delete(item),
-       link_to_permalink(item, "#{item.articles.size} <span class='glyphicon glyphicon-link'></span>".html_safe, nil, 'btn btn-success btn-xs').html_safe
-      ].join(' ').html_safe
-    end
-  end
-
   def class_for_admin_state(sidebar, this_position)
     case sidebar.admin_state
     when :active
@@ -45,32 +25,6 @@ module Admin::BaseHelper
       end
     else
       raise sidebar.admin_state.inspect
-    end
-  end
-
-  def tab_for(current_module)
-    content_tag(:li, link_to(current_module.menu_name, current_module.menu_url))
-  end
-
-  def subtabs_for(current_module)
-    output = ''
-    AccessControl.submenus_for(current_user.profile_label, current_module).each do |m|
-      if current_page? m.url
-        output << content_tag(:li, link_to(m.name, '#'), class: 'active')
-      else
-        output << content_tag(:li, link_to(m.name, m.url))
-      end
-    end
-    output.html_safe
-  end
-
-  def link_to_edit(label, record, controller_name = controller.controller_name)
-    link_to label, { controller: controller_name, action: 'edit', id: record.id }, { class: 'edit' }
-  end
-
-  def link_to_edit_with_profiles(label, record, controller_name = controller.controller_name)
-    if current_user.admin? || current_user.id == record.user_id
-      link_to label, { controller: controller_name, action: 'edit', id: record.id }, { class: 'edit' }
     end
   end
 
@@ -94,14 +48,10 @@ module Admin::BaseHelper
 
   def show_actions(item)
     content_tag(:div, class: 'action', style: '') do
-      [button_to_edit(item),
-       button_to_delete(item),
-       button_to_short_url(item)].join(' ').html_safe
+      safe_join [button_to_edit(item),
+                 button_to_delete(item),
+                 button_to_short_url(item)], ' '
     end
-  end
-
-  def macro_help_popup(macro, text)
-    "<a href=\"#{url_for controller: 'textfilters', action: 'macro_help', id: macro.short_name}\" onclick=\"return popup(this, 'Publify Macro Help')\">#{text}</a>"
   end
 
   def display_pagination(collection, cols, _first = '', _last = '')
@@ -109,15 +59,6 @@ module Admin::BaseHelper
     content_tag(:tr) do
       content_tag(:td, paginate(collection), class: 'paginate', colspan: cols)
     end
-  end
-
-  def show_thumbnail_for_editor(image)
-    picture = "<a onclick=\"edInsertImageFromCarousel('article_body_and_extended', '#{image.upload.url}');\" />"
-    picture << "<img class='tumb' src='#{image.upload.thumb.url}' "
-    picture << "alt='#{image.upload.url}' />"
-    picture << '</a>'
-
-    picture
   end
 
   def button_to_edit(item)
