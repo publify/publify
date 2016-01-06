@@ -15,7 +15,6 @@
 <%= javascript_include_tag :publify %>
 <%= stylesheet_link_tag :publify %>
 <%= page_header_includes %>
-<%= timeago_script_tag %>
 <% if this_blog.use_canonical_url %>
   <link rel="canonical" href="<%= this_blog.base_url + request.fullpath %>" />
 <% end %>
