@@ -86,7 +86,7 @@ module ApplicationHelper
 
   def markup_help_popup(markup, text)
     if markup && markup.commenthelp.size > 1
-      "<a href=\"#{url_for controller: 'articles', action: 'markup_help', id: markup.id}\" onclick=\"return popup(this, 'Publify Markup Help')\">#{text}</a>"
+      link_to text, url_for(controller: 'articles', action: 'markup_help', id: markup.id), onclick: "return popup(this, 'Publify Markup Help')"
     else
       ''
     end
