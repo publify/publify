@@ -163,7 +163,7 @@ he-IL:
       html:
         home: "Home"
         statuses: "Statuses"
-        powered_by: "מופעל על ידי %{powered_by}"
+        powered_by_html: "מופעל על ידי %{powered_by}"
         designed_by: "עוצב על ידי %{designed_by}"
     administration:
       new: "New"
