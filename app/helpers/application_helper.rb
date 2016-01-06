@@ -7,11 +7,12 @@ module ApplicationHelper
   attr_reader :page_title
 
   def render_sidebars(*sidebars)
-    (sidebars.blank? ? Sidebar.order(:active_position) : sidebars).map do |sb|
+    rendered_sidebars = (sidebars.blank? ? Sidebar.order(:active_position) : sidebars).map do |sb|
       @sidebar = sb
       sb.parse_request(content_array, params)
       render_sidebar(sb)
-    end.join
+    end
+    safe_join rendered_sidebars
   rescue => e
     logger.error e
     logger.error e.backtrace.join("\n")
@@ -22,7 +23,7 @@ module ApplicationHelper
     if sidebar.view_root
       render_deprecated_sidebar_view_in_view_root sidebar
     else
-      render_to_string(partial: sidebar.content_partial, locals: sidebar.to_locals_hash, layout: false)
+      render_to_string(partial: sidebar.content_partial, locals: sidebar.to_locals_hash, layout: false).html_safe
     end
   end
 
@@ -38,7 +39,7 @@ module ApplicationHelper
       new_root = File.join(this_blog.current_theme.path, 'views', new_root)
       view_root = new_root if File.exist?(File.join(new_root, 'content.rhtml'))
     end
-    render_to_string(file: "#{view_root}/content.rhtml", locals: sidebar.to_locals_hash, layout: false)
+    render_to_string(file: "#{view_root}/content.rhtml", locals: sidebar.to_locals_hash, layout: false).html_safe
   end
 
   def themeable_stylesheet_link_tag(name)
