@@ -8,7 +8,8 @@ class Admin::ThemesController < Admin::BaseController
   def index
     @themes = Theme.find_all
     @themes.each do |theme|
-      theme.description_html = TextFilter.filter_text(this_blog, theme.description, nil, [:markdown, :smartypants])
+      # TODO: Move to Theme
+      theme.description_html = TextFilter.filter_text(this_blog, theme.description, nil, [:markdown, :smartypants]).html_safe
     end
     @active = this_blog.current_theme
   end

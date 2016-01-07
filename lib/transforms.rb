@@ -33,7 +33,12 @@ class String
   # Decidedly unsafe, but will have to do for now.
   def nofollowify
     return self if Blog.default.dofollowify
-    gsub(/<a(.*?)>/i, '<a\1 rel="nofollow">')
+    result = gsub(/<a(.*?)>/i, '<a\1 rel="nofollow">')
+    if html_safe?
+      result.html_safe
+    else
+      result
+    end
   end
 
   # I pass settings as a parametre to avoid calling Blog.default (and another

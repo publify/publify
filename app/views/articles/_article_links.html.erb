@@ -1,7 +1,7 @@
 <p class="meta">
   <% if article.tags.any? %>
     <%= t(".tags") %>
-    <%= safe_join(article.tags.map { |tag| link_to tag.display_name, tag.permalink_url(nil, true), rel: "tag"}.sort, ", ") %>
+    <%= tag_links article %>
   <% end %>
 
   <%= link_to(t('.comments', count: article.published_comments.size), article.permalink_url('comments', true)) if article.allow_comments? %>

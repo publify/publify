@@ -69,7 +69,7 @@ nb-NO:
     comment_preview:
       is_about_to_say: "vil snart si"
     meta:
-      published_on: "Publisert den %{publish_date_and_time} av %{by}, tagger %{tags}"
+      published_on_html: "Publisert den %{publish_date_and_time} av %{by}, tagger %{tags}"
     article:
       posted_by: "Skrevet av"
       this_entry_was_posted_on: "Dette innlegget ble postet den %{published_at}"
@@ -88,7 +88,7 @@ nb-NO:
       comments_are_disabled: "Kommentarer er slått av"
       trackbacks_for: "Trackbacks for"
       trackbacks_are_disabled: "Trackbacks er slått av"
-      if_you_liked_this_article_you_can: "Hvis du likte denne artikkelen, kan du %{add_twitter}"
+      if_you_liked_this_article_you_can_html: "Hvis du likte denne artikkelen, kan du %{add_twitter}"
       add_me_to_twitter: "legge meg til på Twitter"
       use_the_following_link_to_trackback: "Bruk følgende lenke for å opprette trackback fra din egen side"
       trackbacks: "Trackbacks"
@@ -195,7 +195,7 @@ nb-NO:
         now: "Nå"
         compose_new_note: "Skriv nytt notat"
         no_notes: "Det er ingen notater enda. Hva med å opprette en?"
-        how_to_setup_twitter: "Hvis du vil sende statusoppdateringer til Twitter, må du %{twitter_settings_link} som Twitter ga deg etter at du %{twitter_registration_link}."
+        how_to_setup_twitter_html: "Hvis du vil sende statusoppdateringer til Twitter, må du %{twitter_settings_link} som Twitter ga deg etter at du %{twitter_registration_link}."
         fill_the_twitter_credentials: "skrive inn oauth-token"
         registered_your_application: "registrerte appen din"
         publish_settings: "Publiseringsinnstillinger"
@@ -211,7 +211,7 @@ nb-NO:
       show:
         destroy_confirmation: "Bekreft sletting"
         are_you_sure: "Er du sikker på at du vil slette dette notatet?"
-        action_or_other: "%{first_action} eller %{second_action}"
+        action_or_other_html: "%{first_action} eller %{second_action}"
         cancel: "Avbryt"
         delete: "Slett"
     redirects:
@@ -261,7 +261,7 @@ nb-NO:
         publish_changes: "Publiser endringer"
         available_items: "Tilgjengelige plugins"
         active_sidebar_items: "Aktive sidemarg-plugins"
-        download_more_plugins: "Du kan laste ned og installere sidemarg-plugins fra vår offisielle <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin-samling</a>. Alt du trenger å gjøre er å plassere theme-mappen i din vendor/plugins-mappe."
+        download_more_plugins_html: "Du kan laste ned og installere sidemarg-plugins fra vår offisielle <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin-samling</a>. Alt du trenger å gjøre er å plassere theme-mappen i din vendor/plugins-mappe."
       target_sidebar:
         update: 'Oppdater'
     settings:
@@ -312,7 +312,7 @@ nb-NO:
         enable_spam_protection: "Aktiver spam-beskyttelse"
         explain_spam_protection: "Når du aktiverer spam-beskyttelse vil Publify sammenlikne IP-adressen til deltakere, samt innholdet i artiklene, mot lokale svartelister og svartelister på internett. Godt forsvar mot spam-roboter"
         askimet_key: "Akismet-nøkkel"
-        explain_spamfiltering: "Publify kan settes opp til å bruke spamfilter-servicen <a href='http://akismet.com'>Akismet</a>. Du må registrere deg hos Akismet og få en API-nøkkel før du kan bruke servicen deres. Hvis du har en Akismet-nøkkel, oppgi den her"
+        explain_spamfiltering_html: "Publify kan settes opp til å bruke spamfilter-servicen <a href='http://akismet.com'>Akismet</a>. Du må registrere deg hos Akismet og få en API-nøkkel før du kan bruke servicen deres. Hvis du har en Akismet-nøkkel, oppgi den her"
         disable_comments_after: "Deaktiver kommentarer etter"
         days: "dager"
         set_to_0_to_never_disable_comments: "Sett til 0 for å aldri deaktivere kommentarer"
@@ -323,7 +323,7 @@ nb-NO:
         enable_recaptcha: "Aktiver reCaptcha"
         remember_to_set_your_recaptcha: "Husk å sette reCaptcha-nøklene dine i filen config/initializers/recaptcha.rb"
       write:
-        how_to_setup_twitter: "Hvis du vil sende statusoppdateringer til Twitter, må du %{twitter_settings_link} Twitter ga deg etter at du %{twitter_registration_link}."
+        how_to_setup_twitter_html: "Hvis du vil sende statusoppdateringer til Twitter, må du %{twitter_settings_link} Twitter ga deg etter at du %{twitter_registration_link}."
         fill_the_twitter_credentials: "skriv inn oauth-token"
         registered_your_application: "registrert din applikasjon"
         cancel: "Avbryt"
@@ -358,7 +358,7 @@ nb-NO:
         language: "Språk"
         users: "Brukere"
         allow_users_to_register: "Tillat brukere å registrere seg"
-        explain_allow_users_to_register: "Du kan tillate brukere å registrere seg på bloggen din. Som standard vil de registreres som bidragsytere, et upriviligert kontonivå som kun gir dem en egen profil på websiden. Dersom du ikke ønsker at brukere skal kunne registrere seg, så kan du legge dem til selv under brukerkontoer."
+        explain_allow_users_to_register_html: "Du kan tillate brukere å registrere seg på bloggen din. Som standard vil de registreres som bidragsytere, et upriviligert kontonivå som kun gir dem en egen profil på websiden. Dersom du ikke ønsker at brukere skal kunne registrere seg, så kan du legge dem til selv under brukerkontoer."
         source_email: "Epost-avsender"
         email_address_used_to_notify: "Epost-adresse som brukes av Publify til å sende meldinger"
         items_to_display_in_admin_lists: "Antall elementer som skal vises i adminlisten"
@@ -412,7 +412,7 @@ nb-NO:
         custom: "Tilpasset"
         sample: "Her er noen eksempler for å hjelpe deg i gang."
         you_can_custom_your_url_structure: "Du kan tilbasse URL-strukturen din ved å bruke følgende tagger:"
-        your_article_slug: "Forenklet fra artikkeltittelen. <strong>Det er påkrevd å bruke denne taggen</strong>."
+        your_article_slug_html: "Forenklet fra artikkeltittelen. <strong>Det er påkrevd å bruke denne taggen</strong>."
         your_article_year: "Artikkelens publiseringsår"
         your_article_month: "Artikkelens publiseringmåned"
         your_article_day: "Artikkelens publiseringsdag"
@@ -440,14 +440,14 @@ nb-NO:
         use_dofollow_in_comments: "Bruk dofollow i kommentarer"
         canonical_url: "Kanonisk URL"
         use_canonical_url: "Bruk kanonisk URL"
-        read_more_about: "Les mer om %{link}"
+        read_more_about_html: "Les mer om %{link}"
         google: "Google"
         google_analytics: "Google Analytics"
         google_webmaster_tools_validation_link: "Google Webmaster Tools valideringslenke"
         custom_tracking_code: "Tilpasset tracking-kode"
         explain: "Her kan du legge til det du vil skal inkluderes i din applikasjons-header, som for eksempel tracking-kode for en analyseservice."
         explain_category_index: "Slår du på denne, vil metataggene <code>noindex, follow</code> bli lagt til på alle kategorisider, og dermed fjerne dem fra søkemotorer og forhindre problemer med duplisert innhold"
-        explain_tag_index: "Slår du på denne, vil metataggene <code>noindex, follow</code> bli lagt til på alle taggsider, og dermed fjerne dem fra søkemotorer og forhindre problemer med duplisert innhold"
+        explain_tag_index_html: "Slår du på denne, vil metataggene <code>noindex, follow</code> bli lagt til på alle taggsider, og dermed fjerne dem fra søkemotorer og forhindre problemer med duplisert innhold"
         explain_moderate_feedback: "Det kan være en idé å moderere diskusjoner når du slår på denne"
         explain_rss_description: "Du kan bruke følgende tagger: %author% (forfatternavn), %blog_url% (blogg-URL), %blog_name% (bloggtittel) og %permalink_url% (en lenke til den artikkelen du vil beskytte)"
     shared:
@@ -459,7 +459,7 @@ nb-NO:
       destroy:
         destroy_confirmation: "Bekreft sletting"
         are_you_sure: "Er du sikker på at du vil slette %{element}?"
-        action_or_other: "%{first_action} eller %{second_action}"
+        action_or_other_html: "%{first_action} eller %{second_action}"
         cancel: "Avbryt"
         delete: "Slett"
     tags:
@@ -582,7 +582,7 @@ nb-NO:
         select_all: "Velg alle"
       article:
         no_feedback: "Det finnes ingen diskusjon enda. Hva med å opprette en?"
-        comments_for: "Kommentarer for %{title}"
+        comments_for_html: "Kommentarer for %{title}"
         status: "Status"
         comment_author: "Kommentarforfatter"
         comment: "Kommentar"
@@ -591,13 +591,13 @@ nb-NO:
         email: "Epost"
         url: "URL"
         your_comment: "Din kommentar"
-        action_or_other: "%{first_action} eller %{second_action}"
+        action_or_other_html: "%{first_action} eller %{second_action}"
         cancel: "Avbryt"
         save: "Lagre"
       edit:
-        action_or_other: "%{first_action} eller %{second_action}"
+        action_or_other_html: "%{first_action} eller %{second_action}"
         save: "Lagre"
-        comments_for: "Kommentarer for %{article_link}"
+        comments_for_html: "Kommentarer for %{article_link}"
       button:
         select_action: "Velg handling"
         delete_checked_items: "Slett markerte elementer"
@@ -727,7 +727,7 @@ nb-NO:
         publish_settings: "Publiseringsinnstillinger"
         status: "Status"
         published: "publisert"
-        allowed_comments_and_trackbacks: "Kommentarer er %{allow_comment} og trackbacks er %{allow_trackback}"
+        allowed_comments_and_trackbacks_html: "Kommentarer er %{allow_comment} og trackbacks er %{allow_trackback}"
         change: "Endre"
         allow_trackbacks: "Tillat trackbacks"
         allow_comments: "Tillat kommentarer"
@@ -798,7 +798,7 @@ nb-NO:
         comments: "Kommentarer"
         state: "Tilstand"
       form:
-        how_to_setup_twitter: "Hvis du vil sende statusoppdateringer til Twitter, må du %{twitter_settings_link} som Twitter ga deg etter at du %{twitter_registration_link}."
+        how_to_setup_twitter_html: "Hvis du vil sende statusoppdateringer til Twitter, må du %{twitter_settings_link} som Twitter ga deg etter at du %{twitter_registration_link}."
         fill_the_twitter_credentials: "skrive inn oauth-token"
         registered_your_application: "registrerte appen din"
         cancel: "Avbryt"

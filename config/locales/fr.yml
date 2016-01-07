@@ -69,7 +69,7 @@ fr:
     comment_preview:
       is_about_to_say: "va dire"
     meta:
-      published_on: "Publié le %{publish_date_and_time} par %{by}, tags %{tags}"
+      published_on_html: "Publié le %{publish_date_and_time} par %{by}, tags %{tags}"
     article:
       posted_by: "Publié par"
       this_entry_was_posted_on: "Ce billet a été posté le %{published_at}"
@@ -88,7 +88,7 @@ fr:
       comments_are_disabled: "Les commentaires sont désactivés"
       trackbacks_for: "Rétroliens pour"
       trackbacks_are_disabled: "Les rétroliens sont désactivés"
-      if_you_liked_this_article_you_can: "Si vous avez aimé cet article, vous pouvez %{add_twitter}"
+      if_you_liked_this_article_you_can_html: "Si vous avez aimé cet article, vous pouvez %{add_twitter}"
       add_me_to_twitter: "me suivre sur Twitter"
       use_the_following_link_to_trackback: "Utilisez le lien ci-dessous pour envoyer un rétrolien depuis votre site"
       trackbacks: "Rétroliens"
@@ -194,7 +194,7 @@ fr:
       form:
         now: "Maintenant"
         no_notes: "Il n'y a pas encore de notes, pourquoi ne pas en créer une ? "
-        how_to_setup_twitter: "Si vous voulez publiez de courts statuts sur Twitter, vous devez %{twitter_settings_link} que Twitter vous a fourni %{twitter_registration_link}."
+        how_to_setup_twitter_html: "Si vous voulez publiez de courts statuts sur Twitter, vous devez %{twitter_settings_link} que Twitter vous a fourni %{twitter_registration_link}."
         fill_the_twitter_credentials: "Renseignez les informations sur l'auteur"
         registered_your_application: "Votre application a été enregistrée"
         compose_new_note: "Écrire un nouveau billet"
@@ -211,7 +211,7 @@ fr:
       show:
         destroy_confirmation: "Confirmation de suppression"
         are_you_sure: "Êtes-vous certain de vouloir supprimer cette note ?"
-        action_or_other: "%{first_action} ou %{second_action}"
+        action_or_other_html: "%{first_action} ou %{second_action}"
         cancel: "Annuler"
         delete: "Supprimer"
     redirects:
@@ -261,7 +261,7 @@ fr:
         publish_changes: "Publier les modifications"
         available_items: "Éléments disponibles"
         active_sidebar_items: "Éléments utilisés"
-        download_more_plugins: "Vous pouvez télécharger et installer des plugins pour sidebars depuis notre <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'> répertoire officiel de plugins</a>. Tout ce que vous avez à faire est de télécharger le dossier du thème dans votre dossier vendor/plugins."
+        download_more_plugins_html: "Vous pouvez télécharger et installer des plugins pour sidebars depuis notre <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'> répertoire officiel de plugins</a>. Tout ce que vous avez à faire est de télécharger le dossier du thème dans votre dossier vendor/plugins."
       target_sidebar:
         update: 'Mettre à jour'
     settings:
@@ -312,7 +312,7 @@ fr:
         enable_spam_protection: "Activer la protection contre le spam"
         explain_spam_protection: "La protection contre le spam permettra à Publify de comparer l'adresse IP des commentateurs ainsi que le contenu de leurs commentaires avec une liste noire distante"
         askimet_key: "Clé Akismet"
-        explain_spamfiltering: "Publify peut utiliser le service de lutte contre le spam <a href='http://akismet.com'>Akismet</a>. Vous devez vous enregistrer afin de pouvoir utiliser les services d'Akismet. Si vous possédez une clé Akismet, ajoutez là ici"
+        explain_spamfiltering_html: "Publify peut utiliser le service de lutte contre le spam <a href='http://akismet.com'>Akismet</a>. Vous devez vous enregistrer afin de pouvoir utiliser les services d'Akismet. Si vous possédez une clé Akismet, ajoutez là ici"
         disable_comments_after: "Désactiver les commentaires au bout de "
         days: "jours"
         set_to_0_to_never_disable_comments: "Mettez cette option à 0 pour ne jamais désactiver les commentaires dans le temps"
@@ -323,7 +323,7 @@ fr:
         enable_recaptcha: "Utiliser reCaptcha"
         remember_to_set_your_recaptcha: "N'oubliez pas de mettre votre clé d'activation dans config/initializers/recaptcha.rb"
       write:
-        how_to_setup_twitter: "Si vous souhaitez publier de courts statuts sur Twitter, vous devez %{twitter_settings_link} que Twitter vous a fourni après que %{twitter_registration_link}."
+        how_to_setup_twitter_html: "Si vous souhaitez publier de courts statuts sur Twitter, vous devez %{twitter_settings_link} que Twitter vous a fourni après que %{twitter_registration_link}."
         fill_the_twitter_credentials: "remplissez les informations sur l'auteur"
         registered_your_application: "Votre application a été enregistrée"
         cancel: "Annuler"
@@ -358,7 +358,7 @@ fr:
         language: "Langue"
         users: "Utilisateurs"
         allow_users_to_register: "Autoriser les utilisateurs à s'enregistrer"
-        explain_allow_users_to_register: "Vous pouvez permettre aux utilisateurs de s'enregistrer sur votre blog. Par défaut, ils seront enregistrés come contributeurs. Cet utilisateur a un niveau faible sans droit mais qui possède sont propre profile sur le site. Si vous ne voulez pas que les utilisateurs s'enregistrent, vous pouvez les ajouter vous même dans la partie d'administration des utilisateurs."
+        explain_allow_users_to_register_html: "Vous pouvez permettre aux utilisateurs de s'enregistrer sur votre blog. Par défaut, ils seront enregistrés come contributeurs. Cet utilisateur a un niveau faible sans droit mais qui possède sont propre profile sur le site. Si vous ne voulez pas que les utilisateurs s'enregistrent, vous pouvez les ajouter vous même dans la partie d'administration des utilisateurs."
         source_email: "Adresse courriel source"
         email_address_used_to_notify: "Adresse courriel utilisée par Publify pour l'envoi d'alertes"
         items_to_display_in_admin_lists: "Nombre d'éléments à afficher dans les listes"
@@ -411,7 +411,7 @@ fr:
         custom: "Personnalisé"
         sample: "Les exemples ci-dessous vous aideront à démarrer."
         you_can_custom_your_url_structure: "Vous pouvez personnaliser la structure de vos URL à l'aide des tags suivats:"
-        your_article_slug: "le permalien de votre article <strong>ce champ est obligatoire</strong>"
+        your_article_slug_html: "le permalien de votre article <strong>ce champ est obligatoire</strong>"
         your_article_year: "L'année de publication de votre article."
         your_article_month: "Le mois de publication de votre article."
         your_article_day: "Le jour de publication de votre article."
@@ -435,14 +435,14 @@ fr:
         use_dofollow_in_comments: "Mettre les commentaires en dofollow"
         canonical_url: "Canonical Url"
         use_canonical_url: "Utiliser les URL canoniques"
-        read_more_about: "En savoir plus à propos de %{link}"
+        read_more_about_html: "En savoir plus à propos de %{link}"
         google: "Google"
         google_analytics: "Google Analytics"
         google_webmaster_tools_validation_link: "Lien de validation des Google Webmaster Tools."
         custom_tracking_code: "Code de tracking personnalisé"
         explain: "Ici, vous pouve ajouter tout ce que vous souhaitez voir apparaître dans l'en-tête de votre blog, comme le code de suivi d'un service de statistiques."
         explain_category_index: "Sélectionner cette option ajoutera le métalabel <code>noindex, follow</code> dans toutes les pages de chaque catégorie. Cela les enlèvera des moteurs de recherche et préviendra ainsi des problèmes de contenu dupliqué."
-        explain_tag_index: "Sélectionner cette option ajoutera le métalabel <code>noindex, follow</code> dans toutes les pages de chaque label. Cela les enlèvera des moteurs de recherche et préviendra ainsi des problèmes de contenu dupliqué."
+        explain_tag_index_html: "Sélectionner cette option ajoutera le métalabel <code>noindex, follow</code> dans toutes les pages de chaque label. Cela les enlèvera des moteurs de recherche et préviendra ainsi des problèmes de contenu dupliqué."
         explain_moderate_feedback: "Si vous activez cette option, peut-être devriez-vous également activer la modération des commentaires."
         explain_rss_description: "Vous pouvez utliser les tags suivants : %author% (nom de l'auteur), %blog_url% (URL du blog), %blog_name% (nom du blog) et %permalink_url% (lien vers l'article que vous souhaitez protéger)"
     shared:
@@ -454,7 +454,7 @@ fr:
       destroy:
         destroy_confirmation: "Confirmation de suppression"
         are_you_sure: "Êtes-vous certain de vouloir supprimer ce/cette %{element}"
-        action_or_other: "%{first_action} ou %{second_action}"
+        action_or_other_html: "%{first_action} ou %{second_action}"
         cancel: "Annuler"
         delete: "Supprimer"
     tags:
@@ -577,7 +577,7 @@ fr:
         select_all: "Tout sélectionner"
       article:
         no_feedback: "Il n'y a pas encore de commentaires, pourquoi ne pas en créer un ? "
-        comments_for: "Commentaire sur %{title}"
+        comments_for_html: "Commentaire sur %{title}"
         status: "État"
         comment_author: "Auteur du commentaire"
         comment: "Commentaire"
@@ -586,13 +586,13 @@ fr:
         email: "Email"
         url: "Site"
         your_comment: "Votre commentaire"
-        action_or_other: "%{first_action} ou %{second_action}"
+        action_or_other_html: "%{first_action} ou %{second_action}"
         cancel: "Annuler"
         save: "Sauver"
       edit:
-        action_or_other: "%{first_action} ou %{second_action}"
+        action_or_other_html: "%{first_action} ou %{second_action}"
         save: "Sauver"
-        comments_for: "Commentaires sur l'article %{article_link}"
+        comments_for_html: "Commentaires sur l'article %{article_link}"
       button:
         select_action: "Choisir de..."
         delete_checked_items: "Supprimer les commentaires sélectionnés"
@@ -722,7 +722,7 @@ fr:
         publish_settings: "Paramètres de publication"
         status: "État"
         published: "Publié"
-        allowed_comments_and_trackbacks: "Les commentaires sont %{allow_comment} et les rétroliens %{allow_trackback}"
+        allowed_comments_and_trackbacks_html: "Les commentaires sont %{allow_comment} et les rétroliens %{allow_trackback}"
         change: "Modifier"
         allow_trackbacks: "Autoriser les rétroliens"
         allow_comments: "Autoriser les commentaires"
@@ -793,7 +793,7 @@ fr:
         comments: "Commentaires"
         state: "État"
       form:
-        how_to_setup_twitter: "Si vous souhaitez publier des courts statuts sur Twitter, vous devez fournir %{twitter_settings_link} que Twitter vous a envoyé après que vous %{twitter_registration_link}."
+        how_to_setup_twitter_html: "Si vous souhaitez publier des courts statuts sur Twitter, vous devez fournir %{twitter_settings_link} que Twitter vous a envoyé après que vous %{twitter_registration_link}."
         fill_the_twitter_credentials: "fill in the oauth credentials"
         registered_your_application: "Votre application a été enregistrée"
         cancel: "Annuler"
