@@ -98,7 +98,7 @@
             </div>
             <div class="control-group">
               <p>
-                <%= t('.allowed_comments_and_trackbacks', allow_comment: content_tag(:strong, t('.allow_comments_status', count: @article.allow_comments ? 1 : 0)), allow_trackback: content_tag(:strong, t('.allow_pings_status', count: @article.allow_pings ? 1 : 0))) %>
+                <%= t('.allowed_comments_and_trackbacks_html', allow_comment: content_tag(:strong, t('.allow_comments_status', count: @article.allow_comments ? 1 : 0)), allow_trackback: content_tag(:strong, t('.allow_pings_status', count: @article.allow_pings ? 1 : 0))) %>
                 <%= toggle_element('conversation') %>
               </p>
               <div id="conversation" class="collapse">

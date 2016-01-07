@@ -69,7 +69,7 @@ zh-TW:
     comment_preview:
       is_about_to_say: "這是關於~~"
     meta:
-      published_on: "Published on %{publish_date_and_time} by %{by}, tags %{tags}"
+      published_on_html: "Published on %{publish_date_and_time} by %{by}, tags %{tags}"
     article:
       posted_by: "貼上"
       this_entry_was_posted_on: "This entry was posted on %{published_at}"
@@ -88,7 +88,7 @@ zh-TW:
       comments_are_disabled: "Comments are disabled"
       trackbacks_for: "Trackbacks for"
       trackbacks_are_disabled: "Trackbacks are disabled"
-      if_you_liked_this_article_you_can: "If you liked this article you can %{add_twitter}"
+      if_you_liked_this_article_you_can_html: "If you liked this article you can %{add_twitter}"
       add_me_to_twitter: "add me to Twitter"
       use_the_following_link_to_trackback: "從你所屬的網點用隨後的連結去引用"
       trackbacks: "Trackbacks"
@@ -194,7 +194,7 @@ zh-TW:
       form:
         now: "Now"
         no_notes: "There are no notes yet. Why don't you start and create one?"
-        how_to_setup_twitter: "If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."
+        how_to_setup_twitter_html: "If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."
         fill_the_twitter_credentials: "fill in the oauth credentials"
         registered_your_application: "registered your application"
         compose_new_note: "Compose new note"
@@ -211,7 +211,7 @@ zh-TW:
       show:
         destroy_confirmation: "Destroy confirmation"
         are_you_sure: "Are you sure you want to delete this note"
-        action_or_other: "%{first_action} 或 %{second_action}"
+        action_or_other_html: "%{first_action} 或 %{second_action}"
         cancel: "取消"
         delete: "刪除"
     redirects:
@@ -261,7 +261,7 @@ zh-TW:
         publish_changes: "公開變更"
         available_items: "可用的項目"
         active_sidebar_items: "有效的側邊欄項目"
-        download_more_plugins: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
+        download_more_plugins_html: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
     settings:
       update:
         success: "更新設定"
@@ -309,7 +309,7 @@ zh-TW:
         enable_spam_protection: "有效防止垃圾郵件"
         explain_spam_protection: "publify會根據張貼者IP的位址內容還有黑名單來有效防止垃圾郵件。好的防禦可以抑制垃圾郵寄"
         askimet_key: "Akismet鍵"
-        explain_spamfiltering: "Publify隨意的使用 <a href='http://akismet.com'>Akismet</a> 篩選垃圾郵件服務。"
+        explain_spamfiltering_html: "Publify隨意的使用 <a href='http://akismet.com'>Akismet</a> 篩選垃圾郵件服務。"
         disable_comments_after: "在失效的評論之後"
         days: "日期"
         set_to_0_to_never_disable_comments: "設定0為絕不失效的評論"
@@ -320,7 +320,7 @@ zh-TW:
         enable_recaptcha: "Enable reCaptcha"
         remember_to_set_your_recaptcha: "Remember to set your reCaptcha keys inside config/initializers/recaptcha.rb"
       write:
-        how_to_setup_twitter: "If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."
+        how_to_setup_twitter_html: "If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."
         fill_the_twitter_credentials: "fill in the oauth credentials"
         registered_your_application: "registered your application"
         cancel: "取消"
@@ -355,7 +355,7 @@ zh-TW:
         language: "言語"
         users: "使用者"
         allow_users_to_register: "Allow users to register"
-        explain_allow_users_to_register: "This will allow users to register themselves as contributors, an unprivileged account level which grants them no rights beyond owning a profile on the site. If you don't want users to register, you can add them via <em>Manage users</em> under <em>Settings</em>."
+        explain_allow_users_to_register_html: "This will allow users to register themselves as contributors, an unprivileged account level which grants them no rights beyond owning a profile on the site. If you don't want users to register, you can add them via <em>Manage users</em> under <em>Settings</em>."
         source_email: "原始email"
         email_address_used_to_notify: "email位址使用publify發出通知"
         items_to_display_in_admin_lists: "Items to display in admin lists"
@@ -409,7 +409,7 @@ zh-TW:
         custom: "Custom"
         sample: "Here are some examples to get you started."
         you_can_custom_your_url_structure: "You can custom your URL structure using the following tags:"
-        your_article_slug: "your article slug. <strong>Using this slug is mandatory</strong>."
+        your_article_slug_html: "your article slug. <strong>Using this slug is mandatory</strong>."
         your_article_year: "your article year of publication."
         your_article_month: "your article month of publication."
         your_article_day: "your article day of publication."
@@ -437,14 +437,14 @@ zh-TW:
         use_dofollow_in_comments: "Use dofollow in comments"
         canonical_url: "Canonical Url"
         use_canonical_url: "Use canonical URL"
-        read_more_about: "Read more about %{link}"
+        read_more_about_html: "Read more about %{link}"
         google: "Google"
         google_analytics: "Google Analytics"
         google_webmaster_tools_validation_link: "Google Webmaster Tools validation link"
         custom_tracking_code: "Custom tracking code"
         explain: "Here you can add anything you want to appear in your application header, such as analytics service tracking code."
         explain_category_index: "Checking this box will add <code>noindex, follow</code> meta tags in every category page, removing them from search engines and preventing duplicate content issues"
-        explain_tag_index: "Checking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues"
+        explain_tag_index_html: "Checking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues"
         explain_moderate_feedback: "You may want to moderate feedback when turning this on"
         explain_rss_description: "You can use the following tags: %author% (author name), %blog_url% (this blog URL), %blog_name% (this blog title) and %permalink_url% (a link to the article you want to protect)"
     shared:
@@ -455,7 +455,7 @@ zh-TW:
         tag: "Tag"
       destroy:
         are_you_sure: "Are you sure you want to delete this %{element}"
-        action_or_other: "%{first_action} 或 %{second_action}"
+        action_or_other_html: "%{first_action} 或 %{second_action}"
         cancel: "取消"
         delete: "刪除"
     tags:
@@ -578,7 +578,7 @@ zh-TW:
         no_feedback: "There are no feedback yet. Why don't you start and create one?"
       article:
         no_feedback: "There are no feedback yet. Why don't you start and create one?"
-        comments_for: "做出評論 %{title}"
+        comments_for_html: "做出評論 %{title}"
         status: "身分"
         comment_author: "Comment Author"
         comment: "Comment"
@@ -587,13 +587,13 @@ zh-TW:
         email: "Email"
         url: "Url"
         your_comment: "Your comment"
-        action_or_other: "%{first_action} 或 %{second_action}"
+        action_or_other_html: "%{first_action} 或 %{second_action}"
         cancel: "取消"
         save: "存檔"
       edit:
-        action_or_other: "%{first_action} 或 %{second_action}"
+        action_or_other_html: "%{first_action} 或 %{second_action}"
         save: "存檔"
-        comments_for: "Comments for %{article_link}"
+        comments_for_html: "Comments for %{article_link}"
       button:
         select_action: "Select action"
         delete_checked_items: "Delete Checked Items"
@@ -723,7 +723,7 @@ zh-TW:
         publish_settings: "Publish settings"
         status: "身分"
         published: "已公開的"
-        allowed_comments_and_trackbacks: "Comments are %{allow_comment} and trackbacks are %{allow_trackback}"
+        allowed_comments_and_trackbacks_html: "Comments are %{allow_comment} and trackbacks are %{allow_trackback}"
         change: "Change"
         allow_trackbacks: "允許引用"
         allow_comments: "允許評論"
@@ -795,7 +795,7 @@ zh-TW:
         state: "State"
         user_state: "%{state} user"
       form:
-        how_to_setup_twitter: "If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."
+        how_to_setup_twitter_html: "If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."
         fill_the_twitter_credentials: "fill in the oauth credentials"
         registered_your_application: "registered your application"
         cancel: "取消"
