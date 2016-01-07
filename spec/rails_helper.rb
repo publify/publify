@@ -35,7 +35,7 @@ RSpec.configure do |config|
 
   config.after :each, type: :controller do
     if response.body =~ /(&lt;[a-z]+)/
-      raise "Double escaped HTML in text (#{$1})"
+      raise "Double escaped HTML in text (#{Regexp.last_match(1)})"
     end
   end
 end
