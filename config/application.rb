@@ -63,6 +63,7 @@ module Publify
   # require 'publify_plugins'
   require 'bare_migration'
   require 'publify_version'
+  require 'rails_patch/active_support'
 
   require 'publify_login_system'
 
