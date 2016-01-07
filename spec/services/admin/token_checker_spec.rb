@@ -60,7 +60,7 @@ describe Admin::TokenChecker do
 
     it 'propagates errors on failure' do
       File.chmod(0444, fixture)
-      expect { checker.generate_token }.to raise_error
+      expect { checker.generate_token }.to raise_error Errno::EACCES
     end
   end
 
