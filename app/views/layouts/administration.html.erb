@@ -22,20 +22,27 @@
     </div>
     <div class="collapse navbar-collapse" id="sidebar-top">
       <ul class='nav navbar-nav'>
-        <% for pm in current_user.project_modules %>
-          <% if AccessControl.submenus_for(current_user.profile_label, pm.name.to_sym).size == 0 %>
-            <%= tab_for(pm) %>
+        <% current_user.project_modules.each do |project_module| %>
+          <% submenus = AccessControl.submenus_for(current_user.profile_label, project_module.name.to_sym) %>
+          <% if submenus.size == 0 %>
+            <%= content_tag(:li, link_to(project_module.menu_name, project_module.menu_url)) %>
           <% else %>
-          <li class='dropdown'>
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-              <%= pm.menu_name %>
-              <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-              <%= subtabs_for(pm.name.to_sym)%>
-            </ul>
-          </li>
-          <%end %>
+            <li class='dropdown'>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <%= project_module.menu_name %>
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                <% submenus.each do |submenu| %>
+                  <% if current_page? submenu.url %>
+                    <%= content_tag(:li, link_to(submenu.name, '#'), class: 'active') %>
+                  <% else %>
+                    <%= content_tag(:li, link_to(submenu.name, submenu.url)) %>
+                  <% end %>
+                <% end %>
+              </ul>
+            </li>
+          <% end %>
         <% end %>
       </ul>
       <ul class='nav navbar-nav pull-right'>

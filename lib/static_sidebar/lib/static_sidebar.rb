@@ -1,6 +1,6 @@
 # coding: utf-8
 class StaticSidebar < Sidebar
-  DEFAULT_TEXT = %q(
+  DEFAULT_TEXT = '
 <ul>
   <li><a href="http://www.publify.co/" title="Publify">Publify</a></li>
   <li><a href="http://t37.net/" title="Le Rayon UX">Frédéric</a></li>
@@ -10,7 +10,7 @@ class StaticSidebar < Sidebar
   <li><a href="/admin">Admin</a></li>
 </ul>
 
-)
+'
   description 'Static content, like links to other sites, advertisements, or blog meta-information'
 
   setting :title, 'Links'

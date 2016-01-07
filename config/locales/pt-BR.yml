@@ -163,7 +163,7 @@ pt-BR:
       html:
         home: "Home"
         statuses: "Status"
-        powered_by: "Powered by %{powered_by}"
+        powered_by_html: "Powered by %{powered_by}"
         designed_by: "Designed by %{designed_by}"
     administration:
       new: "Novo"
@@ -657,14 +657,14 @@ pt-BR:
           one: "1 spam"
           other: "%{count} spam"
       overview:
-        dashboard_explain: "Aqui você tem uma visão rápida sobre o que acontece no seu Publify e também o que você pode fazer. Talvez você queira %{available_actions}."
+        dashboard_explain_html: "Aqui você tem uma visão rápida sobre o que acontece no seu Publify e também o que você pode fazer. Talvez você queira %{available_actions}."
         write_a_post: "escrever uma postagem"
         write_a_page: "escrever uma página"
         update_your_profile_or_change_your_password: "atualizar seu perfil ou mudar sua senha"
-        customization_explain: "Você também pode aventurar-se como design, %{theme_link} ou %{sidebar_link.}"
+        customization_explain_html: "Você também pode aventurar-se como design, %{theme_link} ou %{sidebar_link.}"
         change_your_blog_presentation: "alterar a apresentação do seu blog"
         enable_plugins: "ativar plugins"
-        help_explain: "Se precisar de alguma ajuda, %{doc_link}."
+        help_explain_html: "Se precisar de alguma ajuda, %{doc_link}."
         read_our_documentation: "leia nossa documentação"
       inbound:
         inbound_links: "Links de entrada"

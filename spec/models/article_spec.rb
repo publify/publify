@@ -446,25 +446,25 @@ describe Article, type: :model do
       # is now more than two years ago, except for two, which are from
       # yesterday and the day before. The existence of those two makes
       # 1.month.ago not suitable, because yesterday can be last month.
-      @article_two_month_ago = create(:article, published_at: 2.month.ago)
+      @article_two_month_ago = create(:article, published_at: 2.months.ago)
 
-      @article_four_months_ago = create(:article, published_at: 4.month.ago)
-      @article_2_four_months_ago = create(:article, published_at: 4.month.ago)
+      @article_four_months_ago = create(:article, published_at: 4.months.ago)
+      @article_2_four_months_ago = create(:article, published_at: 4.months.ago)
 
-      @article_two_year_ago = create(:article, published_at: 2.year.ago)
-      @article_2_two_year_ago = create(:article, published_at: 2.year.ago)
+      @article_two_year_ago = create(:article, published_at: 2.years.ago)
+      @article_2_two_year_ago = create(:article, published_at: 2.years.ago)
     end
 
     it 'should return all content for the year if only year sent' do
-      expect(Article.published_at_like(2.year.ago.strftime('%Y')).map(&:id).sort).to eq([@article_two_year_ago.id, @article_2_two_year_ago.id].sort)
+      expect(Article.published_at_like(2.years.ago.strftime('%Y')).map(&:id).sort).to eq([@article_two_year_ago.id, @article_2_two_year_ago.id].sort)
     end
 
     it 'should return all content for the month if year and month sent' do
-      expect(Article.published_at_like(4.month.ago.strftime('%Y-%m')).map(&:id).sort).to eq([@article_four_months_ago.id, @article_2_four_months_ago.id].sort)
+      expect(Article.published_at_like(4.months.ago.strftime('%Y-%m')).map(&:id).sort).to eq([@article_four_months_ago.id, @article_2_four_months_ago.id].sort)
     end
 
     it 'should return all content on this date if date send' do
-      expect(Article.published_at_like(2.month.ago.strftime('%Y-%m-%d')).map(&:id).sort).to eq([@article_two_month_ago.id].sort)
+      expect(Article.published_at_like(2.months.ago.strftime('%Y-%m-%d')).map(&:id).sort).to eq([@article_two_month_ago.id].sort)
     end
   end
 

@@ -64,7 +64,6 @@ module Publify
   require 'bare_migration'
   require 'publify_version'
   require 'rails_patch/active_support'
-  require 'rails_patch/active_record'
 
   require 'publify_login_system'
 
