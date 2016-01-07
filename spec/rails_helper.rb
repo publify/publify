@@ -32,6 +32,12 @@ RSpec.configure do |config|
 
   # shortcuts for factory_girl to use: create / build / build_stubbed
   config.include FactoryGirl::Syntax::Methods
+
+  config.after :each, type: :controller do
+    if response.body =~ /(&lt;[a-z]+)/
+      raise "Double escaped HTML in text (#{$1})"
+    end
+  end
 end
 
 def define_spec_public_cache_directory
