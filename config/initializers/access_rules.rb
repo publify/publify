@@ -59,11 +59,6 @@ AccessControl.map require: [ :admin, :publisher, :contributor ]  do |map|
     project.menu    "Design",             { controller: "admin/themes", action: "index"  }
     project.submenu "Choose theme",       { controller: "admin/themes", action: "index"  }
     project.submenu "Customize sidebar",  { controller: "admin/sidebar", action: "index" }
-
-    AccessControl.search_plugins_directory.each do |plugin|
-      project.submenu AccessControl.get_plugin_litteral_name(plugin),
-        { controller: "admin/#{AccessControl.get_plugin_controller_name(plugin)}", action: "index" }
-    end
   end
 
   map.project_module :settings, nil do |project|
