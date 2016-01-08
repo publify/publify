@@ -53,8 +53,6 @@ class User < ActiveRecord::Base
     '20ac4d290c2293702c64b3b287ae5ea79b26a5c1'
   end
 
-  attr_accessor :last_venue
-
   def first_and_last_name
     return '' unless firstname.present? && lastname.present?
     "#{firstname} #{lastname}"
@@ -84,12 +82,6 @@ class User < ActiveRecord::Base
 
   def active_for_authentication?
     super && state == 'active'
-  end
-
-  def update_connection_time
-    self.last_venue = last_connection
-    self.last_connection = Time.now
-    save
   end
 
   def default_text_filter
