@@ -64,10 +64,6 @@ class User < ActiveRecord::Base
     [:login, :nickname, :firstname, :lastname, :first_and_last_name].map { |f| send(f) }.delete_if(&:empty?)
   end
 
-  def self.authenticate(login, pass)
-    find_by('login = ? AND password = ? AND state = ?', login, password_hash(pass), 'active')
-  end
-
   # Authenticate users with old password hashes
   alias :devise_valid_password? :valid_password?
   def valid_password?(password)
@@ -85,6 +81,10 @@ class User < ActiveRecord::Base
         return false
       end
     end
+  end
+
+  def active_for_authentication?
+    super && state == 'active'
   end
 
   def update_connection_time
@@ -116,14 +116,6 @@ class User < ActiveRecord::Base
 
   def default_text_filter
     text_filter
-  end
-
-  def self.authenticate?(login, pass)
-    user = authenticate(login, pass)
-    return false if user.nil?
-    return true if user.login == login
-
-    false
   end
 
   def self.find_by_permalink(permalink)
@@ -208,17 +200,6 @@ class User < ActiveRecord::Base
   end
 
   protected
-
-  # Apply SHA1 encryption to the supplied password.
-  # We will additionally surround the password with a salt
-  # for additional security.
-  def self.password_hash(pass)
-    Digest::SHA1.hexdigest("#{salt}--#{pass}--")
-  end
-
-  def password_hash(pass)
-    self.class.password_hash(pass)
-  end
 
   before_validation :set_default_profile
 
