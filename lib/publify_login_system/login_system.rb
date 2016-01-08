@@ -36,9 +36,9 @@ module LoginSystem
             flash[:error] = "You're not allowed to perform this action"
             redirect_to controller: 'admin/dashboard', action: 'index'
           elsif User.first
-            redirect_to controller: '/accounts', action: 'login'
+            redirect_to new_user_session_path
           else
-            redirect_to controller: '/accounts', action: 'signup'
+            redirect_to new_user_registration_path
           end
         end
         accepts.xml do

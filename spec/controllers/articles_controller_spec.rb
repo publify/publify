@@ -184,7 +184,7 @@ describe ArticlesController, 'nousers', type: :controller do
 
   it 'redirects to signup' do
     get 'index'
-    expect(response).to redirect_to(controller: 'accounts', action: 'signup')
+    expect(response).to redirect_to new_user_registration_path
   end
 end
 
@@ -248,7 +248,7 @@ describe ArticlesController, 'previewing', type: :controller do
     end
 
     it 'should redirect to login' do
-      expect(response).to redirect_to(controller: 'accounts', action: 'login')
+      expect(response).to redirect_to new_user_session_path
     end
   end
 
@@ -580,7 +580,7 @@ describe ArticlesController, 'preview page', type: :controller do
     end
 
     it 'should redirect to login' do
-      expect(response).to redirect_to(controller: 'accounts', action: 'login')
+      expect(response).to redirect_to new_user_session_path
     end
   end
 
