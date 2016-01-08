@@ -68,6 +68,25 @@ class User < ActiveRecord::Base
     find_by('login = ? AND password = ? AND state = ?', login, password_hash(pass), 'active')
   end
 
+  # Authenticate users with old password hashes
+  alias :devise_valid_password? :valid_password?
+  def valid_password?(password)
+    begin
+      devise_valid_password?(password)
+    rescue BCrypt::Errors::InvalidHash
+      digest = Digest::SHA1.hexdigest("#{self.class.salt}--#{password}--")
+      if digest == self.encrypted_password
+        # Update old SHA1 password with new Devise ByCrypt password
+        self.encrypted_password = password_digest(password)
+        save
+        return true
+      else
+        # If not BCrypt password and not old SHA1 password deny access
+        return false
+      end
+    end
+  end
+
   def update_connection_time
     self.last_venue = last_connection
     self.last_connection = Time.now
