@@ -92,27 +92,6 @@ class User < ActiveRecord::Base
     save
   end
 
-  # These create and unset the fields required for remembering users between browser closes
-  def remember_me
-    remember_me_for 2.weeks
-  end
-
-  def remember_me_for(time)
-    remember_me_until time.from_now.utc
-  end
-
-  def remember_me_until(time)
-    self.remember_token_expires_at = time
-    self.remember_token = Digest::SHA1.hexdigest("#{email}--#{remember_token_expires_at}")
-    save(validate: false)
-  end
-
-  def forget_me
-    self.remember_token_expires_at = nil
-    self.remember_token = nil
-    save(validate: false)
-  end
-
   def default_text_filter
     text_filter
   end
@@ -147,16 +126,6 @@ class User < ActiveRecord::Base
 
   def self.to_prefix
     'author'
-  end
-
-  attr_writer :password
-
-  def password(cleartext = nil)
-    if cleartext
-      @password.to_s
-    else
-      @password || self[:password]
-    end
   end
 
   def article_counter
