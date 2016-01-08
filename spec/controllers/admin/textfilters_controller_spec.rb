@@ -10,7 +10,7 @@ describe Admin::TextfiltersController, type: :controller do
       Profile.delete_all
       henri = FactoryGirl.create(:user, login: 'henri', profile: FactoryGirl.create(:profile_admin, label: Profile::ADMIN))
       request.session = { user: henri.id }
-      get 'macro_help', id: 'code'
+      get 'macro_help', id: 'textile'
       expect(response).to be_success
     end
   end

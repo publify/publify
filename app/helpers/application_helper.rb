@@ -250,7 +250,12 @@ module ApplicationHelper
     if this_blog.dofollowify
       string
     else
-      string.gsub(/<a(.*?)>/i, '<a\1 rel="nofollow">')
+      result = string.gsub(/<a(.*?)>/i, '<a\1 rel="nofollow">')
+      if string.html_safe?
+        result.html_safe
+      else
+        result
+      end
     end
   end
 end

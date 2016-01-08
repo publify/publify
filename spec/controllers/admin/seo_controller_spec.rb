@@ -20,7 +20,7 @@ describe Admin::SeoController, type: :controller do
     context 'with section permalinks' do
       before { get :show, section: :permalinks }
 
-      it 'renders the general section' do
+      it 'renders the permalinks section' do
         expect(response).to render_template('_permalinks')
       end
     end

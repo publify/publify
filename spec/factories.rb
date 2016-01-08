@@ -179,6 +179,7 @@ http://alsoping.example.com/rpc/ping"
     association :comment_text_filter, factory: :markdown
     permalink_format '/%year%/%month%/%day%/%title%'
     use_canonical_url true
+    rss_description_text 'rss description text'
     lang 'en_US'
 
     after :stub do |blog|
@@ -244,7 +245,7 @@ http://alsoping.example.com/rpc/ping"
     association :text_filter, factory: :textile
     author 'Bob Foo'
     url 'http://fakeurl.com'
-    body 'Test <a href="http://fakeurl.co.uk">body</a>'
+    body 'Comment body'
     created_at '2005-01-01 02:00:00'
     updated_at '2005-01-01 02:00:00'
     published_at '2005-01-01 02:00:00'

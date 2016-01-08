@@ -69,7 +69,7 @@ pt-BR:
     comment_preview:
       is_about_to_say: "está a ponto de dizer"
     meta:
-      published_on: "Publicado em %{publish_date_and_time} por %{by}, tags %{tags}"
+      published_on_html: "Publicado em %{publish_date_and_time} por %{by}, tags %{tags}"
     article:
       posted_by: "Publicado por"
       this_entry_was_posted_on: "Este item foi postado em %{published_at}"
@@ -88,7 +88,7 @@ pt-BR:
       comments_are_disabled: "Comentários foram desabilitados"
       trackbacks_for: "Trackbacks para"
       trackbacks_are_disabled: "Trackbacks foram desabilitados"
-      if_you_liked_this_article_you_can: "Se você gostou deste artigo, você pode %{add_twitter}"
+      if_you_liked_this_article_you_can_html: "Se você gostou deste artigo, você pode %{add_twitter}"
       add_me_to_twitter: "me adicionar no Twitter"
       use_the_following_link_to_trackback: "Use o seguinte link para criar um trackback para seu próprio site."
       trackbacks: "Trackbacks"
@@ -194,7 +194,7 @@ pt-BR:
       form:
         now: "Agora"
         no_notes: "Não existem notas ainda. Por que você não inicia e cria uma?"
-        how_to_setup_twitter: "Se você deseja publicar status no Twitter, você precisa %{twitter_settings_link} que o Twitter te forneceu após você %{twitter_registration_link}."
+        how_to_setup_twitter_html: "Se você deseja publicar status no Twitter, você precisa %{twitter_settings_link} que o Twitter te forneceu após você %{twitter_registration_link}."
         fill_the_twitter_credentials: "preencher suas credenciais OAuth"
         registered_your_application: "registrar sua aplicação"
         compose_new_note: "Compor nova nota"
@@ -211,7 +211,7 @@ pt-BR:
       show:
         destroy_confirmation: "Confirmação de remoção"
         are_you_sure: "Você tem certeza que deseja remover esta nota"
-        action_or_other: "%{first_action} ou %{second_action}"
+        action_or_other_html: "%{first_action} ou %{second_action}"
         cancel: "Cancelar"
         delete: "Remover"
     redirects:
@@ -261,7 +261,7 @@ pt-BR:
         publish_changes: "Publicar alterações"
         available_items: "Itens disponíveis"
         active_sidebar_items: "Itens ativos na barra lateral (sidebar)"
-        download_more_plugins: "Você pode baixar e instalar plugins para a barra lateral (sidebar) a partir do nosso <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>repositório oficial</a>. Tudo o que você precisa fazer é enviar o diretório do tema para o diretório vendor/plugins."
+        download_more_plugins_html: "Você pode baixar e instalar plugins para a barra lateral (sidebar) a partir do nosso <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>repositório oficial</a>. Tudo o que você precisa fazer é enviar o diretório do tema para o diretório vendor/plugins."
     settings:
       update:
         success: "Configuração atualizada."
@@ -309,7 +309,7 @@ pt-BR:
         enable_spam_protection: "Habilitar proteção anti-spam"
         explain_spam_protection: "Habilitando la protecci&oacute;n anti-spam hará que publify compare la direcci&oacute;n IP del usuario as&iacute; como el contenido de sus comentarios contra una lista negra remota o local. Es una buena defensa contra los robots de spam"
         askimet_key: "Chave do Akismet (API key)"
-        explain_spamfiltering: "Publify pode (opcionalmente) usar o serviço anti-spam do <a href='http://akismet.com'>Akismet</a>. Será necessário se registrar no Akismet e obter uma chave de API antes de poder usar o serviço. Se você já possui um chave do Akismet, entre com ela aqui"
+        explain_spamfiltering_html: "Publify pode (opcionalmente) usar o serviço anti-spam do <a href='http://akismet.com'>Akismet</a>. Será necessário se registrar no Akismet e obter uma chave de API antes de poder usar o serviço. Se você já possui um chave do Akismet, entre com ela aqui"
         disable_comments_after: "Desabilitar comentários depois de"
         days: "dias"
         set_to_0_to_never_disable_comments: "Entre com 0 para nunca desabilitar comentários"
@@ -320,7 +320,7 @@ pt-BR:
         enable_recaptcha: "Habilitar reCaptcha"
         remember_to_set_your_recaptcha: "Remember to set your reCaptcha keys inside config/initializers/recaptcha.rb"
       write:
-        how_to_setup_twitter: "Se você deseja publicar status no Twitter, você precisa %{twitter_settings_link} que o Twitter te forneceu após você %{twitter_registration_link}."
+        how_to_setup_twitter_html: "Se você deseja publicar status no Twitter, você precisa %{twitter_settings_link} que o Twitter te forneceu após você %{twitter_registration_link}."
         fill_the_twitter_credentials: "preencher as credenciais OAuth"
         registered_your_application: "registrar sua aplicação"
         cancel: "Cancelar"
@@ -355,7 +355,7 @@ pt-BR:
         language: "Idioma"
         users: "Usuários"
         allow_users_to_register: "Permitir usuários a se cadastrarem"
-        explain_allow_users_to_register: "Isso irá permitir que usuários se registrem como contribuidores, uma conta sem privilégios que permite a eles terem um perfil no site. Se você não deseja que usuários possam se cadastrar, você pode depois adicioná-los através do <em>Gerenciamento de usuários</em> em <em>Configurações</em>."
+        explain_allow_users_to_register_html: "Isso irá permitir que usuários se registrem como contribuidores, uma conta sem privilégios que permite a eles terem um perfil no site. Se você não deseja que usuários possam se cadastrar, você pode depois adicioná-los através do <em>Gerenciamento de usuários</em> em <em>Configurações</em>."
         source_email: "Remetente do E-mail"
         email_address_used_to_notify: "Endereço de e-mail usado para envio de notificações"
         items_to_display_in_admin_lists: "Número de itens a serem em listas"
@@ -409,7 +409,7 @@ pt-BR:
         custom: "Customizado"
         sample: "Aqui estão alguns exemplos para você começar."
         you_can_custom_your_url_structure: "Você pode customizar a estrutura de URL utilizando as seguintes tags:"
-        your_article_slug: "identificador (slug) do seu artigo. <strong>Utilizar este identificador é obrigatório</strong>."
+        your_article_slug_html: "identificador (slug) do seu artigo. <strong>Utilizar este identificador é obrigatório</strong>."
         your_article_year: "ano de publicação do seu artigo."
         your_article_month: "mês de publicação do seu artigo."
         your_article_day: "dia de publicação do seu artigo."
@@ -437,14 +437,14 @@ pt-BR:
         use_dofollow_in_comments: "Use dofollow in comments"
         canonical_url: "Url canônica"
         use_canonical_url: "Utilizar URL canônica"
-        read_more_about: "Leia mais sobre %{link}"
+        read_more_about_html: "Leia mais sobre %{link}"
         google: "Google"
         google_analytics: "Google Analytics"
         google_webmaster_tools_validation_link: "Link de validação do Google Webmaster Tools"
         custom_tracking_code: "Código de rastreio personalizado"
         explain: "Here you can add anything you want to appear in your application header, such as analytics service tracking code."
         explain_category_index: "Checking this box will add <code>noindex, follow</code> meta tags in every category page, removing them from search engines and preventing duplicate content issues"
-        explain_tag_index: "Checking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues"
+        explain_tag_index_html: "Checking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues"
         explain_moderate_feedback: "You may want to moderate feedback when turning this on"
         explain_rss_description: "You can use the following tags: %author% (author name), %blog_url% (this blog URL), %blog_name% (this blog title) and %permalink_url% (a link to the article you want to protect)"
     shared:
@@ -456,7 +456,7 @@ pt-BR:
       destroy:
         destroy_confirmation: "Confirmação de Remoção"
         are_you_sure: "Tem certeza que deseja remover este item %{element}"
-        action_or_other: "%{first_action} ou %{second_action}"
+        action_or_other_html: "%{first_action} ou %{second_action}"
         cancel: "Cancelar"
         delete: "Remover"
     tags:
@@ -579,7 +579,7 @@ pt-BR:
         no_feedback: "Não existem feedback ainda. Por que você não inicia e cria um?"
       article:
         no_feedback: "Não existem feedback ainda. Por que você não inicia e cria um?"
-        comments_for: "Comentários para %{title}"
+        comments_for_html: "Comentários para %{title}"
         status: "Status"
         comment_author: "Autor do comentário"
         comment: "Comentário"
@@ -588,13 +588,13 @@ pt-BR:
         email: "E-mail"
         url: "Url"
         your_comment: "Seu comentário"
-        action_or_other: "%{first_action} ou %{second_action}"
+        action_or_other_html: "%{first_action} ou %{second_action}"
         cancel: "Cancelar"
         save: "Salvar"
       edit:
-        action_or_other: "%{first_action} ou %{second_action}"
+        action_or_other_html: "%{first_action} ou %{second_action}"
         save: "Salvar"
-        comments_for: "Comentários para %{article_link}"
+        comments_for_html: "Comentários para %{article_link}"
       button:
         select_action: "Selecionar ação"
         delete_checked_items: "Remover itens marcados"
@@ -724,7 +724,7 @@ pt-BR:
         publish_settings: "Configurações de publicação"
         status: "Status"
         published: "Publicado"
-        allowed_comments_and_trackbacks: "Comentários estão %{allow_comment} e links de retorno (trackback) estão %{allow_trackback}"
+        allowed_comments_and_trackbacks_html: "Comentários estão %{allow_comment} e links de retorno (trackback) estão %{allow_trackback}"
         change: "Trocar"
         allow_trackbacks: "Permitir links de retorno (trackback)"
         allow_comments: "Permitir comentários"
@@ -796,7 +796,7 @@ pt-BR:
         state: "Estado"
         user_state: "%{state} do usuário"
       form:
-        how_to_setup_twitter: "Se você deseja publicar status no Twitter, você precisa %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."
+        how_to_setup_twitter_html: "Se você deseja publicar status no Twitter, você precisa %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."
         fill_the_twitter_credentials: "preencha com as credenciais OAuth"
         registered_your_application: "aplicação registrada"
         cancel: "Cancelar"

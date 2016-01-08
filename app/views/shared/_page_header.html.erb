@@ -12,10 +12,9 @@
 <% if feed_rss %>
   <link rel="alternate" type="application/rss+xml" title="RSS" href="<%= feed_rss %>">
 <% end %>
-<%= javascript_include_tag :publify %>
+<%= javascript_include_tag :publify, async: true %>
 <%= stylesheet_link_tag :publify %>
 <%= page_header_includes %>
-<%= timeago_script_tag %>
 <% if this_blog.use_canonical_url %>
   <link rel="canonical" href="<%= this_blog.base_url + request.fullpath %>" />
 <% end %>
