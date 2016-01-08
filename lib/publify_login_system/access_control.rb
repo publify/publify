@@ -22,10 +22,6 @@ module AccessControl
     @roles.uniq.compact
   end
 
-  def self.human_roles
-    roles.map(&:to_s).map(&:humanize)
-  end
-
   def self.allowed_controllers(role, project_modules)
     controllers = []
     mappers(role).each { |m| controllers.concat(m.controllers) }
