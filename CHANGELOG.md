@@ -1,5 +1,13 @@
 # Changelog
 
+
+## Unreleased
+
+### Breaking/large changes
+
+* Replace custom Publify authentication system with Devise. This means you now
+  have to log in with your email address rather than your login name.
+
 ## 8.2.0
 
 ### Breaking/large changes
