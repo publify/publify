@@ -3,6 +3,10 @@ require 'digest/sha1'
 # Publify user.
 # TODO: Should belong to a blog
 class User < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
   include ConfigManager
 
   belongs_to :profile
