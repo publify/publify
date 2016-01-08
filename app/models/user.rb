@@ -201,33 +201,6 @@ class User < ActiveRecord::Base
     self.class.password_hash(pass)
   end
 
-  before_create :crypt_password
-
-  # Before saving the record to database we will crypt the password
-  # using SHA1.
-  # We never store the actual password in the DB.
-  # But before the encryption, we send an email to user for he can remind his
-  # password
-  def crypt_password
-    EmailNotify.send_user_create_notification self
-    self[:password] = password_hash(password(true))
-    @password = nil
-  end
-
-  before_update :crypt_unless_empty
-
-  # If the record is updated we will check if the password is empty.
-  # If its empty we assume that the user didn't want to change his
-  # password and just reset it to the old value.
-  def crypt_unless_empty
-    if password(true).empty?
-      user = self.class.find(id)
-      self[:password] = user.password
-    else
-      crypt_password
-    end
-  end
-
   before_validation :set_default_profile
 
   def set_default_profile
