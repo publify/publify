@@ -123,10 +123,10 @@ describe User, type: :model do
   end
 
   describe '#generate_password!' do
-    it 'set a 7 char length password' do
+    it 'set a 8 char length password' do
       user = User.new
-      expect(user).to receive(:rand).exactly(7).times.and_return(0)
-      expect(user).to receive(:password=).with('a' * 7)
+      expect(user).to receive(:rand).exactly(8).times.and_return(0)
+      expect(user).to receive(:password=).with('a' * 8)
       user.generate_password!
     end
   end
