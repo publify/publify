@@ -838,11 +838,6 @@ en:
     create_account: "Create an account"
     lost_my_password: "I've lost my password"
     login:
-      title: "Login"
-      login: "Login"
-      password: "Password"
-      remember_me: "Remember me"
-      sign_in: "Sign in"
       success: "Login successful"
       error: "Login unsuccessful"
     confirm:
