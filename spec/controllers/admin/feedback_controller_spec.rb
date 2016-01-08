@@ -24,7 +24,7 @@ describe Admin::FeedbackController, type: :controller do
     before(:each) do
       create(:blog)
       @admin = create(:user, :as_admin)
-      request.session = { user: @admin.id }
+      sign_in @admin
     end
 
     def feedback_from_own_article
@@ -228,7 +228,7 @@ describe Admin::FeedbackController, type: :controller do
       # TODO: remove this delete_all after removing all fixture
       Profile.delete_all
       @publisher = FactoryGirl.create(:user, profile: FactoryGirl.create(:profile_publisher))
-      request.session = { user: @publisher.id }
+      sign_in @publisher
     end
 
     def feedback_from_own_article

@@ -7,7 +7,9 @@ describe Admin::PagesController, type: :controller do
   let!(:blog) { create(:blog) }
   let!(:user) { create(:user, :as_admin) }
 
-  before(:each) { request.session = { user: user.id } }
+  before do
+    sign_in user
+  end
 
   describe 'GET #index' do
     context 'without params' do

@@ -6,7 +6,9 @@ describe Admin::TagsController, type: :controller do
   let!(:blog) { create(:blog) }
   let!(:user) { create(:user, login: 'henri', profile: create(:profile_admin)) }
 
-  before { request.session = { user: user.id } }
+  before do
+    sign_in user
+  end
 
   describe 'GET #index' do
     it 'responds successfully with an HTTP 200 status code' do

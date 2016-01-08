@@ -4,7 +4,7 @@ describe Admin::RedirectsController, type: :controller do
   before do
     FactoryGirl.create(:blog)
     henri = FactoryGirl.create(:user, login: 'henri', profile: FactoryGirl.create(:profile_admin, label: Profile::ADMIN))
-    request.session = { user: henri.id }
+    sign_in henri
   end
 
   describe '#index' do

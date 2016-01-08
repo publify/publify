@@ -4,7 +4,9 @@ describe Admin::SeoController, type: :controller do
   let!(:blog) { create(:blog) }
   let(:admin) { create(:user, :as_admin) }
 
-  before { request.session = { user: admin.id } }
+  before do
+    sign_in admin
+  end
 
   describe '#show' do
     render_views

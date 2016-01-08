@@ -5,9 +5,12 @@ describe Admin::ProfilesController, type: :controller do
   let!(:blog) { create(:blog) }
   let(:alice) { create(:user, login: 'alice', profile: create(:profile_admin, label: Profile::ADMIN)) }
 
+  before do
+    sign_in alice
+  end
+
   describe '#index' do
     it 'should render index' do
-      request.session = { user: alice.id }
       get :index
       expect(response).to render_template('index')
     end
@@ -15,7 +18,6 @@ describe Admin::ProfilesController, type: :controller do
 
   describe 'successful POST to update' do
     it 'redirects to profile page' do
-      request.session = { user: alice.id }
       post :update, id: alice.id, user: { email: 'foo@bar.com' }
       expect(response).to redirect_to('/admin/profiles')
     end
