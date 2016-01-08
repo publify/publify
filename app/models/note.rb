@@ -39,7 +39,7 @@ class Note < Content
   end
 
   def html_preprocess(_field, html)
-    PublifyApp::Textfilter::Twitterfilter.filtertext(nil, nil, html, nil).nofollowify
+    PublifyApp::Textfilter::Twitterfilter.filtertext(nil, nil, html, nil)
   end
 
   def truncate(message, length)
@@ -53,8 +53,8 @@ class Note < Content
   def twitter_message
     base_message = body.strip_html
     if too_long?("#{base_message} (#{short_link})")
-      max_length = 140 - "... (#{redirect.to_url})".length - 1
-      "#{truncate(base_message, max_length)}... (#{redirect.to_url})"
+      max_length = 140 - "... (#{redirect.from_url})".length - 1
+      "#{truncate(base_message, max_length)}... (#{redirect.from_url})"
     else
       "#{base_message} (#{short_link})"
     end
@@ -65,12 +65,12 @@ class Note < Content
   end
 
   def send_to_twitter
-    return false unless Blog.default.has_twitter_configured?
+    return false unless blog.has_twitter_configured?
     return false unless user.has_twitter_configured?
 
     twitter = Twitter::REST::Client.new do |config|
-      config.consumer_key = Blog.default.twitter_consumer_key
-      config.consumer_secret = Blog.default.twitter_consumer_secret
+      config.consumer_key = blog.twitter_consumer_key
+      config.consumer_secret = blog.twitter_consumer_secret
       config.access_token = user.twitter_oauth_token
       config.access_token_secret = user.twitter_oauth_token_secret
     end
@@ -115,12 +115,11 @@ class Note < Content
 
   def short_link
     path = redirect.from_path
-    prefix.sub!(/^https?\:\/\//, '')
     "#{prefix} #{path}"
   end
 
   def prefix
-    blog.custom_url_shortener.present? ? blog.custom_url_shortener : blog.base_url
+    blog.shortener_url.sub(/^https?\:\/\//, '')
   end
 
   private

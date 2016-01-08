@@ -26,7 +26,7 @@ class XmlController < ApplicationController
     when 'comments'
       redirect_to admin_comments_url(format: @format), status: :moved_permanently
     when 'article'
-      redirect_to Article.find(param_id).feed_url(@format), status: :moved_permanently
+      redirect_to this_blog.articles.find(param_id).feed_url(@format), status: :moved_permanently
     when 'tag', 'author'
       redirect_to send("#{param_type}_url", param_id, format: @format), status: :moved_permanently
     when 'trackbacks'

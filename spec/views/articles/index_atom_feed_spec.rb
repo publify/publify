@@ -1,12 +1,10 @@
 require 'rails_helper'
 
 describe 'articles/index_atom_feed.atom.builder', type: :view do
-  let!(:blog) { build_stubbed :blog }
-
   let(:rendered_entry) { Feedjira::Feed.parse(rendered).entries.first }
 
   describe 'with no items' do
-    before(:each) do
+    before do
       assign(:articles, [])
       render
     end
@@ -17,13 +15,14 @@ describe 'articles/index_atom_feed.atom.builder', type: :view do
   end
 
   describe 'rendering articles (with some funny characters)' do
+    let!(:blog) { create :blog }
+
     before do
       article1 = stub_full_article(1.minute.ago)
       article1.body = '&eacute;coute!'
       article2 = stub_full_article(2.minutes.ago)
       article2.body = 'is 4 < 2? no!'
       assign(:articles, [article1, article2])
-
       render
     end
 
@@ -32,27 +31,29 @@ describe 'articles/index_atom_feed.atom.builder', type: :view do
     end
 
     it 'renders the article atom partial twice' do
-      expect(view).to render_template(partial: 'shared/_atom_item_article',
-                                      count: 2)
+      expect(view).to render_template(partial: 'shared/_atom_item_article', count: 2)
     end
   end
 
   describe 'rendering a single article' do
+    let(:blog) { create :blog }
+
     before do
-      @article = stub_full_article
+      @article = stub_full_article(blog: blog)
       @article.body = 'public info'
       @article.extended = 'and more'
       assign(:articles, [@article])
     end
 
-    it 'has the correct id' do
+    it 'has the correct guid' do
       render
-      expect(rendered_entry.entry_id).to eq("urn:uuid:#{@article.guid}")
+      expect(rendered_entry.entry_id).to eq "urn:uuid:#{@article.guid}"
     end
 
     describe 'on a blog that shows extended content in feeds' do
+      let(:blog) { create :blog, hide_extended_on_rss: false }
+
       before do
-        Blog.default.hide_extended_on_rss = false
         render
       end
 
@@ -66,23 +67,19 @@ describe 'articles/index_atom_feed.atom.builder', type: :view do
     end
 
     describe 'on a blog that hides extended content in feeds' do
-      before do
-        Blog.default.hide_extended_on_rss = true
-      end
+      let(:blog) { create :blog, hide_extended_on_rss: true }
 
       it 'shows only the body content in the feed if there is no excerpt' do
         render
-        entry = rendered_entry
-        expect(entry.content).to match(/public info/)
-        expect(entry.content).not_to match(/public info.*and more/m)
+        expect(rendered_entry.content).to match(/public info/)
+        expect(rendered_entry.content).not_to match(/public info.*and more/m)
       end
 
       it 'shows the excerpt instead of the body content in the feed, if there is an excerpt' do
         @article.excerpt = 'excerpt'
         render
-        entry = rendered_entry
-        expect(entry.content).to match(/excerpt/)
-        expect(entry.content).not_to match(/public info/)
+        expect(rendered_entry.content).to match(/excerpt/)
+        expect(rendered_entry.content).not_to match(/public info/)
       end
 
       it 'does not have a summary element in addition to the content element' do
@@ -92,9 +89,11 @@ describe 'articles/index_atom_feed.atom.builder', type: :view do
     end
 
     describe 'on a blog that has an RSS description set' do
+      let(:blog) {
+        create :blog, rss_description: true,
+                      rss_description_text: 'rss description'
+      }
       before do
-        Blog.default.rss_description = true
-        Blog.default.rss_description_text = 'rss description'
         render
       end
 
@@ -110,18 +109,16 @@ describe 'articles/index_atom_feed.atom.builder', type: :view do
 
   describe 'rendering a password protected article' do
     before do
-      @article = stub_full_article
+      @article = stub_full_article(blog: blog)
       @article.body = "shh .. it's a secret!"
       @article.extended = 'even more secret!'
       allow(@article).to receive(:password) { 'password' }
       assign(:articles, [@article])
+      render
     end
 
     describe 'on a blog that shows extended content in feeds' do
-      before do
-        Blog.default.hide_extended_on_rss = false
-        render
-      end
+      let(:blog) { create :blog, hide_extended_on_rss: false }
 
       it 'shows only a link to the article' do
         expect(rendered_entry.content).to eq(
@@ -139,10 +136,7 @@ describe 'articles/index_atom_feed.atom.builder', type: :view do
     end
 
     describe 'on a blog that hides extended content in feeds' do
-      before do
-        Blog.default.hide_extended_on_rss = true
-        render
-      end
+      let(:blog) { create :blog, hide_extended_on_rss: true }
 
       it 'shows only a link to the article' do
         expect(rendered_entry.content).to eq(
@@ -168,12 +162,16 @@ describe 'articles/index_atom_feed.atom.builder', type: :view do
 
     context 'with a note' do
       let(:article) { create(:note) }
-      it { expect(rendered_entry.title).to eq(article.body) }
+      it 'is equal to the note body' do
+        expect(rendered_entry.title).to eq(article.body)
+      end
     end
 
     context 'with an article' do
       let(:article) { create(:article) }
-      it { expect(rendered_entry.title).to eq(article.title) }
+      it 'is equal to the article title' do
+        expect(rendered_entry.title).to eq(article.title)
+      end
     end
   end
 end

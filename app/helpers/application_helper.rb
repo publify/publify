@@ -3,6 +3,8 @@
 require 'digest/sha1'
 
 module ApplicationHelper
+  include BlogHelper
+
   # Need to rewrite this one, quick hack to test my changes.
   attr_reader :page_title
 
@@ -45,18 +47,6 @@ module ApplicationHelper
   def themeable_stylesheet_link_tag(name)
     src = this_blog.current_theme.path + "/stylesheets/#{name}.css"
     stylesheet_link_tag "/stylesheets/theme/#{name}.css" if File.exist? src
-  end
-
-  def articles?
-    Article.any?
-  end
-
-  def trackbacks?
-    Trackback.any?
-  end
-
-  def comments?
-    Comment.any?
   end
 
   def render_to_string(*args, &block)
@@ -209,10 +199,6 @@ module ApplicationHelper
     meta_tag 'keywords', @keywords unless @keywords.blank?
   end
 
-  def this_blog
-    @blog ||= Blog.default
-  end
-
   def stop_index_robots?(blog)
     stop = (params[:year].present? || params[:page].present?)
     stop = blog.unindex_tags if controller_name == 'tags'
@@ -257,6 +243,19 @@ module ApplicationHelper
       end
     else
       html(item, :all)
+    end
+  end
+
+  def nofollowify_links(string)
+    if this_blog.dofollowify
+      string
+    else
+      result = string.gsub(/<a(.*?)>/i, '<a\1 rel="nofollow">')
+      if string.html_safe?
+        result.html_safe
+      else
+        result
+      end
     end
   end
 end

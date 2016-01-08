@@ -1,4 +1,6 @@
 module AuthorsHelper
+  include BlogHelper
+
   def display_profile_item(item, item_desc)
     return unless item.present?
     item = link_to(item, item) if is_url?(item)
@@ -33,9 +35,5 @@ module AuthorsHelper
 
   def just_name?(author)
     author.present? && !this_blog.link_to_author
-  end
-
-  def this_blog
-    @blog ||= Blog.default
   end
 end

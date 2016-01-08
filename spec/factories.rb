@@ -72,6 +72,14 @@ FactoryGirl.define do
     allow_pings true
     association :text_filter, factory: :textile
 
+    after :build do |article|
+      article.blog ||= Blog.first || create(:blog)
+    end
+
+    after :stub do |article|
+      article.blog ||= Blog.first || create(:blog)
+    end
+
     trait :with_tags do
       keywords 'a tag'
     end
@@ -83,6 +91,7 @@ FactoryGirl.define do
   end
 
   factory :content do
+    blog { Blog.first || create(:blog) }
   end
 
   factory :post_type do |p|
@@ -174,8 +183,6 @@ http://alsoping.example.com/rpc/ping"
     lang 'en_US'
 
     after :stub do |blog|
-      # FIXME: It's very confusing that build_stubbed sets the default blog.
-      Blog.stub(:default) { blog }
       [blog.text_filter, blog.comment_text_filter].uniq.each do |filter|
         build_stubbed filter
       end
@@ -211,6 +218,7 @@ http://alsoping.example.com/rpc/ping"
   factory :tag do |tag|
     tag.name { FactoryGirl.generate(:name) }
     tag.display_name { |a| a.name } # rubocop:disable Style/SymbolProc
+    blog { Blog.first || create(:blog) }
   end
 
   factory :resource do |r|
@@ -225,9 +233,10 @@ http://alsoping.example.com/rpc/ping"
     a.size 600
   end
 
-  factory :redirect do |r|
-    r.from_path 'foo/bar'
-    r.to_path '/someplace/else'
+  factory :redirect do
+    from_path 'foo/bar'
+    to_path '/someplace/else'
+    blog { Blog.first || create(:blog) }
   end
 
   factory :comment do
@@ -290,6 +299,7 @@ http://alsoping.example.com/rpc/ping"
     published_at '2005-05-05 01:00:01'
     updated_at '2005-05-05 01:00:01'
     user
+    blog { Blog.first || create(:blog) }
     published true
     state 'published'
   end
@@ -304,6 +314,7 @@ http://alsoping.example.com/rpc/ping"
     state 'published'
     association :text_filter, factory: :markdown
     guid
+    blog { Blog.first || create(:blog) }
   end
 
   factory :unpublished_note, parent: :note do |n|
@@ -328,5 +339,6 @@ http://alsoping.example.com/rpc/ping"
     active_position 1
     config('title' => 'Links', 'body' => 'some links')
     type 'StaticSidebar'
+    blog { Blog.first || create(:blog) }
   end
 end

@@ -4,30 +4,34 @@ describe Tag, type: :model do
   let!(:blog) { create(:blog) }
 
   it 'tags are unique' do
-    expect { Tag.create!(name: 'test') }.not_to raise_error
-    test_tag = Tag.new(name: 'test')
+    expect { blog.tags.create!(name: 'test') }.not_to raise_error
+    test_tag = blog.tags.new(name: 'test')
     expect(test_tag).not_to be_valid
     expect(test_tag.errors[:name]).to eq(['has already been taken'])
   end
 
+  describe 'validation' do
+    it 'requires name to be present' do
+      expect(blog.tags.build(name: '')).not_to be_valid
+    end
+  end
+
   it 'display names with spaces can be found by dash joined name' do
-    expect(Tag.where(name: 'Monty Python').first).to be_nil
-    tag = Tag.create(name: 'Monty Python')
+    tag = blog.tags.create(name: 'Monty Python')
     expect(tag).to be_valid
     expect(tag.name).to eq('monty-python')
     expect(tag.display_name).to eq('Monty Python')
   end
 
   it 'display names with colon can be found by dash joined name' do
-    expect(Tag.where(name: 'SaintSeya:Hades').first).to be_nil
-    tag = Tag.create(name: 'SaintSeya:Hades')
+    tag = blog.tags.create(name: 'SaintSeya:Hades')
     expect(tag).to be_valid
     expect(tag.name).to eq('saintseya-hades')
     expect(tag.display_name).to eq('SaintSeya:Hades')
   end
 
   it 'articles can be tagged' do
-    a = Article.create(title: 'an article')
+    a = Article.create(title: 'an article', blog: blog)
     foo = FactoryGirl.create(:tag, name: 'foo')
     bar = FactoryGirl.create(:tag, name: 'bar')
     a.tags << foo

@@ -21,8 +21,6 @@ class NotesController < ContentController
 
     return render 'errors/404', status: 404 unless @note
 
-    @canonical_url = @note.permalink_url
-
     if @note.in_reply_to_message.present?
       @reply = JSON.parse(@note.in_reply_to_message)
       render :show_in_reply

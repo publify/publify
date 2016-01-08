@@ -2,7 +2,7 @@
   <%= avatar_tag(:email => comment.email, :url => comment.url, :class => 'img-circle pull-left gravatar') %>
   <div class='content'>
     <h4>
-      <%= t(".by") %> <%= (comment.url.blank?) ? h(comment.author) : link_to(h(comment.author), comment.url).nofollowify %>
+      <%= t(".by") %> <%= comment.url.blank? ? h(comment.author) : nofollowify_links(link_to(h(comment.author), comment.url)) %>
       <%= display_date_and_time comment.created_at %>
     </h4>
     <%= comment.html %>

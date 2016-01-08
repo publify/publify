@@ -21,9 +21,11 @@ describe Sidebar, type: :model do
   end
 
   describe '#ordered_sidebars' do
+    let(:blog) { create :blog }
+
     context 'with several sidebars with different positions' do
-      let(:amazon_sidebar) { AmazonSidebar.new(staged_position: 2) }
-      let(:archives_sidebar) { ArchivesSidebar.new(active_position: 1) }
+      let(:amazon_sidebar) { AmazonSidebar.new(staged_position: 2, blog: blog) }
+      let(:archives_sidebar) { ArchivesSidebar.new(active_position: 1, blog: blog) }
 
       before do
         amazon_sidebar.save
@@ -39,8 +41,8 @@ describe Sidebar, type: :model do
     context 'with an invalid sidebar in the database' do
       before do
         Sidebar.class_eval { self.inheritance_column = :bogus }
-        Sidebar.new(type: 'AmazonSidebar', staged_position: 1).save
-        Sidebar.new(type: 'FooBarSidebar', staged_position: 2).save
+        Sidebar.new(type: 'AmazonSidebar', staged_position: 1, blog: blog).save
+        Sidebar.new(type: 'FooBarSidebar', staged_position: 2, blog: blog).save
         Sidebar.class_eval { self.inheritance_column = :type }
       end
 

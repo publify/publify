@@ -1,9 +1,12 @@
 class Tag < ActiveRecord::Base
+  belongs_to :blog
   has_and_belongs_to_many :articles, order: 'created_at DESC', join_table: 'articles_tags'
 
-  validates :name, uniqueness: true
+  validates :name, uniqueness: { scope: :blog_id }
+  validates :blog, presence: true
+  validates :name, presence: true
 
-  before_save :ensure_naming_conventions
+  before_validation :ensure_naming_conventions
 
   attr_accessor :description, :keywords
 
@@ -16,7 +19,7 @@ class Tag < ActiveRecord::Base
       end
       tagwords.uniq.each do |tagword|
         tagname = tagword.to_url
-        tags << find_or_create_by(name: tagname) do |tag|
+        tags << article.blog.tags.find_or_create_by(name: tagname) do |tag|
           tag.display_name = tagword
         end
       end
@@ -31,7 +34,7 @@ class Tag < ActiveRecord::Base
 
   def ensure_naming_conventions
     self.display_name = name if display_name.blank?
-    self.name = display_name.to_url
+    self.name = display_name.to_url unless display_name.blank?
   end
 
   def self.find_all_with_article_counters
@@ -69,7 +72,6 @@ class Tag < ActiveRecord::Base
   end
 
   def permalink_url(_anchor = nil, only_path = false)
-    blog = Blog.default # remove me...
     blog.url_for(controller: 'tags', action: 'show', id: permalink, only_path: only_path)
   end
 end

@@ -7,7 +7,7 @@ class Article::Factory
   end
 
   def default
-    Article.new.tap do |art|
+    blog.articles.create.tap do |art|
       art.allow_comments = blog.default_allow_comments
       art.allow_pings = blog.default_allow_pings
       art.text_filter = user.default_text_filter
@@ -16,7 +16,7 @@ class Article::Factory
   end
 
   def get_or_build_from(id)
-    return Article.find(id) if id.present?
+    return blog.articles.find(id) if id.present?
     default
   end
 

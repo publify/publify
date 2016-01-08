@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 describe Comment, type: :model do
-  let!(:blog) { build_stubbed :blog }
+  let(:blog) { build_stubbed :blog }
 
   def published_article
-    build_stubbed(:article, published_at: Time.now - 1.hour)
+    build_stubbed(:article, published_at: Time.now - 1.hour, blog: blog)
   end
 
   def valid_comment(options = {})
@@ -40,8 +40,7 @@ describe Comment, type: :model do
     end
 
     it 'should not save in invalid article' do
-      c = valid_comment(author: 'Old Spammer', body: 'Old trackback body', article: build(:article, state: 'draft'))
-
+      c = valid_comment(author: 'Old Spammer', body: 'Old trackback body', article: build(:article, state: 'draft', blog: blog))
       assert !c.save
       assert c.errors['article_id'].any?
     end
@@ -128,7 +127,7 @@ describe Comment, type: :model do
       @comment = Comment.new do |c|
         c.body = 'Test foo <script>do_evil();</script>'
         c.author = 'Bob'
-        c.article = build_stubbed(:article)
+        c.article = build_stubbed(:article, blog: blog)
       end
     end
     ['', 'textile', 'markdown', 'smartypants', 'markdown smartypants'].each do |filter|
@@ -138,7 +137,7 @@ describe Comment, type: :model do
         sym = filter.empty? ? :none : filter.to_sym
         build_stubbed sym
 
-        Blog.default.comment_text_filter = filter
+        blog.comment_text_filter = filter
 
         assert @comment.html(:body) !~ /<script>/
       end
@@ -179,7 +178,7 @@ describe Comment, type: :model do
       comment = Comment.new do |c|
         c.body = 'Test foo'
         c.author = 'Bob'
-        c.article = build_stubbed(:article)
+        c.article = build_stubbed(:article, blog: blog)
       end
 
       assert !comment.published?
@@ -191,7 +190,7 @@ describe Comment, type: :model do
       comment = Comment.new do |c|
         c.body = 'Test foo'
         c.author = 'Henri'
-        c.article = build_stubbed(:article)
+        c.article = build_stubbed(:article, blog: blog)
         c.user = build_stubbed(:user)
       end
 

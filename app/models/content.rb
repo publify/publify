@@ -12,6 +12,9 @@ class Content < ActiveRecord::Base
 
   belongs_to :text_filter
   belongs_to :user
+  belongs_to :blog
+
+  validates :blog, presence: true
 
   has_one :redirect, dependent: :destroy
 
@@ -30,10 +33,7 @@ class Content < ActiveRecord::Base
   }
   scope :already_published, -> { where('published = ? AND published_at < ?', true, Time.now).order(default_order) }
 
-  scope :published_at_like, lambda { |date_at|
-    where(published_at: (PublifyTime.delta_like(date_at))
-         )
-  }
+  scope :published_at_like, ->(date_at) { where(published_at: PublifyTime.delta_like(date_at)) }
 
   serialize :whiteboard
 
@@ -66,7 +66,7 @@ class Content < ActiveRecord::Base
       redirect.to_path = permalink_url
       redirect.save
     else
-      r = Redirect.new
+      r = Redirect.new(blog: blog)
       r.from_path = r.shorten
       r.to_path = permalink_url
       self.redirect = r
@@ -137,7 +137,7 @@ class Content < ActiveRecord::Base
   def short_url
     # Double check because of crappy data in my own old database
     return unless published && redirect.present?
-    redirect.to_url
+    redirect.from_url
   end
 end
 

@@ -4,7 +4,7 @@ describe 'comments/index_atom_feed.atom.builder', type: :view do
   let!(:blog) { build_stubbed :blog }
 
   describe 'rendering comments with one comment' do
-    let(:article) { stub_full_article }
+    let(:article) { stub_full_article(blog: blog) }
     let(:comment) do
       build_stubbed(:comment,
                     article: article,

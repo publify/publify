@@ -11,7 +11,7 @@ class Admin::RedirectsController < Admin::BaseController
   end
 
   def create
-    @redirect = Redirect.new(redirect_params)
+    @redirect = this_blog.redirects.build(redirect_params)
 
     if @redirect.save
       redirect_to admin_redirects_url, notice: 'Redirect was successfully created.'

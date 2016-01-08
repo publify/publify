@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe Article::Builder, type: :model do
-  let!(:blog) { FactoryGirl.build_stubbed(:blog) }
-  let(:user) { FactoryGirl.create(:user) }
+  let(:blog) { create(:blog) }
+  let(:user) { create(:user) }
   let(:factory) { Article::Factory.new(blog, user) }
 
   describe '#default' do
@@ -16,7 +16,7 @@ describe Article::Builder, type: :model do
 
   describe '#get_or_build' do
     context 'with an existing article' do
-      let(:article) { FactoryGirl.create(:article) }
+      let(:article) { FactoryGirl.create(:article, blog: blog) }
       it { expect(factory.get_or_build_from(article.id)).to eq(article) }
     end
 

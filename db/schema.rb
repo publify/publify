@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150807134129) do
+ActiveRecord::Schema.define(version: 20150810094754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20150807134129) do
     t.integer  "parent_id"
     t.text     "settings"
     t.string   "post_type",      default: "read"
+    t.integer  "blog_id"
   end
 
   add_index "contents", ["id", "type"], name: "index_contents_on_id_and_type", using: :btree
@@ -127,6 +128,7 @@ ActiveRecord::Schema.define(version: 20150807134129) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "content_id"
+    t.integer  "blog_id"
   end
 
   create_table "resources", force: :cascade do |t|
@@ -153,6 +155,7 @@ ActiveRecord::Schema.define(version: 20150807134129) do
     t.text    "config"
     t.integer "staged_position"
     t.string  "type"
+    t.integer "blog_id",         null: false
   end
 
   add_index "sidebars", ["id", "type"], name: "index_sidebars_on_id_and_type", using: :btree
@@ -172,6 +175,7 @@ ActiveRecord::Schema.define(version: 20150807134129) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "display_name"
+    t.integer  "blog_id"
   end
 
   create_table "text_filters", force: :cascade do |t|

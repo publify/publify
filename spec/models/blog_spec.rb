@@ -49,25 +49,14 @@ describe Blog, type: :model do
       @blog = FactoryGirl.create :blog
     end
 
-    it 'should be the only blog allowed' do
-      expect(Blog.new).not_to be_valid
-    end
-  end
-
-  describe 'The default blog' do
-    it 'should pick up updates after a cache clear' do
-      FactoryGirl.create(:blog)
-      b = Blog.default
-      b.blog_name = 'some other name'
-      b.save
-      c = Blog.default
-      expect(c.blog_name).to eq('some other name')
+    it 'should allow another blog to be created' do
+      expect(Blog.new(base_url: 'bar')).to be_valid
     end
   end
 
   describe 'Given no blogs, a new default blog' do
     before :each do
-      @blog = Blog.new
+      @blog = Blog.new(base_url: 'foo')
     end
 
     it 'should be valid after filling the title' do
@@ -88,7 +77,7 @@ describe Blog, type: :model do
 
   describe 'Valid permalink in blog' do
     before :each do
-      @blog = Blog.new
+      @blog = Blog.new(base_url: 'foo')
     end
 
     def set_permalink(permalink)

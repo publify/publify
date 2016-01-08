@@ -11,6 +11,7 @@ class Feedback < ActiveRecord::Base
   include States
 
   validate :feedback_not_closed, on: :create
+  validates :article, presence: true
 
   before_create :create_guid, :article_allows_this_feedback
   before_save :correct_url, :before_save_handler
@@ -65,7 +66,7 @@ class Feedback < ActiveRecord::Base
 
   def html_postprocess(_field, html)
     helper = ContentTextHelpers.new
-    helper.sanitize(helper.auto_link(html)).nofollowify
+    helper.sanitize(helper.auto_link(html))
   end
 
   def correct_url
@@ -190,6 +191,8 @@ class Feedback < ActiveRecord::Base
     errors.add(:article_id, 'Comment are closed') if article.comments_closed?
   end
 
+  delegate :blog, to: :article
+
   private
 
   @@akismet = nil
@@ -208,5 +211,9 @@ class Feedback < ActiveRecord::Base
     rescue
       nil
     end
+  end
+
+  def blog_id
+    article.blog_id if article.present?
   end
 end

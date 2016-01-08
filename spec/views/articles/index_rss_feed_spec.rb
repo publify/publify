@@ -2,12 +2,12 @@
 require 'rails_helper'
 
 describe 'articles/index_rss_feed.rss.builder', type: :view do
-  let!(:blog) { build_stubbed :blog }
-
   let(:rendered_entry) { Feedjira::Feed.parse(rendered).entries.first }
   let(:xml_entry) { Nokogiri::XML.parse(rendered).css('item').first }
 
   describe 'rendering articles (with some funny characters)' do
+    let!(:blog) { create :blog }
+
     before do
       article1 = stub_full_article(1.minute.ago)
       article1.body = '&eacute;coute!'
@@ -27,8 +27,10 @@ describe 'articles/index_rss_feed.rss.builder', type: :view do
   end
 
   describe 'rendering a single article' do
+    let(:blog) { create :blog }
+
     before do
-      @article = stub_full_article
+      @article = stub_full_article(blog: blog)
       @article.body = 'public info'
       @article.extended = 'and more'
       assign(:articles, [@article])
@@ -61,13 +63,14 @@ describe 'articles/index_rss_feed.rss.builder', type: :view do
       end
 
       describe 'on a blog that links to the author' do
+        let(:blog) { create :blog, link_to_author: true }
+
         before(:each) do
-          Blog.default.link_to_author = true
           render
         end
 
         it 'has an author entry' do
-          expect(rendered_entry.author).not_to be_empty
+          expect(rendered_entry.author).not_to be_blank
         end
 
         it "has the author's email in the author entry" do
@@ -76,8 +79,9 @@ describe 'articles/index_rss_feed.rss.builder', type: :view do
       end
 
       describe 'on a blog that does not link' do
+        let(:blog) { create :blog, link_to_author: false }
+
         before(:each) do
-          Blog.default.link_to_author = false
           render
         end
 
@@ -88,8 +92,9 @@ describe 'articles/index_rss_feed.rss.builder', type: :view do
     end
 
     describe 'on a blog that shows extended content in feeds' do
-      before(:each) do
-        Blog.default.hide_extended_on_rss = false
+      let(:blog) { create :blog, hide_extended_on_rss: false }
+
+      before do
         render
       end
 
@@ -99,9 +104,7 @@ describe 'articles/index_rss_feed.rss.builder', type: :view do
     end
 
     describe 'on a blog that hides extended content in feeds' do
-      before(:each) do
-        Blog.default.hide_extended_on_rss = true
-      end
+      let(:blog) { create :blog, hide_extended_on_rss: true }
 
       it 'shows only the body content in the feed if there is no excerpt' do
         render
@@ -118,9 +121,11 @@ describe 'articles/index_rss_feed.rss.builder', type: :view do
     end
 
     describe 'on a blog that has an RSS description set' do
-      before(:each) do
-        Blog.default.rss_description = true
-        Blog.default.rss_description_text = 'rss description'
+      let(:blog) {
+        create :blog, rss_description: true,
+                      rss_description_text: 'rss description'
+      }
+      before do
         render
       end
 
@@ -135,19 +140,17 @@ describe 'articles/index_rss_feed.rss.builder', type: :view do
   end
 
   describe 'rendering a password protected article' do
-    before(:each) do
-      @article = stub_full_article
+    before do
+      @article = stub_full_article(blog: blog)
       @article.body = "shh .. it's a secret!"
       @article.extended = 'even more secret!'
       allow(@article).to receive(:password) { 'password' }
       assign(:articles, [@article])
+      render
     end
 
     describe 'on a blog that shows extended content in feeds' do
-      before(:each) do
-        Blog.default.hide_extended_on_rss = false
-        render
-      end
+      let(:blog) { create :blog, hide_extended_on_rss: false }
 
       it 'shows only a link to the article' do
         expect(rendered_entry.summary).to eq(
@@ -161,10 +164,7 @@ describe 'articles/index_rss_feed.rss.builder', type: :view do
     end
 
     describe 'on a blog that hides extended content in feeds' do
-      before(:each) do
-        Blog.default.hide_extended_on_rss = true
-        render
-      end
+      let(:blog) { create :blog, hide_extended_on_rss: true }
 
       it 'shows only a link to the article' do
         expect(rendered_entry.summary).to eq(
@@ -179,8 +179,10 @@ describe 'articles/index_rss_feed.rss.builder', type: :view do
   end
 
   describe 'rendering an article with a UTF-8 permalink' do
+    let(:blog) { create :blog }
+
     before(:each) do
-      @article = stub_full_article
+      @article = stub_full_article(blog: blog)
       @article.permalink = 'ルビー'
       assign(:articles, [@article])
 

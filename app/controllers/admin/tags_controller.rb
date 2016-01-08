@@ -1,22 +1,22 @@
 class Admin::TagsController < Admin::BaseController
+  before_action :fetch_tags, only: [:index, :edit]
   before_action :set_tag, only: [:edit, :update, :destroy]
   cache_sweeper :blog_sweeper
 
   def index
-    @tags = Tag.order('display_name').page(params[:page]).per(this_blog.admin_display_elements)
     @tag = Tag.new
   end
 
   def edit
-    @tags = Tag.order('display_name').page(params[:page]).per(this_blog.admin_display_elements)
   end
 
   def create
-    @tag = Tag.new(tag_params)
+    @tag = this_blog.tags.new(tag_params)
 
     if @tag.save
       redirect_to admin_tags_url, notice: 'Tag was successfully created.'
     else
+      fetch_tags
       render :index
     end
   end
@@ -45,5 +45,9 @@ class Admin::TagsController < Admin::BaseController
   # Never trust parameters from the scary internet, only allow the white list through.
   def tag_params
     params.require(:tag).permit(:display_name)
+  end
+
+  def fetch_tags
+    @tags = Tag.order('display_name').page(params[:page]).per(this_blog.admin_display_elements)
   end
 end

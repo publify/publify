@@ -14,27 +14,6 @@ describe String do
     end
   end
 
-  describe 'nofollowify' do
-    before(:each) do
-      Blog.delete_all
-      @blog = FactoryGirl.create :blog
-    end
-
-    it 'with dofollowify disabled, links should be nofollowed' do
-      @blog.dofollowify = false
-      @blog.save
-
-      expect('<a href="http://myblog.net">my blog</a>'.nofollowify).to eq('<a href="http://myblog.net" rel="nofollow">my blog</a>')
-    end
-
-    it 'with dofollowify enabled, links should be nofollowed' do
-      @blog.dofollowify = true
-      @blog.save
-
-      expect('<a href="http://myblog.net">my blog</a>'.nofollowify).to eq('<a href="http://myblog.net">my blog</a>')
-    end
-  end
-
   describe 'strip_html' do
     it 'should render text only' do
       expect("<a href='http://myblog.com'>my blog</a>".strip_html).to eq('my blog')

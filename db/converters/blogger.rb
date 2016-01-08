@@ -22,7 +22,8 @@ class BloggerConverter
     feed = Feedzirra::Feed.fetch_and_parse(options[:url])
     puts "Converting #{feed.entries.length} entries..."
 
-    blog = Blog.default
+    # TODO: Allow setting the blog to be used.
+    blog = Blog.first
     ping_store = blog.send_outbound_pings
     blog.send_outbound_pings = false # pings have to be diabled or the script crashes because too many connections are opened
     blog.save
@@ -35,6 +36,7 @@ class BloggerConverter
     blog.save
   end
 
+  # FIXME: This is probably broken
   def create_article(entry)
     a = Article.new
     entry_author = create_author entry.author

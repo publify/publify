@@ -1,13 +1,15 @@
 class Redirect < ActiveRecord::Base
+  belongs_to :contents
+  belongs_to :blog
+
   validates :from_path, uniqueness: true
   validates :to_path, presence: true
-
-  belongs_to :contents
+  validates :blog, presence: true
 
   def full_to_path
     path = to_path
     return path if path =~ /^(https?):\/\/([^\/]*)(.*)/
-    url_root = Blog.default.root_path
+    url_root = blog.root_path
     path = File.join(url_root, path) unless url_root.nil? || path[0, url_root.length] == url_root
     path
   end
@@ -21,8 +23,11 @@ class Redirect < ActiveRecord::Base
   end
 
   def to_url
-    blog = Blog.default
-    File.join((blog.custom_url_shortener.blank? ? blog.base_url : blog.custom_url_shortener), from_path)
+    raise 'Use #from_url'
+  end
+
+  def from_url
+    File.join(blog.shortener_url, from_path)
   end
 
   private

@@ -19,7 +19,6 @@ class TagsController < ContentController
     if @grouping.nil?
       @articles = []
     else
-      @canonical_url = permalink_with_page @grouping, params[:page]
       @page_title = this_blog.tag_title_template.to_title(@grouping, this_blog, params)
       @description = @grouping.description.to_s
       @keywords = ''
@@ -52,11 +51,5 @@ class TagsController < ContentController
 
   def template_name(value)
     template_exists?("tags/#{value}") ? value : :show
-  end
-
-  # For some reasons, the permalink_url does not take the pagination.
-  def permalink_with_page(grouping, page)
-    suffix = page.nil? ? '/' : "/page/#{page}/"
-    grouping.permalink_url + suffix
   end
 end

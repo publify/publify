@@ -1,6 +1,8 @@
 class Sidebar < ActiveRecord::Base
   serialize :config, Hash
 
+  belongs_to :blog
+
   class Field
     attr_accessor :key
     attr_accessor :options
@@ -223,10 +225,6 @@ class Sidebar < ActiveRecord::Base
         s.save!
       end
     end
-  end
-
-  def blog
-    Blog.default
   end
 
   def publish

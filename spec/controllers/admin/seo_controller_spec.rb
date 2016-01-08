@@ -70,10 +70,10 @@ describe Admin::SeoController, type: :controller do
     end
 
     it 'should not save blog with bad permalink format' do
-      @blog = Blog.default
+      @blog = Blog.first
       good_update 'setting' => { 'permalink_format' => '/%month%' }
       expect(response).to render_template('show')
-      expect(@blog).to eq(Blog.default)
+      expect(@blog).to eq(Blog.first)
     end
   end
 end

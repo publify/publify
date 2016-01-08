@@ -3,7 +3,6 @@ require 'rails_helper'
 describe Admin::ContentController, type: :controller do
   render_views
 
-  let!(:blog) { create(:blog) }
   let!(:article) { create(:article) }
 
   context 'as publisher (admin can do the same)' do

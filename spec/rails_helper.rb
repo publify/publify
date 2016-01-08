@@ -88,14 +88,16 @@ def assert_rss20(feed, count)
   expect(doc.entries.count).to eq count
 end
 
-def stub_full_article(time = Time.now)
+def stub_full_article(time = Time.now, blog: Blog.first)
   author = FactoryGirl.build_stubbed(User, name: 'User Name')
   text_filter = FactoryGirl.build(:textile)
 
-  a = FactoryGirl.build_stubbed(Article, published_at: time, user: author,
-                                         created_at: time, updated_at: time,
-                                         title: 'Foo Bar', permalink: 'foo-bar',
-                                         guid: time.hash)
+  a = FactoryGirl.build_stubbed(:article,
+                                published_at: time, user: author,
+                                created_at: time, updated_at: time,
+                                title: 'Foo Bar', permalink: 'foo-bar',
+                                blog: blog,
+                                guid: time.hash)
   allow(a).to receive(:published_comments) { [] }
   allow(a).to receive(:resources) { [FactoryGirl.build(:resource)] }
   allow(a).to receive(:tags) { [FactoryGirl.build(:tag)] }
