@@ -29,10 +29,6 @@ AccessControl.map require: [ :admin, :publisher, :contributor ]  do |map|
   map.permission "admin/profiles"
   map.permission "admin/migrations"
 
-  # FIXME: For previews, during production 'previews' is needed, during
-  # test, 'articles' is needed. Proposed solution: move previews to
-  # ArticlesController
-  map.permission "previews"
   map.permission "articles"
 
   map.project_module :articles, nil do |project|
