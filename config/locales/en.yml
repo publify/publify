@@ -853,10 +853,6 @@ en:
     logout:
       notice: "Successfully logged out"
     signup:
-      title: "signup"
-      username: "Username"
-      email: "Email"
-      signup: "Signup"
   langs:
     da_DK: "Danish"
     de_DE: "German"
