@@ -848,9 +848,6 @@ en:
       password: "Password: %{password}"
       dont_lose_the_mail_sent: "Don't lose the mail sent at %{email} or you won't be able to login anymore"
     recover_password:
-      title: "Recover your password"
-      username_or_email: "Username or email"
-      reset_my_password: "Reset my password"
       notice: "An email has been successfully sent to your address with your new password"
       error: "Oops, something wrong just happened"
     logout:
