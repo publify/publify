@@ -43,15 +43,6 @@
 # For example, whe can decide that an Account with role :customers can see only, the module project :store.
 
 AccessControl.map require: [ :admin, :publisher, :contributor ]  do |map|
-  map.permission "admin/base"
-  map.permission "admin/cache"
-  map.permission "admin/dashboard"
-  map.permission "admin/textfilters"
-  map.permission "admin/profiles"
-  map.permission "admin/migrations"
-
-  map.permission "articles"
-
   map.project_module :articles, nil do |project|
     project.menu    "Articles",       { controller: "admin/content", action: "index" }
     project.submenu "All Articles",   { controller: "admin/content", action: "index" }
