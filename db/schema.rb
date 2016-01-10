@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160108184201) do
+ActiveRecord::Schema.define(version: 20160110094906) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -114,13 +114,6 @@ ActiveRecord::Schema.define(version: 20160108184201) do
     t.string "nicename"
     t.text   "modules"
   end
-
-  create_table "profiles_rights", id: false, force: :cascade do |t|
-    t.integer "profile_id"
-    t.integer "right_id"
-  end
-
-  add_index "profiles_rights", ["profile_id"], name: "index_profiles_rights_on_profile_id", using: :btree
 
   create_table "redirects", force: :cascade do |t|
     t.string   "from_path"
