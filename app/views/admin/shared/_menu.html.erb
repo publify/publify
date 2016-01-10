@@ -56,6 +56,22 @@
           </ul>
         </li>
       <% end %>
+      <% if can? :index, 'admin/settings' %>
+        <li class='dropdown'>
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <%= t('.settings') %>
+            <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+            <%= menu_item(t('.general_settings'), admin_settings_path) %>
+            <%= menu_item(t('.write'),            write_admin_settings_path) %>
+            <%= menu_item(t('.display'),          display_admin_settings_path) %>
+            <%= menu_item(t('.feedback'),         feedback_admin_settings_path) %>
+            <%= menu_item(t('.cache'),            admin_cache_path) %>
+            <%= menu_item(t('.manage_users'),     admin_users_path) %>
+          </ul>
+        </li>
+      <% end %>
 
       <% current_user.project_modules.each do |project_module| %>
         <% submenus = AccessControl.submenus_for(current_user.profile_label, project_module.name.to_sym) %>
