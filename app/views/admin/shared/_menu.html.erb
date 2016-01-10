@@ -26,6 +26,9 @@
           </ul>
         </li>
       <% end %>
+      <% if can? :index, 'admin/notes' %>
+        <%= menu_item(t('.notes'), admin_notes_path) %>
+      <% end %>
       <% if can? :index, 'admin/pages' %>
         <li class='dropdown'>
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">
