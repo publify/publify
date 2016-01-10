@@ -83,4 +83,12 @@ module Admin::BaseHelper
   def twitter_available?(blog, user)
     blog.has_twitter_configured? && user.has_twitter_configured?
   end
+
+  def menu_item(name, url)
+    if current_page? url
+      content_tag(:li, link_to(name, '#'), class: 'active')
+    else
+      content_tag(:li, link_to(name, url))
+    end
+  end
 end
