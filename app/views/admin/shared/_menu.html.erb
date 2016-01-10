@@ -26,6 +26,18 @@
           </ul>
         </li>
       <% end %>
+      <% if can? :index, 'admin/pages' %>
+        <li class='dropdown'>
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <%= t('.pages') %>
+            <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+            <%= menu_item(t('.all_pages'), admin_pages_path) %>
+            <%= menu_item(t('.new_page'),  new_admin_page_path) %>
+          </ul>
+        </li>
+      <% end %>
 
       <% current_user.project_modules.each do |project_module| %>
         <% submenus = AccessControl.submenus_for(current_user.profile_label, project_module.name.to_sym) %>
