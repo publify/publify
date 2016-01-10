@@ -94,20 +94,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  delegate :project_modules, to: :profile
-
-  # Generate Methods takes from AccessControl rules
-  # Example:
-  #
-  #   def publisher?
-  #     profile.label == :publisher
-  #   end
-  AccessControl.roles.each do |role|
-    define_method "#{role.to_s.downcase}?" do
-      profile.label.to_s.downcase == role.to_s.downcase
-    end
-  end
-
   def self.to_prefix
     'author'
   end
