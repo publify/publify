@@ -44,6 +44,18 @@
       <% if can? :index, 'admin/resources' %>
         <%= menu_item(t('.media_library'), admin_resources_path) %>
       <% end %>
+      <% if can? :index, 'admin/themes' %>
+        <li class='dropdown'>
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <%= t('.design') %>
+            <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+            <%= menu_item(t('.choose_theme'),      admin_themes_path) %>
+            <%= menu_item(t('.customize_sidebar'), admin_sidebar_index_path) %>
+          </ul>
+        </li>
+      <% end %>
 
       <% current_user.project_modules.each do |project_module| %>
         <% submenus = AccessControl.submenus_for(current_user.profile_label, project_module.name.to_sym) %>
