@@ -38,6 +38,9 @@
           </ul>
         </li>
       <% end %>
+      <% if can? :index, 'admin/resources' %>
+        <%= menu_item(t('.media_library'), admin_resources_path) %>
+      <% end %>
 
       <% current_user.project_modules.each do |project_module| %>
         <% submenus = AccessControl.submenus_for(current_user.profile_label, project_module.name.to_sym) %>
