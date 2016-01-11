@@ -1,6 +1,6 @@
 class Admin::BaseController < ApplicationController
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to admin_dashboard_path, :alert => exception.message
+    redirect_to admin_dashboard_path, alert: exception.message
   end
 
   cattr_accessor :look_for_migrations
