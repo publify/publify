@@ -33,6 +33,10 @@ RSpec.configure do |config|
   # shortcuts for factory_girl to use: create / build / build_stubbed
   config.include FactoryGirl::Syntax::Methods
 
+  # Test helpers needed for Devise
+  config.include Devise::TestHelpers, type: :controller
+  config.include Devise::TestHelpers, type: :view
+
   config.after :each, type: :controller do
     if response.body =~ /(&lt;[a-z]+)/
       raise "Double escaped HTML in text (#{Regexp.last_match(1)})"

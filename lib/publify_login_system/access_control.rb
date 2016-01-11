@@ -22,10 +22,6 @@ module AccessControl
     @roles.uniq.compact
   end
 
-  def self.human_roles
-    roles.map(&:to_s).map(&:humanize)
-  end
-
   def self.allowed_controllers(role, project_modules)
     controllers = []
     mappers(role).each { |m| controllers.concat(m.controllers) }
@@ -33,23 +29,8 @@ module AccessControl
     controllers.uniq.compact
   end
 
-  def self.search_plugins_directory
-    plugins_root = File.join(::Rails.root.to_s, 'vendor', 'plugins')
-    Dir.glob("#{plugins_root}/publify_plugin_*").select do |file|
-      File.readable?(File.join(plugin_admin_controller_path(file), file.split("#{plugins_root}/publify_plugin_").second + '_controller.rb'))
-    end.compact
-  end
-
   def self.submenus_for(profile, current_module)
     project_module(profile, current_module).submenus.select { |sbm| sbm.name.present? }
-  end
-
-  def self.get_plugin_litteral_name(plugin)
-    get_plugin_controller_name(plugin).tr('_', ' ').capitalize
-  end
-
-  def self.get_plugin_controller_name(plugin)
-    plugin.split("#{plugin_root}/publify_plugin_").second
   end
 
   def self.available_modules
@@ -68,14 +49,6 @@ module AccessControl
 
   def self.mappers(role)
     @mappers.select { |m| m.roles.include?(role.to_s.downcase.to_sym) }
-  end
-
-  def self.plugin_root
-    File.join(::Rails.root.to_s, 'vendor', 'plugins')
-  end
-
-  def self.plugin_admin_controller_path(plugin)
-    File.join("#{plugin}", 'lib', 'app', 'controllers', 'admin')
   end
 
   class Mapper

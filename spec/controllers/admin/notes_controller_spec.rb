@@ -3,7 +3,9 @@ require 'rails_helper'
 describe Admin::NotesController, type: :controller do
   render_views
 
-  before(:each) { request.session = { user: admin.id } }
+  before(:each) do
+    sign_in admin
+  end
 
   context 'with a blog' do
     let(:admin) { create(:user, :as_admin) }

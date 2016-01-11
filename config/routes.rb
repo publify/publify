@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   # TODO: use only in archive sidebar. See how made other system
   get ':year/:month', to: 'articles#index', year: /\d{4}/, month: /\d{1,2}/, as: 'articles_by_month', format: false
   get ':year/:month/page/:page', to: 'articles#index', year: /\d{4}/, month: /\d{1,2}/, as: 'articles_by_month_page', format: false
@@ -84,18 +85,10 @@ Rails.application.routes.draw do
   get '/humans', to: 'text#humans', format: 'txt'
   get '/robots', to: 'text#robots', format: 'txt'
 
-  # TODO: Check which of these routes are not needed.
-  resources :accounts, only: [:index], format: false do
+  # TODO: Remove if possible
+  resources :accounts, only: [], format: false do
     collection do
       get 'confirm'
-      get 'login'
-      post 'login'
-      get 'signup'
-      post 'signup'
-      get 'recover_password'
-      post 'recover_password'
-      get 'logout'
-      post 'logout'
     end
   end
 

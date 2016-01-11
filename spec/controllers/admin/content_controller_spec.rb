@@ -6,8 +6,11 @@ describe Admin::ContentController, type: :controller do
   let!(:article) { create(:article) }
 
   context 'as publisher (admin can do the same)' do
-    let!(:user) { create(:user, :as_publisher) }
-    before(:each) { request.session = { user: user.id } }
+    let(:user) { create(:user, :as_publisher) }
+
+    before do
+      sign_in user
+    end
 
     describe 'index' do
       context 'simple query' do
@@ -240,7 +243,7 @@ describe Admin::ContentController, type: :controller do
   describe 'with admin connection' do
     before(:each) do
       @user = create(:user, :as_admin, text_filter: create(:markdown))
-      request.session = { user: @user.id }
+      sign_in @user
       @article = create(:article)
     end
 
@@ -410,7 +413,7 @@ describe Admin::ContentController, type: :controller do
       user.save
       @user = user
       @article = create(:article, user: user)
-      request.session = { user: user.id }
+      sign_in user
     end
 
     it_should_behave_like 'create action'
@@ -419,7 +422,9 @@ describe Admin::ContentController, type: :controller do
   describe 'with publisher connection' do
     let!(:user) { create(:user, text_filter: create(:markdown), profile: create(:profile_publisher)) }
 
-    before(:each) { request.session = { user: user.id } }
+    before do
+      sign_in user
+    end
 
     describe '#edit' do
       context 'with an article from an other user' do

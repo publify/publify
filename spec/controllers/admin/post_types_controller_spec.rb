@@ -6,7 +6,7 @@ describe Admin::PostTypesController, type: :controller do
   before do
     create(:blog)
     user = create(:user, :as_admin)
-    request.session = { user: user.id }
+    sign_in user
   end
 
   describe 'GET #index' do

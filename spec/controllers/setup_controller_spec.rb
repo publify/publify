@@ -43,7 +43,7 @@ describe SetupController, type: :controller do
         end
 
         it 'should log in admin user' do
-          expect(session[:user_id]).to eq(User.find_by_login('admin').id)
+          expect(controller.current_user).to eq(User.find_by_login('admin'))
         end
       end
 
@@ -67,7 +67,7 @@ describe SetupController, type: :controller do
         end
 
         it 'should log in admin user' do
-          expect(session[:user_id]).to eq(User.find_by_login('admin').id)
+          expect(controller.current_user).to eq(User.find_by_login('admin'))
         end
       end
     end

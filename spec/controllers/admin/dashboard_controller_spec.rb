@@ -7,7 +7,7 @@ describe Admin::DashboardController, type: :controller do
     before do
       @blog ||= FactoryGirl.create(:blog)
       @henri = FactoryGirl.create(:user, login: 'henri', profile: FactoryGirl.create(:profile_admin, label: Profile::ADMIN))
-      request.session = { user: @henri.id }
+      sign_in @henri
       get :index
     end
 
@@ -66,7 +66,7 @@ describe Admin::DashboardController, type: :controller do
       # TODO: Delete after removing fixtures
       Profile.delete_all
       @rene = FactoryGirl.create(:user, login: 'rene', profile: FactoryGirl.create(:profile_publisher, label: Profile::PUBLISHER))
-      request.session = { user: @rene.id }
+      sign_in @rene
       get :index
     end
 
@@ -117,7 +117,7 @@ describe Admin::DashboardController, type: :controller do
       # TODO: Delete after removing fixtures
       Profile.delete_all
       @gerard = FactoryGirl.create(:user, login: 'gerard', profile: FactoryGirl.create(:profile_contributor, label: Profile::CONTRIBUTOR))
-      request.session = { user: @gerard.id }
+      sign_in @gerard
       get :index
     end
 
@@ -177,7 +177,7 @@ describe Admin::DashboardController, type: :controller do
       let(:migrator) { double('migrator') }
 
       before do
-        request.session = { user: user.id }
+        sign_in user
         allow(Migrator).to receive(:new).and_return migrator
         allow(migrator).to receive(:migrations_pending?).and_return true
         get :index

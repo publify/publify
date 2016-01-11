@@ -59,7 +59,7 @@
             <li><%= link_to t("admin.menu.in_page_plugins"), "https://github.com/fdv/publify/wiki/In-Page-Plugins" %></li>
             <li><%= link_to t("admin.menu.sidebar_plugins"), "https://github.com/fdv/publify/wiki/Sidebar-plugins" %></li>
             <li role="presentation" class="divider"></li>
-            <li><%= link_to t("admin.menu.logout").html_safe, {:controller => "/accounts", :action=>"logout"} %></li>
+            <li><%= link_to t("admin.menu.logout").html_safe, destroy_user_session_path, method: :delete %></li>
           </ul>
         </li>
       </ul>

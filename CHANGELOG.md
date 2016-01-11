@@ -1,5 +1,14 @@
 # Changelog
 
+
+## Unreleased
+
+### Breaking/large changes
+
+### Other changes
+
+* Replace custom Publify authentication system with Devise (mvz)
+
 ## 8.2.0
 
 ### Breaking/large changes

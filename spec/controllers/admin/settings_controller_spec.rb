@@ -7,7 +7,7 @@ describe Admin::SettingsController, type: :controller do
 
   before(:each) do
     alice = create(:user, :as_admin, login: 'alice')
-    request.session = { user: alice.id }
+    sign_in alice
   end
 
   describe '#index' do

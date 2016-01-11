@@ -54,6 +54,7 @@ gem 'akismet', '~> 2.0'
 gem 'bluecloth', '~> 2.1'
 gem 'carrierwave', '~> 0.10.0'
 gem 'coderay', '~> 1.1.0'
+gem 'devise', '~> 3.5.3'
 gem 'dynamic_form', '~> 1.1.4'
 gem 'flickraw-cached'
 gem 'fog'
@@ -73,6 +74,12 @@ gem 'uuidtools', '~> 2.1.1'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+
+  gem 'factory_girl', '~> 4.5.0'
+  gem 'capybara'
+  gem 'rspec-rails', '~> 3.4.0'
+  gem 'simplecov', require: false
+  gem 'pry-rails'
 end
 
 group :development do
@@ -83,11 +90,6 @@ group :development do
   gem 'spring'
 
   gem 'thin'
-  gem 'factory_girl', '~> 4.5.0'
-  gem 'capybara'
-  gem 'rspec-rails', '~> 3.4.0'
-  gem 'simplecov', require: false
-  gem 'pry-rails'
   gem 'rubocop', '~> 0.35.1', require: false
   gem 'better_errors', '~> 2.1.1'
   gem 'binding_of_caller'

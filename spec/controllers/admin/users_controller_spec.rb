@@ -7,7 +7,7 @@ describe Admin::UsersController, 'rough port of the old functional test', type: 
     before(:each) do
       create(:blog)
       @admin = create(:user, profile: create(:profile_admin, label: Profile::ADMIN))
-      request.session = { user: @admin.id }
+      sign_in @admin
     end
 
     it 'test_index' do
@@ -40,7 +40,7 @@ describe Admin::UsersController, 'rough port of the old functional test', type: 
     before :each do
       create(:blog)
       user = create(:user)
-      session[:user] = user.id
+      sign_in user
     end
 
     it "don't see the list of user" do

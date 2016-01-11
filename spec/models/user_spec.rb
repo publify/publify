@@ -17,31 +17,19 @@ describe User, type: :model do
     end
   end
 
+  describe '#active_for_authentication?' do
+    it "is true for users in the state 'active'" do
+      user = build :user, state: 'active'
+      expect(user).to be_active_for_authentication
+    end
+
+    it "is false for users in the state 'inactive'" do
+      user = build :user, state: 'inactive'
+      expect(user).not_to be_active_for_authentication
+    end
+  end
+
   context 'With the contents and users fixtures loaded' do
-    before(:each) do
-      allow(User).to receive(:salt).and_return('change-me')
-    end
-
-    it 'Calling User.authenticate with a valid user/password combo returns a user' do
-      alice = create(:user, login: 'alice', password: 'greatest')
-      expect(User.authenticate('alice', 'greatest')).to eq(alice)
-    end
-
-    it 'User.authenticate(user,invalid) returns nil' do
-      create(:user, login: 'alice', password: 'greatest')
-      expect(User.authenticate('alice', 'wrong password')).to be_nil
-    end
-
-    it 'User.authenticate(inactive,valid) returns nil' do
-      create(:user, login: 'alice', state: 'inactive')
-      expect(User.authenticate('inactive', 'longtest')).to be_nil
-    end
-
-    it 'User.authenticate(invalid,whatever) returns nil' do
-      create(:user, login: 'alice')
-      expect(User.authenticate('userwhodoesnotexist', 'what ever')).to be_nil
-    end
-
     it 'The various article finders work appropriately' do
       create(:blog)
       tobi = create(:user)
@@ -50,44 +38,11 @@ describe User, type: :model do
       expect(tobi.articles.size).to eq(8)
       expect(tobi.articles.published.size).to eq(7)
     end
-
-    it 'authenticate? works as expected' do
-      create(:user, login: 'bob', password: 'testtest')
-      expect(User).to be_authenticate('bob', 'testtest')
-      expect(User).not_to be_authenticate('bob', 'duff password')
-    end
   end
 
   describe 'With a new user' do
     before(:each) do
-      @user = User.new login: 'not_bob'
-      @user.email = 'publify@publify.com'
-      set_password 'a secure password'
-    end
-
-    describe 'the password' do
-      it 'can be just right' do
-        set_password 'Just right'
-        expect(@user).to be_valid
-      end
-
-      { 'too short' => 'x',
-        'too long' => 'repetitivepass' * 10,
-        'empty' => ''
-      }.each do |problematic, password|
-        it "cannot be #{problematic}" do
-          set_password password
-          expect(@user).not_to be_valid
-          expect(@user.errors['password']).to be_any
-        end
-      end
-
-      it 'has to match confirmation' do
-        @user.password = 'foo'
-        @user.password_confirmation = 'bar'
-        expect(@user).not_to be_valid
-        expect(@user.errors['password']).to be_any
-      end
+      @user = build :user, login: 'not_bob', email: 'publify@publify.com'
     end
 
     describe 'the login' do
@@ -118,10 +73,6 @@ describe User, type: :model do
         expect(@user.display_name).not_to be_empty
       end
     end
-
-    def set_password(newpass)
-      @user.password = @user.password_confirmation = newpass
-    end
   end
 
   describe 'With a user in the database' do
@@ -143,63 +94,13 @@ describe User, type: :model do
   describe 'Updating an existing user' do
     before(:each) do
       @user = create(:user)
-      set_password 'a secure password'
-      @user.save!
-    end
-
-    describe 'the password' do
-      { 'just right' => 'Just right',
-        'empty' => ''
-      }.each do |ok, password|
-        it "can be #{ok}" do
-          set_password password
-          expect(@user).to be_valid
-        end
-      end
-
-      { 'too short' => 'x',
-        'too long' => 'repetitivepass' * 10
-      }.each do |problematic, password|
-        it "cannot be #{problematic}" do
-          set_password password
-          expect(@user).not_to be_valid
-          expect(@user.errors['password']).to be_any
-        end
-      end
-
-      it 'has to match confirmation' do
-        @user.password = 'foo'
-        @user.password_confirmation = 'bar'
-        expect(@user).not_to be_valid
-        expect(@user.errors['password']).to be_any
-      end
-
-      it 'is not actually changed when set to empty' do
-        set_password ''
-        @user.save!
-        expect(User.authenticate(@user.login, '')).to be_nil
-        expect(User.authenticate(@user.login, 'a secure password')).to eq(@user)
-      end
-    end
-
-    describe 'saving twice' do
-      it 'should not change the password' do
-        expect(found = User.authenticate(@user.login, 'a secure password')).to eq(@user)
-        found.save
-        found.save
-        expect(User.authenticate(@user.login, 'a secure password')).to eq(found)
-      end
     end
 
     describe 'the login' do
       it 'must not change' do
-        @user.login = 'not_bob'
+        @user.email = 'not_bob'
         expect(@user).not_to be_valid
       end
-    end
-
-    def set_password(newpass)
-      @user.password = @user.password_confirmation = newpass
     end
   end
 
@@ -222,10 +123,10 @@ describe User, type: :model do
   end
 
   describe '#generate_password!' do
-    it 'set a 7 char length password' do
+    it 'set a 8 char length password' do
       user = User.new
-      expect(user).to receive(:rand).exactly(7).times.and_return(0)
-      expect(user).to receive(:password=).with('a' * 7)
+      expect(user).to receive(:rand).exactly(8).times.and_return(0)
+      expect(user).to receive(:password=).with('a' * 8)
       user.generate_password!
     end
   end

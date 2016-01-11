@@ -6,7 +6,7 @@ describe Admin::SidebarController, type: :controller do
     # TODO: Delete after removing fixtures
     Profile.delete_all
     henri = FactoryGirl.create(:user, login: 'henri', profile: FactoryGirl.create(:profile_admin, label: Profile::ADMIN))
-    request.session = { user: henri.id }
+    sign_in henri
   end
 
   describe 'rendering' do

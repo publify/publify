@@ -3,6 +3,10 @@ require 'digest/sha1'
 # Publify user.
 # TODO: Should belong to a blog
 class User < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
   include ConfigManager
 
   belongs_to :profile
@@ -49,8 +53,6 @@ class User < ActiveRecord::Base
     '20ac4d290c2293702c64b3b287ae5ea79b26a5c1'
   end
 
-  attr_accessor :last_venue
-
   def first_and_last_name
     return '' unless firstname.present? && lastname.present?
     "#{firstname} #{lastname}"
@@ -60,47 +62,30 @@ class User < ActiveRecord::Base
     [:login, :nickname, :firstname, :lastname, :first_and_last_name].map { |f| send(f) }.delete_if(&:empty?)
   end
 
-  def self.authenticate(login, pass)
-    find_by('login = ? AND password = ? AND state = ?', login, password_hash(pass), 'active')
+  # Authenticate users with old password hashes
+  alias_method :devise_valid_password?, :valid_password?
+
+  def valid_password?(password)
+    devise_valid_password?(password)
+  rescue BCrypt::Errors::InvalidHash
+    digest = Digest::SHA1.hexdigest("#{self.class.salt}--#{password}--")
+    if digest == encrypted_password
+      # Update old SHA1 password with new Devise ByCrypt password
+      self.encrypted_password = password_digest(password)
+      save
+      return true
+    else
+      # If not BCrypt password and not old SHA1 password deny access
+      return false
+    end
   end
 
-  def update_connection_time
-    self.last_venue = last_connection
-    self.last_connection = Time.now
-    save
-  end
-
-  # These create and unset the fields required for remembering users between browser closes
-  def remember_me
-    remember_me_for 2.weeks
-  end
-
-  def remember_me_for(time)
-    remember_me_until time.from_now.utc
-  end
-
-  def remember_me_until(time)
-    self.remember_token_expires_at = time
-    self.remember_token = Digest::SHA1.hexdigest("#{email}--#{remember_token_expires_at}")
-    save(validate: false)
-  end
-
-  def forget_me
-    self.remember_token_expires_at = nil
-    self.remember_token = nil
-    save(validate: false)
+  def active_for_authentication?
+    super && state == 'active'
   end
 
   def default_text_filter
     text_filter
-  end
-
-  def self.authenticate?(login, pass)
-    user = authenticate(login, pass)
-    return false if user.nil?
-    return true if user.login == login
-
-    false
   end
 
   def self.find_by_permalink(permalink)
@@ -135,16 +120,6 @@ class User < ActiveRecord::Base
     'author'
   end
 
-  attr_writer :password
-
-  def password(cleartext = nil)
-    if cleartext
-      @password.to_s
-    else
-      @password || self[:password]
-    end
-  end
-
   def article_counter
     articles.size
   end
@@ -176,7 +151,7 @@ class User < ActiveRecord::Base
   def generate_password!
     chars = ('a'..'z').to_a + ('A'..'Z').to_a + ('0'..'9').to_a
     newpass = ''
-    1.upto(7) { |_i| newpass << chars[rand(chars.size - 1)] }
+    8.times { newpass << chars[rand(chars.size - 1)] }
     self.password = newpass
   end
 
@@ -186,44 +161,6 @@ class User < ActiveRecord::Base
 
   protected
 
-  # Apply SHA1 encryption to the supplied password.
-  # We will additionally surround the password with a salt
-  # for additional security.
-  def self.password_hash(pass)
-    Digest::SHA1.hexdigest("#{salt}--#{pass}--")
-  end
-
-  def password_hash(pass)
-    self.class.password_hash(pass)
-  end
-
-  before_create :crypt_password
-
-  # Before saving the record to database we will crypt the password
-  # using SHA1.
-  # We never store the actual password in the DB.
-  # But before the encryption, we send an email to user for he can remind his
-  # password
-  def crypt_password
-    EmailNotify.send_user_create_notification self
-    self[:password] = password_hash(password(true))
-    @password = nil
-  end
-
-  before_update :crypt_unless_empty
-
-  # If the record is updated we will check if the password is empty.
-  # If its empty we assume that the user didn't want to change his
-  # password and just reset it to the old value.
-  def crypt_unless_empty
-    if password(true).empty?
-      user = self.class.find(id)
-      self[:password] = user.password
-    else
-      crypt_password
-    end
-  end
-
   before_validation :set_default_profile
 
   def set_default_profile
@@ -232,12 +169,6 @@ class User < ActiveRecord::Base
 
   validates :login, uniqueness: true, on: :create
   validates :email, uniqueness: true, on: :create
-  validates :password, length: { in: 5..40 }, if: proc { |user|
-    user.read_attribute('password').nil? or user.password.to_s.length > 0
-  }
-
   validates :email, :login, presence: true
-
-  validates :password, confirmation: true
   validates :login, length: { in: 3..40 }
 end

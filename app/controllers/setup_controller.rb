@@ -25,8 +25,7 @@ class SetupController < ApplicationController
 
     return unless @user.save
 
-    self.current_user = @user
-    session[:user_id] = @user.id
+    sign_in @user
 
     # FIXME: Crappy hack : by default, the auto generated post is user_id less and it makes Publify crash
     if User.count == 1
