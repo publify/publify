@@ -40,8 +40,7 @@ describe Admin::SettingsController, type: :controller do
     end
 
     it 'redirects to :index by default' do
-      # FIXME: Make this a named route
-      expect(response).to redirect_to('/admin/settings')
+      expect(response).to redirect_to(admin_settings_path)
     end
   end
 end
