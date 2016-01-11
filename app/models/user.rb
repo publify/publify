@@ -94,28 +94,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  delegate :project_modules, to: :profile
-
-  AccessControl.available_modules.each do |m|
-    define_method("can_access_to_#{m}?") { can_access_to?(m) }
-  end
-
-  def can_access_to?(m)
-    profile.modules.include?(m)
-  end
-
-  # Generate Methods takes from AccessControl rules
-  # Example:
-  #
-  #   def publisher?
-  #     profile.label == :publisher
-  #   end
-  AccessControl.roles.each do |role|
-    define_method "#{role.to_s.downcase}?" do
-      profile.label.to_s.downcase == role.to_s.downcase
-    end
-  end
-
   def self.to_prefix
     'author'
   end

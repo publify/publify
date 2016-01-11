@@ -6,7 +6,7 @@
   <p>
     <%= t(".dashboard_explain_html", available_actions: dashboard_action_links) %>
   </p>
-  <% if current_user.can_access_to_themes? %>
+  <% if can? :index, 'admin/themes' %>
   <p>
     <%= t(".customization_explain_html", theme_link: link_to(t(".change_your_blog_presentation"), controller: 'themes'), sidebar_link: link_to(t(".enable_plugins"), controller: 'sidebar')) %>
   </p>

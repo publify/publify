@@ -14,10 +14,4 @@ class Profile < ActiveRecord::Base
     perms = perms.map { |p| p.to_sym unless p.blank? }.compact if perms
     self[:modules] = perms
   end
-
-  def project_modules
-    modules.map do |mod|
-      AccessControl.project_module(label, mod)
-    end.uniq.compact
-  end
 end

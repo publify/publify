@@ -2,7 +2,6 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
-  include ::LoginSystem
   protect_from_forgery with: :exception, only: [:edit, :update, :delete]
 
   before_action :reset_local_cache, :fire_triggers, :load_lang, :set_paths
@@ -17,6 +16,10 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+
+  def login_required
+    authenticate_user! && authorize!(params[:action], params[:controller])
+  end
 
   def set_paths
     prepend_view_path "#{::Rails.root}/themes/#{this_blog.theme}/views"

@@ -134,8 +134,10 @@ Rails.application.routes.draw do
     resource :seo, controller: 'seo', only: [:show, :update], format: false
     resource :migrations, only: [:show, :update]
 
-    resources :settings, only: [:index], format: false do
+    # TODO: This should be a singular resource
+    resource :settings, only: [], format: false do
       collection do
+        get 'index'
         get 'display'
         get 'feedback'
         get 'write'

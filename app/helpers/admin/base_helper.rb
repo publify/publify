@@ -7,8 +7,8 @@ module Admin::BaseHelper
 
   def dashboard_action_links
     links = []
-    links << link_to(t('.write_a_post'), controller: 'content', action: 'new') if current_user.can_access_to_articles?
-    links << link_to(t('.write_a_page'), controller: 'pages', action: 'new') if current_user.can_access_to_pages?
+    links << link_to(t('.write_a_post'), controller: 'content', action: 'new') if can? :new, 'admin/content'
+    links << link_to(t('.write_a_page'), controller: 'pages', action: 'new') if can? :new, 'admin/pages'
     links << link_to(t('.update_your_profile_or_change_your_password'), controller: 'profiles', action: 'index')
     safe_join(links, ', ')
   end
@@ -82,5 +82,13 @@ module Admin::BaseHelper
 
   def twitter_available?(blog, user)
     blog.has_twitter_configured? && user.has_twitter_configured?
+  end
+
+  def menu_item(name, url)
+    if current_page? url
+      content_tag(:li, link_to(name, '#'), class: 'active')
+    else
+      content_tag(:li, link_to(name, url))
+    end
   end
 end

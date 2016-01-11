@@ -52,6 +52,7 @@ gem 'actionpack-page_caching', '~> 1.0.2' # removed from Rails-core as Rails 4.0
 gem 'addressable', '~> 2.1', require: 'addressable/uri'
 gem 'akismet', '~> 2.0'
 gem 'bluecloth', '~> 2.1'
+gem 'cancancan', '~> 1.12.0'
 gem 'carrierwave', '~> 0.10.0'
 gem 'coderay', '~> 1.1.0'
 gem 'devise', '~> 3.5.3'
