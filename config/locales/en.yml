@@ -452,6 +452,11 @@ en:
         action_or_other_html: "%{first_action} or %{second_action}"
         cancel: "Cancel"
         delete: "Delete"
+      menu:
+        seo: SEO
+        global_seo_settings: Global SEO settings
+        permalinks: Permalinks
+        titles: Titles
     tags:
       edit:
         success: "Tag was successfully updated"
@@ -761,12 +766,6 @@ en:
       home: "Home"
       dashboard: "Dashboard"
       powered_by: "is proudly powered by"
-    shared:
-      menu:
-        seo: SEO
-        global_seo_settings: Global SEO settings
-        permalinks: Permalinks
-        titles: Titles
     cache:
       show:
         stats: "There are currently %{files_count} files in cache for a total amount of %{size} Kb"
