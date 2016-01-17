@@ -19,9 +19,10 @@ class SetupController < ApplicationController
       return
     end
 
+    password = @user.notify_welcome(password)
     return unless this_blog.save
 
-    session[:tmppass] = @user.password
+    session[:tmppass] = password
 
     return unless @user.save
 
