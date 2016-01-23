@@ -8,7 +8,7 @@
 
 blog = Blog.create
 
-tag = Tag.create(name: 'general', display_name: 'General')
+tag = Tag.create(name: 'general', display_name: 'General', blog_id: blog.id)
 
 PageSidebar.create(active_position: 0, staged_position: 0, blog_id: blog.id)
 TagSidebar.create(active_position: 1, blog_id: blog.id)
