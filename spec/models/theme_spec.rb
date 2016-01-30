@@ -5,9 +5,9 @@ describe Theme, type: :model do
   let(:default_theme) { blog.current_theme }
 
   describe '#layout' do
-    it 'returns "layouts/default.html" by default' do
+    it 'returns "layouts/default" by default' do
       theme = Theme.new('test', 'test')
-      expect(theme.layout('index')).to eq 'layouts/default.html'
+      expect(theme.layout('index')).to eq 'layouts/default'
     end
 
     # FIXME: Test pages layout
