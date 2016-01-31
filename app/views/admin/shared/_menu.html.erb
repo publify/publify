@@ -89,18 +89,18 @@
     <ul class='nav navbar-nav pull-right'>
       <li class='dropdown'>
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-          <%= t("admin.menu.logged_in_as", login: current_user.display_name) %>
+          <%= t(".logged_in_as", login: current_user.display_name) %>
           <b class="caret"></b>
         </a>
         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-          <li><%= link_to t("admin.menu.profile"), { :controller => 'admin/profiles', :action => 'index'}  %></li>
+          <li><%= link_to t(".profile"), { :controller => 'admin/profiles', :action => 'index'}  %></li>
           <li role="presentation" class="divider"></li>
-          <li><%= link_to t("admin.menu.documentation"), "https://github.com/fdv/publify/wiki" %></li>
-          <li><%= link_to t("admin.menu.report_a_bug"), "https://github.com/fdv/publify/issues" %></li>
-          <li><%= link_to t("admin.menu.in_page_plugins"), "https://github.com/fdv/publify/wiki/In-Page-Plugins" %></li>
-          <li><%= link_to t("admin.menu.sidebar_plugins"), "https://github.com/fdv/publify/wiki/Sidebar-plugins" %></li>
+          <li><%= link_to t(".documentation"), "https://github.com/fdv/publify/wiki" %></li>
+          <li><%= link_to t(".report_a_bug"), "https://github.com/fdv/publify/issues" %></li>
+          <li><%= link_to t(".in_page_plugins"), "https://github.com/fdv/publify/wiki/In-Page-Plugins" %></li>
+          <li><%= link_to t(".sidebar_plugins"), "https://github.com/fdv/publify/wiki/Sidebar-plugins" %></li>
           <li role="presentation" class="divider"></li>
-          <li><%= link_to t("admin.menu.logout").html_safe, destroy_user_session_path, method: :delete %></li>
+          <li><%= link_to t(".logout_html"), destroy_user_session_path, method: :delete %></li>
         </ul>
       </li>
     </ul>
@@ -111,10 +111,10 @@
           <b class="caret"></b>
         </a>
         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-          <li><%= link_to(t("admin.menu.new_article"), {controller: 'content', action: 'new'}) %></li>
-          <li><%= link_to(t("admin.menu.new_page"), {controller: 'pages', actions: 'new'}) %></li>
-          <li><%= link_to(t("admin.menu.new_media"), {controller: 'resources', action: 'index'}) %></li>
-          <li><%= link_to(t("admin.menu.new_note"), {controller: 'notes'}) %></li>
+          <li><%= link_to(t(".new_article"), {controller: 'content', action: 'new'}) %></li>
+          <li><%= link_to(t(".new_page"), {controller: 'pages', actions: 'new'}) %></li>
+          <li><%= link_to(t(".new_media"), {controller: 'resources', action: 'index'}) %></li>
+          <li><%= link_to(t(".new_note"), {controller: 'notes'}) %></li>
         </ul>
       </li>
     </ul>

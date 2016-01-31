@@ -24,10 +24,12 @@ en:
   datetime:
     distance_in_words:
       x_days: "Distance in words"
-  errors:
-    404:
-      page_not_found: "Page not found"
-      the_page_you_are_looking_for: "The page you are looking for has moved or does not exist."
+  # TODO: All paginations should use this key
+  pagination:
+    next: Next
+    next_page: "Next page"
+    previous: Previous
+    previous_page: "Previous page"
   setup:
     index:
       blog_name: "Blog name"
@@ -50,6 +52,8 @@ en:
   helper:
     at: "at"
   articles:
+    article_excerpt:
+      continue_reading: Continue reading
     password_form:
       submit: "Submit"
     index:
@@ -59,6 +63,7 @@ en:
     search:
       next_page: "Next page"
       previous_page: "Previous page"
+      search_results_for: "Search results for '%{query}'"
     comment_preview:
       is_about_to_say: "is about to say"
     meta:
@@ -90,6 +95,7 @@ en:
       leave_a_response: "Leave a response"
       rss_feed: "RSS feed"
       comments_are_disabled: "Comments are disabled"
+      trackback_uri: Trackback URI
     comment_form:
       required: "required"
       leave_a_comment: "Leave a comment"
@@ -117,11 +123,17 @@ en:
         zero: "no comments"
         one: "1 comment"
         other: "%{count} comments"
+      trackbacks:
+        zero: "no trackbacks"
+        one: "1 trackback"
+        other: "%{count} trackbacks"
     comment_counter:
       comments:
         zero: "no comments"
         one: "1 comment"
         other: "%{count} comments"
+    trackback:
+      from: From
   notes:
     index:
       next_page: "Next page"
@@ -148,6 +160,9 @@ en:
     render_sidebar: "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually"
     no_posts_found: "No posts found..."
     no_notes_found: "No notes found..."
+    # TODO: Make the following keys work with relative keys (errors.404.page_not_found)
+    page_not_found: "Page not found"
+    the_page_you_are_looking_for: "The page you are looking for has moved or does not exist."
   views:
     pagination:
       truncate: "Truncate"
@@ -155,13 +170,13 @@ en:
       last: "Last"
   layouts:
     default:
-      html:
-        home: "Home"
-        statuses: "Statuses"
-        powered_by_html: "Powered by %{powered_by}"
-        designed_by: "Designed by %{designed_by}"
+      home: "Home"
+      statuses: "Statuses"
+      archives: Archives
+      powered_by_html: "Powered by %{powered_by}"
+      designed_by: "Designed by %{designed_by}"
     administration:
-      new: "New"
+      powered_by: is proudly powered by
   authors:
     show:
       contact_information: "Contact information"
@@ -212,7 +227,7 @@ en:
     redirects:
       destroy:
         success: "Redirection was successfully deleted."
-      new:
+      index_and_form:
         no_redirects: "There are no redirects yet. Why don't you create one?"
         cancel: "Cancel"
         save: "Save"
@@ -245,6 +260,8 @@ en:
       index:
         your_profile: "Your profile"
         success: "User details updated"
+      form:
+        account_settings: "Account Settings"
     sidebar:
       index:
         sidebar: "Sidebar"
@@ -254,9 +271,10 @@ en:
         cancel: "Cancel"
         explain_how_its_works: "Drag and drop to change the sidebar items displayed on this blog. To remove items from the sidebar just click 'remove'. Changes are saved immediately, but not activated until you click the 'Publish changes' button"
         publish_changes: "Publish changes"
+        download_more_plugins_html: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
+      config:
         available_items: "Available Items"
         active_sidebar_items: "Active Sidebar items"
-        download_more_plugins_html: "You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory."
       target_sidebar:
         update: 'Update'
     settings:
@@ -318,9 +336,6 @@ en:
         enable_recaptcha: "Enable reCaptcha"
         remember_to_set_your_recaptcha: "Remember to set your reCaptcha keys inside config/initializers/recaptcha.rb"
       write:
-        how_to_setup_twitter_html: "If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."
-        fill_the_twitter_credentials: "fill in the OAuth credentials"
-        registered_your_application: "registered your application"
         cancel: "Cancel"
         or: "or"
         update_settings: "Update settings"
@@ -440,22 +455,10 @@ en:
         explain_tag_index_html: "Checking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues"
         explain_moderate_feedback: "You may want to moderate feedback when turning this on"
         explain_rss_description: "You can use the following tags: %author% (author name), %blog_url% (this blog URL), %blog_name% (this blog title) and %permalink_url% (a link to the article you want to protect)"
-    shared:
-      macros:
-        show_help_on_publify_macros: "Show help on Publify macros"
-        name: "Name"
-        description: "Description"
-        tag: "Tag"
-      destroy:
-        destroy_confirmation: "Destroy confirmation"
-        are_you_sure: "Are you sure you want to delete this %{element}?"
-        action_or_other_html: "%{first_action} or %{second_action}"
-        cancel: "Cancel"
-        delete: "Delete"
     tags:
       edit:
         success: "Tag was successfully updated"
-      new:
+      index_and_form:
         no_tags: "There are no tags yet. Why don't you create one?"
         articles: "Articles"
         display_name: "Display Name"
@@ -484,8 +487,9 @@ en:
         thumbnail: "Thumbnail"
         medium_size: "Medium size"
         original_size: "Original size"
+        delete: "Delete"
     post_types:
-      new:
+      index_and_form:
         cancel: "Cancel"
         save: "Save"
         or: "or"
@@ -523,6 +527,7 @@ en:
         type_your_post: "Type your post"
         published: "published"
         offline: "offline"
+        save: Save
       pages:
         no_pages: "There are no pages yet. Why don't you create one?"
     feedback:
@@ -584,10 +589,19 @@ en:
         action_or_other_html: "%{first_action} or %{second_action}"
         cancel: "Cancel"
         save: "Save"
+        select_all: "Select all"
       edit:
         action_or_other_html: "%{first_action} or %{second_action}"
         save: "Save"
         comments_for_html: "Comments for %{article_link}"
+        edit_a_comment: Edit a comment
+        author: "Author"
+        email: "Email"
+        url: "Url"
+        your_comment: "Your comment"
+        action_or_other_html: "%{first_action} or %{second_action}"
+        cancel: "Cancel"
+        save: "Save"
       button:
         select_action: "Select action"
         delete_checked_items: "Delete Checked Items"
@@ -598,6 +612,15 @@ en:
       feedback:
         this_comment_by_was_flagged_as_spam: "This comment by %{author} was flagged as spam, %{cancel_link}?"
         cancel: "Cancel"
+      spam:
+        by: "by"
+        created_on: "on"
+        this_comment_by_was_flagged_as_spam_html: "This comment by %{author} was flagged as spam, %{cancel_link}?"
+        cancel: "Cancel"
+        change: 'Change'
+      ham:
+        by: "by"
+        created_on: "on"
     dashboard:
       publify_version:
         error: "You are at least one major version of Publify out of date. You should upgrade immediately. Download and install <a href='http://publify.co/stable.tgz'>the latest Publify version</a>"
@@ -745,28 +768,61 @@ en:
         explaination: "Your category slug. Leave empty if you don't know what to put here"
         description: "Description"
         title: "Title"
-    menu:
-      help: "Help"
-      documentation: "Documentation"
-      report_a_bug: "Report a bug"
-      in_page_plugins: "In page plugins"
-      sidebar_plugins: "Sidebar plugins"
-      logged_in_as: "Logged in as %{login}"
-      new_article: "New Article"
-      new_page: "New Page"
-      new_media: "New Media"
-      new_note : "New Note"
-      profile: "Profile"
-      logout: "Log out &raquo;"
-      home: "Home"
-      dashboard: "Dashboard"
-      powered_by: "is proudly powered by"
     shared:
       menu:
-        seo: SEO
+        all_articles: All articles
+        all_pages: All pages
+        article_types: Article types
+        articles: Articles
+        cache: Cache
+        choose_theme: Choose theme
+        customize_sidebar: Customize sidebar
+        dashboard: Dashboard
+        design: Design
+        display: Display
+        documentation: Documentation
+        feedback: Feedback
+        general_settings: General settings
         global_seo_settings: Global SEO settings
+        help: Help
+        home: Home
+        in_page_plugins: In page plugins
+        logged_in_as: "Logged in as %{login}"
+        logout_html: "Log out &raquo;"
+        manage_users: Manage Tags
+        media_library: Media Library
+        new: New
+        new_article: New Article
+        new_media: New Media
+        new_note : New Note
+        new_page: New Page
+        notes: Notes
+        pages: Pages
         permalinks: Permalinks
+        profile: Profile
+        redirects: Redirects
+        report_a_bug: Report a bug
+        seo: SEO
+        settings: Settings
+        sidebar_plugins: Sidebar plugins
+        tags: Tags
         titles: Titles
+        write: Write
+      macros:
+        show_help_on_publify_macros: "Show help on Publify macros"
+        name: "Name"
+        description: "Description"
+        tag: "Tag"
+      destroy:
+        destroy_confirmation: "Destroy confirmation"
+        are_you_sure: "Are you sure you want to delete this %{element}?"
+        action_or_other_html: "%{first_action} or %{second_action}"
+        cancel: "Cancel"
+        delete: "Delete"
+      twitter_alert:
+        how_to_setup_twitter_html: "If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."
+        fill_the_twitter_credentials: "fill in the OAuth credentials"
+        registered_your_application: "registered your application"
     cache:
       show:
         stats: "There are currently %{files_count} files in cache for a total amount of %{size} Kb"
@@ -829,7 +885,7 @@ en:
         twitter_oauth: "Twitter OAuth token"
         twitter_oauth_secret: "Twitter OAuth secret"
         contact_settings: "Contact Settings"
-        contact_explain: "This information will be displayed on your %{link}"
+        contact_explain_html: "This information will be displayed on your %{link}"
         author_page: "author page"
         about: "Biography"
         website: "Website"

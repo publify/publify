@@ -5,4 +5,6 @@
   </h2>
 <% end %>
 
-<%= render 'form' %>
+<%= form_for([:admin, @user], url: admin_profile_path(current_user)) do |f| %>
+  <%= render partial: "admin/users/form", locals: { f: f, user: @user } %>
+<% end %>

@@ -3,6 +3,6 @@
   <h2 class="page-title"><%= t(".edit_user") %></h2>
 <% end %>
 
-<%= form_tag :action=>"update", :id => @user.id do %>
-  <%= render :partial => "form" %>
+<%= form_for([:admin, @user]) do |f| %>
+  <%= render partial: "form", locals: { f: f, user: @user } %>
 <% end %>
