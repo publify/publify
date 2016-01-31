@@ -143,11 +143,11 @@ en:
   layouts:
     default:
       statuses: "Statuses"
-      archives: Archives
+      archives: "Archives"
       powered_by_html: "Powered by %{powered_by}"
       designed_by: "Designed by %{designed_by}"
     administration:
-      powered_by: is proudly powered by
+      powered_by: "is proudly powered by"
   authors:
     show:
       contact_information: "Contact information"
@@ -687,15 +687,15 @@ en:
         type_your_post: "Type your post"
     shared:
       menu:
-        all_articles: All articles
-        all_pages: All pages
-        article_types: Article types
-        articles: Articles
-        cache: Cache
+        all_articles: "All articles"
+        all_pages: "All pages"
+        article_types: "Article types"
+        articles: "Articles"
+        cache: "Cache"
         choose_theme: "Choose theme"
-        customize_sidebar: Customize sidebar
-        design: Design
-        display: Display
+        customize_sidebar: "Customize sidebar"
+        design: "Design"
+        display: "Display"
         documentation: "Documentation"
         feedback: Feedback
         general_settings: General settings
