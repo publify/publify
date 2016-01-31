@@ -4,6 +4,6 @@
     <%= render partial: 'target_sidebar', locals: { sidebar: sidebar, sortable_index: index } %>
   <% end %>
   <% if @ordered_sidebars.empty? %>
-    <li></li>
+    <li><%= t('.drag_some_plugins_here') %></li>
   <% end %>
 </ul>

@@ -5,14 +5,6 @@ module Admin::BaseHelper
     link_to label, "##{element}", data: { toggle: :collapse }
   end
 
-  def dashboard_action_links
-    links = []
-    links << link_to(t('.write_a_post'), controller: 'content', action: 'new') if can? :new, 'admin/content'
-    links << link_to(t('.write_a_page'), controller: 'pages', action: 'new') if can? :new, 'admin/pages'
-    links << link_to(t('.update_your_profile_or_change_your_password'), controller: 'profiles', action: 'index')
-    safe_join(links, ', ')
-  end
-
   def class_for_admin_state(sidebar, this_position)
     case sidebar.admin_state
     when :active

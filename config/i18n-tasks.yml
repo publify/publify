@@ -49,16 +49,27 @@ data:
 # Find translate calls
 search:
   ## Paths or `File.find` patterns to search in:
-  # paths:
-  #  - app/
+  paths:
+   - app/
+   - lib/
+   - themes/bootstrap-2/
 
   ## Root directories for relative keys resolution.
-  # relative_roots:
-  #   - app/controllers
-  #   - app/helpers
-  #   - app/mailers
-  #   - app/presenters
-  #   - app/views
+  relative_roots:
+    - app/controllers
+    - app/helpers
+    - app/mailers
+    - app/presenters
+    - app/views
+    - lib/authors_sidebar/app/views
+    - lib/meta_sidebar/app/views
+    - lib/notes_sidebar/app/views
+    - lib/page_sidebar/app/views
+    - lib/popular_sidebar/app/views
+    - lib/search_sidebar/app/views
+    - lib/tag_sidebar/app/views
+    - lib/xml_sidebar/app/views
+    - themes/bootstrap-2/views
 
   ## Files or `File.fnmatch` patterns to exclude from search. Some files are always excluded regardless of this setting:
   ##   %w(*.jpg *.png *.gif *.svg *.ico *.eot *.otf *.ttf *.woff *.woff2 *.pdf *.css *.sass *.scss *.less *.yml *.json)
@@ -94,6 +105,11 @@ search:
 # - 'simple_form.{yes,no}'
 # - 'simple_form.{placeholders,hints,labels}.*'
 # - 'simple_form.{error_notification,required}.:'
+ignore_unused:
+  - 'time.formats.*'
+  - 'layouts.default.designed_by'
+  - 'date.*'
+  - 'activerecord.errors.*'
 
 ## Exclude these keys from the `i18n-tasks eq-base' report:
 # ignore_eq_base:
