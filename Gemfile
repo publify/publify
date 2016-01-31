@@ -100,6 +100,8 @@ group :development do
   gem 'binding_of_caller'
   gem 'guard-rspec'
   gem 'quiet_assets'
+
+  gem 'i18n-tasks', '~> 0.9.1'
 end
 
 group :test do
