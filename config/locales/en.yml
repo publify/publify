@@ -705,18 +705,18 @@ en:
         logout_html: "Log out &raquo;"
         manage_users: Manage Users
         media_library: "Media Library"
-        new: New
-        new_article: New Article
-        new_media: New Media
-        new_note : New Note
-        new_page: New Page
-        notes: Notes
-        pages: Pages
-        permalinks: Permalinks
-        profile: Profile
-        redirects: Redirects
-        report_a_bug: Report a bug
-        seo: SEO
+        new: "New"
+        new_article: "New Article"
+        new_media: "New Media"
+        new_note : "New Note"
+        new_page: "New Page"
+        notes: "Notes"
+        pages: "Pages"
+        permalinks: "Permalinks"
+        profile: "Profile"
+        redirects: "Redirects"
+        report_a_bug: "Report a bug"
+        seo: "SEO"
         settings: Settings
         sidebar_plugins: Sidebar plugins
         tags: Tags
