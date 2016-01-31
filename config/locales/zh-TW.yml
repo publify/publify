@@ -114,6 +114,7 @@ zh-TW:
     render_sidebar: "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually"
     no_posts_found: "No posts found..."
     no_notes_found: "No notes found..."
+    # TODO: Make the following keys work with relative keys (errors.404.page_not_found)
     page_not_found: "Page not found"
     the_page_you_are_looking_for: "The page you are looking for has moved or does not exist."
   layouts:
@@ -122,6 +123,8 @@ zh-TW:
       archives: Archives
       powered_by_html: "Powered by %{powered_by}"
       designed_by: "Designed by %{designed_by}"
+    administration:
+      powered_by: is proudly powered by
   authors:
     show:
       contact_information: "Contact information"
@@ -513,6 +516,14 @@ zh-TW:
         delete_all_spam: "Delete all spam"
         mark_checked_items_as_spam: "Mark Checked Items as Spam"
         mark_checked_items_as_ham: "Mark Checked Items as Ham"
+      spam:
+        by: "by"
+        created_on: "on"
+        this_comment_by_was_flagged_as_spam_html: "This comment by %{author} was flagged as spam, %{cancel_link}?"
+        cancel: "取消"
+      ham:
+        by: "by"
+        created_on: "on"
     dashboard:
       publify_version:
         error: "You are at least one major version of Publify out of date. You should upgrade immediately. Download and install <a href='http://publify.co/stable.tgz'>the latest Publify version</a>"
@@ -650,7 +661,7 @@ zh-TW:
         customize_sidebar: Customize sidebar
         design: Design
         display: Display
-        documentation: Documentation
+        documentation: "Documentation"
         feedback: Feedback
         general_settings: General settings
         global_seo_settings: Global SEO settings
@@ -658,7 +669,7 @@ zh-TW:
         logged_in_as: "Logged in as %{login}"
         logout_html: "登出 &raquo;"
         manage_users: Manage Users
-        media_library: Media Library
+        media_library: "Media Library"
         new: New
         new_article: New Article
         new_media: New Media

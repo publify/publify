@@ -20,15 +20,15 @@ en:
           attributes:
             title:
               blank: "can't be blank"
+  # TODO: All generic translations should be moved here
+  generic:
+    change: "Change"
   # TODO: All paginations should use this key
   pagination:
     next: Next
     next_page: "Next page"
     previous: Previous
     previous_page: "Previous page"
-  # TODO: All generic translations should be moved here
-  generic:
-    change: 'Change'
   setup:
     index:
       blog_name: "Blog name"
@@ -545,9 +545,7 @@ en:
         email: "Email"
         url: "Url"
         your_comment: "Your comment"
-        action_or_other_html: "%{first_action} or %{second_action}"
         cancel: "Cancel"
-        save: "Save"
       button:
         delete_checked_items: "Delete Checked Items"
         delete_all_spam: "Delete all spam"
@@ -694,11 +692,11 @@ en:
         article_types: Article types
         articles: Articles
         cache: Cache
-        choose_theme: Choose theme
+        choose_theme: "Choose theme"
         customize_sidebar: Customize sidebar
         design: Design
         display: Display
-        documentation: Documentation
+        documentation: "Documentation"
         feedback: Feedback
         general_settings: General settings
         global_seo_settings: Global SEO settings
@@ -706,7 +704,7 @@ en:
         logged_in_as: "Logged in as %{login}"
         logout_html: "Log out &raquo;"
         manage_users: Manage Users
-        media_library: Media Library
+        media_library: "Media Library"
         new: New
         new_article: New Article
         new_media: New Media
