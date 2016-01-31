@@ -4,7 +4,6 @@ nb-NO:
       rss_feed: "RSS-feed"
       admin: "Admin"
       powered_by_publify: "Drives av Publify"
-      search: "Søk"
   search_sidebar:
     content:
       search: "Søk"
@@ -21,21 +20,16 @@ nb-NO:
           attributes:
             title:
               blank: "kan ikke være blank"
-  datetime:
-    distance_in_words:
-      x_days: "Avstand med ord"
-  errors:
-    404:
-      page_not_found: "Fant ikke side"
-      the_page_you_are_looking_for: "Siden du ser etter er flyttet eller finnes ikke."
+  # TODO: All generic translations should be moved here
+  generic:
+    change: "Endre"
+  # TODO: All paginations should use this key
+  pagination:
+    next: "Neste"
+    next_page: "Neste side"
+    previous: "Forrige"
+    previous_page: "Forrige side"
   setup:
-    confirm:
-      you_have_successfully_signed_up: "Du er nå registrert"
-      login: "Logg inn: %{user}"
-      password: "Passord: %{pass}"
-      dont_lose_the_mail_sent: "Ikke mist eposten som ble sendt %{email}. Uten passordet vil du ikke kunne logge inn senere"
-      proceed_to: "Fortsett til %{link}"
-      admin: "admin"
     index:
       blog_name: "Bloggnavn"
       save: "Lagre"
@@ -46,8 +40,8 @@ nb-NO:
       body: "Dette er et eksempel på en Publify-side. Du kan redigere den med informasjon om deg selv eller bloggen din, slik at leserne vet hvem du er. Du kan lage så mange du vil av slike sider, og håndtere alt innholdet med Publify."
   comments:
     comment:
-      said: "sa"
       by: "av"
+      said: "sa"
       this_comment_has_been_flagged_for_moderator_approval: "Denne kommentaren har blitt flagget for godkjenning av moderator. Den vil ikke bli vist på bloggen før moderatoren godkjenner den."
   tags:
     index:
@@ -60,8 +54,6 @@ nb-NO:
     password_form:
       submit: "Send"
     index:
-      next_page: "Neste side"
-      previous_page: "Forrige side"
       page: "side"
     search:
       next_page: "Neste side"
@@ -72,15 +64,6 @@ nb-NO:
       published_on_html: "Publisert den %{publish_date_and_time} av %{by}, tagger %{tags}"
     article:
       posted_by: "Skrevet av"
-      this_entry_was_posted_on: "Dette innlegget ble postet den %{published_at}"
-      you_can_follow_entries_through_the: "Du kan følge innlegg ved å bruke %{feed}"
-      atom_feed: "Atom-feed"
-      you_can_leave_a: "Du kan legge igjen en %{comment}"
-      comment: "kommentar"
-      or_trackback: "eller en %{trackback} fra din egen hjemmeside"
-      trackback: "trackback"
-      read_full_article: "Les hele artikkelen"
-      comments: "Kommentarer"
     archives:
       posted_in: "Publisert i"
       no_articles_found: "Fant ingen artikler"
@@ -98,15 +81,6 @@ nb-NO:
       rss_feed: "RSS-feed for denne artikkel"
       comments_are_disabled: "Kommentarer er deaktiveret"
     comment_form:
-      required: "obligatorisk"
-      leave_a_comment: "Skriv en kommentar"
-      comment_author: "Navn %{author}"
-      email: "Epost"
-      website: "Hjemmeside"
-      comments: "Kommentarer"
-      markdown_enabled: "Markdown aktivert"
-      textile_enabled: "Textile aktivert"
-      never_displayed: "aldri vist"
       comment: "kommentar"
       email_address: "Epostadresse"
       your_website: "Din hjemmeside"
@@ -142,31 +116,26 @@ nb-NO:
       active: "Aktiv"
       inactive: "Inaktiv"
   notice:
-    note_successfully_updated: "Notat oppdatert"
     note_successfully_created: "Notat opprettet"
   errors:
     problem_sending_to_twitter: "Ojsann, noe gikk galt"
-    you_are_not_allowed: "Feil, du får ikke lov til å utføre denne oppgaven"
     article_type_already_exist: "Denne artikkeltypen finnes allerede"
     permalink_need_a_title: "Permalink-formatet må ha en identifikator : %%title%%"
     cant_end_with_rss_or_atom: "Kan ikke slutte på .rss eller .atom. Disse er forbeholdt feed-URL-er"
     render_sidebar: "Det ser ut til at noe gikk galt. Kanskje noen av dine sidemarg-plugins faktisk mangler, og du bør enten reinstallere dem eller fjerne dem manuelt."
     no_posts_found: "Ingen poster funnet..."
     no_notes_found: "Ingen notater funnet..."
-  views:
-    pagination:
-      truncate: "kutt"
-      next: "Neste"
-      last: "Siste"
+    # TODO: Make the following keys work with relative keys (errors.404.page_not_found)
+    page_not_found: "Fant ikke side"
+    the_page_you_are_looking_for: "Siden du ser etter er flyttet eller finnes ikke."
   layouts:
     default:
-      html:
-        home: "Hjem"
-        statuses: "Statusoppdateringer"
-        powered_by_html: "Drives av %{powered_by}"
-        designed_by: "Utformet av %{designed_by}"
+      statuses: "Statusoppdateringer"
+      archives: "Archives"
+      powered_by_html: "Drives av %{powered_by}"
+      designed_by: "Utformet av %{designed_by}"
     administration:
-      new: "Ny"
+      powered_by: "drives stolt av"
   authors:
     show:
       contact_information: "Kontaktinformasjon"
@@ -184,8 +153,6 @@ nb-NO:
     base:
       restart_application: "Av sikkerhetsgrunner bør du restarte Publify. Kos deg videre med bloggingen."
       cant_generate_secret: "Feil: kan ikke generere hemmelig token. Sikkerheten er kompromittert. Vennligst endre innholdet i %{checker_file}"
-      successfully_saved: "%{element} ble lagret."
-      unsuccessfully_saved: "%{element} kunne ikke lagres."
       not_allowed: "Feil, du har ikke lov til å utføre denne handlingen"
       successfully_deleted: "Slettet %{name}"
     notes:
@@ -195,19 +162,17 @@ nb-NO:
         now: "Nå"
         compose_new_note: "Skriv nytt notat"
         no_notes: "Det er ingen notater enda. Hva med å opprette en?"
-        how_to_setup_twitter_html: "Hvis du vil sende statusoppdateringer til Twitter, må du %{twitter_settings_link} som Twitter ga deg etter at du %{twitter_registration_link}."
-        fill_the_twitter_credentials: "skrive inn oauth-token"
-        registered_your_application: "registrerte appen din"
         publish_settings: "Publiseringsinnstillinger"
         posse_to_twitter: "POSSE til Twitter"
         tweet_id_like: "Tweet-id av typen 123456"
         in_reply_to: "Som svar på"
         permanent_link: "Permanent lenke"
-        published: "publisert"
         publish_at: "Publisert den"
         cancel: "Avbryt"
         or: "eller"
         publish: "Publiser"
+      new:
+        published: "publisert"
       show:
         destroy_confirmation: "Bekreft sletting"
         are_you_sure: "Er du sikker på at du vil slette dette notatet?"
@@ -217,7 +182,7 @@ nb-NO:
     redirects:
       destroy:
         success: "Omdirigering slettet"
-      new:
+      index_and_form:
         no_redirects: "Det finnes ingen omdirigeringer enda. Hva med å opprette en?"
         cancel: "Avbryt"
         save: "Lagre"
@@ -248,20 +213,21 @@ nb-NO:
         may_take_a_moment: "kan ta et øyeblikk"
     profiles:
       index:
-        your_profile: "Din profil"
         success: "Bruker oppdatert"
+        your_profile: "Din profil"
     sidebar:
       index:
         sidebar: "Sidemarg"
-        drag_some_plugins_here: "Dra og slipp plugins hit for å fylle sidemarg"
-        error: "Noe gikk galt. Kanskje en av dine sidemarg-plugins mangler, og du burde reinstallere den eller fjerne den manuelt"
         or: "eller"
         cancel: "Avbryt"
         explain_how_its_works: "Dra og slipp for å endre hva som vises i sidemargen på denne bloggen. Du kan fjerne elementer fra oversikten ved å klikke 'fjern'. Endringer lagres med det samme, men aktiveres ikke før du klikker på 'Publiser endringer'."
         publish_changes: "Publiser endringer"
+        download_more_plugins_html: "Du kan laste ned og installere sidemarg-plugins fra vår offisielle <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin-samling</a>. Alt du trenger å gjøre er å plassere theme-mappen i din vendor/plugins-mappe."
+      config:
         available_items: "Tilgjengelige plugins"
         active_sidebar_items: "Aktive sidemarg-plugins"
-        download_more_plugins_html: "Du kan laste ned og installere sidemarg-plugins fra vår offisielle <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin-samling</a>. Alt du trenger å gjøre er å plassere theme-mappen i din vendor/plugins-mappe."
+      target:
+        drag_some_plugins_here: "Dra og slipp plugins hit for å fylle sidemarg"
       target_sidebar:
         update: 'Oppdater'
     settings:
@@ -272,7 +238,6 @@ nb-NO:
         cancel: "Avbryt"
         or: "eller"
         update_settings: "Oppdater innstillinger"
-        ago: "siden"
         custom_url: "Eget domene for URL-krymping"
         custom_url_help: "Hvis du har et eget domene for URL-krymping, skriv det her"
         date_format: "Datoformat"
@@ -323,9 +288,6 @@ nb-NO:
         enable_recaptcha: "Aktiver reCaptcha"
         remember_to_set_your_recaptcha: "Husk å sette reCaptcha-nøklene dine i filen config/initializers/recaptcha.rb"
       write:
-        how_to_setup_twitter_html: "Hvis du vil sende statusoppdateringer til Twitter, må du %{twitter_settings_link} Twitter ga deg etter at du %{twitter_registration_link}."
-        fill_the_twitter_credentials: "skriv inn oauth-token"
-        registered_your_application: "registrert din applikasjon"
         cancel: "Avbryt"
         or: "eller"
         update_settings: "Oppdater innstillinger"
@@ -363,11 +325,14 @@ nb-NO:
         email_address_used_to_notify: "Epost-adresse som brukes av Publify til å sende meldinger"
         items_to_display_in_admin_lists: "Antall elementer som skal vises i adminlisten"
     seo:
-      titles:
+      show:
         cancel: "Avbryt"
         or: "eller"
         update_settings: "Oppdater innstillinger"
+        global_settings: "Globale innstillinger"
         title_settings: "Tittelvalg"
+        permalinks: "Permalenker"
+      titles:
         home: "Hjem"
         title_template: "Mønster for tittel"
         description_template: "Mønster for beskrivelse"
@@ -375,8 +340,6 @@ nb-NO:
         pages: "Sider"
         paginated_archives: "Arkivliste over flere sider"
         dated_archives: "Datert arkiv"
-        categories: "Kategorier"
-        tags: "Tagger"
         author_page: "Forfatterside"
         search_results: "Søkeresultater"
         short_statuses_lists: "Lister over statusoppdateringer"
@@ -400,11 +363,7 @@ nb-NO:
         replaced_by_the_archive_date: "Erstattet med arkivdato"
         replaced_by_the_content_body: "Erstattet med artikkelinnholdet"
       permalinks:
-        cancel: "Avbryt"
-        or: "eller"
-        update_settings: "Oppdater innstillinger"
         explain: "Publify tilbyr deg muligheten til å opprette en tilpasset URL-struktur for dine permalenker og arkiver. Dette kan forbedre estetikken, brukervennligheten og foroverkompatibiliteten til dine lenker."
-        permalinks: "Permalenker"
         permalink_format: "Permalenkeformat"
         date_and_title: "Dato og tittel"
         month_and_title: "Måned og tittel"
@@ -417,14 +376,10 @@ nb-NO:
         your_article_month: "Artikkelens publiseringmåned"
         your_article_day: "Artikkelens publiseringsdag"
         help_on_permalink_settings: "Hjelp om permalenke-innstillinger"
-      index:
+      general:
         human: "Menneskene bak"
         humans_txt: "humans.txt"
         explain_humans_txt: "Dette er et initiativ for å få kjennskap til menneskene bak et nettsted. Det er en txt-fil som inneholder informasjon om de forskjellig personene som har bidratt til å bygge nettstedet. http://humanstxt.org/"
-        cancel: "Avbryt"
-        or: "eller"
-        update_settings: "Oppdater innstillinger"
-        global_settings: "Globale innstillinger"
         general_settings: "Generelle innstillinger"
         meta_keywords: "Metanøkkelord"
         use_meta_keywords: "Bruk metanøkkelord"
@@ -433,7 +388,6 @@ nb-NO:
         this_will_display: "Den vil vises på bunnen av hver artikkel i RSS-feeden"
         rss_description_message: "Melding for RSS-beskrivelse"
         indexing: "Indeksering"
-        do_not_index_categories: "Ikke indekser kategorier"
         do_not_index_tags: "Ikke indekser tagger"
         robots_txt: "Robots.txt"
         dofollow: "Dofollow"
@@ -446,28 +400,14 @@ nb-NO:
         google_webmaster_tools_validation_link: "Google Webmaster Tools valideringslenke"
         custom_tracking_code: "Tilpasset tracking-kode"
         explain: "Her kan du legge til det du vil skal inkluderes i din applikasjons-header, som for eksempel tracking-kode for en analyseservice."
-        explain_category_index: "Slår du på denne, vil metataggene <code>noindex, follow</code> bli lagt til på alle kategorisider, og dermed fjerne dem fra søkemotorer og forhindre problemer med duplisert innhold"
         explain_tag_index_html: "Slår du på denne, vil metataggene <code>noindex, follow</code> bli lagt til på alle taggsider, og dermed fjerne dem fra søkemotorer og forhindre problemer med duplisert innhold"
         explain_moderate_feedback: "Det kan være en idé å moderere diskusjoner når du slår på denne"
         explain_rss_description: "Du kan bruke følgende tagger: %author% (forfatternavn), %blog_url% (blogg-URL), %blog_name% (bloggtittel) og %permalink_url% (en lenke til den artikkelen du vil beskytte)"
-    shared:
-      macros:
-        show_help_on_publify_macros: "Vis hjelp i Publify-makroer"
-        name: "Navn"
-        description: "Beskrivelse"
-        tag: "Tagg"
-      destroy:
-        destroy_confirmation: "Bekreft sletting"
-        are_you_sure: "Er du sikker på at du vil slette %{element}?"
-        action_or_other_html: "%{first_action} eller %{second_action}"
-        cancel: "Avbryt"
-        delete: "Slett"
     tags:
       edit:
         success: "Tagg oppdatert"
-      new:
+      index_and_form:
         no_tags: "Det finnes ingen tagger enda. Hva med å opprette en?"
-        articles: "Artikler"
         display_name: "Visningsnavn"
         manage_tags: "Administrer tagger"
         name: "Navn"
@@ -495,7 +435,7 @@ nb-NO:
         medium_size: "Mellomstor"
         original_size: "Opprinnelig størrelse"
     post_types:
-      new:
+      index_and_form:
         cancel: "Avbryt"
         save: "Lagre"
         or: "eller"
@@ -515,21 +455,16 @@ nb-NO:
         manage_pages: "Administrer sider"
         new_page: "Ny side"
         title: "Tittel"
-        permalink: "Permalenke"
         author: "Forfatter"
-        date: "Dato"
       form:
         cancel: "Avbryt"
-        change: "Endre"
         publish: "Publiser"
         title: "Tittel"
-        images: "Bilder"
         publish_settings: "Publiseringsinnstillinger"
         status: "Status"
         online: "Online"
         article_filter: "artikkelfilter"
         permanent_link: "Permanent lenke"
-        page_with_action_name: "%{action} side"
         type_your_post: "Skriv teksten din"
         published: "publisert"
         offline: "offline"
@@ -574,18 +509,10 @@ nb-NO:
         spam: "Spam"
         presumed_ham: "Antatt ikke-spam"
         presumed_spam: "Antall spam"
-        search: "Søk"
-        status: "Status"
-        comment_author: "Kommentarforfatter"
-        comment: "Kommentar"
-        article: "Artikkel"
         select_all: "Velg alle"
       article:
         no_feedback: "Det finnes ingen diskusjon enda. Hva med å opprette en?"
         comments_for_html: "Kommentarer for %{title}"
-        status: "Status"
-        comment_author: "Kommentarforfatter"
-        comment: "Kommentar"
         add_a_comment: "Legg til kommentar"
         author: "Forfatter"
         email: "Epost"
@@ -594,19 +521,26 @@ nb-NO:
         action_or_other_html: "%{first_action} eller %{second_action}"
         cancel: "Avbryt"
         save: "Lagre"
+        select_all: "Velg alle"
       edit:
         action_or_other_html: "%{first_action} eller %{second_action}"
         save: "Lagre"
         comments_for_html: "Kommentarer for %{article_link}"
+        edit_a_comment: Edit a comment
+        author: "Forfatter"
+        email: "Epost"
+        url: "URL"
+        your_comment: "Din kommentar"
+        cancel: "Avbryt"
       button:
-        select_action: "Velg handling"
         delete_checked_items: "Slett markerte elementer"
         delete_all_spam: "Slett all spam"
         mark_checked_items_as_spam: "Flagg markerte elementer som spam"
         mark_checked_items_as_ham: "Flagg markerte elementer som ikke-spam"
-        submit: "Send"
-      feedback:
-        this_comment_by_was_flagged_as_spam: "Denne kommentaren av %{author} er flagget som spam, %{cancel_link}?"
+      spam:
+        by: "by"
+        created_on: "on"
+        this_comment_by_was_flagged_as_spam_html: "Denne kommentaren av %{author} er flagget som spam, %{cancel_link}?"
         cancel: "Avbryt"
     dashboard:
       publify_version:
@@ -702,11 +636,8 @@ nb-NO:
         drafts: "Utkast"
         publication_pending: "Venter på publisering"
         search: "Søk"
-        title: "Tittel"
-        select_a_category: "Velg kategori"
         select_an_author: "Velg forfatter"
         publication_date: "Publiseringsdato"
-        filter: "Filtrer"
       form:
         article_type: "Artikkeltype"
         now: "nå"
@@ -723,54 +654,63 @@ nb-NO:
         public: "Offentlig"
         publish: "Publiser"
         title: "Tittel"
-        images: "Bilder"
         publish_settings: "Publiseringsinnstillinger"
         status: "Status"
         published: "publisert"
         allowed_comments_and_trackbacks_html: "Kommentarer er %{allow_comment} og trackbacks er %{allow_trackback}"
-        change: "Endre"
         allow_trackbacks: "Tillat trackbacks"
         allow_comments: "Tillat kommentarer"
         ok: "OK"
         visibility: "Synlighet"
         password: "Passord"
         permalink: "permalenke"
-        article_filter: "artikkelfilter"
         save_as_draft: "Lagre som utkast"
-        categories: "Kategorier"
         tags: "Tagger"
         tags_explaination: "Skill tagger med komma. Bruk anførselstegn (&quot;) rundt tagger med flere ord, f.eks. &quot;moderne teater&quot;."
         type_your_post: "Skriv teksten din"
-      categories:
-        new_category: "Ny kategori"
-    categories:
-      new:
-        cancel: "Avbryt"
-        save: "Lagre"
-        or: "eller"
-        categories: "Kategorier"
-        name: "Navn"
-        keywords: "Nøkkelord"
-        permalink: "Permanent lenke"
-        explaination: "Kategoritekst i URL. La feltet stå tomt hvis du ikke vet hva du skal sette her"
-        description: "Beskrivelse"
-        title: "Tittel"
-    menu:
-      help: "Hjelp"
-      documentation: "Dokumentasjon"
-      report_a_bug: "Rapporter en feil"
-      in_page_plugins: "I side-plugins"
-      sidebar_plugins: "Sidemarg-plugins"
-      logged_in_as: "Innlogget som %{login}"
-      new_article: "Ny artikkel"
-      new_page: "Ny side"
-      new_media: "Ny mediafil"
-      new_note : "Nytt notat"
-      profile: "Profil"
-      logout: "Logg ut &raquo;"
-      home: "Hjem"
-      dashboard: "Styrekonsoll"
-      powered_by: "drives stolt av"
+    shared:
+      menu:
+        all_articles: "All articles"
+        all_pages: "All pages"
+        article_types: "Article types"
+        articles: "Artikler"
+        cache: "Cache"
+        choose_theme: "Choose theme"
+        customize_sidebar: "Customize sidebar"
+        design: "Design"
+        display: "Display"
+        documentation: "Dokumentasjon"
+        feedback: Feedback
+        general_settings: General settings
+        global_seo_settings: Global SEO settings
+        in_page_plugins: "I side-plugins"
+        logged_in_as: "Innlogget som %{login}"
+        logout_html: "Logg ut &raquo;"
+        manage_users: Manage Users
+        media_library: "Media Library"
+        new: "Ny"
+        new_article: "Ny artikkel"
+        new_media: "Ny mediafil"
+        new_note : "Nytt notat"
+        new_page: "Ny side"
+        notes: "Notes"
+        pages: "Pages"
+        permalinks: "Permalenker"
+        profile: "Profil"
+        redirects: "Redirects"
+        report_a_bug: "Rapporter en feil"
+        seo: "SEO"
+        settings: Settings
+        sidebar_plugins: "Sidemarg-plugins"
+        tags: Tags
+        titles: Titles
+        write: Write
+      destroy:
+        are_you_sure: "Er du sikker på at du vil slette %{element}?"
+      twitter_alert:
+        how_to_setup_twitter_html: "Hvis du vil sende statusoppdateringer til Twitter, må du %{twitter_settings_link} som Twitter ga deg etter at du %{twitter_registration_link}."
+        fill_the_twitter_credentials: "skrive inn oauth-token"
+        registered_your_application: "registrerte appen din"
     cache:
       show:
         stats: "Det finnes for øyeblikket %{files_count} filer i cachen som utgjør totalt %{size} kB"
@@ -782,11 +722,10 @@ nb-NO:
         error: "Cachen kunne ikke slettes"
     users:
       edit:
-        success: "Bruker oppdatert"
         edit_user: "Rediger bruker"
       new:
-        success: "Bruker opprettet"
         add_user: "Legg til bruker"
+        success: "Bruker opprettet"
       index:
         login: "Logg inn"
         users: "Brukere"
@@ -798,12 +737,9 @@ nb-NO:
         comments: "Kommentarer"
         state: "Tilstand"
       form:
-        how_to_setup_twitter_html: "Hvis du vil sende statusoppdateringer til Twitter, må du %{twitter_settings_link} som Twitter ga deg etter at du %{twitter_registration_link}."
-        fill_the_twitter_credentials: "skrive inn oauth-token"
-        registered_your_application: "registrerte appen din"
         cancel: "Avbryt"
-        or: "eller"
         save: "Lagre"
+        or: "eller"
         user_status: "Brukerstatus"
         account_settings: "Kontoinnstillinger"
         login: "Logg inn"
@@ -811,7 +747,6 @@ nb-NO:
         password_confirmation: "Passordbekreftelse"
         email: "Epost"
         profile: "Profil"
-        status: "Status"
         profile_settings: "Profilinformasjon"
         firstname: "Fornavn"
         lastname: "Etternavn"
@@ -827,13 +762,11 @@ nb-NO:
         notification_email: "på epost"
         notification_article: "når en ny artikkel postes"
         notification_comment: "når en ny kommentar postes"
-        twitter_settings: "Twitter-innstillinger"
         twitter_account: "Twitter brukernavn"
-        twitter_help: "Twitter-kontoen du vil poste med"
         twitter_oauth: "Twitter OAuth-token"
         twitter_oauth_secret: "Twitter OAuth-hemmelighet"
         contact_settings: "Kontaktinnstillinger"
-        contact_explain: "Denne informasjonen vises på din %{link}"
+        contact_explain_html: "Denne informasjonen vises på din %{link}"
         author_page: "forfatterside"
         about: "Biografi"
         website: "Nettsted"
@@ -847,30 +780,12 @@ nb-NO:
     back_to_login: "Tilbake til innlogging"
     create_account: "Opprett konto"
     lost_my_password: "Jeg har mistet passordet mitt"
-    login:
-      title: "Logg inn"
-      login: "Logg inn"
-      password: "Passord"
-      remember_me: "Husk meg"
-      sign_in: "Sign in"
-      success: "Logget inn"
-      error: "Feil under innlogging"
     confirm:
       proceed_to: "Fortsett til %{link}"
       admin: "admin"
-    recover_password:
-      title: "Gjenopprett passord"
-      username_or_email: "Brukernavn eller epost"
-      reset_my_password: "Nullstill passordet mitt"
-      notice: "En epost er sendt til epost-adressen med ditt nye passord"
-      error: "Ojsann, noe gikk galt"
-    logout:
-      notice: "Logget ut"
-    signup:
-      title: "Registrer"
-      username: "Brukernavn"
-      email: "Epost"
-      signup: "Registrer"
+      login: "Logg inn"
+      password: "Passord"
+      dont_lose_the_mail_sent: "Ikke mist eposten som ble sendt %{email}. Uten passordet vil du ikke kunne logge inn senere"
   langs:
     da_DK: "Dansk"
     de_DE: "Tysk"
