@@ -4,7 +4,6 @@ en:
       rss_feed: "RSS Feed"
       admin: "Admin"
       powered_by_publify: "Powered by Publify"
-      search: "Search"
   search_sidebar:
     content:
       search: "Search"
@@ -21,15 +20,15 @@ en:
           attributes:
             title:
               blank: "can't be blank"
-  datetime:
-    distance_in_words:
-      x_days: "Distance in words"
   # TODO: All paginations should use this key
   pagination:
     next: Next
     next_page: "Next page"
     previous: Previous
     previous_page: "Previous page"
+  # TODO: All generic translations should be moved here
+  generic:
+    change: 'Change'
   setup:
     index:
       blog_name: "Blog name"
@@ -57,8 +56,6 @@ en:
     password_form:
       submit: "Submit"
     index:
-      next_page: "Next page"
-      previous_page: "Previous page"
       page: "page"
     search:
       next_page: "Next page"
@@ -70,15 +67,6 @@ en:
       published_on_html: "Published on %{publish_date_and_time} by %{by}, tags %{tags}"
     article:
       posted_by: "Posted by"
-      this_entry_was_posted_on: "This entry was posted on %{published_at}"
-      you_can_follow_entries_through_the: "You can follow any response to this entry through the %{feed}"
-      atom_feed: "Atom feed"
-      you_can_leave_a: "You can leave a %{comment}"
-      comment: "comment"
-      or_trackback: "or a %{trackback} from your own site"
-      trackback: "trackback"
-      read_full_article: "Read full article"
-      comments: "Comments"
     archives:
       posted_in: "Posted in"
       no_articles_found: "No articles found"
@@ -97,15 +85,6 @@ en:
       comments_are_disabled: "Comments are disabled"
       trackback_uri: Trackback URI
     comment_form:
-      required: "required"
-      leave_a_comment: "Leave a comment"
-      comment_author: "Name %{author}"
-      email: "Email"
-      website: "Website"
-      comments: "comments"
-      markdown_enabled: "Markdown enabled"
-      textile_enabled: "Textile enabled"
-      never_displayed: "never displayed"
       comment: "comment"
       email_address: "Email address"
       your_website: "Your website"
@@ -149,11 +128,9 @@ en:
       active: "Active"
       inactive: "Inactive"
   notice:
-    note_successfully_updated: "Note was successfully updated"
     note_successfully_created: "Note was successfully created"
   errors:
     problem_sending_to_twitter: "Oooops something went wrong!"
-    you_are_not_allowed: "Error, you are not allowed to perform this action"
     article_type_already_exist: "This article type already exists"
     permalink_need_a_title: "You need a permalink format with an identifier : %%title%%"
     cant_end_with_rss_or_atom: "Can't end in .rss or .atom. These are reserved for feed URLs"
@@ -163,14 +140,8 @@ en:
     # TODO: Make the following keys work with relative keys (errors.404.page_not_found)
     page_not_found: "Page not found"
     the_page_you_are_looking_for: "The page you are looking for has moved or does not exist."
-  views:
-    pagination:
-      truncate: "Truncate"
-      next: "Next"
-      last: "Last"
   layouts:
     default:
-      home: "Home"
       statuses: "Statuses"
       archives: Archives
       powered_by_html: "Powered by %{powered_by}"
@@ -194,8 +165,6 @@ en:
     base:
       restart_application: "For security reasons, you should restart your Publify application. Enjoy your blogging experience."
       cant_generate_secret: "Error: can't generate secret token. Security is at risk. Please, change %{checker_file} content"
-      successfully_saved: "%{element} was successfully saved."
-      unsuccessfully_saved: "%{element} could not be saved."
       not_allowed: "Error, you are not allowed to perform this action"
       successfully_deleted: "This %{name} was deleted successfully"
     notes:
@@ -256,14 +225,11 @@ en:
         may_take_a_moment: "may take a moment"
     profiles:
       index:
-        your_profile: "Your profile"
         success: "User details updated"
-      form:
-        account_settings: "Account Settings"
+        your_profile: "Your profile"
     sidebar:
       index:
         sidebar: "Sidebar"
-        error: "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually"
         or: "or"
         cancel: "Cancel"
         explain_how_its_works: "Drag and drop to change the sidebar items displayed on this blog. To remove items from the sidebar just click 'remove'. Changes are saved immediately, but not activated until you click the 'Publish changes' button"
@@ -592,7 +558,6 @@ en:
         created_on: "on"
         this_comment_by_was_flagged_as_spam_html: "This comment by %{author} was flagged as spam, %{cancel_link}?"
         cancel: "Cancel"
-        change: 'Change'
       ham:
         by: "by"
         created_on: "on"
@@ -777,7 +742,6 @@ en:
     users:
       edit:
         edit_user: "Edit User"
-        success: "User was successfully updated"
       new:
         add_user: "Add User"
         success: "User was successfully created"
@@ -792,12 +756,9 @@ en:
         comments: "Comments"
         state: "State"
       form:
-        how_to_setup_twitter_html: "If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."
-        fill_the_twitter_credentials: "fill in the OAuth credentials"
-        registered_your_application: "registered your application"
         cancel: "Cancel"
-        or: "or"
         save: "Save"
+        or: "or"
         user_status: "User Status"
         account_settings: "Account Settings"
         login: "Login"
@@ -805,7 +766,6 @@ en:
         password_confirmation: "Password confirmation"
         email: "Email"
         profile: "Profile"
-        status: "Status"
         profile_settings: "Profile Settings"
         firstname: "First name"
         lastname: "Last name"
@@ -821,9 +781,7 @@ en:
         notification_email: "via email"
         notification_article: "when new article is posted"
         notification_comment: "when new comment is posted"
-        twitter_settings: "Twitter Settings"
         twitter_account: "Twitter username"
-        twitter_help: "Twitter account you want to post with"
         twitter_oauth: "Twitter OAuth token"
         twitter_oauth_secret: "Twitter OAuth secret"
         contact_settings: "Contact Settings"
@@ -841,13 +799,9 @@ en:
     back_to_login: "Back to login"
     create_account: "Create an account"
     lost_my_password: "I've lost my password"
-    login:
-      success: "Login successful"
-      error: "Login unsuccessful"
     confirm:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
-      you_have_successfully_signed_up: "You have successfully signed up"
       login: "Login: %{login}"
       password: "Password: %{password}"
       dont_lose_the_mail_sent: "Don't lose the mail sent at %{email} or you won't be able to login anymore"
