@@ -4,7 +4,6 @@ pt-BR:
       rss_feed: "Feed de RSS"
       admin: "Admin"
       powered_by_publify: "Powered by Publify"
-      search: "Busca"
   search_sidebar:
     content:
       search: "Busca"
@@ -21,21 +20,16 @@ pt-BR:
           attributes:
             title:
               blank: "não pode ser vazio"
-  datetime:
-    distance_in_words:
-      x_days: "Distância em palavras"
-  errors:
-    404:
-      page_not_found: "Página não encontrada"
-      the_page_you_are_looking_for: "A página que você está procurando foi movida ou não existe mais."
+  # TODO: All generic translations should be moved here
+  generic:
+    change: "Alterar"
+  # TODO: All paginations should use this key
+  pagination:
+    next: "Próxima"
+    next_page: "Próxima"
+    previous: "Anterior"
+    previous_page: "Anterior"
   setup:
-    confirm:
-      you_have_successfully_signed_up: "Cadastro efetuado com sucesso"
-      login: "Entrar: %{user}"
-      password: "Senha: %{pass}"
-      dont_lose_the_mail_sent: "Não perca o e-mail enviado para %{email} ou não será mais possível entrar no sistema"
-      proceed_to: "Continuar para %{link}"
-      admin: "admin"
     index:
       blog_name: "Nome do Blog"
       save: "Salvar"
@@ -60,8 +54,6 @@ pt-BR:
     password_form:
       submit: "Enviar"
     index:
-      next_page: "Pr&oacute;xima"
-      previous_page: "Anterior"
       page: "página"
     search:
       next_page: "Pr&oacute;xima"
@@ -72,15 +64,6 @@ pt-BR:
       published_on_html: "Publicado em %{publish_date_and_time} por %{by}, tags %{tags}"
     article:
       posted_by: "Publicado por"
-      this_entry_was_posted_on: "Este item foi postado em %{published_at}"
-      you_can_follow_entries_through_the: "Você pode acompanhar qualquer resposta a este item através do %{feed}"
-      atom_feed: "Feed Atom"
-      you_can_leave_a: "Deixe um %{comment}"
-      comment: "Comentário"
-      or_trackback: "ou um %{trackback} do seu site"
-      trackback: "trackback"
-      read_full_article: "Ler artigo completo"
-      comments: "Comentários"
     archives:
       posted_in: "Postado em"
       no_articles_found: "Nenhum artigo encontrado"
@@ -98,15 +81,6 @@ pt-BR:
       rss_feed: "Feed RSS para este artigo"
       comments_are_disabled: "Os comentários estão desativados"
     comment_form:
-      required: "obrigat&oacute;rio"
-      leave_a_comment: "Deixe um comentário"
-      comment_author: "Nome %{author}"
-      email: "E-mail"
-      website: "Website"
-      comments: "comentários"
-      markdown_enabled: "Markdown habilitado"
-      textile_enabled: "Textile habilitado"
-      never_displayed: "nunca exibido"
       comment: "Comentário"
       email_address: "Endere&ccedil;o de e-mail"
       your_website: "Seu website"
@@ -122,7 +96,7 @@ pt-BR:
         zero: "sem comentários"
         one: "1 comentário"
         other: "%{count} comentários"
-    comment_count:
+    comment_counter:
       comments:
         zero: "sem comentários"
         one: "1 comentário"
@@ -142,31 +116,26 @@ pt-BR:
       active: "Ativo"
       inactive: "Inativo"
   notice:
-    note_successfully_updated: "Nota foi atualizada com sucesso"
     note_successfully_created: "Nota foi criada com sucesso"
   errors:
     problem_sending_to_twitter: "Oooops aconteceu algo errado"
-    you_are_not_allowed: "Erro, você não tem permissão para executar esta ação"
     article_type_already_exist: "Este tipo de artigo já existe"
     permalink_need_a_title: "Você precisa de um formato de permalink com um identificador : %%title%%"
     cant_end_with_rss_or_atom: "Não pode terminar em .rss ou .atom. Esses formatos são reservados para feeds de URLs"
     render_sidebar: "Parece que algo deu errado. Talvez algum sidebar esteja faltando e você deve ou reinstalá-los ou removê-los manualmente"
     no_posts_found: "Posts não encontrados..."
     no_notes_found: "Notas não encontradas..."
-  views:
-    pagination:
-      truncate: "Reduzir"
-      next: "Próximo"
-      last: "Anterior"
+    # TODO: Make the following keys work with relative keys (errors.404.page_not_found)
+    page_not_found: "Página não encontrada"
+    the_page_you_are_looking_for: "A página que você está procurando foi movida ou não existe mais."
   layouts:
     default:
-      html:
-        home: "Home"
-        statuses: "Status"
-        powered_by_html: "Powered by %{powered_by}"
-        designed_by: "Designed by %{designed_by}"
+      statuses: "Status"
+      archives: Archives
+      powered_by_html: "Powered by %{powered_by}"
+      designed_by: "Designed by %{designed_by}"
     administration:
-      new: "Novo"
+      powered_by: "é orgulhosamente desenvolvido por"
   authors:
     show:
       contact_information: "Informações de contato"
@@ -184,8 +153,6 @@ pt-BR:
     base:
       restart_application: "Por questões de segurança, você deve reiniciar sua aplicação Publify. Aproveite sua experiência como blogger."
       cant_generate_secret: "Erro: não foi possível gerar token secreto (secret token). Segurança está vulnerável. Por favor, verifique o conteúdo de %{checker_file}"
-      successfully_saved: "%{element} foi salvo com sucesso."
-      unsuccessfully_saved: "%{element} não pode ser salvo."
       not_allowed: "Erro, você não possui permissão para executar esta ação"
       successfully_deleted: "Este %{name} foi removido com sucesso"
     notes:
@@ -193,21 +160,19 @@ pt-BR:
         notes: "Notas"
       form:
         now: "Agora"
-        no_notes: "Não existem notas ainda. Por que você não inicia e cria uma?"
-        how_to_setup_twitter_html: "Se você deseja publicar status no Twitter, você precisa %{twitter_settings_link} que o Twitter te forneceu após você %{twitter_registration_link}."
-        fill_the_twitter_credentials: "preencher suas credenciais OAuth"
-        registered_your_application: "registrar sua aplicação"
         compose_new_note: "Compor nova nota"
+        no_notes: "Não existem notas ainda. Por que você não inicia e cria uma?"
         publish_settings: "Configurações de publicação"
         posse_to_twitter: "POSSE para twitter"
-        in_reply_to: "Em resposta a"
         tweet_id_like: "Tweet ID como 123456"
+        in_reply_to: "Em resposta a"
         permanent_link: "link permanente"
-        published: "Publicado"
         publish_at: "Publicado em"
         cancel: "Cancelar"
         or: "ou"
         publish: "Publicar"
+      new:
+        published: "Publicado"
       show:
         destroy_confirmation: "Confirmação de remoção"
         are_you_sure: "Você tem certeza que deseja remover esta nota"
@@ -217,7 +182,7 @@ pt-BR:
     redirects:
       destroy:
         success: 'Redirecionamento removido com sucesso.'
-      new:
+      index_and_form:
         no_redirects: "Não existe nenhum redirecionamento ainda. Por que você não inicia e cria um?"
         cancel: "Cancelar"
         save: "Salvar"
@@ -252,16 +217,17 @@ pt-BR:
         your_profile: "Seu perfil"
     sidebar:
       index:
-        error: "Parece que algo deu errado. Talvez esteja faltando alguma sidebar e você precise reinstalar ou removê-las manualmente"
         sidebar: "Barra Lateral (Sidebar)"
-        drag_some_plugins_here: "Arraste alguns plugins aqui exibir na sua barra lateral (sidebar)"
         or: "ou"
         cancel: "Cancelar"
         explain_how_its_works: "Drag and drop to change the sidebar items displayed on this blog. To remove items from the sidebar just click 'remove'. Changes are saved immediately, but not activated until you click the 'Publish changes' button"
         publish_changes: "Publicar alterações"
+        download_more_plugins_html: "Você pode baixar e instalar plugins para a barra lateral (sidebar) a partir do nosso <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>repositório oficial</a>. Tudo o que você precisa fazer é enviar o diretório do tema para o diretório vendor/plugins."
+      config:
         available_items: "Itens disponíveis"
         active_sidebar_items: "Itens ativos na barra lateral (sidebar)"
-        download_more_plugins_html: "Você pode baixar e instalar plugins para a barra lateral (sidebar) a partir do nosso <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>repositório oficial</a>. Tudo o que você precisa fazer é enviar o diretório do tema para o diretório vendor/plugins."
+      target:
+        drag_some_plugins_here: "Arraste alguns plugins aqui exibir na sua barra lateral (sidebar)"
     settings:
       update:
         success: "Configuração atualizada."
@@ -269,7 +235,6 @@ pt-BR:
         cancel: "Cancelar"
         or: "ou"
         update_settings: "Atualizar configurações"
-        ago: "atrás"
         custom_url: "Domínio personalizado para URL curta"
         custom_url_help: "Se você possui um domínio personalizado para URL curta, insira-o aqui."
         date_format: "Formato de data"
@@ -320,9 +285,6 @@ pt-BR:
         enable_recaptcha: "Habilitar reCaptcha"
         remember_to_set_your_recaptcha: "Remember to set your reCaptcha keys inside config/initializers/recaptcha.rb"
       write:
-        how_to_setup_twitter_html: "Se você deseja publicar status no Twitter, você precisa %{twitter_settings_link} que o Twitter te forneceu após você %{twitter_registration_link}."
-        fill_the_twitter_credentials: "preencher as credenciais OAuth"
-        registered_your_application: "registrar sua aplicação"
         cancel: "Cancelar"
         or: "ou"
         update_settings: "Atualizar configurações"
@@ -360,11 +322,14 @@ pt-BR:
         email_address_used_to_notify: "Endereço de e-mail usado para envio de notificações"
         items_to_display_in_admin_lists: "Número de itens a serem em listas"
     seo:
-      titles:
+      show:
         cancel: "Cancelar"
         or: "ou"
         update_settings: "Atualizar configurações"
+        global_settings: "Configurações globais"
         title_settings: "Configurações de Título"
+        permalinks: "Permalinks"
+      titles:
         home: "Início"
         title_template: "Título do modelo (template)"
         description_template: "Descrição do modelo (template)"
@@ -372,8 +337,6 @@ pt-BR:
         pages: "Páginas"
         paginated_archives: "Paginação dos arquivos"
         dated_archives: "Arquivos datados"
-        categories: "Categorias"
-        tags: "Tags"
         author_page: "Página do Autor"
         search_results: "Resultados da busca"
         short_statuses_lists: "Short statuses lists"
@@ -397,11 +360,7 @@ pt-BR:
         replaced_by_the_archive_date: "Substituído pela data do histórico"
         replaced_by_the_content_body: "Substituído pelo texto do conteúdo"
       permalinks:
-        cancel: "Cancelar"
-        or: "ou"
-        update_settings: "Atualizar configurações"
         explain: "Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links."
-        permalinks: "Permalinks"
         permalink_format: "Formato de Permalink"
         date_and_title: "Data e título"
         month_and_title: "Mês e título"
@@ -414,14 +373,10 @@ pt-BR:
         your_article_month: "mês de publicação do seu artigo."
         your_article_day: "dia de publicação do seu artigo."
         help_on_permalink_settings: "Ajuda com configurações de link permanente (permalink)"
-      index:
+      general:
         human: "Humano"
         humans_txt: "Human"
         explain_humans_txt: "É uma iniciativa saber as pessoas que estão por trás de um site. É um arquivo TXT que contém informações sobre as diferentes pessoas que contribuíram para o desenvolvimento do site. http://humanstxt.org/"
-        cancel: "Cancelar"
-        or: "ou"
-        update_settings: "Atualizar configurações"
-        global_settings: "Configurações globais"
         general_settings: "Preferências gerais"
         meta_keywords: "Meta keywords"
         use_meta_keywords: "Usar meta keywords"
@@ -430,7 +385,6 @@ pt-BR:
         this_will_display: "Isto será exibido no final de cada post no feed RSS"
         rss_description_message: "Mensagem de descrição RSS"
         indexing: "Indexando"
-        do_not_index_categories: "Não indexar categorias"
         do_not_index_tags: "Não indexar tags"
         robots_txt: "Robots.txt"
         dofollow: "Dofollow"
@@ -443,28 +397,14 @@ pt-BR:
         google_webmaster_tools_validation_link: "Link de validação do Google Webmaster Tools"
         custom_tracking_code: "Código de rastreio personalizado"
         explain: "Here you can add anything you want to appear in your application header, such as analytics service tracking code."
-        explain_category_index: "Checking this box will add <code>noindex, follow</code> meta tags in every category page, removing them from search engines and preventing duplicate content issues"
         explain_tag_index_html: "Checking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues"
         explain_moderate_feedback: "You may want to moderate feedback when turning this on"
         explain_rss_description: "You can use the following tags: %author% (author name), %blog_url% (this blog URL), %blog_name% (this blog title) and %permalink_url% (a link to the article you want to protect)"
-    shared:
-      macros:
-        show_help_on_publify_macros: "Exibir ajuda nas macros do Publify"
-        name: "Nome"
-        description: "Descrição"
-        tag: "Tag"
-      destroy:
-        destroy_confirmation: "Confirmação de Remoção"
-        are_you_sure: "Tem certeza que deseja remover este item %{element}"
-        action_or_other_html: "%{first_action} ou %{second_action}"
-        cancel: "Cancelar"
-        delete: "Remover"
     tags:
       edit:
         success: "Tag atualizada com sucesso"
-      new:
+      index_and_form:
         no_tags: "Não existem tags ainda. Por que você não inicia e cria um?"
-        articles: "Artigos"
         display_name: "Nome de exibição"
         manage_tags: "Administrar tags"
         name: "Nome"
@@ -492,7 +432,7 @@ pt-BR:
         medium_size: "Tamanho médio"
         original_size: "Tamanho original"
     post_types:
-      new:
+      index_and_form:
         cancel: "Cancelar"
         save: "Salvar"
         or: "ou"
@@ -512,21 +452,16 @@ pt-BR:
         manage_pages: "Administrar Páginas"
         new_page: "Nova Página"
         title: "Título"
-        permalink: "Link permanente"
         author: "Autor"
-        date: "Data"
       form:
         cancel: "Cancelar"
-        change: "Alterar"
         publish: "Publicar"
         title: "Título"
-        images: "Imagens"
         publish_settings: "Configurações de publicação"
         status: "Estado"
         online: "Online"
         article_filter: "Filtro de artigo"
         permanent_link: "Link Permanente"
-        page_with_action_name: "%{action} página"
         type_your_post: "Digite seu post"
         published: "publicado"
         offline: "offline"
@@ -563,6 +498,7 @@ pt-BR:
         success_classification: "Confirmado a classificação de %{count} iten(s)"
         success_deleted: "%{count} itens deletados"
       index:
+        no_feedback: "Não existem feedback ainda. Por que você não inicia e cria um?"
         feedback: "Feedback"
         all: "Todos"
         unapproved_comments: "Comentários não aprovados"
@@ -570,19 +506,10 @@ pt-BR:
         spam: "Spam"
         presumed_ham: "Possível ham"
         presumed_spam: "Possível spam"
-        search: "Buscar"
-        status: "Status"
-        comment_author: "Autor do comentário"
-        comment: "Comentário"
-        article: "Artigo"
         select_all: "Selecionar todos"
-        no_feedback: "Não existem feedback ainda. Por que você não inicia e cria um?"
       article:
         no_feedback: "Não existem feedback ainda. Por que você não inicia e cria um?"
         comments_for_html: "Comentários para %{title}"
-        status: "Status"
-        comment_author: "Autor do comentário"
-        comment: "Comentário"
         add_a_comment: "Adicionar um comentário"
         author: "Autor"
         email: "E-mail"
@@ -591,25 +518,36 @@ pt-BR:
         action_or_other_html: "%{first_action} ou %{second_action}"
         cancel: "Cancelar"
         save: "Salvar"
+        select_all: "Selecionar todos"
       edit:
         action_or_other_html: "%{first_action} ou %{second_action}"
         save: "Salvar"
         comments_for_html: "Comentários para %{article_link}"
+        edit_a_comment: Edit a comment
+        author: "Autor"
+        email: "E-mail"
+        url: "Url"
+        your_comment: "Seu comentário"
+        cancel: "Cancelar"
       button:
-        select_action: "Selecionar ação"
         delete_checked_items: "Remover itens marcados"
         delete_all_spam: "Remover todo o spam"
         mark_checked_items_as_spam: "Marcar itens selecionados como Spam"
         mark_checked_items_as_ham: "Marcar itens selecionados como Ham"
-        submit: "Enviar"
-      feedback:
-        this_comment_by_was_flagged_as_spam: "O comentário de %{author} foi marcado como spam, %{cancel_link}?"
+      spam:
+        by: "by"
+        created_on: "on"
+        this_comment_by_was_flagged_as_spam_html: "O comentário de %{author} foi marcado como spam, %{cancel_link}?"
         cancel: "Cancelar"
+      ham:
+        by: "by"
+        created_on: "on"
     dashboard:
-      index:
+      publify_version:
         error: "Você está desatualizado de pelo menos uma versão principal do Publify. Você deve atualizar imediatamente. Baixe e instale <a href='http://publify.co/stable.tgz'>a versão mais recente do Publify</a>"
         warning: "Existe uma nova versão do Publify que contém correções importantes. Porque você não atualiza para <a href='http://publify.co/stable.tgz'>a versão mais recente do Publify</a> ?"
         notice: "Existe uma nova versão disponível do Publify. Porque você não atualiza para <a href='http://publify.co/stable.tgz'>a versão mais recente do Publify</a> ?"
+      index:
         welcome_back: "Bem-vindo(a) novamente, %{user_name}!"
       drafts:
         your_drafts: "Seus rascunhos"
@@ -683,8 +621,7 @@ pt-BR:
         success: "Artigo criado com sucesso"
       update:
         success: "Artigo atualizado com sucesso"
-        error: "Erro, você não tem permissão para executar essa tarefa"
-      edit:
+      access_granted:
         error: "Erro, você não tem permissão para executar essa tarefa"
       autosave:
         success: "Artigo salvo com sucesso"
@@ -699,11 +636,8 @@ pt-BR:
         drafts: "Rascunhos"
         publication_pending: "Publicações Pendentes"
         search: "Buscar"
-        title: "Título"
-        select_a_category: "Selecione uma Categoria"
         select_an_author: "Selecione um Autor"
         publication_date: "Data de Publicação"
-        filter: "Filtro"
       form:
         article_type: "Tipo do Artigo"
         now: "agora"
@@ -720,54 +654,63 @@ pt-BR:
         public: "Público"
         publish: "Publicar"
         title: "Título"
-        images: "Imagens"
         publish_settings: "Configurações de publicação"
         status: "Status"
         published: "Publicado"
         allowed_comments_and_trackbacks_html: "Comentários estão %{allow_comment} e links de retorno (trackback) estão %{allow_trackback}"
-        change: "Trocar"
         allow_trackbacks: "Permitir links de retorno (trackback)"
         allow_comments: "Permitir comentários"
         ok: "Ok"
         visibility: "Visibilidade"
         password: "Senha"
         permalink: "Link permanente"
-        article_filter: "Filtro de artigo"
         save_as_draft: "Salvar como rascunho"
-        categories: "Categorias"
         tags: "Tags"
         tags_explaination: "Separe as tags com vírgulas. Use aspas duplas (&quot;) em palavras compostas, ex: casa-da-opera."
         type_your_post: "Digite seu post"
-      categories:
-        new_category: "Nova Categoria"
-    categories:
-      new:
-        cancel: "Cancelar"
-        save: "Salvar"
-        or: "ou"
-        categories: "Categorias"
-        name: "Nome"
-        keywords: "Palavras chave"
-        permalink: "Link permanente"
-        explaination: "Fale mais sobre a sua categoria. Deixe em branco caso não saiba o que pôr aqui."
-        description: "Descrição"
-        title: "Título"
-    menu:
-      help: "Ajuda"
-      documentation: "Documentação"
-      report_a_bug: "Informar um erro"
-      in_page_plugins: "Plugins na Página (In Page)"
-      sidebar_plugins: "Plugins da Sidebar"
-      logged_in_as: "Bem vindo(a), %{login}"
-      new_article: "Novo Artigo"
-      new_page: "Nova Página"
-      new_media: "Nova Mídia"
-      new_note : "Nova Nota"
-      profile: "Perfil"
-      logout: "Sair &raquo;"
-      home: "Início"
-      dashboard: "Dashboard"
-      powered_by: "é orgulhosamente desenvolvido por"
+    shared:
+      menu:
+        all_articles: "Todos os Artigos"
+        all_pages: All pages
+        article_types: Article types
+        articles: "Artigos"
+        cache: "Cache"
+        choose_theme: "Escolha um tema"
+        customize_sidebar: Customize sidebar
+        design: Design
+        display: Display
+        documentation: "Documentação"
+        feedback: Feedback
+        general_settings: "Configurações Gerais"
+        global_seo_settings: Global SEO settings
+        in_page_plugins: "Plugins na Página (In Page)"
+        logged_in_as: "Bem vindo(a), %{login}"
+        logout_html: "Sair &raquo;"
+        manage_users: Manage Users
+        media_library: "Media Library"
+        new: New
+        new_article: "Novo Artigo"
+        new_media: "Nova Mídia"
+        new_note : "Nova Nota"
+        new_page: "Nova Página"
+        notes: Notes
+        pages: Pages
+        permalinks: Permalinks
+        profile: "Perfil"
+        redirects: Redirects
+        report_a_bug: "Informar um erro"
+        seo: SEO
+        settings: Settings
+        sidebar_plugins: "Plugins da Sidebar"
+        tags: "Tags"
+        titles: Titles
+        write: "Escrever"
+      destroy:
+        are_you_sure: "Você tem certeza que deseja remover esta item %{element}"
+      twitter_alert:
+        how_to_setup_twitter_html: "Se você deseja publicar status no Twitter, você precisa %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."
+        fill_the_twitter_credentials: "preencha com as credenciais OAuth"
+        registered_your_application: "aplicação registrada"
     cache:
       show:
         stats: "Atualmente existem %{files_count} arquivos em cache para uma quantidade total de %{size} Kb."
@@ -779,11 +722,10 @@ pt-BR:
         error: "Cache não pode ser removido"
     users:
       edit:
-        success: "Usuário atualizado com sucesso"
         edit_user: "Editar usuário"
       new:
-        success: "Usuário criado com sucesso"
         add_user: "Adicionar Usuário"
+        success: "Usuário criado com sucesso"
       index:
         login: "entrar"
         users: "Usuários"
@@ -794,11 +736,7 @@ pt-BR:
         articles: "Artigos"
         comments: "Comentários"
         state: "Estado"
-        user_state: "%{state} do usuário"
       form:
-        how_to_setup_twitter_html: "Se você deseja publicar status no Twitter, você precisa %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}."
-        fill_the_twitter_credentials: "preencha com as credenciais OAuth"
-        registered_your_application: "aplicação registrada"
         cancel: "Cancelar"
         save: "Salvar"
         or: "ou"
@@ -809,7 +747,6 @@ pt-BR:
         password_confirmation: "Confirmação de senha"
         email: "E-mail"
         profile: "Perfil"
-        status: "Status"
         profile_settings: "Configurações do Perfil"
         firstname: "Nome"
         lastname: "Sobrenome"
@@ -825,13 +762,11 @@ pt-BR:
         notification_email: "por e-mail"
         notification_article: "quando um novo artigo foi postado"
         notification_comment: "quando um novo comentário foi postado"
-        twitter_settings: "Configurações do Twitter"
         twitter_account: "Usuário do Twitter"
-        twitter_help: "Conta do Twitter que será utilizada para postar"
         twitter_oauth: "Twitter OAuth token"
         twitter_oauth_secret: "Twitter OAuth secret"
         contact_settings: "Informações de Contato"
-        contact_explain: "Esta informação será exibida em seu %{link}"
+        contact_explain_html: "Esta informação será exibida em seu %{link}"
         author_page: "página do autor"
         about: "Biografia"
         website: "Website"
@@ -845,30 +780,12 @@ pt-BR:
     back_to_login: "Voltar para o login"
     create_account: "Criar conta"
     lost_my_password: "Perdi minha senha"
-    login:
-      title: "Entrar"
-      login: "Entrar"
-      password: "Senha"
-      remember_me: "Lembrar-me"
-      sign_in: "Entrar"
-      success: "Logado com sucesso"
-      error: "Falha ao tentar se logar"
     confirm:
       proceed_to: "Continuar para %{link}"
       admin: "admin"
-    recover_password:
-      title: "Recupere sua senha"
-      username_or_email: "Usuário ou E-mail"
-      reset_my_password: "Redefinir senha"
-      notice: "Sua nova senha foi enviada com sucesso para o seu e-mail"
-      error: "Opps, alguma coisa errada acaba de acontecer"
-    signup:
-      title: "Registrar"
-      username: "Usuário"
-      email: "E-mail"
-      signup: "Registrar"
-    logout:
-      notice: "Deslogado com sucesso"
+      login: "Entrar: %{user}"
+      password: "Senha: %{pass}"
+      dont_lose_the_mail_sent: "Não perca o e-mail enviado para %{email} ou não será mais possível entrar no sistema"
   langs:
     da_DK: "Danish"
     de_DE: "German"
