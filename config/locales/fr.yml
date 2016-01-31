@@ -4,7 +4,6 @@ fr:
       rss_feed: "RSS Feed"
       admin: "Admin"
       powered_by_publify: "Développé avec Publify"
-      search: "Rechercher"
   search_sidebar:
     content:
       search: "Rechercher"
@@ -21,21 +20,15 @@ fr:
           attributes:
             title:
               blank: "ne peut être laissé vide"
-  datetime:
-    distance_in_words:
-      x_days: "distance en mots"
-  errors:
-    404:
-      page_not_found: "Page non trouvée"
-      the_page_you_are_looking_for: "La page que vous cherchez a été déplacée ou n'existe pas"
+  # TODO: All generic translations should be moved here
+  generic:
+    change: "Modifier"
+  # TODO: All paginations should use this key
+  pagination:
+    next: "Suivant"
+    next_page: "Page suivante"
+    previous_page: "Page précédente"
   setup:
-    confirm:
-      you_have_successfully_signed_up: "Vous vous êtes inscrit avec succès"
-      login: "Identifiant&nbsp;: %{user}"
-      password: "Mot de passe&nbsp;: %{pass}"
-      dont_lose_the_mail_sent: "Ne perdez pas l'email que nous venons de vous envoyer à l'adresse %{email} ou vous ne pourrez plus vous connecter à l'application"
-      proceed_to: "Proceed to %{link}"
-      admin: "admin"
     index:
       blog_name: "Nom du blog"
       save: "Enregistrer"
@@ -60,8 +53,6 @@ fr:
     password_form:
       submit: "Envoyer"
     index:
-      next_page: "Page suivante"
-      previous_page: "Page précédente"
       page: "page"
     search:
       next_page: "Page suivante"
@@ -72,15 +63,6 @@ fr:
       published_on_html: "Publié le %{publish_date_and_time} par %{by}, tags %{tags}"
     article:
       posted_by: "Publié par"
-      this_entry_was_posted_on: "Ce billet a été posté le %{published_at}"
-      you_can_follow_entries_through_the: "Vous pouvez suivre la discussion autour de cet article via le %{feed}"
-      atom_feed: "flux Atom"
-      you_can_leave_a: "Vous pouvez déposer un %{comment}"
-      comment: "commentaire"
-      or_trackback: "ou un %{trackback} depuis votre site"
-      trackback: "trackback"
-      read_full_article: "Lire l'article complet"
-      comments: "Commentaires"
     archives:
       posted_in: "Publié sous"
       no_articles_found: "Aucun article ne correspond à la recherche"
@@ -98,15 +80,6 @@ fr:
       rss_feed: "Flux RSS"
       comments_are_disabled: "Les commentaires sont désactivés"
     comment_form:
-      required: "required"
-      leave_a_comment: "laisser un commentaire"
-      comment_author: "Votre nom %{author}"
-      email: "Email"
-      website: "Votre site"
-      comments: "commentaires"
-      markdown_enabled: "Markdown activé"
-      textile_enabled: "Textile activé"
-      never_displayed: "jamais affiché"
       comment: "commentaire"
       email_address: "Adresse mail"
       your_website: "Votre site"
@@ -142,31 +115,26 @@ fr:
       active: "Actif"
       inactive: "Inactif"
   notice:
-    note_successfully_updated: "Ce billet a été mis à jour avec succès"
     note_successfully_created: "Ce billet a été créé avec succès"
   errors:
     problem_sending_to_twitter: "Oups ! Un problème est survenu"
-    you_are_not_allowed: "Erreur, vous n'êtes pas autorisé à faire ceci"
     article_type_already_exist: "Ce type d'article existe déjà."
     permalink_need_a_title: "Vous avez besoin d'un format de lien permanent avec un identifiant : %%title%%"
     cant_end_with_rss_or_atom: "Ne peut pas se terminer par .rss ou .atom. Cette extension est réservée aux flux de syndication"
     render_sidebar: "Une erreur s'est produite. Un ou plusieurs plugins sont probablement manquants ou en erreur. Peut-être devriez-vous les supprimer ou les réinstaller"
     no_posts_found: "Aucun article n'a été trouvé"
     no_notes_found: "Aucune note n'a été trouvée"
-  views:
-    pagination:
-      truncate: "Couper"
-      next: "Suivant"
-      last: "Dernier"
+    # TODO: Make the following keys work with relative keys (errors.404.page_not_found)
+    page_not_found: "Page non trouvée"
+    the_page_you_are_looking_for: "La page que vous cherchez a été déplacée ou n'existe pas"
   layouts:
     default:
-      html:
-        home: "Accueil"
-        statuses: "Statuts"
-        powered_by_html: "Propulsé par %{powered_by}"
-        designed_by: "Design par %{designed_by}"
+      statuses: "Statuts"
+      archives: "Archives"
+      powered_by_html: "Propulsé par %{powered_by}"
+      designed_by: "Design par %{designed_by}"
     administration:
-      new: "Nouveau"
+      powered_by: "Tourne fièrement sous"
   authors:
     show:
       contact_information: "Informations de contact"
@@ -184,8 +152,6 @@ fr:
     base:
       restart_application: "Pour des raisons de sécurité, vous devriez redémarrer votre application Publify."
       cant_generate_secret: "Erreur: impossible de générer un jeton secret. La sécurité est menacée. Merci de modifier le contenu de %{checker_file} "
-      successfully_saved: "%{element} a été enregistré avec succès."
-      unsuccessfully_saved: "%{element} n'a pas pu être enregistré."
       not_allowed: "Erreur, vous n'êtes pas autorisé à réaliser cette action"
       successfully_deleted: "%{name} a été supprimé avec succès"
     notes:
@@ -193,21 +159,19 @@ fr:
         notes: "Notes"
       form:
         now: "Maintenant"
-        no_notes: "Il n'y a pas encore de notes, pourquoi ne pas en créer une ? "
-        how_to_setup_twitter_html: "Si vous voulez publiez de courts statuts sur Twitter, vous devez %{twitter_settings_link} que Twitter vous a fourni %{twitter_registration_link}."
-        fill_the_twitter_credentials: "Renseignez les informations sur l'auteur"
-        registered_your_application: "Votre application a été enregistrée"
         compose_new_note: "Écrire un nouveau billet"
+        no_notes: "Il n'y a pas encore de notes, pourquoi ne pas en créer une ? "
         publish_settings: "Paramètres de publication"
         posse_to_twitter: "POSSE to twitter"
-        in_reply_to: "En réponse à"
         tweet_id_like: "Identifiant du Tweet (ex: 123456)"
+        in_reply_to: "En réponse à"
         permanent_link: "Lien permanent"
-        published: "Publié"
         publish_at: "Publié le"
         cancel: "Annuler"
         or: "ou"
         publish: "Publier"
+      new:
+        published: "Publié"
       show:
         destroy_confirmation: "Confirmation de suppression"
         are_you_sure: "Êtes-vous certain de vouloir supprimer cette note ?"
@@ -217,7 +181,7 @@ fr:
     redirects:
       destroy:
         success: "La redirection a été supprimée avec succès."
-      new:
+      index_and_form:
         no_redirects: "Il n'y a pas encore de redirections, pourquoi ne pas en créer une ? "
         cancel: "Annuler"
         save: "Sauver"
@@ -252,16 +216,17 @@ fr:
         your_profile: "Votre profil"
     sidebar:
       index:
-        error: "Une erreur s'est produite. Un ou plusieurs plugins sont probablement manquants ou en erreur. Peut-être devriez-vous les supprimer ou les réinstaller"
         sidebar: "Plugins"
-        drag_some_plugins_here: "Déplacez des plugins dans cet espace afin de remplir votre sidebar"
         or: "ou"
         cancel: "Annuler"
         explain_how_its_works: "Glissez / déplacez des éléments pour changer la sidebar de votre blog. Pour supprimer un élément de votre sidebar, cliquez simplement sur 'supprimer'. Les changements sont effectués immédiatement, mais ne seront pas actifs tant que vous n'aurez pas cliqué sur le bouton 'Publier'."
         publish_changes: "Publier les modifications"
+        download_more_plugins_html: "Vous pouvez télécharger et installer des plugins pour sidebars depuis notre <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'> répertoire officiel de plugins</a>. Tout ce que vous avez à faire est de télécharger le dossier du thème dans votre dossier vendor/plugins."
+      config:
         available_items: "Éléments disponibles"
         active_sidebar_items: "Éléments utilisés"
-        download_more_plugins_html: "Vous pouvez télécharger et installer des plugins pour sidebars depuis notre <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'> répertoire officiel de plugins</a>. Tout ce que vous avez à faire est de télécharger le dossier du thème dans votre dossier vendor/plugins."
+      target:
+        drag_some_plugins_here: "Déplacez des plugins dans cet espace afin de remplir votre sidebar"
       target_sidebar:
         update: 'Mettre à jour'
     settings:
@@ -272,7 +237,6 @@ fr:
         cancel: "Annuler"
         or: "ou"
         update_settings: "Mettre les paramètres à jour"
-        ago: "il y a"
         custom_url: "Personnalisez votre domaine de raccourcisseur URL"
         custom_url_help: "Si vous avez un raccourcisseur personnalisé pour vos URL, renseignez-le ici."
         date_format: "Afficher les dates"
@@ -323,9 +287,6 @@ fr:
         enable_recaptcha: "Utiliser reCaptcha"
         remember_to_set_your_recaptcha: "N'oubliez pas de mettre votre clé d'activation dans config/initializers/recaptcha.rb"
       write:
-        how_to_setup_twitter_html: "Si vous souhaitez publier de courts statuts sur Twitter, vous devez %{twitter_settings_link} que Twitter vous a fourni après que %{twitter_registration_link}."
-        fill_the_twitter_credentials: "remplissez les informations sur l'auteur"
-        registered_your_application: "Votre application a été enregistrée"
         cancel: "Annuler"
         or: "ou"
         update_settings: "Mettre les paramètres à jour"
@@ -378,8 +339,6 @@ fr:
         pages: "Pages"
         paginated_archives: "Archives paginées"
         dated_archives: "Archives par date"
-        categories: "Categories"
-        tags: "Tags"
         author_page: "Page d'auteur"
         search_results: "Résultats de recherche"
         short_statuses_lists: "Listes des statuts courts"
@@ -428,7 +387,6 @@ fr:
         this_will_display: "Cela affichera en bas de chacun de vos articles sur le flux RSS"
         rss_description_message: "Message de description du flux RSS"
         indexing: "Indexation"
-        do_not_index_categories: "Ne pas indexer les catégories"
         do_not_index_tags: "Ne pas indexer les labels"
         robots_txt: "Robots.txt"
         dofollow: "Dofollow"
@@ -441,28 +399,14 @@ fr:
         google_webmaster_tools_validation_link: "Lien de validation des Google Webmaster Tools."
         custom_tracking_code: "Code de tracking personnalisé"
         explain: "Ici, vous pouve ajouter tout ce que vous souhaitez voir apparaître dans l'en-tête de votre blog, comme le code de suivi d'un service de statistiques."
-        explain_category_index: "Sélectionner cette option ajoutera le métalabel <code>noindex, follow</code> dans toutes les pages de chaque catégorie. Cela les enlèvera des moteurs de recherche et préviendra ainsi des problèmes de contenu dupliqué."
         explain_tag_index_html: "Sélectionner cette option ajoutera le métalabel <code>noindex, follow</code> dans toutes les pages de chaque label. Cela les enlèvera des moteurs de recherche et préviendra ainsi des problèmes de contenu dupliqué."
         explain_moderate_feedback: "Si vous activez cette option, peut-être devriez-vous également activer la modération des commentaires."
         explain_rss_description: "Vous pouvez utliser les tags suivants : %author% (nom de l'auteur), %blog_url% (URL du blog), %blog_name% (nom du blog) et %permalink_url% (lien vers l'article que vous souhaitez protéger)"
-    shared:
-      macros:
-        show_help_on_publify_macros: "Afficher l'aide sur les macros Publify"
-        name: "Nom"
-        description: "Description"
-        tag: "Label"
-      destroy:
-        destroy_confirmation: "Confirmation de suppression"
-        are_you_sure: "Êtes-vous certain de vouloir supprimer ce/cette %{element}"
-        action_or_other_html: "%{first_action} ou %{second_action}"
-        cancel: "Annuler"
-        delete: "Supprimer"
     tags:
       edit:
         success: "Le label a été mis à jour avec succès"
-      new:
+      index_and_form:
         no_tags: "Il n'y a pas encore de labels, pourquoi ne pas en créer un ? "
-        articles: "Articles"
         display_name: "Nom affiché"
         manage_tags: "Labels"
         name: "Nom"
@@ -490,7 +434,7 @@ fr:
         medium_size: "Taille moyenne"
         original_size: "Taille originale"
     post_types:
-      new:
+      index_and_form:
         cancel: "Annuler"
         save: "Sauver"
         or: "ou"
@@ -510,21 +454,16 @@ fr:
         manage_pages: "Administrer les pages"
         new_page: "Nouvelle page"
         title: "Titre"
-        permalink: "Lien permanent"
         author: "Auteur"
-        date: "Date"
       form:
         cancel: "Annuler"
-        change: "Modifier"
         publish: "Publier"
         title: "Titre"
-        images: "Images"
         publish_settings: "Paramètres de publication"
         status: "État"
         online: "En ligne"
         article_filter: "Mise en forme des billets"
         permanent_link: "Lien permanent"
-        page_with_action_name: "%{action} page"
         type_your_post: "Tapez votre texte"
         published: "publiée"
         offline: "hors ligne"
@@ -569,39 +508,32 @@ fr:
         spam: "Spam"
         presumed_ham: "Probablement valide"
         presumed_spam: "Probablement du spam"
-        search: "Chercher"
-        status: "État"
-        comment_author: "Auteur du commentaire"
-        comment: "Commentaire"
-        article: "Article"
         select_all: "Tout sélectionner"
       article:
         no_feedback: "Il n'y a pas encore de commentaires, pourquoi ne pas en créer un ? "
         comments_for_html: "Commentaire sur %{title}"
-        status: "État"
-        comment_author: "Auteur du commentaire"
-        comment: "Commentaire"
-        author: "Auteur"
         add_a_comment: "Ajouter un commentaire"
+        author: "Auteur"
         email: "Email"
         url: "Site"
         your_comment: "Votre commentaire"
         action_or_other_html: "%{first_action} ou %{second_action}"
         cancel: "Annuler"
         save: "Sauver"
+        select_all: "Tout sélectionner"
       edit:
         action_or_other_html: "%{first_action} ou %{second_action}"
         save: "Sauver"
         comments_for_html: "Commentaires sur l'article %{article_link}"
       button:
-        select_action: "Choisir de..."
         delete_checked_items: "Supprimer les commentaires sélectionnés"
         delete_all_spam: "Supprimer tout le spam"
         mark_checked_items_as_spam: "Marquer ces commentaires comme du spam"
         mark_checked_items_as_ham: "Valider ces commentaires"
-        submit: "Envoyer"
-      feedback:
-        this_comment_by_was_flagged_as_spam: "Ce commentaire de %{author} a été marqué comme spam, %{cancel_link} ?"
+      spam:
+        by: "by"
+        created_on: "on"
+        this_comment_by_was_flagged_as_spam_html: "Ce commentaire de %{author} a été marqué comme spam, %{cancel_link} ?"
         cancel: "Annuler"
     dashboard:
       publify_version:
@@ -697,11 +629,8 @@ fr:
         drafts: "Brouillons"
         publication_pending: "À publier"
         search: "Chercher"
-        title: "Titre"
-        select_a_category: "Catégorie"
         select_an_author: "Auteur"
         publication_date: "Publié le"
-        filter: "Filtrer"
       form:
         article_type: "Type d'article"
         now: "maintenant"
@@ -718,54 +647,60 @@ fr:
         public: "Public"
         publish: "Publier"
         title: "Titre"
-        images: "Images"
         publish_settings: "Paramètres de publication"
         status: "État"
         published: "Publié"
         allowed_comments_and_trackbacks_html: "Les commentaires sont %{allow_comment} et les rétroliens %{allow_trackback}"
-        change: "Modifier"
         allow_trackbacks: "Autoriser les rétroliens"
         allow_comments: "Autoriser les commentaires"
         ok: "OK"
         visibility: "Visibilité"
         password: "Mot de passe"
         permalink: "Lien permanent"
-        article_filter: "Mise en forme des billets"
         save_as_draft: "Sauver comme brouillon"
-        categories: "Catégories"
         tags: "Labels"
         tags_explaination: "Séparez les tags par des virgules. Utilisez des doubles guillemets (&quot;) autour des tags composés de plusieurs mots, e.g. &quot;bureau de poste&quot;."
         type_your_post: "Tapez votre texte"
-      categories:
-        new_category: "Nouvelle catégorie"
-    categories:
-      new:
-        cancel: "Annuler"
-        save: "Sauver"
-        or: "ou"
-        categories: "Catégories"
-        name: "Nom"
-        keywords: "Mots clés"
-        permalink: "Lien permanent"
-        explaination: "Le lien permanent de votre catégorie. Laissez le vide si vous ne savez pas quoi mettre"
-        description: "Description"
-        title: "Titre"
-    menu:
-      help: "Aide"
-      documentation: "Documentation"
-      report_a_bug: "Déclarer un bug"
-      in_page_plugins: "Plugins"
-      sidebar_plugins: "Widgets"
-      logged_in_as: "Bonjour, %{login}"
-      new_article: "Nouvel article"
-      new_page: "Nouvelle Page"
-      new_media: "Nouveau Média"
-      new_note : "Nouvelle Note"
-      profile: "Profil"
-      logout: "Déconnexion &raquo;"
-      home: "Tableau de bord"
-      dashboard: "Tableau de bord"
-      powered_by: "Tourne fièrement sous"
+    shared:
+      menu:
+        all_articles: "All articles"
+        all_pages: "All pages"
+        article_types: "Article types"
+        articles: "Articles"
+        cache: "Cache"
+        choose_theme: "Choose theme"
+        customize_sidebar: "Customize sidebar"
+        design: "Design"
+        display: "Display"
+        documentation: "Documentation"
+        feedback: Feedback
+        general_settings: "Options générales"
+        global_seo_settings: Global SEO settings
+        in_page_plugins: "Plugins"
+        logged_in_as: "Bonjour, %{login}"
+        logout_html: "Déconnexion &raquo;"
+        manage_users: Manage Users
+        media_library: "Media Library"
+        new: "Nouveau"
+        new_article: "Nouvel article"
+        new_media: "Nouveau Média"
+        new_note : "Nouvelle Note"
+        new_page: "Nouvelle Page"
+        notes: "Notes"
+        pages: "Pages"
+        permalinks: "Permalinks"
+        profile: "Profil"
+        redirects: "Redirects"
+        report_a_bug: "Déclarer un bug"
+        seo: "SEO"
+        settings: Settings
+        sidebar_plugins: "Widgets"
+      destroy:
+        are_you_sure: "Êtes-vous certain de vouloir supprimer ce/cette %{element}"
+      twitter_alert:
+        how_to_setup_twitter_html: "Si vous souhaitez publier des courts statuts sur Twitter, vous devez fournir %{twitter_settings_link} que Twitter vous a envoyé après que vous %{twitter_registration_link}."
+        fill_the_twitter_credentials: "fill in the oauth credentials"
+        registered_your_application: "Votre application a été enregistrée"
     cache:
       show:
         stats: "Il y a actuellement %{files_count} fichiers en cache pour un total de %{size} kilo octets."
@@ -777,11 +712,10 @@ fr:
         error: "Oups, un problème s'est produit et le cache n'a pas pu être vidé correctement"
     users:
       edit:
-        success: "L'utilisateur a été mis à jour avec succès."
         edit_user: "Modifier un utilisateur"
       new:
-        success: "L'utilisateur a été créé avec succès."
         add_user: "Ajouter un utilisateur"
+        success: "L'utilisateur a été créé avec succès."
       index:
         login: "Identifiant"
         users: "Utilisateurs"
@@ -793,9 +727,6 @@ fr:
         comments: "Commentaires"
         state: "État"
       form:
-        how_to_setup_twitter_html: "Si vous souhaitez publier des courts statuts sur Twitter, vous devez fournir %{twitter_settings_link} que Twitter vous a envoyé après que vous %{twitter_registration_link}."
-        fill_the_twitter_credentials: "fill in the oauth credentials"
-        registered_your_application: "Votre application a été enregistrée"
         cancel: "Annuler"
         save: "Sauver"
         or: "ou"
@@ -806,7 +737,6 @@ fr:
         password_confirmation: "Confirmation du mot de passe"
         email: "Email"
         profile: "Profil"
-        status: "Statut"
         profile_settings: "Paramètres du profil"
         firstname: "Prénom"
         lastname: "Nom de famille"
@@ -822,13 +752,11 @@ fr:
         notification_email: "par email"
         notification_article: "quand un nouvel article est posté"
         notification_comment: "quand un nouveau commentaire est posté"
-        twitter_settings: "Paramètres Twitter"
         twitter_account: "Nom d'utilisateur Twitter"
-        twitter_help: "Compte Twitter avec lequel vous souhaitez poster"
         twitter_oauth: "Jeton d'authentficition Twitter OAuth"
         twitter_oauth_secret: "Question secrète Twitter"
         contact_settings: "Paramètres de contact"
-        contact_explain: "Cette information sera affichée sur %{link}"
+        contact_explain_html: "Cette information sera affichée sur %{link}"
         author_page: "page de l'auteur"
         about: "Biographie"
         website: "Site web"
@@ -842,30 +770,12 @@ fr:
     back_to_login: "S'identifier"
     create_account: "Créer un compte"
     lost_my_password: "J'ai perdu mon mot de passe"
-    login:
-      title: "Identifiant"
-      login: "Identifiant"
-      password: "Mot de passe"
-      sign_in: "S'identifier"
-      remember_me: "Rester connecté"
-      success: "Connexion réussie"
-      error: "Échec de la connexion"
     confirm:
       proceed_to: "Allez sur %{link}"
       admin: "l'administration"
-    recover_password:
-      title: "Récupération d'un mot de passe perdu"
-      username_or_email: "Identifiant ou email"
-      reset_my_password: "Me renvoyer un mot de passe"
-      notice: "Un courrier vous a été envoyé avec votre nouveau mot de passe"
-      error: "Désolé, une erreur vient de se produire"
-    logout:
-      notice: "Vous êtes maintenant déconnecté"
-    signup:
-      title: "s'identifier"
-      username: "Identifiant"
-      email: "Email"
-      signup: "S'inscrire"
+      login: "Identifiant"
+      password: "Mot de passe"
+      dont_lose_the_mail_sent: "Ne perdez pas l'email que nous venons de vous envoyer à l'adresse %{email} ou vous ne pourrez plus vous connecter à l'application"
   langs:
     da_DK: "Danois"
     de_DE: "Allemand"
