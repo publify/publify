@@ -107,10 +107,10 @@ zh-TW:
   notice:
     note_successfully_created: "Note was successfully created"
   errors:
-    problem_sending_to_twitter: "Oooops something wrong happened"
+    problem_sending_to_twitter: "Oooops something went wrong!"
     article_type_already_exist: "This article type already exists"
     permalink_need_a_title: "You need a permalink format with an identifier : %%title%%"
-    cant_end_with_rss_or_atom: "Can't end in .rss or .atom. These are reserved to be used for feed URLs"
+    cant_end_with_rss_or_atom: "Can't end in .rss or .atom. These are reserved for feed URLs"
     render_sidebar: "It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually"
     no_posts_found: "No posts found..."
     no_notes_found: "No notes found..."
@@ -119,6 +119,7 @@ zh-TW:
   layouts:
     default:
       statuses: "Statuses"
+      archives: Archives
       powered_by_html: "Powered by %{powered_by}"
       designed_by: "Designed by %{designed_by}"
   authors:
@@ -311,7 +312,9 @@ zh-TW:
         cancel: "取消"
         or: "or"
         update_settings: "Update settings"
+        global_settings: "Global settings"
         title_settings: "Title settings"
+        permalinks: "Permalinks"
       titles:
         home: "Home"
         title_template: "Title template"
@@ -654,7 +657,7 @@ zh-TW:
         in_page_plugins: In page plugins
         logged_in_as: "Logged in as %{login}"
         logout_html: "登出 &raquo;"
-        manage_users: Manage Tags
+        manage_users: Manage Users
         media_library: Media Library
         new: New
         new_article: New Article
@@ -747,6 +750,9 @@ zh-TW:
     confirm:
       proceed_to: "Proceed to %{link}"
       admin: "admin"
+      login: "Login: %{login}"
+      password: "Password: %{password}"
+      dont_lose_the_mail_sent: "Don't lose the mail sent at %{email} or you won't be able to login anymore"
   langs:
     da_DK: "Danish"
     de_DE: "German"
