@@ -5,6 +5,7 @@ he-IL:
     back_to_login: Back to login
     confirm:
       admin: admin
+      dont_lose_the_mail_sent: Don't lose the mail sent at %{email} or you won't be able to login anymore
       login: התחבר
       password: סיסמה
       proceed_to: Proceed to %{link}
@@ -62,6 +63,7 @@ he-IL:
         password: Password
         permalink: קישור קבוע
         preview: Preview
+        protected: Protected
         public: Public
         publish: פרסם
         publish_settings: Publish settings
@@ -171,6 +173,7 @@ he-IL:
         email: דואל
         no_feedback: There is no feedback yet. Why don't you create some?
         save: שמור
+        select_all: Select all
         url: כתובת
         your_comment: Your comment
       bulkops:
@@ -198,8 +201,17 @@ he-IL:
         success: נמחקה
       edit:
         action_or_other_html: "%{first_action} או %{second_action}"
+        author: Author
+        cancel: Cancel
         comments_for_html: תגובות עבור %s
+        edit_a_comment: Edit a comment
+        email: Email
         save: שמור
+        url: Url
+        your_comment: Your comment
+      ham:
+        by: by
+        created_on: 'on'
       index:
         all: All
         feedback: משוב
@@ -275,6 +287,7 @@ he-IL:
         publish: פרסם
         publish_settings: Publish settings
         published: published
+        save: Save
         status: מצב
         title: כותרת
         type_your_post: Type your post
@@ -322,6 +335,7 @@ he-IL:
         are_you_sure: 'האם אתה בטוח? '
         content_type: סוג התוכן
         date: תאריך
+        delete: Delete
         file_size: גודל הקובץ
         filename: שם הקובץ
         media_library: Media Library
@@ -512,6 +526,15 @@ he-IL:
       destroy:
         are_you_sure: האם אתה בטוח שברצונך למחוק את %{element} הזו?
       menu:
+        all_articles: All articles
+        all_pages: All pages
+        article_types: Article types
+        articles: Articles
+        cache: Cache
+        choose_theme: Choose theme
+        customize_sidebar: Customize sidebar
+        design: Design
+        display: Display
         documentation: Documentation
         feedback: Feedback
         general_settings: הגדרות כלליות
@@ -519,6 +542,9 @@ he-IL:
         in_page_plugins: In page plugins
         logged_in_as: Logged in as %{login}
         logout_html: Log out &raquo;
+        manage_users: Manage Users
+        media_library: Media Library
+        new: New
         new_article: New Article
         new_media: New Media
         new_note: New Note
@@ -527,14 +553,23 @@ he-IL:
         pages: Pages
         permalinks: Permalinks
         profile: דיוקן
+        redirects: Redirects
         report_a_bug: Report a bug
         seo: SEO
         settings: Settings
         sidebar_plugins: Sidebar plugins
+        tags: Tags
+        titles: Titles
+        write: Write
+      twitter_alert:
+        fill_the_twitter_credentials: fill in the OAuth credentials
+        how_to_setup_twitter_html: If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}.
+        registered_your_application: registered your application
     sidebar:
       config:
         active_sidebar_items: הפעל פריטי תיבת צד
         available_items: פריטים זמינים
+        you_have_no_plugins_installed: You have no plugins installed
       index:
         cancel: בטל
         download_more_plugins_html: You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory.
@@ -625,16 +660,25 @@ he-IL:
       posted_in: פורסם ב-
     article:
       posted_by: נכתב על ידי
+    article_excerpt:
+      continue_reading: Continue reading
     article_links:
       comments:
         one: 1 comment
         other: "%{count} comments"
         zero: ללא תגובות
+      tags: Tags
+      trackbacks:
+        one: 1 trackback
+        other: "%{count} trackbacks"
+        zero: no trackbacks
     comment_counter:
       comments:
         one: 1 comment
         other: "%{count} comments"
         zero: ללא תגובות
+    comment_errors:
+      message: Oops, something wrong happened, the comment could not be saved.
     comment_form:
       comment: תגובה
       comment_markup_help: עזרה על שפת הטקסט
@@ -662,6 +706,7 @@ he-IL:
       if_you_liked_this_article_you_can_html: If you liked this article you can %{add_twitter}
       leave_a_response: הגב
       rss_feed: מזין RSS לכתבה זו
+      trackback_uri: Trackback URI
       trackbacks: Trackbacks
       trackbacks_are_disabled: Trackbacks are disabled
       trackbacks_for: Trackbacks for
@@ -669,6 +714,9 @@ he-IL:
     search:
       next_page: Next page
       previous_page: Previous page
+      search_results_for: Search results for '%{query}'
+    trackback:
+      from: From
   authors:
     show:
       aim: 'AIM:'
@@ -721,9 +769,13 @@ he-IL:
     cant_end_with_rss_or_atom: Can't end in .rss or .atom. These are reserved to be used for feed URLs
     no_notes_found: No notes found...
     no_posts_found: No posts found...
+    page_not_found: Page not found
     permalink_need_a_title: 'You need a permalink format with an identifier : %%title%%'
     problem_sending_to_twitter: Oooops something wrong happened
     render_sidebar: It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually
+    the_page_you_are_looking_for: The page you are looking for has moved or does not exist.
+  generic:
+    change: Change
   helper:
     at: at
   langs:
@@ -768,6 +820,11 @@ he-IL:
   page_sidebar:
     content:
       pages: Pages
+  pagination:
+    next: Next
+    next_page: Next page
+    previous: Previous
+    previous_page: Previous page
   profile:
     admin: מנהל
     contributor: תורם
@@ -784,6 +841,9 @@ he-IL:
     page:
       about: אודות
       body: This is an example of a Publify page. You can edit this to write information about yourself or your site so readers know who you are. You can create as many pages as this one as you like and manage all of your content inside Publify.
+  shared:
+    search:
+      live_search: Live search
   tags:
     index:
       next_page: Next page

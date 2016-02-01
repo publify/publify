@@ -5,6 +5,7 @@ lt:
     back_to_login: Back to login
     confirm:
       admin: admin
+      dont_lose_the_mail_sent: Don't lose the mail sent at %{email} or you won't be able to login anymore
       login: Prisijungimas
       password: slaptažodis
       proceed_to: Proceed to %{link}
@@ -62,6 +63,7 @@ lt:
         password: slaptažodis
         permalink: Nuoroda
         preview: Preview
+        protected: Protected
         public: Public
         publish: Publikuoti
         publish_settings: Publish settings
@@ -171,6 +173,7 @@ lt:
         email: El. pašto adresas
         no_feedback: There is no feedback yet. Why don't you create some?
         save: Saugoti
+        select_all: Select all
         url: Url adresas
         your_comment: Your comment
       bulkops:
@@ -198,8 +201,17 @@ lt:
         success: Deleted
       edit:
         action_or_other_html: "%{first_action} arba %{second_action}"
+        author: Author
+        cancel: Cancel
         comments_for_html: Comments for %{article_link}
+        edit_a_comment: Edit a comment
+        email: Email
         save: Saugoti
+        url: Url
+        your_comment: Your comment
+      ham:
+        by: by
+        created_on: 'on'
       index:
         all: All
         feedback: Atsiliepimas
@@ -275,6 +287,7 @@ lt:
         publish: Publikuoti
         publish_settings: Publish settings
         published: published
+        save: Save
         status: Statusas
         title: Pavadinimas
         type_your_post: Type your post
@@ -322,6 +335,7 @@ lt:
         are_you_sure: Are you sure?
         content_type: Content Type
         date: Date
+        delete: Delete
         file_size: Dateigröße
         filename: Dateiname
         media_library: Media Library
@@ -544,10 +558,18 @@ lt:
         seo: SEO
         settings: Settings
         sidebar_plugins: Sidebar plugins
+        tags: Tags
+        titles: Titles
+        write: Write
+      twitter_alert:
+        fill_the_twitter_credentials: fill in the OAuth credentials
+        how_to_setup_twitter_html: If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}.
+        registered_your_application: registered your application
     sidebar:
       config:
         active_sidebar_items: Aktive Einträge der Seitenleiste
         available_items: Verfügbare Einträge
+        you_have_no_plugins_installed: You have no plugins installed
       index:
         cancel: Baigti
         download_more_plugins_html: You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory.
@@ -638,16 +660,25 @@ lt:
       posted_in: Posted in
     article:
       posted_by: Parašė
+    article_excerpt:
+      continue_reading: Continue reading
     article_links:
       comments:
         one: 1 Komentaras
         other: "%{count} Komentarai"
         zero: no comments
+      tags: Tags
+      trackbacks:
+        one: 1 trackback
+        other: "%{count} trackbacks"
+        zero: no trackbacks
     comment_counter:
       comments:
         one: 1 Komentaras
         other: "%{count} Komentarai"
         zero: no comments
+    comment_errors:
+      message: Oops, something wrong happened, the comment could not be saved.
     comment_form:
       comment: comment
       comment_markup_help: Komentaro sintaksės žymėjimo pagalba
@@ -675,6 +706,7 @@ lt:
       if_you_liked_this_article_you_can_html: If you liked this article you can %{add_twitter}
       leave_a_response: Palikti atsakymą
       rss_feed: šio įrašo RSS
+      trackback_uri: Trackback URI
       trackbacks: Trackbacks
       trackbacks_are_disabled: Trackbacks are disabled
       trackbacks_for: Trackbacks for
@@ -682,6 +714,9 @@ lt:
     search:
       next_page: Next page
       previous_page: Previous page
+      search_results_for: Search results for '%{query}'
+    trackback:
+      from: From
   authors:
     show:
       aim: 'AIM:'
@@ -734,9 +769,13 @@ lt:
     cant_end_with_rss_or_atom: Can't end in .rss or .atom. These are reserved to be used for feed URLs
     no_notes_found: No notes found...
     no_posts_found: No posts found...
+    page_not_found: Page not found
     permalink_need_a_title: 'You need a permalink format with an identifier : %%title%%'
     problem_sending_to_twitter: Oooops something wrong happened
     render_sidebar: It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually
+    the_page_you_are_looking_for: The page you are looking for has moved or does not exist.
+  generic:
+    change: Change
   helper:
     at: at
   langs:
@@ -761,6 +800,7 @@ lt:
     administration:
       powered_by: is proudly powered by
     default:
+      archives: Archives
       designed_by: Designed by %{designed_by}
       powered_by_html: Powered by %{powered_by}
       statuses: Statuses
@@ -780,6 +820,11 @@ lt:
   page_sidebar:
     content:
       pages: Pages
+  pagination:
+    next: Next
+    next_page: Next page
+    previous: Previous
+    previous_page: Previous page
   profile:
     admin: Publify administrator
     contributor: Contributor
@@ -796,6 +841,9 @@ lt:
     page:
       about: About
       body: This is an example of a Publify page. You can edit this to write information about yourself or your site so readers know who you are. You can create as many pages as this one as you like and manage all of your content inside Publify.
+  shared:
+    search:
+      live_search: Live search
   tags:
     index:
       next_page: Next page

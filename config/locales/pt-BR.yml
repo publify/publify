@@ -63,6 +63,7 @@ pt-BR:
         password: Senha
         permalink: Link permanente
         preview: Pré-visualizar
+        protected: Protected
         public: Público
         publish: Publicar
         publish_settings: Configurações de publicação
@@ -286,6 +287,7 @@ pt-BR:
         publish: Publicar
         publish_settings: Configurações de publicação
         published: publicado
+        save: Save
         status: Estado
         title: Título
         type_your_post: Digite seu post
@@ -333,6 +335,7 @@ pt-BR:
         are_you_sure: Você tem certeza?
         content_type: Tipo de conteúdo
         date: Data
+        delete: Delete
         file_size: Tamanho do arquivo
         filename: Nome do arquivo
         media_library: Biblioteca
@@ -496,6 +499,7 @@ pt-BR:
         users: Usuários
         your_blog: Seu blog
       update:
+        error: 'Error: %{messages}'
         success: Configuração atualizada.
       write:
         avatar_size: Tamanho do avatar
@@ -565,6 +569,7 @@ pt-BR:
       config:
         active_sidebar_items: Itens ativos na barra lateral (sidebar)
         available_items: Itens disponíveis
+        you_have_no_plugins_installed: You have no plugins installed
       index:
         cancel: Cancelar
         download_more_plugins_html: Você pode baixar e instalar plugins para a barra lateral (sidebar) a partir do nosso <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>repositório oficial</a>. Tudo o que você precisa fazer é enviar o diretório do tema para o diretório vendor/plugins.
@@ -574,6 +579,8 @@ pt-BR:
         sidebar: Barra Lateral (Sidebar)
       target:
         drag_some_plugins_here: Arraste alguns plugins aqui exibir na sua barra lateral (sidebar)
+      target_sidebar:
+        update: Update
     tags:
       edit:
         success: Tag atualizada com sucesso
@@ -653,16 +660,25 @@ pt-BR:
       posted_in: Postado em
     article:
       posted_by: Publicado por
+    article_excerpt:
+      continue_reading: Continue reading
     article_links:
       comments:
         one: 1 comentário
         other: "%{count} comentários"
         zero: sem comentários
+      tags: Tags
+      trackbacks:
+        one: 1 trackback
+        other: "%{count} trackbacks"
+        zero: no trackbacks
     comment_counter:
       comments:
         one: 1 comentário
         other: "%{count} comentários"
         zero: sem comentários
+    comment_errors:
+      message: Oops, something wrong happened, the comment could not be saved.
     comment_form:
       comment: Comentário
       comment_markup_help: Ajuda de marcação
@@ -690,6 +706,7 @@ pt-BR:
       if_you_liked_this_article_you_can_html: Se você gostou deste artigo, você pode %{add_twitter}
       leave_a_response: Deixar um comentário
       rss_feed: Feed RSS para este artigo
+      trackback_uri: Trackback URI
       trackbacks: Trackbacks
       trackbacks_are_disabled: Trackbacks foram desabilitados
       trackbacks_for: Trackbacks para
@@ -697,6 +714,9 @@ pt-BR:
     search:
       next_page: Pr&oacute;xima
       previous_page: Anterior
+      search_results_for: Search results for '%{query}'
+    trackback:
+      from: From
   authors:
     show:
       aim: 'AIM:'
@@ -821,6 +841,9 @@ pt-BR:
     page:
       about: Sobre
       body: Este é um exemplo de uma página do Publify. Você pode editar esta página e escrever informações sobre você ou seu site para que seus leitores saibam quem você é. Você pode criar mais páginas iguais a essa e gerenciar todo o seu conteúdo de dentro do Publify.
+  shared:
+    search:
+      live_search: Live search
   tags:
     index:
       next_page: Próxima
@@ -831,6 +854,7 @@ pt-BR:
       default: "%d/%m/%Y %H:%M"
       letters_month_with_year: "%m %Y"
       short: "%d/%m/%y"
+      with_spaces: "%d %B %y"
   user:
     status:
       active: Ativo

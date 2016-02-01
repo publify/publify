@@ -63,6 +63,7 @@ fr:
         password: Mot de passe
         permalink: Lien permanent
         preview: Prévisualiser
+        protected: Protected
         public: Public
         publish: Publier
         publish_settings: Paramètres de publication
@@ -200,8 +201,17 @@ fr:
         success: Supprimé
       edit:
         action_or_other_html: "%{first_action} ou %{second_action}"
+        author: Author
+        cancel: Cancel
         comments_for_html: Commentaires sur l'article %{article_link}
+        edit_a_comment: Edit a comment
+        email: Email
         save: Sauver
+        url: Url
+        your_comment: Your comment
+      ham:
+        by: by
+        created_on: 'on'
       index:
         all: Tous
         feedback: Commentaires
@@ -277,6 +287,7 @@ fr:
         publish: Publier
         publish_settings: Paramètres de publication
         published: publiée
+        save: Save
         status: État
         title: Titre
         type_your_post: Tapez votre texte
@@ -324,6 +335,7 @@ fr:
         are_you_sure: Êtes-vous sûr ?
         content_type: Type de contenu
         date: Date
+        delete: Delete
         file_size: Taille du fichier
         filename: Fichier
         media_library: Bibliothèque de médias
@@ -546,6 +558,9 @@ fr:
         seo: SEO
         settings: Settings
         sidebar_plugins: Widgets
+        tags: Tags
+        titles: Titles
+        write: Write
       twitter_alert:
         fill_the_twitter_credentials: fill in the oauth credentials
         how_to_setup_twitter_html: Si vous souhaitez publier des courts statuts sur Twitter, vous devez fournir %{twitter_settings_link} que Twitter vous a envoyé après que vous %{twitter_registration_link}.
@@ -554,6 +569,7 @@ fr:
       config:
         active_sidebar_items: Éléments utilisés
         available_items: Éléments disponibles
+        you_have_no_plugins_installed: You have no plugins installed
       index:
         cancel: Annuler
         download_more_plugins_html: Vous pouvez télécharger et installer des plugins pour sidebars depuis notre <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'> répertoire officiel de plugins</a>. Tout ce que vous avez à faire est de télécharger le dossier du thème dans votre dossier vendor/plugins.
@@ -644,16 +660,25 @@ fr:
       posted_in: Publié sous
     article:
       posted_by: Publié par
+    article_excerpt:
+      continue_reading: Continue reading
     article_links:
       comments:
         one: 1 commentaire
         other: "%{count} commentaires"
         zero: aucun commentaire
+      tags: Tags
+      trackbacks:
+        one: 1 trackback
+        other: "%{count} trackbacks"
+        zero: no trackbacks
     comment_counter:
       comments:
         one: 1 commentaire
         other: "%{count} commentaires"
         zero: aucun commentaire
+    comment_errors:
+      message: Oops, something wrong happened, the comment could not be saved.
     comment_form:
       comment: commentaire
       comment_markup_help: Aide sur le balisage des commentaires
@@ -681,6 +706,7 @@ fr:
       if_you_liked_this_article_you_can_html: Si vous avez aimé cet article, vous pouvez %{add_twitter}
       leave_a_response: Réagir à ce billet
       rss_feed: Flux RSS
+      trackback_uri: Trackback URI
       trackbacks: Rétroliens
       trackbacks_are_disabled: Les rétroliens sont désactivés
       trackbacks_for: Rétroliens pour
@@ -688,6 +714,9 @@ fr:
     search:
       next_page: Page suivante
       previous_page: Page précédente
+      search_results_for: Search results for '%{query}'
+    trackback:
+      from: From
   authors:
     show:
       aim: 'AIM :'
@@ -794,6 +823,7 @@ fr:
   pagination:
     next: Suivant
     next_page: Page suivante
+    previous: Previous
     previous_page: Page précédente
   profile:
     admin: Administrateur
@@ -811,6 +841,9 @@ fr:
     page:
       about: À propos de
       body: Ceci est un exemple de page Publify. Vous pouvez la modifier pour écrire des informations sur vous ou sur votre blog, afin que vos lecteurs sachent qui vous êtes. Vous pouvez créer autant de pages que vous voulez et gérer tout votre contenu dans Publify.
+  shared:
+    search:
+      live_search: Live search
   tags:
     index:
       next_page: Page suivante

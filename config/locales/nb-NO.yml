@@ -63,6 +63,7 @@ nb-NO:
         password: Passord
         permalink: permalenke
         preview: Forhåndsvisning
+        protected: Protected
         public: Offentlig
         publish: Publiser
         publish_settings: Publiseringsinnstillinger
@@ -208,6 +209,9 @@ nb-NO:
         save: Lagre
         url: URL
         your_comment: Din kommentar
+      ham:
+        by: by
+        created_on: 'on'
       index:
         all: Alle
         feedback: Diskusjon
@@ -283,6 +287,7 @@ nb-NO:
         publish: Publiser
         publish_settings: Publiseringsinnstillinger
         published: publisert
+        save: Save
         status: Status
         title: Tittel
         type_your_post: Skriv teksten din
@@ -330,6 +335,7 @@ nb-NO:
         are_you_sure: Er du sikker?
         content_type: Innholdstype (MIME Content Type)
         date: Dato
+        delete: Delete
         file_size: Filstørrelse
         filename: Filnavn
         media_library: Media-bibliotek
@@ -563,6 +569,7 @@ nb-NO:
       config:
         active_sidebar_items: Aktive sidemarg-plugins
         available_items: Tilgjengelige plugins
+        you_have_no_plugins_installed: You have no plugins installed
       index:
         cancel: Avbryt
         download_more_plugins_html: Du kan laste ned og installere sidemarg-plugins fra vår offisielle <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin-samling</a>. Alt du trenger å gjøre er å plassere theme-mappen i din vendor/plugins-mappe.
@@ -653,16 +660,25 @@ nb-NO:
       posted_in: Publisert i
     article:
       posted_by: Skrevet av
+    article_excerpt:
+      continue_reading: Continue reading
     article_links:
       comments:
         one: 1 kommentar
         other: "%{count} kommentarer"
         zero: ingen kommentarer
+      tags: Tags
+      trackbacks:
+        one: 1 trackback
+        other: "%{count} trackbacks"
+        zero: no trackbacks
     comment_counter:
       comments:
         one: 1 kommentar
         other: "%{count} kommentarer"
         zero: ingen kommentarer
+    comment_errors:
+      message: Oops, something wrong happened, the comment could not be saved.
     comment_form:
       comment: kommentar
       comment_markup_help: Hjelp med markup for kommentar
@@ -690,6 +706,7 @@ nb-NO:
       if_you_liked_this_article_you_can_html: Hvis du likte denne artikkelen, kan du %{add_twitter}
       leave_a_response: Skriv en kommentar
       rss_feed: RSS-feed for denne artikkel
+      trackback_uri: Trackback URI
       trackbacks: Trackbacks
       trackbacks_are_disabled: Trackbacks er slått av
       trackbacks_for: Trackbacks for
@@ -697,6 +714,9 @@ nb-NO:
     search:
       next_page: Neste side
       previous_page: Forrige side
+      search_results_for: Search results for '%{query}'
+    trackback:
+      from: From
   authors:
     show:
       aim: 'AIM:'
@@ -821,6 +841,9 @@ nb-NO:
     page:
       about: Om
       body: Dette er et eksempel på en Publify-side. Du kan redigere den med informasjon om deg selv eller bloggen din, slik at leserne vet hvem du er. Du kan lage så mange du vil av slike sider, og håndtere alt innholdet med Publify.
+  shared:
+    search:
+      live_search: Live search
   tags:
     index:
       next_page: Neste side

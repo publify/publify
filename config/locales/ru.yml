@@ -63,6 +63,7 @@ ru:
         password: Пароль
         permalink: Постоянная ссылка
         preview: Preview
+        protected: Protected
         public: Public
         publish: Опубликовать
         publish_settings: Настройки публикации
@@ -286,6 +287,7 @@ ru:
         publish: Опубликовать
         publish_settings: Настройки публикации
         published: published
+        save: Save
         status: Статус
         title: Заголовок
         type_your_post: Type your post
@@ -333,6 +335,7 @@ ru:
         are_you_sure: Вы уверены?
         content_type: Content Type
         date: Дата
+        delete: Delete
         file_size: Размер Файла
         filename: Имя Файла
         media_library: Media Library
@@ -566,6 +569,7 @@ ru:
       config:
         active_sidebar_items: Active Sidebar items
         available_items: Available Items
+        you_have_no_plugins_installed: You have no plugins installed
       index:
         cancel: Отменить
         download_more_plugins_html: You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory.
@@ -656,16 +660,25 @@ ru:
       posted_in: Posted in
     article:
       posted_by: Posted by
+    article_excerpt:
+      continue_reading: Continue reading
     article_links:
       comments:
         one: 1 comment
         other: "%{count} comments"
         zero: Нет комментариев
+      tags: Tags
+      trackbacks:
+        one: 1 trackback
+        other: "%{count} trackbacks"
+        zero: no trackbacks
     comment_counter:
       comments:
         one: 1 comment
         other: "%{count} comments"
         zero: Нет комментариев
+    comment_errors:
+      message: Oops, something wrong happened, the comment could not be saved.
     comment_form:
       comment: Отправить комментарий
       comment_markup_help: Помощь по разметке
@@ -693,6 +706,7 @@ ru:
       if_you_liked_this_article_you_can_html: If you liked this article you can %{add_twitter}
       leave_a_response: Оставить отзыв
       rss_feed: RSS feed
+      trackback_uri: Trackback URI
       trackbacks: Trackbacks
       trackbacks_are_disabled: Trackbacks are disabled
       trackbacks_for: Trackbacks for
@@ -700,6 +714,9 @@ ru:
     search:
       next_page: Следующая страница
       previous_page: Предыдущая страница
+      search_results_for: Search results for '%{query}'
+    trackback:
+      from: From
   authors:
     show:
       aim: 'AIM:'
@@ -824,6 +841,9 @@ ru:
     page:
       about: About
       body: This is an example of a Publify page. You can edit this to write information about yourself or your site so readers know who you are. You can create as many pages as this one as you like and manage all of your content inside Publify.
+  shared:
+    search:
+      live_search: Live search
   tags:
     index:
       next_page: Следующая страница

@@ -5,6 +5,9 @@ ro:
     back_to_login: Back to login
     confirm:
       admin: admin
+      dont_lose_the_mail_sent: Don't lose the mail sent at %{email} or you won't be able to login anymore
+      login: 'Login: %{login}'
+      password: 'Password: %{password}'
       proceed_to: Proceed to %{link}
     create_account: Create an account
     lost_my_password: I've lost my password
@@ -60,6 +63,7 @@ ro:
         password: Parola
         permalink: Legătură permanentă
         preview: Preview
+        protected: Protected
         public: Public
         publish: Publică
         publish_settings: Publish settings
@@ -169,6 +173,7 @@ ro:
         email: Email
         no_feedback: There is no feedback yet. Why don't you create some?
         save: Salvează
+        select_all: Select all
         url: Adresa
         your_comment: Your comment
       bulkops:
@@ -196,8 +201,14 @@ ro:
         success: Deleted
       edit:
         action_or_other_html: "%{first_action} sau %{second_action}"
+        author: Author
+        cancel: Cancel
         comments_for_html: Comments for %{article_link}
+        edit_a_comment: Edit a comment
+        email: Email
         save: Salvează
+        url: Url
+        your_comment: Your comment
       ham:
         by: by
         created_on: 'on'
@@ -256,6 +267,8 @@ ro:
         tweet_id_like: Tweet id like 123456
       header:
         notes: Notes
+      new:
+        published: published
       show:
         action_or_other_html: "%{first_action} sau %{second_action}"
         are_you_sure: Are you sure you want to delete this note
@@ -274,6 +287,7 @@ ro:
         publish: Publică
         publish_settings: Publish settings
         published: publicat
+        save: Save
         status: Status
         title: Titlu
         type_your_post: Type your post
@@ -321,6 +335,7 @@ ro:
         are_you_sure: Are you sure?
         content_type: Tip de conținut (content type)
         date: Date
+        delete: Delete
         file_size: Dimensiunea fișierului
         filename: Nume de fișier
         media_library: Media Library
@@ -554,6 +569,7 @@ ro:
       config:
         active_sidebar_items: Obiecte utilizate
         available_items: Obiecte disponibile
+        you_have_no_plugins_installed: You have no plugins installed
       index:
         cancel: Anulare
         download_more_plugins_html: You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory.
@@ -644,16 +660,25 @@ ro:
       posted_in: Posted in
     article:
       posted_by: Publicat de
+    article_excerpt:
+      continue_reading: Continue reading
     article_links:
       comments:
         one: 1 comentariu
         other: "%{count} comentarii"
         zero: no comentarii
+      tags: Tags
+      trackbacks:
+        one: 1 trackback
+        other: "%{count} trackbacks"
+        zero: no trackbacks
     comment_counter:
       comments:
         one: 1 comentariu
         other: "%{count} comentarii"
         zero: no comentarii
+    comment_errors:
+      message: Oops, something wrong happened, the comment could not be saved.
     comment_form:
       comment: comment
       comment_markup_help: Ajutor la marcare
@@ -681,6 +706,7 @@ ro:
       if_you_liked_this_article_you_can_html: If you liked this article you can %{add_twitter}
       leave_a_response: Comentează
       rss_feed: Flux RSS pentru acest articol
+      trackback_uri: Trackback URI
       trackbacks: Trackbacks
       trackbacks_are_disabled: Trackbacks are disabled
       trackbacks_for: Trackbacks for
@@ -688,6 +714,9 @@ ro:
     search:
       next_page: Next page
       previous_page: Previous page
+      search_results_for: Search results for '%{query}'
+    trackback:
+      from: From
   authors:
     show:
       aim: 'AIM:'
@@ -740,9 +769,13 @@ ro:
     cant_end_with_rss_or_atom: Can't end in .rss or .atom. These are reserved to be used for feed URLs
     no_notes_found: No notes found...
     no_posts_found: No posts found...
+    page_not_found: Page not found
     permalink_need_a_title: 'You need a permalink format with an identifier : %%title%%'
     problem_sending_to_twitter: Oooops something went wrong!
     render_sidebar: It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually
+    the_page_you_are_looking_for: The page you are looking for has moved or does not exist.
+  generic:
+    change: Change
   helper:
     at: at
   langs:
@@ -763,6 +796,14 @@ ro:
     ru_RU: Russian
     zh_CN: Simple Chinese
     zh_TW: Chinese
+  layouts:
+    administration:
+      powered_by: is proudly powered by
+    default:
+      archives: Archives
+      designed_by: Designed by %{designed_by}
+      powered_by_html: Powered by %{powered_by}
+      statuses: Statuses
   meta_sidebar:
     content:
       admin: Admin
@@ -779,6 +820,11 @@ ro:
   page_sidebar:
     content:
       pages: Pages
+  pagination:
+    next: Next
+    next_page: Next page
+    previous: Previous
+    previous_page: Previous page
   profile:
     admin: Publify administrator
     contributor: Contributor
@@ -795,6 +841,9 @@ ro:
     page:
       about: About
       body: This is an example of a Publify page. You can edit this to write information about yourself or your site so readers know who you are. You can create as many pages as this one as you like and manage all of your content inside Publify.
+  shared:
+    search:
+      live_search: Live search
   tags:
     index:
       next_page: Next page
