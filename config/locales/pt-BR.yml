@@ -267,8 +267,6 @@ pt-BR:
         tweet_id_like: Tweet ID como 123456
       header:
         notes: Notas
-      new:
-        published: Publicado
       show:
         action_or_other_html: "%{first_action} ou %{second_action}"
         are_you_sure: Você tem certeza que deseja remover esta nota

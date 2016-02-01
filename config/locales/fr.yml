@@ -267,8 +267,6 @@ fr:
         tweet_id_like: 'Identifiant du Tweet (ex: 123456)'
       header:
         notes: Notes
-      new:
-        published: Publié
       show:
         action_or_other_html: "%{first_action} ou %{second_action}"
         are_you_sure: Êtes-vous certain de vouloir supprimer cette note ?

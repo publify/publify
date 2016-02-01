@@ -267,8 +267,6 @@ nb-NO:
         tweet_id_like: Tweet-id av typen 123456
       header:
         notes: Notater
-      new:
-        published: publisert
       show:
         action_or_other_html: "%{first_action} eller %{second_action}"
         are_you_sure: Er du sikker på at du vil slette dette notatet?
