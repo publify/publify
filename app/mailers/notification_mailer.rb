@@ -16,10 +16,11 @@ class NotificationMailer < ActionMailer::Base
     build_mail @blog, @user, "New comment on #{comment.article.title}"
   end
 
-  def notif_user(user)
+  def notif_user(user, password)
     @user = user
     # TODO: Make user blog-dependent
     @blog = Blog.first
+    @password = password
     build_mail @blog, @user, 'Welcome to Publify'
   end
 

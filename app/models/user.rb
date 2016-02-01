@@ -133,6 +133,10 @@ class User < ActiveRecord::Base
     self.password = newpass
   end
 
+  def notify_welcome(password)
+    EmailNotify.send_user_create_notification(self, password)
+  end
+
   def has_twitter_configured?
     twitter_oauth_token.present? && twitter_oauth_token_secret.present?
   end
