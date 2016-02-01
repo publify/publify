@@ -5,9 +5,23 @@
 
 ### Breaking/large changes
 
+* Make Publify multiblog-ready (mvz)
+* Replace custom Publify authentication system with Devise (mvz)
+* Replace custom Publify authorization system with CanCanCan (mvz)
+
 ### Other changes
 
-* Replace custom Publify authentication system with Devise (mvz)
+* Update Akismet API calls (drakontia)
+* Remove old Rails patches (mvz)
+* Update dependency on Rails to 4.2.5 (mvz)
+* Fix issues with missing translations and HTML escaping errors
+* Clean up helpers and partials (mvz)
+* Add specs to check for double HTML escaping and fix errors (mvz)
+* Load JavaScript asynchronously (mvz)
+* Remove own copies of jQuery files (mvz)
+* Fixed rake db:seed error (sachiotomita)
+* Add check for translation keys and fix errors (mvz)
+* Introduce RuboCop to automatically check style errors (mvz)
 
 ## 8.2.0
 
