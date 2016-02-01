@@ -1,15 +1,4 @@
 en:
-  meta_sidebar:
-    content:
-      rss_feed: "RSS Feed"
-      admin: "Admin"
-      powered_by_publify: "Powered by Publify"
-  search_sidebar:
-    content:
-      search: "Search"
-  page_sidebar:
-    content:
-      pages: "Pages"
   activerecord:
     errors:
       template:
@@ -38,6 +27,9 @@ en:
     page:
       about: "About"
       body: "This is an example of a Publify page. You can edit this to write information about yourself or your site so readers know who you are. You can create as many pages as you like and manage all of your content inside Publify."
+  shared:
+    search:
+      live_search: "Live search"
   comments:
     comment:
       by: "by"
@@ -102,6 +94,7 @@ en:
         zero: "no comments"
         one: "1 comment"
         other: "%{count} comments"
+      tags: "Tags"
       trackbacks:
         zero: "no trackbacks"
         one: "1 trackback"
@@ -238,6 +231,7 @@ en:
       config:
         available_items: "Available Items"
         active_sidebar_items: "Active Sidebar items"
+        you_have_no_plugins_installed: "You have no plugins installed"
       target:
         drag_some_plugins_here: "Drag some plugins here to fill your sidebar"
       target_sidebar:
@@ -668,6 +662,7 @@ en:
         allow_pings_status:
           zero: "disabled"
           one: "enabled"
+        protected: "Protected"
         public: "Public"
         publish: "Publish"
         title: "Title"
