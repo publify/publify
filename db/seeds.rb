@@ -6,32 +6,43 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Daley', city: cities.first)
 
-blog = Blog.create
+blog = Blog.first || Blog.create!
 
-tag = Tag.create(name: 'general', display_name: 'General')
+tag = blog.tags.first || Tag.create!(name: 'general', display_name: 'General', blog_id: blog.id)
 
-PageSidebar.create(active_position: 0, staged_position: 0, blog_id: blog.id)
-TagSidebar.create(active_position: 1, blog_id: blog.id)
-ArchivesSidebar.create(active_position: 2, blog_id: blog.id)
-StaticSidebar.create(active_position: 3, blog_id: blog.id)
-MetaSidebar.create(active_position: 4, blog_id: blog.id)
+unless blog.sidebars.any?
+  PageSidebar.create!(active_position: 0, staged_position: 0, blog_id: blog.id)
+  TagSidebar.create!(active_position: 1, blog_id: blog.id)
+  ArchivesSidebar.create!(active_position: 2, blog_id: blog.id)
+  StaticSidebar.create!(active_position: 3, blog_id: blog.id)
+  MetaSidebar.create!(active_position: 4, blog_id: blog.id)
+end
 
-TextFilter.create(name: 'none', description: 'None',
-                  markup: 'none', filters: [], params: {})
-TextFilter.create(name: 'markdown', description: 'Markdown',
-                  markup: "markdown", filters: [], params: {})
-TextFilter.create(name: 'smartypants', description: 'SmartyPants',
-                  markup: 'none', filters: [:smartypants], params: {})
-TextFilter.create(name: 'markdown smartypants', description: 'Markdown with SmartyPants',
-                  markup: 'markdown', filters: [:smartypants], params: {})
-TextFilter.create(name: 'textile', description: 'Textile',
-                  markup: 'textile', filters: [], params: {})
+TextFilter.
+  create_with(description: 'None', markup: 'none', filters: [], params: {}).
+  find_or_create_by!(name: 'none')
+TextFilter.
+  create_with(description: 'Markdown', markup: "markdown", filters: [], params: {}).
+  find_or_create_by!(name: 'markdown')
+TextFilter.
+  create_with(description: 'SmartyPants', markup: 'none', filters: [:smartypants], params: {}).
+  find_or_create_by!(name: 'smartypants')
+TextFilter.
+  create_with(description: 'Markdown with SmartyPants', markup: 'markdown', filters: [:smartypants], params: {}).
+  find_or_create_by!(name: 'markdown smartypants')
+TextFilter.
+  create_with(description: 'Textile', markup: 'textile', filters: [], params: {}).
+  find_or_create_by!(name: 'textile')
 
-admin = Profile.create(label: 'admin', nicename: 'Publify administrator',
-                       modules: [:dashboard, :articles, :notes, :pages, :feedback, :media, :themes, :sidebar, :profile, :users, :settings, :seo])
-publisher = Profile.create(label: 'publisher', nicename: 'Blog publisher',
-                           modules: [:dashboard, :articles, :notes, :pages, :feedback, :media, :profile])
-contributor = Profile.create(label: 'contributor', nicename: 'Contributor',
-                             modules: [:dashboard, :profile ])
+unless Profile.any?
+  Profile.create!(label: 'admin', nicename: 'Publify administrator',
+                  modules: [:dashboard, :articles, :notes, :pages, :feedback, :media, :themes, :sidebar, :profile, :users, :settings, :seo])
+  Profile.create!(label: 'publisher', nicename: 'Blog publisher',
+                  modules: [:dashboard, :articles, :notes, :pages, :feedback, :media, :profile])
+  Profile.create!(label: 'contributor', nicename: 'Contributor',
+                  modules: [:dashboard, :profile ])
+end
 
-Dir.mkdir("#{::Rails.root.to_s}/public/files") unless File.directory?("#{::Rails.root.to_s}/public/files")
+unless File.directory?("#{::Rails.root.to_s}/public/files")
+  Dir.mkdir("#{::Rails.root.to_s}/public/files")
+end
