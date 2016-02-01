@@ -579,8 +579,6 @@ he-IL:
         sidebar: תיבת צד
       target:
         drag_some_plugins_here: גרור חלק מהתוספים כדי למלא את תיבת הצד
-      target_sidebar:
-        update: Update
     tags:
       edit:
         success: התוית עודכנה בהצלחה.
@@ -804,11 +802,6 @@ he-IL:
       designed_by: עוצב על ידי %{designed_by}
       powered_by_html: מופעל על ידי %{powered_by}
       statuses: Statuses
-  meta_sidebar:
-    content:
-      admin: Admin
-      powered_by_publify: Powered by Publify
-      rss_feed: RSS Feed
   notes:
     index:
       next_page: Next page
@@ -817,9 +810,6 @@ he-IL:
       view_on_twitter: View on Twitter
   notice:
     note_successfully_created: Note was successfully created
-  page_sidebar:
-    content:
-      pages: Pages
   pagination:
     next: Next
     next_page: Next page
@@ -829,9 +819,6 @@ he-IL:
     admin: מנהל
     contributor: תורם
     publisher: כותב
-  search_sidebar:
-    content:
-      search: Search
   setup:
     index:
       blog_name: Blog name

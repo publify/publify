@@ -1,5 +1,9 @@
 ---
 en:
+  admin:
+    sidebar:
+      target_sidebar:
+        update: Update
   authors_sidebar:
     content:
       authors: Authors

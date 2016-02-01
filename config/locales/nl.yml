@@ -579,8 +579,6 @@ nl:
         sidebar: Zijbalk
       target:
         drag_some_plugins_here: Sleep wat plugins naar hier om de zijbalk te vullen
-      target_sidebar:
-        update: Bijwerken
     tags:
       edit:
         success: Tag was succesvol bijgewerkt.
@@ -804,11 +802,6 @@ nl:
       designed_by: Ontworpen door %{designed_by}
       powered_by_html: Powered by %{powered_by}
       statuses: Statuses
-  meta_sidebar:
-    content:
-      admin: Admin
-      powered_by_publify: Powered by Publify
-      rss_feed: RSS Feed
   notes:
     index:
       next_page: Next page
@@ -817,9 +810,6 @@ nl:
       view_on_twitter: View on Twitter
   notice:
     note_successfully_created: Note was successfully created
-  page_sidebar:
-    content:
-      pages: Pages
   pagination:
     next: Next
     next_page: Next page
@@ -829,9 +819,6 @@ nl:
     admin: Publify administrator
     contributor: Contributor
     publisher: Blog publisher
-  search_sidebar:
-    content:
-      search: Search
   setup:
     index:
       blog_name: Blog name

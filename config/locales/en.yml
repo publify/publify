@@ -579,8 +579,6 @@ en:
         sidebar: Sidebar
       target:
         drag_some_plugins_here: Drag some plugins here to fill your sidebar
-      target_sidebar:
-        update: Update
     tags:
       edit:
         success: Tag was successfully updated

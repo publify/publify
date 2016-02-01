@@ -579,8 +579,6 @@ pt-BR:
         sidebar: Barra Lateral (Sidebar)
       target:
         drag_some_plugins_here: Arraste alguns plugins aqui exibir na sua barra lateral (sidebar)
-      target_sidebar:
-        update: Update
     tags:
       edit:
         success: Tag atualizada com sucesso
@@ -804,11 +802,6 @@ pt-BR:
       designed_by: Designed by %{designed_by}
       powered_by_html: Powered by %{powered_by}
       statuses: Status
-  meta_sidebar:
-    content:
-      admin: Admin
-      powered_by_publify: Powered by Publify
-      rss_feed: Feed de RSS
   notes:
     index:
       next_page: Próximo
@@ -817,9 +810,6 @@ pt-BR:
       view_on_twitter: Ver no Twitter
   notice:
     note_successfully_created: Nota foi criada com sucesso
-  page_sidebar:
-    content:
-      pages: Páginas
   pagination:
     next: Próxima
     next_page: Próxima
@@ -829,9 +819,6 @@ pt-BR:
     admin: Administrador do Publify
     contributor: Contribuidor
     publisher: Publicador do Blog
-  search_sidebar:
-    content:
-      search: Busca
   setup:
     index:
       blog_name: Nome do Blog

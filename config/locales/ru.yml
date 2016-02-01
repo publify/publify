@@ -579,8 +579,6 @@ ru:
         sidebar: Sidebar
       target:
         drag_some_plugins_here: Drag some plugins here to fill your sidebar
-      target_sidebar:
-        update: Update
     tags:
       edit:
         success: Tag was successfully updated
@@ -804,11 +802,6 @@ ru:
       designed_by: Designed by %{designed_by}
       powered_by_html: Powered by %{powered_by}
       statuses: Statuses
-  meta_sidebar:
-    content:
-      admin: Администрирование
-      powered_by_publify: Работает на Publify
-      rss_feed: RSS-лента
   notes:
     index:
       next_page: Следующая страница
@@ -817,9 +810,6 @@ ru:
       view_on_twitter: View on Twitter
   notice:
     note_successfully_created: Note was successfully created
-  page_sidebar:
-    content:
-      pages: Страницы
   pagination:
     next: Next
     next_page: Следующая страница
@@ -829,9 +819,6 @@ ru:
     admin: Publify administrator
     contributor: Contributor
     publisher: Blog publisher
-  search_sidebar:
-    content:
-      search: Поиск
   setup:
     index:
       blog_name: Название блога
