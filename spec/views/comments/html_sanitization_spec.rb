@@ -23,7 +23,7 @@ shared_examples_for 'CommentSanitization' do
       @blog.comment_text_filter = value
       build_stubbed(value.empty? ? 'none' : value)
 
-      render file: 'comments/show'
+      render partial: 'comments/comment', locals: { comment: @comment }
       expect(rendered).to have_selector('.content')
       expect(rendered).to have_selector('.author')
 
@@ -140,7 +140,7 @@ shared_examples_for 'CommentSanitizationWithDofollow' do
       @blog.comment_text_filter = value
       @blog.save
 
-      render file: 'comments/show'
+      render partial: 'comments/comment', locals: { comment: @comment }
       expect(rendered).to have_selector('.content')
       expect(rendered).to have_selector('.author')
 

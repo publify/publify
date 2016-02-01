@@ -12,10 +12,10 @@ class Theme
   def layout(action = :default)
     if action.to_s == 'view_page'
       if File.exist? "#{::Rails.root}/themes/#{name}/views/layouts/pages.html.erb"
-        return 'layouts/pages.html'
+        return 'layouts/pages'
       end
     end
-    'layouts/default.html'
+    'layouts/default'
   end
 
   def description

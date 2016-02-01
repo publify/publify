@@ -1,5 +1,5 @@
 <% content_for :page_title do %>
-  <%= "#{this_blog.blog_name} - #{t('.title')}" %>
+  <%= "#{this_blog.blog_name} - #{t('.sign_up', :default => "Sign up")}" %>
 <% end %>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -27,7 +27,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit t('.signup'), class: 'btn btn-lg btn-success btn-block' %>
+    <%= f.submit t('.sign_up'), class: 'btn btn-lg btn-success btn-block' %>
   </div>
 <% end %>
 

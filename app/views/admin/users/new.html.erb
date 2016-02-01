@@ -3,4 +3,6 @@
   <h2 class="page-title"><%= t(".add_user") %></h2>
 <% end %>
 
-<%= render 'form' %>
+<%= form_for([:admin, @user]) do |f| %>
+  <%= render partial: "form", locals: { f: f, user: @user } %>
+<% end %>

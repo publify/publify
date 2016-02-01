@@ -7,14 +7,16 @@
   <%= link_to comment.article.title, :controller => 'feedback', :action => 'article', :id => comment.article_id %>
   <p>
     <small>
-      <%= t('.by:')%> <%= mail_to h(comment.email), h(comment.author) %>
+      <%= t('.by')%> <%= mail_to h(comment.email), h(comment.author) %>
       <%= link_to "(#{h(comment.url)})".html_safe, comment.url unless comment.url.blank? %>
-      <%= t('.on') %> <%= l(comment.created_at) %>
+      <%= t('.created_on') %> <%= l(comment.created_at) %>
     </small>
   </p>
   <p>
     <small>
-      <%= t(".this_comment_by_was_flagged_as_spam", author: comment.author, cancel_link: link_to(t('.cancel'), url: {action: 'change_state', id: comment.id, remote: true})) %>
+      <%= t(".this_comment_by_was_flagged_as_spam_html",
+            author: comment.author,
+            cancel_link: link_to(t('.cancel'), url: {action: 'change_state', id: comment.id, remote: true})) %>
       <%= toggle_element "feedback_#{comment.id}" %>
     </small>
   </p>

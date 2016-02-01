@@ -56,6 +56,8 @@ gem 'cancancan', '~> 1.12.0'
 gem 'carrierwave', '~> 0.10.0'
 gem 'coderay', '~> 1.1.0'
 gem 'devise', '~> 3.5.3'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
 gem 'dynamic_form', '~> 1.1.4'
 gem 'flickraw-cached'
 gem 'fog'
@@ -89,6 +91,8 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'spring-commands-rspec'
+  gem 'spring-commands-cucumber'
 
   gem 'thin'
   gem 'rubocop', '~> 0.35.1', require: false
@@ -96,6 +100,8 @@ group :development do
   gem 'binding_of_caller'
   gem 'guard-rspec'
   gem 'quiet_assets'
+
+  gem 'i18n-tasks', '~> 0.9.1' if RUBY_VERSION >= '2.1'
 end
 
 group :test do

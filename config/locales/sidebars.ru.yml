@@ -1,0 +1,37 @@
+---
+ru:
+  admin:
+    sidebar:
+      target_sidebar:
+        update: Update
+  authors_sidebar:
+    content:
+      authors: Authors
+  meta_sidebar:
+    content:
+      admin: Администрирование
+      powered_by_publify: Работает на Publify
+      rss_feed: RSS-лента
+  notes_sidebar:
+    content:
+      view_on_twitter: View on Twitter
+  page_sidebar:
+    content:
+      pages: Страницы
+  popular_sidebar:
+    content:
+      comments: Comments
+      nothing_to_show_yet: Nothing to show yet
+  search_sidebar:
+    content:
+      search: Поиск
+  tag_sidebar:
+    content:
+      tags: Tags
+  xml_sidebar:
+    content:
+      articles: Articles
+      comments: Comments
+      syndicate: Syndicate
+      tag: Tag
+      trackbacks: Trackbacks
