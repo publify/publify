@@ -1,34 +1,33 @@
-# Translations for sidebar views
+---
 en:
   authors_sidebar:
     content:
-      authors: "Authors"
+      authors: Authors
   meta_sidebar:
     content:
-      rss_feed: "RSS Feed"
-      admin: "Admin"
-      powered_by_publify: "Powered by Publify"
+      admin: Admin
+      powered_by_publify: Powered by Publify
+      rss_feed: RSS Feed
   notes_sidebar:
     content:
-      view_on_twitter: "View on Twitter"
+      view_on_twitter: View on Twitter
   page_sidebar:
     content:
-      pages: "Pages"
+      pages: Pages
   popular_sidebar:
     content:
-      comments: "Comments"
-      nothing_to_show_yet: "Nothing to show yet"
+      comments: Comments
+      nothing_to_show_yet: Nothing to show yet
   search_sidebar:
     content:
-      search: "Search"
+      search: Search
   tag_sidebar:
     content:
-      tags: "Tags"
+      tags: Tags
   xml_sidebar:
     content:
-      articles: "Articles"
-      comments: "Comments"
-      syndicate: "Syndicate"
-      tag: "Tag"
-      trackbacks: "Trackbacks"
-
+      articles: Articles
+      comments: Comments
+      syndicate: Syndicate
+      tag: Tag
+      trackbacks: Trackbacks
