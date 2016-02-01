@@ -101,7 +101,7 @@ group :development do
   gem 'guard-rspec'
   gem 'quiet_assets'
 
-  gem 'i18n-tasks', '~> 0.9.1'
+  gem 'i18n-tasks', '~> 0.9.1' if RUBY_VERSION >= '2.1'
 end
 
 group :test do
