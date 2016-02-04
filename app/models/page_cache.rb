@@ -25,7 +25,7 @@ class PageCache
     # Ensure no one is going to wipe his own blog public directory
     # It happened once on a release and was no fun at all
     return if public_path == "#{::Rails.root}/public"
-    paths.each do|v|
+    paths.each do |v|
       FileUtils.rm_rf(Dir.glob(public_path + "/#{v}"))
     end
     true

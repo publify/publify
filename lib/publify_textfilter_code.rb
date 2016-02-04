@@ -48,7 +48,7 @@ PHP (&#42;), Python (&#42;), RHTML, Ruby, Scheme, SQL (&#42;), XHTML, XML, YAML.
                     DEFAULT_OPTIONS
                   end
 
-        text = text.to_s.gsub(/\r/, '').gsub(/\A\n/, '').chomp
+        text = text.to_s.delete("\r").gsub(/\A\n/, '').chomp
 
         begin
           text = CodeRay.scan(text, lang.downcase.to_sym).span(options)

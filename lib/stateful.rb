@@ -20,11 +20,7 @@ module Stateful
       if predicate.to_s.last == '?'
         self.class.to_s.demodulize.underscore == predicate.to_s.chop
       else
-        if block_given?
-          super(predicate, *args) { |*block_args| yield(*block_args) }
-        else
-          super(predicate, *args)
-        end
+        super
       end
     end
 

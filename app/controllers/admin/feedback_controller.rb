@@ -86,12 +86,10 @@ class Admin::FeedbackController < Admin::BaseController
       if params[:context] != 'listing'
         @comments = Comment.last_published
         page.replace_html('commentList', partial: 'admin/dashboard/comment')
+      elsif template == 'ham'
+        format.js { render 'ham' }
       else
-        if template == 'ham'
-          format.js { render 'ham' }
-        else
-          format.js { render 'spam' }
-        end
+        format.js { render 'spam' }
       end
     end
   end

@@ -114,7 +114,7 @@ Common attributes:
           end
         end
 
-        rel = (set.blank?) ? 'lightbox' : "lightbox[#{set}]"
+        rel = set.blank? ? 'lightbox' : "lightbox[#{set}]"
 
         captioncode = if caption.blank?
                         ''
