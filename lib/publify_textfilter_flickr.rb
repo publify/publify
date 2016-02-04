@@ -63,10 +63,10 @@ This macro takes a number of parameters:
           title ||= flickrimage.title
           alt ||= title
 
-          if caption.blank?
-            captioncode = ''
+          captioncode = if caption.blank?
+            ''
           else
-            captioncode = "<p class=\"caption\" style=\"width:#{width}px\">#{caption}</p>"
+            "<p class=\"caption\" style=\"width:#{width}px\">#{caption}</p>"
           end
 
           "<div style=\"#{style}\" class=\"flickrplugin\"><a href=\"#{imagelink}\"><img src=\"#{imageurl}\" width=\"#{width}\" height=\"#{height}\" alt=\"#{alt}\" title=\"#{title}\"/></a>#{captioncode}</div>"

@@ -52,10 +52,10 @@ module ContentBase
   end
 
   def excerpt_text(length = 160)
-    if respond_to?(:excerpt) && (excerpt || '') != ''
-      text = generate_html(:excerpt, excerpt)
+    text = if respond_to?(:excerpt) && (excerpt || '') != ''
+      generate_html(:excerpt, excerpt)
     else
-      text = html(:all)
+      html(:all)
     end
 
     text = text.strip_html
