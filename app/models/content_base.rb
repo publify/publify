@@ -74,7 +74,7 @@ module ContentBase
 
   def publish!
     self.published = true
-    self.save!
+    save!
   end
 
   # The default text filter.  Generally, this is the filter specified by blog.text_filter,

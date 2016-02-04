@@ -111,7 +111,7 @@ class Article < Content
 
   def save_attachments!(files)
     files ||= {}
-    files.values.each { |f| self.save_attachment!(f) }
+    files.values.each { |f| save_attachment!(f) }
   end
 
   def save_attachment!(file)

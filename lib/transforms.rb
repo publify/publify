@@ -23,7 +23,7 @@ class String
   # Returns a-string-with-dashes when passed 'a string with dashes'.
   # All special chars are stripped in the process
   def to_url
-    return if self.nil?
+    return if nil?
 
     s = downcase.tr("\"'", '')
     s = s.gsub(/\P{Word}/, ' ')

@@ -106,7 +106,7 @@ class Content < ActiveRecord::Base
 
   def withdraw!
     withdraw
-    self.save!
+    save!
   end
 
   def link_to_author?

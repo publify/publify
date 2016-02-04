@@ -179,7 +179,7 @@ class Feedback < ActiveRecord::Base
 
   def withdraw!
     withdraw
-    self.save!
+    save!
   end
 
   def confirm_classification!
