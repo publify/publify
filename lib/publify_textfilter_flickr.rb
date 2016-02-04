@@ -51,7 +51,7 @@ This macro takes a number of parameters:
           flickrimage = flickr.photos.getInfo(photo_id: img)
           sizes = flickr.photos.getSizes(photo_id: img)
 
-          details = sizes.find { |s| s['label'].downcase == size.downcase } || sizes.first
+          details = sizes.find { |s| s['label'].casecmp(size.downcase).zero? } || sizes.first
           width = details['width']
           height = details['height']
           # use protocol-relative URL after getting the source address

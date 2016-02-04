@@ -87,8 +87,8 @@ Common attributes:
           flickrimage = flickr.photos.getInfo(photo_id: img)
           sizes = flickr.photos.getSizes(photo_id: img)
 
-          thumbdetails = sizes.find { |s| s['label'].downcase == thumbsize.downcase } || sizes.first
-          displaydetails = sizes.find { |s| s['label'].downcase == displaysize.downcase } || sizes.first
+          thumbdetails = sizes.find { |s| s['label'].casecmp(thumbsize.downcase).zero? } || sizes.first
+          displaydetails = sizes.find { |s| s['label'].casecmp(displaysize.downcase).zero? } || sizes.first
 
           width = thumbdetails['width']
           height = thumbdetails['height']
