@@ -23,7 +23,7 @@ describe Admin::SidebarController, type: :controller do
     it 'updates content' do
       sidebar = FactoryGirl.create(:sidebar)
 
-      post :update, id: sidebar.to_param, configure: { "#{sidebar.id}" => { 'title' => 'Links', 'body' => 'another html' } }
+      post :update, id: sidebar.to_param, configure: { sidebar.id.to_s => { 'title' => 'Links', 'body' => 'another html' } }
       sidebar.reload
 
       expect(sidebar.config['body']).to eq('another html')

@@ -146,7 +146,7 @@ class Sidebar < ActiveRecord::Base
     return if instance_methods.include?(key)
 
     fields << Field.build(key, default, options)
-    fieldmap.update(key => fields.last)
+    fieldmap[key] = fields.last
 
     send(:define_method, key) do
       if config.key? key

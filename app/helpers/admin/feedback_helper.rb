@@ -1,8 +1,8 @@
 module Admin::FeedbackHelper
   def comment_class(state)
-    return 'label-info' if state.to_s.downcase == 'presumed_ham'
-    return 'label-warning' if state.to_s.downcase == 'presumed_spam'
-    return 'label-success' if state.to_s.downcase == 'ham'
+    return 'label-info' if state.to_s.casecmp('presumed_ham').zero?
+    return 'label-warning' if state.to_s.casecmp('presumed_spam').zero?
+    return 'label-success' if state.to_s.casecmp('ham').zero?
     'label-danger'
   end
 

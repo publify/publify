@@ -8,8 +8,8 @@ AllCops:
   - 'tmp/**/*'
   - 'vendor/**/*'
 
-  # Include Rails cops
-  RunRailsCops: true
+Rails:
+  Enabled: true
 
 # Allow if (foo = get_foo) style
 Lint/AssignmentInCondition:
@@ -49,6 +49,11 @@ Style/ExtraSpacing:
 # Allows format strings with: format, sprintf or percent.
 Style/FormatString:
   Enabled: false
+
+# Multi-line operations should be simply indented. Aligning them makes it even
+# harder to keep a sane line length.
+Style/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
 
 # Multi-line operations should be simply indented. Aligning them makes it even
 # harder to keep a sane line length.

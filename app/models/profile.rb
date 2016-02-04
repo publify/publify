@@ -2,9 +2,9 @@ class Profile < ActiveRecord::Base
   serialize :modules
   validates :label, uniqueness: true
 
-  ADMIN = 'admin'
-  PUBLISHER = 'publisher'
-  CONTRIBUTOR = 'contributor'
+  ADMIN = 'admin'.freeze
+  PUBLISHER = 'publisher'.freeze
+  CONTRIBUTOR = 'contributor'.freeze
 
   def modules
     self[:modules] || []

@@ -51,7 +51,7 @@ This macro takes a number of parameters:
           flickrimage = flickr.photos.getInfo(photo_id: img)
           sizes = flickr.photos.getSizes(photo_id: img)
 
-          details = sizes.find { |s| s['label'].downcase == size.downcase } || sizes.first
+          details = sizes.find { |s| s['label'].casecmp(size.downcase).zero? } || sizes.first
           width = details['width']
           height = details['height']
           # use protocol-relative URL after getting the source address
@@ -63,11 +63,11 @@ This macro takes a number of parameters:
           title ||= flickrimage.title
           alt ||= title
 
-          if caption.blank?
-            captioncode = ''
-          else
-            captioncode = "<p class=\"caption\" style=\"width:#{width}px\">#{caption}</p>"
-          end
+          captioncode = if caption.blank?
+                          ''
+                        else
+                          "<p class=\"caption\" style=\"width:#{width}px\">#{caption}</p>"
+                        end
 
           "<div style=\"#{style}\" class=\"flickrplugin\"><a href=\"#{imagelink}\"><img src=\"#{imageurl}\" width=\"#{width}\" height=\"#{height}\" alt=\"#{alt}\" title=\"#{title}\"/></a>#{captioncode}</div>"
 

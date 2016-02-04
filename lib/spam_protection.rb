@@ -1,7 +1,7 @@
 class SpamProtection
-  IP_RBLS = ['opm.blitzed.us', 'bsb.empty.us']
-  HOST_RBLS = ['multi.surbl.org', 'bsb.empty.us']
-  SECOND_LEVEL = %w(co com net org gov)
+  IP_RBLS = ['opm.blitzed.us', 'bsb.empty.us'].freeze
+  HOST_RBLS = ['multi.surbl.org', 'bsb.empty.us'].freeze
+  SECOND_LEVEL = %w(co com net org gov).freeze
 
   attr_accessor :this_blog
 

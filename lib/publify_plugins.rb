@@ -22,7 +22,7 @@ module PublifyPlugins
 
   unless defined?(Keeper) # Something in rails double require this module. Prevent that to keep @@registered integrity
     class Keeper
-      KINDS = [:avatar, :textfilter]
+      KINDS = [:avatar, :textfilter].freeze
       @@registered = {}
 
       class << self

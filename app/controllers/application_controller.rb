@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   after_action :reset_local_cache
 
   class << self
-    unless self.respond_to? :template_root
+    unless respond_to? :template_root
       def template_root
         ActionController::Base.view_paths.last
       end

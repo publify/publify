@@ -13,7 +13,7 @@ class PublifyApp
                           tab_width: 2,
                           bold_every: 5,
                           hint: false,
-                          line_number_start: 1 }
+                          line_number_start: 1 }.freeze
 
       def self.help_text
         %{
@@ -41,14 +41,14 @@ PHP (&#42;), Python (&#42;), RHTML, Ruby, Scheme, SQL (&#42;), XHTML, XML, YAML.
       def self.macrofilter(_blog, _content, attrib, _params, text = '')
         lang = attrib['lang']
         title = attrib['title']
-        if attrib['linenumber'] == 'true'
-          options = DEFAULT_OPTIONS.merge(line_numbers: :table,
+        options = if attrib['linenumber'] == 'true'
+                    DEFAULT_OPTIONS.merge(line_numbers: :table,
                                           wrap: :div)
-        else
-          options = DEFAULT_OPTIONS
-        end
+                  else
+                    DEFAULT_OPTIONS
+                  end
 
-        text = text.to_s.gsub(/\r/, '').gsub(/\A\n/, '').chomp
+        text = text.to_s.delete("\r").gsub(/\A\n/, '').chomp
 
         begin
           text = CodeRay.scan(text, lang.downcase.to_sym).span(options)
@@ -57,11 +57,11 @@ PHP (&#42;), Python (&#42;), RHTML, Ruby, Scheme, SQL (&#42;), XHTML, XML, YAML.
         end
         text = "<notextile>#{text}</notextile>"
 
-        if title
-          titlecode = "<div class=\"codetitle\">#{title}</div>"
-        else
-          titlecode = ''
-        end
+        titlecode = if title
+                      "<div class=\"codetitle\">#{title}</div>"
+                    else
+                      ''
+                    end
 
         "<div class=\"CodeRay\"><pre>#{titlecode}#{text}</pre></div>"
       end

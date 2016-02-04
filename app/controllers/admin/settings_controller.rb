@@ -32,7 +32,7 @@ class Admin::SettingsController < Admin::BaseController
 
   private
 
-  VALID_ACTIONS = %w(index write feedback display)
+  VALID_ACTIONS = %w(index write feedback display).freeze
 
   def settings_params
     @settings_params ||= params.require(:setting).permit!

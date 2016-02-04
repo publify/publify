@@ -166,11 +166,11 @@ class Blog < ActiveRecord::Base
   def url_for_with_base_url(options = {}, extra_params = {})
     case options
     when String
-      if extra_params[:only_path]
-        url_generated = root_path
-      else
-        url_generated = base_url
-      end
+      url_generated = if extra_params[:only_path]
+                        root_path
+                      else
+                        base_url
+                      end
       url_generated += "/#{options}" # They asked for 'url_for "/some/path"', so return it unedited.
       url_generated += "##{extra_params[:anchor]}" if extra_params[:anchor]
       url_generated

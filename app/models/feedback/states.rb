@@ -1,7 +1,7 @@
 module Feedback::States
   class Base < Stateful::State
     # Give the default 'model' a more meaningful name
-    alias_method :content, :model
+    alias content model
 
     # Callback handlers
     def before_save_handler

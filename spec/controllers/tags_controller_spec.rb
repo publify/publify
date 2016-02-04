@@ -30,7 +30,7 @@ describe TagsController, 'showing a single tag', type: :controller do
 
   describe 'with some articles' do
     before do
-      @articles = 2.times.map { FactoryGirl.create(:article) }
+      @articles = create_list :article, 2
       @tag.articles << @articles
     end
 

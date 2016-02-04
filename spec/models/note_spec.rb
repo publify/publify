@@ -159,7 +159,7 @@ describe Note, type: :model do
       end
 
       context 'with a bug message' do
-        let(:tweet) { "\"JSFuck is an esoteric and educational programming style based on the atomic parts of JavaScript. It uses only six different characters to write and execute code.\" http://www.jsfuck.com/ " }
+        let(:tweet) { '"JSFuck is an esoteric and educational programming style based on the atomic parts of JavaScript. It uses only six different characters to write and execute code." http://www.jsfuck.com/ ' }
         let(:expected_tweet) { "\"JSFuck is an esoteric and educational programming style based on the atomic parts of JavaScript. It uses only... (#{note.redirect.from_url})" }
 
         it { expect(note.twitter_message).to eq(expected_tweet) }

@@ -5,9 +5,9 @@ class XmlController < ApplicationController
 
   NORMALIZED_FORMAT_FOR = { 'atom' => 'atom', 'rss' => 'rss',
                             'atom10' => 'atom', 'atom03' => 'atom', 'rss20' => 'rss',
-                            'googlesitemap' => 'googlesitemap', 'rsd' => 'rsd' }
+                            'googlesitemap' => 'googlesitemap', 'rsd' => 'rsd' }.freeze
 
-  ACCEPTED_TYPE = %w(feed comments article tag author trackbacks sitemap)
+  ACCEPTED_TYPE = %w(feed comments article tag author trackbacks sitemap).freeze
 
   def feed
     @format = 'rss'

@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
 
   serialize :settings, Hash
 
-  STATUS = %w(active inactive)
+  STATUS = %w(active inactive).freeze
 
   attr_accessor :filename
 
@@ -63,7 +63,7 @@ class User < ActiveRecord::Base
   end
 
   # Authenticate users with old password hashes
-  alias_method :devise_valid_password?, :valid_password?
+  alias devise_valid_password? valid_password?
 
   def valid_password?(password)
     devise_valid_password?(password)

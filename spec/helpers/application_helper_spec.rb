@@ -77,13 +77,13 @@ describe ApplicationHelper, type: :helper do
           'entities' => { 'url' => { 'urls' => [{ 'expanded_url' => 'an url' }] } }
         }
       }
-      expect(get_reply_context_url(reply)).to eq "<a href=\"an url\">truc</a>"
+      expect(get_reply_context_url(reply)).to eq '<a href="an url">truc</a>'
     end
 
     it "returns a link to the reply's user if no URL is given" do
       reply = { 'user' => { 'name' => 'truc', 'entities' => {} } }
       expect(get_reply_context_url(reply)).
-        to eq "<a href=\"https://twitter.com/truc\">truc</a>"
+        to eq '<a href="https://twitter.com/truc">truc</a>'
     end
   end
 
@@ -102,7 +102,7 @@ describe ApplicationHelper, type: :helper do
         Time.zone = 'UTC'
 
         expect(get_reply_context_twitter_link(reply)).
-          to eq "<a href=\"https://twitter.com/a_screen_name/status/123456789\">23/01/2014 at 13h47</a>"
+          to eq '<a href="https://twitter.com/a_screen_name/status/123456789">23/01/2014 at 13h47</a>'
       ensure
         Time.zone = timezone
       end
@@ -114,7 +114,7 @@ describe ApplicationHelper, type: :helper do
         Time.zone = 'Tokyo'
 
         expect(get_reply_context_twitter_link(reply)).
-          to eq "<a href=\"https://twitter.com/a_screen_name/status/123456789\">23/01/2014 at 22h47</a>"
+          to eq '<a href="https://twitter.com/a_screen_name/status/123456789">23/01/2014 at 22h47</a>'
       ensure
         Time.zone = timezone
       end
