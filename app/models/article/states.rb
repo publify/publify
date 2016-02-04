@@ -1,6 +1,6 @@
 module Article::States
   class Base < Stateful::State
-    alias_method :content, :model
+    alias content model
 
     def to_s
       self.class.to_s.demodulize

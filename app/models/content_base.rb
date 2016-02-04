@@ -4,7 +4,7 @@ module ContentBase
   end
 
   attr_accessor :just_changed_published_status
-  alias_method :just_changed_published_status?, :just_changed_published_status
+  alias just_changed_published_status? just_changed_published_status
 
   def really_send_notifications
     interested_users.each do |value|

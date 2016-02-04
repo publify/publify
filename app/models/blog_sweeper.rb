@@ -15,14 +15,14 @@ class BlogSweeper < ActionController::Caching::Sweeper
     expire_for(controller.send(:instance_variable_get, :@comment))
   end
 
-  alias_method :after_comments_update, :after_comments_create
-  alias_method :after_articles_comment, :after_comments_create
+  alias after_comments_update after_comments_create
+  alias after_articles_comment after_comments_create
 
   def after_comments_destroy
     expire_for(controller.send(:instance_variable_get, :@comment), true)
   end
 
-  alias_method :after_articles_nuke_comment, :after_comments_destroy
+  alias after_articles_nuke_comment after_comments_destroy
 
   def after_articles_trackback
     expire_for(controller.send(:instance_variable_get, :@trackback))
