@@ -8,8 +8,8 @@ AllCops:
   - 'tmp/**/*'
   - 'vendor/**/*'
 
-  # Include Rails cops
-  RunRailsCops: true
+Rails:
+  Enabled: true
 
 # Allow if (foo = get_foo) style
 Lint/AssignmentInCondition:

@@ -62,12 +62,6 @@ Rails/Date:
     - 'app/controllers/admin/content_controller.rb'
     - 'app/helpers/application_helper.rb'
 
-# Offense count: 1
-# Configuration parameters: Include.
-Rails/DefaultScope:
-  Exclude:
-    - 'app/models/blog.rb'
-
 # Offense count: 2
 # Configuration parameters: Include.
 Rails/HasAndBelongsToMany:
