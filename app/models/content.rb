@@ -52,10 +52,10 @@ class Content < ActiveRecord::Base
   def text_filter=(filter)
     filter_object = filter.to_text_filter
     self.text_filter_id = if filter_object
-      filter_object.id
-    else
-      filter.to_i
-    end
+                            filter_object.id
+                          else
+                            filter.to_i
+                          end
   end
 
   def shorten_url

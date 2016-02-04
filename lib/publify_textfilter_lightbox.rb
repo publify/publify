@@ -117,10 +117,10 @@ Common attributes:
         rel = (set.blank?) ? 'lightbox' : "lightbox[#{set}]"
 
         captioncode = if caption.blank?
-          ''
-        else
-          "<p class=\"caption\" style=\"width:#{width}px\">#{caption}</p>"
-        end
+                        ''
+                      else
+                        "<p class=\"caption\" style=\"width:#{width}px\">#{caption}</p>"
+                      end
 
         set_whiteboard blog, content unless content.nil?
 

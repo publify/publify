@@ -129,13 +129,13 @@ class Note < Content
     uris << prefix
     uris.each do |uri|
       payload = case uri.split(':')[0]
-      when 'https'
-        '-' * TWITTER_HTTPS_URL_LENGTH
-      when 'ftp'
-        '-' * TWITTER_FTP_URL_LENGTH
-      else
-        '-' * TWITTER_HTTP_URL_LENGTH
-      end
+                when 'https'
+                  '-' * TWITTER_HTTPS_URL_LENGTH
+                when 'ftp'
+                  '-' * TWITTER_FTP_URL_LENGTH
+                else
+                  '-' * TWITTER_HTTP_URL_LENGTH
+                end
       message = message.gsub(uri, payload)
     end
     message.length > 140

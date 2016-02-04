@@ -42,11 +42,11 @@ PHP (&#42;), Python (&#42;), RHTML, Ruby, Scheme, SQL (&#42;), XHTML, XML, YAML.
         lang = attrib['lang']
         title = attrib['title']
         options = if attrib['linenumber'] == 'true'
-          DEFAULT_OPTIONS.merge(line_numbers: :table,
+                    DEFAULT_OPTIONS.merge(line_numbers: :table,
                                           wrap: :div)
-        else
-          DEFAULT_OPTIONS
-        end
+                  else
+                    DEFAULT_OPTIONS
+                  end
 
         text = text.to_s.gsub(/\r/, '').gsub(/\A\n/, '').chomp
 
@@ -58,10 +58,10 @@ PHP (&#42;), Python (&#42;), RHTML, Ruby, Scheme, SQL (&#42;), XHTML, XML, YAML.
         text = "<notextile>#{text}</notextile>"
 
         titlecode = if title
-          "<div class=\"codetitle\">#{title}</div>"
-        else
-          ''
-        end
+                      "<div class=\"codetitle\">#{title}</div>"
+                    else
+                      ''
+                    end
 
         "<div class=\"CodeRay\"><pre>#{titlecode}#{text}</pre></div>"
       end

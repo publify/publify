@@ -64,10 +64,10 @@ This macro takes a number of parameters:
           alt ||= title
 
           captioncode = if caption.blank?
-            ''
-          else
-            "<p class=\"caption\" style=\"width:#{width}px\">#{caption}</p>"
-          end
+                          ''
+                        else
+                          "<p class=\"caption\" style=\"width:#{width}px\">#{caption}</p>"
+                        end
 
           "<div style=\"#{style}\" class=\"flickrplugin\"><a href=\"#{imagelink}\"><img src=\"#{imageurl}\" width=\"#{width}\" height=\"#{height}\" alt=\"#{alt}\" title=\"#{title}\"/></a>#{captioncode}</div>"
 
