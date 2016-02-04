@@ -52,6 +52,11 @@ Style/FormatString:
 
 # Multi-line operations should be simply indented. Aligning them makes it even
 # harder to keep a sane line length.
+Style/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+# Multi-line operations should be simply indented. Aligning them makes it even
+# harder to keep a sane line length.
 Style/MultilineOperationIndentation:
   EnforcedStyle: indented
 
