@@ -1,6 +1,6 @@
 class Admin::FeedbackController < Admin::BaseController
   cache_sweeper :blog_sweeper
-  ONLY_DOMAIN = %w(unapproved presumed_ham presumed_spam ham spam)
+  ONLY_DOMAIN = %w(unapproved presumed_ham presumed_spam ham spam).freeze
 
   def index
     scoped_feedback = this_blog.feedback

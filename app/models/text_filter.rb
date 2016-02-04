@@ -22,7 +22,7 @@ class TextFilter < ActiveRecord::Base
               TextFilterPlugin::MacroPre => 'macropre',
               TextFilterPlugin::MacroPost => 'macropost',
               TextFilterPlugin::PostProcess => 'postprocess',
-              TextFilterPlugin => 'other' }
+              TextFilterPlugin => 'other' }.freeze
 
   def self.available_filter_types
     filters = available_filters

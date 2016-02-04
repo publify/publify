@@ -13,7 +13,7 @@ class PublifyApp
                           tab_width: 2,
                           bold_every: 5,
                           hint: false,
-                          line_number_start: 1 }
+                          line_number_start: 1 }.freeze
 
       def self.help_text
         %{

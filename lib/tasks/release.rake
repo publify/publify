@@ -1,12 +1,12 @@
 # coding: utf-8
 require 'rubygems/package_task'
 
-PKG_VERSION = '6.9.0'
-PKG_NAME = 'publify'
-PKG_FILE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
-RUBY_FORGE_PROJECT = 'publify'
-RUBY_FORGE_USER = 'fdevillamil'
-RELEASE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
+PKG_VERSION = '6.9.0'.freeze
+PKG_NAME = 'publify'.freeze
+PKG_FILE_NAME = "#{PKG_NAME}-#{PKG_VERSION}".freeze
+RUBY_FORGE_PROJECT = 'publify'.freeze
+RUBY_FORGE_USER = 'fdevillamil'.freeze
+RELEASE_NAME = "#{PKG_NAME}-#{PKG_VERSION}".freeze
 
 spec = Gem::Specification.new do |s|
   s.name = PKG_NAME

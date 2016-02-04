@@ -10,7 +10,7 @@ class StaticSidebar < Sidebar
   <li><a href="/admin">Admin</a></li>
 </ul>
 
-'
+'.freeze
   description 'Static content, like links to other sites, advertisements, or blog meta-information'
 
   setting :title, 'Links'

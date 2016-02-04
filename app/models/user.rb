@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
 
   serialize :settings, Hash
 
-  STATUS = %w(active inactive)
+  STATUS = %w(active inactive).freeze
 
   attr_accessor :filename
 

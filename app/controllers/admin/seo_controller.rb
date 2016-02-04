@@ -32,7 +32,7 @@ class Admin::SeoController < Admin::BaseController
     @settings_params ||= params.require(:setting).permit!
   end
 
-  VALID_SECTIONS = %w(general titles permalinks)
+  VALID_SECTIONS = %w(general titles permalinks).freeze
 
   def set_section
     section = params[:section]

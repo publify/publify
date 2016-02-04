@@ -6,7 +6,7 @@ require 'i18n/backend/simple'
 module I18n
   module Backend
     class Simple
-      DEPRECATED_INTERPOLATORS = { '%d' => '{{count}}', '%s' => '{{value}}' }
+      DEPRECATED_INTERPOLATORS = { '%d' => '{{count}}', '%s' => '{{value}}' }.freeze
 
       protected
 
