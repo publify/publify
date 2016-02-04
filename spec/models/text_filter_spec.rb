@@ -119,7 +119,7 @@ describe 'With the list of available filters', type: :model do
         end
 
         it 'should use caption' do
-          assert_equal "<div style=\"\" class=\"flickrplugin\"><a href=\"http://www.flickr.com/users/scottlaird/31366117\"><img src=\"//photos23.flickr.com/31366117_b1a791d68e_s.jpg\" width=\"75\" height=\"75\" alt=\"Matz\" title=\"Matz\"/></a></div>",
+          assert_equal '<div style="" class="flickrplugin"><a href="http://www.flickr.com/users/scottlaird/31366117"><img src="//photos23.flickr.com/31366117_b1a791d68e_s.jpg" width="75" height="75" alt="Matz" title="Matz"/></a></div>',
                        filter_text('<publify:flickr img="31366117" caption=""/>',
                                    [:macropre, :macropost],
                                    'flickr-user' => 'scott@sigkill.org')
@@ -232,7 +232,7 @@ _footer text here_
       end
 
       it 'should work with caption' do
-        assert_equal "<a href=\"//photos23.flickr.com/31366117_b1a791d68e_o.jpg\" data-toggle=\"lightbox\" title=\"Matz\"><img src=\"//photos23.flickr.com/31366117_b1a791d68e_s.jpg\" width=\"75\" height=\"75\" alt=\"Matz\" title=\"Matz\"/></a>",
+        assert_equal '<a href="//photos23.flickr.com/31366117_b1a791d68e_o.jpg" data-toggle="lightbox" title="Matz"><img src="//photos23.flickr.com/31366117_b1a791d68e_s.jpg" width="75" height="75" alt="Matz" title="Matz"/></a>',
                      filter_text('<publify:lightbox img="31366117" caption=""/>',
                                  [:macropre, :macropost],
                                  {})
