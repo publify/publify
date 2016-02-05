@@ -192,6 +192,7 @@ class Blog < ActiveRecord::Base
   alias_method_chain :url_for, :base_url
 
   # The URL for a static file.
+  # FIXME: Let carrierwave handle this by itself
   def file_url(filename)
     if CarrierWave.configure { |config| config.storage == CarrierWave::Storage::Fog }
       filename
