@@ -1,5 +1,8 @@
-require 'rubocop/rake_task'
+begin
+  require 'rubocop/rake_task'
 
-RuboCop::RakeTask.new
+  RuboCop::RakeTask.new
 
-task default: :rubocop
+  task default: :rubocop
+rescue LoadError
+end
