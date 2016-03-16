@@ -32,6 +32,7 @@ data:
     # - ['{devise, simple_form}.*', 'config/locales/\1.%{locale}.yml']
     ## Catch-all default:
     # - config/locales/%{locale}.yml
+    - ['{devise}.*', 'config/locales/\1.%{locale}.yml']
     - ['*_sidebar.*', 'config/locales/sidebars.%{locale}.yml']
     - config/locales/%{locale}.yml
 

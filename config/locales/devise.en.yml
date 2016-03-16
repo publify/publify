@@ -1,0 +1,9 @@
+---
+en:
+  devise:
+    passwords:
+      edit:
+        characters_minimum: Minimum %{min} characters
+    registrations:
+      new:
+        characters_minimum: Minimum %{min} characters
