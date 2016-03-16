@@ -7,8 +7,8 @@
     <%= yield :page_title %>
   </title>
   <meta http-equiv="imagetoolbar" content="no">
+  <%= javascript_include_tag 'publify_admin', async: true %>
   <%= stylesheet_link_tag "accounts", "bootstrap" %>
-  <%= javascript_include_tag 'publify_admin' %>
 </head>
 <body>
   <div class="container">
