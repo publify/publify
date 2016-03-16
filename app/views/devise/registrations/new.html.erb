@@ -18,7 +18,7 @@
   <div class="form-group">
     <%= f.label :password %><br />
     <% if @minimum_password_length %>
-      <em>(<%= t('.characters_minimum', min: @minimum_password_length) %>)</em><br />
+      <em>(<%= t('devise_custom.characters_minimum', min: @minimum_password_length) %>)</em><br />
     <% end %>
     <%= f.password_field :password, class: 'form-control', autofocus: true, autocomplete: "off" %>
   </div>

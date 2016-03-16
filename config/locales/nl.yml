@@ -760,6 +760,8 @@ nl:
     - Oktober
     - November
     - December
+  devise_custom:
+    characters_minimum: Minimum %{min} characters
   errors:
     article_type_already_exist: This article type already exists
     cant_end_with_rss_or_atom: Mag niet eindigen met .rss of .atom. Die zijn gereserveerd voor feed URLs

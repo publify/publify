@@ -760,6 +760,8 @@ pt-BR:
     - Outubro
     - Novembro
     - Dezembro
+  devise_custom:
+    characters_minimum: Minimum %{min} characters
   errors:
     article_type_already_exist: Este tipo de artigo já existe
     cant_end_with_rss_or_atom: Não pode terminar em .rss ou .atom. Esses formatos são reservados para feeds de URLs

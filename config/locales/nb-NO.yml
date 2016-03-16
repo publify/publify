@@ -760,6 +760,8 @@ nb-NO:
     - Oktober
     - November
     - Desember
+  devise_custom:
+    characters_minimum: Minimum %{min} characters
   errors:
     article_type_already_exist: Denne artikkeltypen finnes allerede
     cant_end_with_rss_or_atom: Kan ikke slutte på .rss eller .atom. Disse er forbeholdt feed-URL-er
