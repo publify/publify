@@ -23,7 +23,7 @@ data:
     # - "<%#= %x[bundle show vagrant].chomp %>/templates/locales/%{locale}.yml"
     - config/locales/%{locale}.yml
     - config/locales/**/*.%{locale}.yml
-    - "<%= %x[bundle show devise-i18n-views].chomp %>/locales/%{locale}.yml"
+    - "<%= %x[bundle show devise-i18n].chomp %>/locales/%{locale}.yml"
 
   # Locale files to write new keys to, based on a list of key pattern => file rules. Matched from top to bottom:
   # `i18n-tasks normalize -p` will force move the keys according to these rules
