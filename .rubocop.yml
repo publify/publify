@@ -50,6 +50,10 @@ Style/ExtraSpacing:
 Style/FormatString:
   Enabled: false
 
+# TODO: Re-enable and fix offenses
+Style/GuardClause:
+  Enabled: false
+
 # Multi-line operations should be simply indented. Aligning them makes it even
 # harder to keep a sane line length.
 Style/MultilineMethodCallIndentation:
