@@ -760,6 +760,8 @@ fr:
     - Octobre
     - Novembre
     - Décembre
+  devise_custom:
+    characters_minimum: Minimum %{min} characters
   errors:
     article_type_already_exist: Ce type d'article existe déjà.
     cant_end_with_rss_or_atom: Ne peut pas se terminer par .rss ou .atom. Cette extension est réservée aux flux de syndication
