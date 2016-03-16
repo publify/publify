@@ -1,5 +1,5 @@
 ---
-da-DK:
+da:
   accounts:
     back_to: "&larr; Back to %{place}"
     back_to_login: Back to login
