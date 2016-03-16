@@ -2,15 +2,18 @@ sudo: false
 language: ruby
 cache: bundler
 rvm:
-  - 2.0.0
   - 2.1
   - 2.2
+  - 2.3
 env:
   - DB=sqlite
   - DB=mysql
   - DB=postgresql
 before_script:
   - bundle exec rake db:create db:migrate
+branches:
+  only:
+    - master
 
 addons:
   code_climate:
