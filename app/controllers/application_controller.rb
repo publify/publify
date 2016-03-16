@@ -4,8 +4,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception, only: [:edit, :update, :delete]
 
-  before_action :reset_local_cache, :fire_triggers, :load_lang, :set_paths
-  after_action :reset_local_cache
+  before_action :fire_triggers, :load_lang, :set_paths
 
   class << self
     unless respond_to? :template_root
@@ -46,11 +45,6 @@ class ApplicationController < ActionController::Base
     elsif I18n.available_locales.include?(this_blog.lang.sub('_', '-').to_sym)
       I18n.locale = this_blog.lang.sub('_', '-')
     end
-  end
-
-  def reset_local_cache
-    session session: new unless session
-    @current_user = nil
   end
 
   def add_to_cookies(name, value, path = nil, _expires = nil)
