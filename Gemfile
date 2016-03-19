@@ -67,7 +67,7 @@ gem 'non-stupid-digest-assets'
 gem 'rails-observers', '~> 0.1.2'
 gem 'rails-timeago', '~> 2.0'
 gem 'rails_autolink', '~> 1.1.0'
-gem 'rake', '~> 10.4'
+gem 'rake', '~> 11.1'
 gem 'recaptcha', require: 'recaptcha/rails', branch: 'rails3'
 gem 'rubypants', '~> 0.2.0'
 gem 'twitter', '~> 5.16.0'
@@ -86,7 +86,7 @@ end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+  gem 'web-console', '~> 3.0' if RUBY_VERSION >= '2.2.2'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
@@ -94,7 +94,7 @@ group :development do
   gem 'spring-commands-cucumber'
 
   gem 'thin'
-  gem 'rubocop', '~> 0.37.0', require: false
+  gem 'rubocop', '~> 0.38.0', require: false
   gem 'better_errors', '~> 2.1.1'
   gem 'binding_of_caller'
   gem 'guard-rspec'
