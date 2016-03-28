@@ -94,7 +94,7 @@ group :development do
   gem 'spring-commands-cucumber'
 
   gem 'thin'
-  gem 'rubocop', '~> 0.38.0', require: false
+  gem 'rubocop', '~> 0.39.0', require: false
   gem 'better_errors', '~> 2.1.1'
   gem 'binding_of_caller'
   gem 'guard-rspec'
