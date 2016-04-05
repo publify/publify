@@ -93,7 +93,7 @@ def assert_rss20(feed, count)
 end
 
 def stub_full_article(time = Time.now, blog: Blog.first)
-  author = FactoryGirl.build_stubbed(User, name: 'User Name')
+  author = FactoryGirl.build_stubbed(:user, name: 'User Name')
   text_filter = FactoryGirl.build(:textile)
 
   a = FactoryGirl.build_stubbed(:article,
