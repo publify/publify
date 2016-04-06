@@ -19,7 +19,12 @@ class Theme
   end
 
   def description
-    File.read("#{path}/about.markdown") rescue "### #{name}"
+    about_file = "#{path}/about.markdown"
+    if File.exist? about_file
+      File.read about_file
+    else
+      "### #{name}"
+    end
   end
 
   # Find a theme, given the theme name

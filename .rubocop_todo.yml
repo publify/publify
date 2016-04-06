@@ -150,14 +150,6 @@ Style/RegexpLiteral:
     - 'lib/text_filter_plugin.rb'
     - 'spec/models/content_spec.rb'
 
-# Offense count: 8
-# Cop supports --auto-correct.
-Style/RescueModifier:
-  Exclude:
-    - 'app/controllers/admin/dashboard_controller.rb'
-    - 'app/models/theme.rb'
-    - 'lib/spam_protection.rb'
-
 # Offense count: 1
 # Configuration parameters: Methods.
 # Methods: {"reduce"=>["a", "e"]}, {"inject"=>["a", "e"]}
