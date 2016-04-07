@@ -127,12 +127,6 @@ Style/PredicateName:
     - 'lib/spam_protection.rb'
     - 'lib/stateful.rb'
 
-# Offense count: 6
-# Configuration parameters: SupportedStyles.
-# SupportedStyles: compact, exploded
-Style/RaiseArgs:
-  EnforcedStyle: compact
-
 # Offense count: 20
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles, AllowInnerSlashes.

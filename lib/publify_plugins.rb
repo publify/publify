@@ -28,15 +28,25 @@ module PublifyPlugins
       class << self
         def available_plugins(kind = nil)
           return @@registered.inspect unless kind
-          raise ArgumentError.new "#{kind} is not part of available plugins targets (#{KINDS.map(&:to_s).join(',')})" unless KINDS.include?(kind)
+          check_kind(kind)
           @@registered ? @@registered[kind] : nil
         end
 
         def register(klass)
-          raise ArgumentError.new "#{klass.kind} is not part of available plugins targets (#{KINDS.map(&:to_s).join(',')})" unless KINDS.include?(klass.kind)
-          @@registered[klass.kind] ||= []
-          @@registered[klass.kind] << klass
-          @@registered[klass.kind]
+          kind = klass.kind
+          check_kind(kind)
+          @@registered[kind] ||= []
+          @@registered[kind] << klass
+          @@registered[kind]
+        end
+
+        private
+
+        def check_kind(kind)
+          unless KINDS.include?(kind)
+            raise ArgumentError,
+                  "#{kind} is not part of available plugin targets (#{KINDS.join(',')})"
+          end
         end
       end
 

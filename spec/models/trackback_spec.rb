@@ -4,7 +4,7 @@ describe Trackback, 'With the various trackback filters loaded and DNS mocked ou
   let(:article) { create(:article) }
 
   before(:each) do
-    allow(IPSocket).to receive(:getaddress) { raise SocketError.new('getaddrinfo: Name or service not known') }
+    allow(IPSocket).to receive(:getaddress) { raise SocketError, 'getaddrinfo: Name or service not known' }
     @blog = FactoryGirl.create(:blog)
     @blog.sp_global = true
     @blog.default_moderate_comments = false
