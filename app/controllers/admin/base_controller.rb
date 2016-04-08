@@ -48,8 +48,6 @@ class Admin::BaseController < ApplicationController
   end
 
   def check_and_generate_secret_token
-    return if defined? $TESTING
-
     checker = Admin::TokenChecker.new
     return if checker.safe_token_in_use?
 

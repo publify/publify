@@ -108,7 +108,6 @@ Style/ClassVars:
 # Configuration parameters: AllowedVariables.
 Style/GlobalVars:
   Exclude:
-    - 'app/controllers/admin/base_controller.rb'
     - 'app/models/feedback.rb'
     - 'app/services/admin/token_checker.rb'
     - 'spec/services/admin/token_checker_spec.rb'
