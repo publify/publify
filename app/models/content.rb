@@ -50,7 +50,12 @@ class Content < ActiveRecord::Base
   # NOTE: Due to how Rails injects association methods, this cannot be put in ContentBase
   # TODO: Allowing assignment of a string here is not very clean.
   def text_filter=(filter)
-    filter_object = filter.to_text_filter
+    filter_object = case filter
+                    when TextFilter
+                      filter
+                    else
+                      TextFilter.find_or_default(filter)
+                    end
     self.text_filter_id = if filter_object
                             filter_object.id
                           else
@@ -138,12 +143,6 @@ class Content < ActiveRecord::Base
     # Double check because of crappy data in my own old database
     return unless published && redirect.present?
     redirect.from_url
-  end
-end
-
-class Object
-  def to_text_filter
-    TextFilter.find_by_name(to_s) || TextFilter.find_by_name('none')
   end
 end
 

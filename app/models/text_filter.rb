@@ -18,6 +18,10 @@ class TextFilter < ActiveRecord::Base
     available_filters.select { |filter| TextFilterPlugin::Macro > filter }
   end
 
+  def self.find_or_default(name)
+    find_by_name(name) || find_by_name('none')
+  end
+
   TYPEMAP = { TextFilterPlugin::Markup => 'markup',
               TextFilterPlugin::MacroPre => 'macropre',
               TextFilterPlugin::MacroPost => 'macropost',
@@ -101,9 +105,5 @@ class TextFilter < ActiveRecord::Base
     end.join("\n")
 
     help_text
-  end
-
-  def to_text_filter
-    self
   end
 end

@@ -25,7 +25,7 @@ class Comment < Feedback
   end
 
   def default_text_filter
-    blog.comment_text_filter.to_text_filter
+    TextFilter.find_or_default(blog.comment_text_filter)
   end
 
   def feed_title

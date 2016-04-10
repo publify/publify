@@ -233,7 +233,7 @@ class Blog < ActiveRecord::Base
   end
 
   def text_filter_object
-    text_filter.to_text_filter
+    TextFilter.find_or_default(text_filter)
   end
 
   def urls_to_ping_for(article)
