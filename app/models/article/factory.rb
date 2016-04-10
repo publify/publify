@@ -35,7 +35,9 @@ class Article::Factory
         before_format = Regexp.last_match[1]
         format_string = Regexp.last_match[2]
         after_format = Regexp.last_match[3]
-        result = item.gsub(/^#{before_format}(.*)#{after_format}$/, '\1')
+        item =~ /^#{before_format}(.*)#{after_format}$/
+        return unless Regexp.last_match
+        result = Regexp.last_match[1]
         article_params[format_string.to_sym] = result
       elsif spec != item
         return

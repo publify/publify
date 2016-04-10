@@ -77,5 +77,31 @@ describe Article::Builder, type: :model do
 
       it { expect(factory.match_permalink_format(url, format)).to eq(article) }
     end
+
+    context 'with format and non-matching article' do
+      let(:url) { 'other-title' }
+      let(:format) { '/%title%' }
+
+      it 'does not match' do
+        expect(factory.match_permalink_format(url, format)).to be_nil
+      end
+    end
+
+    context 'with a url containing required fixed parts' do
+      let(:url) { 'fooa-titlebar' }
+      let(:format) { '/foo%title%bar' }
+
+      it 'matches' do
+        expect(factory.match_permalink_format(url, format)).to eq article
+      end
+    end
+    context 'with a url missing required fixed parts' do
+      let(:url) { 'a-title' }
+      let(:format) { '/foo%title%bar' }
+
+      it 'does not match' do
+        expect(factory.match_permalink_format(url, format)).to be_nil
+      end
+    end
   end
 end
