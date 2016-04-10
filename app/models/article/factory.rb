@@ -20,10 +20,20 @@ class Article::Factory
     default
   end
 
-  def match_permalink_format(parts, format)
+  def match_permalink_format(path, format)
+    article_params = extract_params(path, format)
+    requested_article(article_params) if article_params
+  end
+
+  def requested_article(params = {})
+    params[:title] ||= params[:article_id]
+    Article.find_by_permalink(params)
+  end
+
+  def extract_params(path, format)
     specs = format.split('/')
     specs.delete('')
-    parts = parts.split('/')
+    parts = path.split('/')
     parts.delete('')
 
     return if parts.length != specs.length
@@ -43,11 +53,6 @@ class Article::Factory
         return
       end
     end
-    requested_article(article_params)
-  end
-
-  def requested_article(params = {})
-    params[:title] ||= params[:article_id]
-    Article.find_by_permalink(params)
+    article_params
   end
 end
