@@ -16,7 +16,7 @@ describe Article::Builder, type: :model do
 
   describe '#get_or_build' do
     context 'with an existing article' do
-      let(:article) { FactoryGirl.create(:article, blog: blog) }
+      let(:article) { create(:article, blog: blog) }
       it { expect(factory.get_or_build_from(article.id)).to eq(article) }
     end
 
@@ -33,24 +33,27 @@ describe Article::Builder, type: :model do
   end
 
   describe '#requested_article' do
+    let(:blog) { build(:blog) }
+    let(:user) { build(:user) }
+
     it 'call find_by_permalink' do
       params = { something: 'truc' }
       expect(Article).to receive(:find_by_permalink).with(params)
-      expect(factory.requested_article(params)).to be_nil
+      factory.requested_article(params)
     end
 
     it 'set title params with article_id params' do
       params = { article_id: 12 }
       expected_params = params.merge(title: 12)
       expect(Article).to receive(:find_by_permalink).with(expected_params)
-      expect(factory.requested_article(params)).to be_nil
+      factory.requested_article(params)
     end
 
     it 'dont set title params with article_id when title already set' do
       params = { article_id: 12, title: 'Beautiful' }
       expected_params = params
       expect(Article).to receive(:find_by_permalink).with(expected_params)
-      expect(factory.requested_article(params)).to be_nil
+      factory.requested_article(params)
     end
   end
 
