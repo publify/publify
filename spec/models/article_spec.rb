@@ -119,8 +119,10 @@ describe Article, type: :model do
   end
 
   describe 'the html_urls method' do
+    let(:blog) { create :blog, text_filter: 'none' }
+
     before do
-      allow(blog).to receive(:text_filter_object) { TextFilter.new(filters: []) }
+      create :none
       @article = blog.articles.build
     end
 
@@ -158,7 +160,7 @@ describe Article, type: :model do
   describe 'saving an Article' do
     context 'with a blog that sends outbound pings' do
       let(:referenced_url) { 'http://anotherblog.org/a-post' }
-      let!(:blog) { create(:blog, send_outbound_pings: 1) }
+      let!(:blog) { create(:blog, send_outbound_pings: 1, text_filter: 'none') }
       let(:mock_pinger) { instance_double('Ping::Pinger') }
       let(:article) do
         blog.articles.build(body: %(<a href="#{referenced_url}">),
@@ -168,6 +170,7 @@ describe Article, type: :model do
       end
 
       before do
+        create :none
         # Check supposition
         expect(Thread.list.count).to eq 1
 
