@@ -54,36 +54,43 @@ describe Article::Builder, type: :model do
     end
   end
 
-  describe '#match_permalink_format' do
-    let!(:article) { create(:article, permalink: 'a-title') }
+  describe '#extract_params' do
+    let(:blog) { build(:blog) }
+    let(:user) { build(:user) }
 
     context 'with one more element on url than on format' do
       let(:url) { '/one/two/three' }
       let(:format) { '/year/title' }
 
-      it { expect(factory.match_permalink_format(url, format)).to be_nil }
+      it 'does not match' do
+        expect(factory.extract_params(url, format)).to be_nil
+      end
     end
 
     context 'with hard part in format, return nil if url doesnt match' do
       let(:url) { '/one/two' }
       let(:format) { '/three/two' }
 
-      it { expect(factory.match_permalink_format(url, format)).to be_nil }
+      it 'does not match' do
+        expect(factory.extract_params(url, format)).to be_nil
+      end
     end
 
-    context 'with format and matching article' do
+    context 'with format without fixed parts and matching url' do
       let(:url) { 'a-title' }
       let(:format) { '/%title%' }
 
-      it { expect(factory.match_permalink_format(url, format)).to eq(article) }
+      it 'matches' do
+        expect(factory.extract_params(url, format)).to eq(title: 'a-title')
+      end
     end
 
-    context 'with format and non-matching article' do
-      let(:url) { 'other-title' }
-      let(:format) { '/%title%' }
+    context 'with multi-part format and matching url' do
+      let(:url) { 'foo/a-title' }
+      let(:format) { '/foo/%title%' }
 
       it 'does not match' do
-        expect(factory.match_permalink_format(url, format)).to be_nil
+        expect(factory.extract_params(url, format)).to eq(title: 'a-title')
       end
     end
 
@@ -92,15 +99,16 @@ describe Article::Builder, type: :model do
       let(:format) { '/foo%title%bar' }
 
       it 'matches' do
-        expect(factory.match_permalink_format(url, format)).to eq article
+        expect(factory.extract_params(url, format)).to eq(title: 'a-title')
       end
     end
+
     context 'with a url missing required fixed parts' do
       let(:url) { 'a-title' }
       let(:format) { '/foo%title%bar' }
 
       it 'does not match' do
-        expect(factory.match_permalink_format(url, format)).to be_nil
+        expect(factory.extract_params(url, format)).to be_nil
       end
     end
   end
