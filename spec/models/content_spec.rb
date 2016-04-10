@@ -23,12 +23,12 @@ describe Content, type: :model do
 
     describe '#short_url' do
       let(:redirect) { build_stubbed(:redirect, from_path: 'foo', to_path: 'bar', blog: blog) }
-      let(:content) {
+      let(:content) do
         build_stubbed(:content,
                       blog: blog,
                       published: true,
                       redirect: redirect)
-      }
+      end
 
       describe 'normally' do
         let(:blog) { build_stubbed(:blog, base_url: 'http://myblog.net') }

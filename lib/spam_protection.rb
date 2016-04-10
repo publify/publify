@@ -53,7 +53,11 @@ class SpamProtection
 
   def scan_uris(uris = [])
     uris.each do |uri|
-      host = URI.parse(uri).host rescue next
+      host = begin
+               URI.parse(uri).host
+             rescue URI::InvalidURIError
+               next
+             end
       return scan_ip(host) if host =~ Format::IP_ADDRESS
 
       host_parts = host.split('.').reverse

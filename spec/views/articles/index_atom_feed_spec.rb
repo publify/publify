@@ -89,10 +89,10 @@ describe 'articles/index_atom_feed.atom.builder', type: :view do
     end
 
     describe 'on a blog that has an RSS description set' do
-      let(:blog) {
+      let(:blog) do
         create :blog, rss_description: true,
                       rss_description_text: 'rss description'
-      }
+      end
       before do
         render
       end

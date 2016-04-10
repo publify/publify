@@ -109,7 +109,7 @@ class Feedback < ActiveRecord::Base
 
   def sp_is_spam?(_options = {})
     sp = SpamProtection.new(blog)
-    Timeout.timeout(defined?($TESTING) ? 10 : 30) do
+    Timeout.timeout(30) do
       spam_fields.any? do |field|
         sp.is_spam?(send(field))
       end
@@ -122,7 +122,7 @@ class Feedback < ActiveRecord::Base
     return false if akismet.nil?
 
     begin
-      Timeout.timeout(defined?($TESTING) ? 30 : 60) do
+      Timeout.timeout(60) do
         akismet.comment_check(ip, user_agent, akismet_options)
       end
     rescue Timeout::Error
@@ -156,7 +156,7 @@ class Feedback < ActiveRecord::Base
   def report_as_spam
     return if akismet.nil?
     begin
-      Timeout.timeout(defined?($TESTING) ? 5 : 3600) do
+      Timeout.timeout(5) do
         akismet.submit_spam(
           ip, user_agent, akismet_options)
       end
@@ -168,7 +168,7 @@ class Feedback < ActiveRecord::Base
   def report_as_ham
     return if akismet.nil?
     begin
-      Timeout.timeout(defined?($TESTING) ? 5 : 3600) do
+      Timeout.timeout(5) do
         akismet.ham(
           ip, user_agent, akismet_options)
       end

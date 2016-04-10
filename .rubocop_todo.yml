@@ -93,22 +93,6 @@ Style/AccessorMethodName:
     - 'app/models/content.rb'
     - 'spec/models/blog_spec.rb'
 
-# Offense count: 6
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles, ProceduralMethods, FunctionalMethods, IgnoredMethods.
-# SupportedStyles: line_count_based, semantic, braces_for_chaining
-# ProceduralMethods: benchmark, bm, bmbm, create, each_with_object, measure, new, realtime, tap, with_object
-# FunctionalMethods: let, let!, subject, watch
-# IgnoredMethods: lambda, proc, it
-Style/BlockDelimiters:
-  Exclude:
-    - 'app/controllers/tags_controller.rb'
-    - 'app/controllers/xml_controller.rb'
-    - 'spec/models/article_spec.rb'
-    - 'spec/models/content_spec.rb'
-    - 'spec/views/articles/index_atom_feed_spec.rb'
-    - 'spec/views/articles/index_rss_feed_spec.rb'
-
 # Offense count: 9
 Style/ClassVars:
   Exclude:
@@ -124,8 +108,6 @@ Style/ClassVars:
 # Configuration parameters: AllowedVariables.
 Style/GlobalVars:
   Exclude:
-    - 'app/controllers/admin/base_controller.rb'
-    - 'app/models/feedback.rb'
     - 'app/services/admin/token_checker.rb'
     - 'spec/services/admin/token_checker_spec.rb'
 
@@ -143,12 +125,6 @@ Style/PredicateName:
     - 'lib/spam_protection.rb'
     - 'lib/stateful.rb'
 
-# Offense count: 6
-# Configuration parameters: SupportedStyles.
-# SupportedStyles: compact, exploded
-Style/RaiseArgs:
-  EnforcedStyle: compact
-
 # Offense count: 20
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles, AllowInnerSlashes.
@@ -165,18 +141,3 @@ Style/RegexpLiteral:
     - 'lib/tasks/release.rake'
     - 'lib/text_filter_plugin.rb'
     - 'spec/models/content_spec.rb'
-
-# Offense count: 8
-# Cop supports --auto-correct.
-Style/RescueModifier:
-  Exclude:
-    - 'app/controllers/admin/dashboard_controller.rb'
-    - 'app/models/theme.rb'
-    - 'lib/spam_protection.rb'
-
-# Offense count: 1
-# Configuration parameters: Methods.
-# Methods: {"reduce"=>["a", "e"]}, {"inject"=>["a", "e"]}
-Style/SingleLineBlockParams:
-  Exclude:
-    - 'lib/tag_sidebar/lib/tag_sidebar.rb'
