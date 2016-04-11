@@ -1,11 +1,10 @@
 require 'rails_helper'
 
 describe 'With the list of available filters', type: :model do
-  attr_reader :blog, :whiteboard
+  attr_reader :blog
   before(:each) do
     @blog = build_stubbed(:blog)
     @filters = TextFilter.available_filters
-    @whiteboard = {}
   end
 
   describe '#available_filters' do
@@ -38,7 +37,7 @@ describe 'With the list of available filters', type: :model do
 
   describe 'Twitter filter' do
     def filter_text(text, filters, filterparams = {})
-      TextFilter.filter_text(blog, text, self, filters, filterparams)
+      TextFilter.filter_text(blog, text, nil, filters, filterparams)
     end
 
     it 'should replace a hashtag with a proper URL to Twitter search' do
@@ -64,7 +63,7 @@ describe 'With the list of available filters', type: :model do
 
   describe '#filter_text' do
     def filter_text(text, filters, filterparams = {})
-      TextFilter.filter_text(blog, text, self, filters, filterparams)
+      TextFilter.filter_text(blog, text, nil, filters, filterparams)
     end
 
     it 'unknown' do

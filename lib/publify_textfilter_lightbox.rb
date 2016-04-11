@@ -64,9 +64,7 @@ Common attributes:
 }
       end
 
-      # FIXME: content is only ever used to set the style and js
-      # links in the header.
-      def self.macrofilter(blog, content, attrib, _params, _text = '')
+      def self.macrofilter(_blog, _content, attrib, _params, _text = '')
         # FIXME: style is not used
         # style = attrib['style']
         caption = attrib['caption']
@@ -122,22 +120,12 @@ Common attributes:
                         "<p class=\"caption\" style=\"width:#{width}px\">#{caption}</p>"
                       end
 
-        set_whiteboard blog, content unless content.nil?
-
         img_attrs = %(src="#{thumburl}")
         img_attrs << %( class="#{theclass}") if theclass
         img_attrs << %( width="#{width}") if width
         img_attrs << %( height="#{height}") if height
         img_attrs << %( alt="#{alt}" title="#{title}")
         %(<a href="#{displayurl}" data-toggle="#{rel}" title="#{title}"><img #{img_attrs}/></a>#{captioncode})
-      end
-
-      # FIXME: Too complex. Why not make these available always?
-      def self.set_whiteboard(blog, content)
-        content.whiteboard['page_header_lightbox'] = <<-HTML
-          <link href="#{blog.base_url}/stylesheets/lightbox.css" media="all" rel="Stylesheet" type="text/css" />
-          <script src="#{blog.base_url}/javascripts/lightbox.js" type="text/javascript"></script>
-        HTML
       end
     end
   end
