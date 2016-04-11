@@ -10,12 +10,9 @@ class TextFilter < ActiveRecord::Base
     self.class.sanitize(*args, &blk)
   end
 
-  def self.available_filters
-    TextFilterPlugin.available_filters
-  end
-
   def self.macro_filters
-    available_filters.select { |filter| TextFilterPlugin::Macro > filter }
+    TextFilterPlugin.available_filters.
+      select { |filter| TextFilterPlugin::Macro > filter }
   end
 
   def self.find_or_default(name)
