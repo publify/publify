@@ -14,12 +14,8 @@ class TextFilter < ActiveRecord::Base
     find_by_name(name) || find_by_name('none')
   end
 
-  def self.filters_map
-    TextFilterPlugin.filter_map
-  end
-
   def self.filter_text(blog, text, content, filters, filterparams = {})
-    map = TextFilter.filters_map
+    map = TextFilterPlugin.filter_map
 
     filters.each do |filter|
       next if filter.nil?
@@ -46,7 +42,7 @@ class TextFilter < ActiveRecord::Base
   end
 
   def help
-    filter_map = TextFilter.filters_map
+    filter_map = TextFilterPlugin.filter_map
     filter_types = TextFilterPlugin.available_filter_types
 
     help = []
@@ -63,7 +59,7 @@ class TextFilter < ActiveRecord::Base
   end
 
   def commenthelp
-    filter_map = TextFilter.filters_map
+    filter_map = TextFilterPlugin.filter_map
 
     help = [filter_map[markup]]
     filters.each { |f| help.push(filter_map[f.to_s]) }
