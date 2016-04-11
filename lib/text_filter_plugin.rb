@@ -117,7 +117,7 @@ class TextFilterPlugin::Macro < TextFilterPlugin
     attributes
   end
 
-  def self.filtertext(blog, content, text, params)
+  def self.filtertext(text)
     regex1 = /<publify:#{short_name}(?:[ \t][^>]*)?\/>/
     regex2 = /<publify:#{short_name}([ \t][^>]*)?>(.*?)<\/publify:#{short_name}>/m
 
@@ -157,10 +157,10 @@ class PublifyApp
       plugin_display_name 'MacroPost'
       plugin_description 'Macro expansion meta-filter (post-markup)'
 
-      def self.filtertext(blog, content, text, params)
+      def self.filtertext(text)
         macros = TextFilterPlugin.available_filter_types['macropost']
         macros.reduce(text) do |new_text, macro|
-          macro.filtertext(blog, content, new_text, params)
+          macro.filtertext(new_text)
         end
       end
     end
@@ -169,10 +169,10 @@ class PublifyApp
       plugin_display_name 'MacroPre'
       plugin_description 'Macro expansion meta-filter (pre-markup)'
 
-      def self.filtertext(blog, content, text, params)
+      def self.filtertext(text)
         macros = TextFilterPlugin.available_filter_types['macropre']
         macros.reduce(text) do |new_text, macro|
-          macro.filtertext(blog, content, new_text, params)
+          macro.filtertext(new_text)
         end
       end
     end

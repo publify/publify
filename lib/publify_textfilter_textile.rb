@@ -10,7 +10,7 @@ See [_why's Textile reference](http://hobix.com/textile/).
 }
       end
 
-      def self.filtertext(_blog, _content, text, _params)
+      def self.filtertext(text)
         RedCloth.new(text).to_html(:textile)
       end
     end

@@ -14,7 +14,7 @@ class TextFilter < ActiveRecord::Base
     find_by_name(name) || find_by_name('none')
   end
 
-  def self.filter_text(blog, text, content, filters, filterparams = {})
+  def self.filter_text(_blog, text, _content, filters, _filterparams = {})
     map = TextFilterPlugin.filter_map
 
     filters.each do |filter|
@@ -22,7 +22,7 @@ class TextFilter < ActiveRecord::Base
       begin
         filter_class = map[filter.to_s]
         next unless filter_class
-        text = filter_class.filtertext(blog, content, text, filterparams: filterparams)
+        text = filter_class.filtertext(text)
       rescue => err
         logger.error "Filter #{filter} failed: #{err}"
       end

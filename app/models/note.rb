@@ -39,7 +39,7 @@ class Note < Content
   end
 
   def html_preprocess(_field, html)
-    PublifyApp::Textfilter::Twitterfilter.filtertext(nil, nil, html, nil)
+    PublifyApp::Textfilter::Twitterfilter.filtertext(html)
   end
 
   def truncate(message, length)
