@@ -40,6 +40,10 @@ class TextFilterPlugin
     component_name.split(%r{/}).last
   end
 
+  def self.filter_type
+    'other'
+  end
+
   def self.default_config
     {}
   end
@@ -66,6 +70,9 @@ class TextFilterPlugin
 end
 
 class TextFilterPlugin::PostProcess < TextFilterPlugin
+  def self.filter_type
+    'postprocess'
+  end
 end
 
 class TextFilterPlugin::Macro < TextFilterPlugin
@@ -104,12 +111,21 @@ class TextFilterPlugin::Macro < TextFilterPlugin
 end
 
 class TextFilterPlugin::MacroPre < TextFilterPlugin::Macro
+  def self.filter_type
+    'macropre'
+  end
 end
 
 class TextFilterPlugin::MacroPost < TextFilterPlugin::Macro
+  def self.filter_type
+    'macropost'
+  end
 end
 
 class TextFilterPlugin::Markup < TextFilterPlugin
+  def self.filter_type
+    'markup'
+  end
 end
 
 class PublifyApp

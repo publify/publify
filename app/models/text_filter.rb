@@ -22,12 +22,6 @@ class TextFilter < ActiveRecord::Base
     find_by_name(name) || find_by_name('none')
   end
 
-  TYPEMAP = { TextFilterPlugin::Markup => 'markup',
-              TextFilterPlugin::MacroPre => 'macropre',
-              TextFilterPlugin::MacroPost => 'macropost',
-              TextFilterPlugin::PostProcess => 'postprocess',
-              TextFilterPlugin => 'other' }.freeze
-
   def self.available_filter_types
     unless @cached_filter_types
       types = { 'macropre' => [],
@@ -36,7 +30,7 @@ class TextFilter < ActiveRecord::Base
                 'postprocess' => [],
                 'other' => [] }
 
-      available_filters.each { |filter| types[TYPEMAP[filter.superclass]].push(filter) }
+      available_filters.each { |filter| types[filter.filter_type].push(filter) }
 
       @cached_filter_types = types
     end
