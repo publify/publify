@@ -122,11 +122,11 @@ class TextFilterPlugin::Macro < TextFilterPlugin
     regex2 = /<publify:#{short_name}([ \t][^>]*)?>(.*?)<\/publify:#{short_name}>/m
 
     new_text = text.gsub(regex1) do |match|
-      macrofilter(blog, content, attributes_parse(match), params)
+      macrofilter(attributes_parse(match))
     end
 
     new_text = new_text.gsub(regex2) do |_match|
-      macrofilter(blog, content, attributes_parse(Regexp.last_match[1].to_s), params, Regexp.last_match[2].to_s)
+      macrofilter(attributes_parse(Regexp.last_match[1].to_s), Regexp.last_match[2].to_s)
     end
 
     new_text

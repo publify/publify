@@ -38,7 +38,7 @@ PHP (&#42;), Python (&#42;), RHTML, Ruby, Scheme, SQL (&#42;), XHTML, XML, YAML.
 }
       end
 
-      def self.macrofilter(_blog, _content, attrib, _params, text = '')
+      def self.macrofilter(attrib, text = '')
         lang = attrib['lang']
         title = attrib['title']
         options = if attrib['linenumber'] == 'true'
