@@ -58,7 +58,7 @@ class Admin::PagesController < Admin::BaseController
   end
 
   def set_macro
-    @macros = TextFilter.macro_filters
+    @macros = TextFilterPlugin.macro_filters
   end
 
   def set_images

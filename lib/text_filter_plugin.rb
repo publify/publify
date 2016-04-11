@@ -36,6 +36,10 @@ class TextFilterPlugin
     @cached_filter_types
   end
 
+  def self.macro_filters
+    available_filters.select { |filter| TextFilterPlugin::Macro > filter }
+  end
+
   plugin_display_name 'Unknown Text Filter'
   plugin_description 'Unknown Text Filter Description'
 
