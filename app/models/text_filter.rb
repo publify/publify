@@ -11,7 +11,7 @@ class TextFilter < ActiveRecord::Base
   end
 
   def self.available_filters
-    TextFilterPlugin.filter_map.values
+    TextFilterPlugin.available_filters
   end
 
   def self.macro_filters
@@ -20,21 +20,6 @@ class TextFilter < ActiveRecord::Base
 
   def self.find_or_default(name)
     find_by_name(name) || find_by_name('none')
-  end
-
-  def self.available_filter_types
-    unless @cached_filter_types
-      types = { 'macropre' => [],
-                'macropost' => [],
-                'markup' => [],
-                'postprocess' => [],
-                'other' => [] }
-
-      available_filters.each { |filter| types[filter.filter_type].push(filter) }
-
-      @cached_filter_types = types
-    end
-    @cached_filter_types
   end
 
   def self.filters_map
@@ -70,7 +55,7 @@ class TextFilter < ActiveRecord::Base
 
   def help
     filter_map = TextFilter.filters_map
-    filter_types = TextFilter.available_filter_types
+    filter_types = TextFilterPlugin.available_filter_types
 
     help = []
     help.push(filter_map[markup])

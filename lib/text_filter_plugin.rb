@@ -17,6 +17,25 @@ class TextFilterPlugin
     @@filter_map
   end
 
+  def self.available_filters
+    filter_map.values
+  end
+
+  def self.available_filter_types
+    unless @cached_filter_types
+      types = { 'macropre' => [],
+                'macropost' => [],
+                'markup' => [],
+                'postprocess' => [],
+                'other' => [] }
+
+      available_filters.each { |filter| types[filter.filter_type].push(filter) }
+
+      @cached_filter_types = types
+    end
+    @cached_filter_types
+  end
+
   plugin_display_name 'Unknown Text Filter'
   plugin_description 'Unknown Text Filter Description'
 
@@ -135,7 +154,7 @@ class PublifyApp
       plugin_description 'Macro expansion meta-filter (post-markup)'
 
       def self.filtertext(blog, content, text, params)
-        macros = TextFilter.available_filter_types['macropost']
+        macros = TextFilterPlugin.available_filter_types['macropost']
         macros.reduce(text) do |new_text, macro|
           macro.filtertext(blog, content, new_text, params)
         end
@@ -147,7 +166,7 @@ class PublifyApp
       plugin_description 'Macro expansion meta-filter (pre-markup)'
 
       def self.filtertext(blog, content, text, params)
-        macros = TextFilter.available_filter_types['macropre']
+        macros = TextFilterPlugin.available_filter_types['macropre']
         macros.reduce(text) do |new_text, macro|
           macro.filtertext(blog, content, new_text, params)
         end
