@@ -29,21 +29,18 @@ class TextFilter < ActiveRecord::Base
               TextFilterPlugin => 'other' }.freeze
 
   def self.available_filter_types
-    filters = available_filters
-    @cached_filter_types ||= {}
-
-    unless @cached_filter_types[filters]
+    unless @cached_filter_types
       types = { 'macropre' => [],
                 'macropost' => [],
                 'markup' => [],
                 'postprocess' => [],
                 'other' => [] }
 
-      filters.each { |filter| types[TYPEMAP[filter.superclass]].push(filter) }
+      available_filters.each { |filter| types[TYPEMAP[filter.superclass]].push(filter) }
 
-      @cached_filter_types[filters] = types
+      @cached_filter_types = types
     end
-    @cached_filter_types[filters]
+    @cached_filter_types
   end
 
   def self.filters_map
