@@ -14,7 +14,7 @@ class TextFilter < ActiveRecord::Base
     find_by_name(name) || find_by_name('none')
   end
 
-  def self.filter_text(_blog, text, _content, filters, _filterparams = {})
+  def self.filter_text(text, filters)
     map = TextFilterPlugin.filter_map
 
     filters.each do |filter|
@@ -36,9 +36,8 @@ class TextFilter < ActiveRecord::Base
     f.filter_text_for_content blog, text, nil
   end
 
-  def filter_text_for_content(blog, text, content)
-    self.class.filter_text(blog, text, content,
-                           [:macropre, markup, :macropost, filters].flatten, params)
+  def filter_text_for_content(_blog, text, _content)
+    self.class.filter_text(text, [:macropre, markup, :macropost, filters].flatten)
   end
 
   def help

@@ -5,7 +5,7 @@ describe 'With the list of available filters', type: :model do
 
   describe 'Twitter filter' do
     def filter_text(text, filters, filterparams = {})
-      TextFilter.filter_text(blog, text, nil, filters, filterparams)
+      TextFilter.filter_text(text, filters)
     end
 
     it 'should replace a hashtag with a proper URL to Twitter search' do
@@ -31,7 +31,7 @@ describe 'With the list of available filters', type: :model do
 
   describe '#filter_text' do
     def filter_text(text, filters, filterparams = {})
-      TextFilter.filter_text(blog, text, nil, filters, filterparams)
+      TextFilter.filter_text(text, filters)
     end
 
     it 'unknown' do
