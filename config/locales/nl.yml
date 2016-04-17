@@ -2,14 +2,14 @@
 nl:
   accounts:
     back_to: "&larr; Terug naar %{place}"
-    back_to_login: Back to login
+    back_to_login: Terug naar login
     confirm:
       admin: admin
       dont_lose_the_mail_sent: Verlies de e-mail verzonden naar %{email}, want anders kun je niet meer inloggen
       login: inloggen
       password: Wachtwoord
       proceed_to: Ga door naar %{link}
-      success: You have successfully signed up.
+      success: Je bent succesvol aangemeld.
     create_account: Maak een account aan
     lost_my_password: Ik ben mijn wachtwoord kwijt
   activerecord:
@@ -18,7 +18,7 @@ nl:
         article:
           attributes:
             title:
-              blank: can't be blank
+              blank: mag niet leeg zijn
       template:
         body: ''
         header: ''
@@ -41,19 +41,19 @@ nl:
       access_granted:
         error: Fout, je mag dit niet doen
       article_list:
-        no_articles: Er zijn nog geen articles. Waarom begin je er niet een te maken?
+        no_articles: Er zijn nog geen artikelen. Waarom maak je er niet een?
       autosave:
-        success: Article was successfully saved
+        success: Artikel is opgeslagen
       create:
-        success: Artikel is succesvol gemaakt
+        success: Artikel is aangemaakt
       form:
         allow_comments: Sta reacties toe
         allow_comments_status:
           one: aangezet
-          zero: disabled
+          zero: uitgezet
         allow_pings_status:
           one: aangezet
-          zero: disabled
+          zero: uitgezet
         allow_trackbacks: Sta trackbacks toe
         allowed_comments_and_trackbacks_html: Comments are %{allow_comment} and trackbacks are %{allow_trackback}
         article_type: Article type
@@ -69,7 +69,7 @@ nl:
         publish: Publiceer
         publish_settings: Publicatie instellingen
         published: Gepubliceerd
-        save: Bewaar
+        save: Opslaan
         save_as_draft: Opslaan als concept
         status: Status
         tags: Trefwoorden
@@ -173,7 +173,7 @@ nl:
         comments_for_html: Commentaren voor %{title}
         email: e-mail
         no_feedback: Er zijn nog geen feedback. Waarom begin je er niet een te maken?
-        save: Bewaar
+        save: Opslaan
         select_all: Select all
         url: Url
         your_comment: Your comment
@@ -207,7 +207,7 @@ nl:
         comments_for_html: Commentaren voor %{article_link}
         edit_a_comment: Edit a comment
         email: Email
-        save: Bewaar
+        save: Opslaan
         url: Url
         your_comment: Your comment
       ham:
@@ -309,7 +309,7 @@ nl:
         or: or
         post_types: Post Types
         publify_default_post_type: Publify default post type
-        save: Bewaar
+        save: Opslaan
         template_name: Template name
     profiles:
       index:
@@ -325,7 +325,7 @@ nl:
         no_redirects: Er zijn nog geen redirects. Waarom begin je er niet een te maken?
         or: or
         redirects: Redirects
-        save: Bewaar
+        save: Opslaan
         to: To
     resources:
       destroy:
@@ -580,7 +580,7 @@ nl:
         drag_some_plugins_here: Sleep wat plugins naar hier om de zijbalk te vullen
     tags:
       edit:
-        success: Tag was succesvol bijgewerkt.
+        success: Tag is succesvol bijgewerkt.
       index_and_form:
         cancel: Terug
         display_name: Toon naam
@@ -588,7 +588,7 @@ nl:
         name: Naam
         no_tags: Er zijn nog geen trefwoorden. Waarom begin je er niet een te maken?
         or: or
-        save: Bewaren
+        save: Opslaan
     themes:
       index:
         active_theme: "%{name} - Actieve thema's"
@@ -628,7 +628,7 @@ nl:
         password_confirmation: Password confirmation
         profile: Profiel
         profile_settings: Profile Settings
-        save: Bewaar
+        save: Opslaan
         twitter: Twitter username
         twitter_account: Twitter username
         twitter_oauth: Twitter OAuth token
