@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception, only: [:edit, :update, :delete]
 
   before_action :fire_triggers, :load_lang, :set_paths
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   class << self
     unless respond_to? :template_root
@@ -14,7 +15,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  protected
+  private
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) << :email
+  end
 
   def login_required
     authenticate_user! && authorize!(params[:action], params[:controller])

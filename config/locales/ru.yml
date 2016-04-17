@@ -9,6 +9,7 @@ ru:
       login: 'логин: %{user}'
       password: 'пароль: %{pass}'
       proceed_to: Proceed to %{link}
+      success: You have successfully signed up.
     create_account: Создать учетную запись
     lost_my_password: Я потерял свой пароль
   activerecord:
@@ -285,7 +286,7 @@ ru:
         publish: Опубликовать
         publish_settings: Настройки публикации
         published: published
-        save: Save
+        save: Сохранить
         status: Статус
         title: Заголовок
         type_your_post: Type your post
@@ -774,6 +775,7 @@ ru:
     the_page_you_are_looking_for: Страница, которую вы запрашиваете, была перемещена или не существует
   generic:
     change: Изменить
+    save: Сохранить
   helper:
     at: at
   langs:
@@ -820,9 +822,11 @@ ru:
     contributor: Contributor
     publisher: Blog publisher
   setup:
+    article:
+      body: Welcome to Publify. This is your first article. Edit or delete it, then start blogging!'
+      title: Hello World!
     index:
       blog_name: Название блога
-      save: Сохранить
       welcome_to_your_blog_setup: Welcome to your blog setup
       your_mail: Ваш email
     page:

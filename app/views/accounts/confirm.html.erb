@@ -1,4 +1,4 @@
-<p><%= t("You have successfully signed up") %></p>
+<p><%= t('.success') %></p>
 <p><%= t(".login", login: current_user.login) %></p>
 <p><%= t(".password", password: session[:tmppass]) %></p>
 <div class='alert alert-warning'><%= t(".dont_lose_the_mail_sent", email: current_user.email) %></div>

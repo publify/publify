@@ -9,6 +9,7 @@ nb-NO:
       login: Logg inn
       password: Passord
       proceed_to: Fortsett til %{link}
+      success: You have successfully signed up.
     create_account: Opprett konto
     lost_my_password: Jeg har mistet passordet mitt
   activerecord:
@@ -285,7 +286,7 @@ nb-NO:
         publish: Publiser
         publish_settings: Publiseringsinnstillinger
         published: publisert
-        save: Save
+        save: Lagre
         status: Status
         title: Tittel
         type_your_post: Skriv teksten din
@@ -774,6 +775,7 @@ nb-NO:
     the_page_you_are_looking_for: Siden du ser etter er flyttet eller finnes ikke.
   generic:
     change: Endre
+    save: Lagre
   helper:
     at: kl.
   langs:
@@ -820,9 +822,11 @@ nb-NO:
     contributor: Bidragsyter
     publisher: Blogg-publisering
   setup:
+    article:
+      body: Welcome to Publify. This is your first article. Edit or delete it, then start blogging!'
+      title: Hello World!
     index:
       blog_name: Bloggnavn
-      save: Lagre
       welcome_to_your_blog_setup: Velkommen til ditt bloggoppsett
       your_mail: Din epost
     page:
