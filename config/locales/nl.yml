@@ -9,6 +9,7 @@ nl:
       login: inloggen
       password: Wachtwoord
       proceed_to: Ga door naar %{link}
+      success: You have successfully signed up.
     create_account: Maak een account aan
     lost_my_password: Ik ben mijn wachtwoord kwijt
   activerecord:
@@ -774,6 +775,7 @@ nl:
     the_page_you_are_looking_for: The page you are looking for has moved or does not exist.
   generic:
     change: Change
+    save: Opslaan
   helper:
     at: at
   langs:
@@ -820,9 +822,11 @@ nl:
     contributor: Contributor
     publisher: Blog publisher
   setup:
+    article:
+      body: Welcome to Publify. This is your first article. Edit or delete it, then start blogging!'
+      title: Hello World!
     index:
       blog_name: Blog name
-      save: Save
       welcome_to_your_blog_setup: Welkom bij je blog setup.
       your_mail: Your email
     page:

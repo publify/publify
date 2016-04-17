@@ -9,6 +9,7 @@ he:
       login: התחבר
       password: סיסמה
       proceed_to: Proceed to %{link}
+      success: You have successfully signed up.
     create_account: Create an account
     lost_my_password: I've lost my password
   activerecord:
@@ -285,7 +286,7 @@ he:
         publish: פרסם
         publish_settings: Publish settings
         published: published
-        save: Save
+        save: שמור
         status: מצב
         title: כותרת
         type_your_post: Type your post
@@ -774,6 +775,7 @@ he:
     the_page_you_are_looking_for: The page you are looking for has moved or does not exist.
   generic:
     change: Change
+    save: שמור
   helper:
     at: at
   langs:
@@ -820,9 +822,11 @@ he:
     contributor: תורם
     publisher: כותב
   setup:
+    article:
+      body: Welcome to Publify. This is your first article. Edit or delete it, then start blogging!'
+      title: Hello World!
     index:
       blog_name: Blog name
-      save: Save
       welcome_to_your_blog_setup: Welcome to your blog setup
       your_mail: Your email
     page:

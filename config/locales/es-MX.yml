@@ -9,6 +9,7 @@ es-MX:
       login: Login
       password: Contrase&ntilde;a
       proceed_to: Proceed to %{link}
+      success: You have successfully signed up.
     create_account: Create an account
     lost_my_password: I've lost my password
   activerecord:
@@ -285,7 +286,7 @@ es-MX:
         publish: Publicar
         publish_settings: Publish settings
         published: published
-        save: Save
+        save: Guardar
         status: Estado
         title: T&iacute;tulo
         type_your_post: Type your post
@@ -774,6 +775,7 @@ es-MX:
     the_page_you_are_looking_for: La p&aacute;gina que est&aacute; buscando ha sido movida o no existe.
   generic:
     change: Change
+    save: Guardar
   helper:
     at: a
   langs:
@@ -820,9 +822,11 @@ es-MX:
     contributor: Contributor
     publisher: Blog publisher
   setup:
+    article:
+      body: Welcome to Publify. This is your first article. Edit or delete it, then start blogging!'
+      title: Hello World!
     index:
       blog_name: Nombre del Blog
-      save: Guardar
       welcome_to_your_blog_setup: Bienvenido a la configuraci&oacute;n de su blog
       your_mail: Su correo electr&oacute;nico
     page:

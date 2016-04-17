@@ -9,6 +9,7 @@ fr:
       login: Identifiant
       password: Mot de passe
       proceed_to: Allez sur %{link}
+      success: You have successfully signed up.
     create_account: Créer un compte
     lost_my_password: J'ai perdu mon mot de passe
   activerecord:
@@ -285,7 +286,7 @@ fr:
         publish: Publier
         publish_settings: Paramètres de publication
         published: publiée
-        save: Save
+        save: Sauver
         status: État
         title: Titre
         type_your_post: Tapez votre texte
@@ -774,6 +775,7 @@ fr:
     the_page_you_are_looking_for: La page que vous cherchez a été déplacée ou n'existe pas
   generic:
     change: Modifier
+    save: Sauver
   helper:
     at: à
   langs:
@@ -820,9 +822,11 @@ fr:
     contributor: Contributeur
     publisher: Rédacteur
   setup:
+    article:
+      body: Welcome to Publify. This is your first article. Edit or delete it, then start blogging!'
+      title: Hello World!
     index:
       blog_name: Nom du blog
-      save: Enregistrer
       welcome_to_your_blog_setup: Bienvenue dans la configuration de votre blog
       your_mail: Votre email
     page:
