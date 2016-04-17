@@ -26,12 +26,6 @@ module Admin::BaseHelper
     end
   end
 
-  def text_filter_options_with_id
-    TextFilter.all.map do |filter|
-      [filter.description, filter.id]
-    end
-  end
-
   def plugin_options(kind)
     PublifyPlugins::Keeper.available_plugins(kind).map do |plugin|
       [plugin.name, plugin.to_s]
