@@ -33,10 +33,10 @@ class TextFilter < ActiveRecord::Base
 
   def self.filter_text_by_name(blog, text, filtername)
     f = TextFilter.find_by_name(filtername)
-    f.filter_text_for_content blog, text, nil
+    f.filter_text_for_content text
   end
 
-  def filter_text_for_content(_blog, text, _content)
+  def filter_text_for_content(text)
     self.class.filter_text(text, [:macropre, markup, :macropost, filters].flatten)
   end
 
