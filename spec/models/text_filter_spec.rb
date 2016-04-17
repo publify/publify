@@ -192,8 +192,8 @@ _footer text here_
 <p><strong>header text here</strong></p>\n<div class=\"CodeRay\"><pre><span class=\"CodeRay\"><span class=\"keyword\">class</span> <span class=\"class\">test</span>\n  <span class=\"keyword\">def</span> <span class=\"function\">method</span>\n    <span class=\"string\"><span class=\"delimiter\">&quot;</span><span class=\"content\">foo</span><span class=\"delimiter\">&quot;</span></span>\n  <span class=\"keyword\">end</span>\n<span class=\"keyword\">end</span></span></pre></div>\n<p><em>footer text here</em></p>
       EOF
 
-      assert_equal expects_markdown.strip, TextFilter.filter_text_by_name(blog, text, 'markdown')
-      assert_equal expects_textile.strip, TextFilter.filter_text_by_name(blog, text, 'textile')
+      assert_equal expects_markdown.strip, TextFilter.filter_text_by_name(text, 'markdown')
+      assert_equal expects_textile.strip, TextFilter.filter_text_by_name(text, 'textile')
     end
 
     describe 'combining a post-macro' do
@@ -217,7 +217,7 @@ _footer text here_
 
   it '#filter text by name' do
     build_stubbed('markdown smartypants')
-    result = TextFilter.filter_text_by_name(blog, '*"foo"*', 'markdown smartypants')
+    result = TextFilter.filter_text_by_name('*"foo"*', 'markdown smartypants')
     expect(result).to eq('<p><em>&#8220;foo&#8221;</em></p>')
   end
 end

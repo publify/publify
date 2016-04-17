@@ -31,7 +31,7 @@ class TextFilter < ActiveRecord::Base
     text
   end
 
-  def self.filter_text_by_name(blog, text, filtername)
+  def self.filter_text_by_name(text, filtername)
     f = TextFilter.find_by_name(filtername)
     f.filter_text text
   end
