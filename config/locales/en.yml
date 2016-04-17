@@ -830,6 +830,10 @@ en:
     page:
       about: About
       body: This is an example of a Publify page. You can edit this to write information about yourself or your site so readers know who you are. You can create as many pages as you like and manage all of your content inside Publify.
+    article:
+      title: Hello World!
+      body: Welcome to Publify. This is your first article. Edit or delete it,
+        then start blogging!'
   shared:
     search:
       live_search: Live search
