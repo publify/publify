@@ -173,10 +173,10 @@ http://alsoping.example.com/rpc/ping"
     sp_global true
     default_allow_comments true
     email_from 'scott@sigkill.org'
-    association :text_filter, factory: :textile
+    text_filter 'textile'
     sp_article_auto_close 0
     link_to_author false
-    association :comment_text_filter, factory: :markdown
+    comment_text_filter 'markdown'
     permalink_format '/%year%/%month%/%day%/%title%'
     use_canonical_url true
     rss_description_text 'rss description text'

@@ -37,7 +37,7 @@ This macro takes a number of parameters:
 }
       end
 
-      def self.macrofilter(_blog, _content, attrib, _params, _text = '')
+      def self.macrofilter(attrib, _text = '')
         img = attrib['img']
         size = attrib['size'] || 'square'
         style = attrib['style']

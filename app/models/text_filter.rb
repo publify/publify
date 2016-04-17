@@ -10,51 +10,19 @@ class TextFilter < ActiveRecord::Base
     self.class.sanitize(*args, &blk)
   end
 
-  def self.available_filters
-    TextFilterPlugin.filter_map.values
+  def self.find_or_default(name)
+    find_by_name(name) || find_by_name('none')
   end
 
-  def self.macro_filters
-    available_filters.select { |filter| TextFilterPlugin::Macro > filter }
-  end
-
-  TYPEMAP = { TextFilterPlugin::Markup => 'markup',
-              TextFilterPlugin::MacroPre => 'macropre',
-              TextFilterPlugin::MacroPost => 'macropost',
-              TextFilterPlugin::PostProcess => 'postprocess',
-              TextFilterPlugin => 'other' }.freeze
-
-  def self.available_filter_types
-    filters = available_filters
-    @cached_filter_types ||= {}
-
-    unless @cached_filter_types[filters]
-      types = { 'macropre' => [],
-                'macropost' => [],
-                'markup' => [],
-                'postprocess' => [],
-                'other' => [] }
-
-      filters.each { |filter| types[TYPEMAP[filter.superclass]].push(filter) }
-
-      @cached_filter_types[filters] = types
-    end
-    @cached_filter_types[filters]
-  end
-
-  def self.filters_map
-    TextFilterPlugin.filter_map
-  end
-
-  def self.filter_text(blog, text, content, filters, filterparams = {})
-    map = TextFilter.filters_map
+  def self.filter_text(text, filters)
+    map = TextFilterPlugin.filter_map
 
     filters.each do |filter|
       next if filter.nil?
       begin
         filter_class = map[filter.to_s]
         next unless filter_class
-        text = filter_class.filtertext(blog, content, text, filterparams: filterparams)
+        text = filter_class.filtertext(text)
       rescue => err
         logger.error "Filter #{filter} failed: #{err}"
       end
@@ -63,19 +31,18 @@ class TextFilter < ActiveRecord::Base
     text
   end
 
-  def self.filter_text_by_name(blog, text, filtername)
+  def self.filter_text_by_name(text, filtername)
     f = TextFilter.find_by_name(filtername)
-    f.filter_text_for_content blog, text, nil
+    f.filter_text text
   end
 
-  def filter_text_for_content(blog, text, content)
-    self.class.filter_text(blog, text, content,
-                           [:macropre, markup, :macropost, filters].flatten, params)
+  def filter_text(text)
+    self.class.filter_text(text, [:macropre, markup, :macropost, filters].flatten)
   end
 
   def help
-    filter_map = TextFilter.filters_map
-    filter_types = TextFilter.available_filter_types
+    filter_map = TextFilterPlugin.filter_map
+    filter_types = TextFilterPlugin.available_filter_types
 
     help = []
     help.push(filter_map[markup])
@@ -91,7 +58,7 @@ class TextFilter < ActiveRecord::Base
   end
 
   def commenthelp
-    filter_map = TextFilter.filters_map
+    filter_map = TextFilterPlugin.filter_map
 
     help = [filter_map[markup]]
     filters.each { |f| help.push(filter_map[f.to_s]) }
@@ -101,13 +68,5 @@ class TextFilter < ActiveRecord::Base
     end.join("\n")
 
     help_text
-  end
-
-  def to_s
-    name
-  end
-
-  def to_text_filter
-    self
   end
 end
