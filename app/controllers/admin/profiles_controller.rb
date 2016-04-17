@@ -36,6 +36,13 @@ class Admin::ProfilesController < Admin::BaseController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    params.require(:user).permit(:login, :password, :password_confirmation, :email, :firstname, :lastname, :nickname, :display_name, :notify_via_email, :notify_on_new_articles, :notify_on_comments, :profile_id, :text_filter_id, :state, :twitter_account, :twitter_oauth_token, :twitter_oauth_token_secret, :description, :url, :msn, :yahoo, :jabber, :aim, :twitter)
+    params.require(:user).permit(:login, :password, :password_confirmation,
+                                 :email, :firstname, :lastname, :nickname,
+                                 :display_name, :notify_via_email,
+                                 :notify_on_new_articles, :notify_on_comments,
+                                 :profile_id, :text_filter_id, :state,
+                                 :twitter_account, :twitter_oauth_token,
+                                 :twitter_oauth_token_secret, :description,
+                                 :url, :msn, :yahoo, :jabber, :aim, :twitter)
   end
 end
