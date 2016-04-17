@@ -33,7 +33,7 @@ module ContentBase
   def generate_html(field, text = nil)
     text ||= self[field].to_s
     prehtml = html_preprocess(field, text).to_s
-    html = (text_filter || default_text_filter).filter_text_for_content(prehtml) || prehtml
+    html = (text_filter || default_text_filter).filter_text(prehtml) || prehtml
     html_postprocess(field, html).to_s
   end
 
