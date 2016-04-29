@@ -98,7 +98,6 @@ group :development do
   gem 'rubocop', '~> 0.39.0', require: false
   gem 'better_errors', '~> 2.1.1'
   gem 'binding_of_caller'
-  gem 'guard-rspec'
   gem 'quiet_assets'
 
   gem 'i18n-tasks', '~> 0.9.1' if RUBY_VERSION >= '2.1'
