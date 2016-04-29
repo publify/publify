@@ -58,17 +58,19 @@ gem 'coderay', '~> 1.1.0'
 gem 'devise', '~> 3.5.3'
 gem 'devise-i18n', '~> 1.0.0'
 gem 'dynamic_form', '~> 1.1.4'
-gem 'flickraw-cached'
-gem 'fog'
-gem 'htmlentities'
-gem 'kaminari'
+gem 'flickraw-cached', '20120701'
+gem 'flickraw', '~> 0.9.8'
+gem 'fog', '~> 1.38' # TODO: Remove once carrierwave supports using just fog-core
+gem 'fog-aws', '~> 0.9.2'
+gem 'htmlentities', '~> 4.3'
+gem 'kaminari', '~> 0.16.3'
 gem 'mini_magick', '~> 4.2', require: 'mini_magick'
-gem 'non-stupid-digest-assets'
+gem 'non-stupid-digest-assets', '~> 1.0'
 gem 'rails-observers', '~> 0.1.2'
 gem 'rails-timeago', '~> 2.0'
 gem 'rails_autolink', '~> 1.1.0'
 gem 'rake', '~> 11.1'
-gem 'recaptcha', require: 'recaptcha/rails', branch: 'rails3'
+gem 'recaptcha', '~> 1.3', require: 'recaptcha/rails'
 gem 'rubypants', '~> 0.2.0'
 gem 'twitter', '~> 5.16.0'
 gem 'uuidtools', '~> 2.1.1'
@@ -76,13 +78,14 @@ gem 'feedjira', '~> 2.0.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+  gem 'byebug', '~> 8.2'
 
   gem 'factory_girl', '~> 4.5'
-  gem 'capybara'
+  gem 'capybara', '~> 2.7'
   gem 'rspec-rails', '~> 3.4.0'
-  gem 'simplecov', require: false
-  gem 'pry-rails'
+  gem 'simplecov', '~> 0.11.2', require: false
+  gem 'pry-rails', '~> 0.3.4'
+  gem 'pry', '~> 0.10.3'
 end
 
 group :development do
@@ -90,21 +93,21 @@ group :development do
   gem 'web-console', '~> 3.0' if RUBY_VERSION >= '2.2.2'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'spring-commands-rspec'
-  gem 'spring-commands-cucumber'
+  gem 'spring', '~> 1.7'
+  gem 'spring-commands-rspec', '~> 1.0'
+  gem 'spring-commands-cucumber', '~> 1.0'
 
-  gem 'thin'
+  gem 'thin', '~> 1.6'
   gem 'rubocop', '~> 0.39.0', require: false
   gem 'better_errors', '~> 2.1.1'
-  gem 'binding_of_caller'
-  gem 'quiet_assets'
+  gem 'binding_of_caller', '~> 0.7.2'
+  gem 'quiet_assets', '~> 1.1'
 
   gem 'i18n-tasks', '~> 0.9.1' if RUBY_VERSION >= '2.1'
 end
 
 group :test do
-  gem 'codeclimate-test-reporter', require: nil
+  gem 'codeclimate-test-reporter', '~> 0.5.0', require: nil
 end
 
 # Install gems from each theme
