@@ -102,6 +102,7 @@ group :development do
   gem 'better_errors', '~> 2.1.1'
   gem 'binding_of_caller', '~> 0.7.2'
   gem 'quiet_assets', '~> 1.1'
+  gem 'guard-rspec'
 
   gem 'i18n-tasks', '~> 0.9.1' if RUBY_VERSION >= '2.1'
 end
