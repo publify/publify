@@ -86,6 +86,8 @@ group :development, :test do
   gem 'simplecov', '~> 0.11.2', require: false
   gem 'pry-rails', '~> 0.3.4'
   gem 'pry', '~> 0.10.3'
+
+  gem 'rubocop', '~> 0.39.0', require: false
 end
 
 group :development do
@@ -98,7 +100,6 @@ group :development do
   gem 'spring-commands-cucumber', '~> 1.0'
 
   gem 'thin', '~> 1.6'
-  gem 'rubocop', '~> 0.39.0', require: false
   gem 'better_errors', '~> 2.1.1'
   gem 'binding_of_caller', '~> 0.7.2'
   gem 'quiet_assets', '~> 1.1'
