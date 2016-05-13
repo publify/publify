@@ -88,6 +88,7 @@ group :development, :test do
   gem 'pry', '~> 0.10.3'
 
   gem 'rubocop', '~> 0.39.0', require: false
+  gem 'i18n-tasks', '~> 0.9.1' if RUBY_VERSION >= '2.1'
 end
 
 group :development do
@@ -104,8 +105,6 @@ group :development do
   gem 'binding_of_caller', '~> 0.7.2'
   gem 'quiet_assets', '~> 1.1'
   gem 'guard-rspec'
-
-  gem 'i18n-tasks', '~> 0.9.1' if RUBY_VERSION >= '2.1'
 end
 
 group :test do
