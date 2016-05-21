@@ -47,15 +47,15 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails', '~> 4.1.0'
 
 gem 'jquery-ui-rails', '~> 5.0.2'
-gem 'RedCloth', '~> 4.2.8'
+gem 'RedCloth', '~> 4.3.1'
 gem 'actionpack-page_caching', '~> 1.0.2' # removed from Rails-core as Rails 4.0
 gem 'addressable', '~> 2.1', require: 'addressable/uri'
 gem 'akismet', '~> 2.0'
 gem 'bluecloth', '~> 2.1'
-gem 'cancancan', '~> 1.13.1'
+gem 'cancancan', '~> 1.14.0'
 gem 'carrierwave', '~> 0.11.0'
 gem 'coderay', '~> 1.1.0'
-gem 'devise', '~> 3.5.3'
+gem 'devise', '~> 4.1.1'
 gem 'devise-i18n', '~> 1.0.0'
 gem 'dynamic_form', '~> 1.1.4'
 gem 'flickraw-cached', '20120701'
@@ -70,7 +70,7 @@ gem 'rails-observers', '~> 0.1.2'
 gem 'rails-timeago', '~> 2.0'
 gem 'rails_autolink', '~> 1.1.0'
 gem 'rake', '~> 11.1'
-gem 'recaptcha', '~> 1.3', require: 'recaptcha/rails'
+gem 'recaptcha', '~> 2.1', require: 'recaptcha/rails'
 gem 'rubypants', '~> 0.2.0'
 gem 'twitter', '~> 5.16.0'
 gem 'uuidtools', '~> 2.1.1'
@@ -78,7 +78,7 @@ gem 'feedjira', '~> 2.0.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', '~> 8.2'
+  gem 'byebug', '~> 9.0'
 
   gem 'factory_girl', '~> 4.5'
   gem 'capybara', '~> 2.7'
@@ -87,7 +87,7 @@ group :development, :test do
   gem 'pry-rails', '~> 0.3.4'
   gem 'pry', '~> 0.10.3'
 
-  gem 'rubocop', '~> 0.39.0', require: false
+  gem 'rubocop', '~> 0.40.0', require: false
   gem 'i18n-tasks', '~> 0.9.1' if RUBY_VERSION >= '2.1'
 end
 
