@@ -8,8 +8,7 @@ class String
               ['œ'] => 'oe',
               ['ß'] => 'ss',
               %w(ú ù û ü U Û Ù) => 'u',
-              %w(ç Ç) => 'c'
-  }.freeze
+              %w(ç Ç) => 'c' }.freeze
 
   def to_permalink
     string = self

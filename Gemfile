@@ -87,7 +87,7 @@ group :development, :test do
   gem 'pry-rails', '~> 0.3.4'
   gem 'pry', '~> 0.10.3'
 
-  gem 'rubocop', '~> 0.39.0', require: false
+  gem 'rubocop', '~> 0.40.0', require: false
   gem 'i18n-tasks', '~> 0.9.1' if RUBY_VERSION >= '2.1'
 end
 

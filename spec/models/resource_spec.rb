@@ -3,7 +3,8 @@ require 'rails_helper'
 def file_upload(filename)
   ActionDispatch::Http::UploadedFile.new(
     tempfile: File.new(Rails.root.join('spec', 'fixtures', 'testfile.txt')),
-    filename: filename)
+    filename: filename
+  )
 end
 
 describe Resource, type: :model do

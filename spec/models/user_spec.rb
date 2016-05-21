@@ -53,8 +53,7 @@ describe User, type: :model do
 
       { 'too short' => 'x',
         'too long' => 'repetitivepass' * 10,
-        'empty' => ''
-      }.each do |problematic, login|
+        'empty' => '' }.each do |problematic, login|
         it "cannot be #{problematic}" do
           @user.login = login
           expect(@user).not_to be_valid

@@ -352,7 +352,8 @@ describe Article, type: :model do
     before :each do
       @article = blog.articles.build(
         body: 'basic text',
-        extended: 'extended text to explain more and more how Publify is wonderful')
+        extended: 'extended text to explain more and more how Publify is wonderful'
+      )
     end
 
     it 'should combine body and extended content' do

@@ -20,12 +20,12 @@ describe Feedback::States, type: :model do
     assert @comment.just_changed_published_status?
     assert @comment.just_published?
     @comment = Comment.find(@comment.id)
-    assert ! @comment.just_changed_published_status?
-    assert ! @comment.just_published?
+    assert !@comment.just_changed_published_status?
+    assert !@comment.just_published?
     @comment.confirm_classification
     assert @comment.published?
-    assert ! @comment.just_published?
-    assert ! @comment.just_changed_published_status?
+    assert !@comment.just_published?
+    assert !@comment.just_changed_published_status?
   end
 
   it 'test_spam_all_the_way' do
@@ -35,20 +35,20 @@ describe Feedback::States, type: :model do
       end
     end
     assert @comment.unclassified?
-    assert ! @comment.published?
-    assert ! @comment.just_published?
-    assert ! @comment.just_changed_published_status?
+    assert !@comment.published?
+    assert !@comment.just_published?
+    assert !@comment.just_changed_published_status?
     assert @comment.save
-    assert ! @comment.published?
-    assert ! @comment.just_published?
-    assert ! @comment.just_changed_published_status?
+    assert !@comment.published?
+    assert !@comment.just_published?
+    assert !@comment.just_changed_published_status?
     @comment = Comment.find(@comment.id)
-    assert ! @comment.just_changed_published_status?
-    assert ! @comment.just_published?
+    assert !@comment.just_changed_published_status?
+    assert !@comment.just_published?
     @comment.confirm_classification
-    assert ! @comment.published?
-    assert ! @comment.just_published?
-    assert ! @comment.just_changed_published_status?
+    assert !@comment.published?
+    assert !@comment.just_published?
+    assert !@comment.just_changed_published_status?
   end
 
   it 'test_presumed_spam_marked_as_ham' do
@@ -62,8 +62,8 @@ describe Feedback::States, type: :model do
   it 'test_presumed_ham_marked_as_spam' do
     @comment[:state] = 'presumed_ham'
     @comment.mark_as_spam
-    assert ! @comment.published?
-    assert ! @comment.just_published?
+    assert !@comment.published?
+    assert !@comment.just_published?
     assert @comment.just_changed_published_status?
   end
 end
