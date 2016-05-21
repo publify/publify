@@ -34,7 +34,7 @@ da:
         success: Cache has been sweeped
       show:
         cache: Cache
-        explaination: To save on resources, Publify generates static files along with your content. These files are deleted when a new article is created. You can, at any time, delete these files yourself.
+        explanation: To save on resources, Publify generates static files along with your content. These files are deleted when a new article is created. You can, at any time, delete these files yourself.
         stats: Der er %{files_count} objekter i cachen
         sweep_cache: Sweep cache
     content:
@@ -73,7 +73,7 @@ da:
         save_as_draft: Save as draft
         status: Status
         tags: Tags
-        tags_explaination: Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;.
+        tags_explanation: Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;.
         title: Titel
         type_your_post: Type your post
         visibility: Visibility

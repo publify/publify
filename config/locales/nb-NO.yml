@@ -34,7 +34,7 @@ nb-NO:
         success: Cachen er slettet
       show:
         cache: Cache
-        explaination: For å spare ressurser cacher Publify innholdet i statiske filer. Cachen slettes hver gang en ny artikkel opprettes. Du kan også velge å slette cachen selv.
+        explanation: For å spare ressurser cacher Publify innholdet i statiske filer. Cachen slettes hver gang en ny artikkel opprettes. Du kan også velge å slette cachen selv.
         stats: Det finnes for øyeblikket %{files_count} filer i cachen som utgjør totalt %{size} kB
         sweep_cache: Slett cache
     content:
@@ -73,7 +73,7 @@ nb-NO:
         save_as_draft: Lagre som utkast
         status: Status
         tags: Tagger
-        tags_explaination: Skill tagger med komma. Bruk anførselstegn (&quot;) rundt tagger med flere ord, f.eks. &quot;moderne teater&quot;.
+        tags_explanation: Skill tagger med komma. Bruk anførselstegn (&quot;) rundt tagger med flere ord, f.eks. &quot;moderne teater&quot;.
         title: Tittel
         type_your_post: Skriv teksten din
         visibility: Synlighet
