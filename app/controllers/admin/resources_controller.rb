@@ -1,5 +1,3 @@
-require 'fog'
-
 class Admin::ResourcesController < Admin::BaseController
   cache_sweeper :blog_sweeper
 

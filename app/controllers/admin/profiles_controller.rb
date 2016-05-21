@@ -1,5 +1,3 @@
-require 'fog'
-
 class Admin::ProfilesController < Admin::BaseController
   before_action :set_user, only: [:index, :update]
 
