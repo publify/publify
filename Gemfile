@@ -30,7 +30,7 @@ else
   when 'postgresql'
     gem 'pg'
   when 'mysql2'
-    gem 'mysql2', '~> 0.3.18'
+    gem 'mysql2', '~> 0.4.4'
   else
     raise "Don't know what gem to use for adapter #{adapter}"
   end
