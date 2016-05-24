@@ -38,21 +38,19 @@ class Article::Factory
 
     return if parts.length != specs.length
 
-    article_params = {}
-
-    specs.zip(parts).each do |spec, item|
+    specs.zip(parts).reduce({}) do |result, (spec, item)|
       if spec =~ /(.*)%(.*)%(.*)/
         before_format = Regexp.last_match[1]
         format_string = Regexp.last_match[2]
         after_format = Regexp.last_match[3]
         item =~ /^#{before_format}(.*)#{after_format}$/
-        return unless Regexp.last_match
-        result = Regexp.last_match[1]
-        article_params[format_string.to_sym] = result
+        break unless Regexp.last_match
+        value = Regexp.last_match[1]
+        result[format_string.to_sym] = value
       elsif spec != item
-        return
+        break
       end
+      result
     end
-    article_params
   end
 end

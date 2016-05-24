@@ -109,8 +109,7 @@ class Admin::FeedbackController < Admin::BaseController
       end
       flash[:success] = I18n.t('admin.feedback.bulkops.success_deleted', count: count)
 
-      items.each do |i|
-        i.invalidates_cache? or next
+      if items.any(&:invalidates_cache?)
         flush_cache
         return
       end
