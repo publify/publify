@@ -4,5 +4,5 @@ begin
   RuboCop::RakeTask.new
 
   task default: :rubocop
-rescue LoadError
+rescue LoadError # rubocop:disable Lint/HandleExceptions
 end

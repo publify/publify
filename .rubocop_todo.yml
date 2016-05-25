@@ -12,11 +12,6 @@ Lint/Eval:
     - 'Gemfile'
     - 'lib/publify_plugins.rb'
 
-# Offense count: 1
-Lint/HandleExceptions:
-  Exclude:
-    - 'lib/tasks/rubocop.rake'
-
 # Offense count: 77
 Metrics/AbcSize:
   Max: 61
