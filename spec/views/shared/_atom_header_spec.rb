@@ -1,5 +1,7 @@
 require 'rails_helper'
 
+require 'builder'
+
 describe 'shared/_atom_header.atom.builder', type: :view do
   let!(:blog) { create :blog }
 
