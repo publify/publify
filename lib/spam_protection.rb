@@ -84,8 +84,9 @@ class SpamProtection
             throw :hit,
                   "#{rbl} positively resolved subdomain #{d} => #{response}"
           end
-        rescue SocketError # rubocop:disable Lint/HandleExceptions
+        rescue SocketError
           # NXDOMAIN response => negative:  d is not in RBL
+          next
         end
       end
     end
