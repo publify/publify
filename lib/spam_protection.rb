@@ -96,18 +96,3 @@ class SpamProtection
     @logger ||= ::Rails.logger || Logger.new(STDOUT)
   end
 end
-
-module ActiveRecord
-  module Validations
-    module ClassMethods
-      def validates_against_spamdb(*attr_names)
-        configuration = { message: 'blocked by SpamProtection' }
-        configuration.update(attr_names.pop) if attr_names.last.is_a?(Hash)
-
-        validates_each(attr_names, configuration) do |record, attr_name, value|
-          record.errors.add(attr_name, configuration[:message]) if SpamProtection.new(record.blog).is_spam?(value)
-        end
-      end
-    end
-  end
-end
