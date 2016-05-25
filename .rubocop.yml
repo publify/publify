@@ -42,6 +42,10 @@ Style/CollectionMethods:
 Style/DotPosition:
   EnforcedStyle: trailing
 
+# This cop doesn't detect use of break yet
+Style/EachWithObject:
+  Enabled: false
+
 # Do not use unnecessary spacing.
 Style/ExtraSpacing:
   Enabled: true
