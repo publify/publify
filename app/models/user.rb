@@ -3,18 +3,20 @@ require 'digest/sha1'
 # Publify user.
 # TODO: Should belong to a blog
 class User < ActiveRecord::Base
+  ADMIN = 'admin'.freeze
+  PUBLISHER = 'publisher'.freeze
+  CONTRIBUTOR = 'contributor'.freeze
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   include ConfigManager
 
-  belongs_to :profile
   belongs_to :text_filter
   belongs_to :resource
 
   delegate :name, to: :text_filter, prefix: true
-  delegate :label, to: :profile, prefix: true
 
   has_many :notifications, foreign_key: 'notify_user_id'
   has_many :notify_contents, -> { uniq }, through: :notifications,
@@ -117,7 +119,7 @@ class User < ActiveRecord::Base
   end
 
   def admin?
-    profile.label == Profile::ADMIN
+    profile == User::ADMIN
   end
 
   def update_twitter_profile_image(img)
@@ -142,7 +144,7 @@ class User < ActiveRecord::Base
   before_validation :set_default_profile
 
   def set_default_profile
-    self.profile ||= Profile.find_by_label(User.count.zero? ? 'admin' : 'contributor')
+    self.profile ||= User.count.zero? ? 'admin' : 'contributor'
   end
 
   validates :login, uniqueness: true, on: :create

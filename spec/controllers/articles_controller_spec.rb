@@ -227,7 +227,7 @@ describe ArticlesController, 'the index', type: :controller do
   let!(:blog) { create(:blog) }
 
   before(:each) do
-    create(:user, login: 'henri', profile: create(:profile_admin, label: Profile::ADMIN))
+    create(:user, :as_admin)
     create(:article)
   end
 
@@ -588,8 +588,8 @@ describe ArticlesController, 'preview page', type: :controller do
     let!(:page) { create(:page) }
 
     before(:each) do
-      henri = create(:user, login: 'henri', profile: create(:profile_admin, label: Profile::ADMIN))
-      sign_in henri
+      admin = create(:user, :as_admin)
+      sign_in admin
     end
 
     with_each_theme do |theme, view_path|

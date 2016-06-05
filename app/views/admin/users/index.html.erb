@@ -29,7 +29,7 @@
       </td>
       <td><%= user.nickname %></td>
       <td><%= mail_to user.email, user.email %></td>
-      <td><%= t("profile.#{user.profile.label}") %></td>
+      <td><%= t("profile.#{user.profile}") %></td>
       <td><%= Article.where("user_id = #{user.id}").count %></td>
       <td><%= Comment.where("user_id = #{user.id}").count %></td>
       <td><%= t("user.status.#{user.state}") %></td>

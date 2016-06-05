@@ -335,7 +335,7 @@ describe Article, type: :model do
 
   describe '#access_by?' do
     before do
-      @alice = build(:user, profile: build(:profile_admin, label: Profile::ADMIN))
+      @alice = build(:user, :as_admin)
     end
 
     it 'admin should have access to an article written by another' do

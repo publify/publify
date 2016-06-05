@@ -9,12 +9,10 @@ class Admin::UsersController < Admin::BaseController
   def new
     @user = User.new
     @user.text_filter = TextFilter.find_by_name(this_blog.text_filter)
-    setup_profiles
   end
 
   def edit
     @user = params[:id] ? User.find_by_id(params[:id]) : current_user
-    setup_profiles
   end
 
   def create
@@ -36,15 +34,11 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def destroy
-    @user.destroy if User.where('profile_id = ? and id != ?', Profile.find_by_label('admin'), @user.id).count > 1
+    @user.destroy if User.where('profile = ? and id != ?', User::ADMIN, @user.id).count > 1
     redirect_to admin_users_url
   end
 
   private
-
-  def setup_profiles
-    @profiles = Profile.order('id')
-  end
 
   def set_user
     @user = User.find(params[:id])
@@ -55,7 +49,7 @@ class Admin::UsersController < Admin::BaseController
                                  :email, :firstname, :lastname, :nickname,
                                  :display_name, :notify_via_email,
                                  :notify_on_new_articles, :notify_on_comments,
-                                 :profile_id, :text_filter, :state,
+                                 :profile, :text_filter, :state,
                                  :twitter_account, :twitter_oauth_token,
                                  :twitter_oauth_token_secret, :description,
                                  :url, :msn, :yahoo, :jabber, :aim, :twitter)

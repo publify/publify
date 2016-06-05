@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160110094906) do
+ActiveRecord::Schema.define(version: 20160605154632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,12 +109,6 @@ ActiveRecord::Schema.define(version: 20160110094906) do
     t.string "description"
   end
 
-  create_table "profiles", force: :cascade do |t|
-    t.string "label"
-    t.string "nicename"
-    t.text   "modules"
-  end
-
   create_table "redirects", force: :cascade do |t|
     t.string   "from_path"
     t.string   "to_path"
@@ -196,7 +190,6 @@ ActiveRecord::Schema.define(version: 20160110094906) do
     t.boolean  "notify_via_email"
     t.boolean  "notify_on_new_articles"
     t.boolean  "notify_on_comments"
-    t.integer  "profile_id"
     t.string   "remember_token"
     t.datetime "remember_token_expires_at"
     t.string   "text_filter_id",            default: "1"
@@ -214,10 +207,10 @@ ActiveRecord::Schema.define(version: 20160110094906) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "profile"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["profile_id"], name: "index_users_on_profile_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["resource_id"], name: "index_users_on_resource_id", using: :btree
   add_index "users", ["text_filter_id"], name: "index_users_on_text_filter_id", using: :btree

@@ -5,8 +5,8 @@ describe Admin::DashboardController, type: :controller do
 
   describe 'test admin profile' do
     before do
-      @blog ||= FactoryGirl.create(:blog)
-      @henri = FactoryGirl.create(:user, login: 'henri', profile: FactoryGirl.create(:profile_admin, label: Profile::ADMIN))
+      @blog ||= create(:blog)
+      @henri = create(:user, :as_admin)
       sign_in @henri
       get :index
     end
@@ -62,10 +62,8 @@ describe Admin::DashboardController, type: :controller do
 
   describe 'test publisher profile' do
     before do
-      @blog ||= FactoryGirl.create(:blog)
-      # TODO: Delete after removing fixtures
-      Profile.delete_all
-      @rene = FactoryGirl.create(:user, login: 'rene', profile: FactoryGirl.create(:profile_publisher, label: Profile::PUBLISHER))
+      @blog ||= create(:blog)
+      @rene = FactoryGirl.create(:user, :as_publisher)
       sign_in @rene
       get :index
     end
@@ -113,10 +111,8 @@ describe Admin::DashboardController, type: :controller do
 
   describe 'test contributor profile' do
     before do
-      @blog ||= FactoryGirl.create(:blog)
-      # TODO: Delete after removing fixtures
-      Profile.delete_all
-      @gerard = FactoryGirl.create(:user, login: 'gerard', profile: FactoryGirl.create(:profile_contributor, label: Profile::CONTRIBUTOR))
+      @blog ||= create(:blog)
+      @gerard = create(:user, :as_contributor)
       sign_in @gerard
       get :index
     end
@@ -169,11 +165,7 @@ describe Admin::DashboardController, type: :controller do
   describe '#index' do
     context 'with pending migrations' do
       let!(:blog) { create(:blog) }
-      let(:user) do
-        create(:user,
-               login: 'henri',
-               profile: create(:profile_admin, label: Profile::ADMIN))
-      end
+      let(:user) { create(:user, :as_admin) }
       let(:migrator) { double('migrator') }
 
       before do

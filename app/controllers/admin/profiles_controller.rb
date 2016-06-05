@@ -1,8 +1,8 @@
+# This controller handles updating your own user data.
 class Admin::ProfilesController < Admin::BaseController
   before_action :set_user, only: [:index, :update]
 
   def index
-    @profiles = Profile.order('id')
   end
 
   def update
@@ -40,7 +40,7 @@ class Admin::ProfilesController < Admin::BaseController
                                  :email, :firstname, :lastname, :nickname,
                                  :display_name, :notify_via_email,
                                  :notify_on_new_articles, :notify_on_comments,
-                                 :profile_id, :text_filter_id, :state,
+                                 :text_filter_id, :state,
                                  :twitter_account, :twitter_oauth_token,
                                  :twitter_oauth_token_secret, :description,
                                  :url, :msn, :yahoo, :jabber, :aim, :twitter)

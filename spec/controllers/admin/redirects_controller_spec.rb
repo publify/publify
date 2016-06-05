@@ -2,9 +2,9 @@ require 'rails_helper'
 
 describe Admin::RedirectsController, type: :controller do
   before do
-    FactoryGirl.create(:blog)
-    henri = FactoryGirl.create(:user, login: 'henri', profile: FactoryGirl.create(:profile_admin, label: Profile::ADMIN))
-    sign_in henri
+    create(:blog)
+    admin = create(:user, :as_admin)
+    sign_in admin
   end
 
   describe '#index' do

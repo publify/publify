@@ -4,7 +4,7 @@ describe Admin::TagsController, type: :controller do
   render_views
 
   let!(:blog) { create(:blog) }
-  let!(:user) { create(:user, login: 'henri', profile: create(:profile_admin)) }
+  let!(:user) { create(:user, :as_admin) }
 
   before do
     sign_in user

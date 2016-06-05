@@ -111,12 +111,12 @@ describe User, type: :model do
 
   describe '#admin?' do
     it 'should return true if user is admin' do
-      admin = build(:user, profile: build(:profile_admin, label: Profile::ADMIN))
+      admin = build(:user, :as_admin)
       expect(admin).to be_admin
     end
 
     it 'should return false if user is not admin' do
-      publisher = build(:user, profile: build(:profile_publisher))
+      publisher = build(:user, :as_publisher)
       expect(publisher).not_to be_admin
     end
   end
