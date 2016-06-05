@@ -22,7 +22,7 @@ FactoryGirl.define do
     password 'top-secret'
     state 'active'
     twitter '@getpublify'
-    association :profile, factory: :profile
+    profile Profile::CONTRIBUTOR
     association :resource, factory: :avatar
     association :text_filter, factory: :textile
 
@@ -47,11 +47,15 @@ FactoryGirl.define do
     end
 
     trait :as_admin do
-      association :profile, factory: :profile_admin
+      profile Profile::ADMIN
     end
 
     trait :as_publisher do
-      association :profile, factory: :profile_publisher
+      profile Profile::PUBLISHER
+    end
+
+    trait :as_contributor do
+      profile Profile::CONTRIBUTOR
     end
   end
 
@@ -191,27 +195,6 @@ http://alsoping.example.com/rpc/ping"
     factory :blog_with_twitter do
       twitter_consumer_key 'consumer_key'
       twitter_consumer_secret 'consumer_secret'
-    end
-  end
-
-  factory :profile, class: :profile do
-    label { FactoryGirl.generate(:label) }
-    nicename 'Publify contributor'
-    modules [:dashboard, :profile]
-
-    factory :profile_admin do
-      label Profile::ADMIN
-      nicename 'Publify administrator'
-      modules [:dashboard, :write, :articles, :pages, :feedback, :themes, :customizesidebar, :users, :seo, :media, :settings, :profile, :notes]
-    end
-
-    factory :profile_publisher do
-      label 'publisher'
-      nicename 'Blog publisher'
-      modules [:users, :dashboard, :write, :articles, :pages, :feedback, :media, :notes]
-    end
-
-    factory :profile_contributor do
     end
   end
 

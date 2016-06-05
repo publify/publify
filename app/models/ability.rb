@@ -4,7 +4,7 @@ class Ability
   def initialize(user)
     return unless user
 
-    case user.profile.label
+    case user.profile
     when 'admin'
       add_admin_abilities
       add_publisher_abilities
