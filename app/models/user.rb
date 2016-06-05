@@ -3,6 +3,10 @@ require 'digest/sha1'
 # Publify user.
 # TODO: Should belong to a blog
 class User < ActiveRecord::Base
+  ADMIN = 'admin'.freeze
+  PUBLISHER = 'publisher'.freeze
+  CONTRIBUTOR = 'contributor'.freeze
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -115,7 +119,7 @@ class User < ActiveRecord::Base
   end
 
   def admin?
-    profile == Profile::ADMIN
+    profile == User::ADMIN
   end
 
   def update_twitter_profile_image(img)

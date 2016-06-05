@@ -34,7 +34,7 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def destroy
-    @user.destroy if User.where('profile = ? and id != ?', Profile::ADMIN, @user.id).count > 1
+    @user.destroy if User.where('profile = ? and id != ?', User::ADMIN, @user.id).count > 1
     redirect_to admin_users_url
   end
 

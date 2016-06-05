@@ -6,7 +6,7 @@ describe Admin::UsersController, 'rough port of the old functional test', type: 
   describe ' when you are admin' do
     before(:each) do
       create(:blog)
-      @admin = create(:user, profile: Profile::ADMIN)
+      @admin = create(:user, profile: User::ADMIN)
       sign_in @admin
     end
 
@@ -23,7 +23,7 @@ describe Admin::UsersController, 'rough port of the old functional test', type: 
       post :create, user: { login: 'errand', email: 'corey@test.com',
                             password: 'testpass',
                             password_confirmation: 'testpass',
-                            profile: Profile::CONTRIBUTOR,
+                            profile: User::CONTRIBUTOR,
                             nickname: 'fooo', firstname: 'bar' }
       expect(response).to redirect_to(action: 'index')
     end
@@ -55,10 +55,10 @@ describe Admin::UsersController, 'rough port of the old functional test', type: 
     describe 'EDIT Action' do
       describe 'try update another user' do
         before do
-          @administrator = create(:user, profile: Profile::ADMIN)
+          @administrator = create(:user, :as_admin)
           post :edit,
                id: @administrator.id,
-               profile: Profile::CONTRIBUTOR
+               profile: User::CONTRIBUTOR
         end
 
         it 'should redirect to login' do
@@ -67,7 +67,7 @@ describe Admin::UsersController, 'rough port of the old functional test', type: 
 
         it 'should not change user profile' do
           u = @administrator.reload
-          expect(u.profile).to eq Profile::ADMIN
+          expect(u.profile).to eq User::ADMIN
         end
       end
     end

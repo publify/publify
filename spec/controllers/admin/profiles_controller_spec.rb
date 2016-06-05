@@ -3,7 +3,7 @@ require 'rails_helper'
 describe Admin::ProfilesController, type: :controller do
   render_views
   let!(:blog) { create(:blog) }
-  let(:alice) { create(:user, login: 'alice', profile: Profile::ADMIN) }
+  let(:alice) { create(:user, :as_publisher, login: 'alice') }
 
   before do
     sign_in alice
@@ -23,8 +23,8 @@ describe Admin::ProfilesController, type: :controller do
     end
 
     it 'does not allow updating your own profile' do
-      post :update, id: alice.id, user: { profile: Profile::PUBLISHER }
-      expect(alice.reload.profile).to eq Profile::ADMIN
+      post :update, id: alice.id, user: { profile: User::ADMIN }
+      expect(alice.reload.profile).to eq User::PUBLISHER
     end
   end
 end

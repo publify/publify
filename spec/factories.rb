@@ -22,7 +22,7 @@ FactoryGirl.define do
     password 'top-secret'
     state 'active'
     twitter '@getpublify'
-    profile Profile::CONTRIBUTOR
+    profile User::CONTRIBUTOR
     association :resource, factory: :avatar
     association :text_filter, factory: :textile
 
@@ -47,15 +47,15 @@ FactoryGirl.define do
     end
 
     trait :as_admin do
-      profile Profile::ADMIN
+      profile User::ADMIN
     end
 
     trait :as_publisher do
-      profile Profile::PUBLISHER
+      profile User::PUBLISHER
     end
 
     trait :as_contributor do
-      profile Profile::CONTRIBUTOR
+      profile User::CONTRIBUTOR
     end
   end
 
