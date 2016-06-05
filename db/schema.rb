@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160605103918) do
+ActiveRecord::Schema.define(version: 20160605154632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,12 +107,6 @@ ActiveRecord::Schema.define(version: 20160605103918) do
     t.string "name"
     t.string "permalink"
     t.string "description"
-  end
-
-  create_table "profiles", force: :cascade do |t|
-    t.string "label"
-    t.string "nicename"
-    t.text   "modules"
   end
 
   create_table "redirects", force: :cascade do |t|

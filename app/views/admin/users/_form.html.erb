@@ -40,7 +40,7 @@
     <div class='form-group'>
       <label class='control-label col-sm-2' for="user_profile"><%= t('.profile')%></label>
       <div class='col-sm-5'>
-        <%= f.collection_select :profile, Profile.order('id').all, :label, :label, { include_blank: false }, class: 'form-control' %>
+        <%= f.select :profile, [:admin, :publisher, :contributor], { include_blank: false }, class: 'form-control' %>
       </div>
     </div>
     <div class='form-group'>

@@ -32,15 +32,6 @@ TextFilter.
   create_with(description: 'Textile', markup: 'textile', filters: [], params: {}).
   find_or_create_by!(name: 'textile')
 
-unless Profile.any?
-  Profile.create!(label: 'admin', nicename: 'Publify administrator',
-                  modules: [:dashboard, :articles, :notes, :pages, :feedback, :media, :themes, :sidebar, :profile, :users, :settings, :seo])
-  Profile.create!(label: 'publisher', nicename: 'Blog publisher',
-                  modules: [:dashboard, :articles, :notes, :pages, :feedback, :media, :profile])
-  Profile.create!(label: 'contributor', nicename: 'Contributor',
-                  modules: [:dashboard, :profile ])
-end
-
 unless File.directory?("#{::Rails.root.to_s}/public/files")
   Dir.mkdir("#{::Rails.root.to_s}/public/files")
 end

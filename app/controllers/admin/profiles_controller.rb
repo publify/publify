@@ -3,7 +3,6 @@ class Admin::ProfilesController < Admin::BaseController
   before_action :set_user, only: [:index, :update]
 
   def index
-    @profiles = Profile.order('id')
   end
 
   def update

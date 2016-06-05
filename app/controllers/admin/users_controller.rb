@@ -9,12 +9,10 @@ class Admin::UsersController < Admin::BaseController
   def new
     @user = User.new
     @user.text_filter = TextFilter.find_by_name(this_blog.text_filter)
-    setup_profiles
   end
 
   def edit
     @user = params[:id] ? User.find_by_id(params[:id]) : current_user
-    setup_profiles
   end
 
   def create
@@ -41,10 +39,6 @@ class Admin::UsersController < Admin::BaseController
   end
 
   private
-
-  def setup_profiles
-    @profiles = Profile.order('id')
-  end
 
   def set_user
     @user = User.find(params[:id])
