@@ -7,7 +7,7 @@
     <%= yield :page_title %>
   </title>
   <meta http-equiv="imagetoolbar" content="no">
-  <%= javascript_include_tag 'publify_admin', async: true %>
+  <%= javascript_include_tag 'publify_admin', async: Rails.env.production? %>
   <%= stylesheet_link_tag "accounts", "bootstrap" %>
 </head>
 <body>
