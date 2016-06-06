@@ -53,7 +53,7 @@ class Admin::SidebarController < Admin::BaseController
                   else
                     Sidebar.valid.find(sidebar_id)
                   end
-        sidebar.update_attributes(staged_position: staged_index)
+        sidebar.update_attributes(staged_position: staged_index, blog_id: this_blog.id)
       end
     end
 
