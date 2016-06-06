@@ -11,6 +11,7 @@
 
 ### Other changes
 
+* Fixed sidebar update under subdir deployment (priit)
 * Update Akismet API calls (drakontia)
 * Remove old Rails patches (mvz)
 * Update dependency on Rails to 4.2.5 (mvz)
