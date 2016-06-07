@@ -11,6 +11,7 @@
 
 ### Other changes
 
+* Load JavaScript asynchronously only in production (priit)
 * Update Akismet API calls (drakontia)
 * Remove old Rails patches (mvz)
 * Update dependency on Rails to 4.2.5 (mvz)
