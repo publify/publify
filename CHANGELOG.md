@@ -8,6 +8,7 @@
 * Make Publify multiblog-ready (mvz)
 * Replace custom Publify authentication system with Devise (mvz)
 * Replace custom Publify authorization system with CanCanCan (mvz)
+* Remove Profile model (mvz)
 
 ### Other changes
 
@@ -23,6 +24,21 @@
 * Fixed rake db:seed error (sachiotomita)
 * Add check for translation keys and fix errors (mvz)
 * Introduce RuboCop to automatically check style errors (mvz)
+* Fix many RuboCop offenses (mvz)
+* Update Travis config to stop testing on MRI 2.0.0, start testing on 2.3 (mvz)
+* Remove unused #reset_local_cache method (mvz)
+* Load JavaScript asynchronously in supporting layouts (mvz)
+* Fix translations for labels in Devise views (mvz)
+* Update dependencies (mvz)
+* Clean up textfilter code (mvz)
+* Test and improve setup process (mvz)
+* Update translations for Dutch (mvz)
+* Fix syntax error in mailer template (ttibau)
+* Ensure development dependencies don't break the build (mvz)
+* Fix spelling (mvz)
+* Use only the parts from fog needed by Publify (mvz)
+* Upgrade to mysql2 0.4.x (ttibau)
+* Remove unused code (mvz)
 
 ## 8.2.0
 
