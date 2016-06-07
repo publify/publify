@@ -1,0 +1,9 @@
+{
+  "template": "rails",
+  "ports": [3000],
+  "name": "Publify",
+  "description": "A self hosted Web publishing platform on Rails.",
+  "scripts": {
+    "Start Publify": "cd ~/code/publify && rails s -b 0.0.0.0"
+  }
+}
