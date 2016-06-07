@@ -191,8 +191,6 @@ class Sidebar < ActiveRecord::Base
   end
 
   class << self
-    attr_accessor :view_root
-
     # TODO: Avoid making this available from subclasses
     def register_sidebar(klass)
       registered_sidebars << klass
@@ -270,10 +268,6 @@ class Sidebar < ActiveRecord::Base
     fields.reduce(sidebar: self) do |hash, field|
       hash.merge(field.key => config[field.key])
     end
-  end
-
-  def view_root
-    self.class.view_root
   end
 
   def admin_state
