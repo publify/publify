@@ -7,14 +7,6 @@ class ApplicationController < ActionController::Base
   before_action :fire_triggers, :load_lang, :set_paths
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  class << self
-    unless respond_to? :template_root
-      def template_root
-        ActionController::Base.view_paths.last
-      end
-    end
-  end
-
   private
 
   def configure_permitted_parameters
