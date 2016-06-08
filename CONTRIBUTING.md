@@ -20,7 +20,7 @@ We welcome pull requests. Please check first if the problem you're solving is
 fixed in master, or if the desired feature is already in development. Before
 starting a large feature, please open a ticket first so we can discuss it.
 
-When sending a pull request, please follow these steps:
+When sending a pull request, please follow **all of** these steps:
 
 1. Fork the repo
 2. Make sure you start from the latest master
