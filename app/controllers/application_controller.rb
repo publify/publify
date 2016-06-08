@@ -24,11 +24,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def setup_themer
-    # Ick!
-    self.class.view_paths = ::ActionController::Base.view_paths.dup.unshift("#{::Rails.root}/themes/#{this_blog.theme}/views")
-  end
-
   def fire_triggers
     Trigger.fire
   end
