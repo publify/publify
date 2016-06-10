@@ -12,12 +12,12 @@ describe Article, type: :model do
   describe '#permalink_url' do
     describe 'with hostname' do
       subject { blog.articles.build(permalink: 'article-3', published_at: Time.utc(2004, 6, 1)).permalink_url(nil, false) }
-      it { is_expected.to eq('http://myblog.net/2004/06/01/article-3') }
+      it { is_expected.to eq("#{blog.base_url}/2004/06/01/article-3") }
     end
 
     describe 'without hostname' do
       subject { blog.articles.build(permalink: 'article-3', published_at: Time.utc(2004, 6, 1)).permalink_url(nil, true) }
-      it { is_expected.to eq('/2004/06/01/article-3') }
+      it { is_expected.to eq("#{blog.root_path}/2004/06/01/article-3") }
     end
 
     # NOTE: URLs must not have any multibyte characters in them. The
@@ -25,21 +25,21 @@ describe Article, type: :model do
     describe 'with a multibyte permalink' do
       subject { blog.articles.build(permalink: 'ルビー', published_at: Time.utc(2004, 6, 1)) }
       it 'escapes the multibyte characters' do
-        expect(subject.permalink_url(nil, true)).to eq('/2004/06/01/%E3%83%AB%E3%83%93%E3%83%BC')
+        expect(subject.permalink_url(nil, true)).to eq("#{blog.root_path}/2004/06/01/%E3%83%AB%E3%83%93%E3%83%BC")
       end
     end
 
     describe 'with a permalink containing a space' do
       subject { blog.articles.build(permalink: 'hello there', published_at: Time.utc(2004, 6, 1)) }
       it "escapes the space as '%20', not as '+'" do
-        expect(subject.permalink_url(nil, true)).to eq('/2004/06/01/hello%20there')
+        expect(subject.permalink_url(nil, true)).to eq("#{blog.root_path}/2004/06/01/hello%20there")
       end
     end
 
     describe 'with a permalink containing a plus' do
       subject { blog.articles.build(permalink: 'one+two', published_at: Time.utc(2004, 6, 1)) }
       it 'does not escape the plus' do
-        expect(subject.permalink_url(nil, true)).to eq('/2004/06/01/one+two')
+        expect(subject.permalink_url(nil, true)).to eq("#{blog.root_path}/2004/06/01/one+two")
       end
     end
   end
@@ -54,11 +54,11 @@ describe Article, type: :model do
     let(:article) { build(:article, permalink: 'article-3', published_at: Time.utc(2004, 6, 1)) }
 
     it 'returns url for atom feed for a Atom 1.0 asked' do
-      expect(article.feed_url('atom10')).to eq 'http://myblog.net/2004/06/01/article-3.atom'
+      expect(article.feed_url('atom10')).to eq "#{blog.base_url}/2004/06/01/article-3.atom"
     end
 
     it 'returns url for rss feed for a RSS 2 asked' do
-      expect(article.feed_url('rss20')).to eq 'http://myblog.net/2004/06/01/article-3.rss'
+      expect(article.feed_url('rss20')).to eq "#{blog.base_url}/2004/06/01/article-3.rss"
     end
   end
 
@@ -417,14 +417,14 @@ describe Article, type: :model do
   describe '#comment_url' do
     it 'should render complete url of comment' do
       article = build_stubbed(:article, id: 123)
-      expect(article.comment_url).to eq("/comments?article_id=#{article.id}")
+      expect(article.comment_url).to eq("#{blog.root_path}/comments?article_id=#{article.id}")
     end
   end
 
   describe '#preview_comment_url' do
     it 'should render complete url of comment' do
       article = build_stubbed(:article, id: 123)
-      expect(article.preview_comment_url).to eq("/comments/preview?article_id=#{article.id}")
+      expect(article.preview_comment_url).to eq("#{blog.root_path}/comments/preview?article_id=#{article.id}")
     end
   end
 
@@ -511,7 +511,7 @@ describe Article, type: :model do
 
     describe '#permalink_url' do
       it 'uses UTC to determine correct day' do
-        expect(@a.permalink_url).to eq('http://myblog.net/2011/02/21/a-big-article')
+        expect(@a.permalink_url).to eq "#{blog.base_url}/2011/02/21/a-big-article"
       end
     end
 
@@ -538,7 +538,7 @@ describe Article, type: :model do
 
     describe '#permalink_url' do
       it 'uses UTC to determine correct day' do
-        expect(@a.permalink_url).to eq('http://myblog.net/2011/02/22/a-big-article')
+        expect(@a.permalink_url).to eq "#{blog.base_url}/2011/02/22/a-big-article"
       end
     end
 
@@ -565,7 +565,7 @@ describe Article, type: :model do
 
     describe '#permalink_url' do
       it 'uses JST to determine correct day' do
-        expect(@a.permalink_url).to eq('http://myblog.net/2012/12/31/a-big-article')
+        expect(@a.permalink_url).to eq "#{blog.base_url}/2012/12/31/a-big-article"
       end
     end
 
@@ -592,7 +592,7 @@ describe Article, type: :model do
 
     describe '#permalink_url' do
       it 'uses JST to determine correct day' do
-        expect(@a.permalink_url).to eq('http://myblog.net/2013/01/01/a-big-article')
+        expect(@a.permalink_url).to eq("#{blog.base_url}/2013/01/01/a-big-article")
       end
     end
 

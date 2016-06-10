@@ -4,18 +4,20 @@ require 'rails_helper'
 describe Page, type: :model do
   let!(:blog) { create(:blog) }
 
-  describe 'name=' do
-    context 'when build a page without name' do
+  describe 'before save' do
+    context 'when saving a page without a name' do
       let(:page) { create(:page, name: nil, title: 'A title') }
-      it { expect(page.name).to eq('a-title') }
+      it 'sets the name based on the title' do
+        expect(page.name).to eq('a-title')
+      end
     end
   end
 
-  describe 'permalink' do
-    context 'with an existing page' do
-      before(:each) { Rails.cache.clear }
-      let(:page) { create(:page, name: 'page_one') }
-      it { expect(page.permalink_url).to eq('http://myblog.net/pages/page_one') }
+  describe '#permalink_url' do
+    let(:page) { build(:page, name: 'page_one', blog: blog) }
+
+    it 'returns a full url based on the page name in the pages section' do
+      expect(page.permalink_url).to eq("#{blog.base_url}/pages/page_one")
     end
   end
 

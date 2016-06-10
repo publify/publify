@@ -22,7 +22,7 @@ describe CommentsController, type: :controller do
     it 'should redirect to the article' do
       article = create(:article, created_at: '2005-01-01 02:00:00')
       post :create, comment: { body: 'content', author: 'bob' }, article_id: article.id
-      expect(response).to redirect_to("/#{article.created_at.year}/#{sprintf('%.2d', article.created_at.month)}/#{sprintf('%.2d', article.created_at.day)}/#{article.permalink}")
+      expect(response).to redirect_to article.permalink_url
     end
   end
 
@@ -37,7 +37,7 @@ describe CommentsController, type: :controller do
     context 'scoped index' do
       let(:article) { create(:article) }
       before(:each) { get 'index', article_id: article.id }
-      it { expect(response).to redirect_to("#{URI.parse(article.permalink_url).path}#comments") }
+      it { expect(response).to redirect_to("#{article.permalink_url}#comments") }
     end
 
     context 'without format' do

@@ -13,7 +13,7 @@ describe ApplicationHelper, type: :helper do
     describe 'for a simple ascii-only permalink' do
       let(:article) { build(:article, published_at: Date.new(2004, 6, 1).to_datetime, title: 'An Article sample') }
 
-      it { expect(link_to_permalink(article, 'title')).to eq('<a href="http://myblog.net/2004/06/01/a-big-article">title</a>') }
+      it { expect(link_to_permalink(article, 'title')).to eq("<a href=\"#{article.permalink_url}\">title</a>") }
     end
 
     describe 'for a multibyte permalink' do

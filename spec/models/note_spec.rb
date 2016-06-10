@@ -130,7 +130,8 @@ describe Note, type: :model do
     end
 
     describe 'twitter_message' do
-      let(:note) { create(:note, body: tweet) }
+      let(:blog) { create :blog, base_url: 'http://myblog.net' }
+      let(:note) { create(:note, blog: blog, body: tweet) }
 
       context 'with a short simple message' do
         let(:tweet) { 'A message without URL' }
