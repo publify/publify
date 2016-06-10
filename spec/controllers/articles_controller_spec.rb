@@ -286,21 +286,23 @@ end
 
 describe ArticlesController, 'redirecting', type: :controller do
   describe 'with explicit redirects' do
-    it 'should redirect from known URL' do
-      build_stubbed(:blog)
-      create(:user)
-      create(:redirect)
-      get :redirect, from: 'foo/bar'
-      assert_response 301
-      expect(response).to redirect_to('http://test.host/someplace/else')
-    end
+    describe 'with empty relative_url_root' do
+      it 'should redirect from known URL' do
+        create(:blog, base_url: 'http://test.host')
+        create(:user)
+        create(:redirect)
+        get :redirect, from: 'foo/bar'
+        assert_response 301
+        expect(response).to redirect_to('http://test.host/someplace/else')
+      end
 
-    it 'should not redirect from unknown URL' do
-      build_stubbed(:blog)
-      create(:user)
-      create(:redirect)
-      get :redirect, from: 'something/that/isnt/there'
-      assert_response 404
+      it 'should not redirect from unknown URL' do
+        create(:blog, base_url: 'http://test.host')
+        create(:user)
+        create(:redirect)
+        get :redirect, from: 'something/that/isnt/there'
+        assert_response 404
+      end
     end
 
     # FIXME: Due to the changes in Rails 3 (no relative_url_root), this
@@ -353,12 +355,12 @@ describe ArticlesController, 'redirecting', type: :controller do
   end
 
   describe 'accessing old-style URL with "articles" as the first part' do
-    it 'should redirect to article' do
-      create(:blog)
-      create(:article, permalink: 'second-blog-article', published_at: Time.utc(2004, 4, 1))
+    it 'should redirect to article without url_root' do
+      create(:blog, base_url: 'http://test.host')
+      article = create(:article, permalink: 'second-blog-article', published_at: Time.utc(2004, 4, 1))
       get :redirect, from: 'articles/2004/04/01/second-blog-article'
       assert_response 301
-      expect(response).to redirect_to('/2004/04/01/second-blog-article')
+      expect(response).to redirect_to article.permalink_url
     end
 
     it 'should redirect to article with url_root' do
@@ -399,12 +401,12 @@ describe ArticlesController, 'redirecting', type: :controller do
       describe 'accessing legacy URLs' do
         it 'should redirect from default URL format' do
           get :redirect, from: '2004/04/01/second-blog-article'
-          expect(response).to redirect_to('/second-blog-article.html')
+          expect(response).to redirect_to article.permalink_url
         end
 
         it 'should redirect from old-style URL format with "articles" part' do
           get :redirect, from: 'articles/2004/04/01/second-blog-article'
-          expect(response).to redirect_to('/second-blog-article.html')
+          expect(response).to redirect_to article.permalink_url
         end
       end
     end
@@ -427,11 +429,11 @@ describe ArticlesController, 'redirecting', type: :controller do
         render_views
 
         it 'should have good rss feed link' do
-          expect(response.body).to have_selector("head>link[href=\"http://myblog.net/#{article.permalink}.html.rss\"]", visible: false)
+          expect(response.body).to have_selector("head>link[href=\"#{blog.base_url}/#{article.permalink}.html.rss\"]", visible: false)
         end
 
         it 'should have good atom feed link' do
-          expect(response.body).to have_selector("head>link[href=\"http://myblog.net/#{article.permalink}.html.atom\"]", visible: false)
+          expect(response.body).to have_selector("head>link[href=\"#{blog.base_url}/#{article.permalink}.html.atom\"]", visible: false)
         end
 
         it 'should have a canonical url' do
