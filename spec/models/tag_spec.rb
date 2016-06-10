@@ -56,8 +56,10 @@ describe Tag, type: :model do
   end
 
   describe 'permalink_url' do
-    let(:tag) { create(:tag, name: 'foo', display_name: 'foo') }
-    it { expect(tag.permalink_url).to eq('http://myblog.net/tag/foo') }
+    let(:tag) { build(:tag, blog: blog, name: 'foo', display_name: 'Foo') }
+    it 'returns a full url based on the tag name in the tag section' do
+      expect(tag.permalink_url).to eq("#{blog.base_url}/tag/foo")
+    end
   end
 
   describe '#published_articles' do
