@@ -161,7 +161,7 @@ FactoryGirl.define do
   end
 
   factory :blog do
-    base_url 'http://mysite.net/blog'
+    base_url 'http://test.host/blog'
     hide_extended_on_rss true
     blog_name 'test blog'
     limit_article_display 2
