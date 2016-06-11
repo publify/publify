@@ -3,10 +3,10 @@
     <div class='well'>
       <h3><%= t(".available_items") %></h3>
       <div id="available_box">
-        <% if @available.blank? %>
+        <% if available_sidebars.blank? %>
         <p class='alert-message warning'><%= t(".you_have_no_plugins_installed") %>.</p>
         <% else %>
-          <%= render :partial => 'available', :collection => @available %>
+          <%= render partial: 'available', collection: available_sidebars %>
         <% end %>
       </div>
     </div>
@@ -16,11 +16,11 @@
     <div class='well'>
       <h3 id="hdr-active">
         <%= t(".active_sidebar_items") %>
-        <%= image_tag "spinner-blue.gif", :id => 'update_spinner',
-          :style => 'display:none;' %>
+        <%= image_tag "spinner-blue.gif", id: 'update_spinner',
+          style: 'display:none;' %>
       </h3>
       <div id="active">
-        <%= render :partial => 'target' %>
+        <%= render 'target', ordered_sidebars: ordered_sidebars %>
       </div>
     </div>
   </div>

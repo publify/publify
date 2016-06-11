@@ -20,7 +20,7 @@
 
 <div id="messages">&nbsp;</div>
 
-<%= render partial: 'config' %>
+<%= render 'config', available_sidebars: @available, ordered_sidebars: @ordered_sidebars %>
 
 <%= form_tag(url_for(action: 'publish'), method: :put, class: 'spinner') do %>
   <div class='form-group'>

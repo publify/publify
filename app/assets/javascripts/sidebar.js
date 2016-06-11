@@ -23,7 +23,7 @@ var bind_sortable = function() {
 
   });
 
-  $('.draggable').draggable({ 
+  $('.draggable').draggable({
     connectToSortable: '.sortable',
     helper: "clone",
     revert: "invalid"
