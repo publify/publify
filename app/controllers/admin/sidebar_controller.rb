@@ -1,21 +1,17 @@
 # coding: utf-8
 class Admin::SidebarController < Admin::BaseController
   def index
-    @available = available
+    @available = Sidebar.available_sidebars
     @ordered_sidebars = Sidebar.ordered_sidebars
   end
 
   # Just update a single active Sidebar instance at once
   def update
-    sidebar_config = params[:configure]
-    sidebar = Sidebar.where(id: params[:id]).first
-    old_s_index = sidebar.staged_position || sidebar.active_position
-    sidebar.update_attributes sidebar_config[sidebar.id.to_s].permit!
+    @sidebar = Sidebar.where(id: params[:id]).first
+    @old_s_index = @sidebar.staged_position || @sidebar.active_position
+    @sidebar.update_attributes params[:configure][@sidebar.id.to_s].permit!
     respond_to do |format|
-      format.js do
-        # render partial _target for it
-        return render partial: 'target_sidebar', locals: { sortable_index: old_s_index, sidebar: sidebar }
-      end
+      format.js
       format.html do
         return redirect_to(admin_sidebar_index_path)
       end
@@ -59,22 +55,12 @@ class Admin::SidebarController < Admin::BaseController
 
     @ordered_sidebars = Sidebar.ordered_sidebars
     @available = Sidebar.available_sidebars
+
     respond_to do |format|
-      format.js do
-        render json: { html: render_to_string('admin/sidebar/_config.html.erb', layout: false) }
-      end
+      format.js
       format.html do
         return redirect_to admin_sidebar_index_path
       end
     end
   end
-
-  protected
-
-  # TODO: Rename and move to a AdminSidebarHelpers module. Or use in instance variable.
-  def available
-    ::Sidebar.available_sidebars
-  end
-
-  helper_method :available
 end

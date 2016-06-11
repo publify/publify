@@ -146,6 +146,7 @@ Rails.application.routes.draw do
       end
     end
 
+    # TODO: This should have a plural resource name
     resources :sidebar, only: [:index, :update, :destroy] do
       collection do
         put :publish
