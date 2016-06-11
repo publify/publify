@@ -28,10 +28,6 @@ var bind_sortable = function() {
     $(this).parent().replaceWith(data);
   }
   );
-  $('.deletion_link').on('ajax:success', function(data, textStatus, xhr) {
-    $(this).parent().remove();
-  }
-  );
 };
 $(document).ready(function() {
   bind_sortable();
