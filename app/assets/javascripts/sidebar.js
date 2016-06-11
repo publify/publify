@@ -8,15 +8,9 @@ var bind_sortable = function() {
         data: data,
         type: 'POST',
         dataType: 'script',
-        url: '/admin/sidebar/sortable',
-        statusCode: {
-          500: function(jqXHR, textStatus, errorThrown) {
-            alert('Oups?');
-          }
-        }
-      });
-    },
-
+        url: '/admin/sidebar/sortable'
+      }).fail(function(jqXHR, textStatus, errorThrown) { alert('Oups?'); });
+    }
   });
 
   $('.draggable').draggable({
