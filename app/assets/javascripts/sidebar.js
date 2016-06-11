@@ -3,12 +3,13 @@ var bind_sortable = function() {
     dropOnEmpty: true,
     stop: function(evt, ui) {
       var data = $(this).sortable('serialize', {attribute: 'data-sortable'});
+      var callback_url = $(this).data('callback_url');
 
       $.ajax({
         data: data,
         type: 'POST',
         dataType: 'script',
-        url: '/admin/sidebar/sortable'
+        url: callback_url
       }).fail(function(jqXHR, textStatus, errorThrown) { alert('Oups?'); });
     }
   });
