@@ -7,15 +7,11 @@ class Admin::SidebarController < Admin::BaseController
 
   # Just update a single active Sidebar instance at once
   def update
-    sidebar_config = params[:configure]
-    sidebar = Sidebar.where(id: params[:id]).first
-    old_s_index = sidebar.staged_position || sidebar.active_position
-    sidebar.update_attributes sidebar_config[sidebar.id.to_s].permit!
+    @sidebar = Sidebar.where(id: params[:id]).first
+    @old_s_index = @sidebar.staged_position || @sidebar.active_position
+    @sidebar.update_attributes params[:configure][@sidebar.id.to_s].permit!
     respond_to do |format|
-      format.js do
-        # render partial _target for it
-        return render partial: 'target_sidebar', locals: { sortable_index: old_s_index, sidebar: sidebar }
-      end
+      format.js
       format.html do
         return redirect_to(admin_sidebar_index_path)
       end
