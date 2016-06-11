@@ -39,6 +39,7 @@
 * Use only the parts from fog needed by Publify (mvz)
 * Upgrade to mysql2 0.4.x (ttibau)
 * Remove unused code (mvz)
+* Run tests as a sub-URL installation by default (mvz)
 
 ## 8.2.0
 
