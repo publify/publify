@@ -9,10 +9,10 @@
 * Replace custom Publify authentication system with Devise (mvz)
 * Replace custom Publify authorization system with CanCanCan (mvz)
 * Remove Profile model (mvz)
+* Remove long-deprecated view_root method for sidebars (mvz)
 
 ### Other changes
 
-* Load JavaScript asynchronously only in production (priit)
 * Update Akismet API calls (drakontia)
 * Remove old Rails patches (mvz)
 * Update dependency on Rails to 4.2.5 (mvz)
@@ -39,7 +39,9 @@
 * Use only the parts from fog needed by Publify (mvz)
 * Upgrade to mysql2 0.4.x (ttibau)
 * Remove unused code (mvz)
+* Load JavaScript asynchronously only in production (priit)
 * Run tests as a sub-URL installation by default (mvz)
+* Ensure new sidebars have blog_id set (mvz)
 
 ## 8.2.0
 

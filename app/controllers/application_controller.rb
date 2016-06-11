@@ -7,14 +7,6 @@ class ApplicationController < ActionController::Base
   before_action :fire_triggers, :load_lang, :set_paths
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  class << self
-    unless respond_to? :template_root
-      def template_root
-        ActionController::Base.view_paths.last
-      end
-    end
-  end
-
   private
 
   def configure_permitted_parameters
@@ -30,11 +22,6 @@ class ApplicationController < ActionController::Base
     Dir.glob(File.join(::Rails.root.to_s, 'lib', '*_sidebar/app/views')).select do |file|
       append_view_path file
     end
-  end
-
-  def setup_themer
-    # Ick!
-    self.class.view_paths = ::ActionController::Base.view_paths.dup.unshift("#{::Rails.root}/themes/#{this_blog.theme}/views")
   end
 
   def fire_triggers

@@ -15,8 +15,6 @@ class ContentController < ApplicationController
     end
   end
 
-  before_action :setup_themer
-
   protected
 
   # TODO: Make this work for all content.
