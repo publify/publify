@@ -7,13 +7,9 @@ var bind_sortable = function() {
       $.ajax({
         data: data,
         type: 'POST',
-        dataType: 'json',
+        dataType: 'script',
         url: '/admin/sidebar/sortable',
         statusCode: {
-          200: function(data, textStatus, jqXHR) {
-            $('#sidebar-config').replaceWith(data.html);
-            bind_sortable();
-          },
           500: function(jqXHR, textStatus, errorThrown) {
             alert('Oups?');
           }
