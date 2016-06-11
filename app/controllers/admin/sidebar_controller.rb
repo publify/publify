@@ -59,9 +59,18 @@ class Admin::SidebarController < Admin::BaseController
 
     @ordered_sidebars = Sidebar.ordered_sidebars
     @available = Sidebar.available_sidebars
+
     respond_to do |format|
       format.js do
-        render json: { html: render_to_string('admin/sidebar/_config.html.erb', layout: false) }
+        html = render_to_string(
+          'admin/sidebar/_config',
+          locals: {
+            ordered_sidebars: @ordered_sidebars,
+            available_sidebars: @available,
+          },
+          layout: false
+        )
+        render json: { html: html }
       end
       format.html do
         return redirect_to admin_sidebar_index_path

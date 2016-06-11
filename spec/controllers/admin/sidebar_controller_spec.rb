@@ -33,9 +33,18 @@ describe Admin::SidebarController, type: :controller do
   end
 
   describe '#sortable' do
+    render_views
+
     it 'creates new sidebars in the current blog' do
       post :sortable, sidebar: ['9001']
       expect(blog.sidebars.count).to eq 1
+    end
+
+    it 'renders a proper ajax response' do
+      post :sortable, sidebar: ['9001'], format: :js
+      expect(response).to be_success
+      json_resonse = JSON.parse(response.body)
+      expect(json_resonse['html']).to match /^<div id="sidebar-config"/
     end
   end
 end
