@@ -8,13 +8,15 @@ describe Admin::SidebarController, type: :controller do
     sign_in henri
   end
 
-  describe 'rendering' do
-    render_views
+  describe '#index' do
+    context 'when rendering' do
+      render_views
 
-    it 'test_index' do
-      get :index
-      assert_template 'index'
-      assert_select 'div[id="sidebar-config"]'
+      it 'renders the sidebar configuration' do
+        get :index
+        assert_template 'index'
+        assert_select 'div#sidebar-config'
+      end
     end
   end
 
