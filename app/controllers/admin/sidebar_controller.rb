@@ -1,7 +1,7 @@
 # coding: utf-8
 class Admin::SidebarController < Admin::BaseController
   def index
-    @available = available
+    @available = Sidebar.available_sidebars
     @ordered_sidebars = Sidebar.ordered_sidebars
   end
 
@@ -77,13 +77,4 @@ class Admin::SidebarController < Admin::BaseController
       end
     end
   end
-
-  protected
-
-  # TODO: Rename and move to a AdminSidebarHelpers module. Or use in instance variable.
-  def available
-    ::Sidebar.available_sidebars
-  end
-
-  helper_method :available
 end
