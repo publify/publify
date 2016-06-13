@@ -5,7 +5,7 @@ class AuthorsSidebar < Sidebar
   setting :count, true, label: 'Show articles number', input_type: :checkbox
 
   def authors
-    @authors = User.find(:all, conditions: { state: 'active' }, order: 'name')
+    @authors = User.where(state: 'active').order('name')
   end
 end
 
