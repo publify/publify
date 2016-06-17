@@ -43,6 +43,7 @@
 * Run tests as a sub-URL installation by default (mvz)
 * Ensure new sidebars have blog_id set (mvz)
 * Fix bug in article attachment saving (mvz)
+* Fix broken authors sidebar (mvz)
 
 ## 8.2.0
 
