@@ -1,17 +1,7 @@
 require 'rails_helper'
 
-describe TextFilterPlugin::Macro do
-  describe '#self.attributes_parse' do
-    it 'should parse lang="ruby" to {"lang" => "ruby"}' do
-      expect(TextFilterPlugin::Macro.attributes_parse('<publify:code lang="ruby">')).to eq('lang' => 'ruby')
-    end
-
-    it "should parse lang='ruby' to {'lang' => 'ruby'}" do
-      expect(TextFilterPlugin::Macro.attributes_parse("<publify:code lang='ruby'>")).to eq('lang' => 'ruby')
-    end
-  end
-
-  describe '#available_filters' do
+describe TextFilterPlugin do
+  describe '.available_filters' do
     subject { TextFilterPlugin.available_filters }
     it { is_expected.to include(PublifyApp::Textfilter::Markdown) }
     it { is_expected.to include(PublifyApp::Textfilter::Smartypants) }
@@ -25,7 +15,7 @@ describe TextFilterPlugin::Macro do
     it { is_expected.not_to include(TextFilterPlugin::Macro) }
   end
 
-  describe '#macro_filters' do
+  describe '.macro_filters' do
     subject { TextFilterPlugin.macro_filters }
     it { is_expected.not_to include(PublifyApp::Textfilter::Markdown) }
     it { is_expected.not_to include(PublifyApp::Textfilter::Smartypants) }
@@ -39,3 +29,4 @@ describe TextFilterPlugin::Macro do
     it { is_expected.not_to include(TextFilterPlugin::Macro) }
   end
 end
+

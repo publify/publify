@@ -71,8 +71,8 @@ describe 'Given a new blog', type: :model do
     expect(blog).not_to be_hide_extended_on_rss
   end
 
-  it '#theme should be "Bootstrap 2"' do
-    expect(blog.theme).to eq('bootstrap-2')
+  it '#theme should be "Plain"' do
+    expect(blog.theme).to eq('plain')
   end
 
   it 'should not use any avatar plugin' do

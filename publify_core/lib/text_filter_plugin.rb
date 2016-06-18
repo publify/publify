@@ -1,3 +1,5 @@
+require 'publify_plugins'
+
 class TextFilterPlugin
   class << self
     include PublifyPlugins

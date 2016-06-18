@@ -1,6 +1,6 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV['RAILS_ENV'] ||= 'test'
-require File.expand_path('../../config/environment', __FILE__)
+require File.expand_path('../dummy/config/environment', __FILE__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'spec_helper'
@@ -59,4 +59,15 @@ RSpec.configure do |config|
 
   # shortcuts for factory_girl to use: create / build / build_stubbed
   config.include FactoryGirl::Syntax::Methods
+end
+
+def file_upload(filename, file = 'testfile.txt')
+  ActionDispatch::Http::UploadedFile.new(
+    tempfile: File.new(PublifyCore::Engine.root.join('spec', 'fixtures', file)),
+    filename: filename
+  )
+end
+
+def engine_root
+  PublifyCore::Engine.instance.root
 end

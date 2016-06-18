@@ -4,8 +4,6 @@ class TextFilter < ActiveRecord::Base
   serialize :filters, Array
   serialize :params, Hash
 
-  @text_helper = ContentTextHelpers.new
-
   def sanitize(*args, &blk)
     self.class.sanitize(*args, &blk)
   end
@@ -19,13 +17,9 @@ class TextFilter < ActiveRecord::Base
 
     filters.each do |filter|
       next if filter.nil?
-      begin
-        filter_class = map[filter.to_s]
-        next unless filter_class
-        text = filter_class.filtertext(text)
-      rescue => err
-        logger.error "Filter #{filter} failed: #{err}"
-      end
+      filter_class = map[filter.to_s]
+      next unless filter_class
+      text = filter_class.filtertext(text)
     end
 
     text

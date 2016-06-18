@@ -1,3 +1,5 @@
+require 'uuidtools'
+
 module PublifyGuid
   def create_guid
     return true unless guid.blank?

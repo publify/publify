@@ -1,3 +1,5 @@
+require 'text_filter_plugin'
+
 class PublifyApp
   class Textfilter
     class Twitterfilter < TextFilterPlugin::PostProcess

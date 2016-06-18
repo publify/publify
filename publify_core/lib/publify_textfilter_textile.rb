@@ -1,3 +1,6 @@
+require 'text_filter_plugin'
+require 'RedCloth'
+
 class PublifyApp
   class Textfilter
     class Textile < TextFilterPlugin::Markup

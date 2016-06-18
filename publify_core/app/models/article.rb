@@ -25,6 +25,7 @@ class Article < Content
   before_create :create_guid
   before_save :set_published_at, :set_permalink
   after_save :post_trigger, :keywords_to_tags, :shorten_url
+  after_save :send_pings
 
   scope :drafts, -> { where(state: 'draft').order('created_at DESC') }
   scope :child_of, ->(article_id) { where(parent_id: article_id) }

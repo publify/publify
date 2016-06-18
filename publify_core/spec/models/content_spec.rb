@@ -121,8 +121,10 @@ describe Content, type: :model do
       context 'comment with italic and bold' do
         let(:comment) { build(:comment, body: 'Comment body _italic_ *bold*') }
 
-        it { expect(comment.generate_html(:body)).to match(/\<em\>italic\<\/em\>/) }
-        it { expect(comment.generate_html(:body)).to match(/\<strong\>bold\<\/strong\>/) }
+        it 'converts the comment markup to HTML' do
+          expect(comment.generate_html(:body)).to match(/\<em\>italic\<\/em\>/)
+          expect(comment.generate_html(:body)).to match(/\<strong\>bold\<\/strong\>/)
+        end
       end
     end
   end

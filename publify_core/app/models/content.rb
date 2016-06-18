@@ -141,11 +141,3 @@ class Content < ActiveRecord::Base
     redirect.from_url
   end
 end
-
-class ContentTextHelpers
-  include ActionView::Helpers::UrlHelper
-  include ActionView::Helpers::TagHelper
-  include ActionView::Helpers::SanitizeHelper
-  include ActionView::Helpers::TextHelper
-  extend ActionView::Helpers::SanitizeHelper::ClassMethods
-end

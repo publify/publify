@@ -1,3 +1,5 @@
+require 'format'
+
 class SpamProtection
   IP_RBLS = ['opm.blitzed.us', 'bsb.empty.us'].freeze
   HOST_RBLS = ['multi.surbl.org', 'bsb.empty.us'].freeze

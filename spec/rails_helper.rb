@@ -43,24 +43,6 @@ RSpec.configure do |config|
   end
 end
 
-def define_spec_public_cache_directory
-  ActionController::Base.page_cache_directory = File.join(Rails.root, 'spec', 'public')
-  unless File.exist? ActionController::Base.page_cache_directory
-    FileUtils.mkdir_p ActionController::Base.page_cache_directory
-  end
-end
-
-def path_for_file_in_spec_public_cache_directory(file)
-  define_spec_public_cache_directory
-  File.join(ActionController::Base.page_cache_directory, file)
-end
-
-def create_file_in_spec_public_cache_directory(file)
-  file_path = path_for_file_in_spec_public_cache_directory(file)
-  File.open(file_path, 'a').close
-  file_path
-end
-
 # TODO: Clean up use of these Test::Unit style expectations
 def assert_xml(xml)
   expect(xml).not_to be_empty
@@ -119,11 +101,4 @@ def with_each_theme
     end
     yield theme.name, view_path
   end
-end
-
-def file_upload(filename, file = 'testfile.txt')
-  ActionDispatch::Http::UploadedFile.new(
-    tempfile: File.new(Rails.root.join('spec', 'fixtures', file)),
-    filename: filename
-  )
 end

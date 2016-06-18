@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'support/dns_mock'
 
 describe Comment, type: :model do
   let(:blog) { build_stubbed :blog }
@@ -94,22 +95,19 @@ describe Comment, type: :model do
 
   describe '#spam?' do
     it 'should reject spam rbl' do
-      c = valid_comment(author: 'Spammer', body: %(This is just some random text. &lt;a href="http://chinaaircatering.com"&gt;without any senses.&lt;/a&gt;. Please disregard.), url: 'http://buy-computer.us')
-      should_be_spam(c)
+      comment = valid_comment(author: 'Spammer', body: %(This is just some random text. &lt;a href="http://chinaaircatering.com"&gt;without any senses.&lt;/a&gt;. Please disregard.), url: 'http://buy-computer.us')
+      expect(comment).to be_spam
+      expect(comment).not_to be_status_confirmed
     end
 
     it 'should not define spam a comment rbl with lookup succeeds' do
-      c = valid_comment(author: 'Not a Spammer', body: 'Useful commentary!', url: 'http://www.bofh.org.uk')
-      expect(c).not_to be_spam
-      expect(c).not_to be_status_confirmed
+      comment = valid_comment(author: 'Not a Spammer', body: 'Useful commentary!', url: 'http://www.bofh.org.uk')
+      expect(comment).not_to be_spam
+      expect(comment).not_to be_status_confirmed
     end
 
     it 'should reject spam with uri limit' do
-      c = valid_comment(author: 'Yet Another Spammer', body: %( <a href="http://www.one.com/">one</a> <a href="http://www.two.com/">two</a> <a href="http://www.three.com/">three</a> <a href="http://www.four.com/">four</a> ), url: 'http://www.uri-limit.com')
-      should_be_spam(c)
-    end
-
-    def should_be_spam(comment)
+      comment = valid_comment(author: 'Yet Another Spammer', body: %( <a href="http://www.one.com/">one</a> <a href="http://www.two.com/">two</a> <a href="http://www.three.com/">three</a> <a href="http://www.four.com/">four</a> ), url: 'http://www.uri-limit.com')
       expect(comment).to be_spam
       expect(comment).not_to be_status_confirmed
     end
