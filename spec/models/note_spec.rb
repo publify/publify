@@ -105,7 +105,7 @@ describe Note, type: :model do
       context 'with a more than 140 char note' do
         let(:note) { create(:note, body: 'a big message that contains more than 140 char is not to hard to do. You only need to speak as a french guy, a lot to say nothing. And that probably the best way to write more that 140 char') }
 
-        let(:fake_twitter) { OpenStruct.new }
+        let(:fake_twitter) { double(Twitter::REST::Client) }
 
         before(:each) do
           expect(Twitter::REST::Client).to receive(:new).and_return(fake_twitter)
