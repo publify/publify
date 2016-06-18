@@ -1,4 +1,34 @@
 class FixesBuggyArticlesAndNotes < ActiveRecord::Migration
+  class Content < ActiveRecord::Base
+
+  end
+
+  class Article < Content
+    def set_permalink
+      return if state == 'draft' || permalink.present?
+      self.permalink = title.to_permalink
+    end
+  end
+
+  class Note < Content
+    def set_permalink
+      self.permalink = "#{id}-#{body.to_permalink[0..79]}" if permalink.blank?
+      save
+    end
+
+    def create_guid
+      return true unless guid.blank?
+
+      self.guid = UUIDTools::UUID.random_create.to_s
+    end
+  end
+
+  class Page < Content
+    def set_permalink
+      self.name = title.to_permalink if name.blank?
+    end
+  end
+
   def self.up
     say "Fixing contents permalinks, this may take some time"
 
