@@ -75,7 +75,6 @@ RSpec.configure do |config|
 
     # Prevents you from mocking or stubbing a method that does not exist on
     # a real object. This is generally recommended.
-    # TODO: Enable this and fix the resulting problems
-    # mocks.verify_partial_doubles = true
+    mocks.verify_partial_doubles = true
   end
 end

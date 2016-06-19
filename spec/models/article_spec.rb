@@ -640,13 +640,17 @@ describe Article, type: :model do
   end
 
   describe 'save_attachment!' do
-    it 'calls resource create_and_upload and add this new resource' do
-      resource = build(:resource)
-      file = OpenStruct.new
+    let(:file) { file_upload('some_file') }
+
+    it 'adds a new resource' do
       article = create(:article)
-      expect(Resource).to receive(:create_and_upload).with(file).and_return(resource)
-      article.save_attachment!(file).reload
-      expect(article.resources).to eq [resource]
+      article.save_attachment!(file)
+      article.reload
+
+      resource = article.resources.first
+      upload = resource.upload
+
+      expect(upload.file.basename).to eq 'some_file'
     end
   end
 
@@ -682,7 +686,7 @@ describe Article, type: :model do
         end
 
         it "calls send_weblogupdatesping when it's not already done" do
-          new_ping = OpenStruct.new
+          new_ping = double(Ping)
           urls_to_ping = [new_ping]
           expect_any_instance_of(Blog).to receive(:urls_to_ping_for).and_return(urls_to_ping)
           expect(article).to receive(:permalink_url)
@@ -694,7 +698,7 @@ describe Article, type: :model do
 
         it "calls send_pingback_or_trackback when it's not already done" do
           expect_any_instance_of(Blog).to receive(:urls_to_ping_for).and_return([])
-          new_ping = OpenStruct.new
+          new_ping = double(Ping)
           expect(article).to receive(:html_urls_to_ping).and_return([new_ping])
           expect(article).to receive(:permalink_url)
           expect(new_ping).to receive(:send_pingback_or_trackback)
