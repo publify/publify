@@ -682,7 +682,7 @@ describe Article, type: :model do
         end
 
         it "calls send_weblogupdatesping when it's not already done" do
-          new_ping = OpenStruct.new
+          new_ping = double(Ping)
           urls_to_ping = [new_ping]
           expect_any_instance_of(Blog).to receive(:urls_to_ping_for).and_return(urls_to_ping)
           expect(article).to receive(:permalink_url)
@@ -694,7 +694,7 @@ describe Article, type: :model do
 
         it "calls send_pingback_or_trackback when it's not already done" do
           expect_any_instance_of(Blog).to receive(:urls_to_ping_for).and_return([])
-          new_ping = OpenStruct.new
+          new_ping = double(Ping)
           expect(article).to receive(:html_urls_to_ping).and_return([new_ping])
           expect(article).to receive(:permalink_url)
           expect(new_ping).to receive(:send_pingback_or_trackback)
