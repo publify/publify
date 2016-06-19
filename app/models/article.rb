@@ -115,9 +115,7 @@ class Article < Content
   end
 
   def save_attachment!(file)
-    resources << Resource.create_and_upload(file)
-  rescue => e
-    logger.info(e.message)
+    resources << Resource.create(upload: file)
   end
 
   def trackback_url

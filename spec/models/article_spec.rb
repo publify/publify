@@ -640,13 +640,17 @@ describe Article, type: :model do
   end
 
   describe 'save_attachment!' do
-    it 'calls resource create_and_upload and add this new resource' do
-      resource = build(:resource)
-      file = OpenStruct.new
+    let(:file) { file_upload('some_file') }
+
+    it 'adds a new resource' do
       article = create(:article)
-      expect(Resource).to receive(:create_and_upload).with(file).and_return(resource)
-      article.save_attachment!(file).reload
-      expect(article.resources).to eq [resource]
+      article.save_attachment!(file)
+      article.reload
+
+      resource = article.resources.first
+      upload = resource.upload
+
+      expect(upload.file.basename).to eq 'some_file'
     end
   end
 
