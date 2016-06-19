@@ -174,7 +174,7 @@ EOS
   # without needing a controller handy, so we can produce URLs from within models
   # where appropriate.
   #
-  # It also caches the result in the RouteCache, so repeated URL generation
+  # It also caches the result in the Rails cache, so repeated URL generation
   # requests should be fast, as they bypass all of Rails' route logic.
   def url_for_with_base_url(options = {}, extra_params = {})
     case options
