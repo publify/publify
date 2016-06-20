@@ -2,12 +2,6 @@
 
 **The Ruby on Rails publishing software formerly known as Typo**
 
-### Download
-
-You can download the latest
-Publify [stable release (8.2.0)](https://github.com/publify/publify/archive/v8.2.0.tar.gz)
-or [clone the Publify repository](https://github.com/publify/publify.git).
-
 [![Build Status](https://travis-ci.org/publify/publify.png?branch=master)](https://travis-ci.org/publify/publify)
 [![Code Climate](https://codeclimate.com/github/publify/publify.png)](https://codeclimate.com/github/publify/publify)
 [![Dependency Status](https://gemnasium.com/publify/publify.png)](https://gemnasium.com/publify/publify)
@@ -47,12 +41,25 @@ are:
 
 The demo is reset every 2 hours.
 
-## Install Publify  locally
+## Install
+
+### Download
+
+You can download the latest
+Publify [stable release (8.2.0)](https://github.com/publify/publify/archive/v8.2.0.tar.gz)
+
+If you want to run the master branch, you can [clone the Publify
+repository](https://github.com/publify/publify.git). However, random things may
+be broken there at any time, so tread carefully!
+
+**Running the master branch in production is not recommended!**
+
+### Install Publify locally
 
 To install Publify you need the following:
 
-- Ruby 2.0, 2.1 or 2.2
-- Ruby On Rails 4.2.0
+- CRuby (MRI) 2.1, 2.2 or 2.3
+- Ruby on Rails 4.2.x
 - A database engine, MySQL, PgSQL or SQLite3
 - A compatible JavaScript installation for asset compilation. See [the execjs
   readme](https://github.com/sstephenson/execjs#readme) for details.
@@ -73,14 +80,12 @@ $ rails server
 
 You can now launch you browser and access 127.0.0.1:3000.
 
-## Install Publify on Heroku
+### Install Publify on Heroku
 
 In order to install Publify on Heroku, you’ll need to do some minor tweaks.
 
-### Storage
-
-You need to setup Amazon S3 storage to be able to upload files on your
-blog. Set Heroku config vars.
+First of all, you need to setup Amazon S3 storage to be able to upload files on
+your blog. Set Heroku config vars.
 
 ```yaml
 heroku config:set provider=AWS
@@ -128,7 +133,7 @@ heroku restart
 - [Publify on Twitter](https://twitter.com/getpublify)
 - IRC: \#publify on irc.freenode.net
 
-### Maintainers
+## Maintainers
 
 This is a list of Publify maintainers. If you have committed, please add
 your name and contact details to the list.
