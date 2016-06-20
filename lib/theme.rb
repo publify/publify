@@ -40,8 +40,8 @@ class Theme
     @registered_themes[theme.name] = theme
   end
 
-  def self.register_user_themes
-    search_theme_directory.each do |path|
+  def self.register_themes(themes_root)
+    search_theme_directory(themes_root).each do |path|
       register_theme path
     end
   end
@@ -52,22 +52,18 @@ class Theme
     @registered_themes
   end
 
-  def self.themes_root
-    ::Rails.root.to_s + '/themes'
-  end
-
   def self.theme_from_path(path)
     name = path.scan(/[-\w]+$/i).flatten.first
     new(name, path)
   end
 
-  def self.search_theme_directory
+  def self.search_theme_directory(themes_root)
     glob = "#{themes_root}/[a-zA-Z0-9]*"
     Dir.glob(glob).select do |file|
       File.readable?("#{file}/about.markdown")
     end.compact
   end
 
-  private_class_method :themes_root, :search_theme_directory,
+  private_class_method :search_theme_directory,
     :theme_from_path, :registered_themes
 end

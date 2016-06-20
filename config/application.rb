@@ -69,7 +69,7 @@ module Publify
 
   require 'theme'
 
-  Theme.register_user_themes
+  Theme.register_themes "#{Rails.root}/themes"
 
   Date::DATE_FORMATS.merge!(
     :long_weekday => '%a %B %e, %Y %H:%M'
