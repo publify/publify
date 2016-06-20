@@ -32,6 +32,14 @@ class Theme
     new(name, theme_path(name))
   end
 
+  def self.find_all
+    installed_themes.map do |path|
+      theme_from_path(path)
+    end
+  end
+
+  # Private
+
   def self.themes_root
     ::Rails.root.to_s + '/themes'
   end
@@ -45,12 +53,6 @@ class Theme
     new(name, path)
   end
 
-  def self.find_all
-    installed_themes.map do |path|
-      theme_from_path(path)
-    end
-  end
-
   def self.installed_themes
     cache_theme_lookup ? @theme_cache ||= search_theme_directory : search_theme_directory
   end
@@ -61,4 +63,7 @@ class Theme
       File.readable?("#{file}/about.markdown")
     end.compact
   end
+
+  private_class_method :themes_root, :theme_path, :search_theme_directory,
+    :installed_themes, :theme_from_path
 end
