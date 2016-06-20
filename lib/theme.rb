@@ -29,16 +29,31 @@ class Theme
 
   # Find a theme, given the theme name
   def self.find(name)
-    new(name, theme_path(name))
+    registered_themes[name]
   end
 
+  # List all themes
   def self.find_all
-    installed_themes.map do |path|
-      theme_from_path(path)
+    registered_themes.values
+  end
+
+  def self.register_theme(path)
+    @registered_themes ||= {}
+    theme = theme_from_path(path)
+    @registered_themes[theme.name] = theme
+  end
+
+  def self.register_user_themes
+    installed_themes.each do |path|
+      register_theme path
     end
   end
 
   # Private
+
+  def self.registered_themes
+    @registered_themes
+  end
 
   def self.themes_root
     ::Rails.root.to_s + '/themes'
@@ -65,5 +80,5 @@ class Theme
   end
 
   private_class_method :themes_root, :theme_path, :search_theme_directory,
-    :installed_themes, :theme_from_path
+    :installed_themes, :theme_from_path, :registered_themes
 end
