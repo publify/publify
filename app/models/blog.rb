@@ -167,7 +167,7 @@ EOS
   # The +Theme+ object for the current theme.
   def current_theme(reload = nil)
     @current_theme = nil if reload
-    @current_theme ||= Theme.find(theme)
+    @current_theme ||= Theme.find(theme) || Theme.new('', '')
   end
 
   # Generate a URL based on the +base_url+.  This allows us to generate URLs
