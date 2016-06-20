@@ -1,7 +1,4 @@
 class Theme
-  cattr_accessor :cache_theme_lookup
-  @@cache_theme_lookup = false
-
   attr_accessor :name, :path, :description_html
 
   def initialize(name, path)
@@ -44,7 +41,7 @@ class Theme
   end
 
   def self.register_user_themes
-    installed_themes.each do |path|
+    search_theme_directory.each do |path|
       register_theme path
     end
   end
@@ -59,17 +56,9 @@ class Theme
     ::Rails.root.to_s + '/themes'
   end
 
-  def self.theme_path(name)
-    File.join(themes_root, name)
-  end
-
   def self.theme_from_path(path)
     name = path.scan(/[-\w]+$/i).flatten.first
     new(name, path)
-  end
-
-  def self.installed_themes
-    cache_theme_lookup ? @theme_cache ||= search_theme_directory : search_theme_directory
   end
 
   def self.search_theme_directory
@@ -79,6 +68,6 @@ class Theme
     end.compact
   end
 
-  private_class_method :themes_root, :theme_path, :search_theme_directory,
-    :installed_themes, :theme_from_path, :registered_themes
+  private_class_method :themes_root, :search_theme_directory,
+    :theme_from_path, :registered_themes
 end
