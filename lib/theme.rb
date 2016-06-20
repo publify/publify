@@ -64,5 +64,5 @@ class Theme
   end
 
   private_class_method :search_theme_directory,
-    :theme_from_path, :registered_themes
+                       :theme_from_path, :registered_themes
 end
