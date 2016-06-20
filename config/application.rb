@@ -56,7 +56,6 @@ module Publify
 
   require 'format'
   require 'i18n_interpolation_deprecation'
-  require 'route_cache'
   ## Required by the models themselves.
   # require 'spam_protection'
   require 'stateful'
