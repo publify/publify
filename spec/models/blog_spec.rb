@@ -217,4 +217,16 @@ http://anotherurl.net/other_line")
       it { expect(blog.humans).to eq('something to say') }
     end
   end
+
+  describe '#current_theme' do
+    it 'returns the correct theme object given a valid theme name' do
+      blog = Blog.new(theme: 'plain')
+      expect(blog.current_theme.name).to eq 'plain'
+    end
+
+    it 'returns a blank theme object given an invalid theme name' do
+      blog = Blog.new(theme: 'not-there')
+      expect(blog.current_theme.name).to eq ''
+    end
+  end
 end
