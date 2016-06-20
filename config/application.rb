@@ -67,6 +67,8 @@ module Publify
   require 'bare_migration'
   require 'publify_version'
 
+  require 'theme'
+
   Date::DATE_FORMATS.merge!(
     :long_weekday => '%a %B %e, %Y %H:%M'
   )
