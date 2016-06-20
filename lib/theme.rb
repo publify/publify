@@ -35,9 +35,8 @@ class Theme
   end
 
   def self.register_theme(path)
-    @registered_themes ||= {}
     theme = theme_from_path(path)
-    @registered_themes[theme.name] = theme
+    registered_themes[theme.name] = theme
   end
 
   def self.register_themes(themes_root)
@@ -49,7 +48,7 @@ class Theme
   # Private
 
   def self.registered_themes
-    @registered_themes
+    @registered_themes ||= {}
   end
 
   def self.theme_from_path(path)
