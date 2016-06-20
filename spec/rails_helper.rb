@@ -109,8 +109,9 @@ def stub_full_article(time = Time.now, blog: Blog.first)
   a
 end
 
-# test all themes
+# test standard view and all themes
 def with_each_theme
+  yield nil, ''
   Theme.find_all.each do |theme|
     theme_dir = theme.path
     view_path = "#{theme_dir}/views"
