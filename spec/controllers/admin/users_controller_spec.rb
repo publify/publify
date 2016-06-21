@@ -1,74 +1,92 @@
 require 'rails_helper'
 
-describe Admin::UsersController, 'rough port of the old functional test', type: :controller do
+describe Admin::UsersController, type: :controller do
+  let!(:blog) { create :blog }
+  let(:admin) { create(:user, :as_admin) }
+  let(:publisher) { create(:user, :as_publisher) }
+  let(:contributor) { create(:user, :as_contributor) }
+
   render_views
 
-  describe ' when you are admin' do
-    before(:each) do
-      create(:blog)
-      @admin = create(:user, profile: User::ADMIN)
-      sign_in @admin
+  describe '#index' do
+    let(:user) { admin }
+
+    before do
+      sign_in user
     end
 
-    it 'test_index' do
+    it 'renders a list of users' do
       get :index
       assert_template 'index'
       expect(assigns(:users)).not_to be_nil
     end
 
-    it 'test_new' do
+    describe 'when you are not admin' do
+      let(:user) { publisher }
+
+      it "don't see the list of user" do
+        get :index
+        expect(response).to redirect_to(controller: '/admin/dashboard', action: 'index')
+      end
+    end
+  end
+
+  describe '#new' do
+    before do
+      sign_in admin
+    end
+
+    it 'renders the new template' do
       get :new
       assert_template 'new'
+    end
+  end
 
+  describe '#create' do
+    before do
+      sign_in admin
       post :create, user: { login: 'errand', email: 'corey@test.com',
                             password: 'testpass',
                             password_confirmation: 'testpass',
                             profile: User::CONTRIBUTOR,
                             nickname: 'fooo', firstname: 'bar' }
-      expect(response).to redirect_to(action: 'index')
     end
 
-    describe '#EDIT action' do
-      describe 'with POST request' do
-        it 'should redirect to index' do
-          post :update, id: @admin.id, user: { login: 'errand',
-                                               email: 'corey@test.com', password: 'testpass',
-                                               password_confirmation: 'testpass' }
-          expect(response).to redirect_to(action: 'index')
-        end
-      end
+    it 'redirects to the index' do
+      expect(response).to redirect_to(action: 'index')
     end
   end
 
-  describe 'when you are not admin' do
-    before :each do
-      create(:blog)
-      user = create(:user)
+  describe '#update' do
+    let(:user) { admin }
+
+    before(:each) do
       sign_in user
     end
 
-    it "don't see the list of user" do
-      get :index
-      expect(response).to redirect_to(controller: '/admin/dashboard', action: 'index')
+    it 'should redirect to index' do
+      post :update, id: contributor.id, user: { login: 'errand',
+                                               email: 'corey@test.com', password: 'testpass',
+                                               password_confirmation: 'testpass' }
+      expect(response).to redirect_to(action: 'index')
     end
 
-    describe 'EDIT Action' do
-      describe 'try update another user' do
-        before do
-          @administrator = create(:user, :as_admin)
-          post :edit,
-               id: @administrator.id,
-               profile: User::CONTRIBUTOR
-        end
+    describe 'when you are not admin' do
+      let(:user) { publisher }
 
-        it 'should redirect to login' do
-          expect(response).to redirect_to(controller: '/admin/dashboard', action: 'index')
-        end
+      before do
+        post :update,
+          id: contributor.id,
+          user: { profile: User::PUBLISHER }
+      end
 
-        it 'should not change user profile' do
-          u = @administrator.reload
-          expect(u.profile).to eq User::ADMIN
-        end
+      it 'should redirect to login' do
+        expect(response).to redirect_to(controller: '/admin/dashboard', action: 'index')
+      end
+
+      it 'should not change user profile' do
+        u = contributor.reload
+        expect(u.profile).to eq User::CONTRIBUTOR
       end
     end
   end
