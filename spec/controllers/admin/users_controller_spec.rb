@@ -66,8 +66,14 @@ describe Admin::UsersController, type: :controller do
 
     it 'should redirect to index' do
       post :update, id: contributor.id, user: { login: 'errand',
-                                               email: 'corey@test.com', password: 'testpass',
-                                               password_confirmation: 'testpass' }
+                                                email: 'corey@test.com', password: 'testpass',
+                                                password_confirmation: 'testpass' }
+      expect(response).to redirect_to(action: 'index')
+    end
+
+    it 'skips blank passwords' do
+      post :update, id: contributor.id, user: { login: 'errand',
+                                                password: '', password_confirmation: '' }
       expect(response).to redirect_to(action: 'index')
     end
 
