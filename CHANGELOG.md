@@ -9,7 +9,7 @@
 * Replace custom Publify authorization system with CanCanCan (mvz)
 * Remove Profile model (mvz)
 * Remove long-deprecated view_root method for sidebars (mvz)
-* Provide registration mechanism for themes, allowing theme to be stored
+* Provide registration mechanism for themes, allowing them to be stored
   anywhere (mvz)
 
 ### Other changes
