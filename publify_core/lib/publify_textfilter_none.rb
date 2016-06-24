@@ -1,3 +1,5 @@
+require 'text_filter_plugin'
+
 class PublifyApp
   class Textfilter
     class None < TextFilterPlugin::Markup

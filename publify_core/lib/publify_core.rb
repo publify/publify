@@ -7,6 +7,7 @@ require 'kaminari'
 require 'rails_autolink'
 
 require 'publify_guid'
+require 'publify_textfilter_none'
 require 'publify_textfilter_textile'
 require 'publify_textfilter_twitterfilter'
 require 'publify_time'
