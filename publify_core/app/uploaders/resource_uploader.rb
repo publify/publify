@@ -1,5 +1,3 @@
-require 'carrierwave'
-
 class ResourceUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 

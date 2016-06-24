@@ -1,6 +1,7 @@
 require "publify_core/engine"
 
 require 'actionpack/page_caching'
+require 'carrierwave'
 require 'devise'
 require 'kaminari'
 require 'rails_autolink'
