@@ -1,7 +1,6 @@
 # Changelog
 
-
-## Unreleased
+## 8.3.0
 
 ### Breaking/large changes
 
@@ -10,7 +9,7 @@
 * Replace custom Publify authorization system with CanCanCan (mvz)
 * Remove Profile model (mvz)
 * Remove long-deprecated view_root method for sidebars (mvz)
-* Provide registration mechanism for themes, allowing theme to be stored
+* Provide registration mechanism for themes, allowing them to be stored
   anywhere (mvz)
 
 ### Other changes
@@ -273,7 +272,7 @@ slainer68 (1):
 * #412: the editor locally saves the content of the edited note, which means it
   reloads it when you edit another note, overwriting the legit content.
 
-## Publify 8.0 
+## Publify 8.0
 
 It's been 5 months since Publify 7.1, and considering the figures, Publify 8.0
 is the biggest release we ever pushed in 9 years: 474 commits, 71 issues
