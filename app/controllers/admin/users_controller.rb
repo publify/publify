@@ -26,7 +26,7 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def update
-    if @user.update(user_params)
+    if @user.update(update_params)
       redirect_to admin_users_url, notice: 'User was successfully updated.'
     else
       render :edit
@@ -53,5 +53,13 @@ class Admin::UsersController < Admin::BaseController
                                  :twitter_account, :twitter_oauth_token,
                                  :twitter_oauth_token_secret, :description,
                                  :url, :msn, :yahoo, :jabber, :aim, :twitter)
+  end
+
+  def update_params
+    if user_params[:password].blank? && user_params[:password_confirmation].blank?
+      user_params.except(:password_confirmation, :password)
+    else
+      user_params
+    end
   end
 end
