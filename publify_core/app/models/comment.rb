@@ -6,6 +6,8 @@ class Comment < Feedback
   content_fields :body
   validates :author, :body, presence: true
 
+  after_save :send_notifications
+
   attr_accessor :referrer, :permalink
 
   scope :spam, -> { where(state: 'spam') }

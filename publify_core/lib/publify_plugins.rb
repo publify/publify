@@ -29,7 +29,7 @@ module PublifyPlugins
         def available_plugins(kind = nil)
           return @@registered.inspect unless kind
           check_kind(kind)
-          @@registered ? @@registered[kind] : nil
+          @@registered[kind] || []
         end
 
         def register(klass)
