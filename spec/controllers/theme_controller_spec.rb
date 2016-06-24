@@ -3,7 +3,7 @@ require 'rails_helper'
 describe ThemeController, type: :controller do
   render_views
 
-  before(:each) { FactoryGirl.create(:blog) }
+  before { create(:blog, theme: 'bootstrap-2') }
 
   it 'test_stylesheets' do
     get :stylesheets, filename: 'style.css'
