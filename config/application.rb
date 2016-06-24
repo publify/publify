@@ -22,7 +22,7 @@ module Publify
     config.plugins = [ :all ]
 
     # Activate observers that should always be running
-    config.active_record.observers = :email_notifier, :web_notifier
+    config.active_record.observers = :email_notifier
 
     # Turn om timestamped migrations
     config.active_record.timestamped_migrations = true
