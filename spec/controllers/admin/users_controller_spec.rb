@@ -82,8 +82,8 @@ describe Admin::UsersController, type: :controller do
 
       before do
         post :update,
-          id: contributor.id,
-          user: { profile: User::PUBLISHER }
+             id: contributor.id,
+             user: { profile: User::PUBLISHER }
       end
 
       it 'should redirect to login' do
