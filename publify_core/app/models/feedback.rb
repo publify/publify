@@ -11,6 +11,7 @@ class Feedback < ActiveRecord::Base
   include States
 
   class ContentTextHelpers
+    include ActionView::Helpers::UrlHelper
     include ActionView::Helpers::TextHelper
     include ActionView::Helpers::SanitizeHelper
   end

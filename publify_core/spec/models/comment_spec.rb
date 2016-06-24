@@ -237,4 +237,11 @@ describe Comment, type: :model do
       expect(Comment.last_published).to eq([comment_6, comment_5, comment_4, comment_3, comment_2])
     end
   end
+
+  describe '#generate_html' do
+    it 'renders email addresses in the body' do
+      comment = build_stubbed(:comment, body: 'foo@example.com')
+      expect(comment.generate_html(:body)).to match /mailto:/
+    end
+  end
 end
