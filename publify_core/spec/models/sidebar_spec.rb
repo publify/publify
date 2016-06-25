@@ -55,12 +55,6 @@ RSpec.describe Sidebar, type: :model do
       expect(dummy.foo).to eq "default-foo"
     end
 
-    it "creates a writer method on instances" do
-      dummy = dummy_sidebar.new
-      dummy.foo = "adjusted-foo"
-      expect(dummy.foo).to eq "adjusted-foo"
-    end
-
     it "provides the default value to instances created earlier" do
       dummy = dummy_sidebar.new
 
