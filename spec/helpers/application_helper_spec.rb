@@ -149,7 +149,7 @@ describe ApplicationHelper, type: :helper do
       let(:blog) { create :blog }
       describe 'with an invalid sidebar' do
         before do
-          TestBrokenSidebar.new(blog: blog).save
+          Sidebar.new(type: 'TestBrokenSidebar', blog: blog).save
         end
 
         def logger
@@ -165,7 +165,7 @@ describe ApplicationHelper, type: :helper do
 
       describe 'with a valid sidebar' do
         before do
-          Sidebar.new(blog: blog).save
+          Sidebar.new(type: 'StaticSidebar', blog: blog).save
         end
 
         it 'should render the sidebar' do
