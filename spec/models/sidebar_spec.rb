@@ -24,8 +24,8 @@ describe Sidebar, type: :model do
     let(:blog) { create :blog }
 
     context 'with several sidebars with different positions' do
-      let(:amazon_sidebar) { AmazonSidebar.new(staged_position: 2, blog: blog) }
-      let(:archives_sidebar) { ArchivesSidebar.new(active_position: 1, blog: blog) }
+      let(:amazon_sidebar) { Sidebar.new(staged_position: 2, blog: blog, type: 'AmazonSidebar') }
+      let(:archives_sidebar) { Sidebar.new(active_position: 1, blog: blog, type: 'ArchivesSidebar') }
 
       before do
         amazon_sidebar.save
@@ -40,23 +40,21 @@ describe Sidebar, type: :model do
 
     context 'with an invalid sidebar in the database' do
       before do
-        Sidebar.class_eval { self.inheritance_column = :bogus }
         Sidebar.new(type: 'AmazonSidebar', staged_position: 1, blog: blog).save
         Sidebar.new(type: 'FooBarSidebar', staged_position: 2, blog: blog).save
-        Sidebar.class_eval { self.inheritance_column = :type }
       end
 
       it 'skips the invalid active sidebar' do
         sidebars = Sidebar.ordered_sidebars
         expect(sidebars.size).to eq(1)
-        expect(sidebars.first.class).to eq(AmazonSidebar)
+        expect(sidebars.first.configuration_class).to eq(AmazonSidebar)
       end
     end
   end
 
   describe '#content_partial' do
-    it 'bases the partial name on the class name' do
-      expect(AmazonSidebar.new.content_partial).to eq('/amazon_sidebar/content')
+    it 'bases the partial name on the configuration class name' do
+      expect(Sidebar.new(type: 'AmazonSidebar').content_partial).to eq('/amazon_sidebar/content')
     end
   end
 

@@ -2,6 +2,7 @@ require 'sidebar_field'
 
 # This class cannot be autoloaded since other sidebar classes depend on it.
 class Sidebar < ActiveRecord::Base
+  self.inheritance_column = :bogus
   serialize :config, Hash
 
   belongs_to :blog
@@ -40,6 +41,26 @@ class Sidebar < ActiveRecord::Base
     type.constantize
   end
 
+  def configuration
+    @configuration ||= configuration_class.new(config)
+  end
+
+  def content_partial
+    configuration.content_partial
+  end
+
+  def display_name
+    configuration.display_name
+  end
+
+  def description
+    configuration.description
+  end
+
+  def fields
+    configuration.fields
+  end
+
   def publish
     self.active_position = staged_position
   end
@@ -48,7 +69,8 @@ class Sidebar < ActiveRecord::Base
     short_name + '-' + id.to_s
   end
 
-  def parse_request(_contents, _params)
+  def parse_request(contents, params)
+    configuration.parse_request(contents, params)
   end
 
   def admin_state

@@ -2,23 +2,24 @@ require 'rails_helper'
 
 describe 'Given a brand new AmazonSidebar', type: :model do
   before(:each) do
-    @sidebar = AmazonSidebar.new
+    @sidebar = Sidebar.new(type: 'AmazonSidebar')
+    @config = @sidebar.configuration
   end
 
   it "title should be 'Cited books'" do
-    expect(@sidebar.title).to eq('Cited books')
+    expect(@config.title).to eq('Cited books')
   end
 
   it "associate_id should be 'justasummary-20'" do
-    expect(@sidebar.associate_id).to eq('justasummary-20')
+    expect(@config.associate_id).to eq('justasummary-20')
   end
 
   it 'maxlinks should be 4' do
-    expect(@sidebar.maxlinks).to eq(4)
+    expect(@config.maxlinks).to eq(4)
   end
 
   it "description should be 'Adds sidebar links...'" do
-    expect(@sidebar.description).to eq(
+    expect(@config.description).to eq(
       'Adds sidebar links to any Amazon.com books linked in the body of the page'
     )
   end
@@ -30,12 +31,14 @@ end
 
 describe 'With no amazon sidebars', type: :model do
   it 'hash initialization should set attributes correctly' do
-    sb = AmazonSidebar.new(config: { 'title' => 'Books',
+    sb = Sidebar.new(type: 'AmazonSidebar',
+                           config: { 'title' => 'Books',
                                      'associate_id' => 'justasummary-21',
                                      'maxlinks' => 3 })
+    conf = sb.configuration
     expect(sb).to be_valid
-    expect(sb.title).to eq('Books')
-    expect(sb.associate_id).to eq('justasummary-21')
-    expect(sb.maxlinks).to eq(3)
+    expect(conf.title).to eq('Books')
+    expect(conf.associate_id).to eq('justasummary-21')
+    expect(conf.maxlinks).to eq(3)
   end
 end

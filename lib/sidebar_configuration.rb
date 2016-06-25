@@ -1,6 +1,10 @@
-require 'sidebar'
+class SidebarConfiguration
+  attr_reader :config
 
-class SidebarConfiguration < Sidebar
+  def initialize(config)
+    @config = config
+  end
+
   def content_partial
     "/#{self.class.path_name}/content"
   end
@@ -33,6 +37,9 @@ class SidebarConfiguration < Sidebar
     fields.reduce(sidebar: self) do |hash, field|
       hash.merge(field.key => config[field.key])
     end
+  end
+
+  def parse_request(_contents, _params)
   end
 
   class << self
