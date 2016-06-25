@@ -1,5 +1,4 @@
-# coding: utf-8
-class StaticSidebar < Sidebar
+class StaticSidebar < SidebarConfiguration
   DEFAULT_TEXT = '
 <ul>
   <li><a href="http://www.publify.co/" title="Publify">Publify</a></li>

@@ -1,4 +1,4 @@
-class AmazonSidebar < Sidebar
+class AmazonSidebar < SidebarConfiguration
   description \
     'Adds sidebar links to any Amazon.com books linked in the body of the page'
   setting :title, 'Cited books'

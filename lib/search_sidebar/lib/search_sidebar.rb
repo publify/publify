@@ -1,4 +1,4 @@
-class SearchSidebar < Sidebar
+class SearchSidebar < SidebarConfiguration
   description 'Adds basic search sidebar in your Publify blog'
 
   setting :title, 'Search'

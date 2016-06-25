@@ -1,4 +1,4 @@
-class AuthorsSidebar < Sidebar
+class AuthorsSidebar < SidebarConfiguration
   display_name 'Authors'
   description 'Displays a list of authors ordered by name with links to their articles and profile'
 
