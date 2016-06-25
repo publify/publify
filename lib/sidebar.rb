@@ -36,6 +36,10 @@ class Sidebar < ActiveRecord::Base
     end
   end
 
+  def configuration_class
+    type.constantize
+  end
+
   def publish
     self.active_position = staged_position
   end

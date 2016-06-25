@@ -59,4 +59,12 @@ describe Sidebar, type: :model do
       expect(AmazonSidebar.new.content_partial).to eq('/amazon_sidebar/content')
     end
   end
+
+  describe '#configuration_class' do
+    let(:sidebar) { Sidebar.new(type: 'ArchivesSidebar') }
+
+    it 'returns the type, classified' do
+      expect(sidebar.configuration_class).to eq ArchivesSidebar
+    end
+  end
 end
