@@ -6,7 +6,7 @@ class Sidebar < ActiveRecord::Base
 
   belongs_to :blog
 
-  scope :valid, ->() { where(type: available_sidebar_types) }
+  scope :valid, ->() { where(type: SidebarRegistry.available_sidebar_types) }
 
   def self.ordered_sidebars
     os = []
@@ -66,28 +66,6 @@ class Sidebar < ActiveRecord::Base
   def self.display_name(new_dn = nil)
     @display_name = new_dn if new_dn
     @display_name || short_name.humanize
-  end
-
-  class << self
-    # TODO: Avoid making this available from subclasses
-    def register_sidebar(klass)
-      registered_sidebars << klass
-      @available_sidebar_types = nil
-    end
-
-    def available_sidebars
-      registered_sidebars.sort_by(&:to_s)
-    end
-
-    def available_sidebar_types
-      registered_sidebars.map(&:to_s).sort
-    end
-
-    private
-
-    def registered_sidebars
-      @registered_sidebars ||= []
-    end
   end
 
   class << self

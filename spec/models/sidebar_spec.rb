@@ -3,7 +3,7 @@ require 'rails_helper'
 describe Sidebar, type: :model do
   describe '#available_sidebars' do
     it 'finds at least the standard sidebars' do
-      expect(Sidebar.available_sidebars).to include(
+      expect(SidebarRegistry.available_sidebars).to include(
         AmazonSidebar,
         ArchivesSidebar,
         AuthorsSidebar,

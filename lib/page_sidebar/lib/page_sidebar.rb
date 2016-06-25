@@ -9,4 +9,4 @@ class PageSidebar < Sidebar
   end
 end
 
-Sidebar.register_sidebar PageSidebar
+SidebarRegistry.register_sidebar PageSidebar

@@ -10,4 +10,4 @@ class PopularSidebar < Sidebar
   end
 end
 
-Sidebar.register_sidebar PopularSidebar
+SidebarRegistry.register_sidebar PopularSidebar
