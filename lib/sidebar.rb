@@ -27,23 +27,6 @@ class Sidebar < ActiveRecord::Base
     delete_all('active_position is null and staged_position is null')
   end
 
-  def self.short_name
-    to_s.underscore.split(/_/).first
-  end
-
-  def self.path_name
-    to_s.underscore
-  end
-
-  def self.display_name(new_dn = nil)
-    @display_name = new_dn if new_dn
-    @display_name || short_name.humanize
-  end
-
-  class << self
-    attr_writer :fields
-  end
-
   def self.apply_staging_on_active!
     Sidebar.transaction do
       Sidebar.all.each do |s|
@@ -62,40 +45,6 @@ class Sidebar < ActiveRecord::Base
   end
 
   def parse_request(_contents, _params)
-  end
-
-  def fields
-    self.class.fields
-  end
-
-  def fieldmap(field = nil)
-    if field
-      self.class.fieldmap[field.to_s]
-    else
-      self.class.fieldmap
-    end
-  end
-
-  def description
-    self.class.description
-  end
-
-  def short_name
-    self.class.short_name
-  end
-
-  def display_name
-    self.class.display_name
-  end
-
-  def content_partial
-    "/#{self.class.path_name}/content"
-  end
-
-  def to_locals_hash
-    fields.reduce(sidebar: self) do |hash, field|
-      hash.merge(field.key => config[field.key])
-    end
   end
 
   def admin_state
