@@ -17,4 +17,4 @@ class StaticSidebar < Sidebar
   setting :body, DEFAULT_TEXT, input_type: :text_area
 end
 
-Sidebar.register_sidebar StaticSidebar
+SidebarRegistry.register_sidebar StaticSidebar

@@ -42,4 +42,4 @@ class ArchivesSidebar < Sidebar
   end
 end
 
-Sidebar.register_sidebar ArchivesSidebar
+SidebarRegistry.register_sidebar ArchivesSidebar

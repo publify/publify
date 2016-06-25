@@ -4,7 +4,7 @@ describe ArchivesSidebar do
   let(:sidebar) { ArchivesSidebar.new }
 
   it 'is included in the list of available sidebars' do
-    expect(Sidebar.available_sidebars).to include(ArchivesSidebar)
+    expect(SidebarRegistry.available_sidebars).to include(ArchivesSidebar)
   end
 
   describe '#parse_request' do

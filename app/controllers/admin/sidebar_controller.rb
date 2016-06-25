@@ -1,7 +1,7 @@
 # coding: utf-8
 class Admin::SidebarController < Admin::BaseController
   def index
-    @available = Sidebar.available_sidebars
+    @available = SidebarRegistry.available_sidebars
     @ordered_sidebars = Sidebar.ordered_sidebars
   end
 
@@ -45,7 +45,7 @@ class Admin::SidebarController < Admin::BaseController
         # IT'S OVER NINE THOUSAND! considering we'll never reach 9K Sidebar
         # instances or Sidebar specializations
         sidebar = if sidebar_id >= 9000
-                    Sidebar.available_sidebars[sidebar_id - 9000].new(blog: this_blog)
+                    SidebarRegistry.available_sidebars[sidebar_id - 9000].new(blog: this_blog)
                   else
                     Sidebar.valid.find(sidebar_id)
                   end
@@ -54,7 +54,7 @@ class Admin::SidebarController < Admin::BaseController
     end
 
     @ordered_sidebars = Sidebar.ordered_sidebars
-    @available = Sidebar.available_sidebars
+    @available = SidebarRegistry.available_sidebars
 
     respond_to do |format|
       format.js

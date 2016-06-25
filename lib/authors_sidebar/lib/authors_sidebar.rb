@@ -9,4 +9,4 @@ class AuthorsSidebar < Sidebar
   end
 end
 
-Sidebar.register_sidebar AuthorsSidebar
+SidebarRegistry.register_sidebar AuthorsSidebar
