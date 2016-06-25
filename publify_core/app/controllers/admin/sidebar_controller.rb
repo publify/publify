@@ -10,7 +10,7 @@ class Admin::SidebarController < Admin::BaseController
   def update
     @sidebar = Sidebar.where(id: params[:id]).first
     @old_s_index = @sidebar.staged_position || @sidebar.active_position
-    @sidebar.update params[:configure][@sidebar.id.to_s].permit!
+    @sidebar.update config: params[:configure][@sidebar.id.to_s].permit!.to_hash
     respond_to do |format|
       format.js
       format.html do
