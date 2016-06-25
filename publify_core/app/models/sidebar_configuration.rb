@@ -1,6 +1,57 @@
 # frozen_string_literal: true
 
 class SidebarConfiguration < Sidebar
+  def content_partial
+    "/#{self.class.path_name}/content"
+  end
+
+  def description
+    self.class.description
+  end
+
+  def display_name
+    self.class.display_name
+  end
+
+  def fieldmap(field = nil)
+    if field
+      self.class.fieldmap[field.to_s]
+    else
+      self.class.fieldmap
+    end
+  end
+
+  def fields
+    self.class.fields
+  end
+
+  def short_name
+    self.class.short_name
+  end
+
+  def to_locals_hash
+    fields.reduce(sidebar: self) do |hash, field|
+      hash.merge(field.key => field.current_value(self))
+    end
+  end
+
+  class << self
+    attr_writer :fields
+  end
+
+  def self.short_name
+    to_s.underscore.split(/_/).first
+  end
+
+  def self.path_name
+    to_s.underscore
+  end
+
+  def self.display_name(new_dn = nil)
+    @display_name = new_dn if new_dn
+    @display_name || short_name.humanize
+  end
+
   def self.setting(key, default = nil, options = {})
     key = key.to_s
 
