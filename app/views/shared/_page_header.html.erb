@@ -18,9 +18,6 @@
 <% if this_blog.use_canonical_url %>
   <link rel="canonical" href="<%= this_blog.base_url + request.fullpath %>" />
 <% end %>
-<% if @content_for_script.present? %>
-  <script type="text/javascript"><%= @content_for_script %></script>
-<% end %>
 <%= this_blog.custom_tracking_field unless this_blog.custom_tracking_field.blank? %>
 <%= google_analytics %>
 
