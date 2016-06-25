@@ -45,7 +45,6 @@ module Publify
   end
 
   # Load included libraries.
-  require 'sidebar'
   require 'sidebar_configuration'
   require 'sidebar_registry'
   require 'publify_sidebar'

@@ -1,6 +1,3 @@
-require 'sidebar_field'
-
-# This class cannot be autoloaded since other sidebar classes depend on it.
 class Sidebar < ActiveRecord::Base
   self.inheritance_column = :bogus
   serialize :config, Hash

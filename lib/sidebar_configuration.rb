@@ -1,3 +1,5 @@
+require 'sidebar_field'
+
 class SidebarConfiguration
   attr_reader :config
 
