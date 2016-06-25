@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
-require "sidebar_field"
-
-# This class cannot be autoloaded since other sidebar classes depend on it.
 class Sidebar < ApplicationRecord
+  self.inheritance_column = :bogus
   serialize :config, Hash
 
   belongs_to :blog
@@ -42,6 +40,18 @@ class Sidebar < ApplicationRecord
     type.constantize
   end
 
+  def configuration
+    @configuration ||= configuration_class.new(config)
+  end
+
+  delegate :content_partial, to: :configuration
+
+  delegate :display_name, to: :configuration
+
+  delegate :description, to: :configuration
+
+  delegate :fields, to: :configuration
+
   def publish
     self.active_position = staged_position
   end
@@ -50,7 +60,7 @@ class Sidebar < ApplicationRecord
     "#{short_name}-#{id}"
   end
 
-  def parse_request(_contents, _params); end
+  delegate :parse_request, to: :configuration
 
   def admin_state
     if active_position && (staged_position == active_position || staged_position.nil?)

@@ -11,12 +11,12 @@ describe SidebarConfiguration, type: :model do
     end
 
     it "creates a reader method with default value on instances" do
-      dummy = dummy_sidebar.new
+      dummy = dummy_sidebar.new({})
       expect(dummy.foo).to eq "default-foo"
     end
 
     it "provides the default value to instances created earlier" do
-      dummy = dummy_sidebar.new
+      dummy = dummy_sidebar.new({})
 
       dummy_sidebar.instance_eval do
         setting :bar, "default-bar"

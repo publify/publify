@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
-class SidebarConfiguration < Sidebar
+require "sidebar_field"
+
+class SidebarConfiguration
+  attr_reader :config
+
+  def initialize(config)
+    @config = config
+  end
+
   def content_partial
     "/#{self.class.path_name}/content"
   end
@@ -34,6 +42,8 @@ class SidebarConfiguration < Sidebar
       hash.merge(field.key => field.current_value(self))
     end
   end
+
+  def parse_request(_contents, _params); end
 
   class << self
     attr_writer :fields

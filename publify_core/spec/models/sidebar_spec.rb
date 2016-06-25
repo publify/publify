@@ -7,8 +7,8 @@ RSpec.describe Sidebar, type: :model do
     let(:blog) { create :blog }
 
     context "with several sidebars with different positions" do
-      let(:search_sidebar) { SearchSidebar.new(staged_position: 2, blog: blog) }
-      let(:static_sidebar) { StaticSidebar.new(active_position: 1, blog: blog) }
+      let(:search_sidebar) { Sidebar.new(staged_position: 2, blog: blog, type: "SearchSidebar") }
+      let(:static_sidebar) { Sidebar.new(active_position: 1, blog: blog, type: "StaticSidebar") }
 
       before do
         search_sidebar.save
@@ -23,23 +23,21 @@ RSpec.describe Sidebar, type: :model do
 
     context "with an invalid sidebar in the database" do
       before do
-        described_class.class_eval { self.inheritance_column = :bogus }
         described_class.new(type: "SearchSidebar", staged_position: 1, blog: blog).save
         described_class.new(type: "FooBarSidebar", staged_position: 2, blog: blog).save
-        described_class.class_eval { self.inheritance_column = :type }
       end
 
       it "skips the invalid active sidebar" do
         sidebars = described_class.ordered_sidebars
         expect(sidebars.size).to eq(1)
-        expect(sidebars.first.class).to eq(SearchSidebar)
+        expect(sidebars.first.configuration_class).to eq(SearchSidebar)
       end
     end
   end
 
   describe "#content_partial" do
     it "bases the partial name on the class name" do
-      expect(SearchSidebar.new.content_partial).to eq("/search_sidebar/content")
+      expect(Sidebar.new(type: "SearchSidebar").content_partial).to eq("/search_sidebar/content")
     end
   end
 
