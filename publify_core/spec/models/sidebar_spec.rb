@@ -42,28 +42,4 @@ RSpec.describe Sidebar, type: :model do
       expect(SearchSidebar.new.content_partial).to eq("/search_sidebar/content")
     end
   end
-
-  describe "::setting" do
-    let(:dummy_sidebar) do
-      Class.new(Sidebar) do
-        setting :foo, "default-foo"
-      end
-    end
-
-    it "creates a reader method with default value on instances" do
-      dummy = dummy_sidebar.new
-      expect(dummy.foo).to eq "default-foo"
-    end
-
-    it "provides the default value to instances created earlier" do
-      dummy = dummy_sidebar.new
-
-      dummy_sidebar.instance_eval do
-        setting :bar, "default-bar"
-      end
-
-      expect(dummy.config).not_to have_key("bar")
-      expect(dummy.bar).to eq "default-bar"
-    end
-  end
 end

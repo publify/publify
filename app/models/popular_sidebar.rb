@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class PopularSidebar < Sidebar
+class PopularSidebar < SidebarConfiguration
   description "Displays the most popular posts"
   setting :title, "Most popular"
   setting :count, 5, label: "Number articles"

@@ -29,34 +29,6 @@ class Sidebar < ApplicationRecord
     delete_all("active_position is null and staged_position is null")
   end
 
-  def self.setting(key, default = nil, options = {})
-    key = key.to_s
-
-    return if instance_methods.include?(key)
-
-    fields << SidebarField.build(key, default, options)
-
-    send(:define_method, key) do
-      if config.key? key
-        config[key]
-      else
-        default
-      end
-    end
-  end
-
-  def self.fields
-    @fields ||= []
-  end
-
-  def self.description(desc = nil)
-    if desc
-      @description = desc
-    else
-      @description || ""
-    end
-  end
-
   def self.short_name
     to_s.underscore.split("_").first
   end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ArchivesSidebar < Sidebar
+class ArchivesSidebar < SidebarConfiguration
   description "Displays links to monthly archives"
   setting :title, "Archives"
   setting :show_count, true, label: "Show article counts", input_type: :checkbox

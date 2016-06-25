@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class PageSidebar < Sidebar
+class PageSidebar < SidebarConfiguration
   display_name "Page"
   description "Show pages for this blog"
 

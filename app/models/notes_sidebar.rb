@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class NotesSidebar < Sidebar
+class NotesSidebar < SidebarConfiguration
   description "Displays the latest notes"
   setting :title, "Notes"
   setting :count, 5, label: "Number of notes"
