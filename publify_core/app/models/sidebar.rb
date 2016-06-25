@@ -52,6 +52,8 @@ class Sidebar < ApplicationRecord
 
   delegate :fields, to: :configuration
 
+  delegate :to_locals_hash, to: :configuration
+
   def publish
     self.active_position = staged_position
   end
