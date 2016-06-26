@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 describe ArchivesSidebar do
-  let(:sidebar) { ArchivesSidebar.new }
+  let(:sidebar) { Sidebar.new type: 'ArchivesSidebar' }
 
   it 'is included in the list of available sidebars' do
-    expect(Sidebar.available_sidebars).to include(ArchivesSidebar)
+    expect(SidebarRegistry.available_sidebars).to include(ArchivesSidebar)
   end
 
   describe '#parse_request' do
@@ -14,7 +14,7 @@ describe ArchivesSidebar do
       create :article, published_at: DateTime.new(2014, 3, 2)
       sidebar.parse_request nil, nil
 
-      expect(sidebar.archives.first[:name]).to eq 'March 2014'
+      expect(sidebar.configuration.archives.first[:name]).to eq 'March 2014'
     end
   end
 end

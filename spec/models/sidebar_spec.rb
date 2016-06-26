@@ -3,7 +3,7 @@ require 'rails_helper'
 describe Sidebar, type: :model do
   describe '#available_sidebars' do
     it 'finds at least the standard sidebars' do
-      expect(Sidebar.available_sidebars).to include(
+      expect(SidebarRegistry.available_sidebars).to include(
         AmazonSidebar,
         ArchivesSidebar,
         AuthorsSidebar,
@@ -24,8 +24,8 @@ describe Sidebar, type: :model do
     let(:blog) { create :blog }
 
     context 'with several sidebars with different positions' do
-      let(:amazon_sidebar) { AmazonSidebar.new(staged_position: 2, blog: blog) }
-      let(:archives_sidebar) { ArchivesSidebar.new(active_position: 1, blog: blog) }
+      let(:amazon_sidebar) { Sidebar.new(staged_position: 2, blog: blog, type: 'AmazonSidebar') }
+      let(:archives_sidebar) { Sidebar.new(active_position: 1, blog: blog, type: 'ArchivesSidebar') }
 
       before do
         amazon_sidebar.save
@@ -40,53 +40,29 @@ describe Sidebar, type: :model do
 
     context 'with an invalid sidebar in the database' do
       before do
-        Sidebar.class_eval { self.inheritance_column = :bogus }
         Sidebar.new(type: 'AmazonSidebar', staged_position: 1, blog: blog).save
         Sidebar.new(type: 'FooBarSidebar', staged_position: 2, blog: blog).save
-        Sidebar.class_eval { self.inheritance_column = :type }
       end
 
       it 'skips the invalid active sidebar' do
         sidebars = Sidebar.ordered_sidebars
         expect(sidebars.size).to eq(1)
-        expect(sidebars.first.class).to eq(AmazonSidebar)
+        expect(sidebars.first.configuration_class).to eq(AmazonSidebar)
       end
     end
   end
 
   describe '#content_partial' do
-    it 'bases the partial name on the class name' do
-      expect(AmazonSidebar.new.content_partial).to eq('/amazon_sidebar/content')
+    it 'bases the partial name on the configuration class name' do
+      expect(Sidebar.new(type: 'AmazonSidebar').content_partial).to eq('/amazon_sidebar/content')
     end
   end
 
-  describe '::setting' do
-    let(:dummy_sidebar) do
-      Class.new(Sidebar) do
-        setting :foo, 'default-foo'
-      end
-    end
+  describe '#configuration_class' do
+    let(:sidebar) { Sidebar.new(type: 'ArchivesSidebar') }
 
-    it 'creates a reader method with default value on instances' do
-      dummy = dummy_sidebar.new
-      expect(dummy.foo).to eq 'default-foo'
-    end
-
-    it 'creates a writer method on instances' do
-      dummy = dummy_sidebar.new
-      dummy.foo = 'adjusted-foo'
-      expect(dummy.foo).to eq 'adjusted-foo'
-    end
-
-    it 'provides the default value to instances created earlier' do
-      dummy = dummy_sidebar.new
-
-      dummy_sidebar.instance_eval do
-        setting :bar, 'default-bar'
-      end
-
-      expect(dummy.config).not_to have_key('bar')
-      expect(dummy.bar).to eq 'default-bar'
+    it 'returns the type, classified' do
+      expect(sidebar.configuration_class).to eq ArchivesSidebar
     end
   end
 end

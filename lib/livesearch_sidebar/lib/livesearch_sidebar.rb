@@ -1,7 +1,7 @@
-class LivesearchSidebar < Sidebar
+class LivesearchSidebar < SidebarConfiguration
   description 'Adds livesearch to your Publify blog'
 
   setting :title, 'Search'
 end
 
-Sidebar.register_sidebar LivesearchSidebar
+SidebarRegistry.register_sidebar LivesearchSidebar

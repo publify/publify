@@ -1,4 +1,4 @@
-class XmlSidebar < Sidebar
+class XmlSidebar < SidebarConfiguration
   display_name 'XML Syndication'
   description 'RSS and Atom feeds'
 
@@ -20,4 +20,4 @@ class XmlSidebar < Sidebar
   end
 end
 
-Sidebar.register_sidebar XmlSidebar
+SidebarRegistry.register_sidebar XmlSidebar

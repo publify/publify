@@ -1,4 +1,4 @@
-class PageSidebar < Sidebar
+class PageSidebar < SidebarConfiguration
   display_name 'Page'
   description 'Show pages for this blog'
 
@@ -9,4 +9,4 @@ class PageSidebar < Sidebar
   end
 end
 
-Sidebar.register_sidebar PageSidebar
+SidebarRegistry.register_sidebar PageSidebar

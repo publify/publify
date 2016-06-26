@@ -1,5 +1,4 @@
-# coding: utf-8
-class StaticSidebar < Sidebar
+class StaticSidebar < SidebarConfiguration
   DEFAULT_TEXT = '
 <ul>
   <li><a href="http://www.publify.co/" title="Publify">Publify</a></li>
@@ -17,4 +16,4 @@ class StaticSidebar < Sidebar
   setting :body, DEFAULT_TEXT, input_type: :text_area
 end
 
-Sidebar.register_sidebar StaticSidebar
+SidebarRegistry.register_sidebar StaticSidebar

@@ -1,4 +1,4 @@
-class TagSidebar < Sidebar
+class TagSidebar < SidebarConfiguration
   display_name 'Tags'
   description 'Show most popular tags for this blog'
 
@@ -24,4 +24,4 @@ class TagSidebar < Sidebar
   end
 end
 
-Sidebar.register_sidebar TagSidebar
+SidebarRegistry.register_sidebar TagSidebar

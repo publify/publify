@@ -1,4 +1,4 @@
-class NotesSidebar < Sidebar
+class NotesSidebar < SidebarConfiguration
   description 'Displays the latest notes'
   setting :title, 'Notes'
   setting :count, 5, label: 'Number of notes'
@@ -10,4 +10,4 @@ class NotesSidebar < Sidebar
   end
 end
 
-Sidebar.register_sidebar NotesSidebar
+SidebarRegistry.register_sidebar NotesSidebar

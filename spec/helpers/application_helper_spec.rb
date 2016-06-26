@@ -1,7 +1,6 @@
-# coding: utf-8
 require 'rails_helper'
 
-class TestBrokenSidebar < Sidebar
+class TestBrokenSidebar < SidebarConfiguration
   description 'Invalid test sidebar'
   def parse_request(_contents, _request_params)
     raise "I'm b0rked!"
@@ -150,7 +149,7 @@ describe ApplicationHelper, type: :helper do
       let(:blog) { create :blog }
       describe 'with an invalid sidebar' do
         before do
-          TestBrokenSidebar.new(blog: blog).save
+          Sidebar.new(type: 'TestBrokenSidebar', blog: blog).save
         end
 
         def logger
@@ -166,7 +165,7 @@ describe ApplicationHelper, type: :helper do
 
       describe 'with a valid sidebar' do
         before do
-          Sidebar.new(blog: blog).save
+          Sidebar.new(type: 'StaticSidebar', blog: blog).save
         end
 
         it 'should render the sidebar' do
