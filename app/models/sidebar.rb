@@ -78,7 +78,7 @@ class Sidebar < ActiveRecord::Base
 
   def self.apply_staging_on_active!
     Sidebar.transaction do
-      Sidebar.all.each do |s|
+      Sidebar.find_each do |s|
         s.active_position = s.staged_position
         s.save!
       end
