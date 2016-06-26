@@ -5,10 +5,16 @@ $(document).ready(function(){
     var $field = $(evt.target);
     var url = $field.data('url');
     var target = $field.data('target');
-    $.get(url, $field.serialize(),
-        function(data) {
-          $(target).html(data);
-        });
+    var spinner = $field.data('spinner');
+    $(spinner).show();
+    $.ajax({
+      type: 'GET',
+      url: url,
+      dataType: 'html',
+      data: $field.serialize(),
+      success: function(data) { $(target).html(data); },
+      complete: function() { $(spinner).hide(); }
+    });
   };
 
   var delay_callback = function(callback) {
