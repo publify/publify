@@ -64,7 +64,6 @@ module Publify
   require 'publify_guid'
   ## Required by the plugins themselves.
   # require 'publify_plugins'
-  require 'bare_migration'
   require 'publify_version'
 
   require 'theme'
