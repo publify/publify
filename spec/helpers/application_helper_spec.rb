@@ -22,7 +22,7 @@ describe ApplicationHelper, type: :helper do
     end
   end
 
-  describe 'stop_index_robots?' do
+  describe '#stop_index_robots?' do
     let(:blog) { build :blog }
     subject { helper.stop_index_robots?(blog) }
 
@@ -141,37 +141,36 @@ describe ApplicationHelper, type: :helper do
     end
   end
 
-  context 'SidebarHelper' do
+  describe '#render_sidebars' do
+    let(:blog) { create :blog }
+
     before do
       allow(controller).to receive(:render_to_string).and_return 'Rendered'
     end
 
-    describe '#render_sidebars' do
-      let(:blog) { create :blog }
-      describe 'with an invalid sidebar' do
-        before do
-          TestBrokenSidebar.new(blog: blog).save
-        end
-
-        def logger
-          fake_logger = double('fake logger')
-          expect(fake_logger).to receive(:error)
-          fake_logger
-        end
-
-        it 'should return a friendly error message' do
-          expect(render_sidebars).to match(/It seems something went wrong/)
-        end
+    describe 'with an invalid sidebar' do
+      before do
+        TestBrokenSidebar.new(blog: blog).save
       end
 
-      describe 'with a valid sidebar' do
-        before do
-          Sidebar.new(blog: blog).save
-        end
+      def logger
+        fake_logger = double('fake logger')
+        expect(fake_logger).to receive(:error)
+        fake_logger
+      end
 
-        it 'should render the sidebar' do
-          expect(render_sidebars).to match(/Rendered/)
-        end
+      it 'should return a friendly error message' do
+        expect(render_sidebars).to match(/It seems something went wrong/)
+      end
+    end
+
+    describe 'with a valid sidebar' do
+      before do
+        Sidebar.new(blog: blog).save
+      end
+
+      it 'should render the sidebar' do
+        expect(render_sidebars).to match(/Rendered/)
       end
     end
   end
