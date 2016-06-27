@@ -68,7 +68,7 @@ module ApplicationHelper
     tag = []
     tag << %{ onmouseover="if (getCookie('publify_user_profile') == 'admin') { $('#{admin_id}').show(); }" }
     tag << %{ onmouseout="$('#{admin_id}').hide();" }
-    tag.join(' ').html_safe
+    safe_join(tag, ' ')
   end
 
   def feed_title
