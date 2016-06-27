@@ -9,7 +9,7 @@ class Admin::ThemesController < Admin::BaseController
     @themes = Theme.find_all
     @themes.each do |theme|
       # TODO: Move to Theme
-      theme.description_html = TextFilter.filter_text(theme.description, [:markdown, :smartypants]).html_safe
+      theme.description_html = TextFilter.filter_text(theme.description, [:markdown, :smartypants])
     end
     @active = this_blog.current_theme
   end

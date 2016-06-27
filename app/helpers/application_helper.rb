@@ -22,7 +22,7 @@ module ApplicationHelper
   end
 
   def render_sidebar(sidebar)
-    render_to_string(partial: sidebar.content_partial, locals: sidebar.to_locals_hash, layout: false).html_safe
+    render_to_string(partial: sidebar.content_partial, locals: sidebar.to_locals_hash, layout: false)
   end
 
   def themeable_stylesheet_link_tag(name)
@@ -232,12 +232,15 @@ module ApplicationHelper
     if this_blog.dofollowify
       string
     else
-      result = string.gsub(/<a(.*?)>/i, '<a\1 rel="nofollow">')
-      if string.html_safe?
-        result.html_safe
-      else
-        result
-      end
+      string.gsub(/<a(.*?)>/i, '<a\1 rel="nofollow">')
+    end
+  end
+
+  def nofollowified_link_to(text, url)
+    if this_blog.dofollowify
+      link_to(text, url)
+    else
+      link_to(text, url, rel: 'nofollow')
     end
   end
 end

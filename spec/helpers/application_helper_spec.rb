@@ -121,6 +121,22 @@ describe ApplicationHelper, type: :helper do
     end
   end
 
+  describe '#nofollowified_link_to' do
+    it 'with dofollowify disabled, links should be nofollowed' do
+      this_blog.dofollowify = false
+
+      expect(nofollowified_link_to('my blog', 'http://myblog.net')).
+        to eq '<a rel="nofollow" href="http://myblog.net">my blog</a>'
+    end
+
+    it 'with dofollowify enabled, links should be nofollowed' do
+      this_blog.dofollowify = true
+
+      expect(nofollowified_link_to('my blog', 'http://myblog.net')).
+        to eq '<a href="http://myblog.net">my blog</a>'
+    end
+  end
+
   describe '#nofollowify_links' do
     before(:each) do
       @blog = FactoryGirl.create :blog

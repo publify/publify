@@ -40,7 +40,7 @@ module ContentBase
   # Post-process the HTML.  This is a noop by default, but Comment overrides it
   # to enforce HTML sanity.
   def html_postprocess(_field, html)
-    html.html_safe
+    html
   end
 
   def html_preprocess(_field, html)
