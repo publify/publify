@@ -40,15 +40,9 @@ gem 'rails', '~> 4.2.5'
 
 gem 'publify_core', path: 'publify_core'
 
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
-# Use jquery as the JavaScript library
-gem 'jquery-rails', '~> 4.1.0'
-
-gem 'jquery-ui-rails', '~> 5.0.2'
 gem 'addressable', '~> 2.1', require: 'addressable/uri'
 gem 'akismet', '~> 2.0'
 gem 'coderay', '~> 1.1.0'
@@ -57,12 +51,9 @@ gem 'flickraw-cached', '20120701'
 gem 'flickraw', '~> 0.9.8'
 gem 'htmlentities', '~> 4.3'
 gem 'non-stupid-digest-assets', '~> 1.0'
-gem 'rails-timeago', '~> 2.0'
 gem 'rake', '~> 11.1'
 gem 'recaptcha', '~> 3.2', require: 'recaptcha/rails'
 gem 'rubypants', '~> 0.2.0'
-
-gem 'bootstrap-sass', '~> 3.3.6'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

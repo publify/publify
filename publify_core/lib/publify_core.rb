@@ -3,9 +3,12 @@ require 'publify_core/lang'
 
 
 require 'actionpack/page_caching'
+require 'bootstrap-sass'
 require 'carrierwave'
 require 'devise'
 require 'dynamic_form'
+require 'jquery-rails'
+require 'jquery-ui-rails'
 require 'kaminari'
 # Ensure Rails Observers defines ActiveRecord::Observer before loading
 # sweeping.rb. Otherwise, Sweeper won't be defined.
@@ -13,6 +16,8 @@ require 'kaminari'
 require 'rails/observers/activerecord/active_record'
 require 'rails-observers'
 require 'rails_autolink'
+require 'rails-timeago'
+require 'sass-rails'
 
 require 'email_notify'
 require 'publify_guid'
