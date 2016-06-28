@@ -4,7 +4,7 @@ describe AuthorsSidebar do
   let(:sidebar) { AuthorsSidebar.new }
 
   it 'is included in the list of available sidebars' do
-    expect(Sidebar.available_sidebars).to include(AuthorsSidebar)
+    expect(SidebarRegistry.available_sidebars).to include(AuthorsSidebar)
   end
 
   describe '#authors' do

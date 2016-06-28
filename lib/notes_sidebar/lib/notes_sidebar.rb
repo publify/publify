@@ -10,4 +10,4 @@ class NotesSidebar < Sidebar
   end
 end
 
-Sidebar.register_sidebar NotesSidebar
+SidebarRegistry.register_sidebar NotesSidebar

@@ -45,7 +45,6 @@ module Publify
   end
 
   # Load included libraries.
-  require 'sidebar'
   require 'publify_sidebar'
   require 'publify_textfilters'
   require 'publify_avatar_gravatar'

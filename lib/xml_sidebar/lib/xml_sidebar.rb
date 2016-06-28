@@ -20,4 +20,4 @@ class XmlSidebar < Sidebar
   end
 end
 
-Sidebar.register_sidebar XmlSidebar
+SidebarRegistry.register_sidebar XmlSidebar

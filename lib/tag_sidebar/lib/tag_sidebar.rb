@@ -24,4 +24,4 @@ class TagSidebar < Sidebar
   end
 end
 
-Sidebar.register_sidebar TagSidebar
+SidebarRegistry.register_sidebar TagSidebar

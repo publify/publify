@@ -4,4 +4,4 @@ class SearchSidebar < Sidebar
   setting :title, 'Search'
 end
 
-Sidebar.register_sidebar SearchSidebar
+SidebarRegistry.register_sidebar SearchSidebar
