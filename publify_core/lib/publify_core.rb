@@ -7,6 +7,10 @@ require 'carrierwave'
 require 'devise'
 require 'dynamic_form'
 require 'kaminari'
+# Ensure Rails Observers defines ActiveRecord::Observer before loading
+# sweeping.rb. Otherwise, Sweeper won't be defined.
+# TODO: Replace or update rails-observers
+require 'rails/observers/activerecord/active_record'
 require 'rails-observers'
 require 'rails_autolink'
 
