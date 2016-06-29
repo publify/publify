@@ -4,6 +4,7 @@ require 'avatar_plugin'
 # PublifyAvatarGravatar
 module PublifyPlugins
   class Gravatar < AvatarPlugin
+    extend ActionView::Helpers::TagHelper
     @description = 'Provide user avatar image throught the http://gravatar.com service.'
 
     class << self
@@ -27,7 +28,7 @@ module PublifyPlugins
         klass = options[:class] ? options[:class] : 'avatar gravatar'
 
         url = '//www.gravatar.com/avatar.php?' << options.map { |key, value| "#{key}=#{value}" }.sort.join('&amp;')
-        "<img src=\"#{url}\" class=\"#{klass}\" alt=\"Gravatar\" />"
+        tag 'img', src: url, class: klass, alt: 'Gravatar'
       end
     end
   end
