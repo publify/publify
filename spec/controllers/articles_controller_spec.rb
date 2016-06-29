@@ -130,15 +130,23 @@ describe ArticlesController, 'base', type: :controller do
 
   describe '#archives' do
     render_views
-    it 'works' do
-      3.times { create(:article) }
+
+    it 'renders correctly for an archive with several articles' do
+      articles = create_list :article, 3
       get 'archives'
       expect(response).to render_template(:archives)
-      expect(assigns[:articles]).not_to be_nil
-      expect(assigns[:articles]).not_to be_empty
+      expect(assigns[:articles]).to match_array articles
 
       expect(response.body).to have_selector("head>link[href='#{blog.base_url}/archives']", visible: false)
       expect(response.body).to have_selector('title', text: 'Archives for test blog', visible: false)
+    end
+
+    it 'renders correctly for an archive with an article with tags' do
+      create :article, keywords: 'foo, bar'
+      get 'archives'
+
+      expect(response.body).to have_text 'foo'
+      expect(response.body).to have_text 'bar'
     end
   end
 

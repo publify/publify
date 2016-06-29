@@ -18,7 +18,7 @@
 <% if this_blog.use_canonical_url %>
   <link rel="canonical" href="<%= this_blog.base_url + request.fullpath %>" />
 <% end %>
-<%= this_blog.custom_tracking_field unless this_blog.custom_tracking_field.blank? %>
+<%= raw this_blog.custom_tracking_field unless this_blog.custom_tracking_field.blank? %>
 <%= google_analytics %>
 
 <%= meta_tag 'og:site_name', this_blog.blog_name %>
