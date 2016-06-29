@@ -28,8 +28,8 @@ describe Resource, type: :model do
 
     describe '#by_created_at' do
       it 'should sort resource by created_at DESC' do
-        b_resource = FactoryGirl.create(:resource, created_at: DateTime.new(2011, 03, 13))
-        a_resource = FactoryGirl.create(:resource, created_at: DateTime.new(2011, 02, 21))
+        b_resource = FactoryGirl.create(:resource, created_at: DateTime.new(2011, 3, 13))
+        a_resource = FactoryGirl.create(:resource, created_at: DateTime.new(2011, 2, 21))
         expect(Resource.by_created_at).to eq([b_resource, a_resource])
       end
     end

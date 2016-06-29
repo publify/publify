@@ -5,7 +5,7 @@ module AuthorsHelper
     return unless item.present?
     item = link_to(item, item) if is_url?(item)
     content_tag :li do
-      "#{item_desc} #{item.html_safe}".html_safe
+      safe_join([item_desc, item], ' ')
     end
   end
 

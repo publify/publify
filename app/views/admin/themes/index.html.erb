@@ -13,13 +13,13 @@
       <div class='well'>
         <h3><%= t(".active_theme", name: theme.name) %></h3>
         <%= image_tag(preview_url, class: 'img-responsive img-thumbnail') %>
-        <%= theme.description_html %>
+        <%= raw theme.description_html %>
       </div>
     <% else %>
       <div>
         <h3><%= link_to(theme.name, switch_url, title: t(".use_this_theme")) %></h3>
         <%= link_to(image_tag(preview_url, class: 'img-thumbnail'), switch_url, title: t(".use_this_theme")) %>
-        <%= theme.description_html %>
+        <%= raw theme.description_html %>
         <p><%= link_to(t(".use_this_theme"), switch_url, class: 'btn btn-info') %></p>
       </div>
     <% end %>

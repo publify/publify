@@ -4,7 +4,7 @@
     <p><%= link_to_permalink article, t(".continue_reading") %></p>
   </div>
 <% else %>
-  <%= article.html(:body) %>
+  <%= raw article.html(:body) %>
   <% if article.extended? %>
     <div class="extended">
       <p><%= link_to_permalink article, t(".continue_reading") %></p>
