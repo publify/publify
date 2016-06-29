@@ -21,7 +21,7 @@ class Feedback < ActiveRecord::Base
 
   default_scope { order('created_at DESC') }
 
-  scope :ham, -> { where("state in ('presumed_ham', 'ham')") }
+  scope :ham, -> { where(state: ['presumed_ham', 'ham']) }
   scope :spam, -> { where(state: 'spam') }
   scope :published_since, ->(time) { ham.where('published_at > ?', time) }
   scope :presumed_ham, -> { where(state: 'presumed_ham') }
