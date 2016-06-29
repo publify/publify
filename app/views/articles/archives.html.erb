@@ -17,7 +17,7 @@ for article in @articles
       <%= article.published_at.mday %> -
       <%= link_to_permalink(article,h(article.title)) %>
       <% if !article.tags.empty? %> <%= t(".posted_in") %>
-        <%= article.tags.collect {|t| link_to_permalink t,t.display_name }.join(", ") %>
+        <%= safe_join(article.tags.collect {|t| link_to_permalink t,t.display_name }, ", ") %>
     <% end %>
     </div>
   <% end %>
