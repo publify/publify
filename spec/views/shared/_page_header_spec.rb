@@ -9,9 +9,16 @@ describe 'shared/_page_header.html.erb', type: :view do
     end
 
     it "shows the blog's custom tracking field if it exists" do
-      blog.update_attributes(custom_tracking_field: 'the-custom-tracking-field')
+      field_contents = <<-END
+        <!-- tracking code -->
+        <script>
+          var tracker = 'foo';
+          // expect some js here
+        </script>
+      END
+      blog.update_attributes(custom_tracking_field: field_contents)
       render
-      expect(rendered).to match 'the-custom-tracking-field'
+      expect(rendered).to match field_contents
     end
   end
 end
