@@ -7,7 +7,7 @@ class Article::Factory
   end
 
   def default
-    blog.articles.create.tap do |art|
+    blog.articles.build.tap do |art|
       art.allow_comments = blog.default_allow_comments
       art.allow_pings = blog.default_allow_pings
       art.text_filter = user.default_text_filter
