@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160605154632) do
+ActiveRecord::Schema.define(version: 20160701061851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20160605154632) do
     t.integer  "parent_id"
     t.text     "settings"
     t.string   "post_type",      default: "read"
-    t.integer  "blog_id"
+    t.integer  "blog_id",                         null: false
   end
 
   add_index "contents", ["id", "type"], name: "index_contents_on_id_and_type", using: :btree
