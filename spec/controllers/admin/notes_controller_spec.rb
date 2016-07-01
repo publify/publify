@@ -28,10 +28,33 @@ describe Admin::NotesController, type: :controller do
         it { expect(flash[:notice]).to eq(I18n.t('notice.note_successfully_created')) }
       end
 
-      it do
+      it 'creates a note' do
         expect do
           post :create, note: { body: 'Emphasis _mine_' }
-        end.to change { Note.count }.from(0).to(1) end
+        end.to change { Note.count }.from(0).to(1)
+      end
+
+      context 'with twitter access configured' do
+        before do
+          blog.twitter_consumer_key = 'consumer_key'
+          blog.twitter_consumer_secret = 'consumer_secret'
+          blog.save
+
+          admin.twitter_oauth_token = 'oauth_token'
+          admin.twitter_oauth_token_secret = 'oauth_token'
+          admin.save
+        end
+
+        it 'sends the note to twitter' do
+          expect(Note.count).to eq(0)
+          twitter_cli = double(:twitter_cli)
+          expect(Twitter::Client).to receive(:new).and_return(twitter_cli)
+          tweet = Struct.new(:attrs).new(id_str: '2344')
+          expect(twitter_cli).to receive(:update).and_return(tweet)
+          post :create, note: { body: 'Emphasis _mine_, arguments *strong*' }, push_to_twitter: 'true'
+          expect(Note.first.twitter_id).to eq('2344')
+        end
+      end
     end
 
     context 'with an existing note from current user' do
@@ -56,37 +79,10 @@ describe Admin::NotesController, type: :controller do
         it { expect(response).to render_template('show') }
       end
 
-      describe 'Destorying a note' do
+      describe 'Destroying a note' do
         before(:each) { post :destroy, id: note.id }
         it { expect(response).to redirect_to(admin_notes_path) }
         it { expect(Note.count).to eq(0) }
-      end
-    end
-  end
-
-  context 'with a blog with twitter configured' do
-    before do
-      blog.twitter_consumer_key = 'consumer_key'
-      blog.twitter_consumer_secret = 'consumer_secret'
-      blog.save
-
-      admin.twitter_oauth_token = 'oauth_token'
-      admin.twitter_oauth_token_secret = 'oauth_token'
-      admin.save
-    end
-
-    describe 'edit' do
-      context 'when push to twitter' do
-        it 'call note to send to twitter' do
-          expect(Note.count).to eq(0)
-          twitter_cli = double(twitter_cli)
-          expect(Twitter::Client).to receive(:new).and_return(twitter_cli)
-          Tweet = Struct.new(:attrs)
-          tweet = Tweet.new(id_str: '2344')
-          expect(twitter_cli).to receive(:update).and_return(tweet)
-          post :create, note: { body: 'Emphasis _mine_, arguments *strong*' }, push_to_twitter: 'true'
-          expect(Note.first.twitter_id).to eq('2344')
-        end
       end
     end
   end
