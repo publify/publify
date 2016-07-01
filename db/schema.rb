@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160701061851) do
+ActiveRecord::Schema.define(version: 20160701062604) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -133,6 +133,7 @@ ActiveRecord::Schema.define(version: 20160701061851) do
     t.string   "itunes_keywords"
     t.string   "itunes_category"
     t.boolean  "itunes_explicit"
+    t.integer  "blog_id",         null: false
   end
 
   add_index "resources", ["article_id"], name: "index_resources_on_article_id", using: :btree

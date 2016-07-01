@@ -208,6 +208,7 @@ http://alsoping.example.com/rpc/ping"
     r.upload { FactoryGirl.generate(:file_name) }
     r.mime 'image/jpeg'
     r.size 110
+    blog { Blog.first || create(:blog) }
   end
 
   factory :avatar, parent: :resource do |a|
