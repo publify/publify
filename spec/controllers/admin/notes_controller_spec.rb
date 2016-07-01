@@ -3,14 +3,14 @@ require 'rails_helper'
 describe Admin::NotesController, type: :controller do
   render_views
 
+  let(:admin) { create(:user, :as_admin, twitter: '@getpublify') }
+  let!(:blog) { create(:blog) }
+
   before(:each) do
     sign_in admin
   end
 
   context 'with a blog' do
-    let(:admin) { create(:user, :as_admin) }
-    let!(:blog) { create(:blog) }
-
     describe 'index' do
       let!(:notes) { [create(:note), create(:note)] }
       before(:each) { get :index }
@@ -65,8 +65,15 @@ describe Admin::NotesController, type: :controller do
   end
 
   context 'with a blog with twitter configured' do
-    let!(:blog) { create(:blog_with_twitter) }
-    let(:admin) { create(:user, :as_admin, :with_twitter) }
+    before do
+      blog.twitter_consumer_key = 'consumer_key'
+      blog.twitter_consumer_secret = 'consumer_secret'
+      blog.save
+
+      admin.twitter_oauth_token = 'oauth_token'
+      admin.twitter_oauth_token_secret = 'oauth_token'
+      admin.save
+    end
 
     describe 'edit' do
       context 'when push to twitter' do
