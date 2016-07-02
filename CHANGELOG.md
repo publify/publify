@@ -6,6 +6,18 @@
 
 ### Other changes
 
+* Fix live search (mvz)
+* Introduce SidebarRegistry to avoid need to preload all sidebars (mvz)
+* Avoid use of String#html_safe (mvz)
+* Fix several cases of double-escaped HTML (mvz)
+* Avoid ambiguous field reference in feedback scopes (apsheronets)
+* Remove spurious error message when starting a new article (mvz)
+* Replace bundled bootstrap with bootstrap-sass gem (mvz)
+* Link Resource directly to Blog in order to make upload of images to media
+  library work again (mvz)
+* Fix comment order and other feedback scopes (mvz)
+* Fix autosave (mvz)
+
 ## 8.3.0
 
 ### Breaking/large changes
