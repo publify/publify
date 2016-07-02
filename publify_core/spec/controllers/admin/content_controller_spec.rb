@@ -5,8 +5,8 @@ require 'rails_helper'
 describe Admin::ContentController, type: :controller do
   render_views
 
-  let(:admin) { create(:user, :as_admin, text_filter: create(:markdown)) }
-  let(:publisher) { create(:user, :as_publisher, text_filter: create(:markdown)) }
+  let(:admin) { create(:user, :as_admin, text_filter_name: 'markdown') }
+  let(:publisher) { create(:user, :as_publisher, text_filter_name: 'markdown') }
   let(:contributor) { create(:user, :as_contributor) }
 
   before do

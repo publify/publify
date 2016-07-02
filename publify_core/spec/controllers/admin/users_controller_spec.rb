@@ -51,6 +51,7 @@ describe Admin::UsersController, type: :controller do
                                       password: 'testpass',
                                       password_confirmation: 'testpass',
                                       profile: User::CONTRIBUTOR,
+                                      text_filter_name: 'markdown',
                                       nickname: 'fooo', firstname: 'bar' } }
     end
 

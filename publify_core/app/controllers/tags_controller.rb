@@ -15,7 +15,7 @@ class TagsController < ContentController
     @tag = Tag.find_by!(name: params[:id])
 
     @articles = @tag.
-      contents.includes(:blog, :user, :tags, :resources, :text_filter).
+      contents.includes(:blog, :user, :tags, :resources).
       published.page(params[:page]).per(10)
 
     respond_to do |format|

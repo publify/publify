@@ -9,7 +9,7 @@ class Admin::UsersController < Admin::BaseController
 
   def new
     @user = User.new
-    @user.text_filter = TextFilter.find_by(name: this_blog.text_filter)
+    @user.text_filter_name = this_blog.text_filter
   end
 
   def edit
@@ -50,7 +50,7 @@ class Admin::UsersController < Admin::BaseController
                                  :email, :firstname, :lastname, :nickname,
                                  :name, :notify_via_email,
                                  :notify_on_new_articles, :notify_on_comments,
-                                 :profile, :text_filter_id, :state,
+                                 :profile, :text_filter_name, :state,
                                  :twitter_account, :twitter_oauth_token,
                                  :twitter_oauth_token_secret, :description,
                                  :url, :msn, :yahoo, :jabber, :aim, :twitter)

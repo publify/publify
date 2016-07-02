@@ -6,7 +6,6 @@ require 'uri'
 class Content < ApplicationRecord
   include ContentBase
 
-  belongs_to :text_filter, optional: true
   belongs_to :user, optional: true, touch: true
   belongs_to :blog
 
@@ -53,19 +52,15 @@ class Content < ApplicationRecord
 
   # Set the text filter for this object.
   # NOTE: Due to how Rails injects association methods, this cannot be put in ContentBase
-  # TODO: Allowing assignment of a string here is not very clean.
+  # TODO: Replace with #text_filter_name=
   def text_filter=(filter)
-    filter_object = case filter
+    filter_name = case filter
                     when TextFilter
-                      filter
+                      filter.name
                     else
-                      TextFilter.find_or_default(filter)
+                      filter
                     end
-    self.text_filter_id = if filter_object
-                            filter_object.id
-                          else
-                            filter.to_i
-                          end
+    self.text_filter_name = filter_name
   end
 
   def shorten_url

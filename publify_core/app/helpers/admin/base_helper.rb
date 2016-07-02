@@ -24,13 +24,7 @@ module Admin::BaseHelper
 
   def text_filter_options
     TextFilter.all.map do |filter|
-      [filter.description, filter]
-    end
-  end
-
-  def text_filter_options_with_id
-    TextFilter.all.map do |filter|
-      [filter.description, filter.id]
+      [filter.description, filter.name]
     end
   end
 

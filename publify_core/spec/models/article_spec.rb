@@ -153,7 +153,6 @@ describe Article, type: :model do
     let(:blog) { create :blog, text_filter: 'none' }
 
     before do
-      create :none
       @article = blog.articles.build
     end
 

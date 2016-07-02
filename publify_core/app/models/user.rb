@@ -15,11 +15,14 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   include ConfigManager
 
-  belongs_to :text_filter
+  before_validation :set_default_profile
+
+  validates :login, uniqueness: true, on: :create
+  validates :email, uniqueness: true, on: :create
+  validates :email, :login, presence: true
+  validates :login, length: { in: 3..40 }
+
   belongs_to :resource, optional: true
-
-  delegate :name, to: :text_filter, prefix: true
-
   has_many :notifications, foreign_key: 'notify_user_id'
   has_many :notify_contents, -> { uniq }, through: :notifications,
                                           source: 'notify_content'
@@ -89,6 +92,11 @@ class User < ApplicationRecord
     super && state == 'active'
   end
 
+  def text_filter
+    TextFilter.make_filter(text_filter_name)
+  end
+
+  # TODO: Use #text_filter directly
   def default_text_filter
     text_filter
   end
@@ -130,16 +138,9 @@ class User < ApplicationRecord
     twitter_oauth_token.present? && twitter_oauth_token_secret.present?
   end
 
-  protected
-
-  before_validation :set_default_profile
+  private
 
   def set_default_profile
     self.profile ||= User.count.zero? ? 'admin' : 'contributor'
   end
-
-  validates :login, uniqueness: true, on: :create
-  validates :email, uniqueness: true, on: :create
-  validates :email, :login, presence: true
-  validates :login, length: { in: 3..40 }
 end

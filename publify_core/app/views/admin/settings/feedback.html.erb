@@ -30,7 +30,7 @@
       <label class='control-label col-sm-4 col-md-3 col-lg-2' for="comment_text_filter"><%= t('.comments_filter') %></label>
       <div class='col-sm-8 col-md-6 col-lg-4'>
         <select name="setting[comment_text_filter]" id="comment_text_filter" class='form-control'>
-          <%= options_for_select text_filter_options, TextFilter.find_by(name: this_blog.comment_text_filter) %>
+          <%= options_for_select text_filter_options, this_blog.comment_text_filter %>
         </select>
       </div>
     </div>
