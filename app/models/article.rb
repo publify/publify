@@ -18,17 +18,7 @@ class Article < Content
   has_many :feedback, -> { order('created_at DESC') }
   has_many :resources, -> { order('created_at DESC') }, dependent: :nullify
   has_many :triggers, as: :pending_item
-  has_many :comments, -> { order('created_at ASC') }, dependent: :destroy do
-    # Get only ham or presumed_ham comments
-    def ham
-      where(state: %w(presumed_ham ham))
-    end
-
-    # Get only spam or presumed_spam comments
-    def spam
-      where(state: %w(presumed_spam spam))
-    end
-  end
+  has_many :comments, -> { order('created_at ASC') }, dependent: :destroy
 
   has_many :published_comments, -> { where(published: true).order('created_at ASC') }, class_name: 'Comment'
   has_many :published_trackbacks, -> { where(published: true).order('created_at ASC') }, class_name: 'Trackback'
