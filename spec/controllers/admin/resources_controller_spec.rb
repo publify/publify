@@ -32,8 +32,22 @@ describe Admin::ResourcesController, type: :controller do
 
   # TODO: Should be create, mkay?
   describe '#upload' do
+    before do
+      ResourceUploader.enable_processing = true
+    end
+
+    after do
+      ResourceUploader.enable_processing = false
+    end
+
     it 'creates a new Resource' do
       expect { post :upload, upload: { filename: file_upload('haha') } }.
+        to change { Resource.count }.by(1)
+    end
+
+    it 'creates a new image Resource' do
+      upload = file_upload('haha.png', 'testfile.png')
+      expect { post :upload, upload: { filename: upload } }.
         to change { Resource.count }.by(1)
     end
   end
