@@ -625,6 +625,51 @@ describe Article, type: :model do
     end
   end
 
+  describe '#published_trackbacks' do
+    let(:article) { create :article }
+
+    it 'should not include withdrawn trackbacks' do
+      trackback = create :trackback, article: article
+      article.reload
+      expect(article.published_trackbacks).to eq [trackback]
+      trackback.withdraw!
+      article.reload
+      expect(article.published_trackbacks).to eq []
+    end
+
+    it 'sorts trackbacks newest last' do
+      old_trackback = create :trackback, article: article, created_at: 2.days.ago
+      new_trackback = create :trackback, article: article, created_at: 1.day.ago
+      article.reload
+      expect(article.published_trackbacks).to eq [old_trackback, new_trackback]
+    end
+  end
+
+  describe '#published_feedback' do
+    let(:article) { create :article }
+
+    it 'should not include withdrawn comments or trackbacks' do
+      comment = create :published_comment, article: article
+      trackback = create :trackback, article: article
+      article.reload
+      expect(article.published_feedback).to eq [comment, trackback]
+      comment.withdraw!
+      trackback.withdraw!
+      article.reload
+      expect(article.published_feedback).to eq []
+    end
+
+    it 'sorts feedback newest last' do
+      old_comment = create :published_comment, article: article, created_at: 4.days.ago
+      old_trackback = create :trackback, article: article, created_at: 3.days.ago
+      new_comment = create :published_comment, article: article, created_at: 2.days.ago
+      new_trackback = create :trackback, article: article, created_at: 1.day.ago
+      article.reload
+      expect(article.published_feedback).
+        to eq [old_comment, old_trackback, new_comment, new_trackback]
+    end
+  end
+
   describe 'save_attachments!' do
     it 'calls save_attachment for each file given' do
       first_file = OpenStruct.new

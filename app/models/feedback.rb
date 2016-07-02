@@ -26,6 +26,9 @@ class Feedback < ActiveRecord::Base
   scope :presumed_spam, -> { where(state: 'presumed_spam') }
   scope :unapproved, -> { where(status_confirmed: false) }
 
+  scope :published, -> { where(published: true) }
+  scope :oldest_first, -> { order(:created_at) }
+
   has_state(:state,
             valid_states: [:unclassified, :presumed_spam, :just_marked_as_spam, :spam, :just_presumed_ham, :presumed_ham, :just_marked_as_ham, :ham],
             handles: [:published?, :status_confirmed?, :just_published?,
