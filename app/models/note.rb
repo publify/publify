@@ -60,6 +60,7 @@ class Note < Content
     end
   end
 
+  # FIXME: This breaks if the user changes or deletes their handle.
   def twitter_url
     File.join('https://twitter.com', user.twitter, 'status', twitter_id)
   end

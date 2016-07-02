@@ -9,7 +9,7 @@ describe Admin::ResourcesController, type: :controller do
     sign_in admin
   end
 
-  describe 'test_index' do
+  describe '#index' do
     before(:each) do
       get :index
     end
@@ -30,7 +30,25 @@ describe Admin::ResourcesController, type: :controller do
     end
   end
 
-  it 'test_upload' do
-    # unsure how to test upload constructs :'(
+  # TODO: Should be create, mkay?
+  describe '#upload' do
+    before do
+      ResourceUploader.enable_processing = true
+    end
+
+    after do
+      ResourceUploader.enable_processing = false
+    end
+
+    it 'creates a new Resource' do
+      expect { post :upload, upload: { filename: file_upload('haha') } }.
+        to change { Resource.count }.by(1)
+    end
+
+    it 'creates a new image Resource' do
+      upload = file_upload('haha.png', 'testfile.png')
+      expect { post :upload, upload: { filename: upload } }.
+        to change { Resource.count }.by(1)
+    end
   end
 end

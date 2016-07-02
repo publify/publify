@@ -6,7 +6,7 @@ describe AuthorsController, type: :controller do
 
   describe '#show' do
     describe 'With an empty profile' do
-      let(:no_profile_user) { create(:user, :without_twitter) }
+      let(:no_profile_user) { create(:user) }
       let!(:article) { create(:article, user: no_profile_user, published_at: now - 1.hour) }
 
       describe 'html' do

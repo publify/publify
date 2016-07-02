@@ -21,9 +21,7 @@ FactoryGirl.define do
     notify_on_comments false
     password 'top-secret'
     state 'active'
-    twitter '@getpublify'
     profile User::CONTRIBUTOR
-    association :resource, factory: :avatar
     association :text_filter, factory: :textile
 
     trait :without_twitter do
@@ -39,11 +37,6 @@ FactoryGirl.define do
       yahoo 'anotherrandomaccount'
       twitter '@random'
       jabber 'random@account.com'
-    end
-
-    trait :with_twitter do
-      twitter_oauth_token 'oauth_token'
-      twitter_oauth_token_secret 'oauth_token'
     end
 
     trait :as_admin do
@@ -191,11 +184,6 @@ http://alsoping.example.com/rpc/ping"
         build_stubbed filter
       end
     end
-
-    factory :blog_with_twitter do
-      twitter_consumer_key 'consumer_key'
-      twitter_consumer_secret 'consumer_secret'
-    end
   end
 
   factory :tag do |tag|
@@ -208,6 +196,7 @@ http://alsoping.example.com/rpc/ping"
     r.upload { FactoryGirl.generate(:file_name) }
     r.mime 'image/jpeg'
     r.size 110
+    blog { Blog.first || create(:blog) }
   end
 
   factory :avatar, parent: :resource do |a|

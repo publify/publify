@@ -122,9 +122,9 @@ def with_each_theme
   end
 end
 
-def file_upload(filename)
+def file_upload(filename, file = 'testfile.txt')
   ActionDispatch::Http::UploadedFile.new(
-    tempfile: File.new(Rails.root.join('spec', 'fixtures', 'testfile.txt')),
+    tempfile: File.new(Rails.root.join('spec', 'fixtures', file)),
     filename: filename
   )
 end

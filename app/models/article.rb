@@ -115,7 +115,7 @@ class Article < Content
   end
 
   def save_attachment!(file)
-    resources << Resource.create(upload: file)
+    resources.create!(upload: file, blog: blog)
   end
 
   def trackback_url
