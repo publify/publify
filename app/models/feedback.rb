@@ -19,8 +19,6 @@ class Feedback < ActiveRecord::Base
   after_initialize :after_initialize_handler
   after_destroy ->(c) { c.invalidates_cache?(true) }
 
-  default_scope { order('created_at DESC') }
-
   scope :ham, -> { where(state: %w(presumed_ham ham)) }
   scope :spam, -> { where(state: 'spam') }
   scope :published_since, ->(time) { ham.where('published_at > ?', time) }

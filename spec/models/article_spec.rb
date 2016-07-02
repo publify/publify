@@ -606,19 +606,22 @@ describe Article, type: :model do
   end
 
   describe '#published_comments' do
+    let(:article) { create :article }
+
     it 'should not include withdrawn comments' do
-      a = blog.articles.build(title: 'foo')
-      a.save!
+      comment = create :published_comment, article: article
+      article.reload
+      expect(article.published_comments).to eq [comment]
+      comment.withdraw!
+      article.reload
+      expect(article.published_comments).to eq []
+    end
 
-      assert_equal 0, a.published_comments.size
-      c = a.comments.build(body: 'foo', author: 'bob', published: true, published_at: Time.now)
-      assert c.published?
-      c.save!
-      a.reload
-
-      assert_equal 1, a.published_comments.size
-      c.withdraw!
-      assert_equal 0, a.published_comments.size
+    it 'sorts comments newest last' do
+      old_comment = create :published_comment, article: article, created_at: 2.days.ago
+      new_comment = create :published_comment, article: article, created_at: 1.day.ago
+      article.reload
+      expect(article.published_comments).to eq [old_comment, new_comment]
     end
   end
 
