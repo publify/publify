@@ -60,9 +60,6 @@ FactoryGirl.define do
     permalink 'a-big-article'
     published_at DateTime.new(2005, 1, 1, 2, 0, 0)
     user
-    tags []
-    published_comments []
-    published_trackbacks []
     allow_comments true
     published true
     state :published
