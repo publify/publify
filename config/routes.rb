@@ -102,6 +102,7 @@ Rails.application.routes.draw do
       collection do
         get 'auto_complete_for_article_keywords'
         post 'autosave'
+        put 'autosave'
       end
     end
 
