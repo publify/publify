@@ -83,11 +83,11 @@ ru:
         manage_articles: Управление постами
         new_article: Новый пост
         publication_date: Дата публикации
-        publication_pending: Publication pending
+        publication_pending: Ожидают публикации
         published: Опубликован
         search: Найти
         select_an_author: Выбрать автора
-        withdrawn: Withdrawn
+        withdrawn: Отозванные
       update:
         success: Article was successfully updated
     dashboard:
@@ -102,9 +102,9 @@ ru:
       inbound:
         at: в
         at_an_unknown_date: at an unknown date
-        inbound_links: Inbound links
+        inbound_links: Входящие ссылки
         made_a_link_to_you_on: made a link to you on
-        no_one_made_link_to_you_yet: No one made a link to you yet
+        no_one_made_link_to_you_yet: Никто пока сюда не ссылался
         you_have_no_internet_connection: You have no internet connection
       index:
         welcome_back: Добро пожаловать снова, %{user_name}!
@@ -172,7 +172,7 @@ ru:
         cancel: Отменить
         comments_for_html: Комментарии к %{title}
         email: Email
-        no_feedback: Ничего нет. Почему бы не начать и не добавить?
+        no_feedback: Пока нет комментариев.
         save: Сохранить
         select_all: Выбрать все
         url: Url
@@ -191,10 +191,10 @@ ru:
           other: Marked %{count} items as Spam
           zero: No item selected to mark as Spam
       button:
-        delete_all_spam: Delete all spam
-        delete_checked_items: Delete Checked Items
-        mark_checked_items_as_ham: Mark Checked Items as Ham
-        mark_checked_items_as_spam: Mark Checked Items as Spam
+        delete_all_spam: Удалить весь спам
+        delete_checked_items: Удалить выбранные
+        mark_checked_items_as_ham: Отметить выбранные как хорошие
+        mark_checked_items_as_spam: Отметить выбранные как спам
       create:
         success: Comment was successfully created.
       destroy:
@@ -214,20 +214,20 @@ ru:
         by: by
         created_on: 'on'
       index:
-        all: All
+        all: Все
         feedback: Комментарии
-        ham: Ham
+        ham: Хорошие
         no_feedback: Ничего нет. Почему бы не начать и не добавить?
-        presumed_ham: Предположительно ham
-        presumed_spam: Предположительно spam
+        presumed_ham: Предположительно хорошие
+        presumed_spam: Предположительно спам
         select_all: Выбрать все
-        spam: Spam
+        spam: Спам
         unapproved_comments: Unapproved comments
       spam:
-        by: by
+        by: от автора
         cancel: Отменить
         created_on: 'on'
-        this_comment_by_was_flagged_as_spam_html: This comment by %{author} was flagged as spam, %{cancel_link}?
+        this_comment_by_was_flagged_as_spam_html: Этот комментарий от автора %{author} помечен как спам, %{cancel_link}?
       state:
         ham: Ham
         just_marked_as_ham: Just Marked As Ham
@@ -258,9 +258,9 @@ ru:
         compose_new_note: Compose new note
         in_reply_to: In reply to
         no_notes: Ничего нет. Почему бы не начать и не добавить?
-        now: Now
-        or: or
-        permanent_link: Permanent link
+        now: Сейчас
+        or: или
+        permanent_link: Постоянная ссылка
         posse_to_twitter: POSSE to Twitter
         publish: Опубликовать
         publish_at: Опубликован
@@ -306,7 +306,7 @@ ru:
         description: Описание
         explain: The template name is the filename Publify will look for when calling an article of that type. It should be in your theme under views/articles/template name.html.erb
         name: Имя
-        or: or
+        or: или
         post_types: Post Types
         publify_default_post_type: Publify default post type
         save: Сохранить
@@ -323,7 +323,7 @@ ru:
         from: From
         leave_empty_to_shorten_a_link: Leave empty to shorten a link
         no_redirects: Ничего нет. Почему бы не начать и не добавить?
-        or: or
+        or: или
         redirects: Перенаправления
         save: Сохранить
         to: To
@@ -337,13 +337,13 @@ ru:
         delete: Delete
         file_size: Размер Файла
         filename: Имя Файла
-        media_library: Media Library
+        media_library: Медиатека
         medium_size: Medium size
         no_resources: Ничего нет. Почему бы не начать и не добавить?
         original_size: Original size
         right_click_for_link: right-click for link
         thumbnail: Thumbnail
-        upload: Upload
+        upload: Загрузить
         upload_a_file_to_your_site: Загрузить файл на ваш сайт
       upload:
         success: File uploaded
@@ -393,17 +393,17 @@ ru:
       show:
         cancel: Отменить
         global_settings: Global settings
-        or: or
+        or: или
         permalinks: Постоянные ссылки
-        title_settings: Title settings
+        title_settings: Настройки заголовков
         update_settings: Обновить настройки
       titles:
         articles: Посты
         author_page: Author page
         dated_archives: Dated archives
-        description_template: Description template
+        description_template: Шаблон описания
         help_on_title_settings: Help on title settings
-        home: Home
+        home: Главная
         pages: Страницы
         paginated_archives: Paginated archives
         replaced_by_the_archive_date: Replaced by the archive date
@@ -426,7 +426,7 @@ ru:
         the_blog_s_name: The blog's name
         the_blog_s_tagline_description: The blog's tagline / description
         these_tags_can_be_included: These tags can be included in your templates and will be replaced when displaying the page.
-        title_template: Title template
+        title_template: Шаблон заголовка
     settings:
       display:
         cancel: Отменить
@@ -443,7 +443,7 @@ ru:
         feed_settings: RSS Feed Settings
         feedburner_help: Enter your FeedBurner ID if you wish to use your Google FeedBurner account instead of using the Publify feed URL.
         feedburner_id: FeedBurner ID
-        or: or
+        or: или
         publishing_options: Publishing Options
         status_main_feed: Display statuses in the main feed
         statuses: Statuses
@@ -473,7 +473,7 @@ ru:
         feedback_settings: Feedback settings
         max_links: Max Links
         none: Нет
-        or: or
+        or: или
         remember_to_set_your_recaptcha: Remember to set your reCaptcha keys inside config/initializers/recaptcha.rb
         set_to_0_to_never_disable_comments: Set to 0 to never disable comments
         set_to_0_to_never_reject_comments: Set to 0 to never reject comments
@@ -492,7 +492,7 @@ ru:
         general_settings: Основные настройки
         items_to_display_in_admin_lists: Количество элементов для отображения в администраторских списках
         language: Язык
-        or: or
+        or: или
         source_email: Source Email
         update_settings: Обновить настройки
         users: Users
@@ -505,61 +505,61 @@ ru:
         cancel: Отменить
         display: Display
         example: example
-        explain: When publishing articles, Publify can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.
+        explain: После публикации статей Publify может отправлять уведомления на те сайты, на которые вы ссылаетесь. Разумно выключить эту опцию для приватных блогов. Для публичных блогов особых причин выключать ее нет.
         image_medium_size: Image medium size
         image_thumbnail_size: Image thumbnail size
         latitude_longitude: Latitude, Longitude
         media: Media
-        or: or
+        or: или
         publish: Опубликовать
         publish_on_twitter: Publish on Twitter
-        send_trackbacks: Send trackbacks
+        send_trackbacks: Отправлять trackback’и
         trackbacks: Trackbacks
         twitter_consumer_key: Twitter consumer key
         twitter_consumer_secret: Twitter consumer secret
         update_settings: Обновить настройки
         urls_to_ping: URLs to ping automatically
-        write: Write
+        write: Публикация
         your_geoloc: your latitude and longitude
     shared:
       destroy:
         are_you_sure: Вы уверены, что хотите удалить %{element}?
       menu:
         all_articles: Все посты
-        all_pages: All pages
-        article_types: Article types
+        all_pages: Все страницы
+        article_types: Виды статей
         articles: Посты
-        cache: Cache
-        choose_theme: Choose theme
-        customize_sidebar: Customize sidebar
-        design: Design
-        display: Display
+        cache: Кэш
+        choose_theme: Выбрать тему
+        customize_sidebar: Настроить боковую колонку
+        design: Дизайн
+        display: Отображение
         documentation: Документация
-        feedback: Feedback
+        feedback: Комментарии
         general_settings: Основные настройки
-        global_seo_settings: Global SEO settings
+        global_seo_settings: Глобальные SEO-настройки
         in_page_plugins: Плагины для страницы
-        logged_in_as: Logged in as %{login}
-        logout_html: Log out &raquo;
-        manage_users: Manage Users
-        media_library: Media Library
-        new: New
+        logged_in_as: Вы вошли как %{login}
+        logout_html: Выйти »
+        manage_users: Управление пользователями
+        media_library: Файлы
+        new: Добавить...
         new_article: Новый пост
-        new_media: New Media
-        new_note: New Note
-        new_page: New Page
-        notes: Notes
+        new_media: Новый файл
+        new_note: Новая заметка
+        new_page: Новая страница
+        notes: Заметки
         pages: Страницы
         permalinks: Постоянные ссылки
         profile: профиль
         redirects: Перенаправления
         report_a_bug: Сообщить об ошибке
         seo: SEO
-        settings: Settings
+        settings: Настройки
         sidebar_plugins: Боковые плагины
         tags: Теги
-        titles: Titles
-        write: Write
+        titles: Заголовки
+        write: Публикация
       twitter_alert:
         fill_the_twitter_credentials: fill in the OAuth credentials
         how_to_setup_twitter_html: If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}.
@@ -573,9 +573,9 @@ ru:
         cancel: Отменить
         download_more_plugins_html: You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory.
         explain_how_its_works: Drag and drop to change the sidebar items displayed on this blog. To remove items from the sidebar just click 'remove'. Changes are saved immediately, but not activated until you click the 'Publish changes' button
-        or: or
-        publish_changes: Publish changes
-        sidebar: Sidebar
+        or: или
+        publish_changes: Сохранить изменения
+        sidebar: Боковая колонка
       target:
         drag_some_plugins_here: Drag some plugins here to fill your sidebar
     tags:
@@ -587,7 +587,7 @@ ru:
         manage_tags: Manage Tags
         name: Имя
         no_tags: Ничего нет. Почему бы не начать и не добавить?
-        or: or
+        or: или
         save: Сохранить
     themes:
       index:
@@ -623,7 +623,7 @@ ru:
         notification_email: via email
         notification_settings: Notifications
         notifications: Send notification messages
-        or: or
+        or: или
         password: Password
         password_confirmation: Password confirmation
         profile: профиль
@@ -661,8 +661,8 @@ ru:
       continue_reading: Continue reading
     article_links:
       comments:
-        one: 1 comment
-        other: "%{count} comments"
+        one: 1 комментарий
+        other: "Комментариев: %{count}"
         zero: Нет комментариев
       tags: Tags
       trackbacks:
@@ -671,13 +671,13 @@ ru:
         zero: no trackbacks
     comment_counter:
       comments:
-        one: 1 comment
-        other: "%{count} comments"
+        one: 1 комментарий
+        other: "Комментариев: %{count}"
         zero: Нет комментариев
     comment_errors:
       message: Oops, something wrong happened, the comment could not be saved.
     comment_form:
-      comment: Отправить комментарий
+      comment: Ответить на пост
       comment_markup_help: Помощь по разметке
       email_address: Электронная почта
       leave_url_email: leave url/email
@@ -705,7 +705,7 @@ ru:
       rss_feed: RSS feed
       trackback_uri: Trackback URI
       trackbacks: Trackbacks
-      trackbacks_are_disabled: Trackbacks are disabled
+      trackbacks_are_disabled: Trackback’и выключены
       trackbacks_for: Trackbacks for
       use_the_following_link_to_trackback: Use the following link to trackback from your own site
     search:
@@ -729,7 +729,7 @@ ru:
       yahoo: 'Yahoo:'
   comments:
     comment:
-      by: by
+      by: от
       said: said
       this_comment_has_been_flagged_for_moderator_approval: This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it
   date:
@@ -777,7 +777,7 @@ ru:
     change: Изменить
     save: Сохранить
   helper:
-    at: at
+    at: в
   langs:
     da_DK: Danish
     de_DE: German
