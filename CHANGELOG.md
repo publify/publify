@@ -17,6 +17,8 @@
   library work again (mvz)
 * Fix comment order and other feedback scopes (mvz)
 * Fix autosave (mvz)
+* Improve russian translation (apsheronets)
+* Fix note publication date entry (mvz)
 
 ## 8.3.0
 
