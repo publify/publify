@@ -5,7 +5,6 @@
 //= require jquery-ui
 //= require datetimepicker
 //= require bootstrap
-//= require publify_jquery
 //= require quicktags
 //= require widearea
 //= require tagmanager
@@ -106,6 +105,9 @@ $(document).ready(function() {
 
   // DatePickers
   $('.datepicker').datepicker();
+
+  // Date time picker (not related to date picker at all!)
+  $( "#article_published_at" ).datetimepicker();
 
   // DropDown
   $(".dropdown-toggle").dropdown();
