@@ -13,13 +13,6 @@ class Admin::BaseController < ApplicationController
 
   private
 
-  def parse_date_time(str)
-    return unless str
-    DateTime.strptime(str, '%B %e, %Y %I:%M %p GMT%z').utc
-  rescue ArgumentError
-    Time.parse(str).utc
-  end
-
   def update_settings_with!(settings_param)
     Blog.transaction do
       settings_param.each { |k, v| this_blog.send("#{k}=", v) }

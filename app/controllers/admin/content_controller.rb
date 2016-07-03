@@ -151,7 +151,6 @@ class Admin::ContentController < Admin::BaseController
 
   def update_article_attributes
     @article.attributes = update_params
-    @article.published_at = parse_date_time params[:article][:published_at]
     @article.author = current_user
     @article.save_attachments!(params[:attachments])
     @article.state = 'draft' if @article.draft

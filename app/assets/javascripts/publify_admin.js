@@ -3,9 +3,24 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require jquery-ui/datepicker-da
+//= require jquery-ui/datepicker-de
+//= require jquery-ui/datepicker-es
+//= require jquery-ui/datepicker-fr
+//= require jquery-ui/datepicker-he
+//= require jquery-ui/datepicker-it
+//= require jquery-ui/datepicker-ja
+//= require jquery-ui/datepicker-lt
+//= require jquery-ui/datepicker-nb
+//= require jquery-ui/datepicker-nl
+//= require jquery-ui/datepicker-pl
+//= require jquery-ui/datepicker-pt-BR
+//= require jquery-ui/datepicker-ro
+//= require jquery-ui/datepicker-ru
+//= require jquery-ui/datepicker-zh-CN
+//= require jquery-ui/datepicker-zh-TW
 //= require datetimepicker
 //= require bootstrap
-//= require publify_jquery
 //= require quicktags
 //= require widearea
 //= require tagmanager
@@ -105,7 +120,12 @@ $(document).ready(function() {
   $('#page_form').each(function(e){set_widerea($('#page_body'))});
 
   // DatePickers
-  $('.datepicker').datepicker();
+  $('.datepicker').each(function() {
+    $(this).datepicker($.datepicker.regional[this.dataset.locale]);
+  });
+
+  // Date time picker (not related to date picker at all!)
+  $( "#article_published_at" ).datetimepicker();
 
   // DropDown
   $(".dropdown-toggle").dropdown();
