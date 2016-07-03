@@ -23,7 +23,6 @@ class Admin::NotesController < Admin::BaseController
     note = new_note
 
     note.published = true
-    note.published_at = parse_date_time params[:note][:published_at]
     note.attributes = params[:note].permit!
     note.text_filter ||= current_user.default_text_filter
     note.published_at ||= Time.now
