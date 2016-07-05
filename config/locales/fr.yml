@@ -73,7 +73,7 @@ fr:
         save_as_draft: Sauver comme brouillon
         status: État
         tags: Labels
-        tags_explanation: Séparez les tags par des virgules. Utilisez des doubles guillemets (&quot;) autour des tags composés de plusieurs mots, e.g. &quot;bureau de poste&quot;.
+        tags_explanation_html: Séparez les tags par des virgules. Utilisez des doubles guillemets (&quot;) autour des tags composés de plusieurs mots, e.g. &quot;bureau de poste&quot;.
         title: Titre
         type_your_post: Tapez votre texte
         visibility: Visibilité

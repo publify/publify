@@ -73,7 +73,7 @@ nb-NO:
         save_as_draft: Lagre som utkast
         status: Status
         tags: Tagger
-        tags_explanation: Skill tagger med komma. Bruk anførselstegn (&quot;) rundt tagger med flere ord, f.eks. &quot;moderne teater&quot;.
+        tags_explanation_html: Skill tagger med komma. Bruk anførselstegn (&quot;) rundt tagger med flere ord, f.eks. &quot;moderne teater&quot;.
         title: Tittel
         type_your_post: Skriv teksten din
         visibility: Synlighet

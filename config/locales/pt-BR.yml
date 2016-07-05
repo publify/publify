@@ -73,7 +73,7 @@ pt-BR:
         save_as_draft: Salvar como rascunho
         status: Status
         tags: Tags
-        tags_explanation: 'Separe as tags com vírgulas. Use aspas duplas (&quot;) em palavras compostas, ex: casa-da-opera.'
+        tags_explanation_html: 'Separe as tags com vírgulas. Use aspas duplas (&quot;) em palavras compostas, ex: casa-da-opera.'
         title: Título
         type_your_post: Digite seu post
         visibility: Visibilidade

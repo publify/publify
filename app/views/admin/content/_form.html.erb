@@ -49,7 +49,7 @@
           <div class="form-group">
             <%= text_field 'article', 'keywords', {autocomplete: 'off', class: 'form-control tm-input'} %>
           </div>
-          <p class="alert alert-warning"><%=t('.tags_explanation') %></p>
+          <p class="alert alert-warning"><%=t('.tags_explanation_html') %></p>
         </div>
         <% post_types = @post_types || [] %>
         <% if post_types.size.zero? %>

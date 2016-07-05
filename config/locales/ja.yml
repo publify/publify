@@ -73,7 +73,7 @@ ja:
         save_as_draft: 下書きとして保存
         status: ステータス
         tags: タグ
-        tags_explanation: Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;.
+        tags_explanation_html: Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;.
         title: タイトル
         type_your_post: Type your post
         visibility: Visibility
