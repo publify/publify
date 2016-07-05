@@ -365,7 +365,8 @@ describe Admin::ContentController, type: :controller do
       end
 
       context 'when a published article has drafts' do
-        let!(:original) { create(:article) }
+        let(:original_published_at) { 2.days.ago.to_date }
+        let!(:original) { create(:article, published_at: original_published_at) }
         let!(:draft) { create(:article, parent_id: original.id, state: 'draft', published: false) }
         let!(:second_draft) { create(:article, parent_id: original.id, state: 'draft', published: false) }
 
@@ -388,13 +389,17 @@ describe Admin::ContentController, type: :controller do
               Article.find(second_draft.id)
             end
           end
+
+          it 'keeps the original publication date' do
+            expect(original.reload.published_at).to eq original_published_at
+          end
         end
 
         describe 'publishing a draft copy of the published article' do
           before do
             put(:update,
                 id: draft.id,
-                article: { id: draft.id, body: 'update' })
+                article: { id: draft.id, body: 'update', published_at: '' })
           end
 
           it 'updates the original' do
@@ -408,6 +413,10 @@ describe Admin::ContentController, type: :controller do
             assert_raises ActiveRecord::RecordNotFound do
               Article.find(second_draft.id)
             end
+          end
+
+          it 'keeps the original publication date' do
+            expect(original.reload.published_at).to eq original_published_at
           end
         end
       end
