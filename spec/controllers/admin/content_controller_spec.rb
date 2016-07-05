@@ -3,13 +3,17 @@ require 'rails_helper'
 describe Admin::ContentController, type: :controller do
   render_views
 
-  let!(:article) { create(:article) }
-
   let(:admin) { create(:user, :as_admin, text_filter: create(:markdown)) }
   let(:publisher) { create(:user, :as_publisher, text_filter: create(:markdown)) }
   let(:contributor) { create(:user, :as_contributor) }
 
+  before do
+    create :blog
+  end
+
   describe 'index' do
+    let!(:article) { create(:article) }
+
     before do
       sign_in publisher
     end
@@ -61,33 +65,39 @@ describe Admin::ContentController, type: :controller do
     end
 
     context 'first time save' do
-      it do
+      it 'creates a new draft Article' do
         expect do
           xhr :post, :autosave, article: attributes_for(:article)
-        end.to change(Article, :count).from(1).to(2) end
+        end.to change(Article, :count).by(1)
+      end
 
-      it do
+      it 'creates tags for the draft article if relevant' do
         expect do
           xhr :post, :autosave, article: attributes_for(:article, :with_tags)
-        end.to change(Tag, :count).from(0).to(2) end
+        end.to change(Tag, :count).by(2)
+      end
     end
 
     context 'second call to save' do
       let!(:draft) { create(:article, published: false, state: 'draft') }
-      it do
+
+      it 'does not create an extra draft' do
         expect do
           xhr :post, :autosave, article: { id: draft.id, body_and_extended: 'new body' }
-        end.to_not change(Article, :count) end
+        end.to_not change(Article, :count)
+      end
     end
 
     context 'with an other existing draft' do
       let!(:draft) { create(:article, published: false, state: 'draft', body: 'existing body') }
-      it do
+
+      it 'creates a new draft Article' do
         expect do
           xhr :post, :autosave, article: attributes_for(:article)
-        end.to change(Article, :count).from(2).to(3) end
+        end.to change(Article, :count).by(1)
+      end
 
-      it 'dont replace existing draft' do
+      it 'does not replace existing draft' do
         xhr :post, :autosave, article: attributes_for(:article)
         expect(assigns(:article).id).to_not eq(draft.id)
         expect(assigns(:article).body).to_not eq(draft.body)
@@ -212,11 +222,10 @@ describe Admin::ContentController, type: :controller do
 
       let(:article_params) { { title: 'posted via tests!', body: 'a good boy' } }
 
-      context 'create an article' do
-        it do
+      it 'creates an article' do
           expect do
             post :create, article: article_params
-          end.to change(Article, :count).from(1).to(2) end
+          end.to change(Article, :count).by(1)
       end
 
       context 'classic' do
@@ -237,20 +246,23 @@ describe Admin::ContentController, type: :controller do
       context 'write for futur' do
         let(:article_params) { { title: 'posted via tests!', body: 'a good boy', state: 'draft', published_at: (Time.now + 1.hour).to_s } }
 
-        it do
+        it 'creates an article' do
           expect do
             post :create, article: article_params
-          end.to change(Article, :count).from(1).to(2) end
+          end.to change(Article, :count).by(1)
+        end
 
-        it do
+        it 'does not create a short url' do
           expect do
             post :create, article: article_params
-          end.to_not change(Redirect, :count) end
+          end.to_not change(Redirect, :count)
+        end
 
-        it do
+        it 'creates a trigger to publish the article' do
           expect do
             post :create, article: article_params
-          end.to change(Trigger, :count).from(0).to(1) end
+          end.to change(Trigger, :count).by(1)
+        end
       end
     end
 
@@ -266,6 +278,8 @@ describe Admin::ContentController, type: :controller do
 
   describe '#edit' do
     context 'as an admin' do
+      let(:article) { create(:article) }
+
       before do
         sign_in admin
       end
@@ -292,14 +306,14 @@ describe Admin::ContentController, type: :controller do
       end
 
       context 'with an article from an other user' do
-        let!(:article) { create(:article, user: create(:user, login: 'another_user')) }
+        let(:article) { create(:article, user: create(:user, login: 'another_user')) }
 
         before(:each) { get :edit, id: article.id }
         it { expect(response).to redirect_to(action: 'index') }
       end
 
       context 'with an article from current user' do
-        let!(:article) { create(:article, user: publisher) }
+        let(:article) { create(:article, user: publisher) }
 
         before(:each) { get :edit, id: article.id }
         it { expect(response).to render_template('edit') }
@@ -311,6 +325,8 @@ describe Admin::ContentController, type: :controller do
 
   describe '#update' do
     context 'as an admin' do
+      let(:article) { create(:article) }
+
       before do
         sign_in admin
       end
@@ -370,7 +386,7 @@ describe Admin::ContentController, type: :controller do
         expect(Article).not_to be_exists(id: draft_2.id)
       end
 
-      describe 'publishing a published article with an autosaved draft' do
+      describe 'publishing a published article with a draft' do
         before do
           @orig = create(:article)
           @draft = create(:article, parent_id: @orig.id, state: 'draft', published: false)
@@ -379,7 +395,7 @@ describe Admin::ContentController, type: :controller do
               article: { id: @draft.id, body: 'update' })
         end
 
-        it 'updates the original' do
+        it 'updates the article' do
           expect(Article.find(@orig.id).body).to eq('update')
         end
 
