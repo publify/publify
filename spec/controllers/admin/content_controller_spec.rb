@@ -364,64 +364,50 @@ describe Admin::ContentController, type: :controller do
         expect(article.extended).to eq('bar<!--more-->baz')
       end
 
-      it 'should delete draft about this article if update' do
-        attributes = article.attributes.except('id').
-          merge(state: 'draft', parent_id: article.id, guid: nil)
-        draft = Article.create!(attributes)
-        expect do
-          put :update, 'id' => article.id, 'article' => { 'title' => 'new' }
-        end.to change(Article, :count).by(-1)
-        expect(Article).not_to be_exists(id: draft.id)
-      end
+      context 'when a published article has drafts' do
+        let!(:original) { create(:article) }
+        let!(:draft) { create(:article, parent_id: original.id, state: 'draft', published: false) }
+        let!(:second_draft) { create(:article, parent_id: original.id, state: 'draft', published: false) }
 
-      it 'should delete all draft about this article if update not happen but why not' do
-        attributes = article.attributes.except('id').
-          merge(state: 'draft', parent_id: article.id, guid: nil)
-        draft = Article.create!(attributes)
-        draft_2 = Article.create!(attributes)
-        expect do
-          put :update, id: article.id, article: { title: 'new' }
-        end.to change(Article, :count).by(-2)
-        expect(Article).not_to be_exists(id: draft.id)
-        expect(Article).not_to be_exists(id: draft_2.id)
-      end
+        describe 'publishing the published article' do
+          before do
+            put(:update,
+                id: original.id,
+                article: { id: draft.id, body: 'update' })
+          end
 
-      describe 'publishing a published article with a draft' do
-        before do
-          @orig = create(:article)
-          @draft = create(:article, parent_id: @orig.id, state: 'draft', published: false)
-          put(:update,
-              id: @orig.id,
-              article: { id: @draft.id, body: 'update' })
-        end
+          it 'updates the article' do
+            expect(original.reload.body).to eq 'update'
+          end
 
-        it 'updates the article' do
-          expect(Article.find(@orig.id).body).to eq('update')
-        end
-
-        it 'deletes the draft' do
-          assert_raises ActiveRecord::RecordNotFound do
-            Article.find(@draft.id)
+          it 'deletes all drafts' do
+            assert_raises ActiveRecord::RecordNotFound do
+              Article.find(draft.id)
+            end
+            assert_raises ActiveRecord::RecordNotFound do
+              Article.find(second_draft.id)
+            end
           end
         end
-      end
 
-      describe 'publishing a draft copy of a published article' do
-        before do
-          @orig = create(:article)
-          @draft = create(:article, parent_id: @orig.id, state: 'draft', published: false)
-          put(:update,
-              id: @draft.id,
-              article: { id: @draft.id, body: 'update' })
-        end
+        describe 'publishing a draft copy of the published article' do
+          before do
+            put(:update,
+                id: draft.id,
+                article: { id: draft.id, body: 'update' })
+          end
 
-        it 'updates the original' do
-          expect(Article.find(@orig.id).body).to eq('update')
-        end
+          it 'updates the original' do
+            expect(original.reload.body).to eq('update')
+          end
 
-        it 'deletes the draft' do
-          assert_raises ActiveRecord::RecordNotFound do
-            Article.find(@draft.id)
+          it 'deletes all drafts' do
+            assert_raises ActiveRecord::RecordNotFound do
+              Article.find(draft.id)
+            end
+            assert_raises ActiveRecord::RecordNotFound do
+              Article.find(second_draft.id)
+            end
           end
         end
       end
