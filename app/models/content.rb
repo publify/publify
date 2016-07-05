@@ -118,10 +118,6 @@ class Content < ActiveRecord::Base
     !user.email.blank? && blog.link_to_author
   end
 
-  def published_at
-    self[:published_at] || self[:created_at]
-  end
-
   def get_rss_description
     return '' unless blog.rss_description
     return '' unless respond_to?(:user) && user && user.name
