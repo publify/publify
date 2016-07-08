@@ -19,6 +19,7 @@
 * Fix autosave (mvz)
 * Improve russian translation (apsheronets)
 * Fix note publication date entry (mvz)
+* Ensure settings update flash has the correct language (mvz)
 
 ## 8.3.0
 
