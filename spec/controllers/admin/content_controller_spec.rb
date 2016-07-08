@@ -419,6 +419,18 @@ describe Admin::ContentController, type: :controller do
             expect(original.reload.published_at).to eq original_published_at
           end
         end
+
+        describe 'publishing a draft copy with a new publication date' do
+          before do
+            put(:update,
+                id: draft.id,
+                article: { id: draft.id, body: 'update', published_at: '2016-07-07' })
+          end
+
+          it 'updates the original publication date' do
+            expect(original.reload.published_at).to eq Date.new(2016, 7, 7)
+          end
+        end
       end
 
       describe 'saving a published article as draft' do
