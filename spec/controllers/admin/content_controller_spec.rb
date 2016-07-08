@@ -223,9 +223,9 @@ describe Admin::ContentController, type: :controller do
       let(:article_params) { { title: 'posted via tests!', body: 'a good boy' } }
 
       it 'creates an article' do
-          expect do
-            post :create, article: article_params
-          end.to change(Article, :count).by(1)
+        expect do
+          post :create, article: article_params
+        end.to change(Article, :count).by(1)
       end
 
       context 'classic' do
@@ -330,7 +330,6 @@ describe Admin::ContentController, type: :controller do
       before do
         sign_in admin
       end
-
 
       it 'should update article' do
         begin
