@@ -41,11 +41,17 @@ describe Admin::SettingsController, type: :controller do
       expect(response).to redirect_to(admin_settings_path)
     end
 
-    it 'sets the flash in the correct language' do
-      I18n.locale = :en
-      post :update, setting: { lang: 'nl' }
-      expect(I18n.locale).to eq :nl
-      expect(flash[:success]).to eq I18n.t('admin.settings.update.success')
+    context 'when updating the language' do
+      after do
+        I18n.locale = :en
+      end
+
+      it 'sets the flash in the new language' do
+        expect(I18n.locale).to eq :en
+        post :update, setting: { lang: 'nl' }
+        expect(I18n.locale).to eq :nl
+        expect(flash[:success]).to eq I18n.t('admin.settings.update.success')
+      end
     end
   end
 end
