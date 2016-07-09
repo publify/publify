@@ -78,7 +78,7 @@ module Article::States
     end
 
     def published_at=(new_time)
-      return if new_time.nil?
+      return if new_time.blank?
       content[:published_at] = new_time
       content.state = :publication_pending if new_time > Time.now
     end

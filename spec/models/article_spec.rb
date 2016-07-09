@@ -985,4 +985,36 @@ describe Article, type: :model do
       it { expect(article.post_type).to eq('myletter') }
     end
   end
+
+  describe '#comments_closed?' do
+    let!(:blog) { create(:blog, sp_article_auto_close: auto_close_value, default_allow_comments: true) }
+
+    context 'when auto_close setting is zero' do
+      let(:auto_close_value) { 0 }
+
+      it 'allows comments for a newly published article' do
+        art = build :article, published_at: Time.new, blog: blog
+        assert !art.comments_closed?
+      end
+
+      it 'allows comments for a very old article' do
+        art = build :article, created_at: Time.now - 1000.days, blog: blog
+        assert !art.comments_closed?
+      end
+    end
+
+    context 'when auto_close setting is nonzero' do
+      let(:auto_close_value) { 30 }
+
+      it 'allows comments for a recently published article' do
+        art = build :article, published_at: Time.new - 29.days, blog: blog
+        assert !art.comments_closed?
+      end
+
+      it 'does not allow comments for an old article' do
+        art = build :article, created_at: Time.now - 31.days, blog: blog
+        assert art.comments_closed?
+      end
+    end
+  end
 end
