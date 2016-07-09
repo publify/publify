@@ -1,10 +1,6 @@
 # Changelog
 
-## Unreleased
-
-### Breaking/large changes
-
-### Other changes
+## 8.3.1
 
 * Fix live search (mvz)
 * Introduce SidebarRegistry to avoid need to preload all sidebars (mvz)
