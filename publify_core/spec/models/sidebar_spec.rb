@@ -1,47 +1,28 @@
 require 'rails_helper'
 
 describe Sidebar, type: :model do
-  describe '#available_sidebars' do
-    it 'finds at least the standard sidebars' do
-      expect(SidebarRegistry.available_sidebars).to include(
-        AmazonSidebar,
-        ArchivesSidebar,
-        AuthorsSidebar,
-        LivesearchSidebar,
-        MetaSidebar,
-        NotesSidebar,
-        PageSidebar,
-        PopularSidebar,
-        SearchSidebar,
-        StaticSidebar,
-        TagSidebar,
-        XmlSidebar
-      )
-    end
-  end
-
   describe '#ordered_sidebars' do
     let(:blog) { create :blog }
 
     context 'with several sidebars with different positions' do
-      let(:amazon_sidebar) { AmazonSidebar.new(staged_position: 2, blog: blog) }
-      let(:archives_sidebar) { ArchivesSidebar.new(active_position: 1, blog: blog) }
+      let(:search_sidebar) { SearchSidebar.new(staged_position: 2, blog: blog) }
+      let(:static_sidebar) { StaticSidebar.new(active_position: 1, blog: blog) }
 
       before do
-        amazon_sidebar.save
-        archives_sidebar.save
+        search_sidebar.save
+        static_sidebar.save
       end
 
       it 'resturns the sidebars ordered by position' do
         sidebars = Sidebar.ordered_sidebars
-        expect(sidebars).to eq([archives_sidebar, amazon_sidebar])
+        expect(sidebars).to eq([static_sidebar, search_sidebar])
       end
     end
 
     context 'with an invalid sidebar in the database' do
       before do
         Sidebar.class_eval { self.inheritance_column = :bogus }
-        Sidebar.new(type: 'AmazonSidebar', staged_position: 1, blog: blog).save
+        Sidebar.new(type: 'SearchSidebar', staged_position: 1, blog: blog).save
         Sidebar.new(type: 'FooBarSidebar', staged_position: 2, blog: blog).save
         Sidebar.class_eval { self.inheritance_column = :type }
       end
@@ -49,14 +30,14 @@ describe Sidebar, type: :model do
       it 'skips the invalid active sidebar' do
         sidebars = Sidebar.ordered_sidebars
         expect(sidebars.size).to eq(1)
-        expect(sidebars.first.class).to eq(AmazonSidebar)
+        expect(sidebars.first.class).to eq(SearchSidebar)
       end
     end
   end
 
   describe '#content_partial' do
     it 'bases the partial name on the class name' do
-      expect(AmazonSidebar.new.content_partial).to eq('/amazon_sidebar/content')
+      expect(SearchSidebar.new.content_partial).to eq('/search_sidebar/content')
     end
   end
 
