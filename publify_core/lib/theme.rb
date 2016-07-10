@@ -8,7 +8,7 @@ class Theme
 
   def layout(action = :default)
     if action.to_s == 'view_page'
-      if File.exist? "#{path}/views/layouts/pages.html.erb"
+      if File.exist? "#{view_path}/layouts/pages.html.erb"
         return 'layouts/pages'
       end
     end
@@ -22,6 +22,10 @@ class Theme
     else
       "### #{name}"
     end
+  end
+
+  def view_path
+    "#{path}/views"
   end
 
   # Find a theme, given the theme name
