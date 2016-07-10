@@ -1,3 +1,5 @@
+require 'cancancan'
+
 class BaseController < ApplicationController
   before_action :fire_triggers, :load_lang, :set_paths
   before_action :configure_permitted_parameters, if: :devise_controller?
