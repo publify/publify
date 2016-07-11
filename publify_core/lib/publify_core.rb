@@ -39,8 +39,6 @@ $default_token = "08aac1f2d29e54c90efa24a4aefef843ab62da7a2610d193bc0558a50254c7
 
 module PublifyCore
   Theme.register_themes File.join(Engine.root, 'themes')
-  SidebarRegistry.register_sidebar_directory(File.join(Engine.root, 'lib'),
-                                             Engine.config.eager_load_paths)
 
   # Mime type is fully determined by url
   Engine.config.action_dispatch.ignore_accept_header = true
