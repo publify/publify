@@ -19,15 +19,6 @@ describe 'With the list of available filters', type: :model do
       expect(text).to eq('&#8220;foo&#8221;')
     end
 
-    it 'markdown' do
-      build_stubbed(:markdown)
-      text = filter_text('*foo*', [:markdown])
-      assert_equal '<p><em>foo</em></p>', text
-
-      text = filter_text("foo\n\nbar", [:markdown])
-      assert_equal "<p>foo</p>\n\n<p>bar</p>", text
-    end
-
     it 'filterchain' do
       build_stubbed(:markdown)
       build_stubbed(:smartypants)
