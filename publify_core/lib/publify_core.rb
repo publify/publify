@@ -40,6 +40,9 @@ $default_token = "08aac1f2d29e54c90efa24a4aefef843ab62da7a2610d193bc0558a50254c7
 module PublifyCore
   Theme.register_themes File.join(Engine.root, 'themes')
 
+  SidebarRegistry.register_sidebar 'SearchSidebar'
+  SidebarRegistry.register_sidebar 'StaticSidebar'
+
   # Mime type is fully determined by url
   Engine.config.action_dispatch.ignore_accept_header = true
 end
