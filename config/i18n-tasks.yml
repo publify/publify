@@ -23,6 +23,8 @@ data:
     # - "<%#= %x[bundle show vagrant].chomp %>/templates/locales/%{locale}.yml"
     - config/locales/%{locale}.yml
     - config/locales/**/*.%{locale}.yml
+    - publify_core/config/locales/%{locale}.yml
+    - publify_core/config/locales/**/*.%{locale}.yml
 
   # Locale files to write new keys to, based on a list of key pattern => file rules. Matched from top to bottom:
   # `i18n-tasks normalize -p` will force move the keys according to these rules
@@ -57,6 +59,8 @@ search:
    - app/
    - lib/
    - themes/bootstrap-2/
+   - publify_core/app/
+   - publify_core/lib/
 
   ## Root directories for relative keys resolution.
   relative_roots:
@@ -66,20 +70,23 @@ search:
     - app/presenters
     - app/views
     - lib/authors_sidebar/app/views
-    - lib/meta_sidebar/app/views
     - lib/notes_sidebar/app/views
-    - lib/page_sidebar/app/views
     - lib/popular_sidebar/app/views
-    - lib/search_sidebar/app/views
-    - lib/tag_sidebar/app/views
     - lib/xml_sidebar/app/views
     - themes/bootstrap-2/views
+    - publify_core/app/controllers
+    - publify_core/app/helpers
+    - publify_core/app/mailers
+    - publify_core/app/presenters
+    - publify_core/app/views
 
   ## Files or `File.fnmatch` patterns to exclude from search. Some files are always excluded regardless of this setting:
   ##   %w(*.jpg *.png *.gif *.svg *.ico *.eot *.otf *.ttf *.woff *.woff2 *.pdf *.css *.sass *.scss *.less *.yml *.json)
   exclude:
     - app/assets/images
     - app/assets/fonts
+    - publify_core/app/assets/images
+    - publify_core/app/assets/fonts
 
   ## Alternatively, the only files or `File.fnmatch patterns` to search in `paths`:
   ## If specified, this settings takes priority over `exclude`, but `exclude` still applies.
