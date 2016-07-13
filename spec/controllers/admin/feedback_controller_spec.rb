@@ -179,7 +179,7 @@ describe Admin::FeedbackController, type: :controller do
           expect do
             post 'create', article_id: article.id, comment: base_comment
             expect(response).to redirect_to(action: 'article', id: article.id)
-          end.to change { Comment.count(conditions: { state: 'ham' }) }
+          end.to change { Comment.ham.count }
         end
       end
     end
