@@ -13,12 +13,6 @@ describe 'With the list of available filters', type: :model do
       expect(text).to eq('*foo*')
     end
 
-    it 'smartypants' do
-      build_stubbed(:smartypants)
-      text = filter_text('"foo"', [:smartypants])
-      expect(text).to eq('&#8220;foo&#8221;')
-    end
-
     it 'filterchain' do
       build_stubbed(:markdown)
       build_stubbed(:smartypants)

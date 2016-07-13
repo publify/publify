@@ -54,7 +54,6 @@ gem 'htmlentities', '~> 4.3'
 gem 'non-stupid-digest-assets', '~> 1.0'
 gem 'rake', '~> 11.1'
 gem 'recaptcha', '~> 3.2', require: 'recaptcha/rails'
-gem 'rubypants', '~> 0.2.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

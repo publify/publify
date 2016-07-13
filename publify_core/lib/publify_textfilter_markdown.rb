@@ -1,6 +1,7 @@
 require 'text_filter_plugin'
 require 'bluecloth'
 
+# TODO: Move to a different namespace
 class PublifyApp
   class Textfilter
     class Markdown < TextFilterPlugin::Markup

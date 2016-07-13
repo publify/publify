@@ -1,3 +1,5 @@
+require 'rubypants'
+
 class PublifyApp
   class Textfilter
     class Smartypants < TextFilterPlugin::PostProcess
