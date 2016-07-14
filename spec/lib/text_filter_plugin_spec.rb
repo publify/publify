@@ -29,4 +29,3 @@ describe TextFilterPlugin do
     it { is_expected.not_to include(TextFilterPlugin::Macro) }
   end
 end
-

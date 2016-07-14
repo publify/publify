@@ -6,7 +6,11 @@ AllCops:
   - 'config/**/*'
   - 'db/**/*'
   - 'tmp/**/*'
-  - 'vendor/**/*'
+  - 'publify_core/config/**/*'
+  - 'publify_core/db/**/*'
+  - 'publify_core/spec/dummy/**/*'
+  - 'publify_amazon_sidebar/bin/**/*'
+  - 'publify_amazon_sidebar/spec/dummy/**/*'
 
 Rails:
   Enabled: true
