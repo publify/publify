@@ -9,24 +9,19 @@ nb-NO:
     comment_form:
       comment: kommentar
       email_address: Epostadresse
-      your_name: Ditt navn
       your_website: Din hjemmeside
     meta:
       published_on_html: Publisert den %{publish_date_and_time} av %{by}, tagger %{tags}
     read:
       add_me_to_twitter: legge meg til på Twitter
-      comments_are_disabled: Kommentarer er deaktiveret
       if_you_liked_this_article_you_can_html: Hvis du likte denne artikkelen, kan du %{add_twitter}
       trackbacks_are_disabled: Trackbacks er slått av
       trackbacks_for: Trackbacks for
     search:
       search_results_for: Search results for '%{query}'
-    trackback:
-      from: From
   comments:
     comment:
       by: av
-      this_comment_has_been_flagged_for_moderator_approval: Denne kommentaren har blitt flagget for godkjenning av moderator. Den vil ikke bli vist på bloggen før moderatoren godkjenner den.
   layouts:
     default:
       archives: Archives

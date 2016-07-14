@@ -9,6 +9,8 @@ data:
   read:
     - config/locales/%{locale}.yml
     - config/locales/sidebars.%{locale}.yml
+    - publify_core/config/locales/%{locale}.yml
+    - publify_core/config/locales/sidebars.%{locale}.yml
 
   # Locale files to write new keys to, based on a list of key pattern => file
   # rules. Matched from top to bottom:
@@ -29,6 +31,7 @@ search:
    - app/
    - lib/
    - themes/bootstrap-2/
+   - publify_core/app/
 
   ## Root directories for relative keys resolution.
   relative_roots:
@@ -43,14 +46,15 @@ search:
     - lib/popular_sidebar/app/views
     - lib/xml_sidebar/app/views
     - themes/bootstrap-2/views
+    - publify_core/app/views/
 
 ## Do not consider these keys missing:
-#ignore_missing:
-  #- 'devise.*'
+ignore_missing:
+  - 'devise.*'
 
 ## Consider these keys used:
-#ignore_unused:
-  #- 'time.formats.*'
-  #- 'layouts.default.designed_by'
-  #- 'date.*'
-  #- 'activerecord.{attributes,errors,models}.*'
+ignore_unused:
+  - 'time.formats.*'
+  - 'layouts.default.designed_by'
+  - 'date.*'
+  - 'activerecord.{attributes,errors,models}.*'
