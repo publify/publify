@@ -1,3 +1,5 @@
+require 'English'
+
 begin
   require 'bundler/setup'
 rescue LoadError
@@ -13,8 +15,17 @@ Bundler::GemHelper.install_tasks
 
 require 'rspec/core/rake_task'
 
-
 desc "Run all specs in spec directory (excluding plugin specs)"
 RSpec::Core::RakeTask.new(spec: 'app:db:test:prepare')
 
 task default: :spec
+
+namespace :i18n do
+  desc 'Check translation health'
+  task :health do
+    `i18n-tasks health`
+    abort('Translation problems found') unless $CHILD_STATUS.success?
+  end
+end
+
+task default: 'i18n:health'
