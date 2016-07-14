@@ -1,4 +1,6 @@
 require_dependency 'spam_protection'
+require 'akismet'
+
 class Feedback < ActiveRecord::Base
   self.table_name = 'feedback'
 
@@ -209,11 +211,10 @@ class Feedback < ActiveRecord::Base
 
   def akismet_client
     return false if blog.sp_akismet_key.blank?
+    client = Akismet::Client.new(blog.sp_akismet_key, blog.base_url)
     begin
-      client = Akismet::Client.new(blog.sp_akismet_key, blog.base_url)
-
       return client.verify_key ? client : false
-    rescue
+    rescue SocketError
       nil
     end
   end

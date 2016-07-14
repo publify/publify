@@ -145,4 +145,19 @@ describe Feedback, type: :model do
       it { expect(Feedback.from(:trackbacks, article.id)).to eq([trackback]) }
     end
   end
+
+  describe '#report_as_ham' do
+    let(:comment) { create(:comment) }
+    let(:blog) { comment.blog }
+
+    it 'works if the blog has no akismet key' do
+      comment.report_as_ham
+    end
+
+    it 'works if the blog has an akismet key' do
+      blog.sp_akismet_key = 'hello!'
+      blog.save!
+      comment.report_as_ham
+    end
+  end
 end
