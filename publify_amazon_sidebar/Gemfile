@@ -14,3 +14,4 @@ gemspec
 # gem 'byebug', group: [:development, :test]
 
 gem 'publify_core', path: '../publify_core'
+gem 'rubocop', '~> 0.41.0', group: :development
