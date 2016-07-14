@@ -34,8 +34,7 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
 
   # Test helpers needed for Devise
-  config.include Devise::TestHelpers, type: :controller
-  config.include Devise::TestHelpers, type: :view
+  config.include Devise::Test::ControllerHelpers, type: :controller
 
   config.after :each, type: :controller do
     if response.body =~ /(&lt;[a-z]+)/
