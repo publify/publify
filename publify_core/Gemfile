@@ -13,3 +13,5 @@ gemspec
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
 
+gem 'launchy', '~> 2.4', group: :test
+gem 'pry', '~> 0.10.3', group: [:development, :test]
