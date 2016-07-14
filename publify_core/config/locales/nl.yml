@@ -669,49 +669,34 @@ nl:
         one: 1 trackback
         other: "%{count} trackbacks"
         zero: no trackbacks
-    comment_counter:
-      comments:
-        one: 1 comment
-        other: "%{count} comments"
-        zero: Geen reacties
     comment_errors:
       message: Oops, something wrong happened, the comment could not be saved.
     comment_form:
-      comment: reactie
       comment_markup_help: Comment Markup Help
-      email_address: E-mailadres
       leave_url_email: plaats url/e-mail
       preview_comment: Bekijk reactie
       your_blog: your blog
       your_email: Jouw e-mail
       your_message: Jouw bericht
       your_name: Jouw naam
-      your_website: Je website
     comment_preview:
       is_about_to_say: gaat zeggen
     index:
       page: page
-    meta:
-      published_on_html: Published on %{publish_date_and_time} by %{by}, tags %{tags}
     password_form:
       submit: Submit
     read:
-      add_me_to_twitter: add me to Twitter
       comments: Reacties
       comments_are_disabled: Reacties zijn niet mogelijk
       edit: Bewerken
-      if_you_liked_this_article_you_can_html: If you liked this article you can %{add_twitter}
       leave_a_response: Geef een reactie
       rss_feed: RSS feed voor dit bericht
       trackback_uri: Trackback URI
       trackbacks: Trackbacks
-      trackbacks_are_disabled: Trackbacks are disabled
-      trackbacks_for: Trackbacks for
       use_the_following_link_to_trackback: Gebruik de volgende link voor een trackback van jouw site
     search:
       next_page: Next page
       previous_page: Previous page
-      search_results_for: Search results for '%{query}'
     trackback:
       from: From
   authors:
@@ -729,7 +714,6 @@ nl:
       yahoo: 'Yahoo:'
   comments:
     comment:
-      by: by
       said: zei
       this_comment_has_been_flagged_for_moderator_approval: Dit commentaar is gemarkeerd voor goedkeuring. Het zal niet getoond worden totdat de auteur het goedkeurt.
   date:
@@ -800,10 +784,8 @@ nl:
     administration:
       powered_by: wordt trots aangedreven door
     default:
-      archives: Archieven
       designed_by: Ontworpen door %{designed_by}
       powered_by_html: Powered by %{powered_by}
-      statuses: Statuses
   notes:
     index:
       next_page: Next page
@@ -813,9 +795,7 @@ nl:
   notice:
     note_successfully_created: Note was successfully created
   pagination:
-    next: Next
     next_page: Next page
-    previous: Previous
     previous_page: Previous page
   profile:
     admin: Publify administrator

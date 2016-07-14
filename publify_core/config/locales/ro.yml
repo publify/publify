@@ -669,49 +669,34 @@ ro:
         one: 1 trackback
         other: "%{count} trackbacks"
         zero: no trackbacks
-    comment_counter:
-      comments:
-        one: 1 comentariu
-        other: "%{count} comentarii"
-        zero: no comentarii
     comment_errors:
       message: Oops, something wrong happened, the comment could not be saved.
     comment_form:
-      comment: comment
       comment_markup_help: Ajutor la marcare
-      email_address: Email address
       leave_url_email: leave url/email
       preview_comment: Previzualizare
       your_blog: blog-ul tău
       your_email: Email
       your_message: Comentariu
       your_name: Nume
-      your_website: Your website
     comment_preview:
       is_about_to_say: vrea să scrie
     index:
       page: page
-    meta:
-      published_on_html: Published on %{publish_date_and_time} by %{by}, tags %{tags}
     password_form:
       submit: Submit
     read:
-      add_me_to_twitter: add me to Twitter
       comments: Comentarii
       comments_are_disabled: Comentariile sînt dezactivate
       edit: Editare
-      if_you_liked_this_article_you_can_html: If you liked this article you can %{add_twitter}
       leave_a_response: Comentează
       rss_feed: Flux RSS pentru acest articol
       trackback_uri: Trackback URI
       trackbacks: Trackbacks
-      trackbacks_are_disabled: Trackbacks are disabled
-      trackbacks_for: Trackbacks for
       use_the_following_link_to_trackback: Folosește link-ul următor pentru a realiza o retrolegătură de la site-ul tău
     search:
       next_page: Next page
       previous_page: Previous page
-      search_results_for: Search results for '%{query}'
     trackback:
       from: From
   authors:
@@ -729,7 +714,6 @@ ro:
       yahoo: 'Yahoo:'
   comments:
     comment:
-      by: de
       said: a scris
       this_comment_has_been_flagged_for_moderator_approval: Acest comentariu a fost marcat pentru moderare. El nu va apărea în blog înainte de a fi aprobat.
   date:
@@ -800,10 +784,8 @@ ro:
     administration:
       powered_by: is proudly powered by
     default:
-      archives: Archives
       designed_by: Designed by %{designed_by}
       powered_by_html: Powered by %{powered_by}
-      statuses: Statuses
   notes:
     index:
       next_page: Next page
@@ -813,9 +795,7 @@ ro:
   notice:
     note_successfully_created: Note was successfully created
   pagination:
-    next: Next
     next_page: Next page
-    previous: Previous
     previous_page: Previous page
   profile:
     admin: Publify administrator

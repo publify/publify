@@ -669,49 +669,34 @@ nb-NO:
         one: 1 trackback
         other: "%{count} trackbacks"
         zero: no trackbacks
-    comment_counter:
-      comments:
-        one: 1 kommentar
-        other: "%{count} kommentarer"
-        zero: ingen kommentarer
     comment_errors:
       message: Oops, something wrong happened, the comment could not be saved.
     comment_form:
-      comment: kommentar
       comment_markup_help: Hjelp med markup for kommentar
-      email_address: Epostadresse
       leave_url_email: legg igjen URL/epost
       preview_comment: Vis eksempel på kommentar
       your_blog: bloggen din
       your_email: Din epost
       your_message: Beskjed
       your_name: Ditt navn
-      your_website: Din hjemmeside
     comment_preview:
       is_about_to_say: vil snart si
     index:
       page: side
-    meta:
-      published_on_html: Publisert den %{publish_date_and_time} av %{by}, tagger %{tags}
     password_form:
       submit: Send
     read:
-      add_me_to_twitter: legge meg til på Twitter
       comments: Kommentarer
       comments_are_disabled: Kommentarer er deaktiveret
       edit: Rediger
-      if_you_liked_this_article_you_can_html: Hvis du likte denne artikkelen, kan du %{add_twitter}
       leave_a_response: Skriv en kommentar
       rss_feed: RSS-feed for denne artikkel
       trackback_uri: Trackback URI
       trackbacks: Trackbacks
-      trackbacks_are_disabled: Trackbacks er slått av
-      trackbacks_for: Trackbacks for
       use_the_following_link_to_trackback: Bruk følgende lenke for å opprette trackback fra din egen side
     search:
       next_page: Neste side
       previous_page: Forrige side
-      search_results_for: Search results for '%{query}'
     trackback:
       from: From
   authors:
@@ -729,7 +714,6 @@ nb-NO:
       yahoo: 'Yahoo:'
   comments:
     comment:
-      by: av
       said: sa
       this_comment_has_been_flagged_for_moderator_approval: Denne kommentaren har blitt flagget for godkjenning av moderator. Den vil ikke bli vist på bloggen før moderatoren godkjenner den.
   date:
@@ -800,10 +784,8 @@ nb-NO:
     administration:
       powered_by: drives stolt av
     default:
-      archives: Archives
       designed_by: Utformet av %{designed_by}
       powered_by_html: Drives av %{powered_by}
-      statuses: Statusoppdateringer
   notes:
     index:
       next_page: Neste side
@@ -813,9 +795,7 @@ nb-NO:
   notice:
     note_successfully_created: Notat opprettet
   pagination:
-    next: Neste
     next_page: Neste side
-    previous: Forrige
     previous_page: Forrige side
   profile:
     admin: Publify-administrator

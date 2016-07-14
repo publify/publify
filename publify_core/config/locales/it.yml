@@ -669,49 +669,34 @@ it:
         one: 1 trackback
         other: "%{count} trackbacks"
         zero: no trackbacks
-    comment_counter:
-      comments:
-        one: 1 Commento
-        other: "%{count} Commenti"
-        zero: no comments
     comment_errors:
       message: Oops, something wrong happened, the comment could not be saved.
     comment_form:
-      comment: comment
       comment_markup_help: Aiuto sul markup dei comemnti
-      email_address: Email address
       leave_url_email: leave url/email
       preview_comment: Anteprima commento
       your_blog: il tuo blog
       your_email: Tua email
       your_message: Tuo messaggio
       your_name: 'Tuo nome '
-      your_website: Your website
     comment_preview:
       is_about_to_say: sta per dire
     index:
       page: page
-    meta:
-      published_on_html: Published on %{publish_date_and_time} by %{by}, tags %{tags}
     password_form:
       submit: Submit
     read:
-      add_me_to_twitter: add me to Twitter
       comments: Comments
       comments_are_disabled: Commenti disabilitati
       edit: Edit
-      if_you_liked_this_article_you_can_html: If you liked this article you can %{add_twitter}
       leave_a_response: Commenta
       rss_feed: Feed RSS per questo post
       trackback_uri: Trackback URI
       trackbacks: Trackbacks
-      trackbacks_are_disabled: Trackbacks are disabled
-      trackbacks_for: Trackbacks for
       use_the_following_link_to_trackback: Usa il link seguente per fare un trackback dal tuo sito
     search:
       next_page: Next page
       previous_page: Previous page
-      search_results_for: Search results for '%{query}'
     trackback:
       from: From
   authors:
@@ -729,7 +714,6 @@ it:
       yahoo: 'Yahoo:'
   comments:
     comment:
-      by: da
       said: dice
       this_comment_has_been_flagged_for_moderator_approval: This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it
   date:
@@ -800,10 +784,8 @@ it:
     administration:
       powered_by: is proudly powered by
     default:
-      archives: Archives
       designed_by: Designed by %{designed_by}
       powered_by_html: Powered by %{powered_by}
-      statuses: Statuses
   notes:
     index:
       next_page: Next page
@@ -813,9 +795,7 @@ it:
   notice:
     note_successfully_created: Note was successfully created
   pagination:
-    next: Next
     next_page: Next page
-    previous: Previous
     previous_page: Previous page
   profile:
     admin: Publify administrator

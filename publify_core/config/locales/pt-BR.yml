@@ -669,49 +669,34 @@ pt-BR:
         one: 1 trackback
         other: "%{count} trackbacks"
         zero: no trackbacks
-    comment_counter:
-      comments:
-        one: 1 comentário
-        other: "%{count} comentários"
-        zero: sem comentários
     comment_errors:
       message: Oops, something wrong happened, the comment could not be saved.
     comment_form:
-      comment: Comentário
       comment_markup_help: Ajuda de marcação
-      email_address: Endere&ccedil;o de e-mail
       leave_url_email: Deixe seu site/email
       preview_comment: Pré-visualizar comentário
       your_blog: Seu blog
       your_email: Seu e-mail
       your_message: Seu comentário
       your_name: Seu nome
-      your_website: Seu website
     comment_preview:
       is_about_to_say: está a ponto de dizer
     index:
       page: página
-    meta:
-      published_on_html: Publicado em %{publish_date_and_time} por %{by}, tags %{tags}
     password_form:
       submit: Enviar
     read:
-      add_me_to_twitter: me adicionar no Twitter
       comments: Comentários
       comments_are_disabled: Os comentários estão desativados
       edit: Editar
-      if_you_liked_this_article_you_can_html: Se você gostou deste artigo, você pode %{add_twitter}
       leave_a_response: Deixar um comentário
       rss_feed: Feed RSS para este artigo
       trackback_uri: Trackback URI
       trackbacks: Trackbacks
-      trackbacks_are_disabled: Trackbacks foram desabilitados
-      trackbacks_for: Trackbacks para
       use_the_following_link_to_trackback: Use o seguinte link para criar um trackback para seu próprio site.
     search:
       next_page: Pr&oacute;xima
       previous_page: Anterior
-      search_results_for: Search results for '%{query}'
     trackback:
       from: From
   authors:
@@ -729,7 +714,6 @@ pt-BR:
       yahoo: 'Yahoo:'
   comments:
     comment:
-      by: por
       said: dito
       this_comment_has_been_flagged_for_moderator_approval: Este comentário foi marcado para aprovação do moderador. Não será exibido até o autor aprovar.
   date:
@@ -800,10 +784,8 @@ pt-BR:
     administration:
       powered_by: é orgulhosamente desenvolvido por
     default:
-      archives: Archives
       designed_by: Designed by %{designed_by}
       powered_by_html: Powered by %{powered_by}
-      statuses: Status
   notes:
     index:
       next_page: Próximo
@@ -813,9 +795,7 @@ pt-BR:
   notice:
     note_successfully_created: Nota foi criada com sucesso
   pagination:
-    next: Próxima
     next_page: Próxima
-    previous: Anterior
     previous_page: Anterior
   profile:
     admin: Administrador do Publify

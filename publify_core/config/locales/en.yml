@@ -4,12 +4,12 @@ en:
     back_to: "&larr; Back to %{place}"
     back_to_login: Back to login
     confirm:
-      success: You have successfully signed up.
       admin: admin
       dont_lose_the_mail_sent: Don't lose the mail sent at %{email} or you won't be able to login anymore
       login: 'Login: %{login}'
       password: 'Password: %{password}'
       proceed_to: Proceed to %{link}
+      success: You have successfully signed up.
     create_account: Create an account
     lost_my_password: I've lost my password
   activerecord:
@@ -669,49 +669,34 @@ en:
         one: 1 trackback
         other: "%{count} trackbacks"
         zero: no trackbacks
-    comment_counter:
-      comments:
-        one: 1 comment
-        other: "%{count} comments"
-        zero: no comments
     comment_errors:
       message: Oops, something wrong happened, the comment could not be saved.
     comment_form:
-      comment: comment
       comment_markup_help: Comment Markup Help
-      email_address: Email address
       leave_url_email: leave url/email
       preview_comment: Preview comment
       your_blog: your blog
       your_email: Your email
       your_message: Your message
       your_name: Your name
-      your_website: Your website
     comment_preview:
       is_about_to_say: is about to say
     index:
       page: page
-    meta:
-      published_on_html: Published on %{publish_date_and_time} by %{by}, tags %{tags}
     password_form:
       submit: Submit
     read:
-      add_me_to_twitter: follow me on Twitter
       comments: Comments
       comments_are_disabled: Comments are disabled
       edit: Edit
-      if_you_liked_this_article_you_can_html: If you liked this article you can %{add_twitter}
       leave_a_response: Leave a response
       rss_feed: RSS feed
       trackback_uri: Trackback URI
       trackbacks: Trackbacks
-      trackbacks_are_disabled: Trackbacks are disabled
-      trackbacks_for: Trackbacks for
       use_the_following_link_to_trackback: Use the following link to trackback from your own site
     search:
       next_page: Next page
       previous_page: Previous page
-      search_results_for: Search results for '%{query}'
     trackback:
       from: From
   authors:
@@ -729,7 +714,6 @@ en:
       yahoo: 'Yahoo:'
   comments:
     comment:
-      by: by
       said: said
       this_comment_has_been_flagged_for_moderator_approval: This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it
   date:
@@ -800,10 +784,8 @@ en:
     administration:
       powered_by: is proudly powered by
     default:
-      archives: Archives
       designed_by: Designed by %{designed_by}
       powered_by_html: Powered by %{powered_by}
-      statuses: Statuses
   notes:
     index:
       next_page: Next page
@@ -813,15 +795,16 @@ en:
   notice:
     note_successfully_created: Note was successfully created
   pagination:
-    next: Next
     next_page: Next page
-    previous: Previous
     previous_page: Previous page
   profile:
     admin: Publify administrator
     contributor: Contributor
     publisher: Blog publisher
   setup:
+    article:
+      body: Welcome to Publify. This is your first article. Edit or delete it, then start blogging!'
+      title: Hello World!
     index:
       blog_name: Blog name
       welcome_to_your_blog_setup: Welcome to your blog setup
@@ -829,10 +812,6 @@ en:
     page:
       about: About
       body: This is an example of a Publify page. You can edit this to write information about yourself or your site so readers know who you are. You can create as many pages as you like and manage all of your content inside Publify.
-    article:
-      title: Hello World!
-      body: Welcome to Publify. This is your first article. Edit or delete it,
-        then start blogging!'
   shared:
     search:
       live_search: Live search

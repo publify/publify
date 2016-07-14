@@ -669,49 +669,34 @@ da:
         one: 1 trackback
         other: "%{count} trackbacks"
         zero: no trackbacks
-    comment_counter:
-      comments:
-        one: 1 comment
-        other: "%{count} kommentarer"
-        zero: no kommentarer
     comment_errors:
       message: Oops, something wrong happened, the comment could not be saved.
     comment_form:
-      comment: comment
       comment_markup_help: Hjælp med kommentar markup
-      email_address: Email address
       leave_url_email: leave url/email
       preview_comment: Vis kommentar eksempel
       your_blog: your blog
       your_email: Din email
       your_message: Din besked
       your_name: Dit Navn
-      your_website: Your website
     comment_preview:
       is_about_to_say: vil gerne sige
     index:
       page: page
-    meta:
-      published_on_html: Published on %{publish_date_and_time} by %{by}, tags %{tags}
     password_form:
       submit: Submit
     read:
-      add_me_to_twitter: add me to Twitter
       comments: Kommentarer
       comments_are_disabled: Kommentarer er deaktiveret
       edit: Rediger
-      if_you_liked_this_article_you_can_html: If you liked this article you can %{add_twitter}
       leave_a_response: Skriv en kommentar
       rss_feed: RSS Feed for denne artikel
       trackback_uri: Trackback URI
       trackbacks: Trackbacks
-      trackbacks_are_disabled: Trackbacks are disabled
-      trackbacks_for: Trackbacks for
       use_the_following_link_to_trackback: Brug følgende link til lave trackback fra din egen side
     search:
       next_page: Next page
       previous_page: Previous page
-      search_results_for: Search results for '%{query}'
     trackback:
       from: From
   authors:
@@ -729,7 +714,6 @@ da:
       yahoo: 'Yahoo:'
   comments:
     comment:
-      by: af
       said: sagde
       this_comment_has_been_flagged_for_moderator_approval: Denne kommentar er blevet markeret som krævende godkendelse. Den vil ikke blive vist før forfatteren godkender den.
   date:
@@ -800,10 +784,8 @@ da:
     administration:
       powered_by: is proudly powered by
     default:
-      archives: Archives
       designed_by: Designed by %{designed_by}
       powered_by_html: Powered by %{powered_by}
-      statuses: Statuses
   notes:
     index:
       next_page: Next page
@@ -813,9 +795,7 @@ da:
   notice:
     note_successfully_created: Note was successfully created
   pagination:
-    next: Next
     next_page: Next page
-    previous: Previous
     previous_page: Previous page
   profile:
     admin: Publify administrator

@@ -1,0 +1,36 @@
+---
+ru:
+  articles:
+    comment_counter:
+      comments:
+        one: 1 комментарий
+        other: 'Комментариев: %{count}'
+        zero: Нет комментариев
+    comment_form:
+      comment: Ответить на пост
+      email_address: Электронная почта
+      your_name: Ваше имя
+      your_website: Веб-сайт
+    meta:
+      published_on_html: Опубликовано %{publish_date_and_time} автором %{by} под тегами %{tags}
+    read:
+      add_me_to_twitter: add me to Twitter
+      comments_are_disabled: Комментарии выключены
+      if_you_liked_this_article_you_can_html: If you liked this article you can %{add_twitter}
+      trackbacks_are_disabled: Trackback’и выключены
+      trackbacks_for: Trackbacks for
+    search:
+      search_results_for: Search results for '%{query}'
+    trackback:
+      from: From
+  comments:
+    comment:
+      by: от
+      this_comment_has_been_flagged_for_moderator_approval: This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it
+  layouts:
+    default:
+      archives: Archives
+      statuses: Statuses
+  pagination:
+    next: Next
+    previous: Previous

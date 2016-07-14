@@ -669,49 +669,34 @@ es-MX:
         one: 1 trackback
         other: "%{count} trackbacks"
         zero: no trackbacks
-    comment_counter:
-      comments:
-        one: 1 Comentario
-        other: "%{count} Comentarios"
-        zero: Sin Comentarios
     comment_errors:
       message: Oops, something wrong happened, the comment could not be saved.
     comment_form:
-      comment: comentario
       comment_markup_help: Ayuda del marcado
-      email_address: Email
       leave_url_email: deja un url/email
       preview_comment: Previsualizar comentario
       your_blog: Tu blog
       your_email: Tu email
       your_message: Tu comentario
       your_name: Tu nombre
-      your_website: Tu sitio web
     comment_preview:
       is_about_to_say: est&aacute; a punto de decir
     index:
       page: p&aacute;gina
-    meta:
-      published_on_html: Publicado el %{publish_date_and_time} por %{by}, tags %{tags}
     password_form:
       submit: Enviar
     read:
-      add_me_to_twitter: agregame en Twitter
       comments: Comentarios
       comments_are_disabled: Los comentarios est&aacute;n deshabilitados
       edit: Edit
-      if_you_liked_this_article_you_can_html: Si le gust&oacute; este art&iacute;culo, usted puede %{add_twitter}
       leave_a_response: Deja un comentario
       rss_feed: Feed RSS para este art&iacute;culo
       trackback_uri: Trackback URI
       trackbacks: Trackbacks
-      trackbacks_are_disabled: Trackbacks deshabilitados
-      trackbacks_for: Trackbacks para
       use_the_following_link_to_trackback: Usa el siguiente link para crear un trackback desde tu propio sitio
     search:
       next_page: Siguiente p&aacute;gina
       previous_page: P&aacute;gina anterior
-      search_results_for: Search results for '%{query}'
     trackback:
       from: From
   authors:
@@ -729,7 +714,6 @@ es-MX:
       yahoo: 'Yahoo:'
   comments:
     comment:
-      by: por
       said: dijo
       this_comment_has_been_flagged_for_moderator_approval: Este comentario ha sido marcado para aprobaci&oacute;n del moderador.  Este no aparecer&aacute; en este blog hasta qye el autor lo apruebe
   date:
@@ -800,10 +784,8 @@ es-MX:
     administration:
       powered_by: is proudly powered by
     default:
-      archives: Archives
       designed_by: Designed by %{designed_by}
       powered_by_html: Powered by %{powered_by}
-      statuses: Statuses
   notes:
     index:
       next_page: Next page
@@ -813,9 +795,7 @@ es-MX:
   notice:
     note_successfully_created: Nota creada exit&oacute;samente
   pagination:
-    next: Next
     next_page: Siguiente p&aacute;gina
-    previous: Previous
     previous_page: P&aacute;gina anterior
   profile:
     admin: Publify administrator

@@ -662,56 +662,41 @@ ru:
     article_links:
       comments:
         one: 1 комментарий
-        other: "Комментариев: %{count}"
+        other: 'Комментариев: %{count}'
         zero: Нет комментариев
       tags: Tags
       trackbacks:
         one: 1 trackback
         other: "%{count} trackbacks"
         zero: no trackbacks
-    comment_counter:
-      comments:
-        one: 1 комментарий
-        other: "Комментариев: %{count}"
-        zero: Нет комментариев
     comment_errors:
       message: Oops, something wrong happened, the comment could not be saved.
     comment_form:
-      comment: Ответить на пост
       comment_markup_help: Помощь по разметке
-      email_address: Электронная почта
       leave_url_email: leave url/email
       preview_comment: Предпросмотр комментария
       your_blog: your blog
       your_email: Ваш email
       your_message: Ваше сообщение
       your_name: Ваше имя
-      your_website: Веб-сайт
     comment_preview:
       is_about_to_say: is about to say
     index:
       page: страница
-    meta:
-      published_on_html: Опубликовано %{publish_date_and_time} автором %{by} под тегами %{tags}
     password_form:
       submit: Submit
     read:
-      add_me_to_twitter: add me to Twitter
       comments: комментариев
       comments_are_disabled: Комментарии выключены
       edit: Редактировать
-      if_you_liked_this_article_you_can_html: If you liked this article you can %{add_twitter}
       leave_a_response: Оставить отзыв
       rss_feed: RSS feed
       trackback_uri: Trackback URI
       trackbacks: Trackbacks
-      trackbacks_are_disabled: Trackback’и выключены
-      trackbacks_for: Trackbacks for
       use_the_following_link_to_trackback: Use the following link to trackback from your own site
     search:
       next_page: Следующая страница
       previous_page: Предыдущая страница
-      search_results_for: Search results for '%{query}'
     trackback:
       from: From
   authors:
@@ -729,7 +714,6 @@ ru:
       yahoo: 'Yahoo:'
   comments:
     comment:
-      by: от
       said: said
       this_comment_has_been_flagged_for_moderator_approval: This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it
   date:
@@ -800,10 +784,8 @@ ru:
     administration:
       powered_by: с гордостью работает на
     default:
-      archives: Archives
       designed_by: Designed by %{designed_by}
       powered_by_html: Powered by %{powered_by}
-      statuses: Statuses
   notes:
     index:
       next_page: Следующая страница
@@ -813,9 +795,7 @@ ru:
   notice:
     note_successfully_created: Note was successfully created
   pagination:
-    next: Next
     next_page: Следующая страница
-    previous: Previous
     previous_page: Предыдущая страница
   profile:
     admin: Publify administrator

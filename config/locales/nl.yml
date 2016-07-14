@@ -1,0 +1,36 @@
+---
+nl:
+  articles:
+    comment_counter:
+      comments:
+        one: 1 comment
+        other: "%{count} comments"
+        zero: Geen reacties
+    comment_form:
+      comment: reactie
+      email_address: E-mailadres
+      your_name: Jouw naam
+      your_website: Je website
+    meta:
+      published_on_html: Published on %{publish_date_and_time} by %{by}, tags %{tags}
+    read:
+      add_me_to_twitter: add me to Twitter
+      comments_are_disabled: Reacties zijn niet mogelijk
+      if_you_liked_this_article_you_can_html: If you liked this article you can %{add_twitter}
+      trackbacks_are_disabled: Trackbacks are disabled
+      trackbacks_for: Trackbacks for
+    search:
+      search_results_for: Search results for '%{query}'
+    trackback:
+      from: From
+  comments:
+    comment:
+      by: by
+      this_comment_has_been_flagged_for_moderator_approval: Dit commentaar is gemarkeerd voor goedkeuring. Het zal niet getoond worden totdat de auteur het goedkeurt.
+  layouts:
+    default:
+      archives: Archieven
+      statuses: Statuses
+  pagination:
+    next: Next
+    previous: Previous

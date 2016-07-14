@@ -669,49 +669,34 @@ zh-CN:
         one: 1 trackback
         other: "%{count} trackbacks"
         zero: no trackbacks
-    comment_counter:
-      comments:
-        one: 1 comment
-        other: "%{count} comments"
-        zero: no comments
     comment_errors:
       message: Oops, something wrong happened, the comment could not be saved.
     comment_form:
-      comment: comment
       comment_markup_help: 评论顯示協助
-      email_address: Email address
       leave_url_email: leave url/email
       preview_comment: 預覽评论
       your_blog: 你的博客
       your_email: 你的email
       your_message: 你的訊息
       your_name: 你的名稱
-      your_website: Your website
     comment_preview:
       is_about_to_say: 这是关于~~
     index:
       page: page
-    meta:
-      published_on_html: Published on %{publish_date_and_time} by %{by}, tags %{tags}
     password_form:
       submit: 提交
     read:
-      add_me_to_twitter: add me to Twitter
       comments: 评论
       comments_are_disabled: 评论停用
       edit: 修改
-      if_you_liked_this_article_you_can_html: If you liked this article you can %{add_twitter}
       leave_a_response: 離開一個回應
       rss_feed: 為本篇提供RSS
       trackback_uri: Trackback URI
       trackbacks: Trackbacks
-      trackbacks_are_disabled: Trackbacks are disabled
-      trackbacks_for: Trackbacks for
       use_the_following_link_to_trackback: 從你所屬的網點用隨後的連結去引用
     search:
       next_page: Next page
       previous_page: Previous page
-      search_results_for: Search results for '%{query}'
     trackback:
       from: From
   authors:
@@ -729,7 +714,6 @@ zh-CN:
       yahoo: 'Yahoo:'
   comments:
     comment:
-      by: by
       said: 發言
       this_comment_has_been_flagged_for_moderator_approval: 這篇评论被標示為版主所允許的。他不會在博客顯示直到版主承認他。
   date:
@@ -800,10 +784,8 @@ zh-CN:
     administration:
       powered_by: is proudly powered by
     default:
-      archives: Archives
       designed_by: Designed by %{designed_by}
       powered_by_html: Powered by %{powered_by}
-      statuses: Statuses
   notes:
     index:
       next_page: Next page
@@ -813,9 +795,7 @@ zh-CN:
   notice:
     note_successfully_created: Note was successfully created
   pagination:
-    next: Next
     next_page: Next page
-    previous: Previous
     previous_page: Previous page
   profile:
     admin: Publify administrator

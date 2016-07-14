@@ -1,0 +1,36 @@
+---
+ja:
+  articles:
+    comment_counter:
+      comments:
+        one: 1 comment
+        other: "%{count} comments"
+        zero: no comments
+    comment_form:
+      comment: comment
+      email_address: Email address
+      your_name: あなたの名前
+      your_website: Your website
+    meta:
+      published_on_html: Published on %{publish_date_and_time} by %{by}, tags %{tags}
+    read:
+      add_me_to_twitter: add me to Twitter
+      comments_are_disabled: コメントは許可されていません
+      if_you_liked_this_article_you_can_html: If you liked this article you can %{add_twitter}
+      trackbacks_are_disabled: Trackbacks are disabled
+      trackbacks_for: Trackbacks for
+    search:
+      search_results_for: Search results for '%{query}'
+    trackback:
+      from: From
+  comments:
+    comment:
+      by: by
+      this_comment_has_been_flagged_for_moderator_approval: このコメントはモデレーターの確認が必要です。モデレーターが確認後にコメントが表示されます。
+  layouts:
+    default:
+      archives: Archives
+      statuses: Statuses
+  pagination:
+    next: Next
+    previous: Previous

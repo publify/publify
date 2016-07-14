@@ -669,49 +669,34 @@ fr:
         one: 1 trackback
         other: "%{count} trackbacks"
         zero: no trackbacks
-    comment_counter:
-      comments:
-        one: 1 commentaire
-        other: "%{count} commentaires"
-        zero: aucun commentaire
     comment_errors:
       message: Oops, something wrong happened, the comment could not be saved.
     comment_form:
-      comment: commentaire
       comment_markup_help: Aide sur le balisage des commentaires
-      email_address: Adresse mail
       leave_url_email: laissez votre url/courriel
       preview_comment: Prévisualiser le commentaire
       your_blog: votre blog
       your_email: Votre courriel
       your_message: Votre commentaire
       your_name: 'Votre nom '
-      your_website: Votre site
     comment_preview:
       is_about_to_say: va dire
     index:
       page: page
-    meta:
-      published_on_html: Publié le %{publish_date_and_time} par %{by}, tags %{tags}
     password_form:
       submit: Envoyer
     read:
-      add_me_to_twitter: me suivre sur Twitter
       comments: Commentaires
       comments_are_disabled: Les commentaires sont désactivés
       edit: Éditer
-      if_you_liked_this_article_you_can_html: Si vous avez aimé cet article, vous pouvez %{add_twitter}
       leave_a_response: Réagir à ce billet
       rss_feed: Flux RSS
       trackback_uri: Trackback URI
       trackbacks: Rétroliens
-      trackbacks_are_disabled: Les rétroliens sont désactivés
-      trackbacks_for: Rétroliens pour
       use_the_following_link_to_trackback: Utilisez le lien ci-dessous pour envoyer un rétrolien depuis votre site
     search:
       next_page: Page suivante
       previous_page: Page précédente
-      search_results_for: Search results for '%{query}'
     trackback:
       from: From
   authors:
@@ -729,7 +714,6 @@ fr:
       yahoo: 'Yahoo :'
   comments:
     comment:
-      by: par
       said: a dit
       this_comment_has_been_flagged_for_moderator_approval: Ce commentaire a été soumis pour modération. Il ne sera affiché qu'une fois approuvé par un modérateur
   date:
@@ -800,10 +784,8 @@ fr:
     administration:
       powered_by: Tourne fièrement sous
     default:
-      archives: Archives
       designed_by: Design par %{designed_by}
       powered_by_html: Propulsé par %{powered_by}
-      statuses: Statuts
   notes:
     index:
       next_page: Page suivante
@@ -813,9 +795,7 @@ fr:
   notice:
     note_successfully_created: Ce billet a été créé avec succès
   pagination:
-    next: Suivant
     next_page: Page suivante
-    previous: Previous
     previous_page: Page précédente
   profile:
     admin: Administrateur

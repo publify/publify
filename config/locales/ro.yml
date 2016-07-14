@@ -1,0 +1,36 @@
+---
+ro:
+  articles:
+    comment_counter:
+      comments:
+        one: 1 comentariu
+        other: "%{count} comentarii"
+        zero: no comentarii
+    comment_form:
+      comment: comment
+      email_address: Email address
+      your_name: Nume
+      your_website: Your website
+    meta:
+      published_on_html: Published on %{publish_date_and_time} by %{by}, tags %{tags}
+    read:
+      add_me_to_twitter: add me to Twitter
+      comments_are_disabled: Comentariile sînt dezactivate
+      if_you_liked_this_article_you_can_html: If you liked this article you can %{add_twitter}
+      trackbacks_are_disabled: Trackbacks are disabled
+      trackbacks_for: Trackbacks for
+    search:
+      search_results_for: Search results for '%{query}'
+    trackback:
+      from: From
+  comments:
+    comment:
+      by: de
+      this_comment_has_been_flagged_for_moderator_approval: Acest comentariu a fost marcat pentru moderare. El nu va apărea în blog înainte de a fi aprobat.
+  layouts:
+    default:
+      archives: Archives
+      statuses: Statuses
+  pagination:
+    next: Next
+    previous: Previous
