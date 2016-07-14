@@ -44,7 +44,6 @@ gem 'publify_amazon_sidebar', path: 'publify_amazon_sidebar'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
-gem 'addressable', '~> 2.1', require: 'addressable/uri'
 gem 'akismet', '~> 2.0'
 gem 'coderay', '~> 1.1.0'
 gem 'flickraw-cached', '20120701'

@@ -130,11 +130,6 @@ class Content < ActiveRecord::Base
     rss_desc
   end
 
-  # TODO: Perhaps permalink_url should produce valid URI's instead of IRI's
-  def normalized_permalink_url
-    @normalized_permalink_url ||= Addressable::URI.parse(permalink_url).normalize
-  end
-
   def short_url
     # Double check because of crappy data in my own old database
     return unless published && redirect.present?
