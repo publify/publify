@@ -44,10 +44,14 @@ gem 'publify_amazon_sidebar', path: 'publify_amazon_sidebar'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
+# Needed for the code textfilter
 gem 'coderay', '~> 1.1.0'
+gem 'htmlentities', '~> 4.3'
+
+# Needed for the lightbox and flickr text filters
 gem 'flickraw-cached', '20120701'
 gem 'flickraw', '~> 0.9.8'
-gem 'htmlentities', '~> 4.3'
+
 gem 'non-stupid-digest-assets', '~> 1.0'
 gem 'rake', '~> 11.1'
 gem 'recaptcha', '~> 3.2', require: 'recaptcha/rails'
