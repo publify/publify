@@ -42,17 +42,18 @@ describe Tag, type: :model do
   end
 
   it 'find_all_with_article_counters finds 2 tags' do
-    a = FactoryGirl.create(:article, title: 'an article a')
-    b = FactoryGirl.create(:article, title: 'an article b')
-    c = FactoryGirl.create(:article, title: 'an article c')
-    FactoryGirl.create(:tag, name: 'foo', articles: [a, b, c])
-    FactoryGirl.create(:tag, name: 'bar', articles: [a, b])
+    a = create(:article, title: 'an article a')
+    b = create(:article, title: 'an article b')
+    c = create(:article, title: 'an article c')
+    create(:tag, name: 'foo', articles: [a, b, c])
+    create(:tag, name: 'bar', articles: [a, b])
     tags = Tag.find_all_with_article_counters
     expect(tags.entries.size).to eq(2)
     expect(tags.first.name).to eq('foo')
     expect(tags.first.article_counter).to eq(3)
     expect(tags.last.name).to eq('bar')
     expect(tags.last.article_counter).to eq(2)
+    expect(tags.first.blog).to eq blog
   end
 
   describe 'permalink_url' do
