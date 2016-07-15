@@ -2,7 +2,6 @@ require 'rails_helper'
 
 describe XmlController, type: :controller do
   before do
-    Blog.where(base_url: 'http://myblog.net').each(&:destroy)
     create(:blog, base_url: 'http://myblog.net')
     allow(Trigger).to receive(:fire) {}
   end
@@ -170,7 +169,9 @@ describe XmlController, type: :controller do
   describe '#feed with googlesitemap format' do
     render_views
     before do
-      FactoryGirl.create(:tag)
+      tag = create(:tag)
+      article = create :article
+      article.tags = [tag]
       get :feed, format: 'googlesitemap', type: 'sitemap'
     end
 

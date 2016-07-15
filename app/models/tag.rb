@@ -38,17 +38,11 @@ class Tag < ActiveRecord::Base
   end
 
   def self.find_all_with_article_counters
-    find_by_sql([%{
-      SELECT tags.id, tags.name, tags.display_name, COUNT(articles_tags.article_id) AS article_counter
-      FROM #{Tag.table_name} tags LEFT OUTER JOIN #{Tag.table_name_prefix}articles_tags#{Tag.table_name_suffix} articles_tags
-        ON articles_tags.tag_id = tags.id
-      LEFT OUTER JOIN #{Tag.table_name_prefix + Article.table_name + Tag.table_name_prefix} articles
-        ON articles_tags.article_id = articles.id
-      WHERE articles.published = ?
-      GROUP BY tags.id, tags.name, tags.display_name
-      ORDER BY article_counter DESC
-      LIMIT ? OFFSET ?
-      }, true, 1000, 0]).each { |item| item.article_counter = item.article_counter.to_i }
+    Tag.joins(:articles).
+      where(contents: { published: true }).
+      select(*Tag.column_names, 'COUNT(articles_tags.article_id) as article_counter').
+      group(*Tag.column_names).
+      order('article_counter DESC').limit(1000)
   end
 
   def self.find_by_permalink(name)
