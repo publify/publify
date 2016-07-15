@@ -1,7 +1,7 @@
 module XmlHelper
   def collection_lastmod(collection)
-    article_updated = collection.articles.find(:first, order: 'updated_at DESC')
-    article_published = collection.articles.find(:first, order: 'published_at DESC')
+    article_updated = collection.articles.order(updated_at: :desc).first
+    article_published = collection.articles.order(published_at: :desc).first
 
     times = []
     times.push article_updated.updated_at if article_updated
