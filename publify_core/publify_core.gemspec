@@ -18,6 +18,8 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["spec/**/*"]
 
+  s.required_ruby_version = '2.1.0'
+
   s.add_dependency "rails", "~> 4.2.6"
   s.add_dependency 'RedCloth', '~> 4.3.1'
   s.add_dependency 'actionpack-page_caching', '~> 1.0.2' # removed from Rails-core as Rails 4.0
@@ -49,4 +51,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'capybara', '~> 2.7'
   s.add_development_dependency 'factory_girl_rails', '~> 4.6'
   s.add_development_dependency 'rubocop', '~> 0.41.0'
+  s.add_development_dependency 'i18n-tasks', '~> 0.9.1'
 end

@@ -64,7 +64,7 @@ group :development, :test do
   gem 'pry', '~> 0.10.3'
 
   gem 'rubocop', '~> 0.41.0', require: false
-  gem 'i18n-tasks', '~> 0.9.1' if RUBY_VERSION >= '2.1'
+  gem 'i18n-tasks', '~> 0.9.1', require: false
 end
 
 group :development do
