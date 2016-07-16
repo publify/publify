@@ -9,8 +9,6 @@ env:
   - DB=sqlite
   - DB=mysql
   - DB=postgresql
-install:
-  - bundle install --without development
 before_script:
   - bundle exec rake db:create db:migrate
 script: 'bundle exec rake \
