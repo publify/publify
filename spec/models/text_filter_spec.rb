@@ -113,10 +113,4 @@ describe 'With the list of available filters', type: :model do
       end
     end
   end
-
-  it '#filter text by name' do
-    build_stubbed('markdown smartypants')
-    result = TextFilter.filter_text_by_name('*"foo"*', 'markdown smartypants')
-    expect(result).to eq('<p><em>&#8220;foo&#8221;</em></p>')
-  end
 end

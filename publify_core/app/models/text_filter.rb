@@ -25,11 +25,6 @@ class TextFilter < ActiveRecord::Base
     text
   end
 
-  def self.filter_text_by_name(text, filtername)
-    f = TextFilter.find_by_name(filtername)
-    f.filter_text text
-  end
-
   def filter_text(text)
     self.class.filter_text(text, [:macropre, markup, :macropost, filters].flatten)
   end
