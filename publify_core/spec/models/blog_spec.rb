@@ -9,7 +9,6 @@ describe Blog, type: :model do
 
   describe 'A blog' do
     before(:each) do
-      Rails.cache.clear
       @blog = Blog.new
     end
 
