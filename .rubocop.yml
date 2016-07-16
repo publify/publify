@@ -6,7 +6,9 @@ AllCops:
   - 'config/**/*'
   - 'db/**/*'
   - 'tmp/**/*'
-  - 'vendor/**/*'
+  - 'publify_core/**/*'
+  - 'publify_amazon_sidebar/**/*'
+  - 'publify_textfilter_code/**/*'
 
 Rails:
   Enabled: true

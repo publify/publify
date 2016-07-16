@@ -18,6 +18,7 @@ installer/rails_installer.yml
 /public/robots.txt
 /public/stylesheets/theme
 /public/stylesheets/all.css
+/publify_core/spec/dummy/public/files
 tmp/*
 /coverage/
 nbproject
