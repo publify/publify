@@ -17,8 +17,13 @@ require 'rspec/core/rake_task'
 
 desc "Run all specs in spec directory (excluding plugin specs)"
 RSpec::Core::RakeTask.new(spec: 'app:db:test:prepare')
-
 task default: :spec
+
+require 'rubocop/rake_task'
+RuboCop::RakeTask.new do |task|
+  task.options = ['--config', '.rubocop.yml']
+end
+task default: :rubocop
 
 namespace :i18n do
   desc 'Check translation health'
@@ -27,5 +32,4 @@ namespace :i18n do
     abort('Translation problems found') unless $CHILD_STATUS.success?
   end
 end
-
 task default: 'i18n:health'

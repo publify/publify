@@ -16,4 +16,3 @@ gemspec
 gem 'launchy', '~> 2.4', group: :test
 gem 'pry', '~> 0.10.3', group: [:development, :test]
 gem 'i18n-tasks', '~> 0.9.1', group: :development if RUBY_VERSION >= '2.1'
-gem 'rubocop', '~> 0.41.0', group: :development

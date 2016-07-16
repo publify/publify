@@ -48,4 +48,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec-rails', '~> 3.4.0'
   s.add_development_dependency 'capybara', '~> 2.7'
   s.add_development_dependency 'factory_girl_rails', '~> 4.6'
+  s.add_development_dependency 'rubocop', '~> 0.41.0'
 end
