@@ -54,7 +54,6 @@ gem 'flickraw', '~> 0.9.8'
 
 gem 'non-stupid-digest-assets', '~> 1.0'
 gem 'rake', '~> 11.1'
-gem 'recaptcha', '~> 3.2', require: 'recaptcha/rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

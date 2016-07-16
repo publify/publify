@@ -454,6 +454,7 @@ describe ArticlesController, 'redirecting', type: :controller do
       end
     end
 
+    # TODO: Move out of permalink config context
     describe 'theme rendering' do
       render_views
 
@@ -467,6 +468,17 @@ describe ArticlesController, 'redirecting', type: :controller do
           end
 
           it 'renders without errors when no comments or trackbacks are present' do
+            get :redirect, from: "#{article.permalink}.html"
+            expect(response).to be_success
+          end
+
+          it 'renders without errors when recaptcha is enabled' do
+            Recaptcha.configure do |config|
+              config.public_key  = 'YourAPIkeysHere_yyyyyyyyyyyyyyyyy'
+              config.private_key = 'YourAPIkeysHere_xxxxxxxxxxxxxxxxx'
+            end
+            blog.use_recaptcha = true
+            blog.save!
             get :redirect, from: "#{article.permalink}.html"
             expect(response).to be_success
           end

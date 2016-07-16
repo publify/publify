@@ -38,6 +38,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails-observers', '~> 0.1.2'
   s.add_dependency 'rails-timeago', '~> 2.0'
   s.add_dependency 'rails_autolink', '~> 1.1.0'
+  s.add_dependency 'recaptcha', '~> 3.2'
   s.add_dependency 'rubypants', '~> 0.2.0'
   s.add_dependency 'sass-rails', '~> 5.0'
   s.add_dependency 'twitter', '~> 5.16.0'

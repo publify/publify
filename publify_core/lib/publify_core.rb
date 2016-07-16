@@ -18,6 +18,7 @@ require 'rails/observers/activerecord/active_record'
 require 'rails-observers'
 require 'rails_autolink'
 require 'rails-timeago'
+require 'recaptcha/rails'
 require 'sass-rails'
 
 require 'email_notify'
