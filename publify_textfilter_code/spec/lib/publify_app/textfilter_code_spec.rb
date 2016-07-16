@@ -1,5 +1,5 @@
 require 'rails_helper'
-#require 'text_filter_textile'
+# require 'text_filter_textile'
 require 'publify_textfilter_markdown'
 
 describe 'With the list of available filters', type: :model do
@@ -90,6 +90,5 @@ _footer text here_
       assert_equal expects_markdown.strip, filter_text(text, [:macropre, :markdown, :macropost])
       assert_equal expects_textile.strip, filter_text(text, [:macropre, :textile, :macropost])
     end
-
   end
 end
