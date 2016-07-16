@@ -13,9 +13,9 @@ install:
   - bundle install --without development
 before_script:
   - bundle exec rake db:create db:migrate
-script: 'bundle exec rake \
-  && cd publify_core && bundle exec rake \
-  && cd ../publify_amazon_sidebar && bundle exec rake \
+script: 'bundle exec rake\
+  && cd publify_core && bundle exec rake\
+  && cd ../publify_amazon_sidebar && bundle exec rake\
   && cd ../publify_textfilter_code && bundle exec rake'
 branches:
   only:
