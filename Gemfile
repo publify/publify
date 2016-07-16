@@ -85,6 +85,7 @@ end
 
 group :test do
   gem 'codeclimate-test-reporter', '~> 0.6.0', require: nil
+  gem 'sqlite3'
 end
 
 # Install gems from each theme
