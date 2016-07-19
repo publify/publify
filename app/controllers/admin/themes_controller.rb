@@ -26,7 +26,6 @@ class Admin::ThemesController < Admin::BaseController
     zap_theme_caches
     this_blog.current_theme(:reload)
     flash[:success] = I18n.t('admin.themes.switchto.success')
-    require "#{this_blog.current_theme.path}/helpers/theme_helper.rb" if File.exist? "#{this_blog.current_theme.path}/helpers/theme_helper.rb"
     redirect_to admin_themes_url
   end
 
