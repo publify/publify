@@ -1,0 +1,196 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Publify by publify</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Publify</h1>
+        <p class="header">Publify is the oldest and most powerful Ruby on Rails blogware, providing custom templates, powerful drag and drop plugins API, advanced SEO capabilities, XMLRPC API and many more.</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/publify/publify/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/publify/publify/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/publify/publify">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/publify">publify</a></p>
+
+
+      </header>
+      <section>
+        <h1>
+<a name="publify" class="anchor" href="#publify"><span class="octicon octicon-link"></span></a>Publify</h1>
+
+<p><strong>The Ruby on Rails publishing software formerly known as Typo</strong></p>
+
+<h3>
+<a name="download" class="anchor" href="#download"><span class="octicon octicon-link"></span></a>Download</h3>
+
+<p>You can download Publify <a href="http://publify.co/stable.tgz">stable release</a> or <a href="https://github.com/publify/publify.git">clone Publify
+repository</a>.</p>
+
+<p><a href="https://travis-ci.org/publify/publify"><img src="https://travis-ci.org/publify/publify.png" alt="Build Status"></a>
+<a href="https://codeclimate.com/github/publify/publify"><img src="https://codeclimate.com/github/publify/publify.png" alt="Code Climate"></a>
+<a href="https://gemnasium.com/publify/publify"><img src="https://gemnasium.com/publify/publify.png" alt="Dependency Status"></a></p>
+
+<h2>
+<a name="whats-publify" class="anchor" href="#whats-publify"><span class="octicon octicon-link"></span></a>What's Publify?</h2>
+
+<p>Publify is a simple but full featured web publishing software. It's built around a blogging engine and a small message system connected to Twitter.</p>
+
+<p>Publify follows the principles of the IndieWeb, which are self hosting your Web site, and Publish On your Own Site, Syndicate Everywhere.</p>
+
+<p>Publify has been around since 2004 and is the oldest Ruby on Rails open source project alive.</p>
+
+<h2>
+<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
+
+<ul>
+<li>A classic multi user blogging engine</li>
+<li>Short messages with a Twitter connection</li>
+<li>Text filters (Markdown, Textile, SmartyPants, <a href="https://github.com/blog/821" class="user-mention">@mention</a> to link, #hashtag to link)</li>
+<li>A widgets system and a plugin API</li>
+<li>Custom themes</li>
+<li>Advanced SEO capabilities</li>
+<li>Multilingual : Publify is (more or less) translated in English, French, German, Danish, Norwegian, Japanese, Hebrew, Simplified Chinese, Mexican Spanish, Italian, Lithuanian, Dutch, Polish, Romanian…</li>
+</ul><h2>
+<a name="demo-site" class="anchor" href="#demo-site"><span class="octicon octicon-link"></span></a>Demo site</h2>
+
+<p>You can <a href="http://demo.publify.co">give Publify a try</a></p>
+
+<p>The login / password <a href="http://demo.publify.co/admin">to the admin</a>
+are:</p>
+
+<ul>
+<li>Administrator: admin / admin</li>
+<li>Publisher: publish / publish</li>
+</ul><p>The demo is reset every 2 hours.</p>
+
+<h2>
+<a name="install-publify--locally" class="anchor" href="#install-publify--locally"><span class="octicon octicon-link"></span></a>Install Publify  locally</h2>
+
+<p>To install Publify you need the following:</p>
+
+<ul>
+<li>  Ruby 2.0 or 2.1</li>
+<li>  Ruby On Rails 4.1.1</li>
+<li><p>A database engine, MySQL, PgSQL or SQLite3</p></li>
+</ul><ol>
+<li> Unzip Publify archive</li>
+<li> Rename database.yml.yourEngine as database.yml</li>
+<li> Edit database.yml to add your database name, login and password.</li>
+</ol><div class="highlight highlight-bash"><pre><span class="nv">$ </span>bundle install
+<span class="nv">$ </span>rake db:create
+<span class="nv">$ </span>rake db:migrate
+<span class="nv">$ </span>rake db:seed
+<span class="nv">$ </span>rake assets:precompile
+<span class="nv">$ </span>rails server
+</pre></div>
+
+<p>You can now launch you browser and access to 127.0.0.1:3000.</p>
+
+<h2>
+<a name="install-publify-on-heroku" class="anchor" href="#install-publify-on-heroku"><span class="octicon octicon-link"></span></a>Install Publify on Heroku</h2>
+
+<p>In order to install Publify on Heroku, you’ll need to do some minor tweaks.</p>
+
+<h3>
+<a name="storage" class="anchor" href="#storage"><span class="octicon octicon-link"></span></a>Storage</h3>
+
+<p>You need to setup Amazon S3 storage to be able to upload files on your
+blog. Set Heroku config vars.</p>
+
+<div class="highlight highlight-yaml"><pre><span class="l-Scalar-Plain">heroku config:set provider=AWS</span> 
+<span class="l-Scalar-Plain">aws_access_key_id=YOUR_AWS_ACCESS_KEY_ID</span> 
+<span class="l-Scalar-Plain">aws_secret_access_key=YOUR_AWS_SECRET_ACCESS_KEY</span> 
+<span class="l-Scalar-Plain">aws_bucket=YOUR_AWS_BUCKET_NAME</span>
+</pre></div>
+
+<p>To generate the Gemfile.lock, run:</p>
+
+<div class="highlight highlight-bash"><pre><span class="nv">HEROKU</span><span class="o">=</span><span class="nb">true </span>bundle install
+</pre></div>
+
+<p>Remove Gemfile.lock from .gitignore and commit it.</p>
+
+<p>Add the HEROKU config variable to your Heroku instance:</p>
+
+<div class="highlight highlight-bash"><pre>heroku config:set <span class="nv">HEROKU</span><span class="o">=</span><span class="nb">true</span>
+</pre></div>
+
+<p>Push the repository to Heroku.</p>
+
+<p>When deploying for the first time, Heroku will automatically add a Database plugin to your instance and links it to the application.
+After the first deployment, don't forget to run the database migration and seed.</p>
+
+<div class="highlight highlight-bash"><pre>heroku run rake db:migrate db:seed
+</pre></div>
+
+<p>If application error has occurred after migration, you need to restart Heroku server.</p>
+
+<div class="highlight highlight-bash"><pre>heroku restart
+</pre></div>
+
+<h2>
+<a name="resources" class="anchor" href="#resources"><span class="octicon octicon-link"></span></a>Resources</h2>
+
+<ul>
+<li><a href="https://github.com/publify/publify/wiki/Sidebar-plugins">Sidebar Plugins</a></li>
+<li><a href="https://github.com/publify/publify/wiki/In-Page-Plugins">In page Plugins</a></li>
+<li><a href="https://github.com/publify/publify/issues"><strong>Report a bug</strong></a></li>
+<li><a href="https://github.com/publify/publify/wiki/frequently-asked-questions"><strong>Frequently Asked Questions</strong></a></li>
+<li><a href="http://blog.publify.co">Publify blog</a></li>
+<li><a href="https://twitter.com/getpublify">Publify on Twitter</a></li>
+<li>IRC: #publify on irc.freenode.net</li>
+</ul><h3>
+<a name="maintainers" class="anchor" href="#maintainers"><span class="octicon octicon-link"></span></a>Maintainers</h3>
+
+<p>This is a list of Publify maintainers. If you have committed, please add
+your name and contact details to the list.</p>
+
+<p><strong>Frédéric de Villamil</strong> <a href="mailto:frederic@publify.co">frederic@publify.co</a>
+blog: <a href="http://t37.net">http://t37.net</a>
+irc: neuro`</p>
+
+<p><strong>Matijs van Zuijlen</strong>
+blog: <a href="http://www.matijs.net/blog/">http://www.matijs.net/blog/</a>
+irc: matijs</p>
+
+<p><strong>Thomas Lecavelier</strong>
+blog: <a href="http://blog.ookook.fr/">http://blog.ookook.fr/</a>
+irc: ook</p>
+
+<p><strong>Yannick François</strong>
+blog: <a href="http://elsif.fr">http://elsif.fr</a>
+irc: yaf</p>
+
+<p>And <a href="https://github.com/publify/publify/graphs/contributors">many more cool people who’ve one day or another contributed to
+Publify</a>.</p>
+
+<p><strong>Original Author: Tobias Luetke</strong>
+blog: <a href="http://blog.leetsoft.com/">http://blog.leetsoft.com/</a>
+irc: xal</p>
+
+<p>Enjoy,
+The Publify team</p>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
