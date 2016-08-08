@@ -31,6 +31,7 @@
 
 ### Other changes
 
+* Fixed Admin Sidebar updates on Postgres (priit)
 * Update Akismet API calls (drakontia)
 * Remove old Rails patches (mvz)
 * Update dependency on Rails to 4.2.5 (mvz)
