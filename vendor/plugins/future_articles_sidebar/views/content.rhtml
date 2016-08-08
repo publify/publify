@@ -1,0 +1,13 @@
+<% unless sidebar.articles.blank? -%>
+<h3 class='sidebar-title'><%= @sidebar.title %></h3>
+<div>
+    <ol id="future_articles">
+        <% for article in sidebar.articles -%>
+            <li>
+                <p class="future_article_time"><%= time_ago_in_words(article.published_at) %></p>
+                <p class="future_article_title"><%= article.title %></p>
+            </li>
+        <% end %>
+    </ol>
+</div>
+<% end -%>
