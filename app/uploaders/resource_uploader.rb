@@ -18,7 +18,7 @@ class ResourceUploader < CarrierWave::Uploader::Base
   end
 
   def dynamic_resize_to_fit(size)
-    resize_setting = model.blog.send("image_#{size}_size").to_i
+    resize_setting = Blog.new.send("image_#{size}_size").to_i
 
     resize_to_fit(resize_setting, resize_setting)
   end
