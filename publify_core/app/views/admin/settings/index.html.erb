@@ -1,0 +1,73 @@
+<% content_for :page_heading do %>
+  <h2>
+    <i class="glyphicon glyphicon-large glyphicon-cog"></i>
+    <%= t(".general_settings") %>
+  </h2>
+<% end %>
+
+<%= form_tag :action => 'update' do %>
+
+  <fieldset class='form-horizontal'>
+    <legend><%= t(".your_blog")%></legend>
+    <div class='form-group'>
+      <label class='control-label col-sm-2' for="setting_blog_name"><%= t(".blog_name") %></label>
+      <div class='col-sm-5'>
+        <%= text_field(:setting, :blog_name, {:class => 'form-control', :size => this_blog.blog_name.length }) %>
+      </div>
+    </div>
+    <div class='form-group'>
+      <label class='control-label col-sm-2' for="setting_blog_subtitle"><%= t(".blog_subtitle") %></label>
+      <div class='col-sm-5'>
+        <%= text_field(:setting, :blog_subtitle, {:class => 'form-control', :size => this_blog.blog_subtitle.length}) %>
+      </div>
+    </div>
+    <div class='form-group'>
+      <label class='control-label col-sm-2' for="setting_base_url"><%= t(".blog_url") %></label>
+      <div class='col-sm-5'>
+        <%= text_field(:setting, :base_url, {:size => this_blog.base_url.length, :class => 'form-control'}) %>
+      </div>
+    </div>
+    <div class='form-group'>
+      <label class='control-label col-sm-2' for="setting_lang"><%= t(".language") %></label>
+      <div class='col-sm-5'>
+        <select name="setting[lang]" id='setting_lang' class='form-control'>
+          <% langs = Hash[PublifyCore::Lang::LIST.map{|l| [t("langs.#{l}"), l]}]%>
+          <%= options_for_select(langs, this_blog.lang) %>
+        </select>
+      </div>
+    </div>
+    <div class='form-group'>
+      <label class='control-label col-sm-2'><%= t(".users") %></label>
+      <div class="col-sm-5">
+        <div class='checkbox'>
+          <label for="setting_allow_signup">
+            <%= check_box(:setting, :allow_signup) %>
+            <%= t(".allow_users_to_register")%>
+          </label>
+        </div>
+        <small class='help-block'><%= t(".explain_allow_users_to_register_html") %></small>
+      </div>
+    </div>
+    <div class='form-group'>
+      <label class='control-label col-sm-2' for="setting_email_from"><%= t(".source_email") %></label>
+      <div class='col-sm-5'>
+        <%= text_field(:setting, :email_from, { :class => 'form-control'}) %>
+        <small class='help-block'><%= t(".email_address_used_to_notify") %></small>
+      </div>
+    </div>
+    <div class='form-group'>
+      <label class='control-label col-sm-2' for="setting_admin_display_elements"><%= t(".items_to_display_in_admin_lists") %></label>
+      <div class='col-sm-1'>
+        <%= text_field(:setting, :admin_display_elements, {:size => 4, :class => 'form-control'}) %>
+      </div>
+    </div>
+  </fieldset>
+
+  <%= hidden_field_tag 'from', 'index' %>
+  <div class='form-group'>
+    <hr>
+    <%= link_to(t(".cancel"), {action: 'index'}) %>
+    <%= t(".or") %>
+    <%= submit_tag(t(".update_settings"), class: 'btn btn-success') %>
+  </div>
+<% end %>

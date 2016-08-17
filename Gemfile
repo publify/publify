@@ -38,44 +38,19 @@ end
 
 gem 'rails', '~> 4.2.5'
 
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'publify_core', path: 'publify_core'
+gem 'publify_amazon_sidebar', path: 'publify_amazon_sidebar'
+gem 'publify_textfilter_code', path: 'publify_textfilter_code'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
-# Use jquery as the JavaScript library
-gem 'jquery-rails', '~> 4.1.0'
-
-gem 'jquery-ui-rails', '~> 5.0.2'
-gem 'RedCloth', '~> 4.3.1'
-gem 'actionpack-page_caching', '~> 1.0.2' # removed from Rails-core as Rails 4.0
-gem 'addressable', '~> 2.1', require: 'addressable/uri'
-gem 'akismet', '~> 2.0'
-gem 'bluecloth', '~> 2.1'
-gem 'cancancan', '~> 1.14'
-gem 'carrierwave', '~> 0.11.2'
-gem 'coderay', '~> 1.1.0'
-gem 'devise', '~> 4.2.0'
-gem 'devise-i18n', '~> 1.1.0'
-gem 'dynamic_form', '~> 1.1.4'
+# Needed for the lightbox and flickr text filters
 gem 'flickraw-cached', '20120701'
 gem 'flickraw', '~> 0.9.8'
-gem 'fog-aws', '~> 0.9.2'
-gem 'htmlentities', '~> 4.3'
-gem 'kaminari', '~> 0.17.0'
-gem 'mini_magick', '~> 4.2', require: 'mini_magick'
-gem 'non-stupid-digest-assets', '~> 1.0'
-gem 'rails-observers', '~> 0.1.2'
-gem 'rails-timeago', '~> 2.0'
-gem 'rails_autolink', '~> 1.1.0'
-gem 'rake', '~> 11.1'
-gem 'recaptcha', '~> 3.2', require: 'recaptcha/rails'
-gem 'rubypants', '~> 0.2.0'
-gem 'twitter', '~> 5.16.0'
-gem 'uuidtools', '~> 2.1.1'
-gem 'feedjira', '~> 2.0.0'
 
-gem 'bootstrap-sass', '~> 3.3.6'
+gem 'non-stupid-digest-assets', '~> 1.0'
+gem 'rake', '~> 11.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -89,7 +64,7 @@ group :development, :test do
   gem 'pry', '~> 0.10.3'
 
   gem 'rubocop', '~> 0.41.0', require: false
-  gem 'i18n-tasks', '~> 0.9.1' if RUBY_VERSION >= '2.1'
+  gem 'i18n-tasks', '~> 0.9.1', require: false
 end
 
 group :development do
@@ -110,6 +85,7 @@ end
 
 group :test do
   gem 'codeclimate-test-reporter', '~> 0.6.0', require: nil
+  gem 'sqlite3'
 end
 
 # Install gems from each theme

@@ -8,13 +8,4 @@ Rails.application.config.assets.version = '1.0'
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-Rails.application.config.assets.precompile += %w(
-  publify.js
-  publify.css
-  publify_admin.js
-  publify_admin.css
-  accounts.css
-  bootstrap.css
-  user-styles.css
-  coderay.css
-)
+# Rails.application.config.assets.precompile += %w(foo.js)
