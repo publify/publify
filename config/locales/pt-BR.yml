@@ -18,7 +18,7 @@ pt-BR:
       trackbacks_are_disabled: Trackbacks foram desabilitados
       trackbacks_for: Trackbacks para
     search:
-      search_results_for: Buscar resultados para '%{query}'
+      search_results_for: Resultados de busca para '%{query}'
   comments:
     comment:
       by: por
