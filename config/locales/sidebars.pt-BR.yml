@@ -2,18 +2,18 @@
 pt-BR:
   authors_sidebar:
     content:
-      authors: Authors
+      authors: Autores
   notes_sidebar:
     content:
-      view_on_twitter: View on Twitter
+      view_on_twitter: Ver no Twitter
   popular_sidebar:
     content:
-      comments: Comments
-      nothing_to_show_yet: Nothing to show yet
+      comments: Comentários
+      nothing_to_show_yet: Nada a exibir no momento
   xml_sidebar:
     content:
-      articles: Articles
-      comments: Comments
-      syndicate: Syndicate
+      articles: Artigos
+      comments: Comentários
+      syndicate: Sindicato
       tag: Tag
       trackbacks: Trackbacks

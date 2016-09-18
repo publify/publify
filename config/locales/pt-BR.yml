@@ -5,10 +5,10 @@ pt-BR:
       comments:
         one: 1 comentário
         other: "%{count} comentários"
-        zero: sem comentários
+        zero: nenhum comentário
     comment_form:
       comment: Comentário
-      email_address: Endere&ccedil;o de e-mail
+      email_address: Endereço de e-mail
       your_website: Seu website
     meta:
       published_on_html: Publicado em %{publish_date_and_time} por %{by}, tags %{tags}
@@ -18,13 +18,13 @@ pt-BR:
       trackbacks_are_disabled: Trackbacks foram desabilitados
       trackbacks_for: Trackbacks para
     search:
-      search_results_for: Search results for '%{query}'
+      search_results_for: Resultados de busca para '%{query}'
   comments:
     comment:
       by: por
   layouts:
     default:
-      archives: Archives
+      archives: Arquivos
       statuses: Status
   pagination:
     next: Próxima
