@@ -1,12 +1,12 @@
-require "publify_core/engine"
-require 'publify_core/lang'
+require 'devise'
+require 'devise-i18n'
 
+require 'publify_core/engine'
+require 'publify_core/lang'
 
 require 'actionpack/page_caching'
 require 'bootstrap-sass'
 require 'carrierwave'
-require 'devise'
-require 'devise-i18n'
 require 'dynamic_form'
 require 'jquery-rails'
 require 'jquery-ui-rails'
