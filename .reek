@@ -1,3 +1,8 @@
+exclude_paths:
+  - 'db/migrate'
+  - 'publify_amazon_sidebar/spec/dummy/db/migrate'
+  - 'publify_textfilter_code/spec/dummy/db/migrate'
+  - 'publify_core/db/migrate'
 "app/controllers":
   IrresponsibleModule:
     enabled: false
