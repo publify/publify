@@ -1,5 +1,5 @@
 <% content_for :page_title do %>
-  <%= "#{this_blog.blog_name} - #{t('.change_your_password', :default => 'Change your password'}" %>
+  <%= "#{this_blog.blog_name} - #{t('.change_your_password', :default => 'Change your password')}" %>
 <% end %>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
