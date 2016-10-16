@@ -1,5 +1,13 @@
 # Changelog
 
+## 8.3.2
+
+* Replace deprecated count-with-conditions (mvz)
+* Loosen/update dependencies (mvz)
+* Fix google sitemap (mvz)
+* Restore theme helper loading (mvz)
+* Fix password edit form (jetware)
+
 ## 8.3.1
 
 * Fix live search (mvz)
