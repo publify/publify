@@ -1,4 +1,4 @@
-method: :smtp
+delivery_method: :smtp
 settings:
   :address: mail.example.com
   :port:    25
@@ -6,3 +6,5 @@ settings:
 # :authentication:  :login
 # :user_name: bob
 # :password: bobsyouruncle
+sendmail_settings:
+  :location: /usr/bin/sendmail
