@@ -36,7 +36,7 @@ else
   end
 end
 
-gem 'rails', '~> 4.2.5'
+gem 'rails', '~> 5.0.0.1'
 
 gem 'publify_core', path: 'publify_core'
 gem 'publify_amazon_sidebar', path: 'publify_amazon_sidebar'
