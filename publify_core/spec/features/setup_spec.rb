@@ -24,5 +24,8 @@ RSpec.feature 'Blog setup', type: :feature do
     find('tbody#articleList td a.published').click
 
     expect(page).to have_text I18n.t!('setup.article.title')
+
+    # Confirm proper setting fo user properties
+    expect(User.first.email).to eq 'foo@bar.com'
   end
 end
