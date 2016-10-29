@@ -2,7 +2,7 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception, only: [:edit, :update, :delete]
+  protect_from_forgery with: :exception
 
   before_action :fire_triggers, :load_lang, :set_paths
   before_action :configure_permitted_parameters, if: :devise_controller?
