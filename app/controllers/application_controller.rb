@@ -10,7 +10,8 @@ class ApplicationController < ActionController::Base
   private
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) << :email
+    # TODO: Check if this is still needed
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:email])
   end
 
   def login_required

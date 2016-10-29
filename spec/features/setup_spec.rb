@@ -14,5 +14,7 @@ RSpec.feature 'Blog setup', type: :feature do
     click_button I18n.t('generic.save')
 
     expect(page).to have_text I18n.t('accounts.confirm.success')
+
+    expect(User.first.email).to eq 'foo@bar.com'
   end
 end
