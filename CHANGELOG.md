@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+* Fix Devise error during sign-in (mvz)
+
 ## 8.3.2
 
 * Replace deprecated count-with-conditions (mvz)
