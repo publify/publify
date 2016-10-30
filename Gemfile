@@ -49,6 +49,7 @@ gem 'jquery-rails', '~> 4.1.0'
 gem 'jquery-ui-rails', '~> 5.0.2'
 gem 'RedCloth', '~> 4.3.1'
 gem 'actionpack-page_caching', '~> 1.0.2' # removed from Rails-core as Rails 4.0
+gem 'activerecord-session_store', '~> 1.0.0'
 gem 'addressable', '~> 2.1', require: 'addressable/uri'
 gem 'akismet', '~> 2.0'
 gem 'bluecloth', '~> 2.1'
