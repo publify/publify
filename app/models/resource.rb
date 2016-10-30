@@ -4,6 +4,7 @@ class Resource < ActiveRecord::Base
 
   mount_uploader :upload, ResourceUploader
   validate :image_mime_type_consistent
+  validates :upload, presence: true
 
   scope :without_images, -> { where("mime NOT LIKE '%image%'") }
   scope :images, -> { where("mime LIKE '%image%'") }
