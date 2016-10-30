@@ -3,6 +3,9 @@
 ## Unreleased
 
 * Fix Devise error during sign-in (mvz)
+* Protect from forgery on all actions (mvz)
+* Have Devise be paranoid by default (mvz)
+* Fix resource upload and properly check mime types (mvz)
 
 ## 8.3.2
 
