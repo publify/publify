@@ -1,7 +1,7 @@
 ---
 ru:
   accounts:
-    back_to: "&larr; Назад %{place}"
+    back_to_html: "&larr; Назад %{place}"
     back_to_login: Назад к форме входа
     confirm:
       admin: admin

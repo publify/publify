@@ -1,7 +1,7 @@
 ---
 nl:
   accounts:
-    back_to: "&larr; Terug naar %{place}"
+    back_to_html: "&larr; Terug naar %{place}"
     back_to_login: Terug naar login
     confirm:
       admin: admin

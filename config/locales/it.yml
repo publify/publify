@@ -1,7 +1,7 @@
 ---
 it:
   accounts:
-    back_to: "&larr; Torna al %{place}"
+    back_to_html: "&larr; Torna al %{place}"
     back_to_login: Back to login
     confirm:
       admin: admin

@@ -1,7 +1,7 @@
 ---
 nb-NO:
   accounts:
-    back_to: "&larr; Tilbake til %{place}"
+    back_to_html: "&larr; Tilbake til %{place}"
     back_to_login: Tilbake til innlogging
     confirm:
       admin: admin

@@ -11,5 +11,5 @@
     <%= link_to t('accounts.lost_my_password'), new_password_path(resource_name) %><br />
   <% end -%>
 
-  <%= link_to(t('accounts.back_to', place: this_blog.blog_name).html_safe, this_blog.base_url) %>
+  <%= link_to(t('accounts.back_to_html', place: this_blog.blog_name), this_blog.base_url) %>
 </small>
