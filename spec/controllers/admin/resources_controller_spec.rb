@@ -40,15 +40,70 @@ describe Admin::ResourcesController, type: :controller do
       ResourceUploader.enable_processing = false
     end
 
-    it 'creates a new Resource' do
-      expect { post :upload, upload: { filename: file_upload('haha') } }.
-        to change { Resource.count }.by(1)
+    context 'when uploading a text file' do
+      let(:upload) { file_upload('haha') }
+
+      it 'creates a new Resource' do
+        expect { post :upload, upload: { filename: upload } }.
+          to change { Resource.count }.by(1)
+      end
+
+      it 'sets the content type to text/plain' do
+        post :upload, upload: { filename: upload }
+        expect(Resource.last.mime).to eq 'text/plain'
+      end
     end
 
-    it 'creates a new image Resource' do
-      upload = file_upload('haha.png', 'testfile.png')
-      expect { post :upload, upload: { filename: upload } }.
-        to change { Resource.count }.by(1)
+    context 'when uploading an image file' do
+      let(:upload) { file_upload('haha.png', 'testfile.png') }
+
+      it 'creates a new image Resource' do
+        expect { post :upload, upload: { filename: upload } }.
+          to change { Resource.count }.by(1)
+      end
+
+      it 'sets the content type correctly' do
+        post :upload, upload: { filename: upload }
+        expect(Resource.last.mime).to eq 'image/png'
+      end
+    end
+
+    context 'when attempting to upload a dangerous svg' do
+      let(:upload) { file_upload('danger.svg', 'exploit.svg') }
+
+      before do
+        upload.content_type = 'image/svg'
+      end
+
+      it 'does not create a new image Resource' do
+        expect { post :upload, upload: { filename: upload } }.
+          not_to change { Resource.count }
+      end
+
+      it 'does not attempt to process a the image' do
+        post :upload, upload: { filename: upload }
+        result = assigns(:up)
+        expect(result.errors[:upload].first).not_to match /^Failed to manipulate with MiniMagick/
+      end
+    end
+
+    context 'when attempting to upload a fake png' do
+      let(:upload) { file_upload('haha.png', 'testfile.txt') }
+
+      before do
+        upload.content_type = 'image/png'
+      end
+
+      it 'does not create a new fake image Resource' do
+        expect { post :upload, upload: { filename: upload } }.
+          not_to change { Resource.count }
+      end
+
+      it 'does not attempt to process a new fake image Resource' do
+        post :upload, upload: { filename: upload }
+        result = assigns(:up)
+        expect(result.errors[:upload].first).not_to match /^Failed to manipulate with MiniMagick/
+      end
     end
   end
 end

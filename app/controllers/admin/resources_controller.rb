@@ -5,13 +5,10 @@ class Admin::ResourcesController < Admin::BaseController
     if !params[:upload].blank?
       file = params[:upload][:filename]
 
-      mime = if file.content_type
-               file.content_type.chomp
-             else
-               'text/plain'
-             end
+      @up = Resource.new(blog: this_blog, upload: file)
+      @up.mime = @up.upload.content_type
+      @up.save
 
-      @up = Resource.create(blog: this_blog, upload: file, mime: mime)
       flash[:success] = I18n.t('admin.resources.upload.success')
     else
       flash[:warning] = I18n.t('admin.resources.upload.warning')
