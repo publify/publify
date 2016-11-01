@@ -99,7 +99,7 @@ describe Admin::ResourcesController, type: :controller do
       it 'does not attempt to process a the image' do
         post :upload, upload: upload
         result = assigns(:up)
-        expect(result.errors[:upload].first).not_to match /^Failed to manipulate with MiniMagick/
+        expect(result.errors[:upload].first).not_to match(/^Failed to manipulate with MiniMagick/)
       end
 
       it 'sets the flash to failure' do
@@ -126,7 +126,7 @@ describe Admin::ResourcesController, type: :controller do
       it 'does not attempt to process a new fake image Resource' do
         post :upload, upload: upload
         result = assigns(:up)
-        expect(result.errors[:upload].first).not_to match /^Failed to manipulate with MiniMagick/
+        expect(result.errors[:upload].first).not_to match(/^Failed to manipulate with MiniMagick/)
       end
 
       it 'sets the flash to failure' do
