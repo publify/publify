@@ -6,6 +6,8 @@
 * Protect from forgery on all actions (mvz)
 * Have Devise be paranoid by default (mvz)
 * Fix resource upload and properly check mime types (mvz)
+* Store session in the database to prevent session hijacking (mvz)
+* Correctly escape blog name in devise view (mvz)
 
 ## 8.3.2
 
