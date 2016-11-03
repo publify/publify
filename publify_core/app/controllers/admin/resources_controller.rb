@@ -2,16 +2,12 @@ class Admin::ResourcesController < Admin::BaseController
   cache_sweeper :blog_sweeper
 
   def upload
-    if !params[:upload].blank?
-      file = params[:upload][:filename]
+    file = params[:upload]
 
-      mime = if file.content_type
-               file.content_type.chomp
-             else
-               'text/plain'
-             end
+    @up = Resource.new(blog: this_blog, upload: file)
+    @up.mime = @up.upload.content_type
 
-      @up = Resource.create(blog: this_blog, upload: file, mime: mime)
+    if @up.save
       flash[:success] = I18n.t('admin.resources.upload.success')
     else
       flash[:warning] = I18n.t('admin.resources.upload.warning')

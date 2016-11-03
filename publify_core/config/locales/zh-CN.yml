@@ -1,7 +1,7 @@
 ---
 zh-CN:
   accounts:
-    back_to: "&larr; 返回 %{place}"
+    back_to_html: "&larr; 返回 %{place}"
     back_to_login: Back to login
     confirm:
       admin: admin

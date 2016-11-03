@@ -1,7 +1,7 @@
 ---
 fr:
   accounts:
-    back_to: "&larr; Revenir à %{place}"
+    back_to_html: "&larr; Revenir à %{place}"
     back_to_login: S'identifier
     confirm:
       admin: l'administration

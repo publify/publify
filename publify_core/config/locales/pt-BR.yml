@@ -1,7 +1,7 @@
 ---
 pt-BR:
   accounts:
-    back_to: "&larr; Voltar para %{place}"
+    back_to_html: "&larr; Voltar para %{place}"
     back_to_login: Voltar para o login
     confirm:
       admin: admin

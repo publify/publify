@@ -1,7 +1,7 @@
 ---
 he:
   accounts:
-    back_to: "&larr; %{place} חזור אל"
+    back_to_html: "&larr; %{place} חזור אל"
     back_to_login: Back to login
     confirm:
       admin: admin
