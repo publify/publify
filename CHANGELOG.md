@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 8.3.3
 
 * Fix Devise error during sign-in (mvz)
 * Protect from forgery on all actions (mvz)
