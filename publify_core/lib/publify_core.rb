@@ -5,6 +5,7 @@ require 'publify_core/engine'
 require 'publify_core/lang'
 
 require 'actionpack/page_caching'
+require 'activerecord/session_store'
 require 'bootstrap-sass'
 require 'carrierwave'
 require 'dynamic_form'
