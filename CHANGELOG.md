@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+### Breaking/large changes
+
+* Break out Publify functionality into several engines. These engines will
+  become separate gems in the future (mvz)
+* Use Rails' default method of setting secrect_key_base in production: Through
+  an environment variable. This means you will have to update your production
+  environment so this variable is actually set (whithajess)
+
 ## 8.3.3
 
 * Fix Devise error during sign-in (mvz)
