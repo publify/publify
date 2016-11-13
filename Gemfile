@@ -39,7 +39,7 @@ end
 gem 'rails', '~> 4.2.5'
 
 gem 'publify_core', '~> 9.0.0.pre1'
-gem 'publify_amazon_sidebar', path: 'publify_amazon_sidebar'
+gem 'publify_amazon_sidebar', '~> 9.0.0.pre1'
 gem 'publify_textfilter_code', path: 'publify_textfilter_code'
 
 # Use Uglifier as compressor for JavaScript assets
