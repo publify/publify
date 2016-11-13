@@ -72,6 +72,10 @@ Style/MultilineMethodCallIndentation:
 Style/MultilineOperationIndentation:
   EnforcedStyle: indented
 
+# TODO: Re-enable?
+Style/NumericPredicate:
+  Enabled: false
+
 # Always use raise to raise exceptions
 Style/SignalException:
   EnforcedStyle: only_raise
