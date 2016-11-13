@@ -45,10 +45,6 @@ class Tag < ActiveRecord::Base
       order('article_counter DESC').limit(1000)
   end
 
-  def self.find_by_permalink(name)
-    find_by_name(name)
-  end
-
   def self.find_with_char(char)
     where('name LIKE ? ', "%#{char}%").order('name ASC')
   end

@@ -15,7 +15,7 @@ class TagsController < ContentController
   end
 
   def show
-    @grouping = Tag.find_by_permalink(params[:id])
+    @grouping = Tag.find_by(name: params[:id])
     if @grouping.nil?
       @articles = []
     else
