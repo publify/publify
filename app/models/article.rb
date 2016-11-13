@@ -154,14 +154,14 @@ class Article < Content
     Article.where('published_at < ?', published_at).order('published_at desc').limit(1).first
   end
 
-  def self.find_by_published_at
+  def self.publication_months
     result = select('published_at').where('published_at is not NULL').where(type: 'Article')
     result.map { |d| [d.published_at.strftime('%Y-%m')] }.uniq
   end
 
   # Finds one article which was posted on a certain date and matches the supplied dashed-title
   # params is a Hash
-  def self.find_by_permalink(params)
+  def self.requested_article(params)
     date_range = PublifyTime.delta(params[:year], params[:month], params[:day])
 
     req_params = {}

@@ -94,7 +94,7 @@ class ArticlesController < ContentController
       return redirect_to URI.parse(@article.permalink_url).path, status: 301 if @article
     end
 
-    r = Redirect.find_by_from_path(from)
+    r = Redirect.find_by(from_path: from)
     return redirect_to r.full_to_path, status: 301 if r # Let redirection made outside of the blog on purpose (deal with it, Brakeman!)
 
     render 'errors/404', status: 404
@@ -118,7 +118,7 @@ class ArticlesController < ContentController
   end
 
   def view_page
-    if (@page = Page.find_by_name(Array(params[:name]).join('/'))) && @page.published?
+    if (@page = Page.find_by(name: Array(params[:name]).join('/'))) && @page.published?
       @page_title = @page.title
       @description = this_blog.meta_description
       @keywords = this_blog.meta_keywords
@@ -140,7 +140,7 @@ class ArticlesController < ContentController
     elsif User.count == 0
       redirect_to new_user_registration_path
     else
-      return true
+      true
     end
   end
 

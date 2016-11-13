@@ -10,7 +10,7 @@ describe CommentsController, type: :controller do
 
       before { post :create, comment: comment, article_id: article.id }
 
-      it { expect(assigns[:comment]).to eq(Comment.find_by_author_and_body_and_article_id('bob', 'content', article.id)) }
+      it { expect(assigns[:comment]).to eq(Comment.find_by(author: 'bob', body: 'content', article_id: article.id)) }
       it { expect(assigns[:article]).to eq(article) }
       it { expect(article.comments.size).to eq(1) }
       it { expect(article.comments.last.author).to eq('bob') }

@@ -2,7 +2,7 @@ class AuthorsController < ContentController
   layout :theme_layout
 
   def show
-    @author = User.find_by_login(params[:id])
+    @author = User.find_by(login: params[:id])
     raise ActiveRecord::RecordNotFound unless @author
 
     @articles = @author.articles.published.page(params[:page]).per(this_blog.per_page(params[:format]))
