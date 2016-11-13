@@ -16,7 +16,6 @@ Gem::Specification.new do |s|
   s.license     = 'MIT'
 
   s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.rdoc']
-  s.test_files = Dir['spec/**/*']
 
   s.required_ruby_version = '>= 2.1.0'
 
