@@ -16,7 +16,7 @@ class Redirect < ActiveRecord::Base
 
   def shorten
     if (temp_token = random_token) && self.class.find_by_from_path(temp_token).nil?
-      return temp_token
+      temp_token
     else
       shorten
     end

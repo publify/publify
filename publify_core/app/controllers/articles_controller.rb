@@ -140,7 +140,7 @@ class ArticlesController < ContentController
     elsif User.count == 0
       redirect_to new_user_registration_path
     else
-      return true
+      true
     end
   end
 
