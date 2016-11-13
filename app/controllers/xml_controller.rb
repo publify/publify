@@ -1,5 +1,5 @@
 class XmlController < BaseController
-  caches_page :feed, if: proc {|c|
+  caches_page :feed, if: proc { |c|
     c.request.query_string == ''
   }
 
