@@ -5,9 +5,6 @@ rvm:
   - 2.1
   - 2.2
   - 2.3.0
-install:
-  - bundle install --without development
-script: bundle exec rake
 branches:
   only:
     - master
