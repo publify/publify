@@ -30,4 +30,3 @@ describe PublifyApp::Textfilter::Twitterfilter do
     expect(text).to eq("A test tweet with a <a href='https://twitter.com/search?q=%23hashtag&src=tren&mode=realtime'>#hashtag</a> and a <a href='https://twitter.com/mention'>@mention</a>")
   end
 end
-

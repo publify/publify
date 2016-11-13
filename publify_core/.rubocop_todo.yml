@@ -87,13 +87,6 @@ Style/ClassVars:
     - 'lib/publify_plugins.rb'
     - 'lib/text_filter_plugin.rb'
 
-# Offense count: 2
-# Cop supports --auto-correct.
-Style/EmptyLines:
-  Exclude:
-    - 'Rakefile'
-    - 'lib/publify_core.rb'
-
 # Offense count: 8
 # Configuration parameters: AllowedVariables.
 Style/GlobalVars:
@@ -109,12 +102,6 @@ Style/IfUnlessModifier:
   Exclude:
     - 'spec/controllers/base_controller_spec.rb'
     - 'spec/models/page_cache_spec.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/LeadingCommentSpace:
-  Exclude:
-    - 'lib/publify_core.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.
@@ -151,24 +138,3 @@ Style/RegexpLiteral:
     - 'lib/spam_protection.rb'
     - 'lib/text_filter_plugin.rb'
     - 'spec/models/content_spec.rb'
-
-# Offense count: 27
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles, ConsistentQuotesInMultiline.
-# SupportedStyles: single_quotes, double_quotes
-Style/StringLiterals:
-  Exclude:
-    - 'Rakefile'
-    - 'lib/publify_core.rb'
-    - 'lib/publify_core/version.rb'
-    - 'publify_core.gemspec'
-    - 'spec/rails_helper.rb'
-    - 'spec/spec_helper.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-# SupportedStyles: final_newline, final_blank_line
-Style/TrailingBlankLines:
-  Exclude:
-    - 'spec/lib/publify_textfilter_twitterfilter_spec.rb'
