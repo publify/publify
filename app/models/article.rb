@@ -161,7 +161,7 @@ class Article < Content
 
   # Finds one article which was posted on a certain date and matches the supplied dashed-title
   # params is a Hash
-  def self.find_by_permalink(params)
+  def self.requested_article(params)
     date_range = PublifyTime.delta(params[:year], params[:month], params[:day])
 
     req_params = {}

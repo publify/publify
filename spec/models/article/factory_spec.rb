@@ -40,23 +40,23 @@ describe Article::Builder, type: :model do
     let(:blog) { build(:blog) }
     let(:user) { build(:user) }
 
-    it 'call find_by_permalink' do
+    it 'call requested_article' do
       params = { something: 'truc' }
-      expect(Article).to receive(:find_by_permalink).with(params)
+      expect(Article).to receive(:requested_article).with(params)
       factory.requested_article(params)
     end
 
     it 'set title params with article_id params' do
       params = { article_id: 12 }
       expected_params = params.merge(title: 12)
-      expect(Article).to receive(:find_by_permalink).with(expected_params)
+      expect(Article).to receive(:requested_article).with(expected_params)
       factory.requested_article(params)
     end
 
     it 'dont set title params with article_id when title already set' do
       params = { article_id: 12, title: 'Beautiful' }
       expected_params = params
-      expect(Article).to receive(:find_by_permalink).with(expected_params)
+      expect(Article).to receive(:requested_article).with(expected_params)
       factory.requested_article(params)
     end
   end
