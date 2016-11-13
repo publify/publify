@@ -4,13 +4,16 @@ var bind_sortable = function() {
     stop: function(evt, ui) {
       var data = $(this).sortable('serialize', {attribute: 'data-sortable'});
       var callback_url = $(this).data('callback_url');
+      $('#update_spinner').show();
 
       $.ajax({
         data: data,
         type: 'POST',
         dataType: 'script',
-        url: callback_url
-      }).fail(function(jqXHR, textStatus, errorThrown) { alert('Oups?'); });
+        url: callback_url,
+        complete: function() { $('#update_spinner').hide(); },
+        fail: function() { alert('Oups?'); }
+      });
     }
   });
 

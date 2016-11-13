@@ -10,7 +10,7 @@
 </div>
 <p class='help-block'></p>
 
-<%= form_tag(url_for(action: 'publish'), method: :put, class: 'spinner') do %>
+<%= form_tag(url_for(action: 'publish'), method: :put) do %>
   <div class='form-actions'>
     <%= link_to(t(".cancel"), {action: 'index'}) %>
     <%= t(".or") %>
@@ -22,7 +22,7 @@
 
 <%= render 'config', available_sidebars: @available, ordered_sidebars: @ordered_sidebars %>
 
-<%= form_tag(url_for(action: 'publish'), method: :put, class: 'spinner') do %>
+<%= form_tag(url_for(action: 'publish'), method: :put) do %>
   <div class='form-group'>
     <%= link_to(t(".cancel"), {action: 'index'}) %>
     <%= t(".or") %>
