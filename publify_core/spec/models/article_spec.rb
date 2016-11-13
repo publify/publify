@@ -78,8 +78,8 @@ describe Article, type: :model do
 
   it 'test_permalink_with_title' do
     article = create(:article, permalink: 'article-3', published_at: Time.utc(2004, 6, 1))
-    assert_equal(article, Article.find_by_permalink(year: 2004, month: 6, day: 1, title: 'article-3'))
-    not_found = Article.find_by_permalink year: 2005, month: '06', day: '01', title: 'article-5'
+    assert_equal(article, Article.requested_article(year: 2004, month: 6, day: 1, title: 'article-3'))
+    not_found = Article.requested_article year: 2005, month: '06', day: '01', title: 'article-5'
     expect(not_found).to be_nil
   end
 
@@ -515,10 +515,10 @@ describe Article, type: :model do
       end
     end
 
-    describe '#find_by_permalink' do
+    describe '#requested_article' do
       it 'uses UTC to determine correct day' do
         @a.save
-        a = Article.find_by_permalink year: 2011, month: 2, day: 21, permalink: 'a-big-article'
+        a = Article.requested_article year: 2011, month: 2, day: 21, permalink: 'a-big-article'
         expect(a).to eq(@a)
       end
     end
@@ -542,10 +542,10 @@ describe Article, type: :model do
       end
     end
 
-    describe '#find_by_permalink' do
+    describe '#requested_article' do
       it 'uses UTC to determine correct day' do
         @a.save
-        a = Article.find_by_permalink year: 2011, month: 2, day: 22, permalink: 'a-big-article'
+        a = Article.requested_article year: 2011, month: 2, day: 22, permalink: 'a-big-article'
         expect(a).to eq(@a)
       end
     end
@@ -569,10 +569,10 @@ describe Article, type: :model do
       end
     end
 
-    describe '#find_by_permalink' do
+    describe '#requested_article' do
       it 'uses JST to determine correct day' do
         @a.save
-        a = Article.find_by_permalink year: 2012, month: 12, day: 31, permalink: 'a-big-article'
+        a = Article.requested_article year: 2012, month: 12, day: 31, permalink: 'a-big-article'
         expect(a).to eq(@a)
       end
     end
@@ -596,10 +596,10 @@ describe Article, type: :model do
       end
     end
 
-    describe '#find_by_permalink' do
+    describe '#requested_article' do
       it 'uses JST to determine correct day' do
         @a.save
-        a = Article.find_by_permalink year: 2013, month: 1, day: 1, permalink: 'a-big-article'
+        a = Article.requested_article year: 2013, month: 1, day: 1, permalink: 'a-big-article'
         expect(a).to eq(@a)
       end
     end
