@@ -1,3 +1,3 @@
 module PublifyCore
-  VERSION = "8.2.0"
+  VERSION = "9.0.0.pre1"
 end
