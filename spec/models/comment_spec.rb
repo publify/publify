@@ -133,7 +133,7 @@ describe Comment, type: :model do
         # XXX: This makes sure text filter can be 'found' in the database
         # FIXME: TextFilter objects should not be in the database!
         sym = filter.empty? ? :none : filter.to_sym
-        build_stubbed sym
+        create sym
 
         blog.comment_text_filter = filter
 
@@ -160,9 +160,12 @@ describe Comment, type: :model do
   end
 
   it 'should have good default filter' do
-    allow(blog).to receive(:text_filter_object) { build_stubbed :textile }
-    allow(blog).to receive(:comment_text_filter) { build_stubbed :markdown }
-    a = build_stubbed(:comment)
+    blog = create :blog
+    create :textile
+    create :markdown
+    blog.text_filter = :textile
+    blog.comment_text_filter = :markdown
+    a = create(:comment)
     assert_equal 'markdown', a.default_text_filter.name
   end
 

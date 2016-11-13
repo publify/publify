@@ -21,7 +21,7 @@ shared_examples_for 'CommentSanitization' do
   ['', 'markdown', 'textile', 'smartypants', 'markdown smartypants'].each do |value|
     it "Should sanitize content rendered with the #{value} textfilter" do
       @blog.comment_text_filter = value
-      build_stubbed(value.empty? ? 'none' : value)
+      create(value.empty? ? 'none' : value)
 
       render partial: 'comments/comment', locals: { comment: @comment }
       expect(rendered).to have_selector('.content')

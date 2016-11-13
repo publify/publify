@@ -99,10 +99,6 @@ FactoryGirl.define do
     markup 'markdown'
     filters []
     params {}
-
-    after :stub do |filter|
-      TextFilter.stub(:find_by_name).with(filter.name) { filter }
-    end
   end
 
   factory :smartypants, parent: :markdown do |m|
@@ -129,10 +125,6 @@ FactoryGirl.define do
     name 'none'
     description 'None'
     markup 'none'
-
-    after :stub do |_filter|
-      TextFilter.stub(:find_by_name).with('') { nil }
-    end
   end
 
   factory :utf8article, parent: :article do |u|
