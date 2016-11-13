@@ -10,7 +10,7 @@ class ContentController < BaseController
           order('published_at ASC').first
       if future_article
         delta = future_article.published_at - Time.now
-        controller.response.lifetime = (delta <= 0) ? 0 : delta
+        controller.response.lifetime = delta <= 0 ? 0 : delta
       end
     end
   end

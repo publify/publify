@@ -44,7 +44,7 @@ module Article::States
 
     def published_at=(new_time)
       unless new_time.nil?
-        content.state = (new_time <= Time.new) ? :just_published : :publication_pending
+        content.state = new_time <= Time.new ? :just_published : :publication_pending
       end
       content[:published_at] = new_time
     end
