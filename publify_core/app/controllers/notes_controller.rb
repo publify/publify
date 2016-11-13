@@ -17,7 +17,7 @@ class NotesController < ContentController
   end
 
   def show
-    @note = Note.published.find_by_permalink(CGI.escape(params[:permalink]))
+    @note = Note.published.find_by permalink: CGI.escape(params[:permalink])
 
     return render 'errors/404', status: 404 unless @note
 
