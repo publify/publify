@@ -11,6 +11,10 @@ AllCops:
 Rails:
   Enabled: true
 
+# This cop is only valid for Rails 5
+Rails/HttpPositionalArguments:
+  Enabled: false
+
 # Allow if (foo = get_foo) style
 Lint/AssignmentInCondition:
   AllowSafeAssignment: true
