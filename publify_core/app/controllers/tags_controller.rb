@@ -3,7 +3,7 @@ class TagsController < ContentController
   layout :theme_layout
   cache_sweeper :blog_sweeper
 
-  caches_page :index, :show, if: proc {|c|
+  caches_page :index, :show, if: proc { |c|
     c.request.query_string == ''
   }
 
@@ -15,7 +15,7 @@ class TagsController < ContentController
   end
 
   def show
-    @grouping = Tag.find_by_permalink(params[:id])
+    @grouping = Tag.find_by(name: params[:id])
     if @grouping.nil?
       @articles = []
     else

@@ -78,8 +78,8 @@ describe Article, type: :model do
 
   it 'test_permalink_with_title' do
     article = create(:article, permalink: 'article-3', published_at: Time.utc(2004, 6, 1))
-    assert_equal(article, Article.find_by_permalink(year: 2004, month: 6, day: 1, title: 'article-3'))
-    not_found = Article.find_by_permalink year: 2005, month: '06', day: '01', title: 'article-5'
+    assert_equal(article, Article.requested_article(year: 2004, month: 6, day: 1, title: 'article-3'))
+    not_found = Article.requested_article year: 2005, month: '06', day: '01', title: 'article-5'
     expect(not_found).to be_nil
   end
 
@@ -238,7 +238,7 @@ describe Article, type: :model do
     art1 = create(:article)
     art2 = create(:article)
     create(:tag, name: 'foo', articles: [art1, art2])
-    articles = Tag.find_by_name('foo').published_articles
+    articles = Tag.find_by(name: 'foo').published_articles
     assert_equal 2, articles.size
   end
 
@@ -515,10 +515,10 @@ describe Article, type: :model do
       end
     end
 
-    describe '#find_by_permalink' do
+    describe '#requested_article' do
       it 'uses UTC to determine correct day' do
         @a.save
-        a = Article.find_by_permalink year: 2011, month: 2, day: 21, permalink: 'a-big-article'
+        a = Article.requested_article year: 2011, month: 2, day: 21, permalink: 'a-big-article'
         expect(a).to eq(@a)
       end
     end
@@ -542,10 +542,10 @@ describe Article, type: :model do
       end
     end
 
-    describe '#find_by_permalink' do
+    describe '#requested_article' do
       it 'uses UTC to determine correct day' do
         @a.save
-        a = Article.find_by_permalink year: 2011, month: 2, day: 22, permalink: 'a-big-article'
+        a = Article.requested_article year: 2011, month: 2, day: 22, permalink: 'a-big-article'
         expect(a).to eq(@a)
       end
     end
@@ -569,10 +569,10 @@ describe Article, type: :model do
       end
     end
 
-    describe '#find_by_permalink' do
+    describe '#requested_article' do
       it 'uses JST to determine correct day' do
         @a.save
-        a = Article.find_by_permalink year: 2012, month: 12, day: 31, permalink: 'a-big-article'
+        a = Article.requested_article year: 2012, month: 12, day: 31, permalink: 'a-big-article'
         expect(a).to eq(@a)
       end
     end
@@ -596,10 +596,10 @@ describe Article, type: :model do
       end
     end
 
-    describe '#find_by_permalink' do
+    describe '#requested_article' do
       it 'uses JST to determine correct day' do
         @a.save
-        a = Article.find_by_permalink year: 2013, month: 1, day: 1, permalink: 'a-big-article'
+        a = Article.requested_article year: 2013, month: 1, day: 1, permalink: 'a-big-article'
         expect(a).to eq(@a)
       end
     end
@@ -839,15 +839,15 @@ describe Article, type: :model do
     end
   end
 
-  describe '#find_by_published_at' do
+  describe '#publication_months' do
     it 'returns an empty array when no articles' do
-      expect(Article.find_by_published_at).to be_empty
+      expect(Article.publication_months).to be_empty
     end
 
     context 'returns objects that respond to publication with YYYY-MM published_at date format' do
       it 'with article published_at date' do
         create(:article, published_at: Date.new(2010, 11, 23))
-        result = Article.find_by_published_at
+        result = Article.publication_months
         expect(result.count).to eq 1
         expect(result.first).to eq ['2010-11']
       end
@@ -855,7 +855,7 @@ describe Article, type: :model do
       it 'with 2 articles' do
         create(:article, published_at: Date.new(2010, 11, 23))
         create(:article, published_at: Date.new(2002, 4, 9))
-        result = Article.find_by_published_at
+        result = Article.publication_months
         expect(result.count).to eq 2
         expect(result.sort).to eq [['2010-11'], ['2002-04']].sort
       end

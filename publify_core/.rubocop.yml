@@ -11,6 +11,10 @@ AllCops:
 Rails:
   Enabled: true
 
+# This cop is only valid for Rails 5
+Rails/HttpPositionalArguments:
+  Enabled: false
+
 # Allow if (foo = get_foo) style
 Lint/AssignmentInCondition:
   AllowSafeAssignment: true
@@ -67,6 +71,10 @@ Style/MultilineMethodCallIndentation:
 # harder to keep a sane line length.
 Style/MultilineOperationIndentation:
   EnforcedStyle: indented
+
+# TODO: Re-enable?
+Style/NumericPredicate:
+  Enabled: false
 
 # Always use raise to raise exceptions
 Style/SignalException:

@@ -9,7 +9,7 @@ class TextFilter < ActiveRecord::Base
   end
 
   def self.find_or_default(name)
-    find_by_name(name) || find_by_name('none')
+    find_by(name: name) || find_by(name: 'none')
   end
 
   def self.filter_text(text, filters)

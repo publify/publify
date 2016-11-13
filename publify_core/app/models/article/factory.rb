@@ -27,7 +27,7 @@ class Article::Factory
 
   def requested_article(params = {})
     params[:title] ||= params[:article_id]
-    Article.find_by_permalink(params)
+    Article.requested_article(params)
   end
 
   def extract_params(path, format)

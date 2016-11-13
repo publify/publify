@@ -28,10 +28,6 @@ class Tag < ActiveRecord::Base
     tags
   end
 
-  def self.find_by_name_or_display_name(tagname, name)
-    find_by(%(name = ? OR display_name = ? OR display_name = ?), tagname, tagname, name)
-  end
-
   def ensure_naming_conventions
     self.display_name = name if display_name.blank?
     self.name = display_name.to_url unless display_name.blank?
@@ -43,10 +39,6 @@ class Tag < ActiveRecord::Base
       select(*Tag.column_names, 'COUNT(articles_tags.article_id) as article_counter').
       group(*Tag.column_names).
       order('article_counter DESC').limit(1000)
-  end
-
-  def self.find_by_permalink(name)
-    find_by_name(name)
   end
 
   def self.find_with_char(char)
