@@ -154,7 +154,7 @@ class Article < Content
     Article.where('published_at < ?', published_at).order('published_at desc').limit(1).first
   end
 
-  def self.find_by_published_at
+  def self.publication_months
     result = select('published_at').where('published_at is not NULL').where(type: 'Article')
     result.map { |d| [d.published_at.strftime('%Y-%m')] }.uniq
   end
