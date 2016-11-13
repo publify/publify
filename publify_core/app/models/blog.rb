@@ -142,7 +142,7 @@ EOS
   # that matches, then grab the first blog. If *that* fails, then create a new
   # Blog. The last case should only be used when Publify is first installed.
   def self.find_blog(base_url)
-    Blog.find_by_base_url(base_url) || Blog.first || Blog.new
+    Blog.find_by(base_url: base_url) || Blog.first || Blog.new
   end
 
   # In settings with :article_id
