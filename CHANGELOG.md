@@ -10,6 +10,12 @@
   an environment variable. This means you will have to update your production
   environment so this variable is actually set (whithajess)
 
+### Other changes
+
+* Hide spinner on ajax:complete for article search (nathanallen)
+* Fix layout for log in form (mvz)
+* Fix spinner for sidebar editor (mvz)
+
 ## 8.3.3
 
 * Fix Devise error during sign-in (mvz)
