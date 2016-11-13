@@ -1,0 +1,53 @@
+<% content_for :page_heading do %>
+  <h2>
+    <i class="glyphicon glyphicon-large glyphicon-comment"></i>
+    <%= t(".feedback") %>
+  </h2>
+<% end %>
+
+<%= render 'shared/flash', flash: flash %>
+<%= form_tag({action: 'index'}, method: :get, class: 'form-inline') do %>
+  <p>
+    <%= link_to(t(".all"), {controller: 'admin/feedback', action: :index}, {class: 'label label-default'}) %>
+    <%= link_to(t(".unapproved_comments"), {controller: 'admin/feedback', action: :index, only: 'unapproved'}, {class: 'label label-info'}) %>
+    <%= link_to(t(".presumed_ham"), {controller: 'admin/feedback', action: :index, only: 'presumed_ham'}, {class: 'label label-primary'}) %>
+    <%= link_to(t(".ham"), {controller: 'admin/feedback', action: :index, only: 'ham'}, {class: 'label label-success'}) %>
+    <%= link_to(t(".presumed_spam"), {controller: 'admin/feedback', action: :index, only: 'presumed_spam'}, {class: 'label label-warning'}) %>
+    <%= link_to(t(".spam"), {controller: 'admin/feedback', action: :index, only: 'spam'}, {class: 'label label-danger'}) %>
+  </p>
+<% end %>
+
+<%= form_tag({:action => 'bulkops'}, {class: 'form-inline'}) do %>
+
+  <%= hidden_field_tag "page", params[:page]%>
+
+  <%= render 'button', { :position => 'top' } %>
+  <table class='table hover'>
+    <thead>
+      <tr class='noborder'>
+        <th colspan='5'>
+          <input type="checkbox" name="checkall" id="checkall" onclick="check_all(this);">
+          <%= t(".select_all") %>
+        </th>
+      </tr>
+    </thead>
+    <% if @feedback.empty? %>
+      <tr>
+        <td colspan="5">
+          <%= t(".no_feedback") %>
+        </td>
+      </tr>
+    <% end %>
+    <% @feedback.each do |comment| %>
+      <%= render 'feedback', {:comment => comment} %>
+    <% end %>
+    <%= display_pagination(@feedback, 5) %>
+    <tr>
+      <th><input type="checkbox" name="checkall" id="checkall" onclick="check_all(this);"></th>
+      <th colspan='4'><%= t(".select_all") %></th>
+    </tr>
+  </table>
+  <%= render 'button', { position: 'bottom' } %>
+<% end %>
+
+<br class='clear'>

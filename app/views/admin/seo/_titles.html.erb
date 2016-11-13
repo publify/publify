@@ -1,0 +1,210 @@
+<fieldset class='form-horizontal'>
+  <legend><%= t(".home") %></legend>
+  <div class='form-group'>
+    <label class='control-label col-sm-2' for="setting_home_title_template"><%= t(".title_template") %></label>
+    <div class='col-sm-5'>
+      <%= text_field(:setting, :home_title_template, { :class => 'form-control'})%>
+    </div>
+  </div>
+  <div class='form-group'>
+    <label class='control-label col-sm-2' for="setting_home_desc_template"><%= t(".description_template") %></label>
+    <div class='col-sm-5'>
+      <%= text_area(:setting, :home_desc_template, :rows => 3, :class => 'form-control') %>
+    </div>
+  </div>
+</fieldset>
+<fieldset class='form-horizontal'>
+  <legend><%= t(".articles") %></legend>
+  <div class='form-group'>
+    <label class='control-label col-sm-2' for="setting_article_title_template"><%= t(".title_template") %></label>
+    <div class='col-sm-5'>
+      <%= text_field(:setting, :article_title_template, { :class => 'form-control'}) %>
+    </div>
+  </div>
+  <div class='form-group'>
+    <label class='control-label col-sm-2' for="setting_article_desc_template"><%= t(".description_template") %></label>
+    <div class='col-sm-5'>
+      <%= text_area(:setting, :article_desc_template, :rows => 3, :class => 'form-control') %>
+    </div>
+  </div>
+</fieldset>
+<fieldset class='form-horizontal'>
+  <legend><%= t(".pages") %></legend>
+  <div class='form-group'>
+    <label class='control-label col-sm-2' for="setting_page_title_template"><%= t(".title_template") %></label>
+    <div class='col-sm-5'>
+      <%= text_field(:setting, :page_title_template, { :class => 'form-control'}) %>
+    </div>
+  </div>
+  <div class='form-group'>
+    <label class='control-label col-sm-2' for="setting_page_desc_template"><%= t(".description_template") %></label>
+    <div class='col-sm-5'>
+      <%= text_area(:setting, :page_desc_template, :rows => 3, :class => 'form-control') %>
+    </div>
+  </div>
+</fieldset>
+
+<fieldset class='form-horizontal'>
+  <legend><%= t(".paginated_archives") %></legend>
+  <div class='form-group'>
+    <label class='control-label col-sm-2' for="setting_paginated_title_template"><%= t(".title_template") %></label>
+    <div class='col-sm-5'>
+      <%= text_field(:setting, :paginated_title_template, { :class => 'form-control'}) %>
+    </div>
+  </div>
+  <div class='form-group'>
+    <label class='control-label col-sm-2' for="setting_paginated_desc_template"><%= t(".description_template") %></label>
+    <div class='col-sm-5'>
+      <%= text_area(:setting, :paginated_desc_template, :rows => 3, :class => 'form-control') %>
+    </div>
+  </div>
+</fieldset>
+<fieldset class='form-horizontal'>
+  <legend><%= t(".dated_archives") %></legend>
+  <div class='form-group'>
+    <label class='control-label col-sm-2' for="setting_archives_title_template"><%= t(".title_template") %></label>
+    <div class='col-sm-5'>
+      <%= text_field(:setting, :archives_title_template, { :class => 'form-control'}) %>
+    </div>
+  </div>
+  <div class='form-group'>
+    <label class='control-label col-sm-2' for="setting_archives_desc_template"><%= t(".description_template") %></label>
+    <div class='col-sm-5'>
+      <%= text_area(:setting, :archives_desc_template, :rows => 3, :class => 'form-control') %>
+    </div>
+  </div>
+</fieldset>
+
+<fieldset class='form-horizontal'>
+  <legend><%= t(".author_page") %></legend>
+  <div class='form-group'>
+    <label class='control-label col-sm-2' for="setting_author_title_template"><%= t(".title_template") %></label>
+    <div class='col-sm-5'>
+      <%= text_field(:setting, :author_title_template, { :class => 'form-control'}) %>
+    </div>
+  </div>
+  <div class='form-group'>
+    <label class='control-label col-sm-2' for="setting_author_desc_template"><%= t(".description_template") %></label>
+    <div class='col-sm-5'>
+      <%= text_area(:setting, :author_desc_template, :rows => 3, :class => 'form-control') %>
+    </div>
+  </div>
+</fieldset>
+
+<fieldset class='form-horizontal'>
+  <legend><%= t(".search_results") %></legend>
+  <div class='form-group'>
+    <label class='control-label col-sm-2' for="setting_search_title_template"><%= t(".title_template") %></label>
+    <div class='col-sm-5'>
+      <%= text_field(:setting, :search_title_template, { :class => 'form-control'}) %>
+    </div>
+  </div>
+  <div class='form-group'>
+    <label class='control-label col-sm-2' for="setting_search_desc_template"><%= t(".description_template") %></label>
+    <div class='col-sm-5'>
+      <%= text_area(:setting, :search_desc_template, :rows => 3, :class => 'form-control') %>
+    </div>
+  </div>
+</fieldset>
+
+<fieldset class='form-horizontal'>
+  <legend><%= t(".short_statuses_lists") %></legend>
+  <div class='form-group'>
+    <label class='control-label col-sm-2' for="setting_statuses_title_template"><%= t(".title_template") %></label>
+    <div class='col-sm-5'>
+      <%= text_field(:setting, :statuses_title_template, { :class => 'form-control'}) %>
+    </div>
+  </div>
+  <div class='form-group'>
+    <label class='control-label col-sm-2' for="setting_statuses_desc_template"><%= t(".description_template") %></label>
+    <div class='col-sm-5'>
+      <%= text_area(:setting, :statuses_desc_template, :rows => 3, :class => 'form-control') %>
+    </div>
+  </div>
+</fieldset>
+
+<fieldset class='form-horizontal'>
+  <legend><%= t(".short_statuses") %></legend>
+  <div class='form-group'>
+    <label class='control-label col-sm-2' for="setting_status_title_template"><%= t(".title_template") %></label>
+    <div class='col-sm-5'>
+      <%= text_field(:setting, :status_title_template, { :class => 'form-control'}) %>
+    </div>
+  </div>
+  <div class='form-group'>
+    <label class='control-label col-sm-2' for="setting_status_desc_template"><%= t(".description_template") %></label>
+    <div class='col-sm-5'>
+      <%= text_area(:setting, :status_desc_template, :rows => 3, :class => 'form-control') %>
+    </div>
+  </div>
+</fieldset>
+
+<h3><%= t(".help_on_title_settings")%></h3>
+<p class='help-block'><%= t(".these_tags_can_be_included") %></p>
+<table class="table table-hover">
+  <tr>
+    <td>%title%</td>
+    <td><%= t(".replaced_with_the_title_of_the_article_page") %></td>
+  </tr>
+  <tr>
+    <td>%blog_name%</td>
+    <td><%= t(".the_blog_s_name") %></td>
+  </tr>
+  <tr>
+    <td>%blog_subtitle%</td>
+    <td><%= t(".the_blog_s_tagline_description") %></td>
+  </tr>
+  <tr>
+    <td>%excerpt%</td>
+    <td><%= t(".replaced_with_the_post_page_excerpt") %></td>
+  </tr>
+  <tr>
+    <td>%tags%</td>
+    <td><%= t(".replaced_with_the_article_tags") %></td>
+  </tr>
+  <tr>
+    <td>%categories</td>
+    <td><%= t(".replaced_with_the_article_categories") %></td>
+  </tr>
+  <tr>
+    <td>%title</td>
+    <td><%= t(".replaced_with_the_article_page_title") %></td>
+  </tr>
+  <tr>
+    <td>%name%</td>
+    <td><%= t(".replaced_with_the_category_tag_name") %></td>
+  </tr>
+  <tr>
+    <td>%search%</td>
+    <td><%= t(".replaced_with_the_current_search_phrase") %></td>
+  </tr>
+  <tr>
+    <td>%currenttime%</td>
+    <td><%= t(".replaced_with_the_current_time") %></td>
+  </tr>
+  <tr>
+    <td>%currentdate%</td>
+    <td><%= t(".replaced_with_the_current_date") %></td>
+  </tr>
+  <tr>
+    <td>%currentmonth%</td>
+    <td><%= t(".replaced_with_the_current_month") %></td>
+  </tr>
+  <tr>
+    <td>%currentyear%</td>
+    <td><%= t(".replaced_with_the_current_year") %></td>
+  </tr>
+  <tr>
+    <td>%page%</td>
+    <td><%= t(".replaced_with_the_current_page_number") %></td>
+  </tr>
+  <tr>
+    <td>%date%</td>
+    <td><%= t(".replaced_by_the_archive_date") %></td>
+  </tr>
+  <tr>
+    <td>%body%</td>
+    <td><%= t(".replaced_by_the_content_body") %></td>
+  </tr>
+</table>
+

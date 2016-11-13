@@ -1,0 +1,18 @@
+<% content_for :page_heading do %>
+<h2>
+  <i class="glyphicon glyphicon-large glyphicon-cog"></i>
+  <%= t(".cache") %>
+</h2>
+<% end %>
+
+<p class='alert alert-info'><%= t(".explanation") %></p>
+
+<div class='well'>
+  <p><%= t(".stats", files_count: @cache_number.to_i, size: @cache_size.to_i / 1000) %></p>
+  <hr>
+  <%= form_tag(admin_cache_path, method: :delete) do %>
+    <div class='form-group'>
+      <%= submit_tag(t(".sweep_cache"), class: 'btn btn-primary') %>
+    </div>
+  <% end %>
+</div>

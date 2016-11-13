@@ -1,0 +1,20 @@
+---
+ru:
+  admin:
+    sidebar:
+      target_sidebar:
+        update: Update
+  meta_sidebar:
+    content:
+      admin: Администрирование
+      powered_by_publify: Работает на Publify
+      rss_feed: RSS-лента
+  page_sidebar:
+    content:
+      pages: Страницы
+  search_sidebar:
+    content:
+      search: Поиск
+  tag_sidebar:
+    content:
+      tags: Tags

@@ -1,0 +1,8 @@
+<% for article in articles %>
+  <div class="post">
+    <%= render article %>
+    <%= render 'articles/article_links', article: article %>
+  </div>
+<% end %>
+
+<%= paginate articles, next_label: "#{t("pagination.next_page")} &raquo;", previous_label: "&laquo; #{t('pagination.previous_page')}" %>

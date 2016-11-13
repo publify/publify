@@ -1,0 +1,36 @@
+.sortable {
+  min-height: 10px;
+}
+#sidebar-config {
+  #active {
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+  }
+}
+#available_box > * {
+  z-index: 10;
+  h3 {
+    margin-top: 0;
+  }
+}
+.draggable-hover {
+  z-index: 1000;
+}
+.voidPlaceholder {
+  padding: 45px;
+  border: 1px solid #ccc;
+}
+.sidebar_item {
+  position: relative;
+  h3 {
+    margin-top: 0;
+  }
+  .deletion_link {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: inline-block;
+  }
+}

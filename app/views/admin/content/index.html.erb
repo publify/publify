@@ -1,0 +1,48 @@
+<% content_for :page_heading do %>
+  <h2>
+    <i class="glyphicon glyphicon-large glyphicon-pencil"></i>
+    <%= t('.manage_articles') %>
+    <%= link_to(t('.new_article'), {controller: 'content', action: 'new'}, id: 'dialog-link', class: 'btn btn-info pull-right') %>
+  </h2>
+<% end %>
+
+<%= form_tag({action: 'index'}, {method: :get, name: 'article', remote: true, class: 'form-inline spinnable', :"data-update-success" => 'articleList'}) do %>
+
+  <% if params[:search] and params[:search]['state'] %>
+    <input type="hidden" name="search[state]" value="<%= params[:search]['state'] %>" >
+  <% end %>
+
+  <p>
+    <%= link_to(t('.all_articles'), {action: 'index'}, {class: 'label label-default'}) %>
+    <%= link_to(t('.published'), {action: 'index', search: {state: 'published'}}, {class: 'label label-success'}) %>
+    <%= link_to(t('.withdrawn'), {action: 'index', search: {state: 'withdrawn'}}, {class: 'label label-danger'}) %>
+    <%= link_to(t('.drafts'), {action: 'index', search: {state: 'drafts'}}, {class: 'label label-info'}) %>
+    <%= link_to(t('.publication_pending'), {action: 'index', search: {state: 'pending'}}, {class: 'label label-warning'}) %>
+  </p>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="pull-right">
+        <div class="form-group">
+          <%= select_tag('search[user_id]', options_from_collection_for_select(User.all, 'id', 'name'), {prompt: t('.select_an_author'), class: 'form-control'}) %>
+        </div>
+        <div class="form-group">
+          <%= select_tag('search[published_at]', options_for_select(Article.find_by_published_at), {prompt: t('.publication_date'), class: 'form-control'}) %>
+        </div>
+        <div class="form-group">
+          <input id="search" type="text" name="search[searchstring]" class="form-control">
+        </div>
+        <div class="form-group">
+          <%= submit_tag(t('.search'), {class: 'btn btn-success'}) %>
+          <span id="spinner" style="display:none;"><%= image_tag('spinner.gif') %></span>
+        </div>
+      </div>
+      <br style="clear: both">
+    </div>
+  </div>
+  <table class="table table-hover">
+    <tbody id="articleList">
+      <%= render 'article_list', { articles: @articles } %>
+    </tbody>
+  </table>
+<% end %>

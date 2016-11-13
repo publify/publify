@@ -1,0 +1,27 @@
+<div id="sidebar-config" class='row'>
+  <div id="available" class='col-md-6'>
+    <div class='well'>
+      <h3><%= t(".available_items") %></h3>
+      <div id="available_box">
+        <% if available_sidebars.blank? %>
+        <p class='alert-message warning'><%= t(".you_have_no_plugins_installed") %>.</p>
+        <% else %>
+          <%= render partial: 'available', collection: available_sidebars %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div id="cnt-active" class='col-md-6'>
+    <div class='well'>
+      <h3 id="hdr-active">
+        <%= t(".active_sidebar_items") %>
+        <%= image_tag "spinner-blue.gif", id: 'update_spinner',
+          style: 'display:none;' %>
+      </h3>
+      <div id="active">
+        <%= render 'target', ordered_sidebars: ordered_sidebars %>
+      </div>
+    </div>
+  </div>
+</div>

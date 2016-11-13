@@ -1,0 +1,19 @@
+<%= hidden_field_tag "confirmed", params[:confirmed] %>
+<%= hidden_field_tag "published", params[:published] %>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class='form-group'>
+      <button name='<%= "bulkop_#{position}" %>' class="btn btn-success btn-sm" value='Mark Checked Items as Ham'><%= t(".mark_checked_items_as_ham") %></button>
+    </div>
+    <div class='form-group'>
+      <button name='<%= "bulkop_#{position}" %>' class="btn btn-warning btn-sm" value='Mark Checked Items as Spam'><%= t(".mark_checked_items_as_spam") %></button>
+    </div>
+    <div class='form-group'>
+      <button name='<%= "bulkop_#{position}" %>' class="btn btn-danger btn-sm" value='Delete Checked Items'><%= t(".delete_checked_items") %></button>
+    </div>
+    <div class='form-group pull-right'>
+      <button name='<%= "bulkop_#{position}" %>' class="btn btn-danger btn-sm" value='Delete all spam'><%= t(".delete_all_spam") %></button>
+    </div>
+  </div>
+</div>

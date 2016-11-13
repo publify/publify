@@ -1,0 +1,9 @@
+<h2>
+  <%= link_to_permalink article,article.title %>
+</h2>
+<p class="auth">
+  <%= t(".posted_by")%>
+  <%= author_link(article) %>
+  <%= display_date_and_time article.published_at %>
+</p>
+<%= render 'articles/protected_article_content', { :article => article } %>
