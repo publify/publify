@@ -28,10 +28,6 @@ class Tag < ActiveRecord::Base
     tags
   end
 
-  def self.find_by_name_or_display_name(tagname, name)
-    find_by(%(name = ? OR display_name = ? OR display_name = ?), tagname, tagname, name)
-  end
-
   def ensure_naming_conventions
     self.display_name = name if display_name.blank?
     self.name = display_name.to_url unless display_name.blank?
