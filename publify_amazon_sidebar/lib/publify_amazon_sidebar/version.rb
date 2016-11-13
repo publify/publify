@@ -1,3 +1,3 @@
 module PublifyAmazonSidebar
-  VERSION = '8.2.0'.freeze
+  VERSION = '9.0.0.pre1'.freeze
 end
