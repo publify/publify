@@ -24,9 +24,7 @@ pt-BR:
         header: ''
   admin:
     base:
-      cant_generate_secret: 'Erro: não foi possível gerar token secreto (secret token). Segurança está vulnerável. Por favor, verifique o conteúdo de %{checker_file}'
       not_allowed: Erro, você não possui permissão para executar esta ação
-      restart_application: Por questões de segurança, você deve reiniciar sua aplicação Publify. Aproveite sua experiência como blogger.
       successfully_deleted: Este %{name} foi removido com sucesso
     cache:
       destroy:

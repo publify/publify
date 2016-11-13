@@ -24,9 +24,7 @@ nb-NO:
         header: ''
   admin:
     base:
-      cant_generate_secret: 'Feil: kan ikke generere hemmelig token. Sikkerheten er kompromittert. Vennligst endre innholdet i %{checker_file}'
       not_allowed: Feil, du har ikke lov til å utføre denne handlingen
-      restart_application: Av sikkerhetsgrunner bør du restarte Publify. Kos deg videre med bloggingen.
       successfully_deleted: Slettet %{name}
     cache:
       destroy:

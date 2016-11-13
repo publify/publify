@@ -24,9 +24,7 @@ de:
         header: ''
   admin:
     base:
-      cant_generate_secret: 'Error: can''t generate secret token. Security is at risk. Please, change %{checker_file} content'
       not_allowed: Error, you are not allowed to perform this action
-      restart_application: For security reasons, you should restart your Publify application. Enjoy your blogging experience.
       successfully_deleted: This %{name} was deleted successfully
     cache:
       destroy:

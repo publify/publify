@@ -24,9 +24,7 @@ fr:
         header: ''
   admin:
     base:
-      cant_generate_secret: 'Erreur: impossible de générer un jeton secret. La sécurité est menacée. Merci de modifier le contenu de %{checker_file} '
       not_allowed: Erreur, vous n'êtes pas autorisé à réaliser cette action
-      restart_application: Pour des raisons de sécurité, vous devriez redémarrer votre application Publify.
       successfully_deleted: "%{name} a été supprimé avec succès"
     cache:
       destroy:
