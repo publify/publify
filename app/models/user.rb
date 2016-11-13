@@ -90,12 +90,6 @@ class User < ActiveRecord::Base
     text_filter
   end
 
-  def self.find_by_permalink(permalink)
-    find_by_login(permalink).tap do |user|
-      raise ActiveRecord::RecordNotFound unless user
-    end
-  end
-
   def self.to_prefix
     'author'
   end
