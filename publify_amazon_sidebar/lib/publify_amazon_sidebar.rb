@@ -1,3 +1,4 @@
+require 'publify_core'
 require 'publify_amazon_sidebar/engine'
 require 'sidebar_registry'
 
