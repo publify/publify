@@ -810,9 +810,6 @@ fr:
     page:
       about: À propos de
       body: Ceci est un exemple de page Publify. Vous pouvez la modifier pour écrire des informations sur vous ou sur votre blog, afin que vos lecteurs sachent qui vous êtes. Vous pouvez créer autant de pages que vous voulez et gérer tout votre contenu dans Publify.
-  shared:
-    search:
-      live_search: Live search
   tags:
     index:
       next_page: Page suivante

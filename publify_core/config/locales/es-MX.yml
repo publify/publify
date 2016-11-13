@@ -810,9 +810,6 @@ es-MX:
     page:
       about: Acerca
       body: Este es un ejemplo de una p&aacute;gina en Publify.  Ud. puede editarla para escribir informaci&oacute;n acerca de usted o su sitio para que los lectores sepan quien es usted.  Usted puede crear tantas p&aacute;ginas como esta para manejar todo el contenido dentro de Publify.
-  shared:
-    search:
-      live_search: Live search
   tags:
     index:
       next_page: Siguiente p&aacute;gina

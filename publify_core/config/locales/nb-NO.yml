@@ -810,9 +810,6 @@ nb-NO:
     page:
       about: Om
       body: Dette er et eksempel på en Publify-side. Du kan redigere den med informasjon om deg selv eller bloggen din, slik at leserne vet hvem du er. Du kan lage så mange du vil av slike sider, og håndtere alt innholdet med Publify.
-  shared:
-    search:
-      live_search: Live search
   tags:
     index:
       next_page: Neste side
