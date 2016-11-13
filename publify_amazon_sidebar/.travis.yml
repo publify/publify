@@ -1,0 +1,22 @@
+sudo: false
+language: ruby
+cache: bundler
+rvm:
+  - 2.1
+  - 2.2
+  - 2.3.0
+branches:
+  only:
+    - master
+
+addons:
+  code_climate:
+    repo_token: 8850bccc6911d74965627b1fafe753beb368fab00d33de0c7576c6598fc1220e
+
+notifications:
+  webhooks:
+    urls:
+      - http://publify_hook.ookook.fr/travisci
+    on_success: always
+    on_failure: never
+    on_start: never
