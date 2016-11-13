@@ -8,11 +8,11 @@ class Admin::UsersController < Admin::BaseController
 
   def new
     @user = User.new
-    @user.text_filter = TextFilter.find_by_name(this_blog.text_filter)
+    @user.text_filter = TextFilter.find_by(name: this_blog.text_filter)
   end
 
   def edit
-    @user = params[:id] ? User.find_by_id(params[:id]) : current_user
+    @user = params[:id] ? User.find_by(id: params[:id]) : current_user
   end
 
   def create

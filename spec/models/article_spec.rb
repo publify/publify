@@ -238,7 +238,7 @@ describe Article, type: :model do
     art1 = create(:article)
     art2 = create(:article)
     create(:tag, name: 'foo', articles: [art1, art2])
-    articles = Tag.find_by_name('foo').published_articles
+    articles = Tag.find_by(name: 'foo').published_articles
     assert_equal 2, articles.size
   end
 
