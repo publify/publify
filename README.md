@@ -80,6 +80,13 @@ $ rails server
 
 You can now launch you browser and access 127.0.0.1:3000.
 
+### Install Publify on a server
+
+You can use your preferred installation method (e.g., Capistrano) to install
+Publify on a server. You will also need to set up the environment so it
+contains at least `SECRET_KEY_BASE`. Your web server may allow you to set this,
+or you can consider using a tool like `dotenv`.
+
 ### Install Publify on Heroku
 
 In order to install Publify on Heroku, you’ll need to do some minor tweaks.
