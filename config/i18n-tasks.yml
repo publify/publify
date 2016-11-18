@@ -9,8 +9,8 @@ data:
   read:
     - config/locales/%{locale}.yml
     - config/locales/sidebars.%{locale}.yml
-    - publify_core/config/locales/%{locale}.yml
-    - publify_core/config/locales/sidebars.%{locale}.yml
+    - "<%= %x[bundle show publify_core].chomp %>/config/locales/%{locale}.yml"
+    - "<%= %x[bundle show publify_core].chomp %>/config/locales/sidebars.%{locale}.yml"
 
   # Locale files to write new keys to, based on a list of key pattern => file
   # rules. Matched from top to bottom:

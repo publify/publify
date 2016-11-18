@@ -1,2 +1,0 @@
-class AccountsController < BaseController
-end

@@ -15,4 +15,3 @@ namespace :i18n do
 end
 
 task default: 'i18n:missing'
-task default: 'i18n:unused'
