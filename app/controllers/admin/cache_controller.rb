@@ -7,11 +7,7 @@ class Admin::CacheController < Admin::BaseController
   end
 
   def destroy
-    begin
-      flash[:success] = t('admin.cache.destroy.success')
-    rescue
-      flash[:error] = t('admin.cache.destroy.error')
-    end
+    flash[:success] = t('admin.cache.destroy.success')
     redirect_to admin_cache_url
   end
 end
