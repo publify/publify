@@ -50,4 +50,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'factory_girl_rails', '~> 4.6'
   s.add_development_dependency 'rubocop', '~> 0.45.0'
   s.add_development_dependency 'i18n-tasks', '~> 0.9.1'
+  s.add_development_dependency 'rails-controller-testing', '~> 1.0.1'
 end
