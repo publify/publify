@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '>= 2.1.0'
 
-  s.add_dependency 'rails', '~> 4.2.6'
+  s.add_dependency 'rails', '~> 5.0.0'
   s.add_dependency 'RedCloth', '~> 4.3.1'
   s.add_dependency 'activerecord-session_store', '~> 1.0.0'
   s.add_dependency 'akismet', '~> 2.0'
