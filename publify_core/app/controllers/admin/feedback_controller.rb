@@ -108,11 +108,6 @@ class Admin::FeedbackController < Admin::BaseController
         count += Feedback.delete(id)
       end
       flash[:success] = I18n.t('admin.feedback.bulkops.success_deleted', count: count)
-
-      if items.any(&:invalidates_cache?)
-        flush_cache
-        return
-      end
     when 'Mark Checked Items as Ham'
       update_feedback(items, :mark_as_ham!)
       flash[:success] = I18n.t('admin.feedback.bulkops.success_mark_as_ham', count: ids.size)
@@ -147,12 +142,6 @@ class Admin::FeedbackController < Admin::BaseController
   def update_feedback(items, method)
     items.each do |value|
       value.send(method)
-      @unexpired && value.invalidates_cache? or next
-      flush_cache
     end
-  end
-
-  def flush_cache
-    @unexpired = false
   end
 end
