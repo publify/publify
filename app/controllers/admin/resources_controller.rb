@@ -1,6 +1,4 @@
 class Admin::ResourcesController < Admin::BaseController
-  cache_sweeper :blog_sweeper
-
   def upload
     file = params[:upload]
 

@@ -5,8 +5,6 @@ class ArticlesController < ContentController
 
   layout :theme_layout, except: [:trackback]
 
-  cache_sweeper :blog_sweeper
-
   helper :'admin/base'
 
   def index

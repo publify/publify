@@ -1,8 +1,6 @@
 class FeedbackController < BaseController
   before_action :get_article, only: [:create]
 
-  cache_sweeper :blog_sweeper
-
   # Used only by comments. Maybe need move to comments controller
   # or use it in our code with send some feed about trackback
   #

@@ -7,7 +7,6 @@ class Admin::PagesController < Admin::BaseController
   before_action :set_page, only: [:show, :edit, :update, :destroy]
 
   layout :get_layout
-  cache_sweeper :blog_sweeper
 
   def index
     @search = params[:search] ? params[:search] : {}
