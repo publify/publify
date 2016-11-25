@@ -8,7 +8,6 @@ class Admin::CacheController < Admin::BaseController
 
   def destroy
     begin
-      PageCache.sweep_all
       flash[:success] = t('admin.cache.destroy.success')
     rescue
       flash[:error] = t('admin.cache.destroy.error')

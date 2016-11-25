@@ -58,19 +58,15 @@ class BlogSweeper < ActionController::Caching::Sweeper
   end
 
   def sweep_all
-    PageCache.sweep_all
   end
 
   def sweep_theme
-    PageCache.sweep_theme_cache
   end
 
   def sweep_articles
-    PageCache.sweep_all
   end
 
   def sweep_pages
-    PageCache.zap_pages(%w(pages))
   end
 
   def logger

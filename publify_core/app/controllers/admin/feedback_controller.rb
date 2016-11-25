@@ -154,6 +154,5 @@ class Admin::FeedbackController < Admin::BaseController
 
   def flush_cache
     @unexpired = false
-    PageCache.sweep_all
   end
 end
