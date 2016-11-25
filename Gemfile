@@ -63,7 +63,7 @@ group :development, :test do
   gem 'pry-rails', '~> 0.3.4'
   gem 'pry', '~> 0.10.3'
 
-  gem 'rubocop', '~> 0.41.0', require: false
+  gem 'rubocop', '~> 0.45.0', require: false
   gem 'i18n-tasks', '~> 0.9.1', require: false
 end
 
@@ -72,7 +72,7 @@ group :development do
   gem 'web-console', '~> 3.0' if RUBY_VERSION >= '2.2.2'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring', '~> 1.7'
+  gem 'spring', '~> 2.0.0'
   gem 'spring-commands-rspec', '~> 1.0'
   gem 'spring-commands-cucumber', '~> 1.0'
 
@@ -84,7 +84,7 @@ group :development do
 end
 
 group :test do
-  gem 'codeclimate-test-reporter', '~> 0.6.0', require: nil
+  gem 'codeclimate-test-reporter', '~> 1.0.3', require: false
   gem 'sqlite3'
 end
 
