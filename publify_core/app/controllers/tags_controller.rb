@@ -1,7 +1,6 @@
 class TagsController < ContentController
   before_action :auto_discovery_feed, only: [:show, :index]
   layout :theme_layout
-  cache_sweeper :blog_sweeper
 
   def index
     @tags = Tag.page(params[:page]).per(100)

@@ -2,7 +2,6 @@ class NotesController < ContentController
   require 'json'
 
   layout :theme_layout
-  cache_sweeper :blog_sweeper
 
   after_action :set_blog_infos
 
