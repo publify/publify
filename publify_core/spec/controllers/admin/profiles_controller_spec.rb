@@ -18,12 +18,12 @@ describe Admin::ProfilesController, type: :controller do
 
   describe '#update' do
     it 'redirects to profile page' do
-      post :update, id: alice.id, user: { email: 'foo@bar.com' }
+      post :update, params: { id: alice.id, user: { email: 'foo@bar.com' } }
       expect(response).to redirect_to('/admin/profiles')
     end
 
     it 'does not allow updating your own profile' do
-      post :update, id: alice.id, user: { profile: User::ADMIN }
+      post :update, params: { id: alice.id, user: { profile: User::ADMIN } }
       expect(alice.reload.profile).to eq User::PUBLISHER
     end
   end

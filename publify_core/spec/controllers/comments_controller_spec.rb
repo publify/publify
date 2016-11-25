@@ -8,7 +8,7 @@ describe CommentsController, type: :controller do
       let(:article) { create(:article) }
       let(:comment) { { body: 'content', author: 'bob', email: 'bob@home', url: 'http://bobs.home/' } }
 
-      before { post :create, comment: comment, article_id: article.id }
+      before { post :create, params: { comment: comment, article_id: article.id } }
 
       it { expect(assigns[:comment]).to eq(Comment.find_by(author: 'bob', body: 'content', article_id: article.id)) }
       it { expect(assigns[:article]).to eq(article) }
@@ -36,7 +36,7 @@ describe CommentsController, type: :controller do
   describe 'index' do
     context 'scoped index' do
       let(:article) { create(:article) }
-      before(:each) { get 'index', article_id: article.id }
+      before(:each) { get 'index', params: { article_id: article.id } }
       it { expect(response).to redirect_to("#{article.permalink_url}#comments") }
     end
 
@@ -51,7 +51,7 @@ describe CommentsController, type: :controller do
         let!(:some) { create(:comment) }
         let!(:items) { create(:comment) }
 
-        before(:each) { get 'index', format: 'atom' }
+        before(:each) { get 'index', params: { format: 'atom' } }
 
         it { expect(response).to be_success }
         it { expect(assigns(:comments)).to eq([some, items]) }
@@ -60,7 +60,7 @@ describe CommentsController, type: :controller do
 
       context 'with an article' do
         let!(:article) { create(:article) }
-        before(:each) { get :index, format: 'atom', article_id: article.id }
+        before(:each) { get :index, params: { format: 'atom', article_id: article.id } }
         it { expect(response).to be_success }
         it { expect(response).to render_template('index_atom_feed') }
       end
@@ -71,7 +71,7 @@ describe CommentsController, type: :controller do
         let!(:some) { create(:comment, title: 'some') }
         let!(:items) { create(:comment, title: 'items') }
 
-        before { get 'index', format: 'rss' }
+        before { get 'index', params: { format: 'rss' } }
         it { expect(response).to be_success }
         it { expect(assigns(:comments)).to eq([some, items]) }
         it { expect(response).to render_template('index_rss_feed') }
@@ -79,7 +79,7 @@ describe CommentsController, type: :controller do
 
       context 'with article' do
         let!(:article) { create(:article) }
-        before(:each) { get :index, format: 'rss', article_id: article.id }
+        before(:each) { get :index, params: { format: 'rss', article_id: article.id } }
 
         it { expect(response).to be_success }
         it { expect(response).to render_template('index_rss_feed') }

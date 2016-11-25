@@ -20,7 +20,7 @@ describe Admin::PagesController, type: :controller do
     end
 
     context 'with page 1' do
-      before(:each) { get :index, page: 1 }
+      before(:each) { get :index, params: { page: 1 } }
       it { expect(response).to be_success }
       it { expect(response).to render_template('index') }
       it { expect(assigns(:pages)).to_not be_nil }
@@ -59,19 +59,19 @@ describe Admin::PagesController, type: :controller do
       end
 
       it 'should create a published page with a redirect' do
-        post(:create, 'page' => base_page)
+        post :create, params: { 'page' => base_page }
         expect(assigns(:page).redirect).not_to be_nil
       end
 
       it 'should create an unpublished page without a redirect' do
-        post(:create, 'page' => base_page(state: :unpublished, published: false))
+        post :create, params: { 'page' => base_page(state: :unpublished, published: false) }
         expect(assigns(:page).redirect).to be_nil
       end
 
       it 'should create a page published in the future without a redirect' do
         # TODO: published_at parameter is currently ignored
         skip
-        post(:create, 'page' => base_page(published_at: (Time.now + 1.hour).to_s))
+        post :create, params: { 'page' => base_page(published_at: (Time.now + 1.hour).to_s) }
         expect(assigns(:page).redirect).to be_nil
       end
     end
@@ -81,7 +81,7 @@ describe Admin::PagesController, type: :controller do
     let!(:page) { create(:page) }
 
     context 'should get the edit page' do
-      before(:each) { get :edit, id: page.id }
+      before(:each) { get :edit, params: { id: page.id } }
       it { expect(response).to be_success }
       it { expect(response).to render_template('edit') }
       it { expect(assigns(:page)).to eq(page) }
@@ -103,7 +103,7 @@ describe Admin::PagesController, type: :controller do
   describe 'destroy' do
     let!(:page) { create(:page) }
 
-    before(:each) { post :destroy, id: page.id }
+    before(:each) { post :destroy, params: { id: page.id } }
 
     it { expect(response).to redirect_to(action: :index) }
     it { expect(Page.count).to eq(0) }

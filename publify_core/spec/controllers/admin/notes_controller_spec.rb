@@ -61,7 +61,7 @@ describe Admin::NotesController, type: :controller do
       let(:note) { create(:note, user_id: admin) }
 
       describe 'edit' do
-        before(:each) { get :edit, id: note.id }
+        before(:each) { get :edit, params: { id: note.id } }
         it { expect(response).to be_success }
         it { expect(response).to render_template('edit') }
         it { expect(assigns(:note)).to eq(note) }
@@ -75,12 +75,12 @@ describe Admin::NotesController, type: :controller do
       end
 
       describe 'show' do
-        before(:each) { get :show, id: note.id }
+        before(:each) { get :show, params: { id: note.id } }
         it { expect(response).to render_template('show') }
       end
 
       describe 'Destroying a note' do
-        before(:each) { post :destroy, id: note.id }
+        before(:each) { post :destroy, params: { id: note.id } }
         it { expect(response).to redirect_to(admin_notes_path) }
         it { expect(Note.count).to eq(0) }
       end

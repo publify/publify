@@ -43,16 +43,16 @@ describe Admin::RedirectsController, type: :controller do
   describe '#create' do
     it 'should create a new redirect and redirect to #index' do
       expect do
-        post :create, 'redirect' => { from_path: 'some/place',
-                                      to_path: 'somewhere/else' }
+        post :create, params: { 'redirect' => { from_path: 'some/place',
+                                                to_path: 'somewhere/else' } }
         assert_response :redirect, action: 'index'
       end.to change(Redirect, :count)
     end
 
     it 'should create a redirect with an empty from path and redirect to #index' do
       expect do
-        post :create, 'redirect' => { from_path: '',
-                                      to_path: 'somewhere/different' }
+        post :create, params: { 'redirect' => { from_path: '',
+                                                to_path: 'somewhere/different' } }
         assert_response :redirect, action: 'index'
       end.to change(Redirect, :count)
     end
@@ -60,7 +60,7 @@ describe Admin::RedirectsController, type: :controller do
 
   describe 'GET #edit' do
     before(:each) do
-      get :edit, id: FactoryGirl.create(:redirect).id
+      get :edit, params: { id: FactoryGirl.create(:redirect).id }
     end
 
     it 'renders the edit template with an HTTP 200 status code' do
@@ -73,7 +73,7 @@ describe Admin::RedirectsController, type: :controller do
   describe '#update an existing redirect' do
     it 'should update and redirect to #index' do
       @test_id = FactoryGirl.create(:redirect).id
-      post :update, id: @test_id, redirect: { from_path: 'somewhere/over', to_path: 'the/rainbow' }
+      post :update, params: { id: @test_id, redirect: { from_path: 'somewhere/over', to_path: 'the/rainbow' } }
       assert_response :redirect, action: 'index'
       expect(Redirect.count).to eq(1)
       expect(Redirect.first.from_path).to eq('somewhere/over')
@@ -88,12 +88,12 @@ describe Admin::RedirectsController, type: :controller do
     end
 
     it 'should redirect to index' do
-      post :destroy, id: @test_id
+      post :destroy, params: { id: @test_id }
       assert_response :redirect, action: 'index'
     end
 
     it 'should no longer exist' do
-      post :destroy, id: @test_id
+      post :destroy, params: { id: @test_id }
       expect { Redirect.find(@test_id) }.to raise_error ActiveRecord::RecordNotFound
     end
   end

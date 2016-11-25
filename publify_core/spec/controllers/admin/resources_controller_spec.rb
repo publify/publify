@@ -25,7 +25,7 @@ describe Admin::ResourcesController, type: :controller do
     it 'redirects to the index' do
       res_id = create(:resource, upload: file_upload('hello')).id
 
-      delete :destroy, id: res_id
+      delete :destroy, params: { id: res_id }
       expect(response).to redirect_to(action: 'index')
     end
   end
@@ -44,17 +44,17 @@ describe Admin::ResourcesController, type: :controller do
       let(:upload) { file_upload('haha') }
 
       it 'creates a new Resource' do
-        expect { post :upload, upload: upload }.
+        expect { post :upload, params: { upload: upload } }.
           to change { Resource.count }.by(1)
       end
 
       it 'sets the content type to text/plain' do
-        post :upload, upload: upload
+        post :upload, params: { upload: upload }
         expect(Resource.last.mime).to eq 'text/plain'
       end
 
       it 'sets the flash to success' do
-        post :upload, upload: upload
+        post :upload, params: { upload: upload }
         aggregate_failures do
           expect(flash[:success]).not_to be_nil
           expect(flash[:warning]).to be_nil
@@ -66,17 +66,17 @@ describe Admin::ResourcesController, type: :controller do
       let(:upload) { file_upload('haha.png', 'testfile.png') }
 
       it 'creates a new image Resource' do
-        expect { post :upload, upload: upload }.
+        expect { post :upload, params: { upload: upload } }.
           to change { Resource.count }.by(1)
       end
 
       it 'sets the content type correctly' do
-        post :upload, upload: upload
+        post :upload, params: { upload: upload }
         expect(Resource.last.mime).to eq 'image/png'
       end
 
       it 'sets the flash to success' do
-        post :upload, upload: upload
+        post :upload, params: { upload: upload }
         aggregate_failures do
           expect(flash[:success]).not_to be_nil
           expect(flash[:warning]).to be_nil
@@ -92,18 +92,18 @@ describe Admin::ResourcesController, type: :controller do
       end
 
       it 'does not create a new image Resource' do
-        expect { post :upload, upload: upload }.
+        expect { post :upload, params: { upload: upload } }.
           not_to change { Resource.count }
       end
 
       it 'does not attempt to process a the image' do
-        post :upload, upload: upload
+        post :upload, params: { upload: upload }
         result = assigns(:up)
         expect(result.errors[:upload].first).not_to match(/^Failed to manipulate with MiniMagick/)
       end
 
       it 'sets the flash to failure' do
-        post :upload, upload: upload
+        post :upload, params: { upload: upload }
         aggregate_failures do
           expect(flash[:success]).to be_nil
           expect(flash[:warning]).not_to be_nil
@@ -119,18 +119,18 @@ describe Admin::ResourcesController, type: :controller do
       end
 
       it 'does not create a new fake image Resource' do
-        expect { post :upload, upload: upload }.
+        expect { post :upload, params: { upload: upload } }.
           not_to change { Resource.count }
       end
 
       it 'does not attempt to process a new fake image Resource' do
-        post :upload, upload: upload
+        post :upload, params: { upload: upload }
         result = assigns(:up)
         expect(result.errors[:upload].first).not_to match(/^Failed to manipulate with MiniMagick/)
       end
 
       it 'sets the flash to failure' do
-        post :upload, upload: upload
+        post :upload, params: { upload: upload }
         aggregate_failures do
           expect(flash[:success]).to be_nil
           expect(flash[:warning]).not_to be_nil

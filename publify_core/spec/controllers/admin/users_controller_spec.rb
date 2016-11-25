@@ -45,11 +45,11 @@ describe Admin::UsersController, type: :controller do
   describe '#create' do
     before do
       sign_in admin
-      post :create, user: { login: 'errand', email: 'corey@test.com',
-                            password: 'testpass',
-                            password_confirmation: 'testpass',
-                            profile: User::CONTRIBUTOR,
-                            nickname: 'fooo', firstname: 'bar' }
+      post :create, params: { user: { login: 'errand', email: 'corey@test.com',
+                                      password: 'testpass',
+                                      password_confirmation: 'testpass',
+                                      profile: User::CONTRIBUTOR,
+                                      nickname: 'fooo', firstname: 'bar' } }
     end
 
     it 'redirects to the index' do
@@ -65,15 +65,15 @@ describe Admin::UsersController, type: :controller do
     end
 
     it 'should redirect to index' do
-      post :update, id: contributor.id, user: { login: 'errand',
-                                                email: 'corey@test.com', password: 'testpass',
-                                                password_confirmation: 'testpass' }
+      post :update, params: { id: contributor.id, user: { login: 'errand',
+                                                          email: 'corey@test.com', password: 'testpass',
+                                                          password_confirmation: 'testpass' } }
       expect(response).to redirect_to(action: 'index')
     end
 
     it 'skips blank passwords' do
-      post :update, id: contributor.id, user: { login: 'errand',
-                                                password: '', password_confirmation: '' }
+      post :update, params: { id: contributor.id, user: { login: 'errand',
+                                                          password: '', password_confirmation: '' } }
       expect(response).to redirect_to(action: 'index')
     end
 
@@ -81,9 +81,7 @@ describe Admin::UsersController, type: :controller do
       let(:user) { publisher }
 
       before do
-        post :update,
-             id: contributor.id,
-             user: { profile: User::PUBLISHER }
+        post :update, params: { id: contributor.id, user: { profile: User::PUBLISHER } }
       end
 
       it 'should redirect to login' do
