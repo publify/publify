@@ -32,12 +32,12 @@ describe Admin::SettingsController, type: :controller do
 
   describe '#update' do
     it 'updates the settings' do
-      post :update, setting: { blog_name: 'New name' }
+      post :update, params: { setting: { blog_name: 'New name' } }
       expect(blog.reload.blog_name).to eq 'New name'
     end
 
     it 'redirects to :index by default' do
-      post :update, setting: { blog_name: 'New name' }
+      post :update, params: { setting: { blog_name: 'New name' } }
       expect(response).to redirect_to(admin_settings_path)
     end
 
@@ -48,7 +48,7 @@ describe Admin::SettingsController, type: :controller do
 
       it 'sets the flash in the new language' do
         expect(I18n.locale).to eq :en
-        post :update, setting: { lang: 'nl' }
+        post :update, params: { setting: { lang: 'nl' } }
         expect(I18n.locale).to eq :nl
         expect(flash[:success]).to eq I18n.t('admin.settings.update.success')
       end

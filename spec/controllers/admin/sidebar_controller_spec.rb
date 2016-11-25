@@ -24,8 +24,7 @@ describe Admin::SidebarController, type: :controller do
     it 'updates content' do
       sidebar = FactoryGirl.create(:sidebar)
 
-      post :update, id: sidebar.to_param,
-                    configure: { sidebar.id.to_s => { 'title' => 'Links', 'body' => 'another html' } }
+      post :update, params: { id: sidebar.to_param, configure: { sidebar.id.to_s => { 'title' => 'Links', 'body' => 'another html' } } }
       sidebar.reload
 
       expect(sidebar.config['body']).to eq('another html')
@@ -36,12 +35,12 @@ describe Admin::SidebarController, type: :controller do
     render_views
 
     it 'creates new sidebars in the current blog' do
-      post :sortable, sidebar: ['9001']
+      post :sortable, params: { sidebar: ['9001'] }
       expect(blog.sidebars.count).to eq 1
     end
 
     it 'renders template for js response' do
-      post :sortable, sidebar: ['9001'], format: :js
+      post :sortable, params: { sidebar: ['9001'], format: :js }
       expect(response).to be_success
       expect(response).to render_template(:sortable)
     end
