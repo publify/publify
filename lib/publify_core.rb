@@ -12,11 +12,6 @@ require 'dynamic_form'
 require 'jquery-rails'
 require 'jquery-ui-rails'
 require 'kaminari'
-# Ensure Rails Observers defines ActiveRecord::Observer before loading
-# sweeping.rb. Otherwise, Sweeper won't be defined.
-# TODO: Replace or update rails-observers
-require 'rails/observers/activerecord/active_record'
-require 'rails-observers'
 require 'rails_autolink'
 require 'rails-timeago'
 require 'recaptcha/rails'
