@@ -16,8 +16,8 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 #
 # Code climate for coverage reporting into Travis CI
-require 'codeclimate-test-reporter'
-CodeClimate::TestReporter.start
+require 'simplecov'
+SimpleCov.start
 
 RSpec.configure do |config|
   # These two settings work together to allow you to limit a spec run

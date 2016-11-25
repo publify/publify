@@ -84,7 +84,7 @@ group :development do
 end
 
 group :test do
-  gem 'codeclimate-test-reporter', '~> 1.0.3', require: nil
+  gem 'codeclimate-test-reporter', '~> 1.0.3', require: false
   gem 'sqlite3'
 end
 
