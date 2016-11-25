@@ -474,7 +474,7 @@ describe ArticlesController, 'redirecting', type: :controller do
 
           it 'renders without errors when recaptcha is enabled' do
             Recaptcha.configure do |config|
-              config.site_key  = 'YourAPIkeysHere_yyyyyyyyyyyyyyyyy'
+              config.site_key = 'YourAPIkeysHere_yyyyyyyyyyyyyyyyy'
               config.secret_key = 'YourAPIkeysHere_xxxxxxxxxxxxxxxxx'
             end
             blog.use_recaptcha = true
