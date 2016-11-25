@@ -32,7 +32,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'devise-i18n', '~> 1.1.0'
   s.add_dependency 'dynamic_form', '~> 1.1.4'
   s.add_dependency 'feedjira', '~> 2.0.0'
-  s.add_dependency 'fog-aws', '~> 0.9.2'
+  s.add_dependency 'fog-aws', '~> 0.12.0'
   s.add_dependency 'jquery-rails', '~> 4.1.0'
   s.add_dependency 'jquery-ui-rails', '~> 5.0.2'
   s.add_dependency 'kaminari', '~> 0.17.0'
