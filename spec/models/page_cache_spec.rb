@@ -1,16 +1,16 @@
 require 'rails_helper'
 
-def define_spec_public_cache_directory
+def spec_public_cache_directory
   spec_cache_dir = File.join(Rails.root, 'spec', 'public')
   unless File.exist? spec_cache_dir
     FileUtils.mkdir_p spec_cache_dir
   end
-  ActionController::Base.page_cache_directory = spec_cache_dir
+  spec_cache_dir
 end
 
 def path_for_file_in_spec_public_cache_directory(file)
-  define_spec_public_cache_directory
-  File.join(ActionController::Base.page_cache_directory, file)
+  spec_public_cache_directory
+  File.join(spec_public_cache_directory, file)
 end
 
 def create_file_in_spec_public_cache_directory(file)
@@ -29,10 +29,10 @@ describe PageCache, type: :model do
       end
     end
 
-    it 'should destroy all file in cache directory with path' do
+    it 'does not destroy any files in cache directory with path' do
       PageCache.sweep_all
       @all_paths.each do |path|
-        expect(File).not_to be_exist(path)
+        expect(File).to be_exist(path)
       end
     end
   end

@@ -3,7 +3,6 @@ class NotesController < ContentController
 
   layout :theme_layout
   cache_sweeper :blog_sweeper
-  caches_page :index, :show, if: proc { |c| c.request.query_string == '' }
 
   after_action :set_blog_infos
 

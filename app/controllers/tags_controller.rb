@@ -3,10 +3,6 @@ class TagsController < ContentController
   layout :theme_layout
   cache_sweeper :blog_sweeper
 
-  caches_page :index, :show, if: proc { |c|
-    c.request.query_string == ''
-  }
-
   def index
     @tags = Tag.page(params[:page]).per(100)
     @page_title = controller_name.capitalize
