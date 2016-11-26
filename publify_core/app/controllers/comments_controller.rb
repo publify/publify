@@ -23,7 +23,7 @@ class CommentsController < FeedbackController
   end
 
   def preview
-    return render text: 'Comments are closed' if @article.comments_closed?
+    return render plain: 'Comments are closed' if @article.comments_closed?
 
     if comment_params[:body].blank?
       render nothing: true

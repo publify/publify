@@ -31,7 +31,7 @@ class ThemeController < ContentController
     end
 
     src = this_blog.current_theme.path + "/#{type}/#{file}"
-    return (render text: 'Not Found', status: 404) unless File.exist? src
+    return (render plain: 'Not Found', status: 404) unless File.exist? src
 
     cache_page File.read(src) if perform_caching
 

@@ -126,7 +126,7 @@ class ArticlesController < ContentController
 
   # TODO: Move to TextfilterController?
   def markup_help
-    render text: TextFilter.find(params[:id]).commenthelp
+    render html: TextFilter.find(params[:id]).commenthelp
   end
 
   private
