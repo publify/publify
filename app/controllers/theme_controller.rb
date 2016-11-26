@@ -16,7 +16,7 @@ class ThemeController < ContentController
   end
 
   def error
-    render nothing: true, status: 404
+    head :not_found
   end
 
   def static_view_test

@@ -26,7 +26,7 @@ class CommentsController < FeedbackController
     return render plain: 'Comments are closed' if @article.comments_closed?
 
     if comment_params[:body].blank?
-      render nothing: true
+      head :ok
       return
     end
 
