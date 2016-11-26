@@ -238,30 +238,34 @@ describe Admin::ContentController, type: :controller do
         it { expect(assigns(:article).user).to eq(publisher) }
 
         context 'when doing a draft' do
-          let(:article_params) { { title: 'posted via tests!', body: 'a good boy', state: 'draft' } }
+          let(:article_params) { { title: 'posted via tests!', body: 'a good boy', draft: 'true' } }
           it { expect(assigns(:article)).to_not be_published }
         end
       end
 
-      context 'write for futur' do
-        let(:article_params) { { title: 'posted via tests!', body: 'a good boy', state: 'draft', published_at: (Time.now + 1.hour).to_s } }
+      context 'writing for the future' do
+        let(:article_params) do
+          { title: 'posted via tests!', body: 'a good boy', published_at: (Time.now + 1.hour).to_s }
+        end
 
-        it 'creates an article' do
-          expect do
-            post :create, params: { article: article_params }
-          end.to change(Article, :count).by(1)
+        before do
+          post :create, params: { article: article_params }
         end
 
         it 'does not create a short url' do
-          expect do
-            post :create, params: { article: article_params }
-          end.to_not change(Redirect, :count)
+          expect(Redirect.count).to eq 0
         end
 
         it 'creates a trigger to publish the article' do
-          expect do
-            post :create, params: { article: article_params }
-          end.to change(Trigger, :count).by(1)
+          expect(Trigger.count).to eq 1
+        end
+
+        it 'does not publish the article' do
+          expect(assigns(:article)).to be_publication_pending
+        end
+
+        it 'sets the publication time in the future' do
+          expect(assigns(:article).published_at).to be > 10.minutes.from_now
         end
       end
     end
