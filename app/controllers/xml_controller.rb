@@ -9,7 +9,7 @@ class XmlController < BaseController
     @format = 'rss'
     if params[:format]
       @format = NORMALIZED_FORMAT_FOR[params[:format]]
-      return render(text: 'Unsupported format', status: 404) unless @format
+      return render(plain: 'Unsupported format', status: 404) unless @format
     end
 
     # TODO: Move redirects into config/routes.rb, if possible
@@ -43,7 +43,7 @@ class XmlController < BaseController
         format.googlesitemap
       end
     else
-      return render(text: 'Unsupported feed type', status: 404)
+      return render(plain: 'Unsupported feed type', status: 404)
     end
   end
 
