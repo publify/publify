@@ -1,4 +1,3 @@
 Rails.application.routes.draw do
-  # The host application will automatically inherit the engine routes, so there
-  # is no need to put anything here.
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
