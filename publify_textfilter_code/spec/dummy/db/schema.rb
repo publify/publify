@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -16,10 +15,9 @@ ActiveRecord::Schema.define(version: 20160716093739) do
   create_table "articles_tags", id: false, force: :cascade do |t|
     t.integer "article_id"
     t.integer "tag_id"
+    t.index ["article_id"], name: "index_articles_tags_on_article_id"
+    t.index ["tag_id"], name: "index_articles_tags_on_tag_id"
   end
-
-  add_index "articles_tags", ["article_id"], name: "index_articles_tags_on_article_id"
-  add_index "articles_tags", ["tag_id"], name: "index_articles_tags_on_tag_id"
 
   create_table "blogs", force: :cascade do |t|
     t.text   "settings"
@@ -50,12 +48,11 @@ ActiveRecord::Schema.define(version: 20160716093739) do
     t.text     "settings"
     t.string   "post_type",      default: "read"
     t.integer  "blog_id",                         null: false
+    t.index ["id", "type"], name: "index_contents_on_id_and_type"
+    t.index ["published"], name: "index_contents_on_published"
+    t.index ["text_filter_id"], name: "index_contents_on_text_filter_id"
+    t.index ["user_id"], name: "index_contents_on_user_id"
   end
-
-  add_index "contents", ["id", "type"], name: "index_contents_on_id_and_type"
-  add_index "contents", ["published"], name: "index_contents_on_published"
-  add_index "contents", ["text_filter_id"], name: "index_contents_on_text_filter_id"
-  add_index "contents", ["user_id"], name: "index_contents_on_user_id"
 
   create_table "feedback", force: :cascade do |t|
     t.string   "type"
@@ -79,26 +76,23 @@ ActiveRecord::Schema.define(version: 20160716093739) do
     t.string   "state"
     t.boolean  "status_confirmed"
     t.string   "user_agent"
+    t.index ["article_id"], name: "index_feedback_on_article_id"
+    t.index ["id", "type"], name: "index_feedback_on_id_and_type"
+    t.index ["text_filter_id"], name: "index_feedback_on_text_filter_id"
+    t.index ["user_id"], name: "index_feedback_on_user_id"
   end
-
-  add_index "feedback", ["article_id"], name: "index_feedback_on_article_id"
-  add_index "feedback", ["id", "type"], name: "index_feedback_on_id_and_type"
-  add_index "feedback", ["text_filter_id"], name: "index_feedback_on_text_filter_id"
-  add_index "feedback", ["user_id"], name: "index_feedback_on_user_id"
 
   create_table "page_caches", force: :cascade do |t|
     t.string "name"
+    t.index ["name"], name: "index_page_caches_on_name"
   end
-
-  add_index "page_caches", ["name"], name: "index_page_caches_on_name"
 
   create_table "pings", force: :cascade do |t|
     t.integer  "article_id"
     t.string   "url"
     t.datetime "created_at"
+    t.index ["article_id"], name: "index_pings_on_article_id"
   end
-
-  add_index "pings", ["article_id"], name: "index_pings_on_article_id"
 
   create_table "post_types", force: :cascade do |t|
     t.string "name"
@@ -131,9 +125,8 @@ ActiveRecord::Schema.define(version: 20160716093739) do
     t.string   "itunes_category"
     t.boolean  "itunes_explicit"
     t.integer  "blog_id",         null: false
+    t.index ["article_id"], name: "index_resources_on_article_id"
   end
-
-  add_index "resources", ["article_id"], name: "index_resources_on_article_id"
 
   create_table "sidebars", force: :cascade do |t|
     t.integer "active_position"
@@ -141,9 +134,8 @@ ActiveRecord::Schema.define(version: 20160716093739) do
     t.integer "staged_position"
     t.string  "type"
     t.integer "blog_id",         null: false
+    t.index ["id", "type"], name: "index_sidebars_on_id_and_type"
   end
-
-  add_index "sidebars", ["id", "type"], name: "index_sidebars_on_id_and_type"
 
   create_table "sitealizer", force: :cascade do |t|
     t.string   "path"
@@ -176,9 +168,8 @@ ActiveRecord::Schema.define(version: 20160716093739) do
     t.string   "pending_item_type"
     t.datetime "due_at"
     t.string   "trigger_method"
+    t.index ["pending_item_id", "pending_item_type"], name: "index_triggers_on_pending_item_id_and_pending_item_type"
   end
-
-  add_index "triggers", ["pending_item_id", "pending_item_type"], name: "index_triggers_on_pending_item_id_and_pending_item_type"
 
   create_table "users", force: :cascade do |t|
     t.string   "login"
@@ -206,11 +197,10 @@ ActiveRecord::Schema.define(version: 20160716093739) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "profile"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["resource_id"], name: "index_users_on_resource_id"
+    t.index ["text_filter_id"], name: "index_users_on_text_filter_id"
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  add_index "users", ["resource_id"], name: "index_users_on_resource_id"
-  add_index "users", ["text_filter_id"], name: "index_users_on_text_filter_id"
 
 end
