@@ -118,7 +118,7 @@ class Admin::FeedbackController < Admin::BaseController
       flash[:success] = I18n.t('admin.feedback.bulkops.success_classification', count: ids.size)
     when 'Delete all spam'
       if request.post?
-        Feedback.delete_all(['state = ?', 'spam'])
+        Feedback.where('state = ?', 'spam').delete_all
         flash[:success] = I18n.t('admin.feedback.bulkops.success_deleted_spam')
       end
     else
