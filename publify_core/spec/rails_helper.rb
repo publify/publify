@@ -8,6 +8,7 @@ require 'rails-controller-testing'
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 require 'factory_girl'
+require 'rexml/document'
 require 'feedjira'
 
 FactoryGirl.find_definitions
