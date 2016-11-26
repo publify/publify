@@ -108,6 +108,7 @@ module Article::States
 
   class Withdrawn < Base
     def enter_hook
+      super
       content[:published] = false
     end
 
@@ -126,6 +127,7 @@ module Article::States
 
   class PublicationPending < Base
     def enter_hook
+      super
       content[:published] = false if content.new_record?
     end
 

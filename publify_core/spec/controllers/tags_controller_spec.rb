@@ -25,7 +25,7 @@ describe TagsController, 'showing a single tag', type: :controller do
   end
 
   def do_get
-    get 'show', id: 'foo'
+    get 'show', params: { id: 'foo' }
   end
 
   describe 'with some articles' do
@@ -63,12 +63,12 @@ describe TagsController, 'showing a single tag', type: :controller do
     end
 
     it 'should render the atom feed for /articles/tag/foo.atom' do
-      get 'show', id: 'foo', format: 'atom'
+      get 'show', params: { id: 'foo', format: 'atom' }
       expect(response).to render_template('articles/index_atom_feed', layout: false)
     end
 
     it 'should render the rss feed for /articles/tag/foo.rss' do
-      get 'show', id: 'foo', format: 'rss'
+      get 'show', params: { id: 'foo', format: 'rss' }
       expect(response).to render_template('articles/index_rss_feed', layout: false)
     end
   end
@@ -90,7 +90,7 @@ describe TagsController, 'showing tag "foo"', type: :controller do
   before(:each) do
     # TODO: need to add default article into tag_factory build to remove this :articles =>...
     FactoryGirl.create(:tag, name: 'foo', articles: [FactoryGirl.create(:article)])
-    get 'show', id: 'foo'
+    get 'show', params: { id: 'foo' }
   end
 
   it 'should have good rss feed link in head' do
@@ -109,7 +109,7 @@ end
 describe TagsController, 'showing a non-existant tag', type: :controller do
   it 'should signal not found' do
     FactoryGirl.create(:blog)
-    get 'show', id: 'thistagdoesnotexist'
+    get 'show', params: { id: 'thistagdoesnotexist' }
 
     expect(response.status).to eq(404)
   end
@@ -122,7 +122,7 @@ describe TagsController, 'password protected article', type: :controller do
     create(:blog)
     article = create(:article, password: 'password')
     create(:tag, name: 'foo', articles: [article])
-    get 'show', id: 'foo'
+    get 'show', params: { id: 'foo' }
     assert_select('input[id="article_password"]')
   end
 end
@@ -136,7 +136,7 @@ describe TagsController, 'SEO Options', type: :controller do
 
   describe 'keywords' do
     it 'does not assign keywords when the blog has no keywords' do
-      get 'show', id: 'foo'
+      get 'show', params: { id: 'foo' }
 
       expect(assigns(:keywords)).to eq ''
     end
@@ -144,7 +144,7 @@ describe TagsController, 'SEO Options', type: :controller do
     it "assigns the blog's keywords if present" do
       @blog.meta_keywords = 'foo, bar'
       @blog.save
-      get 'show', id: 'foo'
+      get 'show', params: { id: 'foo' }
       expect(assigns(:keywords)).to eq 'foo, bar'
     end
   end

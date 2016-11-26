@@ -1,7 +1,9 @@
 <div class="hfeed">
   <div class='h-entry hentry h-as-note'>
     <article class=' well well-small'>
-      <%= image_tag(@reply['user']['profile_image_url'] , class: "alignleft", alt: @reply['user']['name']) %>
+      <% if @reply['user']['profile_image_url'] %>
+        <%= image_tag(@reply['user']['profile_image_url'], class: "alignleft", alt: @reply['user']['name']) %>
+      <% end %>
       <strong><%= get_reply_context_url(@reply) %></strong>
       <p><%= nofollowify_links(PublifyApp::Textfilter::Twitterfilter.filtertext(@reply['text'])) %></p>
       <p>

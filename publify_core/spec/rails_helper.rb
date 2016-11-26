@@ -4,9 +4,11 @@ require File.expand_path('../dummy/config/environment', __FILE__)
 # Prevent database truncation if the environment is production
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'spec_helper'
+require 'rails-controller-testing'
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 require 'factory_girl'
+require 'rexml/document'
 require 'feedjira'
 
 FactoryGirl.find_definitions
@@ -32,7 +34,7 @@ ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.fixture_path = File.join(PublifyCore::Engine.root, 'spec', 'fixtures')
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
@@ -66,11 +68,9 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
 end
 
-def file_upload(filename, file = 'testfile.txt')
-  ActionDispatch::Http::UploadedFile.new(
-    tempfile: File.new(PublifyCore::Engine.root.join('spec', 'fixtures', file)),
-    filename: filename
-  )
+def file_upload(file = 'testfile.txt', mime_type = 'text/plain')
+  Rack::Test::UploadedFile.new(File.join(ActionDispatch::IntegrationTest.fixture_path, file),
+                               mime_type)
 end
 
 def engine_root

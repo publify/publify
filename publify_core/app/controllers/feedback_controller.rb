@@ -1,8 +1,6 @@
 class FeedbackController < BaseController
   before_action :get_article, only: [:create]
 
-  cache_sweeper :blog_sweeper
-
   # Used only by comments. Maybe need move to comments controller
   # or use it in our code with send some feed about trackback
   #
@@ -28,7 +26,7 @@ class FeedbackController < BaseController
           article = Article.find(params[:article_id])
           redirect_to "#{URI.parse(article.permalink_url).path}\##{@page_title.underscore}"
         else
-          render text: 'this space left blank'
+          render plain: 'this space left blank'
         end
       end
       feedbacks = Feedback.from(controller_name, params[:article_id]).limit(this_blog.per_page(params[:format]))

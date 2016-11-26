@@ -25,22 +25,22 @@ describe Admin::ContentController, type: :controller do
     end
 
     it 'return article that match with search query' do
-      get :index, search: { searchstring: article.body[0..4] }
+      get :index, params: { search: { searchstring: article.body[0..4] } }
       expect(assigns(:articles)).to eq([article])
     end
 
     it 'search query and limit on published_at' do
-      get :index, search: {
+      get :index, params: { search: {
         searchstring: article.body[0..4],
         published_at: article.published_at + 2.days
-      }
+      } }
       expect(assigns(:articles)).to be_empty
     end
 
     context 'search for state' do
       let!(:draft_article) { create(:article, state: 'draft') }
       let!(:pending_article) { create(:article, state: 'publication_pending', published_at: '2020-01-01') }
-      before(:each) { get :index, search: state }
+      before(:each) { get :index, params: { search: state } }
 
       context 'draft only' do
         let(:state) { { state: 'drafts' } }
@@ -67,13 +67,13 @@ describe Admin::ContentController, type: :controller do
     context 'first time save' do
       it 'creates a new draft Article' do
         expect do
-          xhr :post, :autosave, article: attributes_for(:article)
+          post :autosave, xhr: true, params: { article: attributes_for(:article) }
         end.to change(Article, :count).by(1)
       end
 
       it 'creates tags for the draft article if relevant' do
         expect do
-          xhr :post, :autosave, article: attributes_for(:article, :with_tags)
+          post :autosave, xhr: true, params: { article: attributes_for(:article, :with_tags) }
         end.to change(Tag, :count).by(2)
       end
     end
@@ -83,7 +83,7 @@ describe Admin::ContentController, type: :controller do
 
       it 'does not create an extra draft' do
         expect do
-          xhr :post, :autosave, article: { id: draft.id, body_and_extended: 'new body' }
+          post :autosave, xhr: true, params: { article: { id: draft.id, body_and_extended: 'new body' } }
         end.to_not change(Article, :count)
       end
     end
@@ -93,12 +93,12 @@ describe Admin::ContentController, type: :controller do
 
       it 'creates a new draft Article' do
         expect do
-          xhr :post, :autosave, article: attributes_for(:article)
+          post :autosave, xhr: true, params: { article: attributes_for(:article) }
         end.to change(Article, :count).by(1)
       end
 
       it 'does not replace existing draft' do
-        xhr :post, :autosave, article: attributes_for(:article)
+        post :autosave, xhr: true, params: { article: attributes_for(:article) }
         expect(assigns(:article).id).to_not eq(draft.id)
         expect(assigns(:article).body).to_not eq(draft.body)
       end
@@ -134,7 +134,7 @@ describe Admin::ContentController, type: :controller do
           ActionMailer::Base.deliveries.clear
           emails = ActionMailer::Base.deliveries
 
-          post :create, 'article' => base_article
+          post :create, params: { 'article' => base_article }
 
           assert_equal(1, emails.size)
           assert_equal(u.email, emails.first.to[0])
@@ -144,25 +144,25 @@ describe Admin::ContentController, type: :controller do
       end
 
       it 'should create an article with tags' do
-        post :create, 'article' => base_article(keywords: 'foo bar')
+        post :create, params: { 'article' => base_article(keywords: 'foo bar') }
         new_article = Article.last
         assert_equal 2, new_article.tags.size
       end
 
       it 'should create an article with a uniq Tag instace named lang:FR' do
-        post :create, 'article' => base_article(keywords: 'lang:FR')
+        post :create, params: { 'article' => base_article(keywords: 'lang:FR') }
         new_article = Article.last
         expect(new_article.tags.map(&:name).include?('lang-fr')).to be_truthy
       end
 
       it 'should correctly interpret time zone in :published_at' do
-        post :create, 'article' => base_article(published_at: 'February 17, 2011 08:47 PM GMT+0100 (CET)')
+        post :create, params: { 'article' => base_article(published_at: 'February 17, 2011 08:47 PM GMT+0100 (CET)') }
         new_article = Article.last
         assert_equal Time.utc(2011, 2, 17, 19, 47), new_article.published_at
       end
 
       it 'should respect "GMT+0000 (UTC)" in :published_at' do
-        post :create, 'article' => base_article(published_at: 'August 23, 2011 08:40 PM GMT+0000 (UTC)')
+        post :create, params: { 'article' => base_article(published_at: 'August 23, 2011 08:40 PM GMT+0000 (UTC)') }
         new_article = Article.last
         assert_equal Time.utc(2011, 8, 23, 20, 40), new_article.published_at
       end
@@ -171,7 +171,7 @@ describe Admin::ContentController, type: :controller do
         Article.delete_all
         body = 'body via *markdown*'
         extended = '*foo*'
-        post :create, 'article' => { title: 'another test', body: body, extended: extended }
+        post :create, params: { article: { title: 'another test', body: body, extended: extended } }
 
         assert_response :redirect, action: 'index'
 
@@ -187,7 +187,7 @@ describe Admin::ContentController, type: :controller do
       context 'with a previously autosaved draft' do
         before do
           @draft = create(:article, body: 'draft', state: 'draft', published: false)
-          post(:create, article: { id: @draft.id, body: 'update', published: true })
+          post :create, params: { article: { id: @draft.id, body: 'update', published: true } }
         end
 
         it 'updates the draft' do
@@ -206,7 +206,7 @@ describe Admin::ContentController, type: :controller do
 
         describe 'saving new article as draft' do
           it 'leaves the original draft in existence' do
-            post :create, article: base_article(draft: 'save as draft')
+            post :create, params: { article: base_article(draft: 'save as draft') }
             expect(assigns(:article).id).not_to eq(@draft.id)
             expect(Article.find(@draft.id)).not_to be_nil
           end
@@ -224,12 +224,12 @@ describe Admin::ContentController, type: :controller do
 
       it 'creates an article' do
         expect do
-          post :create, article: article_params
+          post :create, params: { article: article_params }
         end.to change(Article, :count).by(1)
       end
 
       context 'classic' do
-        before(:each) { post :create, article: article_params }
+        before(:each) { post :create, params: { article: article_params } }
 
         it { expect(response).to redirect_to(action: :index) }
         it { expect(flash[:success]).to eq(I18n.t('admin.content.create.success')) }
@@ -238,30 +238,34 @@ describe Admin::ContentController, type: :controller do
         it { expect(assigns(:article).user).to eq(publisher) }
 
         context 'when doing a draft' do
-          let(:article_params) { { title: 'posted via tests!', body: 'a good boy', state: 'draft' } }
+          let(:article_params) { { title: 'posted via tests!', body: 'a good boy', draft: 'true' } }
           it { expect(assigns(:article)).to_not be_published }
         end
       end
 
-      context 'write for futur' do
-        let(:article_params) { { title: 'posted via tests!', body: 'a good boy', state: 'draft', published_at: (Time.now + 1.hour).to_s } }
+      context 'writing for the future' do
+        let(:article_params) do
+          { title: 'posted via tests!', body: 'a good boy', published_at: (Time.now + 1.hour).to_s }
+        end
 
-        it 'creates an article' do
-          expect do
-            post :create, article: article_params
-          end.to change(Article, :count).by(1)
+        before do
+          post :create, params: { article: article_params }
         end
 
         it 'does not create a short url' do
-          expect do
-            post :create, article: article_params
-          end.to_not change(Redirect, :count)
+          expect(Redirect.count).to eq 0
         end
 
         it 'creates a trigger to publish the article' do
-          expect do
-            post :create, article: article_params
-          end.to change(Trigger, :count).by(1)
+          expect(Trigger.count).to eq 1
+        end
+
+        it 'does not publish the article' do
+          expect(assigns(:article)).to be_publication_pending
+        end
+
+        it 'sets the publication time in the future' do
+          expect(assigns(:article).published_at).to be > 10.minutes.from_now
         end
       end
     end
@@ -285,7 +289,7 @@ describe Admin::ContentController, type: :controller do
       end
 
       it 'should edit article' do
-        get :edit, 'id' => article.id
+        get :edit, params: { 'id' => article.id }
         expect(response).to render_template 'edit'
         expect(assigns(:article)).not_to be_nil
         expect(assigns(:article)).to be_valid
@@ -295,7 +299,7 @@ describe Admin::ContentController, type: :controller do
 
       it 'correctly converts multi-word tags' do
         a = create(:article, keywords: '"foo bar", baz')
-        get :edit, id: a.id
+        get :edit, params: { id: a.id }
         expect(response.body).to have_selector("input[id=article_keywords][value='baz, \"foo bar\"']")
       end
     end
@@ -308,14 +312,14 @@ describe Admin::ContentController, type: :controller do
       context 'with an article from an other user' do
         let(:article) { create(:article, user: create(:user, login: 'another_user')) }
 
-        before(:each) { get :edit, id: article.id }
+        before(:each) { get :edit, params: { id: article.id } }
         it { expect(response).to redirect_to(action: 'index') }
       end
 
       context 'with an article from current user' do
         let(:article) { create(:article, user: publisher) }
 
-        before(:each) { get :edit, id: article.id }
+        before(:each) { get :edit, params: { id: article.id } }
         it { expect(response).to render_template('edit') }
         it { expect(assigns(:article)).to_not be_nil }
         it { expect(assigns(:article)).to be_valid }
@@ -340,7 +344,7 @@ describe Admin::ContentController, type: :controller do
           art_id = article.id
 
           body = 'another *textile* test'
-          put :update, 'id' => art_id, 'article' => { body: body, text_filter: 'textile' }
+          put :update, params: { id: art_id, article: { body: body, text_filter: 'textile' } }
           assert_response :redirect, action: 'show', id: art_id
 
           article.reload
@@ -354,9 +358,9 @@ describe Admin::ContentController, type: :controller do
       end
 
       it 'should allow updating body_and_extended' do
-        put :update, 'id' => article.id, 'article' => {
+        put :update, params: { 'id' => article.id, 'article' => {
           'body_and_extended' => 'foo<!--more-->bar<!--more-->baz'
-        }
+        } }
         assert_response :redirect
         article.reload
         expect(article.body).to eq('foo')
@@ -371,9 +375,9 @@ describe Admin::ContentController, type: :controller do
 
         describe 'publishing the published article' do
           before do
-            put(:update,
+            put(:update, params: {
                 id: original.id,
-                article: { id: draft.id, body: 'update' })
+                article: { id: draft.id, body: 'update' }})
           end
 
           it 'updates the article' do
@@ -396,9 +400,9 @@ describe Admin::ContentController, type: :controller do
 
         describe 'publishing a draft copy of the published article' do
           before do
-            put(:update,
+            put(:update, params: {
                 id: draft.id,
-                article: { id: draft.id, body: 'update', published_at: '' })
+                article: { id: draft.id, body: 'update', published_at: '' }})
           end
 
           it 'updates the original' do
@@ -421,9 +425,9 @@ describe Admin::ContentController, type: :controller do
 
         describe 'publishing a draft copy with a new publication date' do
           before do
-            put(:update,
+            put(:update, params: {
                 id: draft.id,
-                article: { id: draft.id, body: 'update', published_at: '2016-07-07' })
+                article: { id: draft.id, body: 'update', published_at: '2016-07-07' }})
           end
 
           it 'updates the original publication date' do
@@ -435,10 +439,9 @@ describe Admin::ContentController, type: :controller do
       describe 'saving a published article as draft' do
         before do
           @orig = create(:article)
-          put(:update,
+          put(:update, params: {
               id: @orig.id,
-              article: { title: @orig.title, draft: 'draft',
-                         body: 'update' })
+              article: { title: @orig.title, draft: 'draft', body: 'update' }})
         end
 
         it 'leaves the original published' do
@@ -469,9 +472,12 @@ describe Admin::ContentController, type: :controller do
       end
 
       context 'with an article' do
-        let!(:article) { create(:article, body: 'another *textile* test', user: publisher) }
-        let!(:body) { 'not the *same* text' }
-        before(:each) { put :update, id: article.id, article: { body: body, text_filter: 'textile' } }
+        let(:article) { create(:article, body: 'another *textile* test', user: publisher) }
+        let(:body) { 'not the *same* text' }
+        before(:each) do
+          put :update, params: { id: article.id, article: { body: body, text_filter: 'textile' } }
+        end
+
         it { expect(response).to redirect_to(action: 'index') }
         it { expect(article.reload.text_filter.name).to eq('textile') }
         it { expect(article.reload.body).to eq(body) }
@@ -491,7 +497,7 @@ describe Admin::ContentController, type: :controller do
     end
 
     it 'should return foo for keywords fo' do
-      get :auto_complete_for_article_keywords, article: { keywords: 'fo' }
+      get :auto_complete_for_article_keywords, params: { article: { keywords: 'fo' } }
       expect(response).to be_success
       expect(response.body).to eq('["bar","bazz","foo"]')
     end
@@ -505,14 +511,14 @@ describe Admin::ContentController, type: :controller do
     context 'with an article from other user' do
       let(:article) { create(:article, user: create(:user, login: 'other_user')) }
 
-      before(:each) { delete :destroy, id: article.id }
+      before(:each) { delete :destroy, params: { id: article.id } }
       it { expect(response).to redirect_to(action: 'index') }
       it { expect(Article.count).to eq(1) }
     end
 
     context 'with an article from user' do
       let(:article) { create(:article, user: publisher) }
-      before(:each) { delete :destroy, id: article.id }
+      before(:each) { delete :destroy, params: { id: article.id } }
       it { expect(response).to redirect_to(action: 'index') }
       it { expect(Article.count).to eq(0) }
     end

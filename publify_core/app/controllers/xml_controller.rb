@@ -1,8 +1,4 @@
 class XmlController < BaseController
-  caches_page :feed, if: proc { |c|
-    c.request.query_string == ''
-  }
-
   NORMALIZED_FORMAT_FOR = { 'atom' => 'atom', 'rss' => 'rss',
                             'atom10' => 'atom', 'atom03' => 'atom', 'rss20' => 'rss',
                             'googlesitemap' => 'googlesitemap', 'rsd' => 'rsd' }.freeze
@@ -13,7 +9,7 @@ class XmlController < BaseController
     @format = 'rss'
     if params[:format]
       @format = NORMALIZED_FORMAT_FOR[params[:format]]
-      return render(text: 'Unsupported format', status: 404) unless @format
+      return render(plain: 'Unsupported format', status: 404) unless @format
     end
 
     # TODO: Move redirects into config/routes.rb, if possible
@@ -37,7 +33,7 @@ class XmlController < BaseController
 
       @feed_title = this_blog.blog_name
       @link = this_blog.base_url
-      @self_url = url_for(params)
+      @self_url = request.url
 
       @items += Article.find_already_published(1000)
       @items += Page.find_already_published(1000)
@@ -47,7 +43,7 @@ class XmlController < BaseController
         format.googlesitemap
       end
     else
-      return render(text: 'Unsupported feed type', status: 404)
+      return render(plain: 'Unsupported feed type', status: 404)
     end
   end
 

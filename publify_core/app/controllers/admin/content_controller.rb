@@ -5,8 +5,6 @@ module Admin; end
 class Admin::ContentController < Admin::BaseController
   layout :get_layout
 
-  cache_sweeper :blog_sweeper
-
   def index
     @search = params[:search] ? params[:search] : {}
     @articles = this_blog.articles.search_with(@search).page(params[:page]).per(this_blog.admin_display_elements)

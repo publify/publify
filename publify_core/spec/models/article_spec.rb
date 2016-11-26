@@ -688,7 +688,7 @@ describe Article, type: :model do
   end
 
   describe 'save_attachment!' do
-    let(:file) { file_upload('some_file') }
+    let(:file) { file_upload('testfile.txt', 'text/plain') }
 
     it 'adds a new resource' do
       article = create(:article)
@@ -698,7 +698,7 @@ describe Article, type: :model do
       resource = article.resources.first
       upload = resource.upload
 
-      expect(upload.file.basename).to eq 'some_file'
+      expect(upload.file.basename).to eq 'testfile'
     end
   end
 

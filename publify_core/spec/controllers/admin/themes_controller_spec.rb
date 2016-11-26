@@ -21,12 +21,12 @@ describe Admin::ThemesController, type: :controller do
   end
 
   it 'redirects to :index after the :switchto action' do
-    get :switchto, theme: 'typographic'
+    get :switchto, params: { theme: 'typographic' }
     assert_response :redirect, action: 'index'
   end
 
   it 'returns success for the :preview action' do
-    get :preview, theme: 'plain'
+    get :preview, params: { theme: 'plain' }
     assert_response :success
   end
 end

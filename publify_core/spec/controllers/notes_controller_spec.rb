@@ -22,7 +22,7 @@ describe NotesController, type: :controller do
   end
 
   describe '#show' do
-    before(:each) { get :show, permalink: permalink }
+    before(:each) { get :show, params: { permalink: permalink } }
 
     context 'normal' do
       let(:permalink) { "#{create(:note).id}-this-is-a-note" }
