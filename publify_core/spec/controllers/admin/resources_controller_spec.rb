@@ -22,8 +22,10 @@ describe Admin::ResourcesController, type: :controller do
   end
 
   describe '#destroy' do
+    let(:uploaded_file) { fixture_file_upload('testfile.txt', 'text/plain') }
+
     it 'redirects to the index' do
-      res_id = create(:resource, upload: file_upload('hello')).id
+      res_id = create(:resource, upload: uploaded_file).id
 
       delete :destroy, params: { id: res_id }
       expect(response).to redirect_to(action: 'index')
@@ -41,7 +43,7 @@ describe Admin::ResourcesController, type: :controller do
     end
 
     context 'when uploading a text file' do
-      let(:upload) { file_upload('haha') }
+      let(:upload) { fixture_file_upload('testfile.txt', 'text/plain') }
 
       it 'creates a new Resource' do
         expect { post :upload, params: { upload: upload } }.
@@ -63,7 +65,7 @@ describe Admin::ResourcesController, type: :controller do
     end
 
     context 'when uploading an image file' do
-      let(:upload) { file_upload('haha.png', 'testfile.png') }
+      let(:upload) { fixture_file_upload('testfile.png', 'image/png') }
 
       it 'creates a new image Resource' do
         expect { post :upload, params: { upload: upload } }.
@@ -85,7 +87,7 @@ describe Admin::ResourcesController, type: :controller do
     end
 
     context 'when attempting to upload a dangerous svg' do
-      let(:upload) { file_upload('danger.svg', 'exploit.svg') }
+      let(:upload) { fixture_file_upload('exploit.svg', 'image/svg') }
 
       before do
         upload.content_type = 'image/svg'
@@ -112,7 +114,7 @@ describe Admin::ResourcesController, type: :controller do
     end
 
     context 'when attempting to upload a fake png' do
-      let(:upload) { file_upload('haha.png', 'testfile.txt') }
+      let(:upload) { fixture_file_upload('testfile.txt', 'image/png') }
 
       before do
         upload.content_type = 'image/png'
