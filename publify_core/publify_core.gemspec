@@ -21,7 +21,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rails', '~> 4.2.6'
   s.add_dependency 'RedCloth', '~> 4.3.1'
-  s.add_dependency 'actionpack-page_caching', '~> 1.0.2' # removed from Rails-core as Rails 4.0
   s.add_dependency 'activerecord-session_store', '~> 1.0.0'
   s.add_dependency 'akismet', '~> 2.0'
   s.add_dependency 'bluecloth', '~> 2.1'
@@ -37,7 +36,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'jquery-ui-rails', '~> 5.0.2'
   s.add_dependency 'kaminari', '~> 0.17.0'
   s.add_dependency 'mini_magick', '~> 4.2'
-  s.add_dependency 'rails-observers', '~> 0.1.2'
   s.add_dependency 'rails-timeago', '~> 2.0'
   s.add_dependency 'rails_autolink', '~> 1.1.0'
   s.add_dependency 'recaptcha', '~> 4.0.0'

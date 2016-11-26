@@ -1,5 +1,4 @@
 class Admin::MigrationsController < Admin::BaseController
-  cache_sweeper :blog_sweeper
   skip_before_action :look_for_needed_db_updates
 
   def show

@@ -1,6 +1,5 @@
 class Admin::NotesController < Admin::BaseController
   layout 'administration'
-  cache_sweeper :blog_sweeper
 
   before_action :load_existing_notes, only: [:index, :edit]
   before_action :find_note, only: [:edit, :update, :show, :destroy]
