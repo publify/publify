@@ -20,8 +20,10 @@ describe Resource, type: :model do
 
     describe '#by_filename' do
       it 'should sort resource by filename' do
-        b_resource = FactoryGirl.create(:resource, upload: file_upload('b'))
-        a_resource = FactoryGirl.create(:resource, upload: file_upload('a'))
+        b_resource = FactoryGirl.create(:resource,
+                                        upload: file_upload('testfile.txt', 'text/plain'))
+        a_resource = FactoryGirl.create(:resource,
+                                        upload: file_upload('otherfile.txt', 'text/plain'))
         expect(Resource.by_filename).to eq([a_resource, b_resource])
       end
     end
@@ -37,8 +39,10 @@ describe Resource, type: :model do
     describe '#without_images_by_filename' do
       it 'should combine 2 scopes' do
         FactoryGirl.create(:resource, mime: 'image/jpeg')
-        b_resource = FactoryGirl.create(:resource, mime: 'text/html', upload: file_upload('b'))
-        a_resource = FactoryGirl.create(:resource, mime: 'text/html', upload: file_upload('a'))
+        b_resource = FactoryGirl.create(:resource, mime: 'text/html',
+                                        upload: file_upload('testfile.txt', 'text/html'))
+        a_resource = FactoryGirl.create(:resource, mime: 'text/html',
+                                        upload: file_upload('otherfile.txt', 'text/html'))
         expect(Resource.without_images_by_filename).to eq([a_resource, b_resource])
       end
     end

@@ -1,7 +1,6 @@
 class Admin::TagsController < Admin::BaseController
   before_action :fetch_tags, only: [:index, :edit]
   before_action :set_tag, only: [:edit, :update, :destroy]
-  cache_sweeper :blog_sweeper
 
   def index
     @tag = Tag.new

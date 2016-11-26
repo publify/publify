@@ -9,7 +9,7 @@ class Trigger < ActiveRecord::Base
     end
 
     def fire
-      destroy_all ['due_at <= ?', Time.now]
+      where('due_at <= ?', Time.now).destroy_all
       true
     rescue
       migrator = Migrator.new

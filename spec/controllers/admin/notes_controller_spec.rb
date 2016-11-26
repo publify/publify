@@ -23,14 +23,14 @@ describe Admin::NotesController, type: :controller do
 
     describe 'create' do
       context 'a simple note' do
-        before(:each) { post :create, note: { body: 'Emphasis _mine_' } }
+        before(:each) { post :create, params: { note: { body: 'Emphasis _mine_' } } }
         it { expect(response).to redirect_to(admin_notes_path) }
         it { expect(flash[:notice]).to eq(I18n.t('notice.note_successfully_created')) }
       end
 
       it 'creates a note' do
         expect do
-          post :create, note: { body: 'Emphasis _mine_' }
+          post :create, params: { note: { body: 'Emphasis _mine_' } }
         end.to change { Note.count }.from(0).to(1)
       end
 
@@ -51,7 +51,7 @@ describe Admin::NotesController, type: :controller do
           expect(Twitter::Client).to receive(:new).and_return(twitter_cli)
           tweet = Struct.new(:attrs).new(id_str: '2344')
           expect(twitter_cli).to receive(:update).and_return(tweet)
-          post :create, note: { body: 'Emphasis _mine_, arguments *strong*' }, push_to_twitter: 'true'
+          post :create, params: { note: { body: 'Emphasis _mine_, arguments *strong*' }, push_to_twitter: 'true' }
           expect(Note.first.twitter_id).to eq('2344')
         end
       end
@@ -61,7 +61,7 @@ describe Admin::NotesController, type: :controller do
       let(:note) { create(:note, user_id: admin) }
 
       describe 'edit' do
-        before(:each) { get :edit, id: note.id }
+        before(:each) { get :edit, params: { id: note.id } }
         it { expect(response).to be_success }
         it { expect(response).to render_template('edit') }
         it { expect(assigns(:note)).to eq(note) }
@@ -69,18 +69,18 @@ describe Admin::NotesController, type: :controller do
       end
 
       describe 'update' do
-        before(:each) { post :update, id: note.id, note: { body: 'new body' } }
+        before(:each) { post :update, params: { id: note.id, note: { body: 'new body' } } }
         it { expect(response).to redirect_to(action: :index) }
         it { expect(note.reload.body).to eq('new body') }
       end
 
       describe 'show' do
-        before(:each) { get :show, id: note.id }
+        before(:each) { get :show, params: { id: note.id } }
         it { expect(response).to render_template('show') }
       end
 
       describe 'Destroying a note' do
-        before(:each) { post :destroy, id: note.id }
+        before(:each) { post :destroy, params: { id: note.id } }
         it { expect(response).to redirect_to(admin_notes_path) }
         it { expect(Note.count).to eq(0) }
       end

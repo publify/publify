@@ -170,39 +170,41 @@ EOS
     @current_theme ||= Theme.find(theme) || Theme.new('', '')
   end
 
-  # Generate a URL based on the +base_url+.  This allows us to generate URLs
-  # without needing a controller handy, so we can produce URLs from within models
-  # where appropriate.
-  #
-  # It also caches the result in the Rails cache, so repeated URL generation
-  # requests should be fast, as they bypass all of Rails' route logic.
-  def url_for_with_base_url(options = {}, extra_params = {})
-    case options
-    when String
-      url_generated = if extra_params[:only_path]
-                        root_path
-                      else
-                        base_url
-                      end
-      url_generated += "/#{options}" # They asked for 'url_for "/some/path"', so return it unedited.
-      url_generated += "##{extra_params[:anchor]}" if extra_params[:anchor]
-      url_generated
-    when Hash
-      merged_opts = options.reverse_merge!(only_path: false, controller: '',
-                                           action: 'permalink',
-                                           host: host_with_port,
-                                           script_name: root_path)
-      cache_key = merged_opts.values.prepend('blog-urlfor-withbaseurl').join('-')
-      unless Rails.cache.exist?(cache_key)
-        Rails.cache.write(cache_key, url_for_without_base_url(merged_opts))
+  module BasedUrlFor
+    # Generate a URL based on the +base_url+.  This allows us to generate URLs
+    # without needing a controller handy, so we can produce URLs from within models
+    # where appropriate.
+    #
+    # It also caches the result in the Rails cache, so repeated URL generation
+    # requests should be fast, as they bypass all of Rails' route logic.
+    def url_for(options = {}, extra_params = {})
+      case options
+      when String
+        url_generated = if extra_params[:only_path]
+                          root_path
+                        else
+                          base_url
+                        end
+        url_generated += "/#{options}" # They asked for 'url_for "/some/path"', so return it unedited.
+        url_generated += "##{extra_params[:anchor]}" if extra_params[:anchor]
+        url_generated
+      when Hash
+        merged_opts = options.reverse_merge!(only_path: false, controller: '',
+                                             action: 'permalink',
+                                             host: host_with_port,
+                                             script_name: root_path)
+        cache_key = merged_opts.values.prepend('blog-urlfor-withbaseurl').join('-')
+        unless Rails.cache.exist?(cache_key)
+          Rails.cache.write(cache_key, super(merged_opts))
+        end
+        Rails.cache.read(cache_key)
+      else
+        raise "Invalid URL in url_for: #{options.inspect}"
       end
-      Rails.cache.read(cache_key)
-    else
-      raise "Invalid URL in url_for: #{options.inspect}"
     end
   end
 
-  alias_method_chain :url_for, :base_url
+  prepend BasedUrlFor
 
   # The URL for a static file.
   # FIXME: Let carrierwave handle this by itself

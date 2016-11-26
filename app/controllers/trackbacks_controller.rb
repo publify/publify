@@ -18,7 +18,7 @@ class TrackbacksController < FeedbackController
 
     respond_to do |format|
       format.xml { render 'trackback', formats: [:xml], handlers: [:builder] }
-      format.html { render nothing: true }
+      format.html { head :ok }
     end
   end
 

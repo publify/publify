@@ -1,9 +1,9 @@
 class TextController < BaseController
   def humans
-    render text: this_blog.humans
+    render plain: this_blog.humans
   end
 
   def robots
-    render text: this_blog.robots
+    render plain: this_blog.robots
   end
 end

@@ -95,9 +95,6 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'dashboard#index', as: 'dashboard'
 
-    get 'cache', to: 'cache#show', format: false
-    delete 'cache', to: 'cache#destroy', format: false
-
     resources :content, only: [:index, :new, :edit, :create, :update, :destroy], format: false do
       collection do
         get 'auto_complete_for_article_keywords'
