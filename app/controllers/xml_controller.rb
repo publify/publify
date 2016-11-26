@@ -33,7 +33,7 @@ class XmlController < BaseController
 
       @feed_title = this_blog.blog_name
       @link = this_blog.base_url
-      @self_url = url_for(params)
+      @self_url = request.url
 
       @items += Article.find_already_published(1000)
       @items += Page.find_already_published(1000)
