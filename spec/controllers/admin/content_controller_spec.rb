@@ -67,13 +67,13 @@ describe Admin::ContentController, type: :controller do
     context 'first time save' do
       it 'creates a new draft Article' do
         expect do
-          xhr :post, :autosave, article: attributes_for(:article)
+          post :autosave, xhr: true, params: { article: attributes_for(:article) }
         end.to change(Article, :count).by(1)
       end
 
       it 'creates tags for the draft article if relevant' do
         expect do
-          xhr :post, :autosave, article: attributes_for(:article, :with_tags)
+          post :autosave, xhr: true, params: { article: attributes_for(:article, :with_tags) }
         end.to change(Tag, :count).by(2)
       end
     end
@@ -83,7 +83,7 @@ describe Admin::ContentController, type: :controller do
 
       it 'does not create an extra draft' do
         expect do
-          xhr :post, :autosave, article: { id: draft.id, body_and_extended: 'new body' }
+          post :autosave, xhr: true, params: { article: { id: draft.id, body_and_extended: 'new body' } }
         end.to_not change(Article, :count)
       end
     end
@@ -93,12 +93,12 @@ describe Admin::ContentController, type: :controller do
 
       it 'creates a new draft Article' do
         expect do
-          xhr :post, :autosave, article: attributes_for(:article)
+          post :autosave, xhr: true, params: { article: attributes_for(:article) }
         end.to change(Article, :count).by(1)
       end
 
       it 'does not replace existing draft' do
-        xhr :post, :autosave, article: attributes_for(:article)
+        post :autosave, xhr: true, params: { article: attributes_for(:article) }
         expect(assigns(:article).id).to_not eq(draft.id)
         expect(assigns(:article).body).to_not eq(draft.body)
       end
@@ -171,7 +171,7 @@ describe Admin::ContentController, type: :controller do
         Article.delete_all
         body = 'body via *markdown*'
         extended = '*foo*'
-        post :create, 'article' => { title: 'another test', body: body, extended: extended }
+        post :create, params: { article: { title: 'another test', body: body, extended: extended } }
 
         assert_response :redirect, action: 'index'
 
@@ -187,7 +187,7 @@ describe Admin::ContentController, type: :controller do
       context 'with a previously autosaved draft' do
         before do
           @draft = create(:article, body: 'draft', state: 'draft', published: false)
-          post(:create, article: { id: @draft.id, body: 'update', published: true })
+          post :create, params: { article: { id: @draft.id, body: 'update', published: true } }
         end
 
         it 'updates the draft' do
@@ -340,7 +340,7 @@ describe Admin::ContentController, type: :controller do
           art_id = article.id
 
           body = 'another *textile* test'
-          put :update, 'id' => art_id, 'article' => { body: body, text_filter: 'textile' }
+          put :update, params: { id: art_id, article: { body: body, text_filter: 'textile' } }
           assert_response :redirect, action: 'show', id: art_id
 
           article.reload
@@ -371,9 +371,9 @@ describe Admin::ContentController, type: :controller do
 
         describe 'publishing the published article' do
           before do
-            put(:update,
+            put(:update, params: {
                 id: original.id,
-                article: { id: draft.id, body: 'update' })
+                article: { id: draft.id, body: 'update' }})
           end
 
           it 'updates the article' do
@@ -396,9 +396,9 @@ describe Admin::ContentController, type: :controller do
 
         describe 'publishing a draft copy of the published article' do
           before do
-            put(:update,
+            put(:update, params: {
                 id: draft.id,
-                article: { id: draft.id, body: 'update', published_at: '' })
+                article: { id: draft.id, body: 'update', published_at: '' }})
           end
 
           it 'updates the original' do
@@ -421,9 +421,9 @@ describe Admin::ContentController, type: :controller do
 
         describe 'publishing a draft copy with a new publication date' do
           before do
-            put(:update,
+            put(:update, params: {
                 id: draft.id,
-                article: { id: draft.id, body: 'update', published_at: '2016-07-07' })
+                article: { id: draft.id, body: 'update', published_at: '2016-07-07' }})
           end
 
           it 'updates the original publication date' do
@@ -435,10 +435,9 @@ describe Admin::ContentController, type: :controller do
       describe 'saving a published article as draft' do
         before do
           @orig = create(:article)
-          put(:update,
+          put(:update, params: {
               id: @orig.id,
-              article: { title: @orig.title, draft: 'draft',
-                         body: 'update' })
+              article: { title: @orig.title, draft: 'draft', body: 'update' }})
         end
 
         it 'leaves the original published' do
@@ -469,9 +468,12 @@ describe Admin::ContentController, type: :controller do
       end
 
       context 'with an article' do
-        let!(:article) { create(:article, body: 'another *textile* test', user: publisher) }
-        let!(:body) { 'not the *same* text' }
-        before(:each) { put :update, id: article.id, article: { body: body, text_filter: 'textile' } }
+        let(:article) { create(:article, body: 'another *textile* test', user: publisher) }
+        let(:body) { 'not the *same* text' }
+        before(:each) do
+          put :update, params: { id: article.id, article: { body: body, text_filter: 'textile' } }
+        end
+
         it { expect(response).to redirect_to(action: 'index') }
         it { expect(article.reload.text_filter.name).to eq('textile') }
         it { expect(article.reload.body).to eq(body) }

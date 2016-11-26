@@ -550,12 +550,12 @@ describe ArticlesController, 'password protected', type: :controller do
 
   describe '#check_password' do
     it 'shows article when given correct password' do
-      xhr :get, :check_password, article: { id: article.id, password: article.password }
+      get :check_password, xhr: true, params: { article: { id: article.id, password: article.password } }
       expect(response.body).not_to have_selector('input[id="article_password"]')
     end
 
     it 'shows password form when given incorrect password' do
-      xhr :get, :check_password, article: { id: article.id, password: 'wrong password' }
+      get :check_password, xhr: true, params: { article: { id: article.id, password: 'wrong password' } }
       expect(response.body).to have_selector('input[id="article_password"]')
     end
   end

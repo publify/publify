@@ -200,10 +200,10 @@ describe Admin::FeedbackController, type: :controller do
       it 'should update comment if post request' do
         article = FactoryGirl.create(:article)
         comment = FactoryGirl.create(:comment, article: article)
-        post 'update', id: comment.id,
+        post 'update', params: { id: comment.id,
                        comment: { author: 'Bob Foo2',
                                   url: 'http://fakeurl.com',
-                                  body: 'updated comment' }
+                                  body: 'updated comment' } }
         expect(response).to redirect_to(action: 'article', id: article.id)
         comment.reload
         expect(comment.body).to eq('updated comment')
@@ -211,10 +211,10 @@ describe Admin::FeedbackController, type: :controller do
 
       it 'should not  update comment if get request' do
         comment = FactoryGirl.create(:comment)
-        get 'update', id: comment.id,
+        get 'update', params: { id: comment.id,
                       comment: { author: 'Bob Foo2',
                                  url: 'http://fakeurl.com',
-                                 body: 'updated comment' }
+                                 body: 'updated comment' } }
         expect(response).to redirect_to(action: 'edit', id: comment.id)
         comment.reload
         expect(comment.body).not_to eq('updated comment')
@@ -269,20 +269,20 @@ describe Admin::FeedbackController, type: :controller do
 
     describe 'update action' do
       it 'should update comment if own article' do
-        post 'update', id: feedback_from_own_article.id,
+        post 'update', params: { id: feedback_from_own_article.id,
                        comment: { author: 'Bob Foo2',
                                   url: 'http://fakeurl.com',
-                                  body: 'updated comment' }
+                                  body: 'updated comment' } }
         expect(response).to redirect_to(action: 'article', id: feedback_from_own_article.article.id)
         feedback_from_own_article.reload
         expect(feedback_from_own_article.body).to eq('updated comment')
       end
 
       it 'should not update comment if not own article' do
-        post 'update', id: feedback_from_not_own_article.id,
+        post 'update', params: { id: feedback_from_not_own_article.id,
                        comment: { author: 'Bob Foo2',
                                   url: 'http://fakeurl.com',
-                                  body: 'updated comment' }
+                                  body: 'updated comment' } }
         expect(response).to redirect_to(action: 'index')
         feedback_from_not_own_article.reload
         expect(feedback_from_not_own_article.body).not_to eq('updated comment')
