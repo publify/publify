@@ -8,7 +8,7 @@ describe ThemeController, type: :controller do
   it 'test_stylesheets' do
     get :stylesheets, params: { filename: 'theme.css' }
     assert_response :success
-    assert_equal 'text/css; charset=utf-8', @response.content_type
+    assert_equal 'text/css', @response.content_type
     assert_equal 'utf-8', @response.charset
     assert_equal 'inline; filename="theme.css"', @response.headers['Content-Disposition']
   end

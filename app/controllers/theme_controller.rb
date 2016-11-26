@@ -27,7 +27,7 @@ class ThemeController < ContentController
   def render_theme_item(type, file, mime = nil)
     mime ||= mime_for(file)
     if file.split(%r{[\\/]}).include?('..')
-      return (render 'errors/404', status: 404)
+      return (render 'errors/404', status: 404, formats: ['html'])
     end
 
     src = this_blog.current_theme.path + "/#{type}/#{file}"
