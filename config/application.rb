@@ -40,7 +40,6 @@ module Publify
   require 'email_notify'
 
   require 'format'
-  require 'i18n_interpolation_deprecation'
   ## Required by the models themselves.
   # require 'spam_protection'
   require 'stateful'
