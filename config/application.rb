@@ -1,4 +1,4 @@
-require File.expand_path('../boot', __FILE__)
+require_relative 'boot'
 
 require 'rails/all'
 
@@ -14,17 +14,8 @@ module Publify
 
     config.plugins = [ :all ]
 
-    # Turn om timestamped migrations
-    config.active_record.timestamped_migrations = true
-
     # To avoid exception when deploying on Heroku
     config.assets.initialize_on_precompile = false
-
-    # Time to step into asset pipeline…
-    config.assets.enabled = true
-
-    # Do not swallow errors in after_commit/after_rollback callbacks.
-    config.active_record.raise_in_transactional_callbacks = true
 
     config.to_prepare do
       DeviseController.layout 'accounts'
