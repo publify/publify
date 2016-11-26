@@ -1,4 +1,4 @@
-require File.expand_path('../boot', __FILE__)
+require_relative 'boot'
 
 require 'rails/all'
 
@@ -12,23 +12,10 @@ module Publify
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
-    # Setup the cache path
-    config.action_controller.page_cache_directory = "#{::Rails.root.to_s}/public/cache/"
-    config.cache_store=:file_store, "#{::Rails.root.to_s}/public/cache/"
-
     config.plugins = [ :all ]
-
-    # Turn om timestamped migrations
-    config.active_record.timestamped_migrations = true
 
     # To avoid exception when deploying on Heroku
     config.assets.initialize_on_precompile = false
-
-    # Time to step into asset pipeline…
-    config.assets.enabled = true
-
-    # Do not swallow errors in after_commit/after_rollback callbacks.
-    config.active_record.raise_in_transactional_callbacks = true
 
     config.to_prepare do
       DeviseController.layout 'accounts'
@@ -44,7 +31,6 @@ module Publify
   require 'email_notify'
 
   require 'format'
-  require 'i18n_interpolation_deprecation'
   ## Required by the models themselves.
   # require 'spam_protection'
   require 'stateful'
