@@ -1,8 +1,4 @@
 class XmlController < BaseController
-  caches_page :feed, if: proc { |c|
-    c.request.query_string == ''
-  }
-
   NORMALIZED_FORMAT_FOR = { 'atom' => 'atom', 'rss' => 'rss',
                             'atom10' => 'atom', 'atom03' => 'atom', 'rss20' => 'rss',
                             'googlesitemap' => 'googlesitemap', 'rsd' => 'rsd' }.freeze

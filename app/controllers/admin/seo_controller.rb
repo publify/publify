@@ -1,5 +1,4 @@
 class Admin::SeoController < Admin::BaseController
-  cache_sweeper :blog_sweeper
   before_action :set_setting
   before_action :set_section
 

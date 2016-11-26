@@ -29,7 +29,6 @@ class Admin::SidebarController < Admin::BaseController
 
   def publish
     Sidebar.apply_staging_on_active!
-    PageCache.sweep_all
     redirect_to admin_sidebar_index_path
   end
 
