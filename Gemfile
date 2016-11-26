@@ -36,7 +36,7 @@ else
   end
 end
 
-gem 'rails', '~> 4.2.7.1'
+gem 'rails', '~> 5.0.0'
 
 gem 'publify_core', '~> 9.0.0.pre1'
 gem 'publify_amazon_sidebar', '~> 9.0.0.pre1'
@@ -79,7 +79,6 @@ group :development do
   gem 'thin', '~> 1.6'
   gem 'better_errors', '~> 2.1.1'
   gem 'binding_of_caller', '~> 0.7.2'
-  gem 'quiet_assets', '~> 1.1'
   gem 'guard-rspec'
 end
 
