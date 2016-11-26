@@ -2,9 +2,8 @@ class CommentsController < FeedbackController
   before_action :get_article, only: [:create, :preview]
 
   def create
-    @comment = @article.with_options(new_comment_defaults) do |art|
-      art.add_comment(params[:comment].slice(:body, :author, :email, :url))
-    end
+    options = new_comment_defaults.merge comment_params.to_h
+    @comment = @article.add_comment(options)
 
     unless current_user.nil? || session[:user_id].nil?
       # maybe useless, but who knows ?
