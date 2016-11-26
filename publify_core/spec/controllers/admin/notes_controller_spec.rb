@@ -23,14 +23,14 @@ describe Admin::NotesController, type: :controller do
 
     describe 'create' do
       context 'a simple note' do
-        before(:each) { post :create, note: { body: 'Emphasis _mine_' } }
+        before(:each) { post :create, params: { note: { body: 'Emphasis _mine_' } } }
         it { expect(response).to redirect_to(admin_notes_path) }
         it { expect(flash[:notice]).to eq(I18n.t('notice.note_successfully_created')) }
       end
 
       it 'creates a note' do
         expect do
-          post :create, note: { body: 'Emphasis _mine_' }
+          post :create, params: { note: { body: 'Emphasis _mine_' } }
         end.to change { Note.count }.from(0).to(1)
       end
 
@@ -51,7 +51,7 @@ describe Admin::NotesController, type: :controller do
           expect(Twitter::Client).to receive(:new).and_return(twitter_cli)
           tweet = Struct.new(:attrs).new(id_str: '2344')
           expect(twitter_cli).to receive(:update).and_return(tweet)
-          post :create, note: { body: 'Emphasis _mine_, arguments *strong*' }, push_to_twitter: 'true'
+          post :create, params: { note: { body: 'Emphasis _mine_, arguments *strong*' }, push_to_twitter: 'true' }
           expect(Note.first.twitter_id).to eq('2344')
         end
       end
@@ -69,7 +69,7 @@ describe Admin::NotesController, type: :controller do
       end
 
       describe 'update' do
-        before(:each) { post :update, id: note.id, note: { body: 'new body' } }
+        before(:each) { post :update, params: { id: note.id, note: { body: 'new body' } } }
         it { expect(response).to redirect_to(action: :index) }
         it { expect(note.reload.body).to eq('new body') }
       end

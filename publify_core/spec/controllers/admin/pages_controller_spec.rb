@@ -51,7 +51,9 @@ describe Admin::PagesController, type: :controller do
 
       context 'simple' do
         before(:each) do
-          post :create, page: { name: 'new_page', title: 'New Page Title', body: 'Emphasis _mine_, arguments *strong*' }
+          post :create, params: {
+            page: {
+              name: 'new_page', title: 'New Page Title', body: 'Emphasis _mine_, arguments *strong*' } }
         end
 
         it { expect(Page.first.name).to eq('new_page') }
@@ -93,7 +95,7 @@ describe Admin::PagesController, type: :controller do
 
     context 'should update a post' do
       before(:each) do
-        post :update, id: page.id, page: { name: 'markdown-page', title: 'Markdown Page', body: 'Adding a [link](http://www.publify.co/) here' }
+        post :update, params: { id: page.id, page: { name: 'markdown-page', title: 'Markdown Page', body: 'Adding a [link](http://www.publify.co/) here' } }
       end
 
       it { expect(response).to redirect_to(action: :index) }
