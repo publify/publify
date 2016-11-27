@@ -53,7 +53,9 @@ describe Admin::PagesController, type: :controller do
         before(:each) do
           post :create, params: {
             page: {
-              name: 'new_page', title: 'New Page Title', body: 'Emphasis _mine_, arguments *strong*' } }
+              name: 'new_page', title: 'New Page Title', body: 'Emphasis _mine_, arguments *strong*'
+            }
+          }
         end
 
         it { expect(Page.first.name).to eq('new_page') }

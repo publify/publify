@@ -376,8 +376,9 @@ describe Admin::ContentController, type: :controller do
         describe 'publishing the published article' do
           before do
             put(:update, params: {
-                id: original.id,
-                article: { id: draft.id, body: 'update' }})
+                  id: original.id,
+                  article: { id: draft.id, body: 'update' }
+                })
           end
 
           it 'updates the article' do
@@ -401,8 +402,9 @@ describe Admin::ContentController, type: :controller do
         describe 'publishing a draft copy of the published article' do
           before do
             put(:update, params: {
-                id: draft.id,
-                article: { id: draft.id, body: 'update', published_at: '' }})
+                  id: draft.id,
+                  article: { id: draft.id, body: 'update', published_at: '' }
+                })
           end
 
           it 'updates the original' do
@@ -426,8 +428,9 @@ describe Admin::ContentController, type: :controller do
         describe 'publishing a draft copy with a new publication date' do
           before do
             put(:update, params: {
-                id: draft.id,
-                article: { id: draft.id, body: 'update', published_at: '2016-07-07' }})
+                  id: draft.id,
+                  article: { id: draft.id, body: 'update', published_at: '2016-07-07' }
+                })
           end
 
           it 'updates the original publication date' do
@@ -440,8 +443,9 @@ describe Admin::ContentController, type: :controller do
         before do
           @orig = create(:article)
           put(:update, params: {
-              id: @orig.id,
-              article: { title: @orig.title, draft: 'draft', body: 'update' }})
+                id: @orig.id,
+                article: { title: @orig.title, draft: 'draft', body: 'update' }
+              })
         end
 
         it 'leaves the original published' do
