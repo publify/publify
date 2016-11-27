@@ -2,9 +2,12 @@ sudo: false
 language: ruby
 cache: bundler
 rvm:
-  - 2.1
-  - 2.2
-  - 2.3.0
+  - 2.3.1
+  - 2.3.3
+  - 2.4.0-preview3
+matrix:
+  allow_failures:
+    - rvm: 2.4.0-preview3
 branches:
   only:
     - master
