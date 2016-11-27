@@ -38,7 +38,7 @@ end
 
 gem 'rails', '~> 5.0.0'
 
-gem 'publify_core', '~> 9.0.0.pre1'
+gem 'publify_core', '~> 9.0.0.pre4'
 gem 'publify_amazon_sidebar', '~> 9.0.0.pre1'
 gem 'publify_textfilter_code', '~> 9.0.0.pre1'
 
