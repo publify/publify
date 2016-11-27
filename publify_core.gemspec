@@ -15,7 +15,8 @@ Gem::Specification.new do |s|
   s.description = 'Core engine for the Publify blogging system, formerly known as Typo.'
   s.license     = 'MIT'
 
-  s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.rdoc']
+  s.files = `git ls-files -z`.split("\x0").
+    reject { |f| f.match(%r{^(bin|spec)/}) }
 
   s.required_ruby_version = '>= 2.1.0'
 
