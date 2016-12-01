@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -19,10 +18,9 @@ ActiveRecord::Schema.define(version: 20161030121548) do
   create_table "articles_tags", id: false, force: :cascade do |t|
     t.integer "article_id"
     t.integer "tag_id"
+    t.index ["article_id"], name: "index_articles_tags_on_article_id", using: :btree
+    t.index ["tag_id"], name: "index_articles_tags_on_tag_id", using: :btree
   end
-
-  add_index "articles_tags", ["article_id"], name: "index_articles_tags_on_article_id", using: :btree
-  add_index "articles_tags", ["tag_id"], name: "index_articles_tags_on_tag_id", using: :btree
 
   create_table "blogs", force: :cascade do |t|
     t.text   "settings"
@@ -53,12 +51,11 @@ ActiveRecord::Schema.define(version: 20161030121548) do
     t.text     "settings"
     t.string   "post_type",      default: "read"
     t.integer  "blog_id",                         null: false
+    t.index ["id", "type"], name: "index_contents_on_id_and_type", using: :btree
+    t.index ["published"], name: "index_contents_on_published", using: :btree
+    t.index ["text_filter_id"], name: "index_contents_on_text_filter_id", using: :btree
+    t.index ["user_id"], name: "index_contents_on_user_id", using: :btree
   end
-
-  add_index "contents", ["id", "type"], name: "index_contents_on_id_and_type", using: :btree
-  add_index "contents", ["published"], name: "index_contents_on_published", using: :btree
-  add_index "contents", ["text_filter_id"], name: "index_contents_on_text_filter_id", using: :btree
-  add_index "contents", ["user_id"], name: "index_contents_on_user_id", using: :btree
 
   create_table "feedback", force: :cascade do |t|
     t.string   "type"
@@ -82,26 +79,23 @@ ActiveRecord::Schema.define(version: 20161030121548) do
     t.string   "state"
     t.boolean  "status_confirmed"
     t.string   "user_agent"
+    t.index ["article_id"], name: "index_feedback_on_article_id", using: :btree
+    t.index ["id", "type"], name: "index_feedback_on_id_and_type", using: :btree
+    t.index ["text_filter_id"], name: "index_feedback_on_text_filter_id", using: :btree
+    t.index ["user_id"], name: "index_feedback_on_user_id", using: :btree
   end
-
-  add_index "feedback", ["article_id"], name: "index_feedback_on_article_id", using: :btree
-  add_index "feedback", ["id", "type"], name: "index_feedback_on_id_and_type", using: :btree
-  add_index "feedback", ["text_filter_id"], name: "index_feedback_on_text_filter_id", using: :btree
-  add_index "feedback", ["user_id"], name: "index_feedback_on_user_id", using: :btree
 
   create_table "page_caches", force: :cascade do |t|
     t.string "name"
+    t.index ["name"], name: "index_page_caches_on_name", using: :btree
   end
-
-  add_index "page_caches", ["name"], name: "index_page_caches_on_name", using: :btree
 
   create_table "pings", force: :cascade do |t|
     t.integer  "article_id"
     t.string   "url"
     t.datetime "created_at"
+    t.index ["article_id"], name: "index_pings_on_article_id", using: :btree
   end
-
-  add_index "pings", ["article_id"], name: "index_pings_on_article_id", using: :btree
 
   create_table "post_types", force: :cascade do |t|
     t.string "name"
@@ -134,19 +128,17 @@ ActiveRecord::Schema.define(version: 20161030121548) do
     t.string   "itunes_category"
     t.boolean  "itunes_explicit"
     t.integer  "blog_id",         null: false
+    t.index ["article_id"], name: "index_resources_on_article_id", using: :btree
   end
-
-  add_index "resources", ["article_id"], name: "index_resources_on_article_id", using: :btree
 
   create_table "sessions", force: :cascade do |t|
     t.string   "session_id", null: false
     t.text     "data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["session_id"], name: "index_sessions_on_session_id", unique: true, using: :btree
+    t.index ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
   end
-
-  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true, using: :btree
-  add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
 
   create_table "sidebars", force: :cascade do |t|
     t.integer "active_position"
@@ -154,9 +146,8 @@ ActiveRecord::Schema.define(version: 20161030121548) do
     t.integer "staged_position"
     t.string  "type"
     t.integer "blog_id",         null: false
+    t.index ["id", "type"], name: "index_sidebars_on_id_and_type", using: :btree
   end
-
-  add_index "sidebars", ["id", "type"], name: "index_sidebars_on_id_and_type", using: :btree
 
   create_table "sitealizer", force: :cascade do |t|
     t.string   "path"
@@ -189,9 +180,8 @@ ActiveRecord::Schema.define(version: 20161030121548) do
     t.string   "pending_item_type"
     t.datetime "due_at"
     t.string   "trigger_method"
+    t.index ["pending_item_id", "pending_item_type"], name: "index_triggers_on_pending_item_id_and_pending_item_type", using: :btree
   end
-
-  add_index "triggers", ["pending_item_id", "pending_item_type"], name: "index_triggers_on_pending_item_id_and_pending_item_type", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "login"
@@ -219,11 +209,10 @@ ActiveRecord::Schema.define(version: 20161030121548) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "profile"
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["resource_id"], name: "index_users_on_resource_id", using: :btree
+    t.index ["text_filter_id"], name: "index_users_on_text_filter_id", using: :btree
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-  add_index "users", ["resource_id"], name: "index_users_on_resource_id", using: :btree
-  add_index "users", ["text_filter_id"], name: "index_users_on_text_filter_id", using: :btree
 
 end
