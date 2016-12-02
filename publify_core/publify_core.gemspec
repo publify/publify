@@ -22,7 +22,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rails', '~> 5.0.0'
   s.add_dependency 'RedCloth', '~> 4.3.1'
-  s.add_dependency 'activerecord-session_store', '~> 1.0.0'
   s.add_dependency 'akismet', '~> 2.0'
   s.add_dependency 'bluecloth', '~> 2.1'
   s.add_dependency 'bootstrap-sass', '~> 3.3.6'
