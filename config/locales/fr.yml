@@ -26,15 +26,6 @@ fr:
     base:
       not_allowed: Erreur, vous n'êtes pas autorisé à réaliser cette action
       successfully_deleted: "%{name} a été supprimé avec succès"
-    cache:
-      destroy:
-        error: Oups, un problème s'est produit et le cache n'a pas pu être vidé correctement
-        success: Le cache a été vidé avec succès
-      show:
-        cache: Cache
-        explanation: Afin d'économiser des ressources, Publify génère des fichiers statiques avec votre contenu. Ces fichiers sont supprimés lors d'une nouvelle publication. Vous pouvez cependant les effacer vous-même.
-        stats: Il y a actuellement %{files_count} fichiers en cache pour un total de %{size} kilo octets.
-        sweep_cache: Vider le cache
     content:
       access_granted:
         error: Erreur, vous n'avez pas les droits requis pour effectuer cette action
@@ -527,7 +518,6 @@ fr:
         all_pages: All pages
         article_types: Article types
         articles: Articles
-        cache: Cache
         choose_theme: Choose theme
         customize_sidebar: Customize sidebar
         design: Design
