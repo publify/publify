@@ -26,15 +26,6 @@ he:
     base:
       not_allowed: Error, you are not allowed to perform this action
       successfully_deleted: This %{name} was deleted successfully
-    cache:
-      destroy:
-        error: Cache could not be cleared
-        success: המטמון נוקה
-      show:
-        cache: Cache
-        explanation: To save on resources, Publify generates static files along with your content. These files are deleted when a new article is created. You can, at any time, delete these files yourself.
-        stats: There are currently %{files_count} files in cache for a total amount of %{size} Kb
-        sweep_cache: Sweep cache
     content:
       access_granted:
         error: שגיאה, אינך רשאי לבצע פעולה זו
@@ -527,7 +518,6 @@ he:
         all_pages: All pages
         article_types: Article types
         articles: Articles
-        cache: Cache
         choose_theme: Choose theme
         customize_sidebar: Customize sidebar
         design: Design
