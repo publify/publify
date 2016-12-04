@@ -26,15 +26,6 @@ nb-NO:
     base:
       not_allowed: Feil, du har ikke lov til å utføre denne handlingen
       successfully_deleted: Slettet %{name}
-    cache:
-      destroy:
-        error: Cachen kunne ikke slettes
-        success: Cachen er slettet
-      show:
-        cache: Cache
-        explanation: For å spare ressurser cacher Publify innholdet i statiske filer. Cachen slettes hver gang en ny artikkel opprettes. Du kan også velge å slette cachen selv.
-        stats: Det finnes for øyeblikket %{files_count} filer i cachen som utgjør totalt %{size} kB
-        sweep_cache: Slett cache
     content:
       access_granted:
         error: Du har ikke tillatelse til å utføre denne handlingen
@@ -527,7 +518,6 @@ nb-NO:
         all_pages: All pages
         article_types: Article types
         articles: Artikler
-        cache: Cache
         choose_theme: Choose theme
         customize_sidebar: Customize sidebar
         design: Design

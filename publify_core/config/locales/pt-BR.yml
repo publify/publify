@@ -26,15 +26,6 @@ pt-BR:
     base:
       not_allowed: Erro, você não possui permissão para executar esta ação
       successfully_deleted: Este %{name} foi removido com sucesso
-    cache:
-      destroy:
-        error: Cache não pode ser removido
-        success: Cache foi removido
-      show:
-        cache: Cache
-        explanation: Para economizar recursos, Publify gera arquivos estáticos juntamente com o seu conteúdo. Esses arquivos são apagados automaticamente quando um novo artigo é criado. Você pode, a qualquer momento, excluir esses arquivos.
-        stats: Atualmente existem %{files_count} arquivos em cache para uma quantidade total de %{size} Kb.
-        sweep_cache: Limpar cache
     content:
       access_granted:
         error: Erro, você não tem permissão para executar essa tarefa
@@ -527,7 +518,6 @@ pt-BR:
         all_pages: All pages
         article_types: Article types
         articles: Artigos
-        cache: Cache
         choose_theme: Escolha um tema
         customize_sidebar: Customize sidebar
         design: Design
