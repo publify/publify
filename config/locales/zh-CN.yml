@@ -26,15 +26,6 @@ zh-CN:
     base:
       not_allowed: Error, you are not allowed to perform this action
       successfully_deleted: This %{name} was deleted successfully
-    cache:
-      destroy:
-        error: Cache could not be cleared
-        success: cache已清除
-      show:
-        cache: 儲存
-        explanation: To save on resources, Publify generates static files along with your content. These files are deleted when a new article is created. You can, at any time, delete these files yourself.
-        stats: 有%{files_count}個項目在Cache中
-        sweep_cache: Sweep cache
     content:
       access_granted:
         error: 错误，不允许进行此操作
@@ -527,7 +518,6 @@ zh-CN:
         all_pages: All pages
         article_types: Article types
         articles: Articles
-        cache: Cache
         choose_theme: Choose theme
         customize_sidebar: Customize sidebar
         design: Design
