@@ -4,7 +4,7 @@ require 'akismet'
 class Feedback < ActiveRecord::Base
   self.table_name = 'feedback'
 
-  belongs_to :text_filter
+  belongs_to :text_filter, optional: true
   belongs_to :article
 
   include PublifyGuid
