@@ -9,8 +9,7 @@ module Net
   end
 
   class Net::HTTP
-    def initialize(*_args)
-    end
+    def initialize(*_args); end
 
     def self.start(host, port)
       request = Request.new

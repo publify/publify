@@ -13,6 +13,10 @@ AllCops:
 Rails:
   Enabled: true
 
+# We have duplication due to extra logic in the Gemfile
+Bundler/DuplicatedGem:
+  Enabled: false
+
 # Allow if (foo = get_foo) style
 Lint/AssignmentInCondition:
   AllowSafeAssignment: true

@@ -1,8 +1,7 @@
 # remove_const "Flickr"
 
 class FlickRaw::Flickr
-  def initialize
-  end
+  def initialize; end
 
   def photos
     Photos.new
