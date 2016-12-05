@@ -1,5 +1,5 @@
 class Redirect < ActiveRecord::Base
-  belongs_to :contents
+  belongs_to :contents, optional: true
   belongs_to :blog
 
   validates :from_path, uniqueness: true

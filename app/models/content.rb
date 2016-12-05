@@ -10,13 +10,13 @@ class Content < ActiveRecord::Base
   after_save :invalidates_cache?
   after_destroy ->(c) { c.invalidates_cache?(true) }
 
-  belongs_to :text_filter
-  belongs_to :user
+  belongs_to :text_filter, optional: true
+  belongs_to :user, optional: true
   belongs_to :blog
 
   validates :blog, presence: true
 
-  has_one :redirect, dependent: :destroy
+  has_one :redirect, dependent: :destroy, inverse_of: :contents
 
   has_many :triggers, as: :pending_item, dependent: :delete_all
 
