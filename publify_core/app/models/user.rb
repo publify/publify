@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   include ConfigManager
 
   belongs_to :text_filter
-  belongs_to :resource
+  belongs_to :resource, optional: true
 
   delegate :name, to: :text_filter, prefix: true
 

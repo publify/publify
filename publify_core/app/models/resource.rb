@@ -3,7 +3,7 @@ require 'carrierwave/orm/activerecord'
 
 class Resource < ActiveRecord::Base
   belongs_to :blog
-  belongs_to :article
+  belongs_to :article, optional: true
 
   mount_uploader :upload, ResourceUploader
   validate :image_mime_type_consistent

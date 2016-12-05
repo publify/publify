@@ -2,7 +2,7 @@ require_dependency 'spam_protection'
 require 'timeout'
 
 class Comment < Feedback
-  belongs_to :user
+  belongs_to :user, optional: true
   content_fields :body
   validates :author, :body, presence: true
 
