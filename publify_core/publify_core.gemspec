@@ -33,7 +33,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'feedjira', '~> 2.1.0'
   s.add_dependency 'fog-aws', '~> 1.1.0'
   s.add_dependency 'jquery-rails', '~> 4.2.1'
-  s.add_dependency 'jquery-ui-rails', '~> 5.0.2'
+  s.add_dependency 'jquery-ui-rails', '~> 6.0.1'
   s.add_dependency 'kaminari', '~> 0.17.0'
   s.add_dependency 'mini_magick', '~> 4.2'
   s.add_dependency 'rails-timeago', '~> 2.0'
