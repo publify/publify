@@ -49,6 +49,9 @@ gem 'uglifier', '>= 1.3.0'
 gem 'flickraw-cached', '20120701'
 gem 'flickraw', '~> 0.9.8'
 
+# Store sessions in the database
+gem 'activerecord-session_store', '~> 1.0.0'
+
 gem 'non-stupid-digest-assets', '~> 1.0'
 gem 'rake', '~> 11.1'
 
