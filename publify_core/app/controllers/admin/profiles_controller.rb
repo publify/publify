@@ -2,8 +2,7 @@
 class Admin::ProfilesController < Admin::BaseController
   before_action :set_user, only: [:index, :update]
 
-  def index
-  end
+  def index; end
 
   def update
     @user.resource = upload_avatar if params[:user][:filename]

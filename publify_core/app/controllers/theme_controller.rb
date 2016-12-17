@@ -19,8 +19,7 @@ class ThemeController < ContentController
     head :not_found
   end
 
-  def static_view_test
-  end
+  def static_view_test; end
 
   private
 
