@@ -47,7 +47,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'sqlite3'
   s.add_development_dependency 'rspec-rails', '~> 3.5.2'
   s.add_development_dependency 'capybara', '~> 2.7'
-  s.add_development_dependency 'factory_girl_rails', '~> 4.6'
+  s.add_development_dependency 'factory_girl_rails', '~> 4.6.0'
   s.add_development_dependency 'rubocop', '~> 0.45.0'
   s.add_development_dependency 'i18n-tasks', '~> 0.9.1'
   s.add_development_dependency 'rails-controller-testing', '~> 1.0.1'
