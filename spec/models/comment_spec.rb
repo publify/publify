@@ -4,9 +4,7 @@ require 'support/dns_mock'
 describe Comment, type: :model do
   let(:blog) { build_stubbed :blog }
 
-  def published_article
-    build_stubbed(:article, published_at: Time.now - 1.hour, blog: blog)
-  end
+  let(:published_article) { build_stubbed(:article, published_at: Time.now - 1.hour, blog: blog) }
 
   def valid_comment(options = {})
     Comment.new({ author: 'Bob', article: published_article, body: 'nice post', ip: '1.2.3.4' }.merge(options))
@@ -29,13 +27,13 @@ describe Comment, type: :model do
       allow(blog).to receive(:sp_article_auto_close) { 300 }
     end
     it 'should save good comment' do
-      c = build(:comment, url: 'http://www.google.de', article: published_article)
+      c = build(:comment, url: 'http://www.google.de')
       assert c.save
       assert_equal 'http://www.google.de', c.url
     end
 
     it 'should save spam comment' do
-      c = build(:comment, body: 'test <a href="http://fakeurl.com">body</a>', article: published_article)
+      c = build(:comment, body: 'test <a href="http://fakeurl.com">body</a>')
       assert c.save
       assert_equal 'http://fakeurl.com', c.url
     end
@@ -47,13 +45,13 @@ describe Comment, type: :model do
     end
 
     it 'should change old comment' do
-      c = build(:comment, body: 'Comment body <em>italic</em> <strong>bold</strong>', article: published_article)
+      c = build(:comment, body: 'Comment body <em>italic</em> <strong>bold</strong>')
       assert c.save
       assert c.errors.empty?
     end
 
     it 'should save a valid comment' do
-      c = valid_comment # article created 2 days ago
+      c = build :comment
       expect(c.save).to be_truthy
       expect(c.errors).to be_empty
     end
@@ -67,27 +65,27 @@ describe Comment, type: :model do
     end
   end
 
-  describe '#create' do
-    it 'should create comment' do
-      c = valid_comment
+  describe '#save' do
+    it 'should generate guid' do
+      c = build :comment, guid: nil
       assert c.save
       assert c.guid.size > 15
     end
 
     it 'preserves urls starting with https://' do
-      c = valid_comment(url: 'https://example.com/')
+      c = build :comment, url: 'https://example.com/'
       c.save
       expect(c.url).to eq('https://example.com/')
     end
 
     it 'preserves urls starting with http://' do
-      c = valid_comment(url: 'http://example.com/')
+      c = build :comment, url: 'http://example.com/'
       c.save
       expect(c.url).to eq('http://example.com/')
     end
 
     it 'prepends http:// to urls without protocol' do
-      c = valid_comment(url: 'example.com')
+      c = build :comment, url: 'example.com'
       c.save
       expect(c.url).to eq('http://example.com')
     end
@@ -144,7 +142,7 @@ describe Comment, type: :model do
 
   describe 'change state' do
     it 'should become unpublished if withdrawn' do
-      c = build_stubbed :comment, published: true, published_at: Time.now
+      c = build :comment, published: true, published_at: Time.now
       assert c.withdraw!
       assert !c.published?
       assert c.spam?
@@ -152,7 +150,7 @@ describe Comment, type: :model do
     end
 
     it 'should becomes confirmed if withdrawn' do
-      unconfirmed = build_stubbed(:comment, state: 'presumed_ham')
+      unconfirmed = build(:comment, state: 'presumed_ham')
       expect(unconfirmed).not_to be_status_confirmed
       unconfirmed.withdraw!
       expect(unconfirmed).to be_status_confirmed
