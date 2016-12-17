@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe AmazonSidebar do
-  describe 'without constructor parameters' do
-    let(:sidebar) { AmazonSidebar.new }
+  describe 'when using default values for its properties' do
+    let(:sidebar) { AmazonSidebar.new(blog: Blog.new) }
 
     it "title should be 'Cited books'" do
       expect(sidebar.title).to eq('Cited books')
@@ -27,11 +27,12 @@ RSpec.describe AmazonSidebar do
     end
   end
 
-  describe 'with constructor parameters' do
+  describe 'when overriding the defaults' do
     it 'gets attributes set correctly' do
       sb = AmazonSidebar.new(title: 'Books',
                              associate_id: 'justasummary-21',
-                             maxlinks: 3)
+                             maxlinks: 3,
+                             blog: Blog.new)
       expect(sb).to be_valid
       expect(sb.title).to eq('Books')
       expect(sb.associate_id).to eq('justasummary-21')
