@@ -6,8 +6,7 @@ class Admin::TagsController < Admin::BaseController
     @tag = Tag.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @tag = this_blog.tags.new(tag_params)
