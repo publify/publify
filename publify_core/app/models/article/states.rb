@@ -26,8 +26,7 @@ module Article::States
       true
     end
 
-    def withdraw
-    end
+    def withdraw; end
   end
 
   class New < Base

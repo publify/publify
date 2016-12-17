@@ -93,8 +93,7 @@ class Sidebar < ActiveRecord::Base
     short_name + '-' + id.to_s
   end
 
-  def parse_request(_contents, _params)
-  end
+  def parse_request(_contents, _params); end
 
   def fields
     self.class.fields
