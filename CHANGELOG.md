@@ -1,5 +1,12 @@
 # Changelog
 
+## 9.0.0.pre5 / 2016-12-17
+
+* Update dependencies
+* Remove activerecord-session_store. The main application should decide on the
+  store to use.
+* Remove unused translations
+
 ## 9.0.0.pre4
 
 * Ensure theme files are part of the gem.
