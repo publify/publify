@@ -23,9 +23,8 @@ class Feedback < ActiveRecord::Base
 
   before_create :create_guid, :article_allows_this_feedback
   before_save :correct_url, :before_save_handler
-  after_save :post_trigger, :report_classification, :invalidates_cache?
+  after_save :post_trigger, :report_classification
   after_initialize :after_initialize_handler
-  after_destroy ->(c) { c.invalidates_cache?(true) }
 
   scope :ham, -> { where(state: %w(presumed_ham ham)) }
   scope :spam, -> { where(state: 'spam') }
