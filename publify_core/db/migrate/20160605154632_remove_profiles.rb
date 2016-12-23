@@ -1,4 +1,4 @@
-class RemoveProfiles < ActiveRecord::Migration
+class RemoveProfiles < ActiveRecord::Migration[4.2]
   class Profile < ActiveRecord::Base
     serialize :modules
   end

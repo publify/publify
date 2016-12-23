@@ -1,4 +1,4 @@
-class RemoveProfilesRights < ActiveRecord::Migration
+class RemoveProfilesRights < ActiveRecord::Migration[4.2]
   def up
     drop_table :profiles_rights
   end

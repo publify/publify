@@ -1,4 +1,4 @@
-class ReplaceProfileIdWithString < ActiveRecord::Migration
+class ReplaceProfileIdWithString < ActiveRecord::Migration[4.2]
   class Profile < ActiveRecord::Base
 
   end
