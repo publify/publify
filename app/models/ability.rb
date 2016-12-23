@@ -22,7 +22,6 @@ class Ability
   private
 
   def add_admin_abilities
-    can :manage, 'admin/cache'
     can :manage, 'admin/migrations'
     can :manage, 'admin/seo'
     can :manage, 'admin/settings'
