@@ -1,5 +1,10 @@
 # Changelog
 
+## 9.0.0.pre6 / 2016-12-23
+
+* Remove now-broken caching of theme assets
+* Remove cache invalidation support code from content
+
 ## 9.0.0.pre5 / 2016-12-17
 
 * Update dependencies
