@@ -32,8 +32,6 @@ class ThemeController < ContentController
     src = this_blog.current_theme.path + "/#{type}/#{file}"
     return (render plain: 'Not Found', status: 404) unless File.exist? src
 
-    cache_page File.read(src) if perform_caching
-
     send_file(src, type: mime, disposition: 'inline', stream: true)
   end
 
