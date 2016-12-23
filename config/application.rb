@@ -60,8 +60,9 @@ module Publify
     begin
       mail_settings = YAML.load(File.read("#{::Rails.root.to_s}/config/mail.yml"))
 
-      ActionMailer::Base.delivery_method = mail_settings['method']
-      ActionMailer::Base.server_settings = mail_settings['settings']
+      %w(delivery_method smtp_settings sendmail_settings file_settings).each do |key|
+        ActionMailer::Base.send "#{key}=", mail_settings[key]
+      end
     rescue
       # Fall back to using sendmail by default
       ActionMailer::Base.delivery_method = :sendmail
