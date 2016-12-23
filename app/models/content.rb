@@ -6,10 +6,6 @@ class Content < ActiveRecord::Base
 
   include ContentBase
 
-  # TODO: Move these calls to ContentBase
-  after_save :invalidates_cache?
-  after_destroy ->(c) { c.invalidates_cache?(true) }
-
   belongs_to :text_filter, optional: true
   belongs_to :user, optional: true
   belongs_to :blog

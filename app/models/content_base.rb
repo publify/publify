@@ -64,14 +64,6 @@ module ContentBase
       (text.length > length ? '...' : '')
   end
 
-  def invalidates_cache?(on_destruction = false)
-    @invalidates_cache ||= if on_destruction
-                             just_changed_published_status? || published?
-                           else
-                             (changed? && published?) || just_changed_published_status?
-                           end
-  end
-
   def publish!
     self.published = true
     save!
