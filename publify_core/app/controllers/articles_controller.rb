@@ -162,7 +162,12 @@ class ArticlesController < ContentController
 
   def render_articles_feed(format)
     if this_blog.feedburner_url.empty? || request.env['HTTP_USER_AGENT'] =~ /FeedBurner/i
-      render "index_#{format}_feed", layout: false
+      template = "index_#{format}_feed"
+      key = "articles/#{template}-#{@articles.map(&:cache_key).join('-')}"
+      feed = Rails.cache.fetch(key) do
+        render_to_string template, layout: false
+      end
+      render xml: feed
     else
       redirect_to "http://feeds2.feedburner.com/#{this_blog.feedburner_url}"
     end
