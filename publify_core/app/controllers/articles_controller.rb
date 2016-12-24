@@ -161,16 +161,12 @@ class ArticlesController < ContentController
   end
 
   def render_articles_feed(format)
-    if this_blog.feedburner_url.empty? || request.env['HTTP_USER_AGENT'] =~ /FeedBurner/i
-      template = "index_#{format}_feed"
-      key = "articles/#{template}-#{@articles.map(&:cache_key).join('-')}"
-      feed = Rails.cache.fetch(key) do
-        render_to_string template, layout: false
-      end
-      render xml: feed
-    else
-      redirect_to "http://feeds2.feedburner.com/#{this_blog.feedburner_url}"
+    template = "index_#{format}_feed"
+    key = "articles/#{template}-#{@articles.map(&:cache_key).join('-')}"
+    feed = Rails.cache.fetch(key) do
+      render_to_string template, layout: false
     end
+    render xml: feed
   end
 
   def render_feedback_feed(format)
@@ -180,12 +176,7 @@ class ArticlesController < ContentController
 
   def render_paginated_index
     return error! if @articles.empty?
-    if this_blog.feedburner_url.empty?
-      auto_discovery_feed(only_path: false)
-    else
-      @auto_discovery_url_rss = "http://feeds2.feedburner.com/#{this_blog.feedburner_url}"
-      @auto_discovery_url_atom = "http://feeds2.feedburner.com/#{this_blog.feedburner_url}"
-    end
+    auto_discovery_feed(only_path: false)
     render 'index'
   end
 
