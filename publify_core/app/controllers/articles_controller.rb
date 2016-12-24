@@ -12,9 +12,9 @@ class ArticlesController < ContentController
 
     limit = this_blog.per_page(params[:format])
     @articles = if params[:year].blank?
-                  this_blog.contents.published.where(conditions).page(params[:page]).per(limit)
+                  this_blog.contents.published.includes(:user).where(conditions).page(params[:page]).per(limit)
                 else
-                  this_blog.contents.published_at(params.values_at(:year, :month, :day)).where(conditions).page(params[:page]).per(limit)
+                  this_blog.contents.published_at(params.values_at(:year, :month, :day)).includes(:user).where(conditions).page(params[:page]).per(limit)
                 end
 
     @page_title = this_blog.home_title_template
