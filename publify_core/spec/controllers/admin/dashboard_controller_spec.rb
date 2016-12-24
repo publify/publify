@@ -4,8 +4,8 @@ describe Admin::DashboardController, type: :controller do
   render_views
 
   before do
-    stub_request(:get, "http://www.google.com/search?output=rss&q=link:test.host&tbm=blg").
-      to_return(:status => 200, :body => "", :headers => {})
+    stub_request(:get, 'http://www.google.com/search?output=rss&q=link:test.host&tbm=blg').
+      to_return(status: 200, body: '', headers: {})
   end
 
   describe 'test admin profile' do
