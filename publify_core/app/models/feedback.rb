@@ -201,18 +201,15 @@ class Feedback < ActiveRecord::Base
 
   private
 
-  @@akismet = nil
-
   def akismet
-    @@akismet = akismet_client if @@akismet.nil?
-    @@akismet == false ? nil : @@akismet
+    @akismet ||= akismet_client
   end
 
   def akismet_client
-    return false if blog.sp_akismet_key.blank?
+    return nil if blog.sp_akismet_key.blank?
     client = Akismet::Client.new(blog.sp_akismet_key, blog.base_url)
     begin
-      return client.verify_key ? client : false
+      return client.verify_key ? client : nil
     rescue SocketError
       nil
     end
