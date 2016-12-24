@@ -1,3 +1,4 @@
+<% cache sidebar.authors do %>
 <% unless sidebar.authors.blank? %>
   <h3 class="sidebar-title"><%= t(".authors")%></h3>
   <div class="sidebar-body">
@@ -10,4 +11,5 @@
       <% end %>
     </ul>
   </div>
+<% end %>
 <% end %>
