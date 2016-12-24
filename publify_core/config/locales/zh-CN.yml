@@ -430,8 +430,6 @@ zh-CN:
         feed_articles: Article excerpts
         feed_excerpts_only: Show only article excerpts in feed
         feed_settings: RSS Feed Settings
-        feedburner_help: Enter your FeedBurner ID if you wish to use your Google FeedBurner account instead of using the Publify feed URL.
-        feedburner_id: FeedBurner ID
         or: or
         publishing_options: Publishing Options
         status_main_feed: Display statuses in the main feed

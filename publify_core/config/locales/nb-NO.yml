@@ -430,8 +430,6 @@ nb-NO:
         feed_articles: Utdrag
         feed_excerpts_only: Vis bare utdrag av artikler i feeden
         feed_settings: Innstillinger for RSS-feed
-        feedburner_help: Oppgi din FeedBurner-ID hvis du vil bruke Google Feedburner istedenfor feed-URL-en i Publify.
-        feedburner_id: FeedBurner-ID
         or: eller
         publishing_options: Publiseringsvalg
         status_main_feed: Vis statusoppdateringer i hovedfeeden

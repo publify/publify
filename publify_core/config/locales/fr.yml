@@ -430,8 +430,6 @@ fr:
         feed_articles: Exergues des articles
         feed_excerpts_only: Tronquer les articles dans le flux RSS
         feed_settings: Configuration du flux RSS
-        feedburner_help: Renseignez votre identifiant FeedBurner si vous souhaitez utiliser votre compte Google FeedBurner au lieu du flux URL de Publify.
-        feedburner_id: Identifiant Feedburner
         or: ou
         publishing_options: Options de publication
         status_main_feed: Afficher les statuts dans le flux principal

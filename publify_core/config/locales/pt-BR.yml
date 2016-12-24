@@ -430,8 +430,6 @@ pt-BR:
         feed_articles: Prévias de Artigos
         feed_excerpts_only: Mostrar somente resumo de artigos no feed
         feed_settings: Configurações de Feed RSS
-        feedburner_help: Enter your FeedBurner ID if you wish to use your Google FeedBurner account instead of using the Publify feed URL.
-        feedburner_id: FeedBurner ID
         or: ou
         publishing_options: Opções de publicação
         status_main_feed: Display statuses in the main feed
