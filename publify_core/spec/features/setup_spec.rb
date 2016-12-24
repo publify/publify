@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.feature 'Blog setup', type: :feature do
   before do
+    stub_request(:get, "http://www.google.com/search?output=rss&q=link:www.example.com&tbm=blg").
+      to_return(:status => 200, :body => "", :headers => {})
     load Rails.root.join('db', 'seeds.rb')
   end
 
