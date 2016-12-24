@@ -50,8 +50,8 @@ class ArticlesController < ContentController
     @description = this_blog.search_desc_template.to_title(@articles, this_blog, params)
     respond_to do |format|
       format.html { render 'search' }
-      format.rss { render 'index_rss_feed', layout: false }
-      format.atom { render 'index_atom_feed', layout: false }
+      format.rss { render_articles_feed 'rss' }
+      format.atom { render_articles_feed 'atom' }
     end
   end
 
@@ -170,8 +170,13 @@ class ArticlesController < ContentController
   end
 
   def render_feedback_feed(format)
-    @feedback = @article.published_feedback
-    render "feedback_#{format}_feed", layout: false
+    template = "feedback_#{format}_feed"
+    key = "articles/#{template}-#{@article.cache_key}"
+    feed = Rails.cache.fetch(key) do
+      @feedback = @article.published_feedback
+      render_to_string template, layout: false
+    end
+    render xml: feed
   end
 
   def render_paginated_index
