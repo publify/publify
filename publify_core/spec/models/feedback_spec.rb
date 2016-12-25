@@ -154,10 +154,25 @@ describe Feedback, type: :model do
       comment.report_as_ham
     end
 
-    it 'works if the blog has an akismet key' do
+    it 'works if the blog has an invalid akismet key' do
+      verification = stub_request(:post, 'http://rest.akismet.com/1.1/verify-key').
+        to_return(status: 200, body: 'invalid', headers: {})
       blog.sp_akismet_key = 'hello!'
       blog.save!
       comment.report_as_ham
+      expect(verification).to have_been_requested
+    end
+
+    it 'works if the blog has a valid akismet key' do
+      verification = stub_request(:post, 'http://rest.akismet.com/1.1/verify-key').
+        to_return(status: 200, body: 'valid', headers: {})
+      reporting = stub_request(:post, 'http://hello!.rest.akismet.com/1.1/submit-ham').
+        to_return(status: 200, body: 'Thanks for making the web a better place.', headers: {})
+      blog.sp_akismet_key = 'hello!'
+      blog.save!
+      comment.report_as_ham
+      expect(verification).to have_been_requested
+      expect(reporting).to have_been_requested
     end
   end
 end

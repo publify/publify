@@ -10,6 +10,7 @@ require 'rspec/rails'
 require 'factory_girl'
 require 'rexml/document'
 require 'feedjira'
+require 'webmock/rspec'
 
 FactoryGirl.find_definitions
 

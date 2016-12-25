@@ -1,4 +1,5 @@
-<p class="meta">
+<% cache article do %>
+  <p class="meta">
   <% if article.tags.any? %>
     <%= t(".tags") %>
     <%= tag_links article %>
@@ -7,4 +8,5 @@
   <%= link_to(t('.comments', count: article.published_comments.size), article.permalink_url('comments', true)) if article.allow_comments? %>
 
   <%= link_to(t('.trackbacks', count: article.published_trackbacks.size), article.permalink_url('trackbacks', true)) if article.allow_pings? %>
-</p>
+  </p>
+<% end %>

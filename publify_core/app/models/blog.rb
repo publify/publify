@@ -76,7 +76,6 @@ class Blog < ActiveRecord::Base
   setting :meta_description, :string, ''
   setting :meta_keywords, :string, ''
   setting :google_analytics, :string, ''
-  setting :feedburner_url, :string, ''
   setting :rss_description, :boolean, false
   setting :rss_description_text, :string, <<EOS
 <hr />

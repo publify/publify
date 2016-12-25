@@ -11,11 +11,12 @@ class ArticlesController < ContentController
     conditions = this_blog.statuses_in_timeline ? ['type in (?, ?)', 'Article', 'Note'] : ['type = ?', 'Article']
 
     limit = this_blog.per_page(params[:format])
-    @articles = if params[:year].blank?
-                  this_blog.contents.published.where(conditions).page(params[:page]).per(limit)
-                else
-                  this_blog.contents.published_at(params.values_at(:year, :month, :day)).where(conditions).page(params[:page]).per(limit)
-                end
+    articles_base = if params[:year].blank?
+                      this_blog.contents.published
+                    else
+                      this_blog.contents.published_at(params.values_at(:year, :month, :day))
+                    end
+    @articles = articles_base.includes(:user).where(conditions).page(params[:page]).per(limit)
 
     @page_title = this_blog.home_title_template
     @description = this_blog.home_desc_template
@@ -50,8 +51,8 @@ class ArticlesController < ContentController
     @description = this_blog.search_desc_template.to_title(@articles, this_blog, params)
     respond_to do |format|
       format.html { render 'search' }
-      format.rss { render 'index_rss_feed', layout: false }
-      format.atom { render 'index_atom_feed', layout: false }
+      format.rss { render_articles_feed 'rss' }
+      format.atom { render_articles_feed 'atom' }
     end
   end
 
@@ -161,26 +162,27 @@ class ArticlesController < ContentController
   end
 
   def render_articles_feed(format)
-    if this_blog.feedburner_url.empty? || request.env['HTTP_USER_AGENT'] =~ /FeedBurner/i
-      render "index_#{format}_feed", layout: false
-    else
-      redirect_to "http://feeds2.feedburner.com/#{this_blog.feedburner_url}"
+    template = "index_#{format}_feed"
+    key = "articles/#{template}-#{@articles.map(&:cache_key).join('-')}"
+    feed = Rails.cache.fetch(key) do
+      render_to_string template, layout: false
     end
+    render xml: feed
   end
 
   def render_feedback_feed(format)
-    @feedback = @article.published_feedback
-    render "feedback_#{format}_feed", layout: false
+    template = "feedback_#{format}_feed"
+    key = "articles/#{template}-#{@article.cache_key}"
+    feed = Rails.cache.fetch(key) do
+      @feedback = @article.published_feedback
+      render_to_string template, layout: false
+    end
+    render xml: feed
   end
 
   def render_paginated_index
     return error! if @articles.empty?
-    if this_blog.feedburner_url.empty?
-      auto_discovery_feed(only_path: false)
-    else
-      @auto_discovery_url_rss = "http://feeds2.feedburner.com/#{this_blog.feedburner_url}"
-      @auto_discovery_url_atom = "http://feeds2.feedburner.com/#{this_blog.feedburner_url}"
-    end
+    auto_discovery_feed(only_path: false)
     render 'index'
   end
 

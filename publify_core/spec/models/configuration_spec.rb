@@ -119,10 +119,6 @@ describe 'Given a new blog', type: :model do
     expect(blog.google_analytics).to eq('')
   end
 
-  it '#feedburner should be empty' do
-    expect(blog.feedburner_url).to eq('')
-  end
-
   it 'RSS description should be disable but not empty' do
     expect(blog).not_to be_rss_description
     expect(blog.rss_description_text).to eq <<EOS

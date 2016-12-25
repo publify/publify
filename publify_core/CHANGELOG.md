@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+* Introduce fragment caching
+* Cache atom and rss feeds
+* Remove support for feedburner
+
 ## 9.0.0.pre6 / 2016-12-23
 
 * Remove now-broken caching of theme assets

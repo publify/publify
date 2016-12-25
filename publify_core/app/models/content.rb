@@ -7,7 +7,7 @@ class Content < ActiveRecord::Base
   include ContentBase
 
   belongs_to :text_filter, optional: true
-  belongs_to :user, optional: true
+  belongs_to :user, optional: true, touch: true
   belongs_to :blog
 
   validates :blog, presence: true
