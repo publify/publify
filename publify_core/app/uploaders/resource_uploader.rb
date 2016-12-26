@@ -24,7 +24,7 @@ class ResourceUploader < CarrierWave::Uploader::Base
   end
 
   def image?(new_file)
-    mime_magic_content_type = new_file.send :mime_magic_content_type
-    mime_magic_content_type && mime_magic_content_type.include?('image')
+    content_type = new_file.content_type
+    content_type && content_type.include?('image')
   end
 end

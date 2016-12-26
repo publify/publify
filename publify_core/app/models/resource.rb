@@ -21,7 +21,7 @@ class Resource < ActiveRecord::Base
 
   def image_mime_type_consistent
     if upload.content_type =~ %r{^image/}
-      expected_type = upload.file.send :mime_magic_content_type
+      expected_type = upload.file.content_type
       errors.add(:upload, 'Has MIME type mismatch') unless upload.content_type == expected_type
     end
   end
