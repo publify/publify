@@ -211,7 +211,7 @@ EOS
     if CarrierWave.configure { |config| config.storage == CarrierWave::Storage::Fog }
       filename
     else
-      url_for "files/#{filename}", only_path: false
+      url_for filename, only_path: false
     end
   end
 
