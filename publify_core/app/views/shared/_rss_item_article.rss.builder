@@ -21,11 +21,11 @@ xm.item do
     if not item.resources.empty?
       resource = item.resources.first
       xm.enclosure(
-        :url => item.blog.file_url(resource.upload_url),
-        :length => resource.size,
-        :type => resource.mime)
-      end
+        url: item.blog.file_url(resource.upload_url),
+        length: resource.size,
+        type: resource.mime)
     end
+  end
 
   if item.allow_pings?
     xm.trackback :ping, item.trackback_url
