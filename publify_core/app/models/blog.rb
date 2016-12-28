@@ -206,9 +206,8 @@ EOS
   prepend BasedUrlFor
 
   # The URL for a static file.
-  # FIXME: Let carrierwave handle this by itself
   def file_url(filename)
-    if CarrierWave.configure { |config| config.storage == CarrierWave::Storage::Fog }
+    if CarrierWave.configure { |config| config.storage.name == 'CarrierWave::Storage::Fog' }
       filename
     else
       url_for filename, only_path: false
