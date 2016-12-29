@@ -131,8 +131,6 @@ class Admin::ContentController < Admin::BaseController
 
   def load_resources
     @post_types = PostType.all
-    @images = Resource.images_by_created_at.page(params[:page]).per(10)
-    @resources = Resource.without_images_by_filename
     @macros = TextFilterPlugin.macro_filters
   end
 

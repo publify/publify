@@ -67,7 +67,7 @@ describe Admin::ResourcesController, type: :controller do
     context 'when uploading an image file' do
       let(:upload) { fixture_file_upload('testfile.png', 'image/png') }
 
-      it 'creates a new image Resource' do
+      it 'creates a new Resource' do
         expect { post :upload, params: { upload: upload } }.
           to change { Resource.count }.by(1)
       end
@@ -89,19 +89,15 @@ describe Admin::ResourcesController, type: :controller do
     context 'when attempting to upload a dangerous svg' do
       let(:upload) { fixture_file_upload('exploit.svg', 'image/svg') }
 
-      before do
-        upload.content_type = 'image/svg'
-      end
-
       it 'does not create a new image Resource' do
         expect { post :upload, params: { upload: upload } }.
           not_to change { Resource.count }
       end
 
-      it 'does not attempt to process a the image' do
+      it 'does not attempt to process the image' do
         post :upload, params: { upload: upload }
         result = assigns(:up)
-        expect(result.errors[:upload].first).not_to match(/^Failed to manipulate with MiniMagick/)
+        expect(result.errors[:upload]).to match_array ['has MIME type mismatch', "can't be blank"]
       end
 
       it 'sets the flash to failure' do
@@ -113,12 +109,8 @@ describe Admin::ResourcesController, type: :controller do
       end
     end
 
-    context 'when attempting to upload a fake png' do
+    context 'when attempting to upload a fake png with a txt extension' do
       let(:upload) { fixture_file_upload('testfile.txt', 'image/png') }
-
-      before do
-        upload.content_type = 'image/png'
-      end
 
       it 'does not create a new fake image Resource' do
         expect { post :upload, params: { upload: upload } }.
@@ -128,7 +120,30 @@ describe Admin::ResourcesController, type: :controller do
       it 'does not attempt to process a new fake image Resource' do
         post :upload, params: { upload: upload }
         result = assigns(:up)
-        expect(result.errors[:upload].first).not_to match(/^Failed to manipulate with MiniMagick/)
+        expect(result.errors[:upload]).to match_array ['has MIME type mismatch', "can't be blank"]
+      end
+
+      it 'sets the flash to failure' do
+        post :upload, params: { upload: upload }
+        aggregate_failures do
+          expect(flash[:success]).to be_nil
+          expect(flash[:warning]).not_to be_nil
+        end
+      end
+    end
+
+    context 'when attempting to upload a fake png with a png extension' do
+      let(:upload) { fixture_file_upload('fakepng.png', 'image/png') }
+
+      it 'does not create a new fake image Resource' do
+        expect { post :upload, params: { upload: upload } }.
+          not_to change { Resource.count }
+      end
+
+      it 'does not attempt to process a new fake image Resource' do
+        post :upload, params: { upload: upload }
+        result = assigns(:up)
+        expect(result.errors[:upload]).to match_array ['has MIME type mismatch', "can't be blank"]
       end
 
       it 'sets the flash to failure' do

@@ -1,50 +1,31 @@
 require 'rails_helper'
 
 describe Resource, type: :model do
-  describe 'scopes' do
-    describe '#without_images' do
-      it 'should list resource that are not image (based on mime type)' do
-        other_resource = FactoryGirl.create(:resource, mime: 'text/css')
-        FactoryGirl.create(:resource, mime: 'image/jpeg')
-        expect(Resource.without_images).to eq([other_resource])
-      end
+  describe '#upload' do
+    let(:blog) { create :blog }
+    let(:resource) { create :resource, blog: blog }
+    let(:img_resource) { Resource.create blog: blog, upload: file_upload('testfile.png', 'image/png') }
+
+    it 'stores files in the correct location' do
+      expected_path = Rails.root.join('public', 'files/resource/1', 'testfile.txt')
+      expect(resource.upload.file.file).to eq expected_path.to_s
     end
 
-    describe '#images' do
-      it 'should list only images (based on mime type)' do
-        FactoryGirl.create(:resource, mime: 'text/css')
-        image_resource = FactoryGirl.create(:resource, mime: 'image/jpeg')
-        expect(Resource.images).to eq([image_resource])
-      end
+    it 'stores resized images in the correct location' do
+      thumb_path = Rails.root.join('public', 'files/resource/1', 'thumb_testfile.png')
+      expect(img_resource.upload.thumb.file.file).to eq thumb_path.to_s
     end
 
-    describe '#by_filename' do
-      it 'should sort resource by filename' do
-        b_resource = FactoryGirl.create(:resource,
-                                        upload: file_upload('testfile.txt', 'text/plain'))
-        a_resource = FactoryGirl.create(:resource,
-                                        upload: file_upload('otherfile.txt', 'text/plain'))
-        expect(Resource.by_filename).to eq([a_resource, b_resource])
-      end
+    it 'creates three image versions' do
+      expect(img_resource.upload.versions.keys).to match_array [:thumb, :medium, :avatar]
     end
 
-    describe '#by_created_at' do
-      it 'should sort resource by created_at DESC' do
-        b_resource = FactoryGirl.create(:resource, created_at: DateTime.new(2011, 3, 13))
-        a_resource = FactoryGirl.create(:resource, created_at: DateTime.new(2011, 2, 21))
-        expect(Resource.by_created_at).to eq([b_resource, a_resource])
-      end
+    it 'gives the correct url for the attachment' do
+      expect(resource.upload_url).to eq '/files/resource/1/testfile.txt'
     end
 
-    describe '#without_images_by_filename' do
-      it 'should combine 2 scopes' do
-        FactoryGirl.create(:resource, mime: 'image/jpeg')
-        b_resource = FactoryGirl.create(:resource, mime: 'text/html',
-                                                   upload: file_upload('testfile.txt', 'text/html'))
-        a_resource = FactoryGirl.create(:resource, mime: 'text/html',
-                                                   upload: file_upload('otherfile.txt', 'text/html'))
-        expect(Resource.without_images_by_filename).to eq([a_resource, b_resource])
-      end
+    it 'gives the correct url for the image versions' do
+      expect(img_resource.upload_url(:thumb)).to eq '/files/resource/1/thumb_testfile.png'
     end
   end
 end
