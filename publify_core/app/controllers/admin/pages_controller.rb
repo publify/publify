@@ -2,7 +2,6 @@
 require 'base64'
 
 class Admin::PagesController < Admin::BaseController
-  before_action :set_images, only: [:new, :edit]
   before_action :set_macro, only: [:new, :edit]
   before_action :set_page, only: [:show, :edit, :update, :destroy]
 
@@ -58,10 +57,6 @@ class Admin::PagesController < Admin::BaseController
 
   def set_macro
     @macros = TextFilterPlugin.macro_filters
-  end
-
-  def set_images
-    @images = Resource.images.by_created_at.page(1).per(10)
   end
 
   def get_layout
