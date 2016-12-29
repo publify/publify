@@ -44,6 +44,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'sass-rails', '~> 5.0'
   s.add_dependency 'twitter', '~> 6.0.0'
   s.add_dependency 'uuidtools', '~> 2.1.1'
+  s.add_dependency 'xmlrpc', '~> 0.2.1'
 
   s.add_development_dependency 'sqlite3'
   s.add_development_dependency 'rspec-rails', '~> 3.5.2'
