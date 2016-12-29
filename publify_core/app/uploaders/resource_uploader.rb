@@ -1,4 +1,4 @@
-require 'filemagic'
+require 'mimemagic'
 
 class ResourceUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
@@ -33,7 +33,7 @@ class ResourceUploader < CarrierWave::Uploader::Base
 
   def check_image_content_type!(new_file)
     if image?(new_file)
-      magic_type = filemagic_content_type(new_file)
+      magic_type = mime_magic_content_type(new_file)
       if magic_type != new_file.content_type
         raise CarrierWave::IntegrityError, 'has MIME type mismatch'
       end
@@ -43,13 +43,12 @@ class ResourceUploader < CarrierWave::Uploader::Base
   private
 
   # NOTE: This method was adapted from MagicMimeBlacklist#extract_content_type
-  # from CarrierWave 1.0.0.
-  def filemagic_content_type(new_file)
+  # from CarrierWave 1.0.0 and SanitizedFile#mime_magic_content_type from CarrierWave 0.11.2
+  def mime_magic_content_type(new_file)
     content_type = nil
 
     File.open(new_file.path) do |fd|
-      data = fd.read(1024) || ""
-      content_type = filemagic.buffer(data)
+      content_type = MimeMagic.by_magic(fd).try(:type)
     end
 
     content_type
