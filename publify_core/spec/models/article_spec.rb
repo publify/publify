@@ -164,30 +164,6 @@ describe Article, type: :model do
     end
   end
 
-  describe 'saving an Article' do
-    context 'with a blog that sends outbound pings' do
-      let(:referenced_url) { 'http://anotherblog.org/a-post' }
-      let!(:blog) { create(:blog, send_outbound_pings: 1, text_filter: 'none') }
-      let(:article) do
-        blog.articles.build(body: %(<a href="#{referenced_url}">),
-                            title: 'Test the pinging',
-                            blog_id: 1,
-                            published: true)
-      end
-
-      before do
-        ActiveJob::Base.queue_adapter = :test
-        create :none
-
-        article.save!
-      end
-
-      it 'schedules a PingerJob' do
-        expect(PingerJob).to have_been_enqueued
-      end
-    end
-  end
-
   describe '#just_published' do
     it 'is true when the article has just been saved as published' do
       article = blog.articles.build(body: 'bar bar', title: 'Foo', published: true)
@@ -694,26 +670,6 @@ describe Article, type: :model do
       upload = resource.upload
 
       expect(upload.file.basename).to eq 'testfile'
-    end
-  end
-
-  describe '.really_send_pings' do
-    context 'given a new article' do
-      let(:article) { blog.articles.create!(title: 'foo', blog: blog) }
-
-      it 'does not schedule a PingerJob if the blog does not allow sending outbound pings' do
-        ActiveJob::Base.queue_adapter = :test
-        expect_any_instance_of(Blog).to receive(:send_outbound_pings).and_return(false)
-        article.really_send_pings
-        expect(PingerJob).not_to have_been_enqueued
-      end
-
-      it 'schedules a PingerJob if the blog allows sending outbound pings' do
-        ActiveJob::Base.queue_adapter = :test
-        expect_any_instance_of(Blog).to receive(:send_outbound_pings).and_return(true)
-        article.really_send_pings
-        expect(PingerJob).to have_been_enqueued
-      end
     end
   end
 
