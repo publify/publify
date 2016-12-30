@@ -85,11 +85,6 @@ describe 'Given a new blog', type: :model do
     expect(blog).not_to be_global_pings_disable
   end
 
-  it 'should ping technorati, blog.gs and weblogs.com' do
-    expect(blog.ping_urls).
-      to eq("http://blogsearch.google.com/ping/RPC2\nhttp://rpc.technorati.com/rpc/ping\nhttp://ping.blo.gs/\nhttp://rpc.weblogs.com/RPC2")
-  end
-
   it 'should send outbound pings' do
     expect(blog).to be_send_outbound_pings
   end

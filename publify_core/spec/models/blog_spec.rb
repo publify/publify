@@ -128,21 +128,6 @@ describe Blog, type: :model do
     end
   end
 
-  describe '.urls_to_ping_for' do
-    it 'format ping_urls to an array' do
-      article = Article.new
-      blog = FactoryGirl.build(:blog, ping_urls: 'http://ping.example.com/ping')
-      expect(blog.urls_to_ping_for(article).map(&:url)).to eq ['http://ping.example.com/ping']
-    end
-
-    it 'format ping_urls to an array even when multiple urls' do
-      article = Article.new
-      blog = FactoryGirl.build(:blog, ping_urls: "http://ping.example.com/ping
-http://anotherurl.net/other_line")
-      expect(blog.urls_to_ping_for(article).map(&:url)).to eq ['http://ping.example.com/ping', 'http://anotherurl.net/other_line']
-    end
-  end
-
   describe 'Blog Twitter configuration' do
     it 'A blog without :twitter_consumer_key or twitter_consumer_secret should not have Twitter configured' do
       blog = FactoryGirl.build(:blog)
