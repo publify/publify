@@ -5,6 +5,9 @@
 * Introduce fragment caching
 * Cache atom and rss feeds
 * Remove support for feedburner
+* Fix URL for resources in Atom/RSS feeds
+* Update to CarrierWave 1.0.0
+* Move sending of pingbacks and trackbacks to ActiveJob
 
 ## 9.0.0.pre6 / 2016-12-23
 
