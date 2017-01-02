@@ -1,4 +1,4 @@
-class AddDeviseToUsers < ActiveRecord::Migration
+class AddDeviseToUsers < ActiveRecord::Migration[4.2]
   def self.up
     ## Database authenticatable
     change_column :users, :email, :string, null: false, default: ""

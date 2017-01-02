@@ -1,4 +1,4 @@
-class MoveLastConnectionToLastSignInAt < ActiveRecord::Migration
+class MoveLastConnectionToLastSignInAt < ActiveRecord::Migration[4.2]
   class User < ActiveRecord::Base
   end
 

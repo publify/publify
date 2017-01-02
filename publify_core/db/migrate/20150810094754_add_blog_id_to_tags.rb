@@ -1,4 +1,4 @@
-class AddBlogIdToTags < ActiveRecord::Migration
+class AddBlogIdToTags < ActiveRecord::Migration[4.2]
   class Tag < ActiveRecord::Base; end
 
   def up

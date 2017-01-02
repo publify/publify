@@ -1,6 +1,6 @@
 # encoding: UTF-8
 
-class InitialSchema < ActiveRecord::Migration
+class InitialSchema < ActiveRecord::Migration[4.2]
   def change
     create_table "articles_tags", id: false, force: true do |t|
       t.integer "article_id"
