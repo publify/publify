@@ -34,7 +34,7 @@ describe Ping, type: :model do
       ping = FactoryGirl.create(:article).pings.build('url' => referenced_url)
       expect(ping).to be_instance_of(Ping)
       expect(ping.url).to eq(referenced_url)
-      ping.send_pingback_or_trackback(referrer_url).join
+      ping.send_pingback_or_trackback(referrer_url)
     end
   end
 
@@ -86,7 +86,7 @@ describe Ping, type: :model do
       expect(mock).to receive(:post).with('/a-post/trackback', post, 'Content-type' => 'application/x-www-form-urlencoded; charset=utf-8').and_return(mock)
 
       ping = article.pings.create(url: referenced_url)
-      ping.send_pingback_or_trackback(article_url).join
+      ping.send_pingback_or_trackback(article_url)
     end
 
     def referenced_body
@@ -116,7 +116,7 @@ describe Ping, type: :model do
       expect(mock).to receive(:call).with('weblogUpdates.ping', 'test blog', 'http://myblog.net', 'http://myblog.net/new-post')
 
       ping = create(:article).pings.build('url' => 'http://rpc.technorati.com/rpc/ping')
-      ping.send_weblogupdatesping('http://myblog.net', 'http://myblog.net/new-post').join
+      ping.send_weblogupdatesping('http://myblog.net', 'http://myblog.net/new-post')
     end
   end
 end

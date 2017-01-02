@@ -125,25 +125,7 @@ class Article < Content
   def really_send_pings
     return unless blog.send_outbound_pings
 
-    blog.urls_to_ping_for(self).each do |url_to_ping|
-      begin
-        url_to_ping.send_weblogupdatesping(blog.base_url, permalink_url)
-      rescue => e
-        logger.error(e)
-        # in case the remote server doesn't respond or gives an error,
-        # we should throw an xmlrpc error here.
-      end
-    end
-
-    html_urls_to_ping.each do |url_to_ping|
-      begin
-        url_to_ping.send_pingback_or_trackback(permalink_url)
-      rescue => e
-        logger.error(e)
-        # in case the remote server doesn't respond or gives an error,
-        # we should throw an xmlrpc error here.
-      end
-    end
+    PingerJob.perform_later(self)
   end
 
   def next
@@ -288,6 +270,14 @@ class Article < Content
     feedback.published.oldest_first
   end
 
+  def html_urls_to_ping
+    urls_to_ping = []
+    html_urls.delete_if { |url| already_ping?(url) }.uniq.each do |url_to_ping|
+      urls_to_ping << pings.build('url' => url_to_ping)
+    end
+    urls_to_ping
+  end
+
   protected
 
   def set_published_at
@@ -309,13 +299,5 @@ class Article < Content
     else
       format_url
     end
-  end
-
-  def html_urls_to_ping
-    urls_to_ping = []
-    html_urls.delete_if { |url| already_ping?(url) }.uniq.each do |url_to_ping|
-      urls_to_ping << pings.build('url' => url_to_ping)
-    end
-    urls_to_ping
   end
 end

@@ -161,7 +161,6 @@ describe Article, type: :model do
     context 'with a blog that sends outbound pings' do
       let(:referenced_url) { 'http://anotherblog.org/a-post' }
       let!(:blog) { create(:blog, send_outbound_pings: 1, text_filter: 'none') }
-      let(:mock_pinger) { instance_double('Ping::Pinger') }
       let(:article) do
         blog.articles.build(body: %(<a href="#{referenced_url}">),
                             title: 'Test the pinging',
@@ -170,25 +169,14 @@ describe Article, type: :model do
       end
 
       before do
+        ActiveJob::Base.queue_adapter = :test
         create :none
-        # Check supposition
-        expect(Thread.list.count).to eq 1
-
-        allow(Ping::Pinger).to receive(:new).and_return mock_pinger
-        allow(mock_pinger).to receive(:send_pingback_or_trackback)
 
         article.save!
-
-        10.times do
-          break if Thread.list.count == 1
-          sleep 0.1
-        end
       end
 
-      it 'lets a Ping::Pinger object send pingback to the external URLs' do
-        expect(Ping::Pinger).to have_received(:new).
-          with(article.permalink_url, Ping)
-        expect(mock_pinger).to have_received :send_pingback_or_trackback
+      it 'schedules a PingerJob' do
+        expect(PingerJob).to have_been_enqueued
       end
     end
   end
@@ -704,55 +692,20 @@ describe Article, type: :model do
 
   describe '.really_send_pings' do
     context 'given a new article' do
-      let(:article) { blog.articles.build(blog: blog) }
+      let(:article) { blog.articles.create!(title: 'foo', blog: blog) }
 
-      it 'return nil and do nothing when blog should not send_outbound_pings' do
+      it 'does not schedule a PingerJob if the blog does not allow sending outbound pings' do
+        ActiveJob::Base.queue_adapter = :test
         expect_any_instance_of(Blog).to receive(:send_outbound_pings).and_return(false)
-        expect(article.really_send_pings).to be_nil
+        article.really_send_pings
+        expect(PingerJob).not_to have_been_enqueued
       end
 
-      context 'given a blog that allow send outbound pings' do
-        before(:each) do
-          expect_any_instance_of(Blog).to receive(:send_outbound_pings).and_return(true)
-        end
-
-        it 'do nothing when no urls to ping article' do
-          expect_any_instance_of(Blog).to receive(:urls_to_ping_for).and_return([])
-          expect(article).to receive(:html_urls_to_ping).and_return([])
-          expect_any_instance_of(Ping).not_to receive(:send_weblogupdatesping)
-          expect_any_instance_of(Ping).not_to receive(:send_pingback_or_trackback)
-          article.really_send_pings
-        end
-
-        it 'do nothing when urls already list in article.pings (already ping ?)' do
-          ping = OpenStruct.new(url: 'an_url_to_ping')
-          expect_any_instance_of(Blog).to receive(:urls_to_ping_for).and_return([ping])
-          expect(article).to receive(:html_urls_to_ping).and_return(['an_url_to_ping'])
-          expect_any_instance_of(Ping).not_to receive(:send_weblogupdatesping)
-          expect_any_instance_of(Ping).not_to receive(:send_pingback_or_trackback)
-          article.really_send_pings
-        end
-
-        it "calls send_weblogupdatesping when it's not already done" do
-          new_ping = double(Ping)
-          urls_to_ping = [new_ping]
-          expect_any_instance_of(Blog).to receive(:urls_to_ping_for).and_return(urls_to_ping)
-          expect(article).to receive(:permalink_url)
-          expect(article).to receive(:html_urls_to_ping).and_return([])
-          expect(new_ping).to receive(:send_weblogupdatesping)
-          expect(new_ping).not_to receive(:send_pingback_or_trackback)
-          article.really_send_pings
-        end
-
-        it "calls send_pingback_or_trackback when it's not already done" do
-          expect_any_instance_of(Blog).to receive(:urls_to_ping_for).and_return([])
-          new_ping = double(Ping)
-          expect(article).to receive(:html_urls_to_ping).and_return([new_ping])
-          expect(article).to receive(:permalink_url)
-          expect(new_ping).to receive(:send_pingback_or_trackback)
-          expect(new_ping).not_to receive(:send_weblogupdatesping)
-          article.really_send_pings
-        end
+      it 'schedules a PingerJob if the blog allows sending outbound pings' do
+        ActiveJob::Base.queue_adapter = :test
+        expect_any_instance_of(Blog).to receive(:send_outbound_pings).and_return(true)
+        article.really_send_pings
+        expect(PingerJob).to have_been_enqueued
       end
     end
   end

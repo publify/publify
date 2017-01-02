@@ -94,15 +94,12 @@ class Ping < ActiveRecord::Base
   end
 
   def send_pingback_or_trackback(origin_url)
-    t = Thread.start(Pinger.new(origin_url, self), &:send_pingback_or_trackback)
-    t
+    Pinger.new(origin_url, self).send_pingback_or_trackback
   end
 
   def send_weblogupdatesping(server_url, origin_url)
-    t = Thread.start(article.blog.blog_name) do |blog_name|
-      send_xml_rpc(url, 'weblogUpdates.ping', blog_name, server_url, origin_url)
-    end
-    t
+    blog_name = article.blog.blog_name
+    send_xml_rpc(url, 'weblogUpdates.ping', blog_name, server_url, origin_url)
   end
 
   protected
