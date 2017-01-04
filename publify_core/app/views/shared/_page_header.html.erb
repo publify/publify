@@ -5,7 +5,6 @@
 <%= meta_tag 'google-site-verification', this_blog.google_verification unless this_blog.google_verification.blank?%>
 <meta name="generator" content="Publify <%=PublifyCore::VERSION%>">
 <%= show_meta_keyword %>
-<link rel="EditURI" type="application/rsd+xml" title="RSD" href="<%= url_for :controller => '/xml', :action => 'rsd' %>">
 <% if feed_atom %>
   <link rel="alternate" type="application/atom+xml" title="Atom" href="<%= feed_atom %>">
 <% end %>

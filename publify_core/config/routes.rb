@@ -9,37 +9,16 @@ Rails.application.routes.draw do
   get 'articles.:format', to: 'articles#index', constraints: {format: 'rss'}, as: 'rss'
   get 'articles.:format', to: 'articles#index', constraints: {format: 'atom'}, as: 'atom'
 
-  scope controller: 'xml', path: 'xml' do
-    get 'articlerss/:id/feed.xml', action: 'articlerss', format: false
-    get 'commentrss/feed.xml', action: 'commentrss', format: false
-    get 'trackbackrss/feed.xml', action: 'trackbackrss', format: false
-  end
-
-  get 'xml/:format', to: 'xml#feed', type: 'feed', constraints: {format: 'rss'}, as: 'xml'
-  get 'sitemap.xml', to: 'xml#feed', format: 'googlesitemap', type: 'sitemap', as: 'sitemap_xml'
-
-  scope controller: 'xml', path: 'xml', as: 'xml' do
-    scope action: 'feed' do
-      get ':format/feed.xml', type: 'feed'
-      get ':format/:type/:id/feed.xml'
-      get ':format/:type/feed.xml'
-    end
-  end
-
-  get 'xml/rsd', to: 'xml#rsd', format: false
-  get 'xml/feed', to: 'xml#feed'
+  get 'sitemap.xml', to: 'xml#sitemap', format: 'googlesitemap'
 
   # CommentsController
-  resources :comments, as: 'admin_comments', only: [:index, :create] do
+  resources :comments, only: [:index, :create] do
     collection do
       post :preview
     end
   end
 
   resources :trackbacks
-
-  # I thinks it's useless. More investigating
-  post "trackbacks/:id/:day/:month/:year", to: 'trackbacks#create', format: false
 
   # ArticlesController
   get '/live_search/', to: 'articles#live_search', as: :live_search_articles, format: false
