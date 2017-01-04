@@ -15,6 +15,13 @@ describe ThemeController, type: :controller do
 
   it 'test_malicious_path' do
     get :stylesheets, params: { filename: '../../../config/database.yml' }
-    assert_response 404
+    expect(response).to be_not_found
+    expect(response.content_type).to eq 'text/plain'
+  end
+
+  it 'renders 404 for missing file' do
+    get :stylesheets, params: { filename: 'foo.css' }
+    expect(response).to be_not_found
+    expect(response.content_type).to eq 'text/plain'
   end
 end

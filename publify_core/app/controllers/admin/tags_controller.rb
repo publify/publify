@@ -22,6 +22,7 @@ class Admin::TagsController < Admin::BaseController
   def update
     old_name = @tag.name
     if @tag.update(tag_params)
+      # TODO: Check whether these redirects are useful or ignored.
       Redirect.create(from_path: "/tag/#{old_name}", to_path: @tag.permalink_url(nil, true))
       redirect_to admin_tags_url, notice: I18n.t('admin.tags.edit.success')
     else

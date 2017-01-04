@@ -74,10 +74,9 @@ describe TagsController, 'showing a single tag', type: :controller do
   end
 
   describe 'without articles' do
-    it 'should redirect to main page' do
-      do_get
-
-      expect(response.status).to eq(404)
+    it 'raises RecordNotFound' do
+      expect { get 'show', params: { id: 'foo' } }.
+        to raise_error ActiveRecord::RecordNotFound
     end
   end
 end
@@ -109,9 +108,8 @@ end
 describe TagsController, 'showing a non-existant tag', type: :controller do
   it 'should signal not found' do
     FactoryGirl.create(:blog)
-    get 'show', params: { id: 'thistagdoesnotexist' }
-
-    expect(response.status).to eq(404)
+    expect { get 'show', params: { id: 'thistagdoesnotexist' } }.
+      to raise_error ActiveRecord::RecordNotFound
   end
 end
 

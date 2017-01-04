@@ -92,10 +92,8 @@ class ArticlesController < ContentController
       return redirect_to URI.parse(@article.permalink_url).path, status: 301 if @article
     end
 
-    r = Redirect.find_by(from_path: from)
+    r = Redirect.find_by!(from_path: from)
     return redirect_to r.full_to_path, status: 301 if r # Let redirection made outside of the blog on purpose (deal with it, Brakeman!)
-
-    render 'errors/404', status: 404
   end
 
   def archives
@@ -116,13 +114,10 @@ class ArticlesController < ContentController
   end
 
   def view_page
-    if (@page = Page.find_by(name: Array(params[:name]).join('/'))) && @page.published?
-      @page_title = @page.title
-      @description = this_blog.meta_description
-      @keywords = this_blog.meta_keywords
-    else
-      render 'errors/404', status: 404
-    end
+    @page = Page.published.find_by!(name: Array(params[:name]).join('/'))
+    @page_title = @page.title
+    @description = this_blog.meta_description
+    @keywords = this_blog.meta_keywords
   end
 
   # TODO: Move to TextfilterController?

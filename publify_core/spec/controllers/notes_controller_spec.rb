@@ -22,10 +22,10 @@ describe NotesController, type: :controller do
   end
 
   describe '#show' do
-    before(:each) { get :show, params: { permalink: permalink } }
-
     context 'normal' do
       let(:permalink) { "#{create(:note).id}-this-is-a-note" }
+
+      before(:each) { get :show, params: { permalink: permalink } }
 
       it { expect(response).to be_success }
       it { expect(response).to render_template('show') }
@@ -34,8 +34,9 @@ describe NotesController, type: :controller do
 
     context 'in reply' do
       let(:reply) { { 'id_str' => '123456789', 'created_at' => DateTime.new(2014, 1, 23, 13, 47), 'user' => { 'screen_name' => 'a screen name', 'entities' => { 'url' => { 'urls' => [{ 'expanded_url' => 'an url' }] } } } } }
-
       let(:permalink) { "#{create(:note, in_reply_to_message: reply.to_json).id}-this-is-a-note" }
+
+      before(:each) { get :show, params: { permalink: permalink } }
 
       it { expect(response).to be_success }
       it { expect(response).to render_template('show_in_reply') }
@@ -45,8 +46,10 @@ describe NotesController, type: :controller do
     context 'note not found' do
       let(:permalink) { 'thistagdoesnotexist' }
 
-      it { expect(response).to be_not_found }
-      it { expect(response).to render_template('errors/404') }
+      it 'raises RecordNotFound' do
+        expect { get :show, params: { permalink: permalink } }.
+          to raise_error ActiveRecord::RecordNotFound
+      end
     end
   end
 end

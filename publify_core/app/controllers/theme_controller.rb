@@ -24,15 +24,17 @@ class ThemeController < ContentController
   private
 
   def render_theme_item(type, file, mime = nil)
-    mime ||= mime_for(file)
-    if file.split(%r{[\\/]}).include?('..')
-      return (render 'errors/404', status: 404, formats: ['html'])
-    end
+    return render_not_found if file.split(%r{[\\/]}).include?('..')
 
     src = this_blog.current_theme.path + "/#{type}/#{file}"
-    return (render plain: 'Not Found', status: 404) unless File.exist? src
+    return render_not_found unless File.exist? src
 
+    mime ||= mime_for(file)
     send_file(src, type: mime, disposition: 'inline', stream: true)
+  end
+
+  def render_not_found
+    render plain: 'Not Found', status: 404
   end
 
   def mime_for(filename)
