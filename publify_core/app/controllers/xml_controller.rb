@@ -20,7 +20,7 @@ class XmlController < BaseController
     when 'feed'
       redirect_to controller: 'articles', action: 'index', format: @format, status: :moved_permanently
     when 'comments'
-      redirect_to admin_comments_url(format: @format), status: :moved_permanently
+      redirect_to comments_url(format: @format), status: :moved_permanently
     when 'article'
       redirect_to this_blog.articles.find(param_id).feed_url(@format), status: :moved_permanently
     when 'tag', 'author'
@@ -53,7 +53,7 @@ class XmlController < BaseController
   end
 
   def commentrss
-    redirect_to admin_comments_url(format: 'rss'), status: :moved_permanently
+    redirect_to comments_url(format: 'rss'), status: :moved_permanently
   end
 
   def trackbackrss
