@@ -20,9 +20,6 @@ Rails.application.routes.draw do
 
   resources :trackbacks
 
-  # I thinks it's useless. More investigating
-  post "trackbacks/:id/:day/:month/:year", to: 'trackbacks#create', format: false
-
   # ArticlesController
   get '/live_search/', to: 'articles#live_search', as: :live_search_articles, format: false
   get '/search/:q(.:format)/page/:page', to: 'articles#search', as: 'search', defaults: {page: 1}
