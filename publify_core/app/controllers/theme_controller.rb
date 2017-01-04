@@ -24,9 +24,7 @@ class ThemeController < ContentController
   private
 
   def render_theme_item(type, file, mime = nil)
-    if file.split(%r{[\\/]}).include?('..')
-      return render_not_found
-    end
+    return render_not_found if file.split(%r{[\\/]}).include?('..')
 
     src = this_blog.current_theme.path + "/#{type}/#{file}"
     return render_not_found unless File.exist? src
