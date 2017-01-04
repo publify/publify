@@ -300,7 +300,6 @@ describe ArticlesController, 'redirecting', type: :controller do
         create(:user)
         create(:redirect)
         get :redirect, params: { from: 'foo/bar' }
-        assert_response 301
         expect(response).to redirect_to('http://test.host/someplace/else')
       end
 
@@ -308,8 +307,8 @@ describe ArticlesController, 'redirecting', type: :controller do
         create(:blog, base_url: 'http://test.host')
         create(:user)
         create(:redirect)
-        get :redirect, params: { from: 'something/that/isnt/there' }
-        assert_response 404
+        expect { get :redirect, params: { from: 'something/that/isnt/there' } }.
+          to raise_error ActiveRecord::RecordNotFound
       end
     end
 
@@ -401,9 +400,11 @@ describe ArticlesController, 'redirecting', type: :controller do
     context 'with an article' do
       let!(:article) { create(:article, permalink: 'second-blog-article', published_at: Time.utc(2004, 4, 1)) }
 
-      context 'try redirect to an unknow location' do
-        before(:each) { get :redirect, params: { from: "#{article.permalink}/foo/bar" } }
-        it { expect(response.code).to eq('404') }
+      context 'try redirect to an unknown location' do
+        it 'raises RecordNotFound' do
+          expect { get :redirect, params: { from: "#{article.permalink}/foo/bar" } }.
+            to raise_error ActiveRecord::RecordNotFound
+        end
       end
 
       describe 'accessing legacy URLs' do
@@ -532,8 +533,8 @@ describe ArticlesController, 'redirecting', type: :controller do
     end
 
     it 'should not find the article if the url does not match the fixed component' do
-      get :redirect, params: { from: "bar/#{article.permalink}" }
-      assert_response 404
+      expect { get :redirect, params: { from: "bar/#{article.permalink}" } }.
+        to raise_error ActiveRecord::RecordNotFound
     end
   end
 end
