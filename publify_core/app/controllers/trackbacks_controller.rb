@@ -1,4 +1,6 @@
 class TrackbacksController < FeedbackController
+  protect_from_forgery with: :null_session
+
   def create
     @error_message = catch(:error) do
       if this_blog.global_pings_disable
