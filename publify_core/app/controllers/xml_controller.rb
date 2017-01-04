@@ -15,8 +15,4 @@ class XmlController < BaseController
       format.googlesitemap
     end
   end
-
-  def rsd
-    render 'rsd', formats: [:rsd], handlers: [:builder]
-  end
 end

@@ -6,24 +6,7 @@ RSpec.describe XmlController, type: :controller do
     allow(Trigger).to receive(:fire) {}
   end
 
-  # TODO: make this more robust
-  describe '#rsd' do
-    render_views
-    before do
-      get :rsd
-    end
-
-    it 'is succesful' do
-      assert_response :success
-    end
-
-    it 'returns a valid XML response' do
-      assert_xml @response.body
-    end
-  end
-
-  # TODO: make this more robust
-  describe '#feed with googlesitemap format' do
+  describe '#sitemap' do
     render_views
     before do
       tag = create(:tag)

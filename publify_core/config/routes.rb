@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   get 'articles.:format', to: 'articles#index', constraints: {format: 'atom'}, as: 'atom'
 
   get 'sitemap.xml', to: 'xml#sitemap', format: 'googlesitemap'
-  get 'xml/rsd', to: 'xml#rsd', format: 'rsd'
 
   # CommentsController
   resources :comments, only: [:index, :create] do
