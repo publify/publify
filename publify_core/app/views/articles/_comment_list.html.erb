@@ -1,5 +1,7 @@
-<ol id="commentList" class="comments">
-  <% if @article.published_comments.any? %>
-    <%= render @article.published_comments %>
-  <% end %>
-</ol>
+<% cache @article do %>
+  <ol id="commentList" class="comments">
+    <% if @article.published_comments.any? %>
+      <%= render @article.published_comments %>
+    <% end %>
+  </ol>
+<% end %>
