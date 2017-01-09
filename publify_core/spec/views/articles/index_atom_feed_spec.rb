@@ -42,12 +42,18 @@ describe 'articles/index_atom_feed.atom.builder', type: :view do
       @article = stub_full_article(blog: blog)
       @article.body = 'public info'
       @article.extended = 'and more'
+      @article.published_at = 2.weeks.ago
       assign(:articles, [@article])
     end
 
     it 'has the correct guid' do
       render
       expect(rendered_entry.entry_id).to eq "urn:uuid:#{@article.guid}"
+    end
+
+    it 'has the correct publication date' do
+      render
+      expect(rendered_entry.published.to_s).to eq @article.published_at.to_s
     end
 
     describe 'on a blog that shows extended content in feeds' do
