@@ -94,11 +94,11 @@ In order to install Publify on Heroku, you’ll need to do some minor tweaks.
 First of all, you need to setup Amazon S3 storage to be able to upload files on
 your blog. Set Heroku config vars.
 
-```yaml
+```bash
 heroku config:set provider=AWS
-aws_access_key_id=YOUR_AWS_ACCESS_KEY_ID
-aws_secret_access_key=YOUR_AWS_SECRET_ACCESS_KEY
-aws_bucket=YOUR_AWS_BUCKET_NAME
+heroku config:set aws_access_key_id=YOUR_AWS_ACCESS_KEY_ID
+heroku config:set aws_secret_access_key=YOUR_AWS_SECRET_ACCESS_KEY
+heroku config:set aws_bucket=YOUR_AWS_BUCKET_NAME
 ```
 
 To generate the Gemfile.lock, run:
@@ -112,6 +112,12 @@ Add the HEROKU config variable to your Heroku instance:
 
 ```bash
 heroku config:set HEROKU=true
+```
+
+You also need to set Rails' secret key base. Generate one using `rake secret`, then set the Heroku config var:
+
+```bash
+heroku config:set secret_key_base=YOUR_GENERATED_SECRET
 ```
 
 Push the repository to Heroku.
