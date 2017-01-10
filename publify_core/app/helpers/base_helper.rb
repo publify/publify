@@ -98,7 +98,7 @@ module BaseHelper
                       user.resource.upload.avatar.url
                     end
       return if avatar_path.nil?
-      avatar_url = File.join(this_blog.base_url, avatar_path)
+      avatar_url = this_blog.file_url(avatar_path)
     elsif user.twitter_profile_image.present?
       avatar_url = user.twitter_profile_image
     end
