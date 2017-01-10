@@ -8,6 +8,11 @@
 * Fix URL for resources in Atom/RSS feeds
 * Update to CarrierWave 1.0.0
 * Move sending of pingbacks and trackbacks to ActiveJob
+* Drop old redirects
+* Fix forgery protection errors for trackback creation
+* Remove RSD end point
+* Fix atom entry publication date
+* Fix user resource image display when using Fog
 
 ## 9.0.0.pre6 / 2016-12-23
 
