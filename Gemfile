@@ -55,6 +55,9 @@ gem 'flickraw-cached', '20120701'
 gem 'non-stupid-digest-assets', '~> 1.0'
 gem 'rake', '~> 12.0'
 
+# On Ruby 2.4.0, xmlrpc needs to be included as a gem
+gem 'xmlrpc', '~> 0.2.1', platform: :mri_24
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', '~> 9.0'
