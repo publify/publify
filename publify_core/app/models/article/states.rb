@@ -119,7 +119,7 @@ module Article::States
     def published_at=(new_time)
       content[:published_at] = new_time
       Trigger.remove(content, trigger_method: 'publish!')
-      return if new_time.nil? || new_time <= Time.now
+      return if new_time.blank? || new_time <= Time.now
       content.state = :publication_pending
     end
   end
@@ -141,7 +141,7 @@ module Article::States
     def published_at=(new_time)
       content[:published_at] = new_time
       Trigger.remove(content, trigger_method: 'publish!')
-      if new_time.nil?
+      if new_time.blank?
         content.state = :draft
       elsif new_time <= Time.now
         content.state = :just_published
@@ -171,7 +171,7 @@ module Article::States
     def published_at=(new_time)
       # Because of the workings of the controller, we should ignore
       # publication times before the current time.
-      return if new_time.nil? || new_time <= Time.now
+      return if new_time.blank? || new_time <= Time.now
       content[:published_at] = new_time
       content.state = :publication_pending
     end
