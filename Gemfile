@@ -41,9 +41,9 @@ gem 'rails', '~> 5.0.0'
 # Store sessions in the database
 gem 'activerecord-session_store', '~> 1.0.0'
 
-gem 'publify_amazon_sidebar', '~> 9.0.0.pre1'
-gem 'publify_core', '~> 9.0.0.pre4'
-gem 'publify_textfilter_code', '~> 9.0.0.pre1'
+gem 'publify_amazon_sidebar', git: 'https://github.com/publify/publify_amazon_sidebar.git'
+gem 'publify_core', git: 'https://github.com/publify/publify_core.git'
+gem 'publify_textfilter_code', git: 'https://github.com/publify/publify_textfilter_code.git'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
