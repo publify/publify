@@ -20,7 +20,7 @@ else
     end
   end
 
-  conf = YAML.safe_load(File.read(dbfile))
+  conf = YAML.load_file(dbfile)
   environment = conf[env]
   adapter = environment['adapter'] if environment
   raise 'You need define an adapter in your database.yml or set your RAILS_ENV variable' if adapter == '' || adapter.nil?
