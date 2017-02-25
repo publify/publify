@@ -10,5 +10,7 @@ gemspec
 # Git. Remember to move these dependencies to your gemspec before releasing
 # your gem to rubygems.org.
 
+gem 'publify_core', git: 'https://github.com/publify/publify_core.git'
+
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
