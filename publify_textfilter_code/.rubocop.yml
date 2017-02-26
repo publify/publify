@@ -20,6 +20,11 @@ Lint/AssignmentInCondition:
 Style/Documentation:
   Enabled: false
 
+# Spec blocks can be any length
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+
 # Provides more information, while still being displayable in modern wide-screen.
 # TODO: Re-enable once linelength has been fixed everywhere.
 # Metrics/LineLength:
