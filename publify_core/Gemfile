@@ -18,5 +18,3 @@ gem 'pry', '~> 0.10.3', group: [:development, :test]
 
 # On Ruby 2.4.0, xmlrpc needs to be included as a gem
 gem 'xmlrpc', '~> 0.3.0', platform: :mri_24
-# Avoid loading multiple copies of openssl on Ruby 2.4.0
-gem 'openssl', '~> 2.0.3', platform: :mri_24
