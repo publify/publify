@@ -17,4 +17,6 @@ gem 'launchy', '~> 2.4', group: :test
 gem 'pry', '~> 0.10.3', group: [:development, :test]
 
 # On Ruby 2.4.0, xmlrpc needs to be included as a gem
-gem 'xmlrpc', '~> 0.3.0', platform: :mri_24
+if RUBY_VERSION >= '2.4.0'
+  gem 'xmlrpc', '~> 0.3.0'
+end
