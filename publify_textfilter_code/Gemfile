@@ -14,6 +14,3 @@ gem 'publify_core', git: 'https://github.com/publify/publify_core.git'
 
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
-
-# Avoid loading multiple copies of openssl on Ruby 2.4.0
-gem 'openssl', '~> 2.0.3', platform: :mri_24
