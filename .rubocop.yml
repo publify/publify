@@ -21,6 +21,15 @@ Bundler/DuplicatedGem:
 Lint/AssignmentInCondition:
   AllowSafeAssignment: true
 
+# Blocks in specs can have any length
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+
+# Do not require long paths to be split by comma's.
+Rails/FilePath:
+  Enabled: false
+
 # Documenting all classes is not common in Rails projects.
 Style/Documentation:
   Enabled: false
