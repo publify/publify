@@ -9,12 +9,6 @@ branches:
   only:
     - master
 
-before_install:
-  - rvm use @global
-  - gem uninstall bundler -x
-  - gem install bundler --version=1.13.7
-  - bundler --version
-
 addons:
   code_climate:
     repo_token: 8850bccc6911d74965627b1fafe753beb368fab00d33de0c7576c6598fc1220e
