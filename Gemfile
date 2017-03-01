@@ -57,8 +57,6 @@ gem 'rake', '~> 12.0'
 
 # On Ruby 2.4.0, xmlrpc needs to be included as a gem
 gem 'xmlrpc', '~> 0.3.0', platform: :mri_24
-# Avoid loading multiple copies of openssl on Ruby 2.4.0
-gem 'openssl', '~> 2.0.3', platform: :mri_24
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
