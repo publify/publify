@@ -69,7 +69,7 @@ group :development, :test do
   gem 'pry-rails', '~> 0.3.4'
   gem 'rspec-rails', '~> 3.4'
   gem 'rubocop', '~> 0.47.1', require: false
-  gem 'simplecov', '~> 0.13.0', require: false
+  gem 'simplecov', '~> 0.14.0', require: false
 end
 
 group :development do
