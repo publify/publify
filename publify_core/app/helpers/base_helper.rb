@@ -53,7 +53,7 @@ module BaseHelper
   end
 
   def meta_tag(name, value)
-    tag :meta, name: name, content: value unless value.blank?
+    tag :meta, name: name, content: value if value.present?
   end
 
   def markup_help_popup(markup, text)
@@ -178,7 +178,7 @@ module BaseHelper
 
   def show_meta_keyword
     return unless this_blog.use_meta_keyword
-    meta_tag 'keywords', @keywords unless @keywords.blank?
+    meta_tag 'keywords', @keywords if @keywords.present?
   end
 
   def stop_index_robots?(blog)

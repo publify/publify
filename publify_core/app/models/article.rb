@@ -234,7 +234,7 @@ class Article < Content
   end
 
   def password_protected?
-    !password.blank?
+    password.present?
   end
 
   def add_comment(params)

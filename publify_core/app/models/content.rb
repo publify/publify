@@ -111,7 +111,7 @@ class Content < ActiveRecord::Base
   end
 
   def link_to_author?
-    !user.email.blank? && blog.link_to_author
+    user.email.present? && blog.link_to_author
   end
 
   def get_rss_description
