@@ -1,4 +1,5 @@
 # coding: utf-8
+
 # FIXME: Replace with helpers and/or methods provided by Rails
 class String
   ACCENTS = { %w(á à â ä ã Ã Ä Â À) => 'a',
