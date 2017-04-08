@@ -12,7 +12,7 @@ xm.item do
 
   if item.is_a?(Article)
     xm.comments(item.permalink_url('comments'))
-    for tag in item.tags
+    item.tags.each do |tag|
       xm.category tag.display_name
     end
     # RSS 2.0 only allows a single enclosure per item, so only include the first one here.
