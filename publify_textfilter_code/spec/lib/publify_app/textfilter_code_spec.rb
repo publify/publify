@@ -49,42 +49,42 @@ end
     end
 
     it 'test_code_plus_markup_chain' do
-      text = <<-EOF
-*header text here*
+      text = <<-EOF.strip_heredoc
+        *header text here*
 
-<publify:code lang="ruby">
-class test
-  def method
-    "foo"
-  end
-end
-</publify:code>
+        <publify:code lang="ruby">
+        class test
+          def method
+            "foo"
+          end
+        end
+        </publify:code>
 
-_footer text here_
+        _footer text here_
 
       EOF
 
-      expects_markdown = <<-EOF
-<p><em>header text here</em></p>
+      expects_markdown = <<-EOF.strip_heredoc
+        <p><em>header text here</em></p>
 
-<div class=\"CodeRay\"><pre><span class=\"CodeRay\"><span class=\"keyword\">class</span> <span class=\"class\">test</span>
-  <span class=\"keyword\">def</span> <span class=\"function\">method</span>
-    <span class=\"string\"><span class=\"delimiter\">&quot;</span><span class=\"content\">foo</span><span class=\"delimiter\">&quot;</span></span>
-  <span class=\"keyword\">end</span>
-<span class=\"keyword\">end</span></span></pre></div>
+        <div class=\"CodeRay\"><pre><span class=\"CodeRay\"><span class=\"keyword\">class</span> <span class=\"class\">test</span>
+          <span class=\"keyword\">def</span> <span class=\"function\">method</span>
+            <span class=\"string\"><span class=\"delimiter\">&quot;</span><span class=\"content\">foo</span><span class=\"delimiter\">&quot;</span></span>
+          <span class=\"keyword\">end</span>
+        <span class=\"keyword\">end</span></span></pre></div>
 
 
-<p><em>footer text here</em></p>
+        <p><em>footer text here</em></p>
       EOF
 
-      expects_textile = <<-EOF
-<p><strong>header text here</strong></p>
-<div class=\"CodeRay\"><pre><span class=\"CodeRay\"><span class=\"keyword\">class</span> <span class=\"class\">test</span>
-  <span class=\"keyword\">def</span> <span class=\"function\">method</span>
-    <span class=\"string\"><span class=\"delimiter\">&quot;</span><span class=\"content\">foo</span><span class=\"delimiter\">&quot;</span></span>
-  <span class=\"keyword\">end</span>
-<span class=\"keyword\">end</span></span></pre></div>
-<p><em>footer text here</em></p>
+      expects_textile = <<-EOF.strip_heredoc
+        <p><strong>header text here</strong></p>
+        <div class=\"CodeRay\"><pre><span class=\"CodeRay\"><span class=\"keyword\">class</span> <span class=\"class\">test</span>
+          <span class=\"keyword\">def</span> <span class=\"function\">method</span>
+            <span class=\"string\"><span class=\"delimiter\">&quot;</span><span class=\"content\">foo</span><span class=\"delimiter\">&quot;</span></span>
+          <span class=\"keyword\">end</span>
+        <span class=\"keyword\">end</span></span></pre></div>
+        <p><em>footer text here</em></p>
       EOF
 
       assert_equal expects_markdown.strip, filter_text(text, [:macropre, :markdown, :macropost])
