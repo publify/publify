@@ -78,4 +78,8 @@ Style/SignalException:
 Style/SingleLineBlockParams:
   Enabled: false
 
+# Prefer symbols to look like symbols
+Style/SymbolArray:
+  EnforcedStyle: brackets
+
 inherit_from: .rubocop_todo.yml
