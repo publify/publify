@@ -77,6 +77,10 @@ Style/MultilineOperationIndentation:
 Style/NumericPredicate:
   Enabled: false
 
+# Not all objects that implement #size implement #empty?
+Style/ZeroLengthPredicate:
+  Enabled: false
+
 # Revert to previous default
 Style/PercentLiteralDelimiters:
   PreferredDelimiters:
