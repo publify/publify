@@ -52,5 +52,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rubocop', '~> 0.48.1'
   s.add_development_dependency 'i18n-tasks', '~> 0.9.1'
   s.add_development_dependency 'rails-controller-testing', '~> 1.0.1'
-  s.add_development_dependency 'webmock', '~> 2.3.1'
+  s.add_development_dependency 'webmock', '~> 3.0.1'
 end
