@@ -99,9 +99,9 @@ class User < ActiveRecord::Base
   end
 
   def display_name
-    if !nickname.blank?
+    if nickname.present?
       nickname
-    elsif !name.blank?
+    elsif name.present?
       name
     else
       login

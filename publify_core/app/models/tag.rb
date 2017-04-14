@@ -30,7 +30,7 @@ class Tag < ActiveRecord::Base
 
   def ensure_naming_conventions
     self.display_name = name if display_name.blank?
-    self.name = display_name.to_url unless display_name.blank?
+    self.name = display_name.to_url if display_name.present?
   end
 
   def self.find_all_with_article_counters

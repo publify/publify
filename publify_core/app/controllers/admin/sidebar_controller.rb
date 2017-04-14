@@ -1,4 +1,5 @@
 # coding: utf-8
+
 class Admin::SidebarController < Admin::BaseController
   def index
     @available = SidebarRegistry.available_sidebars

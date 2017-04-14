@@ -15,8 +15,8 @@ class TagsController < ContentController
     @page_title = this_blog.tag_title_template.to_title(@grouping, this_blog, params)
     @description = @grouping.description.to_s
     @keywords = ''
-    @keywords << @grouping.keywords unless @grouping.keywords.blank?
-    @keywords << this_blog.meta_keywords unless this_blog.meta_keywords.blank?
+    @keywords << @grouping.keywords if @grouping.keywords.present?
+    @keywords << this_blog.meta_keywords if this_blog.meta_keywords.present?
     @articles = @grouping.articles.published.page(params[:page]).per(10)
 
     respond_to do |format|

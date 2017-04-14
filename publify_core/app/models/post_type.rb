@@ -1,4 +1,5 @@
 # coding: utf-8
+
 class PostType < ActiveRecord::Base
   validates :name, uniqueness: true
   validates :name, presence: true

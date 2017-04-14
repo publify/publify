@@ -1,4 +1,5 @@
 # coding: utf-8
+
 require 'rails_helper'
 
 describe 'articles/index_rss_feed.rss.builder', type: :view do

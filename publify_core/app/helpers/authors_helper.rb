@@ -2,7 +2,7 @@ module AuthorsHelper
   include BlogHelper
 
   def display_profile_item(item, item_desc)
-    return unless item.present?
+    return if item.blank?
     item = link_to(item, item) if is_url?(item)
     content_tag :li do
       safe_join([item_desc, item], ' ')
@@ -16,7 +16,7 @@ module AuthorsHelper
   end
 
   def author_description(user)
-    return unless user.description.present?
+    return if user.description.blank?
 
     content_tag(:div, user.description, id: 'author-description')
   end

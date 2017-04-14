@@ -7,8 +7,8 @@ class PublifyTime
     return nil if year.zero?
     from = Time.zone.local(year, month, day)
     to = from.end_of_year
-    to = from.end_of_month unless month.blank?
-    to = from.end_of_day unless day.blank?
+    to = from.end_of_month if month.present?
+    to = from.end_of_day if day.present?
     from..to
   end
 

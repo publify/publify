@@ -12,6 +12,10 @@ AllCops:
 Rails:
   Enabled: true
 
+# Assume the programmer knows how bracketed block syntax works
+Lint/AmbiguousBlockAssociation:
+  Enabled: false
+
 # Allow if (foo = get_foo) style
 Lint/AssignmentInCondition:
   AllowSafeAssignment: true
@@ -72,6 +76,19 @@ Style/MultilineOperationIndentation:
 # TODO: Re-enable?
 Style/NumericPredicate:
   Enabled: false
+
+# Not all objects that implement #size implement #empty?
+Style/ZeroLengthPredicate:
+  Enabled: false
+
+# Revert to previous default
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    '%w': ()
+
+# Prefer symbols to look like symbols
+Style/SymbolArray:
+  EnforcedStyle: brackets
 
 # Always use raise to raise exceptions
 Style/SignalException:
