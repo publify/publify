@@ -19,8 +19,9 @@ install:
 before_script:
   - bundle exec rake db:create db:migrate
 script: 'bundle exec rake'
-after_success:
-  - bundle exec codeclimate-test-reporter
+
+#after_success:
+#  - bundle exec codeclimate-test-reporter
 
 branches:
   only:
