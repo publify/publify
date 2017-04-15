@@ -86,7 +86,7 @@ group :development do
   gem 'thin', '~> 1.6'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 3.0' if RUBY_VERSION >= '2.2.2'
+  gem 'web-console', '~> 3.0'
 end
 
 group :test do
