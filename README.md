@@ -136,6 +136,17 @@ If application error has occurred after migration, you need to restart Heroku se
 heroku restart
 ```
 
+## Import articles
+
+You can use the converters in `db/converters/` or you can run a rake task
+
+You can import rss by sending the url and user login as parameters
+
+```
+rake import:rss['http://blog.publify.co/articles.rss, admin']
+```
+
+
 ## Resources
 
 - [Sidebar Plugins](https://github.com/publify/publify/wiki/Sidebar-plugins)
