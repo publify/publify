@@ -59,7 +59,7 @@ This macro takes a number of parameters:
           imageurl = details['source'].sub(/^https?:/, '')
           imagelink = flickrimage.urls.find { |u| u.type == 'photopage' }.to_s
 
-          caption ||= sanitize(CGI.unescapeHTML(flickrimage.description)) unless flickrimage.description.blank?
+          caption ||= sanitize(CGI.unescapeHTML(flickrimage.description)) if flickrimage.description.present?
           title ||= flickrimage.title
           alt ||= title
 
@@ -70,7 +70,6 @@ This macro takes a number of parameters:
                         end
 
           "<div style=\"#{style}\" class=\"flickrplugin\"><a href=\"#{imagelink}\"><img src=\"#{imageurl}\" width=\"#{width}\" height=\"#{height}\" alt=\"#{alt}\" title=\"#{title}\"/></a>#{captioncode}</div>"
-
         rescue => e
           logger.info e.message
           %(<div class='broken_flickr_link'>`#{img}' could not be displayed because: <br />#{CGI.escapeHTML(e.message)}</div>)
