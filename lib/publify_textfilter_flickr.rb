@@ -59,7 +59,8 @@ This macro takes a number of parameters:
           imageurl = details['source'].sub(/^https?:/, '')
           imagelink = flickrimage.urls.find { |u| u.type == 'photopage' }.to_s
 
-          caption ||= sanitize(CGI.unescapeHTML(flickrimage.description)) if flickrimage.description.present?
+          description = flickrimage.description
+          caption ||= sanitize(CGI.unescapeHTML(description)) if description.present?
           title ||= flickrimage.title
           alt ||= title
 
