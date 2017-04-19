@@ -57,8 +57,6 @@ gem 'rake', '~> 12.0'
 
 # On Ruby 2.4.0, xmlrpc needs to be included as a gem
 gem 'xmlrpc', '~> 0.3.0', platform: :mri_24
-# Avoid loading multiple copies of openssl on Ruby 2.4.0
-gem 'openssl', '~> 2.0.3', platform: :mri_24
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -70,8 +68,8 @@ group :development, :test do
   gem 'pry', '~> 0.10.3'
   gem 'pry-rails', '~> 0.3.4'
   gem 'rspec-rails', '~> 3.4'
-  gem 'rubocop', '~> 0.47.1', require: false
-  gem 'simplecov', '~> 0.13.0', require: false
+  gem 'rubocop', '~> 0.48.1', require: false
+  gem 'simplecov', '~> 0.14.0', require: false
 end
 
 group :development do
@@ -88,11 +86,10 @@ group :development do
   gem 'thin', '~> 1.6'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 3.0' if RUBY_VERSION >= '2.2.2'
+  gem 'web-console', '~> 3.0'
 end
 
 group :test do
-  gem 'codeclimate-test-reporter', '~> 1.0.3', require: false
   gem 'sqlite3'
 end
 

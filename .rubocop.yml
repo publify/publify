@@ -83,6 +83,12 @@ Style/MultilineMethodCallIndentation:
 Style/MultilineOperationIndentation:
   EnforcedStyle: indented
 
+# Restore previous RuboCop defaults
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    '%W': ()
+    '%w': ()
+
 # Always use raise to raise exceptions
 Style/SignalException:
   EnforcedStyle: only_raise
@@ -90,5 +96,8 @@ Style/SignalException:
 # Allow meaningful names for single-line reduce etc.
 Style/SingleLineBlockParams:
   Enabled: false
+
+Style/SymbolArray:
+  EnforcedStyle: brackets
 
 inherit_from: .rubocop_todo.yml
