@@ -79,9 +79,11 @@ FactoryGirl.define do
     end
   end
 
-  factory :unpublished_article, parent: :article do |a|
-    a.published_at nil
-    a.published false
+  factory :unpublished_article, parent: :article do
+    # FIXME: There are too many fields involved here.
+    published_at nil
+    published false
+    state :draft
   end
 
   factory :content do

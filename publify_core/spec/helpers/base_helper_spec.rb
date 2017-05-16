@@ -201,4 +201,11 @@ describe BaseHelper, type: :helper do
       end
     end
   end
+
+  describe '#link_to_permalink' do
+    it 'returns just the title for unpublished articles' do
+      article = build :unpublished_article
+      expect(link_to_permalink(article, 'the-title')).to eq 'the-title'
+    end
+  end
 end
