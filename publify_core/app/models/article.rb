@@ -94,6 +94,7 @@ class Article < Content
 
   # FIXME: Use keyword params to clean up call sites.
   def permalink_url(anchor = nil, only_path = false)
+    return unless published?
     @cached_permalink_url ||= {}
     @cached_permalink_url["#{anchor}#{only_path}"] ||= blog.url_for(permalink_url_options, anchor: anchor, only_path: only_path)
   end

@@ -43,6 +43,12 @@ describe Article, type: :model do
         expect(subject.permalink_url(nil, true)).to eq("#{blog.root_path}/2004/06/01/one+two")
       end
     end
+
+    it 'returns nil when the article is not published' do
+      article = blog.articles.build(permalink: 'one+two')
+
+      expect(article.permalink_url(nil, true)).to be_nil
+    end
   end
 
   describe '#initialize' do
