@@ -39,7 +39,12 @@ module BaseHelper
     options = {}
     options[:class] = style if style
     options[:rel] = 'nofollow' if nofollow
-    link_to title, item.permalink_url(anchor, only_path), options
+    url = item.permalink_url(anchor, only_path)
+    if url
+      link_to title, url, options
+    else
+      title
+    end
   end
 
   def avatar_tag(options = {})
