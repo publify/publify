@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.files = `git ls-files -z`.split("\x0").
     reject { |f| f.match(%r{^(bin|spec)/}) }
 
-  s.required_ruby_version = '>= 2.1.0'
+  s.required_ruby_version = '>= 2.2.0'
 
   s.add_dependency 'rails', '~> 5.0.0'
   s.add_dependency 'RedCloth', '~> 4.3.2'
