@@ -16,6 +16,7 @@
 * Stop sending trackbacks and pingbacks
 * Update dependencies
 * Drop support for Ruby 2.1
+* Include CSRF meta tag so remote forms work
 
 ## 9.0.0.pre6 / 2016-12-23
 
