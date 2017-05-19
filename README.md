@@ -148,31 +148,45 @@ heroku restart
 
 ## Maintainers
 
-This is a list of Publify maintainers. If you have committed, please add
-your name and contact details to the list.
+### Current Maintainers
 
 **Frédéric de Villamil** <frederic@publify.co>
 blog: http://t37.net
-irc: neuro`
 
 **Matijs van Zuijlen**
 blog: http://www.matijs.net/blog/
-irc: matijs
 
 **Thomas Lecavelier**
 blog: http://blog.ookook.fr/
-irc: ook
 
 **Yannick François**
 blog: http://elsif.fr
-irc: yaf
+
+### Previous Maintainers & Notable Contributors
+
+**Cyril Mougel**
+blog: http://blog.shingara.fr
+
+**Davide D'Agostino**
+blog: http://www.lipsiasoft.com
+
+**Piers Cawley**
+blog: http://www.bofh.org.uk/
+
+**Scott Laird**
+
+**Kevin Ballard**
+blog: kevin.sb.org
+
+**Patrick Lenz**
+
+**Seth Hall**
 
 And [many more cool people who’ve one day or another contributed to
 Publify](https://github.com/publify/publify/graphs/contributors).
 
 **Original Author: Tobias Luetke**
 blog: http://blog.leetsoft.com/
-irc: xal
 
 Enjoy,
 The Publify team
