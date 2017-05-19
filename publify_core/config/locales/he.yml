@@ -505,7 +505,6 @@ he:
         twitter_consumer_key: Twitter consumer key
         twitter_consumer_secret: Twitter consumer secret
         update_settings: Update settings
-        urls_to_ping: כתובות לקישור אוטומטי
         write: כתוב
         your_geoloc: קווי הרוחב והאורך שלך
     shared:

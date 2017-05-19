@@ -505,7 +505,6 @@ da:
         twitter_consumer_key: Twitter consumer key
         twitter_consumer_secret: Twitter consumer secret
         update_settings: Update settings
-        urls_to_ping: Webadresser der automatisk pinges
         write: Skriv
         your_geoloc: din breddegrad og længdegrad
     shared:

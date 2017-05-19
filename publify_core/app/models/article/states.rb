@@ -22,10 +22,6 @@ module Article::States
       true
     end
 
-    def send_pings
-      true
-    end
-
     def withdraw; end
   end
 
@@ -84,11 +80,6 @@ module Article::States
 
     def send_notifications
       content.really_send_notifications if just_published?
-      true
-    end
-
-    def send_pings
-      content.really_send_pings if just_published?
       true
     end
 

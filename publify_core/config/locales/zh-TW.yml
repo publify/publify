@@ -505,7 +505,6 @@ zh-TW:
         twitter_consumer_key: Twitter consumer key
         twitter_consumer_secret: Twitter consumer secret
         update_settings: Update settings
-        urls_to_ping: URL自動地Ping
         write: 寫入
         your_geoloc: 你的緯度、經度
     shared:

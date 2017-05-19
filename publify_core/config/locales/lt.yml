@@ -505,7 +505,6 @@ lt:
         twitter_consumer_key: Twitter consumer key
         twitter_consumer_secret: Twitter consumer secret
         update_settings: Update settings
-        urls_to_ping: URL adresai į kuriuos pranešti automatiškai
         write: Rašyti
         your_geoloc: Tavo geografinė platuma ir ilguma
     shared:

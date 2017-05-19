@@ -505,7 +505,6 @@ nb-NO:
         twitter_consumer_key: Twitter forbruker/API-nøkkel
         twitter_consumer_secret: Twitter forbruker/API-hemmelighet
         update_settings: Oppdater innstillinger
-        urls_to_ping: Nettadresser som skal pinges automatisk
         write: Skriv
         your_geoloc: din breddegrad og lengdegrad
     shared:

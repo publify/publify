@@ -62,7 +62,6 @@ class Blog < ActiveRecord::Base
   setting :theme, :string, 'plain'
   setting :plugin_avatar, :string, ''
   setting :global_pings_disable, :boolean, false
-  setting :ping_urls, :string, "http://blogsearch.google.com/ping/RPC2\nhttp://rpc.technorati.com/rpc/ping\nhttp://ping.blo.gs/\nhttp://rpc.weblogs.com/RPC2"
   setting :send_outbound_pings, :boolean, true
   setting :email_from, :string, 'publify@example.com'
   setting :allow_signup, :integer, 0
@@ -248,14 +247,6 @@ EOS
 
   def text_filter_object
     TextFilter.find_or_default(text_filter)
-  end
-
-  def urls_to_ping_for(article)
-    urls_to_ping = []
-    ping_urls.gsub(/ +/, '').split(/[\n\r]+/).map(&:strip).delete_if { |u| article.already_ping?(u) }.uniq.each do |url|
-      urls_to_ping << article.pings.build('url' => url)
-    end
-    urls_to_ping
   end
 
   def has_twitter_configured?

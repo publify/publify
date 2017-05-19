@@ -505,7 +505,6 @@ ja:
         twitter_consumer_key: Twitter consumer key
         twitter_consumer_secret: Twitter consumer secret
         update_settings: Update settings
-        urls_to_ping: 自動的にPingを送信するURL
         write: 新規作成
         your_geoloc: あなたの緯度、経度
     shared:

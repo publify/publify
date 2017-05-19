@@ -505,7 +505,6 @@ nl:
         twitter_consumer_key: Twitter consumer key
         twitter_consumer_secret: Twitter consumer secret
         update_settings: Werk instellingen bij
-        urls_to_ping: URLs to ping automatically
         write: Schrijf
         your_geoloc: your latitude and longitude
     shared:
