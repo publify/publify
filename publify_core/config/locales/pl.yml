@@ -505,7 +505,6 @@ pl:
         twitter_consumer_key: Twitter consumer key
         twitter_consumer_secret: Twitter consumer secret
         update_settings: Update settings
-        urls_to_ping: Automatycznie pingowane łącza
         write: Pisanie
         your_geoloc: Twoją szerokość i długość geograficzna
     shared:

@@ -505,7 +505,6 @@ ro:
         twitter_consumer_key: Twitter consumer key
         twitter_consumer_secret: Twitter consumer secret
         update_settings: Update settings
-        urls_to_ping: Site-uri de anunțat automat
         write: Publicare
         your_geoloc: latitudinea și longitudinea ta
     shared:

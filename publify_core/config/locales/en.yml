@@ -505,7 +505,6 @@ en:
         twitter_consumer_key: Twitter consumer key
         twitter_consumer_secret: Twitter consumer secret
         update_settings: Update settings
-        urls_to_ping: URLs to ping automatically
         write: Write
         your_geoloc: your latitude and longitude
     shared:

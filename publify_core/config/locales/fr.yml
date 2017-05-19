@@ -505,7 +505,6 @@ fr:
         twitter_consumer_key: Clé d'utilisateur Twitter
         twitter_consumer_secret: Secret d'utilisateur sur Twitter
         update_settings: Mettre les paramètres à jour
-        urls_to_ping: Sites à alerter automatiquement
         write: Écrire
         your_geoloc: vos coordonnées géographiques
     shared:
