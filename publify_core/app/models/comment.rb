@@ -1,4 +1,3 @@
-require_dependency 'spam_protection'
 require 'timeout'
 
 class Comment < Feedback

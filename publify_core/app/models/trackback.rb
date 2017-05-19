@@ -1,5 +1,3 @@
-require_dependency 'spam_protection'
-
 class Trackback < Feedback
   content_fields :excerpt
   validates :title, :excerpt, :url, presence: true

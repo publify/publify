@@ -1,4 +1,3 @@
-require_dependency 'spam_protection'
 require 'akismet'
 
 class Feedback < ActiveRecord::Base
