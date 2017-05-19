@@ -12,6 +12,7 @@
   <link rel="alternate" type="application/rss+xml" title="RSS" href="<%= feed_rss %>">
 <% end %>
 <%= javascript_include_tag :publify, async: Rails.env.production? %>
+<%= csrf_meta_tags %>
 <%= stylesheet_link_tag :publify %>
 <%= page_header_includes %>
 <% if this_blog.use_canonical_url %>
