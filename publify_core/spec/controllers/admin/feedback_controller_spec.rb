@@ -63,7 +63,7 @@ describe Admin::FeedbackController, type: :controller do
       let!(:unapproved) { create(:unconfirmed_comment) }
       let!(:presumed_ham) { create(:presumed_ham_comment) }
       let!(:presumed_spam) { create(:presumed_spam_comment) }
-      let(:params) {}
+      let(:params) { {} }
 
       before(:each) { get :index, params: params }
 

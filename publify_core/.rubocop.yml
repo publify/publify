@@ -25,6 +25,10 @@ Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
 
+# Do not require long paths to be split by comma's.
+Rails/FilePath:
+  Enabled: false
+
 # Documenting all classes is not common in Rails projects.
 Style/Documentation:
   Enabled: false
@@ -84,11 +88,8 @@ Style/ZeroLengthPredicate:
 # Revert to previous default
 Style/PercentLiteralDelimiters:
   PreferredDelimiters:
+    '%W': ()
     '%w': ()
-
-# Prefer symbols to look like symbols
-Style/SymbolArray:
-  EnforcedStyle: brackets
 
 # Always use raise to raise exceptions
 Style/SignalException:
@@ -97,3 +98,7 @@ Style/SignalException:
 # Allow meaningful names for single-line reduce etc.
 Style/SingleLineBlockParams:
   Enabled: false
+
+# Prefer symbols to look like symbols
+Style/SymbolArray:
+  EnforcedStyle: brackets
