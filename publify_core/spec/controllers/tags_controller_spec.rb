@@ -97,7 +97,6 @@ RSpec.describe TagsController, type: :controller do
     let(:parsed_body) { Capybara.string(response.body) }
 
     before(:each) do
-      # TODO: need to add default article into tag_factory build to remove this :articles =>...
       create(:tag, name: 'foo', articles: [create(:article)])
       get 'show', params: { id: 'foo' }
     end
