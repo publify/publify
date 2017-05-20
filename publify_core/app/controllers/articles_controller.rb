@@ -165,13 +165,6 @@ class ArticlesController < ContentController
     render_cached_xml("feedback_#{format}_feed", @article)
   end
 
-  def render_cached_xml(template, object)
-    feed = cache([controller_name, template, object]) do
-      render_to_string template, layout: false
-    end
-    render xml: feed
-  end
-
   def render_paginated_index
     return error! if @articles.empty?
     auto_discovery_feed(only_path: false)
