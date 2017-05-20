@@ -21,8 +21,8 @@ RSpec.describe TagsController, type: :controller do
 
   describe 'showing a single tag' do
     before do
-      FactoryGirl.create(:blog)
-      @tag = FactoryGirl.create(:tag, name: 'Foo')
+      create(:blog)
+      @tag = create(:tag, name: 'Foo')
     end
 
     def do_get
@@ -85,11 +85,11 @@ RSpec.describe TagsController, type: :controller do
   describe 'showing tag "foo"' do
     render_views
 
-    let!(:blog) { FactoryGirl.create(:blog) }
+    let!(:blog) { create(:blog) }
 
     before(:each) do
       # TODO: need to add default article into tag_factory build to remove this :articles =>...
-      FactoryGirl.create(:tag, name: 'foo', articles: [FactoryGirl.create(:article)])
+      create(:tag, name: 'foo', articles: [create(:article)])
       get 'show', params: { id: 'foo' }
     end
 
@@ -108,7 +108,7 @@ RSpec.describe TagsController, type: :controller do
 
   describe 'showing a non-existant tag' do
     it 'should signal not found' do
-      FactoryGirl.create(:blog)
+      create(:blog)
       expect { get 'show', params: { id: 'thistagdoesnotexist' } }.
         to raise_error ActiveRecord::RecordNotFound
     end
@@ -128,9 +128,9 @@ RSpec.describe TagsController, type: :controller do
 
   describe 'SEO Options' do
     before(:each) do
-      @blog = FactoryGirl.create(:blog)
-      @a = FactoryGirl.create(:article)
-      @foo = FactoryGirl.create(:tag, name: 'foo', articles: [@a])
+      @blog = create(:blog)
+      @a = create(:article)
+      @foo = create(:tag, name: 'foo', articles: [@a])
     end
 
     describe 'keywords' do
