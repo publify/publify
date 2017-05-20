@@ -788,7 +788,7 @@ nb-NO:
       body: Dette er et eksempel på en Publify-side. Du kan redigere den med informasjon om deg selv eller bloggen din, slik at leserne vet hvem du er. Du kan lage så mange du vil av slike sider, og håndtere alt innholdet med Publify.
   tags:
     index:
-      there_is_no_tags: Det er ingen tagg
+      there_are_no_tags: Det er ingen tagg
   time:
     formats:
       default: "%d/%m/%Y %H:%M"

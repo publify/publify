@@ -788,7 +788,7 @@ es-MX:
       body: Este es un ejemplo de una p&aacute;gina en Publify.  Ud. puede editarla para escribir informaci&oacute;n acerca de usted o su sitio para que los lectores sepan quien es usted.  Usted puede crear tantas p&aacute;ginas como esta para manejar todo el contenido dentro de Publify.
   tags:
     index:
-      there_is_no_tags: No existen Tags
+      there_are_no_tags: No existen Tags
   time:
     formats:
       default: "%m/%d/%Y %H:%M"

@@ -788,7 +788,7 @@ fr:
       body: Ceci est un exemple de page Publify. Vous pouvez la modifier pour écrire des informations sur vous ou sur votre blog, afin que vos lecteurs sachent qui vous êtes. Vous pouvez créer autant de pages que vous voulez et gérer tout votre contenu dans Publify.
   tags:
     index:
-      there_is_no_tags: Il n'y a pas de tag
+      there_are_no_tags: Il n'y a pas de tag
   time:
     formats:
       default: "%d/%m/%Y %H:%M"
