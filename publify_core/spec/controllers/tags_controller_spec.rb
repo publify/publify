@@ -94,6 +94,7 @@ RSpec.describe TagsController, type: :controller do
     render_views
 
     let!(:blog) { create(:blog) }
+    let(:parsed_body) { Capybara.string(response.body) }
 
     before(:each) do
       # TODO: need to add default article into tag_factory build to remove this :articles =>...
@@ -102,11 +103,21 @@ RSpec.describe TagsController, type: :controller do
     end
 
     it 'should have good rss feed link in head' do
-      expect(response.body).to have_selector("head>link[href='http://test.host/tag/foo.rss'][rel=alternate][type='application/rss+xml'][title=RSS]", visible: false)
+      rss_link = parsed_body.find "head>link[href='http://test.host/tag/foo.rss']", visible: false
+      aggregate_failures do
+        expect(rss_link['rel']).to eq 'alternate'
+        expect(rss_link['type']).to eq 'application/rss+xml'
+        expect(rss_link['title']).to eq 'RSS'
+      end
     end
 
     it 'should have good atom feed link in head' do
-      expect(response.body).to have_selector("head>link[href='http://test.host/tag/foo.atom'][rel=alternate][type='application/atom+xml'][title=Atom]", visible: false)
+      atom_link = parsed_body.find "head>link[href='http://test.host/tag/foo.atom']", visible: false
+      aggregate_failures do
+        expect(atom_link['rel']).to eq 'alternate'
+        expect(atom_link['type']).to eq 'application/atom+xml'
+        expect(atom_link['title']).to eq 'Atom'
+      end
     end
 
     it 'should have a canonical URL' do
