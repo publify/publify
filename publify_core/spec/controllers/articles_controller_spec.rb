@@ -503,8 +503,8 @@ describe ArticlesController, 'redirecting', type: :controller do
         get :redirect, params: { from: "#{article.permalink}.html.atom" }
       end
 
-      it 'should render feedback atom feed' do
-        expect(assigns(:feedback)).to eq([trackback1])
+      it 'should render feedback atom feed for the article' do
+        expect(assigns(:article)).to eq article
         expect(response).to render_template('feedback_atom_feed', layout: false)
       end
     end
@@ -517,8 +517,8 @@ describe ArticlesController, 'redirecting', type: :controller do
         get :redirect, params: { from: "#{article.permalink}.html.rss" }
       end
 
-      it 'should render rss20 partial' do
-        expect(assigns(:feedback)).to eq([trackback1])
+      it 'should render feedback rss feed for the article' do
+        expect(assigns(:article)).to eq article
         expect(response).to render_template('feedback_rss_feed', layout: false)
       end
     end

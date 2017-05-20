@@ -158,19 +158,15 @@ class ArticlesController < ContentController
   end
 
   def render_articles_feed(format)
-    template = "index_#{format}_feed"
-    key = "articles/#{template}-#{@articles.map(&:cache_key).join('-')}"
-    feed = Rails.cache.fetch(key) do
-      render_to_string template, layout: false
-    end
-    render xml: feed
+    render_cached_xml("index_#{format}_feed", @articles)
   end
 
   def render_feedback_feed(format)
-    template = "feedback_#{format}_feed"
-    key = "articles/#{template}-#{@article.cache_key}"
-    feed = Rails.cache.fetch(key) do
-      @feedback = @article.published_feedback
+    render_cached_xml("feedback_#{format}_feed", @article)
+  end
+
+  def render_cached_xml(template, object)
+    feed = cache([controller_name, template, object]) do
       render_to_string template, layout: false
     end
     render xml: feed
