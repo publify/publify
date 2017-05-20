@@ -679,9 +679,6 @@ he:
       trackback_uri: Trackback URI
       trackbacks: Trackbacks
       use_the_following_link_to_trackback: השתמש בקישור הבא כדי לעקוב-חזרה מהאתר שלך
-    search:
-      next_page: Next page
-      previous_page: Previous page
     trackback:
       from: From
   authors:
@@ -690,9 +687,7 @@ he:
       contact_information: Contact information
       jabber: 'Jabber:'
       msn: 'MSN:'
-      next_page: הדף הבא
       posted_in: נשלח ב-
-      previous_page: הדף הקודם
       this_author_has_not_published_any_article_yet: This author has not published any article yet
       twitter: 'Twitter:'
       web_site: 'Web site:'
@@ -772,16 +767,10 @@ he:
       designed_by: עוצב על ידי %{designed_by}
       powered_by_html: מופעל על ידי %{powered_by}
   notes:
-    index:
-      next_page: Next page
-      previous_page: Previous page
     note:
       view_on_twitter: View on Twitter
   notice:
     note_successfully_created: Note was successfully created
-  pagination:
-    next_page: Next page
-    previous_page: Previous page
   profile:
     admin: מנהל
     contributor: תורם
@@ -799,8 +788,6 @@ he:
       body: This is an example of a Publify page. You can edit this to write information about yourself or your site so readers know who you are. You can create as many pages as this one as you like and manage all of your content inside Publify.
   tags:
     index:
-      next_page: Next page
-      previous_page: Previous page
       there_is_no_tags: There is no tag
   time:
     formats:

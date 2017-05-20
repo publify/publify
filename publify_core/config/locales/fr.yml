@@ -679,9 +679,6 @@ fr:
       trackback_uri: Trackback URI
       trackbacks: Rétroliens
       use_the_following_link_to_trackback: Utilisez le lien ci-dessous pour envoyer un rétrolien depuis votre site
-    search:
-      next_page: Page suivante
-      previous_page: Page précédente
     trackback:
       from: From
   authors:
@@ -690,9 +687,7 @@ fr:
       contact_information: Informations de contact
       jabber: 'Jabber :'
       msn: 'MSN :'
-      next_page: Page suivante
       posted_in: publié dans
-      previous_page: Page précédente
       this_author_has_not_published_any_article_yet: Cet utilisateur n'a publié aucun article
       twitter: 'Twitter :'
       web_site: 'Site web:'
@@ -772,16 +767,10 @@ fr:
       designed_by: Design par %{designed_by}
       powered_by_html: Propulsé par %{powered_by}
   notes:
-    index:
-      next_page: Page suivante
-      previous_page: Page précédente
     note:
       view_on_twitter: Vu sur Twitter
   notice:
     note_successfully_created: Ce billet a été créé avec succès
-  pagination:
-    next_page: Page suivante
-    previous_page: Page précédente
   profile:
     admin: Administrateur
     contributor: Contributeur
@@ -799,8 +788,6 @@ fr:
       body: Ceci est un exemple de page Publify. Vous pouvez la modifier pour écrire des informations sur vous ou sur votre blog, afin que vos lecteurs sachent qui vous êtes. Vous pouvez créer autant de pages que vous voulez et gérer tout votre contenu dans Publify.
   tags:
     index:
-      next_page: Page suivante
-      previous_page: Page précédente
       there_is_no_tags: Il n'y a pas de tag
   time:
     formats:
