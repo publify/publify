@@ -10,20 +10,20 @@ class TagsController < ContentController
   end
 
   def show
-    @grouping = Tag.find_by!(name: params[:id])
+    @tag = Tag.find_by!(name: params[:id])
 
-    @page_title = this_blog.tag_title_template.to_title(@grouping, this_blog, params)
-    @description = @grouping.description.to_s
-    @keywords = ''
-    @keywords << @grouping.keywords if @grouping.keywords.present?
-    @keywords << this_blog.meta_keywords if this_blog.meta_keywords.present?
-    @articles = @grouping.articles.published.page(params[:page]).per(10)
+    @page_title = this_blog.tag_title_template.to_title(@tag, this_blog, params)
+    @description = @tag.description.to_s
+    @articles = @tag.
+      articles.includes(:blog, :user, :tags, :resources, :text_filter).
+      published.page(params[:page]).per(10)
 
     respond_to do |format|
       format.html do
         if @articles.empty?
           raise ActiveRecord::RecordNotFound
         else
+          @keywords = this_blog.meta_keywords
           render template_name(params[:id])
         end
       end

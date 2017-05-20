@@ -23,7 +23,7 @@ feed.entry item, id: "urn:uuid:#{item.guid}", published: item.published_at, url:
   if item.is_a?(Article)
 
     item.tags.each do |tag|
-      entry.category 'term' => tag.display_name, 'scheme' => tag.permalink_url
+      entry.category 'term' => tag.display_name, 'scheme' => tag_url(tag.permalink)
     end
 
     item.resources.each do |resource|
