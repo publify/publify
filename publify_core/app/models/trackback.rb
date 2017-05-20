@@ -43,12 +43,6 @@ class Trackback < Feedback
     self.excerpt = newval
   end
 
-  def rss_author(_xml); end
-
-  def rss_title(xml)
-    xml.title feed_title
-  end
-
   def feed_title
     "Trackback from #{blog_name}: #{title} on #{article.title}"
   end
