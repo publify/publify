@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe TagsController, type: :controller do
-  describe '/index' do
+  describe '#index' do
     before do
       create(:blog)
       @tag = create(:tag)
@@ -16,6 +16,14 @@ RSpec.describe TagsController, type: :controller do
       specify { expect(response).to be_success }
       specify { expect(response).to render_template('tags/index') }
       specify { expect(assigns(:tags)).to match_array([@tag]) }
+    end
+
+    describe 'with views rendered' do
+      render_views
+
+      it 'works' do
+        get 'index'
+      end
     end
   end
 
