@@ -12,7 +12,8 @@ xml.rss 'version' => '2.0', 'xmlns:dc' => 'http://purl.org/dc/elements/1.1/',
     xml.ttl '40'
     xml.description this_blog.blog_subtitle
 
-    @feedback.each do |item|
+    feedback = @article.published_feedback
+    feedback.each do |item|
       render "shared/rss_item_#{item.type.downcase}", feed: xml, item: item
     end
   end

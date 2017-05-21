@@ -679,9 +679,6 @@ zh-TW:
       trackback_uri: Trackback URI
       trackbacks: Trackbacks
       use_the_following_link_to_trackback: 從你所屬的網點用隨後的連結去引用
-    search:
-      next_page: Next page
-      previous_page: Previous page
     trackback:
       from: From
   authors:
@@ -690,9 +687,7 @@ zh-TW:
       contact_information: Contact information
       jabber: 'Jabber:'
       msn: 'MSN:'
-      next_page: 下一頁
       posted_in: posted in
-      previous_page: 前一頁
       this_author_has_not_published_any_article_yet: This author has not published any article yet
       twitter: 'Twitter:'
       web_site: 'Web site:'
@@ -772,16 +767,10 @@ zh-TW:
       designed_by: Designed by %{designed_by}
       powered_by_html: Powered by %{powered_by}
   notes:
-    index:
-      next_page: Next page
-      previous_page: Previous page
     note:
       view_on_twitter: View on Twitter
   notice:
     note_successfully_created: Note was successfully created
-  pagination:
-    next_page: Next page
-    previous_page: Previous page
   profile:
     admin: Publify administrator
     contributor: Contributor
@@ -799,9 +788,7 @@ zh-TW:
       body: This is an example of a Publify page. You can edit this to write information about yourself or your site so readers know who you are. You can create as many pages as this one as you like and manage all of your content inside Publify.
   tags:
     index:
-      next_page: Next page
-      previous_page: Previous page
-      there_is_no_tags: There is no tag
+      there_are_no_tags: There are no tags
   time:
     formats:
       default: "%m/%d/%Y %H:%M"

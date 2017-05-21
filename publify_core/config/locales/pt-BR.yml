@@ -679,9 +679,6 @@ pt-BR:
       trackback_uri: Trackback URI
       trackbacks: Trackbacks
       use_the_following_link_to_trackback: Use o seguinte link para criar um trackback para seu próprio site.
-    search:
-      next_page: Pr&oacute;xima
-      previous_page: Anterior
     trackback:
       from: From
   authors:
@@ -690,9 +687,7 @@ pt-BR:
       contact_information: Informações de contato
       jabber: 'Jabber:'
       msn: 'MSN:'
-      next_page: Próxima
       posted_in: postado em
-      previous_page: Anterior
       this_author_has_not_published_any_article_yet: Este autor ainda não publicou nenhum artigo
       twitter: 'Twitter:'
       web_site: 'Web site:'
@@ -772,16 +767,10 @@ pt-BR:
       designed_by: Designed by %{designed_by}
       powered_by_html: Powered by %{powered_by}
   notes:
-    index:
-      next_page: Próximo
-      previous_page: Anterior
     note:
       view_on_twitter: Ver no Twitter
   notice:
     note_successfully_created: Nota foi criada com sucesso
-  pagination:
-    next_page: Próxima
-    previous_page: Anterior
   profile:
     admin: Administrador do Publify
     contributor: Contribuidor
@@ -799,9 +788,7 @@ pt-BR:
       body: Este é um exemplo de uma página do Publify. Você pode editar esta página e escrever informações sobre você ou seu site para que seus leitores saibam quem você é. Você pode criar mais páginas iguais a essa e gerenciar todo o seu conteúdo de dentro do Publify.
   tags:
     index:
-      next_page: Próxima
-      previous_page: Anterior
-      there_is_no_tags: Nenhuma tag encontrada
+      there_are_no_tags: Nenhuma tag encontrada
   time:
     formats:
       default: "%d/%m/%Y %H:%M"

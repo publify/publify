@@ -679,9 +679,6 @@ es-MX:
       trackback_uri: Trackback URI
       trackbacks: Trackbacks
       use_the_following_link_to_trackback: Usa el siguiente link para crear un trackback desde tu propio sitio
-    search:
-      next_page: Siguiente p&aacute;gina
-      previous_page: P&aacute;gina anterior
     trackback:
       from: From
   authors:
@@ -690,9 +687,7 @@ es-MX:
       contact_information: Contact information
       jabber: 'Jabber:'
       msn: 'MSN:'
-      next_page: P&aacute;gina siguiente
       posted_in: posted in
-      previous_page: P&aacute;gina anterior
       this_author_has_not_published_any_article_yet: This author has not published any article yet
       twitter: 'Twitter:'
       web_site: 'Web site:'
@@ -772,16 +767,10 @@ es-MX:
       designed_by: Designed by %{designed_by}
       powered_by_html: Powered by %{powered_by}
   notes:
-    index:
-      next_page: Next page
-      previous_page: Previous page
     note:
       view_on_twitter: Ver en Twitter
   notice:
     note_successfully_created: Nota creada exit&oacute;samente
-  pagination:
-    next_page: Siguiente p&aacute;gina
-    previous_page: P&aacute;gina anterior
   profile:
     admin: Publify administrator
     contributor: Contributor
@@ -799,9 +788,7 @@ es-MX:
       body: Este es un ejemplo de una p&aacute;gina en Publify.  Ud. puede editarla para escribir informaci&oacute;n acerca de usted o su sitio para que los lectores sepan quien es usted.  Usted puede crear tantas p&aacute;ginas como esta para manejar todo el contenido dentro de Publify.
   tags:
     index:
-      next_page: Siguiente p&aacute;gina
-      previous_page: P&aacute;gina anterior
-      there_is_no_tags: No existen Tags
+      there_are_no_tags: No existen Tags
   time:
     formats:
       default: "%m/%d/%Y %H:%M"
