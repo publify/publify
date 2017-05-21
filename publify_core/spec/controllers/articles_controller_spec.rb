@@ -13,6 +13,7 @@ describe ArticlesController, 'base', type: :controller do
 
   describe 'index' do
     let!(:article) { create(:article) }
+    let!(:note) { create(:note) }
     before(:each) { get :index }
 
     it { expect(response).to render_template(:index) }

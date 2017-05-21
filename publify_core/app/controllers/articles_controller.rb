@@ -16,7 +16,7 @@ class ArticlesController < ContentController
                     else
                       this_blog.contents.published_at(params.values_at(:year, :month, :day))
                     end
-    @articles = articles_base.includes(:user, :tags).
+    @articles = articles_base.includes(:user).
       where(conditions).page(params[:page]).per(limit)
 
     @page_title = this_blog.home_title_template
