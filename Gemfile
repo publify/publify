@@ -39,7 +39,7 @@ end
 gem 'rails', '~> 5.0.0'
 
 # Store sessions in the database
-gem 'activerecord-session_store', '~> 1.0.0'
+gem 'activerecord-session_store', '~> 1.1.0'
 
 gem 'publify_amazon_sidebar', git: 'https://github.com/publify/publify_amazon_sidebar.git'
 gem 'publify_core', git: 'https://github.com/publify/publify_core.git'
