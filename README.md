@@ -167,7 +167,7 @@ irc: ook
 blog: http://elsif.fr
 irc: yaf
 
-And [many more cool people who’ve one day or another contributed to
+And [many more cool people who’ve one way or another contributed to
 Publify](https://github.com/publify/publify/graphs/contributors).
 
 **Original Author: Tobias Luetke**
