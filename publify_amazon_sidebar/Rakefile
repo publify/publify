@@ -17,9 +17,3 @@ desc 'Run all specs in spec directory (excluding plugin specs)'
 RSpec::Core::RakeTask.new(spec: 'app:db:test:prepare')
 
 task default: :spec
-
-require 'rubocop/rake_task'
-RuboCop::RakeTask.new do |task|
-  task.options = ['--config', '.rubocop.yml']
-end
-task default: :rubocop
