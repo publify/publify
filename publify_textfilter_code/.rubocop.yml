@@ -12,6 +12,24 @@ AllCops:
 Rails:
   Enabled: true
 
+# Place . on the previous line
+Layout/DotPosition:
+  EnforcedStyle: trailing
+
+# Do not use unnecessary spacing.
+Layout/ExtraSpacing:
+  Enabled: true
+
+# Multi-line operations should be simply indented. Aligning them makes it even
+# harder to keep a sane line length.
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+# Multi-line operations should be simply indented. Aligning them makes it even
+# harder to keep a sane line length.
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
 # Allow if (foo = get_foo) style
 Lint/AssignmentInCondition:
   AllowSafeAssignment: true
@@ -44,31 +62,13 @@ Style/ClassAndModuleChildren:
 Style/CollectionMethods:
   Enabled: true
 
-# Place . on the previous line
-Style/DotPosition:
-  EnforcedStyle: trailing
-
 # This cop doesn't detect use of break yet
 Style/EachWithObject:
   Enabled: false
 
-# Do not use unnecessary spacing.
-Style/ExtraSpacing:
-  Enabled: true
-
 # Allows format strings with: format, sprintf or percent.
 Style/FormatString:
   Enabled: false
-
-# Multi-line operations should be simply indented. Aligning them makes it even
-# harder to keep a sane line length.
-Style/MultilineMethodCallIndentation:
-  EnforcedStyle: indented
-
-# Multi-line operations should be simply indented. Aligning them makes it even
-# harder to keep a sane line length.
-Style/MultilineOperationIndentation:
-  EnforcedStyle: indented
 
 # Always use raise to raise exceptions
 Style/SignalException:
