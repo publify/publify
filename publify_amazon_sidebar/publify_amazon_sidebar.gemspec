@@ -20,5 +20,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'publify_core', '~> 9.0.0.pre4'
 
   s.add_development_dependency 'sqlite3'
-  s.add_development_dependency 'rspec-rails', '~> 3.5.2'
+  s.add_development_dependency 'rspec-rails', '~> 3.6.0'
 end
