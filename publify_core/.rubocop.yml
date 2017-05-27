@@ -12,6 +12,24 @@ AllCops:
 Rails:
   Enabled: true
 
+# Place . on the previous line
+Layout/DotPosition:
+  EnforcedStyle: trailing
+
+# Do not use unnecessary spacing.
+Layout/ExtraSpacing:
+  Enabled: true
+
+# Multi-line operations should be simply indented. Aligning them makes it even
+# harder to keep a sane line length.
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+# Multi-line operations should be simply indented. Aligning them makes it even
+# harder to keep a sane line length.
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
 # Assume the programmer knows how bracketed block syntax works
 Lint/AmbiguousBlockAssociation:
   Enabled: false
@@ -20,7 +38,7 @@ Lint/AmbiguousBlockAssociation:
 Lint/AssignmentInCondition:
   AllowSafeAssignment: true
 
-# Spec describe blocks can be any size
+# Spec describe blocks can be any length
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
@@ -51,31 +69,13 @@ Style/ClassAndModuleChildren:
 Style/CollectionMethods:
   Enabled: true
 
-# Place . on the previous line
-Style/DotPosition:
-  EnforcedStyle: trailing
-
 # This cop doesn't detect use of break yet
 Style/EachWithObject:
   Enabled: false
 
-# Do not use unnecessary spacing.
-Style/ExtraSpacing:
-  Enabled: true
-
 # Allows format strings with: format, sprintf or percent.
 Style/FormatString:
   Enabled: false
-
-# Multi-line operations should be simply indented. Aligning them makes it even
-# harder to keep a sane line length.
-Style/MultilineMethodCallIndentation:
-  EnforcedStyle: indented
-
-# Multi-line operations should be simply indented. Aligning them makes it even
-# harder to keep a sane line length.
-Style/MultilineOperationIndentation:
-  EnforcedStyle: indented
 
 # TODO: Re-enable?
 Style/NumericPredicate:
