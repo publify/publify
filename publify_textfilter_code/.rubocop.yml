@@ -30,23 +30,26 @@ Layout/MultilineMethodCallIndentation:
 Layout/MultilineOperationIndentation:
   EnforcedStyle: indented
 
+# Assume the programmer knows how bracketed block syntax works
+Lint/AmbiguousBlockAssociation:
+  Enabled: false
+
 # Allow if (foo = get_foo) style
 Lint/AssignmentInCondition:
   AllowSafeAssignment: true
+
+# Spec describe blocks can be any length
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
 
 # Documenting all classes is not common in Rails projects.
 Style/Documentation:
   Enabled: false
 
-# Spec blocks can be any length
-Metrics/BlockLength:
-  Exclude:
-    - 'spec/**/*'
-
 # Provides more information, while still being displayable in modern wide-screen.
-# TODO: Re-enable once linelength has been fixed everywhere.
-# Metrics/LineLength:
-#   Max: 120
+Metrics/LineLength:
+  Max: 120
 
 # Allow the use of 'and' 'or' in control structures.
 Style/AndOr:
@@ -70,6 +73,12 @@ Style/EachWithObject:
 Style/FormatString:
   Enabled: false
 
+# Revert to previous default
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    '%W': ()
+    '%w': ()
+
 # Always use raise to raise exceptions
 Style/SignalException:
   EnforcedStyle: only_raise
@@ -81,5 +90,3 @@ Style/SingleLineBlockParams:
 # Prefer symbols to look like symbols
 Style/SymbolArray:
   EnforcedStyle: brackets
-
-inherit_from: .rubocop_todo.yml
