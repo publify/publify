@@ -1,0 +1,92 @@
+# Default style guide 'https://github.com/bbatsov/ruby-style-guide'.
+
+AllCops:
+  Exclude:
+  - 'bin/**/*'
+  - 'config/**/*'
+  - 'db/**/*'
+  - 'tmp/**/*'
+  - 'spec/dummy/**/*'
+  - 'vendor/**/*'
+
+Rails:
+  Enabled: true
+
+# Place . on the previous line
+Layout/DotPosition:
+  EnforcedStyle: trailing
+
+# Do not use unnecessary spacing.
+Layout/ExtraSpacing:
+  Enabled: true
+
+# Multi-line operations should be simply indented. Aligning them makes it even
+# harder to keep a sane line length.
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+# Multi-line operations should be simply indented. Aligning them makes it even
+# harder to keep a sane line length.
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
+# Assume the programmer knows how bracketed block syntax works
+Lint/AmbiguousBlockAssociation:
+  Enabled: false
+
+# Allow if (foo = get_foo) style
+Lint/AssignmentInCondition:
+  AllowSafeAssignment: true
+
+# Spec describe blocks can be any length
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+
+# Documenting all classes is not common in Rails projects.
+Style/Documentation:
+  Enabled: false
+
+# Provides more information, while still being displayable in modern wide-screen.
+Metrics/LineLength:
+  Max: 120
+
+# Allow the use of 'and' 'or' in control structures.
+Style/AndOr:
+  EnforcedStyle: conditionals
+
+# Allow multiple Hash parameters to look similar
+Style/BracesAroundHashParameters:
+  EnforcedStyle: context_dependent
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/CollectionMethods:
+  Enabled: true
+
+# This cop doesn't detect use of break yet
+Style/EachWithObject:
+  Enabled: false
+
+# Allows format strings with: format, sprintf or percent.
+Style/FormatString:
+  Enabled: false
+
+# Revert to previous default
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    '%W': ()
+    '%w': ()
+
+# Always use raise to raise exceptions
+Style/SignalException:
+  EnforcedStyle: only_raise
+
+# Allow meaningful names for single-line reduce etc.
+Style/SingleLineBlockParams:
+  Enabled: false
+
+# Prefer symbols to look like symbols
+Style/SymbolArray:
+  EnforcedStyle: brackets
