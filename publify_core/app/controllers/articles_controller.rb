@@ -19,22 +19,13 @@ class ArticlesController < ContentController
     @articles = articles_base.includes(:user).
       where(conditions).page(params[:page]).per(limit)
 
-    @page_title = this_blog.home_title_template
-    @description = this_blog.home_desc_template
-    if params[:year]
-      @page_title = this_blog.archives_title_template
-      @description = this_blog.archives_desc_template
-    elsif params[:page]
-      @page_title = this_blog.paginated_title_template
-      @description = this_blog.paginated_desc_template
-    end
-    @page_title = @page_title.to_title(@articles, this_blog, params)
-    @description = @description.to_title(@articles, this_blog, params)
-
-    @keywords = this_blog.meta_keywords
-
     respond_to do |format|
-      format.html { render_paginated_index }
+      format.html do
+        set_index_title_and_description(this_blog, params)
+        @keywords = this_blog.meta_keywords
+
+        render_paginated_index
+      end
       format.atom do
         render_articles_feed('atom')
       end
@@ -127,6 +118,20 @@ class ArticlesController < ContentController
   end
 
   private
+
+  def set_index_title_and_description(blog, parameters)
+    @page_title = blog.home_title_template
+    @description = blog.home_desc_template
+    if parameters[:year]
+      @page_title = blog.archives_title_template
+      @description = blog.archives_desc_template
+    elsif parameters[:page]
+      @page_title = blog.paginated_title_template
+      @description = blog.paginated_desc_template
+    end
+    @page_title = @page_title.to_title(@articles, blog, parameters)
+    @description = @description.to_title(@articles, blog, parameters)
+  end
 
   def verify_config
     if !this_blog.configured?
