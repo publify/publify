@@ -1,0 +1,13 @@
+.bundle/
+Gemfile.lock
+log/*.log
+pkg/
+spec/dummy/.sass-cache
+spec/dummy/config/secret.token
+spec/dummy/db/*.sqlite3
+spec/dummy/db/*.sqlite3-journal
+spec/dummy/log/*.log
+spec/dummy/public/files/
+spec/dummy/public/uploads/
+spec/dummy/tmp/
+spec/examples.txt

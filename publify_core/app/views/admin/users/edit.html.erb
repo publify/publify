@@ -1,0 +1,8 @@
+<% content_for :page_heading do %>
+  <i class="icon-large icon-user-add"></i>
+  <h2 class="page-title"><%= t(".edit_user") %></h2>
+<% end %>
+
+<%= form_for([:admin, @user]) do |f| %>
+  <%= render partial: "form", locals: { f: f, user: @user } %>
+<% end %>

@@ -1,0 +1,7 @@
+<tr id='feedback_<%= comment.id %>' class='<%= comment.state.to_s.downcase %>'>
+  <% if comment.state.to_s.downcase == 'spam'%>
+    <%= render :partial => 'spam', :locals => { :comment => comment } %>
+  <% else %>
+  <%= render :partial => 'ham', :locals => { :comment => comment } %>
+<% end %>
+</tr>

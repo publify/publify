@@ -1,0 +1,14 @@
+<tr>
+  <td>
+    <%= h(note.body.strip_html.slice(0..140)) %>
+    <div class='action'>
+      <%= link_to(content_tag(:span, '', class: 'glyphicon glyphicon-pencil'), {action: 'edit', id: note.id}, {class: 'btn btn-primary btn-xs btn-action'}) %>
+      <%= link_to(content_tag(:span, '', class: 'glyphicon glyphicon-trash'), admin_note_path(note), {class: 'btn btn-danger btn-xs btn-action'}) %>
+      <%= link_to(content_tag(:span, '', class: 'glyphicon glyphicon-link'), note.short_url, {class: 'btn btn-success btn-xs btn-action'}) %>
+    </div>
+  </td>
+  <td>
+    <%= author_link(note)%><br>
+    <small><%= l(note.published_at) %></small>
+  </td>
+</tr>

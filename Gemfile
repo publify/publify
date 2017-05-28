@@ -41,9 +41,9 @@ gem 'rails', '~> 5.0.0'
 # Store sessions in the database
 gem 'activerecord-session_store', '~> 1.1.0'
 
-gem 'publify_amazon_sidebar', git: 'https://github.com/publify/publify_amazon_sidebar.git'
-gem 'publify_core', git: 'https://github.com/publify/publify_core.git'
-gem 'publify_textfilter_code', git: 'https://github.com/publify/publify_textfilter_code.git'
+gem 'publify_amazon_sidebar', path: 'publify_amazon_sidebar'
+gem 'publify_core', path: 'publify_core'
+gem 'publify_textfilter_code', path: 'publify_textfilter_code'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -90,6 +90,8 @@ end
 
 group :test do
   gem 'sqlite3'
+  gem 'rails-controller-testing', '~> 1.0.1'
+  gem 'webmock', '~> 3.0.1'
 end
 
 # Install gems from each theme

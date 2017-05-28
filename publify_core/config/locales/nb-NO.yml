@@ -1,0 +1,801 @@
+---
+nb-NO:
+  accounts:
+    back_to_html: "&larr; Tilbake til %{place}"
+    back_to_login: Tilbake til innlogging
+    confirm:
+      admin: admin
+      dont_lose_the_mail_sent: Ikke mist eposten som ble sendt %{email}. Uten passordet vil du ikke kunne logge inn senere
+      login: Logg inn
+      password: Passord
+      proceed_to: Fortsett til %{link}
+      success: You have successfully signed up.
+    create_account: Opprett konto
+    lost_my_password: Jeg har mistet passordet mitt
+  activerecord:
+    errors:
+      models:
+        article:
+          attributes:
+            title:
+              blank: kan ikke være blank
+      template:
+        body: ''
+        header: ''
+  admin:
+    base:
+      not_allowed: Feil, du har ikke lov til å utføre denne handlingen
+      successfully_deleted: Slettet %{name}
+    content:
+      access_granted:
+        error: Du har ikke tillatelse til å utføre denne handlingen
+      article_list:
+        no_articles: Det finnes ingen artikler enda. Hva med å opprette en?
+      autosave:
+        success: Artikkel ble lagret
+      create:
+        success: Artikkel opprettet
+      form:
+        allow_comments: Tillat kommentarer
+        allow_comments_status:
+          one: aktivert
+          zero: deaktivert
+        allow_pings_status:
+          one: aktivert
+          zero: deaktivert
+        allow_trackbacks: Tillat trackbacks
+        allowed_comments_and_trackbacks_html: Kommentarer er %{allow_comment} og trackbacks er %{allow_trackback}
+        article_type: Artikkeltype
+        cancel: Avbryt
+        default: Standard
+        now: nå
+        ok: OK
+        password: Passord
+        permalink: permalenke
+        preview: Forhåndsvisning
+        protected: Protected
+        public: Offentlig
+        publish: Publiser
+        publish_settings: Publiseringsinnstillinger
+        published: publisert
+        save: Lagre
+        save_as_draft: Lagre som utkast
+        status: Status
+        tags: Tagger
+        tags_explanation_html: Skill tagger med komma. Bruk anførselstegn (&quot;) rundt tagger med flere ord, f.eks. &quot;moderne teater&quot;.
+        title: Tittel
+        type_your_post: Skriv teksten din
+        visibility: Synlighet
+      index:
+        all_articles: Alle artikler
+        drafts: Utkast
+        manage_articles: Administrer artikler
+        new_article: Ny artikkel
+        publication_date: Publiseringsdato
+        publication_pending: Venter på publisering
+        published: Publisert
+        search: Søk
+        select_an_author: Velg forfatter
+        withdrawn: Trukket tilbake
+      update:
+        success: Artikkel oppdatert
+    dashboard:
+      comment:
+        by: Av
+        no_comments_yet: Ingen kommentarer
+      comments:
+        latest_comments: Siste kommentarer
+      drafts:
+        no_drafts_yet: Ingen utkast enda, hvorfor ikke begynne å skrive et?
+        your_drafts: Dine utkast
+      inbound:
+        at: klokken
+        at_an_unknown_date: på ukjent dato
+        inbound_links: Innkommende lenker
+        made_a_link_to_you_on: opprettet en lenke til deg den
+        no_one_made_link_to_you_yet: Ingen har lenket til deg
+        you_have_no_internet_connection: Du har ingen internettforbindelse
+      index:
+        welcome_back: Velkommen tilbake, %{user_name}!
+      overview:
+        change_your_blog_presentation: endre utseende på bloggen din
+        customization_explain_html: Du kan også tilpasse utseendet, %{theme_link} eller %{sidebar_link}.
+        dashboard_explain_html: Her får du en rask oversikt over hva som foregår på din Publify-blogg og hva du kan gjøre. Kanskje du ønsker å %{available_actions}.
+        enable_plugins: aktivere plugins
+        help_explain_html: Hvis du trenger hjelp, %{doc_link}.
+        read_our_documentation: les dokumentasjonen vår
+        update_your_profile_or_change_your_password: oppdatere profilen din eller endre passordet ditt
+        write_a_page: skrive en side
+        write_a_post: skrive en artikkel
+      publify_version:
+        error: Du bruker en gammel versjon av Publify. Du bør oppgradere snarest. Last ned og installer <a href='http://publify.co/stable.tgz'>siste Publify-versjon</a>
+        notice: Det finnes en ny versjon av Publify. Hva med å oppgradere til <a href='http://publify.co/stable.tgz'>siste Publify-versjon</a>?
+        warning: Det finnes en ny versjon av Publify som kan inneholde viktige feilrettinger. Hva med å oppgradere til <a href='http://publify.co/stable.tgz'>siste Publify-versjon</a>?
+      welcome:
+        approved_count:
+          one: 1 godkjent
+          other: "%{count} godkjente"
+          zero: ingen godkjente
+        articles_and_comments_count_since: "%{articles_count} artikler og %{comments_count} kommentarer siden forrige besøk"
+        articles_count:
+          one: 1 artikkel
+          other: "%{count} artikler"
+          zero: ingen artikler
+        comments_count:
+          one: 1 kommentar
+          other: "%{count} kommentarer"
+          zero: ingen kommentarer
+        content: Innhold
+        drafts_count:
+          one: 1 utkast
+          other: "%{count} utkast"
+          zero: ingen utkast
+        feedback: Diskusjon
+        notes_count:
+          one: 1 notat
+          other: "%{count} notater"
+          zero: ingen notater
+        pages_count:
+          one: 1 side
+          other: "%{count} sider"
+          zero: ingen sider
+        running_publify: Du bruker Publify versjon %{version}
+        spam_count:
+          one: 1 spam
+          other: "%{count} spam"
+          zero: ingen spam
+        today: I dag
+        unconfirmed_count:
+          one: 1 ubekreftet
+          other: "%{count} ubekreftede"
+          zero: ingen ubekreftede
+        your_articles_count:
+          one: 1 artikkel skrevet av deg
+          other: "%{count} artikler skrevet av deg"
+          zero: ingen artikler skrevet av deg
+    feedback:
+      article:
+        action_or_other_html: "%{first_action} eller %{second_action}"
+        add_a_comment: Legg til kommentar
+        author: Forfatter
+        cancel: Avbryt
+        comments_for_html: Kommentarer for %{title}
+        email: Epost
+        no_feedback: Det finnes ingen diskusjon enda. Hva med å opprette en?
+        save: Lagre
+        select_all: Velg alle
+        url: URL
+        your_comment: Din kommentar
+      bulkops:
+        error: Ikke implementert
+        success_classification: Bekreftet klassifisering av %{count} element(er)
+        success_deleted: Slettet %{count} elementer
+        success_deleted_spam: All spam er slettet
+        success_mark_as_ham:
+          one: Markerte 1 element som ikke-spam
+          other: Markerte %{count} elementer som ikke-spam
+          zero: Ingen elementer valgt for å markere som ikke-spam
+        success_mark_as_spam:
+          one: Markerte 1 enhet som Spam
+          other: Markerte %{count} enheter som Spam
+          zero: No item selected to mark as Spam
+      button:
+        delete_all_spam: Slett all spam
+        delete_checked_items: Slett markerte elementer
+        mark_checked_items_as_ham: Flagg markerte elementer som ikke-spam
+        mark_checked_items_as_spam: Flagg markerte elementer som spam
+      create:
+        success: Kommentar opprettet
+      destroy:
+        error: Ikke funnet
+        success: Slettet
+      edit:
+        action_or_other_html: "%{first_action} eller %{second_action}"
+        author: Forfatter
+        cancel: Avbryt
+        comments_for_html: Kommentarer for %{article_link}
+        edit_a_comment: Edit a comment
+        email: Epost
+        save: Lagre
+        url: URL
+        your_comment: Din kommentar
+      ham:
+        by: by
+        created_on: 'on'
+      index:
+        all: Alle
+        feedback: Diskusjon
+        ham: Ikke-spam
+        no_feedback: Det finnes ingen diskusjon enda. Hva med å opprette en?
+        presumed_ham: Antatt ikke-spam
+        presumed_spam: Antall spam
+        select_all: Velg alle
+        spam: Spam
+        unapproved_comments: Kommentarer på vent
+      spam:
+        by: by
+        cancel: Avbryt
+        created_on: 'on'
+        this_comment_by_was_flagged_as_spam_html: Denne kommentaren av %{author} er flagget som spam, %{cancel_link}?
+      state:
+        ham: Ikke-spam
+        just_marked_as_ham: Kun markert som ikke-spam
+        just_marked_as_spam: Kun markert som spam
+        just_presumed_ham: Kun antatt ikke-spam
+        presumed_ham: Ikke-spam?
+        presumed_spam: Spam?
+        spam: Spam
+        unclassified: Uklassifisert
+      update:
+        success: Kommentar oppdatert
+    migrations:
+      show:
+        current_database_version: Nåværende databaseversjon
+        database_migration: Databaseoppgradering
+        information: Informasjon
+        may_take_a_moment: kan ta et øyeblikk
+        migration_pending:
+          one: Du har en ventende databaseoppgradering.
+          other: Det er %{count} ventende databaseoppgraderinger.
+        migrations: Oppgraderinger
+        needed_migrations: Manglende oppgraderinger
+        update_database_now: Oppdater database nå
+        you_are_up_to_date: Du er oppdatert!
+    notes:
+      form:
+        cancel: Avbryt
+        compose_new_note: Skriv nytt notat
+        in_reply_to: Som svar på
+        no_notes: Det er ingen notater enda. Hva med å opprette en?
+        now: Nå
+        or: eller
+        permanent_link: Permanent lenke
+        posse_to_twitter: POSSE til Twitter
+        publish: Publiser
+        publish_at: Publisert den
+        publish_settings: Publiseringsinnstillinger
+        tweet_id_like: Tweet-id av typen 123456
+      header:
+        notes: Notater
+      show:
+        action_or_other_html: "%{first_action} eller %{second_action}"
+        are_you_sure: Er du sikker på at du vil slette dette notatet?
+        cancel: Avbryt
+        delete: Slett
+        destroy_confirmation: Bekreft sletting
+    pages:
+      edit:
+        success: Side oppdatert
+      form:
+        article_filter: artikkelfilter
+        cancel: Avbryt
+        offline: offline
+        online: Online
+        permanent_link: Permanent lenke
+        publish: Publiser
+        publish_settings: Publiseringsinnstillinger
+        published: publisert
+        save: Lagre
+        status: Status
+        title: Tittel
+        type_your_post: Skriv teksten din
+      index:
+        author: Forfatter
+        manage_pages: Administrer sider
+        new_page: Ny side
+        title: Tittel
+      new:
+        success: Side opprettet
+      pages:
+        no_pages: Det finnes ingen sider enda. Hva med å opprette en?
+    post_types:
+      index_and_form:
+        cancel: Avbryt
+        default: Standard
+        description: Beskrivelse
+        explain: Malnavnet er det filnavnet Publify vil se etter når en artikkel av den typen skal vises. Det bør finnes i designtemaet ditt under views/articles/malnavn.html.erb
+        name: Navn
+        or: eller
+        post_types: Artikkeltyper
+        publify_default_post_type: Standard artikkeltype i Publify
+        save: Lagre
+        template_name: Malnavn
+    profiles:
+      index:
+        success: Bruker oppdatert
+        your_profile: Din profil
+    redirects:
+      destroy:
+        success: Omdirigering slettet
+      index_and_form:
+        cancel: Avbryt
+        from: Fra
+        leave_empty_to_shorten_a_link: La feltet være tomt for å forkorte en lenke
+        no_redirects: Det finnes ingen omdirigeringer enda. Hva med å opprette en?
+        or: or
+        redirects: Omdirigeringer
+        save: Lagre
+        to: Til
+    resources:
+      destroy:
+        notice: Slettet
+      index:
+        are_you_sure: Er du sikker?
+        content_type: Innholdstype (MIME Content Type)
+        date: Dato
+        delete: Delete
+        file_size: Filstørrelse
+        filename: Filnavn
+        media_library: Media-bibliotek
+        medium_size: Mellomstor
+        no_resources: Det finnes ingen media enda. Hva med å opprette en?
+        original_size: Opprinnelig størrelse
+        right_click_for_link: høyreklikk for lenke
+        thumbnail: Miniatyr
+        upload: Last opp
+        upload_a_file_to_your_site: Last opp en fil til siden din
+      upload:
+        success: Lastet opp fil
+        warning: Kan ikke laste opp
+    seo:
+      general:
+        canonical_url: Kanonisk URL
+        custom_tracking_code: Tilpasset tracking-kode
+        do_not_index_tags: Ikke indekser tagger
+        dofollow: Dofollow
+        explain: Her kan du legge til det du vil skal inkluderes i din applikasjons-header, som for eksempel tracking-kode for en analyseservice.
+        explain_humans_txt: Dette er et initiativ for å få kjennskap til menneskene bak et nettsted. Det er en txt-fil som inneholder informasjon om de forskjellig personene som har bidratt til å bygge nettstedet. http://humanstxt.org/
+        explain_moderate_feedback: Det kan være en idé å moderere diskusjoner når du slår på denne
+        explain_rss_description: 'Du kan bruke følgende tagger: %author% (forfatternavn), %blog_url% (blogg-URL), %blog_name% (bloggtittel) og %permalink_url% (en lenke til den artikkelen du vil beskytte)'
+        explain_tag_index_html: Slår du på denne, vil metataggene <code>noindex, follow</code> bli lagt til på alle taggsider, og dermed fjerne dem fra søkemotorer og forhindre problemer med duplisert innhold
+        general_settings: Generelle innstillinger
+        google: Google
+        google_analytics: Google Analytics
+        google_webmaster_tools_validation_link: Google Webmaster Tools valideringslenke
+        human: Menneskene bak
+        humans_txt: humans.txt
+        indexing: Indeksering
+        meta_description: Metabeskrivelse
+        meta_keywords: Metanøkkelord
+        read_more_about_html: Les mer om %{link}
+        robots_txt: Robots.txt
+        rss_description_message: Melding for RSS-beskrivelse
+        this_will_display: Den vil vises på bunnen av hver artikkel i RSS-feeden
+        use_canonical_url: Bruk kanonisk URL
+        use_dofollow_in_comments: Bruk dofollow i kommentarer
+        use_meta_keywords: Bruk metanøkkelord
+        use_rss_description: Bruk RSS-beskrivelse
+      permalinks:
+        custom: Tilpasset
+        date_and_title: Dato og tittel
+        explain: Publify tilbyr deg muligheten til å opprette en tilpasset URL-struktur for dine permalenker og arkiver. Dette kan forbedre estetikken, brukervennligheten og foroverkompatibiliteten til dine lenker.
+        help_on_permalink_settings: Hjelp om permalenke-innstillinger
+        month_and_title: Måned og tittel
+        permalink_format: Permalenkeformat
+        sample: Her er noen eksempler for å hjelpe deg i gang.
+        title_only: Bare tittel
+        you_can_custom_your_url_structure: 'Du kan tilbasse URL-strukturen din ved å bruke følgende tagger:'
+        your_article_day: Artikkelens publiseringsdag
+        your_article_month: Artikkelens publiseringmåned
+        your_article_slug_html: Forenklet fra artikkeltittelen. <strong>Det er påkrevd å bruke denne taggen</strong>.
+        your_article_year: Artikkelens publiseringsår
+      show:
+        cancel: Avbryt
+        global_settings: Globale innstillinger
+        or: eller
+        permalinks: Permalenker
+        title_settings: Tittelvalg
+        update_settings: Oppdater innstillinger
+      titles:
+        articles: Artikler
+        author_page: Forfatterside
+        dated_archives: Datert arkiv
+        description_template: Mønster for beskrivelse
+        help_on_title_settings: Hjelp med tittelvalg
+        home: Hjem
+        pages: Sider
+        paginated_archives: Arkivliste over flere sider
+        replaced_by_the_archive_date: Erstattet med arkivdato
+        replaced_by_the_content_body: Erstattet med artikkelinnholdet
+        replaced_with_the_article_categories: Erstattet med artikkelens kategorier (kommaseparert)
+        replaced_with_the_article_page_title: Erstattet med artikkelens/sidens tittel
+        replaced_with_the_article_tags: Erstattet med artikkelens tagger (kommaseparert)
+        replaced_with_the_category_tag_name: Erstattet med kategori-/taggnavn
+        replaced_with_the_current_date: Erstattet med nåværende dato
+        replaced_with_the_current_month: Erstattet med nåværende måned
+        replaced_with_the_current_page_number: Erstattet med gjeldende sidetall
+        replaced_with_the_current_search_phrase: Erstattet med gjeldende søketekst
+        replaced_with_the_current_time: Erstattet med nåværende klokkeslett
+        replaced_with_the_current_year: Erstattet med nåværende år
+        replaced_with_the_post_page_excerpt: Erstattet med utdrag fra artikkelen/siden
+        replaced_with_the_title_of_the_article_page: Erstattet med tittelen til artikkelen/siden
+        search_results: Søkeresultater
+        short_statuses: Statusoppdateringer
+        short_statuses_lists: Lister over statusoppdateringer
+        the_blog_s_name: Bloggens navn
+        the_blog_s_tagline_description: Bloggens undertittel/beskrivelse
+        these_tags_can_be_included: Disse taggene kan brukes i malene, og vil bli erstattet når siden vises.
+        title_template: Mønster for tittel
+    settings:
+      display:
+        cancel: Avbryt
+        custom_url: Eget domene for URL-krymping
+        custom_url_help: Hvis du har et eget domene for URL-krymping, skriv det her
+        date_format: Datoformat
+        default_archives_show: articles on the archives pages
+        default_article_show: artikler på åpningssiden
+        default_feed_show: siste artikler i feeden
+        display: Vis
+        display_settings: Innstillinger for visning
+        feed_articles: Utdrag
+        feed_excerpts_only: Vis bare utdrag av artikler i feeden
+        feed_settings: Innstillinger for RSS-feed
+        or: eller
+        publishing_options: Publiseringsvalg
+        status_main_feed: Vis statusoppdateringer i hovedfeeden
+        statuses: Statusoppdateringer
+        time_format: Tidsformat
+        update_settings: Oppdater innstillinger
+      feedback:
+        askimet_key: Akismet-nøkkel
+        avatars_provider: Avatartilbyder
+        cancel: Avbryt
+        captcha: Captcha
+        comments: Kommentarer
+        comments_filter: Kommentarfilter
+        days: dager
+        disable_comments_after: Deaktiver kommentarer etter
+        disable_trackbacks_sitewide: Deaktiver trackbacks på hele siden
+        enable_comments_by_default: Aktiver kommentarer som standard
+        enable_feedback_moderation: Aktiver moderering av diskusjoner
+        enable_recaptcha: Aktiver reCaptcha
+        enable_spam_protection: Aktiver spam-beskyttelse
+        enable_trackbacks_by_default: Aktiver trackbacks som standard
+        explain_disable_trackbacks: Denne innstillingen gir deg mulighet for å deaktivere trackbacks for hver eneste artikkel i bloggen din. Eksisterende trackbacks vil ikke fjernes, men det vil forhindre nye forsøk på å legge til trackbacks i bloggen.
+        explain_feedback_moderation: Du kan aktivere moderering av diskusjoner for hele bloggen. Dersom du gjør det vil ingen kommentarer eller trackbacks vises i bloggen din uten at du har godkjent dem
+        explain_reject_comments: Publify vil automatisk avvise kommentarer og trackback som inneholder flere enn et visst antall lenker
+        explain_spam_protection: Når du aktiverer spam-beskyttelse vil Publify sammenlikne IP-adressen til deltakere, samt innholdet i artiklene, mot lokale svartelister og svartelister på internett. Godt forsvar mot spam-roboter
+        explain_spamfiltering_html: Publify kan settes opp til å bruke spamfilter-servicen <a href='http://akismet.com'>Akismet</a>. Du må registrere deg hos Akismet og få en API-nøkkel før du kan bruke servicen deres. Hvis du har en Akismet-nøkkel, oppgi den her
+        feedback: Diskusjon
+        feedback_settings: Diskusjonsinnstillinger
+        max_links: Maks antall lenker
+        none: ingen
+        or: eller
+        remember_to_set_your_recaptcha: Husk å sette reCaptcha-nøklene dine i filen config/initializers/recaptcha.rb
+        set_to_0_to_never_disable_comments: Sett til 0 for å aldri deaktivere kommentarer
+        set_to_0_to_never_reject_comments: Sett til 0 for å aldri forkaste kommentarer
+        spam: Spam
+        spam_protection: Spam-beskyttelse
+        trackbacks: Trackbacks
+        update_settings: Oppdater innstillinger
+      index:
+        allow_users_to_register: Tillat brukere å registrere seg
+        blog_name: Bloggtittel
+        blog_subtitle: Undertittel for blogg
+        blog_url: Blogg-URL
+        cancel: Avbryt
+        email_address_used_to_notify: Epost-adresse som brukes av Publify til å sende meldinger
+        explain_allow_users_to_register_html: Du kan tillate brukere å registrere seg på bloggen din. Som standard vil de registreres som bidragsytere, et upriviligert kontonivå som kun gir dem en egen profil på websiden. Dersom du ikke ønsker at brukere skal kunne registrere seg, så kan du legge dem til selv under brukerkontoer.
+        general_settings: Generelle innstillinger
+        items_to_display_in_admin_lists: Antall elementer som skal vises i adminlisten
+        language: Språk
+        or: eller
+        source_email: Epost-avsender
+        update_settings: Oppdater innstillinger
+        users: Brukere
+        your_blog: Din blogg
+      update:
+        error: 'Feil: %{messages}'
+        success: Innstillinger oppdatert
+      write:
+        avatar_size: Avatar-størrelse
+        cancel: Avbryt
+        display: Vis
+        example: for eksempel
+        explain: Når du publiserer artikler kan Publify sende trackbacks til de nettsidene du lenker til. Dette bør deaktiveres for private blogger da det ellers kan lekke privat informasjon til nettsider du diskuterer. For offentlige blogger, er det ingen reell mening i å deaktivere dette.
+        image_medium_size: Mellomstor bildestørrelse
+        image_thumbnail_size: Liten bildestørrelse
+        latitude_longitude: Breddegrad, lengdegrad
+        media: Media
+        or: eller
+        publish: Publiser
+        publish_on_twitter: Publiser til Twitter
+        send_trackbacks: Send trackbacks
+        trackbacks: Trackbacks
+        twitter_consumer_key: Twitter forbruker/API-nøkkel
+        twitter_consumer_secret: Twitter forbruker/API-hemmelighet
+        update_settings: Oppdater innstillinger
+        write: Skriv
+        your_geoloc: din breddegrad og lengdegrad
+    shared:
+      destroy:
+        are_you_sure: Er du sikker på at du vil slette %{element}?
+      menu:
+        all_articles: All articles
+        all_pages: All pages
+        article_types: Article types
+        articles: Artikler
+        choose_theme: Choose theme
+        customize_sidebar: Customize sidebar
+        design: Design
+        display: Display
+        documentation: Dokumentasjon
+        feedback: Feedback
+        general_settings: General settings
+        global_seo_settings: Global SEO settings
+        in_page_plugins: I side-plugins
+        logged_in_as: Innlogget som %{login}
+        logout_html: Logg ut &raquo;
+        manage_users: Manage Users
+        media_library: Media Library
+        new: Ny
+        new_article: Ny artikkel
+        new_media: Ny mediafil
+        new_note: Nytt notat
+        new_page: Ny side
+        notes: Notes
+        pages: Pages
+        permalinks: Permalenker
+        profile: Profil
+        redirects: Redirects
+        report_a_bug: Rapporter en feil
+        seo: SEO
+        settings: Settings
+        sidebar_plugins: Sidemarg-plugins
+        tags: Tags
+        titles: Titles
+        write: Write
+      twitter_alert:
+        fill_the_twitter_credentials: skrive inn oauth-token
+        how_to_setup_twitter_html: Hvis du vil sende statusoppdateringer til Twitter, må du %{twitter_settings_link} som Twitter ga deg etter at du %{twitter_registration_link}.
+        registered_your_application: registrerte appen din
+    sidebar:
+      config:
+        active_sidebar_items: Aktive sidemarg-plugins
+        available_items: Tilgjengelige plugins
+        you_have_no_plugins_installed: You have no plugins installed
+      index:
+        cancel: Avbryt
+        download_more_plugins_html: Du kan laste ned og installere sidemarg-plugins fra vår offisielle <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin-samling</a>. Alt du trenger å gjøre er å plassere theme-mappen i din vendor/plugins-mappe.
+        explain_how_its_works: Dra og slipp for å endre hva som vises i sidemargen på denne bloggen. Du kan fjerne elementer fra oversikten ved å klikke 'fjern'. Endringer lagres med det samme, men aktiveres ikke før du klikker på 'Publiser endringer'.
+        or: eller
+        publish_changes: Publiser endringer
+        sidebar: Sidemarg
+      target:
+        drag_some_plugins_here: Dra og slipp plugins hit for å fylle sidemarg
+    tags:
+      edit:
+        success: Tagg oppdatert
+      index_and_form:
+        cancel: Avbryt
+        display_name: Visningsnavn
+        manage_tags: Administrer tagger
+        name: Navn
+        no_tags: Det finnes ingen tagger enda. Hva med å opprette en?
+        or: eller
+        save: Lagre
+    themes:
+      index:
+        active_theme: "%{name} - Aktivt tema"
+        choose_a_theme: Velg et tema
+        use_this_theme: Velg dette temaet
+      switchto:
+        success: Tema endret
+    users:
+      edit:
+        edit_user: Rediger bruker
+      form:
+        about: Biografi
+        account_settings: Kontoinnstillinger
+        aim: AIM skjermnavn
+        article_filter: Artikkelfilter
+        author_page: forfatterside
+        avatar: Avatar-innstillinger
+        avatar_current: Gjeldende avatar
+        cancel: Avbryt
+        contact_explain_html: Denne informasjonen vises på din %{link}
+        contact_settings: Kontaktinnstillinger
+        display_name: Visningsnavn
+        email: Epost
+        firstname: Fornavn
+        jabber: Jabber-ID
+        lastname: Etternavn
+        login: Logg inn
+        msn: MSN Messenger-ID
+        nickname: Kallenavn
+        notification_article: når en ny artikkel postes
+        notification_comment: når en ny kommentar postes
+        notification_email: på epost
+        notification_settings: Varslinger
+        notifications: Send varselmeldinger
+        or: eller
+        password: Passord
+        password_confirmation: Passordbekreftelse
+        profile: Profil
+        profile_settings: Profilinformasjon
+        save: Lagre
+        twitter: Twitter brukernavn
+        twitter_account: Twitter brukernavn
+        twitter_oauth: Twitter OAuth-token
+        twitter_oauth_secret: Twitter OAuth-hemmelighet
+        upload: Last opp profilbildet ditt
+        upload_file: Last opp en fil av type .jpg, .png eller .gif
+        user_status: Brukerstatus
+        website: Nettsted
+        yahoo: Yahoo! Messenger-ID
+      index:
+        articles: Artikler
+        comments: Kommentarer
+        email: Epost
+        login: Logg inn
+        name: Navn
+        new_user: Ny bruker
+        profile: Profil
+        state: Tilstand
+        users: Brukere
+      new:
+        add_user: Legg til bruker
+        success: Bruker opprettet
+  articles:
+    archives:
+      no_articles_found: Fant ingen artikler
+      posted_in: Publisert i
+    article:
+      posted_by: Skrevet av
+    article_excerpt:
+      continue_reading: Continue reading
+    article_links:
+      comments:
+        one: 1 kommentar
+        other: "%{count} kommentarer"
+        zero: ingen kommentarer
+      tags: Tags
+      trackbacks:
+        one: 1 trackback
+        other: "%{count} trackbacks"
+        zero: no trackbacks
+    comment_errors:
+      message: Oops, something wrong happened, the comment could not be saved.
+    comment_form:
+      comment_markup_help: Hjelp med markup for kommentar
+      leave_url_email: legg igjen URL/epost
+      preview_comment: Vis eksempel på kommentar
+      your_blog: bloggen din
+      your_email: Din epost
+      your_message: Beskjed
+      your_name: Ditt navn
+    comment_preview:
+      is_about_to_say: vil snart si
+    index:
+      page: side
+    password_form:
+      submit: Send
+    read:
+      comments: Kommentarer
+      comments_are_disabled: Kommentarer er deaktiveret
+      edit: Rediger
+      leave_a_response: Skriv en kommentar
+      rss_feed: RSS-feed for denne artikkel
+      trackback_uri: Trackback URI
+      trackbacks: Trackbacks
+      use_the_following_link_to_trackback: Bruk følgende lenke for å opprette trackback fra din egen side
+    trackback:
+      from: From
+  authors:
+    show:
+      aim: 'AIM:'
+      contact_information: Kontaktinformasjon
+      jabber: 'Jabber:'
+      msn: 'MSN:'
+      posted_in: postet til
+      this_author_has_not_published_any_article_yet: Forfatteren har ikke publisert noen artikler enda
+      twitter: 'Twitter:'
+      web_site: 'Hjemmeside:'
+      yahoo: 'Yahoo:'
+  comments:
+    comment:
+      said: sa
+      this_comment_has_been_flagged_for_moderator_approval: Denne kommentaren har blitt flagget for godkjenning av moderator. Den vil ikke bli vist på bloggen før moderatoren godkjenner den.
+  date:
+    abbr_month_names:
+    - 
+    - Jan
+    - Feb
+    - Mar
+    - Apr
+    - Mai
+    - Jun
+    - Jul
+    - Aug
+    - Sep
+    - Okt
+    - Nov
+    - Des
+    month_names:
+    - 
+    - Januar
+    - Februar
+    - Mars
+    - April
+    - Mai
+    - Juni
+    - Juli
+    - August
+    - September
+    - Oktober
+    - November
+    - Desember
+  devise_custom:
+    characters_minimum: Minimum %{min} characters
+  errors:
+    article_type_already_exist: Denne artikkeltypen finnes allerede
+    cant_end_with_rss_or_atom: Kan ikke slutte på .rss eller .atom. Disse er forbeholdt feed-URL-er
+    no_notes_found: Ingen notater funnet...
+    no_posts_found: Ingen poster funnet...
+    page_not_found: Fant ikke side
+    permalink_need_a_title: 'Permalink-formatet må ha en identifikator : %%title%%'
+    problem_sending_to_twitter: Ojsann, noe gikk galt
+    render_sidebar: Det ser ut til at noe gikk galt. Kanskje noen av dine sidemarg-plugins faktisk mangler, og du bør enten reinstallere dem eller fjerne dem manuelt.
+    the_page_you_are_looking_for: Siden du ser etter er flyttet eller finnes ikke.
+  generic:
+    change: Endre
+    save: Lagre
+  helper:
+    at: kl.
+  langs:
+    da_DK: Dansk
+    de_DE: Tysk
+    en_US: Engelsk (amerikansk)
+    es_MX: Spansk (meksikansk)
+    fr_FR: Fransk
+    he_IL: Hebraisk
+    it_IT: Italiensk
+    ja_JP: Japansk
+    lt_LT: Litauisk
+    nb_NO: Norsk
+    nl_NL: Hollandsk
+    pl_PL: Polsk
+    pt_BR: Portugisisk (brasiliansk)
+    ro_RO: Rumensk
+    ru_RU: Russisk
+    zh_CN: Forenklet kinesisk
+    zh_TW: Kinesisk
+  layouts:
+    administration:
+      powered_by: drives stolt av
+    default:
+      designed_by: Utformet av %{designed_by}
+      powered_by_html: Drives av %{powered_by}
+  notes:
+    note:
+      view_on_twitter: Vis på Twitter
+  notice:
+    note_successfully_created: Notat opprettet
+  profile:
+    admin: Publify-administrator
+    contributor: Bidragsyter
+    publisher: Blogg-publisering
+  setup:
+    article:
+      body: Welcome to Publify. This is your first article. Edit or delete it, then start blogging!'
+      title: Hello World!
+    index:
+      blog_name: Bloggnavn
+      welcome_to_your_blog_setup: Velkommen til ditt bloggoppsett
+      your_mail: Din epost
+    page:
+      about: Om
+      body: Dette er et eksempel på en Publify-side. Du kan redigere den med informasjon om deg selv eller bloggen din, slik at leserne vet hvem du er. Du kan lage så mange du vil av slike sider, og håndtere alt innholdet med Publify.
+  tags:
+    index:
+      there_are_no_tags: Det er ingen tagg
+  time:
+    formats:
+      default: "%d/%m/%Y %H:%M"
+      letters_month_with_year: "%m %Y"
+      short: "%d/%m/%y"
+      with_spaces: "%d %B %y"
+  user:
+    status:
+      active: Aktiv
+      inactive: Inaktiv

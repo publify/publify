@@ -1,0 +1,4 @@
+<%= avatar_tag(email: comment.email, url: comment.url) %>
+<cite><strong><%=h @comment[:author] %></strong></cite>
+<%= t(".is_about_to_say")%>:<br>
+<%= @comment.html %>

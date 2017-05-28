@@ -1,0 +1,13 @@
+<%= form_tag :action=> 'index' do %>
+  <div class='alert alert-info'>
+    <small><%= t(".welcome_to_your_blog_setup", publify: link_to("Publify", 'http://publify.co'))%></small>
+  </div>
+  <div class='form-group'>
+    <%= text_field(:setting, :blog_name, { :class=> 'form-control', :placeholder => t(".blog_name")})%>
+  </div>
+  <div class='form-group'>
+    <%= text_field(:setting, :email, { :class=> 'form-control', :placeholder => t(".your_mail")})%>
+  </div>
+
+  <input type="submit" id="submit" class='btn btn-lg btn-success btn-block' value="<%= t('generic.save')%>">
+<% end %>

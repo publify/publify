@@ -1,0 +1,23 @@
+<div class='alert alert-info'>
+  <button type="button" class="close" data-dismiss="alert">
+    <span aria-hidden="true">&times;</span>
+    <span class="sr-only">Close</span>
+  </button>
+  <%
+    links = []
+    links << link_to(t('.write_a_post'), controller: 'content', action: 'new') if can? :new, 'admin/content'
+    links << link_to(t('.write_a_page'), controller: 'pages', action: 'new') if can? :new, 'admin/pages'
+    links << link_to(t('.update_your_profile_or_change_your_password'), controller: 'profiles', action: 'index')
+  %>
+  <p>
+    <%= t(".dashboard_explain_html", available_actions: safe_join(links, ', ')) %>
+  </p>
+  <% if can? :index, 'admin/themes' %>
+  <p>
+    <%= t(".customization_explain_html", theme_link: link_to(t(".change_your_blog_presentation"), controller: 'themes'), sidebar_link: link_to(t(".enable_plugins"), controller: 'sidebar')) %>
+  </p>
+  <% end %>
+  <p>
+  <%= t(".help_explain_html", doc_link: link_to(t('.read_our_documentation'), 'http://publify.co')) %>
+  </p>
+</div>

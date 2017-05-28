@@ -1,0 +1,5 @@
+$('#errors').hide().html('');
+$('#preview').hide().html('');
+var comment = "<%= j render @comment %>";
+$(comment).hide().prependTo('#commentList').fadeIn('slow');
+$('#comment_form')[0].reset();

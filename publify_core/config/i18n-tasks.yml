@@ -1,0 +1,49 @@
+# i18n-tasks finds and manages missing and unused translations: https://github.com/glebm/i18n-tasks
+
+# The "main" locale.
+base_locale: en
+
+# Read and write translations.
+data:
+  # Locale files or `File.find` patterns where translations are read from:
+  read:
+    - config/locales/%{locale}.yml
+    - config/locales/**/*.%{locale}.yml
+
+  # Locale files to write new keys to, based on a list of key pattern => file
+  # rules. Matched from top to bottom:
+  # `i18n-tasks normalize -p` will force move the keys according to these rules
+  write:
+    - ['*_sidebar.*', 'config/locales/sidebars.%{locale}.yml']
+    - config/locales/%{locale}.yml
+
+  yaml:
+    write:
+      # do not wrap lines at 80 characters
+      line_width: -1
+
+# Find translate calls
+search:
+  ## Paths or `File.find` patterns to search in:
+  paths:
+   - app/
+   - lib/
+
+  ## Root directories for relative keys resolution.
+  relative_roots:
+    - app/controllers
+    - app/helpers
+    - app/mailers
+    - app/presenters
+    - app/views
+
+## Do not consider these keys missing:
+ignore_missing:
+  - 'devise.*'
+
+## Consider these keys used:
+ignore_unused:
+  - 'time.formats.*'
+  - 'layouts.default.designed_by'
+  - 'date.*'
+  - 'activerecord.{attributes,errors,models}.*'

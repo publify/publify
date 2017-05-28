@@ -1,0 +1,69 @@
+<% content_for :page_heading do %>
+<h2 class="page-title">
+  <i class="glyphicon glyphicon-large glyphicon-comment"></i>
+  <%= t(".comments_for_html", title: @article.title) %>
+</h2>
+<% end %>
+
+<%= form_tag({action: 'bulkops'}, {class: 'form-inline'}) do %>
+
+  <%= hidden_field 'article_id', @article.id %>
+  <%= render 'button', { :position => 'top' } %>
+
+  <br class='clear'>
+  <table class='table hover'>
+    <thead>
+      <tr class='noborder'>
+        <th colspan='5'>
+          <input type="checkbox" name="checkall" id="checkall" onclick="check_all(this);">
+          <%= t(".select_all") %>
+        </th>
+      </tr>
+    </thead>
+    <% if @feedback.empty? %>
+      <tr>
+        <td colspan="5">
+          <%= t(".no_feedback") %>
+        </td>
+      </tr>
+    <% end %>
+
+    <% @feedback.each do |comment| %>
+      <%= render 'feedback', {:comment => comment} %>
+    <% end %>
+  </table>
+<% end %>
+
+<%= form_tag :action => "create" do %>
+  <%= hidden_field_tag('article_id', @article.id) %>
+  <fieldset  class='form-horizontal'>
+    <legend><%= t(".add_a_comment")%></legend>
+    <div class="form-group">
+      <label for="comment_author" class='control-label col-sm-2'><%= t(".author")%></label>
+      <div class='col-sm-5'>
+        <%= text_field 'comment', 'author', :class => 'form-control' %>
+      </div>
+    </div>
+    <div class='form-group'>
+      <label for="comment_email" class='control-label col-sm-2'><%= t(".email")%></label>
+      <div class='col-sm-5'>
+        <%= text_field 'comment', 'email', :class => 'form-control' %>
+      </div>
+    </div>
+    <div class='form-group'>
+      <label for="comment_url" class='control-label col-sm-2'><%= t(".url") %></label>
+      <div class='col-sm-5'>
+        <%= text_field 'comment', 'url', :class => 'form-control' %>
+      </div>
+    </div>
+    <div class='form-group'>
+      <label for='comment_body' class='control-label col-sm-2'><%= t(".your_comment") %></label>
+      <div class='col-sm-5'>
+        <%= text_area 'comment', 'body', { :rows => '10', :class => 'form-control'} %>
+      </div>
+    </div>
+    <div class='form-group col-md-12'>
+      <%= t(".action_or_other_html", first_action: link_to(t(".cancel"), {action: 'index'}), second_action: submit_tag(t(".save"), class: 'btn btn-primary')) %>
+    </div>
+  </fieldset>
+<% end %>

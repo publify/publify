@@ -1,0 +1,801 @@
+---
+nl:
+  accounts:
+    back_to_html: "&larr; Terug naar %{place}"
+    back_to_login: Terug naar login
+    confirm:
+      admin: admin
+      dont_lose_the_mail_sent: Verlies de e-mail verzonden naar %{email}, want anders kun je niet meer inloggen
+      login: inloggen
+      password: Wachtwoord
+      proceed_to: Ga door naar %{link}
+      success: Je bent succesvol aangemeld.
+    create_account: Maak een account aan
+    lost_my_password: Ik ben mijn wachtwoord kwijt
+  activerecord:
+    errors:
+      models:
+        article:
+          attributes:
+            title:
+              blank: mag niet leeg zijn
+      template:
+        body: ''
+        header: ''
+  admin:
+    base:
+      not_allowed: Error, you are not allowed to perform this action
+      successfully_deleted: This %{name} was deleted successfully
+    content:
+      access_granted:
+        error: Fout, je mag dit niet doen
+      article_list:
+        no_articles: Er zijn nog geen artikelen. Waarom maak je er niet een?
+      autosave:
+        success: Artikel is opgeslagen
+      create:
+        success: Artikel is aangemaakt
+      form:
+        allow_comments: Sta reacties toe
+        allow_comments_status:
+          one: aangezet
+          zero: uitgezet
+        allow_pings_status:
+          one: aangezet
+          zero: uitgezet
+        allow_trackbacks: Sta trackbacks toe
+        allowed_comments_and_trackbacks_html: Comments are %{allow_comment} and trackbacks are %{allow_trackback}
+        article_type: Article type
+        cancel: Terug
+        default: Default
+        now: now
+        ok: OK
+        password: Wachtwoord
+        permalink: Permalink
+        preview: Preview
+        protected: Protected
+        public: Public
+        publish: Publiceer
+        publish_settings: Publicatie instellingen
+        published: Gepubliceerd
+        save: Opslaan
+        save_as_draft: Opslaan als concept
+        status: Status
+        tags: Trefwoorden
+        tags_explanation_html: Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;.
+        title: Titel
+        type_your_post: Type your post
+        visibility: Visibility
+      index:
+        all_articles: All articles
+        drafts: Drafts
+        manage_articles: Beheer artikelen
+        new_article: Nieuw artikel
+        publication_date: Publication date
+        publication_pending: Publication pending
+        published: Gepubliceerd
+        search: Zoek
+        select_an_author: Select an author
+        withdrawn: Withdrawn
+      update:
+        success: Artikel is succesvol bijgewerkt.
+    dashboard:
+      comment:
+        by: Door
+        no_comments_yet: Nog geen reacties
+      comments:
+        latest_comments: Laatste reacties
+      drafts:
+        no_drafts_yet: No drafts yet, why don't you start and write one
+        your_drafts: Your drafts
+      inbound:
+        at: at
+        at_an_unknown_date: at an unknown date
+        inbound_links: Binnenkomende links
+        made_a_link_to_you_on: " maakte een link naar je met als tekst "
+        no_one_made_link_to_you_yet: Niemand maakte nog een link naar je
+        you_have_no_internet_connection: Je hebt geen internetverbinding
+      index:
+        welcome_back: Welkom terug, %{user_name}!
+      overview:
+        change_your_blog_presentation: je blog presentatie aanpassen
+        customization_explain_html: Je kunt ook wat design doen, %{theme_link} of %{sidebar_link}
+        dashboard_explain_html: Deze pagina geeft je een snel overzicht van wat er gebeurt op je Type blog en wat je doen kunt. Misschien wil je %{available_actions}
+        enable_plugins: plugins instellen
+        help_explain_html: If you need help, %{doc_link}.
+        read_our_documentation: read our documentation
+        update_your_profile_or_change_your_password: je profiel bijwerken of je wachtwoord wijzigen
+        write_a_page: een pagina schrijven
+        write_a_post: een post schrijven
+      publify_version:
+        error: You are late from at least one major version of Publify. You should upgrade immediately. Download and install <a href='http://publify.co/stable.tgz'>the latest Publify version</a>
+        notice: There's a new version of Publify available. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?
+        warning: There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a> ?
+      welcome:
+        approved_count:
+          one: 1 approved
+          other: "%{count} approved"
+          zero: no approved
+        articles_and_comments_count_since: "%{articles_count} artikels en %{comments_count} commentaren zijn geplaatst sinds je laatste bezoek"
+        articles_count:
+          one: 1 artikel
+          other: "%d artikelen"
+          zero: geen artikelen
+        comments_count:
+          one: 1 comment
+          other: "%{count} reacties"
+          zero: geen reacties
+        content: Inhoud
+        drafts_count:
+          one: 1 draft
+          other: "%{count} drafts"
+          zero: no draft
+        feedback: Feedback
+        notes_count:
+          one: 1 note
+          other: "%{count} notes"
+          zero: no note
+        pages_count:
+          one: 1 page
+          other: "%{count} pages"
+          zero: no page
+        running_publify: Je gebruikt Publify %{version}
+        spam_count:
+          one: 1 spam
+          other: "%{count} spam"
+          zero: no spam
+        today: Today
+        unconfirmed_count:
+          one: 1 unconfirmed
+          other: "%{count} unconfirmed"
+          zero: no unconfirmed
+        your_articles_count:
+          one: 1 article writen by you
+          other: "%{count} articles writen by you"
+          zero: no article writen by you
+    feedback:
+      article:
+        action_or_other_html: "%{first_action} of %{second_action}"
+        add_a_comment: Voeg een commentaar toe
+        author: Auteur
+        cancel: Terug
+        comments_for_html: Commentaren voor %{title}
+        email: e-mail
+        no_feedback: Er zijn nog geen feedback. Waarom begin je er niet een te maken?
+        save: Opslaan
+        select_all: Select all
+        url: Url
+        your_comment: Your comment
+      bulkops:
+        error: Niet geimplementeerd
+        success_classification: Classificatie van %{count} item(s) bevestigd
+        success_deleted: "%{count} items verwijderd"
+        success_deleted_spam: Alle spam is verwijderd
+        success_mark_as_ham:
+          one: 1 Item gemarkeerd als Ham
+          other: "%{count} Items gemarkeerd als Ham"
+          zero: No item selected to mark as Ham
+        success_mark_as_spam:
+          one: 1 Item gemarkeerd als Spam
+          other: "%{count} Items gemarkeerd als Spam"
+          zero: No item selected to mark as Spam
+      button:
+        delete_all_spam: Verwijder alle spam
+        delete_checked_items: Verwijder aangevinkte reacties
+        mark_checked_items_as_ham: Markeer aangevinkte reacties als Ham
+        mark_checked_items_as_spam: Markeer aangevinkte reacties als Spam
+      create:
+        success: Commentaar is succesvol aangemaakt.
+      destroy:
+        error: Niet gevonden
+        success: Verwijderd
+      edit:
+        action_or_other_html: "%{first_action} of %{second_action}"
+        author: Author
+        cancel: Cancel
+        comments_for_html: Commentaren voor %{article_link}
+        edit_a_comment: Edit a comment
+        email: Email
+        save: Opslaan
+        url: Url
+        your_comment: Your comment
+      ham:
+        by: by
+        created_on: 'on'
+      index:
+        all: All
+        feedback: Reacties
+        ham: Ham
+        no_feedback: Er zijn nog geen reacties. Waarom maak je er geen?
+        presumed_ham: Presumed ham
+        presumed_spam: Presumed spam
+        select_all: Select all
+        spam: Spam
+        unapproved_comments: Niet goedgekeurde reacties
+      spam:
+        by: by
+        cancel: Terug
+        created_on: 'on'
+        this_comment_by_was_flagged_as_spam_html: Dit commentaar van %{author} was gemarkeerd als spam, %{cancel_link}?
+      state:
+        ham: Ham
+        just_marked_as_ham: Zojuist gemarkeerd als Ham
+        just_marked_as_spam: Zojuist gemarkeerd als Spam
+        just_presumed_ham: Zojuist aangenomen dat dit Ham is
+        presumed_ham: Ham?
+        presumed_spam: Spam?
+        spam: Spam
+        unclassified: Niet geclassificeerd
+      update:
+        success: Commentaar is succesvol bijgewerkt.
+    migrations:
+      show:
+        current_database_version: Huidige database versie
+        database_migration: Database migratie
+        information: Informatie
+        may_take_a_moment: kan even duren
+        migration_pending:
+          one: There is one migration pending.
+          other: There are %{count} migrations pending.
+        migrations: Migrations
+        needed_migrations: Benodigde migraties
+        update_database_now: Werk database nu bij
+        you_are_up_to_date: Je bent bij de tijd!
+    notes:
+      form:
+        cancel: Terug
+        compose_new_note: Compose new note
+        in_reply_to: In reply to
+        no_notes: Er zijn nog geen notes. Waarom maak je er geen?
+        now: Now
+        or: or
+        permanent_link: Permanente link
+        posse_to_twitter: POSSE naar Twitter
+        publish: Publiceer
+        publish_at: Publiceren op
+        publish_settings: Publicatie instellingen
+        tweet_id_like: Tweet id like 123456
+      header:
+        notes: Notes
+      show:
+        action_or_other_html: "%{first_action} of %{second_action}"
+        are_you_sure: Are you sure you want to delete this note
+        cancel: Terug
+        delete: Verwijderen
+        destroy_confirmation: Destroy confirmation
+    pages:
+      edit:
+        success: Pagina is succesvol bijgewerkt
+      form:
+        article_filter: Artikel filter
+        cancel: Terug
+        offline: offline
+        online: Online
+        permanent_link: Permanente link
+        publish: Publiceer
+        publish_settings: Publicatie instellingen
+        published: published
+        save: Opslaan
+        status: Status
+        title: Titel
+        type_your_post: Type your post
+      index:
+        author: Auteur
+        manage_pages: Beheer pagina's
+        new_page: Nieuwe pagina
+        title: Titel
+      new:
+        success: Pagina is succesvol aangemaakt
+      pages:
+        no_pages: Er zijn nog geen pages. Waarom begin je er niet een te maken?
+    post_types:
+      index_and_form:
+        cancel: Terug
+        default: Default
+        description: Omschrijving
+        explain: The template name is the filename Publify will look for when calling an article of that type. It should be in your theme under views/articles/template name.html.erb
+        name: Naam
+        or: or
+        post_types: Post Types
+        publify_default_post_type: Publify default post type
+        save: Opslaan
+        template_name: Template name
+    profiles:
+      index:
+        success: Gebruiker is succesvol bijgewerkt
+        your_profile: Je profiel
+    redirects:
+      destroy:
+        success: Redirection was successfully deleted.
+      index_and_form:
+        cancel: Terug
+        from: Van
+        leave_empty_to_shorten_a_link: Leave empty to shorten a link
+        no_redirects: Er zijn nog geen redirects. Waarom begin je er niet een te maken?
+        or: or
+        redirects: Redirects
+        save: Opslaan
+        to: To
+    resources:
+      destroy:
+        notice: Verwijderd
+      index:
+        are_you_sure: Weet je het zeker?
+        content_type: Content Type
+        date: Datum
+        delete: Delete
+        file_size: Bestandsgrootte
+        filename: Bestandsnaam
+        media_library: Media Library
+        medium_size: Medium size
+        no_resources: Er zijn nog geen media. Waarom begin je er niet een te maken?
+        original_size: Original size
+        right_click_for_link: rechts-klikken voor link
+        thumbnail: Voorafbeelding
+        upload: Upload
+        upload_a_file_to_your_site: Upload een bestand naar je site
+      upload:
+        success: Bestand geupload
+        warning: Kon niet uploaden
+    seo:
+      general:
+        canonical_url: Canonical Url
+        custom_tracking_code: Custom tracking code
+        do_not_index_tags: Do not index tags
+        dofollow: Dofollow
+        explain: Here you can add anything you want to appear in your application header, such as analytics service tracking code.
+        explain_humans_txt: It's an initiative for knowing the people behind a website. It's a TXT file that contains information about the different people who have contributed to building the website. http://humanstxt.org/
+        explain_moderate_feedback: You may want to moderate feedback when turning this on
+        explain_rss_description: 'You can use the following tags: %author% (author name), %blog_url% (this blog URL), %blog_name% (this blog title) and %permalink_url% (a link to the article you want to protect)'
+        explain_tag_index_html: Checking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues
+        general_settings: General settings
+        google: Google
+        google_analytics: Google Analytics
+        google_webmaster_tools_validation_link: Google Webmaster Tools validation link
+        human: Human
+        humans_txt: Human
+        indexing: Indexing
+        meta_description: Meta-beschrijving
+        meta_keywords: Meta-kewords
+        read_more_about_html: Read more about %{link}
+        robots_txt: Robots.txt
+        rss_description_message: RSS description message
+        this_will_display: Dit zorgt er voor dat onderaan elke post in je RSS-feed verschijnt
+        use_canonical_url: Use canonical URL
+        use_dofollow_in_comments: Use dofollow in comments
+        use_meta_keywords: Use meta keywords
+        use_rss_description: Gebruik RSS beschrijving
+      permalinks:
+        custom: Custom
+        date_and_title: Date and title
+        explain: Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.
+        help_on_permalink_settings: Help on permalink settings
+        month_and_title: Month and title
+        permalink_format: Permalink format
+        sample: Here are some examples to get you started.
+        title_only: Title only
+        you_can_custom_your_url_structure: 'You can custom your URL structure using the following tags:'
+        your_article_day: your article day of publication.
+        your_article_month: your article month of publication.
+        your_article_slug_html: your article slug. <strong>Using this slug is mandatory</strong>.
+        your_article_year: your article year of publication.
+      show:
+        cancel: Terug
+        global_settings: Global settings
+        or: or
+        permalinks: Permalinks
+        title_settings: Title settings
+        update_settings: Werk instellingen bij
+      titles:
+        articles: Artikelen
+        author_page: Author page
+        dated_archives: Dated archives
+        description_template: Description template
+        help_on_title_settings: Help on title settings
+        home: Begin
+        pages: Pagina's
+        paginated_archives: Paginated archives
+        replaced_by_the_archive_date: Replaced by the archive date
+        replaced_by_the_content_body: Replaced by the content body
+        replaced_with_the_article_categories: Replaced with the article categories (comma separated)
+        replaced_with_the_article_page_title: Replaced with the article/page title
+        replaced_with_the_article_tags: Replaced with the article tags (comma separated)
+        replaced_with_the_category_tag_name: Replaced with the category/tag name
+        replaced_with_the_current_date: Replaced with the current date
+        replaced_with_the_current_month: Replaced with the current month
+        replaced_with_the_current_page_number: Replaced with the current page number
+        replaced_with_the_current_search_phrase: Replaced with the current search phrase
+        replaced_with_the_current_time: Replaced with the current time
+        replaced_with_the_current_year: Replaced with the current year
+        replaced_with_the_post_page_excerpt: Replaced with the post/page excerpt
+        replaced_with_the_title_of_the_article_page: Replaced with the title of the article/page
+        search_results: Search results
+        short_statuses: Short statuses
+        short_statuses_lists: Short statuses lists
+        the_blog_s_name: The blog's name
+        the_blog_s_tagline_description: The blog's tagline / description
+        these_tags_can_be_included: These tags can be included in your templates and will be replaced when displaying the page.
+        title_template: Title template
+    settings:
+      display:
+        cancel: Terug
+        custom_url: Custom URL shortener domain
+        custom_url_help: If you have a custom domain for URL shortening, enter it here.
+        date_format: Date format
+        default_archives_show: articles on the archives page
+        default_article_show: articles on the homepage
+        default_feed_show: most recent articles in feed
+        display: Display
+        display_settings: Display Settings
+        feed_articles: Article excerpts
+        feed_excerpts_only: Show only article excerpts in feed
+        feed_settings: RSS Feed Settings
+        or: or
+        publishing_options: Publishing Options
+        status_main_feed: Display statuses in the main feed
+        statuses: Statuses
+        time_format: Time format
+        update_settings: Werk instellingen bij
+      feedback:
+        askimet_key: Akismet sleutel
+        avatars_provider: Avatars provider
+        cancel: Terug
+        captcha: Captcha
+        comments: Reacties
+        comments_filter: Commentaren filter
+        days: dagen
+        disable_comments_after: Sta commentaren niet toe na
+        disable_trackbacks_sitewide: Gebruik nergens trackbacks
+        enable_comments_by_default: Commentaren standaard toestaan
+        enable_feedback_moderation: Feedback controle aanzetten
+        enable_recaptcha: Enable reCaptcha
+        enable_spam_protection: Gebruik spam-bescherming
+        enable_trackbacks_by_default: Trackbacks standaard toestaan
+        explain_disable_trackbacks: Deze instelling zorgt er voor dat bij geen enkel artikel in je blog trackbacks gebruikt kunnen worden. Het zal bestaande trackbacks niet verwijderen, maar het zal voorkomen dat nieuwe trackbacks worden toegevoegd.
+        explain_feedback_moderation: Je kunt voor de hele site feedback controle aanzetten. Als je dat doet zal geen enkel commentaar of trackback op je blog verschijnen totdat je het goedkeurt
+        explain_reject_comments: Publify zal automatisch commentaren en trackbacks verwijderen die meer dan een bepaald aantal links bevatten
+        explain_spam_protection: Het aanzetten van spambescherming zorgt dat publify het IP-adres en de inhoud van reacties vergelijkt met lokale en centrale zwarte lijsten. Een goede bescherming tegen spam robots
+        explain_spamfiltering_html: Publify kan (optioneel) de <a href='http://akismet.com'>Akismet</a> spam-filter dienst gebruiken. Je moet een registratie bij Akismet hebben en een API sleutel voordat je deze dienst kunt gebruiken. Als je een Akismet sleutel hebt, vul die dan hier in
+        feedback: Feedback
+        feedback_settings: Feedback settings
+        max_links: Max Links
+        none: none
+        or: or
+        remember_to_set_your_recaptcha: Remember to set your reCaptcha keys inside config/initializers/recaptcha.rb
+        set_to_0_to_never_disable_comments: Zet op 0 om commentaren altijd toe te staan
+        set_to_0_to_never_reject_comments: Zet op 0 om commentaren nooit te weigeren
+        spam: Spam
+        spam_protection: Spam protection
+        trackbacks: Trackbacks
+        update_settings: Werk instellingen bij
+      index:
+        allow_users_to_register: Sta gebruikers toe zich te registreren
+        blog_name: Blog naam
+        blog_subtitle: Blog ondertitel
+        blog_url: Blog URL
+        cancel: Terug
+        email_address_used_to_notify: E-mail adres dat Publify gebruikt om notificaties te versturen
+        explain_allow_users_to_register_html: Je kunt gebruikers toestaan zich te registreren bij je blog. Standaard zullen ze contributors worden, een soort account zonder rechten behalve het hebben van een profiel op de site. Als je niet wilt dat gebruikers zich registreren kun je ze altijd zelf toevoegen in het gebruikers deel.
+        general_settings: Algemene instellingen
+        items_to_display_in_admin_lists: Items to display in admin lists
+        language: Taal
+        or: or
+        source_email: Bron e-mail
+        update_settings: Werk instellingen bij
+        users: Gebruikers
+        your_blog: Je blog
+      update:
+        error: 'Error: %{messages}'
+        success: configuratie bijgewerkt
+      write:
+        avatar_size: Avatar size
+        cancel: Terug
+        display: Toon
+        example: example
+        explain: Wanneer je een artikel publiceert kan Publify een trackback sturen naar de sites waaraan je linkt. Dit zou voor priv&eacute;-blogs uit moeten staan, omdat het niet-publieke informatie 'lekt' naar sites die je bediscussieert. Voor publieke blogs is er geen goede reden om het uit te zetten.
+        image_medium_size: Image medium size
+        image_thumbnail_size: Image thumbnail size
+        latitude_longitude: Latitude, Longitude
+        media: Media
+        or: or
+        publish: Publiceer
+        publish_on_twitter: Publish on Twitter
+        send_trackbacks: Verstuur trackbacks
+        trackbacks: Trackbacks
+        twitter_consumer_key: Twitter consumer key
+        twitter_consumer_secret: Twitter consumer secret
+        update_settings: Werk instellingen bij
+        write: Schrijf
+        your_geoloc: your latitude and longitude
+    shared:
+      destroy:
+        are_you_sure: Are you sure you want to delete this %{element}?
+      menu:
+        all_articles: Alle artikelen
+        all_pages: Alle pagina's
+        article_types: Article types
+        articles: Articles
+        choose_theme: Choose theme
+        customize_sidebar: Customize sidebar
+        design: Design
+        display: Display
+        documentation: Documentation
+        feedback: Feedback
+        general_settings: General settings
+        global_seo_settings: Global SEO settings
+        in_page_plugins: In page plugins
+        logged_in_as: Logged in as %{login}
+        logout_html: Log out &raquo;
+        manage_users: Manage Users
+        media_library: Media Library
+        new: Nieuw
+        new_article: Nieuw artikel
+        new_media: New Media
+        new_note: New Note
+        new_page: Nieuwe pagina
+        notes: Notes
+        pages: Pagina's
+        permalinks: Permalinks
+        profile: Profiel
+        redirects: Redirects
+        report_a_bug: Report a bug
+        seo: SEO
+        settings: Settings
+        sidebar_plugins: Sidebar plugins
+        tags: Trefwoorden
+        titles: Titles
+        write: Write
+      twitter_alert:
+        fill_the_twitter_credentials: fill in the OAuth credentials
+        how_to_setup_twitter_html: If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}.
+        registered_your_application: registered your application
+    sidebar:
+      config:
+        active_sidebar_items: Actieve zijbalk dingen
+        available_items: Beschikbare dingen
+        you_have_no_plugins_installed: You have no plugins installed
+      index:
+        cancel: Terug
+        download_more_plugins_html: You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory.
+        explain_how_its_works: Sleep de onderdelen heen en weer om de zijbalk van dit blog aan te passen. Om dingen te verwijderen klik je op verwijderen  Wijzigen worden automatisch opgeslagen, maar niet geactiveerd totdat je de 'Publiceer' knop klikt
+        or: or
+        publish_changes: Publiceer wijzigingen
+        sidebar: Zijbalk
+      target:
+        drag_some_plugins_here: Sleep wat plugins naar hier om de zijbalk te vullen
+    tags:
+      edit:
+        success: Tag is succesvol bijgewerkt.
+      index_and_form:
+        cancel: Terug
+        display_name: Toon naam
+        manage_tags: Beheer tags
+        name: Naam
+        no_tags: Er zijn nog geen trefwoorden. Waarom begin je er niet een te maken?
+        or: or
+        save: Opslaan
+    themes:
+      index:
+        active_theme: "%{name} - Actieve thema's"
+        choose_a_theme: Kies een thema
+        use_this_theme: Use this theme
+      switchto:
+        success: Thema succesvol aangepast
+    users:
+      edit:
+        edit_user: Gebruiker wijzigen
+      form:
+        about: Biography
+        account_settings: Account Settings
+        aim: AIM screen name
+        article_filter: Article filter
+        author_page: author page
+        avatar: Avatar Settings
+        avatar_current: Current avatar
+        cancel: Terug
+        contact_explain_html: This information will be displayed on your %{link}
+        contact_settings: Contact Settings
+        display_name: Display name
+        email: Email
+        firstname: First name
+        jabber: Jabber ID
+        lastname: Last name
+        login: inloggen
+        msn: MSN Messenger ID
+        nickname: Nickname
+        notification_article: when new article is posted
+        notification_comment: when new comment is posted
+        notification_email: via email
+        notification_settings: Notifications
+        notifications: Send notification messages
+        or: or
+        password: Password
+        password_confirmation: Password confirmation
+        profile: Profiel
+        profile_settings: Profile Settings
+        save: Opslaan
+        twitter: Twitter username
+        twitter_account: Twitter username
+        twitter_oauth: Twitter OAuth token
+        twitter_oauth_secret: Twitter OAuth secret
+        upload: Upload your profile image
+        upload_file: Upload a .jpg, .png or .gif file
+        user_status: User Status
+        website: Website
+        yahoo: Yahoo! Messenger ID
+      index:
+        articles: Artikelen
+        comments: Reacties
+        email: Email
+        login: inloggen
+        name: Naam
+        new_user: Nieuwe gebruikers
+        profile: Profiel
+        state: State
+        users: Gebruikers
+      new:
+        add_user: Gebruiker toevoegen
+        success: Gebruiker succesvol aangemaakt.
+  articles:
+    archives:
+      no_articles_found: Geen artikelen gevonden
+      posted_in: Geplaatst in
+    article:
+      posted_by: Geplaatst door
+    article_excerpt:
+      continue_reading: Continue reading
+    article_links:
+      comments:
+        one: 1 comment
+        other: "%{count} comments"
+        zero: Geen reacties
+      tags: Tags
+      trackbacks:
+        one: 1 trackback
+        other: "%{count} trackbacks"
+        zero: no trackbacks
+    comment_errors:
+      message: Oops, something wrong happened, the comment could not be saved.
+    comment_form:
+      comment_markup_help: Comment Markup Help
+      leave_url_email: plaats url/e-mail
+      preview_comment: Bekijk reactie
+      your_blog: your blog
+      your_email: Jouw e-mail
+      your_message: Jouw bericht
+      your_name: Jouw naam
+    comment_preview:
+      is_about_to_say: gaat zeggen
+    index:
+      page: page
+    password_form:
+      submit: Submit
+    read:
+      comments: Reacties
+      comments_are_disabled: Reacties zijn niet mogelijk
+      edit: Bewerken
+      leave_a_response: Geef een reactie
+      rss_feed: RSS feed voor dit bericht
+      trackback_uri: Trackback URI
+      trackbacks: Trackbacks
+      use_the_following_link_to_trackback: Gebruik de volgende link voor een trackback van jouw site
+    trackback:
+      from: From
+  authors:
+    show:
+      aim: 'AIM:'
+      contact_information: Contact information
+      jabber: 'Jabber:'
+      msn: 'MSN:'
+      posted_in: postet i
+      this_author_has_not_published_any_article_yet: This author has not published any article yet
+      twitter: 'Twitter:'
+      web_site: 'Web site:'
+      yahoo: 'Yahoo:'
+  comments:
+    comment:
+      said: zei
+      this_comment_has_been_flagged_for_moderator_approval: Dit commentaar is gemarkeerd voor goedkeuring. Het zal niet getoond worden totdat de auteur het goedkeurt.
+  date:
+    abbr_month_names:
+    - 
+    - Jan
+    - Feb
+    - Mrt
+    - Apr
+    - Mei
+    - Jun
+    - Jul
+    - Aug
+    - Sep
+    - Okt
+    - Nov
+    - Dec
+    month_names:
+    - 
+    - Januari
+    - Februari
+    - Maart
+    - April
+    - Mei
+    - Juni
+    - Juli
+    - Augustus
+    - September
+    - Oktober
+    - November
+    - December
+  devise_custom:
+    characters_minimum: Minimum %{min} characters
+  errors:
+    article_type_already_exist: This article type already exists
+    cant_end_with_rss_or_atom: Mag niet eindigen met .rss of .atom. Die zijn gereserveerd voor feed URLs
+    no_notes_found: No notes found...
+    no_posts_found: No posts found...
+    page_not_found: Page not found
+    permalink_need_a_title: 'You need a permalink format with an identifier : %%title%%'
+    problem_sending_to_twitter: Oooops something wrong happened
+    render_sidebar: It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually
+    the_page_you_are_looking_for: The page you are looking for has moved or does not exist.
+  generic:
+    change: Change
+    save: Opslaan
+  helper:
+    at: at
+  langs:
+    da_DK: Danish
+    de_DE: German
+    en_US: English (US)
+    es_MX: Spanish (Mexican)
+    fr_FR: French
+    he_IL: Hebrew
+    it_IT: Italian
+    ja_JP: Japanese
+    lt_LT: Lithuanian
+    nb_NO: Norwegian
+    nl_NL: Nederland
+    pl_PL: Polish
+    pt_BR: Portuguese (Brazilian)
+    ro_RO: Romanian
+    ru_RU: Russian
+    zh_CN: Simple Chinese
+    zh_TW: Chinese
+  layouts:
+    administration:
+      powered_by: wordt trots aangedreven door
+    default:
+      designed_by: Ontworpen door %{designed_by}
+      powered_by_html: Powered by %{powered_by}
+  notes:
+    note:
+      view_on_twitter: View on Twitter
+  notice:
+    note_successfully_created: Note was successfully created
+  profile:
+    admin: Publify administrator
+    contributor: Contributor
+    publisher: Blog publisher
+  setup:
+    article:
+      body: Welcome to Publify. This is your first article. Edit or delete it, then start blogging!'
+      title: Hello World!
+    index:
+      blog_name: Blog name
+      welcome_to_your_blog_setup: Welkom bij je blog setup.
+      your_mail: Your email
+    page:
+      about: Over
+      body: This is an example of a Publify page. You can edit this to write information about yourself or your site so readers know who you are. You can create as many pages as this one as you like and manage all of your content inside Publify.
+  tags:
+    index:
+      there_are_no_tags: Er zijn geen tags
+  time:
+    formats:
+      default: "%m/%d/%Y %H:%M"
+      letters_month_with_year: "%m %Y"
+      short: "%m/%d/%y"
+      with_spaces: "%d %B %y"
+  user:
+    status:
+      active: Actief
+      inactive: Inactief
