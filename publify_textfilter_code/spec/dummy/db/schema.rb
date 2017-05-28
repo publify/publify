@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160716093739) do
+ActiveRecord::Schema.define(version: 20170528164322) do
 
   create_table "articles_tags", id: false, force: :cascade do |t|
     t.integer "article_id"
@@ -115,7 +115,7 @@ ActiveRecord::Schema.define(version: 20160716093739) do
     t.string   "mime"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "article_id"
+    t.integer  "content_id"
     t.boolean  "itunes_metadata"
     t.string   "itunes_author"
     t.string   "itunes_subtitle"
@@ -125,7 +125,7 @@ ActiveRecord::Schema.define(version: 20160716093739) do
     t.string   "itunes_category"
     t.boolean  "itunes_explicit"
     t.integer  "blog_id",         null: false
-    t.index ["article_id"], name: "index_resources_on_article_id"
+    t.index ["content_id"], name: "index_resources_on_content_id"
   end
 
   create_table "sidebars", force: :cascade do |t|

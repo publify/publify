@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161030121548) do
+ActiveRecord::Schema.define(version: 20170528093428) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -118,7 +118,7 @@ ActiveRecord::Schema.define(version: 20161030121548) do
     t.string   "mime"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "article_id"
+    t.integer  "content_id"
     t.boolean  "itunes_metadata"
     t.string   "itunes_author"
     t.string   "itunes_subtitle"
@@ -128,7 +128,7 @@ ActiveRecord::Schema.define(version: 20161030121548) do
     t.string   "itunes_category"
     t.boolean  "itunes_explicit"
     t.integer  "blog_id",         null: false
-    t.index ["article_id"], name: "index_resources_on_article_id", using: :btree
+    t.index ["content_id"], name: "index_resources_on_content_id", using: :btree
   end
 
   create_table "sessions", force: :cascade do |t|
