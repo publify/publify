@@ -1,0 +1,2 @@
+var html = "<%= j render 'target_sidebar', sortable_index: @old_s_index, sidebar: @sidebar %>";
+$("#sidebar_<%= @sidebar.id %>").replaceWith(html);

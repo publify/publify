@@ -1,0 +1,801 @@
+---
+fr:
+  accounts:
+    back_to_html: "&larr; Revenir à %{place}"
+    back_to_login: S'identifier
+    confirm:
+      admin: l'administration
+      dont_lose_the_mail_sent: Ne perdez pas l'email que nous venons de vous envoyer à l'adresse %{email} ou vous ne pourrez plus vous connecter à l'application
+      login: Identifiant
+      password: Mot de passe
+      proceed_to: Allez sur %{link}
+      success: You have successfully signed up.
+    create_account: Créer un compte
+    lost_my_password: J'ai perdu mon mot de passe
+  activerecord:
+    errors:
+      models:
+        article:
+          attributes:
+            title:
+              blank: ne peut être laissé vide
+      template:
+        body: ''
+        header: ''
+  admin:
+    base:
+      not_allowed: Erreur, vous n'êtes pas autorisé à réaliser cette action
+      successfully_deleted: "%{name} a été supprimé avec succès"
+    content:
+      access_granted:
+        error: Erreur, vous n'avez pas les droits requis pour effectuer cette action
+      article_list:
+        no_articles: Il n'y a pas encore de articles, pourquoi ne pas en créer un ?
+      autosave:
+        success: L'article a été sauvergardé avec succès
+      create:
+        success: Cet article a été créé avec succès
+      form:
+        allow_comments: Autoriser les commentaires
+        allow_comments_status:
+          one: activés
+          zero: désactivés
+        allow_pings_status:
+          one: activés
+          zero: désactivés
+        allow_trackbacks: Autoriser les rétroliens
+        allowed_comments_and_trackbacks_html: Les commentaires sont %{allow_comment} et les rétroliens %{allow_trackback}
+        article_type: Type d'article
+        cancel: Annuler
+        default: Défaut
+        now: maintenant
+        ok: OK
+        password: Mot de passe
+        permalink: Lien permanent
+        preview: Prévisualiser
+        protected: Protected
+        public: Public
+        publish: Publier
+        publish_settings: Paramètres de publication
+        published: Publié
+        save: Sauver
+        save_as_draft: Sauver comme brouillon
+        status: État
+        tags: Labels
+        tags_explanation_html: Séparez les tags par des virgules. Utilisez des doubles guillemets (&quot;) autour des tags composés de plusieurs mots, e.g. &quot;bureau de poste&quot;.
+        title: Titre
+        type_your_post: Tapez votre texte
+        visibility: Visibilité
+      index:
+        all_articles: Tous les articles
+        drafts: Brouillons
+        manage_articles: Gestion des articles
+        new_article: Nouvel article
+        publication_date: Publié le
+        publication_pending: À publier
+        published: Publié
+        search: Chercher
+        select_an_author: Auteur
+        withdrawn: Supprimé
+      update:
+        success: Cet article a été mis à jour avec succès
+    dashboard:
+      comment:
+        by: Par
+        no_comments_yet: Aucun commentaire pour l'instant
+      comments:
+        latest_comments: Derniers commentaires
+      drafts:
+        no_drafts_yet: Pas de brouillons, pourquoi ne pas en écrire un ?
+        your_drafts: Vos brouillons
+      inbound:
+        at: à
+        at_an_unknown_date: à une date inconnue
+        inbound_links: Liens entrants
+        made_a_link_to_you_on: Faire un lien vers vous sur
+        no_one_made_link_to_you_yet: Personne n'a encore fait de lien vers votre blog
+        you_have_no_internet_connection: Vous n'avez pas de connexion à internet
+      index:
+        welcome_back: Bienvenue, %{user_name} !
+      overview:
+        change_your_blog_presentation: changer l'apparence de votre blog
+        customization_explain_html: Vous pouvez également faire un peu de personnalisation, %{theme_link}, %{sidebar_link}
+        dashboard_explain_html: Voici un rapide aperçu de ce que peut faire votre blog Publify. Peut-être voulez-vous %{available_actions}
+        enable_plugins: Activer des plugins
+        help_explain_html: Si vous avez besoin d'aide, vous pouvez %{doc_link}.
+        read_our_documentation: Consulter notre documentation
+        update_your_profile_or_change_your_password: Mettre votre profil à jour ou changer votre mot de passe
+        write_a_page: Publier une page statique
+        write_a_post: Écrire un article
+      publify_version:
+        error: Vous avez au moins une version majeure de Publify de retard. Vous devriez immédiatement vous mettre à jour. Téléchargez et installez <a href='http://publify.co/stable.tgz'>la dernière version de Publify</a>
+        notice: Une nouvelle version de Publify est disponible. Pouquoi n'installeriez-vous pas <a href='http://publify.co/stable.tgz'>la dernière version de Publify</a> ?
+        warning: Une nouvelle version de Publify est disponible. Celle-ci contient probablement d'importants correctifs. Pourquoi ne téléchargeriez-vous pas <a href='http://publify.co/stable.tgz'>la dernière version de Publify</a> ?
+      welcome:
+        approved_count:
+          one: 1 approuvé
+          other: "%{count} approuvés"
+          zero: Aucun approuvés
+        articles_and_comments_count_since: Depuis votre dernière connexion, %{articles_count} articles et %{comments_count} commentaires ont été publiés
+        articles_count:
+          one: 1 article
+          other: "%{count} articles"
+          zero: aucun article
+        comments_count:
+          one: 1 commentaire
+          other: "%{count} commentaires"
+          zero: aucun commentaire
+        content: Contenu
+        drafts_count:
+          one: 1 brouillon
+          other: "%{count} brouillons"
+          zero: Aucun brouillon
+        feedback: Commentaires
+        notes_count:
+          one: 1 note
+          other: "%{count} notes"
+          zero: Aucune note
+        pages_count:
+          one: 1 page
+          other: "%{count} pages"
+          zero: Aucune page
+        running_publify: Vous utilisez Publify %{version}
+        spam_count:
+          one: 1 spam
+          other: "%{count} spams"
+          zero: Aucun spam
+        today: Aujourd'hui
+        unconfirmed_count:
+          one: 1 validé
+          other: "%{count} validés"
+          zero: Aucun non validés
+        your_articles_count:
+          one: Vous avez écrit 1 article
+          other: Vous avez écrit %{count} articles
+          zero: Vous n'avez écrit aucun article
+    feedback:
+      article:
+        action_or_other_html: "%{first_action} ou %{second_action}"
+        add_a_comment: Ajouter un commentaire
+        author: Auteur
+        cancel: Annuler
+        comments_for_html: Commentaire sur %{title}
+        email: Email
+        no_feedback: 'Il n''y a pas encore de commentaires, pourquoi ne pas en créer un ? '
+        save: Sauver
+        select_all: Tout sélectionner
+        url: Site
+        your_comment: Votre commentaire
+      bulkops:
+        error: Non implémenté
+        success_classification: Classification de %{count} élément(s) confirmée
+        success_deleted: "%{count} élément(s) supprimés"
+        success_deleted_spam: Tous les spams ont été supprimés
+        success_mark_as_ham:
+          one: 1 élément marqué comme valide
+          other: "%{count} éléments marqués comme valides"
+          zero: Aucun élément sélectionné pour être identifié comme valide
+        success_mark_as_spam:
+          one: 1 élément marqué comme Spam
+          other: "%{count} éléments marqués comme Spam"
+          zero: Aucun élément sélection pour être identifié comme Spam
+      button:
+        delete_all_spam: Supprimer tout le spam
+        delete_checked_items: Supprimer les commentaires sélectionnés
+        mark_checked_items_as_ham: Valider ces commentaires
+        mark_checked_items_as_spam: Marquer ces commentaires comme du spam
+      create:
+        success: Commentaire créé avec succès.
+      destroy:
+        error: Introuvable
+        success: Supprimé
+      edit:
+        action_or_other_html: "%{first_action} ou %{second_action}"
+        author: Author
+        cancel: Cancel
+        comments_for_html: Commentaires sur l'article %{article_link}
+        edit_a_comment: Edit a comment
+        email: Email
+        save: Sauver
+        url: Url
+        your_comment: Your comment
+      ham:
+        by: by
+        created_on: 'on'
+      index:
+        all: Tous
+        feedback: Commentaires
+        ham: Valide
+        no_feedback: 'Il n''y a pas encore de commentaires, pourquoi ne pas en créer un ? '
+        presumed_ham: Probablement valide
+        presumed_spam: Probablement du spam
+        select_all: Tout sélectionner
+        spam: Spam
+        unapproved_comments: Commentaires non validés
+      spam:
+        by: by
+        cancel: Annuler
+        created_on: 'on'
+        this_comment_by_was_flagged_as_spam_html: Ce commentaire de %{author} a été marqué comme spam, %{cancel_link} ?
+      state:
+        ham: Valide
+        just_marked_as_ham: Marqué comme valide
+        just_marked_as_spam: Marqué comme spam
+        just_presumed_ham: Marqué commme supposé valide
+        presumed_ham: Valide ?
+        presumed_spam: Spam ?
+        spam: Spam
+        unclassified: Non classé
+      update:
+        success: Commentaire mis à jour avec succès.
+    migrations:
+      show:
+        current_database_version: Version actuelle de la base
+        database_migration: Mise à jour de la base de données
+        information: Informations
+        may_take_a_moment: Cela peut prendre un moment
+        migration_pending:
+          one: Il y a une migration en attente.
+          other: Il y a %{count} migrations en attente.
+        migrations: Migrations
+        needed_migrations: Mise à jour nécessaire
+        update_database_now: Mettez votre base à jour
+        you_are_up_to_date: Vous êtes à jour !
+    notes:
+      form:
+        cancel: Annuler
+        compose_new_note: Écrire un nouveau billet
+        in_reply_to: En réponse à
+        no_notes: 'Il n''y a pas encore de notes, pourquoi ne pas en créer une ? '
+        now: Maintenant
+        or: ou
+        permanent_link: Lien permanent
+        posse_to_twitter: POSSE to twitter
+        publish: Publier
+        publish_at: Publié le
+        publish_settings: Paramètres de publication
+        tweet_id_like: 'Identifiant du Tweet (ex: 123456)'
+      header:
+        notes: Notes
+      show:
+        action_or_other_html: "%{first_action} ou %{second_action}"
+        are_you_sure: Êtes-vous certain de vouloir supprimer cette note ?
+        cancel: Annuler
+        delete: Supprimer
+        destroy_confirmation: Confirmation de suppression
+    pages:
+      edit:
+        success: Cette page a été mise à jour avec succès
+      form:
+        article_filter: Mise en forme des billets
+        cancel: Annuler
+        offline: hors ligne
+        online: En ligne
+        permanent_link: Lien permanent
+        publish: Publier
+        publish_settings: Paramètres de publication
+        published: publiée
+        save: Sauver
+        status: État
+        title: Titre
+        type_your_post: Tapez votre texte
+      index:
+        author: Auteur
+        manage_pages: Administrer les pages
+        new_page: Nouvelle page
+        title: Titre
+      new:
+        success: Cette page a été créée avec succès
+      pages:
+        no_pages: 'Il n''y a pas encore de pages, pourquoi ne pas en créer une ? '
+    post_types:
+      index_and_form:
+        cancel: Annuler
+        default: Défaut
+        description: Description
+        explain: Ce modèle est un fichier que Publify cherchera quand il voudra afficher un article de ce type. Il doit se trouver dans views/articles/template nom.html.erb
+        name: Nom
+        or: ou
+        post_types: Modèles d'articles
+        publify_default_post_type: Modèle d'article par défaut
+        save: Sauver
+        template_name: Nom du modèle
+    profiles:
+      index:
+        success: L'utilisateur a été mis à jour avec succès
+        your_profile: Votre profil
+    redirects:
+      destroy:
+        success: La redirection a été supprimée avec succès.
+      index_and_form:
+        cancel: Annuler
+        from: De
+        leave_empty_to_shorten_a_link: Laissez vide pour créer un lien court
+        no_redirects: 'Il n''y a pas encore de redirections, pourquoi ne pas en créer une ? '
+        or: ou
+        redirects: Redirections
+        save: Sauver
+        to: Vers
+    resources:
+      destroy:
+        notice: Supprimé
+      index:
+        are_you_sure: Êtes-vous sûr ?
+        content_type: Type de contenu
+        date: Date
+        delete: Delete
+        file_size: Taille du fichier
+        filename: Fichier
+        media_library: Bibliothèque de médias
+        medium_size: Taille moyenne
+        no_resources: 'Il n''y a pas encore de ressources, pourquoi ne pas en créer une ? '
+        original_size: Taille originale
+        right_click_for_link: Clic droit pour le lien
+        thumbnail: Vignette
+        upload: Ajouter un fichier joint
+        upload_a_file_to_your_site: Envoyer un fichier sur votre site
+      upload:
+        success: Fichier envoyé
+        warning: impossible d'envoyer
+    seo:
+      general:
+        canonical_url: Canonical Url
+        custom_tracking_code: Code de tracking personnalisé
+        do_not_index_tags: Ne pas indexer les labels
+        dofollow: Dofollow
+        explain: Ici, vous pouve ajouter tout ce que vous souhaitez voir apparaître dans l'en-tête de votre blog, comme le code de suivi d'un service de statistiques.
+        explain_humans_txt: Il s'agit d'une initiative pour connaître les personnes derrière un site Internet. Il s'agit d'un fichier TXT qui contient des informations à propos des différentes personnes qui ont contribué à construire le site. http://humanstxt.org/
+        explain_moderate_feedback: Si vous activez cette option, peut-être devriez-vous également activer la modération des commentaires.
+        explain_rss_description: 'Vous pouvez utliser les tags suivants : %author% (nom de l''auteur), %blog_url% (URL du blog), %blog_name% (nom du blog) et %permalink_url% (lien vers l''article que vous souhaitez protéger)'
+        explain_tag_index_html: Sélectionner cette option ajoutera le métalabel <code>noindex, follow</code> dans toutes les pages de chaque label. Cela les enlèvera des moteurs de recherche et préviendra ainsi des problèmes de contenu dupliqué.
+        general_settings: Options générales
+        google: Google
+        google_analytics: Google Analytics
+        google_webmaster_tools_validation_link: Lien de validation des Google Webmaster Tools.
+        human: Humain
+        humans_txt: Humain
+        indexing: Indexation
+        meta_description: Meta description
+        meta_keywords: Meta mots-clés
+        read_more_about_html: En savoir plus à propos de %{link}
+        robots_txt: Robots.txt
+        rss_description_message: Message de description du flux RSS
+        this_will_display: Cela affichera en bas de chacun de vos articles sur le flux RSS
+        use_canonical_url: Utiliser les URL canoniques
+        use_dofollow_in_comments: Mettre les commentaires en dofollow
+        use_meta_keywords: Utiliser les meta mots-clés
+        use_rss_description: Utilisation de la description RSS
+      permalinks:
+        custom: Personnalisé
+        date_and_title: Date et titre
+        explain: Les exemples ci-dessous vous aideront à démarrer. Publify vous offre la possibilité de créer une structure d'URL personnalisée pour vos liens permanents et vos archives. Cela peut vous permettre d'améliorer l'esthétique, l'utilisabilité et la viralité de vos liens.
+        help_on_permalink_settings: Aide sur le paramétrage des permaliens
+        month_and_title: Mois et titre
+        permalink_format: Format des permaliens
+        sample: Les exemples ci-dessous vous aideront à démarrer.
+        title_only: Titre uniquement
+        you_can_custom_your_url_structure: 'Vous pouvez personnaliser la structure de vos URL à l''aide des tags suivats:'
+        your_article_day: Le jour de publication de votre article.
+        your_article_month: Le mois de publication de votre article.
+        your_article_slug_html: le permalien de votre article <strong>ce champ est obligatoire</strong>
+        your_article_year: L'année de publication de votre article.
+      show:
+        cancel: Annuler
+        global_settings: Options générales
+        or: ou
+        permalinks: Permaliens
+        title_settings: Paramétrage des titres
+        update_settings: Mettre les paramètres à jour
+      titles:
+        articles: Articles
+        author_page: Page d'auteur
+        dated_archives: Archives par date
+        description_template: Description
+        help_on_title_settings: Aide sur le Paramétrage des titres
+        home: Page d'accueil
+        pages: Pages
+        paginated_archives: Archives paginées
+        replaced_by_the_archive_date: Remplacé par la date de l'archive
+        replaced_by_the_content_body: Remplacé par le corps de texte
+        replaced_with_the_article_categories: Remplacé par les catégories de l'article (séparées par une virgule)
+        replaced_with_the_article_page_title: Remplacé par le titre de l'article ou de la page
+        replaced_with_the_article_tags: Remplacé par les tags de l'article (séparés par une virgule)
+        replaced_with_the_category_tag_name: Remplacé par le nom de la catégorie ou du mot-clé
+        replaced_with_the_current_date: Remplacé par la date du jour
+        replaced_with_the_current_month: Remplacé par le mois en cours
+        replaced_with_the_current_page_number: Remplacé par le numéro de la page
+        replaced_with_the_current_search_phrase: Remplacé avec le contenu de la recherche
+        replaced_with_the_current_time: Remplacé par l'heure actuelle
+        replaced_with_the_current_year: Remplacé par l'année en cours
+        replaced_with_the_post_page_excerpt: Remplacé par l'introduction de l'article ou de la page
+        replaced_with_the_title_of_the_article_page: Remplacé par le titre de l'article ou de la page
+        search_results: Résultats de recherche
+        short_statuses: Satuts courts
+        short_statuses_lists: Listes des statuts courts
+        the_blog_s_name: Le nom du blog
+        the_blog_s_tagline_description: Le sous-titre du blog
+        these_tags_can_be_included: Ces tags peuvent être ajoutés dans le template et seront remplacés lors de l'affichage de la page
+        title_template: Titre
+    settings:
+      display:
+        cancel: Annuler
+        custom_url: Personnalisez votre domaine de raccourcisseur URL
+        custom_url_help: Si vous avez un raccourcisseur personnalisé pour vos URL, renseignez-le ici.
+        date_format: Afficher les dates
+        default_archives_show: nombre de billets affichés sur ma page d'archives
+        default_article_show: nombre de billets affichés sur ma page d'accueil
+        default_feed_show: articles les plus récents dans le flux
+        display: Afficher
+        display_settings: Afficher les paramètres de configuration
+        feed_articles: Exergues des articles
+        feed_excerpts_only: Tronquer les articles dans le flux RSS
+        feed_settings: Configuration du flux RSS
+        or: ou
+        publishing_options: Options de publication
+        status_main_feed: Afficher les statuts dans le flux principal
+        statuses: Notes
+        time_format: Afficher les heures
+        update_settings: Mettre les paramètres à jour
+      feedback:
+        askimet_key: Clé Akismet
+        avatars_provider: Fournisseur d’avatars
+        cancel: Annuler
+        captcha: Captcha
+        comments: Commentaires
+        comments_filter: Mise en forme des commentaires
+        days: jours
+        disable_comments_after: 'Désactiver les commentaires au bout de '
+        disable_trackbacks_sitewide: Désactiver les trackbacks
+        enable_comments_by_default: Activer les commentaires par défaut
+        enable_feedback_moderation: Activer la modération des commentaires
+        enable_recaptcha: Utiliser reCaptcha
+        enable_spam_protection: Activer la protection contre le spam
+        enable_trackbacks_by_default: Activer les rétroliens par défaut
+        explain_disable_trackbacks: Cette option vous permet de désactiver totalement les rétroliens sur votre blog. Ceci ne supprimera pas les rétroliens existants, mais empêchera tout nouveau rétrolien d'être créé
+        explain_feedback_moderation: Vous pouvez activez la modération des commentaires sur l'ensemble de votre site. Si vous le faites, aucun commentaire ou rétrolien ne sera publié sans une validation de votre part
+        explain_reject_comments: Publify rejettera automatiquement les commentaires et les rétroliens contenant un certain nombre de liens
+        explain_spam_protection: La protection contre le spam permettra à Publify de comparer l'adresse IP des commentateurs ainsi que le contenu de leurs commentaires avec une liste noire distante
+        explain_spamfiltering_html: Publify peut utiliser le service de lutte contre le spam <a href='http://akismet.com'>Akismet</a>. Vous devez vous enregistrer afin de pouvoir utiliser les services d'Akismet. Si vous possédez une clé Akismet, ajoutez là ici
+        feedback: Commentaires
+        feedback_settings: Paramètres des commentaires
+        max_links: Nombre de liens maximum
+        none: Aucun
+        or: ou
+        remember_to_set_your_recaptcha: N'oubliez pas de mettre votre clé d'activation dans config/initializers/recaptcha.rb
+        set_to_0_to_never_disable_comments: Mettez cette option à 0 pour ne jamais désactiver les commentaires dans le temps
+        set_to_0_to_never_reject_comments: Mettez cette option à 0 pour ne jamais rejeter les commentaires
+        spam: Spam
+        spam_protection: Protection contre le spam
+        trackbacks: Rétroliens
+        update_settings: Mettre les paramètres à jour
+      index:
+        allow_users_to_register: Autoriser les utilisateurs à s'enregistrer
+        blog_name: Titre du blog
+        blog_subtitle: Sous-titre du blog
+        blog_url: Adresse du blog
+        cancel: Annuler
+        email_address_used_to_notify: Adresse courriel utilisée par Publify pour l'envoi d'alertes
+        explain_allow_users_to_register_html: Vous pouvez permettre aux utilisateurs de s'enregistrer sur votre blog. Par défaut, ils seront enregistrés come contributeurs. Cet utilisateur a un niveau faible sans droit mais qui possède sont propre profile sur le site. Si vous ne voulez pas que les utilisateurs s'enregistrent, vous pouvez les ajouter vous même dans la partie d'administration des utilisateurs.
+        general_settings: Paramètres généraux
+        items_to_display_in_admin_lists: Nombre d'éléments à afficher dans les listes
+        language: Langue
+        or: ou
+        source_email: Adresse courriel source
+        update_settings: Mettre les paramètres à jour
+        users: Utilisateurs
+        your_blog: 'Votre blog '
+      update:
+        error: 'Erreur: %{messages}'
+        success: Configuration mise à jour.
+      write:
+        avatar_size: Taille de l'avatar
+        cancel: Annuler
+        display: Afficher
+        example: exemple
+        explain: Quand vous publiez un billet sur Publify, vous pouvez envoyer un rétrolien aux sites que vous liez. Cette fonctionnalité devrait être désactivée pour les blogs privée puisqu'elle permet de donner des informations à leur sujet à des tiers. Ceci ne s'impose cependant pas pour un blog public.
+        image_medium_size: Taille des images réduites
+        image_thumbnail_size: Taille des vignettes
+        latitude_longitude: Latitude, Longitude
+        media: Média
+        or: ou
+        publish: Publier
+        publish_on_twitter: Publier sur Twitter
+        send_trackbacks: Envoyer des rétroliens
+        trackbacks: Rétroliens
+        twitter_consumer_key: Clé d'utilisateur Twitter
+        twitter_consumer_secret: Secret d'utilisateur sur Twitter
+        update_settings: Mettre les paramètres à jour
+        write: Écrire
+        your_geoloc: vos coordonnées géographiques
+    shared:
+      destroy:
+        are_you_sure: Êtes-vous certain de vouloir supprimer ce/cette %{element}
+      menu:
+        all_articles: All articles
+        all_pages: All pages
+        article_types: Article types
+        articles: Articles
+        choose_theme: Choose theme
+        customize_sidebar: Customize sidebar
+        design: Design
+        display: Display
+        documentation: Documentation
+        feedback: Feedback
+        general_settings: Options générales
+        global_seo_settings: Global SEO settings
+        in_page_plugins: Plugins
+        logged_in_as: Bonjour, %{login}
+        logout_html: Déconnexion &raquo;
+        manage_users: Manage Users
+        media_library: Media Library
+        new: Nouveau
+        new_article: Nouvel article
+        new_media: Nouveau Média
+        new_note: Nouvelle Note
+        new_page: Nouvelle Page
+        notes: Notes
+        pages: Pages
+        permalinks: Permalinks
+        profile: Profil
+        redirects: Redirects
+        report_a_bug: Déclarer un bug
+        seo: SEO
+        settings: Settings
+        sidebar_plugins: Widgets
+        tags: Tags
+        titles: Titles
+        write: Write
+      twitter_alert:
+        fill_the_twitter_credentials: fill in the oauth credentials
+        how_to_setup_twitter_html: Si vous souhaitez publier des courts statuts sur Twitter, vous devez fournir %{twitter_settings_link} que Twitter vous a envoyé après que vous %{twitter_registration_link}.
+        registered_your_application: Votre application a été enregistrée
+    sidebar:
+      config:
+        active_sidebar_items: Éléments utilisés
+        available_items: Éléments disponibles
+        you_have_no_plugins_installed: You have no plugins installed
+      index:
+        cancel: Annuler
+        download_more_plugins_html: Vous pouvez télécharger et installer des plugins pour sidebars depuis notre <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'> répertoire officiel de plugins</a>. Tout ce que vous avez à faire est de télécharger le dossier du thème dans votre dossier vendor/plugins.
+        explain_how_its_works: Glissez / déplacez des éléments pour changer la sidebar de votre blog. Pour supprimer un élément de votre sidebar, cliquez simplement sur 'supprimer'. Les changements sont effectués immédiatement, mais ne seront pas actifs tant que vous n'aurez pas cliqué sur le bouton 'Publier'.
+        or: ou
+        publish_changes: Publier les modifications
+        sidebar: Plugins
+      target:
+        drag_some_plugins_here: Déplacez des plugins dans cet espace afin de remplir votre sidebar
+    tags:
+      edit:
+        success: Le label a été mis à jour avec succès
+      index_and_form:
+        cancel: Annuler
+        display_name: Nom affiché
+        manage_tags: Labels
+        name: Nom
+        no_tags: 'Il n''y a pas encore de labels, pourquoi ne pas en créer un ? '
+        or: ou
+        save: Sauver
+    themes:
+      index:
+        active_theme: "%{name} - Thème actif"
+        choose_a_theme: Sélectionnez un thème
+        use_this_theme: Choisir ce thème
+      switchto:
+        success: Le thème a été changé avec succès
+    users:
+      edit:
+        edit_user: Modifier un utilisateur
+      form:
+        about: Biographie
+        account_settings: Paramètres du compte
+        aim: AIM screen name
+        article_filter: Filtrer les articles
+        author_page: page de l'auteur
+        avatar: Paramètres de l'avatar
+        avatar_current: Avatar actuel
+        cancel: Annuler
+        contact_explain_html: Cette information sera affichée sur %{link}
+        contact_settings: Paramètres de contact
+        display_name: Afficher le nom
+        email: Email
+        firstname: Prénom
+        jabber: Jabber ID
+        lastname: Nom de famille
+        login: Login
+        msn: MSN Messenger ID
+        nickname: Pseudonyme
+        notification_article: quand un nouvel article est posté
+        notification_comment: quand un nouveau commentaire est posté
+        notification_email: par email
+        notification_settings: Notifications
+        notifications: Envoyer des messages de notification
+        or: ou
+        password: Mot de passe
+        password_confirmation: Confirmation du mot de passe
+        profile: Profil
+        profile_settings: Paramètres du profil
+        save: Sauver
+        twitter: Twitter username
+        twitter_account: Nom d'utilisateur Twitter
+        twitter_oauth: Jeton d'authentficition Twitter OAuth
+        twitter_oauth_secret: Question secrète Twitter
+        upload: Télécharger votre image de profil
+        upload_file: Télécharger un fichier .jpg, .png ou .gif
+        user_status: Statut de l'utilisateur
+        website: Site web
+        yahoo: Yahoo! Messenger ID
+      index:
+        articles: Articles
+        comments: Commentaires
+        email: Email
+        login: Identifiant
+        name: Nom
+        new_user: Nouvel utilisateur
+        profile: Profile
+        state: État
+        users: Utilisateurs
+      new:
+        add_user: Ajouter un utilisateur
+        success: L'utilisateur a été créé avec succès.
+  articles:
+    archives:
+      no_articles_found: Aucun article ne correspond à la recherche
+      posted_in: Publié sous
+    article:
+      posted_by: Publié par
+    article_excerpt:
+      continue_reading: Continue reading
+    article_links:
+      comments:
+        one: 1 commentaire
+        other: "%{count} commentaires"
+        zero: aucun commentaire
+      tags: Tags
+      trackbacks:
+        one: 1 trackback
+        other: "%{count} trackbacks"
+        zero: no trackbacks
+    comment_errors:
+      message: Oops, something wrong happened, the comment could not be saved.
+    comment_form:
+      comment_markup_help: Aide sur le balisage des commentaires
+      leave_url_email: laissez votre url/courriel
+      preview_comment: Prévisualiser le commentaire
+      your_blog: votre blog
+      your_email: Votre courriel
+      your_message: Votre commentaire
+      your_name: 'Votre nom '
+    comment_preview:
+      is_about_to_say: va dire
+    index:
+      page: page
+    password_form:
+      submit: Envoyer
+    read:
+      comments: Commentaires
+      comments_are_disabled: Les commentaires sont désactivés
+      edit: Éditer
+      leave_a_response: Réagir à ce billet
+      rss_feed: Flux RSS
+      trackback_uri: Trackback URI
+      trackbacks: Rétroliens
+      use_the_following_link_to_trackback: Utilisez le lien ci-dessous pour envoyer un rétrolien depuis votre site
+    trackback:
+      from: From
+  authors:
+    show:
+      aim: 'AIM :'
+      contact_information: Informations de contact
+      jabber: 'Jabber :'
+      msn: 'MSN :'
+      posted_in: publié dans
+      this_author_has_not_published_any_article_yet: Cet utilisateur n'a publié aucun article
+      twitter: 'Twitter :'
+      web_site: 'Site web:'
+      yahoo: 'Yahoo :'
+  comments:
+    comment:
+      said: a dit
+      this_comment_has_been_flagged_for_moderator_approval: Ce commentaire a été soumis pour modération. Il ne sera affiché qu'une fois approuvé par un modérateur
+  date:
+    abbr_month_names:
+    - 
+    - jan
+    - fév
+    - mars
+    - avr
+    - mai
+    - juin
+    - juil
+    - août
+    - sep
+    - oct
+    - nov
+    - déc
+    month_names:
+    - 
+    - Janvier
+    - Février
+    - Mars
+    - Avril
+    - Mai
+    - Juin
+    - Juillet
+    - Août
+    - Septembre
+    - Octobre
+    - Novembre
+    - Décembre
+  devise_custom:
+    characters_minimum: Minimum %{min} characters
+  errors:
+    article_type_already_exist: Ce type d'article existe déjà.
+    cant_end_with_rss_or_atom: Ne peut pas se terminer par .rss ou .atom. Cette extension est réservée aux flux de syndication
+    no_notes_found: Aucune note n'a été trouvée
+    no_posts_found: Aucun article n'a été trouvé
+    page_not_found: Page non trouvée
+    permalink_need_a_title: 'Vous avez besoin d''un format de lien permanent avec un identifiant : %%title%%'
+    problem_sending_to_twitter: Oups ! Un problème est survenu
+    render_sidebar: Une erreur s'est produite. Un ou plusieurs plugins sont probablement manquants ou en erreur. Peut-être devriez-vous les supprimer ou les réinstaller
+    the_page_you_are_looking_for: La page que vous cherchez a été déplacée ou n'existe pas
+  generic:
+    change: Modifier
+    save: Sauver
+  helper:
+    at: à
+  langs:
+    da_DK: Danois
+    de_DE: Allemand
+    en_US: Anglais (Américain)
+    es_MX: Espagnol (Mexicain)
+    fr_FR: Français
+    he_IL: Hébreux
+    it_IT: Italien
+    ja_JP: Japonais
+    lt_LT: Lituanien
+    nb_NO: Norvégien
+    nl_NL: Néerlandais
+    pl_PL: Polonais
+    pt_BR: Portuguais (Brésilien)
+    ro_RO: Roumain
+    ru_RU: Russe
+    zh_CN: Simple Chinese
+    zh_TW: Chinois
+  layouts:
+    administration:
+      powered_by: Tourne fièrement sous
+    default:
+      designed_by: Design par %{designed_by}
+      powered_by_html: Propulsé par %{powered_by}
+  notes:
+    note:
+      view_on_twitter: Vu sur Twitter
+  notice:
+    note_successfully_created: Ce billet a été créé avec succès
+  profile:
+    admin: Administrateur
+    contributor: Contributeur
+    publisher: Rédacteur
+  setup:
+    article:
+      body: Welcome to Publify. This is your first article. Edit or delete it, then start blogging!'
+      title: Hello World!
+    index:
+      blog_name: Nom du blog
+      welcome_to_your_blog_setup: Bienvenue dans la configuration de votre blog
+      your_mail: Votre email
+    page:
+      about: À propos de
+      body: Ceci est un exemple de page Publify. Vous pouvez la modifier pour écrire des informations sur vous ou sur votre blog, afin que vos lecteurs sachent qui vous êtes. Vous pouvez créer autant de pages que vous voulez et gérer tout votre contenu dans Publify.
+  tags:
+    index:
+      there_are_no_tags: Il n'y a pas de tag
+  time:
+    formats:
+      default: "%d/%m/%Y %H:%M"
+      letters_month_with_year: "%B %Y"
+      short: "%d/%m/%y"
+      with_spaces: "%d %B %y"
+  user:
+    status:
+      active: Actif
+      inactive: Inactif

@@ -1,0 +1,11 @@
+/*
+ *= require administration_structure
+ *= require jquery-ui
+ *= require widearea
+ *= require tagmanager
+ *= require sidebar_admin
+ *= require datetimepicker
+ */
+// "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+@import "bootstrap-sprockets";
+@import "bootstrap";

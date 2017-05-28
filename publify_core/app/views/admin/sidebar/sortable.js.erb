@@ -1,0 +1,3 @@
+var html = "<%= j render 'config', available_sidebars: @available, ordered_sidebars: @ordered_sidebars %>";
+$("#sidebar-config").replaceWith(html);
+bind_sortable();

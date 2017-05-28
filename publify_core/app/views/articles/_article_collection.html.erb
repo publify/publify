@@ -1,0 +1,8 @@
+<% for article in articles %>
+  <div class="post">
+    <%= render article %>
+    <%= render 'articles/article_links', article: article %>
+  </div>
+<% end %>
+
+<%= paginate articles %>

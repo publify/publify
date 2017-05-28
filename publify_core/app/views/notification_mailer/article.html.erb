@@ -1,0 +1,6 @@
+<p>A new article has been posted on <%=h @blog.blog_name %>:</p>
+
+<%= render 'mail_header' %>
+<h2><%=h @article.title %></h2>
+<%= html @article, :body %>
+<%= render 'mail_footer' %>

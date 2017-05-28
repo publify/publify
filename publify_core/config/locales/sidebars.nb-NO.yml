@@ -1,0 +1,20 @@
+---
+nb-NO:
+  admin:
+    sidebar:
+      target_sidebar:
+        update: Oppdater
+  meta_sidebar:
+    content:
+      admin: Admin
+      powered_by_publify: Drives av Publify
+      rss_feed: RSS-feed
+  page_sidebar:
+    content:
+      pages: Sider
+  search_sidebar:
+    content:
+      search: Søk
+  tag_sidebar:
+    content:
+      tags: Tags

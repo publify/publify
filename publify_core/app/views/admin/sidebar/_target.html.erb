@@ -1,0 +1,9 @@
+<ul class="sortable" data-callback_url="<%= sortable_admin_sidebar_index_path %>">
+  <% ordered_sidebars.each_with_index do |sidebar, index| %>
+    <% next unless sidebar.id %>
+    <%= render 'target_sidebar', sidebar: sidebar, sortable_index: index %>
+  <% end %>
+  <% if ordered_sidebars.empty? %>
+    <li><%= t('.drag_some_plugins_here') %></li>
+  <% end %>
+</ul>

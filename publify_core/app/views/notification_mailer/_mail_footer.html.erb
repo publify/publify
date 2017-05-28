@@ -1,0 +1,7 @@
+</div>
+
+<p><em>This is being sent to <%=h @user.name %> because you asked to be notified via email whenever
+new content is posted to  <a href="<%= @blog.base_url%>"><%= @blog.blog_name %></a>
+To unsubscribe, go to
+<a href="<%= @link_url = @blog.url_for(:controller => '/admin/users', :action => 'edit', :id => @user.id) %>"><%=h @link_url%></a>
+and change your user settings.</p>

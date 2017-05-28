@@ -1,0 +1,59 @@
+<% content_for :page_heading do %>
+<h2>
+  <i class="glyphicon glyphicon-large glyphicon-tags"></i>
+  <%= t('.manage_tags') %>
+</h2>
+<% end %>
+
+<div class='row'>
+  <div class='col-md-4'>
+    <%= form_for([:admin, @tag]) do |f| %>
+      <% if @tag.errors.any? %>
+        <ul>
+          <% @tag.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+
+      <div class="form-group">
+        <%= f.text_field :display_name, class: 'form-control', placeholder: "Name" %>
+      </div>
+      <div class="form-group">
+        <hr>
+        <%= link_to(t(".cancel"), {action: 'index'}) %>
+        <%= t(".or") %>
+        <%= f.submit t(".save"), class: 'btn btn-success' %>
+      </div>
+    <% end %>
+  </div>
+  <div class='col-md-8'>
+    <table class="table table-hover">
+      <thead>
+        <tr class='noborder'>
+          <th><%= t('.display_name') %></th>
+          <th><%= t('.name')  %></th>
+        </tr>
+      </thead>
+      <% if @tags.empty? %>
+        <tr>
+          <td colspan="3">
+            <%= t(".no_tags") %>
+          </td>
+        </tr>
+      <% end %>
+      <% for tag in @tags %>
+        <tr>
+          <td>
+            <%= link_to tag.display_name, edit_admin_tag_path(tag), { class: 'edit' } %>
+            <%= link_to content_tag(:span, '', class: 'glyphicon glyphicon-pencil'), edit_admin_tag_path(tag), { class: 'btn btn-primary btn-xs btn-action' } %>
+            <%= link_to content_tag(:span, '', class: 'glyphicon glyphicon-trash'), admin_tag_path(tag), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs btn-action' %>
+            <%= link_to_permalink(tag, "#{tag.articles.size} <span class='glyphicon glyphicon-link'></span>".html_safe, nil, 'btn btn-success btn-xs').html_safe %>
+          </td>
+          <td><%= tag.name %></td>
+        </tr>
+      <% end %>
+      <%= display_pagination(@tags, 3) %>
+    </table>
+  </div>
+</div>

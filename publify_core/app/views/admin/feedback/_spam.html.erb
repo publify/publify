@@ -1,0 +1,23 @@
+<td></td>
+<td style='text-align: center'>
+  <%= avatar_tag(:email => comment.email, :url => comment.url, :size => 48, :class => 'img-circle') %>
+  <p class='action'><span class='label label-danger'><%= t("admin.feedback.state.#{comment.state}") %></span></p>
+</td>
+<td colspan='4'>
+  <%= link_to comment.article.title, :controller => 'feedback', :action => 'article', :id => comment.article_id %>
+  <p>
+    <small>
+      <%= t('.by')%> <%= mail_to h(comment.email), h(comment.author) %>
+      <%= link_to "(#{h(comment.url)})".html_safe, comment.url unless comment.url.blank? %>
+      <%= t('.created_on') %> <%= l(comment.created_at) %>
+    </small>
+  </p>
+  <p>
+    <small>
+      <%= t(".this_comment_by_was_flagged_as_spam_html",
+            author: comment.author,
+            cancel_link: link_to(t('.cancel'), url: {action: 'change_state', id: comment.id, remote: true})) %>
+      <%= toggle_element "feedback_#{comment.id}" %>
+    </small>
+  </p>
+</td>
