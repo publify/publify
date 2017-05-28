@@ -264,13 +264,13 @@ describe Article, type: :model do
 
   it 'test_destroy_file_upload_associations' do
     a = create(:article)
-    create(:resource, article: a)
-    create(:resource, article: a)
+    create(:resource, content: a)
+    create(:resource, content: a)
     assert_equal 2, a.resources.size
     a.resources << create(:resource)
     assert_equal 3, a.resources.size
     a.destroy
-    assert_equal 0, Resource.where(article_id: a.id).size
+    assert_equal 0, Resource.where(content_id: a.id).size
   end
 
   describe '#interested_users' do
