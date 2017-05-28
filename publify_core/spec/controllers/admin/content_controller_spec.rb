@@ -495,9 +495,9 @@ describe Admin::ContentController, type: :controller do
     end
 
     before do
-      create(:tag, name: 'foo', articles: [create(:article)])
-      create(:tag, name: 'bazz', articles: [create(:article)])
-      create(:tag, name: 'bar', articles: [create(:article)])
+      create(:tag, name: 'foo', contents: [create(:article)])
+      create(:tag, name: 'bazz', contents: [create(:article)])
+      create(:tag, name: 'bar', contents: [create(:article)])
     end
 
     it 'should return foo for keywords fo' do

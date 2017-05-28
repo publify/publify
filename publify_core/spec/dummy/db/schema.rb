@@ -10,14 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160701062604) do
-
-  create_table "articles_tags", id: false, force: :cascade do |t|
-    t.integer "article_id"
-    t.integer "tag_id"
-    t.index ["article_id"], name: "index_articles_tags_on_article_id"
-    t.index ["tag_id"], name: "index_articles_tags_on_tag_id"
-  end
+ActiveRecord::Schema.define(version: 20170528094923) do
 
   create_table "blogs", force: :cascade do |t|
     t.text   "settings"
@@ -39,7 +32,6 @@ ActiveRecord::Schema.define(version: 20160701062604) do
     t.integer  "text_filter_id"
     t.text     "whiteboard"
     t.string   "name"
-    t.boolean  "published",      default: false
     t.boolean  "allow_pings"
     t.boolean  "allow_comments"
     t.datetime "published_at"
@@ -48,10 +40,17 @@ ActiveRecord::Schema.define(version: 20160701062604) do
     t.text     "settings"
     t.string   "post_type",      default: "read"
     t.integer  "blog_id",                         null: false
+    t.boolean  "published",      default: false
     t.index ["id", "type"], name: "index_contents_on_id_and_type"
-    t.index ["published"], name: "index_contents_on_published"
     t.index ["text_filter_id"], name: "index_contents_on_text_filter_id"
     t.index ["user_id"], name: "index_contents_on_user_id"
+  end
+
+  create_table "contents_tags", id: false, force: :cascade do |t|
+    t.integer "content_id"
+    t.integer "tag_id"
+    t.index ["content_id"], name: "index_contents_tags_on_content_id"
+    t.index ["tag_id"], name: "index_contents_tags_on_tag_id"
   end
 
   create_table "feedback", force: :cascade do |t|
@@ -115,7 +114,7 @@ ActiveRecord::Schema.define(version: 20160701062604) do
     t.string   "mime"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "article_id"
+    t.integer  "content_id"
     t.boolean  "itunes_metadata"
     t.string   "itunes_author"
     t.string   "itunes_subtitle"
@@ -125,7 +124,7 @@ ActiveRecord::Schema.define(version: 20160701062604) do
     t.string   "itunes_category"
     t.boolean  "itunes_explicit"
     t.integer  "blog_id",         null: false
-    t.index ["article_id"], name: "index_resources_on_article_id"
+    t.index ["content_id"], name: "index_resources_on_content_id"
   end
 
   create_table "sidebars", force: :cascade do |t|

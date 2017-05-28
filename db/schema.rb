@@ -10,17 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161030121548) do
+ActiveRecord::Schema.define(version: 20170528120220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "articles_tags", id: false, force: :cascade do |t|
-    t.integer "article_id"
-    t.integer "tag_id"
-    t.index ["article_id"], name: "index_articles_tags_on_article_id", using: :btree
-    t.index ["tag_id"], name: "index_articles_tags_on_tag_id", using: :btree
-  end
 
   create_table "blogs", force: :cascade do |t|
     t.text   "settings"
@@ -55,6 +48,13 @@ ActiveRecord::Schema.define(version: 20161030121548) do
     t.index ["published"], name: "index_contents_on_published", using: :btree
     t.index ["text_filter_id"], name: "index_contents_on_text_filter_id", using: :btree
     t.index ["user_id"], name: "index_contents_on_user_id", using: :btree
+  end
+
+  create_table "contents_tags", id: false, force: :cascade do |t|
+    t.integer "content_id"
+    t.integer "tag_id"
+    t.index ["content_id"], name: "index_contents_tags_on_content_id", using: :btree
+    t.index ["tag_id"], name: "index_contents_tags_on_tag_id", using: :btree
   end
 
   create_table "feedback", force: :cascade do |t|
@@ -118,7 +118,7 @@ ActiveRecord::Schema.define(version: 20161030121548) do
     t.string   "mime"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "article_id"
+    t.integer  "content_id"
     t.boolean  "itunes_metadata"
     t.string   "itunes_author"
     t.string   "itunes_subtitle"
@@ -128,7 +128,7 @@ ActiveRecord::Schema.define(version: 20161030121548) do
     t.string   "itunes_category"
     t.boolean  "itunes_explicit"
     t.integer  "blog_id",         null: false
-    t.index ["article_id"], name: "index_resources_on_article_id", using: :btree
+    t.index ["content_id"], name: "index_resources_on_content_id", using: :btree
   end
 
   create_table "sessions", force: :cascade do |t|

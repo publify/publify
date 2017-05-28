@@ -17,11 +17,8 @@ class Article < Content
   has_many :pings, dependent: :destroy
   has_many :trackbacks, dependent: :destroy
   has_many :feedback
-  has_many :resources, inverse_of: :article, dependent: :nullify
   has_many :triggers, as: :pending_item
   has_many :comments, dependent: :destroy
-
-  has_and_belongs_to_many :tags, join_table: 'articles_tags'
 
   before_create :create_guid
   before_save :set_published_at, :set_permalink

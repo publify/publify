@@ -15,6 +15,8 @@ class Content < ActiveRecord::Base
   has_one :redirect, dependent: :destroy, inverse_of: :contents
 
   has_many :triggers, as: :pending_item, dependent: :delete_all
+  has_many :resources, inverse_of: :content, dependent: :nullify
+  has_and_belongs_to_many :tags
 
   scope :user_id, ->(user_id) { where('user_id = ?', user_id) }
   scope :published, -> { where(published: true, published_at: Time.at(0)..Time.now).order('published_at DESC') }
