@@ -41,18 +41,18 @@ describe Tag, type: :model do
     expect(a.tags.sort_by(&:id)).to eq([foo, bar].sort_by(&:id))
   end
 
-  it 'find_all_with_article_counters finds 2 tags' do
+  it 'find_all_with_content_counters finds 2 tags' do
     a = create(:article, title: 'an article a')
     b = create(:article, title: 'an article b')
     c = create(:article, title: 'an article c')
-    create(:tag, name: 'foo', articles: [a, b, c])
-    create(:tag, name: 'bar', articles: [a, b])
-    tags = Tag.find_all_with_article_counters
+    create(:tag, name: 'foo', contents: [a, b, c])
+    create(:tag, name: 'bar', contents: [a, b])
+    tags = Tag.find_all_with_content_counters
     expect(tags.entries.size).to eq(2)
     expect(tags.first.name).to eq('foo')
-    expect(tags.first.article_counter).to eq(3)
+    expect(tags.first.content_counter).to eq(3)
     expect(tags.last.name).to eq('bar')
-    expect(tags.last.article_counter).to eq(2)
+    expect(tags.last.content_counter).to eq(2)
     expect(tags.first.blog).to eq blog
   end
 
@@ -67,8 +67,8 @@ describe Tag, type: :model do
     it 'should return only published articles' do
       published_art = FactoryGirl.create(:article)
       draft_art = FactoryGirl.create(:article, published_at: nil, published: false, state: 'draft')
-      art_tag = FactoryGirl.create(:tag, name: 'art', articles: [published_art, draft_art])
-      expect(art_tag.published_articles.size).to eq(1)
+      art_tag = FactoryGirl.create(:tag, name: 'art', contents: [published_art, draft_art])
+      expect(art_tag.published_contents.size).to eq(1)
     end
   end
 

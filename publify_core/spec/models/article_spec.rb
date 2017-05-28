@@ -208,8 +208,8 @@ describe Article, type: :model do
   it 'test_find_published_by_tag_name' do
     art1 = create(:article)
     art2 = create(:article)
-    create(:tag, name: 'foo', articles: [art1, art2])
-    articles = Tag.find_by(name: 'foo').published_articles
+    create(:tag, name: 'foo', contents: [art1, art2])
+    articles = Tag.find_by(name: 'foo').published_contents
     assert_equal 2, articles.size
   end
 

@@ -9,7 +9,7 @@ class XmlController < BaseController
 
     @items += Article.find_already_published(1000)
     @items += Page.find_already_published(1000)
-    @items += Tag.find_all_with_article_counters unless this_blog.unindex_tags
+    @items += Tag.find_all_with_content_counters unless this_blog.unindex_tags
 
     respond_to do |format|
       format.googlesitemap

@@ -10,14 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170528164322) do
-
-  create_table "articles_tags", id: false, force: :cascade do |t|
-    t.integer "article_id"
-    t.integer "tag_id"
-    t.index ["article_id"], name: "index_articles_tags_on_article_id"
-    t.index ["tag_id"], name: "index_articles_tags_on_tag_id"
-  end
+ActiveRecord::Schema.define(version: 20170528164423) do
 
   create_table "blogs", force: :cascade do |t|
     t.text   "settings"
@@ -52,6 +45,13 @@ ActiveRecord::Schema.define(version: 20170528164322) do
     t.index ["published"], name: "index_contents_on_published"
     t.index ["text_filter_id"], name: "index_contents_on_text_filter_id"
     t.index ["user_id"], name: "index_contents_on_user_id"
+  end
+
+  create_table "contents_tags", id: false, force: :cascade do |t|
+    t.integer "content_id"
+    t.integer "tag_id"
+    t.index ["content_id"], name: "index_contents_tags_on_content_id"
+    t.index ["tag_id"], name: "index_contents_tags_on_tag_id"
   end
 
   create_table "feedback", force: :cascade do |t|

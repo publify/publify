@@ -5,7 +5,7 @@ RSpec.describe TagsController, type: :controller do
     before do
       create(:blog)
       @tag = create(:tag)
-      @tag.articles << create(:article)
+      @tag.contents << create(:article)
     end
 
     describe 'normally' do
@@ -40,7 +40,7 @@ RSpec.describe TagsController, type: :controller do
     describe 'with some articles' do
       before do
         @articles = create_list :article, 2
-        @tag.articles << @articles
+        @tag.contents << @articles
       end
 
       it 'should be successful' do
@@ -97,7 +97,7 @@ RSpec.describe TagsController, type: :controller do
     let(:parsed_body) { Capybara.string(response.body) }
 
     before(:each) do
-      create(:tag, name: 'foo', articles: [create(:article)])
+      create(:tag, name: 'foo', contents: [create(:article)])
       get 'show', params: { id: 'foo' }
     end
 
@@ -138,7 +138,7 @@ RSpec.describe TagsController, type: :controller do
     it 'article in tag should be password protected' do
       create(:blog)
       article = create(:article, password: 'password')
-      create(:tag, name: 'foo', articles: [article])
+      create(:tag, name: 'foo', contents: [article])
       get 'show', params: { id: 'foo' }
       assert_select('input[id="article_password"]')
     end
@@ -148,7 +148,7 @@ RSpec.describe TagsController, type: :controller do
     before(:each) do
       @blog = create(:blog)
       @a = create(:article)
-      @foo = create(:tag, name: 'foo', articles: [@a])
+      @foo = create(:tag, name: 'foo', contents: [@a])
     end
 
     describe 'keywords' do

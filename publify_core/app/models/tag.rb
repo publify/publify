@@ -1,6 +1,6 @@
 class Tag < ActiveRecord::Base
   belongs_to :blog
-  has_and_belongs_to_many :articles, order: 'created_at DESC', join_table: 'articles_tags'
+  has_and_belongs_to_many :contents, order: 'created_at DESC'
 
   validates :name, uniqueness: { scope: :blog_id }
   validates :blog, presence: true
@@ -33,12 +33,12 @@ class Tag < ActiveRecord::Base
     self.name = display_name.to_url if display_name.present?
   end
 
-  def self.find_all_with_article_counters
-    Tag.joins(:articles).
+  def self.find_all_with_content_counters
+    Tag.joins(:contents).
       where(contents: { published: true }).
-      select(*Tag.column_names, 'COUNT(articles_tags.article_id) as article_counter').
+      select(*Tag.column_names, 'COUNT(contents_tags.content_id) as content_counter').
       group(*Tag.column_names).
-      order('article_counter DESC').limit(1000)
+      order('content_counter DESC').limit(1000)
   end
 
   def self.find_with_char(char)
@@ -49,8 +49,8 @@ class Tag < ActiveRecord::Base
     tags.map(&:display_name).sort.map { |name| name =~ / / ? "\"#{name}\"" : name }.join ', '
   end
 
-  def published_articles
-    articles.already_published
+  def published_contents
+    contents.already_published
   end
 
   def permalink

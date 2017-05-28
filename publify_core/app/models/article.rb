@@ -20,8 +20,6 @@ class Article < Content
   has_many :triggers, as: :pending_item
   has_many :comments, dependent: :destroy
 
-  has_and_belongs_to_many :tags, join_table: 'articles_tags'
-
   before_create :create_guid
   before_save :set_published_at, :set_permalink
   after_save :post_trigger, :keywords_to_tags, :shorten_url
