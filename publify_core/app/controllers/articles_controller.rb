@@ -8,7 +8,7 @@ class ArticlesController < ContentController
   helper :'admin/base'
 
   def index
-    conditions = this_blog.statuses_in_timeline ? ['type in (?, ?)', 'Article', 'Note'] : ['type = ?', 'Article']
+    wanted_types = this_blog.statuses_in_timeline ? ['Article', 'Note'] : ['Article']
 
     limit = this_blog.per_page(params[:format])
     articles_base = if params[:year].blank?
@@ -17,7 +17,7 @@ class ArticlesController < ContentController
                       this_blog.contents.published_at(params.values_at(:year, :month, :day))
                     end
     @articles = articles_base.includes(:user).
-      where(conditions).page(params[:page]).per(limit)
+      where(type: wanted_types).page(params[:page]).per(limit)
 
     respond_to do |format|
       format.html do
