@@ -16,7 +16,7 @@ class ArticlesController < ContentController
                     else
                       this_blog.contents.published_at(params.values_at(:year, :month, :day))
                     end
-    @articles = articles_base.includes(:user).
+    @articles = articles_base.includes(:user, :resources).
       where(type: wanted_types).page(params[:page]).per(limit)
 
     respond_to do |format|
