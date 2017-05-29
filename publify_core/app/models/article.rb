@@ -25,7 +25,6 @@ class Article < Content
   after_save :post_trigger, :keywords_to_tags, :shorten_url
   after_save :send_notifications
 
-  scope :drafts, -> { where(state: 'draft').order('created_at DESC') }
   scope :child_of, ->(article_id) { where(parent_id: article_id) }
   scope :published_since, ->(time) {
     published.where('published_at > ?', time).order('published_at DESC')

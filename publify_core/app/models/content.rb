@@ -29,7 +29,7 @@ class Content < ActiveRecord::Base
     order('published_at DESC')
   }
   scope :not_published, -> { where(published: false) }
-  scope :draft, -> { where(state: 'draft') }
+  scope :drafts, -> { where(state: 'draft').order('created_at DESC') }
   scope :no_draft, -> { where.not(state: 'draft').order('published_at DESC') }
   scope :searchstring, lambda { |search_string|
     tokens = search_string.split(' ').map { |c| "%#{c.downcase}%" }
