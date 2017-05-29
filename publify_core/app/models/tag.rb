@@ -50,7 +50,7 @@ class Tag < ActiveRecord::Base
   end
 
   def published_contents
-    contents.already_published
+    contents.published
   end
 
   def permalink

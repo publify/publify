@@ -21,7 +21,7 @@ class Content < ActiveRecord::Base
   scope :user_id, ->(user_id) { where('user_id = ?', user_id) }
   scope :published, -> {
     where(published: true, published_at: Time.at(0)..Time.now).
-    order('published_at DESC')
+    order(default_order)
   }
   scope :published_at, ->(time_params) {
     published.
@@ -35,9 +35,6 @@ class Content < ActiveRecord::Base
     tokens = search_string.split(' ').map { |c| "%#{c.downcase}%" }
     where('state = ? AND ' + (['(LOWER(body) LIKE ? OR LOWER(extended) LIKE ? OR LOWER(title) LIKE ?)'] * tokens.size).join(' AND '),
           'published', *tokens.map { |token| [token] * 3 }.flatten)
-  }
-  scope :already_published, -> {
-    where('published = ? AND published_at < ?', true, Time.now).order(default_order)
   }
 
   scope :published_at_like, ->(date_at) { where(published_at: PublifyTime.delta_like(date_at)) }
@@ -85,8 +82,8 @@ class Content < ActiveRecord::Base
     end
   end
 
-  def self.find_already_published(_limit)
-    where('published_at < ?', Time.now).limit(1000).order('created_at DESC')
+  def self.find_already_published(limit)
+    published.limit(limit)
   end
 
   def self.search_with(params)
