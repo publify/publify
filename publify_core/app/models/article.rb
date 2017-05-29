@@ -25,12 +25,15 @@ class Article < Content
   after_save :post_trigger, :keywords_to_tags, :shorten_url
   after_save :send_notifications
 
-  scope :drafts, -> { where(state: 'draft').order('created_at DESC') }
   scope :child_of, ->(article_id) { where(parent_id: article_id) }
-  scope :published_at, ->(time_params) { published.where(published_at: PublifyTime.delta(*time_params)).order('published_at DESC') }
-  scope :published_since, ->(time) { published.where('published_at > ?', time).order('published_at DESC') }
+  scope :published_since, ->(time) {
+    published.where('published_at > ?', time).order('published_at DESC')
+  }
   scope :withdrawn, -> { where(state: 'withdrawn').order('published_at DESC') }
-  scope :pending, -> { where('state = ? and published_at > ?', 'publication_pending', Time.now).order('published_at DESC') }
+  scope :pending, -> {
+    where('state = ? and published_at > ?', 'publication_pending', Time.now).
+    order('published_at DESC')
+  }
 
   scope :bestof, lambda {
     joins(:feedback).

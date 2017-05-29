@@ -19,17 +19,23 @@ class Content < ActiveRecord::Base
   has_and_belongs_to_many :tags
 
   scope :user_id, ->(user_id) { where('user_id = ?', user_id) }
-  scope :published, -> { where(published: true, published_at: Time.at(0)..Time.now).order('published_at DESC') }
-  scope :published_at, ->(time_params) { published.where(published_at: PublifyTime.delta(*time_params)).order('published_at DESC') }
-  scope :not_published, -> { where('published = ?', false) }
-  scope :draft, -> { where('state = ?', 'draft') }
-  scope :no_draft, -> { where('state <> ?', 'draft').order('published_at DESC') }
+  scope :published, -> {
+    where(published: true, published_at: Time.at(0)..Time.now).
+    order(default_order)
+  }
+  scope :published_at, ->(time_params) {
+    published.
+    where(published_at: PublifyTime.delta(*time_params)).
+    order('published_at DESC')
+  }
+  scope :not_published, -> { where(published: false) }
+  scope :drafts, -> { where(state: 'draft').order('created_at DESC') }
+  scope :no_draft, -> { where.not(state: 'draft').order('published_at DESC') }
   scope :searchstring, lambda { |search_string|
     tokens = search_string.split(' ').map { |c| "%#{c.downcase}%" }
     where('state = ? AND ' + (['(LOWER(body) LIKE ? OR LOWER(extended) LIKE ? OR LOWER(title) LIKE ?)'] * tokens.size).join(' AND '),
           'published', *tokens.map { |token| [token] * 3 }.flatten)
   }
-  scope :already_published, -> { where('published = ? AND published_at < ?', true, Time.now).order(default_order) }
 
   scope :published_at_like, ->(date_at) { where(published_at: PublifyTime.delta_like(date_at)) }
 
@@ -76,8 +82,8 @@ class Content < ActiveRecord::Base
     end
   end
 
-  def self.find_already_published(_limit)
-    where('published_at < ?', Time.now).limit(1000).order('created_at DESC')
+  def self.find_already_published(limit)
+    published.limit(limit)
   end
 
   def self.search_with(params)

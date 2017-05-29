@@ -17,11 +17,7 @@ class Page < Content
   content_fields :body
 
   def self.default_order
-    'name ASC'
-  end
-
-  def self.search_with(search_hash)
-    super(search_hash).order('title ASC')
+    'title ASC'
   end
 
   def permalink_url(anchor = nil, only_path = false)
