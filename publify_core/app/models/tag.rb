@@ -35,7 +35,7 @@ class Tag < ActiveRecord::Base
 
   def self.find_all_with_content_counters
     Tag.joins(:contents).
-      where(contents: { published: true }).
+      where(contents: { state: 'published' }).
       select(*Tag.column_names, 'COUNT(contents_tags.content_id) as content_counter').
       group(*Tag.column_names).
       order('content_counter DESC').limit(1000)

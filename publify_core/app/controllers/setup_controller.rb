@@ -43,13 +43,13 @@ class SetupController < BaseController
                               body: I18n.t('setup.article.body'),
                               allow_comments: 1,
                               allow_pings: 1,
-                              published: 1,
+                              state: 'published',
                               user: user)
   end
 
   def create_first_page(user)
     this_blog.pages.create(name: 'about',
-                           published: true,
+                           state: 'published',
                            title: I18n.t('setup.page.about'),
                            user: user,
                            body: I18n.t('setup.page.body'))

@@ -90,7 +90,7 @@ class ArticlesController < ContentController
 
   def archives
     limit = this_blog.limit_archives_display
-    @articles = this_blog.published_articles.page(params[:page]).per(limit)
+    @articles = this_blog.published_articles.includes(:tags).page(params[:page]).per(limit)
     @page_title = this_blog.archives_title_template.to_title(@articles, this_blog, params)
     @keywords = this_blog.meta_keywords
     @description = this_blog.archives_desc_template.to_title(@articles, this_blog, params)

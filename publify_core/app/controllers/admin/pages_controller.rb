@@ -16,8 +16,8 @@ class Admin::PagesController < Admin::BaseController
   def new
     @page = Page.new
     @page.text_filter ||= default_textfilter
-    @page.published = true
     @page.user_id = current_user.id
+    @page.state = 'published'
   end
 
   def edit
@@ -78,6 +78,6 @@ class Admin::PagesController < Admin::BaseController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def page_params
-    params.require(:page).permit(:title, :body, :name, :published, :text_filter)
+    params.require(:page).permit(:title, :body, :name, :state, :text_filter)
   end
 end

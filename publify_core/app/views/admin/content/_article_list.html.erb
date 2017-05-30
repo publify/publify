@@ -8,7 +8,7 @@
 <% for article in @articles %>
   <tr>
     <td>
-      <% if article.published %>
+      <% if article.published? %>
         <%= link_to_permalink(article, article.title, nil, 'published')%>
       <% else %>
         <%= link_to(article.title, {controller: '/articles', action: "preview", id: article.id}, {class: 'unpublished', target: '_new'}) %>

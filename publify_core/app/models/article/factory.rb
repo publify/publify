@@ -11,7 +11,7 @@ class Article::Factory
       art.allow_comments = blog.default_allow_comments
       art.allow_pings = blog.default_allow_pings
       art.text_filter = user.default_text_filter
-      art.published = true
+      art.state = 'just_published'
     end
   end
 

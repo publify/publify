@@ -86,7 +86,7 @@
               </p>
               <div id="status" class="collapse">
                 <label for="article_published" class="checkbox">
-                  <%= check_box 'article', 'published'  %>
+                  <%= check_box 'article', 'published?'  %>
                   <%= t('.published') %>
                 </label>
                 <p>
@@ -121,7 +121,7 @@
               <p>
                 <%= t('.published') %>
                 <strong>
-                  <% if @article.published %>
+                  <% if @article.published? %>
                     <%= display_date_and_time(@article.published_at) %>
                   <% else %>
                     <%= t('.now') %>

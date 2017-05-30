@@ -36,6 +36,7 @@ class Trigger < ActiveRecord::Base
     end
   end
 
+  # TODO: Ensure errors bubble up to where they are visible
   before_destroy :trigger_pending_item
 
   def trigger_pending_item

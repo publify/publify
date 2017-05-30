@@ -261,7 +261,6 @@ FactoryGirl.define do
     updated_at '2005-05-05 01:00:01'
     user
     blog { Blog.first || create(:blog) }
-    published true
     state 'published'
   end
 
@@ -271,7 +270,6 @@ FactoryGirl.define do
     published_at '2013-07-14 01:00:01'
     updated_at '2013-07-14 01:00:01'
     user
-    published true
     state 'published'
     association :text_filter, factory: :markdown
     guid

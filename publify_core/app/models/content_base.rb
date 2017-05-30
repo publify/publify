@@ -65,7 +65,7 @@ module ContentBase
   end
 
   def publish!
-    self.published = true
+    self.state = 'published'
     save!
   end
 

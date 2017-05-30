@@ -231,14 +231,9 @@ describe Article, type: :model do
 
   it 'test_future_publishing' do
     assert_sets_trigger(blog.articles.create!(title: 'title', body: 'body',
-                                              published: true,
-                                              published_at: Time.now + 4.seconds))
+                                              published_at: Time.now + 2.seconds))
   end
 
-  it 'test_future_publishing_without_published_flag' do
-    assert_sets_trigger blog.articles.create!(title: 'title', body: 'body',
-                                              published_at: Time.now + 4.seconds)
-  end
   it 'test_triggers_are_dependent' do
     # TODO: Needs a fix for Rails ticket #5105: has_many: Dependent deleting does not work with STI
     skip
@@ -252,14 +247,15 @@ describe Article, type: :model do
   def assert_sets_trigger(art)
     assert_equal 1, Trigger.count
     assert Trigger.where(pending_item_id: art.id).first
-    assert !art.published
+    assert !art.published?
     t = Time.now
     # We stub the Time.now answer to emulate a sleep of 4. Avoid the sleep. So
     # speed up in test
     allow(Time).to receive(:now).and_return(t + 5.seconds)
     Trigger.fire
-    art.reload
-    assert art.published
+    # FIXME: Have state object always follow the state attribute
+    art = Article.find(art.id)
+    assert art.published?
   end
 
   it 'test_destroy_file_upload_associations' do

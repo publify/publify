@@ -27,7 +27,7 @@ class ArchivesSidebar < Sidebar
     # DB-specific code.
     date_func = self.class.date_func
 
-    article_counts = Content.find_by_sql(["select count(*) as count, #{date_func} from contents where type='Article' and published = ? and published_at < ? group by year,month order by year desc,month desc limit ? ", true, Time.now, count.to_i])
+    article_counts = Content.find_by_sql(["select count(*) as count, #{date_func} from contents where type='Article' and state = 'published' and published_at < ? group by year,month order by year desc,month desc limit ? ", Time.now, count.to_i])
 
     @archives = article_counts.map do |entry|
       month = entry.month.to_i

@@ -11,7 +11,6 @@ describe Article::Builder, type: :model do
     it { expect(new_article.allow_comments).to eq(blog.default_allow_comments) }
     it { expect(new_article.allow_pings).to eq(blog.default_allow_pings) }
     it { expect(new_article.text_filter).to eq(user.default_text_filter) }
-    it { expect(new_article.published).to be_truthy }
 
     it 'does not attempt to validate the article' do
       expect(new_article.errors).to be_empty
@@ -29,7 +28,6 @@ describe Article::Builder, type: :model do
 
       it { expect(new_article).to be_kind_of(Article) }
       it { expect(new_article.id).to be_nil }
-      it { expect(new_article.published).to be_truthy }
       it { expect(new_article.allow_pings).to eq(blog.default_allow_pings) }
       it { expect(new_article.allow_comments).to eq(blog.default_allow_comments) }
       it { expect(new_article.text_filter).to eq(user.default_text_filter) }

@@ -115,7 +115,7 @@ class Admin::ContentController < Admin::BaseController
   protected
 
   def get_fresh_or_existing_draft_for_article
-    if @article.published && @article.id
+    if @article.published? && @article.id
       parent_id = @article.id
       @article =
         this_blog.articles.drafts.child_of(parent_id).first || this_blog.articles.build
@@ -146,7 +146,7 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def update_article_attributes
-    @article.attributes = update_params
+    @article.assign_attributes(update_params)
     @article.author = current_user
     @article.save_attachments!(params[:attachments])
     @article.state = 'draft' if @article.draft

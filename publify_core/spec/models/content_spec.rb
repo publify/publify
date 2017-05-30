@@ -27,7 +27,8 @@ describe Content, type: :model do
       let(:content) do
         build_stubbed(:content,
                       blog: blog,
-                      published: true,
+                      state: 'published',
+                      published_at: 1.day.ago,
                       redirect: redirect)
       end
 
@@ -70,7 +71,7 @@ describe Content, type: :model do
       end
     end
 
-    describe '#search_posts_with' do
+    describe '#search_with' do
       context 'with an simple article' do
         subject { Content.search_with(params) }
 

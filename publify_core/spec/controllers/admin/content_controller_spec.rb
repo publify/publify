@@ -450,7 +450,7 @@ describe Admin::ContentController, type: :controller do
 
         it 'leaves the original published' do
           @orig.reload
-          expect(@orig.published).to eq(true)
+          expect(@orig).to be_published
         end
 
         it 'leaves the original as is' do

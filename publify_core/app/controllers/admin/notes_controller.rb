@@ -20,7 +20,7 @@ class Admin::NotesController < Admin::BaseController
   def create
     note = new_note
 
-    note.published = true
+    note.state = 'published'
     note.attributes = params[:note].permit!
     note.text_filter ||= current_user.default_text_filter
     note.published_at ||= Time.now

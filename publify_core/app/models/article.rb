@@ -21,7 +21,7 @@ class Article < Content
   has_many :comments, dependent: :destroy
 
   before_create :create_guid
-  before_save :set_published_at, :set_permalink
+  before_save :set_permalink
   after_save :post_trigger, :keywords_to_tags, :shorten_url
   after_save :send_notifications
 
@@ -38,7 +38,7 @@ class Article < Content
   scope :bestof, lambda {
     joins(:feedback).
       where('feedback.published' => true, 'feedback.type' => 'Comment',
-            'contents.published' => true).
+            'contents.state' => 'published').
       group('contents.id').
       order('count(feedback.id) DESC').
       select('contents.*, count(feedback.id) as comment_count').
@@ -271,14 +271,6 @@ class Article < Content
       urls_to_ping << pings.build('url' => url_to_ping)
     end
     urls_to_ping
-  end
-
-  protected
-
-  def set_published_at
-    if published && self[:published_at].nil?
-      self[:published_at] = created_at || Time.now
-    end
   end
 
   private

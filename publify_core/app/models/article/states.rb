@@ -28,7 +28,6 @@ module Article::States
   class New < Base
     def enter_hook
       super
-      content[:published] = false
       content[:published_at] = nil
     end
 
@@ -60,7 +59,6 @@ module Article::States
   class Published < Base
     def enter_hook
       super
-      content[:published] = true
       content[:published_at] ||= Time.now
     end
 
@@ -97,11 +95,6 @@ module Article::States
   end
 
   class Withdrawn < Base
-    def enter_hook
-      super
-      content[:published] = false
-    end
-
     def published=(boolean)
       return unless boolean
       content.state = :published
@@ -118,13 +111,12 @@ module Article::States
   class PublicationPending < Base
     def enter_hook
       super
-      content[:published] = false if content.new_record?
     end
 
     def published=(published)
-      content[:published] = published
+      return unless published
 
-      if published && content.published_at <= Time.now
+      if content.published_at <= Time.now
         content.state = :just_published
       end
     end
@@ -151,7 +143,6 @@ module Article::States
   class Draft < Base
     def enter_hook
       super
-      content[:published] = false
       content[:published_at] = nil
     end
 

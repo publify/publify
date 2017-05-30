@@ -37,7 +37,7 @@ describe Admin::PagesController, type: :controller do
       it { expect(assigns(:page)).to_not be_nil }
       it { expect(assigns(:page).user).to eq(user) }
       it { expect(assigns(:page).text_filter.name).to eq('textile') }
-      it { expect(assigns(:page).published).to be_truthy }
+      it { expect(assigns(:page)).to be_published }
     end
   end
 
@@ -46,8 +46,8 @@ describe Admin::PagesController, type: :controller do
       def base_page(options = {})
         { title: 'posted via tests!',
           body: 'A good body',
-          name: 'posted-via-tests',
-          published: true }.merge(options)
+          state: 'published',
+          name: 'posted-via-tests' }.merge(options)
       end
 
       context 'simple' do
@@ -69,7 +69,7 @@ describe Admin::PagesController, type: :controller do
       end
 
       it 'should create an unpublished page without a redirect' do
-        post :create, params: { 'page' => base_page(state: :unpublished, published: false) }
+        post :create, params: { 'page' => base_page(state: :unpublished) }
         expect(assigns(:page).redirect).to be_nil
       end
 

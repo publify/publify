@@ -1,40 +1,39 @@
 require 'rails_helper'
 
 describe Trigger, type: :model do
-  before(:each) do
-    FactoryGirl.create :blog
-    @page = FactoryGirl.create :page, published: false
-  end
+  describe '.post_action' do
+    before(:each) do
+      create :blog
+      @page = create :page, state: 'draft'
+      expect(@page).not_to be_published
+    end
 
-  it '.post_action should not fire immediately for future triggers' do
-    expect(@page).not_to be_published
+    it 'does not fire immediately for future triggers' do
+      Trigger.post_action(Time.now + 2, @page, 'publish!')
+      expect(Trigger.count).to eq(1)
+      Trigger.fire
+      expect(Trigger.count).to eq(1)
 
-    Trigger.post_action(Time.now + 2, @page, 'publish!')
-    expect(Trigger.count).to eq(1)
-    Trigger.fire
-    expect(Trigger.count).to eq(1)
+      @page.reload
+      expect(@page).not_to be_published
 
-    @page.reload
-    expect(@page).not_to be_published
+      # Stub Time.now to emulate sleep.
+      t = Time.now
+      allow(Time).to receive(:now).and_return(t + 5.seconds)
+      Trigger.fire
+      expect(Trigger.count).to eq(0)
 
-    # Stub Time.now to emulate sleep.
-    t = Time.now
-    allow(Time).to receive(:now).and_return(t + 5.seconds)
-    Trigger.fire
-    expect(Trigger.count).to eq(0)
+      @page.reload
+      expect(@page).to be_published
+    end
 
-    @page.reload
-    expect(@page).to be_published
-  end
+    it 'fires immediately if the target time is <= now' do
+      Trigger.post_action(Time.now, @page, 'publish!')
+      expect(Trigger.count).to eq(0)
 
-  it '.post_action should fire immediately if the target time is <= now' do
-    expect(@page).not_to be_published
-
-    Trigger.post_action(Time.now, @page, 'publish!')
-    expect(Trigger.count).to eq(0)
-
-    @page.reload
-    expect(@page).to be_published
+      @page.reload
+      expect(@page).to be_published
+    end
   end
 
   describe '.remove' do

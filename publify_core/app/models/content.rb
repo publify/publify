@@ -20,7 +20,7 @@ class Content < ActiveRecord::Base
 
   scope :user_id, ->(user_id) { where('user_id = ?', user_id) }
   scope :published, -> {
-    where(published: true, published_at: Time.at(0)..Time.now).
+    where(state: 'published', published_at: Time.at(0)..Time.now).
     order(default_order)
   }
   scope :published_at, ->(time_params) {
@@ -28,7 +28,7 @@ class Content < ActiveRecord::Base
     where(published_at: PublifyTime.delta(*time_params)).
     order('published_at DESC')
   }
-  scope :not_published, -> { where(published: false) }
+  scope :not_published, -> { where.not(state: 'published') }
   scope :drafts, -> { where(state: 'draft').order('created_at DESC') }
   scope :no_draft, -> { where.not(state: 'draft').order('published_at DESC') }
   scope :searchstring, lambda { |search_string|
@@ -50,6 +50,10 @@ class Content < ActiveRecord::Base
     end
   end
 
+  def published?
+    attributes['state'] == 'published'
+  end
+
   # Set the text filter for this object.
   # NOTE: Due to how Rails injects association methods, this cannot be put in ContentBase
   # TODO: Allowing assignment of a string here is not very clean.
@@ -68,7 +72,7 @@ class Content < ActiveRecord::Base
   end
 
   def shorten_url
-    return unless published
+    return unless published?
 
     if redirect.present?
       return if redirect.to_path == permalink_url
@@ -82,6 +86,7 @@ class Content < ActiveRecord::Base
     end
   end
 
+  # TODO: Inline this method
   def self.find_already_published(limit)
     published.limit(limit)
   end
@@ -136,7 +141,7 @@ class Content < ActiveRecord::Base
 
   def short_url
     # Double check because of crappy data in my own old database
-    return unless published && redirect.present?
+    return unless published? && redirect.present?
     redirect.from_url
   end
 end

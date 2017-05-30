@@ -13,9 +13,7 @@ class Blog < ActiveRecord::Base
   has_many :articles
   has_many :feedback, through: :articles
 
-  has_many(:published_articles,
-           ->() { includes(:tags).where(published: true).order('contents.published_at DESC') },
-           class_name: 'Article')
+  has_many :published_articles, ->() { published }, class_name: 'Article'
 
   has_many :pages
   has_many :tags
