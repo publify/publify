@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170528120220) do
+ActiveRecord::Schema.define(version: 20170530063901) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(version: 20170528120220) do
     t.integer  "text_filter_id"
     t.text     "whiteboard"
     t.string   "name"
-    t.boolean  "published",      default: false
     t.boolean  "allow_pings"
     t.boolean  "allow_comments"
     t.datetime "published_at"
@@ -45,7 +44,6 @@ ActiveRecord::Schema.define(version: 20170528120220) do
     t.string   "post_type",      default: "read"
     t.integer  "blog_id",                         null: false
     t.index ["id", "type"], name: "index_contents_on_id_and_type", using: :btree
-    t.index ["published"], name: "index_contents_on_published", using: :btree
     t.index ["text_filter_id"], name: "index_contents_on_text_filter_id", using: :btree
     t.index ["user_id"], name: "index_contents_on_user_id", using: :btree
   end
