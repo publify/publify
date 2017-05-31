@@ -19,7 +19,7 @@ installer/rails_installer.yml
 /public/stylesheets/all.css
 /publify_core/spec/dummy/public/files
 tmp/*
-/coverage/
+coverage/
 nbproject
 public/cache/*
 Gemfile.lock
