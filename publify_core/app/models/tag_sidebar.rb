@@ -5,16 +5,16 @@ class TagSidebar < Sidebar
   setting :maximum_tags, 20
 
   def tags
-    @tags ||= Tag.find_all_with_article_counters.
+    @tags ||= Tag.find_all_with_content_counters.
       take(maximum_tags.to_i).sort_by(&:name)
   end
 
   def sizes
     return @sizes if @sizes
-    total = @tags.reduce(0) { |sum, tag| sum + tag.article_counter }
+    total = tags.reduce(0) { |sum, tag| sum + tag.content_counter }
     average = total.to_f / @tags.size.to_f
-    @sizes = @tags.reduce({}) do |h, tag|
-      size = tag.article_counter.to_f / average
+    @sizes = tags.reduce({}) do |h, tag|
+      size = tag.content_counter.to_f / average
       h.merge tag => [[2.0 / 3.0, size].max, 2].min * 100
     end
   end
