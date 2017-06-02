@@ -121,7 +121,7 @@
               <p>
                 <%= t('.published') %>
                 <strong>
-                  <% if @article.published? %>
+                  <% if @article.published_at.present? %>
                     <%= display_date_and_time(@article.published_at) %>
                   <% else %>
                     <%= t('.now') %>
