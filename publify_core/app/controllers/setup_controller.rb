@@ -38,13 +38,12 @@ class SetupController < BaseController
   private
 
   def create_first_post(user)
-    this_blog.articles.create(title: I18n.t('setup.article.title'),
-                              author: user.login,
-                              body: I18n.t('setup.article.body'),
-                              allow_comments: 1,
-                              allow_pings: 1,
-                              state: 'published',
-                              user: user)
+    this_blog.articles.build(title: I18n.t('setup.article.title'),
+                             author: user.login,
+                             body: I18n.t('setup.article.body'),
+                             allow_comments: 1,
+                             allow_pings: 1,
+                             user: user).publish!
   end
 
   def create_first_page(user)

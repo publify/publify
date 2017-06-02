@@ -79,7 +79,7 @@ describe Admin::ContentController, type: :controller do
     end
 
     context 'second call to save' do
-      let!(:draft) { create(:article, published: false, state: 'draft') }
+      let!(:draft) { create(:article, state: 'draft') }
 
       it 'does not create an extra draft' do
         expect do
@@ -89,7 +89,7 @@ describe Admin::ContentController, type: :controller do
     end
 
     context 'with an other existing draft' do
-      let!(:draft) { create(:article, published: false, state: 'draft', body: 'existing body') }
+      let!(:draft) { create(:article, state: 'draft', body: 'existing body') }
 
       it 'creates a new draft Article' do
         expect do
@@ -149,7 +149,7 @@ describe Admin::ContentController, type: :controller do
         assert_equal 2, new_article.tags.size
       end
 
-      it 'should create an article with a uniq Tag instace named lang:FR' do
+      it 'should create an article with a unique Tag instance named lang:FR' do
         post :create, params: { 'article' => base_article(keywords: 'lang:FR') }
         new_article = Article.last
         expect(new_article.tags.map(&:name).include?('lang-fr')).to be_truthy
@@ -186,7 +186,7 @@ describe Admin::ContentController, type: :controller do
 
       context 'with a previously autosaved draft' do
         before do
-          @draft = create(:article, body: 'draft', state: 'draft', published: false)
+          @draft = create(:article, body: 'draft', state: 'draft')
           post :create, params: { article: { id: @draft.id, body: 'update', published: true } }
         end
 
@@ -370,8 +370,8 @@ describe Admin::ContentController, type: :controller do
       context 'when a published article has drafts' do
         let(:original_published_at) { 2.days.ago.to_date }
         let!(:original) { create(:article, published_at: original_published_at) }
-        let!(:draft) { create(:article, parent_id: original.id, state: 'draft', published: false) }
-        let!(:second_draft) { create(:article, parent_id: original.id, state: 'draft', published: false) }
+        let!(:draft) { create(:article, parent_id: original.id, state: 'draft') }
+        let!(:second_draft) { create(:article, parent_id: original.id, state: 'draft') }
 
         describe 'publishing the published article' do
           before do
@@ -403,7 +403,7 @@ describe Admin::ContentController, type: :controller do
           before do
             put(:update, params: {
                   id: draft.id,
-                  article: { id: draft.id, body: 'update', published_at: '' }
+                  article: { id: draft.id, body: 'update' }
                 })
           end
 

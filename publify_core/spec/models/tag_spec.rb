@@ -66,7 +66,7 @@ describe Tag, type: :model do
   describe '#published_articles' do
     it 'should return only published articles' do
       published_art = FactoryGirl.create(:article)
-      draft_art = FactoryGirl.create(:article, published_at: nil, published: false, state: 'draft')
+      draft_art = FactoryGirl.create(:article, published_at: nil, state: 'draft')
       art_tag = FactoryGirl.create(:tag, name: 'art', contents: [published_art, draft_art])
       expect(art_tag.published_contents.size).to eq(1)
     end

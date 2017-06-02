@@ -118,11 +118,6 @@ class Content < ActiveRecord::Base
     self[:whiteboard] ||= {}
   end
 
-  def withdraw!
-    withdraw
-    save!
-  end
-
   def link_to_author?
     user.email.present? && blog.link_to_author
   end

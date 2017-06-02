@@ -61,7 +61,6 @@ FactoryGirl.define do
     published_at DateTime.new(2005, 1, 1, 2, 0, 0)
     user
     allow_comments true
-    published true
     state :published
     allow_pings true
     association :text_filter, factory: :textile
@@ -80,9 +79,7 @@ FactoryGirl.define do
   end
 
   factory :unpublished_article, parent: :article do
-    # FIXME: There are too many fields involved here.
     published_at nil
-    published false
     state :draft
   end
 

@@ -103,13 +103,13 @@ describe Content, type: :model do
         context 'with not published status article' do
           let(:params) { { published: '0' } }
           let!(:article) { create(:article) }
-          let!(:match_article) { create(:article, published: false, state: 'draft') }
+          let!(:match_article) { create(:article, state: 'draft') }
           it { expect(subject).to eq([match_article]) }
         end
 
         context 'with published status article' do
           let(:params) { { published: '1' } }
-          let!(:article) { create(:article, published: true) }
+          let!(:article) { create(:article) }
           it { expect(subject).to eq([article]) }
         end
       end

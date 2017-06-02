@@ -85,7 +85,8 @@ class ArticlesController < ContentController
     end
 
     r = Redirect.find_by!(from_path: from)
-    return redirect_to r.full_to_path, status: 301 if r # Let redirection made outside of the blog on purpose (deal with it, Brakeman!)
+    # TODO: If linked to article, directly redirect to the article.
+    redirect_to r.full_to_path, status: 301 if r # Let redirection made outside of the blog on purpose (deal with it, Brakeman!)
   end
 
   def archives
