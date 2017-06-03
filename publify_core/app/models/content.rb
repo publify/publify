@@ -19,10 +19,7 @@ class Content < ActiveRecord::Base
   has_and_belongs_to_many :tags
 
   scope :user_id, ->(user_id) { where('user_id = ?', user_id) }
-  scope :published, -> {
-    where(state: 'published', published_at: Time.at(0)..Time.now).
-    order(default_order)
-  }
+  scope :published, -> { where(state: 'published'). order(default_order) }
   scope :published_at, ->(time_params) {
     published.
     where(published_at: PublifyTime.delta(*time_params)).

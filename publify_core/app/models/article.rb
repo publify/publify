@@ -27,13 +27,10 @@ class Article < Content
 
   scope :child_of, ->(article_id) { where(parent_id: article_id) }
   scope :published_since, ->(time) {
-    published.where('published_at > ?', time).order('published_at DESC')
+    published.where('published_at > ?', time).order(default_order)
   }
-  scope :withdrawn, -> { where(state: 'withdrawn').order('published_at DESC') }
-  scope :pending, -> {
-    where('state = ? and published_at > ?', 'publication_pending', Time.now).
-    order('published_at DESC')
-  }
+  scope :withdrawn, -> { where(state: 'withdrawn').order(default_order) }
+  scope :pending, -> { where(state: 'publication_pending'). order(default_order) }
 
   scope :bestof, lambda {
     joins(:feedback).
@@ -67,18 +64,18 @@ class Article < Content
 
     event :publish do
       before do
-        self.published_at ||= Time.now
+        self.published_at ||= Time.zone.now
       end
 
       transitions from: [:new, :draft], to: :publication_pending do
         guard do
-          published_at > Time.now
+          published_at > Time.zone.now
         end
       end
 
       transitions from: [:new, :draft, :publication_pending], to: :published do
         guard do
-          published_at <= Time.now
+          published_at <= Time.zone.now
         end
       end
     end

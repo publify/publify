@@ -126,14 +126,14 @@ class Admin::ContentController < Admin::BaseController
   protected
 
   def get_fresh_or_existing_draft_for_article
-    if @article.published? && @article.id
-      parent_id = @article.id
-      @article =
-        this_blog.articles.drafts.child_of(parent_id).first || this_blog.articles.build
-      @article.allow_comments = this_blog.default_allow_comments
-      @article.allow_pings = this_blog.default_allow_pings
-      @article.parent_id = parent_id
-    end
+    return unless @article.published? && @article.id
+
+    parent_id = @article.id
+    @article =
+      this_blog.articles.drafts.child_of(parent_id).first || this_blog.articles.build
+    @article.allow_comments = this_blog.default_allow_comments
+    @article.allow_pings = this_blog.default_allow_pings
+    @article.parent_id = parent_id
   end
 
   attr_accessor :resources, :resource
