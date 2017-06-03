@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'timecop'
 
 describe Trigger, type: :model do
   describe '.post_action' do
@@ -9,7 +10,7 @@ describe Trigger, type: :model do
     end
 
     it 'does not fire immediately for future triggers' do
-      Trigger.post_action(Time.now + 2, @page, 'publish!')
+      Trigger.post_action(2.seconds.from_now, @page, 'publish!')
       expect(Trigger.count).to eq(1)
       Trigger.fire
       expect(Trigger.count).to eq(1)
@@ -17,10 +18,10 @@ describe Trigger, type: :model do
       @page.reload
       expect(@page).not_to be_published
 
-      # Stub Time.now to emulate sleep.
-      t = Time.now
-      allow(Time).to receive(:now).and_return(t + 5.seconds)
-      Trigger.fire
+      Timecop.freeze(4.seconds.from_now) do
+        Trigger.fire
+      end
+
       expect(Trigger.count).to eq(0)
 
       @page.reload

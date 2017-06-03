@@ -58,10 +58,7 @@ describe Note, type: :model do
 
     describe 'scopes' do
       describe '#published' do
-        let(:now) { DateTime.new(2012, 5, 20, 14, 23) }
-        let(:note) { create(:note, published_at: now - 1.minute) }
-
-        before(:each) { allow(Time).to receive(:now).and_return(now) }
+        let(:note) { create(:note, published_at: 1.minute.ago) }
 
         context 'with a unpubilshed note' do
           let(:unpublished_note) { create(:unpublished_note) }
@@ -69,7 +66,7 @@ describe Note, type: :model do
         end
 
         context 'with a note to publish later' do
-          let(:later_note) { create(:note, published_at: now + 3.days) }
+          let(:later_note) { create(:note, published_at: 3.days.from_now) }
           it { expect(Note.published).to eq([note]) }
         end
       end

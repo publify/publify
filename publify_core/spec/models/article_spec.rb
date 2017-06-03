@@ -1,6 +1,7 @@
 # coding: utf-8
 
 require 'rails_helper'
+require 'timecop'
 
 describe Article, type: :model do
   let(:blog) { create(:blog) }
@@ -214,7 +215,7 @@ describe Article, type: :model do
 
   it 'test_future_publishing' do
     art = blog.articles.build(title: 'title', body: 'body',
-                              published_at: Time.now + 2.seconds)
+                              published_at: 2.seconds.from_now)
     art.publish!
 
     expect(art).to be_publication_pending
@@ -222,11 +223,9 @@ describe Article, type: :model do
     assert_equal 1, Trigger.count
     assert Trigger.where(pending_item_id: art.id).first
     assert !art.published?
-    t = Time.now
-    # We stub the Time.now answer to emulate a sleep of 4. Avoid the sleep. So
-    # speed up in test
-    allow(Time).to receive(:now).and_return(t + 5.seconds)
-    Trigger.fire
+    Timecop.freeze(4.seconds.from_now) do
+      Trigger.fire
+    end
     art.reload
     assert art.published?
   end
