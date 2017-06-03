@@ -274,7 +274,7 @@ FactoryGirl.define do
   end
 
   factory :unpublished_note, parent: :note do |n|
-    n.published false
+    n.state 'draft'
   end
 
   factory :trackback do |_t|
