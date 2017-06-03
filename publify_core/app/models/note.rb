@@ -18,7 +18,7 @@ class Note < Content
   after_create :set_permalink, :shorten_url
   before_create :create_guid
 
-  scope :published, -> {
+  scope :published, lambda {
     where(state: 'published').where('published_at <= ?', Time.zone.now).order(default_order)
   }
   default_scope { order('published_at DESC') }

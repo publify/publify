@@ -51,6 +51,9 @@ Lint/AssignmentInCondition:
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
+    - 'publify_core/spec/**/*'
+    - 'publify_amazon_sidebar/spec/**/*'
+    - 'publify_textfilter_code/spec/**/*'
 
 # Do not require long paths to be split by comma's.
 Rails/FilePath:

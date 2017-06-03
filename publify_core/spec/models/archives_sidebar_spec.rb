@@ -11,9 +11,9 @@ describe ArchivesSidebar do
     before { build_stubbed :blog }
 
     it 'creates the correct data structure for each month' do
-      create :article, published_at: DateTime.new(2014, 3, 2)
-      create :article, published_at: DateTime.new(2015, 2, 2)
-      create :article, published_at: DateTime.new(2015, 2, 5)
+      create :article, published_at: DateTime.new(2014, 3, 2).in_time_zone
+      create :article, published_at: DateTime.new(2015, 2, 2).in_time_zone
+      create :article, published_at: DateTime.new(2015, 2, 5).in_time_zone
 
       sidebar.parse_request nil, nil
 
