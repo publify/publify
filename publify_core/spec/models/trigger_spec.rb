@@ -29,7 +29,7 @@ describe Trigger, type: :model do
     end
 
     it 'fires immediately if the target time is <= now' do
-      Trigger.post_action(Time.now, @page, 'publish!')
+      Trigger.post_action(Time.zone.now, @page, 'publish!')
       expect(Trigger.count).to eq(0)
 
       @page.reload
