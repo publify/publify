@@ -8,7 +8,6 @@ class Feedback < ActiveRecord::Base
   belongs_to :article, touch: true
 
   include PublifyGuid
-  include Stateful
   include ContentBase
 
   class ContentTextHelpers

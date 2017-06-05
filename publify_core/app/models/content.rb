@@ -2,8 +2,6 @@ require 'set'
 require 'uri'
 
 class Content < ActiveRecord::Base
-  include Stateful
-
   include ContentBase
 
   belongs_to :text_filter, optional: true
