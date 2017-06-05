@@ -10,7 +10,6 @@ class Feedback < ActiveRecord::Base
   include PublifyGuid
   include Stateful
   include ContentBase
-  include States
 
   class ContentTextHelpers
     include ActionView::Helpers::UrlHelper
