@@ -11,18 +11,16 @@ describe Feedback, type: :model do
     context 'given a feedback with a spam state' do
       it 'calls mark_as_ham!' do
         feedback = FactoryGirl.build(:spam_comment)
-        expect(feedback).to receive(:mark_as_ham)
-        expect(feedback).to receive(:save!)
         expect(feedback.change_state!).to eq 'ham'
+        expect(feedback).to be_ham
       end
     end
 
     context 'given a feedback with a ham state' do
       it 'calls mark_as_spam!' do
         feedback = FactoryGirl.build(:ham_comment)
-        expect(feedback).to receive(:mark_as_spam)
-        expect(feedback).to receive(:save!)
         expect(feedback.change_state!).to eq 'spam'
+        expect(feedback).to be_spam
       end
     end
   end

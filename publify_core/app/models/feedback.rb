@@ -1,3 +1,4 @@
+require 'aasm'
 require 'akismet'
 
 class Feedback < ActiveRecord::Base
@@ -21,38 +22,61 @@ class Feedback < ActiveRecord::Base
   validates :article, presence: true
 
   before_create :create_guid, :article_allows_this_feedback
-  before_save :correct_url, :before_save_handler
-  after_save :post_trigger, :report_classification
-  after_initialize :after_initialize_handler
+  before_save :correct_url, :classify_content
 
+  # TODO: Rename so it doesn't sound like only approved ham
   scope :ham, -> { where(state: %w(presumed_ham ham)) }
+
   scope :spam, -> { where(state: 'spam') }
   scope :published_since, ->(time) { ham.where('published_at > ?', time) }
   scope :presumed_ham, -> { where(state: 'presumed_ham') }
   scope :presumed_spam, -> { where(state: 'presumed_spam') }
-  scope :unapproved, -> { where(status_confirmed: false) }
+  scope :unapproved, -> { where(state: ['presumed_spam', 'presumed_ham']) }
 
-  scope :published, -> { where(published: true) }
+  scope :published, -> { ham }
   scope :oldest_first, -> { order(:created_at) }
 
-  has_state(:state,
-            valid_states: [:unclassified, :presumed_spam, :just_marked_as_spam, :spam, :just_presumed_ham, :presumed_ham, :just_marked_as_ham, :ham],
-            handles: [:published?, :status_confirmed?, :just_published?,
-                      :mark_as_ham, :mark_as_spam, :confirm_classification,
-                      :withdraw,
-                      :before_save_handler, :after_initialize_handler,
-                      :send_notifications, :post_trigger, :report_classification])
+  include AASM
+
+  aasm column: :state do
+    state :unclassified, initial: true
+    state :presumed_ham
+    state :presumed_spam
+    state :spam, after_enter: [:send_notifications, :report_as_spam]
+    state :ham, after_enter: [:send_notifications, :report_as_ham]
+
+    event :presume_ham do
+      transitions from: :unclassified, to: :ham, if: ->() { user_id.present? }
+      transitions from: :unclassified, to: :presumed_ham
+    end
+
+    event :presume_spam do
+      transitions from: :unclassified, to: :presumed_spam
+    end
+
+    event :mark_as_ham do
+      transitions to: :ham
+    end
+
+    event :mark_as_spam do
+      transitions to: :spam
+    end
+
+    event :withdraw do
+      transitions from: [:presumed_ham, :ham], to: :spam
+    end
+  end
 
   def self.paginated(page, per_page)
     page(page).per(per_page)
   end
 
   def self.comments
-    Comment.where(published: true).order('created_at DESC')
+    Comment.published.order('created_at DESC')
   end
 
   def self.trackbacks
-    Trackback.where(published: true).order('created_at DESC')
+    Trackback.published.order('created_at DESC')
   end
 
   def self.from(type, article_id = nil)
@@ -65,6 +89,15 @@ class Feedback < ActiveRecord::Base
 
   def parent
     article
+  end
+
+  def classify_content
+    return unless unclassified?
+
+    case classify
+    when :ham then presume_ham
+    else presume_spam
+    end
   end
 
   def permalink_url(_anchor = :ignored, only_path = false)
@@ -139,25 +172,27 @@ class Feedback < ActiveRecord::Base
 
   def change_state!
     result = ''
-    if state.spam? || state.presumed_spam?
-      mark_as_ham
+    if spam? || presumed_spam?
+      mark_as_ham!
       result = 'ham'
     else
-      mark_as_spam
+      mark_as_spam!
       result = 'spam'
     end
-    save!
     result
   end
 
-  def mark_as_ham!
-    mark_as_ham
+  def confirm_classification!
+    confirm_classification
     save!
   end
 
-  def mark_as_spam!
-    mark_as_spam
-    save!
+  def confirm_classification
+    if presumed_spam?
+      mark_as_spam
+    elsif presumed_ham?
+      mark_as_ham
+    end
   end
 
   def report_as_spam
@@ -182,18 +217,24 @@ class Feedback < ActiveRecord::Base
     end
   end
 
-  def withdraw!
-    withdraw
-    save!
-  end
-
-  def confirm_classification!
-    confirm_classification
-    save
-  end
-
   def feedback_not_closed
     errors.add(:article_id, 'Comment are closed') if article.comments_closed?
+  end
+
+  def send_notifications
+    nil
+  end
+
+  def published?
+    ham? || presumed_ham?
+  end
+
+  def status_confirmed?
+    ham? || spam?
+  end
+
+  def spammy?
+    spam? || presumed_spam?
   end
 
   delegate :blog, to: :article

@@ -34,17 +34,20 @@ describe Trackback, 'With the various trackback filters loaded and DNS mocked ou
 
   it 'Trackbacks with a spammy link in the excerpt should be rejected' do
     tb = article.trackbacks.build(ham_params.merge(excerpt: '<a href="http://chinaaircatering.com">spam</a>'))
-    expect(tb).to be_spam
+    tb.classify_content
+    expect(tb).to be_spammy
   end
 
   it 'Trackbacks with a spammy source url should be rejected' do
     tb = article.trackbacks.build(ham_params.merge(url: 'http://www.chinaircatering.com'))
-    expect(tb).to be_spam
+    tb.classify_content
+    expect(tb).to be_spammy
   end
 
   it 'Trackbacks from a spammy ip address should be rejected' do
     tb = article.trackbacks.build(ham_params.merge(ip: '212.42.230.207'))
-    expect(tb).to be_spam
+    tb.classify_content
+    expect(tb).to be_spammy
   end
 
   def ham_params
