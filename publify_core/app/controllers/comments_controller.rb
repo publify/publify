@@ -43,7 +43,6 @@ class CommentsController < FeedbackController
   def new_comment_defaults
     { ip: request.remote_ip,
       author: 'Anonymous',
-      published: true,
       user: @current_user,
       user_agent: request.env['HTTP_USER_AGENT'],
       referrer: request.env['HTTP_REFERER'],

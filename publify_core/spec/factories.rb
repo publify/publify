@@ -198,7 +198,6 @@ FactoryGirl.define do
   end
 
   factory :comment do
-    published true
     article
     association :text_filter, factory: :textile
     author 'Bob Foo'
@@ -212,40 +211,30 @@ FactoryGirl.define do
 
     factory :unconfirmed_comment do |c|
       c.state 'presumed_ham'
-      c.status_confirmed false
-      c.published false
     end
 
     factory :published_comment do |c|
       c.state 'ham'
-      c.status_confirmed true
-      c.published true
     end
 
     factory :not_published_comment do |c|
       c.state 'spam'
-      c.status_confirmed true
-      c.published false
     end
 
     factory :ham_comment do |c|
       c.state 'ham'
-      c.published false
     end
 
     factory :presumed_ham_comment do |c|
       c.state 'presumed_ham'
-      c.published false
     end
 
     factory :presumed_spam_comment do |c|
       c.state 'presumed_spam'
-      c.published false
     end
 
     factory :spam_comment do |c|
       c.state 'spam'
-      c.published false
     end
   end
 
@@ -278,10 +267,8 @@ FactoryGirl.define do
   end
 
   factory :trackback do |_t|
-    published true
     state 'ham'
     article
-    status_confirmed true
     blog_name 'Trackback Blog'
     title 'Trackback Entry'
     url 'http://www.example.com'

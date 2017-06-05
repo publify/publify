@@ -34,7 +34,7 @@ class Article < Content
 
   scope :bestof, lambda {
     joins(:feedback).
-      where('feedback.published' => true, 'feedback.type' => 'Comment',
+      where('feedback.type' => 'Comment',
             'contents.state' => 'published').
       group('contents.id').
       order('count(feedback.id) DESC').

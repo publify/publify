@@ -29,7 +29,7 @@ class TrackbacksController < FeedbackController
   def trackback_params
     params.
       permit(:blog_name, :excerpt, :title, :url, :article_id).
-      merge(ip: request.remote_ip, published: true)
+      merge(ip: request.remote_ip)
   end
 
   def get_article

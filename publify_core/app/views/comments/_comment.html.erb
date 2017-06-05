@@ -7,7 +7,7 @@
     </p>
     <div class="content">
       <%= raw nofollowify_links comment.generate_html(:body) %>
-      <% unless comment.published %>
+      <% unless comment.published? %>
         <div class="spamwarning">
           <%= t(".this_comment_has_been_flagged_for_moderator_approval")%>
         </div>
