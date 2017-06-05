@@ -126,6 +126,10 @@ class Note < Content
     blog.shortener_url.sub(/^https?\:\/\//, '')
   end
 
+  def published?
+    state == 'published'
+  end
+
   private
 
   def too_long?(message)

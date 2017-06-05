@@ -36,7 +36,6 @@ describe Content, type: :model do
         let(:blog) { build_stubbed(:blog, base_url: 'http://myblog.net') }
 
         it "returns the blog's base url combined with the redirection's from path" do
-          expect(content).to be_published
           expect(content.short_url).to eq('http://myblog.net/foo')
         end
       end

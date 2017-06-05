@@ -45,10 +45,6 @@ class Content < ActiveRecord::Base
     end
   end
 
-  def published?
-    attributes['state'] == 'published'
-  end
-
   # Set the text filter for this object.
   # NOTE: Due to how Rails injects association methods, this cannot be put in ContentBase
   # TODO: Allowing assignment of a string here is not very clean.
@@ -130,8 +126,6 @@ class Content < ActiveRecord::Base
   end
 
   def short_url
-    # Double check because of crappy data in my own old database
-    return unless published? && redirect.present?
-    redirect.from_url
+    redirect.from_url if redirect.present?
   end
 end
