@@ -93,9 +93,14 @@ describe Comment, type: :model do
 
   describe '#classify_content' do
     it 'should reject spam rbl' do
-      comment = valid_comment(author: 'Spammer',
-                              body: %(This is just some random text. &lt;a href="http://chinaaircatering.com"&gt;without any senses.&lt;/a&gt;. Please disregard.),
-                              url: 'http://buy-computer.us')
+      comment = valid_comment(
+        author: 'Spammer',
+        body: <<-EOS,
+          This is just some random text.
+          &lt;a href="http://chinaaircatering.com"&gt;without any senses.&lt;/a&gt;.
+          Please disregard.
+        EOS
+        url: 'http://buy-computer.us')
       comment.classify_content
       expect(comment).to be_spammy
       expect(comment).not_to be_status_confirmed
@@ -147,7 +152,8 @@ describe Comment, type: :model do
 
   describe 'change state' do
     it 'should become unpublished if withdrawn' do
-      c = build :comment, published_at: Time.now
+      c = build :comment, published_at: Time.zone.now
+      assert c.published?
       assert c.withdraw!
       assert !c.published?
       assert c.spam?

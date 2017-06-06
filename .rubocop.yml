@@ -29,6 +29,9 @@ Layout/DotPosition:
 Layout/ExtraSpacing:
   Enabled: true
 
+Layout/MultilineMethodCallBraceLayout:
+  EnforcedStyle: same_line
+
 # Multi-line operations should be simply indented. Aligning them makes it even
 # harder to keep a sane line length.
 Layout/MultilineMethodCallIndentation:
@@ -114,3 +117,7 @@ Style/SingleLineBlockParams:
 # Prefer symbols to look like symbols
 Style/SymbolArray:
   EnforcedStyle: brackets
+
+# Allow small arrays of words with quotes
+Style/WordArray:
+  MinSize: 4
