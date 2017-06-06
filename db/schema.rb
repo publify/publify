@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170530063901) do
+ActiveRecord::Schema.define(version: 20170605103539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,12 +70,10 @@ ActiveRecord::Schema.define(version: 20170530063901) do
     t.integer  "article_id"
     t.string   "email"
     t.string   "url"
-    t.string   "ip",               limit: 40
+    t.string   "ip",             limit: 40
     t.string   "blog_name"
-    t.boolean  "published",                   default: false
     t.datetime "published_at"
     t.string   "state"
-    t.boolean  "status_confirmed"
     t.string   "user_agent"
     t.index ["article_id"], name: "index_feedback_on_article_id", using: :btree
     t.index ["id", "type"], name: "index_feedback_on_id_and_type", using: :btree
