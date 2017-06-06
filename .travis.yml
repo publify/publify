@@ -16,6 +16,9 @@ before_install:
   - bundler --version
 install:
   - bundle install --without development
+  - 'cd publify_core && bundle install'
+  - 'cd ../publify_amazon_sidebar && bundle install'
+  - 'cd ../publify_textfilter_code && bundle install'
 before_script:
   - bundle exec rake db:create db:migrate
 script: 'bundle exec rake\
