@@ -49,9 +49,7 @@ class Article < Content
   include AASM
 
   aasm column: :state do
-    # TODO: Merge new with draft?
-    state :new, initial: true
-    state :draft
+    state :draft, initial: true
     # TODO: Disallow if published_at in past
     state :publication_pending, after_enter: :trigger_publication
     state :published, after_enter: :really_send_notifications
@@ -82,7 +80,7 @@ class Article < Content
   end
 
   def set_permalink
-    return if state == 'draft' || permalink.present?
+    return if draft? || permalink.present?
     self.permalink = title.to_permalink
   end
 

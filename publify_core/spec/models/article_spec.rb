@@ -112,29 +112,38 @@ describe Article, type: :model do
     assert_equal 'my-cats-best-friend', "My Cat's Best Friend".to_url
   end
 
-  describe '#stripped_title' do
+  describe '#set_permalink' do
     it 'works for simple cases' do
-      assert_equal 'article-1', blog.articles.build(title: 'Article 1!').title.to_permalink
-      assert_equal 'article-2', blog.articles.build(title: 'Article 2!').title.to_permalink
-      assert_equal 'article-3', blog.articles.build(title: 'Article 3!').title.to_permalink
+      a = blog.articles.build(title: 'Article 3!', state: :published)
+      a.set_permalink
+      expect(a.permalink).to eq 'article-3'
     end
 
     it 'strips html' do
-      a = blog.articles.build(title: 'This <i>is</i> a <b>test</b>')
-      assert_equal 'this-is-a-test', a.title.to_permalink
+      a = blog.articles.build(title: 'This <i>is</i> a <b>test</b>', state: :published)
+      a.set_permalink
+      assert_equal 'this-is-a-test', a.permalink
     end
 
     it 'does not escape multibyte characters' do
-      a = blog.articles.build(title: 'ルビー')
-      expect(a.title.to_permalink).to eq('ルビー')
+      a = blog.articles.build(title: 'ルビー', state: :published)
+      a.set_permalink
+      expect(a.permalink).to eq('ルビー')
     end
 
-    it 'is called upon saving the article' do
+    it 'is called upon saving a published article' do
       a = blog.articles.build(title: 'space separated')
+      a.publish
       expect(a.permalink).to be_nil
       a.blog = create(:blog)
       a.save
       expect(a.permalink).to eq('space-separated')
+    end
+
+    it 'does nothing for draft articles' do
+      a = blog.articles.build(title: 'space separated', state: :draft)
+      a.set_permalink
+      expect(a.permalink).to be_nil
     end
   end
 
