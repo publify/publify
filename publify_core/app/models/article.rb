@@ -308,7 +308,7 @@ class Article < Content
   end
 
   def trigger_publication
-    # TODO: Skip if already published.
+    # TODO: Skip if already published, update when published_at changes
     Trigger.post_action(published_at, self, 'publish!')
   end
 end
