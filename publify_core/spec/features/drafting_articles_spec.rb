@@ -26,6 +26,7 @@ RSpec.feature 'Drafting articles', type: :feature do
     fill_in :article_title, with: 'This is the draft updated title'
     click_button I18n.t('admin.content.form.save_as_draft')
 
-    # TODO: Determine desired outcome after these steps.
+    expect(page).to have_text 'This is the draft updated title'
+    expect(page).not_to have_text 'This is the title'
   end
 end
