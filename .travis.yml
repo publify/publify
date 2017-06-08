@@ -16,10 +16,6 @@ before_install:
   - bundler --version
 install:
   - bundle install --without development
-  - 'cd $TRAVIS_BUILD_DIR/publify_core && bundle install'
-  - 'cd $TRAVIS_BUILD_DIR/publify_amazon_sidebar && bundle install'
-  - 'cd $TRAVIS_BUILD_DIR/publify_textfilter_code &&  bundle install'
-  - 'cd $TRAVIS_BUILD_DIR'
 before_script:
   - bundle exec rake db:create db:migrate
 script:
