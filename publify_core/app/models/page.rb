@@ -29,4 +29,13 @@ class Page < Content
       only_path: only_path
     )
   end
+
+  def publish!
+    self.state = 'published'
+    save!
+  end
+
+  def published?
+    state == 'published'
+  end
 end

@@ -1,5 +1,6 @@
 # coding: utf-8
 
+require 'aasm'
 require 'uri'
 require 'net/http'
 
@@ -21,24 +22,20 @@ class Article < Content
   has_many :comments, dependent: :destroy
 
   before_create :create_guid
-  before_save :set_published_at, :set_permalink
-  after_save :post_trigger, :keywords_to_tags, :shorten_url
-  after_save :send_notifications
+  before_save :set_permalink
+  after_save :keywords_to_tags, :shorten_url
 
   scope :child_of, ->(article_id) { where(parent_id: article_id) }
   scope :published_since, ->(time) {
-    published.where('published_at > ?', time).order('published_at DESC')
+    published.where('published_at > ?', time).order(default_order)
   }
-  scope :withdrawn, -> { where(state: 'withdrawn').order('published_at DESC') }
-  scope :pending, -> {
-    where('state = ? and published_at > ?', 'publication_pending', Time.now).
-    order('published_at DESC')
-  }
+  scope :withdrawn, -> { where(state: 'withdrawn').order(default_order) }
+  scope :pending, -> { where(state: 'publication_pending'). order(default_order) }
 
   scope :bestof, lambda {
     joins(:feedback).
-      where('feedback.published' => true, 'feedback.type' => 'Comment',
-            'contents.published' => true).
+      where('feedback.type' => 'Comment',
+            'contents.state' => 'published').
       group('contents.id').
       order('count(feedback.id) DESC').
       select('contents.*, count(feedback.id) as comment_count').
@@ -49,19 +46,41 @@ class Article < Content
 
   attr_accessor :draft, :keywords
 
-  include Article::States
+  include AASM
 
-  has_state(:state, valid_states: [:new, :draft,
-                                   :publication_pending, :just_published, :published,
-                                   :just_withdrawn, :withdrawn],
-                    initial_state: :new,
-                    handles: [:withdraw,
-                              :post_trigger,
-                              :send_notifications,
-                              :published_at=, :published=, :just_published?])
+  aasm column: :state do
+    state :draft, initial: true
+    # TODO: Disallow if published_at in past
+    state :publication_pending, after_enter: :trigger_publication
+    state :published, after_enter: :really_send_notifications
+    state :withdrawn
+
+    event :withdraw do
+      transitions from: :published, to: :withdrawn
+      transitions from: :publication_pending, to: :draft
+    end
+
+    event :publish do
+      before do
+        self.published_at ||= Time.zone.now
+      end
+
+      transitions from: [:new, :draft], to: :publication_pending do
+        guard do
+          published_at > Time.zone.now
+        end
+      end
+
+      transitions from: [:new, :draft, :publication_pending], to: :published do
+        guard do
+          published_at <= Time.zone.now
+        end
+      end
+    end
+  end
 
   def set_permalink
-    return if state == 'draft' || permalink.present?
+    return if draft? || permalink.present?
     self.permalink = title.to_permalink
   end
 
@@ -273,14 +292,6 @@ class Article < Content
     urls_to_ping
   end
 
-  protected
-
-  def set_published_at
-    if published && self[:published_at].nil?
-      self[:published_at] = created_at || Time.now
-    end
-  end
-
   private
 
   def permalink_url_options
@@ -294,5 +305,10 @@ class Article < Content
     else
       format_url
     end
+  end
+
+  def trigger_publication
+    # TODO: Skip if already published, update when published_at changes
+    Trigger.post_action(published_at, self, 'publish!')
   end
 end

@@ -5,8 +5,6 @@ class Comment < Feedback
   content_fields :body
   validates :author, :body, presence: true
 
-  after_save :send_notifications
-
   attr_accessor :referrer, :permalink
 
   scope :spam, -> { where(state: 'spam') }
@@ -32,6 +30,10 @@ class Comment < Feedback
 
   def feed_title
     "Comment on #{article.title} by #{author}"
+  end
+
+  def send_notifications
+    really_send_notifications
   end
 
   protected

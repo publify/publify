@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rails', '~> 5.0.0'
   s.add_dependency 'RedCloth', '~> 4.3.2'
+  s.add_dependency 'aasm', '~> 4.12.0'
   s.add_dependency 'akismet', '~> 2.0'
   s.add_dependency 'bluecloth', '~> 2.1'
   s.add_dependency 'bootstrap-sass', '~> 3.3.6'
@@ -51,6 +52,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'factory_girl_rails', '~> 4.8.0'
   s.add_development_dependency 'i18n-tasks', '~> 0.9.1'
   s.add_development_dependency 'rails-controller-testing', '~> 1.0.1'
+  s.add_development_dependency 'timecop', '~> 0.8.1'
   s.add_development_dependency 'webmock', '~> 3.0.1'
   s.add_development_dependency 'simplecov', '~> 0.14.0'
 end

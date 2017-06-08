@@ -64,11 +64,6 @@ module ContentBase
       (text.length > length ? '...' : '')
   end
 
-  def publish!
-    self.published = true
-    save!
-  end
-
   # The default text filter.  Generally, this is the filter specified by blog.text_filter,
   # but comments may use a different default.
   def default_text_filter

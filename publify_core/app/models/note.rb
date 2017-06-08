@@ -18,6 +18,9 @@ class Note < Content
   after_create :set_permalink, :shorten_url
   before_create :create_guid
 
+  scope :published, lambda {
+    where(state: 'published').where('published_at <= ?', Time.zone.now).order(default_order)
+  }
   default_scope { order('published_at DESC') }
 
   TWITTER_FTP_URL_LENGTH = 19
@@ -121,6 +124,10 @@ class Note < Content
 
   def prefix
     blog.shortener_url.sub(/^https?\:\/\//, '')
+  end
+
+  def published?
+    state == 'published'
   end
 
   private

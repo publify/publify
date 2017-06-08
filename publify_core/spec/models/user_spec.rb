@@ -34,7 +34,7 @@ describe User, type: :model do
       create(:blog)
       tobi = create(:user)
       7.times { create(:article, user: tobi) }
-      create(:article, published: false, state: 'draft', published_at: nil, user: tobi)
+      create(:article, state: 'draft', published_at: nil, user: tobi)
       expect(tobi.articles.size).to eq(8)
       expect(tobi.articles.published.size).to eq(7)
     end

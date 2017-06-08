@@ -63,8 +63,8 @@ describe Page, type: :model do
       end
 
       context 'with 2 pages with title aaa and zzz' do
-        let!(:last_page) { create(:page, title: 'ZZZ', published: true) }
-        let!(:first_page) { create(:page, title: 'AAA', published: true) }
+        let!(:last_page) { create(:page, title: 'ZZZ', state: 'published') }
+        let!(:first_page) { create(:page, title: 'AAA', state: 'published') }
         let(:params) { { published: '1' } }
         it { expect(subject).to eq([first_page, page, last_page]) }
       end
@@ -78,7 +78,7 @@ describe Page, type: :model do
     end
 
     context 'with an unpublished page' do
-      let(:page) { create(:page, published: false) }
+      let(:page) { create(:page, state: 'draft') }
       it { expect(page.redirect).to be_blank }
     end
   end

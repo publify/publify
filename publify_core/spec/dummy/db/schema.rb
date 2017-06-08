@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170528094923) do
+ActiveRecord::Schema.define(version: 20170605071626) do
 
   create_table "blogs", force: :cascade do |t|
     t.text   "settings"
@@ -40,7 +40,6 @@ ActiveRecord::Schema.define(version: 20170528094923) do
     t.text     "settings"
     t.string   "post_type",      default: "read"
     t.integer  "blog_id",                         null: false
-    t.boolean  "published",      default: false
     t.index ["id", "type"], name: "index_contents_on_id_and_type"
     t.index ["text_filter_id"], name: "index_contents_on_text_filter_id"
     t.index ["user_id"], name: "index_contents_on_user_id"
@@ -68,12 +67,10 @@ ActiveRecord::Schema.define(version: 20170528094923) do
     t.integer  "article_id"
     t.string   "email"
     t.string   "url"
-    t.string   "ip",               limit: 40
+    t.string   "ip",             limit: 40
     t.string   "blog_name"
-    t.boolean  "published",                   default: false
     t.datetime "published_at"
     t.string   "state"
-    t.boolean  "status_confirmed"
     t.string   "user_agent"
     t.index ["article_id"], name: "index_feedback_on_article_id"
     t.index ["id", "type"], name: "index_feedback_on_id_and_type"

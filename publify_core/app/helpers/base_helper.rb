@@ -174,6 +174,7 @@ module BaseHelper
   end
 
   def display_date_and_time(timestamp)
+    return if timestamp.blank?
     if this_blog.date_format == 'setting_date_format_distance_of_time_in_words'
       timeago_tag timestamp, date_only: false
     else

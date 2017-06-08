@@ -61,7 +61,6 @@ FactoryGirl.define do
     published_at DateTime.new(2005, 1, 1, 2, 0, 0)
     user
     allow_comments true
-    published true
     state :published
     allow_pings true
     association :text_filter, factory: :textile
@@ -80,9 +79,7 @@ FactoryGirl.define do
   end
 
   factory :unpublished_article, parent: :article do
-    # FIXME: There are too many fields involved here.
     published_at nil
-    published false
     state :draft
   end
 
@@ -201,7 +198,6 @@ FactoryGirl.define do
   end
 
   factory :comment do
-    published true
     article
     association :text_filter, factory: :textile
     author 'Bob Foo'
@@ -215,40 +211,30 @@ FactoryGirl.define do
 
     factory :unconfirmed_comment do |c|
       c.state 'presumed_ham'
-      c.status_confirmed false
-      c.published false
     end
 
     factory :published_comment do |c|
       c.state 'ham'
-      c.status_confirmed true
-      c.published true
     end
 
     factory :not_published_comment do |c|
       c.state 'spam'
-      c.status_confirmed true
-      c.published false
     end
 
     factory :ham_comment do |c|
       c.state 'ham'
-      c.published false
     end
 
     factory :presumed_ham_comment do |c|
       c.state 'presumed_ham'
-      c.published false
     end
 
     factory :presumed_spam_comment do |c|
       c.state 'presumed_spam'
-      c.published false
     end
 
     factory :spam_comment do |c|
       c.state 'spam'
-      c.published false
     end
   end
 
@@ -261,7 +247,6 @@ FactoryGirl.define do
     updated_at '2005-05-05 01:00:01'
     user
     blog { Blog.first || create(:blog) }
-    published true
     state 'published'
   end
 
@@ -271,7 +256,6 @@ FactoryGirl.define do
     published_at '2013-07-14 01:00:01'
     updated_at '2013-07-14 01:00:01'
     user
-    published true
     state 'published'
     association :text_filter, factory: :markdown
     guid
@@ -279,14 +263,12 @@ FactoryGirl.define do
   end
 
   factory :unpublished_note, parent: :note do |n|
-    n.published false
+    n.state 'draft'
   end
 
   factory :trackback do |_t|
-    published true
     state 'ham'
     article
-    status_confirmed true
     blog_name 'Trackback Blog'
     title 'Trackback Entry'
     url 'http://www.example.com'

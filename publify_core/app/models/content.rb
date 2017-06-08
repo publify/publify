@@ -2,8 +2,6 @@ require 'set'
 require 'uri'
 
 class Content < ActiveRecord::Base
-  include Stateful
-
   include ContentBase
 
   belongs_to :text_filter, optional: true
@@ -19,16 +17,13 @@ class Content < ActiveRecord::Base
   has_and_belongs_to_many :tags
 
   scope :user_id, ->(user_id) { where('user_id = ?', user_id) }
-  scope :published, -> {
-    where(published: true, published_at: Time.at(0)..Time.now).
-    order(default_order)
-  }
+  scope :published, -> { where(state: 'published'). order(default_order) }
   scope :published_at, ->(time_params) {
     published.
     where(published_at: PublifyTime.delta(*time_params)).
     order('published_at DESC')
   }
-  scope :not_published, -> { where(published: false) }
+  scope :not_published, -> { where.not(state: 'published') }
   scope :drafts, -> { where(state: 'draft').order('created_at DESC') }
   scope :no_draft, -> { where.not(state: 'draft').order('published_at DESC') }
   scope :searchstring, lambda { |search_string|
@@ -68,7 +63,7 @@ class Content < ActiveRecord::Base
   end
 
   def shorten_url
-    return unless published
+    return unless published?
 
     if redirect.present?
       return if redirect.to_path == permalink_url
@@ -82,6 +77,7 @@ class Content < ActiveRecord::Base
     end
   end
 
+  # TODO: Inline this method
   def self.find_already_published(limit)
     published.limit(limit)
   end
@@ -113,11 +109,6 @@ class Content < ActiveRecord::Base
     self[:whiteboard] ||= {}
   end
 
-  def withdraw!
-    withdraw
-    save!
-  end
-
   def link_to_author?
     user.email.present? && blog.link_to_author
   end
@@ -135,8 +126,6 @@ class Content < ActiveRecord::Base
   end
 
   def short_url
-    # Double check because of crappy data in my own old database
-    return unless published && redirect.present?
-    redirect.from_url
+    redirect.from_url if redirect.present?
   end
 end

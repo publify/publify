@@ -27,7 +27,8 @@ describe Content, type: :model do
       let(:content) do
         build_stubbed(:content,
                       blog: blog,
-                      published: true,
+                      state: 'published',
+                      published_at: 1.day.ago,
                       redirect: redirect)
       end
 
@@ -35,7 +36,6 @@ describe Content, type: :model do
         let(:blog) { build_stubbed(:blog, base_url: 'http://myblog.net') }
 
         it "returns the blog's base url combined with the redirection's from path" do
-          expect(content).to be_published
           expect(content.short_url).to eq('http://myblog.net/foo')
         end
       end
@@ -70,7 +70,7 @@ describe Content, type: :model do
       end
     end
 
-    describe '#search_posts_with' do
+    describe '#search_with' do
       context 'with an simple article' do
         subject { Content.search_with(params) }
 
@@ -102,13 +102,13 @@ describe Content, type: :model do
         context 'with not published status article' do
           let(:params) { { published: '0' } }
           let!(:article) { create(:article) }
-          let!(:match_article) { create(:article, published: false, state: 'draft') }
+          let!(:match_article) { create(:article, state: 'draft') }
           it { expect(subject).to eq([match_article]) }
         end
 
         context 'with published status article' do
           let(:params) { { published: '1' } }
-          let!(:article) { create(:article, published: true) }
+          let!(:article) { create(:article) }
           it { expect(subject).to eq([article]) }
         end
       end

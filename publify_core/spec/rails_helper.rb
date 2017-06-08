@@ -67,6 +67,7 @@ RSpec.configure do |config|
 
   # Test helpers needed for Devise
   config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Devise::Test::IntegrationHelpers, type: :feature
 end
 
 def file_upload(file = 'testfile.txt', mime_type = 'text/plain')

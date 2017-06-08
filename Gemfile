@@ -91,6 +91,7 @@ end
 group :test do
   gem 'sqlite3'
   gem 'rails-controller-testing', '~> 1.0.1'
+  gem 'timecop', '~> 0.8.1'
   gem 'webmock', '~> 3.0.1'
 end
 

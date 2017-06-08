@@ -37,6 +37,12 @@ class Admin::ContentController < Admin::BaseController
 
     update_article_attributes
 
+    if @article.draft
+      @article.state = 'draft'
+    elsif @article.draft?
+      @article.publish!
+    end
+
     if @article.save
       flash[:success] = I18n.t('admin.content.create.success')
       redirect_to action: 'index'
@@ -59,6 +65,12 @@ class Admin::ContentController < Admin::BaseController
     end
 
     update_article_attributes
+
+    if @article.draft
+      @article.state = 'draft'
+    elsif @article.draft?
+      @article.publish!
+    end
 
     if @article.save
       Article.where(parent_id: @article.id).map(&:destroy) unless @article.draft
@@ -92,10 +104,9 @@ class Admin::ContentController < Admin::BaseController
 
     @article.attributes = params[:article].permit!
 
-    @article.published = false
     @article.author = current_user
     @article.save_attachments!(params[:attachments])
-    @article.state = 'draft' unless @article.state == 'withdrawn'
+    @article.state = 'draft' unless @article.withdrawn?
     @article.text_filter ||= current_user.default_text_filter
 
     if @article.title.blank?
@@ -115,14 +126,14 @@ class Admin::ContentController < Admin::BaseController
   protected
 
   def get_fresh_or_existing_draft_for_article
-    if @article.published && @article.id
-      parent_id = @article.id
-      @article =
-        this_blog.articles.drafts.child_of(parent_id).first || this_blog.articles.build
-      @article.allow_comments = this_blog.default_allow_comments
-      @article.allow_pings = this_blog.default_allow_pings
-      @article.parent_id = parent_id
-    end
+    return unless @article.published? && @article.id
+
+    parent_id = @article.id
+    @article =
+      this_blog.articles.drafts.child_of(parent_id).first || this_blog.articles.build
+    @article.allow_comments = this_blog.default_allow_comments
+    @article.allow_pings = this_blog.default_allow_pings
+    @article.parent_id = parent_id
   end
 
   attr_accessor :resources, :resource
@@ -146,15 +157,25 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def update_article_attributes
-    @article.attributes = update_params
+    @article.assign_attributes(update_params)
     @article.author = current_user
     @article.save_attachments!(params[:attachments])
-    @article.state = 'draft' if @article.draft
     @article.text_filter ||= current_user.default_text_filter
   end
 
   def update_params
-    params.require(:article).except(:id).permit!
+    params.
+      require(:article).
+      permit(:allow_comments,
+             :allow_pings,
+             :body,
+             :body_and_extended,
+             :draft,
+             :extended,
+             :permalink,
+             :published_at,
+             :title,
+             :keywords)
   end
 
   def get_layout

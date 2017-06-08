@@ -69,11 +69,11 @@
             <fieldset>
               <legend><%= t(".publish_settings") %></legend>
               <div class='control-group'>
-                <%= t(".status") %>: <strong><%= (@page.published) ? t(".published") : t(".offline") %></strong>
+                <%= t(".status") %>: <strong><%= (@page.published?) ? t(".published") : t(".offline") %></strong>
                 <%= toggle_element('status') %>
                 <div id='status' class='collapse'>
                   <label for="page_published" class='checkbox'>
-                    <%= check_box 'page', 'published'  %>
+                    <%= check_box 'page', 'published?'  %>
                     <%= t(".online")%>
                   </label>
                   <p><span class='btn btn-default btn-mini'><%= toggle_element 'status', "OK" %></span></p>

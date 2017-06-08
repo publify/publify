@@ -11,18 +11,16 @@ describe Feedback, type: :model do
     context 'given a feedback with a spam state' do
       it 'calls mark_as_ham!' do
         feedback = FactoryGirl.build(:spam_comment)
-        expect(feedback).to receive(:mark_as_ham)
-        expect(feedback).to receive(:save!)
         expect(feedback.change_state!).to eq 'ham'
+        expect(feedback).to be_ham
       end
     end
 
     context 'given a feedback with a ham state' do
       it 'calls mark_as_spam!' do
         feedback = FactoryGirl.build(:ham_comment)
-        expect(feedback).to receive(:mark_as_spam)
-        expect(feedback).to receive(:save!)
         expect(feedback.change_state!).to eq 'spam'
+        expect(feedback).to be_spam
       end
     end
   end
@@ -173,6 +171,56 @@ describe Feedback, type: :model do
       comment.report_as_ham
       expect(verification).to have_been_requested
       expect(reporting).to have_been_requested
+    end
+  end
+
+  describe 'states' do
+    before(:each) do
+      create(:blog)
+      @comment = create(:article).comments.build(author: 'Piers', body: 'Body')
+    end
+
+    it 'test_ham_all_the_way' do
+      class << @comment
+        def classify
+          :ham
+        end
+      end
+      assert @comment.unclassified?
+      @comment.classify_content
+      assert @comment.published?
+      @comment.save
+      @comment = Comment.find(@comment.id)
+      @comment.confirm_classification
+      assert @comment.published?
+    end
+
+    it 'test_spam_all_the_way' do
+      class << @comment
+        def classify
+          :spam
+        end
+      end
+      assert @comment.unclassified?
+      @comment.classify_content
+      assert !@comment.published?
+      assert @comment.save
+      assert !@comment.published?
+      @comment = Comment.find(@comment.id)
+      @comment.confirm_classification
+      assert !@comment.published?
+    end
+
+    it 'test_presumed_spam_marked_as_ham' do
+      @comment[:state] = 'presumed_spam'
+      @comment.mark_as_ham
+      assert @comment.published?
+    end
+
+    it 'test_presumed_ham_marked_as_spam' do
+      @comment[:state] = 'presumed_ham'
+      @comment.mark_as_spam
+      assert !@comment.published?
     end
   end
 end

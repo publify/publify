@@ -33,7 +33,6 @@ module Publify
   require 'format'
   ## Required by the models themselves.
   # require 'spam_protection'
-  require 'stateful'
   require 'transforms'
   require 'publify_time'
   require 'publify_guid'

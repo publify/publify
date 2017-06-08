@@ -1,6 +1,7 @@
 # coding: utf-8
 
 require 'rails_helper'
+require 'timecop'
 
 describe Article, type: :model do
   let(:blog) { create(:blog) }
@@ -12,35 +13,47 @@ describe Article, type: :model do
 
   describe '#permalink_url' do
     describe 'with hostname' do
-      subject { blog.articles.build(permalink: 'article-3', published_at: Time.utc(2004, 6, 1)).permalink_url(nil, false) }
-      it { is_expected.to eq("#{blog.base_url}/2004/06/01/article-3") }
+      let(:article) { blog.articles.build(permalink: 'article-3', published_at: Time.utc(2004, 6, 1)) }
+
+      it 'includes the full blog url' do
+        article.publish
+        expect(article.permalink_url(nil, false)).to eq "#{blog.base_url}/2004/06/01/article-3"
+      end
     end
 
     describe 'without hostname' do
-      subject { blog.articles.build(permalink: 'article-3', published_at: Time.utc(2004, 6, 1)).permalink_url(nil, true) }
-      it { is_expected.to eq("#{blog.root_path}/2004/06/01/article-3") }
+      let(:article) { blog.articles.build(permalink: 'article-3', published_at: Time.utc(2004, 6, 1)) }
+
+      it 'includes just the blog root path' do
+        article.publish
+        expect(article.permalink_url(nil, true)).to eq "#{blog.root_path}/2004/06/01/article-3"
+      end
     end
 
     # NOTE: URLs must not have any multibyte characters in them. The
     # browser may display them differently, though.
     describe 'with a multibyte permalink' do
-      subject { blog.articles.build(permalink: 'ルビー', published_at: Time.utc(2004, 6, 1)) }
+      let(:article) { blog.articles.build(permalink: 'ルビー', published_at: Time.utc(2004, 6, 1)) }
+
       it 'escapes the multibyte characters' do
-        expect(subject.permalink_url(nil, true)).to eq("#{blog.root_path}/2004/06/01/%E3%83%AB%E3%83%93%E3%83%BC")
+        article.publish
+        expect(article.permalink_url(nil, true)).to eq("#{blog.root_path}/2004/06/01/%E3%83%AB%E3%83%93%E3%83%BC")
       end
     end
 
     describe 'with a permalink containing a space' do
-      subject { blog.articles.build(permalink: 'hello there', published_at: Time.utc(2004, 6, 1)) }
+      let(:article) { blog.articles.build(permalink: 'hello there', published_at: Time.utc(2004, 6, 1)) }
       it "escapes the space as '%20', not as '+'" do
-        expect(subject.permalink_url(nil, true)).to eq("#{blog.root_path}/2004/06/01/hello%20there")
+        article.publish
+        expect(article.permalink_url(nil, true)).to eq("#{blog.root_path}/2004/06/01/hello%20there")
       end
     end
 
     describe 'with a permalink containing a plus' do
-      subject { blog.articles.build(permalink: 'one+two', published_at: Time.utc(2004, 6, 1)) }
+      let(:article) { blog.articles.build(permalink: 'one+two', published_at: Time.utc(2004, 6, 1)) }
       it 'does not escape the plus' do
-        expect(subject.permalink_url(nil, true)).to eq("#{blog.root_path}/2004/06/01/one+two")
+        article.publish
+        expect(article.permalink_url(nil, true)).to eq("#{blog.root_path}/2004/06/01/one+two")
       end
     end
 
@@ -99,29 +112,38 @@ describe Article, type: :model do
     assert_equal 'my-cats-best-friend', "My Cat's Best Friend".to_url
   end
 
-  describe '#stripped_title' do
+  describe '#set_permalink' do
     it 'works for simple cases' do
-      assert_equal 'article-1', blog.articles.build(title: 'Article 1!').title.to_permalink
-      assert_equal 'article-2', blog.articles.build(title: 'Article 2!').title.to_permalink
-      assert_equal 'article-3', blog.articles.build(title: 'Article 3!').title.to_permalink
+      a = blog.articles.build(title: 'Article 3!', state: :published)
+      a.set_permalink
+      expect(a.permalink).to eq 'article-3'
     end
 
     it 'strips html' do
-      a = blog.articles.build(title: 'This <i>is</i> a <b>test</b>')
-      assert_equal 'this-is-a-test', a.title.to_permalink
+      a = blog.articles.build(title: 'This <i>is</i> a <b>test</b>', state: :published)
+      a.set_permalink
+      assert_equal 'this-is-a-test', a.permalink
     end
 
     it 'does not escape multibyte characters' do
-      a = blog.articles.build(title: 'ルビー')
-      expect(a.title.to_permalink).to eq('ルビー')
+      a = blog.articles.build(title: 'ルビー', state: :published)
+      a.set_permalink
+      expect(a.permalink).to eq('ルビー')
     end
 
-    it 'is called upon saving the article' do
+    it 'is called upon saving a published article' do
       a = blog.articles.build(title: 'space separated')
+      a.publish
       expect(a.permalink).to be_nil
       a.blog = create(:blog)
       a.save
       expect(a.permalink).to eq('space-separated')
+    end
+
+    it 'does nothing for draft articles' do
+      a = blog.articles.build(title: 'space separated', state: :draft)
+      a.set_permalink
+      expect(a.permalink).to be_nil
     end
   end
 
@@ -164,35 +186,22 @@ describe Article, type: :model do
     end
   end
 
-  describe '#just_published' do
-    it 'is true when the article has just been saved as published' do
-      article = blog.articles.build(body: 'bar bar', title: 'Foo', published: true)
-      article.save
-      expect(article).to be_just_published
-    end
-
-    it 'is false when a published article is loaded' do
-      article = blog.articles.build(body: 'bar bar', title: 'Foo', published: true)
-      article.save!
-      article = Article.find(article.id)
-      expect(article).not_to be_just_published
-    end
-  end
-
   describe 'Testing redirects' do
     it 'a new published article gets a redirect' do
-      a = blog.articles.create!(title: 'Some title', body: 'some text', published: true)
+      a = blog.articles.create!(title: 'Some title', body: 'some text')
+      a.publish!
       expect(a.redirect).not_to be_nil
       expect(a.redirect.to_path).to eq(a.permalink_url)
     end
 
     it 'a new unpublished article should not get a redirect' do
-      a = blog.articles.create!(title: 'Some title', body: 'some text', published: false)
+      a = blog.articles.create!(title: 'Some title', body: 'some text')
       expect(a.redirect).to be_nil
     end
 
     it 'Changin a published article permalink url should only change the to redirection' do
-      a = blog.articles.create!(title: 'Some title', body: 'some text', published: true)
+      a = blog.articles.create!(title: 'Some title', body: 'some text')
+      a.publish!
       expect(a.redirect).not_to be_nil
       expect(a.redirect.to_path).to eq(a.permalink_url)
       r = a.redirect.from_path
@@ -213,32 +222,23 @@ describe Article, type: :model do
     assert_equal 2, articles.size
   end
 
-  it 'test_just_published_flag' do
-    art = blog.articles.build(title: 'title',
-                              body: 'body', published: true)
-
-    assert art.just_changed_published_status?
-    assert art.save
-
-    art = Article.find(art.id)
-    assert !art.just_changed_published_status?
-
-    art = blog.articles.create!(title: 'title2', body: 'body',
-                                published: false)
-
-    assert !art.just_changed_published_status?
-  end
-
   it 'test_future_publishing' do
-    assert_sets_trigger(blog.articles.create!(title: 'title', body: 'body',
-                                              published: true,
-                                              published_at: Time.now + 4.seconds))
+    art = blog.articles.build(title: 'title', body: 'body',
+                              published_at: 2.seconds.from_now)
+    art.publish!
+
+    expect(art).to be_publication_pending
+
+    assert_equal 1, Trigger.count
+    assert Trigger.where(pending_item_id: art.id).first
+    assert !art.published?
+    Timecop.freeze(4.seconds.from_now) do
+      Trigger.fire
+    end
+    art.reload
+    assert art.published?
   end
 
-  it 'test_future_publishing_without_published_flag' do
-    assert_sets_trigger blog.articles.create!(title: 'title', body: 'body',
-                                              published_at: Time.now + 4.seconds)
-  end
   it 'test_triggers_are_dependent' do
     # TODO: Needs a fix for Rails ticket #5105: has_many: Dependent deleting does not work with STI
     skip
@@ -247,19 +247,6 @@ describe Article, type: :model do
     assert_equal 1, Trigger.count
     art.destroy
     assert_equal 0, Trigger.count
-  end
-
-  def assert_sets_trigger(art)
-    assert_equal 1, Trigger.count
-    assert Trigger.where(pending_item_id: art.id).first
-    assert !art.published
-    t = Time.now
-    # We stub the Time.now answer to emulate a sleep of 4. Avoid the sleep. So
-    # speed up in test
-    allow(Time).to receive(:now).and_return(t + 5.seconds)
-    Trigger.fire
-    art.reload
-    assert art.published
   end
 
   it 'test_destroy_file_upload_associations' do
@@ -822,7 +809,7 @@ describe Article, type: :model do
     it 'returns only published articles' do
       article = create(:article)
       create(:comment, article: article)
-      unpublished_article = create(:article, published: false, state: 'draft')
+      unpublished_article = create(:article, state: 'draft')
       create(:comment, article: unpublished_article)
       expect(Article.published).to eq([article])
       expect(Article.bestof).to eq([article])
