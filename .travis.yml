@@ -9,11 +9,6 @@ env:
   - DB=sqlite
   - DB=mysql
   - DB=postgresql
-before_install:
-  - rvm use @global
-  - gem uninstall bundler -x
-  - gem install bundler --version=1.13.7
-  - bundler --version
 install:
   - bundle install --without development
 before_script:
