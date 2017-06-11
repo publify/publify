@@ -45,7 +45,7 @@ class S9YMigrate
   def convert_entries
     s9y_entries = ActiveRecord::Base.connection.select_all(%{
       SELECT
-      	id,
+        id,
         (CASE allow_comments WHEN 'true' THEN '1' ELSE '0' END) AS allow_comments,
         title,
         body,
@@ -137,19 +137,21 @@ class S9YMigrate
     puts '** all users will have the default password "password" **'
     puts '** you should change it as soon as possible!           **'
 
-    ActiveRecord::Base.connection.select_all(%(
+    users = ActiveRecord::Base.connection.select_all(%(
       SELECT
         realname AS name,
         username AS login,
         email
       FROM `#{options[:s9y_db]}`.`#{options[:s9y_prefix]}authors`
-    )).each do |user|
+    ))
+
+    users.each do |user|
       u = User.new
       u.attributes = user
       u.password = 'password'
       u.save
     end
-    end
+  end
 
   def parse_options
     OptionParser.new do |opt|
