@@ -11,8 +11,8 @@ class SetupController < BaseController
 
     @user = User.new(login: 'admin',
                      email: params[:setting][:email],
+                     password: params[:setting][:password],
                      nickname: 'Publify Admin')
-    @user.generate_password!
     @user.name = @user.login
 
     unless this_blog.save && @user.save
