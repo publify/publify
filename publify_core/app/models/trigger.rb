@@ -11,21 +11,6 @@ class Trigger < ActiveRecord::Base
     def fire
       where('due_at <= ?', Time.now).destroy_all
       true
-    rescue
-      migrator = Migrator.new
-
-      unless migrator.pending_migrations.empty?
-        starting_version = migrator.current_schema_version
-        migrator.migrate
-
-        if starting_version == 0
-          load "#{Rails.root}/Rakefile"
-          Rake::Task['db:seed'].invoke
-          User.reset_column_information
-          Article.reset_column_information
-          Page.reset_column_information
-        end
-      end
     end
 
     def remove(pending_item, conditions = {})
