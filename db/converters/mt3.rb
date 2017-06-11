@@ -163,7 +163,7 @@ class MTMigrate
     case input
     when /textile/ then 'textile'
     when /markdown/ then 'markdown'
-      end
+    end
   end
 end
 
