@@ -39,7 +39,7 @@ class MTMigrate
         blog_convert_paras
       FROM `#{options[:mt_db]}`.mt_blog
       WHERE blog_id = '#{options[:blog_id]}'
-    })[0]["blog_convert_paras"]
+    })[0]['blog_convert_paras']
 
     mt_entries = ActiveRecord::Base.connection.select_all(%{
       SELECT
@@ -66,10 +66,10 @@ class MTMigrate
       a = Article.new
       a.attributes = entry.reject { |k,v| k =~ /entry_id|convert_breaks/ }
 
-      if entry["convert_breaks"] == "__default__"
+      if entry['convert_breaks'] == '__default__'
         a.text_filter = default_filter
       else
-        a.text_filter = translate_filter entry["convert_breaks"]
+        a.text_filter = translate_filter entry['convert_breaks']
       end
 
       a.save
@@ -120,7 +120,7 @@ class MTMigrate
   end
 
   def convert_prefs
-    puts "Converting prefs"
+    puts 'Converting prefs'
 
     ActiveRecord::Base.connection.select_one(%{
       SELECT
@@ -131,7 +131,7 @@ class MTMigrate
       WHERE blog_id = '#{options[:blog_id]}'
     }).each do |pref_name, pref_value|
       begin
-        Setting.find_by_name(pref_name).update_attribute("value", pref_value)
+        Setting.find_by_name(pref_name).update_attribute('value', pref_value)
       rescue
         Setting.create({'name' => pref_name, 'value' => pref_value})
       end
@@ -141,7 +141,7 @@ class MTMigrate
 
   def parse_options
     OptionParser.new do |opt|
-      opt.banner = "Usage: mt3.rb [options]"
+      opt.banner = 'Usage: mt3.rb [options]'
 
       opt.on('--blog-id BLOGID', Integer, 'Blog ID to import from.') { |i| options[:blog_id] = i }
       opt.on('--db DBNAME', String, 'Movable Type database name.') { |d| options[:mt_db] = d }
@@ -155,7 +155,7 @@ class MTMigrate
     end
 
     unless options.include?(:blog_id) and options.include?(:mt_db)
-      puts "See mt3.rb --help for help."
+      puts 'See mt3.rb --help for help.'
       exit
     end
   end

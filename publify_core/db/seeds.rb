@@ -20,7 +20,7 @@ TextFilter.
   create_with(description: 'None', markup: 'none', filters: [], params: {}).
   find_or_create_by!(name: 'none')
 TextFilter.
-  create_with(description: 'Markdown', markup: "markdown", filters: [], params: {}).
+  create_with(description: 'Markdown', markup: 'markdown', filters: [], params: {}).
   find_or_create_by!(name: 'markdown')
 TextFilter.
   create_with(description: 'SmartyPants', markup: 'none', filters: [:smartypants], params: {}).

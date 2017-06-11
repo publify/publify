@@ -113,7 +113,7 @@ class S9YMigrate
   end
 
   def convert_prefs
-    puts "Converting prefs"
+    puts 'Converting prefs'
 
     ActiveRecord::Base.connection.select_all(%{
       SELECT
@@ -126,7 +126,7 @@ class S9YMigrate
       WHERE name IN ('blogTitle', 'blogDescription')
     }).each do |pref|
       begin
-        Setting.find_by_name(pref['name']).update_attribute("value", pref['value'])
+        Setting.find_by_name(pref['name']).update_attribute('value', pref['value'])
       rescue
         Setting.create(pref)
       end
@@ -134,9 +134,9 @@ class S9YMigrate
   end
 
 def convert_users
-    puts "Converting users"
-	puts "** all users will have the default password \"password\" **"
-	puts "** you should change it as soon as possible!           **"
+    puts 'Converting users'
+	puts '** all users will have the default password "password" **'
+	puts '** you should change it as soon as possible!           **'
 
     ActiveRecord::Base.connection.select_all(%{
       SELECT
@@ -147,14 +147,14 @@ def convert_users
     }).each do |user|
       u = User.new
       u.attributes = user
-	  u.password = "password"
+	  u.password = 'password'
       u.save
     end
   end
 
   def parse_options
     OptionParser.new do |opt|
-      opt.banner = "Usage: s9y.rb [options]"
+      opt.banner = 'Usage: s9y.rb [options]'
 
       opt.on('--db DBNAME', String, 'S9Y database name.') { |d| options[:s9y_db] = d }
       opt.on('--prefix PREFIX', String, 'S9Y table prefix (defaults to empty string).') { |d| options[:s9y_prefix] = d }
@@ -168,12 +168,12 @@ def convert_users
     end
 
     unless options.include?(:s9y_db)
-      puts "See s9y.rb --help for help."
+      puts 'See s9y.rb --help for help.'
       exit
     end
 
 	unless options.include?(:s9y_prefix)
-      options[:s9y_prefix] = ""
+      options[:s9y_prefix] = ''
     end
 
   end

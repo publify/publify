@@ -87,7 +87,7 @@ class TXPMigrate
   end
 
   def convert_prefs
-    puts "Converting prefs"
+    puts 'Converting prefs'
 
     ActiveRecord::Base.connection.select_all(%{
       SELECT
@@ -100,12 +100,12 @@ class TXPMigrate
       FROM `#{options[:txp_db]}`..`#{options[:txp_pfx]}`txp_prefs
       WHERE name IN ('sitename', 'comments_on_default', 'use_textile')
     }).each do |pref|
-      if pref['name'] == "text_filter" and pref['value'].to_i > 0
+      if pref['name'] == 'text_filter' and pref['value'].to_i > 0
         pref['value'] = 'textile'
       end
 
       begin
-        Setting.find_by_name(pref['name']).update_attribute("value", pref['value'])
+        Setting.find_by_name(pref['name']).update_attribute('value', pref['value'])
       rescue
         Setting.create(pref)
       end
@@ -114,7 +114,7 @@ class TXPMigrate
 
   def parse_options
     OptionParser.new do |opt|
-      opt.banner = "Usage: textpattern.rb [options]"
+      opt.banner = 'Usage: textpattern.rb [options]'
 
       opt.on('--db DBNAME', String, 'Text Pattern database name.') { |d| options[:txp_db] = d }
       opt.on('--pf PREFIX', String, 'Textpattern table prefix.') { |p| options[:txp_pfx] = p }
@@ -128,7 +128,7 @@ class TXPMigrate
     end
 
     unless options.include?(:txp_db)
-      puts "See textpattern.rb --help for help."
+      puts 'See textpattern.rb --help for help.'
       exit
     end
   end
