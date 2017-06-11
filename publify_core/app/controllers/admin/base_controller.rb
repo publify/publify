@@ -8,7 +8,6 @@ class Admin::BaseController < BaseController
   layout 'administration'
 
   before_action :login_required, except: [:login, :signup]
-  before_action :look_for_needed_db_updates, except: [:login, :signup]
 
   private
 
@@ -32,10 +31,5 @@ class Admin::BaseController < BaseController
     @record.destroy
     flash[:notice] = I18n.t('admin.base.successfully_deleted', name: controller_name.humanize)
     redirect_to action: 'index'
-  end
-
-  def look_for_needed_db_updates
-    migrator = Migrator.new
-    redirect_to admin_migrations_path if migrator.migrations_pending?
   end
 end
