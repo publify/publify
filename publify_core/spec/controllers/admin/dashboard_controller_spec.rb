@@ -180,8 +180,8 @@ describe Admin::DashboardController, type: :controller do
         get :index
       end
 
-      it 'does not redirect to the migration updater' do
-        expect(response).not_to redirect_to admin_migrations_path
+      it 'does not redirect' do
+        expect(response).not_to be_redirect
       end
     end
   end
