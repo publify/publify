@@ -3,12 +3,7 @@
   <p>Your <a href="<%= @blog.base_url%>"><%= @blog.blog_name %></a> account has been created.</p>
 
   <%= render 'mail_header' %>
-    <p>Your credentials appear below.</p>
-
-    <ul>
-      <li>Login: <%= h @user.login %></li>
-      <li>Password: <%= h @user.password %></li>
-    </ul>
+    <p>Your can log in using your chosen login name, <%= h @user.login %>, and your password.</p>
   </div>
 </body>
 </html>
