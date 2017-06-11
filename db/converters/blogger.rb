@@ -8,7 +8,7 @@ require 'optparse'
 require 'feedzirra'
 
 class BloggerConverter
-  BLOGGER_POST = 'http://schemas.google.com/blogger/2008/kind#post'
+  BLOGGER_POST = 'http://schemas.google.com/blogger/2008/kind#post'.freeze
 
   attr_accessor :options
 
@@ -59,7 +59,7 @@ class BloggerConverter
       user = User.new
       para = { 'login' => name,
                'name'  => name,
-               'nickname'  => name,
+               'nickname' => name,
                'email' => name + '@fake.com',
                'password' => 'password',
                'profile_id' => 2,

@@ -20,17 +20,17 @@ class TXPMigrate
   end
 
   def convert_categories
-    txp_categories = ActiveRecord::Base.connection.select_all(%{
+    txp_categories = ActiveRecord::Base.connection.select_all(%(
       SELECT name
       FROM `#{options[:txp_db]}`.`#{options[:txp_pfx]}`txp_category
       WHERE parent = 'root'
       AND type = 'article'
-    })
+    ))
 
     puts "Converting #{txp_categories.size} categories.."
 
     txp_categories.each do |cat|
-      Category.create(cat) unless Category.find_by_name(cat['name'])
+      Category.create(cat) unless Category.find_by(name: cat['name'])
     end
   end
 
@@ -58,17 +58,25 @@ class TXPMigrate
 
     txp_entries.each do |entry|
       a = Article.new
-      a.attributes = entry.reject { |k,v| k =~ /^(Category|ID)/ }
+      a.attributes = entry.reject { |k, _v| k =~ /^(Category|ID)/ }
       a.save
 
       # Assign categories
       puts "Assign primary category for entry #{entry['ID']}"
-      a.categories.push_with_attributes(Category.find_by_name(entry['Category1']), is_primary: 1) rescue nil
+      begin
+        a.categories.push_with_attributes(Category.find_by(name: entry['Category1']), is_primary: 1)
+      rescue
+        nil
+      end
       puts "Assign secondary category for entry #{entry['ID']}"
-      a.categories.push_with_attributes(Category.find_by_name(entry['Category2']), is_primary: 0) rescue nil
+      begin
+        a.categories.push_with_attributes(Category.find_by(name: entry['Category2']), is_primary: 0)
+      rescue
+        nil
+      end
 
       # Fetch comments
-      ActiveRecord::Base.connection.select_all(%{
+      ActiveRecord::Base.connection.select_all(%(
         SELECT
           name AS author,
           email AS email,
@@ -79,10 +87,9 @@ class TXPMigrate
           ip AS ip
         FROM `#{options[:txp_db]}`..`#{options[:txp_pfx]}`txp_discuss
         WHERE parentid = #{entry['ID']}
-      }).each do |c|
+      )).each do |c|
         a.comments.create(c)
       end
-
     end
   end
 
@@ -100,12 +107,12 @@ class TXPMigrate
       FROM `#{options[:txp_db]}`..`#{options[:txp_pfx]}`txp_prefs
       WHERE name IN ('sitename', 'comments_on_default', 'use_textile')
     }).each do |pref|
-      if pref['name'] == 'text_filter' and pref['value'].to_i > 0
+      if pref['name'] == 'text_filter' && pref['value'].to_i > 0
         pref['value'] = 'textile'
       end
 
       begin
-        Setting.find_by_name(pref['name']).update_attribute('value', pref['value'])
+        Setting.find_by(name: pref['name']).update_attribute('value', pref['value'])
       rescue
         Setting.create(pref)
       end

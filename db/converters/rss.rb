@@ -57,7 +57,7 @@ class RSSMigrate
       opt.parse!(ARGV)
     end
 
-    unless options.include?(:author) and options.include?(:url)
+    unless options.include?(:author) && options.include?(:url)
       puts 'See rss.rb --help for help.'
       exit
     end

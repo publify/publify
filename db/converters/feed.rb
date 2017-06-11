@@ -8,9 +8,9 @@ require 'optparse'
 begin
   require 'feed_tools'
 rescue LoadError
-  STDERR.puts <<-EOF
-This converter requires feedtools to be installed.
-Please run `gem install feedtools` and try again.
+  STDERR.puts <<-EOF.strip_heredoc
+    This converter requires feedtools to be installed.
+    Please run `gem install feedtools` and try again.
 EOF
   exit 1
 end
@@ -25,7 +25,7 @@ class FeedMigrate
   end
 
   def convert_entries
-  	feed = FeedTools::Feed.open(options[:url])
+    feed = FeedTools::Feed.open(options[:url])
     puts "Converting #{feed.items.length} entries..."
     feed.items.each do |item|
       puts "Converting '#{item.title}'"
@@ -58,7 +58,7 @@ class FeedMigrate
       opt.parse!(ARGV)
     end
 
-    unless options.include?(:author) and options.include?(:url)
+    unless options.include?(:author) && options.include?(:url)
       puts 'See feed.rb --help for help.'
       exit
     end

@@ -30,15 +30,15 @@ class S9YMigrate
   end
 
   def convert_categories
-    s9y_categories = ActiveRecord::Base.connection.select_all(%{
+    s9y_categories = ActiveRecord::Base.connection.select_all(%(
       SELECT category_name AS name
       FROM `#{options[:s9y_db]}`.`#{options[:s9y_prefix]}category`
-    })
+    ))
 
     puts "Converting #{s9y_categories.size} categories.."
 
     s9y_categories.each do |cat|
-      Category.create(cat) unless Category.find_by_name(cat['name'])
+      Category.create(cat) unless Category.find_by(name: cat['name'])
     end
   end
 
@@ -62,17 +62,17 @@ class S9YMigrate
 
     s9y_entries.each do |entry|
       a = Article.new
-      a.attributes = entry.reject { |k,v| k =~ /^(id)/ }
+      a.attributes = entry.reject { |k, _v| k =~ /^(id)/ }
       a.save
 
       # Fetch category assignments
-      ActiveRecord::Base.connection.select_all(%{
+      ActiveRecord::Base.connection.select_all(%(
         SELECT category_name
         FROM `#{options[:s9y_db]}`.`#{options[:s9y_prefix]}category`, `#{options[:s9y_db]}`.`#{options[:s9y_prefix]}entrycat`
         WHERE entryid = #{entry['id']}
         AND `#{options[:s9y_prefix]}entrycat`.categoryid = `#{options[:s9y_prefix]}category`.categoryid
-      }).each do |c|
-        a.categories.push_with_attributes(Category.find_by_name(c['category_name']), is_primary: 0)
+      )).each do |c|
+        a.categories.push_with_attributes(Category.find_by(name: c['category_name']), is_primary: 0)
       end
 
       # Fetch comments
@@ -108,7 +108,6 @@ class S9YMigrate
       }).each do |c|
         a.trackbacks.create(c)
       end
-
     end
   end
 
@@ -126,31 +125,31 @@ class S9YMigrate
       WHERE name IN ('blogTitle', 'blogDescription')
     }).each do |pref|
       begin
-        Setting.find_by_name(pref['name']).update_attribute('value', pref['value'])
+        Setting.find_by(name: pref['name']).update_attribute('value', pref['value'])
       rescue
         Setting.create(pref)
       end
     end
   end
 
-def convert_users
+  def convert_users
     puts 'Converting users'
-	puts '** all users will have the default password "password" **'
-	puts '** you should change it as soon as possible!           **'
+    puts '** all users will have the default password "password" **'
+    puts '** you should change it as soon as possible!           **'
 
-    ActiveRecord::Base.connection.select_all(%{
+    ActiveRecord::Base.connection.select_all(%(
       SELECT
         realname AS name,
         username AS login,
         email
       FROM `#{options[:s9y_db]}`.`#{options[:s9y_prefix]}authors`
-    }).each do |user|
+    )).each do |user|
       u = User.new
       u.attributes = user
-	  u.password = 'password'
+      u.password = 'password'
       u.save
     end
-  end
+    end
 
   def parse_options
     OptionParser.new do |opt|
@@ -172,10 +171,7 @@ def convert_users
       exit
     end
 
-	unless options.include?(:s9y_prefix)
-      options[:s9y_prefix] = ''
-    end
-
+    options[:s9y_prefix] = '' unless options.include?(:s9y_prefix)
   end
 end
 
