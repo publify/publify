@@ -164,8 +164,7 @@ class MTMigrate
     return case input
       when /textile/ then 'textile'
       when /markdown/ then 'markdown'
-      else  nil
-    end
+      end
   end
 end
 
