@@ -20,8 +20,6 @@ class SetupController < BaseController
       return
     end
 
-    session[:tmppass] = @user.password
-
     sign_in @user
 
     if User.count == 1
