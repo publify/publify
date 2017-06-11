@@ -109,7 +109,6 @@ Rails.application.routes.draw do
     end
 
     resource :seo, controller: 'seo', only: [:show, :update], format: false
-    resource :migrations, only: [:show, :update]
 
     # TODO: This should be a singular resource
     resource :settings, only: [], format: false do
