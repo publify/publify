@@ -9,13 +9,6 @@ require 'factory_girl'
 require 'rexml/document'
 FactoryGirl.find_definitions
 
-class EmailNotify
-  class << self
-    alias real_send_user_create_notification send_user_create_notification
-    def send_user_create_notification(_user); end
-  end
-end
-
 class ActionView::TestCase::TestController
   include Rails.application.routes.url_helpers
 end
