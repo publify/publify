@@ -1,9 +1,7 @@
 class ReplaceProfileIdWithString < ActiveRecord::Migration[4.2]
   class Profile < ActiveRecord::Base
-
   end
   class User < ActiveRecord::Base
-
   end
 
   def up

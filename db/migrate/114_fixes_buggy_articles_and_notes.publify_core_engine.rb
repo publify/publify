@@ -1,6 +1,5 @@
 class FixesBuggyArticlesAndNotes < ActiveRecord::Migration
   class Content < ActiveRecord::Base
-
   end
 
   class Article < Content
