@@ -8,7 +8,7 @@ describe SetupController, type: :controller do
       create :none
     end
 
-    describe 'GET setup' do
+    describe 'GET index' do
       before do
         get 'index'
       end
@@ -16,7 +16,7 @@ describe SetupController, type: :controller do
       specify { expect(response).to render_template('index') }
     end
 
-    describe 'POST setup' do
+    describe 'POST index' do
       let(:post_setup_index) do
         post 'index', params: { setting: { blog_name: 'Foo', email: 'foo@bar.net' } }
       end
@@ -44,7 +44,7 @@ describe SetupController, type: :controller do
       end
     end
 
-    describe 'POST setup with incorrect parameters' do
+    describe 'POST index with incorrect parameters' do
       it 'empty blog name should raise an error' do
         post 'index', params: { setting: { blog_name: '', email: 'foo@bar.net' } }
         expect(response).to redirect_to(action: 'index')
@@ -62,7 +62,7 @@ describe SetupController, type: :controller do
       create(:blog)
     end
 
-    describe 'GET setup' do
+    describe 'GET index' do
       before do
         get 'index'
       end
@@ -70,7 +70,7 @@ describe SetupController, type: :controller do
       specify { expect(response).to redirect_to(controller: 'articles', action: 'index') }
     end
 
-    describe 'POST setup' do
+    describe 'POST index' do
       before do
         post 'index', params: { setting: { blog_name: 'Foo', email: 'foo@bar.net' } }
       end
