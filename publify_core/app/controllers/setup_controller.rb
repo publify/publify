@@ -15,16 +15,12 @@ class SetupController < BaseController
     @user.generate_password!
     @user.name = @user.login
 
-    unless this_blog.valid? && @user.valid?
+    unless this_blog.save && @user.save
       redirect_to setup_url
       return
     end
 
-    return unless this_blog.save
-
     session[:tmppass] = @user.password
-
-    return unless @user.save
 
     sign_in @user
 
