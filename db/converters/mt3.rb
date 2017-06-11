@@ -133,7 +133,7 @@ class MTMigrate
       begin
         Setting.find_by_name(pref_name).update_attribute('value', pref_value)
       rescue
-        Setting.create({ 'name' => pref_name, 'value' => pref_value })
+        Setting.create('name' => pref_name, 'value' => pref_value)
       end
     end
 
