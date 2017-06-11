@@ -33,6 +33,7 @@ describe SetupController, type: :controller do
 
       context 'when passing correct parameters' do
         before do
+          ActionMailer::Base.deliveries.clear
           post :create, params: { setting: { blog_name: 'Foo', email: 'foo@bar.net', password: 'foo123bar' } }
         end
 
@@ -52,6 +53,10 @@ describe SetupController, type: :controller do
         it 'redirects to confirm the setup' do
           expect(response).to redirect_to(controller: 'accounts',
                                           action: 'confirm')
+        end
+
+        it 'sends a confirmation email' do
+          expect(ActionMailer::Base.deliveries.size).to eq 1
         end
       end
 
