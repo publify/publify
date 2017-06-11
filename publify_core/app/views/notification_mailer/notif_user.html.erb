@@ -2,8 +2,8 @@
 <body>
   <p>Your <a href="<%= @blog.base_url%>"><%= @blog.blog_name %></a> account has been created.</p>
 
-  <%= render 'mail_header' %>
+  <%= render 'mail_header' do %>
     <p>Your can log in using your chosen login name, <%= h @user.login %>, and your password.</p>
-  </div>
+  <% end %>
 </body>
 </html>
