@@ -1,4 +1,4 @@
-class AddBlogIds < ActiveRecord::Migration
+class AddBlogIds < ActiveRecord::Migration[4.2]
   class Blog < ActiveRecord::Base; end
   class Content < ActiveRecord::Base; end
   class Sidebar < ActiveRecord::Base; end
@@ -14,15 +14,13 @@ class AddBlogIds < ActiveRecord::Migration
       Sidebar.update_all("blog_id = #{default_blog_id}")
     end
 
-    change_column :sidebars, :blog_id, :integer, :null => false
+    change_column :sidebars, :blog_id, :integer, null: false
   end
 
   def down
     if adapter_name == 'PostgreSQL'
       indexes(:contents).each do |index|
-        if index.name =~ /blog_id/
-          remove_index(:contents, :name => index.name)
-        end
+        remove_index(:contents, name: index.name) if index.name =~ /blog_id/
       end
     else
       remove_index :contents, :blog_id rescue nil

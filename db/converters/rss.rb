@@ -18,18 +18,18 @@ class RSSMigrate
 
   def initialize
     self.options = {}
-    self.parse_options
-    self.convert_entries
+    parse_options
+    convert_entries
   end
 
   def convert_entries
-    feed = Net::HTTP.get(URI.parse(self.options[:url]))
+    feed = Net::HTTP.get(URI.parse(options[:url]))
     rss = RSS::Parser.parse(feed)
     puts "Converting #{rss.items.length} entries..."
     rss.items.each do |item|
       puts "Converting '#{item.title}'"
       a = Article.new
-      a.author = self.options[:author]
+      a.author = options[:author]
       a.title = item.title
       a.body = item.description
       a.created_at = item.pubDate
@@ -42,11 +42,11 @@ class RSSMigrate
       opt.banner = 'Usage: rss.rb [options]'
 
       opt.on('-a', '--author AUTHOR', 'Username of author in publify') do |a|
-        self.options[:author] = a
+        options[:author] = a
       end
 
       opt.on('-u', '--url URL', 'URL of RSS feed to import.') do |u|
-        self.options[:url] = u
+        options[:url] = u
       end
 
       opt.on_tail('-h', '--help', 'Show this message.') do
@@ -57,7 +57,7 @@ class RSSMigrate
       opt.parse!(ARGV)
     end
 
-    unless self.options.include?(:author) and self.options.include?(:url)
+    unless options.include?(:author) && options.include?(:url)
       puts 'See rss.rb --help for help.'
       exit
     end

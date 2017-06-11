@@ -8,9 +8,9 @@ require 'optparse'
 begin
   require 'feed_tools'
 rescue LoadError
-  STDERR.puts <<-EOF
-This converter requires feedtools to be installed.
-Please run `gem install feedtools` and try again.
+  STDERR.puts <<-EOF.strip_heredoc
+    This converter requires feedtools to be installed.
+    Please run `gem install feedtools` and try again.
 EOF
   exit 1
 end
@@ -20,17 +20,17 @@ class FeedMigrate
 
   def initialize
     self.options = {}
-    self.parse_options
-    self.convert_entries
+    parse_options
+    convert_entries
   end
 
   def convert_entries
-  	feed = FeedTools::Feed.open(self.options[:url])
+    feed = FeedTools::Feed.open(options[:url])
     puts "Converting #{feed.items.length} entries..."
     feed.items.each do |item|
       puts "Converting '#{item.title}'"
       a = Article.new
-      a.author = self.options[:author]
+      a.author = options[:author]
       a.title = item.title
       a.body = item.description
       a.created_at = item.published
@@ -43,11 +43,11 @@ class FeedMigrate
       opt.banner = 'Usage: feed.rb [options]'
 
       opt.on('-a', '--author AUTHOR', 'Username of author in publify') do |a|
-        self.options[:author] = a
+        options[:author] = a
       end
 
       opt.on('-u', '--url URL', 'URL of RSS feed to import.') do |u|
-        self.options[:url] = u
+        options[:url] = u
       end
 
       opt.on_tail('-h', '--help', 'Show this message.') do
@@ -58,7 +58,7 @@ class FeedMigrate
       opt.parse!(ARGV)
     end
 
-    unless self.options.include?(:author) and self.options.include?(:url)
+    unless options.include?(:author) && options.include?(:url)
       puts 'See feed.rb --help for help.'
       exit
     end

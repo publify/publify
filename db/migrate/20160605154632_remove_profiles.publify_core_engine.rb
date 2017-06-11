@@ -1,4 +1,4 @@
-class RemoveProfiles < ActiveRecord::Migration
+class RemoveProfiles < ActiveRecord::Migration[4.2]
   class Profile < ActiveRecord::Base
     serialize :modules
   end
@@ -19,6 +19,6 @@ class RemoveProfiles < ActiveRecord::Migration
     Profile.create!(label: 'publisher', nicename: 'Blog publisher',
                     modules: [:dashboard, :articles, :notes, :pages, :feedback, :media, :profile])
     Profile.create!(label: 'contributor', nicename: 'Contributor',
-                    modules: [:dashboard, :profile ])
+                    modules: [:dashboard, :profile])
   end
 end

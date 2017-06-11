@@ -1,5 +1,5 @@
 # This migration comes from publify_core_engine (originally 20160701062604)
-class AddBlogIdToResources < ActiveRecord::Migration
+class AddBlogIdToResources < ActiveRecord::Migration[4.2]
   class Blog < ActiveRecord::Base; end
   class Content < ActiveRecord::Base; end
   class Resource < ActiveRecord::Base; end

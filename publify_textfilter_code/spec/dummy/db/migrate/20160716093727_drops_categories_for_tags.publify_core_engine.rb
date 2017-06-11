@@ -1,5 +1,5 @@
 # This migration comes from publify_core_engine (originally 115)
-class DropsCategoriesForTags < ActiveRecord::Migration
+class DropsCategoriesForTags < ActiveRecord::Migration[4.2]
   class Categorization < ActiveRecord::Base
     belongs_to :article
     belongs_to :category

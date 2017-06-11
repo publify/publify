@@ -1,4 +1,4 @@
-class DropsCategoriesForTags < ActiveRecord::Migration
+class DropsCategoriesForTags < ActiveRecord::Migration[4.2]
   class Categorization < ActiveRecord::Base
     belongs_to :article
     belongs_to :category
@@ -6,7 +6,7 @@ class DropsCategoriesForTags < ActiveRecord::Migration
 
   class Category < ActiveRecord::Base
     has_many :categorizations
-    has_many :articles, :through => :categorizations
+    has_many :articles, through: :categorizations
   end
 
   def up
@@ -18,7 +18,7 @@ class DropsCategoriesForTags < ActiveRecord::Migration
       end
 
       redirect = Redirect.create(from_path: "category/#{cat.permalink}",
-                                 to_path: File.join(Blog.first.base_url, "tag", tag.name))
+                                 to_path: File.join(Blog.first.base_url, 'tag', tag.name))
       cat.articles.each do |article|
         article.tags << tag
         article.save
