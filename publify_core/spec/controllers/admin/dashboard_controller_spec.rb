@@ -166,23 +166,4 @@ describe Admin::DashboardController, type: :controller do
       expect(response.body).not_to have_selector("a[href='/admin/feedback?only=unapproved']", text: 'no unconfirmed')
     end
   end
-
-  describe '#index' do
-    context 'with pending migrations' do
-      let!(:blog) { create(:blog) }
-      let(:user) { create(:user, :as_admin) }
-      let(:migrator) { double('migrator') }
-
-      before do
-        sign_in user
-        allow(Migrator).to receive(:new).and_return migrator
-        allow(migrator).to receive(:migrations_pending?).and_return true
-        get :index
-      end
-
-      it 'does not redirect' do
-        expect(response).not_to be_redirect
-      end
-    end
-  end
 end
