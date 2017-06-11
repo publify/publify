@@ -1,10 +1,11 @@
 class SetupController < BaseController
-  before_action :check_config, only: 'index'
+  before_action :check_config
   layout 'accounts'
 
   def index
-    return unless request.post?
+  end
 
+  def create
     this_blog.blog_name = params[:setting][:blog_name]
     this_blog.base_url = blog_base_url
 
