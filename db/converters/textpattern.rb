@@ -63,9 +63,9 @@ class TXPMigrate
 
       # Assign categories
       puts "Assign primary category for entry #{entry['ID']}"
-      a.categories.push_with_attributes(Category.find_by_name(entry['Category1']), :is_primary => 1) rescue nil
+      a.categories.push_with_attributes(Category.find_by_name(entry['Category1']), is_primary: 1) rescue nil
       puts "Assign secondary category for entry #{entry['ID']}"
-      a.categories.push_with_attributes(Category.find_by_name(entry['Category2']), :is_primary => 0) rescue nil
+      a.categories.push_with_attributes(Category.find_by_name(entry['Category2']), is_primary: 0) rescue nil
 
       # Fetch comments
       ActiveRecord::Base.connection.select_all(%{

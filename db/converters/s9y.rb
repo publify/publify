@@ -72,7 +72,7 @@ class S9YMigrate
         WHERE entryid = #{entry['id']}
         AND `#{options[:s9y_prefix]}entrycat`.categoryid = `#{options[:s9y_prefix]}category`.categoryid
       }).each do |c|
-        a.categories.push_with_attributes(Category.find_by_name(c['category_name']), :is_primary => 0)
+        a.categories.push_with_attributes(Category.find_by_name(c['category_name']), is_primary: 0)
       end
 
       # Fetch comments

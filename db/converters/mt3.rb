@@ -82,7 +82,7 @@ class MTMigrate
         AND category_id = placement_category_id
         AND entry_id = placement_entry_id
       }).each do |c|
-        a.categories.push_with_attributes(Category.find_by_name(c['category_label']), :is_primary => c['placement_is_primary'])
+        a.categories.push_with_attributes(Category.find_by_name(c['category_label']), is_primary: c['placement_is_primary'])
       end
 
       # Fetch comments
