@@ -4,15 +4,14 @@ AllCops:
   Exclude:
   - 'bin/**/*'
   - 'config/**/*'
-  - 'db/**/*'
   - 'tmp/**/*'
   - 'publify_core/bin/*'
   - 'publify_core/spec/dummy/**/*'
-  - 'publify_core/db/**/*'
   - 'publify_amazon_sidebar/bin/*'
   - 'publify_amazon_sidebar/spec/dummy/**/*'
   - 'publify_textfilter_code/bin/*'
   - 'publify_textfilter_code/spec/dummy/**/*'
+  - 'db/schema.rb'
 
 Rails:
   Enabled: true
