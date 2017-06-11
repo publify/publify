@@ -19,6 +19,6 @@ class RemoveProfiles < ActiveRecord::Migration
     Profile.create!(label: 'publisher', nicename: 'Blog publisher',
                     modules: [:dashboard, :articles, :notes, :pages, :feedback, :media, :profile])
     Profile.create!(label: 'contributor', nicename: 'Contributor',
-                    modules: [:dashboard, :profile ])
+                    modules: [:dashboard, :profile])
   end
 end
