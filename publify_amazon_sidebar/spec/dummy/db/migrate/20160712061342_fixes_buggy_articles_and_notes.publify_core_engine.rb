@@ -1,5 +1,5 @@
 # This migration comes from publify_core_engine (originally 114)
-class FixesBuggyArticlesAndNotes < ActiveRecord::Migration
+class FixesBuggyArticlesAndNotes < ActiveRecord::Migration[4.2]
   class Content < ActiveRecord::Base
 
   end

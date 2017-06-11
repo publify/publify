@@ -1,5 +1,5 @@
 # This migration comes from publify_core_engine (originally 20150807134129)
-class SimplifyRedirectRelations < ActiveRecord::Migration
+class SimplifyRedirectRelations < ActiveRecord::Migration[4.2]
   class Redirect < ActiveRecord::Base; end
   class Redirection < ActiveRecord::Base; end
 

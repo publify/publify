@@ -1,4 +1,4 @@
-class AddBlogIdToRedirects < ActiveRecord::Migration
+class AddBlogIdToRedirects < ActiveRecord::Migration[4.2]
   class Redirect < ActiveRecord::Base; end
 
   def up

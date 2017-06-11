@@ -1,5 +1,5 @@
 # This migration comes from publify_core_engine (originally 20160605154632)
-class RemoveProfiles < ActiveRecord::Migration
+class RemoveProfiles < ActiveRecord::Migration[4.2]
   class Profile < ActiveRecord::Base
     serialize :modules
   end
