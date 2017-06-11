@@ -13,16 +13,16 @@ class TXPMigrate
 
   def initialize
     self.options = {}
-    self.parse_options
-    self.convert_categories
-    self.convert_entries
-    self.convert_prefs
+    parse_options
+    convert_categories
+    convert_entries
+    convert_prefs
   end
 
   def convert_categories
     txp_categories = ActiveRecord::Base.connection.select_all(%{
       SELECT name
-      FROM `#{self.options[:txp_db]}`.`#{self.options[:txp_pfx]}`txp_category
+      FROM `#{options[:txp_db]}`.`#{options[:txp_pfx]}`txp_category
       WHERE parent = 'root'
       AND type = 'article'
     })
@@ -51,7 +51,7 @@ class TXPMigrate
         (CASE textile_body WHEN '1' THEN 'textile' ELSE 'none' END) AS text_filter,
         (CASE Status WHEN '1' THEN '0' ELSE '1' END) AS published,
         Category1, Category2
-      FROM `#{self.options[:txp_db]}`..`#{self.options[:txp_pfx]}`textpattern
+      FROM `#{options[:txp_db]}`..`#{options[:txp_pfx]}`textpattern
     })
 
     puts "Converting #{txp_entries.size} entries.."
@@ -77,7 +77,7 @@ class TXPMigrate
           message as body_html,
           posted AS created_at,
           ip AS ip
-        FROM `#{self.options[:txp_db]}`..`#{self.options[:txp_pfx]}`txp_discuss
+        FROM `#{options[:txp_db]}`..`#{options[:txp_pfx]}`txp_discuss
         WHERE parentid = #{entry['ID']}
       }).each do |c|
         a.comments.create(c)
@@ -97,7 +97,7 @@ class TXPMigrate
           WHEN 'use_textile' THEN 'text_filter'
          END) AS name,
         val AS value
-      FROM `#{self.options[:txp_db]}`..`#{self.options[:txp_pfx]}`txp_prefs
+      FROM `#{options[:txp_db]}`..`#{options[:txp_pfx]}`txp_prefs
       WHERE name IN ('sitename', 'comments_on_default', 'use_textile')
     }).each do |pref|
       if pref['name'] == "text_filter" and pref['value'].to_i > 0
@@ -116,8 +116,8 @@ class TXPMigrate
     OptionParser.new do |opt|
       opt.banner = "Usage: textpattern.rb [options]"
 
-      opt.on('--db DBNAME', String, 'Text Pattern database name.') { |d| self.options[:txp_db] = d }
-      opt.on('--pf PREFIX', String, 'Textpattern table prefix.') { |p| self.options[:txp_pfx] = p }
+      opt.on('--db DBNAME', String, 'Text Pattern database name.') { |d| options[:txp_db] = d }
+      opt.on('--pf PREFIX', String, 'Textpattern table prefix.') { |p| options[:txp_pfx] = p }
 
       opt.on_tail('-h', '--help', 'Show this message.') do
         puts opt
@@ -127,7 +127,7 @@ class TXPMigrate
       opt.parse!(ARGV)
     end
 
-    unless self.options.include?(:txp_db)
+    unless options.include?(:txp_db)
       puts "See textpattern.rb --help for help."
       exit
     end

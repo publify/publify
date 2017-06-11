@@ -13,17 +13,17 @@ class MTMigrate
 
   def initialize
     self.options = {}
-    self.parse_options
-    self.convert_categories
-    self.convert_entries
-    self.convert_prefs
+    parse_options
+    convert_categories
+    convert_entries
+    convert_prefs
   end
 
   def convert_categories
     mt_categories = ActiveRecord::Base.connection.select_all(%{
       SELECT category_label AS name
-      FROM `#{self.options[:mt_db]}`.mt_category
-      WHERE category_blog_id = '#{self.options[:blog_id]}'
+      FROM `#{options[:mt_db]}`.mt_category
+      WHERE category_blog_id = '#{options[:blog_id]}'
     })
 
     puts "Converting #{mt_categories.size} categories.."
@@ -37,8 +37,8 @@ class MTMigrate
     default_filter = translate_filter ActiveRecord::Base.connection.select_all(%{
       SELECT
         blog_convert_paras
-      FROM `#{self.options[:mt_db]}`.mt_blog
-      WHERE blog_id = '#{self.options[:blog_id]}'
+      FROM `#{options[:mt_db]}`.mt_blog
+      WHERE blog_id = '#{options[:blog_id]}'
     })[0]["blog_convert_paras"]
 
     mt_entries = ActiveRecord::Base.connection.select_all(%{
@@ -55,8 +55,8 @@ class MTMigrate
         entry_created_on AS created_at,
         entry_modified_on AS updated_at,
         author_name AS author
-      FROM `#{self.options[:mt_db]}`.mt_entry, `#{self.options[:mt_db]}`.mt_author
-      WHERE entry_blog_id = '#{self.options[:blog_id]}'
+      FROM `#{options[:mt_db]}`.mt_entry, `#{options[:mt_db]}`.mt_author
+      WHERE entry_blog_id = '#{options[:blog_id]}'
       AND author_id = entry_author_id
     })
 
@@ -77,7 +77,7 @@ class MTMigrate
       # Fetch category assignments
       ActiveRecord::Base.connection.select_all(%{
         SELECT category_label, placement_is_primary
-        FROM `#{self.options[:mt_db]}`.mt_category, `#{self.options[:mt_db]}`.mt_entry, `#{self.options[:mt_db]}`.mt_placement
+        FROM `#{options[:mt_db]}`.mt_category, `#{options[:mt_db]}`.mt_entry, `#{options[:mt_db]}`.mt_placement
         WHERE entry_id = #{entry['entry_id']}
         AND category_id = placement_category_id
         AND entry_id = placement_entry_id
@@ -94,7 +94,7 @@ class MTMigrate
           comment_text AS body,
           comment_created_on AS created_at,
           comment_modified_on AS updated_at
-        FROM `#{self.options[:mt_db]}`.mt_comment
+        FROM `#{options[:mt_db]}`.mt_comment
         WHERE comment_entry_id = #{entry['entry_id']}
       }).each do |c|
         a.comments.create(c)
@@ -110,7 +110,7 @@ class MTMigrate
           tbping_blog_name AS blog_name,
           tbping_created_on AS created_at,
           tbping_modified_on AS updated_at
-        FROM `#{self.options[:mt_db]}`.mt_tbping, `#{self.options[:mt_db]}`.mt_trackback
+        FROM `#{options[:mt_db]}`.mt_tbping, `#{options[:mt_db]}`.mt_trackback
         WHERE tbping_tb_id = trackback_id
         AND trackback_entry_id = #{entry['entry_id']}
       }).each do |tb|
@@ -127,8 +127,8 @@ class MTMigrate
         blog_name,
         blog_allow_comments_default AS default_allow_comments,
         blog_allow_pings_default AS default_allow_pings
-      FROM `#{self.options[:mt_db]}`.mt_blog
-      WHERE blog_id = '#{self.options[:blog_id]}'
+      FROM `#{options[:mt_db]}`.mt_blog
+      WHERE blog_id = '#{options[:blog_id]}'
     }).each do |pref_name, pref_value|
       begin
         Setting.find_by_name(pref_name).update_attribute("value", pref_value)
@@ -143,8 +143,8 @@ class MTMigrate
     OptionParser.new do |opt|
       opt.banner = "Usage: mt3.rb [options]"
 
-      opt.on('--blog-id BLOGID', Integer, 'Blog ID to import from.') { |i| self.options[:blog_id] = i }
-      opt.on('--db DBNAME', String, 'Movable Type database name.') { |d| self.options[:mt_db] = d }
+      opt.on('--blog-id BLOGID', Integer, 'Blog ID to import from.') { |i| options[:blog_id] = i }
+      opt.on('--db DBNAME', String, 'Movable Type database name.') { |d| options[:mt_db] = d }
 
       opt.on_tail('-h', '--help', 'Show this message.') do
         puts opt
@@ -154,7 +154,7 @@ class MTMigrate
       opt.parse!(ARGV)
     end
 
-    unless self.options.include?(:blog_id) and self.options.include?(:mt_db)
+    unless options.include?(:blog_id) and options.include?(:mt_db)
       puts "See mt3.rb --help for help."
       exit
     end
