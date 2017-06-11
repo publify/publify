@@ -7,7 +7,6 @@ es-MX:
       admin: admin
       dont_lose_the_mail_sent: No pierda el correo enviado a %{email} o no podr&aacute; volver a acceder en el futuro
       login: Login
-      password: Contrase&ntilde;a
       proceed_to: Proceed to %{link}
       success: You have successfully signed up.
     create_account: Create an account
@@ -783,6 +782,7 @@ es-MX:
       blog_name: Nombre del Blog
       welcome_to_your_blog_setup: Bienvenido a la configuraci&oacute;n de su blog
       your_mail: Su correo electr&oacute;nico
+      password: Contraseña
     page:
       about: Acerca
       body: Este es un ejemplo de una p&aacute;gina en Publify.  Ud. puede editarla para escribir informaci&oacute;n acerca de usted o su sitio para que los lectores sepan quien es usted.  Usted puede crear tantas p&aacute;ginas como esta para manejar todo el contenido dentro de Publify.
