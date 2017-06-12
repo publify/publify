@@ -131,24 +131,48 @@ describe ArticlesController, 'base', type: :controller do
   end
 
   describe '#archives' do
-    render_views
+    context 'for an archive with several articles' do
+      let!(:articles) { create_list :article, 3 }
 
-    it 'renders correctly for an archive with several articles' do
-      articles = create_list :article, 3
-      get 'archives'
-      expect(response).to render_template(:archives)
-      expect(assigns[:articles]).to match_array articles
+      before do
+        get 'archives'
+      end
 
-      expect(response.body).to have_selector("head>link[href='#{blog.base_url}/archives']", visible: false)
-      expect(response.body).to have_selector('title', text: 'Archives for test blog', visible: false)
+      it 'renders the correct template' do
+        expect(response).to render_template(:archives)
+      end
+
+      it 'assigns the articles' do
+        expect(assigns[:articles]).to match_array articles
+      end
+
+      context 'when rendering' do
+        render_views
+
+        it 'has the correct self-link and title' do
+          expect(response.body).
+            to have_selector("head>link[href='#{blog.base_url}/archives']", visible: false).
+            and have_selector('title', text: 'Archives for test blog', visible: false)
+        end
+
+        it 'shows the current month only once' do
+          expect(response.body).
+            to have_css('h3', count: 1).
+            and have_text I18n.l(articles.first.published_at, format: :letters_month_with_year)
+        end
+      end
     end
 
-    it 'renders correctly for an archive with an article with tags' do
-      create :article, keywords: 'foo, bar'
-      get 'archives'
+    context 'for an archive with an article with tags' do
+      render_views
 
-      expect(response.body).to have_text 'foo'
-      expect(response.body).to have_text 'bar'
+      it 'renders correctly' do
+        create :article, keywords: 'foo, bar'
+        get 'archives'
+
+        expect(response.body).to have_text 'foo'
+        expect(response.body).to have_text 'bar'
+      end
     end
   end
 
