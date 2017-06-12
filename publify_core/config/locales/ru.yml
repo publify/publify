@@ -7,7 +7,6 @@ ru:
       admin: admin
       dont_lose_the_mail_sent: Не потеряйте письмо, высланное на %{email}, или вы больше не сможете зайти
       login: 'логин: %{user}'
-      password: 'пароль: %{pass}'
       proceed_to: Proceed to %{link}
       success: You have successfully signed up.
     create_account: Создать учетную запись
@@ -783,6 +782,7 @@ ru:
       blog_name: Название блога
       welcome_to_your_blog_setup: Welcome to your blog setup
       your_mail: Ваш email
+      password: Пароль
     page:
       about: About
       body: This is an example of a Publify page. You can edit this to write information about yourself or your site so readers know who you are. You can create as many pages as this one as you like and manage all of your content inside Publify.

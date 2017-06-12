@@ -1,29 +1,24 @@
 class SetupController < BaseController
-  before_action :check_config, only: 'index'
+  before_action :check_config
   layout 'accounts'
 
   def index
-    return unless request.post?
+  end
 
+  def create
     this_blog.blog_name = params[:setting][:blog_name]
     this_blog.base_url = blog_base_url
 
     @user = User.new(login: 'admin',
                      email: params[:setting][:email],
+                     password: params[:setting][:password],
                      nickname: 'Publify Admin')
-    @user.generate_password!
     @user.name = @user.login
 
-    unless this_blog.valid? && @user.valid?
+    unless this_blog.save && @user.save
       redirect_to setup_url
       return
     end
-
-    return unless this_blog.save
-
-    session[:tmppass] = @user.password
-
-    return unless @user.save
 
     sign_in @user
 
@@ -31,6 +26,8 @@ class SetupController < BaseController
       create_first_post @user
       create_first_page @user
     end
+
+    EmailNotify.send_user_create_notification(@user)
 
     redirect_to confirm_accounts_url
   end

@@ -7,7 +7,6 @@ pt-BR:
       admin: admin
       dont_lose_the_mail_sent: Não perca o e-mail enviado para %{email} ou não será mais possível entrar no sistema
       login: 'Entrar: %{user}'
-      password: 'Senha: %{pass}'
       proceed_to: Continuar para %{link}
       success: You have successfully signed up.
     create_account: Criar conta
@@ -783,6 +782,7 @@ pt-BR:
       blog_name: Nome do Blog
       welcome_to_your_blog_setup: Bem-vindo a configuração do seu blog
       your_mail: Seu e-mail
+      password: Senha
     page:
       about: Sobre
       body: Este é um exemplo de uma página do Publify. Você pode editar esta página e escrever informações sobre você ou seu site para que seus leitores saibam quem você é. Você pode criar mais páginas iguais a essa e gerenciar todo o seu conteúdo de dentro do Publify.
