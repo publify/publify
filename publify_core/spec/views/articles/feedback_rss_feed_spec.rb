@@ -14,7 +14,7 @@ describe 'articles/feedback_rss_feed.rss.builder', type: :view do
     end
 
     it 'renders a valid RSS feed with two items' do
-      assert_rss20 rendered, 2
+      assert_rss20_feed parsed_feed, 2
     end
 
     it 'renders the correct RSS partials' do
