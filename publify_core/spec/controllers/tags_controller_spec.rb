@@ -66,9 +66,14 @@ RSpec.describe TagsController, type: :controller do
         expect(controller).to have_received(:render).with('foo')
       end
 
-      it 'should set the page title to "Tag foo"' do
+      it 'assigns the correct page title' do
         do_get
-        expect(assigns[:page_title]).to eq('Tag: foo | test blog ')
+        expect(assigns[:page_title]).to eq 'Tag: foo | test blog'
+      end
+
+      it 'assigns the correct description' do
+        do_get
+        expect(assigns(:description)).to eq 'foo | test blog | test subtitle'
       end
 
       it 'should render the atom feed for /articles/tag/foo.atom' do

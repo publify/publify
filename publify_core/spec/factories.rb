@@ -148,7 +148,7 @@ FactoryGirl.define do
     limit_article_display 2
     sp_url_limit 3
     plugin_avatar ''
-    blog_subtitle 'test subtitles'
+    blog_subtitle 'test subtitle'
     limit_rss_display 10
     geourl_location ''
     default_allow_pings false

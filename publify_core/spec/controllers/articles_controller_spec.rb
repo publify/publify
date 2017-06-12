@@ -35,7 +35,7 @@ describe ArticlesController, 'base', type: :controller do
       end
 
       it 'should have good title' do
-        expect(response.body).to have_selector('title', text: 'test blog | test subtitles', visible: false)
+        expect(response.body).to have_selector('title', text: 'test blog | test subtitle', visible: false)
       end
     end
   end
