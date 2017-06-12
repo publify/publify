@@ -687,7 +687,6 @@ ro:
       contact_information: Contact information
       jabber: 'Jabber:'
       msn: 'MSN:'
-      posted_in: posted in
       this_author_has_not_published_any_article_yet: This author has not published any article yet
       twitter: 'Twitter:'
       web_site: 'Web site:'
@@ -781,9 +780,9 @@ ro:
       title: Hello World!
     index:
       blog_name: Blog name
+      password: Parolă
       welcome_to_your_blog_setup: Welcome to your blog setup
       your_mail: Your email
-      password: Parolă
     page:
       about: About
       body: This is an example of a Publify page. You can edit this to write information about yourself or your site so readers know who you are. You can create as many pages as this one as you like and manage all of your content inside Publify.

@@ -687,7 +687,6 @@ nb-NO:
       contact_information: Kontaktinformasjon
       jabber: 'Jabber:'
       msn: 'MSN:'
-      posted_in: postet til
       this_author_has_not_published_any_article_yet: Forfatteren har ikke publisert noen artikler enda
       twitter: 'Twitter:'
       web_site: 'Hjemmeside:'
@@ -781,9 +780,9 @@ nb-NO:
       title: Hello World!
     index:
       blog_name: Bloggnavn
+      password: Passord
       welcome_to_your_blog_setup: Velkommen til ditt bloggoppsett
       your_mail: Din epost
-      password: Passord
     page:
       about: Om
       body: Dette er et eksempel på en Publify-side. Du kan redigere den med informasjon om deg selv eller bloggen din, slik at leserne vet hvem du er. Du kan lage så mange du vil av slike sider, og håndtere alt innholdet med Publify.

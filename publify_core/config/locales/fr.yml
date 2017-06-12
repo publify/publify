@@ -687,7 +687,6 @@ fr:
       contact_information: Informations de contact
       jabber: 'Jabber :'
       msn: 'MSN :'
-      posted_in: publié dans
       this_author_has_not_published_any_article_yet: Cet utilisateur n'a publié aucun article
       twitter: 'Twitter :'
       web_site: 'Site web:'
@@ -781,9 +780,9 @@ fr:
       title: Hello World!
     index:
       blog_name: Nom du blog
+      password: Mot de passe
       welcome_to_your_blog_setup: Bienvenue dans la configuration de votre blog
       your_mail: Votre email
-      password: Mot de passe
     page:
       about: À propos de
       body: Ceci est un exemple de page Publify. Vous pouvez la modifier pour écrire des informations sur vous ou sur votre blog, afin que vos lecteurs sachent qui vous êtes. Vous pouvez créer autant de pages que vous voulez et gérer tout votre contenu dans Publify.

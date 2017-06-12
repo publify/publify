@@ -687,7 +687,6 @@ es-MX:
       contact_information: Contact information
       jabber: 'Jabber:'
       msn: 'MSN:'
-      posted_in: posted in
       this_author_has_not_published_any_article_yet: This author has not published any article yet
       twitter: 'Twitter:'
       web_site: 'Web site:'
@@ -781,9 +780,9 @@ es-MX:
       title: Hello World!
     index:
       blog_name: Nombre del Blog
+      password: Contraseña
       welcome_to_your_blog_setup: Bienvenido a la configuraci&oacute;n de su blog
       your_mail: Su correo electr&oacute;nico
-      password: Contraseña
     page:
       about: Acerca
       body: Este es un ejemplo de una p&aacute;gina en Publify.  Ud. puede editarla para escribir informaci&oacute;n acerca de usted o su sitio para que los lectores sepan quien es usted.  Usted puede crear tantas p&aacute;ginas como esta para manejar todo el contenido dentro de Publify.
