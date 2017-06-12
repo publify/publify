@@ -638,7 +638,8 @@ nl:
   articles:
     archives:
       no_articles_found: Geen artikelen gevonden
-      posted_in: Geplaatst in
+    archives_article:
+      posted_in: geplaatst in
     article:
       posted_by: Geplaatst door
     article_excerpt:
@@ -686,7 +687,7 @@ nl:
       contact_information: Contact information
       jabber: 'Jabber:'
       msn: 'MSN:'
-      posted_in: postet i
+      posted_in: geplaatst in
       this_author_has_not_published_any_article_yet: This author has not published any article yet
       twitter: 'Twitter:'
       web_site: 'Web site:'

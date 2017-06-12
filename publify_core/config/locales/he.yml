@@ -638,6 +638,7 @@ he:
   articles:
     archives:
       no_articles_found: לא נמצאו כתבות
+    archives_article:
       posted_in: פורסם ב-
     article:
       posted_by: נכתב על ידי

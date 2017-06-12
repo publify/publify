@@ -638,7 +638,8 @@ es-MX:
   articles:
     archives:
       no_articles_found: No se encontraron art&iacute;culos
-      posted_in: Publicado en
+    archives_article:
+      posted_in: publicado en
     article:
       posted_by: Publicado por
     article_excerpt:

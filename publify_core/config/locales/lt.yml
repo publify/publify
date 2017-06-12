@@ -638,7 +638,8 @@ lt:
   articles:
     archives:
       no_articles_found: Straipsnių nėra
-      posted_in: Posted in
+    archives_article:
+      posted_in: posted in
     article:
       posted_by: Parašė
     article_excerpt:

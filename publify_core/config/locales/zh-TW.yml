@@ -638,7 +638,8 @@ zh-TW:
   articles:
     archives:
       no_articles_found: 沒有找到任何文章
-      posted_in: Posted in
+    archives_article:
+      posted_in: posted in
     article:
       posted_by: 貼上
     article_excerpt:

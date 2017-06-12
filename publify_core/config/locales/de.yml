@@ -638,7 +638,8 @@ de:
   articles:
     archives:
       no_articles_found: Keine Artikel gefunden
-      posted_in: Posted in
+    archives_article:
+      posted_in: posted in
     article:
       posted_by: Angelegt von
     article_excerpt:

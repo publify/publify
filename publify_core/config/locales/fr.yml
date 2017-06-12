@@ -638,7 +638,8 @@ fr:
   articles:
     archives:
       no_articles_found: Aucun article ne correspond à la recherche
-      posted_in: Publié sous
+    archives_article:
+      posted_in: publié dans
     article:
       posted_by: Publié par
     article_excerpt:

@@ -638,7 +638,8 @@ ja:
   articles:
     archives:
       no_articles_found: 記事が見つかりませんでした
-      posted_in: Posted in
+    archives_article:
+      posted_in: カテゴリ
     article:
       posted_by: 投稿者
     article_excerpt:

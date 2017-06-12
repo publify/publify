@@ -638,7 +638,8 @@ da:
   articles:
     archives:
       no_articles_found: Fandt ingen artikler
-      posted_in: Posted in
+    archives_article:
+      posted_in: offentliggjort i
     article:
       posted_by: Skrevet af
     article_excerpt:

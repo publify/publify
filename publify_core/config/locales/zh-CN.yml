@@ -638,6 +638,7 @@ zh-CN:
   articles:
     archives:
       no_articles_found: 没有找到任何文章
+    archives_article:
       posted_in: 发表在
     article:
       posted_by: 貼上

@@ -638,7 +638,8 @@ nb-NO:
   articles:
     archives:
       no_articles_found: Fant ingen artikler
-      posted_in: Publisert i
+    archives_article:
+      posted_in: posted til
     article:
       posted_by: Skrevet av
     article_excerpt:

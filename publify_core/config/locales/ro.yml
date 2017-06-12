@@ -638,7 +638,8 @@ ro:
   articles:
     archives:
       no_articles_found: Niciun articol nu a fost găsit
-      posted_in: Posted in
+    archives_article:
+      posted_in: posted in
     article:
       posted_by: Publicat de
     article_excerpt:
