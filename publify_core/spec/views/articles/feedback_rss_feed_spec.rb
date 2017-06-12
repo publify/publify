@@ -6,6 +6,7 @@ describe 'articles/feedback_rss_feed.rss.builder', type: :view do
   describe 'with feedback consisting of one trackback and one comment' do
     let!(:trackback) { create(:trackback, article: article) }
     let!(:comment) { create(:comment, article: article, body: 'Comment body') }
+    let(:parsed_feed) { Feedjira::Feed.parse(rendered) }
 
     before(:each) do
       assign(:article, article)
@@ -20,6 +21,10 @@ describe 'articles/feedback_rss_feed.rss.builder', type: :view do
       expect(view).
         to render_template(partial: 'shared/_rss_item_trackback', count: 1).
         and render_template(partial: 'shared/_rss_item_comment', count: 1)
+    end
+
+    it 'links to the article url' do
+      expect(parsed_feed.url).to eq article.permalink_url
     end
   end
 end
