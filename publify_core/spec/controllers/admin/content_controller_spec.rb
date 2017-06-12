@@ -127,20 +127,15 @@ describe Admin::ContentController, type: :controller do
       end
 
       it 'should send notifications on create' do
-        begin
-          u = create(:user, notify_via_email: true, notify_on_new_articles: true)
-          u.save!
-          ActionMailer::Base.perform_deliveries = true
-          ActionMailer::Base.deliveries.clear
-          emails = ActionMailer::Base.deliveries
+        u = create(:user, notify_via_email: true, notify_on_new_articles: true)
+        u.save!
+        ActionMailer::Base.deliveries.clear
+        emails = ActionMailer::Base.deliveries
 
-          post :create, params: { 'article' => base_article }
+        post :create, params: { 'article' => base_article }
 
-          assert_equal(1, emails.size)
-          assert_equal(u.email, emails.first.to[0])
-        ensure
-          ActionMailer::Base.perform_deliveries = false
-        end
+        assert_equal(1, emails.size)
+        assert_equal(u.email, emails.first.to[0])
       end
 
       it 'should create an article with tags' do
@@ -336,25 +331,20 @@ describe Admin::ContentController, type: :controller do
       end
 
       it 'should update article' do
-        begin
-          ActionMailer::Base.perform_deliveries = true
-          emails = ActionMailer::Base.deliveries
-          emails.clear
+        emails = ActionMailer::Base.deliveries
+        emails.clear
 
-          art_id = article.id
+        art_id = article.id
 
-          body = 'another *textile* test'
-          put :update, params: { id: art_id, article: { body: body, text_filter: 'textile' } }
-          assert_response :redirect, action: 'show', id: art_id
+        body = 'another *textile* test'
+        put :update, params: { id: art_id, article: { body: body, text_filter: 'textile' } }
+        assert_response :redirect, action: 'show', id: art_id
 
-          article.reload
-          expect(article.text_filter.name).to eq('textile')
-          expect(body).to eq(article.body)
+        article.reload
+        expect(article.text_filter.name).to eq('textile')
+        expect(body).to eq(article.body)
 
-          expect(emails.size).to eq(0)
-        ensure
-          ActionMailer::Base.perform_deliveries = false
-        end
+        expect(emails.size).to eq(0)
       end
 
       it 'should allow updating body_and_extended' do
