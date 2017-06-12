@@ -3,18 +3,22 @@
     <p><%= t(".no_articles_found")%></p>
   </div>
 <% else %>
-  <% @articles.group_by(&:publication_month).each do |_month, articles| %>
-    <h3 class="archivemonth">
-      <%= l(articles.first.published_at, format: :letters_month_with_year) %>
-    </h3>
-    <% for article in articles %>
-      <div class="archivepost">
-        <%= article.published_at.mday %> -
-        <%= link_to_permalink(article,h(article.title)) %>
-        <% if !article.tags.empty? %> <%= t(".posted_in") %>
-          <%= safe_join(article.tags.collect {|t| link_to_permalink t,t.display_name }, ", ") %>
+  <%= cache [:page, @articles, params[:page]] do %>
+    <% @articles.group_by(&:publication_month).each do |_month, articles| %>
+      <h3 class="archivemonth">
+        <%= l(articles.first.published_at, format: :letters_month_with_year) %>
+      </h3>
+      <% for article in articles %>
+        <%= cache [:item, article] do %>
+          <div class="archivepost">
+            <%= article.published_at.mday %> -
+            <%= link_to_permalink(article,h(article.title)) %>
+            <% if !article.tags.empty? %> <%= t(".posted_in") %>
+              <%= safe_join(article.tags.collect {|t| link_to_permalink t,t.display_name }, ", ") %>
+            <% end %>
+          </div>
         <% end %>
-      </div>
+      <% end %>
     <% end %>
   <% end %>
 <% end %>
