@@ -150,9 +150,13 @@ class Article < Content
     Article.where('published_at < ?', published_at).order('published_at desc').limit(1).first
   end
 
+  def publication_month
+    published_at.strftime('%Y-%m')
+  end
+
   def self.publication_months
     result = select('published_at').where('published_at is not NULL').where(type: 'Article')
-    result.map { |d| [d.published_at.strftime('%Y-%m')] }.uniq
+    result.map { |it| [it.publication_month] }.uniq
   end
 
   # Finds one article which was posted on a certain date and matches the supplied dashed-title

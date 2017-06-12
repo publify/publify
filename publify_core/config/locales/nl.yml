@@ -638,7 +638,8 @@ nl:
   articles:
     archives:
       no_articles_found: Geen artikelen gevonden
-      posted_in: Geplaatst in
+    archives_article:
+      posted_in: geplaatst in
     article:
       posted_by: Geplaatst door
     article_excerpt:
@@ -686,7 +687,6 @@ nl:
       contact_information: Contact information
       jabber: 'Jabber:'
       msn: 'MSN:'
-      posted_in: postet i
       this_author_has_not_published_any_article_yet: This author has not published any article yet
       twitter: 'Twitter:'
       web_site: 'Web site:'
@@ -780,9 +780,9 @@ nl:
       title: Hello World!
     index:
       blog_name: Naam van je blog
+      password: Wachtwoord
       welcome_to_your_blog_setup: Welkom bij je blog setup.
       your_mail: Je email
-      password: Wachtwoord
     page:
       about: Over
       body: This is an example of a Publify page. You can edit this to write information about yourself or your site so readers know who you are. You can create as many pages as this one as you like and manage all of your content inside Publify.
