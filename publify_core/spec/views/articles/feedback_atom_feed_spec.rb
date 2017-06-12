@@ -5,6 +5,7 @@ describe 'articles/feedback_atom_feed.atom.builder', type: :view do
 
   describe 'with one trackback' do
     let!(:trackback) { create(:trackback, article: article) }
+    let(:parsed_feed) { Feedjira::Feed.parse(rendered) }
 
     before(:each) do
       assign(:article, article)
@@ -24,6 +25,10 @@ describe 'articles/feedback_atom_feed.atom.builder', type: :view do
         )
         expect(entry_xml.entry_id).to eq('urn:uuid:dsafsadffsdsf')
       end
+    end
+
+    it 'links to the article url' do
+      expect(parsed_feed.url).to eq article.permalink_url
     end
   end
 
