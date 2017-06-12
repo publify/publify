@@ -101,10 +101,14 @@ def assert_xml(xml)
 end
 
 def assert_atom10(feed, count)
-  doc = Feedjira::Feed.parse(feed)
-  expect(doc).to be_instance_of Feedjira::Parser::Atom
-  expect(doc.title).not_to be_nil
-  expect(doc.entries.count).to eq count
+  parsed_feed = Feedjira::Feed.parse(feed)
+  assert_atom10_feed parsed_feed, count
+end
+
+def assert_atom10_feed(parsed_feed, count)
+  expect(parsed_feed).to be_instance_of Feedjira::Parser::Atom
+  expect(parsed_feed.title).not_to be_nil
+  expect(parsed_feed.entries.count).to eq count
 end
 
 def assert_correct_atom_generator(feed)
@@ -115,11 +119,15 @@ def assert_correct_atom_generator(feed)
 end
 
 def assert_rss20(feed, count)
-  doc = Feedjira::Feed.parse(feed)
-  expect(doc).to be_instance_of Feedjira::Parser::RSS
-  expect(doc.version).to eq '2.0'
-  expect(doc.title).not_to be_nil
-  expect(doc.entries.count).to eq count
+  parsed_feed = Feedjira::Feed.parse(feed)
+  assert_rss20_feed parsed_feed, count
+end
+
+def assert_rss20_feed(parsed_feed, count)
+  expect(parsed_feed).to be_instance_of Feedjira::Parser::RSS
+  expect(parsed_feed.version).to eq '2.0'
+  expect(parsed_feed.title).not_to be_nil
+  expect(parsed_feed.entries.count).to eq count
 end
 
 def stub_full_article(time = Time.now, blog: Blog.first)
