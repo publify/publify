@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 describe 'articles/index_atom_feed.atom.builder', type: :view do
-  let(:rendered_entry) { Feedjira::Feed.parse(rendered).entries.first }
+  let(:parsed_feed) { Feedjira::Feed.parse(rendered) }
+  let(:rendered_entry) { parsed_feed.entries.first }
 
   describe 'with no items' do
     before do
@@ -27,11 +28,15 @@ describe 'articles/index_atom_feed.atom.builder', type: :view do
     end
 
     it 'creates a valid atom feed with two items' do
-      assert_atom10 rendered, 2
+      assert_atom10_feed parsed_feed, 2
     end
 
     it 'renders the article atom partial twice' do
       expect(view).to render_template(partial: 'shared/_atom_item_article', count: 2)
+    end
+
+    it 'links to the article index url' do
+      expect(parsed_feed.url).to eq blog.base_url
     end
   end
 

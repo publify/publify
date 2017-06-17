@@ -1,4 +1,4 @@
-atom_feed(language: this_blog.lang.split('_').first) do |feed|
+atom_feed(language: this_blog.lang.split('_').first, root_url: this_blog.base_url) do |feed|
   render 'shared/atom_header', feed: feed, items: @articles
 
   @articles.each do |item|
