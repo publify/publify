@@ -17,6 +17,15 @@
 * Update dependencies
 * Drop support for Ruby 2.1
 * Include CSRF meta tag so remote forms work
+* Performance improvements
+* Improve tags controller
+* Unify content models more to improve performance when mixing models
+* Replace home-grown state machine with aasm
+* Remove automigration. Users should run db:migrate themselves
+* Let first-run users pick their own password and fix sending of welcome email
+* Fix URL/alternate links in RSS and Atom feeds
+* Fix Tag page description
+* Clean up archives and authors page code and cache those pages
 
 ## 9.0.0.pre6 / 2016-12-23
 

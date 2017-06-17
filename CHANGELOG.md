@@ -4,17 +4,17 @@
 
 ### Breaking/large changes
 
-* Break out Publify functionality into several engines. These engines will
-  become separate gems in the future (mvz)
 * Use Rails' default method of setting secrect_key_base in production: Through
   an environment variable. This means you will have to update your production
   environment so this variable is actually set (whithajess)
+* Break out Publify functionality into several engine gems (mvz)
 
 ### Other changes
 
 * Hide spinner on ajax:complete for article search (nathanallen)
 * Fix layout for log in form (mvz)
 * Fix spinner for sidebar editor (mvz)
+* Update copyright information and contributor list (mvz)
 
 ## 8.3.3
 
