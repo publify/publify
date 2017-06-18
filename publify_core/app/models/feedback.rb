@@ -79,6 +79,10 @@ class Feedback < ActiveRecord::Base
     Trackback.published.order('created_at DESC')
   end
 
+  def self.feedback
+    published.order('created_at DESC')
+  end
+
   def self.from(type, article_id = nil)
     if article_id.present?
       Article.find(article_id).send("published_#{type}")

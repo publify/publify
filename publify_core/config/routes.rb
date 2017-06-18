@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   end
 
   resources :trackbacks
+  resources :feedback, only: :index
 
   # ArticlesController
   get '/live_search/', to: 'articles#live_search', as: :live_search_articles, format: false
