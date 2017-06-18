@@ -22,8 +22,8 @@ RSpec.describe FeedbackController, type: :controller do
         expect(assigns(:feedback)).to match_array items
       end
 
-      it "renders the atom feed template" do
-        expect(response).to render_template('index_atom_feed')
+      it "renders the index template" do
+        expect(response).to render_template('feedback/index')
       end
 
       context 'with rendered views' do
@@ -52,8 +52,8 @@ RSpec.describe FeedbackController, type: :controller do
         expect(assigns(:feedback)).to match_array items
       end
 
-      it "renders the rss feed template" do
-        expect(response).to render_template('index_rss_feed')
+      it "renders the index template" do
+        expect(response).to render_template('feedback/index')
       end
 
       context 'with rendered views' do
