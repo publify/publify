@@ -34,18 +34,6 @@ describe CommentsController, type: :controller do
   end
 
   describe 'index' do
-    context 'scoped index' do
-      let(:article) { create(:article) }
-      before(:each) { get 'index', params: { article_id: article.id } }
-      it { expect(response).to redirect_to("#{article.permalink_url}#comments") }
-    end
-
-    context 'without format' do
-      before(:each) { get :index }
-      it { expect(response).to be_success }
-      it { expect(assigns(:comments)).to be_nil }
-    end
-
     context 'with atom format' do
       context 'without article' do
         let!(:some) { create(:comment) }
