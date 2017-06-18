@@ -14,15 +14,15 @@ RSpec.describe FeedbackController, type: :controller do
     context 'with atom format' do
       before(:each) { get 'index', params: { format: 'atom' } }
 
-      it "responds with success" do
+      it 'responds with success' do
         expect(response).to be_success
       end
 
-      it "assigns all feedback" do
+      it 'assigns all feedback' do
         expect(assigns(:feedback)).to match_array items
       end
 
-      it "renders the index template" do
+      it 'renders the index template' do
         expect(response).to render_template('feedback/index')
       end
 
@@ -36,7 +36,7 @@ RSpec.describe FeedbackController, type: :controller do
         it 'renders each item with the correct template' do
           expect(response).
             to render_template(partial: 'shared/_atom_item_comment', count: 2).
-            and  render_template(partial: 'shared/_atom_item_trackback', count: 2)
+            and render_template(partial: 'shared/_atom_item_trackback', count: 2)
         end
       end
     end
@@ -44,15 +44,15 @@ RSpec.describe FeedbackController, type: :controller do
     context 'with rss format' do
       before { get 'index', params: { format: 'rss' } }
 
-      it "responds with success" do
+      it 'responds with success' do
         expect(response).to be_success
       end
 
-      it "assigns all feedback" do
+      it 'assigns all feedback' do
         expect(assigns(:feedback)).to match_array items
       end
 
-      it "renders the index template" do
+      it 'renders the index template' do
         expect(response).to render_template('feedback/index')
       end
 
@@ -66,7 +66,7 @@ RSpec.describe FeedbackController, type: :controller do
         it 'renders each item with the correct template' do
           expect(response).
             to render_template(partial: 'shared/_rss_item_comment', count: 2).
-            and  render_template(partial: 'shared/_rss_item_trackback', count: 2)
+            and render_template(partial: 'shared/_rss_item_trackback', count: 2)
         end
       end
     end
