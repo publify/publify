@@ -1,4 +1,4 @@
-class TrackbacksController < FeedbackController
+class TrackbacksController < BaseController
   protect_from_forgery with: :null_session
 
   def create

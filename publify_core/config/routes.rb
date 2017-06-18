@@ -12,13 +12,13 @@ Rails.application.routes.draw do
   get 'sitemap.xml', to: 'xml#sitemap', format: 'googlesitemap'
 
   # CommentsController
-  resources :comments, only: [:index, :create] do
+  resources :comments, only: [:create] do
     collection do
       post :preview
     end
   end
 
-  resources :trackbacks
+  resources :trackbacks, only: [:create]
   resources :feedback, only: :index
 
   # ArticlesController

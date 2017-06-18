@@ -32,46 +32,4 @@ describe CommentsController, type: :controller do
       expect(response).to render_template('articles/comment')
     end
   end
-
-  describe 'index' do
-    context 'with atom format' do
-      context 'without article' do
-        let!(:some) { create(:comment) }
-        let!(:items) { create(:comment) }
-
-        before(:each) { get 'index', params: { format: 'atom' } }
-
-        it { expect(response).to be_success }
-        it { expect(assigns(:comments)).to eq([some, items]) }
-        it { expect(response).to render_template('index_atom_feed') }
-      end
-
-      context 'with an article' do
-        let!(:article) { create(:article) }
-        before(:each) { get :index, params: { format: 'atom', article_id: article.id } }
-        it { expect(response).to be_success }
-        it { expect(response).to render_template('index_atom_feed') }
-      end
-    end
-
-    context 'with rss format' do
-      context 'without article' do
-        let!(:some) { create(:comment, title: 'some') }
-        let!(:items) { create(:comment, title: 'items') }
-
-        before { get 'index', params: { format: 'rss' } }
-        it { expect(response).to be_success }
-        it { expect(assigns(:comments)).to eq([some, items]) }
-        it { expect(response).to render_template('index_rss_feed') }
-      end
-
-      context 'with article' do
-        let!(:article) { create(:article) }
-        before(:each) { get :index, params: { format: 'rss', article_id: article.id } }
-
-        it { expect(response).to be_success }
-        it { expect(response).to render_template('index_rss_feed') }
-      end
-    end
-  end
 end

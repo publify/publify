@@ -1,6 +1,4 @@
 class FeedbackController < BaseController
-  before_action :get_article, only: [:create]
-
   def index
     feedbacks = Feedback.
       from(controller_name, params[:article_id]).
