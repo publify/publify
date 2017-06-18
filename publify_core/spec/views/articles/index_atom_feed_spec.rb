@@ -35,7 +35,7 @@ describe 'articles/index_atom_feed.atom.builder', type: :view do
       expect(view).to render_template(partial: 'shared/_atom_item_article', count: 2)
     end
 
-    it 'links to the article index url' do
+    it 'links to the main blog url' do
       expect(parsed_feed.url).to eq blog.base_url
     end
   end
