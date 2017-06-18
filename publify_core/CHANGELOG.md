@@ -26,6 +26,7 @@
 * Fix URL/alternate links in RSS and Atom feeds
 * Fix Tag page description
 * Clean up archives and authors page code and cache those pages
+* Unify and fix feedback feeds
 
 ## 9.0.0.pre6 / 2016-12-23
 
