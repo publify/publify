@@ -2,31 +2,44 @@
 
 ## Unreleased
 
-* Introduce fragment caching
-* Cache atom and rss feeds
-* Remove support for feedburner
-* Fix URL for resources in Atom/RSS feeds
-* Drop old redirects
-* Fix forgery protection errors for trackback creation
-* Remove RSD end point
-* Fix atom entry publication date
-* Fix user resource image display when using Fog
-* Handle setting published_at to blank
-* Handle preview of articles without publication date
-* Stop sending trackbacks and pingbacks
-* Update dependencies
-* Drop support for Ruby 2.1
-* Include CSRF meta tag so remote forms work
-* Performance improvements
-* Improve tags controller
-* Unify content models more to improve performance when mixing models
+* Replace page caching with fragment caching
 * Replace home-grown state machine with aasm
 * Remove automigration. Users should run db:migrate themselves
-* Let first-run users pick their own password and fix sending of welcome email
-* Fix URL/alternate links in RSS and Atom feeds
-* Fix Tag page description
-* Clean up archives and authors page code and cache those pages
-* Unify and fix feedback feeds
+* Let first-run users pick their own password instead of generating one
+
+* Dependencies
+  - Update dependencies
+  - Drop support for Ruby 2.1
+
+* Removing of old/outdated functionality
+  - Remove support for feedburner
+  - Drop old redirects
+  - Remove RSD end point
+
+* Feedback
+  - Stop sending trackbacks and pingbacks
+  - Fix forgery protection errors for trackback creation
+
+* Improve Atom/RSS feeds
+  - Fix URLs used for resources
+  - Fix URL/alternate links to not just point to the site root
+  - Unify comment and trackback feeds into feedback feeds
+  - Add caching for feeds
+  - Fix atom entry publication date
+
+* Bug fixes
+  - Fix user resource image display when using Fog
+  - Fix sending of welcome email
+  - Fix Tag page description
+  - Handle setting published_at to blank
+  - Handle preview of articles without publication date
+  - Include CSRF meta tag so remote forms work
+
+* Code improvements
+  - Performance improvements
+  - Improve tags controller
+  - Clean up archives and authors page code
+  - Unify content models more to improve performance when mixing models
 
 ## 9.0.0.pre6 / 2016-12-23
 
