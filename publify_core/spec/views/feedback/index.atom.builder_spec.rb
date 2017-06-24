@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'feedback/index.atom.builder', type: :view do
+  let(:parsed_feed) { Feedjira::Feed.parse(rendered) }
+
   describe 'rendering feedback' do
     let(:article) { build_stubbed(:article) }
     let(:comment) do
@@ -21,11 +23,15 @@ RSpec.describe 'feedback/index.atom.builder', type: :view do
     end
 
     it 'renders a valid Atom feed with two items' do
-      assert_atom10 rendered, 2
+      assert_atom10_feed parsed_feed, 2
+    end
+
+    it 'links to the blog base url' do
+      expect(parsed_feed.url).to eq article.blog.base_url
     end
 
     describe 'the comment entry' do
-      let(:rendered_entry) { Feedjira::Feed.parse(rendered).entries.first }
+      let(:rendered_entry) { parsed_feed.entries.first }
 
       it 'should have all the required attributes' do
         expect(rendered_entry.title).to eq "Comment on #{article.title} by #{comment.author}"
@@ -36,7 +42,7 @@ RSpec.describe 'feedback/index.atom.builder', type: :view do
     end
 
     describe 'the trackback entry' do
-      let(:rendered_entry) { Feedjira::Feed.parse(rendered).entries.last }
+      let(:rendered_entry) { parsed_feed.entries.last }
 
       it 'should have all the required attributes' do
         expect(rendered_entry.title).
