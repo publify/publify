@@ -1,4 +1,4 @@
-atom_feed do |feed|
+atom_feed root_url: this_blog.base_url do |feed|
   render 'shared/atom_header', feed: feed, items: @feedback
 
   @feedback.each do |item|
