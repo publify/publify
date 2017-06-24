@@ -121,15 +121,6 @@ describe User, type: :model do
     end
   end
 
-  describe '#generate_password!' do
-    it 'set a 8 char length password' do
-      user = User.new
-      expect(user).to receive(:rand).exactly(8).times.and_return(0)
-      expect(user).to receive(:password=).with('a' * 8)
-      user.generate_password!
-    end
-  end
-
   describe 'default_text_filter' do
     it 'returns user text_filter' do
       blog = create(:blog)

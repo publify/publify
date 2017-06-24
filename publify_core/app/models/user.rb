@@ -122,13 +122,6 @@ class User < ActiveRecord::Base
     save
   end
 
-  def generate_password!
-    chars = ('a'..'z').to_a + ('A'..'Z').to_a + ('0'..'9').to_a
-    newpass = ''
-    8.times { newpass << chars[rand(chars.size - 1)] }
-    self.password = newpass
-  end
-
   def has_twitter_configured?
     twitter_oauth_token.present? && twitter_oauth_token_secret.present?
   end
