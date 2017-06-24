@@ -68,7 +68,7 @@ Style/Documentation:
 
 # Provides more information, while still being displayable in modern wide-screen.
 Metrics/LineLength:
-  Max: 120
+  Max: 100
 
 # Allow the use of 'and' 'or' in control structures.
 Style/AndOr:

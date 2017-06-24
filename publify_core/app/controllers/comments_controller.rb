@@ -1,4 +1,4 @@
-class CommentsController < FeedbackController
+class CommentsController < BaseController
   before_action :get_article, only: [:create, :preview]
 
   def create

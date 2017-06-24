@@ -71,22 +71,6 @@ class Feedback < ActiveRecord::Base
     page(page).per(per_page)
   end
 
-  def self.comments
-    Comment.published.order('created_at DESC')
-  end
-
-  def self.trackbacks
-    Trackback.published.order('created_at DESC')
-  end
-
-  def self.from(type, article_id = nil)
-    if article_id.present?
-      Article.find(article_id).send("published_#{type}")
-    else
-      send(type)
-    end
-  end
-
   def parent
     article
   end
