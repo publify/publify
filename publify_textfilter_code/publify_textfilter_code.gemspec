@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.description = 'Code text filter sidebar for the Publify blogging system.'
   s.license     = 'MIT'
 
-  s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.rdoc']
+  s.files       = File.open('Manifest.txt').readlines.map(&:chomp)
 
   s.add_dependency 'rails', '~> 5.0.0'
   s.add_dependency 'publify_core', '~> 9.0.0.pre3'

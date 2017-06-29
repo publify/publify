@@ -15,8 +15,7 @@ Gem::Specification.new do |s|
   s.description = 'Core engine for the Publify blogging system, formerly known as Typo.'
   s.license     = 'MIT'
 
-  s.files = `git ls-files -z`.split("\x0").
-    reject { |f| f.match(%r{^(bin|spec)/}) }
+  s.files       = File.open('Manifest.txt').readlines.map(&:chomp)
 
   s.required_ruby_version = '>= 2.2.0'
 
