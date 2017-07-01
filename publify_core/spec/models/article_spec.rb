@@ -915,7 +915,7 @@ describe Article, type: :model do
       end
 
       it 'does not allow comments for an old article' do
-        art = build :article, created_at: Time.now - 31.days, blog: blog
+        art = build :article, published_at: Time.now - 31.days, blog: blog
         assert art.comments_closed?
       end
     end

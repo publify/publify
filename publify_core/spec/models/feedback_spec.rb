@@ -40,14 +40,14 @@ describe Feedback, type: :model do
     end
 
     describe 'published_since' do
-      let(:time) { DateTime.new(2011, 11, 1, 13, 45) }
+      let(:time) { 1.year.ago }
       it 'returns nothing with no feedback' do
-        create(:ham_comment)
+        create(:ham_comment, published_at: 2.years.ago)
         expect(Feedback.published_since(time)).to be_empty
       end
 
       it 'returns feedback when one published since last visit' do
-        FactoryGirl.create(:ham_comment)
+        FactoryGirl.create(:ham_comment, published_at: 2.years.ago)
         feedback = FactoryGirl.create(:ham_comment, published_at: time + 2.hours)
         expect(Feedback.published_since(time)).to eq [feedback]
       end
