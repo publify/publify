@@ -18,8 +18,8 @@ RSpec.describe FeedbackController, type: :controller do
         expect(response).to be_success
       end
 
-      it 'assigns all feedback' do
-        expect(assigns(:feedback)).to match_array items
+      it 'assigns feedback in the reverse chronological order' do
+        expect(assigns(:feedback)).to eq items.reverse
       end
 
       it 'renders the index template' do

@@ -35,6 +35,7 @@ class Feedback < ActiveRecord::Base
 
   scope :published, -> { ham }
   scope :oldest_first, -> { order(:created_at) }
+  scope :newest_first, -> { order(created_at: :desc) }
 
   include AASM
 
