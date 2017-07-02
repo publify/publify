@@ -58,7 +58,7 @@ FactoryGirl.define do
     extended 'extended content for fun'
     guid
     permalink 'a-big-article'
-    published_at { Time.now }
+    published_at { Time.zone.now }
     user
     allow_comments true
     state :published
@@ -239,7 +239,7 @@ FactoryGirl.define do
     name { FactoryGirl.generate(:name) }
     title 'Page One Title'
     body { FactoryGirl.generate(:body) }
-    published_at { Time.now }
+    published_at { Time.zone.now }
     user
     blog { Blog.first || create(:blog) }
     state 'published'
@@ -247,7 +247,7 @@ FactoryGirl.define do
 
   factory :note do
     body 'this is a note'
-    published_at { Time.now }
+    published_at { Time.zone.now }
     user
     state 'published'
     association :text_filter, factory: :markdown

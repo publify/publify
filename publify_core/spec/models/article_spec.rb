@@ -896,12 +896,12 @@ describe Article, type: :model do
       let(:auto_close_value) { 0 }
 
       it 'allows comments for a newly published article' do
-        art = build :article, published_at: Time.new, blog: blog
+        art = build :article, published_at: 1.second.ago, blog: blog
         assert !art.comments_closed?
       end
 
       it 'allows comments for a very old article' do
-        art = build :article, created_at: Time.now - 1000.days, blog: blog
+        art = build :article, created_at: 1000.days.ago, blog: blog
         assert !art.comments_closed?
       end
     end
@@ -910,12 +910,12 @@ describe Article, type: :model do
       let(:auto_close_value) { 30 }
 
       it 'allows comments for a recently published article' do
-        art = build :article, published_at: Time.new - 29.days, blog: blog
+        art = build :article, published_at: 29.days.ago, blog: blog
         assert !art.comments_closed?
       end
 
       it 'does not allow comments for an old article' do
-        art = build :article, published_at: Time.now - 31.days, blog: blog
+        art = build :article, published_at: 31.days.ago, blog: blog
         assert art.comments_closed?
       end
     end

@@ -9,9 +9,10 @@ class Admin::DashboardController < Admin::BaseController
     t = Time.new
     today = t.strftime('%Y-%m-%d 00:00')
 
-    # Since last venue
-    @newposts_count = Article.published_since(current_user.last_sign_in_at).count
-    @newcomments_count = Feedback.created_since(current_user.last_sign_in_at).count
+    # Since last visit
+    last_sign_in = current_user.last_sign_in_at
+    @newposts_count = Article.published_since(last_sign_in).count
+    @newcomments_count = Feedback.created_since(last_sign_in).count
 
     # Today
     @statposts = Article.published.where('published_at > ?', today).count
