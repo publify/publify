@@ -149,7 +149,7 @@ describe Comment, type: :model do
 
   describe 'change state' do
     it 'should become unpublished if withdrawn' do
-      c = build :comment, published_at: Time.zone.now
+      c = build :comment
       assert c.published?
       assert c.withdraw!
       assert !c.published?

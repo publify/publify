@@ -522,7 +522,7 @@ describe ArticlesController, 'redirecting', type: :controller do
 
     describe 'rendering as atom feed' do
       let!(:article) { create(:article, permalink: 'second-blog-article', published_at: Time.utc(2004, 4, 1)) }
-      let!(:trackback1) { create(:trackback, article: article, published_at: 1.day.ago) }
+      let!(:trackback1) { create(:trackback, article: article, created_at: 1.day.ago) }
 
       before(:each) do
         get :redirect, params: { from: "#{article.permalink}.html.atom" }
@@ -536,7 +536,7 @@ describe ArticlesController, 'redirecting', type: :controller do
 
     describe 'rendering as rss feed' do
       let!(:article) { create(:article, permalink: 'second-blog-article', published_at: Time.utc(2004, 4, 1)) }
-      let!(:trackback1) { create(:trackback, article: article, published_at: 1.day.ago) }
+      let!(:trackback1) { create(:trackback, article: article, created_at: 1.day.ago) }
 
       before(:each) do
         get :redirect, params: { from: "#{article.permalink}.html.rss" }

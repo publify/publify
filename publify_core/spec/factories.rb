@@ -203,7 +203,6 @@ FactoryGirl.define do
     author 'Bob Foo'
     url 'http://fakeurl.com'
     body 'Comment body'
-    published_at { Time.now }
     guid
     state 'ham'
 
