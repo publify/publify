@@ -262,10 +262,6 @@ class Article < Content
     user.admin? || user_id == user.id
   end
 
-  def already_ping?(url)
-    pings.map(&:url).include?(url)
-  end
-
   def allow_comments?
     return allow_comments unless allow_comments.nil?
     blog.default_allow_comments
@@ -286,14 +282,6 @@ class Article < Content
 
   def published_feedback
     feedback.published.oldest_first
-  end
-
-  def html_urls_to_ping
-    urls_to_ping = []
-    html_urls.delete_if { |url| already_ping?(url) }.uniq.each do |url_to_ping|
-      urls_to_ping << pings.build('url' => url_to_ping)
-    end
-    urls_to_ping
   end
 
   private
