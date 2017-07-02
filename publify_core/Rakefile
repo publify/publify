@@ -42,7 +42,7 @@ namespace :manifest do
   desc 'Check manifest'
   task :check do
     unless gemmable_files == manifest_files
-      abort 'Manifest check failed'
+      fail 'Manifest check failed'
     end
   end
 end
