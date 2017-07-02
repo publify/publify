@@ -19,6 +19,7 @@
 * Feedback
   - Stop sending trackbacks and pingbacks
   - Fix forgery protection errors for trackback creation
+  - Order feedback feed by created_at
 
 * Improve Atom/RSS feeds
   - Fix URLs used for resources
