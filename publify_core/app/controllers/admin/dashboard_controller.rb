@@ -11,7 +11,7 @@ class Admin::DashboardController < Admin::BaseController
 
     # Since last venue
     @newposts_count = Article.published_since(current_user.last_sign_in_at).count
-    @newcomments_count = Feedback.published_since(current_user.last_sign_in_at).count
+    @newcomments_count = Feedback.created_since(current_user.last_sign_in_at).count
 
     # Today
     @statposts = Article.published.where('published_at > ?', today).count
