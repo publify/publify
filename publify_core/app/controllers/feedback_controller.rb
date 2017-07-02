@@ -1,6 +1,7 @@
 class FeedbackController < BaseController
   def index
-    @feedback = Feedback.
+    @feedback = Feedback.ham.
+      newest_first.
       limit(this_blog.per_page(params[:format]))
     respond_to do |format|
       format.atom { render 'index', format: 'atom' }

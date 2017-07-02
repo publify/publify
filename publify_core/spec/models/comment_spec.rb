@@ -23,9 +23,6 @@ describe Comment, type: :model do
   end
 
   describe '#save' do
-    before(:each) do
-      allow(blog).to receive(:sp_article_auto_close) { 300 }
-    end
     it 'should save good comment' do
       c = build(:comment, url: 'http://www.google.de')
       assert c.save
@@ -38,10 +35,12 @@ describe Comment, type: :model do
       assert_equal 'http://fakeurl.com', c.url
     end
 
-    it 'should not save in invalid article' do
-      c = valid_comment(author: 'Old Spammer', body: 'Old trackback body', article: build(:article, state: 'draft', blog: blog))
-      assert !c.save
-      assert c.errors['article_id'].any?
+    it 'does not save when article comment window is closed' do
+      article = build :article, published_at: 1.year.ago
+      article.blog.sp_article_auto_close = 30
+      comment = build(:comment, author: 'Old Spammer', body: 'Old trackback body', article: article)
+      expect(comment.save).to be_falsey
+      expect(comment.errors[:article_id]).not_to be_empty
     end
 
     it 'should change old comment' do
@@ -57,8 +56,6 @@ describe Comment, type: :model do
     end
 
     it 'should not save with article not allow comment' do
-      allow(blog).to receive(:sp_article_auto_close) { 1 }
-
       c = build(:comment, article: build_stubbed(:article, allow_comments: false))
       expect(c.save).not_to be_truthy
       expect(c.errors).not_to be_empty
@@ -152,7 +149,7 @@ describe Comment, type: :model do
 
   describe 'change state' do
     it 'should become unpublished if withdrawn' do
-      c = build :comment, published_at: Time.zone.now
+      c = build :comment
       assert c.published?
       assert c.withdraw!
       assert !c.published?

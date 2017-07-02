@@ -58,7 +58,7 @@ FactoryGirl.define do
     extended 'extended content for fun'
     guid
     permalink 'a-big-article'
-    published_at DateTime.new(2005, 1, 1, 2, 0, 0)
+    published_at { Time.zone.now }
     user
     allow_comments true
     state :published
@@ -203,9 +203,6 @@ FactoryGirl.define do
     author 'Bob Foo'
     url 'http://fakeurl.com'
     body 'Comment body'
-    created_at '2005-01-01 02:00:00'
-    updated_at '2005-01-01 02:00:00'
-    published_at '2005-01-01 02:00:00'
     guid
     state 'ham'
 
@@ -242,9 +239,7 @@ FactoryGirl.define do
     name { FactoryGirl.generate(:name) }
     title 'Page One Title'
     body { FactoryGirl.generate(:body) }
-    created_at '2005-05-05 01:00:01'
-    published_at '2005-05-05 01:00:01'
-    updated_at '2005-05-05 01:00:01'
+    published_at { Time.zone.now }
     user
     blog { Blog.first || create(:blog) }
     state 'published'
@@ -252,9 +247,7 @@ FactoryGirl.define do
 
   factory :note do
     body 'this is a note'
-    created_at '2013-07-14 01:00:01'
-    published_at '2013-07-14 01:00:01'
-    updated_at '2013-07-14 01:00:01'
+    published_at { Time.zone.now }
     user
     state 'published'
     association :text_filter, factory: :markdown
@@ -274,8 +267,6 @@ FactoryGirl.define do
     url 'http://www.example.com'
     excerpt 'This is an excerpt'
     guid 'dsafsadffsdsf'
-    created_at Time.now
-    updated_at Time.now
   end
 
   factory :sidebar do

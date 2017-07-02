@@ -28,13 +28,14 @@ class Feedback < ActiveRecord::Base
   scope :ham, -> { where(state: %w(presumed_ham ham)) }
 
   scope :spam, -> { where(state: 'spam') }
-  scope :published_since, ->(time) { ham.where('published_at > ?', time) }
+  scope :created_since, ->(time) { ham.where('created_at > ?', time) }
   scope :presumed_ham, -> { where(state: 'presumed_ham') }
   scope :presumed_spam, -> { where(state: 'presumed_spam') }
   scope :unapproved, -> { where(state: ['presumed_spam', 'presumed_ham']) }
 
   scope :published, -> { ham }
   scope :oldest_first, -> { order(:created_at) }
+  scope :newest_first, -> { order(created_at: :desc) }
 
   include AASM
 
