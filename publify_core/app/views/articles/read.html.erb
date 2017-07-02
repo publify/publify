@@ -9,7 +9,7 @@
   <a name="comments"></a><h4 class="blueblk"><%= t('.comments') %></h4>
   <% unless @article.comments_closed? %>
     <p class="postmetadata alt">
-      <small><a href="#respond"><%= t(".leave_a_response")%></a></small>
+    <small><a href="#respond"><%= t(".leave_a_response")%></a></small>
     </p>
   <% end %>
   <%= render "articles/comment_list" %>
@@ -17,15 +17,17 @@
 
 <% if @article.allow_pings? %>
   <a name="trackbacks"></a><h4 class="blueblk"><%= t(".trackbacks")%></h4>
-  <p>
+  <% unless @article.pings_closed? %>
+    <p>
     <%= t(".use_the_following_link_to_trackback")%>:<br>
     <span class="light-bg"><%= @article.trackback_url %></span>
     </p>
-    <% unless @article.published_trackbacks.blank? %>
-      <ol id="trackbackList" class="trackback-list">
-        <%= render(partial: "trackback", collection: @article.published_trackbacks) %>
-      </ol>
-    <% end %>
+  <% end %>
+  <% unless @article.published_trackbacks.blank? %>
+    <ol id="trackbackList" class="trackback-list">
+      <%= render(partial: "trackback", collection: @article.published_trackbacks) %>
+    </ol>
+  <% end %>
 <% end %>
 
 <p class="postmetadata alt">
