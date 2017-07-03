@@ -7,8 +7,8 @@ module BaseHelper
   # Need to rewrite this one, quick hack to test my changes.
   attr_reader :page_title
 
-  def render_sidebars(*sidebars)
-    rendered_sidebars = (sidebars.blank? ? Sidebar.order(:active_position) : sidebars).map do |sb|
+  def render_sidebars
+    rendered_sidebars = Sidebar.order(:active_position).map do |sb|
       @sidebar = sb
       sb.parse_request(content_array, params)
       render_sidebar(sb)
