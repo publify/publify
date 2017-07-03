@@ -676,7 +676,6 @@ pl:
       edit: Zmień
       leave_a_response: Skomentuj
       rss_feed: Subskrypcja RSS dla tego wpisu
-      trackback_uri: Trackback URI
       trackbacks: Trackbacks
       use_the_following_link_to_trackback: Użyj następującego trackbacka na swojej stronie
     trackback:
