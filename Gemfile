@@ -24,6 +24,11 @@ gem 'publify_amazon_sidebar', path: 'publify_amazon_sidebar'
 gem 'publify_core', path: 'publify_core'
 gem 'publify_textfilter_code', path: 'publify_textfilter_code'
 
+gem 'tzinfo-data'
+
+gem 'execjs'
+gem 'therubyracer', :platforms => :ruby
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
