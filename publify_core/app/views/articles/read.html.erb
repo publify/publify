@@ -15,19 +15,11 @@
   <%= render "articles/comment_list" %>
 <% end %>
 
-<% if @article.allow_pings? %>
+<% if @article.published_trackbacks.any? %>
   <a name="trackbacks"></a><h4 class="blueblk"><%= t(".trackbacks")%></h4>
-  <% unless @article.pings_closed? %>
-    <p>
-    <%= t(".use_the_following_link_to_trackback")%>:<br>
-    <span class="light-bg"><%= @article.trackback_url %></span>
-    </p>
-  <% end %>
-  <% unless @article.published_trackbacks.blank? %>
-    <ol id="trackbackList" class="trackback-list">
-      <%= render(partial: "trackback", collection: @article.published_trackbacks) %>
-    </ol>
-  <% end %>
+  <ol id="trackbackList" class="trackback-list">
+    <%= render(partial: "trackback", collection: @article.published_trackbacks) %>
+  </ol>
 <% end %>
 
 <p class="postmetadata alt">

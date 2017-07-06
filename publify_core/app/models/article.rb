@@ -126,10 +126,6 @@ class Article < Content
     resources.create!(upload: file, blog: blog)
   end
 
-  def trackback_url
-    blog.url_for("trackbacks?article_id=#{id}", only_path: false)
-  end
-
   def comment_url
     blog.url_for("comments?article_id=#{id}", only_path: true)
   end
