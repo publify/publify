@@ -20,6 +20,7 @@
   - Stop sending trackbacks and pingbacks
   - Fix forgery protection errors for trackback creation
   - Order feedback feed by created_at
+  - Only display trackback URL when feedback is allowed, and never display it as a link
 
 * Improve Atom/RSS feeds
   - Fix URLs used for resources
