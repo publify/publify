@@ -275,7 +275,6 @@ app/views/tag_sidebar/_content.html.erb
 app/views/tags/index.html.erb
 app/views/tags/show.html.erb
 app/views/theme/static_view_test.html.erb
-app/views/trackbacks/trackback.xml.builder
 app/views/xml/_googlesitemap_item_article.googlesitemap.builder
 app/views/xml/_googlesitemap_item_category.googlesitemap.builder
 app/views/xml/_googlesitemap_item_page.googlesitemap.builder
