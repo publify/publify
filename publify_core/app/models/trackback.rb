@@ -1,3 +1,4 @@
+# Legacy class to support old feedback sent as trackbacks.
 class Trackback < Feedback
   content_fields :excerpt
   validates :title, :excerpt, :url, presence: true
