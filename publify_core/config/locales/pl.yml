@@ -677,7 +677,6 @@ pl:
       leave_a_response: Skomentuj
       rss_feed: Subskrypcja RSS dla tego wpisu
       trackbacks: Trackbacks
-      use_the_following_link_to_trackback: Użyj następującego trackbacka na swojej stronie
     trackback:
       from: From
   authors:
