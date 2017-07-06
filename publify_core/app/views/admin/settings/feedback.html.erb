@@ -9,8 +9,8 @@
   <fieldset class='form-horizontal'>
     <legend><%= t(".feedback")%></legend>
     <div class='form-group'>
-      <label class='control-label col-sm-2'><%= t(".comments") %></label>
-      <div class='col-sm-4'>
+      <label class='control-label col-sm-4 col-md-3 col-lg-2'><%= t(".comments") %></label>
+      <div class='col-sm-8 col-md-6 col-lg-4'>
         <div class='checkbox'>
           <label for="setting_default_allow_comments">
             <%= check_box(:setting, :default_allow_comments) %>
@@ -27,8 +27,8 @@
       </div>
     </div>
     <div class='form-group'>
-      <label class='control-label col-sm-2'><%= t(".trackbacks") %></label>
-      <div class='col-sm-4'>
+      <label class='control-label col-sm-4 col-md-3 col-lg-2'><%= t(".trackbacks") %></label>
+      <div class='col-sm-8 col-md-6 col-lg-4'>
         <div class='checkbox'>
           <label for="setting_default_allow_pings">
             <%= check_box(:setting, :default_allow_pings) %>
@@ -45,16 +45,16 @@
       </div>
     </div>
     <div class='form-group'>
-      <label class='control-label col-sm-2' for="comment_text_filter"><%= t(".comments_filter") %></label>
-      <div class='col-sm-4'>
+      <label class='control-label col-sm-4 col-md-3 col-lg-2' for="comment_text_filter"><%= t(".comments_filter") %></label>
+      <div class='col-sm-8 col-md-6 col-lg-4'>
         <select name="setting[comment_text_filter]" id="comment_text_filter" class='form-control'>
           <%= options_for_select text_filter_options, TextFilter.find_by_name(this_blog.comment_text_filter) %>
         </select>
       </div>
     </div>
     <div class='form-group'>
-      <label class='control-label col-sm-2' for="setting_plugin_avatar"><%= t(".avatars_provider") %></label>
-      <div class='col-sm-4'>
+      <label class='control-label col-sm-4 col-md-3 col-lg-2' for="setting_plugin_avatar"><%= t(".avatars_provider") %></label>
+      <div class='col-sm-8 col-md-6 col-lg-4'>
         <select name="setting[plugin_avatar]" id="setting_plugin_avatar" class='form-control'>
           <%= options_for_select plugin_options(:avatar).push([t(".none"),'']), this_blog.plugin_avatar %>
         </select>
@@ -65,8 +65,8 @@
   <fieldset class='form-horizontal'>
     <legend><%= t(".spam") %></legend>
     <div class='form-group'>
-      <label class='control-label col-sm-2'><%= t(".spam_protection") %></label>
-      <div class='col-sm-4'>
+      <label class='control-label col-sm-4 col-md-3 col-lg-2'><%= t(".spam_protection") %></label>
+      <div class='col-sm-8 col-md-6 col-lg-4'>
         <div class='checkbox'>
           <label for="setting_sp_global">
             <%= check_box(:setting, :sp_global) %>
@@ -77,15 +77,15 @@
       </div>
     </div>
     <div class='form-group'>
-      <label class='control-label col-sm-2' for="setting_sp_akismet_key"><%= t(".askimet_key") %></label>
-      <div class='col-sm-4'>
+      <label class='control-label col-sm-4 col-md-3 col-lg-2' for="setting_sp_akismet_key"><%= t(".askimet_key") %></label>
+      <div class='col-sm-8 col-md-6 col-lg-4'>
         <%= text_field(:setting, :sp_akismet_key, {:class => 'form-control'}) %>
         <small class='help-block'><%= t(".explain_spamfiltering_html") %>.</small>
       </div>
     </div>
     <div class='form-group'>
-      <label class='control-label col-sm-2' for="setting_sp_article_auto_close"><%= t(".disable_comments_after") %></label>
-      <div class='col-sm-4'>
+      <label class='control-label col-sm-4 col-md-3 col-lg-2' for="setting_sp_article_auto_close"><%= t(".disable_comments_after") %></label>
+      <div class='col-sm-8 col-md-6 col-lg-4'>
         <div class="row">
           <div class='col-sm-3'>
             <%= text_field(:setting, :sp_article_auto_close, {:size => 4, :class => 'form-control'}) %>
@@ -100,8 +100,8 @@
       </div>
     </div>
     <div class='form-group'>
-      <label class='control-label col-sm-2' for="setting_sp_url_limit"><%= t(".max_links") %></label>
-      <div class='col-sm-4'>
+      <label class='control-label col-sm-4 col-md-3 col-lg-2' for="setting_sp_url_limit"><%= t(".max_links") %></label>
+      <div class='col-sm-8 col-md-6 col-lg-4'>
         <div class="row">
           <div class='col-sm-3'>
             <%= text_field(:setting, :sp_url_limit, {:size => 4, :class => 'form-control'}) %>
@@ -113,8 +113,8 @@
       </div>
     </div>
     <div class='form-group'>
-      <label class='control-label col-sm-2'><%= t(".captcha") %></label>
-      <div class='col-sm-4'>
+      <label class='control-label col-sm-4 col-md-3 col-lg-2'><%= t(".captcha") %></label>
+      <div class='col-sm-8 col-md-6 col-lg-4'>
         <div class='checkbox'>
           <label for="setting_use_recaptcha">
             <%= check_box(:setting, :use_recaptcha) %>
