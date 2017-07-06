@@ -444,13 +444,10 @@ da:
         comments_filter: Kommentarfilter
         days: dage
         disable_comments_after: Deaktiver kommentarer efter
-        disable_trackbacks_sitewide: Disable trackbacks site-wide
         enable_comments_by_default: Aktiver kommentarer som standard
         enable_feedback_moderation: Aktiver feedback moderation
         enable_recaptcha: Enable reCaptcha
         enable_spam_protection: Aktiver spam beskyttelse
-        enable_trackbacks_by_default: Aktiver Trackbacks som standard
-        explain_disable_trackbacks: Denne indstilling giver dig mulighed for at deaktivere Trackbacks for hver artikel i din blog. Det vil ikke fjerne eksisterende Trackbacks, men det vil forhindre yderligere forsøg på at tilføje Trackbacks overalt på din blog.
         explain_feedback_moderation: Du kan slå feedback moderation til for hele bloggen. Hvis du gør dette kommer kommentarer og trackbacks først frem når du har godkendt dem
         explain_reject_comments: Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them
         explain_spam_protection: Enabling spam protection will make publify compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots
@@ -465,7 +462,6 @@ da:
         set_to_0_to_never_reject_comments: Sæt til 0 for at aldrig forkaste kommentarer
         spam: Spam
         spam_protection: Spam beskyttelse
-        trackbacks: Trackbacks
         update_settings: Update settings
       index:
         allow_users_to_register: Allow users to register
@@ -491,7 +487,6 @@ da:
         cancel: Anuller
         display: Vis
         example: for eksempel
-        explain: Når du udgiver artikler kan Publify sende trackbacks til de hjemmesider du linker til. Dette bør slåes fra for private blogs da det ellers kan lække privat information til hjemmesider du diskuterer. For offentlige blogs, er der ingen reel mening i at deaktivere dette.
         image_medium_size: Image medium size
         image_thumbnail_size: Image thumbnail size
         latitude_longitude: Breddegrad, længdegrad
@@ -499,8 +494,6 @@ da:
         or: or
         publish: Udgiv
         publish_on_twitter: Publish on Twitter
-        send_trackbacks: Send trackbacks
-        trackbacks: Trackbacks
         twitter_consumer_key: Twitter consumer key
         twitter_consumer_secret: Twitter consumer secret
         update_settings: Update settings

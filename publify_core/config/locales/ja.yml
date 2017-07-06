@@ -444,13 +444,10 @@ ja:
         comments_filter: コメントフィルター
         days: 日
         disable_comments_after: 右の期間以後のコメントを不許可にする
-        disable_trackbacks_sitewide: Disable trackbacks site-wide
         enable_comments_by_default: デフォルトでコメントを有効にする
         enable_feedback_moderation: フィードバック承認機能を有効にする
         enable_recaptcha: Enable reCaptcha
         enable_spam_protection: スパムプロテクションを有効にする
-        enable_trackbacks_by_default: デフォルトでトラックバックを許可する
-        explain_disable_trackbacks: この設定はすでにあるトラックバックを削除しませんが、新しく追加しようとするトラックバックを防ぐことができます。
         explain_feedback_moderation: サイト全体のフィードバック承認機能を有効にすることができます。有効にするとコメントやトラックバックは承認されるまで表示されません。
         explain_reject_comments: Publifyは指定された数のリンクが含まれているコメントやトラックバックを自動的に拒否します
         explain_spam_protection: スパムプロテクションを有効にすると、投稿者のIPアドレスおよびその投稿内容をローカル、リモート両方のブラックリストと比較します
@@ -465,7 +462,6 @@ ja:
         set_to_0_to_never_reject_comments: コメントを拒否しない場合は0を設定してください
         spam: Spam
         spam_protection: Spam protection
-        trackbacks: Trackbacks
         update_settings: Update settings
       index:
         allow_users_to_register: ユーザーに登録させる
@@ -491,7 +487,6 @@ ja:
         cancel: キャンセル
         display: 表示
         example: 例
-        explain: 記事が公開されると、Publifyはリンクしたページへトラックバックを送信します。非公開ブログの場合は公開されたブログへ情報が漏れないようにこのチェックボックスを非選択にしてください。公開ブログの場合は非選択にする必要はありません。
         image_medium_size: Image medium size
         image_thumbnail_size: Image thumbnail size
         latitude_longitude: 緯度、経度
@@ -499,8 +494,6 @@ ja:
         or: or
         publish: 公開
         publish_on_twitter: Publish on Twitter
-        send_trackbacks: トラックバックを送信
-        trackbacks: トラックバック
         twitter_consumer_key: Twitter consumer key
         twitter_consumer_secret: Twitter consumer secret
         update_settings: Update settings

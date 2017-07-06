@@ -444,13 +444,10 @@ it:
         comments_filter: Filtra commenti
         days: giorni
         disable_comments_after: 'Disabilita commenti dopo '
-        disable_trackbacks_sitewide: Disable trackbacks site-wide
         enable_comments_by_default: Abilita commenti di defaault
         enable_feedback_moderation: Abilita la moderazione dei feedback
         enable_recaptcha: Enable reCaptcha
         enable_spam_protection: Abilita la protezione spam
-        enable_trackbacks_by_default: Abilita Trackbacks come default
-        explain_disable_trackbacks: This setting allows you to disable trackbacks for every article in your blog.  It won't remove existing trackbacks, but it will prevent any further attempt to add a trackback anywhere on your blog.
         explain_feedback_moderation: Puoi abilitare in modo globale la moderazione dei feedback. Se fai cio', nessun commento o trackback apparira' sul tuo blog se tu non lo autorizzi.
         explain_reject_comments: Il blog cancellera' automaticamente commenti e trackbacks che contengono un certo numero di link
         explain_spam_protection: Abilitando la protezione contro lo spam fa si che il blog compari gli IP di chi invia i commenti e anche il loro contenuto con una blacklist remota. E' una buona difesa contro gli spam robot
@@ -465,7 +462,6 @@ it:
         set_to_0_to_never_reject_comments: Inserisci 0 per accettare sempre i commenti.
         spam: Spam
         spam_protection: Spam protection
-        trackbacks: Trackbacks
         update_settings: Update settings
       index:
         allow_users_to_register: Allow users to register
@@ -491,7 +487,6 @@ it:
         cancel: Annulla
         display: Mostra
         example: esempio
-        explain: When publishing articles, Publify can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.
         image_medium_size: Image medium size
         image_thumbnail_size: Image thumbnail size
         latitude_longitude: Latitudine, Longitudine
@@ -499,8 +494,6 @@ it:
         or: or
         publish: Pubblica
         publish_on_twitter: Publish on Twitter
-        send_trackbacks: Invia trackbacks
-        trackbacks: Trackbacks
         twitter_consumer_key: Twitter consumer key
         twitter_consumer_secret: Twitter consumer secret
         update_settings: Update settings

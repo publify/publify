@@ -27,24 +27,6 @@
       </div>
     </div>
     <div class='form-group'>
-      <label class='control-label col-sm-4 col-md-3 col-lg-2'><%= t(".trackbacks") %></label>
-      <div class='col-sm-8 col-md-6 col-lg-4'>
-        <div class='checkbox'>
-          <label for="setting_default_allow_pings">
-            <%= check_box(:setting, :default_allow_pings) %>
-            <%= t(".enable_trackbacks_by_default") %>
-          </label>
-        </div>
-        <div class='checkbox'>
-          <label for="setting_global_pings_disable">
-            <%= check_box(:setting, :global_pings_disable) %>
-            <%= t(".disable_trackbacks_sitewide") %>
-          </label>
-          <small class='help-block'><%= t(".explain_disable_trackbacks") %></small>
-        </div>
-      </div>
-    </div>
-    <div class='form-group'>
       <label class='control-label col-sm-4 col-md-3 col-lg-2' for="comment_text_filter"><%= t(".comments_filter") %></label>
       <div class='col-sm-8 col-md-6 col-lg-4'>
         <select name="setting[comment_text_filter]" id="comment_text_filter" class='form-control'>

@@ -444,13 +444,10 @@ he:
         comments_filter: מסנן התגובות
         days: ימים
         disable_comments_after: בטל תגובות לאחר
-        disable_trackbacks_sitewide: בטל עוקבים-חזרה בכל האתר
         enable_comments_by_default: אפשר תגובות כברירת מחדל
         enable_feedback_moderation: אפשר ביקורת על המשוב
         enable_recaptcha: Enable reCaptcha
         enable_spam_protection: אפשר הגנת ספאם
-        enable_trackbacks_by_default: אפשר עוקבים-חזרה כברירת מחדל
-        explain_disable_trackbacks: הגדרה זו מאפשרת לך לבטל עוקבים-חזרה לכל כתבה בבלוג שלך. היא לא תסיר עוקבים-חזרה קיימים, אבל תמנע נסיונות להוספת עוקב-חזרה בכל הכתבות הבלוג שלך.
         explain_feedback_moderation: תוכל לאפשר ביקורת על המשוב בכל האתר. אם תבצע זאת, לא תוצג שום תגובה או עוקב-חזרה בבלוג שלך אלא אם תאשר אותה.
         explain_reject_comments: Publify תדחה אוטומטית תגובות ועוקבים-חזרה המכילים את כמות הקישורים מסויימת
         explain_spam_protection: אפשור הגנת ספאם תגרום ל-Publify להשוות כתובות ה-IP של השולחים ואת תוכן השליחה כנגד רשימות שחורות מקומיות או מרוחקות - הגנה טובה כנגד רובוטי ספאם.
@@ -465,7 +462,6 @@ he:
         set_to_0_to_never_reject_comments: הגדר כ-0 כדי לא לדחות תגובות לעולם
         spam: Spam
         spam_protection: Spam protection
-        trackbacks: Trackbacks
         update_settings: Update settings
       index:
         allow_users_to_register: אפשר למשתמשים להירשם
@@ -491,7 +487,6 @@ he:
         cancel: בטל
         display: תצוגה
         example: דוגמא
-        explain: בעת פרסום במאמר, Publify יכולה לשלוח עוקבים-חזרה לאתרים אליהם אתה מקשר. מומלץ לבטל זאת לבלוגים פרטיים משום שמידע פרטי על האתרים אליהם אתה מקשר עלול לדלוף. לבלוגים ציבוריים, אין טעם לבטל זאת.
         image_medium_size: Image medium size
         image_thumbnail_size: Image thumbnail size
         latitude_longitude: קו רוחב, קו אורך
@@ -499,8 +494,6 @@ he:
         or: or
         publish: פרסם
         publish_on_twitter: Publish on Twitter
-        send_trackbacks: שלח עוקבים-חזרה
-        trackbacks: עוקבים חזרה
         twitter_consumer_key: Twitter consumer key
         twitter_consumer_secret: Twitter consumer secret
         update_settings: Update settings

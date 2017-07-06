@@ -444,13 +444,10 @@ zh-CN:
         comments_filter: 篩選评论
         days: 日期
         disable_comments_after: 在失效的评论之後
-        disable_trackbacks_sitewide: Disable trackbacks site-wide
         enable_comments_by_default: 預設為可以回應
         enable_feedback_moderation: 適度可以反饋
         enable_recaptcha: Enable reCaptcha
         enable_spam_protection: 有效防止垃圾郵件
-        enable_trackbacks_by_default: 預設為可以引用
-        explain_disable_trackbacks: 此設定可以讓你博客裡的文章停止引用，這個舉動並不會刪除存在的引用，但是會阻止將來你要試圖增加的引用
         explain_feedback_moderation: 你可以設定網點範圍有限度的反饋。這麼做將不會有任何评论引用出現在你的博客，除非你使之生效
         explain_reject_comments: Publify會自動回絕评论和引用，包含某些可靠的連結總數
         explain_spam_protection: publify會根據張貼者IP的位址內容還有黑名單來有效防止垃圾郵件。好的防禦可以抑制垃圾郵寄
@@ -465,7 +462,6 @@ zh-CN:
         set_to_0_to_never_reject_comments: 設定0回絕不回絕的评论
         spam: Spam
         spam_protection: 防止垃圾郵件
-        trackbacks: Trackbacks
         update_settings: Update settings
       index:
         allow_users_to_register: Allow users to register
@@ -491,7 +487,6 @@ zh-CN:
         cancel: 取消
         display: 顯示
         example: 舉例
-        explain: 當公開的文章或引用會洩漏你私人的資訊時，對於不公開的博客publify會終止連結。在公開的博客並無此選項
         image_medium_size: Image medium size
         image_thumbnail_size: Image thumbnail size
         latitude_longitude: 緯度,經度
@@ -499,8 +494,6 @@ zh-CN:
         or: or
         publish: 发布
         publish_on_twitter: Publish on Twitter
-        send_trackbacks: 引用發送
-        trackbacks: 引用
         twitter_consumer_key: Twitter consumer key
         twitter_consumer_secret: Twitter consumer secret
         update_settings: Update settings

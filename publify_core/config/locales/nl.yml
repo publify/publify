@@ -444,13 +444,10 @@ nl:
         comments_filter: Commentaren filter
         days: dagen
         disable_comments_after: Sta commentaren niet toe na
-        disable_trackbacks_sitewide: Gebruik nergens trackbacks
         enable_comments_by_default: Commentaren standaard toestaan
         enable_feedback_moderation: Feedback controle aanzetten
         enable_recaptcha: Enable reCaptcha
         enable_spam_protection: Gebruik spam-bescherming
-        enable_trackbacks_by_default: Trackbacks standaard toestaan
-        explain_disable_trackbacks: Deze instelling zorgt er voor dat bij geen enkel artikel in je blog trackbacks gebruikt kunnen worden. Het zal bestaande trackbacks niet verwijderen, maar het zal voorkomen dat nieuwe trackbacks worden toegevoegd.
         explain_feedback_moderation: Je kunt voor de hele site feedback controle aanzetten. Als je dat doet zal geen enkel commentaar of trackback op je blog verschijnen totdat je het goedkeurt
         explain_reject_comments: Publify zal automatisch commentaren en trackbacks verwijderen die meer dan een bepaald aantal links bevatten
         explain_spam_protection: Het aanzetten van spambescherming zorgt dat publify het IP-adres en de inhoud van reacties vergelijkt met lokale en centrale zwarte lijsten. Een goede bescherming tegen spam robots
@@ -465,7 +462,6 @@ nl:
         set_to_0_to_never_reject_comments: Zet op 0 om commentaren nooit te weigeren
         spam: Spam
         spam_protection: Spam protection
-        trackbacks: Trackbacks
         update_settings: Werk instellingen bij
       index:
         allow_users_to_register: Sta gebruikers toe zich te registreren
@@ -491,7 +487,6 @@ nl:
         cancel: Terug
         display: Toon
         example: example
-        explain: Wanneer je een artikel publiceert kan Publify een trackback sturen naar de sites waaraan je linkt. Dit zou voor priv&eacute;-blogs uit moeten staan, omdat het niet-publieke informatie 'lekt' naar sites die je bediscussieert. Voor publieke blogs is er geen goede reden om het uit te zetten.
         image_medium_size: Image medium size
         image_thumbnail_size: Image thumbnail size
         latitude_longitude: Latitude, Longitude
@@ -499,8 +494,6 @@ nl:
         or: or
         publish: Publiceer
         publish_on_twitter: Publish on Twitter
-        send_trackbacks: Verstuur trackbacks
-        trackbacks: Trackbacks
         twitter_consumer_key: Twitter consumer key
         twitter_consumer_secret: Twitter consumer secret
         update_settings: Werk instellingen bij

@@ -444,13 +444,10 @@ de:
         comments_filter: Textfilter für Kommentar
         days: Tagen
         disable_comments_after: Kommentare abschalten nach
-        disable_trackbacks_sitewide: Disable trackbacks site-wide
         enable_comments_by_default: Kommentare per default erlauben
         enable_feedback_moderation: Moderation von Kommentaren aktivieren
         enable_recaptcha: Enable reCaptcha
         enable_spam_protection: Spamschutz aktivieren
-        enable_trackbacks_by_default: Trackbacks per default aktivieren
-        explain_disable_trackbacks: Diese Option erlaubt es Ihnen, Trackbacks für alle Artikel im gesamten Blog zu deaktivieren. Dadurch werden zwar keine bereits existierenden Trackbacks entfernt, aber alle zukünftig irgendwo in Ihrem Blog eintreffenden Trackbacks werden abgewiesen.
         explain_feedback_moderation: Sie können die Moderation von Kommentaren auf der gesamten Website aktivieren. Dann erscheinen keine Kommentare oder Trackbacks in Ihrem Blog, die sie nicht überprüft haben
         explain_reject_comments: Publify kann automatisch Kommentare und Trackbacks abweisen, die mehr als eine bestimmte Anzahl von Links enthalten
         explain_spam_protection: Bei Aktivierung des Spamschutzes wird Publify sowohl die IP Adresse des Autors als auch den Inhalt seiner Veröffentlichung gegen lokale und entfernte Blacklisten vergleichen. Gute Abwehr von Spambots
@@ -465,7 +462,6 @@ de:
         set_to_0_to_never_reject_comments: Wert 0 bewirkt, dass Kommentare nie abgewiesen werden
         spam: Spam
         spam_protection: Spamschutz
-        trackbacks: Trackbacks
         update_settings: Update settings
       index:
         allow_users_to_register: Allow users to register
@@ -491,7 +487,6 @@ de:
         cancel: Abbrechen
         display: Zeige
         example: Beispiel
-        explain: Publify kann Trackbacks zu anderen Websites schicken, zu denen Sie in veröffentlichten Artikeln verlinken. Das sollte für private Blogs deaktiviert werden, weil sonst nicht-öffentliche Informationen mit dem Trackback Ping nach außen zu den Seiten gehen, die Sie in Ihren Artikeln diskutieren. Für öffentliche Blogs jedoch besteht kein wirklicher Grund, das zu deaktivieren.
         image_medium_size: Image medium size
         image_thumbnail_size: Image thumbnail size
         latitude_longitude: geografische Breite, Länge
@@ -499,8 +494,6 @@ de:
         or: or
         publish: Veröffentlichen
         publish_on_twitter: Publish on Twitter
-        send_trackbacks: Trackbacks verschicken
-        trackbacks: Trackbacks
         twitter_consumer_key: Twitter consumer key
         twitter_consumer_secret: Twitter consumer secret
         update_settings: Update settings

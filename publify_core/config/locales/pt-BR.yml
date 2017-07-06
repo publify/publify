@@ -444,13 +444,10 @@ pt-BR:
         comments_filter: Filtro de comentários
         days: dias
         disable_comments_after: Desabilitar comentários depois de
-        disable_trackbacks_sitewide: Desabilitar trackbacks em todo o site
         enable_comments_by_default: Habilitar comentários por padrão
         enable_feedback_moderation: Habilitar moderação de comentários e trackbacks
         enable_recaptcha: Habilitar reCaptcha
         enable_spam_protection: Habilitar proteção anti-spam
-        enable_trackbacks_by_default: Habilitar Trackbacks por padrão
-        explain_disable_trackbacks: Esta configuração permite que você desabilite trackbacks para todos os artigos do seu blog. Isso não irá remover trackbacks existentes, mas irá impedir qualquer tentativa de ter um novo trackback para o seu blog.
         explain_feedback_moderation: Você pode habilitar moderação de feedback no site todo. Se você fizer isso, nenhum comentário ou trackback será exibido em seu blog enquanto não for validado.
         explain_reject_comments: Publify rechazará automáticamente los comentarios y trackbacks que contengan más de un cierto n&uacute;mero de links en ellos
         explain_spam_protection: Habilitando la protecci&oacute;n anti-spam hará que publify compare la direcci&oacute;n IP del usuario as&iacute; como el contenido de sus comentarios contra una lista negra remota o local. Es una buena defensa contra los robots de spam
@@ -465,7 +462,6 @@ pt-BR:
         set_to_0_to_never_reject_comments: Entre com 0 para nunca rejeitar comentários
         spam: Spam
         spam_protection: Proteção anti-spam
-        trackbacks: Trackbacks
         update_settings: Atualizar configurações
       index:
         allow_users_to_register: Permitir usuários a se cadastrarem
@@ -491,7 +487,6 @@ pt-BR:
         cancel: Cancelar
         display: Exibir
         example: exemplo
-        explain: Quando se publicam artigos, Publify pode enviar trackbacks a sites relacionados. Isso deveria ser desabilitado para blogs privados. Para blogs públicos, realmente não há razão para desativar isso.
         image_medium_size: Tamanho médio da imagem
         image_thumbnail_size: Tamanho da imagem do thumbnail
         latitude_longitude: Latitude, Longitude
@@ -499,8 +494,6 @@ pt-BR:
         or: ou
         publish: Publicar
         publish_on_twitter: Publicar no Twitter
-        send_trackbacks: Enviar trackbacks
-        trackbacks: Trackbacks
         twitter_consumer_key: Twitter consumer key
         twitter_consumer_secret: Twitter consumer secret
         update_settings: Atualizar configurações
