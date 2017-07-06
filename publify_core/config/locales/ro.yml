@@ -444,8 +444,8 @@ ro:
         enable_feedback_moderation: Activează moderarea comentariilor
         enable_recaptcha: Enable reCaptcha
         enable_spam_protection: Activează protecția anti-spam
-        explain_feedback_moderation: You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it.
-        explain_reject_comments: Publify va respinge automat comentarii și retrolegături care conțin mai mult decît un anumit număr de legături
+        explain_feedback_moderation: You can enable site wide feedback moderation. If you do so, no comment will appear on your blog unless you validate it.
+        explain_reject_comments: Publify va respinge automat comentarii care conțin mai mult decît un anumit număr de legături
         explain_spam_protection: 'La activarea protecției anti-spam, Publify va compara adresa IP a utilizatorului care publică un articol, cît și conținutul articolului publicat, cu niște liste negre locale sau din altă parte. Reprezintă o bună apărare împotriva unui spam bot '
         explain_spamfiltering_html: Opțional, Publify poate folosi serviciul <a href='http://akismet.com'>Akismet</a> de filtrare spam. Trebuie să te înregistrezi la Akismet și să primești o cheie API pentru a putea folosi acest serviciu. Dacă ai deja o cheie Akismet, introdu-o aici
         feedback: Feedback

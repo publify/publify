@@ -444,8 +444,8 @@ lt:
         enable_feedback_moderation: Moderation von Kommentaren aktivieren
         enable_recaptcha: Enable reCaptcha
         enable_spam_protection: Spamschutz aktivieren
-        explain_feedback_moderation: You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it.
-        explain_reject_comments: Publify kann automatisch Kommentare und Trackbacks abweisen, die mehr als eine bestimmte Anzahl von Links enthalten
+        explain_feedback_moderation: You can enable site wide feedback moderation. If you do so, no comment will appear on your blog unless you validate it.
+        explain_reject_comments: Publify kann automatisch Kommentare abweisen, die mehr als eine bestimmte Anzahl von Links enthalten
         explain_spam_protection: Bei Aktivierung des Spamschutzes wird Publify sowohl die IP Adresse des Autors als auch den Inhalt seiner Veröffentlichung gegen lokale und entfernte Blacklisten vergleichen. Gute Abwehr von Spambots
         explain_spamfiltering_html: Publify kann (optional) den <a href='http://akismet.com'>Akismet</a> Spam-Filterdienst verwenden. Sie müssen sich dort registriert und einen API Key erhalten haben, bevor Sie diesen Dienst nutzen können. Wenn Sie einen solchen Key haben, geben Sie ihn hier ein
         feedback: Feedback

@@ -444,8 +444,8 @@ nb-NO:
         enable_feedback_moderation: Aktiver moderering av diskusjoner
         enable_recaptcha: Aktiver reCaptcha
         enable_spam_protection: Aktiver spam-beskyttelse
-        explain_feedback_moderation: Du kan aktivere moderering av diskusjoner for hele bloggen. Dersom du gjør det vil ingen kommentarer eller trackbacks vises i bloggen din uten at du har godkjent dem
-        explain_reject_comments: Publify vil automatisk avvise kommentarer og trackback som inneholder flere enn et visst antall lenker
+        explain_feedback_moderation: Du kan aktivere moderering av diskusjoner for hele bloggen. Dersom du gjør det vil ingen kommentarer vises i bloggen din uten at du har godkjent dem
+        explain_reject_comments: Publify vil automatisk avvise kommentarer som inneholder flere enn et visst antall lenker
         explain_spam_protection: Når du aktiverer spam-beskyttelse vil Publify sammenlikne IP-adressen til deltakere, samt innholdet i artiklene, mot lokale svartelister og svartelister på internett. Godt forsvar mot spam-roboter
         explain_spamfiltering_html: Publify kan settes opp til å bruke spamfilter-servicen <a href='http://akismet.com'>Akismet</a>. Du må registrere deg hos Akismet og få en API-nøkkel før du kan bruke servicen deres. Hvis du har en Akismet-nøkkel, oppgi den her
         feedback: Diskusjon

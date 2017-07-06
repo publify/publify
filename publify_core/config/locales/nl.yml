@@ -444,8 +444,8 @@ nl:
         enable_feedback_moderation: Feedback controle aanzetten
         enable_recaptcha: Enable reCaptcha
         enable_spam_protection: Gebruik spam-bescherming
-        explain_feedback_moderation: Je kunt voor de hele site feedback controle aanzetten. Als je dat doet zal geen enkel commentaar of trackback op je blog verschijnen totdat je het goedkeurt
-        explain_reject_comments: Publify zal automatisch commentaren en trackbacks verwijderen die meer dan een bepaald aantal links bevatten
+        explain_feedback_moderation: Je kunt voor de hele site feedback controle aanzetten. Als je dat doet zal geen enkel commentaar op je blog verschijnen totdat je het goedkeurt
+        explain_reject_comments: Publify zal automatisch commentaren verwijderen die meer dan een bepaald aantal links bevatten
         explain_spam_protection: Het aanzetten van spambescherming zorgt dat publify het IP-adres en de inhoud van reacties vergelijkt met lokale en centrale zwarte lijsten. Een goede bescherming tegen spam robots
         explain_spamfiltering_html: Publify kan (optioneel) de <a href='http://akismet.com'>Akismet</a> spam-filter dienst gebruiken. Je moet een registratie bij Akismet hebben en een API sleutel voordat je deze dienst kunt gebruiken. Als je een Akismet sleutel hebt, vul die dan hier in
         feedback: Feedback

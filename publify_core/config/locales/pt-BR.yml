@@ -441,11 +441,11 @@ pt-BR:
         days: dias
         disable_comments_after: Desabilitar comentários depois de
         enable_comments_by_default: Habilitar comentários por padrão
-        enable_feedback_moderation: Habilitar moderação de comentários e trackbacks
+        enable_feedback_moderation: Habilitar moderação de comentários
         enable_recaptcha: Habilitar reCaptcha
         enable_spam_protection: Habilitar proteção anti-spam
-        explain_feedback_moderation: Você pode habilitar moderação de feedback no site todo. Se você fizer isso, nenhum comentário ou trackback será exibido em seu blog enquanto não for validado.
-        explain_reject_comments: Publify rechazará automáticamente los comentarios y trackbacks que contengan más de un cierto n&uacute;mero de links en ellos
+        explain_feedback_moderation: Você pode habilitar moderação de feedback no site todo. Se você fizer isso, nenhum comentário será exibido em seu blog enquanto não for validado.
+        explain_reject_comments: Publify rechazará automáticamente los comentarios que contengan más de un cierto n&uacute;mero de links en ellos
         explain_spam_protection: Habilitando la protecci&oacute;n anti-spam hará que publify compare la direcci&oacute;n IP del usuario as&iacute; como el contenido de sus comentarios contra una lista negra remota o local. Es una buena defensa contra los robots de spam
         explain_spamfiltering_html: Publify pode (opcionalmente) usar o serviço anti-spam do <a href='http://akismet.com'>Akismet</a>. Será necessário se registrar no Akismet e obter uma chave de API antes de poder usar o serviço. Se você já possui um chave do Akismet, entre com ela aqui
         feedback: Feedback

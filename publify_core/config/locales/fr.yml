@@ -444,8 +444,8 @@ fr:
         enable_feedback_moderation: Activer la modération des commentaires
         enable_recaptcha: Utiliser reCaptcha
         enable_spam_protection: Activer la protection contre le spam
-        explain_feedback_moderation: Vous pouvez activez la modération des commentaires sur l'ensemble de votre site. Si vous le faites, aucun commentaire ou rétrolien ne sera publié sans une validation de votre part
-        explain_reject_comments: Publify rejettera automatiquement les commentaires et les rétroliens contenant un certain nombre de liens
+        explain_feedback_moderation: Vous pouvez activez la modération des commentaires sur l'ensemble de votre site. Si vous le faites, aucun commentaire ne sera publié sans une validation de votre part
+        explain_reject_comments: Publify rejettera automatiquement les commentaires contenant un certain nombre de liens
         explain_spam_protection: La protection contre le spam permettra à Publify de comparer l'adresse IP des commentateurs ainsi que le contenu de leurs commentaires avec une liste noire distante
         explain_spamfiltering_html: Publify peut utiliser le service de lutte contre le spam <a href='http://akismet.com'>Akismet</a>. Vous devez vous enregistrer afin de pouvoir utiliser les services d'Akismet. Si vous possédez une clé Akismet, ajoutez là ici
         feedback: Commentaires

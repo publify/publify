@@ -444,8 +444,8 @@ en:
         enable_feedback_moderation: Enable feedback moderation
         enable_recaptcha: Enable reCaptcha
         enable_spam_protection: Enable spam protection
-        explain_feedback_moderation: You can enable site-wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it.
-        explain_reject_comments: Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them
+        explain_feedback_moderation: You can enable site-wide feedback moderation. If you do so, no comment will appear on your blog unless you validate it.
+        explain_reject_comments: Publify will automatically reject comments which contain over a certain amount of links in them
         explain_spam_protection: Enabling spam protection will make Publify compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots
         explain_spamfiltering_html: Publify can (optionally) use the <a href='http://akismet.com'>Akismet</a> spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here
         feedback: Feedback
