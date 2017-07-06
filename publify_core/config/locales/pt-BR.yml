@@ -39,11 +39,7 @@ pt-BR:
         allow_comments_status:
           one: habilitado
           zero: desabilitado
-        allow_pings_status:
-          one: habilitado
-          zero: desabilitado
-        allow_trackbacks: Permitir links de retorno (trackback)
-        allowed_comments_and_trackbacks_html: Comentários estão %{allow_comment} e links de retorno (trackback) estão %{allow_trackback}
+        allowed_comments_html: Comentários estão %{allow_comment}
         article_type: Tipo do Artigo
         cancel: Cancelar
         default: Padrão

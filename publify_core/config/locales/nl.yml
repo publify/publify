@@ -39,11 +39,7 @@ nl:
         allow_comments_status:
           one: aangezet
           zero: uitgezet
-        allow_pings_status:
-          one: aangezet
-          zero: uitgezet
-        allow_trackbacks: Sta trackbacks toe
-        allowed_comments_and_trackbacks_html: Comments are %{allow_comment} and trackbacks are %{allow_trackback}
+        allowed_comments_html: Comments are %{allow_comment}
         article_type: Article type
         cancel: Terug
         default: Default

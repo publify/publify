@@ -39,11 +39,7 @@ nb-NO:
         allow_comments_status:
           one: aktivert
           zero: deaktivert
-        allow_pings_status:
-          one: aktivert
-          zero: deaktivert
-        allow_trackbacks: Tillat trackbacks
-        allowed_comments_and_trackbacks_html: Kommentarer er %{allow_comment} og trackbacks er %{allow_trackback}
+        allowed_comments_html: Kommentarer er %{allow_comment}
         article_type: Artikkeltype
         cancel: Avbryt
         default: Standard

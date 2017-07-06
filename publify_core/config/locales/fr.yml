@@ -39,11 +39,7 @@ fr:
         allow_comments_status:
           one: activés
           zero: désactivés
-        allow_pings_status:
-          one: activés
-          zero: désactivés
-        allow_trackbacks: Autoriser les rétroliens
-        allowed_comments_and_trackbacks_html: Les commentaires sont %{allow_comment} et les rétroliens %{allow_trackback}
+        allowed_comments_html: Les commentaires sont %{allow_comment}
         article_type: Type d'article
         cancel: Annuler
         default: Défaut

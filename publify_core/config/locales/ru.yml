@@ -39,11 +39,7 @@ ru:
         allow_comments_status:
           one: enabled
           zero: выключены
-        allow_pings_status:
-          one: enabled
-          zero: выключены
-        allow_trackbacks: Разрешить trackback’и
-        allowed_comments_and_trackbacks_html: Комментарии %{allow_comment} и trackback’и %{allow_trackback}
+        allowed_comments_html: Comments are %{allow_comment}
         article_type: Article type
         cancel: Отменить
         default: Default
