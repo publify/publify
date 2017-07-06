@@ -18,7 +18,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :trackbacks, only: [:create]
   resources :feedback, only: :index
 
   # ArticlesController
