@@ -10,8 +10,8 @@
   <fieldset class='form-horizontal'>
     <legend><%= t(".publish") %></legend>
     <div class='form-group'>
-      <label class='control-label col-sm-2'><%= t(".trackbacks") %></label>
-      <div class="col-sm-5">
+      <label class='control-label col-sm-4 col-md-3 col-lg-2'><%= t(".trackbacks") %></label>
+      <div class="col-sm-8 col-md-6 col-lg-4">
         <div class='checkbox'>
           <label for="setting_send_outbound_pings">
             <%= check_box(:setting, :send_outbound_pings) %>
@@ -22,8 +22,8 @@
       </div>
     </div>
     <div class='form-group'>
-      <label class='control-label col-sm-2' for="setting_geourl_location"><%= t(".latitude_longitude") %></label>
-      <div class='col-sm-5'>
+      <label class='control-label col-sm-4 col-md-3 col-lg-2' for="setting_geourl_location"><%= t(".latitude_longitude") %></label>
+      <div class='col-sm-8 col-md-6 col-lg-4'>
         <%= text_field(:setting, :geourl_location, { :class => 'form-control'}) %>
         <small class='help-block'><%= t(".display")%> <a href="http://geourl.org"><%= t(".your_geoloc") %></a> (<%= t(".example") %>: <tt>47.774,-122.201</tt>)</small>
       </div>
@@ -33,20 +33,20 @@
   <fieldset class='form-horizontal'>
     <legend><%= t(".media") %></legend>
     <div class='form-group'>
-      <label class='control-label col-sm-2' for="setting_image_thumb_size"><%= t(".image_thumbnail_size") %></label>
-      <div class='col-sm-1'>
+      <label class='control-label col-sm-4 col-md-3 col-lg-2' for="setting_image_thumb_size"><%= t(".image_thumbnail_size") %></label>
+      <div class='col-sm-2 col-md-1'>
         <%= text_field(:setting, :image_thumb_size, { :class => 'form-control'}) %>
       </div>
     </div>
     <div class='form-group'>
-      <label class='control-label col-sm-2' for="setting_image_medium_size"><%= t(".image_medium_size") %></label>
-      <div class='col-sm-1'>
+      <label class='control-label col-sm-4 col-md-3 col-lg-2' for="setting_image_medium_size"><%= t(".image_medium_size") %></label>
+      <div class='col-sm-2 col-md-1'>
         <%= text_field(:setting, :image_medium_size, { :class => 'form-control'}) %>
       </div>
     </div>
     <div class='form-group'>
-      <label class='control-label col-sm-2' for="image_avatar_size"><%= t(".avatar_size") %></label>
-      <div class='col-sm-1'>
+      <label class='control-label col-sm-4 col-md-3 col-lg-2' for="image_avatar_size"><%= t(".avatar_size") %></label>
+      <div class='col-sm-2 col-md-1'>
         <%= text_field(:setting, :image_avatar_size, { :class => 'form-control'}) %>
       </div>
     </div>
@@ -58,14 +58,14 @@
       <%= render 'admin/shared/twitter_alert' %>
     <% end %>
     <div class='form-group'>
-      <label class='control-label col-sm-2' for="setting_twitter_consumer_key"><%= t(".twitter_consumer_key") %></label>
-      <div class='col-sm-5'>
+      <label class='control-label col-sm-4 col-md-3 col-lg-2' for="setting_twitter_consumer_key"><%= t(".twitter_consumer_key") %></label>
+      <div class='col-sm-8 col-md-6 col-lg-4'>
         <%= text_field(:setting, :twitter_consumer_key, { :class => 'form-control'}) %>
       </div>
     </div>
     <div class='form-group'>
-      <label class='control-label col-sm-2' for="setting_twitter_consumer_secret"><%= t(".twitter_consumer_secret") %></label>
-      <div class='col-sm-5'>
+      <label class='control-label col-sm-4 col-md-3 col-lg-2' for="setting_twitter_consumer_secret"><%= t(".twitter_consumer_secret") %></label>
+      <div class='col-sm-8 col-md-6 col-lg-4'>
         <%= text_field(:setting, :twitter_consumer_secret, { :class => 'form-control'}) %>
       </div>
     </div>
