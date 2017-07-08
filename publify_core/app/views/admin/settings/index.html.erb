@@ -57,12 +57,8 @@
     </div>
     <div class='form-group'>
       <label class='control-label col-sm-4 col-md-3 col-lg-2' for="setting_admin_display_elements"><%= t(".items_to_display_in_admin_lists") %></label>
-      <div class='col-sm-8 col-md-6 col-lg-4'>
-        <div class="row">
-          <div class='col-sm-3'>
-            <%= text_field(:setting, :admin_display_elements, {:size => 4, :class => 'form-control'}) %>
-          </div>
-        </div>
+      <div class="col-sm-2 col-md-1">
+        <%= text_field(:setting, :admin_display_elements, {:size => 4, :class => 'form-control'}) %>
       </div>
     </div>
   </fieldset>
