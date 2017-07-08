@@ -26,16 +26,10 @@
     </div>
   <% end %>
 
-  <% if @article.allow_pings? %>
-  <h5 class="feedback" id="trackbacks"><%= t('.trackbacks_for')%> <em><%= @article.title %></em></h5>
-  <% unless @article.published_trackbacks.blank? %>
-  <ol id="trackbacks" class="trackbacks">
-    <%= render partial: "trackback", collection: @article.published_trackbacks %>
-  </ol>
-  <% end %>
-  <% else %>
-  <div class="well well-small">
-    <%= t(".trackbacks_are_disabled") %>
-  </div>
+  <% if @article.published_trackbacks.any? %>
+    <h5 class="feedback" id="trackbacks"><%= t('.trackbacks_for')%> <em><%= @article.title %></em></h5>
+    <ol id="trackbacks" class="trackbacks">
+      <%= render partial: "trackback", collection: @article.published_trackbacks %>
+    </ol>
   <% end %>
 </div>
