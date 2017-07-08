@@ -18,16 +18,15 @@
 
 * Feedback
   - Stop sending trackbacks and pingbacks
-  - Fix forgery protection errors for trackback creation
-  - Order feedback feed by created_at
-  - Only display trackback URL when feedback is allowed, and never display it as a link
+  - Stop accepting trackbacks
 
 * Improve Atom/RSS feeds
   - Fix URLs used for resources
   - Fix URL/alternate links to not just point to the site root
-  - Unify comment and trackback feeds into feedback feeds
+  - Unify comment and trackback feeds into feedback feed
   - Add caching for feeds
   - Fix atom entry publication date
+  - Fix ordering of feedback feed by using created_at
 
 * Bug fixes
   - Fix user resource image display when using Fog
