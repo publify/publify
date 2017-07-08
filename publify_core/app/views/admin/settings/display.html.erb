@@ -10,26 +10,26 @@
   <fieldset class='form-horizontal'>
     <legend><%= t('.publishing_options')%></legend>
     <div class='form-group'>
-      <label class='control-label col-sm-2' for="setting_limit_article_display"><%= t('.display') %> </label>
-      <div class='col-sm-1'>
+      <label class='control-label col-sm-4 col-md-3 col-lg-2' for="setting_limit_article_display"><%= t('.display') %> </label>
+      <div class='col-sm-2 col-md-1'>
         <%= text_field(:setting, :limit_article_display, {:size => 4, :class => 'form-control'}) %>
       </div>
-      <div class='pull-left'>
+      <div class='col-sm-6 col-md-5 col-lg-3'>
         <span class='help-block'><%= t('.default_article_show') %></span>
       </div>
     </div>
     <div class='form-group'>
-      <label class='control-label col-sm-2' for="setting_limit_archives_display"><%= t('.display') %> </label>
-      <div class='col-sm-1'>
+      <label class='control-label col-sm-4 col-md-3 col-lg-2' for="setting_limit_archives_display"><%= t('.display') %> </label>
+      <div class='col-sm-2 col-md-1'>
         <%= text_field(:setting, :limit_archives_display, {:size => 4, :class => 'form-control'}) %>
       </div>
-      <div class='pull-left'>
+      <div class='col-sm-6 col-md-5 col-lg-3'>
         <span class='help-block'><%= t('.default_archives_show') %></span>
       </div>
     </div>
     <div class='form-group'>
-      <label class='control-label col-sm-2'><%= t('.statuses') %></label>
-      <div class='col-sm-5'>
+      <label class='control-label col-sm-4 col-md-3 col-lg-2'><%= t('.statuses') %></label>
+      <div class='col-sm-8 col-md-6 col-lg-4'>
         <div class='checkbox'>
           <label>
             <%= check_box(:setting, :statuses_in_timeline) %>
@@ -39,8 +39,8 @@
       </div>
     </div>
     <div class='form-group'>
-      <label class='control-label col-sm-2'><%= t('.date_format') %></label>
-      <div class='col-sm-5'>
+      <label class='control-label col-sm-4 col-md-3 col-lg-2'><%= t('.date_format') %></label>
+      <div class='col-sm-8 col-md-6 col-lg-4'>
         <%= select(:setting, :date_format, {
           Time.now.strftime('%d/%m/%Y') => '%d/%m/%Y',
           Time.now.strftime('%m/%d/%Y') => '%m/%d/%Y',
@@ -52,8 +52,8 @@
       </div>
     </div>
     <div class='form-group'>
-      <label class='control-label col-sm-2'><%= t('.time_format') %></label>
-      <div class='col-sm-5'>
+      <label class='control-label col-sm-4 col-md-3 col-lg-2'><%= t('.time_format') %></label>
+      <div class='col-sm-8 col-md-6 col-lg-4'>
         <%= select(:setting, :time_format, {
           Time.now.strftime('%Hh%M') => '%Hh%M',
           Time.now.strftime('%H:%M') => '%H:%M',
@@ -62,8 +62,8 @@
       </div>
     </div>
     <div class='form-group'>
-      <label class='control-label col-sm-2' for="setting_custom_url_shortener"><%= t('.custom_url') %></label>
-      <div class='col-sm-5'>
+      <label class='control-label col-sm-4 col-md-3 col-lg-2' for="setting_custom_url_shortener"><%= t('.custom_url') %></label>
+      <div class='col-sm-8 col-md-6 col-lg-4'>
         <%= text_field(:setting, :custom_url_shortener, { :class => 'form-control'}) %>
         <small class='help block'><%= t('.custom_url_help') %></small>
       </div>
@@ -73,17 +73,17 @@
   <fieldset class='form-horizontal'>
     <legend><%= t('.feed_settings') %></legend>
     <div class='form-group'>
-      <label class='control-label col-sm-2' for="setting_limit_rss_display"><%= t('.display') %> </label>
-      <div class='col-sm-1'>
+      <label class='control-label col-sm-4 col-md-3 col-lg-2' for="setting_limit_rss_display"><%= t('.display') %> </label>
+      <div class='col-sm-2 col-md-1'>
         <%= text_field(:setting, :limit_rss_display, {:size => 4, :class => 'form-control'}) %>
       </div>
-      <div class='pull-left'>
-          <span class='help-block'><%= t('.default_feed_show') %></span>
+      <div class='col-sm-6 col-md-5 col-lg-3'>
+        <span class='help-block'><%= t('.default_feed_show') %></span>
       </div>
     </div>
     <div class='form-group'>
-      <label class='control-label col-sm-2'><%= t('.feed_articles') %></label>
-      <div class='col-sm-5'>
+      <label class='control-label col-sm-4 col-md-3 col-lg-2'><%= t('.feed_articles') %></label>
+      <div class='col-sm-8 col-md-6 col-lg-4'>
         <div class='checkbox'>
           <label for="setting_hide_extended_on_rss">
             <%= check_box(:setting, :hide_extended_on_rss) %>
