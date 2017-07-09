@@ -39,11 +39,7 @@ nb-NO:
         allow_comments_status:
           one: aktivert
           zero: deaktivert
-        allow_pings_status:
-          one: aktivert
-          zero: deaktivert
-        allow_trackbacks: Tillat trackbacks
-        allowed_comments_and_trackbacks_html: Kommentarer er %{allow_comment} og trackbacks er %{allow_trackback}
+        allowed_comments_html: Kommentarer er %{allow_comment}
         article_type: Artikkeltype
         cancel: Avbryt
         default: Standard
@@ -444,15 +440,12 @@ nb-NO:
         comments_filter: Kommentarfilter
         days: dager
         disable_comments_after: Deaktiver kommentarer etter
-        disable_trackbacks_sitewide: Deaktiver trackbacks på hele siden
         enable_comments_by_default: Aktiver kommentarer som standard
         enable_feedback_moderation: Aktiver moderering av diskusjoner
         enable_recaptcha: Aktiver reCaptcha
         enable_spam_protection: Aktiver spam-beskyttelse
-        enable_trackbacks_by_default: Aktiver trackbacks som standard
-        explain_disable_trackbacks: Denne innstillingen gir deg mulighet for å deaktivere trackbacks for hver eneste artikkel i bloggen din. Eksisterende trackbacks vil ikke fjernes, men det vil forhindre nye forsøk på å legge til trackbacks i bloggen.
-        explain_feedback_moderation: Du kan aktivere moderering av diskusjoner for hele bloggen. Dersom du gjør det vil ingen kommentarer eller trackbacks vises i bloggen din uten at du har godkjent dem
-        explain_reject_comments: Publify vil automatisk avvise kommentarer og trackback som inneholder flere enn et visst antall lenker
+        explain_feedback_moderation: Du kan aktivere moderering av diskusjoner for hele bloggen. Dersom du gjør det vil ingen kommentarer vises i bloggen din uten at du har godkjent dem
+        explain_reject_comments: Publify vil automatisk avvise kommentarer som inneholder flere enn et visst antall lenker
         explain_spam_protection: Når du aktiverer spam-beskyttelse vil Publify sammenlikne IP-adressen til deltakere, samt innholdet i artiklene, mot lokale svartelister og svartelister på internett. Godt forsvar mot spam-roboter
         explain_spamfiltering_html: Publify kan settes opp til å bruke spamfilter-servicen <a href='http://akismet.com'>Akismet</a>. Du må registrere deg hos Akismet og få en API-nøkkel før du kan bruke servicen deres. Hvis du har en Akismet-nøkkel, oppgi den her
         feedback: Diskusjon
@@ -465,7 +458,6 @@ nb-NO:
         set_to_0_to_never_reject_comments: Sett til 0 for å aldri forkaste kommentarer
         spam: Spam
         spam_protection: Spam-beskyttelse
-        trackbacks: Trackbacks
         update_settings: Oppdater innstillinger
       index:
         allow_users_to_register: Tillat brukere å registrere seg
@@ -491,7 +483,6 @@ nb-NO:
         cancel: Avbryt
         display: Vis
         example: for eksempel
-        explain: Når du publiserer artikler kan Publify sende trackbacks til de nettsidene du lenker til. Dette bør deaktiveres for private blogger da det ellers kan lekke privat informasjon til nettsider du diskuterer. For offentlige blogger, er det ingen reell mening i å deaktivere dette.
         image_medium_size: Mellomstor bildestørrelse
         image_thumbnail_size: Liten bildestørrelse
         latitude_longitude: Breddegrad, lengdegrad
@@ -499,8 +490,6 @@ nb-NO:
         or: eller
         publish: Publiser
         publish_on_twitter: Publiser til Twitter
-        send_trackbacks: Send trackbacks
-        trackbacks: Trackbacks
         twitter_consumer_key: Twitter forbruker/API-nøkkel
         twitter_consumer_secret: Twitter forbruker/API-hemmelighet
         update_settings: Oppdater innstillinger
@@ -677,7 +666,6 @@ nb-NO:
       leave_a_response: Skriv en kommentar
       rss_feed: RSS-feed for denne artikkel
       trackbacks: Trackbacks
-      use_the_following_link_to_trackback: Bruk følgende lenke for å opprette trackback fra din egen side
     trackback:
       from: From
   authors:

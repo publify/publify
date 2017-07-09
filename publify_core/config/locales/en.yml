@@ -39,11 +39,7 @@ en:
         allow_comments_status:
           one: enabled
           zero: disabled
-        allow_pings_status:
-          one: enabled
-          zero: disabled
-        allow_trackbacks: Allow trackbacks
-        allowed_comments_and_trackbacks_html: Comments are %{allow_comment} and trackbacks are %{allow_trackback}
+        allowed_comments_html: Comments are %{allow_comment}
         article_type: Article type
         cancel: Cancel
         default: Default
@@ -444,15 +440,12 @@ en:
         comments_filter: Comments filter
         days: days
         disable_comments_after: Disable comments after
-        disable_trackbacks_sitewide: Disable trackbacks site-wide
         enable_comments_by_default: Enable comments by default
         enable_feedback_moderation: Enable feedback moderation
         enable_recaptcha: Enable reCaptcha
         enable_spam_protection: Enable spam protection
-        enable_trackbacks_by_default: Enable Trackbacks by default
-        explain_disable_trackbacks: This setting allows you to disable trackbacks for every article in your blog.  It won't remove existing trackbacks, but it will prevent any further attempt to add a trackback anywhere on your blog.
-        explain_feedback_moderation: You can enable site-wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it.
-        explain_reject_comments: Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them
+        explain_feedback_moderation: You can enable site-wide feedback moderation. If you do so, no comment will appear on your blog unless you validate it.
+        explain_reject_comments: Publify will automatically reject comments which contain over a certain amount of links in them
         explain_spam_protection: Enabling spam protection will make Publify compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots
         explain_spamfiltering_html: Publify can (optionally) use the <a href='http://akismet.com'>Akismet</a> spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here
         feedback: Feedback
@@ -465,7 +458,6 @@ en:
         set_to_0_to_never_reject_comments: Set to 0 to never reject comments
         spam: Spam
         spam_protection: Spam protection
-        trackbacks: Trackbacks
         update_settings: Update settings
       index:
         allow_users_to_register: Allow users to register
@@ -491,7 +483,6 @@ en:
         cancel: Cancel
         display: Display
         example: example
-        explain: When publishing articles, Publify can send trackbacks to websites that you link to. This should be disabled for private blogs as it will leak non-public information to sites that you're discussing. For public blogs, there's no real point in disabling this.
         image_medium_size: Image medium size
         image_thumbnail_size: Image thumbnail size
         latitude_longitude: Latitude, Longitude
@@ -499,8 +490,6 @@ en:
         or: or
         publish: Publish
         publish_on_twitter: Publish on Twitter
-        send_trackbacks: Send trackbacks
-        trackbacks: Trackbacks
         twitter_consumer_key: Twitter consumer key
         twitter_consumer_secret: Twitter consumer secret
         update_settings: Update settings
@@ -677,7 +666,6 @@ en:
       leave_a_response: Leave a response
       rss_feed: RSS feed
       trackbacks: Trackbacks
-      use_the_following_link_to_trackback: Use the following link to trackback from your own site
     trackback:
       from: From
   authors:

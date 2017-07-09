@@ -39,11 +39,7 @@ ru:
         allow_comments_status:
           one: enabled
           zero: выключены
-        allow_pings_status:
-          one: enabled
-          zero: выключены
-        allow_trackbacks: Разрешить trackback’и
-        allowed_comments_and_trackbacks_html: Комментарии %{allow_comment} и trackback’и %{allow_trackback}
+        allowed_comments_html: Comments are %{allow_comment}
         article_type: Article type
         cancel: Отменить
         default: Default
@@ -444,15 +440,12 @@ ru:
         comments_filter: Comments filter
         days: days
         disable_comments_after: Disable comments after
-        disable_trackbacks_sitewide: Disable trackbacks site-wide
         enable_comments_by_default: Enable comments by default
         enable_feedback_moderation: Enable feedback moderation
         enable_recaptcha: Enable reCaptcha
         enable_spam_protection: Enable spam protection
-        enable_trackbacks_by_default: Enable Trackbacks by default
-        explain_disable_trackbacks: This setting allows you to disable trackbacks for every article in your blog.  It won't remove existing trackbacks, but it will prevent any further attempt to add a trackback anywhere on your blog.
-        explain_feedback_moderation: You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it.
-        explain_reject_comments: Publify will automatically reject comments and trackbacks which contain over a certain amount of links in them
+        explain_feedback_moderation: You can enable site wide feedback moderation. If you do so, no comment will appear on your blog unless you validate it.
+        explain_reject_comments: Publify will automatically reject comments which contain over a certain amount of links in them
         explain_spam_protection: Enabling spam protection will make Publify compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots
         explain_spamfiltering_html: Publify can (optionally) use the <a href='http://akismet.com'>Akismet</a> spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here
         feedback: Комментарии
@@ -465,7 +458,6 @@ ru:
         set_to_0_to_never_reject_comments: Set to 0 to never reject comments
         spam: Spam
         spam_protection: Spam protection
-        trackbacks: Trackbacks
         update_settings: Обновить настройки
       index:
         allow_users_to_register: Разрешить пользователям регистрироваться
@@ -491,7 +483,6 @@ ru:
         cancel: Отменить
         display: Display
         example: example
-        explain: После публикации статей Publify может отправлять уведомления на те сайты, на которые вы ссылаетесь. Разумно выключить эту опцию для приватных блогов. Для публичных блогов особых причин выключать ее нет.
         image_medium_size: Image medium size
         image_thumbnail_size: Image thumbnail size
         latitude_longitude: Latitude, Longitude
@@ -499,8 +490,6 @@ ru:
         or: или
         publish: Опубликовать
         publish_on_twitter: Publish on Twitter
-        send_trackbacks: Отправлять trackback’и
-        trackbacks: Trackbacks
         twitter_consumer_key: Twitter consumer key
         twitter_consumer_secret: Twitter consumer secret
         update_settings: Обновить настройки
@@ -677,7 +666,6 @@ ru:
       leave_a_response: Оставить отзыв
       rss_feed: RSS feed
       trackbacks: Trackbacks
-      use_the_following_link_to_trackback: Use the following link to trackback from your own site
     trackback:
       from: From
   authors:

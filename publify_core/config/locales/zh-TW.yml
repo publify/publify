@@ -39,11 +39,7 @@ zh-TW:
         allow_comments_status:
           one: enabled
           zero: disabled
-        allow_pings_status:
-          one: enabled
-          zero: disabled
-        allow_trackbacks: 允許引用
-        allowed_comments_and_trackbacks_html: Comments are %{allow_comment} and trackbacks are %{allow_trackback}
+        allowed_comments_html: Comments are %{allow_comment}
         article_type: Article type
         cancel: 取消
         default: Default
@@ -444,13 +440,10 @@ zh-TW:
         comments_filter: 篩選評論
         days: 日期
         disable_comments_after: 在失效的評論之後
-        disable_trackbacks_sitewide: Disable trackbacks site-wide
         enable_comments_by_default: 預設為可以回應
         enable_feedback_moderation: 適度可以反饋
         enable_recaptcha: Enable reCaptcha
         enable_spam_protection: 有效防止垃圾郵件
-        enable_trackbacks_by_default: 預設為可以引用
-        explain_disable_trackbacks: 此設定可以讓你部落格裡的文章停止引用，這個舉動並不會刪除存在的引用，但是會阻止將來你要試圖增加的引用
         explain_feedback_moderation: 你可以設定網點範圍有限度的反饋。這麼做將不會有任何評論引用出現在你的部落格，除非你使之生效
         explain_reject_comments: Publify會自動回絕評論和引用，包含某些可靠的連結總數
         explain_spam_protection: publify會根據張貼者IP的位址內容還有黑名單來有效防止垃圾郵件。好的防禦可以抑制垃圾郵寄
@@ -465,7 +458,6 @@ zh-TW:
         set_to_0_to_never_reject_comments: 設定0回絕不回絕的評論
         spam: Spam
         spam_protection: 防止垃圾郵件
-        trackbacks: Trackbacks
         update_settings: Update settings
       index:
         allow_users_to_register: Allow users to register
@@ -491,7 +483,6 @@ zh-TW:
         cancel: 取消
         display: 顯示
         example: 舉例
-        explain: 當公開的文章或引用會洩漏你私人的資訊時，對於不公開的部落格publify會終止連結。在公開的部落格並無此選項
         image_medium_size: Image medium size
         image_thumbnail_size: Image thumbnail size
         latitude_longitude: 緯度,經度
@@ -499,8 +490,6 @@ zh-TW:
         or: or
         publish: 公開
         publish_on_twitter: Publish on Twitter
-        send_trackbacks: 引用發送
-        trackbacks: 引用
         twitter_consumer_key: Twitter consumer key
         twitter_consumer_secret: Twitter consumer secret
         update_settings: Update settings
@@ -677,7 +666,6 @@ zh-TW:
       leave_a_response: 離開一個回應
       rss_feed: 為本篇提供RSS
       trackbacks: Trackbacks
-      use_the_following_link_to_trackback: 從你所屬的網點用隨後的連結去引用
     trackback:
       from: From
   authors:

@@ -39,11 +39,7 @@ ro:
         allow_comments_status:
           one: enabled
           zero: disabled
-        allow_pings_status:
-          one: enabled
-          zero: disabled
-        allow_trackbacks: Se permit retrolegături
-        allowed_comments_and_trackbacks_html: Comments are %{allow_comment} and trackbacks are %{allow_trackback}
+        allowed_comments_html: Comments are %{allow_comment}
         article_type: Article type
         cancel: Anulare
         default: Default
@@ -444,15 +440,12 @@ ro:
         comments_filter: Filtru pentru comentarii
         days: zile
         disable_comments_after: 'Dezactivează comentariile după '
-        disable_trackbacks_sitewide: Disable trackbacks site-wide
         enable_comments_by_default: Implicit comentariile să fie active
         enable_feedback_moderation: Activează moderarea comentariilor
         enable_recaptcha: Enable reCaptcha
         enable_spam_protection: Activează protecția anti-spam
-        enable_trackbacks_by_default: Implicit retrolegăturile să fie active
-        explain_disable_trackbacks: Această opțiune va dezactiva trimiterea de retrolegături de acum înainte. Retrolegăturile existente vor rămîne în site-uri, dar alte retrolegături nu vor mai fi posibile nicăieri in blog.
-        explain_feedback_moderation: You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it.
-        explain_reject_comments: Publify va respinge automat comentarii și retrolegături care conțin mai mult decît un anumit număr de legături
+        explain_feedback_moderation: You can enable site wide feedback moderation. If you do so, no comment will appear on your blog unless you validate it.
+        explain_reject_comments: Publify va respinge automat comentarii care conțin mai mult decît un anumit număr de legături
         explain_spam_protection: 'La activarea protecției anti-spam, Publify va compara adresa IP a utilizatorului care publică un articol, cît și conținutul articolului publicat, cu niște liste negre locale sau din altă parte. Reprezintă o bună apărare împotriva unui spam bot '
         explain_spamfiltering_html: Opțional, Publify poate folosi serviciul <a href='http://akismet.com'>Akismet</a> de filtrare spam. Trebuie să te înregistrezi la Akismet și să primești o cheie API pentru a putea folosi acest serviciu. Dacă ai deja o cheie Akismet, introdu-o aici
         feedback: Feedback
@@ -465,7 +458,6 @@ ro:
         set_to_0_to_never_reject_comments: Comentariile nu vor fi respinse niciodată dacă alegi valoarea 0
         spam: Spam
         spam_protection: Protecție anti-spam
-        trackbacks: Trackbacks
         update_settings: Update settings
       index:
         allow_users_to_register: Allow users to register
@@ -491,7 +483,6 @@ ro:
         cancel: Anulare
         display: Afișează
         example: de pildă
-        explain: Cînd publici un articol, Publify poate trimite automat retrolegături site-urilor pe care le specifici. În cazul unui blog personal, această opțiune ar trebui dezactivată, ca să nu deconspire informații private. Dacă blogul e public, opțiunea aceasta poate rămîne activă.
         image_medium_size: Image medium size
         image_thumbnail_size: Image thumbnail size
         latitude_longitude: Latitudine, longitudine
@@ -499,8 +490,6 @@ ro:
         or: or
         publish: Publică
         publish_on_twitter: Publish on Twitter
-        send_trackbacks: Trimite retrolegături
-        trackbacks: Retrolegături
         twitter_consumer_key: Twitter consumer key
         twitter_consumer_secret: Twitter consumer secret
         update_settings: Update settings
@@ -677,7 +666,6 @@ ro:
       leave_a_response: Comentează
       rss_feed: Flux RSS pentru acest articol
       trackbacks: Trackbacks
-      use_the_following_link_to_trackback: Folosește link-ul următor pentru a realiza o retrolegătură de la site-ul tău
     trackback:
       from: From
   authors:

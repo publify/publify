@@ -141,16 +141,6 @@ EOS
     Blog.find_by(base_url: base_url) || Blog.first || Blog.new
   end
 
-  # In settings with :article_id
-  def ping_article!(settings)
-    unless global_pings_enabled? && settings.key?(:url) && settings.key?(:article_id)
-      throw :error, 'Invalid trackback or trackbacks not enabled'
-    end
-    article = Article.find(settings[:article_id])
-    throw :error, 'Trackback not saved' unless article.allow_pings?
-    article.trackbacks.create!(settings)
-  end
-
   def global_pings_enabled?
     !global_pings_disable?
   end

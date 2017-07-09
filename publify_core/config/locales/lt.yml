@@ -39,11 +39,7 @@ lt:
         allow_comments_status:
           one: enabled
           zero: disabled
-        allow_pings_status:
-          one: enabled
-          zero: disabled
-        allow_trackbacks: Leisti dienoraščių nuorodas
-        allowed_comments_and_trackbacks_html: Comments are %{allow_comment} and trackbacks are %{allow_trackback}
+        allowed_comments_html: Comments are %{allow_comment}
         article_type: Article type
         cancel: Baigti
         default: Default
@@ -444,15 +440,12 @@ lt:
         comments_filter: Komentarų filtras
         days: Tagen
         disable_comments_after: Kommentare abschalten nach
-        disable_trackbacks_sitewide: Disable trackbacks site-wide
         enable_comments_by_default: Kommentare per default erlauben
         enable_feedback_moderation: Moderation von Kommentaren aktivieren
         enable_recaptcha: Enable reCaptcha
         enable_spam_protection: Spamschutz aktivieren
-        enable_trackbacks_by_default: Trackbacks per default aktivieren
-        explain_disable_trackbacks: Diese Option erlaubt es Ihnen, Trackbacks für alle Artikel im gesamten Blog zu deaktivieren. Dadurch werden zwar keine bereits existierenden Trackbacks entfernt, aber alle zukünftig irgendwo in Ihrem Blog eintreffenden Trackbacks werden abgewiesen.
-        explain_feedback_moderation: You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it.
-        explain_reject_comments: Publify kann automatisch Kommentare und Trackbacks abweisen, die mehr als eine bestimmte Anzahl von Links enthalten
+        explain_feedback_moderation: You can enable site wide feedback moderation. If you do so, no comment will appear on your blog unless you validate it.
+        explain_reject_comments: Publify kann automatisch Kommentare abweisen, die mehr als eine bestimmte Anzahl von Links enthalten
         explain_spam_protection: Bei Aktivierung des Spamschutzes wird Publify sowohl die IP Adresse des Autors als auch den Inhalt seiner Veröffentlichung gegen lokale und entfernte Blacklisten vergleichen. Gute Abwehr von Spambots
         explain_spamfiltering_html: Publify kann (optional) den <a href='http://akismet.com'>Akismet</a> Spam-Filterdienst verwenden. Sie müssen sich dort registriert und einen API Key erhalten haben, bevor Sie diesen Dienst nutzen können. Wenn Sie einen solchen Key haben, geben Sie ihn hier ein
         feedback: Feedback
@@ -465,7 +458,6 @@ lt:
         set_to_0_to_never_reject_comments: Wert 0 bewirkt, dass Kommentare nie abgewiesen werden
         spam: Spam
         spam_protection: Spamschutz
-        trackbacks: Trackbacks
         update_settings: Update settings
       index:
         allow_users_to_register: Allow users to register
@@ -491,7 +483,6 @@ lt:
         cancel: Baigti
         display: Rodyti
         example: Pavyzdys
-        explain: Publikuojant straipsnius Publify gali siųsti dienoraščių nuorodas į puslapius, į kuriuos jūs rodote. Tai gali būti išjungta ant privačių dienoraščių, bet viešuose nėra priežasties išjungti šio nustatymo
         image_medium_size: Image medium size
         image_thumbnail_size: Image thumbnail size
         latitude_longitude: Geografinė platuma, ilguma
@@ -499,8 +490,6 @@ lt:
         or: or
         publish: Publikuoti
         publish_on_twitter: Publish on Twitter
-        send_trackbacks: Siųsti dienoraščių nuorodas
-        trackbacks: Trackbacks
         twitter_consumer_key: Twitter consumer key
         twitter_consumer_secret: Twitter consumer secret
         update_settings: Update settings
@@ -677,7 +666,6 @@ lt:
       leave_a_response: Palikti atsakymą
       rss_feed: šio įrašo RSS
       trackbacks: Trackbacks
-      use_the_following_link_to_trackback: Dienoraščio nuoroda (trackback)
     trackback:
       from: From
   authors:

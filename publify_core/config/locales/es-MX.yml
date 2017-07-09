@@ -39,11 +39,7 @@ es-MX:
         allow_comments_status:
           one: enabled
           zero: disabled
-        allow_pings_status:
-          one: enabled
-          zero: disabled
-        allow_trackbacks: Se permiten trackbacks
-        allowed_comments_and_trackbacks_html: Comments are %{allow_comment} and trackbacks are %{allow_trackback}
+        allowed_comments_html: Comments are %{allow_comment}
         article_type: Article type
         cancel: Cancelar
         default: Default
@@ -444,15 +440,12 @@ es-MX:
         comments_filter: Filtro de comentarios
         days: d&iacute;as
         disable_comments_after: Deshabilitar comentarios despu&eacute;s de
-        disable_trackbacks_sitewide: Disable trackbacks site-wide
         enable_comments_by_default: Habilitar comentarios por default
-        enable_feedback_moderation: Habilitar moderaci&oacute;n de comentarios y trackbacks
+        enable_feedback_moderation: Habilitar moderaci&oacute;n de comentarios
         enable_recaptcha: Enable reCaptcha
         enable_spam_protection: Habilitar protecci&oacute;n anti-spam
-        enable_trackbacks_by_default: Habilitar Trackbacks por default
-        explain_disable_trackbacks: Esta opci&oacute;n te permite deshabilitar trackbacks para cada art&iacute;culo en tu blog. Esto no remover&aacute; trackbacks existentes, pero impedir&aacute; cualquier intento futuro para a&ntilde;adir una trackback en cualquier parte de tu blog.
-        explain_feedback_moderation: You can enable site wide feedback moderation. If you do so, no comment or trackback will appear on your blog unless you validate it.
-        explain_reject_comments: Publify rechazar&aacute; autom&aacute;ticamente los comentarios y trackbacks que contengan m&aacute;s de un cierto n&uacute;mero de links en ellos
+        explain_feedback_moderation: You can enable site wide feedback moderation. If you do so, no comment will appear on your blog unless you validate it.
+        explain_reject_comments: Publify rechazar&aacute; autom&aacute;ticamente los comentarios que contengan m&aacute;s de un cierto n&uacute;mero de links en ellos
         explain_spam_protection: Habilitando la protecci&oacute;n anti-spam har&aacute; que publify compare la direcci&oacute;n IP del usuario as&iacute; como el contenido de sus comentarios contra una lista negra remota o local. Es una buena defensa contra los robots de spam
         explain_spamfiltering_html: Publify puede (opcionalmente) usar el servicio anti-spam de <a href='http://akismet.com'>Akismet</a>. Necesitas registrarte en Akismet y obtener una API key antes de poder usar su servicio. Si tienes una clave de Akismet, introd&uacute;cela aqu&iacute;
         feedback: Feedback
@@ -465,7 +458,6 @@ es-MX:
         set_to_0_to_never_reject_comments: Introducir 0 para nunca rechazar comentarios
         spam: Spam
         spam_protection: Protecci&oacute;n anti-spam
-        trackbacks: Trackbacks
         update_settings: Update settings
       index:
         allow_users_to_register: Allow users to register
@@ -491,7 +483,6 @@ es-MX:
         cancel: Cancelar
         display: Mostrar
         example: ejemplo
-        explain: Cuando se publican art&iacute;culos, Publify puede enviar trackbacks a sitios enlazados. Esto deber&iacute;a deshabilitarse para blogs privados para que no se escape informaci&oacute;n privada a sitios que est&aacute;s comentando. Para blogs p&uacute;blicos, realmente no hay raz&oacute;n para deshabilitar esto.
         image_medium_size: Image medium size
         image_thumbnail_size: Image thumbnail size
         latitude_longitude: Latitud, Longitud
@@ -499,8 +490,6 @@ es-MX:
         or: or
         publish: Publicar
         publish_on_twitter: Publish on Twitter
-        send_trackbacks: Enviar trackbacks
-        trackbacks: Trackbacks
         twitter_consumer_key: Twitter consumer key
         twitter_consumer_secret: Twitter consumer secret
         update_settings: Update settings
@@ -677,7 +666,6 @@ es-MX:
       leave_a_response: Deja un comentario
       rss_feed: Feed RSS para este art&iacute;culo
       trackbacks: Trackbacks
-      use_the_following_link_to_trackback: Usa el siguiente link para crear un trackback desde tu propio sitio
     trackback:
       from: From
   authors:

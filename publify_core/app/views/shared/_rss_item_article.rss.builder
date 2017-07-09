@@ -26,6 +26,5 @@ xm.item do
     end
   end
 
-  xm.trackback :ping, item.trackback_url if item.allow_pings?
   xm.link item.permalink_url
 end

@@ -39,11 +39,7 @@ fr:
         allow_comments_status:
           one: activés
           zero: désactivés
-        allow_pings_status:
-          one: activés
-          zero: désactivés
-        allow_trackbacks: Autoriser les rétroliens
-        allowed_comments_and_trackbacks_html: Les commentaires sont %{allow_comment} et les rétroliens %{allow_trackback}
+        allowed_comments_html: Les commentaires sont %{allow_comment}
         article_type: Type d'article
         cancel: Annuler
         default: Défaut
@@ -444,15 +440,12 @@ fr:
         comments_filter: Mise en forme des commentaires
         days: jours
         disable_comments_after: 'Désactiver les commentaires au bout de '
-        disable_trackbacks_sitewide: Désactiver les trackbacks
         enable_comments_by_default: Activer les commentaires par défaut
         enable_feedback_moderation: Activer la modération des commentaires
         enable_recaptcha: Utiliser reCaptcha
         enable_spam_protection: Activer la protection contre le spam
-        enable_trackbacks_by_default: Activer les rétroliens par défaut
-        explain_disable_trackbacks: Cette option vous permet de désactiver totalement les rétroliens sur votre blog. Ceci ne supprimera pas les rétroliens existants, mais empêchera tout nouveau rétrolien d'être créé
-        explain_feedback_moderation: Vous pouvez activez la modération des commentaires sur l'ensemble de votre site. Si vous le faites, aucun commentaire ou rétrolien ne sera publié sans une validation de votre part
-        explain_reject_comments: Publify rejettera automatiquement les commentaires et les rétroliens contenant un certain nombre de liens
+        explain_feedback_moderation: Vous pouvez activez la modération des commentaires sur l'ensemble de votre site. Si vous le faites, aucun commentaire ne sera publié sans une validation de votre part
+        explain_reject_comments: Publify rejettera automatiquement les commentaires contenant un certain nombre de liens
         explain_spam_protection: La protection contre le spam permettra à Publify de comparer l'adresse IP des commentateurs ainsi que le contenu de leurs commentaires avec une liste noire distante
         explain_spamfiltering_html: Publify peut utiliser le service de lutte contre le spam <a href='http://akismet.com'>Akismet</a>. Vous devez vous enregistrer afin de pouvoir utiliser les services d'Akismet. Si vous possédez une clé Akismet, ajoutez là ici
         feedback: Commentaires
@@ -465,7 +458,6 @@ fr:
         set_to_0_to_never_reject_comments: Mettez cette option à 0 pour ne jamais rejeter les commentaires
         spam: Spam
         spam_protection: Protection contre le spam
-        trackbacks: Rétroliens
         update_settings: Mettre les paramètres à jour
       index:
         allow_users_to_register: Autoriser les utilisateurs à s'enregistrer
@@ -491,7 +483,6 @@ fr:
         cancel: Annuler
         display: Afficher
         example: exemple
-        explain: Quand vous publiez un billet sur Publify, vous pouvez envoyer un rétrolien aux sites que vous liez. Cette fonctionnalité devrait être désactivée pour les blogs privée puisqu'elle permet de donner des informations à leur sujet à des tiers. Ceci ne s'impose cependant pas pour un blog public.
         image_medium_size: Taille des images réduites
         image_thumbnail_size: Taille des vignettes
         latitude_longitude: Latitude, Longitude
@@ -499,8 +490,6 @@ fr:
         or: ou
         publish: Publier
         publish_on_twitter: Publier sur Twitter
-        send_trackbacks: Envoyer des rétroliens
-        trackbacks: Rétroliens
         twitter_consumer_key: Clé d'utilisateur Twitter
         twitter_consumer_secret: Secret d'utilisateur sur Twitter
         update_settings: Mettre les paramètres à jour
@@ -677,7 +666,6 @@ fr:
       leave_a_response: Réagir à ce billet
       rss_feed: Flux RSS
       trackbacks: Rétroliens
-      use_the_following_link_to_trackback: Utilisez le lien ci-dessous pour envoyer un rétrolien depuis votre site
     trackback:
       from: From
   authors:

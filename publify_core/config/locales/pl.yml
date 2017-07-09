@@ -39,11 +39,7 @@ pl:
         allow_comments_status:
           one: enabled
           zero: disabled
-        allow_pings_status:
-          one: enabled
-          zero: disabled
-        allow_trackbacks: Zezwól na podawanie trackbacków
-        allowed_comments_and_trackbacks_html: Comments are %{allow_comment} and trackbacks are %{allow_trackback}
+        allowed_comments_html: Comments are %{allow_comment}
         article_type: Article type
         cancel: Anuluj
         default: Default
@@ -444,15 +440,12 @@ pl:
         comments_filter: Filtr komentarzy
         days: dni
         disable_comments_after: 'Wyłącz komentarze po '
-        disable_trackbacks_sitewide: Disable trackbacks site-wide
         enable_comments_by_default: Komentarze domyślnie włączone
         enable_feedback_moderation: Włącz moderację komentarzy
         enable_recaptcha: Enable reCaptcha
         enable_spam_protection: Włącz ochronę przed spamem
-        enable_trackbacks_by_default: Trackbacki domyślnie włączone
-        explain_disable_trackbacks: Ta opcja pozwala na wyłączenie trackbacków we wszystkich artykułach. Nie usunie jednak istniejących trackbacków, a jedynie zabroni dodawania nowych.
         explain_feedback_moderation: Możesz włączyć globalną moderację komentarzy. W takim przypadku żaden komentarz nie ukaże się na blogu aż do momentu jego akceptacji.
-        explain_reject_comments: Publify automatycznie odrzuca komentarze i trackbacki, które zawierają większą, niż podana, liczbę łączy
+        explain_reject_comments: Publify automatycznie odrzuca komentarze, które zawierają większą, niż podana, liczbę łączy
         explain_spam_protection: Włączenie ochrony przed spamem sprawi, iż Publify będzie porównywać adresy IP nadawców oraz treść ich postów z lokalnymi i zdalnymi czarnymi listami. To dobra obrona przed spam botami.
         explain_spamfiltering_html: Publify może (opcjonalnie) stosować usługę <a href='http://akismet.com'>Akismet</a> do filtrowania spamu. Musisz zarejestrować się w serwisie Akismet by otrzymać klucz API nim będzie można używać tej usługi. Jeśli posiadasz klucz API Akismet, wprowadź go tutaj
         feedback: Komentarze
@@ -465,7 +458,6 @@ pl:
         set_to_0_to_never_reject_comments: Ustaw 0 by komentarze były zawsze akceptowane
         spam: Spam
         spam_protection: Spam protection
-        trackbacks: Trackbacks
         update_settings: Update settings
       index:
         allow_users_to_register: Allow users to register
@@ -491,7 +483,6 @@ pl:
         cancel: Anuluj
         display: Wyświetl
         example: na przykład
-        explain: Publikując artykuły, Publify może powiadomić strony, do których podasz łącza. Opcja ta powinna być wyłączona w przypadku blogów osobistych, gdyż może doprowadzić do wycieku prywatnych informacji. W przypadku blogów publicznych wyłączenie tej opcji nie ma większego sensu.
         image_medium_size: Image medium size
         image_thumbnail_size: Image thumbnail size
         latitude_longitude: Szerokość geogr., długość geogr.
@@ -499,8 +490,6 @@ pl:
         or: or
         publish: Publikuj
         publish_on_twitter: Publish on Twitter
-        send_trackbacks: Wyślij trackbacki
-        trackbacks: Trackbacki
         twitter_consumer_key: Twitter consumer key
         twitter_consumer_secret: Twitter consumer secret
         update_settings: Update settings
@@ -677,7 +666,6 @@ pl:
       leave_a_response: Skomentuj
       rss_feed: Subskrypcja RSS dla tego wpisu
       trackbacks: Trackbacks
-      use_the_following_link_to_trackback: Użyj następującego trackbacka na swojej stronie
     trackback:
       from: From
   authors:

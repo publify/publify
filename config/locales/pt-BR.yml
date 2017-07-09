@@ -15,7 +15,6 @@ pt-BR:
     read:
       add_me_to_twitter: me adicionar no Twitter
       if_you_liked_this_article_you_can_html: Se você gostou deste artigo, você pode %{add_twitter}
-      trackbacks_are_disabled: Trackbacks foram desabilitados
       trackbacks_for: Trackbacks para
     search:
       search_results_for: Resultados de busca para '%{query}'

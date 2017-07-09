@@ -15,7 +15,6 @@ es-MX:
     read:
       add_me_to_twitter: agregame en Twitter
       if_you_liked_this_article_you_can_html: Si le gust&oacute; este art&iacute;culo, usted puede %{add_twitter}
-      trackbacks_are_disabled: Trackbacks deshabilitados
       trackbacks_for: Trackbacks para
     search:
       search_results_for: Search results for '%{query}'
