@@ -54,12 +54,16 @@ class SidebarField
 
   class RadioField < self
     def input_html(sidebar)
-      options[:choices].map do |choice|
+      choices = options[:choices].map do |choice|
         value = value_for(choice)
-        radio_button_tag(input_name(sidebar), value,
-                         value == sidebar.config[key], options) +
-          content_tag('label', label_for(choice))
-      end.join('<br />')
+        radio_button = radio_button_tag(input_name(sidebar),
+                                        value,
+                                        value == sidebar.config[key],
+                                        options)
+        label = content_tag('label', label_for(choice))
+        safe_join([radio_button, label])
+      end
+      safe_join(choices, tag('br'))
     end
 
     def label_for(choice)
