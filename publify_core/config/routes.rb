@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get ':year', to: 'articles#index', year: /\d{4}/, as: 'articles_by_year', format: false
   get ':year/page/:page', to: 'articles#index', year: /\d{4}/, as: 'articles_by_year_page', format: false
 
-  get 'articles.:format', to: 'articles#index', constraints: {format: /rss|atom/}, as: 'articles_feed'
+  get 'articles.:format', to: 'articles#index', format: /rss|atom/, as: 'articles_feed'
 
   get 'sitemap.xml', to: 'xml#sitemap', format: 'googlesitemap'
 

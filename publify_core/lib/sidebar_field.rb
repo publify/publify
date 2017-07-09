@@ -81,7 +81,7 @@ class SidebarField
     def line_html(sidebar)
       content = hidden_field_tag(input_name(sidebar), 0) +
         content_tag('label',
-                    safe_join([check_box_tag(input_name(sidebar), 1, current_value(sidebar), options), label], ' '))
+                    check_box_tag(input_name(sidebar), 1, current_value(sidebar), options) + label)
       content_tag('div', content, class: 'checkbox')
     end
 
