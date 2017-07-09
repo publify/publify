@@ -10,7 +10,7 @@
     <% end %>
     <% if sidebar.comments %>
       <li>
-        <a href="<%= admin_comments_url(:format=>sidebar.format_strip) %>" title="Comments feed">
+        <a href="<%= comments_url(:format=>sidebar.format_strip) %>" title="Comments feed">
           <%= t(".comments") %>
         </a>
       </li>
