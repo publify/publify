@@ -13,7 +13,6 @@ pt-BR:
   xml_sidebar:
     content:
       articles: Artigos
-      comments: Comentários
+      feedback: Feedback
       syndicate: Sindicato
       tag: Tag
-      trackbacks: Trackbacks

@@ -13,7 +13,6 @@ ro:
   xml_sidebar:
     content:
       articles: Articles
-      comments: Comments
+      feedback: Feedback
       syndicate: Syndicate
       tag: Tag
-      trackbacks: Trackbacks
