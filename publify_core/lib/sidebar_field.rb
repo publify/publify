@@ -21,12 +21,11 @@ class SidebarField
   end
 
   def input_html(sidebar)
-    text_field_tag(input_name(sidebar), sidebar.config[key], class: 'form-control')
+    text_field_tag(input_name(sidebar), current_value(sidebar), class: 'form-control')
   end
 
   def line_html(sidebar)
-    html = label_html(sidebar)
-    html << content_tag(:div, input_html(sidebar), class: 'form-group')
+    content_tag(:div, label_html(sidebar) + input_html(sidebar), class: 'form-group')
   end
 
   def input_name(sidebar)
@@ -37,10 +36,14 @@ class SidebarField
     value
   end
 
+  def current_value(sidebar)
+    canonicalize(sidebar.config[key])
+  end
+
   class SelectField < self
     def input_html(sidebar)
       select_tag(input_name(sidebar),
-                 options_for_select(options[:choices], sidebar.config[key]),
+                 options_for_select(options[:choices], current_value(sidebar)),
                  options)
     end
   end
@@ -48,18 +51,21 @@ class SidebarField
   class TextAreaField < self
     def input_html(sidebar)
       html_options = { 'rows' => '10', 'class' => 'form-control' }.update(options.stringify_keys)
-      text_area_tag(input_name(sidebar), sidebar.config[key], html_options)
+      text_area_tag(input_name(sidebar), current_value(sidebar), html_options)
     end
   end
 
   class RadioField < self
     def input_html(sidebar)
-      options[:choices].map do |choice|
+      choices = options[:choices].map do |choice|
         value = value_for(choice)
-        radio_button_tag(input_name(sidebar), value,
-                         value == sidebar.config[key], options) +
-          content_tag('label', label_for(choice))
-      end.join('<br />')
+        radio_button = radio_button_tag(input_name(sidebar),
+                                        value,
+                                        value == current_value(sidebar),
+                                        options)
+        content_tag('div', content_tag('label', radio_button + label_for(choice)), class: 'radio')
+      end
+      safe_join(choices)
     end
 
     def label_for(choice)
@@ -73,9 +79,10 @@ class SidebarField
 
   class CheckBoxField < self
     def line_html(sidebar)
-      hidden_field_tag(input_name(sidebar), 0) +
+      content = hidden_field_tag(input_name(sidebar), 0) +
         content_tag('label',
-                    safe_join([check_box_tag(input_name(sidebar), 1, sidebar.config[key], options), label], ' '))
+                    check_box_tag(input_name(sidebar), 1, current_value(sidebar), options) + label)
+      content_tag('div', content, class: 'checkbox')
     end
 
     def canonicalize(value)

@@ -1,0 +1,30 @@
+<h3 class="sidebar-title"><%= t(".syndicate")%></h3>
+<div class="sidebar-body">
+  <ul>
+    <% if sidebar.articles %>
+      <li>
+        <a href="<%= url_for controller: 'articles', action: 'index', format: sidebar.format_strip %>" title="Articles feed">
+          <%= t(".articles") %>
+        </a>
+      </li>
+    <% end %>
+    <% if sidebar.feedback %>
+      <li>
+        <a href="<%= feedback_index_path(format: sidebar.format_strip) %>" title="Feedback feed">
+          <%= t(".feedback") %>
+        </a>
+      </li>
+    <% end %>
+    <% if sidebar.tag_feeds and controller.controller_name == 'tags' and controller.action_name == 'show' %>
+      <li>
+        <%= t('.tag') %>
+        <%= link_to(@tag.display_name, @tag.feed_url(sidebar.format_strip)) %>
+      </li>
+    <% end %>
+    <% if sidebar.article_comments and controller.controller_name == 'articles' and controller.action_name == 'redirect' %>
+      <li>
+        <%= link_to(@article.title, @article.feed_url(sidebar.format_strip)) %>
+      </li>
+    <% end %>
+  </ul>
+</div>

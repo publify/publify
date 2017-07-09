@@ -125,7 +125,7 @@ class Sidebar < ActiveRecord::Base
 
   def to_locals_hash
     fields.reduce(sidebar: self) do |hash, field|
-      hash.merge(field.key => config[field.key])
+      hash.merge(field.key => field.current_value(self))
     end
   end
 
