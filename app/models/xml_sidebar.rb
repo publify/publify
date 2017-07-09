@@ -3,8 +3,7 @@ class XmlSidebar < Sidebar
   description 'RSS and Atom feeds'
 
   setting :articles, true, input_type: :checkbox
-  setting :comments, true, input_type: :checkbox
-  setting :trackbacks, false, input_type: :checkbox
+  setting :feedback, true, input_type: :checkbox
   setting :article_comments, true, input_type: :checkbox
   setting :tag_feeds, false, input_type: :checkbox
 

@@ -58,10 +58,9 @@ FactoryGirl.define do
     extended 'extended content for fun'
     guid
     permalink 'a-big-article'
-    published_at DateTime.new(2005, 1, 1, 2, 0, 0)
+    published_at { Time.zone.now }
     user
     allow_comments true
-    published true
     state :published
     allow_pings true
     association :text_filter, factory: :textile

@@ -57,6 +57,10 @@ class Tag < ActiveRecord::Base
     name
   end
 
+  def feed_url(format)
+    "#{permalink_url}.#{format.gsub(/\d/, '')}"
+  end
+
   def permalink_url(_anchor = nil, only_path = false)
     blog.url_for(controller: 'tags', action: 'show', id: permalink, only_path: only_path)
   end

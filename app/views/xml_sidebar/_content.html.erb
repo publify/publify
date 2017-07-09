@@ -3,32 +3,28 @@
   <ul>
     <% if sidebar.articles %>
       <li>
-        <a href="<%= url_for controller: 'articles', action: 'index', :format => sidebar.format_strip %>" title="Articles feed">
+        <a href="<%= url_for controller: 'articles', action: 'index', format: sidebar.format_strip %>" title="Articles feed">
           <%= t(".articles") %>
         </a>
       </li>
     <% end %>
-    <% if sidebar.comments %>
+    <% if sidebar.feedback %>
       <li>
-        <a href="<%= comments_url(:format=>sidebar.format_strip) %>" title="Comments feed">
-          <%= t(".comments") %>
-        </a>
-      </li>
-    <% end %>
-    <% if sidebar.trackbacks %>
-      <li>
-        <a href="<%= url_for controller: 'xml', action: 'feed', format: sidebar.format_strip, type: 'trackbacks' %>" title="Trackbacks feed">
-          <%= t(".trackbacks")%>
+        <a href="<%= feedback_index_path(format: sidebar.format_strip) %>" title="Feedback feed">
+          <%= t(".feedback") %>
         </a>
       </li>
     <% end %>
     <% if sidebar.tag_feeds and controller.controller_name == 'tags' and controller.action_name == 'show' %>
-      <% format = (sidebar.format_strip == 'rss') ? @auto_discovery_url_rss : @auto_discovery_url_atom  %>
-      <%= content_tag(:li, t(".tag",  link: link_to(@grouping.display_name, format))) %>
+      <li>
+        <%= t('.tag') %>
+        <%= link_to(@tag.display_name, @tag.feed_url(sidebar.format_strip)) %>
+      </li>
     <% end %>
-    <% if sidebar.article_comments and controller.controller_name == 'redirect' %>
-      <% format = (sidebar.format_strip == 'rss') ? @auto_discovery_url_rss : @auto_discovery_url_atom  %>
-      <%= content_tag(:li, link_to(@article.title, format)) %>
+    <% if sidebar.article_comments and controller.controller_name == 'articles' and controller.action_name == 'redirect' %>
+      <li>
+        <%= link_to(@article.title, @article.feed_url(sidebar.format_strip)) %>
+      </li>
     <% end %>
   </ul>
 </div>
