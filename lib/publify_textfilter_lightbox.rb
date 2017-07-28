@@ -1,5 +1,3 @@
-require 'net/http'
-
 class PublifyApp
   class Textfilter
     class Lightbox < TextFilterPlugin::MacroPost
@@ -80,8 +78,6 @@ Common attributes:
           thumbsize = attrib['thumbsize'] || 'square'
           displaysize = attrib['displaysize'] || 'original'
 
-          FlickRaw.api_key = FLICKR_KEY
-          FlickRaw.shared_secret = FLICKR_SECRET
           flickrimage = flickr.photos.getInfo(photo_id: img)
           sizes = flickr.photos.getSizes(photo_id: img)
 
