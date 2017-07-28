@@ -41,6 +41,9 @@ gem 'rails', '~> 5.0.0'
 # Store sessions in the database
 gem 'activerecord-session_store', '~> 1.1.0'
 
+# Use Puma as the app server
+gem 'puma', '~> 3.0'
+
 gem 'publify_amazon_sidebar', path: 'publify_amazon_sidebar'
 gem 'publify_core', path: 'publify_core'
 gem 'publify_textfilter_code', path: 'publify_textfilter_code'
@@ -81,8 +84,6 @@ group :development do
   gem 'spring', '~> 2.0.0'
   gem 'spring-commands-cucumber', '~> 1.0'
   gem 'spring-commands-rspec', '~> 1.0'
-
-  gem 'thin', '~> 1.6'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 3.0'
