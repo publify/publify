@@ -53,7 +53,6 @@ gem 'uglifier', '>= 1.3.0'
 
 # Needed for the lightbox and flickr text filters
 gem 'flickraw', '~> 0.9.8'
-gem 'flickraw-cached', '20120701'
 
 gem 'non-stupid-digest-assets', '~> 1.0'
 gem 'rake', '~> 12.0'

@@ -1,4 +1,7 @@
 require 'net/http'
+require 'flickraw'
+
+FlickRaw::Flickr.build(['flickr.photos.getInfo', 'flickr.photos.getSizes'])
 
 class PublifyApp
   class Textfilter
