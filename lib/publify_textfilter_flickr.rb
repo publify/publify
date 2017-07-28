@@ -1,8 +1,3 @@
-require 'net/http'
-require 'flickraw'
-
-FlickRaw::Flickr.build(['flickr.photos.getInfo', 'flickr.photos.getSizes'])
-
 class PublifyApp
   class Textfilter
     class Flickr < TextFilterPlugin::MacroPost
@@ -49,8 +44,6 @@ This macro takes a number of parameters:
         alt = attrib['alt']
 
         begin
-          FlickRaw.api_key = FLICKR_KEY
-          FlickRaw.shared_secret = FLICKR_SECRET
           flickrimage = flickr.photos.getInfo(photo_id: img)
           sizes = flickr.photos.getSizes(photo_id: img)
 
