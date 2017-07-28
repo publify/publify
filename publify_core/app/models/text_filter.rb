@@ -55,7 +55,7 @@ class TextFilter
       if f.help_text.blank?
         ""
       else
-        "<h3>#{f.display_name}</h3>\n#{BlueCloth.new(f.help_text).to_html}\n"
+        "<h3>#{f.display_name}</h3>\n#{CommonMarker.render_html(f.help_text, :DEFAULT)}"
       end
     end
 
@@ -69,7 +69,7 @@ class TextFilter
     filters.each { |f| help.push(filter_map[f.to_s]) }
 
     help.map do |f|
-      f.help_text.blank? ? "" : "#{BlueCloth.new(f.help_text).to_html}\n"
+      f.help_text.blank? ? "" : CommonMarker.render_html(f.help_text)
     end.join("\n")
   end
 

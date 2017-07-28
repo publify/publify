@@ -76,22 +76,19 @@ RSpec.describe "With the list of available filters", type: :model do
 
       MARKUP
 
-      expects_markdown = <<-HTML.strip_heredoc
+      expects_markdown = <<-HTML.strip_heredoc.strip
         <p><em>header text here</em></p>
-
         <div class=\"CodeRay\"><pre><span class=\"CodeRay\"><span class=\"keyword\">class</span> <span class=\"class\">test</span>
           <span class=\"keyword\">def</span> <span class=\"function\">method</span>
             <span class=\"string\"><span class=\"delimiter\">&quot;</span><span class=\"content\">foo</span><span class=\"delimiter\">&quot;</span></span>
           <span class=\"keyword\">end</span>
         <span class=\"keyword\">end</span></span></pre></div>
-
-
         <p><em>footer text here</em></p>
       HTML
 
       filter = TextFilter.markdown
 
-      assert_equal expects_markdown.strip, filter.filter_text(text)
+      assert_equal expects_markdown, filter.filter_text(text)
     end
   end
 end

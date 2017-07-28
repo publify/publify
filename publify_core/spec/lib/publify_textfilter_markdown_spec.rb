@@ -12,6 +12,6 @@ RSpec.describe PublifyApp::Textfilter::Markdown do
     assert_equal "<p><em>foo</em></p>", text
 
     text = filter_text("foo\n\nbar")
-    assert_equal "<p>foo</p>\n\n<p>bar</p>", text
+    assert_equal "<p>foo</p>\n<p>bar</p>", text
   end
 end
