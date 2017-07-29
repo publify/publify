@@ -1,8 +1,11 @@
 # Changelog
 
-## Unreleased
+## 9.0.0
 
 ### Breaking/large changes
+
+This release depends on Rails 5.0.x and splits Publify into several engines.
+See the changelogs for the individual engines for more details.
 
 * Use Rails' default method of setting secrect_key_base in production: Through
   an environment variable. This means you will have to update your production
@@ -15,6 +18,7 @@
 * Fix layout for log in form (mvz)
 * Fix spinner for sidebar editor (mvz)
 * Update copyright information and contributor list (mvz)
+* Fix XML sidebar (mvz)
 
 ## 8.3.3
 

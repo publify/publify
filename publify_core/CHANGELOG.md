@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 9.0.0
 
 * Replace page caching with fragment caching
 * Replace home-grown state machine with aasm
@@ -35,6 +35,8 @@
   - Handle setting published_at to blank
   - Handle preview of articles without publication date
   - Include CSRF meta tag so remote forms work
+  - Fix sidebar field rendering in admin
+  - Fix formatting of settings forms in admin
 
 * Code improvements
   - Performance improvements

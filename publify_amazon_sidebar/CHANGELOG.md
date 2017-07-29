@@ -1,5 +1,9 @@
 # Changelog
 
+## 9.0.0
+
+* No changes
+
 ## 9.0.0.pre3
 
 * Loosen dependency on publify_core
