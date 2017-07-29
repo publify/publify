@@ -7,7 +7,7 @@
 This release depends on Rails 5.0.x and splits Publify into several engines.
 See the changelogs for the individual engines for more details.
 
-* Use Rails' default method of setting secrect_key_base in production: Through
+* Use Rails' default method of setting secret_key_base in production: Through
   an environment variable. This means you will have to update your production
   environment so this variable is actually set (whithajess)
 * Break out Publify functionality into several engine gems (mvz)
