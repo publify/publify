@@ -46,7 +46,7 @@ The demo is reset every 2 hours.
 ### Download
 
 You can download the latest
-Publify [stable release (8.3.3)](https://github.com/publify/publify/archive/v8.3.3.tar.gz)
+Publify [stable release (9.0.0)](https://github.com/publify/publify/archive/v9.0.0.tar.gz)
 
 If you want to run the master branch, you can [clone the Publify
 repository](https://github.com/publify/publify.git). However, random things may
@@ -58,8 +58,8 @@ be broken there at any time, so tread carefully!
 
 To install Publify you need the following:
 
-- CRuby (MRI) 2.1, 2.2 or 2.3
-- Ruby on Rails 4.2.x
+- CRuby (MRI) 2.2, 2.3 or 2.4
+- Ruby on Rails 5.0.x
 - A database engine, MySQL, PgSQL or SQLite3
 - A compatible JavaScript installation for asset compilation. See [the execjs
   readme](https://github.com/sstephenson/execjs#readme) for details.
@@ -114,7 +114,8 @@ Add the HEROKU config variable to your Heroku instance:
 heroku config:set HEROKU=true
 ```
 
-You also need to set Rails' secret key base. Generate one using `rake secret`, then set the Heroku config var:
+You also need to set Rails' secret key base. Generate one using `rake secret`,
+then set the Heroku config var:
 
 ```bash
 heroku config:set secret_key_base=YOUR_GENERATED_SECRET
