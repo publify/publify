@@ -12,7 +12,7 @@ else
   gem 'mysql2', '~> 0.4.4'
 end
 
-gem 'rails', '~> 5.0.4'
+gem 'rails', '~> 5.1.2'
 
 # Store sessions in the database
 gem 'activerecord-session_store', '~> 1.1.0'
