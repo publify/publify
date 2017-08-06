@@ -47,6 +47,12 @@ describe 'articles/index_rss_feed.rss.builder', type: :view do
       expect(xml_entry.css('comments').first.content).to eq(@article.permalink_url + '#comments')
     end
 
+    it 'has a creator entry' do
+      render
+      expect(xml_entry.xpath('dc:creator').first.content).to eq @article.author_name
+      expect(rendered_entry.author).to eq @article.author_name
+    end
+
     describe 'with an author with email set' do
       before(:each) do
         @article.user.email = 'foo@bar.com'
@@ -54,7 +60,7 @@ describe 'articles/index_rss_feed.rss.builder', type: :view do
       end
 
       it 'does not have an author entry' do
-        expect(rendered_entry.author).to be_nil
+        expect(xml_entry.xpath('author')).to be_empty
       end
     end
 

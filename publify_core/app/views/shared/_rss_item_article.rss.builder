@@ -8,6 +8,7 @@ xm.item do
   xm.description content_html + item.get_rss_description
   xm.pubDate item.published_at.rfc822
   xm.guid "urn:uuid:#{item.guid}", 'isPermaLink' => 'false'
+  xm.dc :creator, item.author_name
 
   if item.is_a?(Article)
     xm.comments(item.permalink_url('comments'))
