@@ -63,10 +63,6 @@ describe 'Given a new blog', type: :model do
     expect(blog).not_to be_default_moderate_comments
   end
 
-  it 'Should not link to author' do
-    expect(blog).not_to be_link_to_author
-  end
-
   it 'Should not hide extended on rss' do
     expect(blog).not_to be_hide_extended_on_rss
   end

@@ -11,7 +11,6 @@ feed.entry item, id: "urn:uuid:#{item.guid}", published: item.published_at, url:
               nil
             end
     entry.name name
-    entry.email email unless email.blank? || !this_blog.link_to_author
   end
 
   if item.is_a?(Note)
