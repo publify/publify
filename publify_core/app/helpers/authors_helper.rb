@@ -22,11 +22,6 @@ module AuthorsHelper
   end
 
   def author_link(article)
-    user = article.user
-    if user.present? && user.name.present?
-      h(user.name)
-    else
-      h(article.author)
-    end
+    h(article.author_name)
   end
 end

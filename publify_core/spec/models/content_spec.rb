@@ -115,6 +115,22 @@ describe Content, type: :model do
     end
   end
 
+  describe '#author_name' do
+    let(:content) { Content.new(author: author) }
+
+    context 'with an author with a name' do
+      let(:author) { build(:user, name: 'Henri') }
+
+      it { expect(content.author_name).to eq(author.name) }
+    end
+
+    context 'with an author without a name' do
+      let(:author) { build(:user, name: '') }
+
+      it { expect(content.author_name).to eq(author.login) }
+    end
+  end
+
   describe '#generate_html' do
     context 'with a blog with textile filter' do
       let!(:blog) { create(:blog, comment_text_filter: 'textile') }
