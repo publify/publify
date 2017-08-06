@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+* Remove link_to_author setting: author email is no longer shown. Whoever
+  really wants to have it shown should create a new theme.
+
 ## 9.0.0
 
 * Replace page caching with fragment caching
