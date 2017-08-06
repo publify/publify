@@ -47,17 +47,6 @@ describe 'articles/index_rss_feed.rss.builder', type: :view do
       expect(xml_entry.css('comments').first.content).to eq(@article.permalink_url + '#comments')
     end
 
-    describe 'with an author without email set' do
-      before(:each) do
-        @article.user.email = nil
-        render
-      end
-
-      it 'does not have an author entry' do
-        expect(rendered_entry.author).to be_nil
-      end
-    end
-
     describe 'with an author with email set' do
       before(:each) do
         @article.user.email = 'foo@bar.com'

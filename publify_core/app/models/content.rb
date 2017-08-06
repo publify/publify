@@ -109,10 +109,6 @@ class Content < ActiveRecord::Base
     self[:whiteboard] ||= {}
   end
 
-  def link_to_author?
-    false
-  end
-
   def get_rss_description
     return '' unless blog.rss_description
     return '' unless respond_to?(:user) && user && user.name
