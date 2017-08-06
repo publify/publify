@@ -158,7 +158,6 @@ FactoryGirl.define do
     email_from 'scott@sigkill.org'
     text_filter 'textile'
     sp_article_auto_close 0
-    link_to_author false
     comment_text_filter 'markdown'
     permalink_format '/%year%/%month%/%day%/%title%'
     use_canonical_url true

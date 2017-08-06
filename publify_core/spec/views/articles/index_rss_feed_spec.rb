@@ -47,48 +47,20 @@ describe 'articles/index_rss_feed.rss.builder', type: :view do
       expect(xml_entry.css('comments').first.content).to eq(@article.permalink_url + '#comments')
     end
 
-    describe 'with an author without email set' do
-      before(:each) do
-        @article.user.email = nil
-        render
-      end
-
-      it 'does not have an author entry' do
-        expect(rendered_entry.author).to be_nil
-      end
+    it 'has a creator entry' do
+      render
+      expect(xml_entry.xpath('dc:creator').first.content).to eq @article.author_name
+      expect(rendered_entry.author).to eq @article.author_name
     end
 
     describe 'with an author with email set' do
       before(:each) do
         @article.user.email = 'foo@bar.com'
+        render
       end
 
-      describe 'on a blog that links to the author' do
-        let(:blog) { create :blog, link_to_author: true }
-
-        before(:each) do
-          render
-        end
-
-        it 'has an author entry' do
-          expect(rendered_entry.author).not_to be_blank
-        end
-
-        it "has the author's email in the author entry" do
-          expect(rendered_entry.author).to match(/foo@bar.com/)
-        end
-      end
-
-      describe 'on a blog that does not link' do
-        let(:blog) { create :blog, link_to_author: false }
-
-        before(:each) do
-          render
-        end
-
-        it 'does not have an author entry' do
-          expect(rendered_entry.author).to be_nil
-        end
+      it 'does not have an author entry' do
+        expect(xml_entry.xpath('author')).to be_empty
       end
     end
 

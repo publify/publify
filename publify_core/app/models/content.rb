@@ -45,6 +45,14 @@ class Content < ActiveRecord::Base
     end
   end
 
+  def author_name
+    if user.present? && user.name.present?
+      user.name
+    else
+      author
+    end
+  end
+
   # Set the text filter for this object.
   # NOTE: Due to how Rails injects association methods, this cannot be put in ContentBase
   # TODO: Allowing assignment of a string here is not very clean.
@@ -109,16 +117,11 @@ class Content < ActiveRecord::Base
     self[:whiteboard] ||= {}
   end
 
-  def link_to_author?
-    user.email.present? && blog.link_to_author
-  end
-
   def get_rss_description
     return '' unless blog.rss_description
-    return '' unless respond_to?(:user) && user && user.name
 
     rss_desc = blog.rss_description_text
-    rss_desc.gsub!('%author%', user.name)
+    rss_desc.gsub!('%author%', author_name)
     rss_desc.gsub!('%blog_url%', blog.base_url)
     rss_desc.gsub!('%blog_name%', blog.blog_name)
     rss_desc.gsub!('%permalink_url%', permalink_url)

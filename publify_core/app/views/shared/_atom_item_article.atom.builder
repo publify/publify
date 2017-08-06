@@ -1,17 +1,6 @@
 feed.entry item, id: "urn:uuid:#{item.guid}", published: item.published_at, url: item.permalink_url do |entry|
   entry.author do
-    name = begin
-             item.user.name
-           rescue
-             item.author
-           end
-    email = begin
-              item.user.email
-            rescue
-              nil
-            end
-    entry.name name
-    entry.email email unless email.blank? || !this_blog.link_to_author
+    entry.name item.author_name
   end
 
   if item.is_a?(Note)
