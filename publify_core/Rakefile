@@ -55,4 +55,4 @@ namespace :i18n do
     abort('Translation problems found') unless $CHILD_STATUS.success?
   end
 end
-task default: 'i18n:health'
+task default: 'i18n:health' if RUBY_VERSION >= '2.3.0'
