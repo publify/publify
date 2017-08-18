@@ -2,17 +2,17 @@
 ru:
   authors_sidebar:
     content:
-      authors: Authors
+      authors: Авторы
   notes_sidebar:
     content:
-      view_on_twitter: View on Twitter
+      view_on_twitter: 
   popular_sidebar:
     content:
-      comments: Comments
-      nothing_to_show_yet: Nothing to show yet
+      comments: Комментарии
+      nothing_to_show_yet: Пока что тут ничего нет
   xml_sidebar:
     content:
-      articles: Articles
-      feedback: Feedback
-      syndicate: Syndicate
-      tag: Tag
+      articles: Статьи
+      feedback: Отзыв
+      syndicate: Синдикат
+      tag: Тег
