@@ -7,6 +7,7 @@ module PublifyCore
 
     config.to_prepare do
       DeviseController.layout 'accounts'
+      DeviseController.before_action { devise_parameter_sanitizer.permit(:sign_up, keys: [:email]) }
     end
 
     initializer 'publify_core.assets.precompile' do |app|
