@@ -2,14 +2,8 @@ require 'cancancan'
 
 class BaseController < ApplicationController
   before_action :fire_triggers, :load_lang, :set_paths
-  before_action :configure_permitted_parameters, if: :devise_controller?
 
   private
-
-  def configure_permitted_parameters
-    # TODO: Check if this is still needed
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:email])
-  end
 
   def login_required
     authenticate_user! && authorize!(params[:action], params[:controller])
