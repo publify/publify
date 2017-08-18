@@ -5,6 +5,10 @@ module PublifyCore
       generators.fixture_replacement :factory_girl, dir: 'spec/factories'
     end
 
+    config.to_prepare do
+      DeviseController.layout 'accounts'
+    end
+
     initializer 'publify_core.assets.precompile' do |app|
       app.config.assets.precompile += %w(
         publify.js

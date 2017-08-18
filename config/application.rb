@@ -16,10 +16,6 @@ module Publify
 
     # To avoid exception when deploying on Heroku
     config.assets.initialize_on_precompile = false
-
-    config.to_prepare do
-      DeviseController.layout 'accounts'
-    end
   end
 
   # Load included libraries.
