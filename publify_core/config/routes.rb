@@ -48,7 +48,7 @@ Rails.application.routes.draw do
   # ThemeController
   scope controller: 'theme', filename: /.*/ do
     get 'stylesheets/theme/:filename', action: 'stylesheets', format: false
-    get 'javascripts/theme/:filename', action: 'javascript', format: false
+    get 'javascripts/theme/:filename', action: 'javascripts', format: false
     get 'images/theme/:filename', action: 'images', format: false
     get 'fonts/theme/:filename', action: 'fonts', format: false
   end

@@ -361,5 +361,6 @@ lib/text_filter_plugin.rb
 lib/theme.rb
 lib/transforms.rb
 themes/plain/about.markdown
+themes/plain/javascripts/theme.js
 themes/plain/preview.png
 themes/plain/stylesheets/theme.css
