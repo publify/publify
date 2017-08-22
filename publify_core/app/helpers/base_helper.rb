@@ -31,6 +31,11 @@ module BaseHelper
     stylesheet_link_tag "/stylesheets/theme/#{name}.css" if File.exist? src
   end
 
+  def themeable_javascript_include_tag(name)
+    src = this_blog.current_theme.path + "/javascripts/#{name}.js"
+    javascript_include_tag "/javascripts/theme/#{name}.js" if File.exist? src
+  end
+
   def render_to_string(*args, &block)
     controller.send(:render_to_string, *args, &block)
   end
