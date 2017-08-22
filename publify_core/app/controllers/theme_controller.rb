@@ -1,10 +1,13 @@
 class ThemeController < ContentController
+  # Allow javascripts via Get request
+  skip_before_action :verify_authenticity_token, only: :javascripts
+
   def stylesheets
     render_theme_item(:stylesheets, params[:filename], 'text/css; charset=utf-8')
   end
 
-  def javascript
-    render_theme_item(:javascript, params[:filename], 'text/javascript; charset=utf-8')
+  def javascripts
+    render_theme_item(:javascripts, params[:filename], 'text/javascript; charset=utf-8')
   end
 
   def images

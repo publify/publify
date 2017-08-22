@@ -13,6 +13,14 @@ describe ThemeController, type: :controller do
     assert_equal 'inline; filename="theme.css"', @response.headers['Content-Disposition']
   end
 
+  it 'test_javascripts' do
+    get :javascripts, params: { filename: 'theme.js' }
+    assert_response :success
+    assert_equal 'text/javascript', @response.content_type
+    assert_equal 'utf-8', @response.charset
+    assert_equal 'inline; filename="theme.js"', @response.headers['Content-Disposition']
+  end
+
   it 'test_malicious_path' do
     get :stylesheets, params: { filename: '../../../config/database.yml' }
     expect(response).to be_not_found
