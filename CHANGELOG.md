@@ -1,5 +1,12 @@
 # Changelog
 
+## 9.0.1
+
+See the changelogs for the individual engines for more details.
+
+* Use at least Rails 5.0.4 (mvz)
+* Update Russian translations (biggless)
+
 ## 9.0.0
 
 ### Breaking/large changes
