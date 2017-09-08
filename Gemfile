@@ -67,8 +67,6 @@ group :development, :test do
   gem 'capybara', '~> 2.7'
   gem 'factory_girl', '~> 4.5'
   gem 'i18n-tasks', '~> 0.9.1', require: false
-  gem 'pry', '~> 0.10.3'
-  gem 'pry-rails', '~> 0.3.4'
   gem 'rspec-rails', '~> 3.4'
   gem 'simplecov', '~> 0.14.0', require: false
 end
