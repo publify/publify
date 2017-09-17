@@ -38,7 +38,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'mini_magick', '~> 4.2'
   s.add_dependency 'rails-timeago', '~> 2.0'
   s.add_dependency 'rails_autolink', '~> 1.1.0'
-  s.add_dependency 'recaptcha', '~> 4.3.1'
+  s.add_dependency 'recaptcha', ['~> 4.3', '>= 4.3.1']
   s.add_dependency 'rubypants', '~> 0.6.0'
   s.add_dependency 'mimemagic', '~> 0.3.2'
   s.add_dependency 'sass-rails', '~> 5.0'
