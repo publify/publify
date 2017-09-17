@@ -64,6 +64,10 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', '~> 9.0'
 
+  # Get a nice featureful IRB console
+  gem 'bond', '~> 0.5.1'
+  gem 'irbtools-more', '~> 2.2.0', require: 'irbtools/more'
+
   gem 'capybara', '~> 2.7'
   gem 'factory_girl', '~> 4.5'
   gem 'i18n-tasks', '~> 0.9.1', require: false
