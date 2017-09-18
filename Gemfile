@@ -42,7 +42,7 @@ group :development, :test do
 
   # Get a nice featureful IRB console
   gem 'bond', '~> 0.5.1'
-  gem 'irbtools-more', '~> 2.0', require: 'irbtools/more'
+  gem 'irbtools-more', '~> 2.0', platform: :mri_24, require: 'irbtools/more'
 
   gem 'capybara', '~> 2.7'
   gem 'factory_girl', '~> 4.5'
