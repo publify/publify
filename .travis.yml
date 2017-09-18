@@ -10,6 +10,7 @@ env:
   - DB=mysql
   - DB=postgresql
 install:
+  - cp config/database.yml.$DB config/database.yml
   - bundle install --without development
 before_script:
   - bundle exec rake db:create db:migrate
