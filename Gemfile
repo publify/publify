@@ -7,7 +7,6 @@ if ENV['HEROKU']
   gem 'rails_12factor'
   gem 'thin' # Change this to another web server if you want (ie. unicorn, passenger, puma...)
 else
-
   require 'yaml'
   env = ENV['RAILS_ENV'] || 'development'
   dbfile = File.expand_path('../config/database.yml', __FILE__)
@@ -66,7 +65,7 @@ group :development, :test do
 
   # Get a nice featureful IRB console
   gem 'bond', '~> 0.5.1'
-  gem 'irbtools-more', '~> 2.2.0', require: 'irbtools/more'
+  gem 'irbtools-more', '~> 2.0', require: 'irbtools/more'
 
   gem 'capybara', '~> 2.7'
   gem 'factory_girl', '~> 4.5'
