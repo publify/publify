@@ -48,11 +48,11 @@ group :development, :test do
   gem 'factory_girl', '~> 4.5'
   gem 'i18n-tasks', '~> 0.9.1', require: false
   gem 'rspec-rails', '~> 3.4'
-  gem 'simplecov', '~> 0.14.0', require: false
+  gem 'simplecov', '~> 0.15.1', require: false
 end
 
 group :development do
-  gem 'better_errors', '~> 2.1.1'
+  gem 'better_errors', '~> 2.3.0'
   gem 'binding_of_caller', '~> 0.7.2'
 
   gem 'guard-rspec'
