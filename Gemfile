@@ -37,13 +37,6 @@ gem 'rake', '~> 12.0'
 gem 'xmlrpc', '~> 0.3.0', platform: :mri_24
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', '~> 9.0'
-
-  # Get a nice featureful IRB console
-  gem 'bond', '~> 0.5.1'
-  gem 'irbtools-more', '~> 2.0', platform: :mri_24, require: 'irbtools/more'
-
   gem 'capybara', '~> 2.7'
   gem 'factory_girl', '~> 4.5'
   gem 'i18n-tasks', '~> 0.9.1', require: false
@@ -64,6 +57,13 @@ group :development do
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 3.0'
+
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug', '~> 9.0'
+
+  # Get a nice featureful IRB console.
+  # Add "require 'irbtools'" to your .irbrc to activate this
+  gem 'irbtools', '~> 2.0', platform: :mri_24, require: false
 end
 
 group :test do
