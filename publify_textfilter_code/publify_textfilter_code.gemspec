@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
 
   s.files       = File.open('Manifest.txt').readlines.map(&:chomp)
 
-  s.add_dependency 'rails', '~> 5.0.0'
+  s.add_dependency 'rails', '~> 5.1.2'
   s.add_dependency 'publify_core', '~> 9.0.0'
   s.add_dependency 'coderay', '~> 1.1.0'
   s.add_dependency 'htmlentities', '~> 4.3'
