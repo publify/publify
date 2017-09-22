@@ -70,6 +70,12 @@ Style/Documentation:
 Metrics/LineLength:
   Max: 100
 
+# Migrations should not use ApplicationRecord
+Rails/ApplicationRecord:
+  Exclude:
+    - 'db/migrate/*'
+    - 'publify_core/db/migrate/*'
+
 # Allow the use of 'and' 'or' in control structures.
 Style/AndOr:
   EnforcedStyle: conditionals
