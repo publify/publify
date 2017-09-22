@@ -2,17 +2,17 @@
 pl:
   authors_sidebar:
     content:
-      authors: Authors
+      authors: Autorzy
   notes_sidebar:
     content:
-      view_on_twitter: View on Twitter
+      view_on_twitter: Zobacz na Twitterze
   popular_sidebar:
     content:
-      comments: Comments
-      nothing_to_show_yet: Nothing to show yet
+      comments: Komentarze
+      nothing_to_show_yet: Brak komentarzy
   xml_sidebar:
     content:
-      articles: Articles
+      articles: Artykuły
       feedback: Feedback
       syndicate: Syndicate
       tag: Tag
