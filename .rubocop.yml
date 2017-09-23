@@ -121,6 +121,12 @@ Rails/ApplicationRecord:
     - 'db/migrate/*'
     - 'publify_core/db/migrate/*'
 
+# Migrations should not do validations in general?
+Rails/SkipsModelValidations:
+  Exclude:
+    - 'db/migrate/*'
+    - 'publify_core/db/migrate/*'
+
 # Allow the use of 'and' 'or' in control structures.
 Style/AndOr:
   EnforcedStyle: conditionals
