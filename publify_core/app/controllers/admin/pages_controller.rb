@@ -1,5 +1,3 @@
-# coding: utf-8
-
 require 'base64'
 
 class Admin::PagesController < Admin::BaseController

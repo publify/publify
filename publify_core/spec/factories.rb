@@ -1,5 +1,3 @@
-# coding: utf-8
-
 # Factory definitions
 FactoryGirl.define do
   sequence(:name) { |n| "name_#{n}" }

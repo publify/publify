@@ -1,5 +1,3 @@
-# coding: utf-8
-
 require 'aasm'
 require 'uri'
 require 'net/http'
