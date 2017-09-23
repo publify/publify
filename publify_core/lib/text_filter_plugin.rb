@@ -81,8 +81,7 @@ class TextFilterPlugin
     (@sanitizer ||= Rails::Html::WhiteListSanitizer.new).sanitize(*args)
   end
 
-  def self.default_helper_module!
-  end
+  def self.default_helper_module!; end
 
   # Look up a config paramater, falling back to the default as needed.
   def self.config_value(params, name)

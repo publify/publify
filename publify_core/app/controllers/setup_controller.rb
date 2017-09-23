@@ -2,8 +2,7 @@ class SetupController < BaseController
   before_action :check_config
   layout 'accounts'
 
-  def index
-  end
+  def index; end
 
   def create
     this_blog.blog_name = params[:setting][:blog_name]
