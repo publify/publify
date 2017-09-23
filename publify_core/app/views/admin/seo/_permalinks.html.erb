@@ -12,12 +12,12 @@
           <%= radio_button(:setting, :permalink_format, '/%year%/%month%/%day%/%title%') %>
           <%= t(".date_and_title") %>
         </label>
-        <small class='help-block'><%= "#{this_blog.base_url}/#{Time.now.strftime('%Y/%m/%d')}/sample-article" %></small>
+        <small class='help-block'><%= "#{this_blog.base_url}/#{Time.zone.now.strftime('%Y/%m/%d')}/sample-article" %></small>
         <label for="setting_permalink_format_yearmonthtitle">
           <%= radio_button(:setting, :permalink_format, '/%year%/%month%/%title%') %>
           <%= t(".month_and_title") %>
         </label>
-        <small class='help-block'><%= "#{this_blog.base_url}/#{Time.now.strftime('%Y/%m')}/sample-article" %></small>
+        <small class='help-block'><%= "#{this_blog.base_url}/#{Time.zone.now.strftime('%Y/%m')}/sample-article" %></small>
         <label for="setting_permalink_format_title">
           <%= radio_button(:setting, :permalink_format, '/%title%') %> <%= t(".title_only") %>
         </label>

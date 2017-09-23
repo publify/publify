@@ -24,7 +24,7 @@ class Admin::PagesController < Admin::BaseController
 
   def create
     @page = Page.new(page_params)
-    @page.published_at = Time.now
+    @page.published_at = Time.zone.now
     @page.blog = this_blog
     @page.user_id = current_user.id
 

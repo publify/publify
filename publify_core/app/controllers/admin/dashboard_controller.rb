@@ -6,8 +6,7 @@ class Admin::DashboardController < Admin::BaseController
   require 'rexml/document'
 
   def index
-    t = Time.new
-    today = t.strftime('%Y-%m-%d 00:00')
+    today = Time.zone.now.strftime('%Y-%m-%d 00:00')
 
     # Since last visit
     last_sign_in = current_user.last_sign_in_at

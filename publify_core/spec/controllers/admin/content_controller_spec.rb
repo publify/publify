@@ -240,7 +240,7 @@ describe Admin::ContentController, type: :controller do
 
       context 'writing for the future' do
         let(:article_params) do
-          { title: 'posted via tests!', body: 'a good boy', published_at: (Time.now + 1.hour).to_s }
+          { title: 'posted via tests!', body: 'a good boy', published_at: 1.hour.from_now.to_s }
         end
 
         before do

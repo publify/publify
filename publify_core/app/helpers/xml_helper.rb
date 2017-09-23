@@ -8,7 +8,7 @@ module XmlHelper
     times.push article_published.updated_at if article_published
 
     if times.empty?
-      Time.at(0).xmlschema
+      Time.zone.at(0).xmlschema
     else
       times.max.xmlschema
     end

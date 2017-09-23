@@ -86,7 +86,7 @@ describe Content, type: :model do
         context 'with an article published_at' do
           let(:params) { { published_at: '2012-02' } }
           let!(:article) { create(:article) }
-          let!(:match_article) { create(:article, published_at: DateTime.new(2012, 2, 13)) }
+          let!(:match_article) { create(:article, published_at: DateTime.new(2012, 2, 13).in_time_zone) }
           it { expect(subject).to eq([match_article]) }
         end
 

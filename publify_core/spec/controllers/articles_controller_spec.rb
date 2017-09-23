@@ -223,7 +223,7 @@ end
 describe ArticlesController, 'feeds', type: :controller do
   let!(:blog) { create(:blog) }
 
-  let!(:article1) { create(:article, created_at: Time.now - 1.day) }
+  let!(:article1) { create(:article, created_at: 1.day.ago) }
   let!(:article2) { create(:article, published_at: '2004-04-01 12:00:00') }
 
   let(:trackback) { create(:trackback, article: article1, published_at: 1.day.ago) }

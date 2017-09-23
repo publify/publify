@@ -18,10 +18,10 @@ class TitleBuilder
 
   def substitute_time(s, settings)
     # Other
-    s = s.gsub('%currentdate%', Time.now.strftime(settings.date_format))
-    s = s.gsub('%currenttime%', Time.now.strftime(settings.time_format))
-    s = s.gsub('%currentmonth%', Time.now.strftime('%B'))
-    s = s.gsub('%currentyear%', Time.now.year.to_s)
+    s = s.gsub('%currentdate%', Time.zone.now.strftime(settings.date_format))
+    s = s.gsub('%currenttime%', Time.zone.now.strftime(settings.time_format))
+    s = s.gsub('%currentmonth%', Time.zone.now.strftime('%B'))
+    s = s.gsub('%currentyear%', Time.zone.now.year.to_s)
     s
   end
 
@@ -70,7 +70,7 @@ class TitleBuilder
     format << '%B ' if params[:month]
     format << '%Y' if params[:year]
 
-    string.gsub('%date%', Time.mktime(*params.values_at(:year, :month, :day)).strftime(format))
+    string.gsub('%date%', Time.zone.local(*params.values_at(:year, :month, :day)).strftime(format))
   end
 
   def parse_page(_string, params)

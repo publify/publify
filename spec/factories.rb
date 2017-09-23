@@ -7,7 +7,7 @@ FactoryGirl.define do
   sequence(:guid) { |n| "deadbeef#{n}" }
   sequence(:label) { |n| "lab_#{n}" }
   sequence(:file_name) { |f| "file_name_#{f}" }
-  sequence(:time) { |n| DateTime.new(2012, 3, 26, 19, 56) - n }
+  sequence(:time) { |n| DateTime.new(2012, 3, 26, 19, 56).utc - n }
 
   factory :user do
     login { FactoryGirl.generate(:user) }
@@ -294,8 +294,6 @@ FactoryGirl.define do
     url 'http://www.example.com'
     excerpt 'This is an excerpt'
     guid 'dsafsadffsdsf'
-    created_at Time.now
-    updated_at Time.now
   end
 
   factory :sidebar do

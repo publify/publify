@@ -4,7 +4,7 @@ require 'support/dns_mock'
 describe Comment, type: :model do
   let(:blog) { build_stubbed :blog }
 
-  let(:published_article) { build_stubbed(:article, published_at: Time.now - 1.hour, blog: blog) }
+  let(:published_article) { build_stubbed(:article, published_at: 1.hour.ago, blog: blog) }
 
   def valid_comment(options = {})
     Comment.new({ author: 'Bob', article: published_article, body: 'nice post', ip: '1.2.3.4' }.merge(options))
@@ -240,7 +240,7 @@ describe Comment, type: :model do
   end
 
   describe 'last_published', integration: true do
-    let(:date) { DateTime.new(2012, 12, 23, 12, 47) }
+    let(:date) { DateTime.new(2012, 12, 23, 12, 47).in_time_zone }
     let!(:comment_1) { create(:comment, body: '1', created_at: date + 1.day) }
     let!(:comment_4) { create(:comment, body: '4', created_at: date + 4.days) }
     let!(:comment_2) { create(:comment, body: '2', created_at: date + 2.days) }
