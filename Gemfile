@@ -7,9 +7,9 @@ if ENV['HEROKU']
   gem 'rails_12factor'
   gem 'thin' # Change this to another web server if you want (ie. unicorn, passenger, puma...)
 else
-  gem 'sqlite3'
-  gem 'pg'
   gem 'mysql2', '~> 0.4.4'
+  gem 'pg'
+  gem 'sqlite3'
 end
 
 gem 'rails', '~> 5.1.2'
