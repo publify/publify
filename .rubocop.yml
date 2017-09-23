@@ -12,6 +12,7 @@ AllCops:
   - 'publify_textfilter_code/bin/*'
   - 'publify_textfilter_code/spec/dummy/**/*'
   - 'db/converters/*.rb'
+  - 'db/scripts/fix_permalinks.rb'
   - 'db/schema.rb'
   TargetRubyVersion: '2.2'
 
