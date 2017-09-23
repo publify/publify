@@ -11,6 +11,7 @@ AllCops:
   - 'publify_amazon_sidebar/spec/dummy/**/*'
   - 'publify_textfilter_code/bin/*'
   - 'publify_textfilter_code/spec/dummy/**/*'
+  - 'db/converters/*.rb'
   - 'db/schema.rb'
   TargetRubyVersion: '2.2'
 
