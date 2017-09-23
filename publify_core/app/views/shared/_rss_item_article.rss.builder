@@ -21,8 +21,7 @@ xm.item do
       xm.enclosure(
         url: item.blog.file_url(resource.upload_url),
         length: resource.size,
-        type: resource.mime
-      )
+        type: resource.mime)
     end
   end
 

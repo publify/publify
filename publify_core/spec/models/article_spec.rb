@@ -308,14 +308,12 @@ describe Article, type: :model do
     before :each do
       @article = blog.articles.build(
         body: 'basic text',
-        extended: 'extended text to explain more and more how Publify is wonderful'
-      )
+        extended: 'extended text to explain more and more how Publify is wonderful')
     end
 
     it 'should combine body and extended content' do
       expect(@article.body_and_extended).to eq(
-        "#{@article.body}\n<!--more-->\n#{@article.extended}"
-      )
+        "#{@article.body}\n<!--more-->\n#{@article.extended}")
     end
 
     it 'should not insert <!--more--> tags if extended is empty' do

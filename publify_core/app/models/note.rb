@@ -113,8 +113,7 @@ class Note < Content
       action: 'show',
       permalink: permalink,
       anchor: anchor,
-      only_path: only_path
-    )
+      only_path: only_path)
   end
 
   def short_link

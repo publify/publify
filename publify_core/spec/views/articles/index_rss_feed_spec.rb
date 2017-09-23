@@ -125,8 +125,7 @@ describe 'articles/index_rss_feed.rss.builder', type: :view do
 
       it 'shows only a link to the article' do
         expect(rendered_entry.summary).to eq(
-          "<p>This article is password protected. Please <a href='#{@article.permalink_url}'>fill in your password</a> to read it</p>"
-        )
+          "<p>This article is password protected. Please <a href='#{@article.permalink_url}'>fill in your password</a> to read it</p>")
       end
 
       it 'does not show any secret bits anywhere' do
@@ -139,8 +138,7 @@ describe 'articles/index_rss_feed.rss.builder', type: :view do
 
       it 'shows only a link to the article' do
         expect(rendered_entry.summary).to eq(
-          "<p>This article is password protected. Please <a href='#{@article.permalink_url}'>fill in your password</a> to read it</p>"
-        )
+          "<p>This article is password protected. Please <a href='#{@article.permalink_url}'>fill in your password</a> to read it</p>")
       end
 
       it 'does not show any secret bits anywhere' do
