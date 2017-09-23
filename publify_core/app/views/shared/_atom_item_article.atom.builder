@@ -15,19 +15,15 @@ feed.entry item, id: "urn:uuid:#{item.guid}", published: item.published_at, url:
       entry.category 'term' => tag.display_name, 'scheme' => tag_url(tag.permalink)
     end
 
+    # TODO: Add tests for this
     item.resources.each do |resource|
-      if resource.size > 0 # The Atom spec disallows files with size=0
-        entry.tag! :link, 'rel' => 'enclosure',
-                          type: resource.mime,
-                          title: item.title,
-                          href: this_blog.file_url(resource.upload_url),
-                          length: resource.size
-      else
-        entry.tag! :link, 'rel' => 'enclosure',
-                          type: resource.mime,
-                          title: item.title,
-                          href: this_blog.file_url(resource.upload_url)
-      end
+      link_options = { rel: 'enclosure',
+                       type: resource.mime,
+                       title: item.title,
+                       href: this_blog.file_url(resource.upload_url) }
+      # The Atom spec disallows files with size=0
+      link_options[:length] = resource.size if resource.size > 0
+      entry.tag! :link, link_options
     end
   end
   content_html = fetch_html_content_for_feeds(item, this_blog)
