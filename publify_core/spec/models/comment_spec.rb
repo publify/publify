@@ -256,7 +256,7 @@ describe Comment, type: :model do
   describe '#generate_html' do
     it 'renders email addresses in the body' do
       comment = build_stubbed(:comment, body: 'foo@example.com')
-      expect(comment.generate_html(:body)).to match /mailto:/
+      expect(comment.generate_html(:body)).to match(/mailto:/)
     end
   end
 end
