@@ -1,7 +1,7 @@
 require 'set'
 require 'uri'
 
-class Content < ActiveRecord::Base
+class Content < ApplicationRecord
   include ContentBase
 
   belongs_to :text_filter, optional: true

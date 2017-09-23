@@ -1,6 +1,6 @@
 require 'net/http'
 
-class TextFilter < ActiveRecord::Base
+class TextFilter < ApplicationRecord
   serialize :filters, Array
   serialize :params, Hash
 

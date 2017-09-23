@@ -1,4 +1,4 @@
-class Trigger < ActiveRecord::Base
+class Trigger < ApplicationRecord
   belongs_to :pending_item, polymorphic: true
 
   class << self

@@ -5,7 +5,7 @@
 # Once upon a time, there were plans to make publify handle multiple blogs,
 # but it never happened and publify is now firmly single-blog.
 #
-class Blog < ActiveRecord::Base
+class Blog < ApplicationRecord
   include ConfigManager
   include Rails.application.routes.url_helpers
 

@@ -1,7 +1,7 @@
 require 'carrierwave'
 require 'carrierwave/orm/activerecord'
 
-class Resource < ActiveRecord::Base
+class Resource < ApplicationRecord
   belongs_to :blog
   belongs_to :content, optional: true
 
