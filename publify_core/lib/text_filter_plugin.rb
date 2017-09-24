@@ -119,8 +119,8 @@ class TextFilterPlugin::Macro < TextFilterPlugin
   end
 
   def self.filtertext(text)
-    regex1 = /<publify:#{short_name}(?:[ \t][^>]*)?\/>/
-    regex2 = /<publify:#{short_name}([ \t][^>]*)?>(.*?)<\/publify:#{short_name}>/m
+    regex1 = %r{<publify:#{short_name}(?:[ \t][^>]*)?/>}
+    regex2 = %r{<publify:#{short_name}([ \t][^>]*)?>(.*?)</publify:#{short_name}>}m
 
     new_text = text.gsub(regex1) do |match|
       macrofilter(attributes_parse(match))

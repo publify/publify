@@ -258,7 +258,7 @@ class Blog < ApplicationRecord
 
   def split_base_url
     unless @split_base_url
-      unless base_url =~ /(https?):\/\/([^\/]*)(.*)/
+      unless base_url =~ %r{(https?)://([^/]*)(.*)}
         raise "Invalid base_url: #{base_url}"
       end
       @split_base_url = { protocol: Regexp.last_match[1], host_with_port: Regexp.last_match[2], root_path: Regexp.last_match[3].gsub(%r{/$}, '') }

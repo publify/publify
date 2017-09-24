@@ -122,7 +122,7 @@ class Note < Content
   end
 
   def prefix
-    blog.shortener_url.sub(/^https?\:\/\//, '')
+    blog.shortener_url.sub(%r{^https?://}, '')
   end
 
   def published?

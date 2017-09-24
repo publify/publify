@@ -37,7 +37,8 @@ class SpamProtection
   end
 
   def scan_text(string)
-    uri_list = string.scan(/(http:\/\/[^\s"]+)/m).flatten
+    # FIXME: Unify HTTP URI matchers
+    uri_list = string.scan(%r{(http://[^\s"]+)}m).flatten
 
     check_uri_count(uri_list)
     scan_uris(uri_list)
