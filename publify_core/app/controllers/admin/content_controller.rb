@@ -59,7 +59,7 @@ class Admin::ContentController < Admin::BaseController
     @article = Article.find(id)
 
     if params[:article][:draft]
-      get_fresh_or_existing_draft_for_article
+      fetch_fresh_or_existing_draft_for_article
     else
       @article = Article.find(@article.parent_id) unless @article.parent_id.nil?
     end
@@ -100,7 +100,7 @@ class Admin::ContentController < Admin::BaseController
     article_factory = Article::Factory.new(this_blog, current_user)
     @article = article_factory.get_or_build_from(id)
 
-    get_fresh_or_existing_draft_for_article
+    fetch_fresh_or_existing_draft_for_article
 
     @article.attributes = params[:article].permit!
 
@@ -125,7 +125,7 @@ class Admin::ContentController < Admin::BaseController
 
   protected
 
-  def get_fresh_or_existing_draft_for_article
+  def fetch_fresh_or_existing_draft_for_article
     return unless @article.published? && @article.id
 
     parent_id = @article.id

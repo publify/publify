@@ -79,21 +79,17 @@ describe Blog, type: :model do
       @blog = Blog.new(base_url: 'foo')
     end
 
-    def set_permalink(permalink)
-      @blog.permalink_format = permalink
-    end
-
     ['foo', 'year', 'day', 'month', 'title', '%title', 'title%', '/year/month/day/title',
      '%year%', '%day%', '%month%', '%title%.html.atom', '%title%.html.rss'].each do |permalink_type|
       it "not valid with #{permalink_type}" do
-        set_permalink permalink_type
+        @blog.permalink_format = permalink_type
         expect(@blog).not_to be_valid
       end
     end
 
     ['%title%', '%title%.html', '/hello/all/%year%/%title%', 'atom/%title%.html', 'ok/rss/%title%.html'].each do |permalink_type|
       it "should be valid with only #{permalink_type}" do
-        set_permalink permalink_type
+        @blog.permalink_format = permalink_type
         expect(@blog).to be_valid
       end
     end

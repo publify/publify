@@ -1,5 +1,5 @@
 class CommentsController < BaseController
-  before_action :get_article, only: [:create, :preview]
+  before_action :set_article, only: [:create, :preview]
 
   def create
     options = new_comment_defaults.merge comment_params.to_h
@@ -10,7 +10,7 @@ class CommentsController < BaseController
       @comment.user_id = current_user.id if current_user.id == session[:user_id]
     end
 
-    set_cookies_for @comment
+    remember_author_info_for @comment
 
     partial = '/articles/comment_failed'
     if recaptcha_ok_for?(@comment) && @comment.save
@@ -49,7 +49,7 @@ class CommentsController < BaseController
       permalink: @article.permalink_url }.stringify_keys
   end
 
-  def set_cookies_for(comment)
+  def remember_author_info_for(comment)
     add_to_cookies(:author, comment.author)
     add_to_cookies(:url, comment.url)
     if comment.email.present?
@@ -57,7 +57,7 @@ class CommentsController < BaseController
     end
   end
 
-  def get_article
+  def set_article
     @article = Article.find(params[:article_id])
   end
 
