@@ -5,7 +5,7 @@ xm.item do
     xm.title item.title
   end
   content_html = fetch_html_content_for_feeds(item, this_blog)
-  xm.description content_html + item.get_rss_description
+  xm.description content_html + item.rss_description
   xm.pubDate item.published_at.rfc822
   xm.guid "urn:uuid:#{item.guid}", 'isPermaLink' => 'false'
   xm.dc :creator, item.author_name

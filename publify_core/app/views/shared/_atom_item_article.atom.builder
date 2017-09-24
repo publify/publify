@@ -27,5 +27,5 @@ feed.entry item, id: "urn:uuid:#{item.guid}", published: item.published_at, url:
     end
   end
   content_html = fetch_html_content_for_feeds(item, this_blog)
-  entry.content content_html + item.get_rss_description, 'type' => 'html'
+  entry.content content_html + item.rss_description, 'type' => 'html'
 end

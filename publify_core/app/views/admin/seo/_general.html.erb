@@ -33,7 +33,7 @@
         </label>
       </div>
       <small class='help-block'><%= t('.this_will_display') %></small>
-      <%= Article.first.get_rss_description if Article.first %>
+      <%= Article.first.rss_description if Article.first %>
     </div>
   </div>
   <div class='form-group'>

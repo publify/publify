@@ -113,7 +113,7 @@ class Content < ApplicationRecord
     self[:whiteboard] ||= {}
   end
 
-  def get_rss_description
+  def rss_description
     return '' unless blog.rss_description
 
     rss_desc = blog.rss_description_text
