@@ -2,9 +2,7 @@ require 'base64'
 
 class Admin::PagesController < Admin::BaseController
   before_action :set_macro, only: [:new, :edit]
-  before_action :set_page, only: [:show, :edit, :update, :destroy]
-
-  layout :get_layout
+  before_action :set_page, only: [:edit, :update, :destroy]
 
   def index
     @search = params[:search] ? params[:search] : {}
@@ -16,10 +14,12 @@ class Admin::PagesController < Admin::BaseController
     @page.text_filter ||= default_textfilter
     @page.user_id = current_user.id
     @page.state = 'published'
+    render layout: 'editor'
   end
 
   def edit
     @page.text_filter ||= default_textfilter
+    render layout: 'editor'
   end
 
   def create
@@ -31,7 +31,7 @@ class Admin::PagesController < Admin::BaseController
     if @page.save
       redirect_to admin_pages_url, notice: I18n.t('admin.pages.new.success')
     else
-      render :new
+      render :new, layout: 'editor'
     end
   end
 
@@ -56,17 +56,6 @@ class Admin::PagesController < Admin::BaseController
 
   def set_macro
     @macros = TextFilterPlugin.macro_filters
-  end
-
-  def get_layout
-    case action_name
-    when 'new', 'edit', 'create'
-      'editor'
-    when 'show'
-      nil
-    else
-      'administration'
-    end
   end
 
   # Use callbacks to share common setup or constraints between actions.

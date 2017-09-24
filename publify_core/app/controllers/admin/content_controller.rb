@@ -3,8 +3,6 @@ require 'base64'
 module Admin; end
 
 class Admin::ContentController < Admin::BaseController
-  layout :get_layout
-
   def index
     @search = params[:search] ? params[:search] : {}
     @articles = this_blog.articles.search_with(@search).page(params[:page]).per(this_blog.admin_display_elements)
@@ -21,6 +19,7 @@ class Admin::ContentController < Admin::BaseController
   def new
     @article = Article::Factory.new(this_blog, current_user).default
     load_resources
+    render layout: 'editor'
   end
 
   def edit
@@ -29,6 +28,7 @@ class Admin::ContentController < Admin::BaseController
     @article.text_filter ||= current_user.default_text_filter
     @article.keywords = Tag.collection_to_string @article.tags
     load_resources
+    render layout: 'editor'
   end
 
   def create
@@ -49,7 +49,7 @@ class Admin::ContentController < Admin::BaseController
     else
       @article.keywords = Tag.collection_to_string @article.tags
       load_resources
-      render 'new'
+      render 'new', layout: 'editor'
     end
   end
 
@@ -176,16 +176,5 @@ class Admin::ContentController < Admin::BaseController
              :published_at,
              :title,
              :keywords)
-  end
-
-  def get_layout
-    case action_name
-    when 'new', 'edit', 'create'
-      'editor'
-    when 'show', 'autosave'
-      nil
-    else
-      'administration'
-    end
   end
 end
