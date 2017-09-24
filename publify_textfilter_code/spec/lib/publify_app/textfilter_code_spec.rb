@@ -49,7 +49,7 @@ end
     end
 
     it 'test_code_plus_markup_chain' do
-      text = <<-EOF.strip_heredoc
+      text = <<-MARKUP.strip_heredoc
         *header text here*
 
         <publify:code lang="ruby">
@@ -62,9 +62,9 @@ end
 
         _footer text here_
 
-      EOF
+      MARKUP
 
-      expects_markdown = <<-EOF.strip_heredoc
+      expects_markdown = <<-HTML.strip_heredoc
         <p><em>header text here</em></p>
 
         <div class=\"CodeRay\"><pre><span class=\"CodeRay\"><span class=\"keyword\">class</span> <span class=\"class\">test</span>
@@ -75,9 +75,9 @@ end
 
 
         <p><em>footer text here</em></p>
-      EOF
+      HTML
 
-      expects_textile = <<-EOF.strip_heredoc
+      expects_textile = <<-HTML.strip_heredoc
         <p><strong>header text here</strong></p>
         <div class=\"CodeRay\"><pre><span class=\"CodeRay\"><span class=\"keyword\">class</span> <span class=\"class\">test</span>
           <span class=\"keyword\">def</span> <span class=\"function\">method</span>
@@ -85,7 +85,7 @@ end
           <span class=\"keyword\">end</span>
         <span class=\"keyword\">end</span></span></pre></div>
         <p><em>footer text here</em></p>
-      EOF
+      HTML
 
       assert_equal expects_markdown.strip, filter_text(text, [:macropre, :markdown, :macropost])
       assert_equal expects_textile.strip, filter_text(text, [:macropre, :textile, :macropost])

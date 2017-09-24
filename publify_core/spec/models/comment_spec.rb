@@ -92,11 +92,11 @@ describe Comment, type: :model do
     it 'should reject spam rbl' do
       comment = valid_comment(
         author: 'Spammer',
-        body: <<-EOS,
+        body: <<-BODY,
           This is just some random text.
           &lt;a href="http://chinaaircatering.com"&gt;without any senses.&lt;/a&gt;.
           Please disregard.
-        EOS
+        BODY
         url: 'http://buy-computer.us')
       comment.classify_content
       expect(comment).to be_spammy
