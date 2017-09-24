@@ -24,9 +24,7 @@ class Article < Content
   after_save :keywords_to_tags, :shorten_url
 
   scope :child_of, ->(article_id) { where(parent_id: article_id) }
-  scope :published_since, ->(time) {
-    published.where('published_at > ?', time).order(default_order)
-  }
+  scope :published_since, ->(time) { published.where('published_at > ?', time) }
   scope :withdrawn, -> { where(state: 'withdrawn').order(default_order) }
   scope :pending, -> { where(state: 'publication_pending'). order(default_order) }
 

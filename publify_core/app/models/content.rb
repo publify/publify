@@ -18,11 +18,7 @@ class Content < ApplicationRecord
 
   scope :user_id, ->(user_id) { where('user_id = ?', user_id) }
   scope :published, -> { where(state: 'published'). order(default_order) }
-  scope :published_at, ->(time_params) {
-    published.
-      where(published_at: PublifyTime.delta(*time_params)).
-      order('published_at DESC')
-  }
+  scope :published_at, ->(time_params) { published.where(published_at: PublifyTime.delta(*time_params)) }
   scope :not_published, -> { where.not(state: 'published') }
   scope :drafts, -> { where(state: 'draft').order('created_at DESC') }
   scope :no_draft, -> { where.not(state: 'draft').order('published_at DESC') }
