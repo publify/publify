@@ -37,11 +37,7 @@ You can build a Docker image yourself:
 
 Or directly use our generated container:
 
-    docker run -d -p 3000 -e "SECRET_KEY_BASE=12eab62da0a3f40b2aec9b030734b6dde86055ddc4a0ce90d3e1cb8031944272e0d15177c94916fcc81c1acbc806d65cfbd21172fdabeb7969a67d7a43e20074" publify:9.0.0 bundle exec rails server
-
-As you can see, there's mandatory environment variables:
-
-- SECRET_KEY_BASE: a string to salt your passwords
+    docker run -d -p 3000 -l my_publify_container publify:latest
 
 ## Demo site
 
