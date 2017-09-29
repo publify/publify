@@ -52,4 +52,4 @@ RUN apt-get autoremove -y && apt-get purge -y -q autoconf bison build-essential 
 
 RUN bundle exec rake db:setup && bundle exec rake db:migrate && bundle exec rake db:seed && bundle exec rake assets:precompile
 
-
+ENTRYPOINT ["bundle", "exec", "rails", "s"]

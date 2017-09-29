@@ -16,3 +16,4 @@ gateway.conf
 log/*
 tmp/*
 public/uploads/*
+db/*.sqlite
