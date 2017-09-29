@@ -1,5 +1,9 @@
 FROM ubuntu:latest
 
+LABEL maintainer="thomas@lecavelier.name"
+
+EXPOSE 3000/tcp
+
 RUN export LC_ALL=en_US.UTF-8
 RUN export LANG=en_US.UTF-8
 RUN export LANGUAGE=en_US.UTF-8
@@ -29,7 +33,7 @@ RUN echo 'eval "$(rbenv init -)"' >> $HOME/.profile
 RUN echo 'eval "$(rbenv init -)"' >> $HOME/.bashrc
 
 
-ENV RUBY_VERSION 2.2.5
+ENV RUBY_VERSION 2.4.2
 
 RUN apt-get update -q \
   && apt-get -q -y install autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev \

@@ -17,3 +17,4 @@ log/*
 tmp/*
 public/uploads/*
 db/*.sqlite
+secret*
