@@ -27,7 +27,7 @@ gem 'publify_textfilter_code', path: 'publify_textfilter_code'
 gem 'tzinfo-data'
 
 gem 'execjs'
-gem 'therubyracer', :platforms => :ruby
+gem 'therubyracer'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
