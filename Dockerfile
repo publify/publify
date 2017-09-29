@@ -38,7 +38,7 @@ RUN apt-get update -q \
 RUN gem install --no-ri --no-rdoc bundler
 RUN rbenv rehash
 
-RUN apt install -q -y nodejs npm libssl1.0.0 libssl-dev libreadline-dev zlib1g-dev libxml2 libxml2-dev libsqlite3-dev
+RUN apt install -q -y nodejs npm libssl1.0.0 libssl-dev libreadline-dev zlib1g-dev libxml2 libxml2-dev libsqlite3-dev libmysqlclient-dev libpq-dev
 COPY . /publify
 RUN locale
 
