@@ -3,28 +3,28 @@ da:
   articles:
     comment_counter:
       comments:
-        one: 1 comment
+        one: 1 kommentar
         other: "%{count} kommentarer"
-        zero: no kommentarer
+        zero: Ingen kommentarer
     comment_form:
-      comment: comment
-      email_address: Email address
-      your_website: Your website
+      comment: Kommenter
+      email_address: Email adresse
+      your_website: Din hjemmeside
     meta:
-      published_on_html: Published on %{publish_date_and_time} by %{by}, tags %{tags}
+      published_on_html: Udgivet %{publish_date_and_time} af %{by}, tags %{tags}
     read:
-      add_me_to_twitter: add me to Twitter
-      if_you_liked_this_article_you_can_html: If you liked this article you can %{add_twitter}
+      add_me_to_twitter: Tilføj mig på Twitter
+      if_you_liked_this_article_you_can_html: Hvis du kan lide denne artikel så %{add_twitter}
       trackbacks_for: Trackbacks for
     search:
-      search_results_for: Search results for '%{query}'
+      search_results_for: Søgeresultater for '%{query}'
   comments:
     comment:
       by: af
   layouts:
     default:
-      archives: Archives
-      statuses: Statuses
+      archives: Arkiver
+      statuses: Statuser
   pagination:
-    next: Next
-    previous: Previous
+    next: Næste
+    previous: Forrige
