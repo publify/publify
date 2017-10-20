@@ -176,3 +176,5 @@ Style/SymbolArray:
 # Allow small arrays of words with quotes
 Style/WordArray:
   MinSize: 4
+
+inherit_from: .rubocop_todo.yml
