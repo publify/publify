@@ -6,16 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 10
-# Cop supports --auto-correct.
-# Configuration parameters: Include, TreatCommentsAsGroupSeparators.
-# Include: **/*.gemspec
-Gemspec/OrderedDependencies:
-  Exclude:
-    - 'publify_amazon_sidebar/publify_amazon_sidebar.gemspec'
-    - 'publify_core/publify_core.gemspec'
-    - 'publify_textfilter_code/publify_textfilter_code.gemspec'
-
 # Offense count: 8
 Lint/RescueWithoutErrorClass:
   Exclude:
