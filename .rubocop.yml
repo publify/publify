@@ -1,5 +1,3 @@
-# Default style guide 'https://github.com/bbatsov/ruby-style-guide'.
-
 AllCops:
   Exclude:
   - 'bin/**/*'
