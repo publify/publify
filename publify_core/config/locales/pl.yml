@@ -292,7 +292,7 @@ pl:
         name: Nazwa
         or: lub
         post_types: Typy postów
-        publify_default_post_type: Domyślny rodzaj postu Publify 
+        publify_default_post_type: Domyślny rodzaj postu Publify
         save: Zapisz
         template_name: Nazwa szablonu
     profiles:
@@ -339,7 +339,7 @@ pl:
         do_not_index_tags: Nie indeksuj tagów
         dofollow: Dofollow
         explain: Tutaj możesz dodać dowolny kod, który ma się pojawić w nagłówku strony, np. kod do analizy ruchu na stronie.
-        explain_humans_txt: "Jest to plik TXT, który zawiera informacje o ludziach, którzy współtworyli daną stronę internetową. Więcej informacji: http://humanstxt.org/"
+        explain_humans_txt: 'Jest to plik TXT, który zawiera informacje o ludziach, którzy współtworyli daną stronę internetową. Więcej informacji: http://humanstxt.org/'
         explain_moderate_feedback: Jeżeli to włączysz, być może będziesz chcieć moderować komentarze
         explain_rss_description: 'Możesz używać następujących tagów: %author% (autor), %blog_url% (adres tego bloga), %blog_name% (nazwa tego bloga) and %permalink_url% (link do artykułu, który chcesz chronić)'
         explain_tag_index_html: Zaznaczenie tej opcji spowoduje dodanie <code>noindex, follow</code> do każdej strony tagu, co spowoduje usunięcie z wyników wyszukiwania i uniknięcie duplikacji treści
@@ -352,12 +352,12 @@ pl:
         indexing: Indeksowanie
         meta_description: Opis
         meta_keywords: Słowa kluczowe
-        read_more_about_html: "Czytaj więcej: %{link}"
+        read_more_about_html: 'Czytaj więcej: %{link}'
         robots_txt: Robots.txt
         rss_description_message: Opis RSS
         this_will_display: Opis wyświetli się na dole każdego postu w RSS
         use_canonical_url: Użyj linków kanonicznych
-        use_dofollow_in_comments: "Używaj linków z atrybutem 'dofollow' w komentarzach"
+        use_dofollow_in_comments: Używaj linków z atrybutem 'dofollow' w komentarzach
         use_meta_keywords: Używaj słów kluczowych
         use_rss_description: Używaj opisu RSS
       permalinks:
