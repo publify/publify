@@ -48,8 +48,6 @@ group :development do
   gem 'better_errors', '~> 2.3.0'
   gem 'binding_of_caller', '~> 0.7.2'
 
-  gem 'guard-rspec'
-
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring', '~> 2.0.0'
   gem 'spring-commands-cucumber', '~> 1.0'
