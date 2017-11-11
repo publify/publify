@@ -42,7 +42,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'RedCloth', '~> 4.3.2'
   s.add_dependency 'rubypants', '~> 0.6.0'
   s.add_dependency 'sass-rails', '~> 5.0'
-  s.add_dependency 'twitter', '~> 6.1.0'
+  s.add_dependency 'twitter', '~> 6.2.0'
   s.add_dependency 'uuidtools', '~> 2.1.1'
 
   s.add_development_dependency 'capybara', '~> 2.7'
