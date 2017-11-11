@@ -25,7 +25,7 @@ class Admin::ProfilesController < Admin::BaseController
              'text/plain'
            end
 
-    Resource.create(upload: file, mime: mime, created_at: Time.now)
+    Resource.create(upload: file, mime: mime, created_at: Time.zone.now)
   end
 
   # Use callbacks to share common setup or constraints between actions.

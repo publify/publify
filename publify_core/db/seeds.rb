@@ -32,6 +32,6 @@ TextFilter.
   create_with(description: 'Textile', markup: 'textile', filters: [], params: {}).
   find_or_create_by!(name: 'textile')
 
-unless File.directory?("#{::Rails.root.to_s}/public/files")
-  Dir.mkdir("#{::Rails.root.to_s}/public/files")
+unless File.directory?("#{::Rails.root}/public/files")
+  Dir.mkdir("#{::Rails.root}/public/files")
 end

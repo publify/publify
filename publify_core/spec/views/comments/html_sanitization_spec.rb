@@ -3,14 +3,14 @@ require 'rails_helper'
 shared_examples_for 'CommentSanitization' do
   before do
     @blog = build_stubbed(:blog)
-    @article = build_stubbed(:article, created_at: Time.now, published_at: Time.now, blog: @blog)
+    @article = build_stubbed(:article, created_at: Time.zone.now, published_at: Time.zone.now, blog: @blog)
     allow(Article).to receive(:find).and_return(@article)
     @blog.plugin_avatar = ''
     @blog.lang = 'en_US'
 
     Comment.with_options(body: 'test foo <script>do_evil();</script>',
                          author: 'Bob', article: @article,
-                         created_at: Time.now) do |klass|
+                         created_at: Time.zone.now) do |klass|
       @comment = klass.new(comment_options)
     end
 
@@ -118,7 +118,7 @@ end
 shared_examples_for 'CommentSanitizationWithDofollow' do
   before do
     @blog = create(:blog)
-    @article = create(:article, created_at: Time.now, published_at: Time.now, blog: @blog)
+    @article = create(:article, created_at: Time.zone.now, published_at: Time.zone.now, blog: @blog)
     allow(Article).to receive(:find).and_return(@article)
     @blog.plugin_avatar = ''
     @blog.lang = 'en_US'
@@ -126,7 +126,7 @@ shared_examples_for 'CommentSanitizationWithDofollow' do
 
     Comment.with_options(body: 'test foo <script>do_evil();</script>',
                          author: 'Bob', article: @article,
-                         created_at: Time.now) do |klass|
+                         created_at: Time.zone.now) do |klass|
       @comment = klass.new(comment_options)
     end
 

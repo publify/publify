@@ -1,4 +1,4 @@
-class Tag < ActiveRecord::Base
+class Tag < ApplicationRecord
   belongs_to :blog
   has_and_belongs_to_many :contents, order: 'created_at DESC'
 

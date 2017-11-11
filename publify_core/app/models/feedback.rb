@@ -3,7 +3,7 @@
 require 'aasm'
 require 'akismet'
 
-class Feedback < ActiveRecord::Base
+class Feedback < ApplicationRecord
   self.table_name = 'feedback'
 
   belongs_to :text_filter, optional: true

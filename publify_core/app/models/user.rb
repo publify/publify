@@ -2,7 +2,7 @@ require 'digest/sha1'
 
 # Publify user.
 # TODO: Should belong to a blog
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   ADMIN = 'admin'.freeze
   PUBLISHER = 'publisher'.freeze
   CONTRIBUTOR = 'contributor'.freeze

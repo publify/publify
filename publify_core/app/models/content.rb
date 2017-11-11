@@ -1,7 +1,7 @@
 require 'set'
 require 'uri'
 
-class Content < ActiveRecord::Base
+class Content < ApplicationRecord
   include ContentBase
 
   belongs_to :text_filter, optional: true
@@ -18,11 +18,7 @@ class Content < ActiveRecord::Base
 
   scope :user_id, ->(user_id) { where('user_id = ?', user_id) }
   scope :published, -> { where(state: 'published'). order(default_order) }
-  scope :published_at, ->(time_params) {
-    published.
-    where(published_at: PublifyTime.delta(*time_params)).
-    order('published_at DESC')
-  }
+  scope :published_at, ->(time_params) { published.where(published_at: PublifyTime.delta(*time_params)) }
   scope :not_published, -> { where.not(state: 'published') }
   scope :drafts, -> { where(state: 'draft').order('created_at DESC') }
   scope :no_draft, -> { where.not(state: 'draft').order('published_at DESC') }
@@ -117,7 +113,7 @@ class Content < ActiveRecord::Base
     self[:whiteboard] ||= {}
   end
 
-  def get_rss_description
+  def rss_description
     return '' unless blog.rss_description
 
     rss_desc = blog.rss_description_text

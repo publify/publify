@@ -5,7 +5,7 @@
 # Once upon a time, there were plans to make publify handle multiple blogs,
 # but it never happened and publify is now firmly single-blog.
 #
-class Blog < ActiveRecord::Base
+class Blog < ApplicationRecord
   include ConfigManager
   include Rails.application.routes.url_helpers
 
@@ -73,16 +73,16 @@ class Blog < ActiveRecord::Base
   setting :meta_keywords, :string, ''
   setting :google_analytics, :string, ''
   setting :rss_description, :boolean, false
-  setting :rss_description_text, :string, <<EOS.strip_heredoc
+  setting :rss_description_text, :string, <<-HTML.strip_heredoc
     <hr />
     <p><small>Original article written by %author% and published on <a href='%blog_url%'>%blog_name%</a>
     | <a href='%permalink_url%'>direct link to this article</a>
     | If you are reading this article anywhere other than on <a href='%blog_url%'>%blog_name%</a>,
       it has been illegally reproduced and without proper authorization.</small></p>
-EOS
+  HTML
   setting :permalink_format, :string, '/%year%/%month%/%day%/%title%'
   setting :robots, :string, 'User-agent: *\nAllow: /\nDisallow: /admin\n'
-  setting :humans, :string, <<EOS.strip_heredoc
+  setting :humans, :string, <<-TEXT.strip_heredoc
     /* TEAM */
     Your title: Your name.
     Site: email, link to a contact form, etc.
@@ -90,7 +90,7 @@ EOS
 
     /* SITE */
     Software: Publify [http://publify.co] #{PublifyCore::VERSION}
-EOS
+  TEXT
   setting :index_categories, :boolean, true # deprecated but still needed for backward compatibility
   setting :unindex_categories, :boolean, false
   setting :index_tags, :boolean, true # deprecated but still needed for backward compatibility
@@ -258,7 +258,7 @@ EOS
 
   def split_base_url
     unless @split_base_url
-      unless base_url =~ /(https?):\/\/([^\/]*)(.*)/
+      unless base_url =~ %r{(https?)://([^/]*)(.*)}
         raise "Invalid base_url: #{base_url}"
       end
       @split_base_url = { protocol: Regexp.last_match[1], host_with_port: Regexp.last_match[2], root_path: Regexp.last_match[3].gsub(%r{/$}, '') }

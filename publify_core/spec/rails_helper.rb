@@ -130,7 +130,7 @@ def assert_rss20_feed(parsed_feed, count)
   expect(parsed_feed.entries.count).to eq count
 end
 
-def stub_full_article(time = Time.now, blog: Blog.first)
+def stub_full_article(time = Time.zone.now, blog: Blog.first)
   author = FactoryGirl.build_stubbed(:user, name: 'User Name')
   text_filter = FactoryGirl.build(:textile)
 

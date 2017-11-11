@@ -16,12 +16,12 @@ Gem::Specification.new do |s|
 
   s.files       = File.open('Manifest.txt').readlines.map(&:chomp)
 
-  s.add_dependency 'rails', '~> 5.1.2'
-  s.add_dependency 'publify_core', '~> 9.0.0'
   s.add_dependency 'coderay', '~> 1.1.0'
   s.add_dependency 'htmlentities', '~> 4.3'
+  s.add_dependency 'publify_core', '~> 9.0.0'
+  s.add_dependency 'rails', '~> 5.1.2'
 
-  s.add_development_dependency 'sqlite3'
   s.add_development_dependency 'rspec-rails', '~> 3.6.0'
   s.add_development_dependency 'simplecov', '~> 0.14.0'
+  s.add_development_dependency 'sqlite3'
 end

@@ -3,8 +3,6 @@ require 'base64'
 module Admin; end
 
 class Admin::ContentController < Admin::BaseController
-  layout :get_layout
-
   def index
     @search = params[:search] ? params[:search] : {}
     @articles = this_blog.articles.search_with(@search).page(params[:page]).per(this_blog.admin_display_elements)
@@ -21,6 +19,7 @@ class Admin::ContentController < Admin::BaseController
   def new
     @article = Article::Factory.new(this_blog, current_user).default
     load_resources
+    render layout: 'editor'
   end
 
   def edit
@@ -29,6 +28,7 @@ class Admin::ContentController < Admin::BaseController
     @article.text_filter ||= current_user.default_text_filter
     @article.keywords = Tag.collection_to_string @article.tags
     load_resources
+    render layout: 'editor'
   end
 
   def create
@@ -49,7 +49,7 @@ class Admin::ContentController < Admin::BaseController
     else
       @article.keywords = Tag.collection_to_string @article.tags
       load_resources
-      render 'new'
+      render 'new', layout: 'editor'
     end
   end
 
@@ -59,7 +59,7 @@ class Admin::ContentController < Admin::BaseController
     @article = Article.find(id)
 
     if params[:article][:draft]
-      get_fresh_or_existing_draft_for_article
+      fetch_fresh_or_existing_draft_for_article
     else
       @article = Article.find(@article.parent_id) unless @article.parent_id.nil?
     end
@@ -100,7 +100,7 @@ class Admin::ContentController < Admin::BaseController
     article_factory = Article::Factory.new(this_blog, current_user)
     @article = article_factory.get_or_build_from(id)
 
-    get_fresh_or_existing_draft_for_article
+    fetch_fresh_or_existing_draft_for_article
 
     @article.attributes = params[:article].permit!
 
@@ -116,7 +116,7 @@ class Admin::ContentController < Admin::BaseController
 
     if @article.save
       flash[:success] = I18n.t('admin.content.autosave.success')
-      @must_update_calendar = (params[:article][:published_at] and params[:article][:published_at].to_time.to_i < Time.now.to_time.to_i and @article.parent_id.nil?)
+      @must_update_calendar = (params[:article][:published_at] and params[:article][:published_at].to_time.to_i < Time.zone.now.to_time.to_i and @article.parent_id.nil?)
       respond_to do |format|
         format.js
       end
@@ -125,7 +125,7 @@ class Admin::ContentController < Admin::BaseController
 
   protected
 
-  def get_fresh_or_existing_draft_for_article
+  def fetch_fresh_or_existing_draft_for_article
     return unless @article.published? && @article.id
 
     parent_id = @article.id
@@ -176,16 +176,5 @@ class Admin::ContentController < Admin::BaseController
              :published_at,
              :title,
              :keywords)
-  end
-
-  def get_layout
-    case action_name
-    when 'new', 'edit', 'create'
-      'editor'
-    when 'show', 'autosave'
-      nil
-    else
-      'administration'
-    end
   end
 end

@@ -1,4 +1,4 @@
-class Redirect < ActiveRecord::Base
+class Redirect < ApplicationRecord
   belongs_to :contents, optional: true, touch: true
   belongs_to :blog
 
@@ -8,7 +8,8 @@ class Redirect < ActiveRecord::Base
 
   def full_to_path
     path = to_path
-    return path if path =~ /^(https?):\/\/([^\/]*)(.*)/
+    # FIXME: Unify HTTP URI matchers
+    return path if path =~ %r{^(https?)://([^/]*)(.*)}
     url_root = blog.root_path
     path = File.join(url_root, path) unless url_root.nil? || path[0, url_root.length] == url_root
     path

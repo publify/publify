@@ -1,5 +1,3 @@
-# coding: utf-8
-
 require 'rails_helper'
 
 describe Content, type: :model do
@@ -88,7 +86,7 @@ describe Content, type: :model do
         context 'with an article published_at' do
           let(:params) { { published_at: '2012-02' } }
           let!(:article) { create(:article) }
-          let!(:match_article) { create(:article, published_at: DateTime.new(2012, 2, 13)) }
+          let!(:match_article) { create(:article, published_at: DateTime.new(2012, 2, 13).in_time_zone) }
           it { expect(subject).to eq([match_article]) }
         end
 
@@ -139,8 +137,8 @@ describe Content, type: :model do
         let(:comment) { build(:comment, body: 'Comment body _italic_ *bold*') }
 
         it 'converts the comment markup to HTML' do
-          expect(comment.generate_html(:body)).to match(/\<em\>italic\<\/em\>/)
-          expect(comment.generate_html(:body)).to match(/\<strong\>bold\<\/strong\>/)
+          expect(comment.generate_html(:body)).to match(%r{<em>italic</em>})
+          expect(comment.generate_html(:body)).to match(%r{<strong>bold</strong>})
         end
       end
     end

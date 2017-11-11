@@ -26,8 +26,7 @@ class Page < Content
       action: 'view_page',
       name: name,
       anchor: anchor,
-      only_path: only_path
-    )
+      only_path: only_path)
   end
 
   def publish!

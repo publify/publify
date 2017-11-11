@@ -1,5 +1,3 @@
-# coding: utf-8
-
 require 'rails_helper'
 
 describe Admin::PagesController, type: :controller do
@@ -76,7 +74,7 @@ describe Admin::PagesController, type: :controller do
       it 'should create a page published in the future without a redirect' do
         # TODO: published_at parameter is currently ignored
         skip
-        post :create, params: { 'page' => base_page(published_at: (Time.now + 1.hour).to_s) }
+        post :create, params: { 'page' => base_page(published_at: 1.hour.from_now.to_s) }
         expect(assigns(:page).redirect).to be_nil
       end
     end

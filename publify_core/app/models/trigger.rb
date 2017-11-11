@@ -1,4 +1,4 @@
-class Trigger < ActiveRecord::Base
+class Trigger < ApplicationRecord
   belongs_to :pending_item, polymorphic: true
 
   class << self
@@ -9,7 +9,7 @@ class Trigger < ActiveRecord::Base
     end
 
     def fire
-      where('due_at <= ?', Time.now).destroy_all
+      where('due_at <= ?', Time.zone.now).destroy_all
       true
     end
 

@@ -1,5 +1,3 @@
-# coding: utf-8
-
 require 'rails_helper'
 require 'timecop'
 
@@ -243,7 +241,7 @@ describe Article, type: :model do
     # TODO: Needs a fix for Rails ticket #5105: has_many: Dependent deleting does not work with STI
     skip
     art = blog.articles.create!(title: 'title', body: 'body',
-                                published_at: Time.now + 1.hour)
+                                published_at: 1.hour.from_now)
     assert_equal 1, Trigger.count
     art.destroy
     assert_equal 0, Trigger.count
@@ -310,14 +308,12 @@ describe Article, type: :model do
     before :each do
       @article = blog.articles.build(
         body: 'basic text',
-        extended: 'extended text to explain more and more how Publify is wonderful'
-      )
+        extended: 'extended text to explain more and more how Publify is wonderful')
     end
 
     it 'should combine body and extended content' do
       expect(@article.body_and_extended).to eq(
-        "#{@article.body}\n<!--more-->\n#{@article.extended}"
-      )
+        "#{@article.body}\n<!--more-->\n#{@article.extended}")
     end
 
     it 'should not insert <!--more--> tags if extended is empty' do
@@ -690,7 +686,7 @@ describe Article, type: :model do
 
     context 'with two articles with differents states and no params' do
       let(:params) { nil }
-      let(:now) { DateTime.new(2011, 3, 12) }
+      let(:now) { DateTime.new(2011, 3, 12).in_time_zone }
       let!(:article) { create(:article, state: 'published', created_at: now) }
       let!(:last_draft_article) { create(:article, state: 'draft', created_at: now + 2.days) }
       let!(:draft_article) { create(:article, state: 'draft', created_at: now + 20.days) }
@@ -766,7 +762,7 @@ describe Article, type: :model do
   end
 
   describe 'published_since' do
-    let(:time) { DateTime.new(2010, 11, 3, 23, 34) }
+    let(:time) { DateTime.new(2010, 11, 3, 23, 34).in_time_zone }
     it 'empty when no articles' do
       expect(Article.published_since(time)).to be_empty
     end

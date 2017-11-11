@@ -1,7 +1,7 @@
 require 'sidebar_field'
 
 # This class cannot be autoloaded since other sidebar classes depend on it.
-class Sidebar < ActiveRecord::Base
+class Sidebar < ApplicationRecord
   serialize :config, Hash
 
   belongs_to :blog

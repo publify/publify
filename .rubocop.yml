@@ -1,5 +1,3 @@
-# Default style guide 'https://github.com/bbatsov/ruby-style-guide'.
-
 AllCops:
   Exclude:
   - 'bin/**/*'
@@ -11,6 +9,8 @@ AllCops:
   - 'publify_amazon_sidebar/spec/dummy/**/*'
   - 'publify_textfilter_code/bin/*'
   - 'publify_textfilter_code/spec/dummy/**/*'
+  - 'db/converters/*.rb'
+  - 'db/scripts/fix_permalinks.rb'
   - 'db/schema.rb'
   TargetRubyVersion: '2.2'
 
@@ -50,13 +50,55 @@ Lint/AmbiguousBlockAssociation:
 Lint/AssignmentInCondition:
   AllowSafeAssignment: true
 
-# Spec describe blocks can be any length
+# TODO: Lower Max and fix offenses
+Metrics/AbcSize:
+  Max: 155
+
+# Suppress BlockLength for some files:
+# - Spec describe blocks can be any length
+# - Routes blocks can be any length
+# - Gem specification blocks can be any length
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
+    - '**/*.gemspec'
+    - 'publify_core/config/routes.rb'
     - 'publify_core/spec/**/*'
     - 'publify_amazon_sidebar/spec/**/*'
     - 'publify_textfilter_code/spec/**/*'
+
+# TODO: Lower Max and fix offenses
+Metrics/ClassLength:
+  Max: 225
+
+# TODO: Lower Max and fix offenses
+Metrics/CyclomaticComplexity:
+  Max: 17
+
+# TODO: Lower Max and fix offenses
+Metrics/LineLength:
+  Max: 274
+
+# Initial schema has a very large change method
+# TODO: Lower Max and fix offenses
+Metrics/MethodLength:
+  Exclude:
+    - 'publify_core/db/migrate/113_initial_schema.rb'
+    - 'db/migrate/113_initial_schema.publify_core_engine.rb'
+  Max: 45
+
+# TODO: Lower Max and fix offenses
+Metrics/ModuleLength:
+  Max: 211
+
+# Offense count: 1
+# Configuration parameters: CountKeywordArgs.
+Metrics/ParameterLists:
+  Max: 6
+
+# Offense count: 8
+Metrics/PerceivedComplexity:
+  Max: 17
 
 # Do not require long paths to be split by comma's.
 Rails/FilePath:
@@ -66,9 +108,22 @@ Rails/FilePath:
 Style/Documentation:
   Enabled: false
 
-# Provides more information, while still being displayable in modern wide-screen.
+# TODO: Lower Max and fix offenses
+# Target is around 100
 Metrics/LineLength:
-  Max: 100
+  Max: 274
+
+# Migrations should not use ApplicationRecord
+Rails/ApplicationRecord:
+  Exclude:
+    - 'db/migrate/*'
+    - 'publify_core/db/migrate/*'
+
+# Migrations should not do validations in general?
+Rails/SkipsModelValidations:
+  Exclude:
+    - 'db/migrate/*'
+    - 'publify_core/db/migrate/*'
 
 # Allow the use of 'and' 'or' in control structures.
 Style/AndOr:
@@ -121,3 +176,5 @@ Style/SymbolArray:
 # Allow small arrays of words with quotes
 Style/WordArray:
   MinSize: 4
+
+inherit_from: .rubocop_todo.yml

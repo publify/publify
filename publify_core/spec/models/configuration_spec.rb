@@ -112,13 +112,13 @@ describe 'Given a new blog', type: :model do
 
   it 'RSS description should be disable but not empty' do
     expect(blog).not_to be_rss_description
-    expect(blog.rss_description_text).to eq <<EOS.strip_heredoc
+    expect(blog.rss_description_text).to eq <<-HTML.strip_heredoc
       <hr />
       <p><small>Original article written by %author% and published on <a href='%blog_url%'>%blog_name%</a>
       | <a href='%permalink_url%'>direct link to this article</a>
       | If you are reading this article anywhere other than on <a href='%blog_url%'>%blog_name%</a>,
         it has been illegally reproduced and without proper authorization.</small></p>
-EOS
+    HTML
   end
 
   it 'Permalink format should be /year/month/day/title' do

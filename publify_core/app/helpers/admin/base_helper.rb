@@ -64,8 +64,7 @@ module Admin::BaseHelper
       content_tag(:span, '', class: 'glyphicon glyphicon-trash'),
       { action: 'destroy', id: item.id },
       { class: 'btn btn-danger btn-xs btn-action', method: :delete,
-        data: { confirm: confirm_text } }
-    )
+        data: { confirm: confirm_text } })
   end
 
   def button_to_short_url(item)

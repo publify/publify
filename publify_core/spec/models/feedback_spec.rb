@@ -54,7 +54,7 @@ describe Feedback, type: :model do
     end
 
     context 'order by created at' do
-      let(:now) { DateTime.new(2009, 12, 6, 14, 56) }
+      let(:now) { DateTime.new(2009, 12, 6, 14, 56).in_time_zone }
 
       describe '#paginated' do
         let!(:a_comment) { create(:comment, created_at: now) }

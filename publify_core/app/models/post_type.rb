@@ -1,6 +1,4 @@
-# coding: utf-8
-
-class PostType < ActiveRecord::Base
+class PostType < ApplicationRecord
   validates :name, uniqueness: true
   validates :name, presence: true
   validate :name_is_not_read
