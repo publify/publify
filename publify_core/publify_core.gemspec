@@ -26,7 +26,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'cancancan', '~> 2.0'
   s.add_dependency 'carrierwave', '~> 1.1'
   s.add_dependency 'devise', '~> 4.3.0'
-  s.add_dependency 'devise-i18n', '~> 1.2.0'
+  s.add_dependency 'devise-i18n', '~> 1.2'
   s.add_dependency 'dynamic_form', '~> 1.1.4'
   s.add_dependency 'feedjira', '~> 2.1.0'
   s.add_dependency 'fog-aws', '~> 1.4.0'
