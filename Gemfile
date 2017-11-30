@@ -45,7 +45,7 @@ group :development, :test do
 end
 
 group :development do
-  gem 'better_errors', '~> 2.3.0'
+  gem 'better_errors', '~> 2.4.0'
   gem 'binding_of_caller', '~> 0.7.2'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
@@ -67,9 +67,8 @@ end
 group :test do
   gem 'launchy', '~> 2.4'
   gem 'rails-controller-testing', '~> 1.0.1'
-  gem 'sqlite3'
   gem 'timecop', '~> 0.9.0'
-  gem 'webmock', '~> 3.0.1'
+  gem 'webmock', '~> 3.1.0'
 end
 
 # Install gems from each theme
