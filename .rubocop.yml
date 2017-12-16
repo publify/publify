@@ -42,6 +42,10 @@ Layout/MultilineMethodCallIndentation:
 Layout/MultilineOperationIndentation:
   EnforcedStyle: indented
 
+# Uniform block layout
+Layout/SpaceBeforeBlockBraces:
+  EnforcedStyleForEmptyBraces: space
+
 # Assume the programmer knows how bracketed block syntax works
 Lint/AmbiguousBlockAssociation:
   Enabled: false
@@ -145,6 +149,11 @@ Style/EachWithObject:
 
 # Allows format strings with: format, sprintf or percent.
 Style/FormatString:
+  Enabled: false
+
+# This cop has too many false positives
+# TODO: Re-enable once fixed
+Style/FormatStringToken:
   Enabled: false
 
 # TODO: Re-enable?
