@@ -34,9 +34,7 @@ class ResourceUploader < CarrierWave::Uploader::Base
   def check_image_content_type!(new_file)
     if image?(new_file)
       magic_type = mime_magic_content_type(new_file)
-      if magic_type != new_file.content_type
-        raise CarrierWave::IntegrityError, 'has MIME type mismatch'
-      end
+      raise CarrierWave::IntegrityError, 'has MIME type mismatch' if magic_type != new_file.content_type
     end
   end
 

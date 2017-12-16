@@ -30,8 +30,6 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
 
   config.after :each, type: :controller do
-    if response.body =~ /(&lt;[a-z]+)/
-      raise "Double escaped HTML in text (#{Regexp.last_match(1)})"
-    end
+    raise "Double escaped HTML in text (#{Regexp.last_match(1)})" if response.body =~ /(&lt;[a-z]+)/
   end
 end

@@ -34,13 +34,9 @@ class TitleBuilder
     s = s.gsub('%author%', item.name) if s =~ /%author%/ && item.respond_to?(:name)
     s = s.gsub('%body%', item.body) if s =~ /%body%/ && item.respond_to?(:body)
 
-    if s =~ /%categories%/ && item.respond_to?(:categories)
-      s = s.gsub('%categories%', item.categories.map(&:name).join(', '))
-    end
+    s = s.gsub('%categories%', item.categories.map(&:name).join(', ')) if s =~ /%categories%/ && item.respond_to?(:categories)
 
-    if s =~ /%tags%/ && item.respond_to?(:tags)
-      s = s.gsub('%tags%', item.tags.map(&:display_name).join(', '))
-    end
+    s = s.gsub('%tags%', item.tags.map(&:display_name).join(', ')) if s =~ /%tags%/ && item.respond_to?(:tags)
 
     s
   end

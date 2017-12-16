@@ -85,9 +85,7 @@ def with_each_theme
   Theme.find_all.each do |theme|
     theme_dir = theme.path
     view_path = "#{theme_dir}/views"
-    if File.exist?("#{theme_dir}/helpers/theme_helper.rb")
-      require "#{theme_dir}/helpers/theme_helper.rb"
-    end
+    require "#{theme_dir}/helpers/theme_helper.rb" if File.exist?("#{theme_dir}/helpers/theme_helper.rb")
     yield theme.name, view_path
   end
 end
