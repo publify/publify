@@ -89,17 +89,11 @@ class Content < ApplicationRecord
   def self.search_with(params)
     params ||= {}
     scoped = unscoped
-    if params[:searchstring].present?
-      scoped = scoped.searchstring(params[:searchstring])
-    end
+    scoped = scoped.searchstring(params[:searchstring]) if params[:searchstring].present?
 
-    if params[:published_at].present? && /(\d\d\d\d)-(\d\d)/ =~ params[:published_at]
-      scoped = scoped.published_at_like(params[:published_at])
-    end
+    scoped = scoped.published_at_like(params[:published_at]) if params[:published_at].present? && /(\d\d\d\d)-(\d\d)/ =~ params[:published_at]
 
-    if params[:user_id].present? && params[:user_id].to_i > 0
-      scoped = scoped.user_id(params[:user_id])
-    end
+    scoped = scoped.user_id(params[:user_id]) if params[:user_id].present? && params[:user_id].to_i > 0
 
     if params[:published].present?
       scoped = scoped.published if params[:published].to_s == '1'

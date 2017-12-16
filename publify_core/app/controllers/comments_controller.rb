@@ -13,9 +13,7 @@ class CommentsController < BaseController
     remember_author_info_for @comment
 
     partial = '/articles/comment_failed'
-    if recaptcha_ok_for?(@comment) && @comment.save
-      partial = '/articles/comment'
-    end
+    partial = '/articles/comment' if recaptcha_ok_for?(@comment) && @comment.save
     respond_to do |format|
       format.js { render partial }
       format.html { redirect_to URI.parse(@article.permalink_url).path }
@@ -52,9 +50,7 @@ class CommentsController < BaseController
   def remember_author_info_for(comment)
     add_to_cookies(:author, comment.author)
     add_to_cookies(:url, comment.url)
-    if comment.email.present?
-      add_to_cookies(:gravatar_id, Digest::MD5.hexdigest(comment.email.strip))
-    end
+    add_to_cookies(:gravatar_id, Digest::MD5.hexdigest(comment.email.strip)) if comment.email.present?
   end
 
   def set_article

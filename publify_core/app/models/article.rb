@@ -99,9 +99,7 @@ class Article < Content
   def self.search_with(params)
     params ||= {}
     scoped = super(params)
-    if %w(no_draft drafts published withdrawn pending).include?(params[:state])
-      scoped = scoped.send(params[:state])
-    end
+    scoped = scoped.send(params[:state]) if %w(no_draft drafts published withdrawn pending).include?(params[:state])
 
     scoped.order('created_at DESC')
   end
@@ -202,9 +200,7 @@ class Article < Content
   def html_urls
     urls = []
     html.gsub(/<a\s+[^>]*>/) do |tag|
-      if tag =~ /\bhref=(["']?)([^ >"]+)\1/
-        urls.push(Regexp.last_match[2].strip)
-      end
+      urls.push(Regexp.last_match[2].strip) if tag =~ /\bhref=(["']?)([^ >"]+)\1/
     end
     urls.uniq
   end

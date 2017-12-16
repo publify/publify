@@ -179,9 +179,7 @@ class Blog < ApplicationRecord
                                              host: host_with_port,
                                              script_name: root_path)
         cache_key = merged_opts.values.prepend('blog-urlfor-withbaseurl').join('-')
-        unless Rails.cache.exist?(cache_key)
-          Rails.cache.write(cache_key, super(merged_opts))
-        end
+        Rails.cache.write(cache_key, super(merged_opts)) unless Rails.cache.exist?(cache_key)
         Rails.cache.read(cache_key)
       else
         raise "Invalid URL in url_for: #{options.inspect}"
@@ -219,13 +217,9 @@ class Blog < ApplicationRecord
   end
 
   def permalink_has_identifier
-    unless permalink_format =~ /(%title%)/
-      errors.add(:base, I18n.t('errors.permalink_need_a_title'))
-    end
+    errors.add(:base, I18n.t('errors.permalink_need_a_title')) unless permalink_format =~ /(%title%)/
 
-    if permalink_format =~ /\.(atom|rss)$/
-      errors.add(:permalink_format, I18n.t('errors.cant_end_with_rss_or_atom'))
-    end
+    errors.add(:permalink_format, I18n.t('errors.cant_end_with_rss_or_atom')) if permalink_format =~ /\.(atom|rss)$/
   end
 
   def root_path
@@ -258,9 +252,7 @@ class Blog < ApplicationRecord
 
   def split_base_url
     unless @split_base_url
-      unless base_url =~ %r{(https?)://([^/]*)(.*)}
-        raise "Invalid base_url: #{base_url}"
-      end
+      raise "Invalid base_url: #{base_url}" unless base_url =~ %r{(https?)://([^/]*)(.*)}
       @split_base_url = { protocol: Regexp.last_match[1], host_with_port: Regexp.last_match[2], root_path: Regexp.last_match[3].gsub(%r{/$}, '') }
     end
     @split_base_url
