@@ -7,7 +7,7 @@
 # versions of RuboCop, may require this file to be generated again.
 
 # Offense count: 8
-Lint/RescueWithoutErrorClass:
+Style/RescueStandardError:
   Exclude:
     - 'db/migrate/20150808052637_add_blog_ids.publify_core_engine.rb'
     - 'lib/publify_textfilter_flickr.rb'
