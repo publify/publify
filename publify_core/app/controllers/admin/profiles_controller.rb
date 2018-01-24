@@ -37,7 +37,7 @@ class Admin::ProfilesController < Admin::BaseController
   def user_params
     params.require(:user).permit(:login, :password, :password_confirmation,
                                  :email, :firstname, :lastname, :nickname,
-                                 :display_name, :notify_via_email,
+                                 :name, :notify_via_email,
                                  :notify_on_new_articles, :notify_on_comments,
                                  :text_filter_id, :state,
                                  :twitter_account, :twitter_oauth_token,
