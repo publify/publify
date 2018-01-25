@@ -68,7 +68,7 @@ group :test do
   gem 'launchy', '~> 2.4'
   gem 'rails-controller-testing', '~> 1.0.1'
   gem 'timecop', '~> 0.9.0'
-  gem 'webmock', '~> 3.1.0'
+  gem 'webmock', '~> 3.3.0'
 end
 
 # Install gems from each theme
