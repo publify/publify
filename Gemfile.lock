@@ -107,7 +107,7 @@ GEM
       rack (>= 0.9.0)
     bindex (0.5.0)
     binding.repl (3.0.0)
-    binding_of_caller (0.7.3)
+    binding_of_caller (0.8.0)
       debug_inspector (>= 0.0.1)
     bluecloth (2.2.0)
     bootstrap-sass (3.3.7)
@@ -459,7 +459,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord-session_store (~> 1.1.0)
   better_errors (~> 2.4.0)
-  binding_of_caller (~> 0.7.2)
+  binding_of_caller (~> 0.8.0)
   byebug (~> 9.0)
   capybara (~> 2.7)
   factory_girl (~> 4.5)
