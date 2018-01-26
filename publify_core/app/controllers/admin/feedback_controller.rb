@@ -83,6 +83,7 @@ class Admin::FeedbackController < Admin::BaseController
     template = @feedback.change_state!
 
     respond_to do |format|
+      # TODO: Make this special case not necessary
       if params[:context] != 'listing'
         @comments = Comment.last_published
         page.replace_html('commentList', partial: 'admin/dashboard/comment')

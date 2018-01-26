@@ -68,6 +68,7 @@ class Feedback < ApplicationRecord
     end
   end
 
+  # FIXME: Inline this method
   def self.paginated(page, per_page)
     page(page).per(per_page)
   end
