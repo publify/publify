@@ -8,7 +8,7 @@ if ENV['HEROKU']
   gem 'thin' # Change this to another web server if you want (ie. unicorn, passenger, puma...)
 else
   gem 'mysql2', '~> 0.4.4'
-  gem 'pg'
+  gem 'pg', '~> 0.21.0'
   gem 'sqlite3'
 end
 

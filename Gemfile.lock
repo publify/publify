@@ -301,7 +301,7 @@ GEM
     paint (2.0.1)
     parser (2.4.0.2)
       ast (~> 2.3)
-    pg (1.0.0)
+    pg (0.21.0)
     public_suffix (3.0.1)
     puma (3.11.2)
     rack (2.0.3)
@@ -469,7 +469,7 @@ DEPENDENCIES
   launchy (~> 2.4)
   mysql2 (~> 0.4.4)
   non-stupid-digest-assets (~> 1.0)
-  pg
+  pg (~> 0.21.0)
   publify_amazon_sidebar!
   publify_core!
   publify_textfilter_code!
