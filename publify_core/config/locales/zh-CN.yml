@@ -264,12 +264,10 @@ zh-CN:
       form:
         article_filter: Article filter
         cancel: 取消
-        offline: offline
         online: 上線
         permanent_link: Permanent link
         publish: 发布
         publish_settings: 发布设定
-        published: published
         save: 保存
         status: 状态
         title: 标题

@@ -264,12 +264,10 @@ ro:
       form:
         article_filter: Filtru pentru articole
         cancel: Anulare
-        offline: offline
         online: Online
         permanent_link: Permanent link
         publish: Publică
         publish_settings: Publish settings
-        published: publicat
         save: Salvează
         status: Status
         title: Titlu

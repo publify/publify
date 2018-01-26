@@ -264,12 +264,10 @@ ja:
       form:
         article_filter: 記事フィルター
         cancel: キャンセル
-        offline: offline
         online: オンライン
         permanent_link: Permanent link
         publish: 公開
         publish_settings: Publish settings
-        published: published
         save: 保存
         status: ステータス
         title: タイトル

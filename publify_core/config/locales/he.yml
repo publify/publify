@@ -264,12 +264,10 @@ he:
       form:
         article_filter: מסנן הכתבה
         cancel: בטל
-        offline: offline
         online: מוצג
         permanent_link: Permanent link
         publish: פרסם
         publish_settings: Publish settings
-        published: published
         save: שמור
         status: מצב
         title: כותרת

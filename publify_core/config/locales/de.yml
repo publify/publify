@@ -264,12 +264,10 @@ de:
       form:
         article_filter: Textfilter für Artikel
         cancel: Abbrechen
-        offline: offline
         online: Online
         permanent_link: Permanent link
         publish: Veröffentlichen
         publish_settings: Publish settings
-        published: published
         save: Speichern
         status: Status
         title: Titel

@@ -264,12 +264,10 @@ zh-TW:
       form:
         article_filter: 篩選文章
         cancel: 取消
-        offline: offline
         online: 上線
         permanent_link: Permanent link
         publish: 公開
         publish_settings: Publish settings
-        published: published
         save: 存檔
         status: 身分
         title: 標題

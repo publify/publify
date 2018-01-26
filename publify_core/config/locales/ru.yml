@@ -264,12 +264,10 @@ ru:
       form:
         article_filter: Фильтр постов
         cancel: Отменить
-        offline: offline
         online: Онлайн
         permanent_link: Постоянная ссылка
         publish: Опубликовать
         publish_settings: Настройки публикации
-        published: published
         save: Сохранить
         status: Статус
         title: Заголовок

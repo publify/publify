@@ -264,12 +264,10 @@ es-MX:
       form:
         article_filter: Filtro de art&iacute;culo
         cancel: Cancelar
-        offline: offline
         online: Online
         permanent_link: Permanent link
         publish: Publicar
         publish_settings: Publish settings
-        published: published
         save: Guardar
         status: Estado
         title: T&iacute;tulo

@@ -264,12 +264,10 @@ nl:
       form:
         article_filter: Artikel filter
         cancel: Terug
-        offline: offline
         online: Online
         permanent_link: Permanente link
         publish: Publiceer
         publish_settings: Publicatie instellingen
-        published: published
         save: Opslaan
         status: Status
         title: Titel

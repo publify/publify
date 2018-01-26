@@ -264,12 +264,10 @@ en:
       form:
         article_filter: Article filter
         cancel: Cancel
-        offline: offline
         online: Online
         permanent_link: Permanent link
         publish: Publish
         publish_settings: Publish settings
-        published: published
         save: Save
         status: Status
         title: Title

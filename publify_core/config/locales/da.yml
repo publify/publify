@@ -264,12 +264,10 @@ da:
       form:
         article_filter: Artikelfilter
         cancel: Anuller
-        offline: offline
         online: Online
         permanent_link: Permanent link
         publish: Udgiv
         publish_settings: Publish settings
-        published: published
         save: Gem
         status: Status
         title: Titel

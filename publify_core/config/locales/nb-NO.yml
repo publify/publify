@@ -264,12 +264,10 @@ nb-NO:
       form:
         article_filter: artikkelfilter
         cancel: Avbryt
-        offline: offline
         online: Online
         permanent_link: Permanent lenke
         publish: Publiser
         publish_settings: Publiseringsinnstillinger
-        published: publisert
         save: Lagre
         status: Status
         title: Tittel

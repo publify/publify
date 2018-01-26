@@ -264,12 +264,10 @@ lt:
       form:
         article_filter: Straipsnių filtras
         cancel: Baigti
-        offline: offline
         online: Pasiekiamas
         permanent_link: Permanent link
         publish: Publikuoti
         publish_settings: Publish settings
-        published: published
         save: Saugoti
         status: Statusas
         title: Pavadinimas

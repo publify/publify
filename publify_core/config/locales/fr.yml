@@ -264,12 +264,10 @@ fr:
       form:
         article_filter: Mise en forme des billets
         cancel: Annuler
-        offline: hors ligne
         online: En ligne
         permanent_link: Lien permanent
         publish: Publier
         publish_settings: Paramètres de publication
-        published: publiée
         save: Sauver
         status: État
         title: Titre
