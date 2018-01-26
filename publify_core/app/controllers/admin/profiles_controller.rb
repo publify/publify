@@ -7,7 +7,7 @@ class Admin::ProfilesController < Admin::BaseController
   def update
     @user.resource = upload_avatar if params[:user][:filename]
 
-    if @user.update(user_params)
+    if @user.update(update_params)
       redirect_to admin_profiles_url, notice: I18n.t('admin.profiles.index.success')
     else
       render :index
@@ -37,11 +37,19 @@ class Admin::ProfilesController < Admin::BaseController
   def user_params
     params.require(:user).permit(:login, :password, :password_confirmation,
                                  :email, :firstname, :lastname, :nickname,
-                                 :display_name, :notify_via_email,
+                                 :name, :notify_via_email,
                                  :notify_on_new_articles, :notify_on_comments,
                                  :text_filter_id, :state,
                                  :twitter_account, :twitter_oauth_token,
                                  :twitter_oauth_token_secret, :description,
                                  :url, :msn, :yahoo, :jabber, :aim, :twitter)
+  end
+
+  def update_params
+    if user_params[:password].blank? && user_params[:password_confirmation].blank?
+      user_params.except(:password_confirmation, :password)
+    else
+      user_params
+    end
   end
 end
