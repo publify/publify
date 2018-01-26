@@ -58,10 +58,6 @@ group :development do
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', '~> 9.0'
-
-  # Get a nice featureful IRB console.
-  # Add "require 'irbtools'" to your .irbrc to activate this
-  gem 'irbtools', '~> 2.0', platform: :mri_24, require: false
 end
 
 group :test do
