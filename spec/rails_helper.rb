@@ -33,3 +33,14 @@ RSpec.configure do |config|
     raise "Double escaped HTML in text (#{Regexp.last_match(1)})" if response.body =~ /(&lt;[a-z]+)/
   end
 end
+
+# Test installed themes
+def with_each_theme
+  Theme.find_all.each do |theme|
+    theme_dir = theme.path
+    view_path = "#{theme_dir}/views"
+    helper_file = "#{theme_dir}/helpers/theme_helper.rb"
+    require helper_file if File.exist?(helper_file)
+    yield theme.name, view_path
+  end
+end
