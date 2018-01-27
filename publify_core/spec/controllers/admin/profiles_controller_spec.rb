@@ -26,5 +26,15 @@ describe Admin::ProfilesController, type: :controller do
       post :update, params: { id: alice.id, user: { profile: User::ADMIN } }
       expect(alice.reload.profile).to eq User::PUBLISHER
     end
+
+    it 'skips blank passwords' do
+      post :update, params: { id: alice.id, user: { login: 'errand',
+                                                    password: '', password_confirmation: '' } }
+      alice.reload
+      aggregate_failures do
+        expect(response).to redirect_to(action: 'index')
+        expect(alice.valid_password?('')).to be_falsy
+      end
+    end
   end
 end

@@ -74,7 +74,11 @@ describe Admin::UsersController, type: :controller do
     it 'skips blank passwords' do
       post :update, params: { id: contributor.id, user: { login: 'errand',
                                                           password: '', password_confirmation: '' } }
-      expect(response).to redirect_to(action: 'index')
+      contributor.reload
+      aggregate_failures do
+        expect(response).to redirect_to(action: 'index')
+        expect(contributor.valid_password?('')).to be_falsy
+      end
     end
 
     describe 'when you are not admin' do
