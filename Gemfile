@@ -33,9 +33,6 @@ gem 'flickraw', '~> 0.9.8', require: false
 gem 'non-stupid-digest-assets', '~> 1.0'
 gem 'rake', '~> 12.0'
 
-# On Ruby 2.4.0, xmlrpc needs to be included as a gem
-gem 'xmlrpc', '~> 0.3.0', platform: :mri_24
-
 group :development, :test do
   gem 'capybara', '~> 2.7'
   gem 'factory_girl', '~> 4.5'
