@@ -7,7 +7,7 @@ RSpec.describe ArticlesController, type: :controller do
   let(:article) { create :article, blog: blog }
   let(:from_param) { article.permalink_url.sub(/#{blog.base_url}/, '') }
 
-  with_each_theme do |theme, view_path|
+  with_each_theme do |theme, _view_path|
     context "with theme #{theme} activated" do
       before do
         blog.theme = theme
