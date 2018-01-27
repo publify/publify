@@ -173,6 +173,7 @@ app/models/redirection.rb
 app/models/resource.rb
 app/models/search_sidebar.rb
 app/models/sidebar.rb
+app/models/sidebar_configuration.rb
 app/models/static_sidebar.rb
 app/models/tag.rb
 app/models/tag_sidebar.rb
