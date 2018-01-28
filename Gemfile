@@ -1,16 +1,8 @@
 source 'https://rubygems.org'
 
-if ENV['HEROKU']
-  ruby '2.1.5'
-
-  gem 'pg'
-  gem 'rails_12factor'
-  gem 'thin' # Change this to another web server if you want (ie. unicorn, passenger, puma...)
-else
-  gem 'mysql2', '~> 0.4.4'
-  gem 'pg', '~> 0.21.0'
-  gem 'sqlite3'
-end
+gem 'mysql2', '~> 0.4.4'
+gem 'pg', '~> 0.21.0'
+gem 'sqlite3'
 
 gem 'rails', '~> 5.1.2'
 

@@ -91,34 +91,57 @@ or you can consider using a tool like `dotenv`.
 
 In order to install Publify on Heroku, you’ll need to do some minor tweaks.
 
-First of all, you need to setup Amazon S3 storage to be able to upload files on
+First of all, you need to set up Amazon S3 storage to be able to upload files on
 your blog. Set Heroku config vars.
 
 ```bash
-heroku config:set provider=AWS
-heroku config:set aws_access_key_id=YOUR_AWS_ACCESS_KEY_ID
-heroku config:set aws_secret_access_key=YOUR_AWS_SECRET_ACCESS_KEY
-heroku config:set aws_bucket=YOUR_AWS_BUCKET_NAME
+heroku config:set PROVIDER=AWS
+heroku config:set AWS_ACCESS_KEY_ID=<your_aws_access_key_id>
+heroku config:set AWS_SECRET_ACCESS_KEY=<your_aws_secret_access_key>
+heroku config:set AWS_BUCKET=<your_aws_bucket_name>
 ```
 
-To generate the Gemfile.lock, run:
-```bash
-HEROKU=true bundle install
+Next, you need to update `Gemfile`. You should remove the `mysql2` and
+`sqlite3` gems, set the Ruby version, and add `rails_12factor`. The top of your
+`Gemfile` should look something like this:
+
+```
+source 'https://rubygems.org'
+
+ruby '2.4.3' # Or whichever version you're running
+gem 'pg', '~> 0.21.0'
+gem 'rails_12factor'
+
+gem 'rails', '~> 5.1.2'
 ```
 
-Remove Gemfile.lock from .gitignore and commit it.
+Next, to regenerate the Gemfile.lock, run:
+```bash
+bundle install
+```
 
-Add the HEROKU config variable to your Heroku instance:
+Commit your updated `Gemfile` and `Gemfile.lock`:
 
 ```bash
-heroku config:set HEROKU=true
+git commit -am 'Update bundle for Heroku'
+```
+
+Create a file `Procfile` containing the following:
+```
+web: bundle exec puma -C config/puma.rb
+```
+
+Commit your new `Procfile`:
+```bash
+git add Procfile
+git ci -m 'Tell Heroku how to run Rails'
 ```
 
 You also need to set Rails' secret key base. Generate one using `rake secret`,
 then set the Heroku config var:
 
 ```bash
-heroku config:set secret_key_base=YOUR_GENERATED_SECRET
+heroku config:set SECRET_KEY_BASE=<your_generated_secret>
 ```
 
 Push the repository to Heroku.
