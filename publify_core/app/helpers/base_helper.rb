@@ -121,12 +121,6 @@ module BaseHelper
     image_tag(status.user.twitter_profile_image, class: 'alignleft', alt: status.user.nickname)
   end
 
-  def google_analytics
-    unless this_blog.google_analytics.empty?
-      render 'shared/google_analytics'
-    end
-  end
-
   def page_header_includes
     content_array.map(&:whiteboard).map do |w|
       w.select { |k, _v| k =~ /^page_header_/ }.map do |_, v|

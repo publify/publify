@@ -19,7 +19,7 @@
   <link rel="canonical" href="<%= this_blog.base_url + request.fullpath %>" />
 <% end %>
 <%= raw this_blog.custom_tracking_field unless this_blog.custom_tracking_field.blank? %>
-<%= google_analytics %>
+<%= render 'shared/google_analytics' unless this_blog.google_analytics.blank? %>
 
 <%= meta_tag 'og:site_name', this_blog.blog_name %>
 <%= meta_tag 'og:title', @article ? @article.title : @page_title %>
