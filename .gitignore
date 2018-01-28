@@ -25,7 +25,6 @@ nbproject
 public/cache/*
 Gemfile.lock
 .rbenv-version
-.ruby-version
 .env
 .bundle/
 .sass-cache/
