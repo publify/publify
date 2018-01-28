@@ -3,11 +3,12 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+ruby "~> 4.0.7"
+
 gem "rails", "~> 7.2.4"
 
-gem "mysql2"
 gem "pg"
-gem "sqlite3", "~> 2.9.4"
+gem "rails_12factor"
 
 # Store sessions in the database
 gem "activerecord-session_store", "~> 2.3.0"
