@@ -262,6 +262,7 @@ app/views/shared/_atom_item_article.atom.builder
 app/views/shared/_atom_item_comment.atom.builder
 app/views/shared/_atom_item_trackback.atom.builder
 app/views/shared/_flash.erb
+app/views/shared/_google_analytics.html.erb
 app/views/shared/_page_header.html.erb
 app/views/shared/_rss_item_article.rss.builder
 app/views/shared/_rss_item_comment.rss.builder
