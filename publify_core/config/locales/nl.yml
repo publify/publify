@@ -761,7 +761,7 @@ nl:
     publisher: Blog publisher
   setup:
     article:
-      body: Welcome to Publify. This is your first article. Edit or delete it, then start blogging!'
+      body: Welcome to Publify. This is your first article. Edit or delete it, then start blogging!
       title: Hello World!
     index:
       blog_name: Naam van je blog
