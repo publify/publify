@@ -46,7 +46,7 @@ group :development do
   gem 'web-console', '~> 3.0'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', '~> 9.0'
+  gem 'byebug', '~> 10.0'
 end
 
 group :test do
