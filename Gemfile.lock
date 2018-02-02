@@ -114,7 +114,7 @@ GEM
       sass (>= 3.3.4)
     buftok (0.2.0)
     builder (3.2.3)
-    byebug (9.1.0)
+    byebug (10.0.0)
     cancancan (2.1.3)
     capybara (2.17.0)
       addressable
@@ -409,7 +409,7 @@ DEPENDENCIES
   activerecord-session_store (~> 1.1.0)
   better_errors (~> 2.4.0)
   binding_of_caller (~> 0.8.0)
-  byebug (~> 9.0)
+  byebug (~> 10.0)
   capybara (~> 2.7)
   factory_girl (~> 4.5)
   flickraw (~> 0.9.8)
