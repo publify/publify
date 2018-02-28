@@ -29,6 +29,16 @@ project alive.
   German, Danish, Norwegian, Japanese, Hebrew, Simplified Chinese, Mexican
   Spanish, Italian, Lithuanian, Dutch, Polish, Romanian…
 
+## Docker image
+
+You can build a Docker image yourself:
+
+    docker build .
+
+Or directly use our generated container:
+
+    docker run -d -p 3000 -l my_publify_container publify:latest
+
 ## Demo site
 
 You can [give Publify a try](http://demo.publify.co)
