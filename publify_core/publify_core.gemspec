@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'bootstrap-sass', '~> 3.3.6'
   s.add_dependency 'cancancan', '~> 2.0'
   s.add_dependency 'carrierwave', '~> 1.1'
-  s.add_dependency 'devise', '~> 4.4.1'
+  s.add_dependency 'devise', '~> 4.4.3'
   s.add_dependency 'devise-i18n', '~> 1.2'
   s.add_dependency 'dynamic_form', '~> 1.1.4'
   s.add_dependency 'feedjira', '~> 2.1.0'
@@ -40,7 +40,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails_autolink', '~> 1.1.0'
   s.add_dependency 'recaptcha', ['~> 4.3', '>= 4.3.1']
   s.add_dependency 'RedCloth', '~> 4.3.2'
-  s.add_dependency 'rubypants', '~> 0.6.0'
+  s.add_dependency 'rubypants', '~> 0.7.0'
   s.add_dependency 'sass-rails', '~> 5.0'
   s.add_dependency 'twitter', '~> 6.2.0'
   s.add_dependency 'uuidtools', '~> 2.1.1'
