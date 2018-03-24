@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'mysql2', '~> 0.4.4'
+gem 'mysql2', '~> 0.5.0'
 gem 'pg', '~> 0.21.0'
 gem 'sqlite3'
 

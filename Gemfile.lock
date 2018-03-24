@@ -248,7 +248,7 @@ GEM
     minitest (5.11.3)
     multi_json (1.13.1)
     multipart-post (2.0.0)
-    mysql2 (0.4.10)
+    mysql2 (0.5.0)
     naught (1.1.0)
     nio4r (2.3.0)
     nokogiri (1.8.2)
@@ -414,7 +414,7 @@ DEPENDENCIES
   flickraw (~> 0.9.8)
   i18n-tasks (~> 0.9.1)
   launchy (~> 2.4)
-  mysql2 (~> 0.4.4)
+  mysql2 (~> 0.5.0)
   non-stupid-digest-assets (~> 1.0)
   pg (~> 0.21.0)
   publify_amazon_sidebar!
