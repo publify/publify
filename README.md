@@ -46,7 +46,7 @@ The demo is reset every 2 hours.
 ### Download
 
 You can download the latest
-Publify [stable release (9.0.0)](https://github.com/publify/publify/archive/v9.0.0.tar.gz)
+Publify [stable release](https://github.com/publify/publify/releases/latest).
 
 If you want to run the master branch, you can [clone the Publify
 repository](https://github.com/publify/publify.git). However, random things may
