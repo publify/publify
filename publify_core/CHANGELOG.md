@@ -1,5 +1,10 @@
 # Changelog
 
+## 9.1.0 / Unreleased
+
+* Upgrade to Rails 5.1 (mvz)
+* Fix a bunch of issues (e-tobi)
+
 ## 9.0.1
 
 * Remove link_to_author setting: author email is no longer shown. Whoever
