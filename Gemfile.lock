@@ -1,14 +1,14 @@
 PATH
   remote: publify_amazon_sidebar
   specs:
-    publify_amazon_sidebar (9.0.1)
-      publify_core (~> 9.0.0)
+    publify_amazon_sidebar (9.1.0)
+      publify_core (~> 9.1.0)
       rails (~> 5.1.2)
 
 PATH
   remote: publify_core
   specs:
-    publify_core (9.0.1)
+    publify_core (9.1.0)
       RedCloth (~> 4.3.2)
       aasm (~> 4.12.0)
       akismet (~> 2.0)
@@ -38,10 +38,10 @@ PATH
 PATH
   remote: publify_textfilter_code
   specs:
-    publify_textfilter_code (9.0.1)
+    publify_textfilter_code (9.1.0)
       coderay (~> 1.1.0)
       htmlentities (~> 4.3)
-      publify_core (~> 9.0.0)
+      publify_core (~> 9.1.0)
       rails (~> 5.1.2)
 
 GEM

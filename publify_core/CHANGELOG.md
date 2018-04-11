@@ -1,5 +1,9 @@
 # Changelog
 
+## 9.1.0 / Unreleased
+
+* Update to Rails 5.1
+
 ## 9.0.1
 
 * Remove link_to_author setting: author email is no longer shown. Whoever

@@ -1,5 +1,9 @@
 # Changelog
 
+## 9.1.0 / Unreleased
+
+* Depend on publify_core 9.1
+
 ## 9.0.1
 
 * Depend on released version of publify_core (mvz)
