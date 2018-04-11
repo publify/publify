@@ -2,7 +2,8 @@
 
 ## 9.1.0 / Unreleased
 
-* Update to Rails 5.1
+* Upgrade to Rails 5.1 (mvz)
+* Fix a bunch of issues (e-tobi)
 
 ## 9.0.1
 

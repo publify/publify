@@ -1,8 +1,14 @@
 # Changelog
 
-## 9.0.1
+See the changelogs for the individual engines for more details for releases 9.0 and up
 
-See the changelogs for the individual engines for more details.
+## 9.1.0
+
+* Upgrade to Rails 5.1 (mvz)
+* Remove outdated converters (mvz)
+* Fix a bunch of issues (e-tobi)
+
+## 9.0.1
 
 * Use at least Rails 5.0.4 (mvz)
 * Update Russian translations (biggless)
@@ -10,9 +16,6 @@ See the changelogs for the individual engines for more details.
 ## 9.0.0
 
 ### Breaking/large changes
-
-This release depends on Rails 5.0.x and splits Publify into several engines.
-See the changelogs for the individual engines for more details.
 
 * Use Rails' default method of setting secret_key_base in production: Through
   an environment variable. This means you will have to update your production
