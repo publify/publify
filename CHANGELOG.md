@@ -2,7 +2,7 @@
 
 See the changelogs for the individual engines for more details for releases 9.0 and up
 
-## 9.1.0
+## 9.1.0 / 2018-04-19
 
 * Upgrade to Rails 5.1 (mvz)
 * Remove outdated converters (mvz)

@@ -1,6 +1,6 @@
 # Changelog
 
-## 9.1.0 / Unreleased
+## 9.1.0 / 2018-04-19
 
 * Upgrade to Rails 5.1 (mvz)
 * Fix a bunch of issues (e-tobi)

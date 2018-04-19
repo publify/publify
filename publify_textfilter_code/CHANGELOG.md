@@ -1,6 +1,6 @@
 # Changelog
 
-## 9.1.0 / Unreleased
+## 9.1.0 / 2018-04-19
 
 * Depend on publify_core 9.1
 
