@@ -2,8 +2,12 @@
 
 ## 9.1.0 / 2018-04-19
 
-* Upgrade to Rails 5.1 (mvz)
-* Fix a bunch of issues (e-tobi)
+* Upgrade to Rails 5.1 (#814 by mvz)
+* Update Danish translations (#831 by xy2z)
+* Extend Polish translations (#829 by gergu)
+* Remove outdated import tools (mvz)
+* Fix a bunch of issues (#840 by e-tobi)
+* Fix google analytics tag rendering (#849)
 
 ## 9.0.1
 
