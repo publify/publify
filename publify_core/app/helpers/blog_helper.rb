@@ -7,6 +7,6 @@ module BlogHelper
 
   # Find the blog whose base_url matches the current location.
   def this_blog
-    @blog ||= Blog.find_blog(blog_base_url)
+    @this_blog ||= Blog.find_blog(blog_base_url)
   end
 end
