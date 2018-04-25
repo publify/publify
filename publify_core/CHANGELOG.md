@@ -7,7 +7,7 @@
 * Extend Polish translations (#829 by gergu)
 * Remove outdated import tools (mvz)
 * Fix a bunch of issues (#840 by e-tobi)
-* Fix google analytics tag rendering (#849)
+* Fix google analytics tag rendering (#849 by mvz)
 
 ## 9.0.1
 
