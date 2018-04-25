@@ -6,8 +6,8 @@ RSpec.feature 'Signing up', type: :feature do
       to_return(status: 200, body: '', headers: {})
     load Rails.root.join('db', 'seeds.rb')
     Blog.first.update(blog_name: 'Awesome!',
-                                 base_url: 'http://www.example.com/',
-                                 allow_signup: 1)
+                      base_url: 'http://www.example.com/',
+                      allow_signup: 1)
     create :user, :as_admin, login: 'admin', password: 'a-secret'
   end
 
