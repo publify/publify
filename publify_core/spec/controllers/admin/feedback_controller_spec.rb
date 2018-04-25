@@ -3,6 +3,9 @@ require 'rails_helper'
 describe Admin::FeedbackController, type: :controller do
   render_views
 
+  let(:feedback_from_own_article) { create(:comment, article: article) }
+  let(:feedback_from_not_own_article) { create(:spam_comment) }
+
   shared_examples_for 'destroy feedback with feedback from own article' do
     it 'should destroy feedback' do
       id = feedback_from_own_article.id
@@ -21,19 +24,12 @@ describe Admin::FeedbackController, type: :controller do
   end
 
   describe 'logged in admin user' do
+    let(:admin) { create(:user, :as_admin) }
+    let(:article) { create(:article, user: admin) }
+
     before(:each) do
       create(:blog)
-      @admin = create(:user, :as_admin)
-      sign_in @admin
-    end
-
-    def feedback_from_own_article
-      @article ||= FactoryGirl.create(:article, user: @admin)
-      @comment_own ||= FactoryGirl.create(:comment, article: @article)
-    end
-
-    def feedback_from_not_own_article
-      @spam_comment_not_own ||= FactoryGirl.create(:spam_comment)
+      sign_in admin
     end
 
     describe 'destroy action' do
@@ -223,20 +219,12 @@ describe Admin::FeedbackController, type: :controller do
   end
 
   describe 'publisher access' do
+    let(:publisher) { create(:user, :as_publisher) }
+    let(:article) { create(:article, user: publisher) }
+
     before :each do
       create(:blog)
-      @publisher = create(:user, :as_publisher)
-      sign_in @publisher
-    end
-
-    def feedback_from_own_article
-      @article ||= FactoryGirl.create(:article, user: @publisher)
-      @feedback_own_article ||= FactoryGirl.create(:comment, article: @article)
-    end
-
-    def feedback_from_not_own_article
-      @article ||= FactoryGirl.create(:article, user: FactoryGirl.create(:user, login: 'other_user'))
-      @feedback_not_own_article ||= FactoryGirl.create(:comment, article: @article)
+      sign_in publisher
     end
 
     describe 'destroy action' do
