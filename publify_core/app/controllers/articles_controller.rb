@@ -81,13 +81,13 @@ class ArticlesController < ContentController
     # because it's changed
     ['%year%/%month%/%day%/%title%', 'articles/%year%/%month%/%day%/%title%'].each do |part|
       @article = factory.match_permalink_format(from, part)
-      return redirect_to URI.parse(@article.permalink_url).path, status: 301 if @article
+      return redirect_to URI.parse(@article.permalink_url).path, status: :moved_permanently if @article
     end
 
     r = Redirect.find_by!(from_path: from)
     # TODO: If linked to article, directly redirect to the article.
     # Let redirection made outside of the blog on purpose (deal with it, Brakeman!)
-    redirect_to r.full_to_path, status: 301 if r
+    redirect_to r.full_to_path, status: :moved_permanently if r
   end
 
   def archives
@@ -99,7 +99,7 @@ class ArticlesController < ContentController
   end
 
   def tag
-    redirect_to tags_path, status: 301
+    redirect_to tags_path, status: :moved_permanently
   end
 
   def preview_page
@@ -192,6 +192,6 @@ class ArticlesController < ContentController
 
   def error!
     @message = I18n.t('errors.no_posts_found')
-    render 'articles/error', status: 200
+    render 'articles/error', status: :ok
   end
 end
