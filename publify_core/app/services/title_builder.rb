@@ -4,58 +4,58 @@ class TitleBuilder
   end
 
   def build(item, settings, parameters)
-    s = @template
+    str = @template
 
-    s = substitute_parameters(s, parameters)
-    s = substitute_settings(s, settings)
-    s = substitute_item(s, item)
-    s = substitute_time(s, settings)
+    str = substitute_parameters(str, parameters)
+    str = substitute_settings(str, settings)
+    str = substitute_item(str, item)
+    str = substitute_time(str, settings)
 
-    s
+    str
   end
 
   private
 
-  def substitute_time(s, settings)
+  def substitute_time(str, settings)
     # Other
-    s = s.gsub('%currentdate%', Time.zone.now.strftime(settings.date_format))
-    s = s.gsub('%currenttime%', Time.zone.now.strftime(settings.time_format))
-    s = s.gsub('%currentmonth%', Time.zone.now.strftime('%B'))
-    s = s.gsub('%currentyear%', Time.zone.now.year.to_s)
-    s
+    str = str.gsub('%currentdate%', Time.zone.now.strftime(settings.date_format))
+    str = str.gsub('%currenttime%', Time.zone.now.strftime(settings.time_format))
+    str = str.gsub('%currentmonth%', Time.zone.now.strftime('%B'))
+    str = str.gsub('%currentyear%', Time.zone.now.year.to_s)
+    str
   end
 
-  def substitute_item(s, item)
+  def substitute_item(str, item)
     # Tags for item
-    s = s.gsub('%title%', item.title) if s =~ /%title/ && item.respond_to?(:title)
-    s = s.gsub('%excerpt%', item.excerpt_text) if s =~ /%excerpt%/ && item.respond_to?(:excerpt_text)
-    s = s.gsub('%description%', item.description) if s =~ /%description%/ && item.respond_to?(:description)
-    s = s.gsub('%name%', item.name) if s =~ /%name%/ && item.respond_to?(:name)
-    s = s.gsub('%author%', item.name) if s =~ /%author%/ && item.respond_to?(:name)
-    s = s.gsub('%body%', item.body) if s =~ /%body%/ && item.respond_to?(:body)
+    str = str.gsub('%title%', item.title) if str =~ /%title/ && item.respond_to?(:title)
+    str = str.gsub('%excerpt%', item.excerpt_text) if str =~ /%excerpt%/ && item.respond_to?(:excerpt_text)
+    str = str.gsub('%description%', item.description) if str =~ /%description%/ && item.respond_to?(:description)
+    str = str.gsub('%name%', item.name) if str =~ /%name%/ && item.respond_to?(:name)
+    str = str.gsub('%author%', item.name) if str =~ /%author%/ && item.respond_to?(:name)
+    str = str.gsub('%body%', item.body) if str =~ /%body%/ && item.respond_to?(:body)
 
-    s = s.gsub('%categories%', item.categories.map(&:name).join(', ')) if s =~ /%categories%/ && item.respond_to?(:categories)
+    str = str.gsub('%categories%', item.categories.map(&:name).join(', ')) if str =~ /%categories%/ && item.respond_to?(:categories)
 
-    s = s.gsub('%tags%', item.tags.map(&:display_name).join(', ')) if s =~ /%tags%/ && item.respond_to?(:tags)
+    str = str.gsub('%tags%', item.tags.map(&:display_name).join(', ')) if str =~ /%tags%/ && item.respond_to?(:tags)
 
-    s
+    str
   end
 
-  def substitute_settings(s, settings)
+  def substitute_settings(str, settings)
     # Tags for settings
-    s = s.gsub('%blog_name%', settings.blog_name)
-    s = s.gsub('%blog_subtitle%', settings.blog_subtitle)
-    s = s.gsub('%meta_keywords%', settings.meta_keywords)
+    str = str.gsub('%blog_name%', settings.blog_name)
+    str = str.gsub('%blog_subtitle%', settings.blog_subtitle)
+    str = str.gsub('%meta_keywords%', settings.meta_keywords)
 
-    s
+    str
   end
 
-  def substitute_parameters(s, parameters)
-    s = s.gsub('%date%', parse_date(s, parameters)) if s =~ /%date%/
-    s = s.gsub('%search%', parameters[:q]) if parameters[:q]
-    s = s.gsub('%page%', parse_page(s, parameters)) if s =~ /%page%/
+  def substitute_parameters(str, parameters)
+    str = str.gsub('%date%', parse_date(str, parameters)) if str =~ /%date%/
+    str = str.gsub('%search%', parameters[:q]) if parameters[:q]
+    str = str.gsub('%page%', parse_page(str, parameters)) if str =~ /%page%/
 
-    s
+    str
   end
 
   def parse_date(string, params)
