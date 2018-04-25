@@ -13,7 +13,7 @@ class Admin::SeoController < Admin::BaseController
 
   def update
     settings_params[:permalink_format] = settings_params[:custom_permalink] if settings_params[:permalink_format] == 'custom'
-    if @setting.update_attributes(settings_params)
+    if @setting.update(settings_params)
       flash[:success] = I18n.t('admin.settings.update.success')
       redirect_to admin_seo_path(section: @section)
     else

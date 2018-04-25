@@ -8,7 +8,7 @@ class Admin::SidebarController < Admin::BaseController
   def update
     @sidebar = Sidebar.where(id: params[:id]).first
     @old_s_index = @sidebar.staged_position || @sidebar.active_position
-    @sidebar.update_attributes params[:configure][@sidebar.id.to_s].permit!
+    @sidebar.update params[:configure][@sidebar.id.to_s].permit!
     respond_to do |format|
       format.js
       format.html do
@@ -47,7 +47,7 @@ class Admin::SidebarController < Admin::BaseController
                   else
                     Sidebar.valid.find(sidebar_id)
                   end
-        sidebar.update_attributes(staged_position: staged_index)
+        sidebar.update(staged_position: staged_index)
       end
     end
 

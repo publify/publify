@@ -18,7 +18,7 @@ class Admin::SettingsController < Admin::BaseController
 
   def update
     load_settings
-    if @setting.update_attributes(settings_params)
+    if @setting.update(settings_params)
       load_lang
       flash[:success] = I18n.t('admin.settings.update.success')
       redirect_to action: action_param
