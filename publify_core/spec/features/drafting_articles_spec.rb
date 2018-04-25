@@ -7,7 +7,7 @@ RSpec.feature 'Drafting articles', type: :feature do
 
   before do
     load Rails.root.join('db', 'seeds.rb')
-    Blog.first.update_attributes blog_name: 'Awesome!', base_url: 'http://www.example.com/'
+    Blog.first.update blog_name: 'Awesome!', base_url: 'http://www.example.com/'
   end
 
   scenario 'Updating a future article' do

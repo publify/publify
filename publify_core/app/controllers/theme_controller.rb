@@ -37,7 +37,7 @@ class ThemeController < ContentController
   end
 
   def render_not_found
-    render plain: 'Not Found', status: 404
+    render plain: 'Not Found', status: :not_found
   end
 
   def mime_for(filename)

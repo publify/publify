@@ -7,7 +7,7 @@ class ArchivesSidebar < Sidebar
   attr_accessor :archives
 
   def self.date_funcs
-    @date_func ||=
+    @date_funcs ||=
       if Content.connection.class.name =~ /SQLite3Adapter/
         ["strftime('%Y', published_at) as year", "strftime('%m', published_at) as month"]
       else

@@ -16,7 +16,7 @@ describe 'shared/_page_header.html.erb', type: :view do
           // expect some js here
         </script>
       HTML
-      blog.update_attributes(custom_tracking_field: field_contents)
+      blog.update(custom_tracking_field: field_contents)
       render
       expect(rendered).to match field_contents
     end

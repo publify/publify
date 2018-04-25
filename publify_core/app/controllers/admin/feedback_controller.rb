@@ -70,9 +70,9 @@ class Admin::FeedbackController < Admin::BaseController
 
   def article
     @article = this_blog.articles.find(params[:id])
-    @feedback = @article.comments.ham if params[:ham] && params[:spam].blank?
-    @feedback = @article.comments.spam if params[:spam] && params[:ham].blank?
-    @feedback ||= @article.comments
+    @feedback = @article.comments
+    @feedback = @feedback.ham if params[:ham] && params[:spam].blank?
+    @feedback = @feedback.spam if params[:spam] && params[:ham].blank?
   end
 
   # TODO: Replace with actions that move to a specified state

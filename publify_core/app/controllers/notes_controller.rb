@@ -10,7 +10,7 @@ class NotesController < ContentController
 
     if @notes.empty?
       @message = I18n.t('errors.no_notes_found')
-      render 'notes/error', status: 200
+      render 'notes/error', status: :ok
     end
   end
 
