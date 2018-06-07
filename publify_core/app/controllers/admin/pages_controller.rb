@@ -5,7 +5,7 @@ class Admin::PagesController < Admin::BaseController
   before_action :set_page, only: [:edit, :update, :destroy]
 
   def index
-    @search = params[:search] ? params[:search] : {}
+    @search = params[:search] || {}
     @pages = Page.search_with(@search).page(params[:page]).per(this_blog.admin_display_elements)
   end
 

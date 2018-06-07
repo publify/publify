@@ -4,7 +4,7 @@ module Admin; end
 
 class Admin::ContentController < Admin::BaseController
   def index
-    @search = params[:search] ? params[:search] : {}
+    @search = params[:search] || {}
     @articles = this_blog.articles.search_with(@search).page(params[:page]).per(this_blog.admin_display_elements)
 
     if request.xhr?
