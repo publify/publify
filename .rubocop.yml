@@ -25,10 +25,6 @@ Bundler/DuplicatedGem:
 Layout/DotPosition:
   EnforcedStyle: trailing
 
-# Do not use unnecessary spacing.
-Layout/ExtraSpacing:
-  Enabled: true
-
 Layout/MultilineMethodCallBraceLayout:
   EnforcedStyle: same_line
 
