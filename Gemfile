@@ -2,8 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 5.2.0'
 
-gem 'mysql2', '~> 0.5.0'
-gem 'pg', '~> 0.21.0'
+gem 'mysql2'
+gem 'pg'
 gem 'sqlite3'
 
 # Store sessions in the database
