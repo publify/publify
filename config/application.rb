@@ -21,21 +21,7 @@ module Publify
   require 'publify_sidebar'
   require 'publify_textfilters'
   require 'publify_avatar_gravatar'
-  ## Required by the plugins themselves.
-  # require 'avatar_plugin'
-  require 'email_notify'
-
-  require 'format'
-  ## Required by the models themselves.
-  # require 'spam_protection'
-  require 'transforms'
-  require 'publify_time'
-  require 'publify_guid'
-  ## Required by the plugins themselves.
-  # require 'publify_plugins'
   require 'publify_version'
-
-  require 'theme'
 
   Theme.register_themes "#{Rails.root}/themes"
 
