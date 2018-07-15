@@ -1,5 +1,5 @@
 class Redirect < ApplicationRecord
-  belongs_to :contents, optional: true, touch: true
+  belongs_to :content, optional: true, touch: true
   belongs_to :blog
 
   validates :from_path, uniqueness: true
