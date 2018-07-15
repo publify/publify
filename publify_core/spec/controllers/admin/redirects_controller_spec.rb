@@ -60,7 +60,7 @@ describe Admin::RedirectsController, type: :controller do
 
   describe 'GET #edit' do
     before(:each) do
-      get :edit, params: { id: FactoryGirl.create(:redirect).id }
+      get :edit, params: { id: FactoryBot.create(:redirect).id }
     end
 
     it 'renders the edit template with an HTTP 200 status code' do
@@ -72,7 +72,7 @@ describe Admin::RedirectsController, type: :controller do
 
   describe '#update an existing redirect' do
     it 'should update and redirect to #index' do
-      @test_id = FactoryGirl.create(:redirect).id
+      @test_id = FactoryBot.create(:redirect).id
       post :update, params: { id: @test_id, redirect: { from_path: 'somewhere/over', to_path: 'the/rainbow' } }
       assert_response :redirect, action: 'index'
       expect(Redirect.count).to eq(1)
@@ -83,7 +83,7 @@ describe Admin::RedirectsController, type: :controller do
 
   describe '#destroy a redirect' do
     before(:each) do
-      @test_id = FactoryGirl.create(:redirect).id
+      @test_id = FactoryBot.create(:redirect).id
       expect(Redirect.find(@test_id)).not_to be_nil
     end
 

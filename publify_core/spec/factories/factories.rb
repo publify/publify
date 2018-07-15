@@ -1,5 +1,5 @@
 # Factory definitions
-FactoryGirl.define do
+FactoryBot.define do
   sequence(:name) { |n| "name_#{n}" }
   sequence(:body) { |n| "body #{n}" * (n + 3 % 5) }
   sequence(:user) { |n| "user#{n}" }
@@ -10,7 +10,7 @@ FactoryGirl.define do
   sequence(:time) { |n| DateTime.new(2012, 3, 26, 19, 56).in_time_zone - n }
 
   factory :user do
-    login { FactoryGirl.generate(:user) }
+    login { FactoryBot.generate(:user) }
     email { generate(:email) }
     name 'Bond'
     nickname 'James Bond'
@@ -170,7 +170,7 @@ FactoryGirl.define do
   end
 
   factory :tag do |tag|
-    tag.name { FactoryGirl.generate(:name) }
+    tag.name { FactoryBot.generate(:name) }
     tag.display_name { |a| a.name } # rubocop:disable Style/SymbolProc
     blog { Blog.first || create(:blog) }
   end
@@ -233,9 +233,9 @@ FactoryGirl.define do
   end
 
   factory :page do
-    name { FactoryGirl.generate(:name) }
+    name { FactoryBot.generate(:name) }
     title 'Page One Title'
-    body { FactoryGirl.generate(:body) }
+    body { FactoryBot.generate(:body) }
     published_at { Time.zone.now }
     user
     blog { Blog.first || create(:blog) }

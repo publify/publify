@@ -46,7 +46,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'uuidtools', '~> 2.1.1'
 
   s.add_development_dependency 'capybara', '~> 2.7'
-  s.add_development_dependency 'factory_girl_rails', '~> 4.8.0'
+  s.add_development_dependency 'factory_bot', '~> 4.8'
   s.add_development_dependency 'i18n-tasks', '~> 0.9.1'
   s.add_development_dependency 'rails-controller-testing', '~> 1.0.1'
   s.add_development_dependency 'rspec-rails', '~> 3.5'

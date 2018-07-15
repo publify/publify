@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe User, type: :model do
-  describe 'FactoryGirl Girl' do
+  describe 'FactoryBot Bot' do
     it 'should user factory valid' do
       expect(create(:user)).to be_valid
       expect(build(:user)).to be_valid

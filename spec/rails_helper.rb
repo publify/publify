@@ -5,9 +5,9 @@ SimpleCov.start 'rails'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 require 'rspec/rails'
-require 'factory_girl'
+require 'factory_bot'
 require 'rexml/document'
-FactoryGirl.find_definitions
+FactoryBot.find_definitions
 
 class ActionView::TestCase::TestController
   include Rails.application.routes.url_helpers
@@ -23,8 +23,8 @@ RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/test/fixtures"
   config.infer_spec_type_from_file_location!
 
-  # shortcuts for factory_girl to use: create / build / build_stubbed
-  config.include FactoryGirl::Syntax::Methods
+  # shortcuts for factory_bot to use: create / build / build_stubbed
+  config.include FactoryBot::Syntax::Methods
 
   # Test helpers needed for Devise
   config.include Devise::Test::ControllerHelpers, type: :controller

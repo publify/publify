@@ -41,7 +41,7 @@ describe Admin::TagsController, type: :controller do
 
   describe 'GET #edit' do
     before(:each) do
-      get :edit, params: { id: FactoryGirl.create(:tag).id }
+      get :edit, params: { id: FactoryBot.create(:tag).id }
     end
 
     it 'renders the edit template with an HTTP 200 status code' do
@@ -53,7 +53,7 @@ describe Admin::TagsController, type: :controller do
 
   describe '#update an existing tag' do
     it 'should update a tag and redirect to #index' do
-      @test_id = FactoryGirl.create(:tag).id
+      @test_id = FactoryBot.create(:tag).id
       post :update, params: { id: @test_id, tag: { display_name: 'another_name' } }
       assert_response :redirect, action: 'index'
       expect(Tag.count).to eq(1)
@@ -63,7 +63,7 @@ describe Admin::TagsController, type: :controller do
 
   describe 'destroy a tag' do
     it 'should destroy the tag and redirect to #index' do
-      @test_id = FactoryGirl.create(:tag).id
+      @test_id = FactoryBot.create(:tag).id
       post :destroy, params: { id: @test_id }
       expect(response).to redirect_to(action: 'index')
       expect(Tag.count).to eq(0)

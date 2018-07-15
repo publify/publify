@@ -22,7 +22,7 @@ describe Admin::SidebarController, type: :controller do
 
   describe '#update' do
     it 'updates content' do
-      sidebar = FactoryGirl.create(:sidebar)
+      sidebar = FactoryBot.create(:sidebar)
 
       post :update, params: { id: sidebar.to_param, configure: { sidebar.id.to_s => { 'title' => 'Links', 'body' => 'another html' } } }
       sidebar.reload

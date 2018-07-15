@@ -27,7 +27,7 @@ gem 'rake', '~> 12.0'
 
 group :development, :test do
   gem 'capybara', '~> 2.7'
-  gem 'factory_girl', '~> 4.5'
+  gem 'factory_bot', '~> 4.8.0'
   gem 'i18n-tasks', '~> 0.9.1', require: false
   gem 'rspec-rails', '~> 3.4'
   gem 'simplecov', '~> 0.16.1', require: false
