@@ -13,7 +13,7 @@ RSpec.describe TagsController, type: :controller do
         get 'index'
       end
 
-      specify { expect(response).to be_success }
+      specify { expect(response).to be_successful }
       specify { expect(response).to render_template('tags/index') }
       specify { expect(assigns(:tags)).to match_array([@tag]) }
     end
@@ -45,7 +45,7 @@ RSpec.describe TagsController, type: :controller do
 
       it 'should be successful' do
         do_get
-        expect(response).to be_success
+        expect(response).to be_successful
       end
 
       it 'should retrieve the correct set of articles' do

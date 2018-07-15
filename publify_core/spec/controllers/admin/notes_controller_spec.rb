@@ -62,7 +62,7 @@ describe Admin::NotesController, type: :controller do
 
       describe 'edit' do
         before(:each) { get :edit, params: { id: note.id } }
-        it { expect(response).to be_success }
+        it { expect(response).to be_successful }
         it { expect(response).to render_template('edit') }
         it { expect(assigns(:note)).to eq(note) }
         it { expect(assigns(:notes)).to eq([note]) }

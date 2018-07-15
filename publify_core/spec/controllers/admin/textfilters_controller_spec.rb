@@ -9,7 +9,7 @@ describe Admin::TextfiltersController, type: :controller do
       henri = create(:user, :as_admin)
       sign_in henri
       get 'macro_help', params: { id: 'textile' }
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 end

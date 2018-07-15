@@ -63,7 +63,7 @@ describe Admin::FeedbackController, type: :controller do
 
       before(:each) { get :index, params: params }
 
-      it { expect(response).to be_success }
+      it { expect(response).to be_successful }
       it { expect(response).to render_template('index') }
 
       context 'simple' do
@@ -102,7 +102,7 @@ describe Admin::FeedbackController, type: :controller do
       let!(:spam) { create(:comment, article: article, state: 'spam') }
 
       def should_success_with_article_view(response)
-        expect(response).to be_success
+        expect(response).to be_successful
         expect(response).to render_template('article')
       end
 
@@ -187,7 +187,7 @@ describe Admin::FeedbackController, type: :controller do
         get 'edit', params: { id: comment.id }
         expect(assigns(:comment)).to eq(comment)
         expect(assigns(:article)).to eq(article)
-        expect(response).to be_success
+        expect(response).to be_successful
         expect(response).to render_template('edit')
       end
     end
@@ -248,7 +248,7 @@ describe Admin::FeedbackController, type: :controller do
 
       it 'should edit comment if own article' do
         get 'edit', params: { id: feedback_from_own_article.id }
-        expect(response).to be_success
+        expect(response).to be_successful
         expect(response).to render_template('edit')
         expect(assigns(:comment)).to eq(feedback_from_own_article)
         expect(assigns(:article)).to eq(feedback_from_own_article.article)

@@ -78,13 +78,13 @@ describe ArticlesController, 'base', type: :controller do
 
     it 'should render feed rss by search' do
       get 'search', params: { q: 'a', format: 'rss' }
-      expect(response).to be_success
+      expect(response).to be_successful
       expect(response).to render_template('index_rss_feed', layout: false)
     end
 
     it 'should render feed atom by search' do
       get 'search', params: { q: 'a', format: 'atom' }
-      expect(response).to be_success
+      expect(response).to be_successful
       expect(response).to render_template('index_atom_feed', layout: false)
     end
 
@@ -230,14 +230,14 @@ describe ArticlesController, 'feeds', type: :controller do
 
   specify '/articles.atom => an atom feed' do
     get 'index', params: { format: 'atom' }
-    expect(response).to be_success
+    expect(response).to be_successful
     expect(response).to render_template('index_atom_feed', layout: false)
     expect(assigns(:articles)).to eq([article1, article2])
   end
 
   specify '/articles.rss => an RSS 2.0 feed' do
     get 'index', params: { format: 'rss' }
-    expect(response).to be_success
+    expect(response).to be_successful
     expect(response).to render_template('index_rss_feed', layout: false)
     expect(assigns(:articles)).to eq([article1, article2])
   end
@@ -494,7 +494,7 @@ describe ArticlesController, 'redirecting', type: :controller do
 
           it 'renders without errors when no comments or trackbacks are present' do
             get :redirect, params: { from: "#{article.permalink}.html" }
-            expect(response).to be_success
+            expect(response).to be_successful
           end
 
           it 'renders without errors when recaptcha is enabled' do
@@ -505,14 +505,14 @@ describe ArticlesController, 'redirecting', type: :controller do
             blog.use_recaptcha = true
             blog.save!
             get :redirect, params: { from: "#{article.permalink}.html" }
-            expect(response).to be_success
+            expect(response).to be_successful
           end
 
           it 'renders without errors when comments and trackbacks are present' do
             create :trackback, article: article
             create :comment, article: article
             get :redirect, params: { from: "#{article.permalink}.html" }
-            expect(response).to be_success
+            expect(response).to be_successful
           end
         end
       end
@@ -553,7 +553,7 @@ describe ArticlesController, 'redirecting', type: :controller do
 
     it 'should find the article if the url matches all components' do
       get :redirect, params: { from: "foo/#{article.permalink}" }
-      expect(response).to be_success
+      expect(response).to be_successful
     end
 
     it 'should not find the article if the url does not match the fixed component' do

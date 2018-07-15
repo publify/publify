@@ -20,7 +20,7 @@ describe Admin::ContentController, type: :controller do
 
     context 'simple query' do
       before(:each) { get :index }
-      it { expect(response).to be_success }
+      it { expect(response).to be_successful }
       it { expect(response).to render_template('index', layout: 'administration') }
     end
 
@@ -111,7 +111,7 @@ describe Admin::ContentController, type: :controller do
       get :new
     end
 
-    it { expect(response).to be_success }
+    it { expect(response).to be_successful }
     it { expect(response).to render_template('new') }
     it { expect(assigns(:article)).to_not be_nil }
     it { expect(assigns(:article).redirect).to be_nil }
@@ -492,7 +492,7 @@ describe Admin::ContentController, type: :controller do
 
     it 'should return foo for keywords fo' do
       get :auto_complete_for_article_keywords, params: { article: { keywords: 'fo' } }
-      expect(response).to be_success
+      expect(response).to be_successful
       expect(response.body).to eq('["bar","bazz","foo"]')
     end
   end
