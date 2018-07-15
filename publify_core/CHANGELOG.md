@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+* Upgrade to Rails 5.2
+
 ## 9.1.0 / 2018-04-19
 
 * Upgrade to Rails 5.1 (#814 by mvz)

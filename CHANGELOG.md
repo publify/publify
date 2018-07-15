@@ -2,6 +2,10 @@
 
 See the changelogs for the individual engines for more details for releases 9.0 and up
 
+## Unreleased
+
+* Upgrade to Rails 5.2
+
 ## 9.1.0 / 2018-04-19
 
 * Upgrade to Rails 5.1 (mvz)
