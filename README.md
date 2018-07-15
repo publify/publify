@@ -109,10 +109,10 @@ Next, you need to update `Gemfile`. You should remove the `mysql2` and
 source 'https://rubygems.org'
 
 ruby '2.4.3' # Or whichever version you're running
-gem 'pg', '~> 0.21.0'
+gem 'pg'
 gem 'rails_12factor'
 
-gem 'rails', '~> 5.1.2'
+gem 'rails', '~> 5.2.0'
 ```
 
 Next, to regenerate the Gemfile.lock, run:

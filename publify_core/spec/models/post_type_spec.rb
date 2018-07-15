@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe PostType, type: :model do
   before(:each) do
-    FactoryGirl.create(:blog)
+    create(:blog)
   end
 
   describe 'Given a new post type' do

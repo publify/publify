@@ -22,7 +22,7 @@ describe Admin::SidebarController, type: :controller do
 
   describe '#update' do
     it 'updates content' do
-      sidebar = FactoryGirl.create(:sidebar)
+      sidebar = create(:sidebar)
 
       post :update, params: { id: sidebar.to_param, configure: { sidebar.id.to_s => { 'title' => 'Links', 'body' => 'another html' } } }
       sidebar.reload
@@ -41,7 +41,7 @@ describe Admin::SidebarController, type: :controller do
 
     it 'renders template for js response' do
       post :sortable, params: { sidebar: ['9001'], format: :js }
-      expect(response).to be_success
+      expect(response).to be_successful
       expect(response).to render_template(:sortable)
     end
   end

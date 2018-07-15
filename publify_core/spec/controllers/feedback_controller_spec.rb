@@ -22,7 +22,7 @@ RSpec.describe FeedbackController, type: :controller do
       before(:each) { get 'index', params: { format: 'atom' } }
 
       it 'responds with success' do
-        expect(response).to be_success
+        expect(response).to be_successful
       end
 
       it 'assigns feedback in the reverse chronological order' do
@@ -52,7 +52,7 @@ RSpec.describe FeedbackController, type: :controller do
       before { get 'index', params: { format: 'rss' } }
 
       it 'responds with success' do
-        expect(response).to be_success
+        expect(response).to be_successful
       end
 
       it 'assigns all feedback' do

@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 5.1.6'
+gem 'rails', '~> 5.2.0'
 
-gem 'mysql2', '~> 0.5.0'
-gem 'pg', '~> 0.21.0'
+gem 'mysql2'
+gem 'pg'
 gem 'sqlite3'
 
 # Store sessions in the database
@@ -27,7 +27,7 @@ gem 'rake', '~> 12.0'
 
 group :development, :test do
   gem 'capybara', '~> 2.7'
-  gem 'factory_girl', '~> 4.5'
+  gem 'factory_bot', '~> 4.8.0'
   gem 'i18n-tasks', '~> 0.9.1', require: false
   gem 'rspec-rails', '~> 3.4'
   gem 'simplecov', '~> 0.16.1', require: false

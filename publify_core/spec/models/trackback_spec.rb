@@ -5,7 +5,7 @@ describe Trackback, 'With the various trackback filters loaded and DNS mocked ou
   let(:article) { create(:article) }
 
   before(:each) do
-    @blog = FactoryGirl.create(:blog)
+    @blog = create(:blog)
     @blog.sp_global = true
     @blog.default_moderate_comments = false
     @blog.save!
@@ -15,7 +15,7 @@ describe Trackback, 'With the various trackback filters loaded and DNS mocked ou
     tb = Trackback.new(blog_name: 'Blog name',
                        title: 'Title',
                        excerpt: 'Excerpt',
-                       article_id: FactoryGirl.create(:article).id)
+                       article_id: create(:article).id)
     expect(tb).not_to be_valid
     expect(tb.errors['url']).to be_any
   end
@@ -25,7 +25,7 @@ describe Trackback, 'With the various trackback filters loaded and DNS mocked ou
                        title: 'Title',
                        url: 'http://foo.com',
                        excerpt: 'Excerpt',
-                       article_id: FactoryGirl.create(:article).id)
+                       article_id: create(:article).id)
     expect(tb).to be_valid
     tb.save
     expect(tb.guid.size).to be > 15

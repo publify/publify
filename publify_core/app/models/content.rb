@@ -10,7 +10,7 @@ class Content < ApplicationRecord
 
   validates :blog, presence: true
 
-  has_one :redirect, dependent: :destroy, inverse_of: :contents
+  has_one :redirect, dependent: :destroy, inverse_of: :content
 
   has_many :triggers, as: :pending_item, dependent: :delete_all
   has_many :resources, inverse_of: :content, dependent: :nullify

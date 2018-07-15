@@ -33,8 +33,8 @@ class Article < Content
       where('feedback.type' => 'Comment',
             'contents.state' => 'published').
       group('contents.id').
-      order('count(feedback.id) DESC').
       select('contents.*, count(feedback.id) as comment_count').
+      order('comment_count DESC').
       limit(5)
   }
 

@@ -7,12 +7,12 @@ require 'spec_helper'
 require 'rails-controller-testing'
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
-require 'factory_girl'
+require 'factory_bot'
 require 'rexml/document'
 require 'feedjira'
 require 'webmock/rspec'
 
-FactoryGirl.find_definitions
+FactoryBot.definition_file_paths << File.expand_path('factories', __dir__)
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -62,8 +62,12 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
-  # shortcuts for factory_girl to use: create / build / build_stubbed
-  config.include FactoryGirl::Syntax::Methods
+  # shortcuts for factory_bot to use: create / build / build_stubbed
+  config.include FactoryBot::Syntax::Methods
+
+  config.before(:suite) do
+    FactoryBot.find_definitions
+  end
 
   # Test helpers needed for Devise
   config.include Devise::Test::ControllerHelpers, type: :controller
@@ -129,18 +133,18 @@ def assert_rss20_feed(parsed_feed, count)
 end
 
 def stub_full_article(time = Time.zone.now, blog: Blog.first)
-  author = FactoryGirl.build_stubbed(:user, name: 'User Name')
-  text_filter = FactoryGirl.build(:textile)
+  author = build_stubbed(:user, name: 'User Name')
+  text_filter = build(:textile)
 
-  a = FactoryGirl.build_stubbed(:article,
-                                published_at: time, user: author,
-                                created_at: time, updated_at: time,
-                                title: 'Foo Bar', permalink: 'foo-bar',
-                                blog: blog,
-                                guid: time.hash)
+  a = build_stubbed(:article,
+                    published_at: time, user: author,
+                    created_at: time, updated_at: time,
+                    title: 'Foo Bar', permalink: 'foo-bar',
+                    blog: blog,
+                    guid: time.hash)
   allow(a).to receive(:published_comments) { [] }
-  allow(a).to receive(:resources) { [FactoryGirl.build(:resource)] }
-  allow(a).to receive(:tags) { [FactoryGirl.build(:tag)] }
+  allow(a).to receive(:resources) { [build(:resource)] }
+  allow(a).to receive(:tags) { [build(:tag)] }
   allow(a).to receive(:text_filter) { text_filter }
   a
 end

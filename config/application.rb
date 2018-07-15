@@ -8,35 +8,20 @@ Bundler.require(*Rails.groups)
 
 module Publify
   class Application < Rails::Application
+    # Initialize configuration defaults for originally generated Rails version.
+    config.load_defaults 5.2
+
     # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration should go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded.
-
-    config.plugins = [ :all ]
-
-    # To avoid exception when deploying on Heroku
-    config.assets.initialize_on_precompile = false
+    # Application configuration can go into files in config/initializers
+    # -- all .rb files in that directory are automatically loaded after loading
+    # the framework and any gems in your application.
   end
 
   # Load included libraries.
   require 'publify_sidebar'
   require 'publify_textfilters'
   require 'publify_avatar_gravatar'
-  ## Required by the plugins themselves.
-  # require 'avatar_plugin'
-  require 'email_notify'
-
-  require 'format'
-  ## Required by the models themselves.
-  # require 'spam_protection'
-  require 'transforms'
-  require 'publify_time'
-  require 'publify_guid'
-  ## Required by the plugins themselves.
-  # require 'publify_plugins'
   require 'publify_version'
-
-  require 'theme'
 
   Theme.register_themes "#{Rails.root}/themes"
 

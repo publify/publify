@@ -83,7 +83,7 @@ describe 'find Article date range ' do
     before do
       Time.zone = 'UTC'
 
-      @a = FactoryGirl.build(:article)
+      @a = build(:article)
       @a.published_at = '1 Jan 2013 01:00 UTC'
       @a.save!
 
@@ -128,7 +128,7 @@ describe 'find Article date range ' do
     before do
       Time.zone = 'Tokyo'
 
-      @a = FactoryGirl.build(:article)
+      @a = build(:article)
       @a.published_at = '1 Jan 2013 01:00 +0900'
       @a.save!
 

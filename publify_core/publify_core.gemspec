@@ -35,7 +35,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'kaminari', '~> 1.0'
   s.add_dependency 'mimemagic', '~> 0.3.2'
   s.add_dependency 'mini_magick', '~> 4.2'
-  s.add_dependency 'rails', '~> 5.1.2'
+  s.add_dependency 'rails', '~> 5.2.0'
   s.add_dependency 'rails-timeago', '~> 2.0'
   s.add_dependency 'rails_autolink', '~> 1.1.0'
   s.add_dependency 'recaptcha', ['~> 4.3', '>= 4.3.1']
@@ -46,7 +46,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'uuidtools', '~> 2.1.1'
 
   s.add_development_dependency 'capybara', '~> 2.7'
-  s.add_development_dependency 'factory_girl_rails', '~> 4.8.0'
+  s.add_development_dependency 'factory_bot', '~> 4.8'
   s.add_development_dependency 'i18n-tasks', '~> 0.9.1'
   s.add_development_dependency 'rails-controller-testing', '~> 1.0.1'
   s.add_development_dependency 'rspec-rails', '~> 3.5'

@@ -45,7 +45,7 @@ describe Blog, type: :model do
 
   describe 'The first blog' do
     before(:each) do
-      @blog = FactoryGirl.create :blog
+      @blog = create :blog
     end
 
     it 'should allow another blog to be created' do
@@ -126,42 +126,42 @@ describe Blog, type: :model do
 
   describe 'Blog Twitter configuration' do
     it 'A blog without :twitter_consumer_key or twitter_consumer_secret should not have Twitter configured' do
-      blog = FactoryGirl.build(:blog)
+      blog = build(:blog)
       expect(blog.has_twitter_configured?).to eq(false)
     end
 
     it 'A blog with an empty :twitter_consumer_key and no twitter_consumer_secret should not have Twitter configured' do
-      blog = FactoryGirl.build(:blog, twitter_consumer_key: '')
+      blog = build(:blog, twitter_consumer_key: '')
       expect(blog.has_twitter_configured?).to eq(false)
     end
 
     it 'A blog with an empty twitter_consumer_key and an empty twitter_consumer_secret should not have Twitter configured' do
-      blog = FactoryGirl.build(:blog, twitter_consumer_key: '', twitter_consumer_secret: '')
+      blog = build(:blog, twitter_consumer_key: '', twitter_consumer_secret: '')
       expect(blog.has_twitter_configured?).to eq(false)
     end
 
     it 'A blog with a twitter_consumer_key and no twitter_consumer_secret should not have Twitter configured' do
-      blog = FactoryGirl.build(:blog, twitter_consumer_key: '12345')
+      blog = build(:blog, twitter_consumer_key: '12345')
       expect(blog.has_twitter_configured?).to eq(false)
     end
 
     it 'A blog with a twitter_consumer_key and an empty twitter_consumer_secret should not have Twitter configured' do
-      blog = FactoryGirl.build(:blog, twitter_consumer_key: '12345', twitter_consumer_secret: '')
+      blog = build(:blog, twitter_consumer_key: '12345', twitter_consumer_secret: '')
       expect(blog.has_twitter_configured?).to eq(false)
     end
 
     it 'A blog with a twitter_consumer_secret and no twitter_consumer_key should not have Twitter configured' do
-      blog = FactoryGirl.build(:blog, twitter_consumer_secret: '67890')
+      blog = build(:blog, twitter_consumer_secret: '67890')
       expect(blog.has_twitter_configured?).to eq(false)
     end
 
     it 'A blog with a twitter_consumer_secret and an empty twitter_consumer_key should not have Twitter configured' do
-      blog = FactoryGirl.build(:blog, twitter_consumer_secret: '67890', twitter_consumer_key: '')
+      blog = build(:blog, twitter_consumer_secret: '67890', twitter_consumer_key: '')
       expect(blog.has_twitter_configured?).to eq(false)
     end
 
     it 'A blog with a twitter_consumer_key and a twitter_consumer_secret should have Twitter configured' do
-      blog = FactoryGirl.build(:blog, twitter_consumer_key: '12345', twitter_consumer_secret: '67890')
+      blog = build(:blog, twitter_consumer_key: '12345', twitter_consumer_secret: '67890')
       expect(blog.has_twitter_configured?).to eq(true)
     end
   end

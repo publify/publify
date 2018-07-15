@@ -17,7 +17,7 @@ RSpec.describe ArticlesController, type: :controller do
       describe '#redirect' do
         it 'successfully renders an article' do
           get :redirect, params: { from: from_param }
-          expect(response).to be_success
+          expect(response).to be_successful
         end
       end
     end

@@ -13,14 +13,14 @@ describe Admin::PagesController, type: :controller do
   describe 'GET #index' do
     context 'without params' do
       before(:each) { get :index }
-      it { expect(response).to be_success }
+      it { expect(response).to be_successful }
       it { expect(response).to render_template('index') }
       it { expect(assigns(:pages)).to_not be_nil }
     end
 
     context 'with page 1' do
       before(:each) { get :index, params: { page: 1 } }
-      it { expect(response).to be_success }
+      it { expect(response).to be_successful }
       it { expect(response).to render_template('index') }
       it { expect(assigns(:pages)).to_not be_nil }
     end
@@ -30,7 +30,7 @@ describe Admin::PagesController, type: :controller do
     context 'should get a new form' do
       before(:each) { get :new }
 
-      it { expect(response).to be_success }
+      it { expect(response).to be_successful }
       it { expect(response).to render_template('new') }
       it { expect(assigns(:page)).to_not be_nil }
       it { expect(assigns(:page).user).to eq(user) }
@@ -85,7 +85,7 @@ describe Admin::PagesController, type: :controller do
 
     context 'should get the edit page' do
       before(:each) { get :edit, params: { id: page.id } }
-      it { expect(response).to be_success }
+      it { expect(response).to be_successful }
       it { expect(response).to render_template('edit') }
       it { expect(assigns(:page)).to eq(page) }
     end

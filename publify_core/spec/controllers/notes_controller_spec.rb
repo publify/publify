@@ -9,14 +9,14 @@ describe NotesController, type: :controller do
       let!(:note) { create(:note) }
       before(:each) { get 'index' }
 
-      it { expect(response).to be_success }
+      it { expect(response).to be_successful }
       it { expect(response).to render_template('notes/index') }
       it { expect(assigns(:notes)).to eq([note]) }
     end
 
     context 'with no note' do
       before(:each) { get 'index' }
-      it { expect(response).to be_success }
+      it { expect(response).to be_successful }
       it { expect(response).to render_template('notes/error') }
     end
   end
@@ -27,7 +27,7 @@ describe NotesController, type: :controller do
 
       before(:each) { get :show, params: { permalink: permalink } }
 
-      it { expect(response).to be_success }
+      it { expect(response).to be_successful }
       it { expect(response).to render_template('show') }
       it { expect(assigns[:page_title]).to eq('Notes | test blog ') }
     end
@@ -51,7 +51,7 @@ describe NotesController, type: :controller do
 
       before(:each) { get :show, params: { permalink: permalink } }
 
-      it { expect(response).to be_success }
+      it { expect(response).to be_successful }
       it { expect(response).to render_template('show_in_reply') }
       it { expect(assigns[:page_title]).to eq('Notes | test blog ') }
     end

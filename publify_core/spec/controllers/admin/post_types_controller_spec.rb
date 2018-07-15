@@ -12,7 +12,7 @@ describe Admin::PostTypesController, type: :controller do
   describe 'GET #index' do
     it 'responds successfully with an HTTP 200 status code' do
       get :index
-      expect(response).to be_success
+      expect(response).to be_successful
       expect(response).to have_http_status(200)
     end
 
@@ -35,11 +35,11 @@ describe Admin::PostTypesController, type: :controller do
 
   describe 'GET #edit' do
     before(:each) do
-      get :edit, params: { id: FactoryGirl.create(:post_type).id }
+      get :edit, params: { id: create(:post_type).id }
     end
 
     it 'renders the edit template with an HTTP 200 status code' do
-      expect(response).to be_success
+      expect(response).to be_successful
       expect(response).to have_http_status(200)
       expect(response).to render_template('edit')
     end
@@ -47,7 +47,7 @@ describe Admin::PostTypesController, type: :controller do
 
   describe '#update an existing post_type' do
     it 'should update a post_type and redirect to #index' do
-      @test_id = FactoryGirl.create(:post_type).id
+      @test_id = create(:post_type).id
       post :update, params: { id: @test_id, post_type: { name: 'another name' } }
       assert_response :redirect, action: 'index'
       expect(PostType.count).to eq(1)
@@ -57,7 +57,7 @@ describe Admin::PostTypesController, type: :controller do
 
   describe 'destroy a post_type' do
     it 'should destroy the post_type and redirect to #index' do
-      @test_id = FactoryGirl.create(:post_type).id
+      @test_id = create(:post_type).id
       post :destroy, params: { id: @test_id }
       expect(response).to redirect_to(action: 'index')
       expect(PostType.count).to eq(0)

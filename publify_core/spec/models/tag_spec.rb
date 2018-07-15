@@ -32,8 +32,8 @@ describe Tag, type: :model do
 
   it 'articles can be tagged' do
     a = Article.create(title: 'an article', blog: blog)
-    foo = FactoryGirl.create(:tag, name: 'foo')
-    bar = FactoryGirl.create(:tag, name: 'bar')
+    foo = create(:tag, name: 'foo')
+    bar = create(:tag, name: 'bar')
     a.tags << foo
     a.tags << bar
     a.reload
@@ -65,18 +65,18 @@ describe Tag, type: :model do
 
   describe '#published_articles' do
     it 'should return only published articles' do
-      published_art = FactoryGirl.create(:article)
-      draft_art = FactoryGirl.create(:article, published_at: nil, state: 'draft')
-      art_tag = FactoryGirl.create(:tag, name: 'art', contents: [published_art, draft_art])
+      published_art = create(:article)
+      draft_art = create(:article, published_at: nil, state: 'draft')
+      art_tag = create(:tag, name: 'art', contents: [published_art, draft_art])
       expect(art_tag.published_contents.size).to eq(1)
     end
   end
 
   context 'with tags foo, bar and bazz' do
     before do
-      @foo = FactoryGirl.create(:tag, name: 'foo')
-      @bar = FactoryGirl.create(:tag, name: 'bar')
-      @bazz = FactoryGirl.create(:tag, name: 'bazz')
+      @foo = create(:tag, name: 'foo')
+      @bar = create(:tag, name: 'bar')
+      @bazz = create(:tag, name: 'bazz')
     end
 
     it "find_with_char('f') should be return foo" do
