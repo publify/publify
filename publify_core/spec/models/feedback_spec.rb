@@ -10,7 +10,7 @@ describe Feedback, type: :model do
 
     context 'given a feedback with a spam state' do
       it 'calls mark_as_ham!' do
-        feedback = FactoryBot.build(:spam_comment)
+        feedback = build(:spam_comment)
         expect(feedback.change_state!).to eq 'ham'
         expect(feedback).to be_ham
       end
@@ -18,7 +18,7 @@ describe Feedback, type: :model do
 
     context 'given a feedback with a ham state' do
       it 'calls mark_as_spam!' do
-        feedback = FactoryBot.build(:ham_comment)
+        feedback = build(:ham_comment)
         expect(feedback.change_state!).to eq 'spam'
         expect(feedback).to be_spam
       end
@@ -28,13 +28,13 @@ describe Feedback, type: :model do
   describe 'scopes' do
     describe 'ham' do
       it 'returns nothing when no ham' do
-        FactoryBot.create(:spam_comment)
+        create(:spam_comment)
         expect(Feedback.ham).to be_empty
       end
 
       it 'returns only ham' do
-        FactoryBot.create(:spam_comment)
-        ham = FactoryBot.create(:ham_comment)
+        create(:spam_comment)
+        ham = create(:ham_comment)
         expect(Feedback.ham).to eq [ham]
       end
     end
@@ -47,8 +47,8 @@ describe Feedback, type: :model do
       end
 
       it 'returns feedback when one created since last visit' do
-        FactoryBot.create(:ham_comment, created_at: 2.years.ago)
-        feedback = FactoryBot.create(:ham_comment, created_at: time + 2.hours)
+        create(:ham_comment, created_at: 2.years.ago)
+        feedback = create(:ham_comment, created_at: time + 2.hours)
         expect(Feedback.created_since(time)).to eq [feedback]
       end
     end

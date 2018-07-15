@@ -68,7 +68,7 @@ describe Admin::DashboardController, type: :controller do
   describe 'test publisher profile' do
     before do
       @blog ||= create(:blog)
-      @rene = FactoryBot.create(:user, :as_publisher)
+      @rene = create(:user, :as_publisher)
       sign_in @rene
       get :index
     end

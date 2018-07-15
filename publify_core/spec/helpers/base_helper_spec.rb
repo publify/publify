@@ -138,7 +138,7 @@ describe BaseHelper, type: :helper do
 
   describe '#nofollowify_links' do
     before(:each) do
-      @blog = FactoryBot.create :blog
+      @blog = create :blog
     end
 
     it 'with dofollowify disabled, links should be nofollowed' do
