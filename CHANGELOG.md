@@ -5,6 +5,10 @@ See the changelogs for the individual engines for more details for releases 9.0 
 ## Unreleased
 
 * Upgrade to Rails 5.2
+* Drop support for custom mail.yml configuration. Mail settings should now be
+  configured in config/environments/production.rb
+* Drop support for custom timezone.yml configuration. If relevant, the timezone
+  can be set in config/application.rb
 
 ## 9.1.0 / 2018-04-19
 

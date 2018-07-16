@@ -24,28 +24,4 @@ module Publify
   require 'publify_version'
 
   Theme.register_themes "#{Rails.root}/themes"
-
-  Date::DATE_FORMATS.merge!(
-    :long_weekday => '%a %B %e, %Y %H:%M'
-  )
-
-  # TimeZone
-  if  File.file? "#{::Rails.root.to_s}/config/timezone.yml"
-    Time.zone = YAML.load(File.read("#{::Rails.root.to_s}/config/timezone.yml"))
-  end
-
-  ActionMailer::Base.default :charset => 'utf-8'
-
-  if ::Rails.env != 'test'
-    begin
-      mail_settings = YAML.load(File.read("#{::Rails.root.to_s}/config/mail.yml"))
-
-      %w(delivery_method smtp_settings sendmail_settings file_settings).each do |key|
-        ActionMailer::Base.send "#{key}=", mail_settings[key]
-      end
-    rescue
-      # Fall back to using sendmail by default
-      ActionMailer::Base.delivery_method = :sendmail
-    end
-  end
 end
