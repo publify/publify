@@ -53,5 +53,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'simplecov', '~> 0.14.0'
   s.add_development_dependency 'sqlite3'
   s.add_development_dependency 'timecop', '~> 0.8.1'
-  s.add_development_dependency 'webmock', '~> 3.0.1'
+  s.add_development_dependency 'webmock', '~> 3.3'
 end
