@@ -102,7 +102,7 @@ GEM
     akismet (2.0.0)
     arel (9.0.0)
     ast (2.4.0)
-    autoprefixer-rails (8.6.5)
+    autoprefixer-rails (9.0.0)
       execjs
     bcrypt (3.1.12)
     better_errors (2.4.0)
@@ -332,7 +332,7 @@ GEM
     rspec-support (3.7.1)
     rubypants (0.7.0)
     safe_yaml (1.0.4)
-    sass (3.5.6)
+    sass (3.5.7)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -443,4 +443,4 @@ DEPENDENCIES
   webmock (~> 3.3.0)
 
 BUNDLED WITH
-   1.16.2
+   1.16.3
