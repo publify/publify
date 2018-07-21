@@ -26,8 +26,8 @@ gem 'non-stupid-digest-assets', '~> 1.0'
 gem 'rake', '~> 12.0'
 
 group :development, :test do
-  gem 'capybara', '~> 2.7'
-  gem 'factory_bot', '~> 4.8.0'
+  gem 'capybara', '~> 3.0'
+  gem 'factory_bot', '~> 4.8'
   gem 'i18n-tasks', '~> 0.9.1', require: false
   gem 'rspec-rails', '~> 3.4'
   gem 'simplecov', '~> 0.16.1', require: false
@@ -53,7 +53,7 @@ group :test do
   gem 'launchy', '~> 2.4'
   gem 'rails-controller-testing', '~> 1.0.1'
   gem 'timecop', '~> 0.9.0'
-  gem 'webmock', '~> 3.3.0'
+  gem 'webmock', '~> 3.3'
 end
 
 # Install gems from each theme

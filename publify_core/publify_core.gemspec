@@ -29,7 +29,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'devise-i18n', '~> 1.2'
   s.add_dependency 'dynamic_form', '~> 1.1.4'
   s.add_dependency 'feedjira', '~> 2.1.0'
-  s.add_dependency 'fog-aws', '~> 2.0.0'
+  s.add_dependency 'fog-aws', '~> 3.0.0'
   s.add_dependency 'jquery-rails', '~> 4.3.1'
   s.add_dependency 'jquery-ui-rails', '~> 6.0.1'
   s.add_dependency 'kaminari', '~> 1.0'
@@ -45,7 +45,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'twitter', '~> 6.2.0'
   s.add_dependency 'uuidtools', '~> 2.1.1'
 
-  s.add_development_dependency 'capybara', '~> 2.7'
+  s.add_development_dependency 'capybara', '~> 3.0'
   s.add_development_dependency 'factory_bot', '~> 4.8'
   s.add_development_dependency 'i18n-tasks', '~> 0.9.1'
   s.add_development_dependency 'rails-controller-testing', '~> 1.0.1'
@@ -53,5 +53,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'simplecov', '~> 0.14.0'
   s.add_development_dependency 'sqlite3'
   s.add_development_dependency 'timecop', '~> 0.8.1'
-  s.add_development_dependency 'webmock', '~> 3.0.1'
+  s.add_development_dependency 'webmock', '~> 3.3'
 end
