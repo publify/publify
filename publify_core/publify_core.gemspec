@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '>= 2.2.0'
 
-  s.add_dependency 'aasm', '~> 4.12.0'
+  s.add_dependency 'aasm', '~> 5.0'
   s.add_dependency 'akismet', '~> 2.0'
   s.add_dependency 'bluecloth', '~> 2.1'
   s.add_dependency 'bootstrap-sass', '~> 3.3.6'
