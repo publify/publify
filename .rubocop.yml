@@ -119,6 +119,10 @@ Rails/ApplicationRecord:
     - 'db/migrate/*'
     - 'publify_core/db/migrate/*'
 
+# TODO: Re-enable once advice is more targeted
+Rails/BulkChangeTable:
+  Enabled: false
+
 # Migrations should not do validations in general?
 Rails/SkipsModelValidations:
   Exclude:
