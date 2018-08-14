@@ -7,7 +7,7 @@ FactoryBot.define do
   sequence(:guid) { |n| "deadbeef#{n}" }
   sequence(:label) { |n| "lab_#{n}" }
   sequence(:file_name) { |f| "file_name_#{f}" }
-  sequence(:time) { |n| DateTime.new(2012, 3, 26, 19, 56).in_time_zone - n }
+  sequence(:time) { |n| Time.new(2012, 3, 26, 19, 56).in_time_zone - n }
 
   factory :user do
     login { FactoryBot.generate(:user) }
