@@ -14,7 +14,7 @@ require 'kaminari'
 require 'rails_autolink'
 require 'rails-timeago'
 require 'recaptcha/rails'
-require 'sass-rails'
+require 'sassc-rails'
 
 require 'email_notify'
 require 'publify_guid'
