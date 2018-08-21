@@ -137,7 +137,6 @@ GEM
       safe_yaml (~> 1.0.0)
     crass (1.0.4)
     debug_inspector (0.0.3)
-    deepl-rb (2.1.0)
     devise (4.5.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -151,9 +150,6 @@ GEM
     domain_name (0.5.20180417)
       unf (>= 0.0.5, < 1.0.0)
     dynamic_form (1.1.4)
-    easy_translate (0.5.1)
-      thread
-      thread_safe
     equalizer (0.0.11)
     erubi (1.7.1)
     excon (0.62.0)
@@ -204,13 +200,11 @@ GEM
     http_parser.rb (0.6.0)
     i18n (1.1.0)
       concurrent-ruby (~> 1.0)
-    i18n-tasks (0.9.23)
+    i18n-tasks (0.9.24)
       activesupport (>= 4.0.2)
       ast (>= 2.1.0)
-      deepl-rb (>= 2.1.0)
-      easy_translate (>= 0.5.1)
       erubi
-      highline (>= 1.7.3)
+      highline (>= 2.0.0)
       i18n
       parser (>= 2.2.3.0)
       rainbow (>= 2.2.2, < 4.0)
@@ -374,7 +368,6 @@ GEM
     terminal-table (1.8.0)
       unicode-display_width (~> 1.1, >= 1.1.1)
     thor (0.20.0)
-    thread (0.2.2)
     thread_safe (0.3.6)
     tilt (2.0.8)
     timecop (0.9.1)
@@ -426,7 +419,7 @@ DEPENDENCIES
   capybara (~> 3.0)
   factory_bot (~> 4.8)
   flickraw (~> 0.9.8)
-  i18n-tasks (~> 0.9.1)
+  i18n-tasks (~> 0.9.24)
   launchy (~> 2.4)
   mysql2
   non-stupid-digest-assets (~> 1.0)
