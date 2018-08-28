@@ -105,7 +105,7 @@ GEM
     autoprefixer-rails (9.1.1)
       execjs
     bcrypt (3.1.12)
-    better_errors (2.4.0)
+    better_errors (2.5.0)
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
       rack (>= 0.9.0)
@@ -413,7 +413,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-session_store (~> 1.1.0)
-  better_errors (~> 2.4.0)
+  better_errors (~> 2.5.0)
   binding_of_caller (~> 0.8.0)
   byebug (~> 10.0)
   capybara (~> 3.0)
