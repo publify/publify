@@ -261,7 +261,7 @@ GEM
     orm_adapter (0.5.0)
     parser (2.5.1.2)
       ast (~> 2.4.0)
-    pg (1.1.0)
+    pg (1.1.2)
     public_suffix (3.0.3)
     puma (3.12.0)
     rack (2.0.5)
