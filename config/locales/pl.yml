@@ -11,7 +11,7 @@ pl:
       email_address: Adres email
       your_website: Twoja strona www
     meta:
-      published_on_html: "Opublikowano %{publish_date_and_time} przez %{by}, tagi: %{tags}"
+      published_on_html: 'Opublikowano %{publish_date_and_time} przez %{by}, tagi: %{tags}'
     read:
       add_me_to_twitter: obserwuj mnie na Twitterze
       if_you_liked_this_article_you_can_html: Jeżeli podobał Ci się ten wpis,  %{add_twitter}
