@@ -48,7 +48,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     RedCloth (4.3.2)
-    aasm (5.0.0)
+    aasm (5.0.1)
       concurrent-ruby (~> 1.0)
     actioncable (5.2.1)
       actionpack (= 5.2.1)
