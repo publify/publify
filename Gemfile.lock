@@ -200,7 +200,7 @@ GEM
     http_parser.rb (0.6.0)
     i18n (1.1.0)
       concurrent-ruby (~> 1.0)
-    i18n-tasks (0.9.24)
+    i18n-tasks (0.9.25)
       activesupport (>= 4.0.2)
       ast (>= 2.1.0)
       erubi
@@ -419,7 +419,7 @@ DEPENDENCIES
   capybara (~> 3.7)
   factory_bot (~> 4.11)
   flickraw (~> 0.9.8)
-  i18n-tasks (~> 0.9.24)
+  i18n-tasks (~> 0.9.25)
   launchy (~> 2.4)
   mysql2
   non-stupid-digest-assets (~> 1.0)

@@ -28,7 +28,7 @@ gem 'rake', '~> 12.0'
 group :development, :test do
   gem 'capybara', '~> 3.7'
   gem 'factory_bot', '~> 4.11'
-  gem 'i18n-tasks', '~> 0.9.24', require: false
+  gem 'i18n-tasks', '~> 0.9.25', require: false
   gem 'rspec-rails', '~> 3.4'
   gem 'simplecov', '~> 0.16.1', require: false
 end
