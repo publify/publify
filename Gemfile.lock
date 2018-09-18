@@ -119,7 +119,7 @@ GEM
     buftok (0.2.0)
     builder (3.2.3)
     byebug (10.0.2)
-    cancancan (2.2.0)
+    cancancan (2.3.0)
     capybara (3.7.2)
       addressable
       mini_mime (>= 0.1.3)
@@ -236,7 +236,7 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.7.0)
       mini_mime (>= 0.1.1)
-    marcel (0.3.2)
+    marcel (0.3.3)
       mimemagic (~> 0.3.2)
     memoizable (0.4.2)
       thread_safe (~> 0.3, >= 0.3.1)
