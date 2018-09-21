@@ -17,6 +17,7 @@ class Article::Factory
 
   def get_or_build_from(id)
     return blog.articles.find(id) if id.present?
+
     default
   end
 
@@ -45,6 +46,7 @@ class Article::Factory
         after_format = Regexp.last_match[3]
         item =~ /^#{before_format}(.*)#{after_format}$/
         break unless Regexp.last_match
+
         value = Regexp.last_match[1]
         result[format_string.to_sym] = value
       elsif spec != item

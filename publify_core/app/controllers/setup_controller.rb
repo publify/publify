@@ -52,6 +52,7 @@ class SetupController < BaseController
 
   def check_config
     return unless this_blog.configured?
+
     redirect_to controller: 'articles', action: 'index'
   end
 end

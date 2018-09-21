@@ -40,6 +40,7 @@ class Comment < Feedback
 
   def article_allows_feedback?
     return true if article.allow_comments?
+
     errors.add(:article, 'Article is not open to comments')
     false
   end

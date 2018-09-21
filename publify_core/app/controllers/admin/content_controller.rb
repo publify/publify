@@ -24,6 +24,7 @@ class Admin::ContentController < Admin::BaseController
 
   def edit
     return unless access_granted?(params[:id])
+
     @article = Article.find(params[:id])
     @article.text_filter ||= current_user.default_text_filter
     @article.keywords = Tag.collection_to_string @article.tags
@@ -55,6 +56,7 @@ class Admin::ContentController < Admin::BaseController
 
   def update
     return unless access_granted?(params[:id])
+
     id = params[:article][:id] || params[:id]
     @article = Article.find(id)
 

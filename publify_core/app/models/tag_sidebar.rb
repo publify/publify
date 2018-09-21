@@ -11,6 +11,7 @@ class TagSidebar < Sidebar
 
   def sizes
     return @sizes if @sizes
+
     total = tags.reduce(0) { |sum, tag| sum + tag.content_counter }
     average = total.to_f / @tags.size.to_f
     @sizes = tags.reduce({}) do |h, tag|

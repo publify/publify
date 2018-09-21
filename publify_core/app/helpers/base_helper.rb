@@ -57,6 +57,7 @@ module BaseHelper
       return ''
     end
     return '' unless avatar_class.respond_to?(:get_avatar)
+
     avatar_class.get_avatar(options)
   end
 
@@ -107,11 +108,13 @@ module BaseHelper
                       user.resource.upload.avatar.url
                     end
       return if avatar_path.nil?
+
       avatar_url = this_blog.file_url(avatar_path)
     elsif user.twitter_profile_image.present?
       avatar_url = user.twitter_profile_image
     end
     return unless avatar_url
+
     image_tag(avatar_url, alt: user.nickname, class: klass)
   end
 
@@ -163,6 +166,7 @@ module BaseHelper
 
   def display_date_and_time(timestamp)
     return if timestamp.blank?
+
     if this_blog.date_format == 'setting_date_format_distance_of_time_in_words'
       timeago_tag timestamp, date_only: false
     else
@@ -172,6 +176,7 @@ module BaseHelper
 
   def show_meta_keyword
     return unless this_blog.use_meta_keyword
+
     meta_tag 'keywords', @keywords if @keywords.present?
   end
 

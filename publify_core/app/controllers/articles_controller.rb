@@ -39,6 +39,7 @@ class ArticlesController < ContentController
   def search
     @articles = this_blog.articles_matching(params[:q], page: params[:page], per_page: this_blog.per_page(params[:format]))
     return error! if @articles.empty?
+
     @page_title = this_blog.search_title_template.to_title(@articles, this_blog, params)
     @description = this_blog.search_desc_template.to_title(@articles, this_blog, params)
     respond_to do |format|
@@ -62,6 +63,7 @@ class ArticlesController < ContentController
 
   def check_password
     return unless request.xhr?
+
     @article = Article.find(params[:article][:id])
     if @article.password == params[:article][:password]
       render partial: 'articles/full_article_content', locals: { article: @article }
@@ -175,6 +177,7 @@ class ArticlesController < ContentController
 
   def render_paginated_index
     return error! if @articles.empty?
+
     auto_discovery_feed(only_path: false)
     render 'index'
   end

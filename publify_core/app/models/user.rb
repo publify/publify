@@ -57,6 +57,7 @@ class User < ApplicationRecord
 
   def first_and_last_name
     return '' unless firstname.present? && lastname.present?
+
     "#{firstname} #{lastname}"
   end
 
@@ -118,6 +119,7 @@ class User < ApplicationRecord
 
   def update_twitter_profile_image(img)
     return if twitter_profile_image == img
+
     self.twitter_profile_image = img
     save
   end

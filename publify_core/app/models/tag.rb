@@ -12,6 +12,7 @@ class Tag < ApplicationRecord
 
   def self.create_from_article!(article)
     return if article.keywords.nil?
+
     tags = []
     Tag.transaction do
       tagwords = article.keywords.to_s.scan(/((['"]).*?\2|[\.:[[:alnum:]]]+)/).map do |x|

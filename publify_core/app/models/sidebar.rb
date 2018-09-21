@@ -132,6 +132,7 @@ class Sidebar < ApplicationRecord
   def admin_state
     return :active if active_position && (staged_position == active_position || staged_position.nil?)
     return :will_change_position if active_position != staged_position
+
     raise "Unknown admin_state: active: #{active_position}, staged: #{staged_position}"
   end
 end

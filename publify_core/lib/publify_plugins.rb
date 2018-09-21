@@ -28,6 +28,7 @@ module PublifyPlugins
       class << self
         def available_plugins(kind = nil)
           return @@registered.inspect unless kind
+
           check_kind(kind)
           @@registered[kind] || []
         end

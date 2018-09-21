@@ -49,6 +49,7 @@ class SpamProtection
   def check_uri_count(uris)
     limit = this_blog.sp_url_limit
     return if limit.to_i.zero?
+
     throw :hit, "Hard URL Limit hit: #{uris.size} > #{limit}" if uris.size > limit
   end
 

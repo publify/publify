@@ -3,6 +3,7 @@ module AuthorsHelper
 
   def display_profile_item(item, item_desc)
     return if item.blank?
+
     item = link_to(item, item) if is_url?(item)
     content_tag :li do
       safe_join([item_desc, item], ' ')

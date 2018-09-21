@@ -17,8 +17,10 @@ class TextFilter < ApplicationRecord
 
     filters.each do |filter|
       next if filter.nil?
+
       filter_class = map[filter.to_s]
       next unless filter_class
+
       text = filter_class.filtertext(text)
     end
 

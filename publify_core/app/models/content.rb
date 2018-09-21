@@ -71,6 +71,7 @@ class Content < ApplicationRecord
 
     if redirect.present?
       return if redirect.to_path == permalink_url
+
       redirect.to_path = permalink_url
       redirect.save
     else

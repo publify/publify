@@ -48,6 +48,7 @@ module Admin::BaseHelper
 
   def display_pagination(collection, cols, _first = '', _last = '')
     return if collection.count == 0
+
     content_tag(:tr) do
       content_tag(:td, paginate(collection), class: 'paginate', colspan: cols)
     end
@@ -69,6 +70,7 @@ module Admin::BaseHelper
 
   def button_to_short_url(item)
     return '' if item.short_url.nil?
+
     link_to(content_tag(:span, '', class: 'glyphicon glyphicon-link'), item.short_url, class: 'btn btn-success btn-xs btn-action')
   end
 

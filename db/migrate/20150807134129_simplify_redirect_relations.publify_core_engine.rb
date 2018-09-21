@@ -7,8 +7,10 @@ class SimplifyRedirectRelations < ActiveRecord::Migration[4.2]
     Redirect.find_each do |redirect|
       redirections = Redirection.where(redirect_id: redirect.id)
       raise "Expected zero or one redirections, found #{redirections.count}" if redirections.count > 1
+
       redirection = redirections.first
       next unless redirection
+
       redirect.content_id = redirection.content_id
       redirect.save!
     end
@@ -29,6 +31,7 @@ class SimplifyRedirectRelations < ActiveRecord::Migration[4.2]
 
     Redirect.find_each do |redirect|
       next unless redirect.content_id
+
       Redirection.create(redirect_id: redirect.id, content_id: redirect.content_id)
     end
     remove_column :redirects, :content_id

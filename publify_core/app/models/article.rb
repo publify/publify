@@ -77,6 +77,7 @@ class Article < Content
 
   def set_permalink
     return if draft? || permalink.present?
+
     self.permalink = title.to_permalink
   end
 
@@ -107,6 +108,7 @@ class Article < Content
   # FIXME: Use keyword params to clean up call sites.
   def permalink_url(anchor = nil, only_path = false)
     return unless published?
+
     @cached_permalink_url ||= {}
     @cached_permalink_url["#{anchor}#{only_path}"] ||= blog.url_for(permalink_url_options, anchor: anchor, only_path: only_path)
   end
@@ -159,6 +161,7 @@ class Article < Content
     req_params[:published_at] = date_range if date_range
 
     return if req_params.empty? # no search if no params send
+
     article = published.find_by(req_params)
     return article if article
 
@@ -252,11 +255,13 @@ class Article < Content
 
   def allow_comments?
     return allow_comments unless allow_comments.nil?
+
     blog.default_allow_comments
   end
 
   def allow_pings?
     return allow_pings unless allow_pings.nil?
+
     blog.default_allow_pings
   end
 

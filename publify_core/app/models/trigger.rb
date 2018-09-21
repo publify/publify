@@ -15,6 +15,7 @@ class Trigger < ApplicationRecord
 
     def remove(pending_item, conditions = {})
       return if pending_item.new_record?
+
       conditions = conditions.merge(pending_item_id: pending_item.id,
                                     pending_item_type: pending_item.class.to_s)
       where(conditions).delete_all

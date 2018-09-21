@@ -56,6 +56,7 @@ class Admin::DashboardController < Admin::BaseController
   def inbound_links
     host = URI.parse(this_blog.base_url).host
     return [] if Rails.env.development?
+
     url = "http://www.google.com/search?q=link:#{host}&tbm=blg&output=rss"
     fetch_rss(url).reverse.compact
   end

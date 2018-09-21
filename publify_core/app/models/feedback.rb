@@ -97,6 +97,7 @@ class Feedback < ApplicationRecord
 
   def correct_url
     return if url.blank?
+
     self.url = 'http://' + url.to_s unless url =~ %r{^https?://}
   end
 
@@ -183,6 +184,7 @@ class Feedback < ApplicationRecord
 
   def report_as_spam
     return if akismet.nil?
+
     begin
       Timeout.timeout(5) do
         akismet.submit_spam(ip, user_agent, akismet_options)
@@ -194,6 +196,7 @@ class Feedback < ApplicationRecord
 
   def report_as_ham
     return if akismet.nil?
+
     begin
       Timeout.timeout(5) do
         akismet.ham(ip, user_agent, akismet_options)
@@ -233,6 +236,7 @@ class Feedback < ApplicationRecord
 
   def akismet_client
     return nil if blog.sp_akismet_key.blank?
+
     client = Akismet::Client.new(blog.sp_akismet_key, blog.base_url)
     begin
       return client.verify_key ? client : nil

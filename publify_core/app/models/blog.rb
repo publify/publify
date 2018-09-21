@@ -204,6 +204,7 @@ class Blog < ApplicationRecord
 
   def per_page(format)
     return limit_article_display if format.nil? || format == 'html'
+
     limit_rss_display
   end
 
@@ -233,6 +234,7 @@ class Blog < ApplicationRecord
   def has_twitter_configured?
     return false if twitter_consumer_key.nil? || twitter_consumer_secret.nil?
     return false if twitter_consumer_key.empty? || twitter_consumer_secret.empty?
+
     true
   end
 
@@ -253,6 +255,7 @@ class Blog < ApplicationRecord
   def split_base_url
     unless @split_base_url
       raise "Invalid base_url: #{base_url}" unless base_url =~ %r{(https?)://([^/]*)(.*)}
+
       @split_base_url = { protocol: Regexp.last_match[1], host_with_port: Regexp.last_match[2], root_path: Regexp.last_match[3].gsub(%r{/$}, '') }
     end
     @split_base_url
