@@ -26,7 +26,7 @@ gem 'non-stupid-digest-assets', '~> 1.0'
 gem 'rake', '~> 12.0'
 
 group :development, :test do
-  gem 'capybara', '~> 3.8'
+  gem 'capybara', '~> 3.9'
   gem 'factory_bot', '~> 4.11'
   gem 'i18n-tasks', '~> 0.9.25', require: false
   gem 'rspec-rails', '~> 3.4'
