@@ -31,13 +31,13 @@ project alive.
 
 ## Demo site
 
-You can [give Publify a try](http://demo.publify.co)
+You can [give Publify a try](https://demo-publify.herokuapp.com/)
 
-The login / password [to the admin](http://demo.publify.co/admin)
+The login / password [to the admin](https://demo-publify.herokuapp.com/admin)
 are:
 
-- Administrator: admin / admin
-- Publisher: publish / publish
+- Administrator: admin / admin123
+- Publisher: demo / demo1234
 
 The demo is reset every 2 hours.
 
@@ -166,7 +166,6 @@ heroku restart
 - [In page Plugins](https://github.com/publify/publify/wiki/In-Page-Plugins)
 - [**Report a bug**](https://github.com/publify/publify/issues)
 - [**Frequently Asked Questions**](https://github.com/publify/publify/wiki/frequently-asked-questions)
-- [Publify blog](http://blog.publify.co)
 - [Publify on Twitter](https://twitter.com/getpublify)
 - IRC: \#publify on irc.freenode.net
 
@@ -174,7 +173,7 @@ heroku restart
 
 ### Current Maintainers
 
-**Frédéric de Villamil** <frederic@publify.co>
+**Frédéric de Villamil**
 blog: http://t37.net
 
 **Matijs van Zuijlen**
