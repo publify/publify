@@ -39,7 +39,7 @@ are:
 - Administrator: admin / admin123
 - Publisher: demo / demo1234
 
-The demo is reset every 2 hours.
+The demo is reset every hour.
 
 ## Install
 
