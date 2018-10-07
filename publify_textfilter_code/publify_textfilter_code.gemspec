@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = PublifyTextfilterCode::VERSION
   s.authors     = ['Matijs van Zuijlen']
   s.email       = ['matijs@matijs.net']
-  s.homepage    = 'https://publify.co'
+  s.homepage    = 'https://publify.github.io/'
   s.summary     = 'Code text filter for the Publify blogging system.'
   s.description = 'Code text filter sidebar for the Publify blogging system.'
   s.license     = 'MIT'

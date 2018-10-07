@@ -431,5 +431,5 @@ platform][4].
 [1]: http://t37.net/here-comes-the-time-to-hand-over-your-open-source-project.html
 [2]: http://t37.net/is-coding-a-blogging-engine-still-worth-the-effort-in-2013-and-other-thoughts-about-content-publishing-tools.html
 [3]: https://github.com/publify/typographic
-[4]: http://demo.publify.co/
+[4]: https://demo-publify.herokuapp.com/
 
