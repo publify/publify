@@ -136,7 +136,7 @@ describe Admin::FeedbackController, type: :controller do
 
     describe 'create action' do
       def base_comment(options = {})
-        { 'body' => 'a new comment', 'author' => 'Me', 'url' => 'http://publify.co', 'email' => 'dev@publify.co' }.merge(options)
+        { 'body' => 'a new comment', 'author' => 'Me', 'url' => 'https://bar.com/', 'email' => 'foo@bar.com' }.merge(options)
       end
 
       describe 'by get access' do

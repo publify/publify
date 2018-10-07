@@ -89,7 +89,7 @@ class Blog < ApplicationRecord
     Twitter: your Twitter username.
 
     /* SITE */
-    Software: Publify [http://publify.co] #{PublifyCore::VERSION}
+    Software: Publify [https://publify.github.io/] #{PublifyCore::VERSION}
   TEXT
   setting :index_categories, :boolean, true # deprecated but still needed for backward compatibility
   setting :unindex_categories, :boolean, false

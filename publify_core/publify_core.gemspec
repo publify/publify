@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.authors     = ['Matijs van Zuijlen', 'Yannick François',
                    'Thomas Lecavellier', 'Frédéric de Villamil']
   s.email       = ['matijs@matijs.net']
-  s.homepage    = 'https://publify.co'
+  s.homepage    = 'https://publify.github.io/'
   s.summary     = 'Core engine for the Publify blogging system.'
   s.description = 'Core engine for the Publify blogging system, formerly known as Typo.'
   s.license     = 'MIT'

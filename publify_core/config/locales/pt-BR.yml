@@ -102,10 +102,6 @@ pt-BR:
         update_your_profile_or_change_your_password: atualizar seu perfil ou mudar sua senha
         write_a_page: escrever uma página
         write_a_post: escrever uma postagem
-      publify_version:
-        error: Você está desatualizado de pelo menos uma versão principal do Publify. Você deve atualizar imediatamente. Baixe e instale <a href='http://publify.co/stable.tgz'>a versão mais recente do Publify</a>
-        notice: Existe uma nova versão disponível do Publify. Porque você não atualiza para <a href='http://publify.co/stable.tgz'>a versão mais recente do Publify</a> ?
-        warning: Existe uma nova versão do Publify que contém correções importantes. Porque você não atualiza para <a href='http://publify.co/stable.tgz'>a versão mais recente do Publify</a> ?
       welcome:
         approved_count:
           one: 1 aprovado

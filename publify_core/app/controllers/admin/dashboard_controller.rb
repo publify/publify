@@ -29,26 +29,6 @@ class Admin::DashboardController < Admin::BaseController
 
     @statspam = Comment.spam.count
     @inbound_links = inbound_links
-    publify_version
-  end
-
-  def publify_version
-    version = nil
-    begin
-      open(PUBLIFY_VERSION_URL) do |http|
-        publify_version = http.read[0..5]
-        version = publify_version.split('.')
-      end
-    rescue
-      return
-    end
-    if version[0].to_i > TYPO_MAJOR.to_i
-      flash[:error] = I18n.t('admin.dashboard.publify_version.error')
-    elsif version[1].to_i > TYPO_SUB.to_i
-      flash[:warning] = I18n.t('admin.dashboard.publify_version.warning')
-    elsif version[2].to_i > TYPO_MINOR.to_i
-      flash[:notice] = I18n.t('admin.dashboard.publify_version.notice')
-    end
   end
 
   private

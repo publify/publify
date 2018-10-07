@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = PublifyAmazonSidebar::VERSION
   s.authors     = ['Matijs van Zuijlen']
   s.email       = ['matijs@matijs.net']
-  s.homepage    = 'https://publify.co'
+  s.homepage    = 'https://publify.github.io/'
   s.summary     = 'Amazon sidebar for the Publify blogging system.'
   s.description = 'Amazon sidebar for the Publify blogging system.'
   s.license     = 'MIT'
