@@ -102,10 +102,6 @@ fr:
         update_your_profile_or_change_your_password: Mettre votre profil à jour ou changer votre mot de passe
         write_a_page: Publier une page statique
         write_a_post: Écrire un article
-      publify_version:
-        error: Vous avez au moins une version majeure de Publify de retard. Vous devriez immédiatement vous mettre à jour. Téléchargez et installez <a href='http://publify.co/stable.tgz'>la dernière version de Publify</a>
-        notice: Une nouvelle version de Publify est disponible. Pouquoi n'installeriez-vous pas <a href='http://publify.co/stable.tgz'>la dernière version de Publify</a> ?
-        warning: Une nouvelle version de Publify est disponible. Celle-ci contient probablement d'importants correctifs. Pourquoi ne téléchargeriez-vous pas <a href='http://publify.co/stable.tgz'>la dernière version de Publify</a> ?
       welcome:
         approved_count:
           one: 1 approuvé

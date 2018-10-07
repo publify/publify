@@ -102,10 +102,6 @@ pl:
         update_your_profile_or_change_your_password: zaktualizować profil lub zmienić hasło
         write_a_page: utworzyć stronę
         write_a_post: utworzyć wpis
-      publify_version:
-        error: You are at least one major version of Publify out of date. You should upgrade immediately. Download and install <a href='http://publify.co/stable.tgz'>the latest Publify version</a>
-        notice: There's a new version of Publify available. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a>?
-        warning: There's a new version of Publify available which may contain important bug fixes. Why don't you upgrade to <a href='http://publify.co/stable.tgz'>the latest Publify version</a>?
       welcome:
         approved_count:
           one: 1 zaakceptowany
