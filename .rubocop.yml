@@ -66,12 +66,12 @@ Lint/AssignmentInCondition:
 
 # Suppress BlockLength for some files:
 # - Spec describe blocks can be any length
-# - Routes blocks can be any length
-# - FactoryBot factory blocks can be any length
+# - Task blocks can be any length
 # - Gem specification blocks can be any length
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
+    - 'lib/tasks/*.rake'
     - '**/*.gemspec'
 
 # Initial schema has a very large change method
