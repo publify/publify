@@ -78,10 +78,12 @@ Lint/AssignmentInCondition:
 # Suppress BlockLength for some files:
 # - Spec describe blocks can be any length
 # - Environment configuration blocks can be any length
+# - Task blocks can be any length
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
     - 'config/environments/*'
+    - 'lib/tasks/*.rake'
 
 # Initial schema has a very large change method
 Metrics/MethodLength:
