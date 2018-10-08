@@ -191,7 +191,7 @@ describe Blog, type: :model do
   describe '#humans' do
     context 'default value with publify txt' do
       let(:blog) { create :blog }
-      it { expect(blog.humans).to_not be_nil }
+      it { expect(blog.humans).not_to be_nil }
     end
 
     context 'default value with publify txt' do

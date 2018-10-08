@@ -86,7 +86,7 @@ describe Admin::ContentController, type: :controller do
       it 'does not create an extra draft' do
         expect do
           post :autosave, xhr: true, params: { article: { id: draft.id, body_and_extended: 'new body' } }
-        end.to_not change(Article, :count)
+        end.not_to change(Article, :count)
       end
     end
 
@@ -101,8 +101,8 @@ describe Admin::ContentController, type: :controller do
 
       it 'does not replace existing draft' do
         post :autosave, xhr: true, params: { article: attributes_for(:article) }
-        expect(assigns(:article).id).to_not eq(draft.id)
-        expect(assigns(:article).body).to_not eq(draft.body)
+        expect(assigns(:article).id).not_to eq(draft.id)
+        expect(assigns(:article).body).not_to eq(draft.body)
       end
     end
   end
@@ -115,7 +115,7 @@ describe Admin::ContentController, type: :controller do
 
     it { expect(response).to be_successful }
     it { expect(response).to render_template('new') }
-    it { expect(assigns(:article)).to_not be_nil }
+    it { expect(assigns(:article)).not_to be_nil }
     it { expect(assigns(:article).redirect).to be_nil }
   end
 
@@ -236,7 +236,7 @@ describe Admin::ContentController, type: :controller do
 
         context 'when doing a draft' do
           let(:article_params) { { title: 'posted via tests!', body: 'a good boy', draft: 'true' } }
-          it { expect(assigns(:article)).to_not be_published }
+          it { expect(assigns(:article)).not_to be_published }
         end
       end
 
@@ -318,7 +318,7 @@ describe Admin::ContentController, type: :controller do
 
         before(:each) { get :edit, params: { id: article.id } }
         it { expect(response).to render_template('edit') }
-        it { expect(assigns(:article)).to_not be_nil }
+        it { expect(assigns(:article)).not_to be_nil }
         it { expect(assigns(:article)).to be_valid }
       end
     end

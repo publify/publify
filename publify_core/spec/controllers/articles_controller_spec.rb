@@ -27,7 +27,7 @@ RSpec.describe ArticlesController, 'base', type: :controller do
       end
 
       it { expect(response).to render_template(:index) }
-      it { expect(assigns[:articles]).to_not be_empty }
+      it { expect(assigns[:articles]).not_to be_empty }
 
       it 'has no meta keywords for a blog without keywords' do
         expect(assigns(:keywords)).to eq('')
@@ -185,7 +185,7 @@ RSpec.describe ArticlesController, 'base', type: :controller do
       before(:each) { get :search, params: { q: 'a' } }
 
       it { expect(response).to render_template(:search) }
-      it { expect(assigns[:articles]).to_not be_nil }
+      it { expect(assigns[:articles]).not_to be_nil }
 
       context 'with the view rendered' do
         render_views

@@ -17,14 +17,14 @@ describe Admin::PagesController, type: :controller do
       before(:each) { get :index }
       it { expect(response).to be_successful }
       it { expect(response).to render_template('index') }
-      it { expect(assigns(:pages)).to_not be_nil }
+      it { expect(assigns(:pages)).not_to be_nil }
     end
 
     context 'with page 1' do
       before(:each) { get :index, params: { page: 1 } }
       it { expect(response).to be_successful }
       it { expect(response).to render_template('index') }
-      it { expect(assigns(:pages)).to_not be_nil }
+      it { expect(assigns(:pages)).not_to be_nil }
     end
   end
 
@@ -34,7 +34,7 @@ describe Admin::PagesController, type: :controller do
 
       it { expect(response).to be_successful }
       it { expect(response).to render_template('new') }
-      it { expect(assigns(:page)).to_not be_nil }
+      it { expect(assigns(:page)).not_to be_nil }
       it { expect(assigns(:page).user).to eq(user) }
       it { expect(assigns(:page).text_filter.name).to eq('textile') }
       it { expect(assigns(:page)).to be_published }

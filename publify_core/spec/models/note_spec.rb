@@ -9,7 +9,7 @@ describe Note, type: :model do
     describe 'validations' do
       it { expect(build(:note)).to be_valid }
       it { expect(build(:note).redirect).to be_blank }
-      it { expect(create(:note).redirect).to_not be_blank }
+      it { expect(create(:note).redirect).not_to be_blank }
       it { expect(build(:note, body: nil)).to be_invalid }
 
       it 'with a nil body, return default error message' do

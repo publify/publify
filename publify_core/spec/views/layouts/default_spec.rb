@@ -21,7 +21,7 @@ describe 'layouts/default.html.erb', type: :view do
       it 'does not have keyword meta tag when use_meta_keyword set to false' do
         create(:blog, use_meta_keyword: false)
         render
-        expect(rendered).to_not have_selector('head>meta[name="keywords"]', visible: false)
+        expect(rendered).not_to have_selector('head>meta[name="keywords"]', visible: false)
       end
     end
   end
