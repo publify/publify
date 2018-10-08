@@ -14,55 +14,55 @@ FactoryBot.define do
   factory :user do
     login { FactoryBot.generate(:user) }
     email { generate(:email) }
-    name 'Bond'
-    nickname 'James Bond'
-    notify_via_email false
-    notify_on_new_articles false
-    notify_on_comments false
-    password 'top-secret'
-    state 'active'
-    profile User::CONTRIBUTOR
+    name { 'Bond' }
+    nickname { 'James Bond' }
+    notify_via_email { false }
+    notify_on_new_articles { false }
+    notify_on_comments { false }
+    password { 'top-secret' }
+    state { 'active' }
+    profile { User::CONTRIBUTOR }
     association :text_filter, factory: :textile
 
     trait :without_twitter do
-      twitter nil
+      twitter { nil }
       association :resource, nil
     end
 
     trait :with_a_full_profile do
-      description 'I am a poor lonesone factory generated user'
-      url 'http://myblog.net'
-      msn 'random@mail.com'
-      aim 'randomaccount'
-      yahoo 'anotherrandomaccount'
-      twitter '@random'
-      jabber 'random@account.com'
+      description { 'I am a poor lonesone factory generated user' }
+      url { 'http://myblog.net' }
+      msn { 'random@mail.com' }
+      aim { 'randomaccount' }
+      yahoo { 'anotherrandomaccount' }
+      twitter { '@random' }
+      jabber { 'random@account.com' }
     end
 
     trait :as_admin do
-      profile User::ADMIN
+      profile { User::ADMIN }
     end
 
     trait :as_publisher do
-      profile User::PUBLISHER
+      profile { User::PUBLISHER }
     end
 
     trait :as_contributor do
-      profile User::CONTRIBUTOR
+      profile { User::CONTRIBUTOR }
     end
   end
 
   factory :article do
-    title 'A big article'
-    body 'A content with several data'
-    extended 'extended content for fun'
+    title { 'A big article' }
+    body { 'A content with several data' }
+    extended { 'extended content for fun' }
     guid
-    permalink 'a-big-article'
+    permalink { 'a-big-article' }
     published_at { Time.zone.now }
     user
-    allow_comments true
-    state :published
-    allow_pings true
+    allow_comments { true }
+    state { :published }
+    allow_pings { true }
     association :text_filter, factory: :textile
 
     after :build do |article|
@@ -74,13 +74,13 @@ FactoryBot.define do
     end
 
     trait :with_tags do
-      keywords 'a tag'
+      keywords { 'a tag' }
     end
   end
 
   factory :unpublished_article, parent: :article do
-    published_at nil
-    state :draft
+    published_at { nil }
+    state { :draft }
   end
 
   factory :content do
@@ -93,10 +93,10 @@ FactoryBot.define do
   end
 
   factory :markdown, class: :text_filter do
-    name 'markdown'
-    description 'Markdown'
-    markup 'markdown'
-    filters []
+    name { 'markdown' }
+    description { 'Markdown' }
+    markup { 'markdown' }
+    filters { [] }
     params {}
   end
 
@@ -121,9 +121,9 @@ FactoryBot.define do
   end
 
   factory :none, parent: :markdown do |_m|
-    name 'none'
-    description 'None'
-    markup 'none'
+    name { 'none' }
+    description { 'None' }
+    markup { 'none' }
   end
 
   factory :utf8article, parent: :article do |u|
@@ -142,27 +142,27 @@ FactoryBot.define do
   end
 
   factory :blog do
-    base_url 'http://test.host/blog'
-    hide_extended_on_rss true
-    blog_name 'test blog'
-    limit_article_display 2
-    sp_url_limit 3
-    plugin_avatar ''
-    blog_subtitle 'test subtitle'
-    limit_rss_display 10
-    geourl_location ''
-    default_allow_pings false
-    send_outbound_pings false
-    sp_global true
-    default_allow_comments true
-    email_from 'scott@sigkill.org'
-    text_filter 'textile'
-    sp_article_auto_close 0
-    comment_text_filter 'markdown'
-    permalink_format '/%year%/%month%/%day%/%title%'
-    use_canonical_url true
-    rss_description_text 'rss description text'
-    lang 'en_US'
+    base_url { 'http://test.host/blog' }
+    hide_extended_on_rss { true }
+    blog_name { 'test blog' }
+    limit_article_display { 2 }
+    sp_url_limit { 3 }
+    plugin_avatar { '' }
+    blog_subtitle { 'test subtitle' }
+    limit_rss_display { 10 }
+    geourl_location { '' }
+    default_allow_pings { false }
+    send_outbound_pings { false }
+    sp_global { true }
+    default_allow_comments { true }
+    email_from { 'scott@sigkill.org' }
+    text_filter { 'textile' }
+    sp_article_auto_close { 0 }
+    comment_text_filter { 'markdown' }
+    permalink_format { '/%year%/%month%/%day%/%title%' }
+    use_canonical_url { true }
+    rss_description_text { 'rss description text' }
+    lang { 'en_US' }
 
     after :stub do |blog|
       [blog.text_filter, blog.comment_text_filter].uniq.each do |filter|
@@ -191,19 +191,19 @@ FactoryBot.define do
   end
 
   factory :redirect do
-    from_path 'foo/bar'
-    to_path '/someplace/else'
+    from_path { 'foo/bar' }
+    to_path { '/someplace/else' }
     blog { Blog.first || create(:blog) }
   end
 
   factory :comment do
     article
     association :text_filter, factory: :textile
-    author 'Bob Foo'
-    url 'http://fakeurl.com'
-    body 'Comment body'
+    author { 'Bob Foo' }
+    url { 'http://fakeurl.com' }
+    body { 'Comment body' }
     guid
-    state 'ham'
+    state { 'ham' }
 
     factory :unconfirmed_comment do |c|
       c.state 'presumed_ham'
@@ -236,19 +236,19 @@ FactoryBot.define do
 
   factory :page do
     name { FactoryBot.generate(:name) }
-    title 'Page One Title'
+    title { 'Page One Title' }
     body { FactoryBot.generate(:body) }
     published_at { Time.zone.now }
     user
     blog { Blog.first || create(:blog) }
-    state 'published'
+    state { 'published' }
   end
 
   factory :note do
-    body 'this is a note'
+    body { 'this is a note' }
     published_at { Time.zone.now }
     user
-    state 'published'
+    state { 'published' }
     association :text_filter, factory: :markdown
     guid
     blog { Blog.first || create(:blog) }
@@ -259,19 +259,19 @@ FactoryBot.define do
   end
 
   factory :trackback do |_t|
-    state 'ham'
+    state { 'ham' }
     article
-    blog_name 'Trackback Blog'
-    title 'Trackback Entry'
-    url 'http://www.example.com'
-    excerpt 'This is an excerpt'
-    guid 'dsafsadffsdsf'
+    blog_name { 'Trackback Blog' }
+    title { 'Trackback Entry' }
+    url { 'http://www.example.com' }
+    excerpt { 'This is an excerpt' }
+    guid { 'dsafsadffsdsf' }
   end
 
   factory :sidebar do
-    active_position 1
-    config('title' => 'Links', 'body' => 'some links')
-    type 'StaticSidebar'
+    active_position { 1 }
+    config { { 'title' => 'Links', 'body' => 'some links' } }
+    type { 'StaticSidebar' }
     blog { Blog.first || create(:blog) }
   end
 end
