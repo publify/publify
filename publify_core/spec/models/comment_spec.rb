@@ -13,14 +13,10 @@ describe Comment, type: :model do
   end
 
   describe '#permalink_url' do
-    before do
-      @c = build_stubbed(:comment)
-    end
-
-    subject { @c.permalink_url }
+    let(:comment) { build_stubbed(:comment) }
 
     it 'renders permalink to comment in public part' do
-      is_expected.to eq("#{@c.article.permalink_url}#comment-#{@c.id}")
+      expect(comment.permalink_url).to eq("#{comment.article.permalink_url}#comment-#{comment.id}")
     end
   end
 
@@ -128,8 +124,8 @@ describe Comment, type: :model do
   end
 
   describe 'reject xss' do
-    before do
-      @comment = Comment.new do |c|
+    let(:comment) do
+      Comment.new do |c|
         c.body = 'Test foo <script>do_evil();</script>'
         c.author = 'Bob'
         c.article = build_stubbed(:article, blog: blog)
@@ -145,7 +141,7 @@ describe Comment, type: :model do
 
         blog.comment_text_filter = filter
 
-        assert @comment.html(:body) !~ /<script>/
+        assert comment.html(:body) !~ /<script>/
       end
     end
   end

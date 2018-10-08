@@ -128,14 +128,6 @@ RSpec/FilePath:
     - 'publify_core/spec/models/trackback_spec.rb'
     - 'spec/lib/publify_avatar_gravatar_spec.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: single_line_only, single_statement_only, disallow
-RSpec/ImplicitSubject:
-  Exclude:
-    - 'publify_core/spec/models/comment_spec.rb'
-
 # Offense count: 313
 # Configuration parameters: AssignmentOnly.
 RSpec/InstanceVariable:
@@ -146,7 +138,6 @@ RSpec/InstanceVariable:
 RSpec/LeadingSubject:
   Exclude:
     - 'publify_core/spec/helpers/base_helper_spec.rb'
-    - 'publify_core/spec/models/comment_spec.rb'
     - 'publify_core/spec/models/page_spec.rb'
 
 # Offense count: 49
