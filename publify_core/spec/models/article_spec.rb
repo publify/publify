@@ -705,44 +705,44 @@ describe Article, type: :model do
 
   describe '.allow_comments?' do
     it 'true if article set to true' do
-      expect(blog.articles.build(allow_comments: true).allow_comments?).to be_truthy
+      expect(blog.articles.build(allow_comments: true)).to be_allow_comments
     end
 
     it 'false if article set to false' do
-      expect(blog.articles.build(allow_comments: false).allow_comments?).to be_falsey
+      expect(blog.articles.build(allow_comments: false)).not_to be_allow_comments
     end
 
     context 'given an article with no allow comments state' do
       it 'returns true when blog default allow comments is true' do
         expect_any_instance_of(Blog).to receive(:default_allow_comments).and_return(true)
-        expect(blog.articles.build(allow_comments: nil).allow_comments?).to be_truthy
+        expect(blog.articles.build(allow_comments: nil)).to be_allow_comments
       end
 
       it 'returns false when blog default allow comments is true' do
         expect_any_instance_of(Blog).to receive(:default_allow_comments).and_return(false)
-        expect(blog.articles.build(allow_comments: nil).allow_comments?).to be_falsey
+        expect(blog.articles.build(allow_comments: nil)).not_to be_allow_comments
       end
     end
   end
 
   describe '.allow_pings?' do
     it 'true if article set to true' do
-      expect(blog.articles.build(allow_pings: true).allow_pings?).to be_truthy
+      expect(blog.articles.build(allow_pings: true)).to be_allow_pings
     end
 
     it 'false if article set to false' do
-      expect(blog.articles.build(allow_pings: false).allow_pings?).to be_falsey
+      expect(blog.articles.build(allow_pings: false)).not_to be_allow_pings
     end
 
     context 'given an article with no allow pings state' do
       it 'returns true when blog default allow pings is true' do
         expect_any_instance_of(Blog).to receive(:default_allow_pings).and_return(true)
-        expect(blog.articles.build(allow_pings: nil).allow_pings?).to be_truthy
+        expect(blog.articles.build(allow_pings: nil)).to be_allow_pings
       end
 
       it 'returns false when blog default allow pings is true' do
         expect_any_instance_of(Blog).to receive(:default_allow_pings).and_return(false)
-        expect(blog.articles.build(allow_pings: nil).allow_pings?).to be_falsey
+        expect(blog.articles.build(allow_pings: nil)).not_to be_allow_pings
       end
     end
   end

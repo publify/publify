@@ -154,7 +154,7 @@ describe Admin::ContentController, type: :controller do
       it 'creates an article with a unique Tag instance named lang:FR' do
         post :create, params: { 'article' => base_article(keywords: 'lang:FR') }
         new_article = Article.last
-        expect(new_article.tags.map(&:name).include?('lang-fr')).to be_truthy
+        expect(new_article.tags.map(&:name)).to include('lang-fr')
       end
 
       it 'correctlies interpret time zone in :published_at' do

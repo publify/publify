@@ -35,7 +35,7 @@ describe Admin::ProfilesController, type: :controller do
       alice.reload
       aggregate_failures do
         expect(response).to redirect_to(action: 'index')
-        expect(alice.valid_password?('')).to be_falsy
+        expect(alice).not_to be_valid_password('')
       end
     end
   end

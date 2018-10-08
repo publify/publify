@@ -79,7 +79,7 @@ describe Admin::UsersController, type: :controller do
       contributor.reload
       aggregate_failures do
         expect(response).to redirect_to(action: 'index')
-        expect(contributor.valid_password?('')).to be_falsy
+        expect(contributor).not_to be_valid_password('')
       end
     end
 

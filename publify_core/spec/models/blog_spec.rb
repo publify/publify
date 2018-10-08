@@ -183,13 +183,13 @@ describe Blog, type: :model do
     context 'with a blog that allow signup' do
       let(:blog) { build(:blog, allow_signup: 1) }
 
-      it { expect(blog.allow_signup?).to be_truthy }
+      it { expect(blog).to be_allow_signup }
     end
 
     context 'with a blog that not allow signup' do
       let(:blog) { build(:blog, allow_signup: 0) }
 
-      it { expect(blog.allow_signup?).to be_falsey }
+      it { expect(blog).not_to be_allow_signup }
     end
   end
 
