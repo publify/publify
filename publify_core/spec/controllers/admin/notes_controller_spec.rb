@@ -36,7 +36,7 @@ describe Admin::NotesController, type: :controller do
       it 'creates a note' do
         expect do
           post :create, params: { note: { body: 'Emphasis _mine_' } }
-        end.to change { Note.count }.from(0).to(1)
+        end.to change(Note, :count).from(0).to(1)
       end
 
       context 'with twitter access configured' do
