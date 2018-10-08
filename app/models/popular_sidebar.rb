@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PopularSidebar < Sidebar
   description 'Displays the most popular posts'
   setting :title, 'Most popular'

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Theme
   attr_accessor :name, :path, :description_html
 

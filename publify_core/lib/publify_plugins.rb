@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module PublifyPlugins
   # Deprecated?
   def plugin_public_action(action)

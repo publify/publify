@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'aasm'
 require 'uri'
 require 'net/http'

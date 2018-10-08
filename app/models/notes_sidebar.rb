@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class NotesSidebar < Sidebar
   description 'Displays the latest notes'
   setting :title, 'Notes'

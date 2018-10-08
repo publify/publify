@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FeedbackController < BaseController
   def index
     @feedback = Feedback.ham.

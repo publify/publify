@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::FeedbackController < Admin::BaseController
   ONLY_DOMAIN = %w(unapproved presumed_ham presumed_spam ham spam).freeze
 

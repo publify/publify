@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class IPSocket
   def self.getaddress(host)
     case host

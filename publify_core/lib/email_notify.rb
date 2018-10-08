@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # TODO: Use deliver_later to avoid slowness and errors
 class EmailNotify
   def self.logger

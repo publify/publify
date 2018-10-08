@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TagSidebar < Sidebar
   display_name 'Tags'
   description 'Show most popular tags for this blog'

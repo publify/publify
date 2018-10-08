@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class XmlController < BaseController
   def sitemap
     @items = []

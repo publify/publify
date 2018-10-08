@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RemoveProfilesRights < ActiveRecord::Migration[4.2]
   def up
     drop_table :profiles_rights

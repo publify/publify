@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::SidebarController < Admin::BaseController
   def index
     @available = SidebarRegistry.available_sidebars

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ThemeController < ContentController
   # Allow javascripts via Get request
   skip_before_action :verify_authenticity_token, only: :javascripts

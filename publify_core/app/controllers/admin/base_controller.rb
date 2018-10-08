@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::BaseController < BaseController
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to admin_dashboard_path, alert: exception.message

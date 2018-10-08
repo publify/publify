@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::NotesController < Admin::BaseController
   layout 'administration'
 

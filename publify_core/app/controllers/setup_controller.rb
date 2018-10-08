@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SetupController < BaseController
   before_action :check_config
   layout 'accounts'

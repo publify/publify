@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ArticlesHelper
   def tag_links(article)
     tag_arr = article.tags.map do |tag|

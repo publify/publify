@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module PublifyCore
   class Engine < ::Rails::Engine
     config.generators do |generators|

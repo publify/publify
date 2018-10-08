@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TagsController < ContentController
   before_action :auto_discovery_feed, only: [:show, :index]
   layout :theme_layout

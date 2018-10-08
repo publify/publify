@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'mimemagic'
 
 class ResourceUploader < CarrierWave::Uploader::Base

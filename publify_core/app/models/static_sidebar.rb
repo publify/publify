@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class StaticSidebar < Sidebar
   DEFAULT_TEXT = '
 <ul>

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class NotificationMailer < ActionMailer::Base
   helper :base
   layout nil

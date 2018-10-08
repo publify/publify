@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DropsCategoriesForTags < ActiveRecord::Migration[4.2]
   class Categorization < ActiveRecord::Base
     belongs_to :article

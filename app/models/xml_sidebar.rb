@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class XmlSidebar < Sidebar
   display_name 'XML Syndication'
   description 'RSS and Atom feeds'
@@ -10,8 +12,8 @@ class XmlSidebar < Sidebar
   setting :format, 'atom', input_type: :radio, choices: [%w(rss RSS), %w(atom Atom)]
 
   def format_strip
-    strip_format = format
-    strip_format ||= 'atom'
+    strip_format = +format
+    strip_format ||= +'atom'
     strip_format.gsub!(/\d+/, '')
     strip_format.gsub!('1.0', '')
     strip_format.gsub!('2.0', '')

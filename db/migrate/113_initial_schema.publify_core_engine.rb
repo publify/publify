@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class InitialSchema < ActiveRecord::Migration[4.2]
   def change
     create_table 'articles_tags', id: false, force: true do |t|

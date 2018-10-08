@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Admin::FeedbackHelper
   def comment_class(state)
     return 'label-info' if state.to_s.casecmp('presumed_ham').zero?

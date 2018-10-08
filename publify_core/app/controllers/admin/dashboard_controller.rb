@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'feedjira'
 
 class Admin::DashboardController < Admin::BaseController

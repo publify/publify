@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PublifyApp
   class Textfilter
     class Htmlfilter < TextFilterPlugin

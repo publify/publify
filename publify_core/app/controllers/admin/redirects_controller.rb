@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::RedirectsController < Admin::BaseController
   before_action :set_redirect, only: [:edit, :update, :destroy]
 

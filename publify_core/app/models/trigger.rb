@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Trigger < ApplicationRecord
   belongs_to :pending_item, polymorphic: true
 

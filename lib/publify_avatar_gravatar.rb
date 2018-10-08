@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'publify_plugins'
 require 'avatar_plugin'
 
@@ -27,7 +29,7 @@ module PublifyPlugins
         options[:size] ||= 48
         klass = options[:class] || 'avatar gravatar'
 
-        url = '//www.gravatar.com/avatar.php?' << options.map { |key, value| "#{key}=#{value}" }.sort.join('&amp;')
+        url = +'//www.gravatar.com/avatar.php?' << options.map { |key, value| "#{key}=#{value}" }.sort.join('&amp;')
         tag 'img', src: url, class: klass, alt: 'Gravatar'
       end
     end

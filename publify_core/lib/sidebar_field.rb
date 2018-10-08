@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SidebarField
   attr_accessor :key
   attr_accessor :options

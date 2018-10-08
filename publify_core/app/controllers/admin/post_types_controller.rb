@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::PostTypesController < Admin::BaseController
   before_action :set_post_type, only: [:edit, :update, :destroy]
 

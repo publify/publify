@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SidebarRegistry
   class << self
     def register_sidebar(klass_name)

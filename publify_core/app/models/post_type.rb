@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PostType < ApplicationRecord
   validates :name, uniqueness: true
   validates :name, presence: true
