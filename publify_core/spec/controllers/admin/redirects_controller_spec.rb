@@ -61,7 +61,7 @@ describe Admin::RedirectsController, type: :controller do
   end
 
   describe 'GET #edit' do
-    before(:each) do
+    before do
       get :edit, params: { id: create(:redirect).id }
     end
 
@@ -84,7 +84,7 @@ describe Admin::RedirectsController, type: :controller do
   end
 
   describe '#destroy a redirect' do
-    before(:each) do
+    before do
       @test_id = create(:redirect).id
       expect(Redirect.find(@test_id)).not_to be_nil
     end

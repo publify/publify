@@ -12,7 +12,7 @@ describe Admin::ResourcesController, type: :controller do
   end
 
   describe '#index' do
-    before(:each) do
+    before do
       get :index
     end
 

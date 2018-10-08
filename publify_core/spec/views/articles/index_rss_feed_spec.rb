@@ -54,7 +54,7 @@ describe 'articles/index_rss_feed.rss.builder', type: :view do
     end
 
     describe 'with an author with email set' do
-      before(:each) do
+      before do
         @article.user.email = 'foo@bar.com'
         render
       end
@@ -152,7 +152,7 @@ describe 'articles/index_rss_feed.rss.builder', type: :view do
   describe 'rendering an article with a UTF-8 permalink' do
     let(:blog) { create :blog }
 
-    before(:each) do
+    before do
       @article = stub_full_article(blog: blog)
       @article.permalink = 'ルビー'
       assign(:articles, [@article])
@@ -166,7 +166,7 @@ describe 'articles/index_rss_feed.rss.builder', type: :view do
   end
 
   describe '#title' do
-    before(:each) do
+    before do
       assign(:articles, [article])
       render
     end

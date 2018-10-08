@@ -12,7 +12,7 @@ describe Admin::ThemesController, type: :controller do
   end
 
   describe 'test index' do
-    before(:each) do
+    before do
       get :index
     end
 

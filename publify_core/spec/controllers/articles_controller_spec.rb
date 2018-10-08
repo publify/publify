@@ -71,7 +71,7 @@ RSpec.describe ArticlesController, 'base', type: :controller do
     end
 
     context 'for a month' do
-      before(:each) do
+      before do
         create(:article, published_at: Time.utc(2004, 4, 23))
         get 'index', params: { year: 2004, month: 4 }
       end
@@ -176,13 +176,13 @@ RSpec.describe ArticlesController, 'base', type: :controller do
     let!(:blog) { create(:blog) }
     let!(:user) { create :user }
 
-    before(:each) do
+    before do
       create(:article, body: "in markdown format\n\n * we\n * use\n [ok](http://blog.ok.com) to define a link", text_filter: create(:markdown))
       create(:article, body: 'xyz')
     end
 
     describe 'a valid search' do
-      before(:each) { get :search, params: { q: 'a' } }
+      before { get :search, params: { q: 'a' } }
 
       it { expect(response).to render_template(:search) }
       it { expect(assigns[:articles]).not_to be_nil }
@@ -233,7 +233,7 @@ RSpec.describe ArticlesController, 'base', type: :controller do
 
   describe '#livesearch' do
     context 'with a query with several words' do
-      before(:each) do
+      before do
         create(:article, body: 'hello world and im herer')
         create(:article, title: 'hello', body: 'worldwide')
         create(:article)
@@ -317,7 +317,7 @@ RSpec.describe ArticlesController, 'base', type: :controller do
     let!(:blog) { create(:blog) }
 
     context 'with non logged user' do
-      before :each do
+      before do
         get :preview, params: { id: create(:article).id }
       end
 
@@ -521,7 +521,7 @@ RSpec.describe ArticlesController, 'base', type: :controller do
 
       describe 'accessing an article' do
         let!(:article) { create(:article, permalink: 'second-blog-article', published_at: Time.utc(2004, 4, 1)) }
-        before(:each) do
+        before do
           get :redirect, params: { from: "#{article.permalink}.html" }
         end
 
@@ -603,7 +603,7 @@ RSpec.describe ArticlesController, 'base', type: :controller do
         let!(:article) { create(:article, permalink: 'second-blog-article', published_at: Time.utc(2004, 4, 1)) }
         let!(:trackback1) { create(:trackback, article: article, created_at: 1.day.ago) }
 
-        before(:each) do
+        before do
           get :redirect, params: { from: "#{article.permalink}.html.atom" }
         end
 
@@ -617,7 +617,7 @@ RSpec.describe ArticlesController, 'base', type: :controller do
         let!(:article) { create(:article, permalink: 'second-blog-article', published_at: Time.utc(2004, 4, 1)) }
         let!(:trackback1) { create(:trackback, article: article, created_at: 1.day.ago) }
 
-        before(:each) do
+        before do
           get :redirect, params: { from: "#{article.permalink}.html.rss" }
         end
 

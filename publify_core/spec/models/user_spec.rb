@@ -43,7 +43,7 @@ describe User, type: :model do
   end
 
   describe 'With a new user' do
-    before(:each) do
+    before do
       @user = build :user, login: 'not_bob', email: 'publify@publify.com'
     end
 
@@ -77,7 +77,7 @@ describe User, type: :model do
   end
 
   describe 'With a user in the database' do
-    before(:each) do
+    before do
       @olduser = create(:user)
     end
 
@@ -93,7 +93,7 @@ describe User, type: :model do
   end
 
   describe 'Updating an existing user' do
-    before(:each) do
+    before do
       @user = create(:user)
     end
 

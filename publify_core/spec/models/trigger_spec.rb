@@ -5,7 +5,7 @@ require 'timecop'
 
 describe Trigger, type: :model do
   describe '.post_action' do
-    before(:each) do
+    before do
       create :blog
       @page = create :page, state: 'draft'
       expect(@page).not_to be_published

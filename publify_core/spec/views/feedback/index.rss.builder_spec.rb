@@ -13,7 +13,7 @@ RSpec.describe 'feedback/index.rss.builder', type: :view do
     end
     let(:trackback) { build_stubbed(:trackback, article: article) }
 
-    before(:each) do
+    before do
       assign(:feedback, [comment, trackback])
       render
     end

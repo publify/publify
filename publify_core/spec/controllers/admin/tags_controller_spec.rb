@@ -42,7 +42,7 @@ describe Admin::TagsController, type: :controller do
   end
 
   describe 'GET #edit' do
-    before(:each) do
+    before do
       get :edit, params: { id: create(:tag).id }
     end
 

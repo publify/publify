@@ -6,7 +6,7 @@ describe 'authors/show_rss_feed.rss.builder', type: :view do
   let!(:blog) { create(:blog) }
 
   describe 'rendering articles (with some funny characters)' do
-    before(:each) do
+    before do
       article1 = stub_full_article(1.minute.ago)
       article1.body = '&eacute;coute!'
       article2 = stub_full_article(2.minutes.ago)

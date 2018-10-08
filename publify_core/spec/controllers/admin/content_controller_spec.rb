@@ -21,7 +21,7 @@ describe Admin::ContentController, type: :controller do
     end
 
     context 'simple query' do
-      before(:each) { get :index }
+      before { get :index }
       it { expect(response).to be_successful }
       it { expect(response).to render_template('index', layout: 'administration') }
     end
@@ -42,7 +42,7 @@ describe Admin::ContentController, type: :controller do
     context 'search for state' do
       let!(:draft_article) { create(:article, state: 'draft') }
       let!(:pending_article) { create(:article, state: 'publication_pending', published_at: '2020-01-01') }
-      before(:each) { get :index, params: { search: state } }
+      before { get :index, params: { search: state } }
 
       context 'draft only' do
         let(:state) { { state: 'drafts' } }
@@ -226,7 +226,7 @@ describe Admin::ContentController, type: :controller do
       end
 
       context 'classic' do
-        before(:each) { post :create, params: { article: article_params } }
+        before { post :create, params: { article: article_params } }
 
         it { expect(response).to redirect_to(action: :index) }
         it { expect(flash[:success]).to eq(I18n.t('admin.content.create.success')) }
@@ -268,7 +268,7 @@ describe Admin::ContentController, type: :controller do
     end
 
     context 'as an admin' do
-      before(:each) do
+      before do
         sign_in admin
         @user = admin
       end
@@ -309,14 +309,14 @@ describe Admin::ContentController, type: :controller do
       context 'with an article from an other user' do
         let(:article) { create(:article, user: create(:user, login: 'another_user')) }
 
-        before(:each) { get :edit, params: { id: article.id } }
+        before { get :edit, params: { id: article.id } }
         it { expect(response).to redirect_to(action: 'index') }
       end
 
       context 'with an article from current user' do
         let(:article) { create(:article, user: publisher) }
 
-        before(:each) { get :edit, params: { id: article.id } }
+        before { get :edit, params: { id: article.id } }
         it { expect(response).to render_template('edit') }
         it { expect(assigns(:article)).not_to be_nil }
         it { expect(assigns(:article)).to be_valid }
@@ -470,7 +470,7 @@ describe Admin::ContentController, type: :controller do
       context 'with an article' do
         let(:article) { create(:article, body: 'another *textile* test', user: publisher) }
         let(:body) { 'not the *same* text' }
-        before(:each) do
+        before do
           put :update, params: { id: article.id, article: { body: body, text_filter: 'textile' } }
         end
 
@@ -507,14 +507,14 @@ describe Admin::ContentController, type: :controller do
     context 'with an article from other user' do
       let(:article) { create(:article, user: create(:user, login: 'other_user')) }
 
-      before(:each) { delete :destroy, params: { id: article.id } }
+      before { delete :destroy, params: { id: article.id } }
       it { expect(response).to redirect_to(action: 'index') }
       it { expect(Article.count).to eq(1) }
     end
 
     context 'with an article from user' do
       let(:article) { create(:article, user: publisher) }
-      before(:each) { delete :destroy, params: { id: article.id } }
+      before { delete :destroy, params: { id: article.id } }
       it { expect(response).to redirect_to(action: 'index') }
       it { expect(Article.count).to eq(0) }
     end

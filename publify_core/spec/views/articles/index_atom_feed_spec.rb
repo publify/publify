@@ -166,7 +166,7 @@ describe 'articles/index_atom_feed.atom.builder', type: :view do
   end
 
   describe '#title' do
-    before(:each) do
+    before do
       assign(:articles, [article])
       render
     end

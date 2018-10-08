@@ -307,7 +307,7 @@ describe Article, type: :model do
   end
 
   describe 'body_and_extended' do
-    before :each do
+    before do
       @article = blog.articles.build(
         body: 'basic text',
         extended: 'extended text to explain more and more how Publify is wonderful')
@@ -335,7 +335,7 @@ describe Article, type: :model do
   end
 
   describe 'body_and_extended=' do
-    before :each do
+    before do
       @article = blog.articles.build
     end
 
@@ -826,7 +826,7 @@ describe Article, type: :model do
   end
 
   describe 'update tags from article keywords' do
-    before(:each) { article.save }
+    before { article.save }
 
     context 'without keywords' do
       let(:article) { build(:article, keywords: nil) }

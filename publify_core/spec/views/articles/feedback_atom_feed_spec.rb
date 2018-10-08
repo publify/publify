@@ -9,7 +9,7 @@ describe 'articles/feedback_atom_feed.atom.builder', type: :view do
   describe 'with one trackback' do
     let!(:trackback) { create(:trackback, article: article) }
 
-    before(:each) do
+    before do
       assign(:article, article)
       render
     end
@@ -36,7 +36,7 @@ describe 'articles/feedback_atom_feed.atom.builder', type: :view do
   describe 'with a comment with problematic characters' do
     let!(:comment) { create(:comment, article: article, body: '&eacute;coute! 4 < 2, non?') }
 
-    before(:each) do
+    before do
       assign(:article, article)
       render
     end

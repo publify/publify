@@ -13,7 +13,7 @@ describe Comment, type: :model do
   end
 
   describe '#permalink_url' do
-    before(:each) do
+    before do
       @c = build_stubbed(:comment)
     end
 
@@ -128,7 +128,7 @@ describe Comment, type: :model do
   end
 
   describe 'reject xss' do
-    before(:each) do
+    before do
       @comment = Comment.new do |c|
         c.body = 'Test foo <script>do_evil();</script>'
         c.author = 'Bob'
@@ -179,7 +179,7 @@ describe Comment, type: :model do
 
   describe '#classify_content' do
     describe 'with feedback moderation enabled' do
-      before(:each) do
+      before do
         allow(blog).to receive(:sp_global).and_return(false)
         allow(blog).to receive(:default_moderate_comments).and_return(true)
       end

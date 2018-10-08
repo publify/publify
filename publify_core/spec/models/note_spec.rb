@@ -34,7 +34,7 @@ describe Note, type: :model do
       it { expect(note.permalink_url).to eq("#{blog.base_url}/note/#{note.id}-ae") }
 
       context 'with a particular blog' do
-        before(:each) do
+        before do
           allow_any_instance_of(Blog).to receive(:custom_url_shortener).and_return(url_shortener)
           allow_any_instance_of(Blog).to receive(:base_url).and_return('http://mybaseurl.net')
         end
@@ -76,7 +76,7 @@ describe Note, type: :model do
       context 'with a simple note' do
         let(:note) { build(:note) }
         context 'with twitter configured for blog and user' do
-          before(:each) do
+          before do
             expect_any_instance_of(Blog).to receive(:has_twitter_configured?).and_return(true)
             expect_any_instance_of(User).to receive(:has_twitter_configured?).and_return(true)
           end
@@ -85,14 +85,14 @@ describe Note, type: :model do
         end
 
         context 'with twitter not configured for blog' do
-          before(:each) do
+          before do
             expect_any_instance_of(Blog).to receive(:has_twitter_configured?).and_return(false)
           end
           it { expect(note.send_to_twitter).to be_falsey }
         end
 
         context 'with a twitter configured for blog but not user' do
-          before(:each) do
+          before do
             expect_any_instance_of(Blog).to receive(:has_twitter_configured?).and_return(true)
             expect_any_instance_of(User).to receive(:has_twitter_configured?).and_return(false)
           end
@@ -105,7 +105,7 @@ describe Note, type: :model do
 
         let(:fake_twitter) { double(Twitter::REST::Client) }
 
-        before(:each) do
+        before do
           expect(Twitter::REST::Client).to receive(:new).and_return(fake_twitter)
           expect(fake_twitter).to receive(:update).and_raise(Twitter::Error::Forbidden.new('Status is over 140 characters.'))
           expect_any_instance_of(Blog).to receive(:has_twitter_configured?).and_return(true)

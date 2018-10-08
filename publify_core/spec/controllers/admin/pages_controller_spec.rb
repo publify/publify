@@ -14,14 +14,14 @@ describe Admin::PagesController, type: :controller do
 
   describe 'GET #index' do
     context 'without params' do
-      before(:each) { get :index }
+      before { get :index }
       it { expect(response).to be_successful }
       it { expect(response).to render_template('index') }
       it { expect(assigns(:pages)).not_to be_nil }
     end
 
     context 'with page 1' do
-      before(:each) { get :index, params: { page: 1 } }
+      before { get :index, params: { page: 1 } }
       it { expect(response).to be_successful }
       it { expect(response).to render_template('index') }
       it { expect(assigns(:pages)).not_to be_nil }
@@ -30,7 +30,7 @@ describe Admin::PagesController, type: :controller do
 
   describe 'GET #new' do
     context 'should get a new form' do
-      before(:each) { get :new }
+      before { get :new }
 
       it { expect(response).to be_successful }
       it { expect(response).to render_template('new') }
@@ -51,7 +51,7 @@ describe Admin::PagesController, type: :controller do
       end
 
       context 'simple' do
-        before(:each) do
+        before do
           post :create, params: {
             page: {
               name: 'new_page', title: 'New Page Title', body: 'Emphasis _mine_, arguments *strong*'
@@ -86,7 +86,7 @@ describe Admin::PagesController, type: :controller do
     let!(:page) { create(:page) }
 
     context 'should get the edit page' do
-      before(:each) { get :edit, params: { id: page.id } }
+      before { get :edit, params: { id: page.id } }
       it { expect(response).to be_successful }
       it { expect(response).to render_template('edit') }
       it { expect(assigns(:page)).to eq(page) }
@@ -97,7 +97,7 @@ describe Admin::PagesController, type: :controller do
     let!(:page) { create(:page) }
 
     context 'should update a post' do
-      before(:each) do
+      before do
         post :update, params: { id: page.id, page: { name: 'markdown-page', title: 'Markdown Page', body: 'Adding a [link](https://publify.github.io/) here' } }
       end
 
@@ -108,7 +108,7 @@ describe Admin::PagesController, type: :controller do
   describe 'destroy' do
     let!(:page) { create(:page) }
 
-    before(:each) { post :destroy, params: { id: page.id } }
+    before { post :destroy, params: { id: page.id } }
 
     it { expect(response).to redirect_to(action: :index) }
     it { expect(Page.count).to eq(0) }

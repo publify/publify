@@ -7,28 +7,28 @@ describe Admin::SettingsController, type: :controller do
 
   let!(:blog) { create(:blog) }
 
-  before(:each) do
+  before do
     alice = create(:user, :as_admin, login: 'alice')
     sign_in alice
   end
 
   describe '#index' do
-    before(:each) { get :index }
+    before { get :index }
     it { expect(response).to render_template('index') }
   end
 
   describe '#write' do
-    before(:each) { get :write }
+    before { get :write }
     it { expect(response).to render_template('write') }
   end
 
   describe '#display' do
-    before(:each) { get :display }
+    before { get :display }
     it { expect(response).to render_template('display') }
   end
 
   describe '#feedback' do
-    before(:each) { get :feedback }
+    before { get :feedback }
     it { expect(response).to render_template('feedback') }
   end
 

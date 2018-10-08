@@ -62,7 +62,7 @@ describe Admin::UsersController, type: :controller do
   describe '#update' do
     let(:user) { admin }
 
-    before(:each) do
+    before do
       sign_in user
     end
 

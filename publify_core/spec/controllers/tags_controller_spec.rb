@@ -103,7 +103,7 @@ RSpec.describe TagsController, type: :controller do
     let!(:blog) { create(:blog) }
     let(:parsed_body) { Capybara.string(response.body) }
 
-    before(:each) do
+    before do
       create(:tag, name: 'foo', contents: [create(:article)])
       get 'show', params: { id: 'foo' }
     end
@@ -152,7 +152,7 @@ RSpec.describe TagsController, type: :controller do
   end
 
   describe 'SEO Options' do
-    before(:each) do
+    before do
       @blog = create(:blog)
       @a = create(:article)
       @foo = create(:tag, name: 'foo', contents: [@a])

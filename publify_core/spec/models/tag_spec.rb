@@ -94,7 +94,7 @@ describe Tag, type: :model do
     end
 
     describe '#create_from_article' do
-      before(:each) { Tag.create_from_article!(article) }
+      before { Tag.create_from_article!(article) }
 
       context 'without keywords' do
         let(:article) { create(:article, keywords: nil) }

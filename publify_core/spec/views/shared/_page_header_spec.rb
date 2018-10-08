@@ -6,7 +6,7 @@ describe 'shared/_page_header.html.erb', type: :view do
   let!(:blog) { create :blog }
 
   context 'when rendered as if from the articles controller' do
-    before(:each) do
+    before do
       controller.request.path_parameters[:controller] = 'articles'
     end
 

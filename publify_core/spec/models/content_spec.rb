@@ -7,7 +7,7 @@ describe Content, type: :model do
     describe '#author=' do
       let(:content) { Content.new }
 
-      before(:each) { content.author = user }
+      before { content.author = user }
 
       context 'with a User as author' do
         let(:user) { build(:user) }

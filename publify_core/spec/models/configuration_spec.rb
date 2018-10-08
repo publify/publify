@@ -249,7 +249,7 @@ describe 'Given a new blog', type: :model do
 end
 
 describe 'Given a new user', type: :model do
-  before(:each) do
+  before do
     @user = User.new
   end
 
@@ -319,7 +319,7 @@ describe 'Given a new user', type: :model do
 end
 
 describe 'Given a new article', type: :model do
-  before(:each) do
+  before do
     @article = Article.new
   end
 
@@ -329,7 +329,7 @@ describe 'Given a new article', type: :model do
 end
 
 describe 'Given a new page', type: :model do
-  before(:each) do
+  before do
     @page = Page.new
   end
 
@@ -339,7 +339,7 @@ describe 'Given a new page', type: :model do
 end
 
 describe 'Given a new status', type: :model do
-  before(:each) do
+  before do
     @note = Note.new
   end
 

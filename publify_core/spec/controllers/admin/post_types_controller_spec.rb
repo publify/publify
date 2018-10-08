@@ -36,7 +36,7 @@ describe Admin::PostTypesController, type: :controller do
   end
 
   describe 'GET #edit' do
-    before(:each) do
+    before do
       get :edit, params: { id: create(:post_type).id }
     end
 

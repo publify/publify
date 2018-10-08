@@ -127,7 +127,7 @@ describe Feedback, type: :model do
   end
 
   describe 'states' do
-    before(:each) do
+    before do
       create(:blog)
       @comment = create(:article).comments.build(author: 'Piers', body: 'Body')
     end

@@ -14,7 +14,7 @@ describe AuthorsController, type: :controller do
       describe 'html' do
         render_views
 
-        before(:each) { get 'show', params: { id: no_profile_user.login } }
+        before { get 'show', params: { id: no_profile_user.login } }
 
         it { expect(response).to render_template(:show) }
         it { expect(assigns(:author)).to eq(no_profile_user) }
@@ -22,18 +22,18 @@ describe AuthorsController, type: :controller do
       end
 
       describe 'atom feed' do
-        before(:each) { get 'show', params: { id: no_profile_user.login, format: 'atom' } }
+        before { get 'show', params: { id: no_profile_user.login, format: 'atom' } }
         it { expect(response).to render_template(:show_atom_feed, false) }
       end
 
       describe 'rss feed' do
-        before(:each) { get 'show', params: { id: no_profile_user.login, format: 'rss' } }
+        before { get 'show', params: { id: no_profile_user.login, format: 'rss' } }
         it { expect(response).to render_template(:show_rss_feed, false) }
       end
 
       describe 'with pagination' do
         let!(:article_page_2) { create(:article, user: no_profile_user, published_at: now - 1.day) }
-        before(:each) { get 'show', params: { id: no_profile_user.login, page: 2 } }
+        before { get 'show', params: { id: no_profile_user.login, page: 2 } }
         it { expect(assigns(:articles)).to eq([article_page_2]) }
       end
     end
@@ -45,7 +45,7 @@ describe AuthorsController, type: :controller do
       describe 'html' do
         render_views
 
-        before(:each) { get 'show', params: { id: full_profile_user.login } }
+        before { get 'show', params: { id: full_profile_user.login } }
 
         it { expect(response).to render_template(:show) }
         it { expect(assigns(:author)).to eq(full_profile_user) }

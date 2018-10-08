@@ -10,7 +10,7 @@ describe 'articles/feedback_rss_feed.rss.builder', type: :view do
     let!(:comment) { create(:comment, article: article, body: 'Comment body') }
     let(:parsed_feed) { Feedjira::Feed.parse(rendered) }
 
-    before(:each) do
+    before do
       assign(:article, article)
       render
     end

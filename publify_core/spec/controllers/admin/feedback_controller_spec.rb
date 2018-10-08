@@ -29,7 +29,7 @@ describe Admin::FeedbackController, type: :controller do
     let(:admin) { create(:user, :as_admin) }
     let(:article) { create(:article, user: admin) }
 
-    before(:each) do
+    before do
       create(:blog)
       sign_in admin
     end
@@ -63,7 +63,7 @@ describe Admin::FeedbackController, type: :controller do
       let!(:presumed_spam) { create(:presumed_spam_comment) }
       let(:params) { {} }
 
-      before(:each) { get :index, params: params }
+      before { get :index, params: params }
 
       it { expect(response).to be_successful }
       it { expect(response).to render_template('index') }
@@ -224,7 +224,7 @@ describe Admin::FeedbackController, type: :controller do
     let(:publisher) { create(:user, :as_publisher) }
     let(:article) { create(:article, user: publisher) }
 
-    before :each do
+    before do
       create(:blog)
       sign_in publisher
     end

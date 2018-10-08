@@ -10,7 +10,7 @@ describe Blog, type: :model do
   end
 
   describe 'A blog' do
-    before(:each) do
+    before do
       @blog = Blog.new
     end
 
@@ -23,7 +23,7 @@ describe Blog, type: :model do
 
     ['', '/sub-uri'].each do |sub_url|
       describe "when running in with http://myblog.net#{sub_url}" do
-        before :each do
+        before do
           @base_url = "http://myblog.net#{sub_url}"
           @blog.base_url = @base_url
         end
@@ -46,7 +46,7 @@ describe Blog, type: :model do
   end
 
   describe 'The first blog' do
-    before(:each) do
+    before do
       @blog = create :blog
     end
 
@@ -56,7 +56,7 @@ describe Blog, type: :model do
   end
 
   describe 'Given no blogs, a new default blog' do
-    before :each do
+    before do
       @blog = Blog.new(base_url: 'foo')
     end
 
@@ -77,7 +77,7 @@ describe Blog, type: :model do
   end
 
   describe 'Valid permalink in blog' do
-    before :each do
+    before do
       @blog = Blog.new(base_url: 'foo')
     end
 

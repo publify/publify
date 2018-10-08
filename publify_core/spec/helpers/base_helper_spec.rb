@@ -32,39 +32,39 @@ describe BaseHelper, type: :helper do
     end
 
     context 'with year:2010' do
-      before(:each) { params[:year] = 2010 }
+      before { params[:year] = 2010 }
       it { expect(subject).to be_truthy }
     end
 
     context 'with page:2' do
-      before(:each) { params[:page] = 2 }
+      before { params[:page] = 2 }
       it { expect(subject).to be_truthy }
     end
 
     context 'for the tags controller' do
-      before(:each) { allow(helper).to receive(:controller_name).and_return('tags') }
+      before { allow(helper).to receive(:controller_name).and_return('tags') }
 
       context 'with unindex_tags set in blog' do
-        before(:each) { expect(blog).to receive(:unindex_tags).and_return(true) }
+        before { expect(blog).to receive(:unindex_tags).and_return(true) }
         it { expect(subject).to be_truthy }
       end
 
       context 'with unindex_tags set in blog' do
-        before(:each) { expect(blog).to receive(:unindex_tags).and_return(false) }
+        before { expect(blog).to receive(:unindex_tags).and_return(false) }
         it { expect(subject).to be_falsey }
       end
     end
 
     context 'for the categories controller' do
-      before(:each) { allow(helper).to receive(:controller_name).and_return('categories') }
+      before { allow(helper).to receive(:controller_name).and_return('categories') }
 
       context 'with unindex_tags set in blog' do
-        before(:each) { expect(blog).to receive(:unindex_categories).and_return(true) }
+        before { expect(blog).to receive(:unindex_categories).and_return(true) }
         it { expect(subject).to be_truthy }
       end
 
       context 'with unindex_tags set in blog' do
-        before(:each) { expect(blog).to receive(:unindex_categories).and_return(false) }
+        before { expect(blog).to receive(:unindex_categories).and_return(false) }
         it { expect(subject).to be_falsey }
       end
     end
@@ -139,7 +139,7 @@ describe BaseHelper, type: :helper do
   end
 
   describe '#nofollowify_links' do
-    before(:each) do
+    before do
       @blog = create :blog
     end
 
