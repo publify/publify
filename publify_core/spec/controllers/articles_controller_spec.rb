@@ -650,18 +650,22 @@ RSpec.describe ArticlesController, 'base', type: :controller do
         get :redirect, params: { from: "#{article.permalink}.html" }
         expect(response.body).to have_selector('input[id="article_password"]', count: 1)
       end
+    end
+  end
 
-      describe '#check_password' do
-        it 'shows article when given correct password' do
-          get :check_password, xhr: true, params: { article: { id: article.id, password: article.password } }
-          expect(response.body).not_to have_selector('input[id="article_password"]')
-        end
+  describe '#check_password' do
+    render_views
+    let!(:blog) { create(:blog, permalink_format: '/%title%.html') }
+    let!(:article) { create(:article, password: 'password') }
 
-        it 'shows password form when given incorrect password' do
-          get :check_password, xhr: true, params: { article: { id: article.id, password: 'wrong password' } }
-          expect(response.body).to have_selector('input[id="article_password"]')
-        end
-      end
+    it 'shows article when given correct password' do
+      get :check_password, xhr: true, params: { article: { id: article.id, password: article.password } }
+      expect(response.body).not_to have_selector('input[id="article_password"]')
+    end
+
+    it 'shows password form when given incorrect password' do
+      get :check_password, xhr: true, params: { article: { id: article.id, password: 'wrong password' } }
+      expect(response.body).to have_selector('input[id="article_password"]')
     end
   end
 end
