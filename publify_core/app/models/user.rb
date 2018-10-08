@@ -5,9 +5,9 @@ require 'digest/sha1'
 # Publify user.
 # TODO: Should belong to a blog
 class User < ApplicationRecord
-  ADMIN = 'admin'.freeze
-  PUBLISHER = 'publisher'.freeze
-  CONTRIBUTOR = 'contributor'.freeze
+  ADMIN = 'admin'
+  PUBLISHER = 'publisher'
+  CONTRIBUTOR = 'contributor'
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
