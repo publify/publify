@@ -35,7 +35,7 @@ describe Admin::FeedbackController, type: :controller do
     end
 
     describe 'destroy action' do
-      it_should_behave_like 'destroy feedback with feedback from own article'
+      it_behaves_like 'destroy feedback with feedback from own article'
 
       it "destroys feedback from article doesn't own" do
         id = feedback_from_not_own_article.id
@@ -235,7 +235,7 @@ describe Admin::FeedbackController, type: :controller do
     end
 
     describe 'destroy action' do
-      it_should_behave_like 'destroy feedback with feedback from own article'
+      it_behaves_like 'destroy feedback with feedback from own article'
 
       it "does not destroy feedback doesn't own" do
         id = feedback_from_not_own_article.id

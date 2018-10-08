@@ -279,7 +279,7 @@ describe Admin::ContentController, type: :controller do
         @user = admin
       end
 
-      it_should_behave_like 'create action'
+      it_behaves_like 'create action'
     end
   end
 
