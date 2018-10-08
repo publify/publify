@@ -4,11 +4,12 @@ See the changelogs for the individual engines for more details for releases 9.0 
 
 ## Unreleased
 
-* Upgrade to Rails 5.2
+* Upgrade to Rails 5.2 (mvz)
 * Drop support for custom mail.yml configuration. Mail settings should now be
-  configured in config/environments/production.rb
+  configured in config/environments/production.rb (mvz)
 * Drop support for custom timezone.yml configuration. If relevant, the timezone
-  can be set in config/application.rb
+  can be set in config/application.rb (mvz)
+* Fix logic for rendering excerpts or whole posts (mvz)
 
 ## 9.1.0 / 2018-04-19
 
