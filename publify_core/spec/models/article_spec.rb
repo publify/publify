@@ -808,7 +808,7 @@ describe Article, type: :model do
     end
 
     it 'returns only 5 articles' do
-      6.times { create(:comment) }
+      create_list(:comment, 6)
       expect(Article.bestof.length).to eq(5)
     end
 

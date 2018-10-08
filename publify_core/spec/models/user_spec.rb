@@ -35,7 +35,7 @@ describe User, type: :model do
     it 'The various article finders work appropriately' do
       create(:blog)
       tobi = create(:user)
-      7.times { create(:article, user: tobi) }
+      create_list(:article, 7, user: tobi)
       create(:article, state: 'draft', published_at: nil, user: tobi)
       expect(tobi.articles.size).to eq(8)
       expect(tobi.articles.published.size).to eq(7)

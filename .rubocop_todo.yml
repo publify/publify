@@ -16,15 +16,6 @@ Capybara/FeatureMethods:
     - 'publify_core/spec/features/setup_spec.rb'
     - 'publify_core/spec/features/signup_spec.rb'
 
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: create_list, n_times
-FactoryBot/CreateList:
-  Exclude:
-    - 'publify_core/spec/models/article_spec.rb'
-    - 'publify_core/spec/models/user_spec.rb'
-
 # Offense count: 3
 Lint/UriEscapeUnescape:
   Exclude:
