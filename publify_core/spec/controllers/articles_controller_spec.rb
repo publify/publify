@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ArticlesController, 'base', type: :controller do
+RSpec.describe ArticlesController, type: :controller do
   describe '#tag' do
     let!(:blog) { create(:blog) }
     let!(:user) { create :user }
