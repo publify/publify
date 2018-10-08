@@ -623,7 +623,7 @@ da:
       no_articles_found: Fandt ingen artikler
     archives_article:
       posted_in: offentliggjort i
-    article:
+    article_author:
       posted_by: Skrevet af
     article_excerpt:
       continue_reading: Continue reading

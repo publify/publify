@@ -623,7 +623,7 @@ zh-CN:
       no_articles_found: 没有找到任何文章
     archives_article:
       posted_in: 发表在
-    article:
+    article_author:
       posted_by: 貼上
     article_excerpt:
       continue_reading: Continue reading

@@ -623,7 +623,7 @@ en:
       no_articles_found: No articles found
     archives_article:
       posted_in: posted in
-    article:
+    article_author:
       posted_by: Posted by
     article_excerpt:
       continue_reading: Continue reading

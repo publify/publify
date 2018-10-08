@@ -195,6 +195,7 @@ app/views/admin/users/new.html.erb
 app/views/archives_sidebar/_content.html.erb
 app/views/articles/_archives_article.html.erb
 app/views/articles/_article.html.erb
+app/views/articles/_article_author.html.erb
 app/views/articles/_article_collection.html.erb
 app/views/articles/_article_content.html.erb
 app/views/articles/_article_excerpt.html.erb
@@ -206,7 +207,6 @@ app/views/articles/_comment_list.html.erb
 app/views/articles/_comment_preview.html.erb
 app/views/articles/_full_article_content.html.erb
 app/views/articles/_password_form.html.erb
-app/views/articles/_protected_article_content.html.erb
 app/views/articles/_trackback.html.erb
 app/views/articles/archives.html.erb
 app/views/articles/comment.js.erb

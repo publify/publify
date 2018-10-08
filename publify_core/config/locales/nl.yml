@@ -623,7 +623,7 @@ nl:
       no_articles_found: Geen artikelen gevonden
     archives_article:
       posted_in: geplaatst in
-    article:
+    article_author:
       posted_by: Geplaatst door
     article_excerpt:
       continue_reading: Continue reading

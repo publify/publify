@@ -623,7 +623,7 @@ nb-NO:
       no_articles_found: Fant ingen artikler
     archives_article:
       posted_in: posted til
-    article:
+    article_author:
       posted_by: Skrevet av
     article_excerpt:
       continue_reading: Continue reading
