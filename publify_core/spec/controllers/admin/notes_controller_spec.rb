@@ -17,6 +17,7 @@ describe Admin::NotesController, type: :controller do
       let!(:notes) { [create(:note), create(:note)] }
 
       before { get :index }
+
       it { expect(response).to render_template('index') }
       it { expect(assigns(:notes).sort).to eq(notes.sort) }
       it { expect(assigns(:note)).to be_a(Note) }
@@ -27,6 +28,7 @@ describe Admin::NotesController, type: :controller do
     describe 'create' do
       context 'a simple note' do
         before { post :create, params: { note: { body: 'Emphasis _mine_' } } }
+
         it { expect(response).to redirect_to(admin_notes_path) }
         it { expect(flash[:notice]).to eq(I18n.t('notice.note_successfully_created')) }
       end
@@ -65,6 +67,7 @@ describe Admin::NotesController, type: :controller do
 
       describe 'edit' do
         before { get :edit, params: { id: note.id } }
+
         it { expect(response).to be_successful }
         it { expect(response).to render_template('edit') }
         it { expect(assigns(:note)).to eq(note) }
@@ -73,17 +76,20 @@ describe Admin::NotesController, type: :controller do
 
       describe 'update' do
         before { post :update, params: { id: note.id, note: { body: 'new body' } } }
+
         it { expect(response).to redirect_to(action: :index) }
         it { expect(note.reload.body).to eq('new body') }
       end
 
       describe 'show' do
         before { get :show, params: { id: note.id } }
+
         it { expect(response).to render_template('show') }
       end
 
       describe 'Destroying a note' do
         before { post :destroy, params: { id: note.id } }
+
         it { expect(response).to redirect_to(admin_notes_path) }
         it { expect(Note.count).to eq(0) }
       end

@@ -95,6 +95,7 @@ describe Note, type: :model do
           before do
             expect_any_instance_of(Blog).to receive(:has_twitter_configured?).and_return(false)
           end
+
           it { expect(note.send_to_twitter).to be_falsey }
         end
 
@@ -103,6 +104,7 @@ describe Note, type: :model do
             expect_any_instance_of(Blog).to receive(:has_twitter_configured?).and_return(true)
             expect_any_instance_of(User).to receive(:has_twitter_configured?).and_return(false)
           end
+
           it { expect(note.send_to_twitter).to be_falsey }
         end
       end

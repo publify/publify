@@ -19,6 +19,7 @@ describe NotesController, type: :controller do
 
     context 'with no note' do
       before { get 'index' }
+
       it { expect(response).to be_successful }
       it { expect(response).to render_template('notes/error') }
     end

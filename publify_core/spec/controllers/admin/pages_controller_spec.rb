@@ -15,6 +15,7 @@ describe Admin::PagesController, type: :controller do
   describe 'GET #index' do
     context 'without params' do
       before { get :index }
+
       it { expect(response).to be_successful }
       it { expect(response).to render_template('index') }
       it { expect(assigns(:pages)).not_to be_nil }
@@ -22,6 +23,7 @@ describe Admin::PagesController, type: :controller do
 
     context 'with page 1' do
       before { get :index, params: { page: 1 } }
+
       it { expect(response).to be_successful }
       it { expect(response).to render_template('index') }
       it { expect(assigns(:pages)).not_to be_nil }
@@ -87,6 +89,7 @@ describe Admin::PagesController, type: :controller do
 
     context 'should get the edit page' do
       before { get :edit, params: { id: page.id } }
+
       it { expect(response).to be_successful }
       it { expect(response).to render_template('edit') }
       it { expect(assigns(:page)).to eq(page) }

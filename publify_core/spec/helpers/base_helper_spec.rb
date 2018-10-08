@@ -35,11 +35,13 @@ describe BaseHelper, type: :helper do
 
     context 'with year:2010' do
       before { params[:year] = 2010 }
+
       it { expect(subject).to be_truthy }
     end
 
     context 'with page:2' do
       before { params[:page] = 2 }
+
       it { expect(subject).to be_truthy }
     end
 
@@ -48,11 +50,13 @@ describe BaseHelper, type: :helper do
 
       context 'with unindex_tags set in blog' do
         before { expect(blog).to receive(:unindex_tags).and_return(true) }
+
         it { expect(subject).to be_truthy }
       end
 
       context 'with unindex_tags set in blog' do
         before { expect(blog).to receive(:unindex_tags).and_return(false) }
+
         it { expect(subject).to be_falsey }
       end
     end
@@ -62,11 +66,13 @@ describe BaseHelper, type: :helper do
 
       context 'with unindex_tags set in blog' do
         before { expect(blog).to receive(:unindex_categories).and_return(true) }
+
         it { expect(subject).to be_truthy }
       end
 
       context 'with unindex_tags set in blog' do
         before { expect(blog).to receive(:unindex_categories).and_return(false) }
+
         it { expect(subject).to be_falsey }
       end
     end

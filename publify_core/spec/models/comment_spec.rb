@@ -135,6 +135,7 @@ describe Comment, type: :model do
         c.article = build_stubbed(:article, blog: blog)
       end
     end
+
     ['', 'textile', 'markdown', 'smartypants', 'markdown smartypants'].each do |filter|
       it "should reject with filter '#{filter}'" do
         # XXX: This makes sure text filter can be 'found' in the database

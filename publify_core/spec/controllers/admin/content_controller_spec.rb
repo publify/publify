@@ -22,6 +22,7 @@ describe Admin::ContentController, type: :controller do
 
     context 'simple query' do
       before { get :index }
+
       it { expect(response).to be_successful }
       it { expect(response).to render_template('index', layout: 'administration') }
     end
@@ -315,6 +316,7 @@ describe Admin::ContentController, type: :controller do
         let(:article) { create(:article, user: create(:user, login: 'another_user')) }
 
         before { get :edit, params: { id: article.id } }
+
         it { expect(response).to redirect_to(action: 'index') }
       end
 
@@ -322,6 +324,7 @@ describe Admin::ContentController, type: :controller do
         let(:article) { create(:article, user: publisher) }
 
         before { get :edit, params: { id: article.id } }
+
         it { expect(response).to render_template('edit') }
         it { expect(assigns(:article)).not_to be_nil }
         it { expect(assigns(:article)).to be_valid }
@@ -514,6 +517,7 @@ describe Admin::ContentController, type: :controller do
       let(:article) { create(:article, user: create(:user, login: 'other_user')) }
 
       before { delete :destroy, params: { id: article.id } }
+
       it { expect(response).to redirect_to(action: 'index') }
       it { expect(Article.count).to eq(1) }
     end
@@ -522,6 +526,7 @@ describe Admin::ContentController, type: :controller do
       let(:article) { create(:article, user: publisher) }
 
       before { delete :destroy, params: { id: article.id } }
+
       it { expect(response).to redirect_to(action: 'index') }
       it { expect(Article.count).to eq(0) }
     end

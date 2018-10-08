@@ -14,21 +14,25 @@ describe Admin::SettingsController, type: :controller do
 
   describe '#index' do
     before { get :index }
+
     it { expect(response).to render_template('index') }
   end
 
   describe '#write' do
     before { get :write }
+
     it { expect(response).to render_template('write') }
   end
 
   describe '#display' do
     before { get :display }
+
     it { expect(response).to render_template('display') }
   end
 
   describe '#feedback' do
     before { get :feedback }
+
     it { expect(response).to render_template('feedback') }
   end
 
