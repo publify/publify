@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'English'
 
 namespace :i18n do

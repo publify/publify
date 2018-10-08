@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from publify_core_engine (originally 20170528094923)
 class MoveTagsToContent < ActiveRecord::Migration[5.0]
   def change

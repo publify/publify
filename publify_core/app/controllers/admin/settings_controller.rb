@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::SettingsController < Admin::BaseController
   def index
     this_blog.base_url = blog_base_url if this_blog.base_url.blank?

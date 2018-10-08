@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Redirect < ApplicationRecord
   belongs_to :content, optional: true, touch: true
   belongs_to :blog

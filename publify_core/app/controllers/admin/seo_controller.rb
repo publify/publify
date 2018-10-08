@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::SeoController < Admin::BaseController
   before_action :set_setting
   before_action :set_section

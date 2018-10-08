@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'mimemagic'
 
 class ResourceUploader < CarrierWave::Uploader::Base
@@ -28,7 +30,7 @@ class ResourceUploader < CarrierWave::Uploader::Base
 
   def image?(new_file)
     content_type = new_file.content_type
-    content_type && content_type.include?('image')
+    content_type&.include?('image')
   end
 
   def check_image_content_type!(new_file)

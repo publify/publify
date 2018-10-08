@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # The Blog class represents the one and only blog.  It stores most
 # configuration settings and is linked to most of the assorted content
 # classes via has_many.

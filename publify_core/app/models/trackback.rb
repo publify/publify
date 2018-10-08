@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Legacy class to support old feedback sent as trackbacks.
 class Trackback < Feedback
   content_fields :excerpt

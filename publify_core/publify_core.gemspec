@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 $LOAD_PATH.push File.expand_path('lib', __dir__)
 
 # Maintain your gem's version:
@@ -17,7 +19,7 @@ Gem::Specification.new do |s|
 
   s.files       = File.open('Manifest.txt').readlines.map(&:chomp)
 
-  s.required_ruby_version = '>= 2.2.0'
+  s.required_ruby_version = '>= 2.3.0'
 
   s.add_dependency 'aasm', '~> 5.0'
   s.add_dependency 'akismet', '~> 2.0'

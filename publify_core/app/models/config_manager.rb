@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ConfigManager
   def self.append_features(base)
     super

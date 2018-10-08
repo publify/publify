@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PublifyApp
   class Textfilter
     class Lightbox < TextFilterPlugin::MacroPost
@@ -116,7 +118,7 @@ Common attributes:
                         "<p class=\"caption\" style=\"width:#{width}px\">#{caption}</p>"
                       end
 
-        img_attrs = %(src="#{thumburl}")
+        img_attrs = +%(src="#{thumburl}")
         img_attrs << %( class="#{theclass}") if theclass
         img_attrs << %( width="#{width}") if width
         img_attrs << %( height="#{height}") if height

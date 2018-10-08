@@ -10,6 +10,7 @@ See the changelogs for the individual engines for more details for releases 9.0 
 * Drop support for custom timezone.yml configuration. If relevant, the timezone
   can be set in config/application.rb (mvz)
 * Fix logic for rendering excerpts or whole posts (mvz)
+* Drop support for Ruby 2.2 (mvz)
 
 ## 9.1.0 / 2018-04-19
 

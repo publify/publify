@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AuthorsController < ContentController
   layout :theme_layout
 

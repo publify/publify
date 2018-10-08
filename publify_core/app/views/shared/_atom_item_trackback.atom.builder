@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 feed.entry item, id: "urn:uuid:#{item.guid}", url: item.permalink_url do |entry|
   entry.author do
     entry.name item.blog_name

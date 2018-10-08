@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CommentsController < BaseController
   before_action :set_article, only: [:create, :preview]
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe 'articles/index_rss_feed.rss.builder', type: :view do

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'publify_plugins'
 require 'text_filter_plugin'
 

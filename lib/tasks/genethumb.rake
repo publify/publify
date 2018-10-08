@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 desc 'Force thumbnail creation for each resources'
 task genethumb: :environment do
   require 'resource'

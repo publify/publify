@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SearchSidebar < Sidebar
   description 'Adds basic search sidebar in your Publify blog'
 

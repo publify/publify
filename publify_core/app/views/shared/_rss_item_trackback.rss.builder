@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 feed.item do
   feed.title item.feed_title
   feed.description item.excerpt

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RemoveExtraStateColumnsFromFeedback < ActiveRecord::Migration[5.0]
   def change
     remove_column :feedback, :published, :boolean, default: false

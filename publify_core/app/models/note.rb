@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Note < Content
   require 'twitter'
   require 'json'

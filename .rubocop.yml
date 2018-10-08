@@ -12,7 +12,7 @@ AllCops:
   - 'db/converters/*.rb'
   - 'db/scripts/fix_permalinks.rb'
   - 'db/schema.rb'
-  TargetRubyVersion: '2.2'
+  TargetRubyVersion: '2.3'
 
 Rails:
   Enabled: true

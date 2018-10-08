@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ArticlesController < ContentController
   before_action :login_required, only: [:preview, :preview_page]
   before_action :auto_discovery_feed, only: [:show, :index]

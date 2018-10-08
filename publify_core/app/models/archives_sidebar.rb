@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ArchivesSidebar < Sidebar
   description 'Displays links to monthly archives'
   setting :title, 'Archives'

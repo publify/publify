@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Trigger < ApplicationRecord
   belongs_to :pending_item, polymorphic: true
 
@@ -26,7 +28,7 @@ class Trigger < ApplicationRecord
   before_destroy :trigger_pending_item
 
   def trigger_pending_item
-    pending_item.send(trigger_method) if pending_item
+    pending_item&.send(trigger_method)
     true
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'sidebar_registry'
 
 SidebarRegistry.register_sidebar('AuthorsSidebar')

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddBlogIdToRedirects < ActiveRecord::Migration[4.2]
   class Redirect < ActiveRecord::Base; end
 

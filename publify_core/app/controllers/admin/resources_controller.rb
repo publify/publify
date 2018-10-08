@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::ResourcesController < Admin::BaseController
   def upload
     file = params[:upload]

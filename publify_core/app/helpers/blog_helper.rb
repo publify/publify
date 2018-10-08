@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module BlogHelper
   # The base URL for this request, calculated by looking up the URL for the main
   # blog index page.

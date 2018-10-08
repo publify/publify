@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TitleBuilder
   def initialize(template)
     @template = template
@@ -61,7 +63,7 @@ class TitleBuilder
   def parse_date(string, params)
     return '' unless params[:year]
 
-    format = ''
+    format = +''
     format << '%A %d ' if params[:day]
     format << '%B ' if params[:month]
     format << '%Y' if params[:year]

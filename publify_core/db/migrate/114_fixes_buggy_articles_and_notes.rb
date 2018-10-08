@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FixesBuggyArticlesAndNotes < ActiveRecord::Migration[4.2]
   class Content < ActiveRecord::Base
   end

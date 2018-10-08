@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This controller handles updating your own user data.
 class Admin::ProfilesController < Admin::BaseController
   before_action :set_user, only: [:index, :update]

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Article::Factory
   attr_reader :blog, :user
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Page < Content
   validates :title, :body, presence: true
   validates :name, uniqueness: true

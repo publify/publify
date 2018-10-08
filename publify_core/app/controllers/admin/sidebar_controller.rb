@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::SidebarController < Admin::BaseController
   def index
     @available = SidebarRegistry.available_sidebars
@@ -19,7 +21,7 @@ class Admin::SidebarController < Admin::BaseController
 
   def destroy
     @sidebar = Sidebar.where(id: params[:id]).first
-    @sidebar && @sidebar.destroy
+    @sidebar&.destroy
     respond_to do |format|
       format.html { return redirect_to(admin_sidebar_index_path) }
       format.js

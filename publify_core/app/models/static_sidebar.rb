@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class StaticSidebar < Sidebar
   DEFAULT_TEXT = '
 <ul>
@@ -9,7 +11,7 @@ class StaticSidebar < Sidebar
   <li><a href="/admin">Admin</a></li>
 </ul>
 
-'.freeze
+'
   description 'Static content, like links to other sites, advertisements, or blog meta-information'
 
   setting :title, 'Links'

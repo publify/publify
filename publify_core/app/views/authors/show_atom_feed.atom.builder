@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 atom_feed root_url: author_url(@author) do |feed|
   render 'shared/atom_header', feed: feed, items: @articles
 

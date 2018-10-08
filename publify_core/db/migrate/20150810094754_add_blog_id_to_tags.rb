@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddBlogIdToTags < ActiveRecord::Migration[4.2]
   class Tag < ActiveRecord::Base; end
 
