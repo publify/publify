@@ -30,6 +30,7 @@ describe 'With the list of available filters', type: :model do
               ' blah blah <div class="CodeRay"><pre><notextile><span class="CodeRay">zzz</span></notextile></pre></div>'
           end
         end
+
         describe 'multiline' do
           it 'renders ruby' do
             expect(filter_text(%(
