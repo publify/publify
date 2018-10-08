@@ -125,7 +125,7 @@ describe 'articles/index_atom_feed.atom.builder', type: :view do
       @article = stub_full_article(blog: blog)
       @article.body = "shh .. it's a secret!"
       @article.extended = 'even more secret!'
-      allow(@article).to receive(:password) { 'password' }
+      allow(@article).to receive(:password).and_return('password')
       assign(:articles, [@article])
       render
     end

@@ -144,7 +144,7 @@ def stub_full_article(time = Time.zone.now, blog: Blog.first)
                     title: 'Foo Bar', permalink: 'foo-bar',
                     blog: blog,
                     guid: time.hash)
-  allow(a).to receive(:published_comments) { [] }
+  allow(a).to receive(:published_comments).and_return([])
   allow(a).to receive(:resources) { [build(:resource)] }
   allow(a).to receive(:tags) { [build(:tag)] }
   allow(a).to receive(:text_filter) { text_filter }

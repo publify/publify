@@ -180,8 +180,8 @@ describe Comment, type: :model do
   describe '#classify_content' do
     describe 'with feedback moderation enabled' do
       before(:each) do
-        allow(blog).to receive(:sp_global) { false }
-        allow(blog).to receive(:default_moderate_comments) { true }
+        allow(blog).to receive(:sp_global).and_return(false)
+        allow(blog).to receive(:default_moderate_comments).and_return(true)
       end
 
       it 'should mark comment as presumably spam' do
