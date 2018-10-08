@@ -87,9 +87,9 @@ FactoryBot.define do
     blog { Blog.first || create(:blog) }
   end
 
-  factory :post_type do |p|
-    p.name 'foobar'
-    p.description 'Some description'
+  factory :post_type do
+    name { 'foobar' }
+    description { 'Some description' }
   end
 
   factory :markdown, class: :text_filter do
@@ -100,45 +100,45 @@ FactoryBot.define do
     params {}
   end
 
-  factory :smartypants, parent: :markdown do |m|
-    m.name 'smartypants'
-    m.description 'SmartyPants'
-    m.markup 'none'
-    m.filters [:smartypants]
+  factory :smartypants, parent: :markdown do
+    name { 'smartypants' }
+    description { 'SmartyPants' }
+    markup { 'none' }
+    filters { [:smartypants] }
   end
 
-  factory 'markdown smartypants', parent: :smartypants do |m|
-    m.name 'markdown smartypants'
-    m.description 'Markdown with SmartyPants'
-    m.markup 'markdown'
-    m.filters [:smartypants]
+  factory 'markdown smartypants', parent: :smartypants do
+    name { 'markdown smartypants' }
+    description { 'Markdown with SmartyPants' }
+    markup { 'markdown' }
+    filters { [:smartypants] }
   end
 
-  factory :textile, parent: :markdown do |m|
-    m.name 'textile'
-    m.description 'Textile'
-    m.markup 'textile'
+  factory :textile, parent: :markdown do
+    name { 'textile' }
+    description { 'Textile' }
+    markup { 'textile' }
   end
 
-  factory :none, parent: :markdown do |_m|
+  factory :none, parent: :markdown do
     name { 'none' }
     description { 'None' }
     markup { 'none' }
   end
 
-  factory :utf8article, parent: :article do |u|
-    u.title 'ルビー'
-    u.permalink 'ルビー'
+  factory :utf8article, parent: :article do
+    title { 'ルビー' }
+    permalink { 'ルビー' }
   end
 
-  factory :second_article, parent: :article do |a|
-    a.title 'Another big article'
+  factory :second_article, parent: :article do
+    title { 'Another big article' }
   end
 
-  factory :article_with_accent_in_html, parent: :article do |a|
-    a.title 'article with accent'
-    a.body '&eacute;coute The future is cool!'
-    a.permalink 'article-with-accent'
+  factory :article_with_accent_in_html, parent: :article do
+    title { 'article with accent' }
+    body { '&eacute;coute The future is cool!' }
+    permalink { 'article-with-accent' }
   end
 
   factory :blog do
@@ -177,17 +177,17 @@ FactoryBot.define do
     blog { Blog.first || create(:blog) }
   end
 
-  factory :resource do |r|
-    r.upload { file_upload }
-    r.mime 'image/jpeg'
-    r.size 110
+  factory :resource do
+    upload { file_upload }
+    mime { 'image/jpeg' }
+    size { 110 }
     blog { Blog.first || create(:blog) }
   end
 
-  factory :avatar, parent: :resource do |a|
-    a.upload 'avatar.jpg'
-    a.mime 'image.jpeg'
-    a.size 600
+  factory :avatar, parent: :resource do
+    upload { 'avatar.jpg' }
+    mime { 'image/jpeg' }
+    size { 600 }
   end
 
   factory :redirect do
@@ -205,32 +205,32 @@ FactoryBot.define do
     guid
     state { 'ham' }
 
-    factory :unconfirmed_comment do |c|
-      c.state 'presumed_ham'
+    factory :unconfirmed_comment do
+      state { 'presumed_ham' }
     end
 
-    factory :published_comment do |c|
-      c.state 'ham'
+    factory :published_comment do
+      state { 'ham' }
     end
 
-    factory :not_published_comment do |c|
-      c.state 'spam'
+    factory :not_published_comment do
+      state { 'spam' }
     end
 
-    factory :ham_comment do |c|
-      c.state 'ham'
+    factory :ham_comment do
+      state { 'ham' }
     end
 
-    factory :presumed_ham_comment do |c|
-      c.state 'presumed_ham'
+    factory :presumed_ham_comment do
+      state { 'presumed_ham' }
     end
 
-    factory :presumed_spam_comment do |c|
-      c.state 'presumed_spam'
+    factory :presumed_spam_comment do
+      state { 'presumed_spam' }
     end
 
-    factory :spam_comment do |c|
-      c.state 'spam'
+    factory :spam_comment do
+      state { 'spam' }
     end
   end
 
@@ -254,11 +254,11 @@ FactoryBot.define do
     blog { Blog.first || create(:blog) }
   end
 
-  factory :unpublished_note, parent: :note do |n|
-    n.state 'draft'
+  factory :unpublished_note, parent: :note do
+    state { 'draft' }
   end
 
-  factory :trackback do |_t|
+  factory :trackback do
     state { 'ham' }
     article
     blog_name { 'Trackback Blog' }

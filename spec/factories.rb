@@ -9,7 +9,7 @@ FactoryBot.define do
   sequence(:guid) { |n| "deadbeef#{n}" }
   sequence(:label) { |n| "lab_#{n}" }
   sequence(:file_name) { |f| "file_name_#{f}" }
-  sequence(:time) { |n| DateTime.new(2012, 3, 26, 19, 56).utc - n }
+  sequence(:time) { |n| Time.new(2012, 3, 26, 19, 56).in_time_zone - n }
 
   factory :user do
     login { FactoryBot.generate(:user) }
@@ -78,18 +78,18 @@ FactoryBot.define do
     end
   end
 
-  factory :unpublished_article, parent: :article do |a|
-    a.published_at nil
-    a.published false
+  factory :unpublished_article, parent: :article do
+    published_at { nil }
+    state { :draft }
   end
 
   factory :content do
     blog { Blog.first || create(:blog) }
   end
 
-  factory :post_type do |p|
-    p.name 'foobar'
-    p.description 'Some description'
+  factory :post_type do
+    name { 'foobar' }
+    description { 'Some description' }
   end
 
   factory :markdown, class: :text_filter do
@@ -98,55 +98,47 @@ FactoryBot.define do
     markup { 'markdown' }
     filters { [] }
     params {}
-
-    after :stub do |filter|
-      TextFilter.stub(:find_by_name).with(filter.name) { filter }
-    end
   end
 
-  factory :smartypants, parent: :markdown do |m|
-    m.name 'smartypants'
-    m.description 'SmartyPants'
-    m.markup 'none'
-    m.filters [:smartypants]
+  factory :smartypants, parent: :markdown do
+    name { 'smartypants' }
+    description { 'SmartyPants' }
+    markup { 'none' }
+    filters { [:smartypants] }
   end
 
-  factory 'markdown smartypants', parent: :smartypants do |m|
-    m.name 'markdown smartypants'
-    m.description 'Markdown with SmartyPants'
-    m.markup 'markdown'
-    m.filters [:smartypants]
+  factory 'markdown smartypants', parent: :smartypants do
+    name { 'markdown smartypants' }
+    description { 'Markdown with SmartyPants' }
+    markup { 'markdown' }
+    filters { [:smartypants] }
   end
 
-  factory :textile, parent: :markdown do |m|
-    m.name 'textile'
-    m.description 'Textile'
-    m.markup 'textile'
+  factory :textile, parent: :markdown do
+    name { 'textile' }
+    description { 'Textile' }
+    markup { 'textile' }
   end
 
-  factory :none, parent: :markdown do |_m|
+  factory :none, parent: :markdown do
     name { 'none' }
     description { 'None' }
     markup { 'none' }
-
-    after :stub do |_filter|
-      TextFilter.stub(:find_by_name).with('') { nil }
-    end
   end
 
-  factory :utf8article, parent: :article do |u|
-    u.title 'ルビー'
-    u.permalink 'ルビー'
+  factory :utf8article, parent: :article do
+    title { 'ルビー' }
+    permalink { 'ルビー' }
   end
 
-  factory :second_article, parent: :article do |a|
-    a.title 'Another big article'
+  factory :second_article, parent: :article do
+    title { 'Another big article' }
   end
 
-  factory :article_with_accent_in_html, parent: :article do |a|
-    a.title 'article with accent'
-    a.body '&eacute;coute The future is cool!'
-    a.permalink 'article-with-accent'
+  factory :article_with_accent_in_html, parent: :article do
+    title { 'article with accent' }
+    body { '&eacute;coute The future is cool!' }
+    permalink { 'article-with-accent' }
   end
 
   factory :blog do
@@ -156,7 +148,7 @@ FactoryBot.define do
     limit_article_display { 2 }
     sp_url_limit { 3 }
     plugin_avatar { '' }
-    blog_subtitle { 'test subtitles' }
+    blog_subtitle { 'test subtitle' }
     limit_rss_display { 10 }
     geourl_location { '' }
     default_allow_pings { false }
@@ -185,17 +177,17 @@ FactoryBot.define do
     blog { Blog.first || create(:blog) }
   end
 
-  factory :resource do |r|
-    r.upload { file_upload(FactoryBot.generate(:file_name)) }
-    r.mime 'image/jpeg'
-    r.size 110
+  factory :resource do
+    upload { file_upload }
+    mime { 'image/jpeg' }
+    size { 110 }
     blog { Blog.first || create(:blog) }
   end
 
-  factory :avatar, parent: :resource do |a|
-    a.upload 'avatar.jpg'
-    a.mime 'image/jpeg'
-    a.size 600
+  factory :avatar, parent: :resource do
+    upload { 'avatar.jpg' }
+    mime { 'image/jpeg' }
+    size { 600 }
   end
 
   factory :redirect do
@@ -205,54 +197,40 @@ FactoryBot.define do
   end
 
   factory :comment do
-    published { true }
     article
     association :text_filter, factory: :textile
     author { 'Bob Foo' }
     url { 'http://fakeurl.com' }
     body { 'Comment body' }
-    created_at { '2005-01-01 02:00:00' }
-    updated_at { '2005-01-01 02:00:00' }
-    published_at { '2005-01-01 02:00:00' }
     guid
     state { 'ham' }
 
-    factory :unconfirmed_comment do |c|
-      c.state 'presumed_ham'
-      c.status_confirmed false
-      c.published false
+    factory :unconfirmed_comment do
+      state { 'presumed_ham' }
     end
 
-    factory :published_comment do |c|
-      c.state 'ham'
-      c.status_confirmed true
-      c.published true
+    factory :published_comment do
+      state { 'ham' }
     end
 
-    factory :not_published_comment do |c|
-      c.state 'spam'
-      c.status_confirmed true
-      c.published false
+    factory :not_published_comment do
+      state { 'spam' }
     end
 
-    factory :ham_comment do |c|
-      c.state 'ham'
-      c.published false
+    factory :ham_comment do
+      state { 'ham' }
     end
 
-    factory :presumed_ham_comment do |c|
-      c.state 'presumed_ham'
-      c.published false
+    factory :presumed_ham_comment do
+      state { 'presumed_ham' }
     end
 
-    factory :presumed_spam_comment do |c|
-      c.state 'presumed_spam'
-      c.published false
+    factory :presumed_spam_comment do
+      state { 'presumed_spam' }
     end
 
-    factory :spam_comment do |c|
-      c.state 'spam'
-      c.published false
+    factory :spam_comment do
+      state { 'spam' }
     end
   end
 
@@ -260,37 +238,29 @@ FactoryBot.define do
     name { FactoryBot.generate(:name) }
     title { 'Page One Title' }
     body { FactoryBot.generate(:body) }
-    created_at { '2005-05-05 01:00:01' }
-    published_at { '2005-05-05 01:00:01' }
-    updated_at { '2005-05-05 01:00:01' }
+    published_at { Time.zone.now }
     user
     blog { Blog.first || create(:blog) }
-    published { true }
     state { 'published' }
   end
 
   factory :note do
     body { 'this is a note' }
-    created_at { '2013-07-14 01:00:01' }
-    published_at { '2013-07-14 01:00:01' }
-    updated_at { '2013-07-14 01:00:01' }
+    published_at { Time.zone.now }
     user
-    published { true }
     state { 'published' }
     association :text_filter, factory: :markdown
     guid
     blog { Blog.first || create(:blog) }
   end
 
-  factory :unpublished_note, parent: :note do |n|
-    n.published false
+  factory :unpublished_note, parent: :note do
+    state { 'draft' }
   end
 
-  factory :trackback do |_t|
-    published { true }
+  factory :trackback do
     state { 'ham' }
     article
-    status_confirmed { true }
     blog_name { 'Trackback Blog' }
     title { 'Trackback Entry' }
     url { 'http://www.example.com' }
