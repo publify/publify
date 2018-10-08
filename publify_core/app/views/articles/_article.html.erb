@@ -7,5 +7,9 @@
   <%= author_link(article) %>
   <%= display_date_and_time article.published_at %>
   </p>
-  <%= render 'articles/protected_article_content', { :article => article } %>
+  <% if article.password.blank? %>
+    <%= render 'articles/article_excerpt', { :article => article } %>
+  <% else %>
+    <%= render 'articles/password_form', { :article => article } %>
+  <% end %>
 <% end %>

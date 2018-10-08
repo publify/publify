@@ -1,6 +1,20 @@
 <div class="post"<%= onhover_show_admin_tools(:article) %>>
   <%= link_to(t(".edit"), { controller: "admin/content", action: "edit", id: @article.id }, class: "admintools", style: "display: none", id: "admin_article") %>
-  <%= render @article %>
+  <% cache @article do %>
+    <h2>
+      <%= link_to_permalink @article, @article.title %>
+    </h2>
+    <p class="auth">
+    <%= t(".posted_by")%>
+    <%= author_link(@article) %>
+    <%= display_date_and_time @article.published_at %>
+    </p>
+    <% if @article.password.blank? %>
+      <%= render 'articles/full_article_content', { article: @article } %>
+    <% else %>
+      <%= render 'articles/password_form', { article: @article } %>
+    <% end %>
+  <% end %>
 </div>
 
 <%= render 'article_links', article: @article %>

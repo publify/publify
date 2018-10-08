@@ -52,6 +52,22 @@ RSpec.describe ArticlesController, 'base', type: :controller do
       end
     end
 
+    context 'when an article has an excerpt' do
+      render_views
+      let!(:article) { create :article, excerpt: 'foo', body: 'bar' }
+
+      it 'renders a continue reading link' do
+        get :index
+
+        aggregate_failures do
+          expect(response.body).not_to have_text 'bar'
+          expect(response.body).to have_text 'foo'
+          expect(response.body).
+            to have_text I18n.t!('articles.article_excerpt.continue_reading')
+        end
+      end
+    end
+
     context 'for a month' do
       before(:each) do
         create(:article, published_at: Time.utc(2004, 4, 23))
@@ -338,6 +354,22 @@ RSpec.describe ArticlesController, 'base', type: :controller do
         get :preview, params: { id: article.id }
         expect(assigns[:article]).to eq(draft)
       end
+
+      context 'when the article has an excerpt' do
+        render_views
+        let(:article) { create :article, excerpt: 'foo', body: 'bar', user: admin }
+
+        it 'does not render a continue reading link' do
+          get :preview, params: { id: article.id }
+
+          aggregate_failures do
+            expect(response.body).to have_text 'bar'
+            expect(response.body).not_to have_text 'foo'
+            expect(response.body).
+              not_to have_text I18n.t!('articles.article_excerpt.continue_reading')
+          end
+        end
+      end
     end
   end
 
@@ -465,6 +497,22 @@ RSpec.describe ArticlesController, 'base', type: :controller do
           it 'should redirect from old-style URL format with "articles" part' do
             get :redirect, params: { from: 'articles/2004/04/01/second-blog-article' }
             expect(response).to redirect_to article.permalink_url
+          end
+        end
+      end
+
+      context 'when the article has an excerpt' do
+        render_views
+        let(:article) { create :article, excerpt: 'foo', body: 'bar' }
+
+        it 'does not render a continue reading link' do
+          get :redirect, params: { from: "#{article.permalink}.html" }
+
+          aggregate_failures do
+            expect(response.body).to have_text 'bar'
+            expect(response.body).not_to have_text 'foo'
+            expect(response.body).
+              not_to have_text I18n.t!('articles.article_excerpt.continue_reading')
           end
         end
       end
