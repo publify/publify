@@ -623,7 +623,7 @@ it:
       no_articles_found: Nessun articolo trovato
     archives_article:
       posted_in: posted in
-    article:
+    article_author:
       posted_by: Scritto da
     article_excerpt:
       continue_reading: Continue reading

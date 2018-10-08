@@ -623,7 +623,7 @@ fr:
       no_articles_found: Aucun article ne correspond à la recherche
     archives_article:
       posted_in: publié dans
-    article:
+    article_author:
       posted_by: Publié par
     article_excerpt:
       continue_reading: Continue reading

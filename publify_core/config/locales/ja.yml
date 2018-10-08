@@ -623,7 +623,7 @@ ja:
       no_articles_found: 記事が見つかりませんでした
     archives_article:
       posted_in: カテゴリ
-    article:
+    article_author:
       posted_by: 投稿者
     article_excerpt:
       continue_reading: Continue reading

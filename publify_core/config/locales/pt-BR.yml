@@ -623,7 +623,7 @@ pt-BR:
       no_articles_found: Nenhum artigo encontrado
     archives_article:
       posted_in: postado em
-    article:
+    article_author:
       posted_by: Publicado por
     article_excerpt:
       continue_reading: Continue reading

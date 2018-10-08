@@ -623,7 +623,7 @@ lt:
       no_articles_found: Straipsnių nėra
     archives_article:
       posted_in: posted in
-    article:
+    article_author:
       posted_by: Parašė
     article_excerpt:
       continue_reading: Continue reading

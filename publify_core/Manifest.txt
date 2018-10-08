@@ -195,6 +195,7 @@ app/views/admin/users/new.html.erb
 app/views/archives_sidebar/_content.html.erb
 app/views/articles/_archives_article.html.erb
 app/views/articles/_article.html.erb
+app/views/articles/_article_author.html.erb
 app/views/articles/_article_collection.html.erb
 app/views/articles/_article_content.html.erb
 app/views/articles/_article_excerpt.html.erb
