@@ -128,7 +128,7 @@ describe Admin::ContentController, type: :controller do
           allow_pings: '1' }.merge(options)
       end
 
-      it 'should send notifications on create' do
+      it 'sends notifications on create' do
         u = create(:user, notify_via_email: true, notify_on_new_articles: true)
         u.save!
         ActionMailer::Base.deliveries.clear
@@ -140,31 +140,31 @@ describe Admin::ContentController, type: :controller do
         assert_equal(u.email, emails.first.to[0])
       end
 
-      it 'should create an article with tags' do
+      it 'creates an article with tags' do
         post :create, params: { 'article' => base_article(keywords: 'foo bar') }
         new_article = Article.last
         assert_equal 2, new_article.tags.size
       end
 
-      it 'should create an article with a unique Tag instance named lang:FR' do
+      it 'creates an article with a unique Tag instance named lang:FR' do
         post :create, params: { 'article' => base_article(keywords: 'lang:FR') }
         new_article = Article.last
         expect(new_article.tags.map(&:name).include?('lang-fr')).to be_truthy
       end
 
-      it 'should correctly interpret time zone in :published_at' do
+      it 'correctlies interpret time zone in :published_at' do
         post :create, params: { 'article' => base_article(published_at: 'February 17, 2011 08:47 PM GMT+0100 (CET)') }
         new_article = Article.last
         assert_equal Time.utc(2011, 2, 17, 19, 47), new_article.published_at
       end
 
-      it 'should respect "GMT+0000 (UTC)" in :published_at' do
+      it 'respects "GMT+0000 (UTC)" in :published_at' do
         post :create, params: { 'article' => base_article(published_at: 'August 23, 2011 08:40 PM GMT+0000 (UTC)') }
         new_article = Article.last
         assert_equal Time.utc(2011, 8, 23, 20, 40), new_article.published_at
       end
 
-      it 'should create a filtered article' do
+      it 'creates a filtered article' do
         Article.delete_all
         body = 'body via *markdown*'
         extended = '*foo*'
@@ -285,7 +285,7 @@ describe Admin::ContentController, type: :controller do
         sign_in admin
       end
 
-      it 'should edit article' do
+      it 'edits article' do
         get :edit, params: { 'id' => article.id }
         expect(response).to render_template 'edit'
         expect(assigns(:article)).not_to be_nil
@@ -332,7 +332,7 @@ describe Admin::ContentController, type: :controller do
         sign_in admin
       end
 
-      it 'should update article' do
+      it 'updates article' do
         emails = ActionMailer::Base.deliveries
         emails.clear
 
@@ -349,7 +349,7 @@ describe Admin::ContentController, type: :controller do
         expect(emails.size).to eq(0)
       end
 
-      it 'should allow updating body_and_extended' do
+      it 'allows updating body_and_extended' do
         put :update, params: { 'id' => article.id, 'article' => {
           'body_and_extended' => 'foo<!--more-->bar<!--more-->baz'
         } }
@@ -492,7 +492,7 @@ describe Admin::ContentController, type: :controller do
       create(:tag, name: 'bar', contents: [create(:article)])
     end
 
-    it 'should return foo for keywords fo' do
+    it 'returns foo for keywords fo' do
       get :auto_complete_for_article_keywords, params: { article: { keywords: 'fo' } }
       expect(response).to be_successful
       expect(response.body).to eq('["bar","bazz","foo"]')

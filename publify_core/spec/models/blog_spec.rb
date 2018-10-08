@@ -50,7 +50,7 @@ describe Blog, type: :model do
       @blog = create :blog
     end
 
-    it 'should allow another blog to be created' do
+    it 'allows another blog to be created' do
       expect(Blog.new(base_url: 'bar')).to be_valid
     end
   end
@@ -60,17 +60,17 @@ describe Blog, type: :model do
       @blog = Blog.new(base_url: 'foo')
     end
 
-    it 'should be valid after filling the title' do
+    it 'is valid after filling the title' do
       @blog.blog_name = 'something not empty'
       expect(@blog).to be_valid
     end
 
-    it 'should be valid without filling the title' do
+    it 'is valid without filling the title' do
       expect(@blog.blog_name).to eq('My Shiny Weblog!')
       expect(@blog).to be_valid
     end
 
-    it 'should not be valid after setting an empty title' do
+    it 'is not valid after setting an empty title' do
       @blog.blog_name = ''
       expect(@blog).not_to be_valid
     end
@@ -96,7 +96,7 @@ describe Blog, type: :model do
       end
     end
 
-    it 'should not be valid without %title% in' do
+    it 'is not valid without %title% in' do
       @blog.permalink_format = '/toto/%year%/%month/%day%'
       expect(@blog).not_to be_valid
     end

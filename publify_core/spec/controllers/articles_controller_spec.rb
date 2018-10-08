@@ -36,19 +36,19 @@ RSpec.describe ArticlesController, 'base', type: :controller do
       context 'with the view rendered' do
         render_views
 
-        it 'should have good link feed rss' do
+        it 'has good link feed rss' do
           expect(response.body).to have_selector('head>link[href="http://test.host/articles.rss"]', visible: false)
         end
 
-        it 'should have good link feed atom' do
+        it 'has good link feed atom' do
           expect(response.body).to have_selector('head>link[href="http://test.host/articles.atom"]', visible: false)
         end
 
-        it 'should have a canonical url' do
+        it 'has a canonical url' do
           expect(response.body).to have_selector("head>link[href='#{blog.base_url}/']", visible: false)
         end
 
-        it 'should have good title' do
+        it 'has good title' do
           expect(response.body).to have_selector('title', text: 'test blog | test subtitle', visible: false)
         end
       end
@@ -76,22 +76,22 @@ RSpec.describe ArticlesController, 'base', type: :controller do
         get 'index', params: { year: 2004, month: 4 }
       end
 
-      it 'should render template index' do
+      it 'renders template index' do
         expect(response).to render_template(:index)
       end
 
-      it 'should contain some articles' do
+      it 'contains some articles' do
         expect(assigns[:articles]).not_to be_nil
         expect(assigns[:articles]).not_to be_empty
       end
 
       context 'with the view rendered' do
         render_views
-        it 'should have a canonical url' do
+        it 'has a canonical url' do
           expect(response.body).to have_selector("head>link[href='#{blog.base_url}/2004/4']", visible: false)
         end
 
-        it 'should have a good title' do
+        it 'has a good title' do
           expect(response.body).to have_selector('title', text: 'Archives for test blog', visible: false)
         end
       end
@@ -135,7 +135,7 @@ RSpec.describe ArticlesController, 'base', type: :controller do
         create(:article)
       end
 
-      it 'should ignore the HTTP Accept: header' do
+      it 'ignores the HTTP Accept: header' do
         request.env['HTTP_ACCEPT'] = 'application/atom+xml'
         get 'index'
         expect(response).to render_template('index')
@@ -189,23 +189,23 @@ RSpec.describe ArticlesController, 'base', type: :controller do
 
       context 'with the view rendered' do
         render_views
-        it 'should have good feed rss link' do
+        it 'has good feed rss link' do
           expect(response.body).to have_selector('head>link[href="http://test.host/search/a.rss"]', visible: false)
         end
 
-        it 'should have good feed atom link' do
+        it 'has good feed atom link' do
           expect(response.body).to have_selector('head>link[href="http://test.host/search/a.atom"]', visible: false)
         end
 
-        it 'should have a canonical url' do
+        it 'has a canonical url' do
           expect(response.body).to have_selector("head>link[href='#{blog.base_url}/search/a']", visible: false)
         end
 
-        it 'should have a good title' do
+        it 'has a good title' do
           expect(response.body).to have_selector('title', text: 'Results for a | test blog', visible: false)
         end
 
-        it 'should have content markdown interpret and without html tag' do
+        it 'has content markdown interpret and without html tag' do
           expect(response.body).to have_selector('div') do |div|
             expect(div).to match(%{in markdown format * we * use [ok](http://blog.ok.com) to define a link})
           end
@@ -213,13 +213,13 @@ RSpec.describe ArticlesController, 'base', type: :controller do
       end
     end
 
-    it 'should render feed rss by search' do
+    it 'renders feed rss by search' do
       get 'search', params: { q: 'a', format: 'rss' }
       expect(response).to be_successful
       expect(response).to render_template('index_rss_feed', layout: false)
     end
 
-    it 'should render feed atom by search' do
+    it 'renders feed atom by search' do
       get 'search', params: { q: 'a', format: 'atom' }
       expect(response).to be_successful
       expect(response).to render_template('index_atom_feed', layout: false)
@@ -240,26 +240,26 @@ RSpec.describe ArticlesController, 'base', type: :controller do
         get :live_search, params: { q: 'hello world' }
       end
 
-      it 'should be valid' do
+      it 'is valid' do
         expect(assigns(:articles).size).to eq(2)
       end
 
-      it 'should render without layout' do
+      it 'renders without layout' do
         expect(response).to render_template(layout: nil)
       end
 
-      it 'should render template live_search' do
+      it 'renders template live_search' do
         expect(response).to render_template('live_search')
       end
 
       context 'with the view rendered' do
         render_views
-        it 'should not have h3 tag' do
+        it 'does not have h3 tag' do
           expect(response.body).to have_selector('h3')
         end
       end
 
-      it 'should assign @search the search string' do
+      it 'assigns @search the search string' do
         expect(assigns[:search]).to be_equal(controller.params[:q])
       end
     end
@@ -321,7 +321,7 @@ RSpec.describe ArticlesController, 'base', type: :controller do
         get :preview, params: { id: create(:article).id }
       end
 
-      it 'should redirect to login' do
+      it 'redirects to login' do
         expect(response).to redirect_to new_user_session_path
       end
     end
@@ -346,12 +346,12 @@ RSpec.describe ArticlesController, 'base', type: :controller do
         end
       end
 
-      it 'should assigns article define with id' do
+      it 'assignses article define with id' do
         get :preview, params: { id: article.id }
         expect(assigns[:article]).to eq(article)
       end
 
-      it 'should assigns last article with id like parent_id' do
+      it 'assignses last article with id like parent_id' do
         draft = create(:article, parent_id: article.id)
         get :preview, params: { id: article.id }
         expect(assigns[:article]).to eq(draft)
@@ -378,7 +378,7 @@ RSpec.describe ArticlesController, 'base', type: :controller do
   describe '#redirect' do
     describe 'with explicit redirects' do
       describe 'with empty relative_url_root' do
-        it 'should redirect from known URL' do
+        it 'redirects from known URL' do
           create(:blog, base_url: 'http://test.host')
           create(:user)
           create(:redirect)
@@ -386,7 +386,7 @@ RSpec.describe ArticlesController, 'base', type: :controller do
           expect(response).to redirect_to('http://test.host/someplace/else')
         end
 
-        it 'should not redirect from unknown URL' do
+        it 'does not redirect from unknown URL' do
           create(:blog, base_url: 'http://test.host')
           create(:user)
           create(:redirect)
@@ -406,21 +406,21 @@ RSpec.describe ArticlesController, 'base', type: :controller do
           create(:user)
         end
 
-        it 'should redirect' do
+        it 'redirects' do
           create(:redirect, from_path: 'foo/bar', to_path: '/someplace/else')
           get :redirect, params: { from: 'foo/bar' }
           assert_response 301
           expect(response).to redirect_to('http://test.host/blog/someplace/else')
         end
 
-        it 'should redirect if to_path includes relative_url_root' do
+        it 'redirects if to_path includes relative_url_root' do
           create(:redirect, from_path: 'bar/foo', to_path: '/blog/someplace/else')
           get :redirect, params: { from: 'bar/foo' }
           assert_response 301
           expect(response).to redirect_to('http://test.host/blog/someplace/else')
         end
 
-        it 'should ignore the blog base_url if the to_path is a full uri' do
+        it 'ignores the blog base_url if the to_path is a full uri' do
           create(:redirect, from_path: 'foo', to_path: 'http://some.where/else')
           get :redirect, params: { from: 'foo' }
           assert_response 301
@@ -429,7 +429,7 @@ RSpec.describe ArticlesController, 'base', type: :controller do
       end
     end
 
-    it 'should get good article with utf8 slug' do
+    it 'gets good article with utf8 slug' do
       build_stubbed(:blog)
       utf8article = create(:utf8article, permalink: 'ルビー', published_at: Time.utc(2004, 6, 2))
       get :redirect, params: { from: '2004/06/02/ルビー' }
@@ -437,7 +437,7 @@ RSpec.describe ArticlesController, 'base', type: :controller do
     end
 
     # NOTE: This is needed because Rails over-unescapes glob parameters.
-    it 'should get good article with pre-escaped utf8 slug using unescaped slug' do
+    it 'gets good article with pre-escaped utf8 slug using unescaped slug' do
       build_stubbed(:blog)
       utf8article = create(:utf8article, permalink: '%E3%83%AB%E3%83%93%E3%83%BC', published_at: Time.utc(2004, 6, 2))
       get :redirect, params: { from: '2004/06/02/ルビー' }
@@ -445,7 +445,7 @@ RSpec.describe ArticlesController, 'base', type: :controller do
     end
 
     describe 'accessing old-style URL with "articles" as the first part' do
-      it 'should redirect to article without url_root' do
+      it 'redirects to article without url_root' do
         create(:blog, base_url: 'http://test.host')
         article = create(:article, permalink: 'second-blog-article', published_at: Time.utc(2004, 4, 1))
         get :redirect, params: { from: 'articles/2004/04/01/second-blog-article' }
@@ -453,7 +453,7 @@ RSpec.describe ArticlesController, 'base', type: :controller do
         expect(response).to redirect_to article.permalink_url
       end
 
-      it 'should redirect to article with url_root' do
+      it 'redirects to article with url_root' do
         create(:blog, base_url: 'http://test.host/blog')
         create(:article, permalink: 'second-blog-article', published_at: Time.utc(2004, 4, 1))
         get :redirect, params: { from: 'articles/2004/04/01/second-blog-article' }
@@ -461,7 +461,7 @@ RSpec.describe ArticlesController, 'base', type: :controller do
         expect(response).to redirect_to('http://test.host/blog/2004/04/01/second-blog-article')
       end
 
-      it 'should redirect to article with articles in url_root' do
+      it 'redirects to article with articles in url_root' do
         create(:blog, base_url: 'http://test.host/aaa/articles/bbb')
         create(:article, permalink: 'second-blog-article', published_at: Time.utc(2004, 4, 1))
         get :redirect, params: { from: 'articles/2004/04/01/second-blog-article' }
@@ -491,12 +491,12 @@ RSpec.describe ArticlesController, 'base', type: :controller do
         end
 
         describe 'accessing legacy URLs' do
-          it 'should redirect from default URL format' do
+          it 'redirects from default URL format' do
             get :redirect, params: { from: '2004/04/01/second-blog-article' }
             expect(response).to redirect_to article.permalink_url
           end
 
-          it 'should redirect from old-style URL format with "articles" part' do
+          it 'redirects from old-style URL format with "articles" part' do
             get :redirect, params: { from: 'articles/2004/04/01/second-blog-article' }
             expect(response).to redirect_to article.permalink_url
           end
@@ -525,11 +525,11 @@ RSpec.describe ArticlesController, 'base', type: :controller do
           get :redirect, params: { from: "#{article.permalink}.html" }
         end
 
-        it 'should render template read to article' do
+        it 'renders template read to article' do
           expect(response).to render_template('articles/read')
         end
 
-        it 'should assign article1 to @article' do
+        it 'assigns article1 to @article' do
           expect(assigns(:article)).to eq(article)
         end
 
@@ -542,19 +542,19 @@ RSpec.describe ArticlesController, 'base', type: :controller do
         describe 'the resulting page' do
           render_views
 
-          it 'should have good rss feed link' do
+          it 'has good rss feed link' do
             expect(response.body).to have_selector("head>link[href=\"#{blog.base_url}/#{article.permalink}.html.rss\"]", visible: false)
           end
 
-          it 'should have good atom feed link' do
+          it 'has good atom feed link' do
             expect(response.body).to have_selector("head>link[href=\"#{blog.base_url}/#{article.permalink}.html.atom\"]", visible: false)
           end
 
-          it 'should have a canonical url' do
+          it 'has a canonical url' do
             expect(response.body).to have_selector("head>link[href='#{blog.base_url}/#{article.permalink}.html']", visible: false)
           end
 
-          it 'should have a good title' do
+          it 'has a good title' do
             expect(response.body).to have_selector('title', text: 'A big article | test blog', visible: false)
           end
         end
@@ -607,7 +607,7 @@ RSpec.describe ArticlesController, 'base', type: :controller do
           get :redirect, params: { from: "#{article.permalink}.html.atom" }
         end
 
-        it 'should render feedback atom feed for the article' do
+        it 'renders feedback atom feed for the article' do
           expect(assigns(:article)).to eq article
           expect(response).to render_template('feedback_atom_feed', layout: false)
         end
@@ -621,7 +621,7 @@ RSpec.describe ArticlesController, 'base', type: :controller do
           get :redirect, params: { from: "#{article.permalink}.html.rss" }
         end
 
-        it 'should render feedback rss feed for the article' do
+        it 'renders feedback rss feed for the article' do
           expect(assigns(:article)).to eq article
           expect(response).to render_template('feedback_rss_feed', layout: false)
         end
@@ -632,12 +632,12 @@ RSpec.describe ArticlesController, 'base', type: :controller do
       let!(:blog) { create(:blog, permalink_format: '/foo/%title%') }
       let!(:article) { create(:article) }
 
-      it 'should find the article if the url matches all components' do
+      it 'finds the article if the url matches all components' do
         get :redirect, params: { from: "foo/#{article.permalink}" }
         expect(response).to be_successful
       end
 
-      it 'should not find the article if the url does not match the fixed component' do
+      it 'does not find the article if the url does not match the fixed component' do
         expect { get :redirect, params: { from: "bar/#{article.permalink}" } }.
           to raise_error ActiveRecord::RecordNotFound
       end

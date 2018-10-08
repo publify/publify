@@ -8,16 +8,16 @@ describe PostType, type: :model do
   end
 
   describe 'Given a new post type' do
-    it 'should give a valid post type' do
+    it 'gives a valid post type' do
       expect(PostType.create(name: 'foo')).to be_valid
     end
 
-    it 'should have a sanitized permalink' do
+    it 'has a sanitized permalink' do
       @pt = PostType.create(name: 'Un joli PostType Accentué')
       expect(@pt.permalink).to eq('un-joli-posttype-accentue')
     end
 
-    it 'should have a sanitized permalink with a' do
+    it 'has a sanitized permalink with a' do
       @pt = PostType.create(name: 'Un joli PostType à Accentuer')
       expect(@pt.permalink).to eq('un-joli-posttype-a-accentuer')
     end

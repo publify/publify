@@ -26,7 +26,7 @@ RSpec.describe 'feedback/index.rss.builder', type: :view do
       let(:rendered_entry) { Feedjira::Feed.parse(rendered).entries.first }
       let(:xml_entry) { Nokogiri::XML.parse(rendered).css('item').first }
 
-      it 'should have all the required attributes' do
+      it 'has all the required attributes' do
         expect(rendered_entry.title).to eq "Comment on #{article.title} by #{comment.author}"
         expect(rendered_entry.entry_id).to eq('urn:uuid:12313123123123123')
         expect(rendered_entry.summary).to eq('<p>Comment body</p>')
@@ -39,7 +39,7 @@ RSpec.describe 'feedback/index.rss.builder', type: :view do
       let(:rendered_entry) { Feedjira::Feed.parse(rendered).entries.last }
       let(:xml_entry) { Nokogiri::XML.parse(rendered).css('item').last }
 
-      it 'should have all the required attributes' do
+      it 'has all the required attributes' do
         expect(rendered_entry.title).
           to eq "Trackback from #{trackback.blog_name}: #{trackback.title} on #{article.title}"
         expect(rendered_entry.entry_id).to eq('urn:uuid:dsafsadffsdsf')

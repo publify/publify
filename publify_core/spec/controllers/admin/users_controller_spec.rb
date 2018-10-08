@@ -66,7 +66,7 @@ describe Admin::UsersController, type: :controller do
       sign_in user
     end
 
-    it 'should redirect to index' do
+    it 'redirects to index' do
       post :update, params: { id: contributor.id, user: { login: 'errand',
                                                           email: 'corey@test.com', password: 'testpass',
                                                           password_confirmation: 'testpass' } }
@@ -90,11 +90,11 @@ describe Admin::UsersController, type: :controller do
         post :update, params: { id: contributor.id, user: { profile: User::PUBLISHER } }
       end
 
-      it 'should redirect to login' do
+      it 'redirects to login' do
         expect(response).to redirect_to(controller: '/admin/dashboard', action: 'index')
       end
 
-      it 'should not change user profile' do
+      it 'does not change user profile' do
         u = contributor.reload
         expect(u.profile).to eq User::CONTRIBUTOR
       end

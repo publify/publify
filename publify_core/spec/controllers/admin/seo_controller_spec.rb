@@ -68,12 +68,12 @@ describe Admin::SeoController, type: :controller do
                                             'index_tags' => '1' } }.merge(options)
     end
 
-    it 'should success' do
+    it 'successes' do
       good_update
       expect(response).to redirect_to admin_seo_path(section: 'general')
     end
 
-    it 'should not save blog with bad permalink format' do
+    it 'does not save blog with bad permalink format' do
       @blog = Blog.first
       good_update 'setting' => { 'permalink_format' => '/%month%' }
       expect(response).to render_template('show')

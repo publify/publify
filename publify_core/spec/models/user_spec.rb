@@ -4,12 +4,12 @@ require 'rails_helper'
 
 describe User, type: :model do
   describe 'FactoryBot Bot' do
-    it 'should user factory valid' do
+    it 'users factory valid' do
       expect(create(:user)).to be_valid
       expect(build(:user)).to be_valid
     end
 
-    it 'should multiple user factory valid' do
+    it 'multiples user factory valid' do
       expect(create(:user)).to be_valid
       expect(create(:user)).to be_valid
     end
@@ -70,7 +70,7 @@ describe User, type: :model do
     end
 
     describe '#display_name' do
-      it 'should not be blank' do
+      it 'is not blank' do
         expect(@user.display_name).not_to be_empty
       end
     end
@@ -81,7 +81,7 @@ describe User, type: :model do
       @olduser = create(:user)
     end
 
-    it 'should not be able to create another user with the same login' do
+    it 'is not able to create another user with the same login' do
       login = @olduser.login
       new_user = User.new(login: login) do |u|
         u.password = u.password_confirmation = 'secure password'
@@ -112,12 +112,12 @@ describe User, type: :model do
   end
 
   describe '#admin?' do
-    it 'should return true if user is admin' do
+    it 'returns true if user is admin' do
       admin = build(:user, :as_admin)
       expect(admin).to be_admin
     end
 
-    it 'should return false if user is not admin' do
+    it 'returns false if user is not admin' do
       publisher = build(:user, :as_publisher)
       expect(publisher).not_to be_admin
     end

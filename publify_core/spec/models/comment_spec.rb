@@ -19,19 +19,19 @@ describe Comment, type: :model do
 
     subject { @c.permalink_url }
 
-    it 'should render permalink to comment in public part' do
+    it 'renders permalink to comment in public part' do
       is_expected.to eq("#{@c.article.permalink_url}#comment-#{@c.id}")
     end
   end
 
   describe '#save' do
-    it 'should save good comment' do
+    it 'saves good comment' do
       c = build(:comment, url: 'http://www.google.de')
       assert c.save
       assert_equal 'http://www.google.de', c.url
     end
 
-    it 'should save spam comment' do
+    it 'saves spam comment' do
       c = build(:comment, body: 'test <a href="http://fakeurl.com">body</a>')
       assert c.save
       assert_equal 'http://fakeurl.com', c.url
@@ -45,19 +45,19 @@ describe Comment, type: :model do
       expect(comment.errors[:article_id]).not_to be_empty
     end
 
-    it 'should change old comment' do
+    it 'changes old comment' do
       c = build(:comment, body: 'Comment body <em>italic</em> <strong>bold</strong>')
       assert c.save
       assert c.errors.empty?
     end
 
-    it 'should save a valid comment' do
+    it 'saves a valid comment' do
       c = build :comment
       expect(c.save).to be_truthy
       expect(c.errors).to be_empty
     end
 
-    it 'should not save with article not allow comment' do
+    it 'does not save with article not allow comment' do
       c = build(:comment, article: build_stubbed(:article, allow_comments: false))
       expect(c.save).not_to be_truthy
       expect(c.errors).not_to be_empty
@@ -65,7 +65,7 @@ describe Comment, type: :model do
   end
 
   describe '#save' do
-    it 'should generate guid' do
+    it 'generates guid' do
       c = build :comment, guid: nil
       assert c.save
       assert c.guid.size > 15
@@ -91,7 +91,7 @@ describe Comment, type: :model do
   end
 
   describe '#classify_content' do
-    it 'should reject spam rbl' do
+    it 'rejects spam rbl' do
       comment = valid_comment(
         author: 'Spammer',
         body: <<-BODY,
@@ -105,14 +105,14 @@ describe Comment, type: :model do
       expect(comment).not_to be_status_confirmed
     end
 
-    it 'should not define spam a comment rbl with lookup succeeds' do
+    it 'does not define spam a comment rbl with lookup succeeds' do
       comment = valid_comment(author: 'Not a Spammer', body: 'Useful commentary!', url: 'http://www.bofh.org.uk')
       comment.classify_content
       expect(comment).not_to be_spammy
       expect(comment).not_to be_status_confirmed
     end
 
-    it 'should reject spam with uri limit' do
+    it 'rejects spam with uri limit' do
       comment = valid_comment(author: 'Yet Another Spammer', body: %( <a href="http://www.one.com/">one</a> <a href="http://www.two.com/">two</a> <a href="http://www.three.com/">three</a> <a href="http://www.four.com/">four</a> ), url: 'http://www.uri-limit.com')
       comment.classify_content
       expect(comment).to be_spammy
@@ -120,7 +120,7 @@ describe Comment, type: :model do
     end
   end
 
-  it 'should have good relation' do
+  it 'has good relation' do
     article = build_stubbed(:article)
     comment = build_stubbed(:comment, article: article)
     assert comment.article
@@ -150,7 +150,7 @@ describe Comment, type: :model do
   end
 
   describe 'change state' do
-    it 'should become unpublished if withdrawn' do
+    it 'becomes unpublished if withdrawn' do
       c = build :comment
       assert c.published?
       assert c.withdraw!
@@ -159,7 +159,7 @@ describe Comment, type: :model do
       assert c.status_confirmed?
     end
 
-    it 'should becomes confirmed if withdrawn' do
+    it 'becomeses confirmed if withdrawn' do
       unconfirmed = build(:comment, state: 'presumed_ham')
       expect(unconfirmed).not_to be_status_confirmed
       unconfirmed.withdraw!
@@ -167,7 +167,7 @@ describe Comment, type: :model do
     end
   end
 
-  it 'should have good default filter' do
+  it 'has good default filter' do
     blog = create :blog
     create :textile
     create :markdown
@@ -184,7 +184,7 @@ describe Comment, type: :model do
         allow(blog).to receive(:default_moderate_comments).and_return(true)
       end
 
-      it 'should mark comment as presumably spam' do
+      it 'marks comment as presumably spam' do
         comment = Comment.new do |c|
           c.body = 'Test foo'
           c.author = 'Bob'
@@ -198,7 +198,7 @@ describe Comment, type: :model do
         assert !comment.status_confirmed?
       end
 
-      it 'should mark comment from known user as confirmed ham' do
+      it 'marks comment from known user as confirmed ham' do
         comment = Comment.new do |c|
           c.body = 'Test foo'
           c.author = 'Henri'

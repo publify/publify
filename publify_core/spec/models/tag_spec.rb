@@ -66,7 +66,7 @@ describe Tag, type: :model do
   end
 
   describe '#published_articles' do
-    it 'should return only published articles' do
+    it 'returns only published articles' do
       published_art = create(:article)
       draft_art = create(:article, published_at: nil, state: 'draft')
       art_tag = create(:tag, name: 'art', contents: [published_art, draft_art])

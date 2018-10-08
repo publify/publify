@@ -194,25 +194,25 @@ describe Note, type: :model do
     let!(:blog) { create(:blog, dofollowify: true) }
 
     describe 'Testing hashtag and @mention replacement in html postprocessing' do
-      it 'should replace a hashtag with a proper URL to Twitter search' do
+      it 'replaces a hashtag with a proper URL to Twitter search' do
         note = build(:note, body: 'A test tweet with a #hashtag')
         expected = "A test tweet with a <a href='https://twitter.com/search?q=%23hashtag&src=tren&mode=realtime'>#hashtag</a>"
         expect(note.html_preprocess(nil, note.body)).to eq(expected)
       end
 
-      it 'should replace a @mention by a proper URL to the twitter account' do
+      it 'replaces a @mention by a proper URL to the twitter account' do
         note = create(:note, body: 'A test tweet with a @mention')
         expected = "A test tweet with a <a href='https://twitter.com/mention'>@mention</a>"
         expect(note.html_preprocess(nil, note.body)).to eq(expected)
       end
 
-      it 'should replace a http URL by a proper link' do
+      it 'replaces a http URL by a proper link' do
         note = create(:note, body: 'A test tweet with a http://link.com')
         expected = "A test tweet with a <a href='http://link.com'>http://link.com</a>"
         expect(note.html_preprocess(nil, note.body)).to eq(expected)
       end
 
-      it 'should replace a https URL with a proper link' do
+      it 'replaces a https URL with a proper link' do
         note = create(:note, body: 'A test tweet with a https://link.com')
         expected = "A test tweet with a <a href='https://link.com'>https://link.com</a>"
         expect(note.html_preprocess(nil, note.body)).to eq(expected)

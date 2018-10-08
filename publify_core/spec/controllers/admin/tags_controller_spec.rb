@@ -26,7 +26,7 @@ describe Admin::TagsController, type: :controller do
   end
 
   describe 'create a new tag' do
-    it 'should create a tag and redirect to #index' do
+    it 'creates a tag and redirect to #index' do
       post :create, params: { tag: { display_name: 'new_tag' } }
       expect(response).to redirect_to(action: 'index')
       expect(Tag.count).to eq(1)
@@ -54,7 +54,7 @@ describe Admin::TagsController, type: :controller do
   end
 
   describe '#update an existing tag' do
-    it 'should update a tag and redirect to #index' do
+    it 'updates a tag and redirect to #index' do
       @test_id = create(:tag).id
       post :update, params: { id: @test_id, tag: { display_name: 'another_name' } }
       assert_response :redirect, action: 'index'
@@ -64,7 +64,7 @@ describe Admin::TagsController, type: :controller do
   end
 
   describe 'destroy a tag' do
-    it 'should destroy the tag and redirect to #index' do
+    it 'destroys the tag and redirect to #index' do
       @test_id = create(:tag).id
       post :destroy, params: { id: @test_id }
       expect(response).to redirect_to(action: 'index')

@@ -12,7 +12,7 @@ describe Admin::ProfilesController, type: :controller do
   end
 
   describe '#index' do
-    it 'should render index' do
+    it 'renders index' do
       get :index
       expect(response).to render_template('index')
     end

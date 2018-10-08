@@ -19,7 +19,7 @@ describe 'articles/feedback_atom_feed.atom.builder', type: :view do
     end
 
     describe 'the trackback entry' do
-      it 'should have all the required attributes' do
+      it 'has all the required attributes' do
         entry_xml = parsed_feed.entries.first
 
         expect(entry_xml.title).to eq(

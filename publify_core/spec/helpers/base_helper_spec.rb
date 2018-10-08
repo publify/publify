@@ -176,7 +176,7 @@ describe BaseHelper, type: :helper do
         fake_logger
       end
 
-      it 'should return a friendly error message' do
+      it 'returns a friendly error message' do
         expect(render_sidebars).to match(/It seems something went wrong/)
       end
     end
@@ -186,7 +186,7 @@ describe BaseHelper, type: :helper do
         Sidebar.new(blog: blog).save
       end
 
-      it 'should render the sidebar' do
+      it 'renders the sidebar' do
         expect(render_sidebars).to match(/Rendered/)
       end
     end

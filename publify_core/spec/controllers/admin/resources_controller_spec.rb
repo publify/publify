@@ -16,7 +16,7 @@ describe Admin::ResourcesController, type: :controller do
       get :index
     end
 
-    it 'should render index template' do
+    it 'renders index template' do
       assert_response :success
       assert_template 'index'
       expect(assigns(:resources)).not_to be_nil

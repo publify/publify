@@ -39,7 +39,7 @@ describe SetupController, type: :controller do
           post :create, params: { setting: { blog_name: 'Foo', email: 'foo@bar.net', password: 'foo123bar' } }
         end
 
-        it 'should correctly initialize blog and users' do
+        it 'correctlies initialize blog and users' do
           expect(Blog.first.blog_name).to eq('Foo')
           admin = User.find_by(login: 'admin')
           expect(admin).not_to be_nil
@@ -48,7 +48,7 @@ describe SetupController, type: :controller do
           expect(Page.first.user).to eq(admin)
         end
 
-        it 'should log in admin user' do
+        it 'logs in admin user' do
           expect(controller.current_user).to eq(User.find_by(login: 'admin'))
         end
 
@@ -88,7 +88,7 @@ describe SetupController, type: :controller do
 
       specify { expect(response).to redirect_to(controller: 'articles', action: 'index') }
 
-      it 'should not initialize blog and users' do
+      it 'does not initialize blog and users' do
         expect(Blog.first.blog_name).not_to eq('Foo')
         admin = User.find_by(login: 'admin')
         expect(admin).to be_nil

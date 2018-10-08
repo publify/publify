@@ -4,17 +4,17 @@ require 'rails_helper'
 
 describe AuthorsHelper, type: :helper do
   describe 'display_profile_item' do
-    it 'should display the item as a list item if show_item is true' do
+    it 'displays the item as a list item if show_item is true' do
       item = display_profile_item('my@jabber.org', 'Jabber:')
       expect(item).to have_selector('li', text: 'Jabber: my@jabber.org')
     end
 
-    it 'should NOT display the item empty' do
+    it 'does not display the item empty' do
       item = display_profile_item('', 'Jabber:')
       expect(item).to be_nil
     end
 
-    it 'should display a link if the item is an url' do
+    it 'displays a link if the item is an url' do
       item = display_profile_item('http://twitter.com/mytwitter', 'Twitter:')
       expect(item).to have_selector('li') do
         have_selector('a', text: 'http://twitter.com/mytwitter')

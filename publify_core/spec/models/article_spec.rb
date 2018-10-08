@@ -161,25 +161,25 @@ describe Article, type: :model do
       assert_equal ['http://www.example.com/public'], urls
     end
 
-    it 'should only match the href attribute' do
+    it 'onlies match the href attribute' do
       @article.body = '<a href="http://a/b">a</a> <a fhref="wrong">wrong</a>'
       urls = @article.html_urls
       assert_equal ['http://a/b'], urls
     end
 
-    it 'should match across newlines' do
+    it 'matches across newlines' do
       @article.body = "<a\nhref=\"http://foo/bar\">foo</a>"
       urls = @article.html_urls
       assert_equal ['http://foo/bar'], urls
     end
 
-    it 'should match with single quotes' do
+    it 'matches with single quotes' do
       @article.body = "<a href='http://foo/bar'>foo</a>"
       urls = @article.html_urls
       assert_equal ['http://foo/bar'], urls
     end
 
-    it 'should match with no quotes' do
+    it 'matches with no quotes' do
       @article.body = '<a href=http://foo/bar>foo</a>'
       urls = @article.html_urls
       assert_equal ['http://foo/bar'], urls
@@ -261,7 +261,7 @@ describe Article, type: :model do
   end
 
   describe '#interested_users' do
-    it 'should gather users interested in new articles' do
+    it 'gathers users interested in new articles' do
       henri = create(:user, login: 'henri', notify_on_new_articles: true)
       alice = create(:user, login: 'alice', notify_on_new_articles: true)
 
@@ -283,7 +283,7 @@ describe Article, type: :model do
     assert art.withdrawn?
   end
 
-  it 'should get only ham not spam comment' do
+  it 'gets only ham not spam comment' do
     article = create(:article)
     ham_comment = create(:comment, article: article)
     create(:spam_comment, article: article)
@@ -313,12 +313,12 @@ describe Article, type: :model do
         extended: 'extended text to explain more and more how Publify is wonderful')
     end
 
-    it 'should combine body and extended content' do
+    it 'combines body and extended content' do
       expect(@article.body_and_extended).to eq(
         "#{@article.body}\n<!--more-->\n#{@article.extended}")
     end
 
-    it 'should not insert <!--more--> tags if extended is empty' do
+    it 'does not insert <!--more--> tags if extended is empty' do
       @article.extended = ''
       expect(@article.body_and_extended).to eq(@article.body)
     end
@@ -326,7 +326,7 @@ describe Article, type: :model do
 
   describe '#search' do
     describe 'with one word and result' do
-      it 'should have two items' do
+      it 'has two items' do
         create(:article, extended: 'extended talk')
         create(:article, extended: 'Once uppon a time, an extended story')
         assert_equal 2, Article.search('extended').size
@@ -339,31 +339,31 @@ describe Article, type: :model do
       @article = blog.articles.build
     end
 
-    it 'should split apart values at <!--more-->' do
+    it 'splits apart values at <!--more-->' do
       @article.body_and_extended = 'foo<!--more-->bar'
       expect(@article.body).to eq('foo')
       expect(@article.extended).to eq('bar')
     end
 
-    it 'should remove newlines around <!--more-->' do
+    it 'removes newlines around <!--more-->' do
       @article.body_and_extended = "foo\n<!--more-->\nbar"
       expect(@article.body).to eq('foo')
       expect(@article.extended).to eq('bar')
     end
 
-    it 'should make extended empty if no <!--more--> tag' do
+    it 'makes extended empty if no <!--more--> tag' do
       @article.body_and_extended = 'foo'
       expect(@article.body).to eq('foo')
       expect(@article.extended).to be_empty
     end
 
-    it 'should preserve extra <!--more--> tags' do
+    it 'preserves extra <!--more--> tags' do
       @article.body_and_extended = 'foo<!--more-->bar<!--more-->baz'
       expect(@article.body).to eq('foo')
       expect(@article.extended).to eq('bar<!--more-->baz')
     end
 
-    it 'should be settable via self.attributes=' do
+    it 'is settable via self.attributes=' do
       @article.attributes = { body_and_extended: 'foo<!--more-->bar' }
       expect(@article.body).to eq('foo')
       expect(@article.extended).to eq('bar')
@@ -371,14 +371,14 @@ describe Article, type: :model do
   end
 
   describe '#comment_url' do
-    it 'should render complete url of comment' do
+    it 'renders complete url of comment' do
       article = build_stubbed(:article, id: 123)
       expect(article.comment_url).to eq("#{blog.root_path}/comments?article_id=#{article.id}")
     end
   end
 
   describe '#preview_comment_url' do
-    it 'should render complete url of comment' do
+    it 'renders complete url of comment' do
       article = build_stubbed(:article, id: 123)
       expect(article.preview_comment_url).to eq("#{blog.root_path}/comments/preview?article_id=#{article.id}")
     end
@@ -415,26 +415,26 @@ describe Article, type: :model do
       @article_2_two_year_ago = create(:article, published_at: 2.years.ago)
     end
 
-    it 'should return all content for the year if only year sent' do
+    it 'returns all content for the year if only year sent' do
       expect(Article.published_at_like(2.years.ago.strftime('%Y')).map(&:id).sort).to eq([@article_two_year_ago.id, @article_2_two_year_ago.id].sort)
     end
 
-    it 'should return all content for the month if year and month sent' do
+    it 'returns all content for the month if year and month sent' do
       expect(Article.published_at_like(4.months.ago.strftime('%Y-%m')).map(&:id).sort).to eq([@article_four_months_ago.id, @article_2_four_months_ago.id].sort)
     end
 
-    it 'should return all content on this date if date send' do
+    it 'returns all content on this date if date send' do
       expect(Article.published_at_like(2.months.ago.strftime('%Y-%m-%d')).map(&:id).sort).to eq([@article_two_month_ago.id].sort)
     end
   end
 
   describe '#has_child?' do
-    it 'should be true if article has one to link it by parent_id' do
+    it 'is true if article has one to link it by parent_id' do
       parent = create(:article)
       create(:article, parent_id: parent.id)
       expect(parent).to be_has_child
     end
-    it 'should be false if article has no article to link it by parent_id' do
+    it 'is false if article has no article to link it by parent_id' do
       parent = create(:article)
       create(:article, parent_id: nil)
       expect(parent).not_to be_has_child
@@ -442,11 +442,11 @@ describe Article, type: :model do
   end
 
   describe 'self#last_draft(id)' do
-    it 'should return article if no draft associated' do
+    it 'returns article if no draft associated' do
       draft = create(:article, state: 'draft')
       expect(Article.last_draft(draft.id)).to eq(draft)
     end
-    it 'should return draft associated to this article if there are one' do
+    it 'returns draft associated to this article if there are one' do
       parent = create(:article)
       draft = create(:article, parent_id: parent.id, state: 'draft')
       expect(Article.last_draft(draft.id)).to eq(draft)
@@ -564,7 +564,7 @@ describe Article, type: :model do
   describe '#published_comments' do
     let(:article) { create :article }
 
-    it 'should not include withdrawn comments' do
+    it 'does not include withdrawn comments' do
       comment = create :published_comment, article: article
       article.reload
       expect(article.published_comments).to eq [comment]
@@ -584,7 +584,7 @@ describe Article, type: :model do
   describe '#published_trackbacks' do
     let(:article) { create :article }
 
-    it 'should not include withdrawn trackbacks' do
+    it 'does not include withdrawn trackbacks' do
       trackback = create :trackback, article: article
       article.reload
       expect(article.published_trackbacks).to eq [trackback]
@@ -604,7 +604,7 @@ describe Article, type: :model do
   describe '#published_feedback' do
     let(:article) { create :article }
 
-    it 'should not include withdrawn comments or trackbacks' do
+    it 'does not include withdrawn comments or trackbacks' do
       comment = create :published_comment, article: article
       trackback = create :trackback, article: article
       article.reload

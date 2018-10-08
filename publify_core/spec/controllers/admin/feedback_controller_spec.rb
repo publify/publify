@@ -9,7 +9,7 @@ describe Admin::FeedbackController, type: :controller do
   let(:feedback_from_not_own_article) { create(:spam_comment) }
 
   shared_examples_for 'destroy feedback with feedback from own article' do
-    it 'should destroy feedback' do
+    it 'destroys feedback' do
       id = feedback_from_own_article.id
       expect do
         delete 'destroy', params: { id: id }
@@ -19,7 +19,7 @@ describe Admin::FeedbackController, type: :controller do
       end.to raise_error(ActiveRecord::RecordNotFound)
     end
 
-    it 'should redirect to feedback from article' do
+    it 'redirects to feedback from article' do
       delete 'destroy', params: { id: feedback_from_own_article.id }
       expect(response).to redirect_to(controller: 'admin/feedback', action: 'article', id: feedback_from_own_article.article.id)
     end
@@ -37,7 +37,7 @@ describe Admin::FeedbackController, type: :controller do
     describe 'destroy action' do
       it_should_behave_like 'destroy feedback with feedback from own article'
 
-      it "should destroy feedback from article doesn't own" do
+      it "destroys feedback from article doesn't own" do
         id = feedback_from_not_own_article.id
         expect do
           delete 'destroy', params: { id: id }
@@ -50,7 +50,7 @@ describe Admin::FeedbackController, type: :controller do
     end
 
     describe 'index security' do
-      it 'should check domain of the only param' do
+      it 'checks domain of the only param' do
         expect { get :index, params: { only: 'evil_call' } }.not_to raise_error
         expect(assigns(:only_param)).to be_nil
       end
@@ -108,28 +108,28 @@ describe Admin::FeedbackController, type: :controller do
         expect(response).to render_template('article')
       end
 
-      it 'should see all feedback on one article' do
+      it 'sees all feedback on one article' do
         get :article, params: { id: article.id }
         should_success_with_article_view(response)
         expect(assigns(:article)).to eq(article)
         expect(assigns(:feedback)).to match_array [ham, spam]
       end
 
-      it 'should see only spam feedback on one article' do
+      it 'sees only spam feedback on one article' do
         get :article, params: { id: article.id, spam: 'y' }
         should_success_with_article_view(response)
         expect(assigns(:article)).to eq(article)
         expect(assigns(:feedback)).to match_array [spam]
       end
 
-      it 'should see only ham feedback on one article' do
+      it 'sees only ham feedback on one article' do
         get :article, params: { id: article.id, ham: 'y' }
         should_success_with_article_view(response)
         expect(assigns(:article)).to eq(article)
         expect(assigns(:feedback)).to match_array [ham]
       end
 
-      it 'should redirect_to index if bad article id' do
+      it 'redirect_toes index if bad article id' do
         expect do
           get :article, params: { id: 102_302 }
         end.to raise_error(ActiveRecord::RecordNotFound)
@@ -142,13 +142,13 @@ describe Admin::FeedbackController, type: :controller do
       end
 
       describe 'by get access' do
-        it "should raise ActiveRecordNotFound if article doesn't exist" do
+        it "raises ActiveRecordNotFound if article doesn't exist" do
           expect do
             get 'create', params: { article_id: 120_431, comment: base_comment }
           end.to raise_error(ActiveRecord::RecordNotFound)
         end
 
-        it 'should not create comment' do
+        it 'does not create comment' do
           article = create(:article)
           expect do
             get 'create', params: { article_id: article.id, comment: base_comment }
@@ -158,13 +158,13 @@ describe Admin::FeedbackController, type: :controller do
       end
 
       describe 'by post access' do
-        it "should raise ActiveRecord::RecordNotFound if article doesn't exist" do
+        it "raises ActiveRecord::RecordNotFound if article doesn't exist" do
           expect do
             post 'create', params: { article_id: 123_104, comment: base_comment }
           end.to raise_error(ActiveRecord::RecordNotFound)
         end
 
-        it 'should create comment' do
+        it 'creates comment' do
           article = create(:article)
           expect do
             post 'create', params: { article_id: article.id, comment: base_comment }
@@ -172,7 +172,7 @@ describe Admin::FeedbackController, type: :controller do
           end.to change(Comment, :count)
         end
 
-        it 'should create comment mark as ham' do
+        it 'creates comment mark as ham' do
           article = create(:article)
           expect do
             post 'create', params: { article_id: article.id, comment: base_comment }
@@ -183,7 +183,7 @@ describe Admin::FeedbackController, type: :controller do
     end
 
     describe 'edit action' do
-      it 'should render edit form' do
+      it 'renders edit form' do
         article = create(:article)
         comment = create(:comment, article: article)
         get 'edit', params: { id: comment.id }
@@ -195,7 +195,7 @@ describe Admin::FeedbackController, type: :controller do
     end
 
     describe 'update action' do
-      it 'should update comment if post request' do
+      it 'updates comment if post request' do
         article = create(:article)
         comment = create(:comment, article: article)
         post 'update', params: { id: comment.id,
@@ -207,7 +207,7 @@ describe Admin::FeedbackController, type: :controller do
         expect(comment.body).to eq('updated comment')
       end
 
-      it 'should not  update comment if get request' do
+      it 'does not  update comment if get request' do
         comment = create(:comment)
         get 'update', params: { id: comment.id,
                                 comment: { author: 'Bob Foo2',
@@ -232,7 +232,7 @@ describe Admin::FeedbackController, type: :controller do
     describe 'destroy action' do
       it_should_behave_like 'destroy feedback with feedback from own article'
 
-      it "should not destroy feedback doesn't own" do
+      it "does not destroy feedback doesn't own" do
         id = feedback_from_not_own_article.id
         post 'destroy', params: { id: id }
         expect(response).to redirect_to(controller: 'admin/feedback', action: 'index')
@@ -243,12 +243,12 @@ describe Admin::FeedbackController, type: :controller do
     end
 
     describe 'edit action' do
-      it 'should not edit comment no own article' do
+      it 'does not edit comment no own article' do
         get 'edit', params: { id: feedback_from_not_own_article.id }
         expect(response).to redirect_to(action: 'index')
       end
 
-      it 'should edit comment if own article' do
+      it 'edits comment if own article' do
         get 'edit', params: { id: feedback_from_own_article.id }
         expect(response).to be_successful
         expect(response).to render_template('edit')
@@ -258,7 +258,7 @@ describe Admin::FeedbackController, type: :controller do
     end
 
     describe 'update action' do
-      it 'should update comment if own article' do
+      it 'updates comment if own article' do
         post 'update', params: { id: feedback_from_own_article.id,
                                  comment: { author: 'Bob Foo2',
                                             url: 'http://fakeurl.com',
@@ -268,7 +268,7 @@ describe Admin::FeedbackController, type: :controller do
         expect(feedback_from_own_article.body).to eq('updated comment')
       end
 
-      it 'should not update comment if not own article' do
+      it 'does not update comment if not own article' do
         post 'update', params: { id: feedback_from_not_own_article.id,
                                  comment: { author: 'Bob Foo2',
                                             url: 'http://fakeurl.com',
