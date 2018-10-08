@@ -16,7 +16,7 @@ describe Admin::TagsController, type: :controller do
     it 'responds successfully with an HTTP 200 status code' do
       get :index
       expect(response).to be_successful
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
 
     it 'renders the index template' do
@@ -48,7 +48,7 @@ describe Admin::TagsController, type: :controller do
 
     it 'renders the edit template with an HTTP 200 status code' do
       expect(response).to be_successful
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
       expect(response).to render_template('edit')
     end
   end
