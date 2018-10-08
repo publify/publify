@@ -49,9 +49,9 @@ describe Page, type: :model do
 
   describe 'search_with' do
     context 'with an simple page' do
-      let!(:page) { create(:page) }
-
       subject { Page.search_with(params) }
+
+      let!(:page) { create(:page) }
 
       context 'with nil params' do
         let(:params) { nil }

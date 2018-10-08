@@ -124,13 +124,6 @@ RSpec/FilePath:
 RSpec/InstanceVariable:
   Enabled: false
 
-# Offense count: 3
-# Cop supports --auto-correct.
-RSpec/LeadingSubject:
-  Exclude:
-    - 'publify_core/spec/helpers/base_helper_spec.rb'
-    - 'publify_core/spec/models/page_spec.rb'
-
 # Offense count: 49
 RSpec/LetSetup:
   Enabled: false

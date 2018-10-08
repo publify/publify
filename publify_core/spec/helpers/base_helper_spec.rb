@@ -25,9 +25,9 @@ describe BaseHelper, type: :helper do
   end
 
   describe '#stop_index_robots?' do
-    let(:blog) { build :blog }
-
     subject { helper.stop_index_robots?(blog) }
+
+    let(:blog) { build :blog }
 
     context 'default' do
       it { expect(subject).to be_falsey }
