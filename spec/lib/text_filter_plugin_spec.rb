@@ -5,6 +5,7 @@ require 'rails_helper'
 describe TextFilterPlugin do
   describe '.available_filters' do
     subject { described_class.available_filters }
+
     it { is_expected.to include(PublifyApp::Textfilter::Markdown) }
     it { is_expected.to include(PublifyApp::Textfilter::Smartypants) }
     it { is_expected.to include(PublifyApp::Textfilter::Htmlfilter) }
@@ -19,6 +20,7 @@ describe TextFilterPlugin do
 
   describe '.macro_filters' do
     subject { described_class.macro_filters }
+
     it { is_expected.not_to include(PublifyApp::Textfilter::Markdown) }
     it { is_expected.not_to include(PublifyApp::Textfilter::Smartypants) }
     it { is_expected.not_to include(PublifyApp::Textfilter::Htmlfilter) }
