@@ -33,6 +33,7 @@ describe AuthorsController, type: :controller do
 
       describe 'with pagination' do
         let!(:article_page_2) { create(:article, user: no_profile_user, published_at: now - 1.day) }
+
         before { get 'show', params: { id: no_profile_user.login, page: 2 } }
         it { expect(assigns(:articles)).to eq([article_page_2]) }
       end

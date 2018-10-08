@@ -521,6 +521,7 @@ RSpec.describe ArticlesController, 'base', type: :controller do
 
       describe 'accessing an article' do
         let!(:article) { create(:article, permalink: 'second-blog-article', published_at: Time.utc(2004, 4, 1)) }
+
         before do
           get :redirect, params: { from: "#{article.permalink}.html" }
         end

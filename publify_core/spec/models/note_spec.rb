@@ -20,6 +20,7 @@ describe Note, type: :model do
 
       context 'with an existing note' do
         let(:existing_note) { create(:note) }
+
         it { expect(build(:note, guid: existing_note.guid)).to be_invalid }
       end
     end
@@ -41,11 +42,13 @@ describe Note, type: :model do
 
         context 'with a blog that have a custome url shortener' do
           let(:url_shortener) { 'shor.tl' }
+
           it { expect(note.short_link).to eq("#{url_shortener} #{note.redirect.from_path}") }
         end
 
         context 'with a blog that does not have a custome url shortener' do
           let(:url_shortener) { nil }
+
           it { expect(note.short_link).to eq("mybaseurl.net #{note.redirect.from_path}") }
         end
       end
@@ -53,6 +56,7 @@ describe Note, type: :model do
 
     describe '#redirect' do
       let(:note) { create(:note) }
+
       it { expect(note.redirect.to_path).to eq note.permalink_url }
     end
 
@@ -62,11 +66,13 @@ describe Note, type: :model do
 
         context 'with a unpublished note' do
           let!(:unpublished_note) { create(:unpublished_note) }
+
           it { expect(Note.published).to eq([note]) }
         end
 
         context 'with a note to publish later' do
           let!(:later_note) { create(:note, published_at: 3.days.from_now) }
+
           it { expect(Note.published).to eq([note]) }
         end
       end
@@ -75,6 +81,7 @@ describe Note, type: :model do
     describe 'send_to_twitter' do
       context 'with a simple note' do
         let(:note) { build(:note) }
+
         context 'with twitter configured for blog and user' do
           before do
             expect_any_instance_of(Blog).to receive(:has_twitter_configured?).and_return(true)
@@ -120,11 +127,13 @@ describe Note, type: :model do
     describe 'twitter_url' do
       let(:user) { build(:user, twitter: '@hello') }
       let(:note) { build(:note, user: user, settings: { twitter_id: '12345678901234' }) }
+
       it { expect(note.twitter_url).to eq("https://twitter.com/#{note.user.twitter}/status/#{note.twitter_id}") }
     end
 
     describe 'default_text_filter' do
       let(:note) { build(:note) }
+
       it { expect(note.default_text_filter.name).to eq(note.blog.text_filter) }
     end
 
@@ -141,12 +150,14 @@ describe Note, type: :model do
 
       context 'with a short message with short HTTP url' do
         let(:tweet) { 'A message with a short URL http://foo.com' }
+
         it { expect(note.twitter_message).to eq("#{tweet} (#{note.short_link})") }
       end
 
       context 'with a short message much more than 114 char' do
         let(:tweet) { 'A very big(10) message with lot of text (40)inside just to try the shortener and (80)the new link that publify must create and add at the end' }
         let(:expected_tweet) { "A very big(10) message with lot of text (40)inside just to try the shortener and (80)the new link that publify... (#{note.redirect.from_url})" }
+
         it { expect(note.twitter_message).to eq(expected_tweet) }
         it { expect(note.twitter_message.length).to eq(140) }
       end
@@ -157,6 +168,7 @@ describe Note, type: :model do
                       " Pour s'inscrire si vous voulez c'est ici: http://cantine.atlantic2.org/evenements/coding-dojo-8/ … Sinon venez comme vous êtes"
         end
         let(:expected_tweet) { "Le dojo de nantes, c'est comme au McDo, sans les odeurs, et en plus rigolo: RT @abailly Ce midi c'est coding... (#{note.redirect.from_url})" }
+
         it { expect(note.twitter_message).to eq(expected_tweet) }
         it { expect(note.twitter_message.length).to eq(138) }
       end

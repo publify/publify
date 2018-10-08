@@ -218,6 +218,7 @@ describe Comment, type: :model do
   describe 'spam', integration: true do
     let!(:comment) { create(:comment, state: 'spam') }
     let!(:ham_comment) { create(:comment, state: 'ham') }
+
     it 'returns only spam comment' do
       expect(Comment.spam).to eq([comment])
     end
@@ -227,6 +228,7 @@ describe Comment, type: :model do
     let!(:comment) { create(:comment, state: 'spam') }
     let!(:ham_comment) { create(:comment, state: 'ham') }
     let!(:presumed_spam_comment) { create(:comment, state: 'presumed_spam') }
+
     it 'returns all comment that not_spam' do
       expect(Comment.not_spam).to match_array [ham_comment, presumed_spam_comment]
     end
@@ -236,6 +238,7 @@ describe Comment, type: :model do
     let!(:comment) { create(:comment, state: 'spam') }
     let!(:ham_comment) { create(:comment, state: 'ham') }
     let!(:presumed_spam_comment) { create(:comment, state: 'presumed_spam') }
+
     it 'returns only presumed_spam' do
       expect(Comment.presumed_spam).to eq([presumed_spam_comment])
     end

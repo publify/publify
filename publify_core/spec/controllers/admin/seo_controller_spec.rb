@@ -43,6 +43,7 @@ describe Admin::SeoController, type: :controller do
 
     context 'simple title format' do
       let(:format) { '/%title%' }
+
       it { expect(response).to redirect_to admin_seo_path(section: 'permalinks') }
       it { expect(blog.reload.permalink_format).to eq(format) }
       it { expect(flash[:success]).to eq(I18n.t('admin.settings.update.success')) }
@@ -50,6 +51,7 @@ describe Admin::SeoController, type: :controller do
 
     context 'without title format' do
       let(:format) { '/%month%' }
+
       it { expect(blog.reload.permalink_format).not_to eq(format) }
       it { expect(flash[:error]).to eq(I18n.t('admin.settings.update.error', messages: I18n.t('errors.permalink_need_a_title'))) }
     end

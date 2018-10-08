@@ -9,11 +9,13 @@ describe Admin::BaseHelper, type: :helper do
 
       context 'when user has twitter configured' do
         let!(:user) { create(:user, twitter_oauth_token: '1234', twitter_oauth_token_secret: '67890') }
+
         it { expect(helper.twitter_available?(blog, user)).to be_truthy }
       end
 
       context "when user hasn't twitter configured" do
         let!(:user) { create(:user, twitter_oauth_token: nil) }
+
         it { expect(helper.twitter_available?(blog, user)).to be_falsey }
       end
     end
@@ -23,11 +25,13 @@ describe Admin::BaseHelper, type: :helper do
 
       context 'when user has twitter configured' do
         let!(:user) { create(:user, twitter_oauth_token: '1234', twitter_oauth_token_secret: '67890') }
+
         it { expect(helper.twitter_available?(blog, user)).to be_falsey }
       end
 
       context "when user hasn't twitter configured" do
         let!(:user) { create(:user, twitter_oauth_token: nil) }
+
         it { expect(helper.twitter_available?(blog, user)).to be_falsey }
       end
     end

@@ -42,20 +42,24 @@ describe Admin::ContentController, type: :controller do
     context 'search for state' do
       let!(:draft_article) { create(:article, state: 'draft') }
       let!(:pending_article) { create(:article, state: 'publication_pending', published_at: '2020-01-01') }
+
       before { get :index, params: { search: state } }
 
       context 'draft only' do
         let(:state) { { state: 'drafts' } }
+
         it { expect(assigns(:articles)).to eq([draft_article]) }
       end
 
       context 'publication_pending only' do
         let(:state) { { state: 'pending' } }
+
         it { expect(assigns(:articles)).to eq([pending_article]) }
       end
 
       context 'with a bad state' do
         let(:state) { { state: '3vI1 1337 h4x0r' } }
+
         it { expect(assigns(:articles).sort).to eq([article, pending_article, draft_article].sort) }
       end
     end
@@ -236,6 +240,7 @@ describe Admin::ContentController, type: :controller do
 
         context 'when doing a draft' do
           let(:article_params) { { title: 'posted via tests!', body: 'a good boy', draft: 'true' } }
+
           it { expect(assigns(:article)).not_to be_published }
         end
       end
@@ -470,6 +475,7 @@ describe Admin::ContentController, type: :controller do
       context 'with an article' do
         let(:article) { create(:article, body: 'another *textile* test', user: publisher) }
         let(:body) { 'not the *same* text' }
+
         before do
           put :update, params: { id: article.id, article: { body: body, text_filter: 'textile' } }
         end
@@ -514,6 +520,7 @@ describe Admin::ContentController, type: :controller do
 
     context 'with an article from user' do
       let(:article) { create(:article, user: publisher) }
+
       before { delete :destroy, params: { id: article.id } }
       it { expect(response).to redirect_to(action: 'index') }
       it { expect(Article.count).to eq(0) }

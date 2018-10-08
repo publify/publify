@@ -60,6 +60,7 @@ describe Tag, type: :model do
 
   describe 'permalink_url' do
     let(:tag) { build(:tag, blog: blog, name: 'foo', display_name: 'Foo') }
+
     it 'returns a full url based on the tag name in the tag section' do
       expect(tag.permalink_url).to eq("#{blog.base_url}/tag/foo")
     end
@@ -98,11 +99,13 @@ describe Tag, type: :model do
 
       context 'without keywords' do
         let(:article) { create(:article, keywords: nil) }
+
         it { expect(article.tags).to be_empty }
       end
 
       context 'with a simple keyword' do
         let(:article) { create(:article, keywords: 'foo') }
+
         it { expect(article.tags.size).to eq(1) }
         it { expect(article.tags.first).to be_kind_of(Tag) }
         it { expect(article.tags.first.name).to eq('foo') }
@@ -110,6 +113,7 @@ describe Tag, type: :model do
 
       context 'with a simple keyword, but containing a semi-colon' do
         let(:article) { create(:article, keywords: 'lang:fr') }
+
         it { expect(article.tags.size).to eq(1) }
         it { expect(article.tags.first).to be_kind_of(Tag) }
         it { expect(article.tags.first.name).to eq('lang-fr') }
@@ -117,18 +121,21 @@ describe Tag, type: :model do
 
       context 'with two keyword separate by a coma' do
         let(:article) { create(:article, keywords: 'foo, bar') }
+
         it { expect(article.tags.size).to eq(2) }
         it { expect(article.tags.map(&:name)).to eq(%w(foo bar)) }
       end
 
       context 'with two keyword with apostrophe' do
         let(:article) { create(:article, keywords: "foo, l'bar") }
+
         it { expect(article.tags.size).to eq(3) }
         it { expect(article.tags.map(&:name)).to eq(%w(foo l bar)) }
       end
 
       context 'with two identical keywords' do
         let(:article) { create(:article, keywords: "same'same") }
+
         it { expect(article.tags.size).to eq(1) }
         it { expect(article.tags.map(&:name)).to eq(['same']) }
       end

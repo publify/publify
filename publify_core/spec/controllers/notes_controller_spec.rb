@@ -9,6 +9,7 @@ describe NotesController, type: :controller do
   describe '#index' do
     context 'normally' do
       let!(:note) { create(:note) }
+
       before { get 'index' }
 
       it { expect(response).to be_successful }

@@ -15,6 +15,7 @@ describe Admin::NotesController, type: :controller do
   context 'with a blog' do
     describe 'index' do
       let!(:notes) { [create(:note), create(:note)] }
+
       before { get :index }
       it { expect(response).to render_template('index') }
       it { expect(assigns(:notes).sort).to eq(notes.sort) }

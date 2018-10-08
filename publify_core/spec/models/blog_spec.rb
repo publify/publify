@@ -172,6 +172,7 @@ describe Blog, type: :model do
 
   describe '#per_page' do
     let(:blog) { create(:blog, limit_article_display: 3, limit_rss_display: 4) }
+
     it { expect(blog.per_page(nil)).to eq(3) }
     it { expect(blog.per_page('html')).to eq(3) }
     it { expect(blog.per_page('rss')).to eq(4) }
@@ -181,11 +182,13 @@ describe Blog, type: :model do
   describe '#allow_signup?' do
     context 'with a blog that allow signup' do
       let(:blog) { build(:blog, allow_signup: 1) }
+
       it { expect(blog.allow_signup?).to be_truthy }
     end
 
     context 'with a blog that not allow signup' do
       let(:blog) { build(:blog, allow_signup: 0) }
+
       it { expect(blog.allow_signup?).to be_falsey }
     end
   end
@@ -193,11 +196,13 @@ describe Blog, type: :model do
   describe '#humans' do
     context 'default value with publify txt' do
       let(:blog) { create :blog }
+
       it { expect(blog.humans).not_to be_nil }
     end
 
     context 'default value with publify txt' do
       let(:blog) { create(:blog, humans: 'something to say') }
+
       it { expect(blog.humans).to eq('something to say') }
     end
   end

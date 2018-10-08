@@ -106,6 +106,7 @@ describe 'articles/index_atom_feed.atom.builder', type: :view do
         create :blog, rss_description: true,
                       rss_description_text: 'rss description'
       end
+
       before do
         render
       end
@@ -173,6 +174,7 @@ describe 'articles/index_atom_feed.atom.builder', type: :view do
 
     context 'with a note' do
       let(:article) { create(:note) }
+
       it 'is equal to the note body' do
         expect(rendered_entry.title).to eq(article.body)
       end
@@ -180,6 +182,7 @@ describe 'articles/index_atom_feed.atom.builder', type: :view do
 
     context 'with an article' do
       let(:article) { create(:article) }
+
       it 'is equal to the article title' do
         expect(rendered_entry.title).to eq(article.title)
       end

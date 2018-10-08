@@ -8,6 +8,7 @@ describe Page, type: :model do
   describe 'before save' do
     context 'when saving a page without a name' do
       let(:page) { create(:page, name: nil, title: 'A title') }
+
       it 'sets the name based on the title' do
         expect(page.name).to eq('a-title')
       end
@@ -25,6 +26,7 @@ describe Page, type: :model do
   describe 'validations' do
     context 'with an existing page name' do
       let!(:page) { create(:page, name: 'page_one') }
+
       it { expect(build(:page, name: page.name)).to be_invalid }
     end
 
@@ -53,12 +55,14 @@ describe Page, type: :model do
 
       context 'with nil params' do
         let(:params) { nil }
+
         it { expect(subject).to eq([page]) }
       end
 
       context 'with a matching searchstring page' do
         let(:params) { { searchstring: 'foobar' } }
         let!(:match_page) { create(:page, title: 'foobar') }
+
         it { expect(subject).to eq([match_page]) }
       end
 
@@ -66,6 +70,7 @@ describe Page, type: :model do
         let!(:last_page) { create(:page, title: 'ZZZ', state: 'published') }
         let!(:first_page) { create(:page, title: 'AAA', state: 'published') }
         let(:params) { { published: '1' } }
+
         it { expect(subject).to eq([first_page, page, last_page]) }
       end
     end
@@ -74,11 +79,13 @@ describe Page, type: :model do
   describe '#redirect' do
     context 'with a simple page' do
       let(:page) { create(:page) }
+
       it { expect(page.redirect.to_path).to eq(page.permalink_url) }
     end
 
     context 'with an unpublished page' do
       let(:page) { create(:page, state: 'draft') }
+
       it { expect(page.redirect).to be_blank }
     end
   end

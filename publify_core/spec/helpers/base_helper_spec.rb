@@ -19,12 +19,14 @@ describe BaseHelper, type: :helper do
 
     describe 'for a multibyte permalink' do
       let(:article) { build(:article, permalink: 'ルビー') }
+
       it { expect(link_to_permalink(article, 'title')).to include('%E3%83%AB%E3%83%93%E3%83%BC') }
     end
   end
 
   describe '#stop_index_robots?' do
     let(:blog) { build :blog }
+
     subject { helper.stop_index_robots?(blog) }
 
     context 'default' do
@@ -97,6 +99,7 @@ describe BaseHelper, type: :helper do
           'entities' => { 'url' => { 'urls' => [{ 'expanded_url' => 'an url' }] } }
         } }
     end
+
     it 'returns a link with the creation date and time' do
       begin
         timezone = Time.zone

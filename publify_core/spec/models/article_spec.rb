@@ -43,6 +43,7 @@ describe Article, type: :model do
 
     describe 'with a permalink containing a space' do
       let(:article) { blog.articles.build(permalink: 'hello there', published_at: Time.utc(2004, 6, 1)) }
+
       it "escapes the space as '%20', not as '+'" do
         article.publish
         expect(article.permalink_url(nil, true)).to eq("#{blog.root_path}/2004/06/01/hello%20there")
@@ -51,6 +52,7 @@ describe Article, type: :model do
 
     describe 'with a permalink containing a plus' do
       let(:article) { blog.articles.build(permalink: 'one+two', published_at: Time.utc(2004, 6, 1)) }
+
       it 'does not escape the plus' do
         article.publish
         expect(article.permalink_url(nil, true)).to eq("#{blog.root_path}/2004/06/01/one+two")
@@ -663,12 +665,14 @@ describe Article, type: :model do
 
     context 'without article' do
       let(:params) { nil }
+
       it { expect(subject).to be_empty }
     end
 
     context 'with an article' do
       let(:params) { nil }
       let!(:article) { create(:article) }
+
       it { expect(subject).to eq([article]) }
     end
 
@@ -676,6 +680,7 @@ describe Article, type: :model do
       let(:params) { { searchstring: 'match the string' } }
       let!(:not_found_article) { create(:article) }
       let!(:article) { create(:article, body: 'this match the string of article') }
+
       it { expect(subject).to eq([article]) }
     end
 
@@ -683,6 +688,7 @@ describe Article, type: :model do
       let(:params) { { state: 'published' } }
       let!(:article) { create(:article, state: 'published') }
       let!(:draft_article) { create(:article, state: 'draft') }
+
       it { expect(subject).to eq([article]) }
     end
 
@@ -692,6 +698,7 @@ describe Article, type: :model do
       let!(:article) { create(:article, state: 'published', created_at: now) }
       let!(:last_draft_article) { create(:article, state: 'draft', created_at: now + 2.days) }
       let!(:draft_article) { create(:article, state: 'draft', created_at: now + 20.days) }
+
       it { expect(subject).to eq([draft_article, last_draft_article, article]) }
     end
   end
@@ -765,6 +772,7 @@ describe Article, type: :model do
 
   describe 'published_since' do
     let(:time) { DateTime.new(2010, 11, 3, 23, 34).in_time_zone }
+
     it 'empty when no articles' do
       expect(Article.published_since(time)).to be_empty
     end
@@ -830,11 +838,13 @@ describe Article, type: :model do
 
     context 'without keywords' do
       let(:article) { build(:article, keywords: nil) }
+
       it { expect(article.tags).to be_empty }
     end
 
     context 'with a simple keyword' do
       let(:article) { build(:article, keywords: 'foo') }
+
       it { expect(article.tags.size).to eq(1) }
       it { expect(article.tags.first).to be_kind_of(Tag) }
       it { expect(article.tags.first.name).to eq('foo') }
@@ -842,30 +852,35 @@ describe Article, type: :model do
 
     context 'with two keyword separate by a space' do
       let(:article) { build(:article, keywords: 'foo bar') }
+
       it { expect(article.tags.size).to eq(2) }
       it { expect(article.tags.map(&:name)).to eq(%w(foo bar)) }
     end
 
     context 'with two keyword separate by a coma' do
       let(:article) { build(:article, keywords: 'foo, bar') }
+
       it { expect(article.tags.size).to eq(2) }
       it { expect(article.tags.map(&:name)).to eq(%w(foo bar)) }
     end
 
     context 'with two keyword with apostrophe' do
       let(:article) { build(:article, keywords: "foo, l'bar") }
+
       it { expect(article.tags.size).to eq(3) }
       it { expect(article.tags.map(&:name)).to eq(%w(foo l bar)) }
     end
 
     context 'with two identical keywords' do
       let(:article) { build(:article, keywords: 'same, same') }
+
       it { expect(article.tags.size).to eq(1) }
       it { expect(article.tags.map(&:name)).to eq(['same']) }
     end
 
     context 'with keywords with dot and quote' do
       let(:article) { build(:article, keywords: 'foo "bar quiz" web2.0') }
+
       it { expect(article.tags.map(&:name)).to eq(['foo', 'bar-quiz', 'web2-0']) }
     end
   end
@@ -873,16 +888,19 @@ describe Article, type: :model do
   describe '#post_type' do
     context 'without post_type' do
       let(:article) { build(:article, post_type: '') }
+
       it { expect(article.post_type).to eq('read') }
     end
 
     context 'with a oldschool read post_type' do
       let(:article) { build(:article, post_type: 'read') }
+
       it { expect(article.post_type).to eq('read') }
     end
 
     context 'with a specific myletter post_type' do
       let(:article) { build(:article, post_type: 'myletter') }
+
       it { expect(article.post_type).to eq('myletter') }
     end
   end
