@@ -94,7 +94,7 @@ describe 'With the list of available filters', type: :model do
 
     describe 'specific publify tags' do
       describe 'flickr' do
-        it 'should show with default settings' do
+        it 'shows with default settings' do
           result = filter_text('<publify:flickr img="31366117" size="Square" style="float:left"/>',
                                [:macropre, :macropost])
           expect(result).to eq \
@@ -105,7 +105,7 @@ describe 'With the list of available filters', type: :model do
             "<p class=\"caption\" style=\"width:75px\">This is Matz, Ruby's creator</p></div>"
         end
 
-        it 'should use default image size' do
+        it 'uses default image size' do
           result = filter_text('<publify:flickr img="31366117"/>', [:macropre, :macropost])
           expect(result).to eq \
             '<div style="" class="flickrplugin">' \
@@ -115,7 +115,7 @@ describe 'With the list of available filters', type: :model do
             "<p class=\"caption\" style=\"width:75px\">This is Matz, Ruby's creator</p></div>"
         end
 
-        it 'should use caption' do
+        it 'uses caption' do
           result = filter_text('<publify:flickr img="31366117" caption=""/>',
                                [:macropre, :macropost])
           expect(result).to eq \
@@ -135,7 +135,7 @@ describe 'With the list of available filters', type: :model do
       end
 
       describe 'lightbox' do
-        it 'should work' do
+        it 'works' do
           result = filter_text('<publify:lightbox img="31366117" thumbsize="Thumbnail"' \
                                ' displaysize="Large" style="float:left"/>',
                                [:macropre, :macropost])
@@ -147,7 +147,7 @@ describe 'With the list of available filters', type: :model do
             "<p class=\"caption\" style=\"width:67px\">This is Matz, Ruby's creator</p>"
         end
 
-        it 'should use default thumb image size' do
+        it 'uses default thumb image size' do
           result = filter_text('<publify:lightbox img="31366117" displaysize="Large"/>',
                                [:macropre, :macropost])
           expect(result).to eq \
@@ -158,7 +158,7 @@ describe 'With the list of available filters', type: :model do
             "<p class=\"caption\" style=\"width:75px\">This is Matz, Ruby's creator</p>"
         end
 
-        it 'should use default display image size' do
+        it 'uses default display image size' do
           result = filter_text('<publify:lightbox img="31366117"/>',
                                [:macropre, :macropost])
           expect(result).to eq \
@@ -169,7 +169,7 @@ describe 'With the list of available filters', type: :model do
             "<p class=\"caption\" style=\"width:75px\">This is Matz, Ruby's creator</p>"
         end
 
-        it 'should work with caption' do
+        it 'works with caption' do
           result = filter_text('<publify:lightbox img="31366117" caption=""/>',
                                [:macropre, :macropost])
           expect(result).to eq \

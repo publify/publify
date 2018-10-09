@@ -6,7 +6,7 @@ require 'support/dns_mock'
 describe Trackback, 'With the various trackback filters loaded and DNS mocked out appropriately', type: :model do
   let(:article) { create(:article) }
 
-  before(:each) do
+  before do
     @blog = create(:blog)
     @blog.sp_global = true
     @blog.default_moderate_comments = false

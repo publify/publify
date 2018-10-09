@@ -30,7 +30,7 @@ describe ArticlesController, type: :routing do
                                              from: 'foo/bar/baz')
     end
 
-    it 'should route URLs under /articles' do
+    it 'routes URLs under /articles' do
       expect(get: '/articles').to route_to(controller: 'articles',
                                            action: 'redirect',
                                            from: 'articles')

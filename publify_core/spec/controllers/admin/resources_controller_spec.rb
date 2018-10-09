@@ -12,11 +12,11 @@ describe Admin::ResourcesController, type: :controller do
   end
 
   describe '#index' do
-    before(:each) do
+    before do
       get :index
     end
 
-    it 'should render index template' do
+    it 'renders index template' do
       assert_response :success
       assert_template 'index'
       expect(assigns(:resources)).not_to be_nil
@@ -49,7 +49,7 @@ describe Admin::ResourcesController, type: :controller do
 
       it 'creates a new Resource' do
         expect { post :upload, params: { upload: upload } }.
-          to change { Resource.count }.by(1)
+          to change(Resource, :count).by(1)
       end
 
       it 'sets the content type to text/plain' do
@@ -71,7 +71,7 @@ describe Admin::ResourcesController, type: :controller do
 
       it 'creates a new Resource' do
         expect { post :upload, params: { upload: upload } }.
-          to change { Resource.count }.by(1)
+          to change(Resource, :count).by(1)
       end
 
       it 'sets the content type correctly' do
@@ -93,7 +93,7 @@ describe Admin::ResourcesController, type: :controller do
 
       it 'does not create a new image Resource' do
         expect { post :upload, params: { upload: upload } }.
-          not_to change { Resource.count }
+          not_to change(Resource, :count)
       end
 
       it 'does not attempt to process the image' do
@@ -116,7 +116,7 @@ describe Admin::ResourcesController, type: :controller do
 
       it 'does not create a new fake image Resource' do
         expect { post :upload, params: { upload: upload } }.
-          not_to change { Resource.count }
+          not_to change(Resource, :count)
       end
 
       it 'does not attempt to process a new fake image Resource' do
@@ -139,7 +139,7 @@ describe Admin::ResourcesController, type: :controller do
 
       it 'does not create a new fake image Resource' do
         expect { post :upload, params: { upload: upload } }.
-          not_to change { Resource.count }
+          not_to change(Resource, :count)
       end
 
       it 'does not attempt to process a new fake image Resource' do
@@ -160,7 +160,7 @@ describe Admin::ResourcesController, type: :controller do
     context 'when uploading nothing' do
       it 'does not create a new Resource' do
         expect { post :upload }.
-          not_to change { Resource.count }
+          not_to change(Resource, :count)
       end
 
       it 'sets the flash to failure' do

@@ -22,6 +22,7 @@ describe Article::Builder, type: :model do
   describe '#get_or_build' do
     context 'with an existing article' do
       let(:article) { create(:article, blog: blog) }
+
       it { expect(factory.get_or_build_from(article.id)).to eq(article) }
     end
 

@@ -6,7 +6,7 @@ describe Admin::TextfiltersController, type: :controller do
   render_views
 
   describe 'macro help action' do
-    it 'should render success' do
+    it 'renders success' do
       create(:blog)
       henri = create(:user, :as_admin)
       sign_in henri

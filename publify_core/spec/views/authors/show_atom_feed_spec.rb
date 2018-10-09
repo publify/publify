@@ -8,7 +8,7 @@ describe 'authors/show_atom_feed.atom.builder', type: :view do
   let(:parsed_feed) { Feedjira::Feed.parse(rendered) }
 
   describe 'with no items' do
-    before(:each) do
+    before do
       assign(:author, author)
       assign(:articles, [])
       render
@@ -24,7 +24,7 @@ describe 'authors/show_atom_feed.atom.builder', type: :view do
   end
 
   describe 'rendering articles (with some funny characters)' do
-    before(:each) do
+    before do
       article1 = stub_full_article(1.minute.ago)
       article1.body = '&eacute;coute!'
       article2 = stub_full_article(2.minutes.ago)

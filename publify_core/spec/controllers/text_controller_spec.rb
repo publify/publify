@@ -6,14 +6,14 @@ describe TextController, type: :controller do
   let!(:blog) { create(:blog) }
 
   describe 'humans' do
-    before(:each) { get :humans, params: { format: 'txt' } }
+    before { get :humans, params: { format: 'txt' } }
 
     it { expect(response).to be_successful }
     it { expect(response.body).to eq(blog.humans) }
   end
 
   describe 'robots' do
-    before(:each) { get :robots, params: { format: 'txt' } }
+    before { get :robots, params: { format: 'txt' } }
 
     it { expect(response).to be_successful }
     it { expect(response.body).to eq(blog.robots) }

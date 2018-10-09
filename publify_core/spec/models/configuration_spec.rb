@@ -65,7 +65,7 @@ describe 'Given a new blog', type: :model do
     expect(blog).not_to be_default_moderate_comments
   end
 
-  it 'Should not hide extended on rss' do
+  it 'does not hide extended on rss' do
     expect(blog).not_to be_hide_extended_on_rss
   end
 
@@ -73,7 +73,7 @@ describe 'Given a new blog', type: :model do
     expect(blog.theme).to eq('plain')
   end
 
-  it 'should not use any avatar plugin' do
+  it 'does not use any avatar plugin' do
     expect(blog.plugin_avatar).to eq('')
   end
 
@@ -83,7 +83,7 @@ describe 'Given a new blog', type: :model do
     expect(blog).not_to be_global_pings_disable
   end
 
-  it 'should send outbound pings' do
+  it 'sends outbound pings' do
     expect(blog).to be_send_outbound_pings
   end
 
@@ -239,7 +239,7 @@ describe 'Given a new blog', type: :model do
     expect(blog.twitter_consumer_secret).to eq('')
   end
 
-  it 'should have an empty custom url shortener' do
+  it 'has an empty custom url shortener' do
     expect(blog.custom_url_shortener).to eq('')
   end
 
@@ -249,7 +249,7 @@ describe 'Given a new blog', type: :model do
 end
 
 describe 'Given a new user', type: :model do
-  before(:each) do
+  before do
     @user = User.new
   end
 
@@ -319,7 +319,7 @@ describe 'Given a new user', type: :model do
 end
 
 describe 'Given a new article', type: :model do
-  before(:each) do
+  before do
     @article = Article.new
   end
 
@@ -329,7 +329,7 @@ describe 'Given a new article', type: :model do
 end
 
 describe 'Given a new page', type: :model do
-  before(:each) do
+  before do
     @page = Page.new
   end
 
@@ -339,23 +339,23 @@ describe 'Given a new page', type: :model do
 end
 
 describe 'Given a new status', type: :model do
-  before(:each) do
+  before do
     @note = Note.new
   end
 
-  it 'should not have a twitter id set' do
+  it 'does not have a twitter id set' do
     expect(@note.twitter_id).to eq('')
   end
 
-  it 'should not reply to another one' do
+  it 'does not reply to another one' do
     expect(@note.in_reply_to_status_id).to eq('')
   end
 
-  it 'should not have a reply context message' do
+  it 'does not have a reply context message' do
     expect(@note.in_reply_to_message).to eq('')
   end
 
-  it 'should not have a reply context protected' do
+  it 'does not have a reply context protected' do
     expect(@note.in_reply_to_protected).to eq(false)
   end
 end

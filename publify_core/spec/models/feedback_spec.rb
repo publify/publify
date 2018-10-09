@@ -43,6 +43,7 @@ describe Feedback, type: :model do
 
     describe 'created_since' do
       let(:time) { 1.year.ago }
+
       it 'returns nothing with no feedback' do
         create(:ham_comment, created_at: 2.years.ago)
         expect(Feedback.created_since(time)).to be_empty
@@ -84,6 +85,7 @@ describe Feedback, type: :model do
       describe '#spam' do
         let!(:spam_comment) { create(:spam_comment) }
         let!(:ham_comment) { create(:ham_comment) }
+
         it { expect(Feedback.spam).to eq([spam_comment]) }
       end
 
@@ -127,7 +129,7 @@ describe Feedback, type: :model do
   end
 
   describe 'states' do
-    before(:each) do
+    before do
       create(:blog)
       @comment = create(:article).comments.build(author: 'Piers', body: 'Body')
     end

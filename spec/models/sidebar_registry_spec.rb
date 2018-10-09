@@ -5,7 +5,7 @@ require 'rails_helper'
 describe SidebarRegistry do
   describe '#available_sidebars' do
     it 'finds at least the standard sidebars' do
-      expect(SidebarRegistry.available_sidebars).
+      expect(described_class.available_sidebars).
         to include(AmazonSidebar,
                    ArchivesSidebar,
                    AuthorsSidebar,

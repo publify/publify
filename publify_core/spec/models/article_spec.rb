@@ -43,6 +43,7 @@ describe Article, type: :model do
 
     describe 'with a permalink containing a space' do
       let(:article) { blog.articles.build(permalink: 'hello there', published_at: Time.utc(2004, 6, 1)) }
+
       it "escapes the space as '%20', not as '+'" do
         article.publish
         expect(article.permalink_url(nil, true)).to eq("#{blog.root_path}/2004/06/01/hello%20there")
@@ -51,6 +52,7 @@ describe Article, type: :model do
 
     describe 'with a permalink containing a plus' do
       let(:article) { blog.articles.build(permalink: 'one+two', published_at: Time.utc(2004, 6, 1)) }
+
       it 'does not escape the plus' do
         article.publish
         expect(article.permalink_url(nil, true)).to eq("#{blog.root_path}/2004/06/01/one+two")
@@ -161,25 +163,25 @@ describe Article, type: :model do
       assert_equal ['http://www.example.com/public'], urls
     end
 
-    it 'should only match the href attribute' do
+    it 'onlies match the href attribute' do
       @article.body = '<a href="http://a/b">a</a> <a fhref="wrong">wrong</a>'
       urls = @article.html_urls
       assert_equal ['http://a/b'], urls
     end
 
-    it 'should match across newlines' do
+    it 'matches across newlines' do
       @article.body = "<a\nhref=\"http://foo/bar\">foo</a>"
       urls = @article.html_urls
       assert_equal ['http://foo/bar'], urls
     end
 
-    it 'should match with single quotes' do
+    it 'matches with single quotes' do
       @article.body = "<a href='http://foo/bar'>foo</a>"
       urls = @article.html_urls
       assert_equal ['http://foo/bar'], urls
     end
 
-    it 'should match with no quotes' do
+    it 'matches with no quotes' do
       @article.body = '<a href=http://foo/bar>foo</a>'
       urls = @article.html_urls
       assert_equal ['http://foo/bar'], urls
@@ -261,7 +263,7 @@ describe Article, type: :model do
   end
 
   describe '#interested_users' do
-    it 'should gather users interested in new articles' do
+    it 'gathers users interested in new articles' do
       henri = create(:user, login: 'henri', notify_on_new_articles: true)
       alice = create(:user, login: 'alice', notify_on_new_articles: true)
 
@@ -283,7 +285,7 @@ describe Article, type: :model do
     assert art.withdrawn?
   end
 
-  it 'should get only ham not spam comment' do
+  it 'gets only ham not spam comment' do
     article = create(:article)
     ham_comment = create(:comment, article: article)
     create(:spam_comment, article: article)
@@ -307,18 +309,18 @@ describe Article, type: :model do
   end
 
   describe 'body_and_extended' do
-    before :each do
+    before do
       @article = blog.articles.build(
         body: 'basic text',
         extended: 'extended text to explain more and more how Publify is wonderful')
     end
 
-    it 'should combine body and extended content' do
+    it 'combines body and extended content' do
       expect(@article.body_and_extended).to eq(
         "#{@article.body}\n<!--more-->\n#{@article.extended}")
     end
 
-    it 'should not insert <!--more--> tags if extended is empty' do
+    it 'does not insert <!--more--> tags if extended is empty' do
       @article.extended = ''
       expect(@article.body_and_extended).to eq(@article.body)
     end
@@ -326,7 +328,7 @@ describe Article, type: :model do
 
   describe '#search' do
     describe 'with one word and result' do
-      it 'should have two items' do
+      it 'has two items' do
         create(:article, extended: 'extended talk')
         create(:article, extended: 'Once uppon a time, an extended story')
         assert_equal 2, Article.search('extended').size
@@ -335,35 +337,35 @@ describe Article, type: :model do
   end
 
   describe 'body_and_extended=' do
-    before :each do
+    before do
       @article = blog.articles.build
     end
 
-    it 'should split apart values at <!--more-->' do
+    it 'splits apart values at <!--more-->' do
       @article.body_and_extended = 'foo<!--more-->bar'
       expect(@article.body).to eq('foo')
       expect(@article.extended).to eq('bar')
     end
 
-    it 'should remove newlines around <!--more-->' do
+    it 'removes newlines around <!--more-->' do
       @article.body_and_extended = "foo\n<!--more-->\nbar"
       expect(@article.body).to eq('foo')
       expect(@article.extended).to eq('bar')
     end
 
-    it 'should make extended empty if no <!--more--> tag' do
+    it 'makes extended empty if no <!--more--> tag' do
       @article.body_and_extended = 'foo'
       expect(@article.body).to eq('foo')
       expect(@article.extended).to be_empty
     end
 
-    it 'should preserve extra <!--more--> tags' do
+    it 'preserves extra <!--more--> tags' do
       @article.body_and_extended = 'foo<!--more-->bar<!--more-->baz'
       expect(@article.body).to eq('foo')
       expect(@article.extended).to eq('bar<!--more-->baz')
     end
 
-    it 'should be settable via self.attributes=' do
+    it 'is settable via self.attributes=' do
       @article.attributes = { body_and_extended: 'foo<!--more-->bar' }
       expect(@article.body).to eq('foo')
       expect(@article.extended).to eq('bar')
@@ -371,14 +373,14 @@ describe Article, type: :model do
   end
 
   describe '#comment_url' do
-    it 'should render complete url of comment' do
+    it 'renders complete url of comment' do
       article = build_stubbed(:article, id: 123)
       expect(article.comment_url).to eq("#{blog.root_path}/comments?article_id=#{article.id}")
     end
   end
 
   describe '#preview_comment_url' do
-    it 'should render complete url of comment' do
+    it 'renders complete url of comment' do
       article = build_stubbed(:article, id: 123)
       expect(article.preview_comment_url).to eq("#{blog.root_path}/comments/preview?article_id=#{article.id}")
     end
@@ -415,26 +417,26 @@ describe Article, type: :model do
       @article_2_two_year_ago = create(:article, published_at: 2.years.ago)
     end
 
-    it 'should return all content for the year if only year sent' do
+    it 'returns all content for the year if only year sent' do
       expect(Article.published_at_like(2.years.ago.strftime('%Y')).map(&:id).sort).to eq([@article_two_year_ago.id, @article_2_two_year_ago.id].sort)
     end
 
-    it 'should return all content for the month if year and month sent' do
+    it 'returns all content for the month if year and month sent' do
       expect(Article.published_at_like(4.months.ago.strftime('%Y-%m')).map(&:id).sort).to eq([@article_four_months_ago.id, @article_2_four_months_ago.id].sort)
     end
 
-    it 'should return all content on this date if date send' do
+    it 'returns all content on this date if date send' do
       expect(Article.published_at_like(2.months.ago.strftime('%Y-%m-%d')).map(&:id).sort).to eq([@article_two_month_ago.id].sort)
     end
   end
 
   describe '#has_child?' do
-    it 'should be true if article has one to link it by parent_id' do
+    it 'is true if article has one to link it by parent_id' do
       parent = create(:article)
       create(:article, parent_id: parent.id)
       expect(parent).to be_has_child
     end
-    it 'should be false if article has no article to link it by parent_id' do
+    it 'is false if article has no article to link it by parent_id' do
       parent = create(:article)
       create(:article, parent_id: nil)
       expect(parent).not_to be_has_child
@@ -442,11 +444,11 @@ describe Article, type: :model do
   end
 
   describe 'self#last_draft(id)' do
-    it 'should return article if no draft associated' do
+    it 'returns article if no draft associated' do
       draft = create(:article, state: 'draft')
       expect(Article.last_draft(draft.id)).to eq(draft)
     end
-    it 'should return draft associated to this article if there are one' do
+    it 'returns draft associated to this article if there are one' do
       parent = create(:article)
       draft = create(:article, parent_id: parent.id, state: 'draft')
       expect(Article.last_draft(draft.id)).to eq(draft)
@@ -564,7 +566,7 @@ describe Article, type: :model do
   describe '#published_comments' do
     let(:article) { create :article }
 
-    it 'should not include withdrawn comments' do
+    it 'does not include withdrawn comments' do
       comment = create :published_comment, article: article
       article.reload
       expect(article.published_comments).to eq [comment]
@@ -584,7 +586,7 @@ describe Article, type: :model do
   describe '#published_trackbacks' do
     let(:article) { create :article }
 
-    it 'should not include withdrawn trackbacks' do
+    it 'does not include withdrawn trackbacks' do
       trackback = create :trackback, article: article
       article.reload
       expect(article.published_trackbacks).to eq [trackback]
@@ -604,7 +606,7 @@ describe Article, type: :model do
   describe '#published_feedback' do
     let(:article) { create :article }
 
-    it 'should not include withdrawn comments or trackbacks' do
+    it 'does not include withdrawn comments or trackbacks' do
       comment = create :published_comment, article: article
       trackback = create :trackback, article: article
       article.reload
@@ -663,12 +665,14 @@ describe Article, type: :model do
 
     context 'without article' do
       let(:params) { nil }
+
       it { expect(subject).to be_empty }
     end
 
     context 'with an article' do
       let(:params) { nil }
       let!(:article) { create(:article) }
+
       it { expect(subject).to eq([article]) }
     end
 
@@ -676,6 +680,7 @@ describe Article, type: :model do
       let(:params) { { searchstring: 'match the string' } }
       let!(:not_found_article) { create(:article) }
       let!(:article) { create(:article, body: 'this match the string of article') }
+
       it { expect(subject).to eq([article]) }
     end
 
@@ -683,6 +688,7 @@ describe Article, type: :model do
       let(:params) { { state: 'published' } }
       let!(:article) { create(:article, state: 'published') }
       let!(:draft_article) { create(:article, state: 'draft') }
+
       it { expect(subject).to eq([article]) }
     end
 
@@ -692,50 +698,51 @@ describe Article, type: :model do
       let!(:article) { create(:article, state: 'published', created_at: now) }
       let!(:last_draft_article) { create(:article, state: 'draft', created_at: now + 2.days) }
       let!(:draft_article) { create(:article, state: 'draft', created_at: now + 20.days) }
+
       it { expect(subject).to eq([draft_article, last_draft_article, article]) }
     end
   end
 
   describe '.allow_comments?' do
     it 'true if article set to true' do
-      expect(blog.articles.build(allow_comments: true).allow_comments?).to be_truthy
+      expect(blog.articles.build(allow_comments: true)).to be_allow_comments
     end
 
     it 'false if article set to false' do
-      expect(blog.articles.build(allow_comments: false).allow_comments?).to be_falsey
+      expect(blog.articles.build(allow_comments: false)).not_to be_allow_comments
     end
 
     context 'given an article with no allow comments state' do
       it 'returns true when blog default allow comments is true' do
         expect_any_instance_of(Blog).to receive(:default_allow_comments).and_return(true)
-        expect(blog.articles.build(allow_comments: nil).allow_comments?).to be_truthy
+        expect(blog.articles.build(allow_comments: nil)).to be_allow_comments
       end
 
       it 'returns false when blog default allow comments is true' do
         expect_any_instance_of(Blog).to receive(:default_allow_comments).and_return(false)
-        expect(blog.articles.build(allow_comments: nil).allow_comments?).to be_falsey
+        expect(blog.articles.build(allow_comments: nil)).not_to be_allow_comments
       end
     end
   end
 
   describe '.allow_pings?' do
     it 'true if article set to true' do
-      expect(blog.articles.build(allow_pings: true).allow_pings?).to be_truthy
+      expect(blog.articles.build(allow_pings: true)).to be_allow_pings
     end
 
     it 'false if article set to false' do
-      expect(blog.articles.build(allow_pings: false).allow_pings?).to be_falsey
+      expect(blog.articles.build(allow_pings: false)).not_to be_allow_pings
     end
 
     context 'given an article with no allow pings state' do
       it 'returns true when blog default allow pings is true' do
         expect_any_instance_of(Blog).to receive(:default_allow_pings).and_return(true)
-        expect(blog.articles.build(allow_pings: nil).allow_pings?).to be_truthy
+        expect(blog.articles.build(allow_pings: nil)).to be_allow_pings
       end
 
       it 'returns false when blog default allow pings is true' do
         expect_any_instance_of(Blog).to receive(:default_allow_pings).and_return(false)
-        expect(blog.articles.build(allow_pings: nil).allow_pings?).to be_falsey
+        expect(blog.articles.build(allow_pings: nil)).not_to be_allow_pings
       end
     end
   end
@@ -765,6 +772,7 @@ describe Article, type: :model do
 
   describe 'published_since' do
     let(:time) { DateTime.new(2010, 11, 3, 23, 34).in_time_zone }
+
     it 'empty when no articles' do
       expect(Article.published_since(time)).to be_empty
     end
@@ -800,7 +808,7 @@ describe Article, type: :model do
     end
 
     it 'returns only 5 articles' do
-      6.times { create(:comment) }
+      create_list(:comment, 6)
       expect(Article.bestof.length).to eq(5)
     end
 
@@ -826,15 +834,17 @@ describe Article, type: :model do
   end
 
   describe 'update tags from article keywords' do
-    before(:each) { article.save }
+    before { article.save }
 
     context 'without keywords' do
       let(:article) { build(:article, keywords: nil) }
+
       it { expect(article.tags).to be_empty }
     end
 
     context 'with a simple keyword' do
       let(:article) { build(:article, keywords: 'foo') }
+
       it { expect(article.tags.size).to eq(1) }
       it { expect(article.tags.first).to be_kind_of(Tag) }
       it { expect(article.tags.first.name).to eq('foo') }
@@ -842,30 +852,35 @@ describe Article, type: :model do
 
     context 'with two keyword separate by a space' do
       let(:article) { build(:article, keywords: 'foo bar') }
+
       it { expect(article.tags.size).to eq(2) }
       it { expect(article.tags.map(&:name)).to eq(%w(foo bar)) }
     end
 
     context 'with two keyword separate by a coma' do
       let(:article) { build(:article, keywords: 'foo, bar') }
+
       it { expect(article.tags.size).to eq(2) }
       it { expect(article.tags.map(&:name)).to eq(%w(foo bar)) }
     end
 
     context 'with two keyword with apostrophe' do
       let(:article) { build(:article, keywords: "foo, l'bar") }
+
       it { expect(article.tags.size).to eq(3) }
       it { expect(article.tags.map(&:name)).to eq(%w(foo l bar)) }
     end
 
     context 'with two identical keywords' do
       let(:article) { build(:article, keywords: 'same, same') }
+
       it { expect(article.tags.size).to eq(1) }
       it { expect(article.tags.map(&:name)).to eq(['same']) }
     end
 
     context 'with keywords with dot and quote' do
       let(:article) { build(:article, keywords: 'foo "bar quiz" web2.0') }
+
       it { expect(article.tags.map(&:name)).to eq(['foo', 'bar-quiz', 'web2-0']) }
     end
   end
@@ -873,16 +888,19 @@ describe Article, type: :model do
   describe '#post_type' do
     context 'without post_type' do
       let(:article) { build(:article, post_type: '') }
+
       it { expect(article.post_type).to eq('read') }
     end
 
     context 'with a oldschool read post_type' do
       let(:article) { build(:article, post_type: 'read') }
+
       it { expect(article.post_type).to eq('read') }
     end
 
     context 'with a specific myletter post_type' do
       let(:article) { build(:article, post_type: 'myletter') }
+
       it { expect(article.post_type).to eq('myletter') }
     end
   end

@@ -15,7 +15,7 @@ describe Admin::PostTypesController, type: :controller do
     it 'responds successfully with an HTTP 200 status code' do
       get :index
       expect(response).to be_successful
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
 
     it 'renders the index template' do
@@ -25,7 +25,7 @@ describe Admin::PostTypesController, type: :controller do
   end
 
   describe 'create a new post_type' do
-    it 'should create a post and redirect to #index' do
+    it 'creates a post and redirect to #index' do
       expect do
         post :create, params: { post_type: { name: 'new post type' } }
         expect(response).to redirect_to(action: 'index')
@@ -36,19 +36,19 @@ describe Admin::PostTypesController, type: :controller do
   end
 
   describe 'GET #edit' do
-    before(:each) do
+    before do
       get :edit, params: { id: create(:post_type).id }
     end
 
     it 'renders the edit template with an HTTP 200 status code' do
       expect(response).to be_successful
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
       expect(response).to render_template('edit')
     end
   end
 
   describe '#update an existing post_type' do
-    it 'should update a post_type and redirect to #index' do
+    it 'updates a post_type and redirect to #index' do
       @test_id = create(:post_type).id
       post :update, params: { id: @test_id, post_type: { name: 'another name' } }
       assert_response :redirect, action: 'index'
@@ -58,7 +58,7 @@ describe Admin::PostTypesController, type: :controller do
   end
 
   describe 'destroy a post_type' do
-    it 'should destroy the post_type and redirect to #index' do
+    it 'destroys the post_type and redirect to #index' do
       @test_id = create(:post_type).id
       post :destroy, params: { id: @test_id }
       expect(response).to redirect_to(action: 'index')

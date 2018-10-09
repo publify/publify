@@ -4,12 +4,12 @@ require 'rails_helper'
 
 describe User, type: :model do
   describe 'FactoryBot Bot' do
-    it 'should user factory valid' do
+    it 'users factory valid' do
       expect(create(:user)).to be_valid
       expect(build(:user)).to be_valid
     end
 
-    it 'should multiple user factory valid' do
+    it 'multiples user factory valid' do
       expect(create(:user)).to be_valid
       expect(create(:user)).to be_valid
     end
@@ -35,7 +35,7 @@ describe User, type: :model do
     it 'The various article finders work appropriately' do
       create(:blog)
       tobi = create(:user)
-      7.times { create(:article, user: tobi) }
+      create_list(:article, 7, user: tobi)
       create(:article, state: 'draft', published_at: nil, user: tobi)
       expect(tobi.articles.size).to eq(8)
       expect(tobi.articles.published.size).to eq(7)
@@ -43,7 +43,7 @@ describe User, type: :model do
   end
 
   describe 'With a new user' do
-    before(:each) do
+    before do
       @user = build :user, login: 'not_bob', email: 'publify@publify.com'
     end
 
@@ -70,18 +70,18 @@ describe User, type: :model do
     end
 
     describe '#display_name' do
-      it 'should not be blank' do
+      it 'is not blank' do
         expect(@user.display_name).not_to be_empty
       end
     end
   end
 
   describe 'With a user in the database' do
-    before(:each) do
+    before do
       @olduser = create(:user)
     end
 
-    it 'should not be able to create another user with the same login' do
+    it 'is not able to create another user with the same login' do
       login = @olduser.login
       new_user = User.new(login: login) do |u|
         u.password = u.password_confirmation = 'secure password'
@@ -93,7 +93,7 @@ describe User, type: :model do
   end
 
   describe 'Updating an existing user' do
-    before(:each) do
+    before do
       @user = create(:user)
     end
 
@@ -112,12 +112,12 @@ describe User, type: :model do
   end
 
   describe '#admin?' do
-    it 'should return true if user is admin' do
+    it 'returns true if user is admin' do
       admin = build(:user, :as_admin)
       expect(admin).to be_admin
     end
 
-    it 'should return false if user is not admin' do
+    it 'returns false if user is not admin' do
       publisher = build(:user, :as_publisher)
       expect(publisher).not_to be_admin
     end
@@ -134,11 +134,13 @@ describe User, type: :model do
   describe '#first_and_last_name' do
     context 'with first and last name' do
       let(:user) { create(:user, firstname: 'Marlon', lastname: 'Brando') }
+
       it { expect(user.first_and_last_name).to eq('Marlon Brando') }
     end
 
     context 'with firstname without lastname' do
       let(:user) { create(:user, firstname: 'Marlon', lastname: nil) }
+
       it { expect(user.first_and_last_name).to eq('') }
     end
   end
@@ -146,26 +148,31 @@ describe User, type: :model do
   describe '#display_names' do
     context 'with user without nickname, firstname, lastname' do
       let(:user) { create(:user, nickname: nil, firstname: nil, lastname: nil) }
+
       it { expect(user.display_names).to eq([user.login]) }
     end
 
     context 'with user with nickname without firstname, lastname' do
       let(:user) { create(:user, nickname: 'Bob', firstname: nil, lastname: nil) }
+
       it { expect(user.display_names).to eq([user.login, user.nickname]) }
     end
 
     context 'with user with firstname, without nickname, lastname' do
       let(:user) { create(:user, nickname: nil, firstname: 'Robert', lastname: nil) }
+
       it { expect(user.display_names).to eq([user.login, user.firstname]) }
     end
 
     context 'with user with lastname, without nickname, firstname' do
       let(:user) { create(:user, nickname: nil, firstname: nil, lastname: 'Redford') }
+
       it { expect(user.display_names).to eq([user.login, user.lastname]) }
     end
 
     context 'with user with firstname and lastname, witjout nickname' do
       let(:user) { create(:user, nickname: nil, firstname: 'Robert', lastname: 'Redford') }
+
       it { expect(user.display_names).to eq([user.login, user.firstname, user.lastname, "#{user.firstname} #{user.lastname}"]) }
     end
   end

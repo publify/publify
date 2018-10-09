@@ -10,7 +10,7 @@ describe Blog, type: :model do
   end
 
   describe 'A blog' do
-    before(:each) do
+    before do
       @blog = Blog.new
     end
 
@@ -23,7 +23,7 @@ describe Blog, type: :model do
 
     ['', '/sub-uri'].each do |sub_url|
       describe "when running in with http://myblog.net#{sub_url}" do
-        before :each do
+        before do
           @base_url = "http://myblog.net#{sub_url}"
           @blog.base_url = @base_url
         end
@@ -32,11 +32,13 @@ describe Blog, type: :model do
           describe 'blog.url_for' do
             describe "with a hash argument and only_path = #{only_path}" do
               subject { @blog.url_for(controller: 'tags', action: 'show', id: 1, only_path: only_path) }
+
               it { is_expected.to eq("#{only_path ? sub_url : @base_url}/tag/1") }
             end
 
             describe "with a string argument and only_path = #{only_path}" do
               subject { @blog.url_for('tag/1', only_path: only_path) }
+
               it { is_expected.to eq("#{only_path ? sub_url : @base_url}/tag/1") }
             end
           end
@@ -46,38 +48,38 @@ describe Blog, type: :model do
   end
 
   describe 'The first blog' do
-    before(:each) do
+    before do
       @blog = create :blog
     end
 
-    it 'should allow another blog to be created' do
+    it 'allows another blog to be created' do
       expect(Blog.new(base_url: 'bar')).to be_valid
     end
   end
 
   describe 'Given no blogs, a new default blog' do
-    before :each do
+    before do
       @blog = Blog.new(base_url: 'foo')
     end
 
-    it 'should be valid after filling the title' do
+    it 'is valid after filling the title' do
       @blog.blog_name = 'something not empty'
       expect(@blog).to be_valid
     end
 
-    it 'should be valid without filling the title' do
+    it 'is valid without filling the title' do
       expect(@blog.blog_name).to eq('My Shiny Weblog!')
       expect(@blog).to be_valid
     end
 
-    it 'should not be valid after setting an empty title' do
+    it 'is not valid after setting an empty title' do
       @blog.blog_name = ''
       expect(@blog).not_to be_valid
     end
   end
 
   describe 'Valid permalink in blog' do
-    before :each do
+    before do
       @blog = Blog.new(base_url: 'foo')
     end
 
@@ -96,7 +98,7 @@ describe Blog, type: :model do
       end
     end
 
-    it 'should not be valid without %title% in' do
+    it 'is not valid without %title% in' do
       @blog.permalink_format = '/toto/%year%/%month/%day%'
       expect(@blog).not_to be_valid
     end
@@ -170,6 +172,7 @@ describe Blog, type: :model do
 
   describe '#per_page' do
     let(:blog) { create(:blog, limit_article_display: 3, limit_rss_display: 4) }
+
     it { expect(blog.per_page(nil)).to eq(3) }
     it { expect(blog.per_page('html')).to eq(3) }
     it { expect(blog.per_page('rss')).to eq(4) }
@@ -179,23 +182,27 @@ describe Blog, type: :model do
   describe '#allow_signup?' do
     context 'with a blog that allow signup' do
       let(:blog) { build(:blog, allow_signup: 1) }
-      it { expect(blog.allow_signup?).to be_truthy }
+
+      it { expect(blog).to be_allow_signup }
     end
 
     context 'with a blog that not allow signup' do
       let(:blog) { build(:blog, allow_signup: 0) }
-      it { expect(blog.allow_signup?).to be_falsey }
+
+      it { expect(blog).not_to be_allow_signup }
     end
   end
 
   describe '#humans' do
     context 'default value with publify txt' do
       let(:blog) { create :blog }
-      it { expect(blog.humans).to_not be_nil }
+
+      it { expect(blog.humans).not_to be_nil }
     end
 
     context 'default value with publify txt' do
       let(:blog) { create(:blog, humans: 'something to say') }
+
       it { expect(blog.humans).to eq('something to say') }
     end
   end

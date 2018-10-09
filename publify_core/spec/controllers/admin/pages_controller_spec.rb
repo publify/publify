@@ -14,27 +14,29 @@ describe Admin::PagesController, type: :controller do
 
   describe 'GET #index' do
     context 'without params' do
-      before(:each) { get :index }
+      before { get :index }
+
       it { expect(response).to be_successful }
       it { expect(response).to render_template('index') }
-      it { expect(assigns(:pages)).to_not be_nil }
+      it { expect(assigns(:pages)).not_to be_nil }
     end
 
     context 'with page 1' do
-      before(:each) { get :index, params: { page: 1 } }
+      before { get :index, params: { page: 1 } }
+
       it { expect(response).to be_successful }
       it { expect(response).to render_template('index') }
-      it { expect(assigns(:pages)).to_not be_nil }
+      it { expect(assigns(:pages)).not_to be_nil }
     end
   end
 
   describe 'GET #new' do
     context 'should get a new form' do
-      before(:each) { get :new }
+      before { get :new }
 
       it { expect(response).to be_successful }
       it { expect(response).to render_template('new') }
-      it { expect(assigns(:page)).to_not be_nil }
+      it { expect(assigns(:page)).not_to be_nil }
       it { expect(assigns(:page).user).to eq(user) }
       it { expect(assigns(:page).text_filter.name).to eq('textile') }
       it { expect(assigns(:page)).to be_published }
@@ -51,7 +53,7 @@ describe Admin::PagesController, type: :controller do
       end
 
       context 'simple' do
-        before(:each) do
+        before do
           post :create, params: {
             page: {
               name: 'new_page', title: 'New Page Title', body: 'Emphasis _mine_, arguments *strong*'
@@ -63,17 +65,17 @@ describe Admin::PagesController, type: :controller do
         it { expect(response).to redirect_to(action: :index) }
       end
 
-      it 'should create a published page with a redirect' do
+      it 'creates a published page with a redirect' do
         post :create, params: { 'page' => base_page }
         expect(assigns(:page).redirect).not_to be_nil
       end
 
-      it 'should create an unpublished page without a redirect' do
+      it 'creates an unpublished page without a redirect' do
         post :create, params: { 'page' => base_page(state: :unpublished) }
         expect(assigns(:page).redirect).to be_nil
       end
 
-      it 'should create a page published in the future without a redirect' do
+      it 'creates a page published in the future without a redirect' do
         # TODO: published_at parameter is currently ignored
         skip
         post :create, params: { 'page' => base_page(published_at: 1.hour.from_now.to_s) }
@@ -86,7 +88,8 @@ describe Admin::PagesController, type: :controller do
     let!(:page) { create(:page) }
 
     context 'should get the edit page' do
-      before(:each) { get :edit, params: { id: page.id } }
+      before { get :edit, params: { id: page.id } }
+
       it { expect(response).to be_successful }
       it { expect(response).to render_template('edit') }
       it { expect(assigns(:page)).to eq(page) }
@@ -97,7 +100,7 @@ describe Admin::PagesController, type: :controller do
     let!(:page) { create(:page) }
 
     context 'should update a post' do
-      before(:each) do
+      before do
         post :update, params: { id: page.id, page: { name: 'markdown-page', title: 'Markdown Page', body: 'Adding a [link](https://publify.github.io/) here' } }
       end
 
@@ -108,7 +111,7 @@ describe Admin::PagesController, type: :controller do
   describe 'destroy' do
     let!(:page) { create(:page) }
 
-    before(:each) { post :destroy, params: { id: page.id } }
+    before { post :destroy, params: { id: page.id } }
 
     it { expect(response).to redirect_to(action: :index) }
     it { expect(Page.count).to eq(0) }

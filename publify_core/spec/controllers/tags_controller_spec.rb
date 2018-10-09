@@ -45,22 +45,22 @@ RSpec.describe TagsController, type: :controller do
         @tag.contents << @articles
       end
 
-      it 'should be successful' do
+      it 'is successful' do
         do_get
         expect(response).to be_successful
       end
 
-      it 'should retrieve the correct set of articles' do
+      it 'retrieves the correct set of articles' do
         do_get
         expect(assigns[:articles].map(&:id).sort).to eq(@articles.map(&:id).sort)
       end
 
-      it 'should render :show by default' do
+      it 'renders :show by default' do
         do_get
         expect(response).to render_template(:show)
       end
 
-      it 'should render the tag template if present' do
+      it 'renders the tag template if present' do
         # NOTE: Stubbing Object under test :-(.
         allow(controller).to receive(:template_exists?).and_return(true)
         allow(controller).to receive(:render)
@@ -78,12 +78,12 @@ RSpec.describe TagsController, type: :controller do
         expect(assigns(:description)).to eq 'foo | test blog | test subtitle'
       end
 
-      it 'should render the atom feed for /articles/tag/foo.atom' do
+      it 'renders the atom feed for /articles/tag/foo.atom' do
         get 'show', params: { id: 'foo', format: 'atom' }
         expect(response).to render_template('articles/index_atom_feed', layout: false)
       end
 
-      it 'should render the rss feed for /articles/tag/foo.rss' do
+      it 'renders the rss feed for /articles/tag/foo.rss' do
         get 'show', params: { id: 'foo', format: 'rss' }
         expect(response).to render_template('articles/index_rss_feed', layout: false)
       end
@@ -103,12 +103,12 @@ RSpec.describe TagsController, type: :controller do
     let!(:blog) { create(:blog) }
     let(:parsed_body) { Capybara.string(response.body) }
 
-    before(:each) do
+    before do
       create(:tag, name: 'foo', contents: [create(:article)])
       get 'show', params: { id: 'foo' }
     end
 
-    it 'should have good rss feed link in head' do
+    it 'has good rss feed link in head' do
       rss_link = parsed_body.find "head>link[href='http://test.host/tag/foo.rss']", visible: false
       aggregate_failures do
         expect(rss_link['rel']).to eq 'alternate'
@@ -117,7 +117,7 @@ RSpec.describe TagsController, type: :controller do
       end
     end
 
-    it 'should have good atom feed link in head' do
+    it 'has good atom feed link in head' do
       atom_link = parsed_body.find "head>link[href='http://test.host/tag/foo.atom']", visible: false
       aggregate_failures do
         expect(atom_link['rel']).to eq 'alternate'
@@ -126,13 +126,13 @@ RSpec.describe TagsController, type: :controller do
       end
     end
 
-    it 'should have a canonical URL' do
+    it 'has a canonical URL' do
       expect(response.body).to have_selector("head>link[href='#{blog.base_url}/tag/foo']", visible: false)
     end
   end
 
   describe 'showing a non-existant tag' do
-    it 'should signal not found' do
+    it 'signals not found' do
       create(:blog)
       expect { get 'show', params: { id: 'thistagdoesnotexist' } }.
         to raise_error ActiveRecord::RecordNotFound
@@ -152,7 +152,7 @@ RSpec.describe TagsController, type: :controller do
   end
 
   describe 'SEO Options' do
-    before(:each) do
+    before do
       @blog = create(:blog)
       @a = create(:article)
       @foo = create(:tag, name: 'foo', contents: [@a])

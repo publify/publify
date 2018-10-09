@@ -7,16 +7,18 @@ describe Content, type: :model do
     describe '#author=' do
       let(:content) { Content.new }
 
-      before(:each) { content.author = user }
+      before { content.author = user }
 
       context 'with a User as author' do
         let(:user) { build(:user) }
+
         it { expect(content.author).to eq(user.login) }
         it { expect(content.user).to eq(user) }
       end
 
       context 'with a String as author' do
         let(:user) { 'George Sand' }
+
         it { expect(content.author).to eq(user) }
         it { expect(content.user).to be_nil }
       end
@@ -76,12 +78,14 @@ describe Content, type: :model do
 
         context 'with nil params' do
           let(:params) { nil }
+
           it { expect(subject).to be_empty }
         end
 
         context 'with a matching searchstring article' do
           let(:params) { { searchstring: 'a search string' } }
           let!(:match_article) { create(:article, body: 'there is a search string here') }
+
           it { expect(subject).to eq([match_article]) }
         end
 
@@ -89,6 +93,7 @@ describe Content, type: :model do
           let(:params) { { published_at: '2012-02' } }
           let!(:article) { create(:article) }
           let!(:match_article) { create(:article, published_at: DateTime.new(2012, 2, 13).in_time_zone) }
+
           it { expect(subject).to eq([match_article]) }
         end
 
@@ -96,6 +101,7 @@ describe Content, type: :model do
           let(:params) { { user_id: '13' } }
           let!(:article) { create(:article) }
           let!(:match_article) { create(:article, user_id: 13) }
+
           it { expect(subject).to eq([match_article]) }
         end
 
@@ -103,12 +109,14 @@ describe Content, type: :model do
           let(:params) { { published: '0' } }
           let!(:article) { create(:article) }
           let!(:match_article) { create(:article, state: 'draft') }
+
           it { expect(subject).to eq([match_article]) }
         end
 
         context 'with published status article' do
           let(:params) { { published: '1' } }
           let!(:article) { create(:article) }
+
           it { expect(subject).to eq([article]) }
         end
       end

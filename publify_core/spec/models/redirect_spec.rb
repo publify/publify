@@ -4,6 +4,7 @@ require 'rails_helper'
 
 describe Redirect, type: :model do
   let(:blog) { create(:blog) }
+
   it 'redirects are unique' do
     expect { blog.redirects.create!(from_path: 'foo/bar', to_path: '/') }.not_to raise_error
 

@@ -21,7 +21,7 @@ RSpec.describe FeedbackController, type: :controller do
     end
 
     context 'with atom format' do
-      before(:each) { get 'index', params: { format: 'atom' } }
+      before { get 'index', params: { format: 'atom' } }
 
       it 'responds with success' do
         expect(response).to be_successful

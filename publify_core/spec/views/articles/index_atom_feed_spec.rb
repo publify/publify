@@ -106,6 +106,7 @@ describe 'articles/index_atom_feed.atom.builder', type: :view do
         create :blog, rss_description: true,
                       rss_description_text: 'rss description'
       end
+
       before do
         render
       end
@@ -125,7 +126,7 @@ describe 'articles/index_atom_feed.atom.builder', type: :view do
       @article = stub_full_article(blog: blog)
       @article.body = "shh .. it's a secret!"
       @article.extended = 'even more secret!'
-      allow(@article).to receive(:password) { 'password' }
+      allow(@article).to receive(:password).and_return('password')
       assign(:articles, [@article])
       render
     end
@@ -166,13 +167,14 @@ describe 'articles/index_atom_feed.atom.builder', type: :view do
   end
 
   describe '#title' do
-    before(:each) do
+    before do
       assign(:articles, [article])
       render
     end
 
     context 'with a note' do
       let(:article) { create(:note) }
+
       it 'is equal to the note body' do
         expect(rendered_entry.title).to eq(article.body)
       end
@@ -180,6 +182,7 @@ describe 'articles/index_atom_feed.atom.builder', type: :view do
 
     context 'with an article' do
       let(:article) { create(:article) }
+
       it 'is equal to the article title' do
         expect(rendered_entry.title).to eq(article.title)
       end

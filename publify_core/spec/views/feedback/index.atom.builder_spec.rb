@@ -15,7 +15,7 @@ RSpec.describe 'feedback/index.atom.builder', type: :view do
     end
     let(:trackback) { build_stubbed(:trackback, article: article) }
 
-    before(:each) do
+    before do
       assign(:feedback, [comment, trackback])
       render
     end
@@ -35,7 +35,7 @@ RSpec.describe 'feedback/index.atom.builder', type: :view do
     describe 'the comment entry' do
       let(:rendered_entry) { parsed_feed.entries.first }
 
-      it 'should have all the required attributes' do
+      it 'has all the required attributes' do
         expect(rendered_entry.title).to eq "Comment on #{article.title} by #{comment.author}"
         expect(rendered_entry.entry_id).to eq 'urn:uuid:12313123123123123'
         expect(rendered_entry.content).to eq '<p>Comment body</p>'
@@ -46,7 +46,7 @@ RSpec.describe 'feedback/index.atom.builder', type: :view do
     describe 'the trackback entry' do
       let(:rendered_entry) { parsed_feed.entries.last }
 
-      it 'should have all the required attributes' do
+      it 'has all the required attributes' do
         expect(rendered_entry.title).
           to eq "Trackback from #{trackback.blog_name}: #{trackback.title} on #{article.title}"
         expect(rendered_entry.entry_id).to eq('urn:uuid:dsafsadffsdsf')

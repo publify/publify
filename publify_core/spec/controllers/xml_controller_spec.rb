@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe XmlController, type: :controller do
   before do
     create(:blog, base_url: 'http://myblog.net')
-    allow(Trigger).to receive(:fire) {}
+    allow(Trigger).to receive(:fire).and_return(nil)
   end
 
   describe '#sitemap' do

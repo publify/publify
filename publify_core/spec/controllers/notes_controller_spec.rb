@@ -9,7 +9,8 @@ describe NotesController, type: :controller do
   describe '#index' do
     context 'normally' do
       let!(:note) { create(:note) }
-      before(:each) { get 'index' }
+
+      before { get 'index' }
 
       it { expect(response).to be_successful }
       it { expect(response).to render_template('notes/index') }
@@ -17,7 +18,8 @@ describe NotesController, type: :controller do
     end
 
     context 'with no note' do
-      before(:each) { get 'index' }
+      before { get 'index' }
+
       it { expect(response).to be_successful }
       it { expect(response).to render_template('notes/error') }
     end
@@ -27,7 +29,7 @@ describe NotesController, type: :controller do
     context 'normal' do
       let(:permalink) { "#{create(:note).id}-this-is-a-note" }
 
-      before(:each) { get :show, params: { permalink: permalink } }
+      before { get :show, params: { permalink: permalink } }
 
       it { expect(response).to be_successful }
       it { expect(response).to render_template('show') }
@@ -51,7 +53,7 @@ describe NotesController, type: :controller do
       end
       let(:permalink) { "#{create(:note, in_reply_to_message: reply.to_json).id}-this-is-a-note" }
 
-      before(:each) { get :show, params: { permalink: permalink } }
+      before { get :show, params: { permalink: permalink } }
 
       it { expect(response).to be_successful }
       it { expect(response).to render_template('show_in_reply') }

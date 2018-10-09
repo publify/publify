@@ -21,7 +21,7 @@ describe CommentsController, type: :controller do
       it { expect(cookies['url']).to eq('http://bobs.home/') }
     end
 
-    it 'should redirect to the article' do
+    it 'redirects to the article' do
       article = create(:article, created_at: '2005-01-01 02:00:00')
       post :create, params: { comment: { body: 'content', author: 'bob' }, article_id: article.id }
       expect(response).to redirect_to article.permalink_url
@@ -29,7 +29,7 @@ describe CommentsController, type: :controller do
   end
 
   describe 'AJAX creation' do
-    it 'should render the comment partial' do
+    it 'renders the comment partial' do
       post :create, xhr: true, params: { comment: { body: 'content', author: 'bob' }, article_id: create(:article).id }
       expect(response).to render_template('articles/comment')
     end
