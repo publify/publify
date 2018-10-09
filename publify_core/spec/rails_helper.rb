@@ -96,20 +96,3 @@ def with_each_theme
     yield theme.name, view_path
   end
 end
-
-def stub_full_article(time = Time.zone.now, blog: Blog.first)
-  author = build_stubbed(:user, name: 'User Name')
-  text_filter = build(:textile)
-
-  a = build_stubbed(:article,
-                    published_at: time, user: author,
-                    created_at: time, updated_at: time,
-                    title: 'Foo Bar', permalink: 'foo-bar',
-                    blog: blog,
-                    guid: time.hash)
-  allow(a).to receive(:published_comments).and_return([])
-  allow(a).to receive(:resources) { [build(:resource)] }
-  allow(a).to receive(:tags) { [build(:tag)] }
-  allow(a).to receive(:text_filter) { text_filter }
-  a
-end

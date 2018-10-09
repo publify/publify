@@ -85,6 +85,13 @@ FactoryBot.define do
     state { :draft }
   end
 
+  factory :full_article, parent: :article do
+    after :create do |article|
+      article.resources << create(:resource)
+      article.tags << create(:tag)
+    end
+  end
+
   factory :content do
     blog { Blog.first || create(:blog) }
   end
