@@ -5,14 +5,6 @@ class Trackback < Feedback
   content_fields :excerpt
   validates :title, :excerpt, :url, presence: true
 
-  # attr_accessible :url, :blog_name, :title, :excerpt, :ip, :published, :article_id
-
-  def initialize(*args, &block)
-    super(*args, &block)
-    self.title ||= url
-    self.blog_name ||= ''
-  end
-
   before_create :process_trackback
 
   def process_trackback
