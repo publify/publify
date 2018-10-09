@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'publify_core/testing_support/upload_fixtures'
+
 # Factory definitions
 FactoryBot.define do
   sequence(:name) { |n| "name_#{n}" }
@@ -178,7 +180,7 @@ FactoryBot.define do
   end
 
   factory :resource do
-    upload { file_upload }
+    upload { PublifyCore::TestingSupport::UploadFixtures.file_upload }
     mime { 'image/jpeg' }
     size { 110 }
     blog { Blog.first || create(:blog) }

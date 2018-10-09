@@ -12,6 +12,7 @@ require 'rspec/rails'
 require 'factory_bot'
 require 'publify_core/testing_support/factories'
 require 'publify_core/testing_support/feed_assertions'
+require 'publify_core/testing_support/upload_fixtures'
 require 'webmock/rspec'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -76,11 +77,9 @@ RSpec.configure do |config|
   # Test helpers to check feed contents
   config.include PublifyCore::TestingSupport::FeedAssertions, type: :view
   config.include PublifyCore::TestingSupport::FeedAssertions, type: :controller
-end
 
-def file_upload(file = 'testfile.txt', mime_type = 'text/plain')
-  Rack::Test::UploadedFile.new(File.join(ActionDispatch::IntegrationTest.fixture_path, file),
-                               mime_type)
+  # Test helpers for file attachments
+  config.include PublifyCore::TestingSupport::UploadFixtures
 end
 
 def engine_root
@@ -97,7 +96,6 @@ def with_each_theme
     yield theme.name, view_path
   end
 end
-
 
 def stub_full_article(time = Time.zone.now, blog: Blog.first)
   author = build_stubbed(:user, name: 'User Name')
