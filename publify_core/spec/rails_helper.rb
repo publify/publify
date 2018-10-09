@@ -10,11 +10,10 @@ require 'rails-controller-testing'
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 require 'factory_bot'
+require 'publify_core/testing_support/factories'
 require 'rexml/document'
 require 'feedjira'
 require 'webmock/rspec'
-
-FactoryBot.definition_file_paths << File.expand_path('factories', __dir__)
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are

@@ -8,8 +8,8 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 require 'rspec/rails'
 require 'factory_bot'
+require 'publify_core/testing_support/factories'
 require 'rexml/document'
-FactoryBot.find_definitions
 
 class ActionView::TestCase::TestController
   include Rails.application.routes.url_helpers
