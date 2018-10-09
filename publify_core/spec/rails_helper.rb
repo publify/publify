@@ -11,8 +11,7 @@ require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 require 'factory_bot'
 require 'publify_core/testing_support/factories'
-require 'rexml/document'
-require 'feedjira'
+require 'publify_core/testing_support/feed_assertions'
 require 'webmock/rspec'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -73,6 +72,10 @@ RSpec.configure do |config|
   # Test helpers needed for Devise
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::IntegrationHelpers, type: :feature
+
+  # Test helpers to check feed contents
+  config.include PublifyCore::TestingSupport::FeedAssertions, type: :view
+  config.include PublifyCore::TestingSupport::FeedAssertions, type: :controller
 end
 
 def file_upload(file = 'testfile.txt', mime_type = 'text/plain')
@@ -95,43 +98,6 @@ def with_each_theme
   end
 end
 
-# TODO: Clean up use of these Test::Unit style expectations
-def assert_xml(xml)
-  expect(xml).not_to be_empty
-  expect do
-    assert REXML::Document.new(xml)
-  end.not_to raise_error
-end
-
-def assert_atom10(feed, count)
-  parsed_feed = Feedjira::Feed.parse(feed)
-  assert_atom10_feed parsed_feed, count
-end
-
-def assert_atom10_feed(parsed_feed, count)
-  expect(parsed_feed).to be_instance_of Feedjira::Parser::Atom
-  expect(parsed_feed.title).not_to be_nil
-  expect(parsed_feed.entries.count).to eq count
-end
-
-def assert_correct_atom_generator(feed)
-  xml = Nokogiri::XML.parse(feed)
-  generator = xml.css('generator').first
-  expect(generator.content).to eq('Publify')
-  expect(generator['version']).to eq(PublifyCore::VERSION)
-end
-
-def assert_rss20(feed, count)
-  parsed_feed = Feedjira::Feed.parse(feed)
-  assert_rss20_feed parsed_feed, count
-end
-
-def assert_rss20_feed(parsed_feed, count)
-  expect(parsed_feed).to be_instance_of Feedjira::Parser::RSS
-  expect(parsed_feed.version).to eq '2.0'
-  expect(parsed_feed.title).not_to be_nil
-  expect(parsed_feed.entries.count).to eq count
-end
 
 def stub_full_article(time = Time.zone.now, blog: Blog.first)
   author = build_stubbed(:user, name: 'User Name')
