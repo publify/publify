@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'support/dns_mock'
+require 'publify_core/testing_support/dns_mock'
 
 describe Comment, type: :model do
   let(:blog) { build_stubbed :blog }

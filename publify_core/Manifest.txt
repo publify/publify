@@ -344,6 +344,7 @@ lib/format.rb
 lib/publify_core.rb
 lib/publify_core/engine.rb
 lib/publify_core/lang.rb
+lib/publify_core/testing_support/dns_mock.rb
 lib/publify_core/testing_support/factories.rb
 lib/publify_core/testing_support/feed_assertions.rb
 lib/publify_core/testing_support/fixtures/exploit.svg
