@@ -30,7 +30,7 @@ class CommentsController < BaseController
       return
     end
 
-    @comment = Comment.new(comment_params)
+    @comment = @article.comments.build(comment_params)
   end
 
   protected
