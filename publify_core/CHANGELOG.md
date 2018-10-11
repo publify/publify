@@ -7,6 +7,7 @@
 * Drop support for Ruby 2.2 (mvz)
 * Provide FactoryBot factories for general use (mvz)
 * Fix comment preview (mvz)
+* Drop support for humans.txt (mvz)
 
 ## 9.1.0 / 2018-04-19
 

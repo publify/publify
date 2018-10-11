@@ -333,7 +333,6 @@ fr:
         do_not_index_tags: Ne pas indexer les labels
         dofollow: Dofollow
         explain: Ici, vous pouve ajouter tout ce que vous souhaitez voir apparaître dans l'en-tête de votre blog, comme le code de suivi d'un service de statistiques.
-        explain_humans_txt: Il s'agit d'une initiative pour connaître les personnes derrière un site Internet. Il s'agit d'un fichier TXT qui contient des informations à propos des différentes personnes qui ont contribué à construire le site. http://humanstxt.org/
         explain_moderate_feedback: Si vous activez cette option, peut-être devriez-vous également activer la modération des commentaires.
         explain_rss_description: 'Vous pouvez utliser les tags suivants : %author% (nom de l''auteur), %blog_url% (URL du blog), %blog_name% (nom du blog) et %permalink_url% (lien vers l''article que vous souhaitez protéger)'
         explain_tag_index_html: Sélectionner cette option ajoutera le métalabel <code>noindex, follow</code> dans toutes les pages de chaque label. Cela les enlèvera des moteurs de recherche et préviendra ainsi des problèmes de contenu dupliqué.
@@ -341,8 +340,6 @@ fr:
         google: Google
         google_analytics: Google Analytics
         google_webmaster_tools_validation_link: Lien de validation des Google Webmaster Tools.
-        human: Humain
-        humans_txt: Humain
         indexing: Indexation
         meta_description: Meta description
         meta_keywords: Meta mots-clés

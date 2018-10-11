@@ -333,7 +333,6 @@ pl:
         do_not_index_tags: Nie indeksuj tagów
         dofollow: Dofollow
         explain: Tutaj możesz dodać dowolny kod, który ma się pojawić w nagłówku strony, np. kod do analizy ruchu na stronie.
-        explain_humans_txt: 'Jest to plik TXT, który zawiera informacje o ludziach, którzy współtworyli daną stronę internetową. Więcej informacji: http://humanstxt.org/'
         explain_moderate_feedback: Jeżeli to włączysz, być może będziesz chcieć moderować komentarze
         explain_rss_description: 'Możesz używać następujących tagów: %author% (autor), %blog_url% (adres tego bloga), %blog_name% (nazwa tego bloga) and %permalink_url% (link do artykułu, który chcesz chronić)'
         explain_tag_index_html: Zaznaczenie tej opcji spowoduje dodanie <code>noindex, follow</code> do każdej strony tagu, co spowoduje usunięcie z wyników wyszukiwania i uniknięcie duplikacji treści
@@ -341,8 +340,6 @@ pl:
         google: Google
         google_analytics: Google Analytics
         google_webmaster_tools_validation_link: Google Webmaster Tools validation link
-        human: Human
-        humans_txt: Human
         indexing: Indeksowanie
         meta_description: Opis
         meta_keywords: Słowa kluczowe

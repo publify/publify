@@ -63,7 +63,6 @@ Rails.application.routes.draw do
   get '/notes/page/:page', to: 'notes#index', format: false
   get '/note/:permalink', to: 'notes#show', format: false
 
-  get '/humans', to: 'text#humans', format: 'txt'
   get '/robots', to: 'text#robots', format: 'txt'
 
   # TODO: Remove if possible

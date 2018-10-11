@@ -333,7 +333,6 @@ nb-NO:
         do_not_index_tags: Ikke indekser tagger
         dofollow: Dofollow
         explain: Her kan du legge til det du vil skal inkluderes i din applikasjons-header, som for eksempel tracking-kode for en analyseservice.
-        explain_humans_txt: Dette er et initiativ for å få kjennskap til menneskene bak et nettsted. Det er en txt-fil som inneholder informasjon om de forskjellig personene som har bidratt til å bygge nettstedet. http://humanstxt.org/
         explain_moderate_feedback: Det kan være en idé å moderere diskusjoner når du slår på denne
         explain_rss_description: 'Du kan bruke følgende tagger: %author% (forfatternavn), %blog_url% (blogg-URL), %blog_name% (bloggtittel) og %permalink_url% (en lenke til den artikkelen du vil beskytte)'
         explain_tag_index_html: Slår du på denne, vil metataggene <code>noindex, follow</code> bli lagt til på alle taggsider, og dermed fjerne dem fra søkemotorer og forhindre problemer med duplisert innhold
@@ -341,8 +340,6 @@ nb-NO:
         google: Google
         google_analytics: Google Analytics
         google_webmaster_tools_validation_link: Google Webmaster Tools valideringslenke
-        human: Menneskene bak
-        humans_txt: humans.txt
         indexing: Indeksering
         meta_description: Metabeskrivelse
         meta_keywords: Metanøkkelord

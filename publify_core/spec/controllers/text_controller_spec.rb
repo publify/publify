@@ -5,13 +5,6 @@ require 'rails_helper'
 describe TextController, type: :controller do
   let!(:blog) { create(:blog) }
 
-  describe 'humans' do
-    before { get :humans, params: { format: 'txt' } }
-
-    it { expect(response).to be_successful }
-    it { expect(response.body).to eq(blog.humans) }
-  end
-
   describe 'robots' do
     before { get :robots, params: { format: 'txt' } }
 
