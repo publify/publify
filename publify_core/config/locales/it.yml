@@ -333,7 +333,6 @@ it:
         do_not_index_tags: Do not index tags
         dofollow: Dofollow
         explain: Here you can add anything you want to appear in your application header, such as analytics service tracking code.
-        explain_humans_txt: It's an initiative for knowing the people behind a website. It's a TXT file that contains information about the different people who have contributed to building the website. http://humanstxt.org/
         explain_moderate_feedback: You may want to moderate feedback when turning this on
         explain_rss_description: 'You can use the following tags: %author% (author name), %blog_url% (this blog URL), %blog_name% (this blog title) and %permalink_url% (a link to the article you want to protect)'
         explain_tag_index_html: Checking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues
@@ -341,8 +340,6 @@ it:
         google: Google
         google_analytics: Google Analytics
         google_webmaster_tools_validation_link: Google Webmaster Tools validation link
-        human: Human
-        humans_txt: Human
         indexing: Indexing
         meta_description: Meta description
         meta_keywords: Meta keywords

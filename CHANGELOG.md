@@ -12,6 +12,7 @@ See the changelogs for the individual engines for more details for releases 9.0 
 * Fix logic for rendering excerpts or whole posts (mvz)
 * Drop support for Ruby 2.2 (mvz)
 * Fix comment preview (mvz)
+* Drop support for humans.txt (mvz)
 
 ## 9.1.0 / 2018-04-19
 
