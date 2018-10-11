@@ -4,34 +4,51 @@ require 'rails_helper'
 
 describe CommentsController, type: :controller do
   let!(:blog) { create(:blog) }
+  let(:article) { create(:article) }
+  let(:comment_params) { { body: 'content', author: 'bob', email: 'bob@home', url: 'http://bobs.home/' } }
 
-  describe 'create' do
-    describe 'Basic comment creation' do
-      let(:article) { create(:article) }
-      let(:comment) { { body: 'content', author: 'bob', email: 'bob@home', url: 'http://bobs.home/' } }
+  describe '#create' do
+    context 'when using regular post' do
+      before do
+        post :create, params: { comment: comment_params, article_id: article.id }
+      end
 
-      before { post :create, params: { comment: comment, article_id: article.id } }
+      it 'creates a comment on the specified article' do
+        aggregate_failures do
+          expect(article.comments.size).to eq(1)
+          comment = article.comments.last
+          expect(comment.author).to eq('bob')
+          expect(comment.body).to eq('content')
+          expect(comment.email).to eq('bob@home')
+          expect(comment.url).to eq('http://bobs.home/')
+        end
+      end
 
-      it { expect(assigns[:comment]).to eq(Comment.find_by(author: 'bob', body: 'content', article_id: article.id)) }
-      it { expect(assigns[:article]).to eq(article) }
-      it { expect(article.comments.size).to eq(1) }
-      it { expect(article.comments.last.author).to eq('bob') }
-      it { expect(cookies['author']).to eq('bob') }
-      it { expect(cookies['gravatar_id']).to eq(Digest::MD5.hexdigest('bob@home')) }
-      it { expect(cookies['url']).to eq('http://bobs.home/') }
+      it 'remembers author info in cookies' do
+        aggregate_failures do
+          expect(cookies['author']).to eq('bob')
+          expect(cookies['gravatar_id']).to eq(Digest::MD5.hexdigest('bob@home'))
+          expect(cookies['url']).to eq('http://bobs.home/')
+        end
+      end
+
+      it 'redirects to the article' do
+        expect(response).to redirect_to article.permalink_url
+      end
     end
 
-    it 'redirects to the article' do
-      article = create(:article, created_at: '2005-01-01 02:00:00')
-      post :create, params: { comment: { body: 'content', author: 'bob' }, article_id: article.id }
-      expect(response).to redirect_to article.permalink_url
-    end
-  end
+    context 'when using xhr post' do
+      before do
+        post :create, xhr: true, params: { comment: comment_params, article_id: article.id }
+      end
 
-  describe 'AJAX creation' do
-    it 'renders the comment partial' do
-      post :create, xhr: true, params: { comment: { body: 'content', author: 'bob' }, article_id: create(:article).id }
-      expect(response).to render_template('articles/comment')
+      it 'assigns the created comment for rendering' do
+        expect(assigns[:comment]).to eq article.comments.last
+      end
+
+      it 'renders the comment partial' do
+        expect(response).to render_template('articles/comment')
+      end
     end
   end
 end
