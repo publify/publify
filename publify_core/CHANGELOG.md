@@ -2,16 +2,20 @@
 
 ## Unreleased
 
-* Upgrade to Rails 5.2
+* Upgrade to Rails 5.2 (mvz)
+* Fix logic for rendering excerpts or whole posts (mvz)
+* Drop support for Ruby 2.2 (mvz)
+* Provide FactoryBot factories for general use (mvz)
+* Fix comment preview (mvz)
 
 ## 9.1.0 / 2018-04-19
 
-* Upgrade to Rails 5.1 (#814 by mvz)
-* Update Danish translations (#831 by xy2z)
-* Extend Polish translations (#829 by gergu)
+* Upgrade to Rails 5.1 (mvz)
+* Update Danish translations (xy2z)
+* Extend Polish translations (gergu)
 * Remove outdated import tools (mvz)
-* Fix a bunch of issues (#840 by e-tobi)
-* Fix google analytics tag rendering (#849 by mvz)
+* Fix a bunch of issues (e-tobi)
+* Fix google analytics tag rendering (mvz)
 
 ## 9.0.1
 

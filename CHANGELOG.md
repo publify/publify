@@ -11,12 +11,15 @@ See the changelogs for the individual engines for more details for releases 9.0 
   can be set in config/application.rb (mvz)
 * Fix logic for rendering excerpts or whole posts (mvz)
 * Drop support for Ruby 2.2 (mvz)
+* Fix comment preview (mvz)
 
 ## 9.1.0 / 2018-04-19
 
 * Upgrade to Rails 5.1 (mvz)
+* Update translations (xy2z, gergu)
 * Remove outdated converters (mvz)
 * Fix a bunch of issues (e-tobi)
+* Fix google analytics tag rendering (mvz)
 
 ## 9.0.1
 
@@ -27,14 +30,15 @@ See the changelogs for the individual engines for more details for releases 9.0 
 
 ### Breaking/large changes
 
-* Use Rails' default method of setting secret_key_base in production: Through
+* Use Rails' default method of setting `secret_key_base` in production: Through
   an environment variable. This means you will have to update your production
   environment so this variable is actually set (whithajess)
 * Break out Publify functionality into several engine gems (mvz)
+* Update to Rails 5.0
 
 ### Other changes
 
-* Hide spinner on ajax:complete for article search (nathanallen)
+* Hide spinner on `ajax:complete` for article search (nathanallen)
 * Fix layout for log in form (mvz)
 * Fix spinner for sidebar editor (mvz)
 * Update copyright information and contributor list (mvz)
@@ -60,8 +64,8 @@ See the changelogs for the individual engines for more details for releases 9.0 
 ## 8.3.1
 
 * Fix live search (mvz)
-* Introduce SidebarRegistry to avoid need to preload all sidebars (mvz)
-* Avoid use of String#html_safe (mvz)
+* Introduce `SidebarRegistry` to avoid need to preload all sidebars (mvz)
+* Avoid use of `String#html_safe` (mvz)
 * Fix several cases of double-escaped HTML (mvz)
 * Avoid ambiguous field reference in feedback scopes (apsheronets)
 * Remove spurious error message when starting a new article (mvz)
@@ -82,7 +86,7 @@ See the changelogs for the individual engines for more details for releases 9.0 
 * Replace custom Publify authentication system with Devise (mvz)
 * Replace custom Publify authorization system with CanCanCan (mvz)
 * Remove Profile model (mvz)
-* Remove long-deprecated view_root method for sidebars (mvz)
+* Remove long-deprecated `view_root` method for sidebars (mvz)
 * Provide registration mechanism for themes, allowing them to be stored
   anywhere (mvz)
 
@@ -101,7 +105,7 @@ See the changelogs for the individual engines for more details for releases 9.0 
 * Introduce RuboCop to automatically check style errors (mvz)
 * Fix many RuboCop offenses (mvz)
 * Update Travis config to stop testing on MRI 2.0.0, start testing on 2.3 (mvz)
-* Remove unused #reset_local_cache method (mvz)
+* Remove unused `#reset_local_cache` method (mvz)
 * Load JavaScript asynchronously in supporting layouts (mvz)
 * Fix translations for labels in Devise views (mvz)
 * Update dependencies (mvz)
@@ -116,7 +120,7 @@ See the changelogs for the individual engines for more details for releases 9.0 
 * Remove unused code (mvz)
 * Load JavaScript asynchronously only in production (priit)
 * Run tests as a sub-URL installation by default (mvz)
-* Ensure new sidebars have blog_id set (mvz)
+* Ensure new sidebars have `blog_id` set (mvz)
 * Fix bug in article attachment saving (mvz)
 * Fix broken authors sidebar (mvz)
 
@@ -197,8 +201,8 @@ Matijs van Zuijlen (47):
 * Fix Migrator to match changed ActiveRecord::Migrator
 * Declare params used for assignment permitted in admin
 * Fix use of finders in admin and its specs
-* Move #text_filter= override to where it will be picked up
-* Fix implementation of assert_xml
+* Move `#text_filter=` override to where it will be picked up
+* Fix implementation of `assert_xml`
 * Avoid exception when avatar plugin is undefined
 * Rewrite use of removed assertions
 * Fix tests for layoutless rendering
@@ -222,7 +226,7 @@ Matijs van Zuijlen (47):
 * Fix check for SQLite connection
 * Replace webrat with capybara
 * Replace should contain with should match
-* Fix usage of have_selector matcher
+* Fix usage of `have_selector` matcher
 * Make sidebar generator Rails 3 compliant.
 * Declare assets for precompilation
 * Allow GET to /setup
@@ -238,14 +242,14 @@ Matijs van Zuijlen (47):
 
 Thomas Lecavelier (16):
 * Upgrade rails stack to 4.1.1
-* eader_loading mandatory in conf
+* `eager_loading` mandatory in conf
 * Page caching removed from Rails4.0, return it as a Gem
 * Observers removed from Rails4.0, return it as a Gem
 * WIP deprecated stuff conversion
 * Can't merge proc, you know…
-* default_scope explicitly require a block, now
-* attr_accessible no longer exist. User params.require/permits in controller instead.
-* default_scope for Note
+* `default_scope` explicitly require a block, now
+* `attr_accessible` no longer exist. User `params.require`/`permits` in controller instead.
+* `default_scope` for Note
 * I hate you all… T_T match must specify HTTP method(s)
 * Can't use same alias for 2 differents routes…
 * Misuse of named route + match / via
@@ -262,7 +266,7 @@ regonn (3):
 ## 8.0.2
 
 Alexander Markov (1):
-* .published_on changed; see below
+* `.published_on` changed; see below
 
 Benoit C. Sirois (2):
 * Added some translations
@@ -314,7 +318,7 @@ Soon Van (1):
 
 Thomas Lecavelier (2):
 * Fix #423: stutter article content
-* Excerpt is not editable anymore. Drop it even for full_article_content partial. Close #423
+* Excerpt is not editable anymore. Drop it even for `full_article_content` partial. Close #423
 * Upgrade to Rails 3.2.17
 
 Tor Helland (2):
