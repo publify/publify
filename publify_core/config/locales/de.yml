@@ -465,7 +465,7 @@ de:
         source_email: Email Adresse
         update_settings: Update settings
         users: Benutzer
-        your_blog: Mein Blog
+        your_blog: Ihr Blog
       update:
         error: 'Error: %{messages}'
         success: Configuration updated.

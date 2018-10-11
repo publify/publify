@@ -465,7 +465,7 @@ it:
         source_email: Indirizzo mittente mail
         update_settings: Update settings
         users: Utenti
-        your_blog: 'Tuo blog '
+        your_blog: Tuo blog
       update:
         error: 'Error: %{messages}'
         success: Configurazione aggiornata.
@@ -640,10 +640,10 @@ it:
       comment_markup_help: Aiuto sul markup dei comemnti
       leave_url_email: leave url/email
       preview_comment: Anteprima commento
-      your_blog: il tuo blog
+      your_blog: Tuo blog
       your_email: Tua email
       your_message: Tuo messaggio
-      your_name: 'Tuo nome '
+      your_name: Tuo nome
     comment_preview:
       is_about_to_say: sta per dire
     index:

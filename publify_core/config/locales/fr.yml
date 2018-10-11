@@ -465,7 +465,7 @@ fr:
         source_email: Adresse courriel source
         update_settings: Mettre les paramètres à jour
         users: Utilisateurs
-        your_blog: 'Votre blog '
+        your_blog: Votre blog
       update:
         error: 'Erreur: %{messages}'
         success: Configuration mise à jour.
@@ -640,10 +640,10 @@ fr:
       comment_markup_help: Aide sur le balisage des commentaires
       leave_url_email: laissez votre url/courriel
       preview_comment: Prévisualiser le commentaire
-      your_blog: votre blog
+      your_blog: Votre blog
       your_email: Votre courriel
       your_message: Votre commentaire
-      your_name: 'Votre nom '
+      your_name: Votre nom
     comment_preview:
       is_about_to_say: va dire
     index:
