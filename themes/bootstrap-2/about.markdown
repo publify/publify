@@ -12,7 +12,7 @@ Commercial Share Alike licence.
 
 Please view the README.md for theme customization.
 
-[1]: http://publify.co
-[2]: http://t37.net
+[1]: http://publify.github.io/
+[2]: http://t37.net/
 [3]: http://getbootstrap.com/
-[4]: http://startupstockphotos.com
+[4]: http://startupstockphotos.com/
