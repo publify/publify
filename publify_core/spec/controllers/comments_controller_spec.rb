@@ -5,7 +5,9 @@ require 'rails_helper'
 describe CommentsController, type: :controller do
   let!(:blog) { create(:blog) }
   let(:article) { create(:article) }
-  let(:comment_params) { { body: 'content', author: 'bob', email: 'bob@home', url: 'http://bobs.home/' } }
+  let(:comment_params) do
+    { body: 'content', author: 'bob', email: 'bob@home', url: 'http://bobs.home/' }
+  end
 
   describe '#create' do
     context 'when using regular post' do
@@ -48,6 +50,28 @@ describe CommentsController, type: :controller do
 
       it 'renders the comment partial' do
         expect(response).to render_template('articles/comment')
+      end
+    end
+  end
+
+  describe '#preview' do
+    context 'when using xhr post' do
+      before do
+        post :preview, xhr: true, params: { comment: comment_params, article_id: article.id }
+      end
+
+      it 'assigns a comment with the given parameters' do
+        comment = assigns[:comment]
+        aggregate_failures do
+          expect(comment.author).to eq('bob')
+          expect(comment.body).to eq('content')
+          expect(comment.email).to eq('bob@home')
+          expect(comment.url).to eq('http://bobs.home/')
+        end
+      end
+
+      it 'assigns the article to the comment' do
+        expect(assigns[:comment].article).to eq article
       end
     end
   end
