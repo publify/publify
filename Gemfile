@@ -28,6 +28,9 @@ gem 'non-stupid-digest-assets', '~> 1.0'
 gem 'rake', '~> 12.0'
 
 group :development, :test do
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+
   gem 'capybara', '~> 3.9'
   gem 'factory_bot', '~> 4.11'
   gem 'i18n-tasks', '~> 0.9.25', require: false
@@ -48,9 +51,6 @@ group :development do
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 3.7'
-
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', '~> 10.0'
 end
 
 group :test do
