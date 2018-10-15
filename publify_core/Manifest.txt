@@ -64,7 +64,6 @@ app/controllers/admin/seo_controller.rb
 app/controllers/admin/settings_controller.rb
 app/controllers/admin/sidebar_controller.rb
 app/controllers/admin/tags_controller.rb
-app/controllers/admin/textfilters_controller.rb
 app/controllers/admin/themes_controller.rb
 app/controllers/admin/users_controller.rb
 app/controllers/articles_controller.rb
