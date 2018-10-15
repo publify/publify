@@ -85,14 +85,3 @@ end
 def engine_root
   PublifyCore::Engine.instance.root
 end
-
-# test standard view and all themes
-def with_each_theme
-  yield nil, ''
-  Theme.find_all.each do |theme|
-    theme_dir = theme.path
-    view_path = "#{theme_dir}/views"
-    require "#{theme_dir}/helpers/theme_helper.rb" if File.exist?("#{theme_dir}/helpers/theme_helper.rb")
-    yield theme.name, view_path
-  end
-end

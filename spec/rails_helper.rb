@@ -9,7 +9,7 @@ require File.expand_path('../config/environment', __dir__)
 require 'rspec/rails'
 require 'factory_bot'
 require 'publify_core/testing_support/factories'
-require 'rexml/document'
+require 'publify_core/testing_support/feed_assertions'
 
 class ActionView::TestCase::TestController
   include Rails.application.routes.url_helpers
@@ -31,8 +31,11 @@ RSpec.configure do |config|
   # Test helpers needed for Devise
   config.include Devise::Test::ControllerHelpers, type: :controller
 
+  # Test helpers to check feed contents
+  config.include PublifyCore::TestingSupport::FeedAssertions, type: :controller
+
   config.after :each, type: :controller do
-    raise "Double escaped HTML in text (#{Regexp.last_match(1)})" if response.body =~ /(&lt;[a-z]+)/
+    raise "Double escaped HTML in text (#{Regexp.last_match(1)})" if response.content_type == 'text/html' && response.body =~ /(&lt;[a-z]+)/
   end
 end
 

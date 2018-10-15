@@ -2,9 +2,7 @@
 
 require 'rails_helper'
 
-describe ThemeController, type: :controller do
-  render_views
-
+RSpec.describe ThemeController, type: :controller do
   before { create(:blog, theme: 'plain') }
 
   it 'test_stylesheets' do
