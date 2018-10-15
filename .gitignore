@@ -8,6 +8,7 @@ db/*.sqlite*
 .*.swp
 .*.swo
 .DS_Store
+.byebug_history
 installer/rails_installer.yml
 /public/files
 /public/images/theme
