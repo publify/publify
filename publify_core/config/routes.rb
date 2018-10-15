@@ -133,10 +133,6 @@ Rails.application.routes.draw do
 
     resources :tags, only: [:index, :edit, :create, :update, :destroy], format: false
 
-    # TODO: Work out if post is actually used or not.
-    get 'textfilters/macro_help(/:id)', to: 'textfilters#macro_help', id: nil, format: false
-    post 'textfilters/macro_help(/:id)', to: 'textfilters#macro_help', id: nil, format: false
-
     resources :themes, only: [:index], format: false do
       collection do
         get 'preview'
