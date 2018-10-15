@@ -4,45 +4,55 @@ require 'rails_helper'
 
 RSpec.describe 'comments/_comment.html.erb', type: :view do
   shared_examples_for 'CommentSanitization' do
-    before do
-      @blog = build_stubbed(:blog)
-      @article = build_stubbed(:article, created_at: Time.zone.now, published_at: Time.zone.now, blog: @blog)
-      allow(Article).to receive(:find).and_return(@article)
-      @blog.plugin_avatar = ''
-      @blog.lang = 'en_US'
-
-      base_options = {
+    let(:blog) { build_stubbed(:blog) }
+    let(:article) { build_stubbed(:article, created_at: Time.zone.now, published_at: Time.zone.now, blog: blog) }
+    let(:base_options) do
+      {
         body: 'test foo <script>do_evil();</script>',
         author: 'Bob',
-        article: @article,
+        article: article,
         created_at: Time.zone.now
       }
+    end
+
+    before do
+      blog.plugin_avatar = ''
+      blog.lang = 'en_US'
+
       @comment = Comment.new base_options.merge(comment_options)
 
       allow(@comment).to receive(:id).and_return(1)
       assign(:comment, @comment)
     end
 
-    ['', 'markdown', 'textile', 'smartypants', 'markdown smartypants'].each do |value|
-      it "Should sanitize content rendered with the #{value} textfilter" do
-        @blog.comment_text_filter = value
-        create(value.empty? ? 'none' : value)
+    with_each_theme do |theme, _view_path|
+      context "with theme #{theme}" do
+        before do
+          blog.theme = theme
+        end
 
-        render partial: 'comments/comment', locals: { comment: @comment }
-        expect(rendered).to have_selector('.content')
-        expect(rendered).to have_selector('.author')
+        ['', 'markdown', 'textile', 'smartypants', 'markdown smartypants'].each do |value|
+          it "sanitizes content rendered with the #{value} textfilter" do
+            blog.comment_text_filter = value
+            create(value.empty? ? 'none' : value)
 
-        expect(rendered).not_to have_selector('.content script')
-        expect(rendered).not_to have_selector('.content a:not([rel=nofollow])')
-        # No links with javascript
-        expect(rendered).not_to have_selector('.content a[onclick]')
-        expect(rendered).not_to have_selector('.content a[href^="javascript:"]')
+            render partial: 'comments/comment', locals: { comment: @comment }
+            expect(rendered).to have_selector('.content')
+            expect(rendered).to have_selector('.author')
 
-        expect(rendered).not_to have_selector('.author script')
-        expect(rendered).not_to have_selector('.author a:not([rel=nofollow])')
-        # No links with javascript
-        expect(rendered).not_to have_selector('.author a[onclick]')
-        expect(rendered).not_to have_selector('.author a[href^="javascript:"]')
+            expect(rendered).not_to have_selector('.content script')
+            expect(rendered).not_to have_selector('.content a:not([rel=nofollow])')
+            # No links with javascript
+            expect(rendered).not_to have_selector('.content a[onclick]')
+            expect(rendered).not_to have_selector('.content a[href^="javascript:"]')
+
+            expect(rendered).not_to have_selector('.author script')
+            expect(rendered).not_to have_selector('.author a:not([rel=nofollow])')
+            # No links with javascript
+            expect(rendered).not_to have_selector('.author a[onclick]')
+            expect(rendered).not_to have_selector('.author a[href^="javascript:"]')
+          end
+        end
       end
     end
   end
@@ -121,46 +131,57 @@ RSpec.describe 'comments/_comment.html.erb', type: :view do
   end
 
   shared_examples_for 'CommentSanitizationWithDofollow' do
-    before do
-      @blog = create(:blog)
-      @article = create(:article, created_at: Time.zone.now, published_at: Time.zone.now, blog: @blog)
-      allow(Article).to receive(:find).and_return(@article)
-      @blog.plugin_avatar = ''
-      @blog.lang = 'en_US'
-      @blog.dofollowify = true
-
-      base_options = {
+    let(:blog) { create(:blog) }
+    let(:article) { create(:article, created_at: Time.zone.now, published_at: Time.zone.now, blog: blog) }
+    let(:base_options) do
+      {
         body: 'test foo <script>do_evil();</script>',
-        author: 'Bob', article: @article,
+        author: 'Bob',
+        article: article,
         created_at: Time.zone.now
       }
+    end
+
+    before do
+      blog.plugin_avatar = ''
+      blog.lang = 'en_US'
+      blog.dofollowify = true
+      blog.save
+
       @comment = Comment.new base_options.merge(comment_options)
 
       allow(@comment).to receive(:id).and_return(1)
       assign(:comment, @comment)
     end
 
-    ['', 'markdown', 'textile', 'smartypants', 'markdown smartypants'].each do |value|
-      it "Should sanitize content rendered with the #{value} textfilter" do
-        value == '' ? create(:none) : create(value)
-        @blog.comment_text_filter = value
-        @blog.save
+    with_each_theme do |theme, _view_path|
+      context "with theme #{theme}" do
+        before do
+          blog.theme = theme
+        end
 
-        render partial: 'comments/comment', locals: { comment: @comment }
-        expect(rendered).to have_selector('.content')
-        expect(rendered).to have_selector('.author')
+        ['', 'markdown', 'textile', 'smartypants', 'markdown smartypants'].each do |value|
+          it "sanitizes content rendered with the #{value} textfilter" do
+            value == '' ? create(:none) : create(value)
+            blog.comment_text_filter = value
 
-        expect(rendered).not_to have_selector('.content script')
-        expect(rendered).not_to have_selector('.content a[rel=nofollow]')
-        # No links with javascript
-        expect(rendered).not_to have_selector('.content a[onclick]')
-        expect(rendered).not_to have_selector('.content a[href^="javascript:"]')
+            render partial: 'comments/comment', locals: { comment: @comment }
+            expect(rendered).to have_selector('.content')
+            expect(rendered).to have_selector('.author')
 
-        expect(rendered).not_to have_selector('.author script')
-        expect(rendered).not_to have_selector('.author a[rel=nofollow]')
-        # No links with javascript
-        expect(rendered).not_to have_selector('.author a[onclick]')
-        expect(rendered).not_to have_selector('.author a[href^="javascript:"]')
+            expect(rendered).not_to have_selector('.content script')
+            expect(rendered).not_to have_selector('.content a[rel=nofollow]')
+            # No links with javascript
+            expect(rendered).not_to have_selector('.content a[onclick]')
+            expect(rendered).not_to have_selector('.content a[href^="javascript:"]')
+
+            expect(rendered).not_to have_selector('.author script')
+            expect(rendered).not_to have_selector('.author a[rel=nofollow]')
+            # No links with javascript
+            expect(rendered).not_to have_selector('.author a[onclick]')
+            expect(rendered).not_to have_selector('.author a[href^="javascript:"]')
+          end
+        end
       end
     end
   end
