@@ -26,12 +26,14 @@
   <div class="col-md-2" id="quicktags-block">
     <div id="quicktags" class="pull-right">
       <script type="text/javascript">edToolbar('article_body_and_extended', '<%= @article.text_filter.name %>');</script>
+      <%#= render 'admin/shared/macros' %>
     </div>
   </div>
   <div class="col-md-8">
     <%= text_field 'article', 'title', class: 'form-control', placeholder: t('.title') %>
     <div id="editor">
       <%= text_area('article', 'body_and_extended', {class: 'form-control ', style: 'height: 360px', placeholder: t('.type_your_post'), :"data-widearea" => "enable"}) %>
+      <%#= render 'admin/shared/macros' %>
     </div>
   </div>
 </div>

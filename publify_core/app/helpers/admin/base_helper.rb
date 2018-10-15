@@ -48,6 +48,10 @@ module Admin::BaseHelper
     end
   end
 
+  def macro_help_popup(macro, text)
+    "<a href=\"#{url_for controller: 'textfilters', action: 'macro_help', id: macro.short_name}\" onclick=\"return popup(this, 'Publify Macro Help')\">#{text}</a>"
+  end
+
   def display_pagination(collection, cols, _first = '', _last = '')
     return if collection.count == 0
 
