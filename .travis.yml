@@ -16,9 +16,6 @@ before_script:
   - bundle exec rake db:create db:migrate
 script:
   - bundle exec rake
-  - 'cd $TRAVIS_BUILD_DIR/publify_core && bundle exec rake'
-  - 'cd $TRAVIS_BUILD_DIR/publify_amazon_sidebar && bundle exec rake'
-  - 'cd $TRAVIS_BUILD_DIR/publify_textfilter_code && bundle exec rake'
 
 #after_success:
 #  - bundle exec codeclimate-test-reporter
