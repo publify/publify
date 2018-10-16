@@ -5,14 +5,13 @@ require 'rails_helper'
 RSpec.describe XmlController, type: :controller do
   before do
     create(:blog, base_url: 'http://myblog.net')
-    allow(Trigger).to receive(:fire).and_return(nil)
   end
 
   describe '#sitemap' do
-    render_views
+    let(:article) { create :article }
+    let(:tag) { create :tag }
+
     before do
-      tag = create(:tag)
-      article = create :article
       article.tags = [tag]
       get :sitemap, format: :googlesitemap
     end
@@ -21,8 +20,8 @@ RSpec.describe XmlController, type: :controller do
       assert_response :success
     end
 
-    it 'returns a valid XML response' do
-      assert_xml @response.body
+    it 'includes articles and tags as items' do
+      expect(assigns(:items)).to match_array [article, tag]
     end
   end
 end

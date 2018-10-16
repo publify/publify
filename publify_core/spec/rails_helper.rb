@@ -11,8 +11,8 @@ require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 require 'factory_bot'
 require 'publify_core/testing_support/factories'
-require 'rexml/document'
-require 'feedjira'
+require 'publify_core/testing_support/feed_assertions'
+require 'publify_core/testing_support/upload_fixtures'
 require 'webmock/rspec'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -73,79 +73,15 @@ RSpec.configure do |config|
   # Test helpers needed for Devise
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::IntegrationHelpers, type: :feature
-end
 
-def file_upload(file = 'testfile.txt', mime_type = 'text/plain')
-  Rack::Test::UploadedFile.new(File.join(ActionDispatch::IntegrationTest.fixture_path, file),
-                               mime_type)
+  # Test helpers to check feed contents
+  config.include PublifyCore::TestingSupport::FeedAssertions, type: :view
+  config.include PublifyCore::TestingSupport::FeedAssertions, type: :controller
+
+  # Test helpers for file attachments
+  config.include PublifyCore::TestingSupport::UploadFixtures
 end
 
 def engine_root
   PublifyCore::Engine.instance.root
-end
-
-# test standard view and all themes
-def with_each_theme
-  yield nil, ''
-  Theme.find_all.each do |theme|
-    theme_dir = theme.path
-    view_path = "#{theme_dir}/views"
-    require "#{theme_dir}/helpers/theme_helper.rb" if File.exist?("#{theme_dir}/helpers/theme_helper.rb")
-    yield theme.name, view_path
-  end
-end
-
-# TODO: Clean up use of these Test::Unit style expectations
-def assert_xml(xml)
-  expect(xml).not_to be_empty
-  expect do
-    assert REXML::Document.new(xml)
-  end.not_to raise_error
-end
-
-def assert_atom10(feed, count)
-  parsed_feed = Feedjira::Feed.parse(feed)
-  assert_atom10_feed parsed_feed, count
-end
-
-def assert_atom10_feed(parsed_feed, count)
-  expect(parsed_feed).to be_instance_of Feedjira::Parser::Atom
-  expect(parsed_feed.title).not_to be_nil
-  expect(parsed_feed.entries.count).to eq count
-end
-
-def assert_correct_atom_generator(feed)
-  xml = Nokogiri::XML.parse(feed)
-  generator = xml.css('generator').first
-  expect(generator.content).to eq('Publify')
-  expect(generator['version']).to eq(PublifyCore::VERSION)
-end
-
-def assert_rss20(feed, count)
-  parsed_feed = Feedjira::Feed.parse(feed)
-  assert_rss20_feed parsed_feed, count
-end
-
-def assert_rss20_feed(parsed_feed, count)
-  expect(parsed_feed).to be_instance_of Feedjira::Parser::RSS
-  expect(parsed_feed.version).to eq '2.0'
-  expect(parsed_feed.title).not_to be_nil
-  expect(parsed_feed.entries.count).to eq count
-end
-
-def stub_full_article(time = Time.zone.now, blog: Blog.first)
-  author = build_stubbed(:user, name: 'User Name')
-  text_filter = build(:textile)
-
-  a = build_stubbed(:article,
-                    published_at: time, user: author,
-                    created_at: time, updated_at: time,
-                    title: 'Foo Bar', permalink: 'foo-bar',
-                    blog: blog,
-                    guid: time.hash)
-  allow(a).to receive(:published_comments).and_return([])
-  allow(a).to receive(:resources) { [build(:resource)] }
-  allow(a).to receive(:tags) { [build(:tag)] }
-  allow(a).to receive(:text_filter) { text_filter }
-  a
 end

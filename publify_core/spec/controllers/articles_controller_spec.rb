@@ -32,42 +32,6 @@ RSpec.describe ArticlesController, type: :controller do
       it 'has no meta keywords for a blog without keywords' do
         expect(assigns(:keywords)).to eq('')
       end
-
-      context 'with the view rendered' do
-        render_views
-
-        it 'has good link feed rss' do
-          expect(response.body).to have_selector('head>link[href="http://test.host/articles.rss"]', visible: false)
-        end
-
-        it 'has good link feed atom' do
-          expect(response.body).to have_selector('head>link[href="http://test.host/articles.atom"]', visible: false)
-        end
-
-        it 'has a canonical url' do
-          expect(response.body).to have_selector("head>link[href='#{blog.base_url}/']", visible: false)
-        end
-
-        it 'has good title' do
-          expect(response.body).to have_selector('title', text: 'test blog | test subtitle', visible: false)
-        end
-      end
-    end
-
-    context 'when an article has an excerpt' do
-      render_views
-      let!(:article) { create :article, excerpt: 'foo', body: 'bar' }
-
-      it 'renders a continue reading link' do
-        get :index
-
-        aggregate_failures do
-          expect(response.body).not_to have_text 'bar'
-          expect(response.body).to have_text 'foo'
-          expect(response.body).
-            to have_text I18n.t!('articles.article_excerpt.continue_reading')
-        end
-      end
     end
 
     context 'for a month' do
@@ -83,17 +47,6 @@ RSpec.describe ArticlesController, type: :controller do
       it 'contains some articles' do
         expect(assigns[:articles]).not_to be_nil
         expect(assigns[:articles]).not_to be_empty
-      end
-
-      context 'with the view rendered' do
-        render_views
-        it 'has a canonical url' do
-          expect(response.body).to have_selector("head>link[href='#{blog.base_url}/2004/4']", visible: false)
-        end
-
-        it 'has a good title' do
-          expect(response.body).to have_selector('title', text: 'Archives for test blog', visible: false)
-        end
       end
     end
 
@@ -186,31 +139,6 @@ RSpec.describe ArticlesController, type: :controller do
 
       it { expect(response).to render_template(:search) }
       it { expect(assigns[:articles]).not_to be_nil }
-
-      context 'with the view rendered' do
-        render_views
-        it 'has good feed rss link' do
-          expect(response.body).to have_selector('head>link[href="http://test.host/search/a.rss"]', visible: false)
-        end
-
-        it 'has good feed atom link' do
-          expect(response.body).to have_selector('head>link[href="http://test.host/search/a.atom"]', visible: false)
-        end
-
-        it 'has a canonical url' do
-          expect(response.body).to have_selector("head>link[href='#{blog.base_url}/search/a']", visible: false)
-        end
-
-        it 'has a good title' do
-          expect(response.body).to have_selector('title', text: 'Results for a | test blog', visible: false)
-        end
-
-        it 'has content markdown interpret and without html tag' do
-          expect(response.body).to have_selector('div') do |div|
-            expect(div).to match(%{in markdown format * we * use [ok](http://blog.ok.com) to define a link})
-          end
-        end
-      end
     end
 
     it 'renders feed rss by search' do
@@ -252,13 +180,6 @@ RSpec.describe ArticlesController, type: :controller do
         expect(response).to render_template('live_search')
       end
 
-      context 'with the view rendered' do
-        render_views
-        it 'does not have h3 tag' do
-          expect(response.body).to have_selector('h3')
-        end
-      end
-
       it 'assigns @search the search string' do
         expect(assigns[:search]).to be_equal(controller.params[:q])
       end
@@ -281,34 +202,6 @@ RSpec.describe ArticlesController, type: :controller do
 
       it 'assigns the articles' do
         expect(assigns[:articles]).to match_array articles
-      end
-
-      context 'when rendering' do
-        render_views
-
-        it 'has the correct self-link and title' do
-          expect(response.body).
-            to have_selector("head>link[href='#{blog.base_url}/archives']", visible: false).
-            and have_selector('title', text: 'Archives for test blog', visible: false)
-        end
-
-        it 'shows the current month only once' do
-          expect(response.body).
-            to have_css('h3', count: 1).
-            and have_text I18n.l(articles.first.published_at, format: :letters_month_with_year)
-        end
-      end
-    end
-
-    context 'for an archive with an article with tags' do
-      render_views
-
-      it 'renders correctly' do
-        create :article, keywords: 'foo, bar'
-        get 'archives'
-
-        expect(response.body).to have_text 'foo'
-        expect(response.body).to have_text 'bar'
       end
     end
   end
@@ -334,43 +227,15 @@ RSpec.describe ArticlesController, type: :controller do
         sign_in admin
       end
 
-      describe 'theme rendering' do
-        render_views
-        with_each_theme do |theme, view_path|
-          it "should render template #{view_path}/articles/read" do
-            blog.theme = theme
-            blog.save!
-            get :preview, params: { id: article.id }
-            expect(response).to render_template('articles/read')
-          end
-        end
-      end
-
-      it 'assignses article define with id' do
+      it 'assignes article define with id' do
         get :preview, params: { id: article.id }
         expect(assigns[:article]).to eq(article)
       end
 
-      it 'assignses last article with id like parent_id' do
+      it 'assignes last article with id like parent_id' do
         draft = create(:article, parent_id: article.id)
         get :preview, params: { id: article.id }
         expect(assigns[:article]).to eq(draft)
-      end
-
-      context 'when the article has an excerpt' do
-        render_views
-        let(:article) { create :article, excerpt: 'foo', body: 'bar', user: admin }
-
-        it 'does not render a continue reading link' do
-          get :preview, params: { id: article.id }
-
-          aggregate_failures do
-            expect(response.body).to have_text 'bar'
-            expect(response.body).not_to have_text 'foo'
-            expect(response.body).
-              not_to have_text I18n.t!('articles.article_excerpt.continue_reading')
-          end
-        end
       end
     end
   end
@@ -503,22 +368,6 @@ RSpec.describe ArticlesController, type: :controller do
         end
       end
 
-      context 'when the article has an excerpt' do
-        render_views
-        let(:article) { create :article, excerpt: 'foo', body: 'bar' }
-
-        it 'does not render a continue reading link' do
-          get :redirect, params: { from: "#{article.permalink}.html" }
-
-          aggregate_failures do
-            expect(response.body).to have_text 'bar'
-            expect(response.body).not_to have_text 'foo'
-            expect(response.body).
-              not_to have_text I18n.t!('articles.article_excerpt.continue_reading')
-          end
-        end
-      end
-
       describe 'accessing an article' do
         let!(:article) { create(:article, permalink: 'second-blog-article', published_at: Time.utc(2004, 4, 1)) }
 
@@ -538,65 +387,6 @@ RSpec.describe ArticlesController, type: :controller do
           article = create(:article)
           get :redirect, params: { from: "#{article.permalink}.html" }
           expect(assigns(:keywords)).to eq('')
-        end
-
-        describe 'the resulting page' do
-          render_views
-
-          it 'has good rss feed link' do
-            expect(response.body).to have_selector("head>link[href=\"#{blog.base_url}/#{article.permalink}.html.rss\"]", visible: false)
-          end
-
-          it 'has good atom feed link' do
-            expect(response.body).to have_selector("head>link[href=\"#{blog.base_url}/#{article.permalink}.html.atom\"]", visible: false)
-          end
-
-          it 'has a canonical url' do
-            expect(response.body).to have_selector("head>link[href='#{blog.base_url}/#{article.permalink}.html']", visible: false)
-          end
-
-          it 'has a good title' do
-            expect(response.body).to have_selector('title', text: 'A big article | test blog', visible: false)
-          end
-        end
-      end
-
-      # TODO: Move out of permalink config context
-      describe 'theme rendering' do
-        render_views
-
-        let!(:article) { create(:article, permalink: 'second-blog-article', published_at: Time.utc(2004, 4, 1)) }
-
-        with_each_theme do |theme, _view_path|
-          context "for theme #{theme}" do
-            before do
-              blog.theme = theme
-              blog.save!
-            end
-
-            it 'renders without errors when no comments or trackbacks are present' do
-              get :redirect, params: { from: "#{article.permalink}.html" }
-              expect(response).to be_successful
-            end
-
-            it 'renders without errors when recaptcha is enabled' do
-              Recaptcha.configure do |config|
-                config.site_key = 'YourAPIkeysHere_yyyyyyyyyyyyyyyyy'
-                config.secret_key = 'YourAPIkeysHere_xxxxxxxxxxxxxxxxx'
-              end
-              blog.use_recaptcha = true
-              blog.save!
-              get :redirect, params: { from: "#{article.permalink}.html" }
-              expect(response).to be_successful
-            end
-
-            it 'renders without errors when comments and trackbacks are present' do
-              create :trackback, article: article
-              create :comment, article: article
-              get :redirect, params: { from: "#{article.permalink}.html" }
-              expect(response).to be_successful
-            end
-          end
         end
       end
 
@@ -642,33 +432,6 @@ RSpec.describe ArticlesController, type: :controller do
         expect { get :redirect, params: { from: "bar/#{article.permalink}" } }.
           to raise_error ActiveRecord::RecordNotFound
       end
-    end
-
-    context 'password protected' do
-      render_views
-      let!(:blog) { create(:blog, permalink_format: '/%title%.html') }
-      let!(:article) { create(:article, password: 'password') }
-
-      it 'article alone should be password protected' do
-        get :redirect, params: { from: "#{article.permalink}.html" }
-        expect(response.body).to have_selector('input[id="article_password"]', count: 1)
-      end
-    end
-  end
-
-  describe '#check_password' do
-    render_views
-    let!(:blog) { create(:blog, permalink_format: '/%title%.html') }
-    let!(:article) { create(:article, password: 'password') }
-
-    it 'shows article when given correct password' do
-      get :check_password, xhr: true, params: { article: { id: article.id, password: article.password } }
-      expect(response.body).not_to have_selector('input[id="article_password"]')
-    end
-
-    it 'shows password form when given incorrect password' do
-      get :check_password, xhr: true, params: { article: { id: article.id, password: 'wrong password' } }
-      expect(response.body).to have_selector('input[id="article_password"]')
     end
   end
 end

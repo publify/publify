@@ -24,7 +24,7 @@ describe Admin::ResourcesController, type: :controller do
   end
 
   describe '#destroy' do
-    let(:uploaded_file) { fixture_file_upload('testfile.txt', 'text/plain') }
+    let(:uploaded_file) { file_upload('testfile.txt', 'text/plain') }
 
     it 'redirects to the index' do
       res_id = create(:resource, upload: uploaded_file).id
@@ -45,7 +45,7 @@ describe Admin::ResourcesController, type: :controller do
     end
 
     context 'when uploading a text file' do
-      let(:upload) { fixture_file_upload('testfile.txt', 'text/plain') }
+      let(:upload) { file_upload('testfile.txt', 'text/plain') }
 
       it 'creates a new Resource' do
         expect { post :upload, params: { upload: upload } }.
@@ -67,7 +67,7 @@ describe Admin::ResourcesController, type: :controller do
     end
 
     context 'when uploading an image file' do
-      let(:upload) { fixture_file_upload('testfile.png', 'image/png') }
+      let(:upload) { file_upload('testfile.png', 'image/png') }
 
       it 'creates a new Resource' do
         expect { post :upload, params: { upload: upload } }.
@@ -89,7 +89,7 @@ describe Admin::ResourcesController, type: :controller do
     end
 
     context 'when attempting to upload a dangerous svg' do
-      let(:upload) { fixture_file_upload('exploit.svg', 'image/svg') }
+      let(:upload) { file_upload('exploit.svg', 'image/svg') }
 
       it 'does not create a new image Resource' do
         expect { post :upload, params: { upload: upload } }.
@@ -112,7 +112,7 @@ describe Admin::ResourcesController, type: :controller do
     end
 
     context 'when attempting to upload a fake png with a txt extension' do
-      let(:upload) { fixture_file_upload('testfile.txt', 'image/png') }
+      let(:upload) { file_upload('testfile.txt', 'image/png') }
 
       it 'does not create a new fake image Resource' do
         expect { post :upload, params: { upload: upload } }.
@@ -135,7 +135,7 @@ describe Admin::ResourcesController, type: :controller do
     end
 
     context 'when attempting to upload a fake png with a png extension' do
-      let(:upload) { fixture_file_upload('fakepng.png', 'image/png') }
+      let(:upload) { file_upload('fakepng.png', 'image/png') }
 
       it 'does not create a new fake image Resource' do
         expect { post :upload, params: { upload: upload } }.

@@ -10,9 +10,9 @@ describe 'articles/index_rss_feed.rss.builder', type: :view do
     let!(:blog) { create :blog }
 
     before do
-      article1 = stub_full_article(1.minute.ago)
+      article1 = create :full_article, published_at: 1.minute.ago
       article1.body = '&eacute;coute!'
-      article2 = stub_full_article(2.minutes.ago)
+      article2 = create :full_article, published_at: 2.minutes.ago
       article2.body = 'is 4 < 2? no!'
       assign(:articles, [article1, article2])
       render
@@ -31,7 +31,7 @@ describe 'articles/index_rss_feed.rss.builder', type: :view do
     let(:blog) { create :blog }
 
     before do
-      @article = stub_full_article(blog: blog)
+      @article = create :full_article, blog: blog
       @article.body = 'public info'
       @article.extended = 'and more'
       assign(:articles, [@article])
@@ -115,7 +115,7 @@ describe 'articles/index_rss_feed.rss.builder', type: :view do
 
   describe 'rendering a password protected article' do
     before do
-      @article = stub_full_article(blog: blog)
+      @article = create :full_article, blog: blog
       @article.body = "shh .. it's a secret!"
       @article.extended = 'even more secret!'
       allow(@article).to receive(:password).and_return('password')
@@ -154,7 +154,7 @@ describe 'articles/index_rss_feed.rss.builder', type: :view do
     let(:blog) { create :blog }
 
     before do
-      @article = stub_full_article(blog: blog)
+      @article = create :full_article, blog: blog
       @article.permalink = 'ルビー'
       assign(:articles, [@article])
 

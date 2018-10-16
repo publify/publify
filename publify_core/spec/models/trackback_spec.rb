@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'support/dns_mock'
+require 'publify_core/testing_support/dns_mock'
 
 describe Trackback, 'With the various trackback filters loaded and DNS mocked out appropriately', type: :model do
   let(:article) { create(:article) }
