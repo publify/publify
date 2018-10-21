@@ -2,9 +2,9 @@
 
 **The Ruby on Rails publishing software formerly known as Typo**
 
-[![Build Status](https://travis-ci.org/publify/publify.png?branch=master)](https://travis-ci.org/publify/publify)
-[![Code Climate](https://codeclimate.com/github/publify/publify.png)](https://codeclimate.com/github/publify/publify)
-[![Dependency Status](https://gemnasium.com/publify/publify.png)](https://gemnasium.com/publify/publify)
+[![Build Status](https://travis-ci.org/publify/publify.svg?branch=master)](https://travis-ci.org/publify/publify)
+[![Code Climate](https://codeclimate.com/github/publify/publify.svg)](https://codeclimate.com/github/publify/publify)
+[![Dependency Status](https://gemnasium.com/publify/publify.svg)](https://gemnasium.com/publify/publify)
 [![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com)
 
 ## What's Publify?
