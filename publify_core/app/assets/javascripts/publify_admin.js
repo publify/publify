@@ -22,7 +22,6 @@
 //= require datetimepicker
 //= require bootstrap
 //= require quicktags
-//= require widearea
 //= require tagmanager
 //= require typeahead
 //= require sidebar
@@ -51,14 +50,6 @@ function autosave_request(e) {
         data: $("#article_form").serialize()});
     }, 5000)
   });
-}
-
-function set_widerea(element) {
-  if ($("#article_id").val() == "") {
-    wideArea().clearData(element);
-  }
-
-  wideArea();
 }
 
 function tag_manager() {
@@ -115,9 +106,7 @@ $(document).ready(function() {
   $('#article_form').each(function(e){autosave_request(e)});
   $('#article_form').submit(function(e){save_article_tags()});
   $('#article_form').each(function(e){tag_manager()});
-  $('#article_form').each(function(e){set_widerea($('#article_body_and_extended'))});
   $('#article_body_and_extended').each(function(e){set_savebar()});
-  $('#page_form').each(function(e){set_widerea($('#page_body'))});
 
   // DatePickers
   $('.datepicker').each(function() {
