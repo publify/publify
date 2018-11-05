@@ -34,7 +34,7 @@ group :development, :test do
   gem 'capybara', '~> 3.9'
   gem 'factory_bot', '~> 4.11'
   gem 'i18n-tasks', '~> 0.9.25', require: false
-  gem 'pry', '~> 0.11.3'
+  gem 'pry', '~> 0.12.0'
   gem 'pry-rails', '~> 0.3.4'
   gem 'rspec-rails', '~> 3.4'
   gem 'simplecov', '~> 0.16.1', require: false
