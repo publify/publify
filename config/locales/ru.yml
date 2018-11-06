@@ -3,6 +3,8 @@ ru:
   articles:
     comment_counter:
       comments:
+        few: 'Комментариев: %{count}'
+        many: 'Комментариев: %{count}'
         one: 1 комментарий
         other: 'Комментариев: %{count}'
         zero: Нет комментариев

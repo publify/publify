@@ -3,6 +3,7 @@ lt:
   articles:
     comment_counter:
       comments:
+        few: "%{count} Komentarai"
         one: 1 Komentaras
         other: "%{count} Komentarai"
         zero: no comments

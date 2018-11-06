@@ -37,8 +37,8 @@ da:
       form:
         allow_comments: Tillad kommentarer
         allow_comments_status:
-          one: aktiveret
-          zero: disabled
+          disabled: disabled
+          enabled: aktiveret
         allowed_comments_html: Comments are %{allow_comment}
         article_type: Article type
         cancel: Anuller

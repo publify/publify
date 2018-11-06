@@ -6,7 +6,7 @@ es-MX:
     confirm:
       admin: admin
       dont_lose_the_mail_sent: No pierda el correo enviado a %{email} o no podr&aacute; volver a acceder en el futuro
-      login: Login
+      login: 'Login: %{login}'
       proceed_to: Proceed to %{link}
       success: You have successfully signed up.
     create_account: Create an account
@@ -37,8 +37,8 @@ es-MX:
       form:
         allow_comments: Se permiten comentarios
         allow_comments_status:
-          one: enabled
-          zero: disabled
+          disabled: disabled
+          enabled: enabled
         allowed_comments_html: Comments are %{allow_comment}
         article_type: Article type
         cancel: Cancelar

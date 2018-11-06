@@ -3,6 +3,8 @@ pl:
   articles:
     comment_counter:
       comments:
+        few: "%{count} komentarzy"
+        many: "%{count} komentarzy"
         one: 1 komentarz
         other: "%{count} komentarzy"
         zero: brak komentarzy

@@ -3,6 +3,7 @@ ro:
   articles:
     comment_counter:
       comments:
+        few: "%{count} comentarii"
         one: 1 comentariu
         other: "%{count} comentarii"
         zero: no comentarii
