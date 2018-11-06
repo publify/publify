@@ -6,7 +6,7 @@ de:
     confirm:
       admin: admin
       dont_lose_the_mail_sent: Don't lose the mail sent at %{email} or you won't be able to login anymore
-      login: Login
+      login: 'Login: %{login}'
       proceed_to: Proceed to %{link}
       success: You have successfully signed up.
     create_account: Create an account
@@ -37,8 +37,8 @@ de:
       form:
         allow_comments: Kommentare erlauben
         allow_comments_status:
-          one: enabled
-          zero: disabled
+          disabled: disabled
+          enabled: enabled
         allowed_comments_html: Comments are %{allow_comment}
         article_type: Article type
         cancel: Abbrechen

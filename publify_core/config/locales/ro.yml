@@ -37,8 +37,8 @@ ro:
       form:
         allow_comments: Se permit comentarii
         allow_comments_status:
-          one: enabled
-          zero: disabled
+          disabled: disabled
+          enabled: enabled
         allowed_comments_html: Comments are %{allow_comment}
         article_type: Article type
         cancel: Anulare
@@ -104,43 +104,52 @@ ro:
         write_a_post: write a post
       welcome:
         approved_count:
+          few: "%{count} approved"
           one: 1 approved
           other: "%{count} approved"
           zero: no approved
         articles_and_comments_count_since: "%{articles_count} articles and %{comments_count} comments were posted since your last connexion"
         articles_count:
+          few: "%{count} articles"
           one: 1 article
           other: "%{count} articles"
           zero: no article
         comments_count:
+          few: "%{count} comments"
           one: 1 comment
           other: "%{count} comments"
           zero: fără comentarii
         content: Content
         drafts_count:
+          few: "%{count} drafts"
           one: 1 draft
           other: "%{count} drafts"
           zero: no draft
         feedback: Feedback
         notes_count:
+          few: "%{count} notes"
           one: 1 note
           other: "%{count} notes"
           zero: no note
         pages_count:
+          few: "%{count} pages"
           one: 1 page
           other: "%{count} pages"
           zero: no page
         running_publify: You're running Publify %{version}
         spam_count:
+          few: "%{count} spam"
           one: 1 spam
           other: "%{count} spam"
           zero: no spam
         today: Today
         unconfirmed_count:
+          few: "%{count} unconfirmed"
           one: 1 unconfirmed
           other: "%{count} unconfirmed"
           zero: no unconfirmed
         your_articles_count:
+          few: "%{count} articles writen by you"
           one: 1 article writen by you
           other: "%{count} articles writen by you"
           zero: no article writen by you
@@ -163,10 +172,12 @@ ro:
         success_deleted: Deleted %{count} item(s)
         success_deleted_spam: All spam have been deleted
         success_mark_as_ham:
+          few: Marked %{count} items as Ham
           one: Marked 1 item as Ham
           other: Marked %{count} items as Ham
           zero: No item selected to mark as Ham
         success_mark_as_spam:
+          few: Marked %{count} items as Spam
           one: Marked 1 item as Spam
           other: Marked %{count} items as Spam
           zero: No item selected to mark as Spam
@@ -226,6 +237,7 @@ ro:
         information: Informații
         may_take_a_moment: ar putea să dureze puțin
         migration_pending:
+          few: There are %{count} migrations pending.
           one: There is one migration pending.
           other: There are %{count} migrations pending.
         migrations: Migrations
@@ -626,11 +638,13 @@ ro:
       continue_reading: Continue reading
     article_links:
       comments:
+        few: "%{count} comentarii"
         one: 1 comentariu
         other: "%{count} comentarii"
         zero: no comentarii
       tags: Tags
       trackbacks:
+        few: "%{count} trackbacks"
         one: 1 trackback
         other: "%{count} trackbacks"
         zero: no trackbacks

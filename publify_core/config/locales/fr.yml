@@ -6,7 +6,7 @@ fr:
     confirm:
       admin: l'administration
       dont_lose_the_mail_sent: Ne perdez pas l'email que nous venons de vous envoyer à l'adresse %{email} ou vous ne pourrez plus vous connecter à l'application
-      login: Identifiant
+      login: 'Identifiant: %{login}'
       proceed_to: Allez sur %{link}
       success: You have successfully signed up.
     create_account: Créer un compte
@@ -37,8 +37,8 @@ fr:
       form:
         allow_comments: Autoriser les commentaires
         allow_comments_status:
-          one: activés
-          zero: désactivés
+          disabled: désactivés
+          enabled: activés
         allowed_comments_html: Les commentaires sont %{allow_comment}
         article_type: Type d'article
         cancel: Annuler

@@ -37,8 +37,8 @@ pl:
       form:
         allow_comments: Zezwól na dodawanie komentarzy
         allow_comments_status:
-          one: włączone
-          zero: wyłączone
+          disabled: wyłączone
+          enabled: włączone
         allowed_comments_html: Komentarze są %{allow_comment}
         article_type: Typ artykułu
         cancel: Anuluj
@@ -104,43 +104,61 @@ pl:
         write_a_post: utworzyć wpis
       welcome:
         approved_count:
+          few: "%{count} zaakceptowane"
+          many: "%{count} zaakceptowane"
           one: 1 zaakceptowany
           other: "%{count} zaakceptowane"
           zero: brak zaakceptowanych
         articles_and_comments_count_since: "%{articles_count} artykułów i %{comments_count} komentarzy zostało opublikowanych od twojego ostaniego połączenia"
         articles_count:
+          few: "%{count} artykuły"
+          many: "%{count} artykuły"
           one: 1 artykuł
           other: "%{count} artykuły"
           zero: brak artykułów
         comments_count:
+          few: "%{count} komentarze"
+          many: "%{count} komentarze"
           one: 1 komentarz
           other: "%{count} komentarze"
           zero: brak komentarzy
         content: Treść
         drafts_count:
+          few: "%{count} szkice"
+          many: "%{count} szkice"
           one: 1 szkic
           other: "%{count} szkice"
           zero: brak szkiców
         feedback: Komentarze
         notes_count:
+          few: "%{count} notatki"
+          many: "%{count} notatki"
           one: 1 notatka
           other: "%{count} notatki"
           zero: brak notatek
         pages_count:
+          few: "%{count} strony"
+          many: "%{count} strony"
           one: 1 strona
           other: "%{count} strony"
           zero: brak stron
         running_publify: Działasz na Publify %{version}
         spam_count:
+          few: "%{count} spam"
+          many: "%{count} spam"
           one: 1 spam
           other: "%{count} spam"
           zero: brak spamu
         today: Dziś
         unconfirmed_count:
+          few: "%{count} niepotwierdzone"
+          many: "%{count} niepotwierdzone"
           one: 1 niepotwierdzony
           other: "%{count} niepotwierdzone"
           zero: brak niepotwierdzonych
         your_articles_count:
+          few: "%{count} artykuły napisane przez ciebie"
+          many: "%{count} artykuły napisane przez ciebie"
           one: 1 artykuł napisany przez ciebie
           other: "%{count} artykuły napisane przez ciebie"
           zero: brak artykułów napisanych przez ciebie
@@ -163,10 +181,14 @@ pl:
         success_deleted: Usunięto %{count} element(ów)
         success_deleted_spam: Cały spam został usunięty
         success_mark_as_ham:
+          few: Oznaczono %{count} elementów jako dopuszczone do publikacji
+          many: Oznaczono %{count} elementów jako dopuszczone do publikacji
           one: Oznacz 1 element jako dopuszczony do publikacji
           other: Oznaczono %{count} elementów jako dopuszczone do publikacji
           zero: Brak elementów oznaczonych jako dopusczone do publikacji
         success_mark_as_spam:
+          few: Oznaczono %{count} elementów jako spam
+          many: Oznaczono %{count} elementów jako spam
           one: Oznaczono 1 element jako spam
           other: Oznaczono %{count} elementów jako spam
           zero: Brak elementów oznaczonych jako spam
@@ -226,6 +248,8 @@ pl:
         information: Informacja
         may_take_a_moment: może zająć dłuższą chwilę
         migration_pending:
+          few: "%{count} oczekujących migracji."
+          many: "%{count} oczekujących migracji."
           one: Jedna oczekująca migracja.
           other: "%{count} oczekujących migracji."
         migrations: Migracje
@@ -626,11 +650,15 @@ pl:
       continue_reading: Continue reading
     article_links:
       comments:
+        few: "%{count} comments"
+        many: "%{count} comments"
         one: 1 comment
         other: "%{count} comments"
         zero: no comments
       tags: Tags
       trackbacks:
+        few: "%{count} trackbacks"
+        many: "%{count} trackbacks"
         one: 1 trackback
         other: "%{count} trackbacks"
         zero: no trackbacks

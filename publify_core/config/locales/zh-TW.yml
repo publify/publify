@@ -37,8 +37,8 @@ zh-TW:
       form:
         allow_comments: 允許評論
         allow_comments_status:
-          one: enabled
-          zero: disabled
+          disabled: disabled
+          enabled: enabled
         allowed_comments_html: Comments are %{allow_comment}
         article_type: Article type
         cancel: 取消

@@ -6,7 +6,7 @@ ru:
     confirm:
       admin: admin
       dont_lose_the_mail_sent: Не потеряйте письмо, высланное на %{email}, или вы больше не сможете зайти
-      login: 'логин: %{user}'
+      login: 'логин: %{login}'
       proceed_to: Proceed to %{link}
       success: You have successfully signed up.
     create_account: Создать учетную запись
@@ -37,8 +37,8 @@ ru:
       form:
         allow_comments: Разрешить комментарии
         allow_comments_status:
-          one: enabled
-          zero: выключены
+          disabled: выключены
+          enabled: enabled
         allowed_comments_html: Comments are %{allow_comment}
         article_type: Article type
         cancel: Отменить
@@ -104,43 +104,61 @@ ru:
         write_a_post: написать пост
       welcome:
         approved_count:
+          few: "%{count} approved"
+          many: "%{count} approved"
           one: 1 approved
           other: "%{count} approved"
           zero: no approved
         articles_and_comments_count_since: "%{articles_count} постов и %{comments_count} комментариев получено с вашего последнего посещения"
         articles_count:
+          few: 'постов: %{count}'
+          many: 'постов: %{count}'
           one: 1 пост
           other: 'постов: %{count}'
           zero: нет постов
         comments_count:
+          few: 'комментариев: %{count}'
+          many: 'комментариев: %{count}'
           one: 1 комментарий
           other: 'комментариев: %{count}'
           zero: нет комментариев
         content: Content
         drafts_count:
+          few: 'черновиков: %{count}'
+          many: 'черновиков: %{count}'
           one: 1 черновик
           other: 'черновиков: %{count}'
           zero: нет черновиков
         feedback: Комментарии
         notes_count:
+          few: 'заметок: %{count}'
+          many: 'заметок: %{count}'
           one: 1 заметка
           other: 'заметок: %{count}'
           zero: нет заметок
         pages_count:
+          few: 'страниц: %{count}'
+          many: 'страниц: %{count}'
           one: 1 страница
           other: 'страниц: %{count}'
           zero: нет страниц
         running_publify: Работает Publify %{version}
         spam_count:
+          few: "%{count} spam"
+          many: "%{count} spam"
           one: 1 spam
           other: "%{count} spam"
           zero: no spam
         today: Сегодня
         unconfirmed_count:
+          few: "%{count} unconfirmed"
+          many: "%{count} unconfirmed"
           one: 1 unconfirmed
           other: "%{count} unconfirmed"
           zero: no unconfirmed
         your_articles_count:
+          few: 'постов написанных вами: %{count}'
+          many: 'постов написанных вами: %{count}'
           one: 1 пост написан вами
           other: 'постов написанных вами: %{count}'
           zero: нет постов написанных вами
@@ -163,10 +181,14 @@ ru:
         success_deleted: Deleted %{count} item(s)
         success_deleted_spam: All spam have been deleted
         success_mark_as_ham:
+          few: Marked %{count} items as Ham
+          many: Marked %{count} items as Ham
           one: Marked 1 item as Ham
           other: Marked %{count} items as Ham
           zero: No item selected to mark as Ham
         success_mark_as_spam:
+          few: Marked %{count} items as Spam
+          many: Marked %{count} items as Spam
           one: Marked 1 item as Spam
           other: Marked %{count} items as Spam
           zero: No item selected to mark as Spam
@@ -226,6 +248,8 @@ ru:
         information: Information
         may_take_a_moment: may take a moment
         migration_pending:
+          few: There are %{count} migrations pending.
+          many: There are %{count} migrations pending.
           one: There is one migration pending.
           other: There are %{count} migrations pending.
         migrations: Migrations
@@ -626,11 +650,15 @@ ru:
       continue_reading: Continue reading
     article_links:
       comments:
+        few: 'Комментариев: %{count}'
+        many: 'Комментариев: %{count}'
         one: 1 комментарий
         other: 'Комментариев: %{count}'
         zero: Нет комментариев
       tags: Tags
       trackbacks:
+        few: "%{count} trackbacks"
+        many: "%{count} trackbacks"
         one: 1 trackback
         other: "%{count} trackbacks"
         zero: no trackbacks

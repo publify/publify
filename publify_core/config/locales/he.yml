@@ -6,7 +6,7 @@ he:
     confirm:
       admin: admin
       dont_lose_the_mail_sent: Don't lose the mail sent at %{email} or you won't be able to login anymore
-      login: התחבר
+      login: "%{login} התחבר"
       proceed_to: Proceed to %{link}
       success: You have successfully signed up.
     create_account: Create an account
@@ -37,8 +37,8 @@ he:
       form:
         allow_comments: אפשר תגובות
         allow_comments_status:
-          one: מאופשר
-          zero: disabled
+          disabled: disabled
+          enabled: מאופשר
         allowed_comments_html: Comments are %{allow_comment}
         article_type: Article type
         cancel: בטל
@@ -114,7 +114,7 @@ he:
           zero: אין כתבות
         comments_count:
           one: תגובה 1
-          other: "%d תגובות"
+          other: "%{count} תגובות"
           zero: אין תגובות
         content: תוכן
         drafts_count:
@@ -184,7 +184,7 @@ he:
         action_or_other_html: "%{first_action} או %{second_action}"
         author: Author
         cancel: Cancel
-        comments_for_html: תגובות עבור %s
+        comments_for_html: תגובות עבור %{article_link}
         edit_a_comment: Edit a comment
         email: Email
         save: שמור

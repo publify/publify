@@ -6,7 +6,7 @@ pt-BR:
     confirm:
       admin: admin
       dont_lose_the_mail_sent: Não perca o e-mail enviado para %{email} ou não será mais possível entrar no sistema
-      login: 'Entrar: %{user}'
+      login: 'Entrar: %{login}'
       proceed_to: Continuar para %{link}
       success: You have successfully signed up.
     create_account: Criar conta
@@ -37,8 +37,8 @@ pt-BR:
       form:
         allow_comments: Permitir comentários
         allow_comments_status:
-          one: habilitado
-          zero: desabilitado
+          disabled: desabilitado
+          enabled: habilitado
         allowed_comments_html: Comentários estão %{allow_comment}
         article_type: Tipo do Artigo
         cancel: Cancelar
@@ -94,7 +94,7 @@ pt-BR:
         welcome_back: Bem-vindo(a) novamente, %{user_name}!
       overview:
         change_your_blog_presentation: alterar a apresentação do seu blog
-        customization_explain_html: Você também pode aventurar-se como design, %{theme_link} ou %{sidebar_link.}
+        customization_explain_html: Você também pode aventurar-se como design, %{theme_link} ou %{sidebar_link}.
         dashboard_explain_html: Aqui você tem uma visão rápida sobre o que acontece no seu Publify e também o que você pode fazer. Talvez você queira %{available_actions}.
         enable_plugins: ativar plugins
         help_explain_html: Se precisar de alguma ajuda, %{doc_link}.

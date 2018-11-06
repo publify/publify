@@ -6,7 +6,7 @@ nl:
     confirm:
       admin: admin
       dont_lose_the_mail_sent: Verlies de e-mail verzonden naar %{email}, want anders kun je niet meer inloggen
-      login: inloggen
+      login: 'Login: %{login}'
       proceed_to: Ga door naar %{link}
       success: Je bent succesvol aangemeld.
     create_account: Maak een account aan
@@ -37,8 +37,8 @@ nl:
       form:
         allow_comments: Sta reacties toe
         allow_comments_status:
-          one: aangezet
-          zero: uitgezet
+          disabled: uitgezet
+          enabled: aangezet
         allowed_comments_html: Comments are %{allow_comment}
         article_type: Article type
         cancel: Terug
@@ -110,7 +110,7 @@ nl:
         articles_and_comments_count_since: "%{articles_count} artikels en %{comments_count} commentaren zijn geplaatst sinds je laatste bezoek"
         articles_count:
           one: 1 artikel
-          other: "%d artikelen"
+          other: "%{count} artikelen"
           zero: geen artikelen
         comments_count:
           one: 1 comment

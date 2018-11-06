@@ -98,7 +98,7 @@
             </div>
             <div class="control-group">
               <p>
-                <%= t('.allowed_comments_html', allow_comment: content_tag(:strong, t('.allow_comments_status', count: @article.allow_comments ? 1 : 0))) %>
+                <%= t('.allowed_comments_html', allow_comment: content_tag(:strong, @article.allow_comments? ? t('.allow_comments_status.enabled') : t('.allow_comments_status.disabled'))) %>
                 <%= toggle_element('conversation') %>
               </p>
               <div id="conversation" class="collapse">

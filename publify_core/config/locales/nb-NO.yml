@@ -6,7 +6,7 @@ nb-NO:
     confirm:
       admin: admin
       dont_lose_the_mail_sent: Ikke mist eposten som ble sendt %{email}. Uten passordet vil du ikke kunne logge inn senere
-      login: Logg inn
+      login: 'Login: %{login}'
       proceed_to: Fortsett til %{link}
       success: You have successfully signed up.
     create_account: Opprett konto
@@ -37,8 +37,8 @@ nb-NO:
       form:
         allow_comments: Tillat kommentarer
         allow_comments_status:
-          one: aktivert
-          zero: deaktivert
+          disabled: deaktivert
+          enabled: aktivert
         allowed_comments_html: Kommentarer er %{allow_comment}
         article_type: Artikkeltype
         cancel: Avbryt
