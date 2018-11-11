@@ -80,11 +80,19 @@ module Admin::BaseHelper
     blog.has_twitter_configured? && user.has_twitter_configured?
   end
 
-  def menu_item(name, url)
+  def main_menu_item(name, url)
     if current_page? url
-      content_tag(:li, link_to(name, '#'), class: 'active')
+      content_tag(:li, link_to(name, '#', class: 'nav-link'), class: 'nav-item active')
     else
-      content_tag(:li, link_to(name, url))
+      content_tag(:li, link_to(name, url, class: 'nav-link'), class: 'nav-item')
+    end
+  end
+
+  def dropdown_menu_item(name, url)
+    if current_page? url
+      link_to(name, '#', class: 'dropdown-item active')
+    else
+      link_to(name, url, class: 'dropdown-item')
     end
   end
 end
