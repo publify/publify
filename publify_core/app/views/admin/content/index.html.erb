@@ -13,11 +13,11 @@
   <% end %>
 
   <p>
-    <%= link_to(t('.all_articles'), {action: 'index'}, {class: 'label label-default'}) %>
-    <%= link_to(t('.published'), {action: 'index', search: {state: 'published'}}, {class: 'label label-success'}) %>
-    <%= link_to(t('.withdrawn'), {action: 'index', search: {state: 'withdrawn'}}, {class: 'label label-danger'}) %>
-    <%= link_to(t('.drafts'), {action: 'index', search: {state: 'drafts'}}, {class: 'label label-info'}) %>
-    <%= link_to(t('.publication_pending'), {action: 'index', search: {state: 'pending'}}, {class: 'label label-warning'}) %>
+    <%= link_to(t('.all_articles'), {action: 'index'}, {class: 'badge badge-secondary'}) %>
+    <%= link_to(t('.published'), {action: 'index', search: {state: 'published'}}, {class: 'badge badge-success'}) %>
+    <%= link_to(t('.withdrawn'), {action: 'index', search: {state: 'withdrawn'}}, {class: 'badge badge-danger'}) %>
+    <%= link_to(t('.drafts'), {action: 'index', search: {state: 'drafts'}}, {class: 'badge badge-info'}) %>
+    <%= link_to(t('.publication_pending'), {action: 'index', search: {state: 'pending'}}, {class: 'badge badge-warning'}) %>
   </p>
 
   <div class="card">
