@@ -20,8 +20,8 @@
     <%= link_to(t('.publication_pending'), {action: 'index', search: {state: 'pending'}}, {class: 'label label-warning'}) %>
   </p>
 
-  <div class="panel panel-default">
-    <div class="panel-heading">
+  <div class="card">
+    <div class="card-body">
       <div class="pull-right">
         <div class="form-group">
           <%= select_tag('search[user_id]', options_from_collection_for_select(User.all, 'id', 'name'), {prompt: t('.select_an_author'), class: 'form-control'}) %>

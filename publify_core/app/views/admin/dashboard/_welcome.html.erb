@@ -1,10 +1,9 @@
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title"><%= t(".today") %></h3>
-  </div>
-  <div class="panel-body">
+<div class="card">
+  <h3 class="card-header"><%= t(".today") %></h3>
+  <div class="card-body">
     <p><%= t(".articles_and_comments_count_since", articles_count: @newposts_count, comments_count: @newcomments_count) %></p>
     <p><%= t(".running_publify", version: PublifyCore::VERSION) %> <%= @version_message %></p>
+    <div class="row">
     <div class='col-md-6'>
       <% if can? :index, 'admin/content' %>
         <h4 class='page-header'><%= t(".content") %></h4>
@@ -23,6 +22,7 @@
         <p><%= link_to(t('.unconfirmed_count', count: @unconfirmed), controller: 'admin/feedback', only: 'unapproved') %></p>
         <p><%= link_to(t(".spam_count", count: @statspam), controller: 'admin/feedback', only: 'spam') %></p>
       <% end %>
+    </div>
     </div>
   </div>
 </div>

@@ -1,8 +1,8 @@
 <%= hidden_field_tag "confirmed", params[:confirmed] %>
 <%= hidden_field_tag "published", params[:published] %>
 
-<div class="panel panel-default">
-  <div class="panel-heading">
+<div class="card">
+  <div class="card-body">
     <div class='form-group'>
       <button name='<%= "bulkop_#{position}" %>' class="btn btn-success btn-sm" value='Mark Checked Items as Ham'><%= t(".mark_checked_items_as_ham") %></button>
     </div>
