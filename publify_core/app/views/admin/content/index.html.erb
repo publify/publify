@@ -6,43 +6,35 @@
   </h2>
 <% end %>
 
-<%= form_tag({action: 'index'}, {method: :get, name: 'article', remote: true, class: 'form-inline spinnable', :"data-update-success" => 'articleList'}) do %>
+<div class="mb-2">
+  <%= link_to(t('.all_articles'), {action: 'index'}, {class: 'badge badge-secondary'}) %>
+  <%= link_to(t('.published'), {action: 'index', search: {state: 'published'}}, {class: 'badge badge-success'}) %>
+  <%= link_to(t('.withdrawn'), {action: 'index', search: {state: 'withdrawn'}}, {class: 'badge badge-danger'}) %>
+  <%= link_to(t('.drafts'), {action: 'index', search: {state: 'drafts'}}, {class: 'badge badge-info'}) %>
+  <%= link_to(t('.publication_pending'), {action: 'index', search: {state: 'pending'}}, {class: 'badge badge-warning'}) %>
+</div>
 
-  <% if params[:search] and params[:search]['state'] %>
-    <input type="hidden" name="search[state]" value="<%= params[:search]['state'] %>" >
-  <% end %>
+<div class="card">
+  <div class="card-header">
+    <div class="float-right mt-2">
+      <%= form_tag({action: 'index'}, {method: :get, name: 'article', remote: true, class: 'form-inline spinnable text-right', :"data-update-success" => 'articleList'}) do %>
+        <% if params[:search] and params[:search]['state'] %>
+          <input type="hidden" name="search[state]" value="<%= params[:search]['state'] %>" >
+        <% end %>
 
-  <p>
-    <%= link_to(t('.all_articles'), {action: 'index'}, {class: 'badge badge-secondary'}) %>
-    <%= link_to(t('.published'), {action: 'index', search: {state: 'published'}}, {class: 'badge badge-success'}) %>
-    <%= link_to(t('.withdrawn'), {action: 'index', search: {state: 'withdrawn'}}, {class: 'badge badge-danger'}) %>
-    <%= link_to(t('.drafts'), {action: 'index', search: {state: 'drafts'}}, {class: 'badge badge-info'}) %>
-    <%= link_to(t('.publication_pending'), {action: 'index', search: {state: 'pending'}}, {class: 'badge badge-warning'}) %>
-  </p>
-
-  <div class="card">
-    <div class="card-body">
-      <div class="pull-right">
-        <div class="form-group">
-          <%= select_tag('search[user_id]', options_from_collection_for_select(User.all, 'id', 'name'), {prompt: t('.select_an_author'), class: 'form-control'}) %>
-        </div>
-        <div class="form-group">
-          <%= select_tag('search[published_at]', options_for_select(Article.publication_months), {prompt: t('.publication_date'), class: 'form-control'}) %>
-        </div>
-        <div class="form-group">
-          <input id="search" type="text" name="search[searchstring]" class="form-control">
-        </div>
-        <div class="form-group">
-          <%= submit_tag(t('.search'), {class: 'btn btn-success'}) %>
-          <span id="spinner" style="display:none;"><%= image_tag('spinner.gif') %></span>
-        </div>
-      </div>
-      <br style="clear: both">
+        <%= select_tag('search[user_id]', options_from_collection_for_select(User.all, 'id', 'name'), {prompt: t('.select_an_author'), class: 'form-control mb-2 mr-sm-2'}) %>
+        <%= select_tag('search[published_at]', options_for_select(Article.publication_months), {prompt: t('.publication_date'), class: 'form-control mb-2 mr-sm-2'}) %>
+        <input id="search" type="text" name="search[searchstring]" class="form-control mb-2 mr-sm-2">
+        <%= submit_tag(t('.search'), {class: 'btn btn-success mb-2'}) %>
+        <span id="spinner" style="display:none;"><%= image_tag('spinner.gif') %></span>
+      <% end %>
     </div>
   </div>
-  <table class="table table-hover">
-    <tbody id="articleList">
-      <%= render 'article_list', { articles: @articles } %>
-    </tbody>
-  </table>
-<% end %>
+  <div class="card-body">
+    <table class="table table-hover">
+      <tbody id="articleList">
+        <%= render 'article_list', { articles: @articles } %>
+      </tbody>
+    </table>
+  </div>
+</div>
