@@ -1,6 +1,6 @@
 <% content_for :page_heading do %>
-<i class="glyphicon glyphicon-large glyphicon-home"></i>
-<h2 class="page-title"><%= t(".welcome_back", user_name: current_user.name) %></h2>
+  <%= icon('fas', 'home', class: 'icon-large') %>
+  <h2 class="page-title"><%= t(".welcome_back", user_name: current_user.name) %></h2>
 <% end %>
 
 <%= render "overview" %>

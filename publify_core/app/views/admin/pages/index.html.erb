@@ -1,6 +1,6 @@
 <% content_for :page_heading do %>
 <h2>
-  <i class="glyphicon glyphicon-large glyphicon-folder-open"></i>
+  <%= icon('fas', 'folder-open', class: 'icon-large') %>
   <%= t(".manage_pages") %>
   <%= link_to(t(".new_page"), {controller: 'pages', action: 'new'}, id: 'dialog-link', class: 'btn btn-info pull-right') %>
 </h2>

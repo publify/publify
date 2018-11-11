@@ -1,6 +1,6 @@
 <% content_for :page_heading do %>
 <h2>
-  <i class="glyphicon glyphicon-large glyphicon-cog"></i>
+  <%= icon('fas', 'cog', class: 'icon-large') %>
   <%= t(".post_types") %>
 </h2>
 <% end %>
@@ -51,8 +51,8 @@
           <td>
             <%= post_type.name %><br>
             <div class='action'>
-              <%= link_to content_tag(:span, '', class: 'glyphicon glyphicon-pencil'), edit_admin_post_type_path(post_type), { class: 'btn btn-primary btn-xs btn-action' } %>
-              <%= link_to content_tag(:span, '', class: 'glyphicon glyphicon-trash'), admin_post_type_path(post_type), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs btn-action' %>
+              <%= link_to icon('fas', 'pencil-alt'), edit_admin_post_type_path(post_type), { class: 'btn btn-primary btn-xs btn-action' } %>
+              <%= link_to icon('fas', 'trash'), admin_post_type_path(post_type), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs btn-action' %>
             </div>
           </td>
           <td><%= post_type.description %></td>

@@ -20,7 +20,15 @@
       <small><%= l(article.published_at || article.created_at) %></small>
     </td>
     <td>
-      <%= (article.allow_comments?) ? link_to("#{article.comments.ham.size.to_s} <i class='glyphicon glyphicon-comment'></i>".html_safe, controller: '/admin/feedback', id: article.id, action: 'article') : '-' %></td>
+      <% if article.allow_comments? %>
+        <%= link_to(controller: '/admin/feedback', id: article.id, action: 'article') do %>
+          <%= article.comments.ham.size.to_s %>
+          <%= icon('fas', 'comments') %>
+        <% end %>
+      <% else %>
+        -
+      <% end %>
+    </td>
   </tr>
 <% end %>
 <%= display_pagination(@articles, 5, 'first', 'last')%>
