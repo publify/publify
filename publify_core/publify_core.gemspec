@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'aasm', '~> 5.0'
   s.add_dependency 'akismet', '~> 2.0'
   s.add_dependency 'bluecloth', '~> 2.1'
-  s.add_dependency 'bootstrap-sass', '~> 3.3.6'
+  s.add_dependency 'bootstrap', '~> 4.1.3'
   s.add_dependency 'cancancan', '~> 2.0'
   s.add_dependency 'carrierwave', '~> 1.1'
   s.add_dependency 'devise', '~> 4.5.0'

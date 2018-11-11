@@ -5,6 +5,5 @@
  *= require sidebar_admin
  *= require datetimepicker
  */
-// "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
-@import "bootstrap-sprockets";
+// Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
