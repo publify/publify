@@ -10,10 +10,12 @@
   <% switch_url = url_for(action: 'switchto', theme: theme.name) %>
   <div class='col-md-6'>
     <% if theme.path == @active.path %>
-      <div class='well'>
-        <h3><%= t(".active_theme", name: theme.name) %></h3>
-        <%= image_tag(preview_url, class: 'img-responsive img-thumbnail') %>
-        <%= raw theme.description_html %>
+      <div class='card bg-light'>
+        <div class='card-body'>
+          <h3><%= t(".active_theme", name: theme.name) %></h3>
+          <%= image_tag(preview_url, class: 'img-responsive img-thumbnail') %>
+          <%= raw theme.description_html %>
+        </div>
       </div>
     <% else %>
       <div>

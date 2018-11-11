@@ -5,17 +5,19 @@
   </h2>
 <% end %>
 
-<%= form_tag({action: 'upload'}, {enctype: "multipart/form-data", class: 'form-inline'}) do %>
-  <div class='well well-small'>
-    <h3><%= t('.upload_a_file_to_your_site') %></h3>
-    <div class="form-group">
-      <%= file_field_tag(:upload, class: 'input-file') %>
+<div class='card bg-light'>
+  <%= form_tag({action: 'upload'}, {enctype: "multipart/form-data", class: 'form-inline'}) do %>
+    <div class='card-body'>
+      <h3><%= t('.upload_a_file_to_your_site') %></h3>
+      <div class="form-group">
+        <%= file_field_tag(:upload, class: 'input-file') %>
+      </div>
+      <div class="form-group">
+        <%= submit_tag(t('.upload'), {class: 'btn btn-success'}) %>
+      </div>
     </div>
-    <div class="form-group">
-      <%= submit_tag(t('.upload'), {class: 'btn btn-success'}) %>
-    </div>
-  </div>
-<% end %>
+  <% end %>
+</div>
 
 <table class="table table-hover">
   <thead>
