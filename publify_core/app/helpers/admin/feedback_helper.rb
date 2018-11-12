@@ -2,11 +2,11 @@
 
 module Admin::FeedbackHelper
   def comment_class(state)
-    return 'label-info' if state.to_s.casecmp('presumed_ham').zero?
-    return 'label-warning' if state.to_s.casecmp('presumed_spam').zero?
-    return 'label-success' if state.to_s.casecmp('ham').zero?
+    return 'badge badge-info' if state.to_s.casecmp('presumed_ham').zero?
+    return 'badge badge-warning' if state.to_s.casecmp('presumed_spam').zero?
+    return 'badge badge-success' if state.to_s.casecmp('ham').zero?
 
-    'label-danger'
+    'badge badge-danger'
   end
 
   def show_feedback_actions(item, context = 'listing')

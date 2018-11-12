@@ -1,17 +1,16 @@
 <% content_for :page_heading do %>
-<h2 class="page-title">
-  <%= icon('fas', 'comments', class: 'icon-large') %>
-  <%= t(".comments_for_html", title: @article.title) %>
-</h2>
+  <h2 class="page-title">
+    <%= icon('fas', 'comments', class: 'icon-large') %>
+    <%= t(".comments_for_html", title: @article.title) %>
+  </h2>
 <% end %>
 
-<%= form_tag({action: 'bulkops'}, {class: 'form-inline'}) do %>
+<%= form_tag({action: 'bulkops'}) do %>
 
   <%= hidden_field 'article_id', @article.id %>
-  <%= render 'button', { :position => 'top' } %>
 
-  <br class='clear'>
-  <table class='table hover'>
+  <%= render 'button', { position: 'top' } %>
+  <table class='table table-hover'>
     <thead>
       <tr class='noborder'>
         <th colspan='5'>
@@ -27,39 +26,38 @@
         </td>
       </tr>
     <% end %>
-
     <% @feedback.each do |comment| %>
-      <%= render 'feedback', {:comment => comment} %>
+      <%= render 'feedback', {comment: comment} %>
     <% end %>
   </table>
 <% end %>
 
-<%= form_tag :action => "create" do %>
+<%= form_tag action: "create" do %>
   <%= hidden_field_tag('article_id', @article.id) %>
   <fieldset  class='form-horizontal'>
     <legend><%= t(".add_a_comment")%></legend>
     <div class="form-group">
       <label for="comment_author" class='control-label col-sm-2'><%= t(".author")%></label>
       <div class='col-sm-5'>
-        <%= text_field 'comment', 'author', :class => 'form-control' %>
+        <%= text_field 'comment', 'author', class: 'form-control' %>
       </div>
     </div>
     <div class='form-group'>
       <label for="comment_email" class='control-label col-sm-2'><%= t(".email")%></label>
       <div class='col-sm-5'>
-        <%= text_field 'comment', 'email', :class => 'form-control' %>
+        <%= text_field 'comment', 'email', class: 'form-control' %>
       </div>
     </div>
     <div class='form-group'>
       <label for="comment_url" class='control-label col-sm-2'><%= t(".url") %></label>
       <div class='col-sm-5'>
-        <%= text_field 'comment', 'url', :class => 'form-control' %>
+        <%= text_field 'comment', 'url', class: 'form-control' %>
       </div>
     </div>
     <div class='form-group'>
       <label for='comment_body' class='control-label col-sm-2'><%= t(".your_comment") %></label>
       <div class='col-sm-5'>
-        <%= text_area 'comment', 'body', { :rows => '10', :class => 'form-control'} %>
+        <%= text_area 'comment', 'body', { rows: '10', class: 'form-control'} %>
       </div>
     </div>
     <div class='form-group col-md-12'>
