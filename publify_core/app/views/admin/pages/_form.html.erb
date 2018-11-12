@@ -15,7 +15,7 @@
 
   <div class='row save-bar'>
     <div class='col-md-8 col-md-offset-2'>
-      <span class='pull-right'>
+      <span class='float-right'>
         <%= link_to(t('.cancel'), {action: 'index'}, {class: 'btn btn-default'}) %>
         <!-- Button trigger modal -->
         <button class="btn btn-success" data-toggle="modal" type="button" data-target="#publish">
@@ -33,7 +33,7 @@
 
   <div class='row'>
     <div class='col-md-2' id='quicktags-block'>
-      <div id='quicktags' class='pull-right'>
+      <div id='quicktags' class='float-right'>
         <script type="text/javascript">edToolbar('page_body', '<%= @page.text_filter.name %>');</script>
       </div>
     </div>
@@ -54,7 +54,7 @@
         <div class="modal-header">
           <h2 class="modal-title" id="publish">
             <%= t('.publish') %>
-            <%= submit_tag( t(".publish"), class: 'btn btn-success pull-right') %>
+            <%= submit_tag( t(".publish"), class: 'btn btn-success float-right') %>
           </h2>
         </div>
         <div class="modal-body">

@@ -4,7 +4,7 @@
 </div>
 <div class="row save-bar">
   <div class="col-md-8 col-md-offset-2" id="save-bar">
-    <div class="pull-right">
+    <div class="float-right">
       <%= link_to(t('.cancel'), {action: 'index'}, {class: 'btn btn-default'}) %>
       <span id="preview_link">
         <%= link_to(t('.preview'), {controller: '/articles', action: 'preview', id: @article.id}, {target: 'new', class: 'btn btn-default'}) if @article.id %>
@@ -24,7 +24,7 @@
 </div>
 <div class="row">
   <div class="col-md-2" id="quicktags-block">
-    <div id="quicktags" class="pull-right">
+    <div id="quicktags" class="float-right">
       <script type="text/javascript">edToolbar('article_body_and_extended', '<%= @article.text_filter.name %>');</script>
     </div>
   </div>
@@ -40,7 +40,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h2 class="modal-title" id="myModalLabel"><%= t('.publish') %>
-        <%= submit_tag(t('.publish'), class: 'btn btn-success pull-right') %>&nbsp;
+        <%= submit_tag(t('.publish'), class: 'btn btn-success float-right') %>&nbsp;
         </h2>
       </div>
       <div class="modal-body">
