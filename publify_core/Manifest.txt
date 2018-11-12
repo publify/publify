@@ -36,7 +36,6 @@ app/assets/javascripts/sidebar.js
 app/assets/javascripts/spinnable.js
 app/assets/javascripts/tagmanager.js
 app/assets/javascripts/typeahead.js
-app/assets/javascripts/widearea.js
 app/assets/stylesheets/accounts.css.scss
 app/assets/stylesheets/administration_structure.css.scss
 app/assets/stylesheets/coderay.css
@@ -48,7 +47,6 @@ app/assets/stylesheets/rss.css
 app/assets/stylesheets/sidebar_admin.css.scss
 app/assets/stylesheets/tagmanager.css
 app/assets/stylesheets/user-styles.css
-app/assets/stylesheets/widearea.css
 app/controllers/accounts_controller.rb
 app/controllers/admin/base_controller.rb
 app/controllers/admin/content_controller.rb
