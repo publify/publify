@@ -1,15 +1,15 @@
 <% cache comment do %>
   <li id="comment-<%= comment.id %>" <%= 'class="author_comment"' if comment.user %> <%= onhover_show_admin_tools(:comment, comment.id) %>>
     <p class="author">
-    <%= avatar_tag(:email => comment.email, :url => comment.url) %>
+    <%= avatar_tag(email: comment.email, url: comment.url) %>
     <cite><strong><%= link_to_unless(comment.url.blank?, h(comment.author), comment.url) %></strong></cite>
-    <%= t(".said")%> <%= display_date_and_time comment.created_at %>:
+    <%= t('.said') %> <%= display_date_and_time comment.created_at %>:
     </p>
     <div class="content">
       <%= raw nofollowify_links comment.generate_html(:body) %>
       <% unless comment.published? %>
         <div class="spamwarning">
-          <%= t(".this_comment_has_been_flagged_for_moderator_approval")%>
+          <%= t('.this_comment_has_been_flagged_for_moderator_approval') %>
         </div>
       <% end %>
     </div>

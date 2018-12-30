@@ -1,14 +1,14 @@
 <li class='list-unstyled' id="comment-<%= comment.id %>">
-  <%= avatar_tag(:email => comment.email, :url => comment.url, :class => 'img-circle pull-left gravatar') %>
+  <%= avatar_tag(email: comment.email, url: comment.url, class: 'img-circle pull-left gravatar') %>
   <div class='content'>
     <h4>
-      <%= t(".by") %> <%= comment.url.blank? ? h(comment.author) : nofollowified_link_to(h(comment.author), comment.url) %>
+      <%= t('.by') %> <%= comment.url.blank? ? h(comment.author) : nofollowified_link_to(h(comment.author), comment.url) %>
       <%= display_date_and_time comment.created_at %>
     </h4>
     <%= raw comment.html %>
     <%- unless comment.published? %>
-      <div class="spamwarning"><%= t(".this_comment_has_been_flagged_for_moderator_approval") %></div>
+      <div class="spamwarning"><%= t('.this_comment_has_been_flagged_for_moderator_approval') %></div>
     <%- end %>
-    <hr>
+    <hr />
   </div>
 </li>

@@ -1,6 +1,6 @@
 <% if @articles.empty? %>
   <div class="post">
-    <p><%= t(".no_articles_found")%></p>
+    <p><%= t('.no_articles_found') %></p>
   </div>
 <% else %>
   <%= cache [@articles, params[:page]] do %>

@@ -4,8 +4,8 @@
     <%= render 'shared/page_header' %>
     <%= themeable_stylesheet_link_tag :theme %>
     <%= themeable_javascript_include_tag :theme %>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><%=h page_title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title><%= h page_title %></title>
   </head>
 
   <body>
@@ -25,7 +25,7 @@
 
       <div class="footer">
         <p class="legal">
-        <%= t(".powered_by_html", powered_by: link_to('Publify', 'https://publify.github.io')) %>
+        <%= t('.powered_by_html', powered_by: link_to('Publify', 'https://publify.github.io')) %>
         </p>
       </div>
     </div>

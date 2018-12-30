@@ -1,4 +1,4 @@
-<% className = form_action.delete(:class) %>
-<%= form_tag(form_action, id: "#{form_type}_form", enctype: "multipart/form-data", class: className) do %>
-  <%= render partial: "form" %>
+<% class_name = form_action.delete(:class) %>
+<%= form_tag(form_action, id: "#{form_type}_form", enctype: 'multipart/form-data', class: class_name) do %>
+  <%= render partial: 'form' %>
 <% end %>

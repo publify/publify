@@ -2,13 +2,13 @@
   <% if article.excerpt? %>
     <%= article.excerpt %>
     <div class="extended">
-      <p><%= link_to_permalink article, t(".continue_reading") %></p>
+      <p><%= link_to_permalink article, t('.continue_reading') %></p>
     </div>
   <% else %>
     <%= raw article.html(:body) %>
     <% if article.extended? %>
       <div class="extended">
-        <p><%= link_to_permalink article, t(".continue_reading") %></p>
+        <p><%= link_to_permalink article, t('.continue_reading') %></p>
       </div>
     <% end %>
   <% end %>

@@ -1,7 +1,7 @@
 <% if @pages.empty? %>
   <tr>
     <td colspan="5">
-      <%= t(".no_pages") %>
+      <%= t('.no_pages') %>
     </td>
   </tr>
 <% end %>
@@ -13,7 +13,7 @@
       <%= show_actions page %>
     </td>
     <td>
-      <%= author_link(page) %><br>
+      <%= author_link(page) %><br />
       <small><%= l(page.created_at) %></small>
     </td>
   </tr>

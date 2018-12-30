@@ -1,7 +1,7 @@
 <%= form_for([:admin, @page]) do |f| %>
   <% if @page.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@page.errors.count, "error") %> prohibited this post from being saved:</h2>
+      <h2><%= pluralize(@page.errors.count, 'error') %> prohibited this post from being saved:</h2>
 
       <ul>
       <% @page.errors.full_messages.each do |message| %>
@@ -11,15 +11,15 @@
     </div>
   <% end %>
 
-  <input type="hidden" name="user_textfilter" id="user_textfilter" value="<%= current_user.text_filter_name %>">
+  <input type="hidden" name="user_textfilter" id="user_textfilter" value="<%= current_user.text_filter_name %>" />
 
   <div class='row save-bar'>
     <div class='col-md-8 col-md-offset-2'>
       <span class='pull-right'>
-        <%= link_to(t('.cancel'), {action: 'index'}, {class: 'btn btn-default'}) %>
+        <%= link_to(t('.cancel'), { action: 'index' }, { class: 'btn btn-default' }) %>
         <!-- Button trigger modal -->
         <button class="btn btn-success" data-toggle="modal" type="button" data-target="#publish">
-          <%= controller.action_name == "new" ? t(".publish") : t(".save") %>
+          <%= controller.action_name == 'new' ? t('.publish') : t('.save') %>
         </button>
       </span>
     </div>
@@ -39,10 +39,10 @@
     </div>
 
     <div class='col-md-8'>
-      <%= text_field 'page', 'title', :class => 'form-control', :placeholder => t('.title')  %>
+      <%= text_field 'page', 'title', class: 'form-control', placeholder: t('.title') %>
 
       <div id='editor'>
-        <%= text_area('page', 'body', {:class => 'form-control ', style: 'height: 360px', :rows => '20', placeholder: t('.type_your_post')}) %>
+        <%= text_area('page', 'body', class: 'form-control ', style: 'height: 360px', rows: '20', placeholder: t('.type_your_post')) %>
       </div>
     </div>
   </div>
@@ -54,38 +54,38 @@
         <div class="modal-header">
           <h2 class="modal-title" id="publish">
             <%= t('.publish') %>
-            <%= submit_tag( t(".publish"), class: 'btn btn-success pull-right') %>
+            <%= submit_tag(t('.publish'), class: 'btn btn-success pull-right') %>
           </h2>
         </div>
         <div class="modal-body">
           <div class='well'>
-            <h4><%= t(".permanent_link")%></h4>
+            <h4><%= t('.permanent_link') %></h4>
             <div>
-              <%= text_field 'page', 'name', :class => 'form-control' %>
+              <%= text_field 'page', 'name', class: 'form-control' %>
             </div>
           </div>
 
           <div class='well'>
             <fieldset>
-              <legend><%= t(".publish_settings") %></legend>
+              <legend><%= t('.publish_settings') %></legend>
               <div class='control-group'>
-                <%= t(".status") %>: <strong><%= @page.state  %></strong>
+                <%= t('.status') %>: <strong><%= @page.state %></strong>
                 <%= toggle_element('status') %>
                 <div id='status' class='collapse'>
                   <label for="page_published" class='checkbox'>
-                    <%= check_box 'page', 'state', {}, 'published', ''  %>
-                    <%= t(".online")%>
+                    <%= check_box 'page', 'state', {}, 'published', '' %>
+                    <%= t('.online') %>
                   </label>
-                  <p><span class='btn btn-default btn-mini'><%= toggle_element 'status', "OK" %></span></p>
+                  <p><span class='btn btn-default btn-mini'><%= toggle_element 'status', 'OK' %></span></p>
                 </div>
               </div>
               <div class='control-group'>
-                <%= t(".article_filter") %>: <strong><%= @page.text_filter.description %></strong> <%= toggle_element 'text_filter' %>
+                <%= t('.article_filter') %>: <strong><%= @page.text_filter.description %></strong> <%= toggle_element 'text_filter' %>
                 <div id='text_filter' class='collapse'>
                   <select name="page[text_filter_id]" id="text_filter" class='form-control'>
                   <%= options_for_select text_filter_options_with_id, @page.text_filter.id %>
                 </select>
-                <p><span class='btn btn-mini btn-default'><%= toggle_element 'text_filter', "OK" %></span></p>
+                <p><span class='btn btn-mini btn-default'><%= toggle_element 'text_filter', 'OK' %></span></p>
                 </div>
               </div>
             </fieldset>
@@ -93,7 +93,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <%= submit_tag( t(".publish"), class: 'btn btn-success') %>
+          <%= submit_tag(t('.publish'), class: 'btn btn-success') %>
         </div>
       </div>
     </div>

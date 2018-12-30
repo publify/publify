@@ -1,15 +1,15 @@
-<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <%= meta_tag 'ICBM', this_blog.geourl_location if this_blog.geourl_location.present? %>
-<%= meta_tag 'description', @description unless @description.blank? %>
+<%= meta_tag 'description', @description if @description.present? %>
 <%= meta_tag 'robots', 'noindex, follow' if stop_index_robots?(this_blog) %>
-<%= meta_tag 'google-site-verification', this_blog.google_verification unless this_blog.google_verification.blank?%>
-<meta name="generator" content="Publify <%=PublifyCore::VERSION%>">
+<%= meta_tag 'google-site-verification', this_blog.google_verification if this_blog.google_verification.present? %>
+<meta name="generator" content="Publify <%= PublifyCore::VERSION %>" />
 <%= show_meta_keyword %>
 <% if feed_atom %>
-  <link rel="alternate" type="application/atom+xml" title="Atom" href="<%= feed_atom %>">
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="<%= feed_atom %>" />
 <% end %>
 <% if feed_rss %>
-  <link rel="alternate" type="application/rss+xml" title="RSS" href="<%= feed_rss %>">
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="<%= feed_rss %>" />
 <% end %>
 <%= javascript_include_tag :publify, async: Rails.env.production? %>
 <%= csrf_meta_tags %>
@@ -18,8 +18,8 @@
 <% if this_blog.use_canonical_url %>
   <link rel="canonical" href="<%= this_blog.base_url + request.fullpath %>" />
 <% end %>
-<%= raw this_blog.custom_tracking_field unless this_blog.custom_tracking_field.blank? %>
-<%= render 'shared/google_analytics' unless this_blog.google_analytics.blank? %>
+<%= raw this_blog.custom_tracking_field if this_blog.custom_tracking_field.present? %>
+<%= render 'shared/google_analytics' if this_blog.google_analytics.present? %>
 
 <%= meta_tag 'og:site_name', this_blog.blog_name %>
 <%= meta_tag 'og:title', @article ? @article.title : @page_title %>
