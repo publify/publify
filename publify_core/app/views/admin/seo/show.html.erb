@@ -5,7 +5,7 @@
         when 'titles' then t('.title_settings')
         when 'permalinks' then t('.permalinks')
         else t('.global_settings')
-      end %>
+        end %>
   </h2>
 <% end %>
 
@@ -16,7 +16,7 @@
       when 'titles' then render 'titles'
       when 'permalinks' then render 'permalinks'
       else render 'general'
-    end %>
+      end %>
 
   <%= hidden_field_tag 'section', @section %>
   <div class='form-group'>

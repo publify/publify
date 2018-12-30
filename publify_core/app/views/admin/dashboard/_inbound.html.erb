@@ -18,7 +18,15 @@
             <% link_date = link.date %>
             <li>
             <h5>
-              <%= sprintf('%s %s %s %s %s', link_to(link.author, link.link), t('.made_a_link_to_you_on'), link_date && link_date.strftime(this_blog.date_format) || t('.at_an_unknown_date'), link_date && t('.at') || '', link_date && link_date.strftime(this_blog.time_format)) || '' %>
+            <%= link_to(link.author, link.link) %>
+            <%= t('.made_a_link_to_you_on') %>
+            <% if link_date %>
+              <%= link_date.strftime(this_blog.date_format) %>
+              <%= t('.at') %>
+              <%= link_date.strftime(this_blog.time_format) %>
+            <% else %>
+              <%= t('.at_an_unknown_date') %>
+            <% end %>
             </h5>
             <p><%= link.description.strip_html.slice(0, 300) %></p>
             <hr />
