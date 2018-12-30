@@ -5,9 +5,9 @@
 <div class="row save-bar">
   <div class="col-md-8 col-md-offset-2" id="save-bar">
     <div class="pull-right">
-      <%= link_to(t('.cancel'), {action: 'index'}, {class: 'btn btn-default'}) %>
+      <%= link_to(t('.cancel'), { action: 'index' }, { class: 'btn btn-default' }) %>
       <span id="preview_link">
-        <%= link_to(t('.preview'), {controller: '/articles', action: 'preview', id: @article.id}, {target: 'new', class: 'btn btn-default'}) if @article.id %>
+        <%= link_to(t('.preview'), { controller: '/articles', action: 'preview', id: @article.id }, { target: 'new', class: 'btn btn-default' }) if @article.id %>
       </span>
       <input id="save_draft" type="submit" value="<%= t('.save_as_draft') %>" name="article[draft]" class="btn btn-default" />
       <span class="btn btn-success" data-toggle="modal" data-target="#publishOptions">
@@ -31,7 +31,7 @@
   <div class="col-md-8">
     <%= text_field 'article', 'title', class: 'form-control', placeholder: t('.title') %>
     <div id="editor">
-      <%= text_area('article', 'body_and_extended', {class: 'form-control ', style: 'height: 360px', placeholder: t('.type_your_post')}) %>
+      <%= text_area('article', 'body_and_extended', class: 'form-control ', style: 'height: 360px', placeholder: t('.type_your_post')) %>
     </div>
   </div>
 </div>
@@ -47,7 +47,7 @@
         <div class="well">
           <h4><%= t('.tags') %></h4>
           <div class="form-group">
-            <%= text_field 'article', 'keywords', {autocomplete: 'off', class: 'form-control tm-input'} %>
+            <%= text_field 'article', 'keywords', autocomplete: 'off', class: 'form-control tm-input' %>
           </div>
           <p class="alert alert-warning"><%= t('.tags_explanation_html') %></p>
         </div>
@@ -57,7 +57,7 @@
         <% else %>
           <div class="well">
             <h4><%= t('.article_type') %></h4>
-            <%= select :article, :post_type, post_types.map{|pt| [pt.name, pt.permalink]}, {include_blank: t('.default')} %>
+            <%= select :article, :post_type, post_types.map { |pt| [pt.name, pt.permalink] }, include_blank: t('.default') %>
           </div>
         <% end %>
         <div class="well">
@@ -70,7 +70,7 @@
               </p>
               <div id="permalink" class="collapse">
                 <div class="form-group">
-                  <%= text_field 'article', 'permalink', {autocomplete: 'off', class: 'form-control'} %>
+                  <%= text_field 'article', 'permalink', autocomplete: 'off', class: 'form-control' %>
                 </div>
                 <p>
                   <span class="btn btn-mini btn-default">

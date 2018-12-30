@@ -1,18 +1,18 @@
 <% content_for :page_heading do %>
   <h2>
     <i class="glyphicon glyphicon-large glyphicon-picture"></i>
-    <%= t(".media_library") %>
+    <%= t('.media_library') %>
   </h2>
 <% end %>
 
-<%= form_tag({action: 'upload'}, {enctype: "multipart/form-data", class: 'form-inline'}) do %>
+<%= form_tag({ action: 'upload' }, { enctype: 'multipart/form-data', class: 'form-inline' }) do %>
   <div class='well well-small'>
     <h3><%= t('.upload_a_file_to_your_site') %></h3>
     <div class="form-group">
       <%= file_field_tag(:upload, class: 'input-file') %>
     </div>
     <div class="form-group">
-      <%= submit_tag(t('.upload'), {class: 'btn btn-success'}) %>
+      <%= submit_tag(t('.upload'), class: 'btn btn-success') %>
     </div>
   </div>
 <% end %>
@@ -20,16 +20,16 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th><%= t(".filename") %> <small>(<%= t('.right_click_for_link') %>)</small></th>
-      <th><%= t(".content_type") %></th>
-      <th><%= t(".file_size") %></th>
-      <th><%= t(".date") %></th>
+      <th><%= t('.filename') %> <small>(<%= t('.right_click_for_link') %>)</small></th>
+      <th><%= t('.content_type') %></th>
+      <th><%= t('.file_size') %></th>
+      <th><%= t('.date') %></th>
     </tr>
   </thead>
   <% if @resources.empty? %>
     <tr>
       <td colspan="6">
-        <%= t(".no_resources") %>
+        <%= t('.no_resources') %>
       </td>
     </tr>
   <% end %>
@@ -47,20 +47,24 @@
       <p>
         <small>
           <% if upload.mime =~ /image/ %>
-            <%= link_to(t(".thumbnail"), upload.upload.thumb.url) %> |
-            <%= link_to(t(".medium_size"), upload.upload.medium.url) %> |
-            <%= link_to(t(".original_size"), upload.upload.url) %> |
+            <%= link_to(t('.thumbnail'), upload.upload.thumb.url) %> |
+            <%= link_to(t('.medium_size'), upload.upload.medium.url) %> |
+            <%= link_to(t('.original_size'), upload.upload.url) %> |
           <% end %>
-          <%= link_to(t(".delete"),
+          <%= link_to(t('.delete'),
                       { action: 'destroy', id: upload.id, search: params[:search], page: params[:page] },
-                      confirm: t(".are_you_sure"), method: :delete) %>
+                      { confirm: t('.are_you_sure'), method: :delete }) %>
         </small>
       </p>
     </td>
     <td>
       <%= upload.mime %>
     </td>
-    <td><%= h upload.size rescue 0 %> bytes</td>
+    <td><%= begin
+              h upload.size
+            rescue StandardError
+              0
+            end %> bytes</td>
     <td><%= l(upload.created_at, format: :short) %></td>
   </tr>
   <% end %>

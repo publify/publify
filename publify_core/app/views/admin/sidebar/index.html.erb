@@ -1,19 +1,19 @@
 <% content_for :page_heading do %>
   <i class="icon-large icon-sidebar"></i>
-  <h2 class="page-title"><%= t(".sidebar") %></h2>
+  <h2 class="page-title"><%= t('.sidebar') %></h2>
 <% end %>
 
 <div class='alert alert-info'>
   <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-  <p><%= t(".explain_how_its_works") %></p>
-  <p><%= t(".download_more_plugins_html") %></p>
+  <p><%= t('.explain_how_its_works') %></p>
+  <p><%= t('.download_more_plugins_html') %></p>
 </div>
 <p class='help-block'></p>
 
 <%= form_tag(url_for(action: 'publish'), method: :put) do %>
   <div class='form-actions'>
-    <%= link_to(t(".cancel"), {action: 'index'}) %>
-    <%= t(".or") %>
+    <%= link_to(t('.cancel'), action: 'index') %>
+    <%= t('.or') %>
     <%= submit_tag(t('.publish_changes'), class: 'btn btn-success') %>
   </div>
 <% end %>
@@ -24,8 +24,8 @@
 
 <%= form_tag(url_for(action: 'publish'), method: :put) do %>
   <div class='form-group'>
-    <%= link_to(t(".cancel"), {action: 'index'}) %>
-    <%= t(".or") %>
+    <%= link_to(t('.cancel'), action: 'index') %>
+    <%= t('.or') %>
     <%= submit_tag(t('.publish_changes'), class: 'btn btn-success') %>
   </div>
 <% end %>

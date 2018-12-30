@@ -1,5 +1,5 @@
 <% content_for :page_title do %>
-  <%= "#{this_blog.blog_name} - #{t('.sign_in', :default => "Sign in")}" %>
+  <%= "#{this_blog.blog_name} - #{t('.sign_in', default: 'Sign in')}" %>
 <% end %>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -28,5 +28,5 @@
 <% end %>
 
 <% content_for :account_links do %>
-  <%= render "devise/shared/links" %>
+  <%= render 'devise/shared/links' %>
 <% end %>

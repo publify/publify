@@ -2,7 +2,7 @@
 
 <% @articles.each do |article| %>
 <div id="article-<%= article.id %>">
-  <h2><%= link_to_permalink(article,article.title) %></h2>
+  <h2><%= link_to_permalink(article, article.title) %></h2>
   <p><%= article.body.strip_html.slice(0, 300) %> [...]</p>
   <div class='author'>
     Le <%= l(article.published_at, format: :with_spaces) %>
@@ -15,5 +15,5 @@
 <% end %>
 
 <div id='paginate'>
-<%= paginate @articles, { :previous_label => 'Previous', :next_label => 'Next'  } %>
+<%= paginate @articles, previous_label: 'Previous', next_label: 'Next' %>
 </div>

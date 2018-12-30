@@ -8,7 +8,7 @@
   </title>
   <meta http-equiv="imagetoolbar" content="no" />
   <%= javascript_include_tag 'publify_admin', async: Rails.env.production? %>
-  <%= stylesheet_link_tag "accounts" %>
+  <%= stylesheet_link_tag 'accounts' %>
 </head>
 <body>
   <div class="container">
@@ -16,7 +16,7 @@
       <div class="col-md-4 col-md-offset-4">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h1 class='panel-title'><%= link_to("Publify", "https://publify.github.io") %></h1>
+            <h1 class='panel-title'><%= link_to('Publify', 'https://publify.github.io') %></h1>
           </div>
           <div class="panel-body">
             <%= render 'shared/flash', flash: flash %>

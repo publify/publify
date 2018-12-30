@@ -1,60 +1,60 @@
 <% content_for :page_heading do %>
   <h2>
     <i class="glyphicon glyphicon-large glyphicon-cog"></i>
-    <%= t(".write") %>
+    <%= t('.write') %>
   </h2>
 <% end %>
 
 <%= form_tag action: 'update' do %>
 
   <fieldset class='form-horizontal'>
-    <legend><%= t(".publish") %></legend>
+    <legend><%= t('.publish') %></legend>
     <div class='form-group'>
-      <label class='control-label col-sm-4 col-md-3 col-lg-2' for="setting_geourl_location"><%= t(".latitude_longitude") %></label>
+      <label class='control-label col-sm-4 col-md-3 col-lg-2' for="setting_geourl_location"><%= t('.latitude_longitude') %></label>
       <div class='col-sm-8 col-md-6 col-lg-4'>
-        <%= text_field(:setting, :geourl_location, { :class => 'form-control'}) %>
-        <small class='help-block'><%= t(".display") %> <a href="http://geourl.org"><%= t(".your_geoloc") %></a> (<%= t(".example") %>: <tt>47.774,-122.201</tt>)</small>
+        <%= text_field(:setting, :geourl_location, class: 'form-control') %>
+        <small class='help-block'><%= t('.display') %> <a href="http://geourl.org"><%= t('.your_geoloc') %></a> (<%= t('.example') %>: <tt>47.774,-122.201</tt>)</small>
       </div>
     </div>
   </fieldset>
 
   <fieldset class='form-horizontal'>
-    <legend><%= t(".media") %></legend>
+    <legend><%= t('.media') %></legend>
     <div class='form-group'>
-      <label class='control-label col-sm-4 col-md-3 col-lg-2' for="setting_image_thumb_size"><%= t(".image_thumbnail_size") %></label>
+      <label class='control-label col-sm-4 col-md-3 col-lg-2' for="setting_image_thumb_size"><%= t('.image_thumbnail_size') %></label>
       <div class='col-sm-2 col-md-1'>
-        <%= text_field(:setting, :image_thumb_size, { :class => 'form-control'}) %>
+        <%= text_field(:setting, :image_thumb_size, class: 'form-control') %>
       </div>
     </div>
     <div class='form-group'>
-      <label class='control-label col-sm-4 col-md-3 col-lg-2' for="setting_image_medium_size"><%= t(".image_medium_size") %></label>
+      <label class='control-label col-sm-4 col-md-3 col-lg-2' for="setting_image_medium_size"><%= t('.image_medium_size') %></label>
       <div class='col-sm-2 col-md-1'>
-        <%= text_field(:setting, :image_medium_size, { :class => 'form-control'}) %>
+        <%= text_field(:setting, :image_medium_size, class: 'form-control') %>
       </div>
     </div>
     <div class='form-group'>
-      <label class='control-label col-sm-4 col-md-3 col-lg-2' for="image_avatar_size"><%= t(".avatar_size") %></label>
+      <label class='control-label col-sm-4 col-md-3 col-lg-2' for="image_avatar_size"><%= t('.avatar_size') %></label>
       <div class='col-sm-2 col-md-1'>
-        <%= text_field(:setting, :image_avatar_size, { :class => 'form-control'}) %>
+        <%= text_field(:setting, :image_avatar_size, class: 'form-control') %>
       </div>
     </div>
   </fieldset>
 
   <fieldset class='form-horizontal'>
-    <legend><%= t(".publish_on_twitter") %></legend>
+    <legend><%= t('.publish_on_twitter') %></legend>
     <% unless twitter_available?(this_blog, current_user) %>
       <%= render 'admin/shared/twitter_alert' %>
     <% end %>
     <div class='form-group'>
-      <label class='control-label col-sm-4 col-md-3 col-lg-2' for="setting_twitter_consumer_key"><%= t(".twitter_consumer_key") %></label>
+      <label class='control-label col-sm-4 col-md-3 col-lg-2' for="setting_twitter_consumer_key"><%= t('.twitter_consumer_key') %></label>
       <div class='col-sm-8 col-md-6 col-lg-4'>
-        <%= text_field(:setting, :twitter_consumer_key, { :class => 'form-control'}) %>
+        <%= text_field(:setting, :twitter_consumer_key, class: 'form-control') %>
       </div>
     </div>
     <div class='form-group'>
-      <label class='control-label col-sm-4 col-md-3 col-lg-2' for="setting_twitter_consumer_secret"><%= t(".twitter_consumer_secret") %></label>
+      <label class='control-label col-sm-4 col-md-3 col-lg-2' for="setting_twitter_consumer_secret"><%= t('.twitter_consumer_secret') %></label>
       <div class='col-sm-8 col-md-6 col-lg-4'>
-        <%= text_field(:setting, :twitter_consumer_secret, { :class => 'form-control'}) %>
+        <%= text_field(:setting, :twitter_consumer_secret, class: 'form-control') %>
       </div>
     </div>
   </fieldset>
@@ -62,8 +62,8 @@
   <%= hidden_field_tag 'from', 'write' %>
   <div class='form-group'>
     <hr />
-    <%= link_to(t(".cancel"), {action: 'index'}) %>
-    <%= t(".or") %>
-    <%= submit_tag(t(".update_settings"), class: 'btn btn-success') %>
+    <%= link_to(t('.cancel'), action: 'index') %>
+    <%= t('.or') %>
+    <%= submit_tag(t('.update_settings'), class: 'btn btn-success') %>
   </div>
 <% end %>

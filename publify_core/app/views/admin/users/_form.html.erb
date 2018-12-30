@@ -1,6 +1,6 @@
 <% if user.errors.any? %>
   <div id="error_explanation">
-    <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+    <h2><%= pluralize(user.errors.count, 'error') %> prohibited this user from being saved:</h2>
 
     <ul>
       <% user.errors.full_messages.each do |message| %>
@@ -27,7 +27,7 @@
   <div class='form-group'>
     <label class='control-label col-sm-2' for="user_password_confirmation"><%= t('.password_confirmation') %></label>
     <div class='col-sm-5'>
-      <%= f.password_field :password_confirmation, :class => 'form-control' %>
+      <%= f.password_field :password_confirmation, class: 'form-control' %>
     </div>
   </div>
   <div class='form-group'>
@@ -40,7 +40,7 @@
     <div class='form-group'>
       <label class='control-label col-sm-2' for="user_profile"><%= t('.profile') %></label>
       <div class='col-sm-5'>
-        <%= f.select :profile, [:admin, :publisher, :contributor], { include_blank: false }, class: 'form-control' %>
+        <%= f.select :profile, [:admin, :publisher, :contributor], { include_blank: false }, { class: 'form-control' } %>
       </div>
     </div>
     <div class='form-group'>
@@ -141,20 +141,20 @@
     <div class='form-group'>
       <label class='control-label col-sm-2' for="user_twitter_account"><%= t('.twitter_account') %></label>
       <div class='col-sm-5'>
-        <%= f.text_field :twitter_account, {class: 'form-control', disabled: twitter_available?(this_blog, current_user)} %>
+        <%= f.text_field :twitter_account, class: 'form-control', disabled: twitter_available?(this_blog, current_user) %>
         <p class='help-block'>The Twitter account you want to post with</p>
       </div>
     </div>
     <div class='form-group'>
       <label class='control-label col-sm-2' for="user_twitter_oauth_token"><%= t('.twitter_oauth') %></label>
       <div class='col-sm-5'>
-        <%= f.text_field :twitter_oauth_token, {class: 'form-control', disabled: twitter_available?(this_blog, current_user)} %>
+        <%= f.text_field :twitter_oauth_token, class: 'form-control', disabled: twitter_available?(this_blog, current_user) %>
       </div>
     </div>
     <div class='form-group'>
       <label class='control-label col-sm-2' for="user_twitter_oauth_token_secret"><%= t('.twitter_oauth_secret') %></label>
       <div class='col-sm-5'>
-        <%= f.text_field :twitter_oauth_token_secret, {class: 'form-control', disabled: twitter_available?(this_blog, current_user)} %>
+        <%= f.text_field :twitter_oauth_token_secret, class: 'form-control', disabled: twitter_available?(this_blog, current_user) %>
       </div>
     </div>
   </fieldset>
@@ -165,7 +165,7 @@
     <div class='form-group'>
       <label class='control-label col-sm-2' for="user_description"><%= t('.about') %></label>
       <div class='col-sm-5'>
-        <%= f.text_area :description, {class: 'form-control', rows: 5} %>
+        <%= f.text_area :description, class: 'form-control', rows: 5 %>
       </div>
     </div>
     <div class='form-group'>
@@ -209,7 +209,7 @@
 
 <div class='form-actions'>
   <hr />
-  <%= link_to(t(".cancel"), {action: 'index'}) %>
-  <%= t(".or") %>
-  <%= submit_tag(t(".save"), class: 'btn btn-success') %>
+  <%= link_to(t('.cancel'), action: 'index') %>
+  <%= t('.or') %>
+  <%= submit_tag(t('.save'), class: 'btn btn-success') %>
 </div>

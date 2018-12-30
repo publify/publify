@@ -1,7 +1,7 @@
 <% content_for :page_heading do %>
 <h2>
   <i class="glyphicon glyphicon-large glyphicon-share-alt"></i>
-  <%= t(".redirects") %>
+  <%= t('.redirects') %>
 </h2>
 <% end %>
 
@@ -21,15 +21,15 @@
         <%= f.text_field :from_path, class: 'form-control', placeholder: "From #{this_blog.base_url}/" %>
       </div>
       <p class='help-block'>
-        <small><%= t(".leave_empty_to_shorten_a_link") %></small>
+        <small><%= t('.leave_empty_to_shorten_a_link') %></small>
       </p>
       <div class="form-group">
-        <%= f.text_field :to_path, class: 'form-control', placeholder: "To" %>
+        <%= f.text_field :to_path, class: 'form-control', placeholder: 'To' %>
       </div>
       <div class="form-group">
         <hr />
-        <%= link_to(t(".cancel"), {action: 'index'}) %>
-        <%= t(".or") %>
+        <%= link_to(t('.cancel'), action: 'index') %>
+        <%= t('.or') %>
         <%= f.submit t('.save'), class: 'btn btn-success' %>
       </div>
     <% end %>
@@ -39,21 +39,21 @@
     <table class="table table-hover">
       <thead>
         <tr class='noborder'>
-          <th><%= t(".from") %></th>
-          <th><%= t(".to") %></th>
+          <th><%= t('.from') %></th>
+          <th><%= t('.to') %></th>
         </tr>
       </thead>
       <% if @redirects.empty? %>
       <tr>
         <td colspan="2">
-          <%= t(".no_redirects") %>
+          <%= t('.no_redirects') %>
         </td>
       </tr>
       <% end %>
       <% for redirect in @redirects %>
       <tr>
         <td>
-          <%= link_to("#{redirect.from_url}", "#{redirect.from_url}") %>
+          <%= link_to(redirect.from_url.to_s, redirect.from_url.to_s) %>
           <div class="action">
             <%= button_to_edit redirect %>
             <%= button_to_delete redirect %>

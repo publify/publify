@@ -11,7 +11,7 @@
       <% if article.published? %>
         <%= link_to_permalink(article, article.title, nil, 'published') %>
       <% else %>
-        <%= link_to(article.title, {controller: '/articles', action: "preview", id: article.id}, {class: 'unpublished', target: '_new'}) %>
+        <%= link_to(article.title, { controller: '/articles', action: 'preview', id: article.id }, { class: 'unpublished', target: '_new' }) %>
       <% end %>
       <%= show_actions article %>
     </td>
@@ -20,7 +20,7 @@
       <small><%= l(article.published_at || article.created_at) %></small>
     </td>
     <td>
-      <%= (article.allow_comments?) ? link_to("#{article.comments.ham.size.to_s} <i class='glyphicon glyphicon-comment'></i>".html_safe, controller: '/admin/feedback', id: article.id, action: 'article') : '-' %></td>
+      <%= article.allow_comments? ? link_to("#{article.comments.ham.size} <i class='glyphicon glyphicon-comment'></i>".html_safe, controller: '/admin/feedback', id: article.id, action: 'article') : '-' %></td>
   </tr>
 <% end %>
 <%= display_pagination(@articles, 5, 'first', 'last') %>

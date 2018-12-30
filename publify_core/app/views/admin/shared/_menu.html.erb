@@ -1,6 +1,6 @@
 <nav class='navbar navbar-default navbar-fixed-top' role="navigation">
   <div class="navbar-header">
-    <%= link_to content_tag(:span, '', class: 'glyphicon glyphicon-home'), {controller: 'admin/dashboard'}, {class: "navbar-brand"} %>
+    <%= link_to content_tag(:span, '', class: 'glyphicon glyphicon-home'), { controller: 'admin/dashboard' }, { class: 'navbar-brand' } %>
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#sidebar-top">
       <span class="sr-only">Toggle navigation</span>
       <span class="icon-bar"></span>
@@ -18,11 +18,11 @@
           </a>
           <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
             <%= menu_item(t('.all_articles'), admin_content_index_path) %>
-            <%= menu_item(t('.new_article'),  new_admin_content_path) %>
-            <%= menu_item(t('.feedback'),     admin_feedback_index_path) %>
-            <%= menu_item(t('.tags'),         admin_tags_path) %>
-            <%= menu_item(t('.article_types'),admin_post_types_path) %>
-            <%= menu_item(t('.redirects'),    admin_redirects_path) %>
+            <%= menu_item(t('.new_article'), new_admin_content_path) %>
+            <%= menu_item(t('.feedback'), admin_feedback_index_path) %>
+            <%= menu_item(t('.tags'), admin_tags_path) %>
+            <%= menu_item(t('.article_types'), admin_post_types_path) %>
+            <%= menu_item(t('.redirects'), admin_redirects_path) %>
           </ul>
         </li>
       <% end %>
@@ -37,7 +37,7 @@
           </a>
           <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
             <%= menu_item(t('.all_pages'), admin_pages_path) %>
-            <%= menu_item(t('.new_page'),  new_admin_page_path) %>
+            <%= menu_item(t('.new_page'), new_admin_page_path) %>
           </ul>
         </li>
       <% end %>
@@ -51,7 +51,7 @@
             <b class="caret"></b>
           </a>
           <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-            <%= menu_item(t('.choose_theme'),      admin_themes_path) %>
+            <%= menu_item(t('.choose_theme'), admin_themes_path) %>
             <%= menu_item(t('.customize_sidebar'), admin_sidebar_index_path) %>
           </ul>
         </li>
@@ -64,10 +64,10 @@
           </a>
           <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
             <%= menu_item(t('.general_settings'), admin_settings_path) %>
-            <%= menu_item(t('.write'),            write_admin_settings_path) %>
-            <%= menu_item(t('.display'),          display_admin_settings_path) %>
-            <%= menu_item(t('.feedback'),         feedback_admin_settings_path) %>
-            <%= menu_item(t('.manage_users'),     admin_users_path) %>
+            <%= menu_item(t('.write'), write_admin_settings_path) %>
+            <%= menu_item(t('.display'), display_admin_settings_path) %>
+            <%= menu_item(t('.feedback'), feedback_admin_settings_path) %>
+            <%= menu_item(t('.manage_users'), admin_users_path) %>
           </ul>
         </li>
       <% end %>
@@ -79,8 +79,8 @@
           </a>
           <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
             <%= menu_item(t('.global_seo_settings'), admin_seo_path(section: 'general')) %>
-            <%= menu_item(t('.permalinks'),          admin_seo_path(section: 'permalinks')) %>
-            <%= menu_item(t('.titles'),              admin_seo_path(section: 'titles')) %>
+            <%= menu_item(t('.permalinks'), admin_seo_path(section: 'permalinks')) %>
+            <%= menu_item(t('.titles'), admin_seo_path(section: 'titles')) %>
           </ul>
         </li>
       <% end %>
@@ -88,32 +88,32 @@
     <ul class='nav navbar-nav pull-right'>
       <li class='dropdown'>
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-          <%= t(".logged_in_as", login: current_user.display_name) %>
+          <%= t('.logged_in_as', login: current_user.display_name) %>
           <b class="caret"></b>
         </a>
         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-          <li><%= link_to t(".profile"), { :controller => 'admin/profiles', :action => 'index'} %></li>
+          <li><%= link_to t('.profile'), controller: 'admin/profiles', action: 'index' %></li>
           <li role="presentation" class="divider"></li>
-          <li><%= link_to t(".documentation"), "https://github.com/fdv/publify/wiki" %></li>
-          <li><%= link_to t(".report_a_bug"), "https://github.com/fdv/publify/issues" %></li>
-          <li><%= link_to t(".in_page_plugins"), "https://github.com/fdv/publify/wiki/In-Page-Plugins" %></li>
-          <li><%= link_to t(".sidebar_plugins"), "https://github.com/fdv/publify/wiki/Sidebar-plugins" %></li>
+          <li><%= link_to t('.documentation'), 'https://github.com/fdv/publify/wiki' %></li>
+          <li><%= link_to t('.report_a_bug'), 'https://github.com/fdv/publify/issues' %></li>
+          <li><%= link_to t('.in_page_plugins'), 'https://github.com/fdv/publify/wiki/In-Page-Plugins' %></li>
+          <li><%= link_to t('.sidebar_plugins'), 'https://github.com/fdv/publify/wiki/Sidebar-plugins' %></li>
           <li role="presentation" class="divider"></li>
-          <li><%= link_to t(".logout_html"), destroy_user_session_path, method: :delete %></li>
+          <li><%= link_to t('.logout_html'), destroy_user_session_path, method: :delete %></li>
         </ul>
       </li>
     </ul>
     <ul class='nav navbar-nav pull-right'>
       <li class='dropdown'>
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-          <%= t(".new") %>
+          <%= t('.new') %>
           <b class="caret"></b>
         </a>
         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-          <li><%= link_to(t(".new_article"), {controller: 'content', action: 'new'}) %></li>
-          <li><%= link_to(t(".new_page"), {controller: 'pages', actions: 'new'}) %></li>
-          <li><%= link_to(t(".new_media"), {controller: 'resources', action: 'index'}) %></li>
-          <li><%= link_to(t(".new_note"), {controller: 'notes'}) %></li>
+          <li><%= link_to(t('.new_article'), controller: 'content', action: 'new') %></li>
+          <li><%= link_to(t('.new_page'), controller: 'pages', actions: 'new') %></li>
+          <li><%= link_to(t('.new_media'), controller: 'resources', action: 'index') %></li>
+          <li><%= link_to(t('.new_note'), controller: 'notes') %></li>
         </ul>
       </li>
     </ul>

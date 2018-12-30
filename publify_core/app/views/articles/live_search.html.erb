@@ -2,7 +2,7 @@
   <h3>Searched for <em>"<%= h @search %>"</em></h3>
   <ul>
   <% for article in @articles.to_a %>
-    <li><%= link_to_permalink article,h(article.title) %></li>
+    <li><%= link_to_permalink article, h(article.title) %></li>
   <% end %>
   </ul>
 <% else %>

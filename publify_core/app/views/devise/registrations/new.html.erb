@@ -1,5 +1,5 @@
 <% content_for :page_title do %>
-  <%= "#{this_blog.blog_name} - #{t('.sign_up', :default => "Sign up")}" %>
+  <%= "#{this_blog.blog_name} - #{t('.sign_up', default: 'Sign up')}" %>
 <% end %>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -20,12 +20,12 @@
     <% if @minimum_password_length %>
       <em>(<%= t('devise_custom.characters_minimum', min: @minimum_password_length) %>)</em><br />
     <% end %>
-    <%= f.password_field :password, class: 'form-control', autofocus: true, autocomplete: "off" %>
+    <%= f.password_field :password, class: 'form-control', autofocus: true, autocomplete: 'off' %>
   </div>
 
   <div class="form-group">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, class: 'form-control', autocomplete: "off" %>
+    <%= f.password_field :password_confirmation, class: 'form-control', autocomplete: 'off' %>
   </div>
 
   <div class="actions">
@@ -33,4 +33,4 @@
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<%= render 'devise/shared/links' %>
