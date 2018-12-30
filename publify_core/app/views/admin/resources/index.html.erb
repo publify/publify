@@ -20,10 +20,10 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th><%= t(".filename")%> <small>(<%= t('.right_click_for_link') %>)</small></th>
-      <th><%= t(".content_type")%></th>
-      <th><%= t(".file_size")%></th>
-      <th><%= t(".date")%></th>
+      <th><%= t(".filename") %> <small>(<%= t('.right_click_for_link') %>)</small></th>
+      <th><%= t(".content_type") %></th>
+      <th><%= t(".file_size") %></th>
+      <th><%= t(".date") %></th>
     </tr>
   </thead>
   <% if @resources.empty? %>
@@ -60,9 +60,9 @@
     <td>
       <%= upload.mime %>
     </td>
-    <td><%=h upload.size rescue 0 %> bytes</td>
+    <td><%= h upload.size rescue 0 %> bytes</td>
     <td><%= l(upload.created_at, format: :short) %></td>
   </tr>
   <% end %>
-  <%= display_pagination(@resources, 6)%>
+  <%= display_pagination(@resources, 6) %>
 </table>

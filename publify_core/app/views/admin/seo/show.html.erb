@@ -24,7 +24,7 @@
 
   <%= hidden_field_tag 'section', @section %>
   <div class='form-group'>
-    <hr>
+    <hr />
     <%= link_to(t(".cancel"), admin_seo_path(section: @section)) %>
     <%= t(".or") %>
     <%= submit_tag(t(".update_settings"), class: 'btn btn-success') %>

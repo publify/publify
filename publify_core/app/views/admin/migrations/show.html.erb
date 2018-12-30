@@ -13,10 +13,10 @@
   </p>
   <% unless @needed_migrations.blank? %>
     <p>
-      <strong><%= t(".migrations")%>:</strong>
+      <strong><%= t(".migrations") %>:</strong>
       <%= t(".migration_pending", count: @needed_migrations.count) %>
     </p>
-    <p><%= t(".needed_migrations")%>:</p>
+    <p><%= t(".needed_migrations") %>:</p>
     <ul>
       <% for migration in @needed_migrations %>
       <li><%= migration.name %></li>
@@ -27,12 +27,12 @@
     <%= form_tag admin_migrations_path do %>
       <% if @needed_migrations.blank? %>
         <div class='info'>
-          <p><strong><%= t(".you_are_up_to_date")%></strong></p>
+          <p><strong><%= t(".you_are_up_to_date") %></strong></p>
         </div>
       <% else %>
-        <hr>
+        <hr />
         <%= submit_tag(t(".update_database_now"), class: 'btn btn-success') %>
-        <small><%= t(".may_take_a_moment")%></small>
+        <small><%= t(".may_take_a_moment") %></small>
       <% end %>
     <% end %>
   </div>

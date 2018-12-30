@@ -20,7 +20,7 @@
         <%= f.text_field :display_name, class: 'form-control', placeholder: "Name" %>
       </div>
       <div class="form-group">
-        <hr>
+        <hr />
         <%= link_to(t(".cancel"), {action: 'index'}) %>
         <%= t(".or") %>
         <%= f.submit t(".save"), class: 'btn btn-success' %>
@@ -32,7 +32,7 @@
       <thead>
         <tr class='noborder'>
           <th><%= t('.display_name') %></th>
-          <th><%= t('.name')  %></th>
+          <th><%= t('.name') %></th>
         </tr>
       </thead>
       <% if @tags.empty? %>

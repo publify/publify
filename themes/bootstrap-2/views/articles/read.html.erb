@@ -31,7 +31,7 @@
   <% end %>
 
   <% if @article.published_trackbacks.any? %>
-    <h5 class="feedback" id="trackbacks"><%= t('.trackbacks_for')%> <em><%= @article.title %></em></h5>
+    <h5 class="feedback" id="trackbacks"><%= t('.trackbacks_for') %> <em><%= @article.title %></em></h5>
     <ol id="trackbacks" class="trackbacks">
       <%= render partial: "trackback", collection: @article.published_trackbacks %>
     </ol>

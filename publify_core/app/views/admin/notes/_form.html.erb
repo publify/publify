@@ -11,7 +11,7 @@
     <div class="checkbox">
       <label for="push_to_twitter">
         <%= check_box_tag 'push_to_twitter', true, true %>
-        <%= t(".posse_to_twitter")%>
+        <%= t(".posse_to_twitter") %>
       </label>
     </div>
     <div class="form-group">
@@ -29,7 +29,7 @@
       placeholder: t('.now'), data: { locale: I18n.locale } %>
   </div>
   <div class='form-group'>
-    <hr>
+    <hr />
     <%= link_to(t(".cancel"), {action: 'index'}) %>
     <%= t(".or") %>
     <%= submit_tag(t(".publish"), class: 'btn btn-success') %>

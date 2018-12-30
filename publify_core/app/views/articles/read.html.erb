@@ -17,14 +17,14 @@
   <a name="comments"></a><h4 class="blueblk"><%= t('.comments') %></h4>
   <% unless @article.comments_closed? %>
     <p class="postmetadata alt">
-    <small><a href="#respond"><%= t(".leave_a_response")%></a></small>
+    <small><a href="#respond"><%= t(".leave_a_response") %></a></small>
     </p>
   <% end %>
   <%= render "articles/comment_list" %>
 <% end %>
 
 <% if @article.published_trackbacks.any? %>
-  <a name="trackbacks"></a><h4 class="blueblk"><%= t(".trackbacks")%></h4>
+  <a name="trackbacks"></a><h4 class="blueblk"><%= t(".trackbacks") %></h4>
   <ol id="trackbackList" class="trackback-list">
     <%= render(partial: "trackback", collection: @article.published_trackbacks) %>
   </ol>
@@ -32,12 +32,12 @@
 
 <p class="postmetadata alt">
   <small>
-  <a href="<%= @article.feed_url('rss') %>" title="RSS Feed"><%= t(".rss_feed")%></a>
+  <a href="<%= @article.feed_url('rss') %>" title="RSS Feed"><%= t(".rss_feed") %></a>
   </small>
 </p>
 
 <% unless @article.comments_closed? %>
   <%= render 'comment_form' %>
 <% else %>
-  <p><%= t(".comments_are_disabled")%></p>
+  <p><%= t(".comments_are_disabled") %></p>
 <% end %>

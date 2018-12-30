@@ -13,7 +13,7 @@
       <label class='control-label col-sm-4 col-md-3 col-lg-2' for="setting_geourl_location"><%= t(".latitude_longitude") %></label>
       <div class='col-sm-8 col-md-6 col-lg-4'>
         <%= text_field(:setting, :geourl_location, { :class => 'form-control'}) %>
-        <small class='help-block'><%= t(".display")%> <a href="http://geourl.org"><%= t(".your_geoloc") %></a> (<%= t(".example") %>: <tt>47.774,-122.201</tt>)</small>
+        <small class='help-block'><%= t(".display") %> <a href="http://geourl.org"><%= t(".your_geoloc") %></a> (<%= t(".example") %>: <tt>47.774,-122.201</tt>)</small>
       </div>
     </div>
   </fieldset>
@@ -61,7 +61,7 @@
 
   <%= hidden_field_tag 'from', 'write' %>
   <div class='form-group'>
-    <hr>
+    <hr />
     <%= link_to(t(".cancel"), {action: 'index'}) %>
     <%= t(".or") %>
     <%= submit_tag(t(".update_settings"), class: 'btn btn-success') %>

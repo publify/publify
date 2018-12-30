@@ -15,7 +15,7 @@
 
 <% if @articles.empty? %>
   <div class="post">
-    <p><%= t(".this_author_has_not_published_any_article_yet")%></p>
+    <p><%= t(".this_author_has_not_published_any_article_yet") %></p>
   </div>
 <% else %>
   <%= cache [@articles, params[:page]] do %>
@@ -27,4 +27,4 @@
     <% end %>
   <% end %>
   <%= paginate @articles %>
-<%  end %>
+<% end %>

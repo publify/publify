@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
   <title><%= this_blog.blog_name %> – <%= controller.controller_name %></title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="imagetoolbar" content="no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="imagetoolbar" content="no" />
   <%= javascript_include_tag 'publify_admin', async: Rails.env.production? %>
   <%= stylesheet_link_tag 'publify_admin' %>
   <style type="text/css">
@@ -25,7 +25,7 @@
 </head>
 <body>
   <div id='main'>
-    <%= yield  %>
+    <%= yield %>
   </div>
 </body>
 </html>

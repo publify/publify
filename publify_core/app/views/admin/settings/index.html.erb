@@ -8,7 +8,7 @@
 <%= form_tag :action => 'update' do %>
 
   <fieldset class='form-horizontal'>
-    <legend><%= t(".your_blog")%></legend>
+    <legend><%= t(".your_blog") %></legend>
     <div class='form-group'>
       <label class='control-label col-sm-4 col-md-3 col-lg-2' for="setting_blog_name"><%= t(".blog_name") %></label>
       <div class='col-sm-8 col-md-6 col-lg-4'>
@@ -31,7 +31,7 @@
       <label class='control-label col-sm-4 col-md-3 col-lg-2' for="setting_lang"><%= t(".language") %></label>
       <div class='col-sm-8 col-md-6 col-lg-4'>
         <select name="setting[lang]" id='setting_lang' class='form-control'>
-          <% langs = Hash[PublifyCore::Lang::LIST.map{|l| [t("langs.#{l}"), l]}]%>
+          <% langs = Hash[PublifyCore::Lang::LIST.map{|l| [t("langs.#{l}"), l]}] %>
           <%= options_for_select(langs, this_blog.lang) %>
         </select>
       </div>
@@ -42,7 +42,7 @@
         <div class='checkbox'>
           <label for="setting_allow_signup">
             <%= check_box(:setting, :allow_signup) %>
-            <%= t(".allow_users_to_register")%>
+            <%= t(".allow_users_to_register") %>
           </label>
         </div>
         <small class='help-block'><%= t(".explain_allow_users_to_register_html") %></small>
@@ -65,7 +65,7 @@
 
   <%= hidden_field_tag 'from', 'index' %>
   <div class='form-group'>
-    <hr>
+    <hr />
     <%= link_to(t(".cancel"), {action: 'index'}) %>
     <%= t(".or") %>
     <%= submit_tag(t(".update_settings"), class: 'btn btn-success') %>

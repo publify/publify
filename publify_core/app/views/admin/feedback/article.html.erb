@@ -10,12 +10,12 @@
   <%= hidden_field 'article_id', @article.id %>
   <%= render 'button', { :position => 'top' } %>
 
-  <br class='clear'>
+  <br class='clear' />
   <table class='table hover'>
     <thead>
       <tr class='noborder'>
         <th colspan='5'>
-          <input type="checkbox" name="checkall" id="checkall" onclick="check_all(this);">
+          <input type="checkbox" name="checkall" id="checkall" onclick="check_all(this);" />
           <%= t(".select_all") %>
         </th>
       </tr>
@@ -36,16 +36,16 @@
 
 <%= form_tag :action => "create" do %>
   <%= hidden_field_tag('article_id', @article.id) %>
-  <fieldset  class='form-horizontal'>
-    <legend><%= t(".add_a_comment")%></legend>
+  <fieldset class='form-horizontal'>
+    <legend><%= t(".add_a_comment") %></legend>
     <div class="form-group">
-      <label for="comment_author" class='control-label col-sm-2'><%= t(".author")%></label>
+      <label for="comment_author" class='control-label col-sm-2'><%= t(".author") %></label>
       <div class='col-sm-5'>
         <%= text_field 'comment', 'author', :class => 'form-control' %>
       </div>
     </div>
     <div class='form-group'>
-      <label for="comment_email" class='control-label col-sm-2'><%= t(".email")%></label>
+      <label for="comment_email" class='control-label col-sm-2'><%= t(".email") %></label>
       <div class='col-sm-5'>
         <%= text_field 'comment', 'email', :class => 'form-control' %>
       </div>

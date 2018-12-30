@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head profile="http://gmpg.org/xfn/11">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title><%= h(page_title) %></title>
   <%= stylesheet_link_tag "/stylesheets/theme/bootstrap.css", "/stylesheets/theme/style.css", "user-styles.css", :media => 'all' %>
   <%= render 'shared/page_header' %>
@@ -10,7 +10,7 @@
   <nav class="navbar navbar-default" role="navigation">
     <div class="container">
       <div class='navbar-header'>
-        <%= link_to(content_tag(:span, '', class: 'glyphicon glyphicon-th'), this_blog.base_url, class: 'navbar-brand' )%>
+        <%= link_to(content_tag(:span, '', class: 'glyphicon glyphicon-th'), this_blog.base_url, class: 'navbar-brand' ) %>
       </div>
       <ul class='nav navbar-nav pull-right'>
         <li><%= link_to(t('.statuses'), {controller: 'notes'}) %></li>

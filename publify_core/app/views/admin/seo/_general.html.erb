@@ -1,24 +1,24 @@
 <fieldset class='form-horizontal'>
   <legend><%= t(".general_settings") %></legend>
   <div class='form-group'>
-    <label class='control-label col-sm-4 col-md-3 col-lg-2' for="setting_meta_description"><%= t(".meta_description")%></label>
+    <label class='control-label col-sm-4 col-md-3 col-lg-2' for="setting_meta_description"><%= t(".meta_description") %></label>
     <div class='col-sm-8 col-md-6 col-lg-4'>
       <%= text_area(:setting, :meta_description, rows: 3, class: 'form-control') %>
     </div>
   </div>
   <div class='form-group'>
-    <label class='control-label col-sm-4 col-md-3 col-lg-2'><%= t(".use_meta_keywords")%></label>
+    <label class='control-label col-sm-4 col-md-3 col-lg-2'><%= t(".use_meta_keywords") %></label>
     <div class='col-sm-8 col-md-6 col-lg-4'>
       <div class='checkbox'>
         <label for="setting_use_meta_keyword">
-          <%= check_box(:setting, :use_meta_keyword)%>
-          <%= t(".use_meta_keywords")%>
+          <%= check_box(:setting, :use_meta_keyword) %>
+          <%= t(".use_meta_keywords") %>
         </label>
       </div>
     </div>
   </div>
   <div class='form-group'>
-    <label class='control-label col-sm-4 col-md-3 col-lg-2'><%= t(".meta_keywords")%></label>
+    <label class='control-label col-sm-4 col-md-3 col-lg-2'><%= t(".meta_keywords") %></label>
     <div class='col-sm-8 col-md-6 col-lg-4'>
       <%= text_area(:setting, :meta_keywords, rows: 3, class: 'form-control') %>
     </div>
@@ -53,7 +53,7 @@
       <div class='checkbox'>
         <label for="setting_unindex_tags">
           <%= check_box(:setting, :unindex_tags) %>
-          <%= t(".do_not_index_tags")%>
+          <%= t(".do_not_index_tags") %>
         </label>
         <small class='help-block'><%= t(".explain_tag_index_html") %></small>
       </div>
@@ -84,7 +84,7 @@
     <div class='checkbox'>
       <label for="setting_use_canonical_url">
         <%= check_box(:setting, :use_canonical_url) %>
-        <%= t(".use_canonical_url")%>
+        <%= t(".use_canonical_url") %>
       </label>
       <small class='help-block'><%= t(".read_more_about_html", link: link_to("rel='canonical'", "http://support.google.com/webmasters/bin/answer.py?hl=en&answer=139394")) %></small>
     </div>
@@ -114,4 +114,3 @@
     </div>
   </div>
 </fieldset>
-

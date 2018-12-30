@@ -7,7 +7,7 @@
 
 <%= form_tag action: 'update' do %>
   <fieldset class='form-horizontal'>
-    <legend><%= t(".feedback")%></legend>
+    <legend><%= t(".feedback") %></legend>
     <div class='form-group'>
       <label class='control-label col-sm-4 col-md-3 col-lg-2'><%= t(".comments") %></label>
       <div class='col-sm-8 col-md-6 col-lg-4'>
@@ -52,7 +52,7 @@
         <div class='checkbox'>
           <label for="setting_sp_global">
             <%= check_box(:setting, :sp_global) %>
-            <%= t(".enable_spam_protection")%>
+            <%= t(".enable_spam_protection") %>
           </label>
           <small class='help-block'><%= t(".explain_spam_protection") %>.</small>
         </div>
@@ -89,7 +89,7 @@
             <%= text_field(:setting, :sp_url_limit, {:size => 4, :class => 'form-control'}) %>
           </div>
           <div class='col-sm-12'>
-            <small class='help-block'><%= t(".explain_reject_comments")%>. <%= t(".set_to_0_to_never_reject_comments") %>.</small>
+            <small class='help-block'><%= t(".explain_reject_comments") %>. <%= t(".set_to_0_to_never_reject_comments") %>.</small>
           </div>
         </div>
       </div>
@@ -110,7 +110,7 @@
 
   <%= hidden_field_tag 'from', 'feedback' %>
   <div class='form-group'>
-    <hr>
+    <hr />
     <%= link_to(t(".cancel"), {action: 'index'}) %>
     <%= t(".or") %>
     <%= submit_tag(t(".update_settings"), class: 'btn btn-success') %>

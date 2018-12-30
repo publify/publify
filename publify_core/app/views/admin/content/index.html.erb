@@ -9,7 +9,7 @@
 <%= form_tag({action: 'index'}, {method: :get, name: 'article', remote: true, class: 'form-inline spinnable', :"data-update-success" => 'articleList'}) do %>
 
   <% if params[:search] and params[:search]['state'] %>
-    <input type="hidden" name="search[state]" value="<%= params[:search]['state'] %>" >
+    <input type="hidden" name="search[state]" value="<%= params[:search]['state'] %>" />
   <% end %>
 
   <p>
@@ -30,14 +30,14 @@
           <%= select_tag('search[published_at]', options_for_select(Article.publication_months), {prompt: t('.publication_date'), class: 'form-control'}) %>
         </div>
         <div class="form-group">
-          <input id="search" type="text" name="search[searchstring]" class="form-control">
+          <input id="search" type="text" name="search[searchstring]" class="form-control" />
         </div>
         <div class="form-group">
           <%= submit_tag(t('.search'), {class: 'btn btn-success'}) %>
           <span id="spinner" style="display:none;"><%= image_tag('spinner.gif') %></span>
         </div>
       </div>
-      <br style="clear: both">
+      <br style="clear: both" />
     </div>
   </div>
   <table class="table table-hover">

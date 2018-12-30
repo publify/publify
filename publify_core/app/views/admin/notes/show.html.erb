@@ -4,7 +4,7 @@
 <% end %>
 
 <p>
-  <%= t(".are_you_sure", note: @note)%>
+  <%= t(".are_you_sure", note: @note) %>
 </p>
 
 <%= form_for @note, url: admin_note_path(@note), method: :delete do %>

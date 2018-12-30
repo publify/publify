@@ -7,7 +7,7 @@
   <%= link_to comment.article.title, :controller => 'feedback', :action => 'article', :id => comment.article_id %>
   <p>
     <small>
-      <%= t('.by')%> <%= mail_to h(comment.email), h(comment.author) %>
+      <%= t('.by') %> <%= mail_to h(comment.email), h(comment.author) %>
       <%= link_to "(#{h(comment.url)})".html_safe, comment.url unless comment.url.blank? %>
       <%= t('.created_on') %> <%= l(comment.created_at) %>
     </small>

@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-  <input type="hidden" name="user_textfilter" id="user_textfilter" value="<%= current_user.text_filter_name %>">
+  <input type="hidden" name="user_textfilter" id="user_textfilter" value="<%= current_user.text_filter_name %>" />
 
   <div class='row save-bar'>
     <div class='col-md-8 col-md-offset-2'>
@@ -39,7 +39,7 @@
     </div>
 
     <div class='col-md-8'>
-      <%= text_field 'page', 'title', :class => 'form-control', :placeholder => t('.title')  %>
+      <%= text_field 'page', 'title', :class => 'form-control', :placeholder => t('.title') %>
 
       <div id='editor'>
         <%= text_area('page', 'body', {:class => 'form-control ', style: 'height: 360px', :rows => '20', placeholder: t('.type_your_post')}) %>
@@ -59,7 +59,7 @@
         </div>
         <div class="modal-body">
           <div class='well'>
-            <h4><%= t(".permanent_link")%></h4>
+            <h4><%= t(".permanent_link") %></h4>
             <div>
               <%= text_field 'page', 'name', :class => 'form-control' %>
             </div>
@@ -69,12 +69,12 @@
             <fieldset>
               <legend><%= t(".publish_settings") %></legend>
               <div class='control-group'>
-                <%= t(".status") %>: <strong><%= @page.state  %></strong>
+                <%= t(".status") %>: <strong><%= @page.state %></strong>
                 <%= toggle_element('status') %>
                 <div id='status' class='collapse'>
                   <label for="page_published" class='checkbox'>
-                    <%= check_box 'page', 'state', {}, 'published', ''  %>
-                    <%= t(".online")%>
+                    <%= check_box 'page', 'state', {}, 'published', '' %>
+                    <%= t(".online") %>
                   </label>
                   <p><span class='btn btn-default btn-mini'><%= toggle_element 'status', "OK" %></span></p>
                 </div>
