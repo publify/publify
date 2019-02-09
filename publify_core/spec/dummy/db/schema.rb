@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_09_155717) do
+ActiveRecord::Schema.define(version: 2019_02_09_160610) do
 
   create_table "blogs", force: :cascade do |t|
     t.text "settings"
@@ -146,14 +146,6 @@ ActiveRecord::Schema.define(version: 2019_02_09_155717) do
     t.datetime "updated_at"
     t.string "display_name"
     t.integer "blog_id"
-  end
-
-  create_table "text_filters", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
-    t.string "markup"
-    t.text "filters"
-    t.text "params"
   end
 
   create_table "triggers", force: :cascade do |t|
