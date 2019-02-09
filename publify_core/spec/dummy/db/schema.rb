@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_08_152646) do
+ActiveRecord::Schema.define(version: 2019_02_09_155717) do
 
   create_table "blogs", force: :cascade do |t|
     t.text "settings"
@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 2019_02_08_152646) do
     t.integer "user_id"
     t.string "permalink"
     t.string "guid"
-    t.integer "text_filter_id"
     t.text "whiteboard"
     t.string "name"
     t.boolean "allow_pings"
@@ -42,7 +41,6 @@ ActiveRecord::Schema.define(version: 2019_02_08_152646) do
     t.integer "blog_id", null: false
     t.string "text_filter_name"
     t.index ["id", "type"], name: "index_contents_on_id_and_type"
-    t.index ["text_filter_id"], name: "index_contents_on_text_filter_id"
     t.index ["user_id"], name: "index_contents_on_user_id"
   end
 
@@ -63,7 +61,6 @@ ActiveRecord::Schema.define(version: 2019_02_08_152646) do
     t.datetime "updated_at"
     t.integer "user_id"
     t.string "guid"
-    t.integer "text_filter_id"
     t.text "whiteboard"
     t.integer "article_id"
     t.string "email"
@@ -75,7 +72,6 @@ ActiveRecord::Schema.define(version: 2019_02_08_152646) do
     t.string "text_filter_name"
     t.index ["article_id"], name: "index_feedback_on_article_id"
     t.index ["id", "type"], name: "index_feedback_on_id_and_type"
-    t.index ["text_filter_id"], name: "index_feedback_on_text_filter_id"
     t.index ["user_id"], name: "index_feedback_on_user_id"
   end
 
@@ -178,7 +174,6 @@ ActiveRecord::Schema.define(version: 2019_02_08_152646) do
     t.boolean "notify_on_comments"
     t.string "remember_token"
     t.datetime "remember_token_expires_at"
-    t.string "text_filter_id", default: "1"
     t.string "state", default: "active"
     t.datetime "last_connection"
     t.text "settings"
@@ -198,7 +193,6 @@ ActiveRecord::Schema.define(version: 2019_02_08_152646) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["resource_id"], name: "index_users_on_resource_id"
-    t.index ["text_filter_id"], name: "index_users_on_text_filter_id"
   end
 
 end
