@@ -24,7 +24,7 @@ class Admin::NotesController < Admin::BaseController
 
     note.state = 'published'
     note.attributes = params[:note].permit!
-    note.text_filter ||= current_user.default_text_filter
+    note.text_filter ||= default_text_filter
     note.published_at ||= Time.zone.now
     if note.save
       if params[:push_to_twitter] && note.twitter_id.blank?
@@ -65,5 +65,9 @@ class Admin::NotesController < Admin::BaseController
   def new_note
     this_blog.notes.build(author: current_user,
                           text_filter: current_user.text_filter)
+  end
+
+  def default_text_filter
+    current_user.text_filter || this_blog.text_filter_object
   end
 end

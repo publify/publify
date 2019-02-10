@@ -96,11 +96,6 @@ class User < ApplicationRecord
     TextFilter.make_filter(text_filter_name)
   end
 
-  # TODO: Use #text_filter directly
-  def default_text_filter
-    text_filter
-  end
-
   def self.to_prefix
     'author'
   end
