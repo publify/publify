@@ -18,20 +18,4 @@ unless blog.sidebars.any?
   MetaSidebar.create!(active_position: 4, blog_id: blog.id)
 end
 
-TextFilter.
-  create_with(description: 'None', markup: 'none', filters: [], params: {}).
-  find_or_create_by!(name: 'none')
-TextFilter.
-  create_with(description: 'Markdown', markup: 'markdown', filters: [], params: {}).
-  find_or_create_by!(name: 'markdown')
-TextFilter.
-  create_with(description: 'SmartyPants', markup: 'none', filters: [:smartypants], params: {}).
-  find_or_create_by!(name: 'smartypants')
-TextFilter.
-  create_with(description: 'Markdown with SmartyPants', markup: 'markdown', filters: [:smartypants], params: {}).
-  find_or_create_by!(name: 'markdown smartypants')
-TextFilter.
-  create_with(description: 'Textile', markup: 'textile', filters: [], params: {}).
-  find_or_create_by!(name: 'textile')
-
 Dir.mkdir("#{::Rails.root}/public/files") unless File.directory?("#{::Rails.root}/public/files")
