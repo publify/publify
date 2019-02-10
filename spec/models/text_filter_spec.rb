@@ -81,8 +81,6 @@ describe 'With the list of available filters', type: :model do
     end
 
     it 'filterchain' do
-      build_stubbed(:markdown)
-      build_stubbed(:smartypants)
       assert_equal '<p><em>&#8220;foo&#8221;</em></p>',
                    filter_text('*"foo"*', [:markdown, :smartypants])
 
