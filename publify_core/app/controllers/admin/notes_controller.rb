@@ -64,10 +64,10 @@ class Admin::NotesController < Admin::BaseController
 
   def new_note
     this_blog.notes.build(author: current_user,
-                          text_filter: current_user.text_filter)
+                          text_filter_name: default_text_filter)
   end
 
   def default_text_filter
-    current_user.text_filter || this_blog.text_filter_object
+    current_user.text_filter_name || this_blog.text_filter
   end
 end

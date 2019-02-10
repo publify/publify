@@ -50,19 +50,6 @@ class Content < ApplicationRecord
     end
   end
 
-  # Set the text filter for this object.
-  # NOTE: Due to how Rails injects association methods, this cannot be put in ContentBase
-  # TODO: Replace with #text_filter_name=
-  def text_filter=(filter)
-    filter_name = case filter
-                    when TextFilter
-                      filter.name
-                    else
-                      filter
-                    end
-    self.text_filter_name = filter_name
-  end
-
   def shorten_url
     return unless published?
 

@@ -164,7 +164,7 @@ class Admin::ContentController < Admin::BaseController
     @article.assign_attributes(update_params)
     @article.author = current_user
     @article.save_attachments!(params[:attachments])
-    @article.text_filter ||= default_text_filter
+    @article.text_filter_name ||= default_text_filter
   end
 
   def update_params
