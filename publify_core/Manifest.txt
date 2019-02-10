@@ -336,6 +336,10 @@ db/migrate/20170528094923_move_tags_to_content.rb
 db/migrate/20170528201606_remove_separate_published_flag.rb
 db/migrate/20170605071626_remove_extra_state_columns_from_feedback.rb
 db/migrate/20170702105201_remove_published_at_from_feedback.rb
+db/migrate/20190208151235_add_text_filter_name_fields.rb
+db/migrate/20190208152646_move_text_filter_to_name.rb
+db/migrate/20190209155717_remove_text_filter_ids.rb
+db/migrate/20190209160610_remove_text_filters.rb
 db/seeds.rb
 lib/email_notify.rb
 lib/format.rb
