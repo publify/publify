@@ -12,11 +12,18 @@ describe Article::Builder, type: :model do
 
     it { expect(new_article.allow_comments).to eq(blog.default_allow_comments) }
     it { expect(new_article.allow_pings).to eq(blog.default_allow_pings) }
-    it { expect(new_article.text_filter_name).to eq(user.text_filter_name) }
+    it { expect(new_article.text_filter_name).to eq(blog.text_filter) }
 
     it 'does not attempt to validate the article' do
       expect(new_article.errors).to be_empty
     end
+
+    context 'with a user with text_filter_name set' do
+      let(:user) { create(:user, text_filter_name: 'textile') }
+
+      it { expect(new_article.text_filter_name).to eq(user.text_filter_name) }
+    end
+
   end
 
   describe '#get_or_build' do
@@ -33,7 +40,7 @@ describe Article::Builder, type: :model do
       it { expect(new_article.id).to be_nil }
       it { expect(new_article.allow_pings).to eq(blog.default_allow_pings) }
       it { expect(new_article.allow_comments).to eq(blog.default_allow_comments) }
-      it { expect(new_article.text_filter_name).to eq(user.text_filter_name) }
+      it { expect(new_article.text_filter_name).to eq(blog.text_filter) }
     end
   end
 

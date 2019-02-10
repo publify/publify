@@ -24,7 +24,6 @@ FactoryBot.define do
     password { 'top-secret' }
     state { 'active' }
     profile { User::CONTRIBUTOR }
-    text_filter_name { 'textile' }
 
     trait :without_twitter do
       twitter { nil }
@@ -131,9 +130,7 @@ FactoryBot.define do
     sp_global { true }
     default_allow_comments { true }
     email_from { 'scott@sigkill.org' }
-    text_filter { 'textile' }
     sp_article_auto_close { 0 }
-    comment_text_filter { 'markdown' }
     permalink_format { '/%year%/%month%/%day%/%title%' }
     use_canonical_url { true }
     rss_description_text { 'rss description text' }

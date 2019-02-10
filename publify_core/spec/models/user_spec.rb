@@ -125,9 +125,8 @@ describe User, type: :model do
 
   describe 'default_text_filter' do
     it 'returns user text_filter' do
-      blog = create(:blog)
-      user = build(:user)
-      expect(user.default_text_filter.name).to eq(blog.text_filter)
+      user = build(:user, text_filter_name: 'textile')
+      expect(user.default_text_filter.name).to eq 'textile'
     end
   end
 

@@ -160,9 +160,7 @@ describe Comment, type: :model do
   end
 
   it 'has good default filter' do
-    blog = create :blog
-    blog.text_filter = :textile
-    blog.comment_text_filter = :markdown
+    create :blog, text_filter: 'textile', comment_text_filter: 'markdown'
     a = create(:comment)
     assert_equal 'markdown', a.default_text_filter.name
   end

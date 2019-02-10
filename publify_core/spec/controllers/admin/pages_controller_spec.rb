@@ -38,7 +38,7 @@ describe Admin::PagesController, type: :controller do
       it { expect(response).to render_template('new') }
       it { expect(assigns(:page)).not_to be_nil }
       it { expect(assigns(:page).user).to eq(user) }
-      it { expect(assigns(:page).text_filter.name).to eq('textile') }
+      it { expect(assigns(:page).text_filter.name).to eq('markdown smartypants') }
       it { expect(assigns(:page)).to be_published }
     end
   end
