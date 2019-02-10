@@ -13,6 +13,7 @@ class SetupController < BaseController
     @user = User.new(login: 'admin',
                      email: params[:setting][:email],
                      password: params[:setting][:password],
+                     text_filter_name: this_blog.text_filter,
                      nickname: 'Publify Admin')
     @user.name = @user.login
 

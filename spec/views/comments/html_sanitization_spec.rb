@@ -34,7 +34,6 @@ RSpec.describe 'comments/_comment.html.erb', type: :view do
         ['', 'markdown', 'textile', 'smartypants', 'markdown smartypants'].each do |value|
           it "sanitizes content rendered with the #{value} textfilter" do
             blog.comment_text_filter = value
-            create(value.empty? ? 'none' : value)
 
             render partial: 'comments/comment', locals: { comment: @comment }
             expect(rendered).to have_selector('.content')
@@ -162,7 +161,6 @@ RSpec.describe 'comments/_comment.html.erb', type: :view do
 
         ['', 'markdown', 'textile', 'smartypants', 'markdown smartypants'].each do |value|
           it "sanitizes content rendered with the #{value} textfilter" do
-            value == '' ? create(:none) : create(value)
             blog.comment_text_filter = value
 
             render partial: 'comments/comment', locals: { comment: @comment }

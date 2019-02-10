@@ -18,7 +18,7 @@ class ArticlesController < ContentController
                     else
                       this_blog.contents.published_at(params.values_at(:year, :month, :day))
                     end
-    @articles = articles_base.includes(:user, :resources, :tags, :text_filter).
+    @articles = articles_base.includes(:user, :resources, :tags).
       where(type: wanted_types).page(params[:page]).per(limit)
 
     respond_to do |format|
@@ -120,7 +120,7 @@ class ArticlesController < ContentController
 
   # TODO: Move to TextfilterController?
   def markup_help
-    render html: TextFilter.find(params[:id]).commenthelp
+    render html: TextFilter.make_filter(params[:id]).commenthelp
   end
 
   private

@@ -5,8 +5,8 @@ require 'rails_helper'
 describe Admin::ContentController, type: :controller do
   render_views
 
-  let(:admin) { create(:user, :as_admin, text_filter: create(:markdown)) }
-  let(:publisher) { create(:user, :as_publisher, text_filter: create(:markdown)) }
+  let(:admin) { create(:user, :as_admin) }
+  let(:publisher) { create(:user, :as_publisher) }
   let(:contributor) { create(:user, :as_contributor) }
 
   before do
@@ -181,7 +181,7 @@ describe Admin::ContentController, type: :controller do
 
         expect(new_article.body).to eq body
         expect(new_article.extended).to eq extended
-        expect(new_article.text_filter.name).to eq @user.text_filter.name
+        expect(new_article.text_filter.name).to eq 'markdown smartypants'
         expect(new_article.html(:body)).to eq '<p>body via <em>markdown</em></p>'
         expect(new_article.html(:extended)).to eq '<p><em>foo</em></p>'
       end

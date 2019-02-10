@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2017_07_02_105201) do
+ActiveRecord::Schema.define(version: 2019_02_09_160610) do
 
   create_table "blogs", force: :cascade do |t|
     t.text "settings"
@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 2017_07_02_105201) do
     t.integer "user_id"
     t.string "permalink"
     t.string "guid"
-    t.integer "text_filter_id"
     t.text "whiteboard"
     t.string "name"
     t.boolean "allow_pings"
@@ -40,8 +39,8 @@ ActiveRecord::Schema.define(version: 2017_07_02_105201) do
     t.text "settings"
     t.string "post_type", default: "read"
     t.integer "blog_id", null: false
+    t.string "text_filter_name"
     t.index ["id", "type"], name: "index_contents_on_id_and_type"
-    t.index ["text_filter_id"], name: "index_contents_on_text_filter_id"
     t.index ["user_id"], name: "index_contents_on_user_id"
   end
 
@@ -62,7 +61,6 @@ ActiveRecord::Schema.define(version: 2017_07_02_105201) do
     t.datetime "updated_at"
     t.integer "user_id"
     t.string "guid"
-    t.integer "text_filter_id"
     t.text "whiteboard"
     t.integer "article_id"
     t.string "email"
@@ -71,9 +69,9 @@ ActiveRecord::Schema.define(version: 2017_07_02_105201) do
     t.string "blog_name"
     t.string "state"
     t.string "user_agent"
+    t.string "text_filter_name"
     t.index ["article_id"], name: "index_feedback_on_article_id"
     t.index ["id", "type"], name: "index_feedback_on_id_and_type"
-    t.index ["text_filter_id"], name: "index_feedback_on_text_filter_id"
     t.index ["user_id"], name: "index_feedback_on_user_id"
   end
 
@@ -150,14 +148,6 @@ ActiveRecord::Schema.define(version: 2017_07_02_105201) do
     t.integer "blog_id"
   end
 
-  create_table "text_filters", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
-    t.string "markup"
-    t.text "filters"
-    t.text "params"
-  end
-
   create_table "triggers", force: :cascade do |t|
     t.integer "pending_item_id"
     t.string "pending_item_type"
@@ -176,7 +166,6 @@ ActiveRecord::Schema.define(version: 2017_07_02_105201) do
     t.boolean "notify_on_comments"
     t.string "remember_token"
     t.datetime "remember_token_expires_at"
-    t.string "text_filter_id", default: "1"
     t.string "state", default: "active"
     t.datetime "last_connection"
     t.text "settings"
@@ -192,10 +181,10 @@ ActiveRecord::Schema.define(version: 2017_07_02_105201) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string "profile"
+    t.string "text_filter_name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["resource_id"], name: "index_users_on_resource_id"
-    t.index ["text_filter_id"], name: "index_users_on_text_filter_id"
   end
 
 end

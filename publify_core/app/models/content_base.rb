@@ -66,6 +66,10 @@ module ContentBase
       (text.length > length ? '...' : '')
   end
 
+  def text_filter
+    TextFilter.make_filter(text_filter_name)
+  end
+
   # The default text filter.  Generally, this is the filter specified by blog.text_filter,
   # but comments may use a different default.
   def default_text_filter

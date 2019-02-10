@@ -134,11 +134,6 @@ describe Comment, type: :model do
 
     ['', 'textile', 'markdown', 'smartypants', 'markdown smartypants'].each do |filter|
       it "should reject with filter '#{filter}'" do
-        # XXX: This makes sure text filter can be 'found' in the database
-        # FIXME: TextFilter objects should not be in the database!
-        sym = filter.empty? ? :none : filter.to_sym
-        create sym
-
         blog.comment_text_filter = filter
 
         assert comment.html(:body) !~ /<script>/
@@ -165,11 +160,7 @@ describe Comment, type: :model do
   end
 
   it 'has good default filter' do
-    blog = create :blog
-    create :textile
-    create :markdown
-    blog.text_filter = :textile
-    blog.comment_text_filter = :markdown
+    create :blog, text_filter: 'textile', comment_text_filter: 'markdown'
     a = create(:comment)
     assert_equal 'markdown', a.default_text_filter.name
   end

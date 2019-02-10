@@ -6,7 +6,6 @@ require 'akismet'
 class Feedback < ApplicationRecord
   self.table_name = 'feedback'
 
-  belongs_to :text_filter, optional: true
   belongs_to :article, touch: true
 
   include PublifyGuid

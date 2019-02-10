@@ -12,7 +12,7 @@ class Article::Factory
     blog.articles.build.tap do |art|
       art.allow_comments = blog.default_allow_comments
       art.allow_pings = blog.default_allow_pings
-      art.text_filter = user.default_text_filter
+      art.text_filter_name = default_text_filter
       art.state = 'draft'
     end
   end
@@ -56,5 +56,9 @@ class Article::Factory
       end
       result
     end
+  end
+
+  def default_text_filter
+    user.text_filter_name || blog.text_filter
   end
 end

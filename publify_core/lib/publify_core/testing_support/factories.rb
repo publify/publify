@@ -24,7 +24,6 @@ FactoryBot.define do
     password { 'top-secret' }
     state { 'active' }
     profile { User::CONTRIBUTOR }
-    association :text_filter, factory: :textile
 
     trait :without_twitter do
       twitter { nil }
@@ -65,7 +64,7 @@ FactoryBot.define do
     allow_comments { true }
     state { :published }
     allow_pings { true }
-    association :text_filter, factory: :textile
+    text_filter_name { 'textile' }
 
     after :build do |article|
       article.blog ||= Blog.first || create(:blog)
@@ -101,40 +100,6 @@ FactoryBot.define do
     description { 'Some description' }
   end
 
-  factory :markdown, class: :text_filter do
-    name { 'markdown' }
-    description { 'Markdown' }
-    markup { 'markdown' }
-    filters { [] }
-    params {}
-  end
-
-  factory :smartypants, parent: :markdown do
-    name { 'smartypants' }
-    description { 'SmartyPants' }
-    markup { 'none' }
-    filters { [:smartypants] }
-  end
-
-  factory 'markdown smartypants', parent: :smartypants do
-    name { 'markdown smartypants' }
-    description { 'Markdown with SmartyPants' }
-    markup { 'markdown' }
-    filters { [:smartypants] }
-  end
-
-  factory :textile, parent: :markdown do
-    name { 'textile' }
-    description { 'Textile' }
-    markup { 'textile' }
-  end
-
-  factory :none, parent: :markdown do
-    name { 'none' }
-    description { 'None' }
-    markup { 'none' }
-  end
-
   factory :utf8article, parent: :article do
     title { 'ルビー' }
     permalink { 'ルビー' }
@@ -165,19 +130,11 @@ FactoryBot.define do
     sp_global { true }
     default_allow_comments { true }
     email_from { 'scott@sigkill.org' }
-    text_filter { 'textile' }
     sp_article_auto_close { 0 }
-    comment_text_filter { 'markdown' }
     permalink_format { '/%year%/%month%/%day%/%title%' }
     use_canonical_url { true }
     rss_description_text { 'rss description text' }
     lang { 'en_US' }
-
-    after :stub do |blog|
-      [blog.text_filter, blog.comment_text_filter].uniq.each do |filter|
-        build_stubbed filter
-      end
-    end
   end
 
   factory :tag do |tag|
@@ -207,7 +164,7 @@ FactoryBot.define do
 
   factory :comment do
     article
-    association :text_filter, factory: :textile
+    text_filter_name { 'textile' }
     author { 'Bob Foo' }
     url { 'http://fakeurl.com' }
     body { 'Comment body' }
@@ -258,7 +215,7 @@ FactoryBot.define do
     published_at { Time.zone.now }
     user
     state { 'published' }
-    association :text_filter, factory: :markdown
+    text_filter_name { 'markdown' }
     guid
     blog { Blog.first || create(:blog) }
   end

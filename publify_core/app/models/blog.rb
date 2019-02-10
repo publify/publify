@@ -229,7 +229,7 @@ class Blog < ApplicationRecord
   end
 
   def text_filter_object
-    TextFilter.find_or_default(text_filter)
+    TextFilter.make_filter(text_filter)
   end
 
   def has_twitter_configured?

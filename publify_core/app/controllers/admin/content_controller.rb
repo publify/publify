@@ -28,7 +28,7 @@ class Admin::ContentController < Admin::BaseController
     return unless access_granted?(params[:id])
 
     @article = Article.find(params[:id])
-    @article.text_filter ||= current_user.default_text_filter
+    @article.text_filter ||= default_text_filter
     @article.keywords = Tag.collection_to_string @article.tags
     load_resources
     render layout: 'editor'
@@ -164,7 +164,7 @@ class Admin::ContentController < Admin::BaseController
     @article.assign_attributes(update_params)
     @article.author = current_user
     @article.save_attachments!(params[:attachments])
-    @article.text_filter ||= current_user.default_text_filter
+    @article.text_filter_name ||= default_text_filter
   end
 
   def update_params
@@ -180,5 +180,9 @@ class Admin::ContentController < Admin::BaseController
              :published_at,
              :title,
              :keywords)
+  end
+
+  def default_text_filter
+    current_user.text_filter || this_blog.text_filter
   end
 end

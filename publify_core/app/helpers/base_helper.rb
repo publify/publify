@@ -69,7 +69,9 @@ module BaseHelper
 
   def markup_help_popup(markup, text)
     if markup && markup.commenthelp.size > 1
-      link_to text, url_for(controller: 'articles', action: 'markup_help', id: markup.id), onclick: "return popup(this, 'Publify Markup Help')"
+      link_to(text,
+              url_for(controller: 'articles', action: 'markup_help', id: markup.name),
+              onclick: "return popup(this, 'Publify Markup Help')")
     else
       ''
     end

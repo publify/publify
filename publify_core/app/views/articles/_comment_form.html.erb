@@ -38,7 +38,7 @@
       <% end %>
       <tr>
         <td colspan="2" id="frm-btns">
-          <%= markup_help_popup TextFilter.find_by(name: this_blog.comment_text_filter), t('.comment_markup_help') %>
+          <%= markup_help_popup TextFilter.make_filter(this_blog.comment_text_filter), t('.comment_markup_help') %>
           <a href="#" onclick="$.post('<%= @article.preview_comment_url %>', $('#comment_form').serialize());return false"><%= t('.preview_comment') %></a>
           <input type="submit" name="submit" id="form-submit-button" value="submit" class="button" />
         </td>

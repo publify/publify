@@ -13,14 +13,14 @@ class Admin::PagesController < Admin::BaseController
 
   def new
     @page = Page.new
-    @page.text_filter ||= default_textfilter
+    @page.text_filter_name ||= default_text_filter
     @page.user_id = current_user.id
     @page.state = 'published'
     render layout: 'editor'
   end
 
   def edit
-    @page.text_filter ||= default_textfilter
+    @page.text_filter_name ||= default_text_filter
     render layout: 'editor'
   end
 
@@ -38,7 +38,7 @@ class Admin::PagesController < Admin::BaseController
   end
 
   def update
-    @page.text_filter ||= default_textfilter
+    @page.text_filter_name ||= default_text_filter
     if @page.update(page_params)
       redirect_to admin_pages_url, notice: I18n.t('admin.pages.edit.success')
     else
@@ -52,8 +52,8 @@ class Admin::PagesController < Admin::BaseController
 
   private
 
-  def default_textfilter
-    current_user.text_filter || blog.text_filter
+  def default_text_filter
+    current_user.text_filter_name || this_blog.text_filter
   end
 
   def set_macro

@@ -123,14 +123,6 @@ describe User, type: :model do
     end
   end
 
-  describe 'default_text_filter' do
-    it 'returns user text_filter' do
-      blog = create(:blog)
-      user = build(:user)
-      expect(user.default_text_filter.name).to eq(blog.text_filter)
-    end
-  end
-
   describe '#first_and_last_name' do
     context 'with first and last name' do
       let(:user) { create(:user, firstname: 'Marlon', lastname: 'Brando') }

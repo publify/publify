@@ -130,7 +130,15 @@ RSpec.describe ArticlesController, type: :controller do
     let!(:user) { create :user }
 
     before do
-      create(:article, body: "in markdown format\n\n * we\n * use\n [ok](http://blog.ok.com) to define a link", text_filter: create(:markdown))
+      create(:article,
+             body: <<~MARKDOWN,
+              in markdown format
+
+               * we
+               * use
+              [ok](http://blog.ok.com) to define a link
+              MARKDOWN
+             text_filter_name: 'markdown')
       create(:article, body: 'xyz')
     end
 

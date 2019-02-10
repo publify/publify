@@ -8,7 +8,6 @@ describe SetupController, type: :controller do
       before do
         # Set up database similar to result of seeding
         @blog = Blog.create
-        create :none
         get 'index'
       end
 
@@ -30,7 +29,6 @@ describe SetupController, type: :controller do
       before do
         # Set up database similar to result of seeding
         @blog = Blog.create
-        create :none
       end
 
       context 'when passing correct parameters' do
@@ -39,7 +37,7 @@ describe SetupController, type: :controller do
           post :create, params: { setting: { blog_name: 'Foo', email: 'foo@bar.net', password: 'foo123bar' } }
         end
 
-        it 'correctlies initialize blog and users' do
+        it 'correctly initializes blog and users' do
           expect(Blog.first.blog_name).to eq('Foo')
           admin = User.find_by(login: 'admin')
           expect(admin).not_to be_nil
