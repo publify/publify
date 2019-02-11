@@ -47,14 +47,14 @@ class InitialSchema < ActiveRecord::Migration[4.2]
       t.integer  'text_filter_id'
       t.text     'whiteboard'
       t.string   'name'
-      t.boolean  'published',      default: false
+      t.boolean  'published', default: false
       t.boolean  'allow_pings'
       t.boolean  'allow_comments'
       t.datetime 'published_at'
       t.string   'state'
       t.integer  'parent_id'
       t.text     'settings'
-      t.string   'post_type',      default: 'read'
+      t.string   'post_type', default: 'read'
     end
 
     add_index 'contents', ['published']
@@ -75,9 +75,9 @@ class InitialSchema < ActiveRecord::Migration[4.2]
       t.integer  'article_id'
       t.string   'email'
       t.string   'url'
-      t.string   'ip',               limit: 40
+      t.string   'ip', limit: 40
       t.string   'blog_name'
-      t.boolean  'published',                      default: false
+      t.boolean  'published', default: false
       t.datetime 'published_at'
       t.string   'state'
       t.boolean  'status_confirmed'
