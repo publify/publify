@@ -138,6 +138,8 @@ Rails/SkipsModelValidations:
   Exclude:
     - 'db/migrate/*'
     - 'publify_core/db/migrate/*'
+    - 'publify_amazon_sidebar/spec/dummy/db/migrate/*'
+    - 'publify_textfilter_code/spec/dummy/db/migrate/*'
 
 # Allow the use of 'and' 'or' in control structures.
 Style/AndOr:
