@@ -2,7 +2,7 @@
 
 require 'net/http'
 
-class TextFilter #< ApplicationRecord
+class TextFilter
   attr_accessor :description
   attr_accessor :filters
   attr_accessor :markup
