@@ -94,8 +94,10 @@ Metrics/LineLength:
 # TODO: Lower Max and fix offenses
 Metrics/MethodLength:
   Exclude:
-    - 'publify_core/db/migrate/113_initial_schema.rb'
     - 'db/migrate/113_initial_schema.publify_core_engine.rb'
+    - 'publify_core/db/migrate/113_initial_schema.rb'
+    - 'publify_amazon_sidebar/spec/dummy/db/migrate/20160712061341_initial_schema.publify_core_engine.rb'
+    - 'publify_textfilter_code/spec/dummy/db/migrate/20160716093725_initial_schema.publify_core_engine.rb'
   Max: 45
 
 # TODO: Lower Max and fix offenses
