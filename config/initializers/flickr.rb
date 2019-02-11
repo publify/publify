@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'flickraw'
 
 # Prepare needed FlickRaw methods
