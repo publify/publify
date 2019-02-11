@@ -26,7 +26,11 @@ class AddBlogIds < ActiveRecord::Migration[4.2]
         remove_index(:contents, name: index.name) if index.name =~ /blog_id/
       end
     else
-      remove_index :contents, :blog_id rescue nil
+      begin
+        remove_index :contents, :blog_id
+      rescue
+        nil
+      end
     end
     remove_column :contents, :blog_id
     remove_column :sidebars, :blog_id
