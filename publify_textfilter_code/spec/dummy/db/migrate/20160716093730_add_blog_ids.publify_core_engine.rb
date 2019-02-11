@@ -17,14 +17,14 @@ class AddBlogIds < ActiveRecord::Migration[4.2]
       Sidebar.update_all("blog_id = #{default_blog_id}")
     end
 
-    change_column :sidebars, :blog_id, :integer, :null => false
+    change_column :sidebars, :blog_id, :integer, null: false
   end
 
   def down
     if adapter_name == 'PostgreSQL'
       indexes(:contents).each do |index|
         if index.name =~ /blog_id/
-          remove_index(:contents, :name => index.name)
+          remove_index(:contents, name: index.name)
         end
       end
     else

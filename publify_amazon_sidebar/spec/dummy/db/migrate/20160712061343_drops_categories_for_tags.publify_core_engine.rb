@@ -9,7 +9,7 @@ class DropsCategoriesForTags < ActiveRecord::Migration[4.2]
 
   class Category < ActiveRecord::Base
     has_many :categorizations
-    has_many :articles, :through => :categorizations
+    has_many :articles, through: :categorizations
   end
 
   def up
