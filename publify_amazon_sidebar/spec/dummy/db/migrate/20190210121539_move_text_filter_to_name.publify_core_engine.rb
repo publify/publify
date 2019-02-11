@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from publify_core_engine (originally 20190208152646)
 class MoveTextFilterToName < ActiveRecord::Migration[5.2]
   class Content < ActiveRecord::Base

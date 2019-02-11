@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from publify_core_engine (originally 20160701062604)
 class AddBlogIdToResources < ActiveRecord::Migration[4.2]
   class Blog < ActiveRecord::Base; end

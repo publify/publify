@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from publify_core_engine (originally 20190208151235)
 class AddTextFilterNameFields < ActiveRecord::Migration[5.2]
   def change

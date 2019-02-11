@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from publify_core_engine (originally 20160605103918)
 class ReplaceProfileIdWithString < ActiveRecord::Migration[4.2]
   class Profile < ActiveRecord::Base

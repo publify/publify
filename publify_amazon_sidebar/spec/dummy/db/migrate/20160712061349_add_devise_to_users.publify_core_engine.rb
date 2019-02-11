@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from publify_core_engine (originally 20160108111120)
 class AddDeviseToUsers < ActiveRecord::Migration[4.2]
   def self.up

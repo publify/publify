@@ -1,4 +1,6 @@
 # encoding: UTF-8
+# frozen_string_literal: true
+
 # This migration comes from publify_core_engine (originally 113)
 
 class InitialSchema < ActiveRecord::Migration[4.2]

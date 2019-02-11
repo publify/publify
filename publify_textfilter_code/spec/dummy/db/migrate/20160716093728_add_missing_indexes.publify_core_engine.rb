@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from publify_core_engine (originally 20150207131657)
 class AddMissingIndexes < ActiveRecord::Migration[4.2]
   def change
