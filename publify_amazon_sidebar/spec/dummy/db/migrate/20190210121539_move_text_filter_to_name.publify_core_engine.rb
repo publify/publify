@@ -26,13 +26,13 @@ class MoveTextFilterToName < ActiveRecord::Migration[5.2]
     Content.find_each do |content|
       filter = content.text_filter
       filter_name = filter&.name || 'none'
-      content.update!(text_filter_name: name, text_filter_id: nil)
+      content.update!(text_filter_name: filter_name, text_filter_id: nil)
     end
 
     Feedback.find_each do |feedback|
       filter = feedback.text_filter
       filter_name = filter&.name || 'none'
-      feedback.update!(text_filter_name: name, text_filter_id: nil)
+      feedback.update!(text_filter_name: filter_name, text_filter_id: nil)
     end
 
     User.find_each do |user|
@@ -73,7 +73,7 @@ class MoveTextFilterToName < ActiveRecord::Migration[5.2]
       filter_name = feedback.text_filter_name
       next unless filter_name
       filter = TextFilter.find(name: filter_name)
-      raise "Filter #{filter_name} not found"
+      raise "Filter #{filter_name} not found" unless filter
       feedback.update!(text_filter: filter)
     end
 
@@ -81,7 +81,7 @@ class MoveTextFilterToName < ActiveRecord::Migration[5.2]
       filter_name = user.text_filter_name
       next unless filter_name
       filter = TextFilter.find(name: filter_name)
-      raise "Filter #{filter_name} not found"
+      raise "Filter #{filter_name} not found" unless filter
       user.update!(text_filter: filter)
     end
   end
