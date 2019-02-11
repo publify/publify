@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MoveTextFilterToName < ActiveRecord::Migration[5.2]
   class Content < ActiveRecord::Base
     self.inheritance_column = :bogus
