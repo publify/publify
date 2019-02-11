@@ -132,12 +132,12 @@ RSpec.describe ArticlesController, type: :controller do
     before do
       create(:article,
              body: <<~MARKDOWN,
-              in markdown format
+               in markdown format
 
-               * we
-               * use
-              [ok](http://blog.ok.com) to define a link
-              MARKDOWN
+                * we
+                * use
+               [ok](http://blog.ok.com) to define a link
+             MARKDOWN
              text_filter_name: 'markdown')
       create(:article, body: 'xyz')
     end
