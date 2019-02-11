@@ -32,6 +32,5 @@ class DropsCategoriesForTags < ActiveRecord::Migration[4.2]
     drop_table :categories
   end
 
-  def down
-  end
+  def down; end
 end
