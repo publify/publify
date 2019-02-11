@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from publify_core_engine (originally 20150808191127)
 class AddBlogIdToRedirects < ActiveRecord::Migration[4.2]
   class Redirect < ActiveRecord::Base; end

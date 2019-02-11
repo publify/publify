@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 # This migration comes from publify_core_engine (originally 20160108111120)
 class AddDeviseToUsers < ActiveRecord::Migration[4.2]
   def self.up
     ## Database authenticatable
-    change_column :users, :email, :string, null: false, default: ""
+    change_column :users, :email, :string, null: false, default: ''
     rename_column :users, :password, :encrypted_password
-    change_column :users, :encrypted_password, :string, null: false, default: ""
+    change_column :users, :encrypted_password, :string, null: false, default: ''
 
     change_table(:users) do |t|
       ## Recoverable

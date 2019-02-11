@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from publify_core_engine (originally 20150810094754)
 class AddBlogIdToTags < ActiveRecord::Migration[4.2]
   class Tag < ActiveRecord::Base; end

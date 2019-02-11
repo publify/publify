@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from publify_core_engine (originally 20160108184201)
 class MoveLastConnectionToLastSignInAt < ActiveRecord::Migration[4.2]
   class User < ActiveRecord::Base

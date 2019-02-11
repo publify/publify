@@ -23,7 +23,6 @@ describe Article::Builder, type: :model do
 
       it { expect(new_article.text_filter_name).to eq(user.text_filter_name) }
     end
-
   end
 
   describe '#get_or_build' do

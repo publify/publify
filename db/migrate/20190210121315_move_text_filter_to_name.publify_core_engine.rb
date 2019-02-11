@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from publify_core_engine (originally 20190208152646)
 class MoveTextFilterToName < ActiveRecord::Migration[5.2]
   class Content < ActiveRecord::Base
@@ -64,24 +66,30 @@ class MoveTextFilterToName < ActiveRecord::Migration[5.2]
     Content.find_each do |content|
       filter_name = content.text_filter_name
       next unless filter_name
+
       filter = TextFilter.find(name: filter_name)
-      raise "Filter #{filter_name} not found"
+      raise "Filter #{filter_name} not found" unless filter
+
       content.update!(text_filter: filter)
     end
 
     Feedback.find_each do |feedback|
       filter_name = feedback.text_filter_name
       next unless filter_name
+
       filter = TextFilter.find(name: filter_name)
       raise "Filter #{filter_name} not found" unless filter
+
       feedback.update!(text_filter: filter)
     end
 
     User.find_each do |user|
       filter_name = user.text_filter_name
       next unless filter_name
+
       filter = TextFilter.find(name: filter_name)
       raise "Filter #{filter_name} not found" unless filter
+
       user.update!(text_filter: filter)
     end
   end

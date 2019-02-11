@@ -3,15 +3,17 @@ require:
 
 AllCops:
   Exclude:
-  - 'bin/**/*'
-  - 'config/**/*'
+  - 'bin/*'
   - 'tmp/**/*'
   - 'publify_core/bin/*'
-  - 'publify_core/spec/dummy/**/*'
+  - 'publify_core/spec/dummy/bin/*'
+  - 'publify_core/spec/dummy/db/schema.rb'
   - 'publify_amazon_sidebar/bin/*'
-  - 'publify_amazon_sidebar/spec/dummy/**/*'
+  - 'publify_amazon_sidebar/spec/dummy/bin/*'
+  - 'publify_amazon_sidebar/spec/dummy/db/schema.rb'
   - 'publify_textfilter_code/bin/*'
-  - 'publify_textfilter_code/spec/dummy/**/*'
+  - 'publify_textfilter_code/spec/dummy/bin/*'
+  - 'publify_textfilter_code/spec/dummy/db/schema.rb'
   - 'db/converters/*.rb'
   - 'db/scripts/fix_permalinks.rb'
   - 'db/schema.rb'
@@ -88,8 +90,10 @@ Metrics/LineLength:
 # TODO: Lower Max and fix offenses
 Metrics/MethodLength:
   Exclude:
-    - 'publify_core/db/migrate/113_initial_schema.rb'
     - 'db/migrate/113_initial_schema.publify_core_engine.rb'
+    - 'publify_core/db/migrate/113_initial_schema.rb'
+    - 'publify_amazon_sidebar/spec/dummy/db/migrate/20160712061341_initial_schema.publify_core_engine.rb'
+    - 'publify_textfilter_code/spec/dummy/db/migrate/20160716093725_initial_schema.publify_core_engine.rb'
   Max: 45
 
 # TODO: Lower Max and fix offenses
@@ -123,6 +127,8 @@ Rails/ApplicationRecord:
   Exclude:
     - 'db/migrate/*'
     - 'publify_core/db/migrate/*'
+    - 'publify_amazon_sidebar/spec/dummy/db/migrate/*'
+    - 'publify_textfilter_code/spec/dummy/db/migrate/*'
 
 # TODO: Re-enable once advice is more targeted
 Rails/BulkChangeTable:
@@ -133,6 +139,8 @@ Rails/SkipsModelValidations:
   Exclude:
     - 'db/migrate/*'
     - 'publify_core/db/migrate/*'
+    - 'publify_amazon_sidebar/spec/dummy/db/migrate/*'
+    - 'publify_textfilter_code/spec/dummy/db/migrate/*'
 
 # Allow the use of 'and' 'or' in control structures.
 Style/AndOr:

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RemoveTextFilters < ActiveRecord::Migration[5.2]
   def up
     drop_table :text_filters

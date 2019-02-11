@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from publify_core_engine (originally 20160701061851)
 class DemandBlogIdOnContents < ActiveRecord::Migration[4.2]
   def up

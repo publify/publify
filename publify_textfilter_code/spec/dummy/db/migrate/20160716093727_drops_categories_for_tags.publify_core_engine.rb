@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from publify_core_engine (originally 115)
 class DropsCategoriesForTags < ActiveRecord::Migration[4.2]
   class Categorization < ActiveRecord::Base
@@ -7,7 +9,7 @@ class DropsCategoriesForTags < ActiveRecord::Migration[4.2]
 
   class Category < ActiveRecord::Base
     has_many :categorizations
-    has_many :articles, :through => :categorizations
+    has_many :articles, through: :categorizations
   end
 
   def up
@@ -18,8 +20,8 @@ class DropsCategoriesForTags < ActiveRecord::Migration[4.2]
         tg.display_name = cat.name
       end
 
-      redirect = Redirect.create(from_path: "category/#{cat.permalink}",
-                                 to_path: File.join(Blog.first.base_url, "tag", tag.name))
+      Redirect.create(from_path: "category/#{cat.permalink}",
+                      to_path: File.join(Blog.first.base_url, 'tag', tag.name))
       cat.articles.each do |article|
         article.tags << tag
         article.save
@@ -30,6 +32,5 @@ class DropsCategoriesForTags < ActiveRecord::Migration[4.2]
     drop_table :categories
   end
 
-  def down
-  end
+  def down; end
 end
