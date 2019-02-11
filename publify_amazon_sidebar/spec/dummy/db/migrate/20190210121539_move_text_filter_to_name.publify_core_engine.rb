@@ -38,7 +38,7 @@ class MoveTextFilterToName < ActiveRecord::Migration[5.2]
     User.find_each do |user|
       filter = user.text_filter
       filter_name = filter&.name || 'none'
-      user.update!(text_filter_name: name, text_filter_id: nil)
+      user.update!(text_filter_name: filter_name, text_filter_id: nil)
     end
 
     TextFilter.destroy_all
