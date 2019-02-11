@@ -69,6 +69,7 @@ class MoveTextFilterToName < ActiveRecord::Migration[5.2]
 
       filter = TextFilter.find(name: filter_name)
       raise "Filter #{filter_name} not found" unless filter
+
       content.update!(text_filter: filter)
     end
 
