@@ -20,8 +20,8 @@ class DropsCategoriesForTags < ActiveRecord::Migration[4.2]
         tg.display_name = cat.name
       end
 
-      redirect = Redirect.create(from_path: "category/#{cat.permalink}",
-                                 to_path: File.join(Blog.first.base_url, 'tag', tag.name))
+      Redirect.create(from_path: "category/#{cat.permalink}",
+                      to_path: File.join(Blog.first.base_url, 'tag', tag.name))
       cat.articles.each do |article|
         article.tags << tag
         article.save
