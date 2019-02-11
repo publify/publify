@@ -8,6 +8,7 @@ class FixesBuggyArticlesAndNotes < ActiveRecord::Migration[4.2]
   class Article < Content
     def set_permalink
       return if state == 'draft' || permalink.present?
+
       self.permalink = title.to_permalink
     end
   end
