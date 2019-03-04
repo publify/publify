@@ -7,7 +7,6 @@ require "publify_core/version"
 require "publify_core/engine"
 require "publify_core/lang"
 
-require "bootstrap-sass"
 require "carrierwave"
 require "dynamic_form"
 require "jquery-rails"
