@@ -7,21 +7,7 @@
   <meta http-equiv="imagetoolbar" content="no" />
   <%= javascript_include_tag 'publify_admin', async: Rails.env.production? %>
   <%= stylesheet_link_tag 'publify_admin' %>
-  <style type="text/css">
-    #carousel-content .slide { width: <%= this_blog.image_thumb_size %>; }
-    @font-face {
-      font-family: 'Open Sans';
-      font-style: normal;
-      font-weight: 400;
-      src: local('Open Sans'), local('OpenSans'), url(<%= File.join(this_blog.base_url, 'stylesheets', 'fonts', 'open-sans.woff') %>) format('woff');
-    }
-    @font-face {
-      font-family: 'Open Sans';
-      font-style: normal;
-      font-weight: 700;
-      src: local('Open Sans Bold'), local('OpenSans-Bold'), url(<%= File.join(this_blog.base_url, 'stylesheets', 'fonts', 'open-sans-bold.woff') %>) format('woff');
-    }
-  </style>
+  <%= csrf_meta_tags %>
 </head>
 <body>
   <div id='main'>
