@@ -27,12 +27,6 @@
       @include box-shadow($shadow);
     }
   }
-  // Set validation states also for addons
-  .input-group-addon {
-    color: $text-color;
-    background-color: $background-color;
-    border-color: $border-color;
-  }
   // Optional feedback icon
   .form-control-feedback {
     color: $text-color;

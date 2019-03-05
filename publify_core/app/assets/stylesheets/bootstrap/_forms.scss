@@ -201,13 +201,11 @@ textarea.form-control {
       line-height: $input-height-base;
     }
 
-    &.input-sm,
-    .input-group-sm & {
+    &.input-sm {
       line-height: $input-height-small;
     }
 
-    &.input-lg,
-    .input-group-lg & {
+    &.input-lg {
       line-height: $input-height-large;
     }
   }
@@ -398,14 +396,12 @@ textarea.form-control {
   pointer-events: none;
 }
 .input-lg + .form-control-feedback,
-.input-group-lg + .form-control-feedback,
 .form-group-lg .form-control + .form-control-feedback {
   width: $input-height-large;
   height: $input-height-large;
   line-height: $input-height-large;
 }
 .input-sm + .form-control-feedback,
-.input-group-sm + .form-control-feedback,
 .form-group-sm .form-control + .form-control-feedback {
   width: $input-height-small;
   height: $input-height-small;
@@ -480,22 +476,6 @@ textarea.form-control {
     // Make static controls behave like regular ones
     .form-control-static {
       display: inline-block;
-    }
-
-    .input-group {
-      display: inline-table;
-      vertical-align: middle;
-
-      .input-group-addon,
-      .input-group-btn,
-      .form-control {
-        width: auto;
-      }
-    }
-
-    // Input groups need that 100% width though
-    .input-group > .form-control {
-      width: 100%;
     }
 
     .control-label {

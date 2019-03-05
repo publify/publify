@@ -37,13 +37,11 @@
   @include clearfix;
 
   .btn,
-  .btn-group,
-  .input-group {
+  .btn-group {
     float: left;
   }
   > .btn,
-  > .btn-group,
-  > .input-group {
+  > .btn-group {
     margin-left: 5px;
   }
 }
