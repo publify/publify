@@ -83,13 +83,6 @@ fr:
       drafts:
         no_drafts_yet: Pas de brouillons, pourquoi ne pas en écrire un ?
         your_drafts: Vos brouillons
-      inbound:
-        at: à
-        at_an_unknown_date: à une date inconnue
-        inbound_links: Liens entrants
-        made_a_link_to_you_on: Faire un lien vers vous sur
-        no_one_made_link_to_you_yet: Personne n'a encore fait de lien vers votre blog
-        you_have_no_internet_connection: Vous n'avez pas de connexion à internet
       index:
         welcome_back: Bienvenue, %{user_name} !
       overview:

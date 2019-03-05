@@ -83,13 +83,6 @@ zh-TW:
       drafts:
         no_drafts_yet: No drafts yet, why don't you write one
         your_drafts: Your drafts
-      inbound:
-        at: at
-        at_an_unknown_date: at an unknown date
-        inbound_links: 導入連結
-        made_a_link_to_you_on: 連結到你，並且說
-        no_one_made_link_to_you_yet: 目前沒有人連結到你
-        you_have_no_internet_connection: 你沒有連結到網路
       index:
         welcome_back: 歡迎回來， %{user_name}！
       overview:

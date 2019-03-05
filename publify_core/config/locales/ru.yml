@@ -83,13 +83,6 @@ ru:
       drafts:
         no_drafts_yet: Пока нет черновиков. Почему бы не взять и не написать?
         your_drafts: Ваши черновики
-      inbound:
-        at: в
-        at_an_unknown_date: at an unknown date
-        inbound_links: Входящие ссылки
-        made_a_link_to_you_on: made a link to you on
-        no_one_made_link_to_you_yet: Никто пока сюда не ссылался
-        you_have_no_internet_connection: You have no internet connection
       index:
         welcome_back: Добро пожаловать снова, %{user_name}!
       overview:

@@ -83,13 +83,6 @@ ja:
       drafts:
         no_drafts_yet: No drafts yet, why don't you start and write one
         your_drafts: Your drafts
-      inbound:
-        at: at
-        at_an_unknown_date: at an unknown date
-        inbound_links: 外部からのリンク
-        made_a_link_to_you_on: " からこのようにリンクされています "
-        no_one_made_link_to_you_yet: まだどこからもリンクされていません
-        you_have_no_internet_connection: インターネットに接続できません
       index:
         welcome_back: お帰りなさいませ、%{user_name} 様
       overview:

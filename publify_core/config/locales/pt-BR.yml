@@ -83,13 +83,6 @@ pt-BR:
       drafts:
         no_drafts_yet: Nenhum rascunho ainda, porque você não inicia e cria um
         your_drafts: Seus rascunhos
-      inbound:
-        at: em
-        at_an_unknown_date: em uma data desconhecida
-        inbound_links: Links de entrada
-        made_a_link_to_you_on: gerou um link para você no
-        no_one_made_link_to_you_yet: Ninguém ainda fez um link para você
-        you_have_no_internet_connection: Sem conexão com a internet
       index:
         welcome_back: Bem-vindo(a) novamente, %{user_name}!
       overview:

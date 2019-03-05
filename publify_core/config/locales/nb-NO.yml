@@ -83,13 +83,6 @@ nb-NO:
       drafts:
         no_drafts_yet: Ingen utkast enda, hvorfor ikke begynne å skrive et?
         your_drafts: Dine utkast
-      inbound:
-        at: klokken
-        at_an_unknown_date: på ukjent dato
-        inbound_links: Innkommende lenker
-        made_a_link_to_you_on: opprettet en lenke til deg den
-        no_one_made_link_to_you_yet: Ingen har lenket til deg
-        you_have_no_internet_connection: Du har ingen internettforbindelse
       index:
         welcome_back: Velkommen tilbake, %{user_name}!
       overview:

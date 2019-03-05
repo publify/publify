@@ -83,13 +83,6 @@ da:
       drafts:
         no_drafts_yet: No drafts yet, why don't you start and write one
         your_drafts: Your drafts
-      inbound:
-        at: at
-        at_an_unknown_date: at an unknown date
-        inbound_links: Indkomne links
-        made_a_link_to_you_on: " har lavet et link til dig, og skrevet "
-        no_one_made_link_to_you_yet: Der er endnu ingen der har linket til dig
-        you_have_no_internet_connection: Du har ingen internet forbindelse
       index:
         welcome_back: Velkommen tilbage, %{user_name}!
       overview:
