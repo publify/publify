@@ -54,6 +54,7 @@ group :development do
 end
 
 group :test do
+  gem "feedjira", "~> 2.1"
   gem "launchy", "~> 2.4"
   gem "rails-controller-testing", "~> 1.0.1"
   gem "timecop", "~> 0.9.0"

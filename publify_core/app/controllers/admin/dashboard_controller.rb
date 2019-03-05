@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "feedjira"
-
 class Admin::DashboardController < Admin::BaseController
   require "open-uri"
   require "time"
@@ -30,35 +28,5 @@ class Admin::DashboardController < Admin::BaseController
     @drafts = Article.drafts.where("user_id = ?", current_user.id).limit(5)
 
     @statspam = Comment.spam.count
-    @inbound_links = inbound_links
-  end
-
-  private
-
-  def inbound_links
-    host = URI.parse(this_blog.base_url).host
-    return [] if Rails.env.development?
-
-    url = "http://www.google.com/search?q=link:#{host}&tbm=blg&output=rss"
-    fetch_rss(url).reverse.compact
-  end
-
-  def fetch_rss(url)
-    open(url) do |http|
-      return parse_rss(http.read)
-    end
-  rescue
-    []
-  end
-
-  RssItem = Struct.new(:link, :title, :description, :description_link, :date, :author) do
-    def to_s
-      title
-    end
-  end
-
-  def parse_rss(body)
-    doc = Feedjira::Feed.parse(body)
-    doc.entries
   end
 end
