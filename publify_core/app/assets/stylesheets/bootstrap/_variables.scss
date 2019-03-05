@@ -687,22 +687,6 @@ $well-border:                 darken($well-bg, 7%) !default;
 
 
 
-//== Breadcrumbs
-//
-//##
-
-$breadcrumb-padding-vertical:   8px !default;
-$breadcrumb-padding-horizontal: 15px !default;
-//** Breadcrumb background color
-$breadcrumb-bg:                 #f5f5f5 !default;
-//** Breadcrumb text color
-$breadcrumb-color:              #ccc !default;
-//** Text color of current page in the breadcrumb
-$breadcrumb-active-color:       $gray-light !default;
-//** Textual separator for between breadcrumb elements
-$breadcrumb-separator:          "/" !default;
-
-
 //== Close
 //
 //##
