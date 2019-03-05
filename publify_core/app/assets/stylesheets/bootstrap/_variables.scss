@@ -276,7 +276,6 @@ $dropdown-caret-color:           #000 !default;
 
 $zindex-navbar:            1000 !default;
 $zindex-dropdown:          1000 !default;
-$zindex-popover:           1060 !default;
 $zindex-tooltip:           1070 !default;
 $zindex-navbar-fixed:      1030 !default;
 $zindex-modal-background:  1040 !default;
@@ -534,35 +533,6 @@ $tooltip-opacity:             .9 !default;
 $tooltip-arrow-width:         5px !default;
 //** Tooltip arrow color
 $tooltip-arrow-color:         $tooltip-bg !default;
-
-
-//== Popovers
-//
-//##
-
-//** Popover body background color
-$popover-bg:                          #fff !default;
-//** Popover maximum width
-$popover-max-width:                   276px !default;
-//** Popover border color
-$popover-border-color:                rgba(0, 0, 0, .2) !default;
-//** Popover fallback border color
-$popover-fallback-border-color:       #ccc !default;
-
-//** Popover title background color
-$popover-title-bg:                    darken($popover-bg, 3%) !default;
-
-//** Popover arrow width
-$popover-arrow-width:                 10px !default;
-//** Popover arrow color
-$popover-arrow-color:                 $popover-bg !default;
-
-//** Popover outer arrow width
-$popover-arrow-outer-width:           ($popover-arrow-width + 1) !default;
-//** Popover outer arrow color
-$popover-arrow-outer-color:           fade_in($popover-border-color, 0.05) !default;
-//** Popover outer arrow fallback color
-$popover-arrow-outer-fallback-color:  darken($popover-fallback-border-color, 20%) !default;
 
 
 //== Labels
