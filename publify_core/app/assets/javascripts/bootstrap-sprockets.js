@@ -4,6 +4,5 @@
 //= require ./bootstrap/collapse
 //= require ./bootstrap/dropdown
 //= require ./bootstrap/modal
-//= require ./bootstrap/scrollspy
 //= require ./bootstrap/tab
 //= require ./bootstrap/transition
