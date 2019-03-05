@@ -457,7 +457,6 @@ textarea.form-control {
 // Requires wrapping inputs and labels with `.form-group` for proper display of
 // default HTML form controls and our custom form controls (e.g., input groups).
 //
-// Heads up! This is mixin-ed into `.navbar-form` in navbars.less.
 
 // [converter] extracted from `.form-inline` for libsass compatibility
 @mixin form-inline {
