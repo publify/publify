@@ -226,9 +226,7 @@ dd {
 // -------------------------
 
 // Abbreviations and acronyms
-// Add data-* attribute to help out our tooltip plugin, per https://github.com/twbs/bootstrap/issues/5257
-abbr[title],
-abbr[data-original-title] {
+abbr[title] {
   cursor: help;
 }
 

@@ -7,4 +7,3 @@
 //= require ./bootstrap/scrollspy
 //= require ./bootstrap/tab
 //= require ./bootstrap/transition
-//= require ./bootstrap/tooltip
