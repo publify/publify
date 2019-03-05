@@ -212,34 +212,6 @@
 
 
 //
-// Progress bars
-// --------------------------------------------------
-
-// Give the progress background some depth
-.progress {
-  @include gradient-vertical($start-color: darken($progress-bg, 4%), $end-color: $progress-bg)
-}
-
-// Mixin for generating new styles
-@mixin progress-bar-styles($color) {
-  @include gradient-vertical($start-color: $color, $end-color: darken($color, 10%));
-}
-
-// Apply the mixin to the progress bars
-.progress-bar            { @include progress-bar-styles($progress-bar-bg); }
-.progress-bar-success    { @include progress-bar-styles($progress-bar-success-bg); }
-.progress-bar-info       { @include progress-bar-styles($progress-bar-info-bg); }
-.progress-bar-warning    { @include progress-bar-styles($progress-bar-warning-bg); }
-.progress-bar-danger     { @include progress-bar-styles($progress-bar-danger-bg); }
-
-// Reset the striped class because our mixins don't do multiple gradients and
-// the above custom styles override the new `.progress-bar-striped` in v3.2.0.
-.progress-bar-striped {
-  @include gradient-striped;
-}
-
-
-//
 // List groups
 // --------------------------------------------------
 
