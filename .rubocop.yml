@@ -83,6 +83,7 @@ Metrics/CyclomaticComplexity:
   Max: 17
 
 # TODO: Lower Max and fix offenses
+# Target is around 100
 Metrics/LineLength:
   Max: 274
 
