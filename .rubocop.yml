@@ -191,6 +191,10 @@ Style/SingleLineBlockParams:
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 
+# Be consistent with non-interpolated strings
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: double_quotes
+
 # Prefer symbols to look like symbols
 Style/SymbolArray:
   EnforcedStyle: brackets
