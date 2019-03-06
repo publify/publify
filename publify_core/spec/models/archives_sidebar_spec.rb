@@ -21,7 +21,7 @@ describe ArchivesSidebar do
 
       expected_structure = [
         { name: "February 2015", month: 2, year: 2015, article_count: 2 },
-        { name: "March 2014", month: 3, year: 2014, article_count: 1 }
+        { name: "March 2014", month: 3, year: 2014, article_count: 1 },
       ]
 
       expect(sidebar.archives).to eq expected_structure

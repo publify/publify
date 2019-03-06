@@ -199,6 +199,10 @@ Style/StringLiteralsInInterpolation:
 Style/SymbolArray:
   EnforcedStyle: brackets
 
+# Prefer consistent lines for multi-line arrays
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+
 # Prefer consistent lines for multi-line hashes
 Style/TrailingCommaInHashLiteral:
   EnforcedStyleForMultiline: comma

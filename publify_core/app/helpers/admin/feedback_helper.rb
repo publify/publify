@@ -17,7 +17,7 @@ module Admin::FeedbackHelper
         content_tag(:small, change_status(item, context)),
         button_to_edit_comment(item),
         button_to_delete_comment(item),
-        button_to_conversation(item)
+        button_to_conversation(item),
       ], " "
     end
   end

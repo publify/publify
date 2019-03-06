@@ -9,14 +9,14 @@ RSpec.describe FeedbackController, type: :controller do
         create(:comment, state: :presumed_ham),
         create(:comment),
         create(:trackback, title: "some"),
-        create(:trackback, title: "items")
+        create(:trackback, title: "items"),
       ]
     end
 
     let!(:spammy_items) do
       [
         create(:spam_comment),
-        create(:trackback, state: "spam")
+        create(:trackback, state: "spam"),
       ]
     end
 

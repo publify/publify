@@ -58,7 +58,7 @@ describe "With the list of available filters", type: :model do
         "source" => "http://photos23.flickr.com/31366117_b1a791d68e_o.jpg",
         "label" => "Original",
         "width" => "1024",
-      }
+      },
     ]
   end
 
