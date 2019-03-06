@@ -187,6 +187,10 @@ Style/SignalException:
 Style/SingleLineBlockParams:
   Enabled: false
 
+# Prefer not to commit to need to interpolate
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
 # Prefer symbols to look like symbols
 Style/SymbolArray:
   EnforcedStyle: brackets
