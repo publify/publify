@@ -22,11 +22,11 @@ class Admin::SettingsController < Admin::BaseController
     load_settings
     if @setting.update(settings_params)
       load_lang
-      flash[:success] = I18n.t('admin.settings.update.success')
+      flash[:success] = I18n.t("admin.settings.update.success")
       redirect_to action: action_param
     else
-      flash[:error] = I18n.t('admin.settings.update.error',
-                             messages: this_blog.errors.full_messages.join(', '))
+      flash[:error] = I18n.t("admin.settings.update.error",
+                             messages: this_blog.errors.full_messages.join(", "))
       render action_param
     end
   end
@@ -43,7 +43,7 @@ class Admin::SettingsController < Admin::BaseController
     @action_param ||=
       begin
         value = params[:from]
-        VALID_ACTIONS.include?(value) ? value : 'index'
+        VALID_ACTIONS.include?(value) ? value : "index"
       end
   end
 

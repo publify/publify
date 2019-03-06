@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class NotesController < ContentController
-  require 'json'
+  require "json"
 
   layout :theme_layout
 
@@ -11,8 +11,8 @@ class NotesController < ContentController
     @notes = Note.published.page(params[:page]).per(this_blog.limit_article_display)
 
     if @notes.empty?
-      @message = I18n.t('errors.no_notes_found')
-      render 'notes/error', status: :ok
+      @message = I18n.t("errors.no_notes_found")
+      render "notes/error", status: :ok
     end
   end
 

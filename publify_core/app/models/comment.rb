@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'timeout'
+require "timeout"
 
 class Comment < Feedback
   belongs_to :user, optional: true
@@ -9,14 +9,14 @@ class Comment < Feedback
 
   attr_accessor :referrer, :permalink
 
-  scope :spam, -> { where(state: 'spam') }
+  scope :spam, -> { where(state: "spam") }
   scope :not_spam, -> { where("state != 'spam'") }
-  scope :presumed_spam, -> { where(state: 'presumed_spam') }
-  scope :presumed_ham, -> { where(state: 'presumed_ham') }
-  scope :ham, -> { where(state: 'ham') }
+  scope :presumed_spam, -> { where(state: "presumed_spam") }
+  scope :presumed_ham, -> { where(state: "presumed_ham") }
+  scope :ham, -> { where(state: "ham") }
   scope :unconfirmed, -> { where(state: %w(presumed_spam presumed_ham)) }
 
-  scope :last_published, -> { published.limit(5).order('created_at DESC') }
+  scope :last_published, -> { published.limit(5).order("created_at DESC") }
 
   def notify_user_via_email(user)
     EmailNotify.send_comment(self, user) if user.notify_via_email?
@@ -43,7 +43,7 @@ class Comment < Feedback
   def article_allows_feedback?
     return true if article.allow_comments?
 
-    errors.add(:article, 'Article is not open to comments')
+    errors.add(:article, "Article is not open to comments")
     false
   end
 

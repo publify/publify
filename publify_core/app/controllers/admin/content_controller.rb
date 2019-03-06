@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'base64'
+require "base64"
 
 module Admin; end
 
@@ -21,7 +21,7 @@ class Admin::ContentController < Admin::BaseController
   def new
     @article = Article::Factory.new(this_blog, current_user).default
     load_resources
-    render layout: 'editor'
+    render layout: "editor"
   end
 
   def edit
@@ -31,7 +31,7 @@ class Admin::ContentController < Admin::BaseController
     @article.text_filter ||= default_text_filter
     @article.keywords = Tag.collection_to_string @article.tags
     load_resources
-    render layout: 'editor'
+    render layout: "editor"
   end
 
   def create
@@ -41,18 +41,18 @@ class Admin::ContentController < Admin::BaseController
     update_article_attributes
 
     if @article.draft
-      @article.state = 'draft'
+      @article.state = "draft"
     elsif @article.draft?
       @article.publish!
     end
 
     if @article.save
-      flash[:success] = I18n.t('admin.content.create.success')
-      redirect_to action: 'index'
+      flash[:success] = I18n.t("admin.content.create.success")
+      redirect_to action: "index"
     else
       @article.keywords = Tag.collection_to_string @article.tags
       load_resources
-      render 'new', layout: 'editor'
+      render "new", layout: "editor"
     end
   end
 
@@ -71,19 +71,19 @@ class Admin::ContentController < Admin::BaseController
     update_article_attributes
 
     if @article.draft
-      @article.state = 'draft'
+      @article.state = "draft"
     elsif @article.draft?
       @article.publish!
     end
 
     if @article.save
       Article.where(parent_id: @article.id).map(&:destroy) unless @article.draft
-      flash[:success] = I18n.t('admin.content.update.success')
-      redirect_to action: 'index'
+      flash[:success] = I18n.t("admin.content.update.success")
+      redirect_to action: "index"
     else
       @article.keywords = Tag.collection_to_string @article.tags
       load_resources
-      render 'edit'
+      render "edit"
     end
   end
 
@@ -110,16 +110,16 @@ class Admin::ContentController < Admin::BaseController
 
     @article.author = current_user
     @article.save_attachments!(params[:attachments])
-    @article.state = 'draft' unless @article.withdrawn?
+    @article.state = "draft" unless @article.withdrawn?
     @article.text_filter ||= current_user.default_text_filter
 
     if @article.title.blank?
-      lastid = Article.order('id desc').first.id
-      @article.title = 'Draft article ' + lastid.to_s
+      lastid = Article.order("id desc").first.id
+      @article.title = "Draft article " + lastid.to_s
     end
 
     if @article.save
-      flash[:success] = I18n.t('admin.content.autosave.success')
+      flash[:success] = I18n.t("admin.content.autosave.success")
       @must_update_calendar = (params[:article][:published_at] and params[:article][:published_at].to_time.to_i < Time.zone.now.to_time.to_i and @article.parent_id.nil?)
       respond_to do |format|
         format.js
@@ -154,8 +154,8 @@ class Admin::ContentController < Admin::BaseController
     if article.access_by? current_user
       return true
     else
-      flash[:error] = I18n.t('admin.content.access_granted.error')
-      redirect_to action: 'index'
+      flash[:error] = I18n.t("admin.content.access_granted.error")
+      redirect_to action: "index"
       return false
     end
   end

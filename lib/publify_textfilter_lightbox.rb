@@ -3,8 +3,8 @@
 class PublifyApp
   class Textfilter
     class Lightbox < TextFilterPlugin::MacroPost
-      plugin_display_name 'Lightbox'
-      plugin_description 'Automatically generate tags for images displayed in a lightbox'
+      plugin_display_name "Lightbox"
+      plugin_description "Automatically generate tags for images displayed in a lightbox"
 
       def self.help_text
         %{
@@ -64,42 +64,42 @@ Common attributes:
 }
       end
 
-      def self.macrofilter(attrib, _text = '')
+      def self.macrofilter(attrib, _text = "")
         # FIXME: style is not used
         # style = attrib['style']
-        caption = attrib['caption']
-        title = attrib['title']
-        alt = attrib['alt']
-        theclass = attrib['class']
-        set = attrib['set']
-        thumburl = ''
-        displayurl = ''
+        caption = attrib["caption"]
+        title = attrib["title"]
+        alt = attrib["alt"]
+        theclass = attrib["class"]
+        set = attrib["set"]
+        thumburl = ""
+        displayurl = ""
 
-        img = attrib['img']
+        img = attrib["img"]
         if img
-          thumbsize = attrib['thumbsize'] || 'square'
-          displaysize = attrib['displaysize'] || 'original'
+          thumbsize = attrib["thumbsize"] || "square"
+          displaysize = attrib["displaysize"] || "original"
 
           flickrimage = flickr.photos.getInfo(photo_id: img)
           sizes = flickr.photos.getSizes(photo_id: img)
 
-          thumbdetails = sizes.find { |s| s['label'].casecmp(thumbsize.downcase).zero? } || sizes.first
-          displaydetails = sizes.find { |s| s['label'].casecmp(displaysize.downcase).zero? } || sizes.first
+          thumbdetails = sizes.find { |s| s["label"].casecmp(thumbsize.downcase).zero? } || sizes.first
+          displaydetails = sizes.find { |s| s["label"].casecmp(displaysize.downcase).zero? } || sizes.first
 
-          width = thumbdetails['width']
-          height = thumbdetails['height']
+          width = thumbdetails["width"]
+          height = thumbdetails["height"]
 
           # use protocol-relative URL after getting the source address
           # so not to break HTTPS support
-          thumburl = thumbdetails['source'].sub(/^https?:/, '')
-          displayurl = displaydetails['source'].sub(/^https?:/, '')
+          thumburl = thumbdetails["source"].sub(/^https?:/, "")
+          displayurl = displaydetails["source"].sub(/^https?:/, "")
 
           caption ||= flickrimage.description
           title ||= flickrimage.title
           alt ||= title
         else
-          thumburl = attrib['thumbsrc'] unless attrib['thumbsrc'].nil?
-          displayurl = attrib['src'] unless attrib['src'].nil?
+          thumburl = attrib["thumbsrc"] unless attrib["thumbsrc"].nil?
+          displayurl = attrib["src"] unless attrib["src"].nil?
 
           if thumburl.empty?
             thumburl = displayurl
@@ -110,10 +110,10 @@ Common attributes:
           end
         end
 
-        rel = set.blank? ? 'lightbox' : "lightbox[#{set}]"
+        rel = set.blank? ? "lightbox" : "lightbox[#{set}]"
 
         captioncode = if caption.blank?
-                        ''
+                        ""
                       else
                         "<p class=\"caption\" style=\"width:#{width}px\">#{caption}</p>"
                       end

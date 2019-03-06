@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class PopularSidebar < Sidebar
-  description 'Displays the most popular posts'
-  setting :title, 'Most popular'
-  setting :count, 5, label: 'Number articles'
+  description "Displays the most popular posts"
+  setting :title, "Most popular"
+  setting :count, 5, label: "Number articles"
 
   attr_accessor :popular
 

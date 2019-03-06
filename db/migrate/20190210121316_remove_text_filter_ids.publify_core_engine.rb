@@ -11,7 +11,7 @@ class RemoveTextFilterIds < ActiveRecord::Migration[5.2]
   def down
     add_column :contents, :text_filter_id, :integer
     add_column :feedback, :text_filter_id, :integer
-    add_column :users, :text_filter_id, :string, default: '1'
+    add_column :users, :text_filter_id, :string, default: "1"
 
     add_index :contents, [:text_filter_id]
     add_index :feedback, [:text_filter_id]

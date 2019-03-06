@@ -14,8 +14,8 @@ class CommentsController < BaseController
 
     remember_author_info_for @comment
 
-    partial = '/articles/comment_failed'
-    partial = '/articles/comment' if recaptcha_ok_for?(@comment) && @comment.save
+    partial = "/articles/comment_failed"
+    partial = "/articles/comment" if recaptcha_ok_for?(@comment) && @comment.save
     respond_to do |format|
       format.js { render partial }
       format.html { redirect_to URI.parse(@article.permalink_url).path }
@@ -23,7 +23,7 @@ class CommentsController < BaseController
   end
 
   def preview
-    return render plain: 'Comments are closed' if @article.comments_closed?
+    return render plain: "Comments are closed" if @article.comments_closed?
 
     if comment_params[:body].blank?
       head :ok
@@ -42,10 +42,10 @@ class CommentsController < BaseController
 
   def new_comment_defaults
     { ip: request.remote_ip,
-      author: 'Anonymous',
+      author: "Anonymous",
       user: @current_user,
-      user_agent: request.env['HTTP_USER_AGENT'],
-      referrer: request.env['HTTP_REFERER'],
+      user_agent: request.env["HTTP_USER_AGENT"],
+      referrer: request.env["HTTP_REFERER"],
       permalink: @article.permalink_url }.stringify_keys
   end
 

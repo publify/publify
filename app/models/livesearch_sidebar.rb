@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class LivesearchSidebar < Sidebar
-  description 'Adds livesearch to your Publify blog'
+  description "Adds livesearch to your Publify blog"
 
-  setting :title, 'Search'
+  setting :title, "Search"
 end
 
 SidebarRegistry.register_sidebar LivesearchSidebar

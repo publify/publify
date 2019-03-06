@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require 'format'
+require "format"
 
 class SpamProtection
-  IP_RBLS = ['opm.blitzed.us', 'bsb.empty.us'].freeze
-  HOST_RBLS = ['multi.surbl.org', 'bsb.empty.us'].freeze
+  IP_RBLS = ["opm.blitzed.us", "bsb.empty.us"].freeze
+  HOST_RBLS = ["multi.surbl.org", "bsb.empty.us"].freeze
   SECOND_LEVEL = %w(co com net org gov).freeze
 
   attr_accessor :this_blog
@@ -35,7 +35,7 @@ class SpamProtection
 
   def scan_ip(ip_address)
     logger.info("[SP] Scanning IP #{ip_address}")
-    query_rbls(IP_RBLS, ip_address.split('.').reverse.join('.'))
+    query_rbls(IP_RBLS, ip_address.split(".").reverse.join("."))
   end
 
   def scan_text(string)
@@ -64,7 +64,7 @@ class SpamProtection
              end
       return scan_ip(host) if host =~ Format::IP_ADDRESS
 
-      host_parts = host.split('.').reverse
+      host_parts = host.split(".").reverse
       domain = []
 
       # Check for two level TLD
@@ -73,7 +73,7 @@ class SpamProtection
       end
 
       logger.info("[SP] Scanning domain #{domain.join('.')}")
-      query_rbls(HOST_RBLS, host, domain.join('.'))
+      query_rbls(HOST_RBLS, host, domain.join("."))
       logger.info("[SP] Finished domain scan #{domain.join('.')}")
       return false
     end
@@ -83,7 +83,7 @@ class SpamProtection
     rbls.each do |rbl|
       subdomains.uniq.each do |d|
         begin
-          response = IPSocket.getaddress([d, rbl].join('.'))
+          response = IPSocket.getaddress([d, rbl].join("."))
           if /^127\.0\.0\./.match?(response)
             throw :hit,
                   "#{rbl} positively resolved subdomain #{d} => #{response}"

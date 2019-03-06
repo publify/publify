@@ -4,7 +4,7 @@ class Admin::UsersController < Admin::BaseController
   before_action :set_user, only: [:edit, :update, :destroy]
 
   def index
-    @users = User.order('login asc').page(params[:page]).per(this_blog.admin_display_elements)
+    @users = User.order("login asc").page(params[:page]).per(this_blog.admin_display_elements)
   end
 
   def new
@@ -20,7 +20,7 @@ class Admin::UsersController < Admin::BaseController
     @user = User.new(user_params)
     @user.name = @user.login
     if @user.save
-      redirect_to admin_users_url, notice: I18n.t('admin.users.new.success')
+      redirect_to admin_users_url, notice: I18n.t("admin.users.new.success")
     else
       render :new
     end
@@ -28,14 +28,14 @@ class Admin::UsersController < Admin::BaseController
 
   def update
     if @user.update(update_params)
-      redirect_to admin_users_url, notice: 'User was successfully updated.'
+      redirect_to admin_users_url, notice: "User was successfully updated."
     else
       render :edit
     end
   end
 
   def destroy
-    @user.destroy if User.where('profile = ? and id != ?', User::ADMIN, @user.id).count > 1
+    @user.destroy if User.where("profile = ? and id != ?", User::ADMIN, @user.id).count > 1
     redirect_to admin_users_url
   end
 

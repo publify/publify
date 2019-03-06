@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_relative 'boot'
+require_relative "boot"
 
-require 'rails/all'
+require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -20,9 +20,9 @@ module Publify
   end
 
   # Load included libraries.
-  require 'publify_sidebar'
-  require 'publify_textfilters'
-  require 'publify_avatar_gravatar'
+  require "publify_sidebar"
+  require "publify_textfilters"
+  require "publify_avatar_gravatar"
 
   Theme.register_themes "#{Rails.root}/themes"
 end

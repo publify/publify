@@ -16,7 +16,7 @@ class Admin::PostTypesController < Admin::BaseController
     @post_type = PostType.new(post_type_params)
 
     if @post_type.save
-      redirect_to admin_post_types_url, notice: 'Post type was successfully created.'
+      redirect_to admin_post_types_url, notice: "Post type was successfully created."
     else
       render :index
     end
@@ -24,7 +24,7 @@ class Admin::PostTypesController < Admin::BaseController
 
   def update
     if @post_type.update(post_type_params)
-      redirect_to admin_post_types_url, notice: 'Post type was successfully updated.'
+      redirect_to admin_post_types_url, notice: "Post type was successfully updated."
     else
       render :edit
     end
@@ -34,13 +34,13 @@ class Admin::PostTypesController < Admin::BaseController
     # Reset all Articles from the PostType we're destroying to the default PostType
     # Wrap it in a transaction for safety
     @post_type.transaction do
-      Article.where('post_type = ?', @post_type.permalink).each do |article|
-        article.post_type = 'read'
+      Article.where("post_type = ?", @post_type.permalink).each do |article|
+        article.post_type = "read"
         article.save
       end
       @post_type.destroy
     end
-    redirect_to admin_post_types_url, notice: 'Post was successfully destroyed.'
+    redirect_to admin_post_types_url, notice: "Post was successfully destroyed."
   end
 
   private

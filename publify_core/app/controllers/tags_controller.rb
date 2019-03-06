@@ -7,7 +7,7 @@ class TagsController < ContentController
   def index
     @tags = Tag.page(params[:page]).per(100)
     @page_title = controller_name.capitalize
-    @keywords = ''
+    @keywords = ""
     @description = "Tags for #{this_blog.blog_name}"
   end
 
@@ -32,12 +32,12 @@ class TagsController < ContentController
 
       format.atom do
         @articles = @articles[0, this_blog.limit_rss_display]
-        render_cached_xml 'articles/index_atom_feed', @articles
+        render_cached_xml "articles/index_atom_feed", @articles
       end
 
       format.rss do
         @articles = @articles[0, this_blog.limit_rss_display]
-        render_cached_xml 'articles/index_rss_feed', @articles
+        render_cached_xml "articles/index_rss_feed", @articles
       end
     end
   end

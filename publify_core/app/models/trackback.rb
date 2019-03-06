@@ -10,21 +10,21 @@ class Trackback < Feedback
   def process_trackback
     if excerpt.length >= 251
       # this limits excerpt to 250 chars, including the trailing "..."
-      self.excerpt = excerpt[0..246] << '...'
+      self.excerpt = excerpt[0..246] << "..."
     end
   end
 
   def article_allows_feedback?
     return true if article.allow_pings?
 
-    errors.add(:article, 'Article is not pingable')
+    errors.add(:article, "Article is not pingable")
     false
   end
 
   def blog_allows_feedback?
     return true unless blog.global_pings_disable
 
-    errors.add(:article, 'Pings are disabled')
+    errors.add(:article, "Pings are disabled")
     false
   end
 

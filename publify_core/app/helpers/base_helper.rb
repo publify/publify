@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Methods added to this helper will be available to all templates in the application.
-require 'digest/sha1'
+require "digest/sha1"
 
 module BaseHelper
   include BlogHelper
@@ -19,7 +19,7 @@ module BaseHelper
   rescue => e
     logger.error e
     logger.error e.backtrace.join("\n")
-    I18n.t('errors.render_sidebar')
+    I18n.t("errors.render_sidebar")
   end
 
   def render_sidebar(sidebar)
@@ -43,7 +43,7 @@ module BaseHelper
   def link_to_permalink(item, title, anchor = nil, style = nil, nofollow = nil, only_path = false)
     options = {}
     options[:class] = style if style
-    options[:rel] = 'nofollow' if nofollow
+    options[:rel] = "nofollow" if nofollow
     url = item.permalink_url(anchor, only_path)
     if url
       link_to title, url, options
@@ -56,9 +56,9 @@ module BaseHelper
     begin
       avatar_class = this_blog.plugin_avatar.constantize
     rescue NameError
-      return ''
+      return ""
     end
-    return '' unless avatar_class.respond_to?(:get_avatar)
+    return "" unless avatar_class.respond_to?(:get_avatar)
 
     avatar_class.get_avatar(options)
   end
@@ -70,10 +70,10 @@ module BaseHelper
   def markup_help_popup(markup, text)
     if markup && markup.commenthelp.size > 1
       link_to(text,
-              url_for(controller: 'articles', action: 'markup_help', id: markup.name),
+              url_for(controller: "articles", action: "markup_help", id: markup.name),
               onclick: "return popup(this, 'Publify Markup Help')")
     else
-      ''
+      ""
     end
   end
 
@@ -82,7 +82,7 @@ module BaseHelper
     tag = []
     tag << %{ onmouseover="if (getCookie('publify_user_profile') == 'admin') { $('#{admin_id}').show(); }" }
     tag << %{ onmouseout="$('#{admin_id}').hide();" }
-    safe_join(tag, ' ')
+    safe_join(tag, " ")
   end
 
   def feed_title
@@ -99,14 +99,14 @@ module BaseHelper
     content.html(what)
   end
 
-  def display_user_avatar(user, size = 'avatar', klass = 'alignleft')
+  def display_user_avatar(user, size = "avatar", klass = "alignleft")
     if user.resource.present?
       avatar_path = case size
-                    when 'thumb'
+                    when "thumb"
                       user.resource.upload.thumb.url
-                    when 'medium'
+                    when "medium"
                       user.resource.upload.medium.url
-                    when 'large'
+                    when "large"
                       user.resource.upload.large.url
                     else
                       user.resource.upload.avatar.url
@@ -125,7 +125,7 @@ module BaseHelper
   def author_picture(status)
     return if status.user.twitter_profile_image.blank?
 
-    image_tag(status.user.twitter_profile_image, class: 'alignleft', alt: status.user.nickname)
+    image_tag(status.user.twitter_profile_image, class: "alignleft", alt: status.user.nickname)
   end
 
   def page_header_includes
@@ -134,18 +134,18 @@ module BaseHelper
         v = v.chomp
         # trim the same number of spaces from the beginning of each line
         # this way plugins can indent nicely without making ugly source output
-        spaces = /\A[ \t]*/.match(v)[0].gsub(/\t/, '  ')
-        v.gsub!(/^#{spaces}/, '  ') # add 2 spaces to line up with the assumed position of the surrounding tags
+        spaces = /\A[ \t]*/.match(v)[0].gsub(/\t/, "  ")
+        v.gsub!(/^#{spaces}/, "  ") # add 2 spaces to line up with the assumed position of the surrounding tags
       end
     end.flatten.uniq.join("\n")
   end
 
   def feed_atom
-    feed_for('atom')
+    feed_for("atom")
   end
 
   def feed_rss
-    feed_for('rss')
+    feed_for("rss")
   end
 
   def content_array
@@ -171,7 +171,7 @@ module BaseHelper
   def display_date_and_time(timestamp)
     return if timestamp.blank?
 
-    if this_blog.date_format == 'setting_date_format_distance_of_time_in_words'
+    if this_blog.date_format == "setting_date_format_distance_of_time_in_words"
       timeago_tag timestamp, date_only: false
     else
       "#{display_date(timestamp)} #{t('helper.at')} #{display_time(timestamp)}"
@@ -181,31 +181,31 @@ module BaseHelper
   def show_meta_keyword
     return unless this_blog.use_meta_keyword
 
-    meta_tag 'keywords', @keywords if @keywords.present?
+    meta_tag "keywords", @keywords if @keywords.present?
   end
 
   def stop_index_robots?(blog)
     stop = (params[:year].present? || params[:page].present?)
-    stop = blog.unindex_tags if controller_name == 'tags'
-    stop = blog.unindex_categories if controller_name == 'categories'
+    stop = blog.unindex_tags if controller_name == "tags"
+    stop = blog.unindex_categories if controller_name == "categories"
     stop
   end
 
   def get_reply_context_url(reply)
-    link_to(reply['user']['name'], reply['user']['entities']['url']['urls'][0]['expanded_url'])
+    link_to(reply["user"]["name"], reply["user"]["entities"]["url"]["urls"][0]["expanded_url"])
   rescue
-    link_to(reply['user']['name'], "https://twitter.com/#{reply['user']['name']}")
+    link_to(reply["user"]["name"], "https://twitter.com/#{reply['user']['name']}")
   end
 
   def get_reply_context_twitter_link(reply)
-    link_to(display_date_and_time(reply['created_at'].to_time.in_time_zone),
+    link_to(display_date_and_time(reply["created_at"].to_time.in_time_zone),
             "https://twitter.com/#{reply['user']['screen_name']}/status/#{reply['id_str']}")
   end
 
   private
 
   def feed_for(type)
-    if params[:action] == 'search'
+    if params[:action] == "search"
       url_for(only_path: false, format: type, q: params[:q])
     elsif !@article.nil?
       @article.feed_url(type)
@@ -244,7 +244,7 @@ module BaseHelper
     if this_blog.dofollowify
       link_to(text, url)
     else
-      link_to(text, url, rel: 'nofollow')
+      link_to(text, url, rel: "nofollow")
     end
   end
 end

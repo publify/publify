@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require 'text_filter_plugin'
-require 'RedCloth'
+require "text_filter_plugin"
+require "RedCloth"
 
 class PublifyApp
   class Textfilter
     class Textile < TextFilterPlugin::Markup
-      plugin_display_name 'Textile'
-      plugin_description 'Textile markup language'
+      plugin_display_name "Textile"
+      plugin_description "Textile markup language"
 
       def self.help_text
         %{

@@ -11,7 +11,7 @@ class Admin::FeedbackController < Admin::BaseController
       scoped_feedback = scoped_feedback.send(@only_param) if @only_param
     end
 
-    params.delete(:page) if params[:page].blank? || params[:page] == '0'
+    params.delete(:page) if params[:page].blank? || params[:page] == "0"
 
     @feedback = scoped_feedback.paginated(params[:page], this_blog.admin_display_elements)
   end
@@ -25,11 +25,11 @@ class Admin::FeedbackController < Admin::BaseController
 
     begin
       @record.destroy
-      flash[:success] = I18n.t('admin.feedback.destroy.success')
+      flash[:success] = I18n.t("admin.feedback.destroy.success")
     rescue ActiveRecord::RecordNotFound
-      flash[:error] = I18n.t('admin.feedback.destroy.error')
+      flash[:error] = I18n.t("admin.feedback.destroy.error")
     end
-    redirect_to action: 'article', id: @record.article.id
+    redirect_to action: "article", id: @record.article.id
   end
 
   def create
@@ -41,9 +41,9 @@ class Admin::FeedbackController < Admin::BaseController
       # We should probably wave a spam filter over this, but for now, just mark it as published.
       @comment.mark_as_ham
       @comment.save!
-      flash[:success] = I18n.t('admin.feedback.create.success')
+      flash[:success] = I18n.t("admin.feedback.create.success")
     end
-    redirect_to action: 'article', id: @article.id
+    redirect_to action: "article", id: @article.id
   end
 
   def edit
@@ -63,10 +63,10 @@ class Admin::FeedbackController < Admin::BaseController
     end
     comment.attributes = comment_params
     if request.post? && comment.save
-      flash[:success] = I18n.t('admin.feedback.update.success')
-      redirect_to action: 'article', id: comment.article.id
+      flash[:success] = I18n.t("admin.feedback.update.success")
+      redirect_to action: "article", id: comment.article.id
     else
-      redirect_to action: 'edit', id: comment.id
+      redirect_to action: "edit", id: comment.id
     end
   end
 
@@ -86,13 +86,13 @@ class Admin::FeedbackController < Admin::BaseController
 
     respond_to do |format|
       # TODO: Make this special case not necessary
-      if params[:context] != 'listing'
+      if params[:context] != "listing"
         @comments = Comment.last_published
-        page.replace_html('commentList', partial: 'admin/dashboard/comment')
-      elsif template == 'ham'
-        format.js { render 'ham' }
+        page.replace_html("commentList", partial: "admin/dashboard/comment")
+      elsif template == "ham"
+        format.js { render "ham" }
       else
-        format.js { render 'spam' }
+        format.js { render "spam" }
       end
     end
   end
@@ -105,34 +105,34 @@ class Admin::FeedbackController < Admin::BaseController
     bulkop = (params[:bulkop_top] || {}).empty? ? params[:bulkop_bottom] : params[:bulkop_top]
 
     case bulkop
-    when 'Delete Checked Items'
+    when "Delete Checked Items"
       count = 0
       ids.each do |id|
         count += Feedback.delete(id)
       end
-      flash[:success] = I18n.t('admin.feedback.bulkops.success_deleted', count: count)
-    when 'Mark Checked Items as Ham'
+      flash[:success] = I18n.t("admin.feedback.bulkops.success_deleted", count: count)
+    when "Mark Checked Items as Ham"
       update_feedback(items, :mark_as_ham!)
-      flash[:success] = I18n.t('admin.feedback.bulkops.success_mark_as_ham', count: ids.size)
-    when 'Mark Checked Items as Spam'
+      flash[:success] = I18n.t("admin.feedback.bulkops.success_mark_as_ham", count: ids.size)
+    when "Mark Checked Items as Spam"
       update_feedback(items, :mark_as_spam!)
-      flash[:success] = I18n.t('admin.feedback.bulkops.success_mark_as_spam', count: ids.size)
-    when 'Confirm Classification of Checked Items'
+      flash[:success] = I18n.t("admin.feedback.bulkops.success_mark_as_spam", count: ids.size)
+    when "Confirm Classification of Checked Items"
       update_feedback(items, :confirm_classification!)
-      flash[:success] = I18n.t('admin.feedback.bulkops.success_classification', count: ids.size)
-    when 'Delete all spam'
+      flash[:success] = I18n.t("admin.feedback.bulkops.success_classification", count: ids.size)
+    when "Delete all spam"
       if request.post?
-        Feedback.where('state = ?', 'spam').delete_all
-        flash[:success] = I18n.t('admin.feedback.bulkops.success_deleted_spam')
+        Feedback.where("state = ?", "spam").delete_all
+        flash[:success] = I18n.t("admin.feedback.bulkops.success_deleted_spam")
       end
     else
-      flash[:error] = I18n.t('admin.feedback.bulkops.error')
+      flash[:error] = I18n.t("admin.feedback.bulkops.error")
     end
 
     if params[:article_id]
-      redirect_to action: 'article', id: params[:article_id], confirmed: params[:confirmed], published: params[:published]
+      redirect_to action: "article", id: params[:article_id], confirmed: params[:confirmed], published: params[:published]
     else
-      redirect_to action: 'index', page: params[:page], search: params[:search], confirmed: params[:confirmed], published: params[:published]
+      redirect_to action: "index", page: params[:page], search: params[:search], confirmed: params[:confirmed], published: params[:published]
     end
   end
 

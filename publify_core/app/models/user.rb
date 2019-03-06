@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require 'digest/sha1'
+require "digest/sha1"
 
 # Publify user.
 # TODO: Should belong to a blog
 class User < ApplicationRecord
-  ADMIN = 'admin'
-  PUBLISHER = 'publisher'
-  CONTRIBUTOR = 'contributor'
+  ADMIN = "admin"
+  PUBLISHER = "publisher"
+  CONTRIBUTOR = "contributor"
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -23,9 +23,9 @@ class User < ApplicationRecord
   validates :login, length: { in: 3..40 }
 
   belongs_to :resource, optional: true
-  has_many :notifications, foreign_key: 'notify_user_id'
+  has_many :notifications, foreign_key: "notify_user_id"
   has_many :notify_contents, -> { uniq }, through: :notifications,
-                                          source: 'notify_content'
+                                          source: "notify_content"
 
   has_many :articles
 
@@ -37,31 +37,31 @@ class User < ApplicationRecord
 
   # Settings
   setting :notify_watch_my_articles, :boolean, true
-  setting :firstname, :string, ''
-  setting :lastname, :string, ''
-  setting :nickname, :string, ''
-  setting :description, :string, ''
-  setting :url, :string, ''
-  setting :msn, :string, ''
-  setting :aim, :string, ''
-  setting :yahoo, :string, ''
-  setting :twitter, :string, ''
-  setting :jabber, :string, ''
-  setting :admin_theme, :string, 'blue'
-  setting :twitter_account, :string, ''
-  setting :twitter_oauth_token, :string, ''
-  setting :twitter_oauth_token_secret, :string, ''
-  setting :twitter_profile_image, :string, ''
+  setting :firstname, :string, ""
+  setting :lastname, :string, ""
+  setting :nickname, :string, ""
+  setting :description, :string, ""
+  setting :url, :string, ""
+  setting :msn, :string, ""
+  setting :aim, :string, ""
+  setting :yahoo, :string, ""
+  setting :twitter, :string, ""
+  setting :jabber, :string, ""
+  setting :admin_theme, :string, "blue"
+  setting :twitter_account, :string, ""
+  setting :twitter_oauth_token, :string, ""
+  setting :twitter_oauth_token_secret, :string, ""
+  setting :twitter_profile_image, :string, ""
 
   # echo "publify" | sha1sum -
   class_attribute :salt
 
   def self.salt
-    '20ac4d290c2293702c64b3b287ae5ea79b26a5c1'
+    "20ac4d290c2293702c64b3b287ae5ea79b26a5c1"
   end
 
   def first_and_last_name
-    return '' unless firstname.present? && lastname.present?
+    return "" unless firstname.present? && lastname.present?
 
     "#{firstname} #{lastname}"
   end
@@ -89,7 +89,7 @@ class User < ApplicationRecord
   end
 
   def active_for_authentication?
-    super && state == 'active'
+    super && state == "active"
   end
 
   def text_filter
@@ -97,7 +97,7 @@ class User < ApplicationRecord
   end
 
   def self.to_prefix
-    'author'
+    "author"
   end
 
   def article_counter
@@ -136,6 +136,6 @@ class User < ApplicationRecord
   private
 
   def set_default_profile
-    self.profile ||= User.count.zero? ? 'admin' : 'contributor'
+    self.profile ||= User.count.zero? ? "admin" : "contributor"
   end
 end

@@ -56,7 +56,7 @@ module PublifyPlugins
       private
 
       def initialize
-        raise 'No instance allowed.'
+        raise "No instance allowed."
       end
     end
   end # Defined

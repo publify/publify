@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require "rails_helper"
 
 describe TextFilterPlugin do
-  describe '.available_filters' do
+  describe ".available_filters" do
     subject { described_class.available_filters }
 
     it { is_expected.to include(PublifyApp::Textfilter::Markdown) }
@@ -18,7 +18,7 @@ describe TextFilterPlugin do
     it { is_expected.not_to include(TextFilterPlugin::Macro) }
   end
 
-  describe '.macro_filters' do
+  describe ".macro_filters" do
     subject { described_class.macro_filters }
 
     it { is_expected.not_to include(PublifyApp::Textfilter::Markdown) }

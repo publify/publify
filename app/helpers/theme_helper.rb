@@ -6,7 +6,7 @@ module ThemeHelper
   # If your theme is a plugin, it's better to just load relevant helpers in the
   # initialization code instead.
   Theme.find_all.each do |theme|
-    filename = File.join(theme.path, 'helpers', 'theme_helper.rb')
+    filename = File.join(theme.path, "helpers", "theme_helper.rb")
     require filename if File.exist? filename
   end
 end

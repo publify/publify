@@ -5,11 +5,11 @@ class ThemeController < ContentController
   skip_before_action :verify_authenticity_token, only: :javascripts
 
   def stylesheets
-    render_theme_item(:stylesheets, params[:filename], 'text/css; charset=utf-8')
+    render_theme_item(:stylesheets, params[:filename], "text/css; charset=utf-8")
   end
 
   def javascripts
-    render_theme_item(:javascripts, params[:filename], 'text/javascript; charset=utf-8')
+    render_theme_item(:javascripts, params[:filename], "text/javascript; charset=utf-8")
   end
 
   def images
@@ -29,35 +29,35 @@ class ThemeController < ContentController
   private
 
   def render_theme_item(type, file, mime = nil)
-    return render_not_found if file.split(%r{[\\/]}).include?('..')
+    return render_not_found if file.split(%r{[\\/]}).include?("..")
 
     src = this_blog.current_theme.path + "/#{type}/#{file}"
     return render_not_found unless File.exist? src
 
     mime ||= mime_for(file)
-    send_file(src, type: mime, disposition: 'inline', stream: true)
+    send_file(src, type: mime, disposition: "inline", stream: true)
   end
 
   def render_not_found
-    render plain: 'Not Found', status: :not_found
+    render plain: "Not Found", status: :not_found
   end
 
   def mime_for(filename)
     case filename.downcase
     when /\.js$/
-      'text/javascript'
+      "text/javascript"
     when /\.css$/
-      'text/css'
+      "text/css"
     when /\.gif$/
-      'image/gif'
+      "image/gif"
     when /(\.jpg|\.jpeg)$/
-      'image/jpeg'
+      "image/jpeg"
     when /\.png$/
-      'image/png'
+      "image/png"
     when /\.swf$/
-      'application/x-shockwave-flash'
+      "application/x-shockwave-flash"
     else
-      'application/binary'
+      "application/binary"
     end
   end
 end

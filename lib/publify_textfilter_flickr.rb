@@ -3,8 +3,8 @@
 class PublifyApp
   class Textfilter
     class Flickr < TextFilterPlugin::MacroPost
-      plugin_display_name 'Flickr'
-      plugin_description 'Automatically generate image tags for Flickr images'
+      plugin_display_name "Flickr"
+      plugin_description "Automatically generate image tags for Flickr images"
 
       def self.help_text
         %{
@@ -37,25 +37,25 @@ This macro takes a number of parameters:
 }
       end
 
-      def self.macrofilter(attrib, _text = '')
-        img = attrib['img']
-        size = attrib['size'] || 'square'
-        style = attrib['style']
-        caption = attrib['caption']
-        title = attrib['title']
-        alt = attrib['alt']
+      def self.macrofilter(attrib, _text = "")
+        img = attrib["img"]
+        size = attrib["size"] || "square"
+        style = attrib["style"]
+        caption = attrib["caption"]
+        title = attrib["title"]
+        alt = attrib["alt"]
 
         begin
           flickrimage = flickr.photos.getInfo(photo_id: img)
           sizes = flickr.photos.getSizes(photo_id: img)
 
-          details = sizes.find { |s| s['label'].casecmp(size.downcase).zero? } || sizes.first
-          width = details['width']
-          height = details['height']
+          details = sizes.find { |s| s["label"].casecmp(size.downcase).zero? } || sizes.first
+          width = details["width"]
+          height = details["height"]
           # use protocol-relative URL after getting the source address
           # so not to break HTTPS support
-          imageurl = details['source'].sub(/^https?:/, '')
-          imagelink = flickrimage.urls.find { |u| u.type == 'photopage' }.to_s
+          imageurl = details["source"].sub(/^https?:/, "")
+          imagelink = flickrimage.urls.find { |u| u.type == "photopage" }.to_s
 
           description = flickrimage.description
           caption ||= sanitize(CGI.unescapeHTML(description)) if description.present?
@@ -63,7 +63,7 @@ This macro takes a number of parameters:
           alt ||= title
 
           captioncode = if caption.blank?
-                          ''
+                          ""
                         else
                           "<p class=\"caption\" style=\"width:#{width}px\">#{caption}</p>"
                         end

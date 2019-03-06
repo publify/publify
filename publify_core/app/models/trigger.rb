@@ -4,14 +4,14 @@ class Trigger < ApplicationRecord
   belongs_to :pending_item, polymorphic: true
 
   class << self
-    def post_action(due_at, item, method = 'came_due')
+    def post_action(due_at, item, method = "came_due")
       create!(due_at: due_at, pending_item: item,
               trigger_method: method)
       fire
     end
 
     def fire
-      where('due_at <= ?', Time.zone.now).destroy_all
+      where("due_at <= ?", Time.zone.now).destroy_all
       true
     end
 

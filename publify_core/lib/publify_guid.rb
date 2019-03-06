@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'uuidtools'
+require "uuidtools"
 
 module PublifyGuid
   def create_guid

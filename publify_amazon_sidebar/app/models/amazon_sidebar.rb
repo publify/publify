@@ -2,9 +2,9 @@
 
 class AmazonSidebar < Sidebar
   description \
-    'Adds sidebar links to any Amazon.com books linked in the body of the page'
-  setting :title, 'Cited books'
-  setting :associate_id, 'justasummary-20'
+    "Adds sidebar links to any Amazon.com books linked in the body of the page"
+  setting :title, "Cited books"
+  setting :associate_id, "justasummary-20"
   setting :maxlinks, 4
 
   attr_accessor :asins

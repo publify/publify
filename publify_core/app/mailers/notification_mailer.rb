@@ -22,7 +22,7 @@ class NotificationMailer < ActionMailer::Base
     @user = user
     # TODO: Make user blog-dependent
     @blog = Blog.first
-    build_mail @blog, @user, 'Welcome to Publify'
+    build_mail @blog, @user, "Welcome to Publify"
   end
 
   private
@@ -32,7 +32,7 @@ class NotificationMailer < ActionMailer::Base
   end
 
   def build_mail(blog, user, subject)
-    headers['X-Mailer'] = "Publify #{PublifyCore::VERSION}"
+    headers["X-Mailer"] = "Publify #{PublifyCore::VERSION}"
     mail(from: blog.email_from,
          to: user.email,
          subject: make_subject(blog, subject))

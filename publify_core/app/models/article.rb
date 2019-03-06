@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'aasm'
-require 'uri'
-require 'net/http'
+require "aasm"
+require "uri"
+require "net/http"
 
 class Article < Content
   include PublifyGuid
@@ -26,21 +26,21 @@ class Article < Content
   after_save :keywords_to_tags, :shorten_url
 
   scope :child_of, ->(article_id) { where(parent_id: article_id) }
-  scope :published_since, ->(time) { published.where('published_at > ?', time) }
-  scope :withdrawn, -> { where(state: 'withdrawn').order(default_order) }
-  scope :pending, -> { where(state: 'publication_pending'). order(default_order) }
+  scope :published_since, ->(time) { published.where("published_at > ?", time) }
+  scope :withdrawn, -> { where(state: "withdrawn").order(default_order) }
+  scope :pending, -> { where(state: "publication_pending"). order(default_order) }
 
   scope :bestof, lambda {
     joins(:feedback).
-      where('feedback.type' => 'Comment',
-            'contents.state' => 'published').
-      group('contents.id').
-      select('contents.*, count(feedback.id) as comment_count').
-      order('comment_count DESC').
+      where("feedback.type" => "Comment",
+            "contents.state" => "published").
+      group("contents.id").
+      select("contents.*, count(feedback.id) as comment_count").
+      order("comment_count DESC").
       limit(5)
   }
 
-  setting :password, :string, ''
+  setting :password, :string, ""
 
   attr_accessor :draft, :keywords
 
@@ -89,7 +89,7 @@ class Article < Content
 
   def post_type
     post_type = self[:post_type]
-    post_type = 'read' if post_type.blank?
+    post_type = "read" if post_type.blank?
     post_type
   end
 
@@ -104,7 +104,7 @@ class Article < Content
     scoped = super(params)
     scoped = scoped.send(params[:state]) if %w(no_draft drafts published withdrawn pending).include?(params[:state])
 
-    scoped.order('created_at DESC')
+    scoped.order("created_at DESC")
   end
 
   # FIXME: Use keyword params to clean up call sites.
@@ -137,19 +137,19 @@ class Article < Content
   end
 
   def next
-    Article.where('published_at > ?', published_at).order('published_at asc').limit(1).first
+    Article.where("published_at > ?", published_at).order("published_at asc").limit(1).first
   end
 
   def previous
-    Article.where('published_at < ?', published_at).order('published_at desc').limit(1).first
+    Article.where("published_at < ?", published_at).order("published_at desc").limit(1).first
   end
 
   def publication_month
-    published_at.strftime('%Y-%m')
+    published_at.strftime("%Y-%m")
   end
 
   def self.publication_months
-    result = select('published_at').where('published_at is not NULL').where(type: 'Article')
+    result = select("published_at").where("published_at is not NULL").where(type: "Article")
     result.map { |it| [it.publication_month] }.uniq
   end
 
@@ -240,7 +240,7 @@ class Article < Content
   def body_and_extended=(value)
     parts = value.split(/\n?<!--more-->\n?/, 2)
     self.body = parts[0]
-    self.extended = parts[1] || ''
+    self.extended = parts[1] || ""
   end
 
   def password_protected?
@@ -283,11 +283,11 @@ class Article < Content
 
   def permalink_url_options
     format_url = blog.permalink_format.dup
-    format_url.gsub!('%year%', published_at.year.to_s)
-    format_url.gsub!('%month%', sprintf('%.2d', published_at.month))
-    format_url.gsub!('%day%', sprintf('%.2d', published_at.day))
-    format_url.gsub!('%title%', URI.encode(permalink.to_s))
-    if format_url[0, 1] == '/'
+    format_url.gsub!("%year%", published_at.year.to_s)
+    format_url.gsub!("%month%", sprintf("%.2d", published_at.month))
+    format_url.gsub!("%day%", sprintf("%.2d", published_at.day))
+    format_url.gsub!("%title%", URI.encode(permalink.to_s))
+    if format_url[0, 1] == "/"
       format_url[1..-1]
     else
       format_url
@@ -296,6 +296,6 @@ class Article < Content
 
   def trigger_publication
     # TODO: Skip if already published, update when published_at changes
-    Trigger.post_action(published_at, self, 'publish!')
+    Trigger.post_action(published_at, self, "publish!")
   end
 end

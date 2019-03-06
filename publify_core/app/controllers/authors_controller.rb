@@ -15,8 +15,8 @@ class AuthorsController < ContentController
     auto_discovery_feed(only_path: false)
 
     respond_to do |format|
-      format.rss { render_feed 'rss' }
-      format.atom { render_feed 'atom' }
+      format.rss { render_feed "rss" }
+      format.atom { render_feed "atom" }
       format.html
     end
   end

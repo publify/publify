@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require 'text_filter_plugin'
-require 'bluecloth'
+require "text_filter_plugin"
+require "bluecloth"
 
 # TODO: Move to a different namespace
 class PublifyApp
   class Textfilter
     class Markdown < TextFilterPlugin::Markup
-      plugin_display_name 'Markdown'
+      plugin_display_name "Markdown"
       plugin_description 'Markdown markup language from <a href="http://daringfireball.com/">Daring Fireball</a>'
 
       def self.help_text
@@ -38,7 +38,7 @@ is available from the author's site, but here's a short summary:
         # FIXME: Workaround for BlueCloth not interpreting <publify:foo> as an
         # HTML tag. See <http://deveiate.org/projects/BlueCloth/ticket/70>.
         escaped_macros = text.gsub(%r{(</?publify):}, '\1X')
-        html = BlueCloth.new(escaped_macros).to_html.gsub(%r{</?notextile>}, '')
+        html = BlueCloth.new(escaped_macros).to_html.gsub(%r{</?notextile>}, "")
         html.gsub(%r{(</?publify)X}, '\1:')
       end
     end

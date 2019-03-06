@@ -27,7 +27,7 @@ class Redirect < ApplicationRecord
   end
 
   def to_url
-    raise 'Use #from_url'
+    raise "Use #from_url"
   end
 
   def from_url
@@ -37,8 +37,8 @@ class Redirect < ApplicationRecord
   private
 
   def random_token
-    characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890'
-    temp_token = ''
+    characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"
+    temp_token = ""
     srand
     6.times do
       pos = rand(characters.length)

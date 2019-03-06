@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'net/http'
+require "net/http"
 
 class TextFilter
   attr_accessor :description
@@ -54,12 +54,12 @@ class TextFilter
 
     help = []
     help.push(filter_map[markup])
-    filter_types['macropre'].sort_by(&:short_name).each { |f| help.push f }
-    filter_types['macropost'].sort_by(&:short_name).each { |f| help.push f }
+    filter_types["macropre"].sort_by(&:short_name).each { |f| help.push f }
+    filter_types["macropost"].sort_by(&:short_name).each { |f| help.push f }
     filters.each { |f| help.push(filter_map[f.to_s]) }
 
     help_text = help.map do |f|
-      f.help_text.blank? ? '' : "<h3>#{f.display_name}</h3>\n#{BlueCloth.new(f.help_text).to_html}\n"
+      f.help_text.blank? ? "" : "<h3>#{f.display_name}</h3>\n#{BlueCloth.new(f.help_text).to_html}\n"
     end
 
     help_text.join("\n")
@@ -72,7 +72,7 @@ class TextFilter
     filters.each { |f| help.push(filter_map[f.to_s]) }
 
     help_text = help.map do |f|
-      f.help_text.blank? ? '' : "#{BlueCloth.new(f.help_text).to_html}\n"
+      f.help_text.blank? ? "" : "#{BlueCloth.new(f.help_text).to_html}\n"
     end.join("\n")
 
     help_text
@@ -90,48 +90,48 @@ class TextFilter
 
   def self.make_filter(name)
     case name
-    when 'markdown'
+    when "markdown"
       markdown
-    when 'smartypants'
+    when "smartypants"
       smartypants
-    when 'markdown smartypants'
+    when "markdown smartypants"
       markdown_smartypants
-    when 'textile'
+    when "textile"
       textile
-    when 'none'
+    when "none"
       none
     end
   end
 
   def self.markdown
-    new(name: 'markdown',
-        description: 'Markdown',
-        markup: 'markdown')
+    new(name: "markdown",
+        description: "Markdown",
+        markup: "markdown")
   end
 
   def self.smartypants
-    new(name: 'smartypants',
-        description: 'SmartyPants',
-        markup: 'none',
+    new(name: "smartypants",
+        description: "SmartyPants",
+        markup: "none",
         filters: [:smartypants])
   end
 
   def self.markdown_smartypants
-    new(name: 'markdown smartypants',
-        description: 'Markdown with SmartyPants',
-        markup: 'markdown',
+    new(name: "markdown smartypants",
+        description: "Markdown with SmartyPants",
+        markup: "markdown",
         filters: [:smartypants])
   end
 
   def self.textile
-    new(name: 'textile',
-        description: 'Textile',
-        markup: 'textile')
+    new(name: "textile",
+        description: "Textile",
+        markup: "textile")
   end
 
   def self.none
-    new(name: 'none',
-        description: 'None',
-        markup: 'none')
+    new(name: "none",
+        description: "None",
+        markup: "none")
   end
 end

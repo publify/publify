@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require 'coderay'
-require 'htmlentities'
+require "coderay"
+require "htmlentities"
 
 class PublifyApp
   class Textfilter
     class Code < TextFilterPlugin::MacroPre
-      plugin_display_name 'Code'
-      plugin_description 'Apply coderay highlighting to a code block'
+      plugin_display_name "Code"
+      plugin_description "Apply coderay highlighting to a code block"
 
       DEFAULT_OPTIONS = { css: :class,
                           wrap: :span,
@@ -40,29 +40,29 @@ PHP (&#42;), Python (&#42;), RHTML, Ruby, Scheme, SQL (&#42;), XHTML, XML, YAML.
 }
       end
 
-      def self.macrofilter(attrib, text = '')
-        lang = attrib['lang']
-        title = attrib['title']
-        options = if attrib['linenumber'] == 'true'
+      def self.macrofilter(attrib, text = "")
+        lang = attrib["lang"]
+        title = attrib["title"]
+        options = if attrib["linenumber"] == "true"
                     DEFAULT_OPTIONS.merge(line_numbers: :table,
                                           wrap: :div)
                   else
                     DEFAULT_OPTIONS
                   end
 
-        text = text.to_s.delete("\r").gsub(/\A\n/, '').chomp
+        text = text.to_s.delete("\r").gsub(/\A\n/, "").chomp
 
         begin
           text = CodeRay.scan(text, lang.downcase.to_sym).span(options)
         rescue
-          text = HTMLEntities.new('xhtml1').encode(text)
+          text = HTMLEntities.new("xhtml1").encode(text)
         end
         text = "<notextile>#{text}</notextile>"
 
         titlecode = if title
                       "<div class=\"codetitle\">#{title}</div>"
                     else
-                      ''
+                      ""
                     end
 
         "<div class=\"CodeRay\"><pre>#{titlecode}#{text}</pre></div>"

@@ -1,29 +1,29 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require "rails_helper"
 # require 'text_filter_textile'
-require 'publify_textfilter_markdown'
+require "publify_textfilter_markdown"
 
-describe 'With the list of available filters', type: :model do
-  describe '#filter_text' do
+describe "With the list of available filters", type: :model do
+  describe "#filter_text" do
     def filter_text(text, filters)
       TextFilter.filter_text(text, filters)
     end
 
-    describe 'specific publify tags' do
-      describe 'code' do
-        describe 'single line' do
-          it 'mades nothin if no args' do
-            result = filter_text('<publify:code>foo-code</publify:code>', [:macropre, :macropost])
+    describe "specific publify tags" do
+      describe "code" do
+        describe "single line" do
+          it "mades nothin if no args" do
+            result = filter_text("<publify:code>foo-code</publify:code>", [:macropre, :macropost])
             expect(result).to eq(%(<div class="CodeRay"><pre><notextile>foo-code</notextile></pre></div>))
           end
 
-          it 'parses ruby lang' do
+          it "parses ruby lang" do
             result = filter_text('<publify:code lang="ruby">foo-code</publify:code>', [:macropre, :macropost])
             expect(result).to eq(%(<div class="CodeRay"><pre><notextile><span class="CodeRay">foo-code</span></notextile></pre></div>))
           end
 
-          it 'parses ruby and xml in same sentence but not in same place' do
+          it "parses ruby and xml in same sentence but not in same place" do
             result = filter_text('<publify:code lang="ruby">foo-code</publify:code> blah blah <publify:code lang="xml">zzz</publify:code>', [:macropre, :macropost])
             expect(result).to eq \
               '<div class="CodeRay"><pre><notextile><span class="CodeRay">foo-code</span></notextile></pre></div>' \
@@ -31,8 +31,8 @@ describe 'With the list of available filters', type: :model do
           end
         end
 
-        describe 'multiline' do
-          it 'renders ruby' do
+        describe "multiline" do
+          it "renders ruby" do
             expect(filter_text(%(
 <publify:code lang="ruby">
 class Foo
@@ -51,7 +51,7 @@ end
       end
     end
 
-    it 'test_code_plus_markup_chain' do
+    it "test_code_plus_markup_chain" do
       text = <<-MARKUP.strip_heredoc
         *header text here*
 

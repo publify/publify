@@ -6,8 +6,8 @@ class FeedbackController < BaseController
       newest_first.
       limit(this_blog.per_page(params[:format]))
     respond_to do |format|
-      format.atom { render 'index', format: 'atom' }
-      format.rss { render 'index', format: 'rss' }
+      format.atom { render "index", format: "atom" }
+      format.rss { render "index", format: "rss" }
     end
   end
 end

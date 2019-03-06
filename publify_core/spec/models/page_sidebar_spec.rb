@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require "rails_helper"
 
 describe PageSidebar do
-  it 'is available' do
+  it "is available" do
     expect(SidebarRegistry.available_sidebars).to include(described_class)
   end
 end
