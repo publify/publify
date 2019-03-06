@@ -30,7 +30,7 @@ class Admin::NotesController < Admin::BaseController
       if params[:push_to_twitter] && note.twitter_id.blank?
         unless note.send_to_twitter
           flash[:error] = I18n.t("errors.problem_sending_to_twitter")
-          flash[:error] += " : #{note.errors.full_messages.join(' ')}"
+          flash[:error] += " : #{note.errors.full_messages.join(" ")}"
         end
       end
       flash[:notice] = I18n.t("notice.note_successfully_created")

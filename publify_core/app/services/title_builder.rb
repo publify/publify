@@ -74,6 +74,6 @@ class TitleBuilder
   def parse_page(_string, params)
     return "" unless params[:page]
 
-    "#{I18n.t('articles.index.page')} #{params[:page]}"
+    "#{I18n.t("articles.index.page")} #{params[:page]}"
   end
 end

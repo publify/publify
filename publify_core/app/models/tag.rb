@@ -61,7 +61,7 @@ class Tag < ApplicationRecord
   end
 
   def feed_url(format)
-    "#{permalink_url}.#{format.gsub(/\d/, '')}"
+    "#{permalink_url}.#{format.gsub(/\d/, "")}"
   end
 
   def permalink_url(_anchor = nil, only_path = false)

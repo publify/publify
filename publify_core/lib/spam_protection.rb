@@ -72,9 +72,9 @@ class SpamProtection
         domain.unshift(host_parts.shift)
       end
 
-      logger.info("[SP] Scanning domain #{domain.join('.')}")
+      logger.info("[SP] Scanning domain #{domain.join(".")}")
       query_rbls(HOST_RBLS, host, domain.join("."))
-      logger.info("[SP] Finished domain scan #{domain.join('.')}")
+      logger.info("[SP] Finished domain scan #{domain.join(".")}")
       return false
     end
   end

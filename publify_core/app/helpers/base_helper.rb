@@ -78,7 +78,7 @@ module BaseHelper
   end
 
   def onhover_show_admin_tools(type, id = nil)
-    admin_id = "#admin_#{[type, id].compact.join('_')}"
+    admin_id = "#admin_#{[type, id].compact.join("_")}"
     tag = []
     tag << %{ onmouseover="if (getCookie('publify_user_profile') == 'admin') { $('#{admin_id}').show(); }" }
     tag << %{ onmouseout="$('#{admin_id}').hide();" }
@@ -174,7 +174,7 @@ module BaseHelper
     if this_blog.date_format == "setting_date_format_distance_of_time_in_words"
       timeago_tag timestamp, date_only: false
     else
-      "#{display_date(timestamp)} #{t('helper.at')} #{display_time(timestamp)}"
+      "#{display_date(timestamp)} #{t("helper.at")} #{display_time(timestamp)}"
     end
   end
 
@@ -194,12 +194,12 @@ module BaseHelper
   def get_reply_context_url(reply)
     link_to(reply["user"]["name"], reply["user"]["entities"]["url"]["urls"][0]["expanded_url"])
   rescue
-    link_to(reply["user"]["name"], "https://twitter.com/#{reply['user']['name']}")
+    link_to(reply["user"]["name"], "https://twitter.com/#{reply["user"]["name"]}")
   end
 
   def get_reply_context_twitter_link(reply)
     link_to(display_date_and_time(reply["created_at"].to_time.in_time_zone),
-            "https://twitter.com/#{reply['user']['screen_name']}/status/#{reply['id_str']}")
+            "https://twitter.com/#{reply["user"]["screen_name"]}/status/#{reply["id_str"]}")
   end
 
   private

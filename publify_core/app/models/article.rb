@@ -133,7 +133,7 @@ class Article < Content
   end
 
   def feed_url(format)
-    "#{permalink_url}.#{format.gsub(/\d/, '')}"
+    "#{permalink_url}.#{format.gsub(/\d/, "")}"
   end
 
   def next

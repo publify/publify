@@ -11,11 +11,11 @@ RSpec.describe "xml_sidebar/_content.html.erb", type: :view do
     end
 
     it "renders a link to the articles feed" do
-      expect(rendered).to have_css("a[href='#{articles_feed_path(format: 'atom')}']")
+      expect(rendered).to have_css("a[href='#{articles_feed_path(format: "atom")}']")
     end
 
     it "renders a link to the feedback feed" do
-      expect(rendered).to have_css("a[href='#{feedback_index_path(format: 'atom')}']")
+      expect(rendered).to have_css("a[href='#{feedback_index_path(format: "atom")}']")
     end
   end
 
@@ -28,7 +28,7 @@ RSpec.describe "xml_sidebar/_content.html.erb", type: :view do
     end
 
     it "renders a link to the article comments feed" do
-      expect(rendered).to have_css("a[href='#{@article.feed_url('atom')}']")
+      expect(rendered).to have_css("a[href='#{@article.feed_url("atom")}']")
     end
   end
 
@@ -43,7 +43,7 @@ RSpec.describe "xml_sidebar/_content.html.erb", type: :view do
     end
 
     it "renders a link to the tag feed" do
-      expect(rendered).to have_css("a[href='#{@tag.feed_url('atom')}']")
+      expect(rendered).to have_css("a[href='#{@tag.feed_url("atom")}']")
     end
   end
 end
