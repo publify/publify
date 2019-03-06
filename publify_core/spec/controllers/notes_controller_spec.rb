@@ -44,10 +44,10 @@ describe NotesController, type: :controller do
             "screen_name" => "a screen name",
             "entities" => {
               "url" => {
-                "urls" => [{ "expanded_url" => "an url" }]
-              }
-            }
-          }
+                "urls" => [{ "expanded_url" => "an url" }],
+              },
+            },
+          },
         }
       end
       let(:permalink) { "#{create(:note, in_reply_to_message: reply.to_json).id}-this-is-a-note" }

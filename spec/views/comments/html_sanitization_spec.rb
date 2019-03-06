@@ -11,7 +11,7 @@ RSpec.describe "comments/_comment.html.erb", type: :view do
         body: "test foo <script>do_evil();</script>",
         author: "Bob",
         article: article,
-        created_at: Time.zone.now
+        created_at: Time.zone.now,
       }
     end
 
@@ -137,7 +137,7 @@ RSpec.describe "comments/_comment.html.erb", type: :view do
         body: "test foo <script>do_evil();</script>",
         author: "Bob",
         article: article,
-        created_at: Time.zone.now
+        created_at: Time.zone.now,
       }
     end
 

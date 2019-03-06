@@ -57,7 +57,7 @@ describe Admin::PagesController, type: :controller do
           post :create, params: {
             page: {
               name: "new_page", title: "New Page Title", body: "Emphasis _mine_, arguments *strong*"
-            }
+            },
           }
         end
 

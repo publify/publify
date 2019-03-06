@@ -35,7 +35,7 @@ class ArchivesSidebar < Sidebar
         name: I18n.l(Date.new(year, month), format: "%B %Y"),
         month: month,
         year: year,
-        article_count: entry.count
+        article_count: entry.count,
       }
     end
   end

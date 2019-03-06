@@ -199,6 +199,10 @@ Style/StringLiteralsInInterpolation:
 Style/SymbolArray:
   EnforcedStyle: brackets
 
+# Prefer consistent lines for multi-line hashes
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
+
 # Allow small arrays of words with quotes
 Style/WordArray:
   MinSize: 4
