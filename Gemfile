@@ -2,11 +2,11 @@
 
 source 'https://rubygems.org'
 
-gem 'rails', '~> 5.2.0'
+gem 'rails', '~> 5.2.3'
 
 gem 'mysql2'
 gem 'pg'
-gem 'sqlite3', '~> 1.3.6'
+gem 'sqlite3', '~> 1.4.0'
 
 # Store sessions in the database
 gem 'activerecord-session_store', '~> 1.1.0'
@@ -33,7 +33,7 @@ group :development, :test do
 
   gem 'capybara', '~> 3.9'
   gem 'factory_bot', '~> 5.0'
-  gem 'i18n-tasks', '0.9.28', require: false
+  gem 'i18n-tasks', '0.9.29', require: false
   gem 'pry', '~> 0.12.0'
   gem 'pry-rails', '~> 0.3.4'
   gem 'rspec-rails', '~> 3.4'
