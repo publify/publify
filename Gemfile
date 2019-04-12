@@ -6,7 +6,7 @@ gem 'rails', '~> 5.2.3'
 
 gem 'mysql2'
 gem 'pg'
-gem 'sqlite3', '~> 1.3.6'
+gem 'sqlite3', '~> 1.4.0'
 
 # Store sessions in the database
 gem 'activerecord-session_store', '~> 1.1.0'
