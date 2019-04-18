@@ -84,7 +84,7 @@ class SpamProtection
       subdomains.uniq.each do |d|
         begin
           response = IPSocket.getaddress([d, rbl].join('.'))
-          if response =~ /^127\.0\.0\./
+          if /^127\.0\.0\./.match?(response)
             throw :hit,
                   "#{rbl} positively resolved subdomain #{d} => #{response}"
           end

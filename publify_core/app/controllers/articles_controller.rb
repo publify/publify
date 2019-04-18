@@ -185,10 +185,10 @@ class ArticlesController < ContentController
   end
 
   def extract_feed_format(from)
-    if from =~ /^.*\.rss$/
+    if /^.*\.rss$/.match?(from)
       request.format = 'rss'
       from = from.gsub(/\.rss/, '')
-    elsif from =~ /^.*\.atom$/
+    elsif /^.*\.atom$/.match?(from)
       request.format = 'atom'
       from = from.gsub(/\.atom$/, '')
     end

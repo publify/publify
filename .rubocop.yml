@@ -17,7 +17,7 @@ AllCops:
   - 'db/converters/*.rb'
   - 'db/scripts/fix_permalinks.rb'
   - 'db/schema.rb'
-  TargetRubyVersion: '2.3'
+  TargetRubyVersion: 2.4
 
 Rails:
   Enabled: true
@@ -113,15 +113,6 @@ Metrics/PerceivedComplexity:
 Rails/FilePath:
   Enabled: false
 
-# Documenting all classes is not common in Rails projects.
-Style/Documentation:
-  Enabled: false
-
-# TODO: Lower Max and fix offenses
-# Target is around 100
-Metrics/LineLength:
-  Max: 274
-
 # Migrations should not use ApplicationRecord
 Rails/ApplicationRecord:
   Exclude:
@@ -155,6 +146,10 @@ Style/ClassAndModuleChildren:
 
 Style/CollectionMethods:
   Enabled: true
+
+# Documenting all classes is not common in Rails projects.
+Style/Documentation:
+  Enabled: false
 
 # This cop doesn't detect use of break yet
 Style/EachWithObject:
