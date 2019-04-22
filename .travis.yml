@@ -1,6 +1,7 @@
 sudo: false
 language: ruby
 cache: bundler
+
 rvm:
   - 2.4
   - 2.5
@@ -9,10 +10,18 @@ env:
   - DB=sqlite
   - DB=mysql
   - DB=postgresql
-install:
-  - cp config/database.yml.$DB config/database.yml
-  - bundle install --without development
+
+jobs:
+  include:
+    - stage: lint
+      rvm: 2.6
+      before_script: []
+      script:
+        - bundle exec rake lint
+
+bundler_args: --without development
 before_script:
+  - cp config/database.yml.$DB config/database.yml
   - bundle exec rake db:create db:migrate
 script:
   - bundle exec rake
