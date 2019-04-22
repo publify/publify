@@ -19,10 +19,9 @@ jobs:
       script:
         - bundle exec rake lint
 
-install:
-  - cp config/database.yml.$DB config/database.yml
-  - bundle install --without development
+bundler_args: --without development
 before_script:
+  - cp config/database.yml.$DB config/database.yml
   - bundle exec rake db:create db:migrate
 script:
   - bundle exec rake
