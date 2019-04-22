@@ -20,7 +20,7 @@
 //= require jquery-ui/i18n/datepicker-zh-CN
 //= require jquery-ui/i18n/datepicker-zh-TW
 //= require datetimepicker
-//= require bootstrap
+//= require bootstrap-sprockets
 //= require quicktags
 //= require tagmanager
 //= require typeahead

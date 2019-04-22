@@ -13,6 +13,7 @@ require "factory_bot"
 require "publify_core/testing_support/factories"
 require "publify_core/testing_support/feed_assertions"
 require "publify_core/testing_support/upload_fixtures"
+require "capybara/rspec"
 require "webmock/rspec"
 
 # Requires supporting ruby files with custom matchers and macros, etc, in

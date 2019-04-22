@@ -1,37 +1,37 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-  <title><%= this_blog.blog_name %> – <%= controller.controller_name %></title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="imagetoolbar" content="no" />
-  <%= javascript_include_tag 'publify_admin', async: Rails.env.production? %>
-  <%= stylesheet_link_tag 'publify_admin' %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  <%= render 'admin/shared/menu' %>
-  <div id='main'>
-    <div class='row'>
-      <div class='col-md-12'>
-        <div style='margin-top:20px'>
-          <%= render 'shared/flash', flash: flash %>
-        </div>
-        <% if content_for?(:page_heading) %>
-          <div class='page-header'>
-            <%= yield :page_heading %>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title><%= this_blog.blog_name %> – <%= controller.controller_name %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="imagetoolbar" content="no" />
+    <%= javascript_include_tag 'publify_admin', async: Rails.env.production? %>
+    <%= stylesheet_link_tag 'publify_admin' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <%= render 'admin/shared/menu' %>
+    <div class='container-fluid'>
+      <div class='row'>
+        <div class='col-md-12'>
+          <div style='margin-top:20px'>
+            <%= render 'shared/flash', flash: flash %>
           </div>
-        <% end %>
-        <%= yield %>
+          <% if content_for?(:page_heading) %>
+            <div class='page-header'>
+              <%= yield :page_heading %>
+            </div>
+          <% end %>
+          <%= yield %>
+        </div>
       </div>
+      <footer>
+        <div class='row'>
+          <div class='col-md-12'>
+            <%= link_to(this_blog.blog_name, this_blog.base_url) %> <%= t('.powered_by') %> Publify <%= h PublifyCore::VERSION %> – Icons courtesy of <a href='http://glyphicons.com/'>Glyphicons</a>
+          </div>
+        </div>
+      </footer>
     </div>
-  <footer>
-    <div class='row'>
-      <div class='col-md-12'>
-        <%= link_to(this_blog.blog_name, this_blog.base_url) %> <%= t('.powered_by') %> Publify <%= h PublifyCore::VERSION %> – Icons courtesy of <a href='http://glyphicons.com/'>Glyphicons</a>
-      </div>
-    </div>
-  </footer>
-</div>
-</body>
+  </body>
 </html>

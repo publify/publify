@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>
-    <%= yield :page_title %>
-  </title>
-  <meta http-equiv="imagetoolbar" content="no" />
-  <%= javascript_include_tag 'publify_admin', async: Rails.env.production? %>
-  <%= stylesheet_link_tag 'accounts' %>
-</head>
-<body>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4 col-md-offset-4">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h1 class='panel-title'><%= link_to('Publify', 'https://publify.github.io') %></h1>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      <%= yield :page_title %>
+    </title>
+    <meta http-equiv="imagetoolbar" content="no" />
+    <%= javascript_include_tag 'publify_admin', async: Rails.env.production? %>
+    <%= stylesheet_link_tag 'accounts' %>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h1 class='panel-title'><%= link_to('Publify', 'https://publify.github.io') %></h1>
+            </div>
+            <div class="panel-body">
+              <%= render 'shared/flash', flash: flash %>
+              <%= yield %>
+            </div>
           </div>
-          <div class="panel-body">
-            <%= render 'shared/flash', flash: flash %>
-            <%= yield %>
-          </div>
-        </div>
-        <% if content_for?(:account_links) %>
+          <% if content_for?(:account_links) %>
             <%= yield :account_links %>
-        <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
-  </div>
-</body>
+  </body>
 </html>
