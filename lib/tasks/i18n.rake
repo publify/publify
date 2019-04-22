@@ -10,4 +10,4 @@ namespace :i18n do
   end
 end
 
-task default: "i18n:health"
+task lint: "i18n:health"
