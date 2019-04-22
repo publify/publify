@@ -83,13 +83,6 @@ pl:
       drafts:
         no_drafts_yet: Brak szkiców.
         your_drafts: Twoje szkice
-      inbound:
-        at: o
-        at_an_unknown_date: at an unknown date
-        inbound_links: Linki przychodzące
-        made_a_link_to_you_on: " wykonał do ciebie łącze o treści "
-        no_one_made_link_to_you_yet: Nikt jeszcze nie stworzył do ciebie łącza
-        you_have_no_internet_connection: Nie masz połączenia internetowego
       index:
         welcome_back: Witamy z powrotem, %{user_name}!
       overview:

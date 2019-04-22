@@ -127,7 +127,6 @@ app/views/admin/content/new.html.erb
 app/views/admin/dashboard/_comment.html.erb
 app/views/admin/dashboard/_comments.html.erb
 app/views/admin/dashboard/_drafts.html.erb
-app/views/admin/dashboard/_inbound.html.erb
 app/views/admin/dashboard/_overview.html.erb
 app/views/admin/dashboard/_welcome.html.erb
 app/views/admin/dashboard/index.html.erb

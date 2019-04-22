@@ -83,13 +83,6 @@ nl:
       drafts:
         no_drafts_yet: No drafts yet, why don't you start and write one
         your_drafts: Your drafts
-      inbound:
-        at: at
-        at_an_unknown_date: at an unknown date
-        inbound_links: Binnenkomende links
-        made_a_link_to_you_on: " maakte een link naar je met als tekst "
-        no_one_made_link_to_you_yet: Niemand maakte nog een link naar je
-        you_have_no_internet_connection: Je hebt geen internetverbinding
       index:
         welcome_back: Welkom terug, %{user_name}!
       overview:

@@ -30,7 +30,6 @@ Gem::Specification.new do |s|
   s.add_dependency "devise", "~> 4.6.0"
   s.add_dependency "devise-i18n", "~> 1.2"
   s.add_dependency "dynamic_form", "~> 1.1.4"
-  s.add_dependency "feedjira", "~> 2.1"
   s.add_dependency "fog-aws", "~> 3.2"
   s.add_dependency "jquery-rails", "~> 4.3.1"
   s.add_dependency "jquery-ui-rails", "~> 6.0.1"
@@ -49,6 +48,7 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency "capybara", "~> 3.0"
   s.add_development_dependency "factory_bot", "~> 4.8"
+  s.add_development_dependency "feedjira", "~> 2.1"
   s.add_development_dependency "i18n-tasks", "~> 0.9.1"
   s.add_development_dependency "rails-controller-testing", "~> 1.0.1"
   s.add_development_dependency "rspec-rails", "~> 3.5"

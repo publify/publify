@@ -83,13 +83,6 @@ he:
       drafts:
         no_drafts_yet: No drafts yet, why don't you start and write one
         your_drafts: Your drafts
-      inbound:
-        at: at
-        at_an_unknown_date: at an unknown date
-        inbound_links: Inbound links
-        made_a_link_to_you_on: made a link to you on
-        no_one_made_link_to_you_yet: No one made a link to you yet
-        you_have_no_internet_connection: You have no internet connection
       index:
         welcome_back: ברוך הבא, %{user_name}!
       overview:
