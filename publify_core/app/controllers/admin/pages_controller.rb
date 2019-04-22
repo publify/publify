@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'base64'
+require "base64"
 
 class Admin::PagesController < Admin::BaseController
   before_action :set_macro, only: [:new, :edit]
@@ -15,13 +15,13 @@ class Admin::PagesController < Admin::BaseController
     @page = Page.new
     @page.text_filter_name ||= default_text_filter
     @page.user_id = current_user.id
-    @page.state = 'published'
-    render layout: 'editor'
+    @page.state = "published"
+    render layout: "editor"
   end
 
   def edit
     @page.text_filter_name ||= default_text_filter
-    render layout: 'editor'
+    render layout: "editor"
   end
 
   def create
@@ -31,16 +31,16 @@ class Admin::PagesController < Admin::BaseController
     @page.user_id = current_user.id
 
     if @page.save
-      redirect_to admin_pages_url, notice: I18n.t('admin.pages.new.success')
+      redirect_to admin_pages_url, notice: I18n.t("admin.pages.new.success")
     else
-      render :new, layout: 'editor'
+      render :new, layout: "editor"
     end
   end
 
   def update
     @page.text_filter_name ||= default_text_filter
     if @page.update(page_params)
-      redirect_to admin_pages_url, notice: I18n.t('admin.pages.edit.success')
+      redirect_to admin_pages_url, notice: I18n.t("admin.pages.edit.success")
     else
       render :edit
     end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require "rails_helper"
 
 describe Admin::ThemesController, type: :controller do
   render_views
@@ -11,24 +11,24 @@ describe Admin::ThemesController, type: :controller do
     sign_in henri
   end
 
-  describe 'test index' do
+  describe "test index" do
     before do
       get :index
     end
 
-    it 'assigns @themes for the :index action' do
+    it "assigns @themes for the :index action" do
       assert_response :success
       expect(assigns(:themes)).not_to be_nil
     end
   end
 
-  it 'redirects to :index after the :switchto action' do
-    get :switchto, params: { theme: 'typographic' }
-    assert_response :redirect, action: 'index'
+  it "redirects to :index after the :switchto action" do
+    get :switchto, params: { theme: "typographic" }
+    assert_response :redirect, action: "index"
   end
 
-  it 'returns success for the :preview action' do
-    get :preview, params: { theme: 'plain' }
+  it "returns success for the :preview action" do
+    get :preview, params: { theme: "plain" }
     assert_response :success
   end
 end

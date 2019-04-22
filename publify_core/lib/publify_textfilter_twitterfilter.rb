@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require 'text_filter_plugin'
+require "text_filter_plugin"
 
 class PublifyApp
   class Textfilter
     class Twitterfilter < TextFilterPlugin::PostProcess
-      plugin_display_name 'HTML Filter'
-      plugin_description 'Strip HTML tags'
+      plugin_display_name "HTML Filter"
+      plugin_description "Strip HTML tags"
 
       def self.filtertext(text)
         # First, autolink
@@ -24,7 +24,7 @@ class PublifyApp
 
         # @mention
         text.to_s.split.grep(/@\w+/) do |item|
-          uri = URI.escape("https://twitter.com/#{item.strip_html.delete('@')}")
+          uri = URI.escape("https://twitter.com/#{item.strip_html.delete("@")}")
           text = text.gsub(item, "<a href='#{uri}'>#{item.strip_html}</a>")
         end
 

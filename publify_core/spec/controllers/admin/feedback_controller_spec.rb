@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require "rails_helper"
 
 describe Admin::FeedbackController, type: :controller do
   render_views
@@ -8,24 +8,24 @@ describe Admin::FeedbackController, type: :controller do
   let(:feedback_from_own_article) { create(:comment, article: article) }
   let(:feedback_from_not_own_article) { create(:spam_comment) }
 
-  shared_examples_for 'destroy feedback with feedback from own article' do
-    it 'destroys feedback' do
+  shared_examples_for "destroy feedback with feedback from own article" do
+    it "destroys feedback" do
       id = feedback_from_own_article.id
       expect do
-        delete 'destroy', params: { id: id }
+        delete "destroy", params: { id: id }
       end.to change(Feedback, :count)
       expect do
         Feedback.find(feedback_from_own_article.id)
       end.to raise_error(ActiveRecord::RecordNotFound)
     end
 
-    it 'redirects to feedback from article' do
-      delete 'destroy', params: { id: feedback_from_own_article.id }
-      expect(response).to redirect_to(controller: 'admin/feedback', action: 'article', id: feedback_from_own_article.article.id)
+    it "redirects to feedback from article" do
+      delete "destroy", params: { id: feedback_from_own_article.id }
+      expect(response).to redirect_to(controller: "admin/feedback", action: "article", id: feedback_from_own_article.article.id)
     end
   end
 
-  describe 'logged in admin user' do
+  describe "logged in admin user" do
     let(:admin) { create(:user, :as_admin) }
     let(:article) { create(:article, user: admin) }
 
@@ -34,29 +34,29 @@ describe Admin::FeedbackController, type: :controller do
       sign_in admin
     end
 
-    describe 'destroy action' do
-      it_behaves_like 'destroy feedback with feedback from own article'
+    describe "destroy action" do
+      it_behaves_like "destroy feedback with feedback from own article"
 
       it "destroys feedback from article doesn't own" do
         id = feedback_from_not_own_article.id
         expect do
-          delete 'destroy', params: { id: id }
+          delete "destroy", params: { id: id }
         end.to change(Feedback, :count)
         expect do
           Feedback.find(feedback_from_not_own_article.id)
         end.to raise_error(ActiveRecord::RecordNotFound)
-        expect(response).to redirect_to(controller: 'admin/feedback', action: 'article', id: feedback_from_not_own_article.article.id)
+        expect(response).to redirect_to(controller: "admin/feedback", action: "article", id: feedback_from_not_own_article.article.id)
       end
     end
 
-    describe 'index security' do
-      it 'checks domain of the only param' do
-        expect { get :index, params: { only: 'evil_call' } }.not_to raise_error
+    describe "index security" do
+      it "checks domain of the only param" do
+        expect { get :index, params: { only: "evil_call" } }.not_to raise_error
         expect(assigns(:only_param)).to be_nil
       end
     end
 
-    describe 'index' do
+    describe "index" do
       let!(:spam) { create(:spam_comment) }
       let!(:unapproved) { create(:unconfirmed_comment) }
       let!(:presumed_ham) { create(:presumed_ham_comment) }
@@ -66,166 +66,166 @@ describe Admin::FeedbackController, type: :controller do
       before { get :index, params: params }
 
       it { expect(response).to be_successful }
-      it { expect(response).to render_template('index') }
+      it { expect(response).to render_template("index") }
 
-      context 'simple' do
+      context "simple" do
         it { expect(assigns(:feedback).size).to eq(4) }
       end
 
-      context 'unapproved' do
-        let(:params) { { only: 'unapproved' } }
+      context "unapproved" do
+        let(:params) { { only: "unapproved" } }
 
         it { expect(assigns(:feedback)).to match_array([unapproved, presumed_ham, presumed_spam]) }
       end
 
-      context 'spam' do
-        let(:params) { { only: 'spam' } }
+      context "spam" do
+        let(:params) { { only: "spam" } }
 
         it { expect(assigns(:feedback)).to eq([spam]) }
       end
 
-      context 'presumed_spam' do
-        let(:params) { { only: 'presumed_spam' } }
+      context "presumed_spam" do
+        let(:params) { { only: "presumed_spam" } }
 
         it { expect(assigns(:feedback)).to eq([presumed_spam]) }
       end
 
-      context 'presumed_ham' do
-        let(:params) { { only: 'presumed_ham' } }
+      context "presumed_ham" do
+        let(:params) { { only: "presumed_ham" } }
 
         it { expect(assigns(:feedback)).to match_array([unapproved, presumed_ham]) }
       end
 
-      context 'with an empty page params' do
-        let(:params) { { page: '' } }
+      context "with an empty page params" do
+        let(:params) { { page: "" } }
 
         it { expect(assigns(:feedback).size).to eq(4) }
       end
     end
 
-    describe 'article action' do
+    describe "article action" do
       let(:article) { create(:article) }
       let!(:ham) { create(:comment, article: article) }
-      let!(:spam) { create(:comment, article: article, state: 'spam') }
+      let!(:spam) { create(:comment, article: article, state: "spam") }
 
       def should_success_with_article_view(response)
         expect(response).to be_successful
-        expect(response).to render_template('article')
+        expect(response).to render_template("article")
       end
 
-      it 'sees all feedback on one article' do
+      it "sees all feedback on one article" do
         get :article, params: { id: article.id }
         should_success_with_article_view(response)
         expect(assigns(:article)).to eq(article)
         expect(assigns(:feedback)).to match_array [ham, spam]
       end
 
-      it 'sees only spam feedback on one article' do
-        get :article, params: { id: article.id, spam: 'y' }
+      it "sees only spam feedback on one article" do
+        get :article, params: { id: article.id, spam: "y" }
         should_success_with_article_view(response)
         expect(assigns(:article)).to eq(article)
         expect(assigns(:feedback)).to match_array [spam]
       end
 
-      it 'sees only ham feedback on one article' do
-        get :article, params: { id: article.id, ham: 'y' }
+      it "sees only ham feedback on one article" do
+        get :article, params: { id: article.id, ham: "y" }
         should_success_with_article_view(response)
         expect(assigns(:article)).to eq(article)
         expect(assigns(:feedback)).to match_array [ham]
       end
 
-      it 'redirect_toes index if bad article id' do
+      it "redirect_toes index if bad article id" do
         expect do
           get :article, params: { id: 102_302 }
         end.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
 
-    describe 'create action' do
+    describe "create action" do
       def base_comment(options = {})
-        { 'body' => 'a new comment', 'author' => 'Me', 'url' => 'https://bar.com/', 'email' => 'foo@bar.com' }.merge(options)
+        { "body" => "a new comment", "author" => "Me", "url" => "https://bar.com/", "email" => "foo@bar.com" }.merge(options)
       end
 
-      describe 'by get access' do
+      describe "by get access" do
         it "raises ActiveRecordNotFound if article doesn't exist" do
           expect do
-            get 'create', params: { article_id: 120_431, comment: base_comment }
+            get "create", params: { article_id: 120_431, comment: base_comment }
           end.to raise_error(ActiveRecord::RecordNotFound)
         end
 
-        it 'does not create comment' do
+        it "does not create comment" do
           article = create(:article)
           expect do
-            get 'create', params: { article_id: article.id, comment: base_comment }
-            expect(response).to redirect_to(action: 'article', id: article.id)
+            get "create", params: { article_id: article.id, comment: base_comment }
+            expect(response).to redirect_to(action: "article", id: article.id)
           end.not_to change(Comment, :count)
         end
       end
 
-      describe 'by post access' do
+      describe "by post access" do
         it "raises ActiveRecord::RecordNotFound if article doesn't exist" do
           expect do
-            post 'create', params: { article_id: 123_104, comment: base_comment }
+            post "create", params: { article_id: 123_104, comment: base_comment }
           end.to raise_error(ActiveRecord::RecordNotFound)
         end
 
-        it 'creates comment' do
+        it "creates comment" do
           article = create(:article)
           expect do
-            post 'create', params: { article_id: article.id, comment: base_comment }
-            expect(response).to redirect_to(action: 'article', id: article.id)
+            post "create", params: { article_id: article.id, comment: base_comment }
+            expect(response).to redirect_to(action: "article", id: article.id)
           end.to change(Comment, :count)
         end
 
-        it 'creates comment mark as ham' do
+        it "creates comment mark as ham" do
           article = create(:article)
           expect do
-            post 'create', params: { article_id: article.id, comment: base_comment }
-            expect(response).to redirect_to(action: 'article', id: article.id)
+            post "create", params: { article_id: article.id, comment: base_comment }
+            expect(response).to redirect_to(action: "article", id: article.id)
           end.to change { Comment.ham.count }
         end
       end
     end
 
-    describe 'edit action' do
-      it 'renders edit form' do
+    describe "edit action" do
+      it "renders edit form" do
         article = create(:article)
         comment = create(:comment, article: article)
-        get 'edit', params: { id: comment.id }
+        get "edit", params: { id: comment.id }
         expect(assigns(:comment)).to eq(comment)
         expect(assigns(:article)).to eq(article)
         expect(response).to be_successful
-        expect(response).to render_template('edit')
+        expect(response).to render_template("edit")
       end
     end
 
-    describe 'update action' do
-      it 'updates comment if post request' do
+    describe "update action" do
+      it "updates comment if post request" do
         article = create(:article)
         comment = create(:comment, article: article)
-        post 'update', params: { id: comment.id,
-                                 comment: { author: 'Bob Foo2',
-                                            url: 'http://fakeurl.com',
-                                            body: 'updated comment' } }
-        expect(response).to redirect_to(action: 'article', id: article.id)
+        post "update", params: { id: comment.id,
+                                 comment: { author: "Bob Foo2",
+                                            url: "http://fakeurl.com",
+                                            body: "updated comment" } }
+        expect(response).to redirect_to(action: "article", id: article.id)
         comment.reload
-        expect(comment.body).to eq('updated comment')
+        expect(comment.body).to eq("updated comment")
       end
 
-      it 'does not  update comment if get request' do
+      it "does not  update comment if get request" do
         comment = create(:comment)
-        get 'update', params: { id: comment.id,
-                                comment: { author: 'Bob Foo2',
-                                           url: 'http://fakeurl.com',
-                                           body: 'updated comment' } }
-        expect(response).to redirect_to(action: 'edit', id: comment.id)
+        get "update", params: { id: comment.id,
+                                comment: { author: "Bob Foo2",
+                                           url: "http://fakeurl.com",
+                                           body: "updated comment" } }
+        expect(response).to redirect_to(action: "edit", id: comment.id)
         comment.reload
-        expect(comment.body).not_to eq('updated comment')
+        expect(comment.body).not_to eq("updated comment")
       end
     end
   end
 
-  describe 'publisher access' do
+  describe "publisher access" do
     let(:publisher) { create(:user, :as_publisher) }
     let(:article) { create(:article, user: publisher) }
 
@@ -234,148 +234,148 @@ describe Admin::FeedbackController, type: :controller do
       sign_in publisher
     end
 
-    describe 'destroy action' do
-      it_behaves_like 'destroy feedback with feedback from own article'
+    describe "destroy action" do
+      it_behaves_like "destroy feedback with feedback from own article"
 
       it "does not destroy feedback doesn't own" do
         id = feedback_from_not_own_article.id
-        post 'destroy', params: { id: id }
-        expect(response).to redirect_to(controller: 'admin/feedback', action: 'index')
+        post "destroy", params: { id: id }
+        expect(response).to redirect_to(controller: "admin/feedback", action: "index")
         expect do
           Feedback.find(id)
         end.not_to raise_error
       end
     end
 
-    describe 'edit action' do
-      it 'does not edit comment no own article' do
-        get 'edit', params: { id: feedback_from_not_own_article.id }
-        expect(response).to redirect_to(action: 'index')
+    describe "edit action" do
+      it "does not edit comment no own article" do
+        get "edit", params: { id: feedback_from_not_own_article.id }
+        expect(response).to redirect_to(action: "index")
       end
 
-      it 'edits comment if own article' do
-        get 'edit', params: { id: feedback_from_own_article.id }
+      it "edits comment if own article" do
+        get "edit", params: { id: feedback_from_own_article.id }
         expect(response).to be_successful
-        expect(response).to render_template('edit')
+        expect(response).to render_template("edit")
         expect(assigns(:comment)).to eq(feedback_from_own_article)
         expect(assigns(:article)).to eq(feedback_from_own_article.article)
       end
     end
 
-    describe 'update action' do
-      it 'updates comment if own article' do
-        post 'update', params: { id: feedback_from_own_article.id,
-                                 comment: { author: 'Bob Foo2',
-                                            url: 'http://fakeurl.com',
-                                            body: 'updated comment' } }
-        expect(response).to redirect_to(action: 'article', id: feedback_from_own_article.article.id)
+    describe "update action" do
+      it "updates comment if own article" do
+        post "update", params: { id: feedback_from_own_article.id,
+                                 comment: { author: "Bob Foo2",
+                                            url: "http://fakeurl.com",
+                                            body: "updated comment" } }
+        expect(response).to redirect_to(action: "article", id: feedback_from_own_article.article.id)
         feedback_from_own_article.reload
-        expect(feedback_from_own_article.body).to eq('updated comment')
+        expect(feedback_from_own_article.body).to eq("updated comment")
       end
 
-      it 'does not update comment if not own article' do
-        post 'update', params: { id: feedback_from_not_own_article.id,
-                                 comment: { author: 'Bob Foo2',
-                                            url: 'http://fakeurl.com',
-                                            body: 'updated comment' } }
-        expect(response).to redirect_to(action: 'index')
+      it "does not update comment if not own article" do
+        post "update", params: { id: feedback_from_not_own_article.id,
+                                 comment: { author: "Bob Foo2",
+                                            url: "http://fakeurl.com",
+                                            body: "updated comment" } }
+        expect(response).to redirect_to(action: "index")
         feedback_from_not_own_article.reload
-        expect(feedback_from_not_own_article.body).not_to eq('updated comment')
+        expect(feedback_from_not_own_article.body).not_to eq("updated comment")
       end
     end
 
-    describe '#bulkops action' do
-      it 'redirect to index' do
-        post :bulkops, params: { bulkop_top: 'destroy all spam' }
-        expect(@response).to redirect_to(action: 'index')
+    describe "#bulkops action" do
+      it "redirect to index" do
+        post :bulkops, params: { bulkop_top: "destroy all spam" }
+        expect(@response).to redirect_to(action: "index")
       end
 
-      it 'delete all spam' do
+      it "delete all spam" do
         Feedback.delete_all
         create(:comment, state: :spam)
-        post :bulkops, params: { bulkop_top: 'Delete all spam' }
+        post :bulkops, params: { bulkop_top: "Delete all spam" }
         expect(Feedback.count).to eq(0)
       end
 
-      it 'delete all spam and only confirmed spam' do
+      it "delete all spam and only confirmed spam" do
         Feedback.delete_all
         create(:comment, state: :presumed_spam)
         create(:comment, state: :spam)
         create(:comment, state: :presumed_ham)
         create(:comment, state: :ham)
-        post :bulkops, params: { bulkop_top: 'Delete all spam' }
+        post :bulkops, params: { bulkop_top: "Delete all spam" }
         expect(Feedback.count).to eq(3)
       end
 
-      it 'mark presumed spam comments as spam' do
+      it "mark presumed spam comments as spam" do
         comment = create(:comment, state: :presumed_spam)
-        post :bulkops, params: { bulkop_top: 'Mark Checked Items as Spam', feedback_check: { comment.id.to_s => 'on' } }
+        post :bulkops, params: { bulkop_top: "Mark Checked Items as Spam", feedback_check: { comment.id.to_s => "on" } }
         expect(Feedback.find(comment.id)).to be_spam
       end
 
-      it 'mark confirmed spam comments as spam' do
+      it "mark confirmed spam comments as spam" do
         comment = create(:comment, state: :spam)
-        post :bulkops, params: { bulkop_top: 'Mark Checked Items as Spam', feedback_check: { comment.id.to_s => 'on' } }
+        post :bulkops, params: { bulkop_top: "Mark Checked Items as Spam", feedback_check: { comment.id.to_s => "on" } }
         expect(Feedback.find(comment.id)).to be_spam
       end
 
-      it 'mark presumed ham comments as spam' do
+      it "mark presumed ham comments as spam" do
         comment = create(:comment, state: :presumed_ham)
-        post :bulkops, params: { bulkop_top: 'Mark Checked Items as Spam', feedback_check: { comment.id.to_s => 'on' } }
+        post :bulkops, params: { bulkop_top: "Mark Checked Items as Spam", feedback_check: { comment.id.to_s => "on" } }
         expect(Feedback.find(comment.id)).to be_spam
       end
 
-      it 'mark ham comments as spam' do
+      it "mark ham comments as spam" do
         comment = create(:comment, state: :ham)
-        post :bulkops, params: { bulkop_top: 'Mark Checked Items as Spam', feedback_check: { comment.id.to_s => 'on' } }
+        post :bulkops, params: { bulkop_top: "Mark Checked Items as Spam", feedback_check: { comment.id.to_s => "on" } }
         expect(Feedback.find(comment.id)).to be_spam
       end
 
-      it 'mark presumed spam comments as ham' do
+      it "mark presumed spam comments as ham" do
         comment = create(:comment, state: :presumed_spam)
-        post :bulkops, params: { bulkop_top: 'Mark Checked Items as Ham', feedback_check: { comment.id.to_s => 'on' } }
+        post :bulkops, params: { bulkop_top: "Mark Checked Items as Ham", feedback_check: { comment.id.to_s => "on" } }
         expect(Feedback.find(comment.id)).to be_ham
       end
 
-      it 'mark confirmed spam comments as ham' do
+      it "mark confirmed spam comments as ham" do
         comment = create(:comment, state: :spam)
-        post :bulkops, params: { bulkop_top: 'Mark Checked Items as Ham', feedback_check: { comment.id.to_s => 'on' } }
+        post :bulkops, params: { bulkop_top: "Mark Checked Items as Ham", feedback_check: { comment.id.to_s => "on" } }
         expect(Feedback.find(comment.id)).to be_ham
       end
 
-      it 'mark presumed ham comments as ham' do
+      it "mark presumed ham comments as ham" do
         comment = create(:comment, state: :presumed_ham)
-        post :bulkops, params: { bulkop_top: 'Mark Checked Items as Ham', feedback_check: { comment.id.to_s => 'on' } }
+        post :bulkops, params: { bulkop_top: "Mark Checked Items as Ham", feedback_check: { comment.id.to_s => "on" } }
         expect(Feedback.find(comment.id)).to be_ham
       end
 
-      it 'mark ham comments as ham' do
+      it "mark ham comments as ham" do
         comment = create(:comment, state: :ham)
-        post :bulkops, params: { bulkop_top: 'Mark Checked Items as Ham', feedback_check: { comment.id.to_s => 'on' } }
+        post :bulkops, params: { bulkop_top: "Mark Checked Items as Ham", feedback_check: { comment.id.to_s => "on" } }
         expect(Feedback.find(comment.id)).to be_ham
       end
 
-      it 'confirms presumed spam comments as spam' do
+      it "confirms presumed spam comments as spam" do
         comment = create(:comment, state: :presumed_spam)
-        post :bulkops, params: { bulkop_top: 'Confirm Classification of Checked Items', feedback_check: { comment.id.to_s => 'on' } }
+        post :bulkops, params: { bulkop_top: "Confirm Classification of Checked Items", feedback_check: { comment.id.to_s => "on" } }
         expect(Feedback.find(comment.id)).to be_spam
       end
 
-      it 'confirms confirmed spam comments as spam' do
+      it "confirms confirmed spam comments as spam" do
         comment = create(:comment, state: :spam)
-        post :bulkops, params: { bulkop_top: 'Confirm Classification of Checked Items', feedback_check: { comment.id.to_s => 'on' } }
+        post :bulkops, params: { bulkop_top: "Confirm Classification of Checked Items", feedback_check: { comment.id.to_s => "on" } }
         expect(Feedback.find(comment.id)).to be_spam
       end
 
-      it 'confirms presumed ham comments as ham' do
+      it "confirms presumed ham comments as ham" do
         comment = create(:comment, state: :presumed_ham)
-        post :bulkops, params: { bulkop_top: 'Confirm Classification of Checked Items', feedback_check: { comment.id.to_s => 'on' } }
+        post :bulkops, params: { bulkop_top: "Confirm Classification of Checked Items", feedback_check: { comment.id.to_s => "on" } }
         expect(Feedback.find(comment.id)).to be_ham
       end
 
-      it 'confirms ham comments as ham' do
+      it "confirms ham comments as ham" do
         comment = create(:comment, state: :ham)
-        post :bulkops, params: { bulkop_top: 'Confirm Classification of Checked Items', feedback_check: { comment.id.to_s => 'on' } }
+        post :bulkops, params: { bulkop_top: "Confirm Classification of Checked Items", feedback_check: { comment.id.to_s => "on" } }
         expect(Feedback.find(comment.id)).to be_ham
       end
     end

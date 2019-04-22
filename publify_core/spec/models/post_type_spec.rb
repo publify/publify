@@ -1,32 +1,32 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require "rails_helper"
 
 describe PostType, type: :model do
   before do
     create(:blog)
   end
 
-  describe 'Given a new post type' do
-    it 'gives a valid post type' do
-      expect(PostType.create(name: 'foo')).to be_valid
+  describe "Given a new post type" do
+    it "gives a valid post type" do
+      expect(PostType.create(name: "foo")).to be_valid
     end
 
-    it 'has a sanitized permalink' do
-      @pt = PostType.create(name: 'Un joli PostType Accentué')
-      expect(@pt.permalink).to eq('un-joli-posttype-accentue')
+    it "has a sanitized permalink" do
+      @pt = PostType.create(name: "Un joli PostType Accentué")
+      expect(@pt.permalink).to eq("un-joli-posttype-accentue")
     end
 
-    it 'has a sanitized permalink with a' do
-      @pt = PostType.create(name: 'Un joli PostType à Accentuer')
-      expect(@pt.permalink).to eq('un-joli-posttype-a-accentuer')
+    it "has a sanitized permalink with a" do
+      @pt = PostType.create(name: "Un joli PostType à Accentuer")
+      expect(@pt.permalink).to eq("un-joli-posttype-a-accentuer")
     end
   end
 
-  it 'post types are unique' do
-    expect { PostType.create!(name: 'test') }.not_to raise_error
-    test_type = PostType.new(name: 'test')
+  it "post types are unique" do
+    expect { PostType.create!(name: "test") }.not_to raise_error
+    test_type = PostType.new(name: "test")
     expect(test_type).not_to be_valid
-    expect(test_type.errors[:name]).to eq(['has already been taken'])
+    expect(test_type.errors[:name]).to eq(["has already been taken"])
   end
 end

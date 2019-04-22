@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
-require 'simplecov'
-SimpleCov.start 'rails'
+require "simplecov"
+SimpleCov.start "rails"
 
-ENV['RAILS_ENV'] ||= 'test'
-require File.expand_path('../config/environment', __dir__)
-require 'rspec/rails'
-require 'factory_bot'
-require 'publify_core/testing_support/factories'
-require 'publify_core/testing_support/feed_assertions'
+ENV["RAILS_ENV"] ||= "test"
+require File.expand_path("../config/environment", __dir__)
+require "rspec/rails"
+require "factory_bot"
+require "publify_core/testing_support/factories"
+require "publify_core/testing_support/feed_assertions"
 
 class ActionView::TestCase::TestController
   include Rails.application.routes.url_helpers
@@ -17,7 +17,7 @@ end
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
-Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
 RSpec.configure do |config|
   config.use_transactional_fixtures = true
@@ -35,7 +35,7 @@ RSpec.configure do |config|
   config.include PublifyCore::TestingSupport::FeedAssertions, type: :controller
 
   config.after :each, type: :controller do
-    raise "Double escaped HTML in text (#{Regexp.last_match(1)})" if response.content_type == 'text/html' && response.body =~ /(&lt;[a-z]+)/
+    raise "Double escaped HTML in text (#{Regexp.last_match(1)})" if response.content_type == "text/html" && response.body =~ /(&lt;[a-z]+)/
   end
 end
 

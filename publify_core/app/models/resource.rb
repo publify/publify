@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'carrierwave'
-require 'carrierwave/orm/activerecord'
+require "carrierwave"
+require "carrierwave/orm/activerecord"
 
 class Resource < ApplicationRecord
   belongs_to :blog

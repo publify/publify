@@ -4,17 +4,17 @@ module PublifyCore
   class Engine < ::Rails::Engine
     config.generators do |generators|
       generators.test_framework :rspec, fixture: false
-      generators.fixture_replacement :factory_bot, dir: 'spec/factories'
+      generators.fixture_replacement :factory_bot, dir: "spec/factories"
     end
 
     config.to_prepare do
-      DeviseController.layout 'accounts'
+      DeviseController.layout "accounts"
       DeviseController.before_action do
         devise_parameter_sanitizer.permit(:sign_up, keys: [:email])
       end
     end
 
-    initializer 'publify_core.assets.precompile' do |app|
+    initializer "publify_core.assets.precompile" do |app|
       app.config.assets.precompile += %w(
         publify.js
         publify.css

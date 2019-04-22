@@ -1,18 +1,18 @@
 # frozen_string_literal: true
 
 class Note < Content
-  require 'twitter'
-  require 'json'
-  require 'uri'
+  require "twitter"
+  require "json"
+  require "uri"
   include PublifyGuid
   include ConfigManager
 
   serialize :settings, Hash
 
-  setting :twitter_id, :string, ''
-  setting :in_reply_to_status_id, :string, ''
+  setting :twitter_id, :string, ""
+  setting :in_reply_to_status_id, :string, ""
   setting :in_reply_to_protected, :boolean, false
-  setting :in_reply_to_message, :string, ''
+  setting :in_reply_to_message, :string, ""
 
   validates :body, presence: true
   validates :permalink, :guid, uniqueness: true
@@ -21,9 +21,9 @@ class Note < Content
   before_create :create_guid
 
   scope :published, lambda {
-    where(state: 'published').where('published_at <= ?', Time.zone.now).order(default_order)
+    where(state: "published").where("published_at <= ?", Time.zone.now).order(default_order)
   }
-  default_scope { order('published_at DESC') }
+  default_scope { order("published_at DESC") }
 
   TWITTER_FTP_URL_LENGTH = 19
   TWITTER_HTTP_URL_LENGTH = 20
@@ -48,10 +48,10 @@ class Note < Content
   end
 
   def truncate(message, length)
-    if message[length + 1] == ' '
+    if message[length + 1] == " "
       message[0..length]
     else
-      message[0..(message[0..length].rindex(' ') - 1)]
+      message[0..(message[0..length].rindex(" ") - 1)]
     end
   end
 
@@ -67,7 +67,7 @@ class Note < Content
 
   # FIXME: This breaks if the user changes or deletes their handle.
   def twitter_url
-    File.join('https://twitter.com', user.twitter, 'status', twitter_id)
+    File.join("https://twitter.com", user.twitter, "status", twitter_id)
   end
 
   def send_to_twitter
@@ -83,7 +83,7 @@ class Note < Content
 
     begin
       options = {}
-      if in_reply_to_status_id && in_reply_to_status_id != ''
+      if in_reply_to_status_id && in_reply_to_status_id != ""
         options = { in_reply_to_status_id: in_reply_to_status_id }
         self.in_reply_to_message = twitter.status(in_reply_to_status_id).to_json
       end
@@ -111,8 +111,8 @@ class Note < Content
 
   def permalink_url(anchor = nil, only_path = false)
     blog.url_for(
-      controller: '/notes',
-      action: 'show',
+      controller: "/notes",
+      action: "show",
       permalink: permalink,
       anchor: anchor,
       only_path: only_path)
@@ -124,11 +124,11 @@ class Note < Content
   end
 
   def prefix
-    blog.shortener_url.sub(%r{^https?://}, '')
+    blog.shortener_url.sub(%r{^https?://}, "")
   end
 
   def published?
-    state == 'published'
+    state == "published"
   end
 
   private
@@ -137,13 +137,13 @@ class Note < Content
     uris = URI.extract(message, %w(http https ftp))
     uris << prefix
     uris.each do |uri|
-      payload = case uri.split(':')[0]
-                when 'https'
-                  '-' * TWITTER_HTTPS_URL_LENGTH
-                when 'ftp'
-                  '-' * TWITTER_FTP_URL_LENGTH
+      payload = case uri.split(":")[0]
+                when "https"
+                  "-" * TWITTER_HTTPS_URL_LENGTH
+                when "ftp"
+                  "-" * TWITTER_FTP_URL_LENGTH
                 else
-                  '-' * TWITTER_HTTP_URL_LENGTH
+                  "-" * TWITTER_HTTP_URL_LENGTH
                 end
       message = message.gsub(uri, payload)
     end

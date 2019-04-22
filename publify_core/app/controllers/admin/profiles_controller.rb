@@ -10,7 +10,7 @@ class Admin::ProfilesController < Admin::BaseController
     @user.resource = upload_avatar if params[:user][:filename]
 
     if @user.update(update_params)
-      redirect_to admin_profiles_url, notice: I18n.t('admin.profiles.index.success')
+      redirect_to admin_profiles_url, notice: I18n.t("admin.profiles.index.success")
     else
       render :index
     end
@@ -24,7 +24,7 @@ class Admin::ProfilesController < Admin::BaseController
     mime = if file.content_type
              file.content_type.chomp
            else
-             'text/plain'
+             "text/plain"
            end
 
     Resource.create(upload: file, mime: mime, created_at: Time.zone.now)

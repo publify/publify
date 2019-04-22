@@ -21,7 +21,7 @@ class AddBlogIds < ActiveRecord::Migration[4.2]
   end
 
   def down
-    if adapter_name == 'PostgreSQL'
+    if adapter_name == "PostgreSQL"
       indexes(:contents).each do |index|
         remove_index(:contents, name: index.name) if index.name =~ /blog_id/
       end

@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require 'aasm'
-require 'akismet'
+require "aasm"
+require "akismet"
 
 class Feedback < ApplicationRecord
-  self.table_name = 'feedback'
+  self.table_name = "feedback"
 
   belongs_to :article, touch: true
 
@@ -26,11 +26,11 @@ class Feedback < ApplicationRecord
   # TODO: Rename so it doesn't sound like only approved ham
   scope :ham, -> { where(state: %w(presumed_ham ham)) }
 
-  scope :spam, -> { where(state: 'spam') }
-  scope :created_since, ->(time) { ham.where('created_at > ?', time) }
-  scope :presumed_ham, -> { where(state: 'presumed_ham') }
-  scope :presumed_spam, -> { where(state: 'presumed_spam') }
-  scope :unapproved, -> { where(state: ['presumed_spam', 'presumed_ham']) }
+  scope :spam, -> { where(state: "spam") }
+  scope :created_since, ->(time) { ham.where("created_at > ?", time) }
+  scope :presumed_ham, -> { where(state: "presumed_ham") }
+  scope :presumed_spam, -> { where(state: "presumed_spam") }
+  scope :unapproved, -> { where(state: ["presumed_spam", "presumed_ham"]) }
 
   scope :published, -> { ham }
   scope :oldest_first, -> { order(:created_at) }
@@ -97,7 +97,7 @@ class Feedback < ApplicationRecord
   def correct_url
     return if url.blank?
 
-    self.url = 'http://' + url.to_s unless url =~ %r{^https?://}
+    self.url = "http://" + url.to_s unless url =~ %r{^https?://}
   end
 
   def article_allows_this_feedback
@@ -157,13 +157,13 @@ class Feedback < ApplicationRecord
   end
 
   def change_state!
-    result = ''
+    result = ""
     if spam? || presumed_spam?
       mark_as_ham!
-      result = 'ham'
+      result = "ham"
     else
       mark_as_spam!
-      result = 'spam'
+      result = "spam"
     end
     result
   end
@@ -206,7 +206,7 @@ class Feedback < ApplicationRecord
   end
 
   def feedback_not_closed
-    errors.add(:article_id, 'Comment are closed') if article.comments_closed?
+    errors.add(:article_id, "Comment are closed") if article.comments_closed?
   end
 
   def send_notifications

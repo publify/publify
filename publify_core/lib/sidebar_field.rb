@@ -15,19 +15,19 @@ class SidebarField
   end
 
   def label
-    options[:label] || key.humanize.gsub(/url/i, 'URL')
+    options[:label] || key.humanize.gsub(/url/i, "URL")
   end
 
   def label_html(_sidebar)
-    content_tag('label', label)
+    content_tag("label", label)
   end
 
   def input_html(sidebar)
-    text_field_tag(input_name(sidebar), current_value(sidebar), class: 'form-control')
+    text_field_tag(input_name(sidebar), current_value(sidebar), class: "form-control")
   end
 
   def line_html(sidebar)
-    content_tag(:div, label_html(sidebar) + input_html(sidebar), class: 'form-group')
+    content_tag(:div, label_html(sidebar) + input_html(sidebar), class: "form-group")
   end
 
   def input_name(sidebar)
@@ -52,7 +52,7 @@ class SidebarField
 
   class TextAreaField < self
     def input_html(sidebar)
-      html_options = { 'rows' => '10', 'class' => 'form-control' }.update(options.stringify_keys)
+      html_options = { "rows" => "10", "class" => "form-control" }.update(options.stringify_keys)
       text_area_tag(input_name(sidebar), current_value(sidebar), html_options)
     end
   end
@@ -65,7 +65,7 @@ class SidebarField
                                         value,
                                         value == current_value(sidebar),
                                         options)
-        content_tag('div', content_tag('label', radio_button + label_for(choice)), class: 'radio')
+        content_tag("div", content_tag("label", radio_button + label_for(choice)), class: "radio")
       end
       safe_join(choices)
     end
@@ -82,14 +82,14 @@ class SidebarField
   class CheckBoxField < self
     def line_html(sidebar)
       content = hidden_field_tag(input_name(sidebar), 0) +
-        content_tag('label',
+        content_tag("label",
                     check_box_tag(input_name(sidebar), 1, current_value(sidebar), options) + label)
-      content_tag('div', content, class: 'checkbox')
+      content_tag("div", content, class: "checkbox")
     end
 
     def canonicalize(value)
       case value
-      when '0'
+      when "0"
         false
       else
         true

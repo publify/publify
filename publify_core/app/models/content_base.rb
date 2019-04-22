@@ -54,7 +54,7 @@ module ContentBase
   end
 
   def excerpt_text(length = 160)
-    text = if respond_to?(:excerpt) && (excerpt || '') != ''
+    text = if respond_to?(:excerpt) && (excerpt || "") != ""
              generate_html(:excerpt, excerpt)
            else
              html(:all)
@@ -63,7 +63,7 @@ module ContentBase
     text = text.strip_html
 
     text.slice(0, length) +
-      (text.length > length ? '...' : '')
+      (text.length > length ? "..." : "")
   end
 
   def text_filter
@@ -82,7 +82,7 @@ module ContentBase
     end
 
     def default_order
-      'published_at DESC'
+      "published_at DESC"
     end
   end
 end

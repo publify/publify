@@ -9,7 +9,7 @@ class MoveTextFilterToName < ActiveRecord::Migration[5.2]
   end
 
   class Feedback < ActiveRecord::Base
-    self.table_name = 'feedback'
+    self.table_name = "feedback"
     self.inheritance_column = :bogus
 
     belongs_to :text_filter, optional: true
@@ -27,19 +27,19 @@ class MoveTextFilterToName < ActiveRecord::Migration[5.2]
   def up
     Content.find_each do |content|
       filter = content.text_filter
-      filter_name = filter&.name || 'none'
+      filter_name = filter&.name || "none"
       content.update!(text_filter_name: filter_name, text_filter_id: nil)
     end
 
     Feedback.find_each do |feedback|
       filter = feedback.text_filter
-      filter_name = filter&.name || 'none'
+      filter_name = filter&.name || "none"
       feedback.update!(text_filter_name: filter_name, text_filter_id: nil)
     end
 
     User.find_each do |user|
       filter = user.text_filter
-      filter_name = filter&.name || 'none'
+      filter_name = filter&.name || "none"
       user.update!(text_filter_name: filter_name, text_filter_id: nil)
     end
 
@@ -48,20 +48,20 @@ class MoveTextFilterToName < ActiveRecord::Migration[5.2]
 
   def down
     TextFilter.
-      create_with(description: 'None', markup: 'none', filters: [], params: {}).
-      find_or_create_by!(name: 'none')
+      create_with(description: "None", markup: "none", filters: [], params: {}).
+      find_or_create_by!(name: "none")
     TextFilter.
-      create_with(description: 'Markdown', markup: 'markdown', filters: [], params: {}).
-      find_or_create_by!(name: 'markdown')
+      create_with(description: "Markdown", markup: "markdown", filters: [], params: {}).
+      find_or_create_by!(name: "markdown")
     TextFilter.
-      create_with(description: 'SmartyPants', markup: 'none', filters: [:smartypants], params: {}).
-      find_or_create_by!(name: 'smartypants')
+      create_with(description: "SmartyPants", markup: "none", filters: [:smartypants], params: {}).
+      find_or_create_by!(name: "smartypants")
     TextFilter.
-      create_with(description: 'Markdown with SmartyPants', markup: 'markdown', filters: [:smartypants], params: {}).
-      find_or_create_by!(name: 'markdown smartypants')
+      create_with(description: "Markdown with SmartyPants", markup: "markdown", filters: [:smartypants], params: {}).
+      find_or_create_by!(name: "markdown smartypants")
     TextFilter.
-      create_with(description: 'Textile', markup: 'textile', filters: [], params: {}).
-      find_or_create_by!(name: 'textile')
+      create_with(description: "Textile", markup: "textile", filters: [], params: {}).
+      find_or_create_by!(name: "textile")
 
     Content.find_each do |content|
       filter_name = content.text_filter_name

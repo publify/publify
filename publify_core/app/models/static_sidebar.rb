@@ -12,9 +12,9 @@ class StaticSidebar < Sidebar
 </ul>
 
 '
-  description 'Static content, like links to other sites, advertisements, or blog meta-information'
+  description "Static content, like links to other sites, advertisements, or blog meta-information"
 
-  setting :title, 'Links'
+  setting :title, "Links"
   setting :body, DEFAULT_TEXT, input_type: :text_area
 end
 

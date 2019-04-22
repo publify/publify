@@ -83,6 +83,7 @@ Metrics/CyclomaticComplexity:
   Max: 17
 
 # TODO: Lower Max and fix offenses
+# Target is around 100
 Metrics/LineLength:
   Max: 274
 
@@ -186,9 +187,25 @@ Style/SignalException:
 Style/SingleLineBlockParams:
   Enabled: false
 
+# Prefer not to commit to need to interpolate
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+# Be consistent with non-interpolated strings
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: double_quotes
+
 # Prefer symbols to look like symbols
 Style/SymbolArray:
   EnforcedStyle: brackets
+
+# Prefer consistent lines for multi-line arrays
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+
+# Prefer consistent lines for multi-line hashes
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
 
 # Allow small arrays of words with quotes
 Style/WordArray:

@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe XmlController, type: :controller do
   before do
-    create(:blog, base_url: 'http://myblog.net')
+    create(:blog, base_url: "http://myblog.net")
   end
 
-  describe '#sitemap' do
+  describe "#sitemap" do
     let(:article) { create :article }
     let(:tag) { create :tag }
 
@@ -16,11 +16,11 @@ RSpec.describe XmlController, type: :controller do
       get :sitemap, format: :googlesitemap
     end
 
-    it 'is succesful' do
+    it "is succesful" do
       assert_response :success
     end
 
-    it 'includes articles and tags as items' do
+    it "includes articles and tags as items" do
       expect(assigns(:items)).to match_array [article, tag]
     end
   end

@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 class SidebarGenerator < Rails::Generators::NamedBase
-  source_root File.expand_path('templates', __dir__)
+  source_root File.expand_path("templates", __dir__)
 
   def copy_stuff
-    template 'sidebar.rb.erb', "#{plugin_path}/lib/#{file_name}.rb"
-    template '_content.html.erb.erb', "#{plugin_path}/app/views/#{file_name}/_content.html.erb"
-    template 'model_spec.rb.erb', "spec/models/#{file_name}_spec.rb"
+    template "sidebar.rb.erb", "#{plugin_path}/lib/#{file_name}.rb"
+    template "_content.html.erb.erb", "#{plugin_path}/app/views/#{file_name}/_content.html.erb"
+    template "model_spec.rb.erb", "spec/models/#{file_name}_spec.rb"
   end
 
   private

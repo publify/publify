@@ -7,7 +7,7 @@ class Page < Content
   include ConfigManager
 
   serialize :settings, Hash
-  setting :password, :string, ''
+  setting :password, :string, ""
 
   before_save :set_permalink
   after_save :shorten_url
@@ -19,24 +19,24 @@ class Page < Content
   content_fields :body
 
   def self.default_order
-    'title ASC'
+    "title ASC"
   end
 
   def permalink_url(anchor = nil, only_path = false)
     blog.url_for(
-      controller: '/articles',
-      action: 'view_page',
+      controller: "/articles",
+      action: "view_page",
       name: name,
       anchor: anchor,
       only_path: only_path)
   end
 
   def publish!
-    self.state = 'published'
+    self.state = "published"
     save!
   end
 
   def published?
-    state == 'published'
+    state == "published"
   end
 end

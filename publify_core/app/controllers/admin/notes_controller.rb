@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::NotesController < Admin::BaseController
-  layout 'administration'
+  layout "administration"
 
   before_action :load_existing_notes, only: [:index, :edit]
   before_action :find_note, only: [:edit, :update, :show, :destroy]
@@ -12,7 +12,7 @@ class Admin::NotesController < Admin::BaseController
 
   def show
     unless @note.access_by?(current_user)
-      flash[:error] = I18n.t('admin.base.not_allowed')
+      flash[:error] = I18n.t("admin.base.not_allowed")
       redirect_to admin_notes_url
     end
   end
@@ -22,18 +22,18 @@ class Admin::NotesController < Admin::BaseController
   def create
     note = new_note
 
-    note.state = 'published'
+    note.state = "published"
     note.attributes = params[:note].permit!
     note.text_filter ||= default_text_filter
     note.published_at ||= Time.zone.now
     if note.save
       if params[:push_to_twitter] && note.twitter_id.blank?
         unless note.send_to_twitter
-          flash[:error] = I18n.t('errors.problem_sending_to_twitter')
-          flash[:error] += " : #{note.errors.full_messages.join(' ')}"
+          flash[:error] = I18n.t("errors.problem_sending_to_twitter")
+          flash[:error] += " : #{note.errors.full_messages.join(" ")}"
         end
       end
-      flash[:notice] = I18n.t('notice.note_successfully_created')
+      flash[:notice] = I18n.t("notice.note_successfully_created")
     else
       flash[:error] = note.errors.full_messages
     end
@@ -48,7 +48,7 @@ class Admin::NotesController < Admin::BaseController
 
   def destroy
     @note.destroy
-    flash[:notice] = I18n.t('admin.base.successfully_deleted', name: 'note')
+    flash[:notice] = I18n.t("admin.base.successfully_deleted", name: "note")
     redirect_to admin_notes_url
   end
 

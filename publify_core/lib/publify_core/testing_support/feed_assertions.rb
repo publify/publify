@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'feedjira'
-require 'rexml/document'
+require "feedjira"
+require "rexml/document"
 
 module PublifyCore
   module TestingSupport
@@ -27,9 +27,9 @@ module PublifyCore
 
       def assert_correct_atom_generator(feed)
         xml = Nokogiri::XML.parse(feed)
-        generator = xml.css('generator').first
-        expect(generator.content).to eq('Publify')
-        expect(generator['version']).to eq(PublifyCore::VERSION)
+        generator = xml.css("generator").first
+        expect(generator.content).to eq("Publify")
+        expect(generator["version"]).to eq(PublifyCore::VERSION)
       end
 
       def assert_rss20(feed, count)
@@ -39,7 +39,7 @@ module PublifyCore
 
       def assert_rss20_feed(parsed_feed, count)
         expect(parsed_feed).to be_instance_of Feedjira::Parser::RSS
-        expect(parsed_feed.version).to eq '2.0'
+        expect(parsed_feed.version).to eq "2.0"
         expect(parsed_feed.title).not_to be_nil
         expect(parsed_feed.entries.count).to eq count
       end

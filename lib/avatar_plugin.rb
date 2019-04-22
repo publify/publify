@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'publify_plugins'
+require "publify_plugins"
 
 module PublifyPlugins
   class AvatarPlugin < Base

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'publify_core/testing_support/upload_fixtures'
+require "publify_core/testing_support/upload_fixtures"
 
 # Factory definitions
 FactoryBot.define do
@@ -16,13 +16,13 @@ FactoryBot.define do
   factory :user do
     login { FactoryBot.generate(:user) }
     email { generate(:email) }
-    name { 'Bond' }
-    nickname { 'James Bond' }
+    name { "Bond" }
+    nickname { "James Bond" }
     notify_via_email { false }
     notify_on_new_articles { false }
     notify_on_comments { false }
-    password { 'top-secret' }
-    state { 'active' }
+    password { "top-secret" }
+    state { "active" }
     profile { User::CONTRIBUTOR }
 
     trait :without_twitter do
@@ -31,13 +31,13 @@ FactoryBot.define do
     end
 
     trait :with_a_full_profile do
-      description { 'I am a poor lonesone factory generated user' }
-      url { 'http://myblog.net' }
-      msn { 'random@mail.com' }
-      aim { 'randomaccount' }
-      yahoo { 'anotherrandomaccount' }
-      twitter { '@random' }
-      jabber { 'random@account.com' }
+      description { "I am a poor lonesone factory generated user" }
+      url { "http://myblog.net" }
+      msn { "random@mail.com" }
+      aim { "randomaccount" }
+      yahoo { "anotherrandomaccount" }
+      twitter { "@random" }
+      jabber { "random@account.com" }
     end
 
     trait :as_admin do
@@ -54,17 +54,17 @@ FactoryBot.define do
   end
 
   factory :article do
-    title { 'A big article' }
-    body { 'A content with several data' }
-    extended { 'extended content for fun' }
+    title { "A big article" }
+    body { "A content with several data" }
+    extended { "extended content for fun" }
     guid
-    permalink { 'a-big-article' }
+    permalink { "a-big-article" }
     published_at { Time.zone.now }
     user
     allow_comments { true }
     state { :published }
     allow_pings { true }
-    text_filter_name { 'textile' }
+    text_filter_name { "textile" }
 
     after :build do |article|
       article.blog ||= Blog.first || create(:blog)
@@ -75,7 +75,7 @@ FactoryBot.define do
     end
 
     trait :with_tags do
-      keywords { 'a tag' }
+      keywords { "a tag" }
     end
   end
 
@@ -96,45 +96,45 @@ FactoryBot.define do
   end
 
   factory :post_type do
-    name { 'foobar' }
-    description { 'Some description' }
+    name { "foobar" }
+    description { "Some description" }
   end
 
   factory :utf8article, parent: :article do
-    title { 'ルビー' }
-    permalink { 'ルビー' }
+    title { "ルビー" }
+    permalink { "ルビー" }
   end
 
   factory :second_article, parent: :article do
-    title { 'Another big article' }
+    title { "Another big article" }
   end
 
   factory :article_with_accent_in_html, parent: :article do
-    title { 'article with accent' }
-    body { '&eacute;coute The future is cool!' }
-    permalink { 'article-with-accent' }
+    title { "article with accent" }
+    body { "&eacute;coute The future is cool!" }
+    permalink { "article-with-accent" }
   end
 
   factory :blog do
-    base_url { 'http://test.host/blog' }
+    base_url { "http://test.host/blog" }
     hide_extended_on_rss { true }
-    blog_name { 'test blog' }
+    blog_name { "test blog" }
     limit_article_display { 2 }
     sp_url_limit { 3 }
-    plugin_avatar { '' }
-    blog_subtitle { 'test subtitle' }
+    plugin_avatar { "" }
+    blog_subtitle { "test subtitle" }
     limit_rss_display { 10 }
-    geourl_location { '' }
+    geourl_location { "" }
     default_allow_pings { false }
     send_outbound_pings { false }
     sp_global { true }
     default_allow_comments { true }
-    email_from { 'scott@sigkill.org' }
+    email_from { "scott@sigkill.org" }
     sp_article_auto_close { 0 }
-    permalink_format { '/%year%/%month%/%day%/%title%' }
+    permalink_format { "/%year%/%month%/%day%/%title%" }
     use_canonical_url { true }
-    rss_description_text { 'rss description text' }
-    lang { 'en_US' }
+    rss_description_text { "rss description text" }
+    lang { "en_US" }
   end
 
   factory :tag do |tag|
@@ -145,99 +145,99 @@ FactoryBot.define do
 
   factory :resource do
     upload { PublifyCore::TestingSupport::UploadFixtures.file_upload }
-    mime { 'image/jpeg' }
+    mime { "image/jpeg" }
     size { 110 }
     blog { Blog.first || create(:blog) }
   end
 
   factory :avatar, parent: :resource do
-    upload { 'avatar.jpg' }
-    mime { 'image/jpeg' }
+    upload { "avatar.jpg" }
+    mime { "image/jpeg" }
     size { 600 }
   end
 
   factory :redirect do
-    from_path { 'foo/bar' }
-    to_path { '/someplace/else' }
+    from_path { "foo/bar" }
+    to_path { "/someplace/else" }
     blog { Blog.first || create(:blog) }
   end
 
   factory :comment do
     article
-    text_filter_name { 'textile' }
-    author { 'Bob Foo' }
-    url { 'http://fakeurl.com' }
-    body { 'Comment body' }
+    text_filter_name { "textile" }
+    author { "Bob Foo" }
+    url { "http://fakeurl.com" }
+    body { "Comment body" }
     guid
-    state { 'ham' }
+    state { "ham" }
 
     factory :unconfirmed_comment do
-      state { 'presumed_ham' }
+      state { "presumed_ham" }
     end
 
     factory :published_comment do
-      state { 'ham' }
+      state { "ham" }
     end
 
     factory :not_published_comment do
-      state { 'spam' }
+      state { "spam" }
     end
 
     factory :ham_comment do
-      state { 'ham' }
+      state { "ham" }
     end
 
     factory :presumed_ham_comment do
-      state { 'presumed_ham' }
+      state { "presumed_ham" }
     end
 
     factory :presumed_spam_comment do
-      state { 'presumed_spam' }
+      state { "presumed_spam" }
     end
 
     factory :spam_comment do
-      state { 'spam' }
+      state { "spam" }
     end
   end
 
   factory :page do
     name { FactoryBot.generate(:name) }
-    title { 'Page One Title' }
+    title { "Page One Title" }
     body { FactoryBot.generate(:body) }
     published_at { Time.zone.now }
     user
     blog { Blog.first || create(:blog) }
-    state { 'published' }
+    state { "published" }
   end
 
   factory :note do
-    body { 'this is a note' }
+    body { "this is a note" }
     published_at { Time.zone.now }
     user
-    state { 'published' }
-    text_filter_name { 'markdown' }
+    state { "published" }
+    text_filter_name { "markdown" }
     guid
     blog { Blog.first || create(:blog) }
   end
 
   factory :unpublished_note, parent: :note do
-    state { 'draft' }
+    state { "draft" }
   end
 
   factory :trackback do
-    state { 'ham' }
+    state { "ham" }
     article
-    blog_name { 'Trackback Blog' }
-    title { 'Trackback Entry' }
-    url { 'http://www.example.com' }
-    excerpt { 'This is an excerpt' }
-    guid { 'dsafsadffsdsf' }
+    blog_name { "Trackback Blog" }
+    title { "Trackback Entry" }
+    url { "http://www.example.com" }
+    excerpt { "This is an excerpt" }
+    guid { "dsafsadffsdsf" }
   end
 
   factory :sidebar do
     active_position { 1 }
-    config { { 'title' => 'Links', 'body' => 'some links' } }
-    type { 'StaticSidebar' }
+    config { { "title" => "Links", "body" => "some links" } }
+    type { "StaticSidebar" }
     blog { Blog.first || create(:blog) }
   end
 end

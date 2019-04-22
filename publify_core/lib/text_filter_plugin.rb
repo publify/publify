@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'publify_plugins'
+require "publify_plugins"
 
 class TextFilterPlugin
   class << self
@@ -27,11 +27,11 @@ class TextFilterPlugin
 
   def self.available_filter_types
     unless @cached_filter_types
-      types = { 'macropre' => [],
-                'macropost' => [],
-                'markup' => [],
-                'postprocess' => [],
-                'other' => [] }
+      types = { "macropre" => [],
+                "macropost" => [],
+                "markup" => [],
+                "postprocess" => [],
+                "other" => [] }
 
       available_filters.each { |filter| types[filter.filter_type].push(filter) }
 
@@ -44,8 +44,8 @@ class TextFilterPlugin
     available_filters.select { |filter| TextFilterPlugin::Macro > filter }
   end
 
-  plugin_display_name 'Unknown Text Filter'
-  plugin_description 'Unknown Text Filter Description'
+  plugin_display_name "Unknown Text Filter"
+  plugin_description "Unknown Text Filter Description"
 
   def self.reloadable?
     false
@@ -68,7 +68,7 @@ class TextFilterPlugin
   end
 
   def self.filter_type
-    'other'
+    "other"
   end
 
   def self.default_config
@@ -76,7 +76,7 @@ class TextFilterPlugin
   end
 
   def self.help_text
-    ''
+    ""
   end
 
   def self.sanitize(*args)
@@ -97,7 +97,7 @@ end
 
 class TextFilterPlugin::PostProcess < TextFilterPlugin
   def self.filter_type
-    'postprocess'
+    "postprocess"
   end
 end
 
@@ -138,30 +138,30 @@ end
 
 class TextFilterPlugin::MacroPre < TextFilterPlugin::Macro
   def self.filter_type
-    'macropre'
+    "macropre"
   end
 end
 
 class TextFilterPlugin::MacroPost < TextFilterPlugin::Macro
   def self.filter_type
-    'macropost'
+    "macropost"
   end
 end
 
 class TextFilterPlugin::Markup < TextFilterPlugin
   def self.filter_type
-    'markup'
+    "markup"
   end
 end
 
 class PublifyApp
   class Textfilter
     class MacroPost < TextFilterPlugin
-      plugin_display_name 'MacroPost'
-      plugin_description 'Macro expansion meta-filter (post-markup)'
+      plugin_display_name "MacroPost"
+      plugin_description "Macro expansion meta-filter (post-markup)"
 
       def self.filtertext(text)
-        macros = TextFilterPlugin.available_filter_types['macropost']
+        macros = TextFilterPlugin.available_filter_types["macropost"]
         macros.reduce(text) do |new_text, macro|
           macro.filtertext(new_text)
         end
@@ -169,11 +169,11 @@ class PublifyApp
     end
 
     class MacroPre < TextFilterPlugin
-      plugin_display_name 'MacroPre'
-      plugin_description 'Macro expansion meta-filter (pre-markup)'
+      plugin_display_name "MacroPre"
+      plugin_description "Macro expansion meta-filter (pre-markup)"
 
       def self.filtertext(text)
-        macros = TextFilterPlugin.available_filter_types['macropre']
+        macros = TextFilterPlugin.available_filter_types["macropre"]
         macros.reduce(text) do |new_text, macro|
           macro.filtertext(new_text)
         end

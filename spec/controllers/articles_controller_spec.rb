@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require "rails_helper"
 
 # Test article rendering for installed themes
 RSpec.describe ArticlesController, type: :controller do
@@ -15,66 +15,66 @@ RSpec.describe ArticlesController, type: :controller do
         blog.save!
       end
 
-      describe '#redirect' do
+      describe "#redirect" do
         let(:article) { create :article }
-        let(:from_param) { article.permalink_url.sub(%r{#{blog.base_url}/}, '') }
+        let(:from_param) { article.permalink_url.sub(%r{#{blog.base_url}/}, "") }
 
-        it 'successfully renders an article' do
+        it "successfully renders an article" do
           get :redirect, params: { from: from_param }
           expect(response).to be_successful
         end
 
-        context 'when the article has an excerpt' do
-          let(:article) { create :article, excerpt: 'foo', body: 'bar' }
+        context "when the article has an excerpt" do
+          let(:article) { create :article, excerpt: "foo", body: "bar" }
 
-          it 'does not render a continue reading link' do
+          it "does not render a continue reading link" do
             get :redirect, params: { from: from_param }
 
             aggregate_failures do
-              expect(response.body).to have_text 'bar'
-              expect(response.body).not_to have_text 'foo'
+              expect(response.body).to have_text "bar"
+              expect(response.body).not_to have_text "foo"
               expect(response.body).
-                not_to have_text I18n.t!('articles.article_excerpt.continue_reading')
+                not_to have_text I18n.t!("articles.article_excerpt.continue_reading")
             end
           end
         end
 
-        describe 'accessing an article' do
+        describe "accessing an article" do
           let!(:article) { create(:article) }
 
           before do
             get :redirect, params: { from: from_param }
           end
 
-          it 'has good rss feed link' do
+          it "has good rss feed link" do
             expect(response.body).to have_selector("head>link[href=\"#{article.permalink_url}.rss\"]", visible: false)
           end
 
-          it 'has good atom feed link' do
+          it "has good atom feed link" do
             expect(response.body).to have_selector("head>link[href=\"#{article.permalink_url}.atom\"]", visible: false)
           end
 
-          it 'has a canonical url' do
+          it "has a canonical url" do
             expect(response.body).to have_selector("head>link[href='#{article.permalink_url}']", visible: false)
           end
 
-          it 'has a good title' do
-            expect(response.body).to have_selector('title', text: 'A big article | test blog', visible: false)
+          it "has a good title" do
+            expect(response.body).to have_selector("title", text: "A big article | test blog", visible: false)
           end
         end
 
-        describe 'theme rendering' do
+        describe "theme rendering" do
           let!(:article) { create(:article) }
 
-          it 'renders without errors when no comments or trackbacks are present' do
+          it "renders without errors when no comments or trackbacks are present" do
             get :redirect, params: { from: from_param }
             expect(response).to be_successful
           end
 
-          it 'renders without errors when recaptcha is enabled' do
+          it "renders without errors when recaptcha is enabled" do
             Recaptcha.configure do |config|
-              config.site_key = 'YourAPIkeysHere_yyyyyyyyyyyyyyyyy'
-              config.secret_key = 'YourAPIkeysHere_xxxxxxxxxxxxxxxxx'
+              config.site_key = "YourAPIkeysHere_yyyyyyyyyyyyyyyyy"
+              config.secret_key = "YourAPIkeysHere_xxxxxxxxxxxxxxxxx"
             end
             blog.use_recaptcha = true
             blog.save!
@@ -82,7 +82,7 @@ RSpec.describe ArticlesController, type: :controller do
             expect(response).to be_successful
           end
 
-          it 'renders without errors when comments and trackbacks are present' do
+          it "renders without errors when comments and trackbacks are present" do
             create :trackback, article: article
             create :comment, article: article
             get :redirect, params: { from: from_param }
@@ -90,20 +90,20 @@ RSpec.describe ArticlesController, type: :controller do
           end
         end
 
-        context 'when the article is password protected' do
-          let(:article) { create(:article, password: 'password') }
+        context "when the article is password protected" do
+          let(:article) { create(:article, password: "password") }
 
-          it 'article alone should be password protected' do
+          it "article alone should be password protected" do
             get :redirect, params: { from: from_param }
             expect(response.body).to have_selector('input[id="article_password"]', count: 1)
           end
         end
       end
 
-      describe '#index' do
+      describe "#index" do
         let!(:user) { create :user }
 
-        context 'without any parameters' do
+        context "without any parameters" do
           let!(:article) { create(:article) }
           let!(:note) { create(:note) }
 
@@ -111,55 +111,55 @@ RSpec.describe ArticlesController, type: :controller do
             get :index
           end
 
-          it 'has good link feed rss' do
+          it "has good link feed rss" do
             expect(response.body).to have_selector('head>link[href="http://test.host/articles.rss"]', visible: false)
           end
 
-          it 'has good link feed atom' do
+          it "has good link feed atom" do
             expect(response.body).to have_selector('head>link[href="http://test.host/articles.atom"]', visible: false)
           end
 
-          it 'has a canonical url' do
+          it "has a canonical url" do
             expect(response.body).to have_selector("head>link[href='#{blog.base_url}/']", visible: false)
           end
 
-          it 'has good title' do
-            expect(response.body).to have_selector('title', text: 'test blog | test subtitle', visible: false)
+          it "has good title" do
+            expect(response.body).to have_selector("title", text: "test blog | test subtitle", visible: false)
           end
         end
 
-        context 'when an article has an excerpt' do
-          let!(:article) { create :article, excerpt: 'foo', body: 'bar' }
+        context "when an article has an excerpt" do
+          let!(:article) { create :article, excerpt: "foo", body: "bar" }
 
-          it 'renders a continue reading link' do
+          it "renders a continue reading link" do
             get :index
 
             aggregate_failures do
-              expect(response.body).not_to have_text 'bar'
-              expect(response.body).to have_text 'foo'
+              expect(response.body).not_to have_text "bar"
+              expect(response.body).to have_text "foo"
               expect(response.body).
-                to have_text I18n.t!('articles.article_excerpt.continue_reading')
+                to have_text I18n.t!("articles.article_excerpt.continue_reading")
             end
           end
         end
 
-        context 'when requesting archives for a month' do
+        context "when requesting archives for a month" do
           before do
             create(:article, published_at: Time.utc(2004, 4, 23))
-            get 'index', params: { year: 2004, month: 4 }
+            get "index", params: { year: 2004, month: 4 }
           end
 
-          it 'has a canonical url' do
+          it "has a canonical url" do
             expect(response.body).to have_selector("head>link[href='#{blog.base_url}/2004/4']", visible: false)
           end
 
-          it 'has a good title' do
-            expect(response.body).to have_selector('title', text: 'Archives for test blog', visible: false)
+          it "has a good title" do
+            expect(response.body).to have_selector("title", text: "Archives for test blog", visible: false)
           end
         end
       end
 
-      describe '#search' do
+      describe "#search" do
         let!(:user) { create :user }
 
         before do
@@ -171,81 +171,81 @@ RSpec.describe ArticlesController, type: :controller do
                     * use
                    [ok](http://blog.ok.com) to define a link
                  MARKDOWN
-                 text_filter_name: 'markdown')
-          create(:article, body: 'xyz')
-          get :search, params: { q: 'a' }
+                 text_filter_name: "markdown")
+          create(:article, body: "xyz")
+          get :search, params: { q: "a" }
         end
 
-        it 'has good feed rss link' do
+        it "has good feed rss link" do
           expect(response.body).to have_selector('head>link[href="http://test.host/search/a.rss"]', visible: false)
         end
 
-        it 'has good feed atom link' do
+        it "has good feed atom link" do
           expect(response.body).to have_selector('head>link[href="http://test.host/search/a.atom"]', visible: false)
         end
 
-        it 'has a canonical url' do
+        it "has a canonical url" do
           expect(response.body).to have_selector("head>link[href='#{blog.base_url}/search/a']", visible: false)
         end
 
-        it 'has a good title' do
-          expect(response.body).to have_selector('title', text: 'Results for a | test blog', visible: false)
+        it "has a good title" do
+          expect(response.body).to have_selector("title", text: "Results for a | test blog", visible: false)
         end
 
-        it 'has content markdown interpret and without html tag' do
-          expect(response.body).to have_selector('div') do |div|
+        it "has content markdown interpret and without html tag" do
+          expect(response.body).to have_selector("div") do |div|
             expect(div).to match(%{in markdown format * we * use [ok](http://blog.ok.com) to define a link})
           end
         end
       end
 
-      describe '#livesearch' do
+      describe "#livesearch" do
         before do
-          create(:article, body: 'hello world and im herer')
-          create(:article, title: 'hello', body: 'worldwide')
+          create(:article, body: "hello world and im herer")
+          create(:article, title: "hello", body: "worldwide")
           create(:article)
-          get :live_search, params: { q: 'hello world' }
+          get :live_search, params: { q: "hello world" }
         end
 
-        it 'does not have h3 tag' do
-          expect(response.body).to have_selector('h3')
+        it "does not have h3 tag" do
+          expect(response.body).to have_selector("h3")
         end
       end
 
-      describe '#archives' do
-        context 'with several articles' do
+      describe "#archives" do
+        context "with several articles" do
           let!(:articles) { create_list :article, 3 }
 
           before do
-            get 'archives'
+            get "archives"
           end
 
-          it 'has the correct self-link and title' do
+          it "has the correct self-link and title" do
             expect(response.body).
               to have_selector("head>link[href='#{blog.base_url}/archives']", visible: false).
-              and have_selector('title', text: 'Archives for test blog', visible: false)
+              and have_selector("title", text: "Archives for test blog", visible: false)
           end
 
-          it 'shows the current month only once' do
+          it "shows the current month only once" do
             expect(response.body).
-              to have_css('h3', count: 1).
+              to have_css("h3", count: 1).
               and have_text I18n.l(articles.first.published_at, format: :letters_month_with_year)
           end
         end
 
-        context 'with an article with tags' do
-          it 'renders correctly' do
-            create :article, keywords: 'foo, bar'
-            get 'archives'
+        context "with an article with tags" do
+          it "renders correctly" do
+            create :article, keywords: "foo, bar"
+            get "archives"
 
-            expect(response.body).to have_text 'foo'
-            expect(response.body).to have_text 'bar'
+            expect(response.body).to have_text "foo"
+            expect(response.body).to have_text "bar"
           end
         end
       end
 
-      describe '#preview' do
-        context 'with logged user' do
+      describe "#preview" do
+        context "with logged user" do
           let(:admin) { create(:user, :as_admin) }
           let(:article) { create(:article, user: admin) }
 
@@ -253,38 +253,38 @@ RSpec.describe ArticlesController, type: :controller do
             sign_in admin
           end
 
-          it 'renders the regular read template' do
+          it "renders the regular read template" do
             get :preview, params: { id: article.id }
-            expect(response).to render_template('articles/read')
+            expect(response).to render_template("articles/read")
           end
 
-          context 'when the article has an excerpt' do
-            let(:article) { create :article, excerpt: 'foo', body: 'bar', user: admin }
+          context "when the article has an excerpt" do
+            let(:article) { create :article, excerpt: "foo", body: "bar", user: admin }
 
-            it 'does not render a continue reading link' do
+            it "does not render a continue reading link" do
               get :preview, params: { id: article.id }
 
               aggregate_failures do
-                expect(response.body).to have_text 'bar'
-                expect(response.body).not_to have_text 'foo'
+                expect(response.body).to have_text "bar"
+                expect(response.body).not_to have_text "foo"
                 expect(response.body).
-                  not_to have_text I18n.t!('articles.article_excerpt.continue_reading')
+                  not_to have_text I18n.t!("articles.article_excerpt.continue_reading")
               end
             end
           end
         end
       end
 
-      describe '#check_password' do
-        let!(:article) { create(:article, password: 'password') }
+      describe "#check_password" do
+        let!(:article) { create(:article, password: "password") }
 
-        it 'shows article when given correct password' do
+        it "shows article when given correct password" do
           get :check_password, xhr: true, params: { article: { id: article.id, password: article.password } }
           expect(response.body).not_to have_selector('input[id="article_password"]')
         end
 
-        it 'shows password form when given incorrect password' do
-          get :check_password, xhr: true, params: { article: { id: article.id, password: 'wrong password' } }
+        it "shows password form when given incorrect password" do
+          get :check_password, xhr: true, params: { article: { id: article.id, password: "wrong password" } }
           expect(response.body).to have_selector('input[id="article_password"]')
         end
       end

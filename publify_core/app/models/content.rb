@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'set'
-require 'uri'
+require "set"
+require "uri"
 
 class Content < ApplicationRecord
   include ContentBase
@@ -17,16 +17,16 @@ class Content < ApplicationRecord
   has_many :resources, inverse_of: :content, dependent: :nullify
   has_and_belongs_to_many :tags
 
-  scope :user_id, ->(user_id) { where('user_id = ?', user_id) }
-  scope :published, -> { where(state: 'published'). order(default_order) }
+  scope :user_id, ->(user_id) { where("user_id = ?", user_id) }
+  scope :published, -> { where(state: "published"). order(default_order) }
   scope :published_at, ->(time_params) { published.where(published_at: PublifyTime.delta(*time_params)) }
-  scope :not_published, -> { where.not(state: 'published') }
-  scope :drafts, -> { where(state: 'draft').order('created_at DESC') }
-  scope :no_draft, -> { where.not(state: 'draft').order('published_at DESC') }
+  scope :not_published, -> { where.not(state: "published") }
+  scope :drafts, -> { where(state: "draft").order("created_at DESC") }
+  scope :no_draft, -> { where.not(state: "draft").order("published_at DESC") }
   scope :searchstring, lambda { |search_string|
-    tokens = search_string.split(' ').map { |c| "%#{c.downcase}%" }
-    where('state = ? AND ' + (['(LOWER(body) LIKE ? OR LOWER(extended) LIKE ? OR LOWER(title) LIKE ?)'] * tokens.size).join(' AND '),
-          'published', *tokens.map { |token| [token] * 3 }.flatten)
+    tokens = search_string.split(" ").map { |c| "%#{c.downcase}%" }
+    where("state = ? AND " + (["(LOWER(body) LIKE ? OR LOWER(extended) LIKE ? OR LOWER(title) LIKE ?)"] * tokens.size).join(" AND "),
+          "published", *tokens.map { |token| [token] * 3 }.flatten)
   }
 
   scope :published_at_like, ->(date_at) { where(published_at: PublifyTime.delta_like(date_at)) }
@@ -81,8 +81,8 @@ class Content < ApplicationRecord
     scoped = scoped.user_id(params[:user_id]) if params[:user_id].present? && params[:user_id].to_i > 0
 
     if params[:published].present?
-      scoped = scoped.published if params[:published].to_s == '1'
-      scoped = scoped.not_published if params[:published].to_s == '0'
+      scoped = scoped.published if params[:published].to_s == "1"
+      scoped = scoped.not_published if params[:published].to_s == "0"
     end
 
     scoped
@@ -93,13 +93,13 @@ class Content < ApplicationRecord
   end
 
   def rss_description
-    return '' unless blog.rss_description
+    return "" unless blog.rss_description
 
     rss_desc = blog.rss_description_text
-    rss_desc.gsub!('%author%', author_name)
-    rss_desc.gsub!('%blog_url%', blog.base_url)
-    rss_desc.gsub!('%blog_name%', blog.blog_name)
-    rss_desc.gsub!('%permalink_url%', permalink_url)
+    rss_desc.gsub!("%author%", author_name)
+    rss_desc.gsub!("%blog_url%", blog.base_url)
+    rss_desc.gsub!("%blog_name%", blog.blog_name)
+    rss_desc.gsub!("%permalink_url%", permalink_url)
     rss_desc
   end
 

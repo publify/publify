@@ -2,7 +2,7 @@
 
 class SetupController < BaseController
   before_action :check_config
-  layout 'accounts'
+  layout "accounts"
 
   def index; end
 
@@ -10,11 +10,11 @@ class SetupController < BaseController
     this_blog.blog_name = params[:setting][:blog_name]
     this_blog.base_url = blog_base_url
 
-    @user = User.new(login: 'admin',
+    @user = User.new(login: "admin",
                      email: params[:setting][:email],
                      password: params[:setting][:password],
                      text_filter_name: this_blog.text_filter,
-                     nickname: 'Publify Admin')
+                     nickname: "Publify Admin")
     @user.name = @user.login
 
     unless this_blog.save && @user.save
@@ -37,25 +37,25 @@ class SetupController < BaseController
   private
 
   def create_first_post(user)
-    this_blog.articles.build(title: I18n.t('setup.article.title'),
+    this_blog.articles.build(title: I18n.t("setup.article.title"),
                              author: user.login,
-                             body: I18n.t('setup.article.body'),
+                             body: I18n.t("setup.article.body"),
                              allow_comments: 1,
                              allow_pings: 1,
                              user: user).publish!
   end
 
   def create_first_page(user)
-    this_blog.pages.create(name: 'about',
-                           state: 'published',
-                           title: I18n.t('setup.page.about'),
+    this_blog.pages.create(name: "about",
+                           state: "published",
+                           title: I18n.t("setup.page.about"),
                            user: user,
-                           body: I18n.t('setup.page.body'))
+                           body: I18n.t("setup.page.body"))
   end
 
   def check_config
     return unless this_blog.configured?
 
-    redirect_to controller: 'articles', action: 'index'
+    redirect_to controller: "articles", action: "index"
   end
 end

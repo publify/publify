@@ -6,8 +6,8 @@ module PublifyCore
       module_function
 
       # Provide file upload helper for all specs
-      def file_upload(file = 'testfile.txt', mime_type = 'text/plain')
-        Rack::Test::UploadedFile.new(File.join(__dir__, 'fixtures', file),
+      def file_upload(file = "testfile.txt", mime_type = "text/plain")
+        Rack::Test::UploadedFile.new(File.join(__dir__, "fixtures", file),
                                      mime_type)
       end
     end

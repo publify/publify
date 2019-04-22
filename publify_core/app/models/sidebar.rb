@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'sidebar_field'
+require "sidebar_field"
 
 # This class cannot be autoloaded since other sidebar classes depend on it.
 class Sidebar < ApplicationRecord
@@ -26,7 +26,7 @@ class Sidebar < ApplicationRecord
   end
 
   def self.purge
-    delete_all('active_position is null and staged_position is null')
+    delete_all("active_position is null and staged_position is null")
   end
 
   def self.setting(key, default = nil, options = {})
@@ -57,7 +57,7 @@ class Sidebar < ApplicationRecord
     if desc
       @description = desc
     else
-      @description || ''
+      @description || ""
     end
   end
 
@@ -92,7 +92,7 @@ class Sidebar < ApplicationRecord
   end
 
   def html_id
-    short_name + '-' + id.to_s
+    short_name + "-" + id.to_s
   end
 
   def parse_request(_contents, _params); end

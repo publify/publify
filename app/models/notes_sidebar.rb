@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class NotesSidebar < Sidebar
-  description 'Displays the latest notes'
-  setting :title, 'Notes'
-  setting :count, 5, label: 'Number of notes'
+  description "Displays the latest notes"
+  setting :title, "Notes"
+  setting :count, 5, label: "Number of notes"
 
   attr_accessor :notes
 

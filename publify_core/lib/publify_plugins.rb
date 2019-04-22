@@ -48,7 +48,7 @@ module PublifyPlugins
         def check_kind(kind)
           unless KINDS.include?(kind)
             raise ArgumentError,
-                  "#{kind} is not part of available plugin targets (#{KINDS.join(',')})"
+                  "#{kind} is not part of available plugin targets (#{KINDS.join(",")})"
           end
         end
       end
@@ -56,7 +56,7 @@ module PublifyPlugins
       private
 
       def initialize
-        raise 'No instance allowed.'
+        raise "No instance allowed."
       end
     end
   end # Defined

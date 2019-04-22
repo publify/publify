@@ -2,7 +2,7 @@
 
 class Tag < ApplicationRecord
   belongs_to :blog
-  has_and_belongs_to_many :contents, order: 'created_at DESC'
+  has_and_belongs_to_many :contents, order: "created_at DESC"
 
   validates :name, uniqueness: { scope: :blog_id }
   validates :blog, presence: true
@@ -18,7 +18,7 @@ class Tag < ApplicationRecord
     tags = []
     Tag.transaction do
       tagwords = article.keywords.to_s.scan(/((['"]).*?\2|[\.:[[:alnum:]]]+)/).map do |x|
-        x.first.tr("\"'", '')
+        x.first.tr("\"'", "")
       end
       tagwords.uniq.each do |tagword|
         tagname = tagword.to_url
@@ -38,18 +38,18 @@ class Tag < ApplicationRecord
 
   def self.find_all_with_content_counters
     Tag.joins(:contents).
-      where(contents: { state: 'published' }).
-      select(*Tag.column_names, 'COUNT(contents_tags.content_id) as content_counter').
+      where(contents: { state: "published" }).
+      select(*Tag.column_names, "COUNT(contents_tags.content_id) as content_counter").
       group(*Tag.column_names).
-      order('content_counter DESC').limit(1000)
+      order("content_counter DESC").limit(1000)
   end
 
   def self.find_with_char(char)
-    where('name LIKE ? ', "%#{char}%").order('name ASC')
+    where("name LIKE ? ", "%#{char}%").order("name ASC")
   end
 
   def self.collection_to_string(tags)
-    tags.map(&:display_name).sort.map { |name| / /.match?(name) ? "\"#{name}\"" : name }.join ', '
+    tags.map(&:display_name).sort.map { |name| / /.match?(name) ? "\"#{name}\"" : name }.join ", "
   end
 
   def published_contents
@@ -61,10 +61,10 @@ class Tag < ApplicationRecord
   end
 
   def feed_url(format)
-    "#{permalink_url}.#{format.gsub(/\d/, '')}"
+    "#{permalink_url}.#{format.gsub(/\d/, "")}"
   end
 
   def permalink_url(_anchor = nil, only_path = false)
-    blog.url_for(controller: 'tags', action: 'show', id: permalink, only_path: only_path)
+    blog.url_for(controller: "tags", action: "show", id: permalink, only_path: only_path)
   end
 end

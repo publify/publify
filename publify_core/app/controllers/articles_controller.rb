@@ -10,7 +10,7 @@ class ArticlesController < ContentController
   helper :'admin/base'
 
   def index
-    wanted_types = this_blog.statuses_in_timeline ? ['Article', 'Note'] : ['Article']
+    wanted_types = this_blog.statuses_in_timeline ? ["Article", "Note"] : ["Article"]
 
     limit = this_blog.per_page(params[:format])
     articles_base = if params[:year].blank?
@@ -29,11 +29,11 @@ class ArticlesController < ContentController
         render_paginated_index
       end
       format.atom do
-        render_articles_feed('atom')
+        render_articles_feed("atom")
       end
       format.rss do
         auto_discovery_feed(only_path: false)
-        render_articles_feed('rss')
+        render_articles_feed("rss")
       end
     end
   end
@@ -45,9 +45,9 @@ class ArticlesController < ContentController
     @page_title = this_blog.search_title_template.to_title(@articles, this_blog, params)
     @description = this_blog.search_desc_template.to_title(@articles, this_blog, params)
     respond_to do |format|
-      format.html { render 'search' }
-      format.rss { render_articles_feed 'rss' }
-      format.atom { render_articles_feed 'atom' }
+      format.html { render "search" }
+      format.rss { render_articles_feed "rss" }
+      format.atom { render_articles_feed "atom" }
     end
   end
 
@@ -60,7 +60,7 @@ class ArticlesController < ContentController
   def preview
     @article = Article.last_draft(params[:id])
     @page_title = this_blog.article_title_template.to_title(@article, this_blog, params)
-    render 'read'
+    render "read"
   end
 
   def check_password
@@ -68,9 +68,9 @@ class ArticlesController < ContentController
 
     @article = Article.find(params[:article][:id])
     if @article.password == params[:article][:password]
-      render partial: 'articles/full_article_content', locals: { article: @article }
+      render partial: "articles/full_article_content", locals: { article: @article }
     else
-      render partial: 'articles/password_form', locals: { article: @article }
+      render partial: "articles/password_form", locals: { article: @article }
     end
   end
 
@@ -83,7 +83,7 @@ class ArticlesController < ContentController
 
     # Redirect old version with /:year/:month/:day/:title to new format,
     # because it's changed
-    ['%year%/%month%/%day%/%title%', 'articles/%year%/%month%/%day%/%title%'].each do |part|
+    ["%year%/%month%/%day%/%title%", "articles/%year%/%month%/%day%/%title%"].each do |part|
       @article = factory.match_permalink_format(from, part)
       return redirect_to URI.parse(@article.permalink_url).path, status: :moved_permanently if @article
     end
@@ -108,11 +108,11 @@ class ArticlesController < ContentController
 
   def preview_page
     @page = Page.find(params[:id])
-    render 'view_page'
+    render "view_page"
   end
 
   def view_page
-    @page = Page.published.find_by!(name: Array(params[:name]).join('/'))
+    @page = Page.published.find_by!(name: Array(params[:name]).join("/"))
     @page_title = @page.title
     @description = this_blog.meta_description
     @keywords = this_blog.meta_keywords
@@ -141,7 +141,7 @@ class ArticlesController < ContentController
 
   def verify_config
     if !this_blog.configured?
-      redirect_to controller: 'setup', action: 'index'
+      redirect_to controller: "setup", action: "index"
     elsif User.count == 0
       redirect_to new_user_registration_path
     else
@@ -158,12 +158,12 @@ class ArticlesController < ContentController
         @page_title = this_blog.article_title_template.to_title(@article, this_blog, params)
         @description = this_blog.article_desc_template.to_title(@article, this_blog, params)
 
-        @keywords = @article.tags.map(&:name).join(', ')
+        @keywords = @article.tags.map(&:name).join(", ")
         render "articles/#{@article.post_type}"
       end
-      format.atom { render_feedback_feed('atom') }
-      format.rss { render_feedback_feed('rss') }
-      format.xml { render_feedback_feed('atom') }
+      format.atom { render_feedback_feed("atom") }
+      format.rss { render_feedback_feed("rss") }
+      format.xml { render_feedback_feed("atom") }
     end
   rescue ActiveRecord::RecordNotFound
     error!
@@ -181,22 +181,22 @@ class ArticlesController < ContentController
     return error! if @articles.empty?
 
     auto_discovery_feed(only_path: false)
-    render 'index'
+    render "index"
   end
 
   def extract_feed_format(from)
     if /^.*\.rss$/.match?(from)
-      request.format = 'rss'
-      from = from.gsub(/\.rss/, '')
+      request.format = "rss"
+      from = from.gsub(/\.rss/, "")
     elsif /^.*\.atom$/.match?(from)
-      request.format = 'atom'
-      from = from.gsub(/\.atom$/, '')
+      request.format = "atom"
+      from = from.gsub(/\.atom$/, "")
     end
     from
   end
 
   def error!
-    @message = I18n.t('errors.no_posts_found')
-    render 'articles/error', status: :ok
+    @message = I18n.t("errors.no_posts_found")
+    render "articles/error", status: :ok
   end
 end

@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require "rails_helper"
 
 describe SidebarRegistry do
-  describe '#available_sidebars' do
-    it 'finds at least the standard sidebars' do
+  describe "#available_sidebars" do
+    it "finds at least the standard sidebars" do
       expect(described_class.available_sidebars).
         to include(AmazonSidebar,
                    ArchivesSidebar,

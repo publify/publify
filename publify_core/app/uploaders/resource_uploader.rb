@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'mimemagic'
+require "mimemagic"
 
 class ResourceUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
@@ -30,13 +30,13 @@ class ResourceUploader < CarrierWave::Uploader::Base
 
   def image?(new_file)
     content_type = new_file.content_type
-    content_type&.include?('image')
+    content_type&.include?("image")
   end
 
   def check_image_content_type!(new_file)
     if image?(new_file)
       magic_type = mime_magic_content_type(new_file)
-      raise CarrierWave::IntegrityError, 'has MIME type mismatch' if magic_type != new_file.content_type
+      raise CarrierWave::IntegrityError, "has MIME type mismatch" if magic_type != new_file.content_type
     end
   end
 
