@@ -12,7 +12,7 @@ gem "sqlite3", "~> 1.4.0"
 gem "activerecord-session_store", "~> 1.1.0"
 
 # Use Puma as the app server
-gem "puma", "~> 3.0"
+gem "puma", "~> 4.0"
 
 gem "publify_amazon_sidebar", path: "publify_amazon_sidebar"
 gem "publify_core", path: "publify_core"
@@ -45,7 +45,7 @@ group :development do
   gem "binding_of_caller", "~> 0.8.0"
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem "spring", "~> 2.0.0"
+  gem "spring", "~> 2.1.0"
   gem "spring-commands-cucumber", "~> 1.0"
   gem "spring-commands-rspec", "~> 1.0"
 
