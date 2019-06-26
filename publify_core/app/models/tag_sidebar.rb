@@ -15,7 +15,7 @@ class TagSidebar < Sidebar
     return @sizes if @sizes
 
     total = tags.reduce(0) { |sum, tag| sum + tag.content_counter }
-    average = total.to_f / @tags.size.to_f
+    average = total.to_f / @tags.size
     @sizes = tags.reduce({}) do |h, tag|
       size = tag.content_counter.to_f / average
       h.merge tag => [[2.0 / 3.0, size].max, 2].min * 100
