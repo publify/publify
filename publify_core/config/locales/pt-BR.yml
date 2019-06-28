@@ -321,7 +321,6 @@ pt-BR:
         warning: Incapaz de fazer enviar o arquivo
     seo:
       general:
-        canonical_url: Url canônica
         custom_tracking_code: Código de rastreio personalizado
         do_not_index_tags: Não indexar tags
         dofollow: Dofollow
@@ -336,11 +335,9 @@ pt-BR:
         indexing: Indexando
         meta_description: Meta description
         meta_keywords: Meta keywords
-        read_more_about_html: Leia mais sobre %{link}
         robots_txt: Robots.txt
         rss_description_message: Mensagem de descrição RSS
         this_will_display: Isto será exibido no final de cada post no feed RSS
-        use_canonical_url: Utilizar URL canônica
         use_dofollow_in_comments: Use dofollow in comments
         use_meta_keywords: Usar meta keywords
         use_rss_description: Usar descrição RSS

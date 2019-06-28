@@ -321,7 +321,6 @@ nl:
         warning: Kon niet uploaden
     seo:
       general:
-        canonical_url: Canonical Url
         custom_tracking_code: Custom tracking code
         do_not_index_tags: Do not index tags
         dofollow: Dofollow
@@ -336,11 +335,9 @@ nl:
         indexing: Indexing
         meta_description: Meta-beschrijving
         meta_keywords: Meta-kewords
-        read_more_about_html: Read more about %{link}
         robots_txt: Robots.txt
         rss_description_message: RSS description message
         this_will_display: Dit zorgt er voor dat onderaan elke post in je RSS-feed verschijnt
-        use_canonical_url: Use canonical URL
         use_dofollow_in_comments: Use dofollow in comments
         use_meta_keywords: Use meta keywords
         use_rss_description: Gebruik RSS beschrijving

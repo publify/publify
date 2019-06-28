@@ -345,7 +345,6 @@ pl:
         warning: Nie można załadować
     seo:
       general:
-        canonical_url: Linki kanoniczne
         custom_tracking_code: Niestandardowy kod śledzenia
         do_not_index_tags: Nie indeksuj tagów
         dofollow: Dofollow
@@ -360,11 +359,9 @@ pl:
         indexing: Indeksowanie
         meta_description: Opis
         meta_keywords: Słowa kluczowe
-        read_more_about_html: 'Czytaj więcej: %{link}'
         robots_txt: Robots.txt
         rss_description_message: Opis RSS
         this_will_display: Opis wyświetli się na dole każdego postu w RSS
-        use_canonical_url: Użyj linków kanonicznych
         use_dofollow_in_comments: Używaj linków z atrybutem 'dofollow' w komentarzach
         use_meta_keywords: Używaj słów kluczowych
         use_rss_description: Używaj opisu RSS

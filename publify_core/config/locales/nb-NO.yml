@@ -321,7 +321,6 @@ nb-NO:
         warning: Kan ikke laste opp
     seo:
       general:
-        canonical_url: Kanonisk URL
         custom_tracking_code: Tilpasset tracking-kode
         do_not_index_tags: Ikke indekser tagger
         dofollow: Dofollow
@@ -336,11 +335,9 @@ nb-NO:
         indexing: Indeksering
         meta_description: Metabeskrivelse
         meta_keywords: Metanøkkelord
-        read_more_about_html: Les mer om %{link}
         robots_txt: Robots.txt
         rss_description_message: Melding for RSS-beskrivelse
         this_will_display: Den vil vises på bunnen av hver artikkel i RSS-feeden
-        use_canonical_url: Bruk kanonisk URL
         use_dofollow_in_comments: Bruk dofollow i kommentarer
         use_meta_keywords: Bruk metanøkkelord
         use_rss_description: Bruk RSS-beskrivelse
