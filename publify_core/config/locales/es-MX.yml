@@ -321,7 +321,6 @@ es-MX:
         warning: No file selected
     seo:
       general:
-        canonical_url: Canonical Url
         custom_tracking_code: Custom tracking code
         do_not_index_tags: Do not index tags
         dofollow: Dofollow
@@ -336,11 +335,9 @@ es-MX:
         indexing: Indexing
         meta_description: Meta description
         meta_keywords: Meta keywords
-        read_more_about_html: Read more about %{link}
         robots_txt: Robots.txt
         rss_description_message: RSS description message
         this_will_display: This will display at the bottom of each post in the RSS feed
-        use_canonical_url: Use canonical URL
         use_dofollow_in_comments: Use dofollow in comments
         use_meta_keywords: Use meta keywords
         use_rss_description: Use RSS description

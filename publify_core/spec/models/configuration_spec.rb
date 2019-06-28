@@ -145,10 +145,6 @@ describe "Given a new blog", type: :model do
     expect(blog).not_to be_dofollowify
   end
 
-  it "Use of canonical URL is disabled by default" do
-    expect(blog).not_to be_use_canonical_url
-  end
-
   it "Use of meta keywords is enabled by default" do
     expect(blog).to be_use_meta_keyword
   end

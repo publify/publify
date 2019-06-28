@@ -132,7 +132,6 @@ FactoryBot.define do
     email_from { "scott@sigkill.org" }
     sp_article_auto_close { 0 }
     permalink_format { "/%year%/%month%/%day%/%title%" }
-    use_canonical_url { true }
     rss_description_text { "rss description text" }
     lang { "en_US" }
   end
