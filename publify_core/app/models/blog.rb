@@ -100,7 +100,6 @@ class Blog < ApplicationRecord
   setting :google_verification, :string, ""
   setting :nofollowify, :boolean, true # deprecated but still needed for backward compatibility
   setting :dofollowify, :boolean, false
-  setting :use_canonical_url, :boolean, false
   setting :use_meta_keyword, :boolean, true
   setting :home_title_template, :string, "%blog_name% | %blog_subtitle%" # spec OK
   setting :home_desc_template, :string, "%blog_name% | %blog_subtitle% | %meta_keywords%" # OK
