@@ -14,7 +14,7 @@ describe Trackback, "With the various trackback filters loaded and DNS mocked ou
   end
 
   it "Incomplete trackbacks should not be accepted" do
-    tb = Trackback.new(blog_name: "Blog name",
+    tb = described_class.new(blog_name: "Blog name",
                        title: "Title",
                        excerpt: "Excerpt",
                        article_id: create(:article).id)
@@ -23,7 +23,7 @@ describe Trackback, "With the various trackback filters loaded and DNS mocked ou
   end
 
   it "A valid trackback should be accepted" do
-    tb = Trackback.new(blog_name: "Blog name",
+    tb = described_class.new(blog_name: "Blog name",
                        title: "Title",
                        url: "http://foo.com",
                        excerpt: "Excerpt",

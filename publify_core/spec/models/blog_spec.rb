@@ -5,13 +5,13 @@ require "rails_helper"
 describe Blog, type: :model do
   describe "#initialize" do
     it "accepts a settings field in its parameter hash" do
-      Blog.new("blog_name" => "foo")
+      described_class.new("blog_name" => "foo")
     end
   end
 
   describe "A blog" do
     before do
-      @blog = Blog.new
+      @blog = described_class.new
     end
 
     it "values boolify like Perl" do
@@ -53,13 +53,13 @@ describe Blog, type: :model do
     end
 
     it "allows another blog to be created" do
-      expect(Blog.new(base_url: "bar")).to be_valid
+      expect(described_class.new(base_url: "bar")).to be_valid
     end
   end
 
   describe "Given no blogs, a new default blog" do
     before do
-      @blog = Blog.new(base_url: "foo")
+      @blog = described_class.new(base_url: "foo")
     end
 
     it "is valid after filling the title" do
@@ -80,7 +80,7 @@ describe Blog, type: :model do
 
   describe "Valid permalink in blog" do
     before do
-      @blog = Blog.new(base_url: "foo")
+      @blog = described_class.new(base_url: "foo")
     end
 
     ["foo", "year", "day", "month", "title", "%title", "title%", "/year/month/day/title",
@@ -106,24 +106,24 @@ describe Blog, type: :model do
 
   describe ".meta_keywords" do
     it "return empty string when nothing" do
-      blog = Blog.new
+      blog = described_class.new
       expect(blog.meta_keywords).to eq ""
     end
 
     it "return meta keywords when exist" do
-      blog = Blog.new(meta_keywords: "key")
+      blog = described_class.new(meta_keywords: "key")
       expect(blog.meta_keywords).to eq "key"
     end
   end
 
   describe ".meta_description" do
     it "return empty string when nothing" do
-      blog = Blog.new
+      blog = described_class.new
       expect(blog.meta_description).to eq ""
     end
 
     it "return meta keywords when exist" do
-      blog = Blog.new(meta_description: "key")
+      blog = described_class.new(meta_description: "key")
       expect(blog.meta_description).to eq "key"
     end
   end
@@ -209,12 +209,12 @@ describe Blog, type: :model do
 
   describe "#current_theme" do
     it "returns the correct theme object given a valid theme name" do
-      blog = Blog.new(theme: "plain")
+      blog = described_class.new(theme: "plain")
       expect(blog.current_theme.name).to eq "plain"
     end
 
     it "returns a blank theme object given an invalid theme name" do
-      blog = Blog.new(theme: "not-there")
+      blog = described_class.new(theme: "not-there")
       expect(blog.current_theme.name).to eq ""
     end
   end

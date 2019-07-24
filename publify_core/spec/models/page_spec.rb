@@ -49,7 +49,7 @@ describe Page, type: :model do
 
   describe "search_with" do
     context "with an simple page" do
-      subject { Page.search_with(params) }
+      subject { described_class.search_with(params) }
 
       let!(:page) { create(:page) }
 

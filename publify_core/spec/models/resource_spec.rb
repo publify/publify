@@ -6,7 +6,7 @@ describe Resource, type: :model do
   describe "#upload" do
     let(:blog) { create :blog }
     let(:resource) { create :resource, blog: blog }
-    let(:img_resource) { Resource.create blog: blog, upload: file_upload("testfile.png", "image/png") }
+    let(:img_resource) { described_class.create blog: blog, upload: file_upload("testfile.png", "image/png") }
 
     it "stores files in the correct location" do
       expected_path = Rails.root.join("public", "files/resource/1", "testfile.txt")
