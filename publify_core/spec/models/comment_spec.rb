@@ -133,7 +133,7 @@ describe Comment, type: :model do
     end
 
     ["", "textile", "markdown", "smartypants", "markdown smartypants"].each do |filter|
-      it "should reject with filter '#{filter}'" do
+      it "rejects with filter '#{filter}'" do
         blog.comment_text_filter = filter
 
         assert comment.html(:body) !~ /<script>/

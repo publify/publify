@@ -92,7 +92,7 @@ describe Blog, type: :model do
     end
 
     ["%title%", "%title%.html", "/hello/all/%year%/%title%", "atom/%title%.html", "ok/rss/%title%.html"].each do |permalink_type|
-      it "should be valid with only #{permalink_type}" do
+      it "is valid with only #{permalink_type}" do
         @blog.permalink_format = permalink_type
         expect(@blog).to be_valid
       end
