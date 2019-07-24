@@ -37,7 +37,7 @@ group :development, :test do
   gem "pry", "~> 0.12.0"
   gem "pry-rails", "~> 0.3.4"
   gem "rspec-rails", "~> 3.4"
-  gem "simplecov", "~> 0.16.1", require: false
+  gem "simplecov", "~> 0.17.0", require: false
 end
 
 group :development do
