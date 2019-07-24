@@ -5,7 +5,7 @@ require "rails_helper"
 describe "authors/show_atom_feed.atom.builder", type: :view do
   let!(:blog) { create(:blog) }
   let(:author) { create :user }
-  let(:parsed_feed) { Feedjira::Feed.parse(rendered) }
+  let(:parsed_feed) { Feedjira.parse(rendered) }
 
   describe "with no items" do
     before do

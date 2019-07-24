@@ -23,7 +23,7 @@ RSpec.describe "feedback/index.rss.builder", type: :view do
     end
 
     describe "the comment entry" do
-      let(:rendered_entry) { Feedjira::Feed.parse(rendered).entries.first }
+      let(:rendered_entry) { Feedjira.parse(rendered).entries.first }
       let(:xml_entry) { Nokogiri::XML.parse(rendered).css("item").first }
 
       it "has all the required attributes" do
@@ -36,7 +36,7 @@ RSpec.describe "feedback/index.rss.builder", type: :view do
     end
 
     describe "the trackback entry" do
-      let(:rendered_entry) { Feedjira::Feed.parse(rendered).entries.last }
+      let(:rendered_entry) { Feedjira.parse(rendered).entries.last }
       let(:xml_entry) { Nokogiri::XML.parse(rendered).css("item").last }
 
       it "has all the required attributes" do
