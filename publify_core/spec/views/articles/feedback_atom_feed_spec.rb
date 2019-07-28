@@ -4,7 +4,7 @@ require "rails_helper"
 
 describe "articles/feedback_atom_feed.atom.builder", type: :view do
   let(:article) { create :article }
-  let(:parsed_feed) { Feedjira::Feed.parse(rendered) }
+  let(:parsed_feed) { Feedjira.parse(rendered) }
 
   describe "with one trackback" do
     let!(:trackback) { create(:trackback, article: article) }

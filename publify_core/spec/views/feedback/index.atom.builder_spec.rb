@@ -3,7 +3,7 @@
 require "rails_helper"
 
 RSpec.describe "feedback/index.atom.builder", type: :view do
-  let(:parsed_feed) { Feedjira::Feed.parse(rendered) }
+  let(:parsed_feed) { Feedjira.parse(rendered) }
 
   describe "rendering feedback" do
     let(:article) { build_stubbed(:article) }

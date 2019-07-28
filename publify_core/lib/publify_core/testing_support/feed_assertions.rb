@@ -15,7 +15,7 @@ module PublifyCore
       end
 
       def assert_atom10(feed, count)
-        parsed_feed = Feedjira::Feed.parse(feed)
+        parsed_feed = Feedjira.parse(feed)
         assert_atom10_feed parsed_feed, count
       end
 
@@ -33,7 +33,7 @@ module PublifyCore
       end
 
       def assert_rss20(feed, count)
-        parsed_feed = Feedjira::Feed.parse(feed)
+        parsed_feed = Feedjira.parse(feed)
         assert_rss20_feed parsed_feed, count
       end
 

@@ -3,7 +3,7 @@
 require "rails_helper"
 
 describe "articles/index_atom_feed.atom.builder", type: :view do
-  let(:parsed_feed) { Feedjira::Feed.parse(rendered) }
+  let(:parsed_feed) { Feedjira.parse(rendered) }
   let(:rendered_entry) { parsed_feed.entries.first }
 
   describe "with no items" do

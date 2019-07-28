@@ -8,7 +8,7 @@ describe "articles/feedback_rss_feed.rss.builder", type: :view do
   describe "with feedback consisting of one trackback and one comment" do
     let!(:trackback) { create(:trackback, article: article) }
     let!(:comment) { create(:comment, article: article, body: "Comment body") }
-    let(:parsed_feed) { Feedjira::Feed.parse(rendered) }
+    let(:parsed_feed) { Feedjira.parse(rendered) }
 
     before do
       assign(:article, article)
