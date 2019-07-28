@@ -125,7 +125,7 @@ describe Comment, type: :model do
 
   describe "reject xss" do
     let(:comment) do
-      Comment.new do |c|
+      described_class.new do |c|
         c.body = "Test foo <script>do_evil();</script>"
         c.author = "Bob"
         c.article = build_stubbed(:article, blog: blog)
@@ -133,7 +133,7 @@ describe Comment, type: :model do
     end
 
     ["", "textile", "markdown", "smartypants", "markdown smartypants"].each do |filter|
-      it "should reject with filter '#{filter}'" do
+      it "rejects with filter '#{filter}'" do
         blog.comment_text_filter = filter
 
         assert comment.html(:body) !~ /<script>/
@@ -173,7 +173,7 @@ describe Comment, type: :model do
       end
 
       it "marks comment as presumably spam" do
-        comment = Comment.new do |c|
+        comment = described_class.new do |c|
           c.body = "Test foo"
           c.author = "Bob"
           c.article = build_stubbed(:article, blog: blog)
@@ -187,7 +187,7 @@ describe Comment, type: :model do
       end
 
       it "marks comment from known user as confirmed ham" do
-        comment = Comment.new do |c|
+        comment = described_class.new do |c|
           c.body = "Test foo"
           c.author = "Henri"
           c.article = build_stubbed(:article, blog: blog)
@@ -208,7 +208,7 @@ describe Comment, type: :model do
     let!(:ham_comment) { create(:comment, state: "ham") }
 
     it "returns only spam comment" do
-      expect(Comment.spam).to eq([comment])
+      expect(described_class.spam).to eq([comment])
     end
   end
 
@@ -218,7 +218,7 @@ describe Comment, type: :model do
     let!(:presumed_spam_comment) { create(:comment, state: "presumed_spam") }
 
     it "returns all comment that not_spam" do
-      expect(Comment.not_spam).to match_array [ham_comment, presumed_spam_comment]
+      expect(described_class.not_spam).to match_array [ham_comment, presumed_spam_comment]
     end
   end
 
@@ -228,7 +228,7 @@ describe Comment, type: :model do
     let!(:presumed_spam_comment) { create(:comment, state: "presumed_spam") }
 
     it "returns only presumed_spam" do
-      expect(Comment.presumed_spam).to eq([presumed_spam_comment])
+      expect(described_class.presumed_spam).to eq([presumed_spam_comment])
     end
   end
 
@@ -242,7 +242,7 @@ describe Comment, type: :model do
     let!(:comment_5) { create(:comment, body: "5", created_at: date + 5.days) }
 
     it "respond only 5 last_published" do
-      expect(Comment.last_published).to eq([comment_6, comment_5, comment_4, comment_3, comment_2])
+      expect(described_class.last_published).to eq([comment_6, comment_5, comment_4, comment_3, comment_2])
     end
   end
 

@@ -16,21 +16,21 @@ describe Sidebar, type: :model do
       end
 
       it "resturns the sidebars ordered by position" do
-        sidebars = Sidebar.ordered_sidebars
+        sidebars = described_class.ordered_sidebars
         expect(sidebars).to eq([static_sidebar, search_sidebar])
       end
     end
 
     context "with an invalid sidebar in the database" do
       before do
-        Sidebar.class_eval { self.inheritance_column = :bogus }
-        Sidebar.new(type: "SearchSidebar", staged_position: 1, blog: blog).save
-        Sidebar.new(type: "FooBarSidebar", staged_position: 2, blog: blog).save
-        Sidebar.class_eval { self.inheritance_column = :type }
+        described_class.class_eval { self.inheritance_column = :bogus }
+        described_class.new(type: "SearchSidebar", staged_position: 1, blog: blog).save
+        described_class.new(type: "FooBarSidebar", staged_position: 2, blog: blog).save
+        described_class.class_eval { self.inheritance_column = :type }
       end
 
       it "skips the invalid active sidebar" do
-        sidebars = Sidebar.ordered_sidebars
+        sidebars = described_class.ordered_sidebars
         expect(sidebars.size).to eq(1)
         expect(sidebars.first.class).to eq(SearchSidebar)
       end

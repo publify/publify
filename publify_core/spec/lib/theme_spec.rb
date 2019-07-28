@@ -8,7 +8,7 @@ describe Theme, type: :model do
 
   describe "#layout" do
     it 'returns "layouts/default" by default' do
-      theme = Theme.new("test", "test")
+      theme = described_class.new("test", "test")
       expect(theme.layout("index")).to eq "layouts/default"
     end
 
@@ -36,11 +36,11 @@ describe Theme, type: :model do
     end
 
     it "finds all the installed themes" do
-      expect(Theme.find_all.size).to eq theme_directories.size
+      expect(described_class.find_all.size).to eq theme_directories.size
     end
 
     it "includes the default theme" do
-      expect(Theme.find_all.map(&:name)).to include "plain"
+      expect(described_class.find_all.map(&:name)).to include "plain"
     end
   end
 end

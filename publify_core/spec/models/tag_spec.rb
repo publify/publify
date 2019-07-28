@@ -49,7 +49,7 @@ describe Tag, type: :model do
     c = create(:article, title: "an article c")
     create(:tag, name: "foo", contents: [a, b, c])
     create(:tag, name: "bar", contents: [a, b])
-    tags = Tag.find_all_with_content_counters
+    tags = described_class.find_all_with_content_counters
     expect(tags.entries.size).to eq(2)
     expect(tags.first.name).to eq("foo")
     expect(tags.first.content_counter).to eq(3)
@@ -83,19 +83,19 @@ describe Tag, type: :model do
     end
 
     it "find_with_char('f') should be return foo" do
-      expect(Tag.find_with_char("f")).to eq([@foo])
+      expect(described_class.find_with_char("f")).to eq([@foo])
     end
 
     it "find_with_char('v') should return empty data" do
-      expect(Tag.find_with_char("v")).to eq([])
+      expect(described_class.find_with_char("v")).to eq([])
     end
 
     it "find_with_char('ba') should return tag bar and bazz" do
-      expect(Tag.find_with_char("ba").sort_by(&:id)).to eq([@bar, @bazz].sort_by(&:id))
+      expect(described_class.find_with_char("ba").sort_by(&:id)).to eq([@bar, @bazz].sort_by(&:id))
     end
 
     describe "#create_from_article" do
-      before { Tag.create_from_article!(article) }
+      before { described_class.create_from_article!(article) }
 
       context "without keywords" do
         let(:article) { create(:article, keywords: nil) }
@@ -107,7 +107,7 @@ describe Tag, type: :model do
         let(:article) { create(:article, keywords: "foo") }
 
         it { expect(article.tags.size).to eq(1) }
-        it { expect(article.tags.first).to be_kind_of(Tag) }
+        it { expect(article.tags.first).to be_kind_of(described_class) }
         it { expect(article.tags.first.name).to eq("foo") }
       end
 
@@ -115,7 +115,7 @@ describe Tag, type: :model do
         let(:article) { create(:article, keywords: "lang:fr") }
 
         it { expect(article.tags.size).to eq(1) }
-        it { expect(article.tags.first).to be_kind_of(Tag) }
+        it { expect(article.tags.first).to be_kind_of(described_class) }
         it { expect(article.tags.first.name).to eq("lang-fr") }
       end
 

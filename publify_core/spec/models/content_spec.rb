@@ -5,7 +5,7 @@ require "rails_helper"
 describe Content, type: :model do
   context "with a simple blog" do
     describe "#author=" do
-      let(:content) { Content.new }
+      let(:content) { described_class.new }
 
       before { content.author = user }
 
@@ -53,7 +53,7 @@ describe Content, type: :model do
 
     describe "#text_filter" do
       it "returns nil by default" do
-        @content = Content.new
+        @content = described_class.new
         expect(@content.text_filter).to be_nil
       end
     end
@@ -74,7 +74,7 @@ describe Content, type: :model do
 
     describe "#search_with" do
       context "with an simple article" do
-        subject { Content.search_with(params) }
+        subject { described_class.search_with(params) }
 
         context "with nil params" do
           let(:params) { nil }
@@ -124,7 +124,7 @@ describe Content, type: :model do
   end
 
   describe "#author_name" do
-    let(:content) { Content.new(author: author) }
+    let(:content) { described_class.new(author: author) }
 
     context "with an author with a name" do
       let(:author) { build(:user, name: "Henri") }

@@ -14,20 +14,20 @@ describe Trackback, "With the various trackback filters loaded and DNS mocked ou
   end
 
   it "Incomplete trackbacks should not be accepted" do
-    tb = Trackback.new(blog_name: "Blog name",
-                       title: "Title",
-                       excerpt: "Excerpt",
-                       article_id: create(:article).id)
+    tb = described_class.new(blog_name: "Blog name",
+                             title: "Title",
+                             excerpt: "Excerpt",
+                             article_id: create(:article).id)
     expect(tb).not_to be_valid
     expect(tb.errors["url"]).to be_any
   end
 
   it "A valid trackback should be accepted" do
-    tb = Trackback.new(blog_name: "Blog name",
-                       title: "Title",
-                       url: "http://foo.com",
-                       excerpt: "Excerpt",
-                       article_id: create(:article).id)
+    tb = described_class.new(blog_name: "Blog name",
+                             title: "Title",
+                             url: "http://foo.com",
+                             excerpt: "Excerpt",
+                             article_id: create(:article).id)
     expect(tb).to be_valid
     tb.save
     expect(tb.guid.size).to be > 15

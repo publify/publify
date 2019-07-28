@@ -7,7 +7,7 @@ describe Feedback, type: :model do
 
   describe ".change_state!" do
     it "respond to change_state!" do
-      expect(Feedback.new).to respond_to(:change_state!)
+      expect(described_class.new).to respond_to(:change_state!)
     end
 
     context "given a feedback with a spam state" do
@@ -31,13 +31,13 @@ describe Feedback, type: :model do
     describe "ham" do
       it "returns nothing when no ham" do
         create(:spam_comment)
-        expect(Feedback.ham).to be_empty
+        expect(described_class.ham).to be_empty
       end
 
       it "returns only ham" do
         create(:spam_comment)
         ham = create(:ham_comment)
-        expect(Feedback.ham).to eq [ham]
+        expect(described_class.ham).to eq [ham]
       end
     end
 
@@ -46,13 +46,13 @@ describe Feedback, type: :model do
 
       it "returns nothing with no feedback" do
         create(:ham_comment, created_at: 2.years.ago)
-        expect(Feedback.created_since(time)).to be_empty
+        expect(described_class.created_since(time)).to be_empty
       end
 
       it "returns feedback when one created since last visit" do
         create(:ham_comment, created_at: 2.years.ago)
         feedback = create(:ham_comment, created_at: time + 2.hours)
-        expect(Feedback.created_since(time)).to eq [feedback]
+        expect(described_class.created_since(time)).to eq [feedback]
       end
     end
 
@@ -63,37 +63,37 @@ describe Feedback, type: :model do
         let!(:a_comment) { create(:comment, created_at: now) }
         let!(:an_other_comment) { create(:comment, created_at: now - 1.day) }
 
-        it { expect(Feedback.paginated(1, 3)).to eq([a_comment, an_other_comment]) }
-        it { expect(Feedback.paginated(2, 1)).to eq([an_other_comment]) }
-        it { expect(Feedback.paginated(1, 1)).to eq([a_comment]) }
+        it { expect(described_class.paginated(1, 3)).to eq([a_comment, an_other_comment]) }
+        it { expect(described_class.paginated(2, 1)).to eq([an_other_comment]) }
+        it { expect(described_class.paginated(1, 1)).to eq([a_comment]) }
       end
 
       describe "#presumed_ham" do
         let!(:presumed_ham_comment) { create(:presumed_ham_comment) }
         let!(:ham_comment) { create(:ham_comment) }
 
-        it { expect(Feedback.presumed_ham).to eq([presumed_ham_comment]) }
+        it { expect(described_class.presumed_ham).to eq([presumed_ham_comment]) }
       end
 
       describe "#presumed_spam" do
         let!(:presumed_spam_comment) { create(:presumed_spam_comment) }
         let!(:ham_comment) { create(:ham_comment) }
 
-        it { expect(Feedback.presumed_spam).to eq([presumed_spam_comment]) }
+        it { expect(described_class.presumed_spam).to eq([presumed_spam_comment]) }
       end
 
       describe "#spam" do
         let!(:spam_comment) { create(:spam_comment) }
         let!(:ham_comment) { create(:ham_comment) }
 
-        it { expect(Feedback.spam).to eq([spam_comment]) }
+        it { expect(described_class.spam).to eq([spam_comment]) }
       end
 
       describe "#unapproved" do
         let!(:unapproved) { create(:unconfirmed_comment) }
         let!(:ham_comment) { create(:ham_comment) }
 
-        it { expect(Feedback.unapproved).to eq([unapproved]) }
+        it { expect(described_class.unapproved).to eq([unapproved]) }
       end
     end
   end

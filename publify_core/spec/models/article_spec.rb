@@ -94,14 +94,14 @@ describe Article, type: :model do
     a.tags << Tag.find(create(:tag).id)
     assert_equal 1, a.tags.size
 
-    b = Article.find(a.id)
+    b = described_class.find(a.id)
     assert_equal 1, b.tags.size
   end
 
   it "test_permalink_with_title" do
     article = create(:article, permalink: "article-3", published_at: Time.utc(2004, 6, 1))
-    assert_equal(article, Article.requested_article(year: 2004, month: 6, day: 1, title: "article-3"))
-    not_found = Article.requested_article year: 2005, month: "06", day: "01", title: "article-5"
+    assert_equal(article, described_class.requested_article(year: 2004, month: 6, day: 1, title: "article-3"))
+    not_found = described_class.requested_article year: 2005, month: "06", day: "01", title: "article-5"
     expect(not_found).to be_nil
   end
 
@@ -330,7 +330,7 @@ describe Article, type: :model do
       it "has two items" do
         create(:article, extended: "extended talk")
         create(:article, extended: "Once uppon a time, an extended story")
-        assert_equal 2, Article.search("extended").size
+        assert_equal 2, described_class.search("extended").size
       end
     end
   end
@@ -417,15 +417,15 @@ describe Article, type: :model do
     end
 
     it "returns all content for the year if only year sent" do
-      expect(Article.published_at_like(2.years.ago.strftime("%Y")).map(&:id).sort).to eq([@article_two_year_ago.id, @article_2_two_year_ago.id].sort)
+      expect(described_class.published_at_like(2.years.ago.strftime("%Y")).map(&:id).sort).to eq([@article_two_year_ago.id, @article_2_two_year_ago.id].sort)
     end
 
     it "returns all content for the month if year and month sent" do
-      expect(Article.published_at_like(4.months.ago.strftime("%Y-%m")).map(&:id).sort).to eq([@article_four_months_ago.id, @article_2_four_months_ago.id].sort)
+      expect(described_class.published_at_like(4.months.ago.strftime("%Y-%m")).map(&:id).sort).to eq([@article_four_months_ago.id, @article_2_four_months_ago.id].sort)
     end
 
     it "returns all content on this date if date send" do
-      expect(Article.published_at_like(2.months.ago.strftime("%Y-%m-%d")).map(&:id).sort).to eq([@article_two_month_ago.id].sort)
+      expect(described_class.published_at_like(2.months.ago.strftime("%Y-%m-%d")).map(&:id).sort).to eq([@article_two_month_ago.id].sort)
     end
   end
 
@@ -445,12 +445,12 @@ describe Article, type: :model do
   describe "self#last_draft(id)" do
     it "returns article if no draft associated" do
       draft = create(:article, state: "draft")
-      expect(Article.last_draft(draft.id)).to eq(draft)
+      expect(described_class.last_draft(draft.id)).to eq(draft)
     end
     it "returns draft associated to this article if there are one" do
       parent = create(:article)
       draft = create(:article, parent_id: parent.id, state: "draft")
-      expect(Article.last_draft(draft.id)).to eq(draft)
+      expect(described_class.last_draft(draft.id)).to eq(draft)
     end
   end
 
@@ -475,7 +475,7 @@ describe Article, type: :model do
     describe "#requested_article" do
       it "uses UTC to determine correct day" do
         @a.save
-        a = Article.requested_article year: 2011, month: 2, day: 21, permalink: "a-big-article"
+        a = described_class.requested_article year: 2011, month: 2, day: 21, permalink: "a-big-article"
         expect(a).to eq(@a)
       end
     end
@@ -502,7 +502,7 @@ describe Article, type: :model do
     describe "#requested_article" do
       it "uses UTC to determine correct day" do
         @a.save
-        a = Article.requested_article year: 2011, month: 2, day: 22, permalink: "a-big-article"
+        a = described_class.requested_article year: 2011, month: 2, day: 22, permalink: "a-big-article"
         expect(a).to eq(@a)
       end
     end
@@ -529,7 +529,7 @@ describe Article, type: :model do
     describe "#requested_article" do
       it "uses JST to determine correct day" do
         @a.save
-        a = Article.requested_article year: 2012, month: 12, day: 31, permalink: "a-big-article"
+        a = described_class.requested_article year: 2012, month: 12, day: 31, permalink: "a-big-article"
         expect(a).to eq(@a)
       end
     end
@@ -556,7 +556,7 @@ describe Article, type: :model do
     describe "#requested_article" do
       it "uses JST to determine correct day" do
         @a.save
-        a = Article.requested_article year: 2013, month: 1, day: 1, permalink: "a-big-article"
+        a = described_class.requested_article year: 2013, month: 1, day: 1, permalink: "a-big-article"
         expect(a).to eq(@a)
       end
     end
@@ -660,7 +660,7 @@ describe Article, type: :model do
   end
 
   describe "#search_with" do
-    subject { Article.search_with(params) }
+    subject { described_class.search_with(params) }
 
     context "without article" do
       let(:params) { nil }
@@ -748,13 +748,13 @@ describe Article, type: :model do
 
   describe "#publication_months" do
     it "returns an empty array when no articles" do
-      expect(Article.publication_months).to be_empty
+      expect(described_class.publication_months).to be_empty
     end
 
     context "returns objects that respond to publication with YYYY-MM published_at date format" do
       it "with article published_at date" do
         create(:article, published_at: Date.new(2010, 11, 23))
-        result = Article.publication_months
+        result = described_class.publication_months
         expect(result.count).to eq 1
         expect(result.first).to eq ["2010-11"]
       end
@@ -762,7 +762,7 @@ describe Article, type: :model do
       it "with 2 articles" do
         create(:article, published_at: Date.new(2010, 11, 23))
         create(:article, published_at: Date.new(2002, 4, 9))
-        result = Article.publication_months
+        result = described_class.publication_months
         expect(result.count).to eq 2
         expect(result.sort).to eq [["2010-11"], ["2002-04"]].sort
       end
@@ -773,29 +773,29 @@ describe Article, type: :model do
     let(:time) { DateTime.new(2010, 11, 3, 23, 34).in_time_zone }
 
     it "empty when no articles" do
-      expect(Article.published_since(time)).to be_empty
+      expect(described_class.published_since(time)).to be_empty
     end
 
     it "returns article that was published since" do
       article = create(:article, published_at: time + 2.hours)
-      expect(Article.published_since(time)).to eq [article]
+      expect(described_class.published_since(time)).to eq [article]
     end
 
     it "returns only article that was published since last visit" do
       create(:article, published_at: time - 2.hours)
       article = create(:article, published_at: time + 2.hours)
-      expect(Article.published_since(time)).to eq [article]
+      expect(described_class.published_since(time)).to eq [article]
     end
   end
 
   describe "bestof" do
     it "returns empty array when no content" do
-      expect(Article.bestof).to be_empty
+      expect(described_class.bestof).to be_empty
     end
 
     it "returns article with comment count field" do
       create(:comment)
-      expect(Article.bestof.first.comment_count.to_i).to eq 1
+      expect(described_class.bestof.first.comment_count.to_i).to eq 1
     end
 
     it "counts comments but not trackbacks" do
@@ -803,12 +803,12 @@ describe Article, type: :model do
       create :trackback, article: article
       create_list :comment, 2, article: article
 
-      expect(Article.bestof.first.comment_count.to_i).to eq 2
+      expect(described_class.bestof.first.comment_count.to_i).to eq 2
     end
 
     it "returns only 5 articles" do
       create_list(:comment, 6)
-      expect(Article.bestof.length).to eq(5)
+      expect(described_class.bestof.length).to eq(5)
     end
 
     it "returns only published articles" do
@@ -816,8 +816,8 @@ describe Article, type: :model do
       create(:comment, article: article)
       unpublished_article = create(:article, state: "draft")
       create(:comment, article: unpublished_article)
-      expect(Article.published).to eq([article])
-      expect(Article.bestof).to eq([article])
+      expect(described_class.published).to eq([article])
+      expect(described_class.bestof).to eq([article])
     end
 
     it "returns article sorted by comment counts" do
@@ -828,7 +828,7 @@ describe Article, type: :model do
       create(:comment, article: first_article)
       create(:comment, article: first_article)
 
-      expect(Article.bestof).to eq([first_article, last_article])
+      expect(described_class.bestof).to eq([first_article, last_article])
     end
   end
 

@@ -15,7 +15,7 @@ describe User, type: :model do
     end
 
     it "salt should not be nil" do
-      expect(User.salt).to eq("20ac4d290c2293702c64b3b287ae5ea79b26a5c1")
+      expect(described_class.salt).to eq("20ac4d290c2293702c64b3b287ae5ea79b26a5c1")
     end
   end
 
@@ -83,7 +83,7 @@ describe User, type: :model do
 
     it "is not able to create another user with the same login" do
       login = @olduser.login
-      new_user = User.new(login: login) do |u|
+      new_user = described_class.new(login: login) do |u|
         u.password = u.password_confirmation = "secure password"
       end
 
@@ -107,7 +107,7 @@ describe User, type: :model do
 
   describe "#initialize" do
     it "accepts a settings field in its parameter hash" do
-      User.new("firstname" => "foo")
+      described_class.new("firstname" => "foo")
     end
   end
 

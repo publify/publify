@@ -67,13 +67,13 @@ describe Note, type: :model do
         context "with a unpublished note" do
           let!(:unpublished_note) { create(:unpublished_note) }
 
-          it { expect(Note.published).to eq([note]) }
+          it { expect(described_class.published).to eq([note]) }
         end
 
         context "with a note to publish later" do
           let!(:later_note) { create(:note, published_at: 3.days.from_now) }
 
-          it { expect(Note.published).to eq([note]) }
+          it { expect(described_class.published).to eq([note]) }
         end
       end
     end
