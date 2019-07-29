@@ -53,9 +53,9 @@ class TitleBuilder
   end
 
   def substitute_parameters(str, parameters)
-    str = str.gsub("%date%", parse_date(str, parameters)) if str =~ /%date%/
+    str = str.gsub("%date%", parse_date(str, parameters)) if /%date%/.match?(str)
     str = str.gsub("%search%", parameters[:q]) if parameters[:q]
-    str = str.gsub("%page%", parse_page(str, parameters)) if str =~ /%page%/
+    str = str.gsub("%page%", parse_page(str, parameters)) if /%page%/.match?(str)
 
     str
   end

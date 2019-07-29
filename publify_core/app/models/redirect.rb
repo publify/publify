@@ -11,7 +11,7 @@ class Redirect < ApplicationRecord
   def full_to_path
     path = to_path
     # FIXME: Unify HTTP URI matchers
-    return path if path =~ %r{^(https?)://([^/]*)(.*)}
+    return path if %r{^(https?)://([^/]*)(.*)}.match?(path)
 
     url_root = blog.root_path
     path = File.join(url_root, path) unless url_root.nil? || path[0, url_root.length] == url_root
