@@ -62,7 +62,7 @@ class SpamProtection
              rescue URI::InvalidURIError
                next
              end
-      return scan_ip(host) if host =~ Format::IP_ADDRESS
+      return scan_ip(host) if Format::IP_ADDRESS.match?(host)
 
       host_parts = host.split(".").reverse
       domain = []

@@ -218,9 +218,9 @@ class Blog < ApplicationRecord
   end
 
   def permalink_has_identifier
-    errors.add(:base, I18n.t("errors.permalink_need_a_title")) unless permalink_format =~ /(%title%)/
+    errors.add(:base, I18n.t("errors.permalink_need_a_title")) unless /(%title%)/.match?(permalink_format)
 
-    errors.add(:permalink_format, I18n.t("errors.cant_end_with_rss_or_atom")) if permalink_format =~ /\.(atom|rss)$/
+    errors.add(:permalink_format, I18n.t("errors.cant_end_with_rss_or_atom")) if /\.(atom|rss)$/.match?(permalink_format)
   end
 
   def root_path

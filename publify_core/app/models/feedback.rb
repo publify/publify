@@ -97,7 +97,7 @@ class Feedback < ApplicationRecord
   def correct_url
     return if url.blank?
 
-    self.url = "http://" + url.to_s unless url =~ %r{^https?://}
+    self.url = "http://" + url.to_s unless %r{^https?://}.match?(url)
   end
 
   def article_allows_this_feedback
