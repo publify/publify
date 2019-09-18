@@ -22,11 +22,11 @@ Gem::Specification.new do |s|
   s.required_ruby_version = ">= 2.4.0"
 
   s.add_dependency "aasm", "~> 5.0"
-  s.add_dependency "akismet", "~> 2.0"
+  s.add_dependency "akismet", "~> 3.0"
   s.add_dependency "bluecloth", "~> 2.1"
   s.add_dependency "cancancan", "~> 3.0"
   s.add_dependency "carrierwave", "~> 1.1"
-  s.add_dependency "devise", "~> 4.6.0"
+  s.add_dependency "devise", "~> 4.7.1"
   s.add_dependency "devise-i18n", "~> 1.2"
   s.add_dependency "dynamic_form", "~> 1.1.4"
   s.add_dependency "fog-aws", "~> 3.2"
