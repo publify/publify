@@ -107,7 +107,7 @@ describe Feedback, type: :model do
     end
 
     it "works if the blog has an invalid akismet key" do
-      verification = stub_request(:post, "http://rest.akismet.com/1.1/verify-key").
+      verification = stub_request(:post, "https://rest.akismet.com/1.1/verify-key").
         to_return(status: 200, body: "invalid", headers: {})
       blog.sp_akismet_key = "hello!"
       blog.save!
@@ -116,9 +116,9 @@ describe Feedback, type: :model do
     end
 
     it "works if the blog has a valid akismet key" do
-      verification = stub_request(:post, "http://rest.akismet.com/1.1/verify-key").
+      verification = stub_request(:post, "https://rest.akismet.com/1.1/verify-key").
         to_return(status: 200, body: "valid", headers: {})
-      reporting = stub_request(:post, "http://hello!.rest.akismet.com/1.1/submit-ham").
+      reporting = stub_request(:post, "https://hello!.rest.akismet.com/1.1/submit-ham").
         to_return(status: 200, body: "Thanks for making the web a better place.", headers: {})
       blog.sp_akismet_key = "hello!"
       blog.save!
