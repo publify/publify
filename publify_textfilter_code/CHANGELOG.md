@@ -1,10 +1,11 @@
 # Changelog
 
-## Unreleased
+## 9.2.0 / 2021-01-17
 
 * Upgrade to Rails 5.2 (mvz)
-* Support only Ruby 2.4 and up (mvz)
+* Drop support for Ruby 2.2 and 2.3 (mvz)
 * Add support for Ruby 2.7 (mvz)
+* Depend on `publify_core` 9.2 (mvz)
 
 ## 9.1.0 / 2018-04-19
 

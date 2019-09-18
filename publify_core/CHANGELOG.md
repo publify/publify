@@ -1,31 +1,33 @@
 # Changelog
 
-## Unreleased
+## 9.2.0 / 2021-01-17
 
 * Upgrade to Rails 5.2 (mvz)
 * Fix logic for rendering excerpts or whole posts (mvz)
-* Drop support for Ruby 2.2 (mvz)
+* Drop support for Ruby 2.2 and 2.3 (mvz)
 * Provide FactoryBot factories for general use (mvz)
 * Fix comment preview (mvz)
 * Drop support for humans.txt (mvz)
-
 * Remove unused ability to view macro help text (mvz)
-* Remove some editor effects (mvz)
-* Remove unused setting (mvz)
-* Remove TextFilter from database (mvz)
-* Support only Ruby 2.4 and up (mvz)
-* Remove inbound links from admin (mvz)
-* Always use canonical url (mvz)
-* Update dependencies
+* Simplify the article editor: remove widearea and button fade-out (mvz)
+* Remove unused `title_prefix` setting (mvz)
+* Remove text filter definitions from the database. Text filters are now
+  specified in code only (mvz)
+* Remove broken inbound links feature from Admin dashboard (mvz)
+* Always include a canonical URL in the header and remove `use_canonical_url`
+  option (mvz)
+* Update various dependencies (mvz)
 * Use new way to render Devise error messages in view override (mvz)
 * Fix broken page creation (cfis)
-* Fixup canonical url (mvz)
-* Replace obsolete URI.escape and URI.encode (mvz)
+* Improve calculation of canonical URL (mvz)
+* Replace use of deprecated URI.escape and URI.encode (mvz)
 * Add support for Ruby 2.7 (mvz)
-* Deprecate use of Textile (mvz)
-* Replace icons in Admin with just text (mvz)
-* Add text filter to content lists and more Admin fixes (mvz)
+* Deprecate Textile text filter (mvz)
+* Remove icons from Admin and replace them with text (mvz)
+* Show text filter in content lists in Admin, plus various other Admin
+  improvements (mvz)
 * Warn about need to run task to convert textile to markdown (mvz)
+* Update mimimum dependencies of Rails and Puma to avoid security issues (mvz)
 
 ## 9.1.0 / 2018-04-19
 
@@ -38,7 +40,7 @@
 
 ## 9.0.1
 
-* Remove link_to_author setting: author email is no longer shown. Whoever
+* Remove `link_to_author` setting: author email is no longer shown. Whoever
   really wants to have it shown should create a new theme (mvz)
 * Update dependencies (mvz)
 * Make Devise use the correct layout (mvz)
