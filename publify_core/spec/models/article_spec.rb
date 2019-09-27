@@ -435,6 +435,7 @@ describe Article, type: :model do
       create(:article, parent_id: parent.id)
       expect(parent).to be_has_child
     end
+
     it "is false if article has no article to link it by parent_id" do
       parent = create(:article)
       create(:article, parent_id: nil)
@@ -447,6 +448,7 @@ describe Article, type: :model do
       draft = create(:article, state: "draft")
       expect(described_class.last_draft(draft.id)).to eq(draft)
     end
+
     it "returns draft associated to this article if there are one" do
       parent = create(:article)
       draft = create(:article, parent_id: parent.id, state: "draft")
