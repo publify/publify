@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-gem "rails", "~> 5.2.3"
+gem "rails", "~> 6.0.0"
 
 gem "mysql2"
 gem "pg"
@@ -40,6 +40,11 @@ group :development, :test do
   gem "simplecov", "~> 0.17.0", require: false
 end
 
+platforms :x64_mingw do
+  gem 'tzinfo-data', '=1.2019.3'
+  gem 'rb-readline', '=0.5.5'
+end
+
 group :development do
   gem "better_errors", "~> 2.5.0"
   gem "binding_of_caller", "~> 0.8.0"
@@ -50,7 +55,7 @@ group :development do
   gem "spring-commands-rspec", "~> 1.0"
 
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem "web-console", "~> 3.7"
+  gem "web-console", "~> 4.0.0"
 end
 
 group :test do

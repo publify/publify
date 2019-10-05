@@ -19,13 +19,13 @@ Gem::Specification.new do |s|
 
   s.files       = File.open("Manifest.txt").readlines.map(&:chomp)
 
-  s.required_ruby_version = ">= 2.4.0"
+  s.required_ruby_version = ">= 2.5.0"
 
   s.add_dependency "aasm", "~> 5.0"
   s.add_dependency "akismet", "~> 3.0"
   s.add_dependency "bluecloth", "~> 2.1"
   s.add_dependency "cancancan", "~> 3.0"
-  s.add_dependency "carrierwave", "~> 1.1"
+  s.add_dependency "carrierwave", "~> 2.0.0"
   s.add_dependency "devise", "~> 4.7.1"
   s.add_dependency "devise-i18n", "~> 1.2"
   s.add_dependency "dynamic_form", "~> 1.1.4"
@@ -35,7 +35,7 @@ Gem::Specification.new do |s|
   s.add_dependency "kaminari", "~> 1.0"
   s.add_dependency "mimemagic", "~> 0.3.2"
   s.add_dependency "mini_magick", ["~> 4.9", ">= 4.9.4"]
-  s.add_dependency "rails", "~> 5.2.0"
+  s.add_dependency "rails", "~> 6.0.0"
   s.add_dependency "rails-timeago", "~> 2.0"
   s.add_dependency "rails_autolink", "~> 1.1.0"
   s.add_dependency "recaptcha", ["~> 5.0"]
