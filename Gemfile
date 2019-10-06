@@ -40,11 +40,6 @@ group :development, :test do
   gem "simplecov", "~> 0.17.0", require: false
 end
 
-platforms :x64_mingw do
-  gem 'tzinfo-data', '=1.2019.3'
-  gem 'rb-readline', '=0.5.5'
-end
-
 group :development do
   gem "better_errors", "~> 2.5.0"
   gem "binding_of_caller", "~> 0.8.0"
