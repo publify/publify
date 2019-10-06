@@ -165,7 +165,7 @@ class Blog < ApplicationRecord
     def url_for(options = {}, extra_params = {})
       case options
       when String
-        options = options.sub(%r{^/}, '')
+        options = options.sub(%r{^/}, "")
         url_generated = if extra_params[:only_path]
                           root_path
                         else
