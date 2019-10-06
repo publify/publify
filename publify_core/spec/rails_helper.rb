@@ -81,6 +81,10 @@ RSpec.configure do |config|
 
   # Test helpers for file attachments
   config.include PublifyCore::TestingSupport::UploadFixtures
+
+  config.after :each, type: :controller do
+    raise "Double escaped HTML in text (#{Regexp.last_match(1)})" if response.content_type == "text/html" && response.body =~ /(&lt;[a-z]+)/
+  end
 end
 
 def engine_root
