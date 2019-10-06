@@ -36,7 +36,7 @@ group :development, :test do
   gem "i18n-tasks", "0.9.29", require: false
   gem "pry", "~> 0.12.0"
   gem "pry-rails", "~> 0.3.4"
-  gem "rspec-rails", "~> 3.4"
+  gem "rspec-rails", "~> 4.0.0.beta2"
   gem "simplecov", "~> 0.17.0", require: false
 end
 
