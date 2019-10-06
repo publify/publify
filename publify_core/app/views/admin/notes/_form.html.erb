@@ -1,4 +1,4 @@
-<%= n.hidden_field :text_filter, value: current_user.text_filter_name %>
+<%= n.hidden_field :text_filter_name, value: current_user.text_filter_name %>
 <div class='form-group'>
   <%= n.text_area :body, class: 'form-control', rows: '7', placeholder: t('.compose_new_note') %>
 </div>
