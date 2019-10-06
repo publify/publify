@@ -10,7 +10,7 @@ RSpec.describe ThemeController, type: :controller do
     assert_response :success
     assert_equal "text/css", @response.content_type
     assert_equal "utf-8", @response.charset
-    assert_equal 'inline; filename="theme.css"', @response.headers["Content-Disposition"]
+    assert_equal 'inline; filename="theme.css"; filename*=UTF-8\'\'theme.css', @response.headers["Content-Disposition"]
   end
 
   it "test_javascripts" do
@@ -18,7 +18,7 @@ RSpec.describe ThemeController, type: :controller do
     assert_response :success
     assert_equal "text/javascript", @response.content_type
     assert_equal "utf-8", @response.charset
-    assert_equal 'inline; filename="theme.js"', @response.headers["Content-Disposition"]
+    assert_equal 'inline; filename="theme.js"; filename*=UTF-8\'\'theme.js', @response.headers["Content-Disposition"]
   end
 
   it "test_malicious_path" do
