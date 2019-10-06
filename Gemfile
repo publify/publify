@@ -51,6 +51,13 @@ group :development do
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem "web-console", "~> 3.7"
+
+  gem "rack-mini-profiler"
+
+  gem "fast_stack"
+  gem "flamegraph"
+  gem "memory_profiler"
+  gem "stackprof"
 end
 
 group :test do
