@@ -15,7 +15,7 @@
 <%= csrf_meta_tags %>
 <%= stylesheet_link_tag :publify %>
 <%= page_header_includes %>
-<link rel="canonical" href="<%= this_blog.base_url + request.fullpath %>" />
+<link rel="canonical" href="<%= this_blog.url_for request.fullpath %>" />
 <%= raw this_blog.custom_tracking_field if this_blog.custom_tracking_field.present? %>
 <%= render 'shared/google_analytics' if this_blog.google_analytics.present? %>
 
