@@ -27,6 +27,9 @@ gem "flickraw", "~> 0.9.8", require: false
 gem "non-stupid-digest-assets", "~> 1.0"
 gem "rake", "~> 12.0"
 
+# Force older sprockets
+gem "sprockets", "~> 3.0"
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
