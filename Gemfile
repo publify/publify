@@ -24,7 +24,7 @@ gem "uglifier", ">= 1.3.0"
 # Needed for the lightbox and flickr text filters
 gem "flickraw", "~> 0.9.8", require: false
 
-gem "non-stupid-digest-assets", "~> 1.0"
+gem "non-digest-assets", "~> 1.0"
 gem "rake", "~> 12.0"
 
 # Force older sprockets

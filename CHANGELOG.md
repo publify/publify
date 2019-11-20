@@ -237,7 +237,7 @@ Matijs van Zuijlen (47):
 * Include admin css in precompile list
 * Move fonts to their normal position
 * Precompile font assets without cache buster
-* Make user NonStupidDigestAssets is always defined
+* Make sure NonStupidDigestAssets is always defined
 * Fix spec setup
 * Make rendering notes in article list work
 
