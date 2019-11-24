@@ -25,7 +25,7 @@ namespace :manifest do
     `git ls-files -z`.split("\x0").reject do |file|
       file.match(%r{^(bin|spec)/}) ||
         file.match(%r{/\.keep$}) ||
-        %w(.gitignore .rspec Manifest.txt Rakefile publify_textfilter_code.gemspec).include?(file)
+        %w(.gitignore .gitrepo .rspec Manifest.txt Rakefile publify_textfilter_code.gemspec).include?(file)
     end
   end
 
