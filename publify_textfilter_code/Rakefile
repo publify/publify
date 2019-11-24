@@ -15,9 +15,8 @@ Bundler::GemHelper.install_tasks
 
 require "rspec/core/rake_task"
 
-desc "Run all specs in spec directory (excluding plugin specs)"
+desc "Run all specs in spec directory"
 RSpec::Core::RakeTask.new(spec: "app:db:test:prepare")
-
 task default: :spec
 
 namespace :manifest do
@@ -25,7 +24,7 @@ namespace :manifest do
     `git ls-files -z`.split("\x0").reject do |file|
       file.match(%r{^(bin|spec)/}) ||
         file.match(%r{/\.keep$}) ||
-        %w(.gitignore .rspec Manifest.txt Rakefile publify_textfilter_code.gemspec).include?(file)
+        %w(.gitignore .gitrepo .rspec Manifest.txt Rakefile publify_textfilter_code.gemspec).include?(file)
     end
   end
 
@@ -42,7 +41,7 @@ namespace :manifest do
 
   desc "Check manifest"
   task :check do
-    abort "Manifest check failed" unless gemmable_files == manifest_files
+    raise "Manifest check failed, try recreating the manifest" unless gemmable_files == manifest_files
   end
 end
 task default: "manifest:check"

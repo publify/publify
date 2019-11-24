@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = git@github.com:publify/publify_textfilter_code.git
+	branch = master
+	commit = 9d79ddf2fa3c02ad5cc18d55c1c551db37a0f2e2
+	method = merge
+	cmdver = 0.4.0
+	parent = e0626a2b3aa2f9f62269784acdf8d94d908bf551

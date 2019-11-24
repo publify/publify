@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = git@github.com:publify/publify_amazon_sidebar.git
+	branch = master
+	commit = 9fa0ef39252506b55d068f39d2c3f920437fc5e0
+	method = merge
+	cmdver = 0.4.0
+	parent = 370192d277661003be8de4baead83cc4cf43552d
