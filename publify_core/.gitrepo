@@ -6,6 +6,7 @@
 [subrepo]
 	remote = git@github.com:publify/publify_core.git
 	branch = master
-	commit = 
+	commit = 61872dab8cc9a0bc20f2238c29f87a4551dc352d
 	method = merge
 	cmdver = 0.4.0
+	parent = 11295996fe69bcfa90e8f9369a2586ac969f51b4
