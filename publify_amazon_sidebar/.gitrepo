@@ -6,7 +6,7 @@
 [subrepo]
 	remote = git@github.com:publify/publify_amazon_sidebar.git
 	branch = master
-	commit = eda796d6e8f47be461920e923432f3da604a2f5a
+	commit = 9fa0ef39252506b55d068f39d2c3f920437fc5e0
 	method = merge
 	cmdver = 0.4.0
-	parent = 1957579d7938ccdd4cb9047ae2098b2d00572887
+	parent = 370192d277661003be8de4baead83cc4cf43552d
