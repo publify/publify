@@ -6,6 +6,23 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
+Metrics/AbcSize:
+  Max: 155
+
+# Configuration parameters: CountComments.
+Metrics/ClassLength:
+  Max: 177
+
+Metrics/CyclomaticComplexity:
+  Max: 14
+
+# Configuration parameters: CountComments, ExcludedMethods.
+Metrics/MethodLength:
+  Max: 45
+
+Metrics/PerceivedComplexity:
+  Max: 17
+
 # Configuration parameters: Prefixes.
 # Prefixes: when, with, without
 RSpec/ContextWording:
@@ -84,3 +101,9 @@ Style/RescueStandardError:
   Exclude:
     - 'db/migrate/20150808052637_add_blog_ids.publify_core_engine.rb'
     - 'lib/publify_textfilter_flickr.rb'
+
+# Cop supports --auto-correct.
+# Configuration parameters: AutoCorrect, AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
+# URISchemes: http, https
+Metrics/LineLength:
+  Max: 274

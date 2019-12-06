@@ -57,10 +57,6 @@ Lint/AmbiguousBlockAssociation:
 Lint/AssignmentInCondition:
   AllowSafeAssignment: true
 
-# TODO: Lower Max and fix offenses
-Metrics/AbcSize:
-  Max: 155
-
 # Suppress BlockLength for some files:
 # - Spec describe blocks can be any length
 # - Routes blocks can be any length
@@ -71,38 +67,10 @@ Metrics/BlockLength:
     - 'spec/**/*'
     - '**/*.gemspec'
 
-# TODO: Lower Max and fix offenses
-Metrics/ClassLength:
-  Max: 225
-
-# TODO: Lower Max and fix offenses
-Metrics/CyclomaticComplexity:
-  Max: 17
-
-# TODO: Lower Max and fix offenses
-# Target is around 100
-Metrics/LineLength:
-  Max: 274
-
 # Initial schema has a very large change method
-# TODO: Lower Max and fix offenses
 Metrics/MethodLength:
   Exclude:
     - 'db/migrate/113_initial_schema.publify_core_engine.rb'
-  Max: 45
-
-# TODO: Lower Max and fix offenses
-Metrics/ModuleLength:
-  Max: 211
-
-# Offense count: 1
-# Configuration parameters: CountKeywordArgs.
-Metrics/ParameterLists:
-  Max: 6
-
-# Offense count: 8
-Metrics/PerceivedComplexity:
-  Max: 17
 
 # Do not require long paths to be split by comma's.
 Rails/FilePath:
