@@ -70,11 +70,6 @@ Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
     - '**/*.gemspec'
-    - 'publify_core/config/routes.rb'
-    - 'publify_core/lib/publify_core/testing_support/factories.rb'
-    - 'publify_core/spec/**/*'
-    - 'publify_amazon_sidebar/spec/**/*'
-    - 'publify_textfilter_code/spec/**/*'
 
 # TODO: Lower Max and fix offenses
 Metrics/ClassLength:
@@ -94,9 +89,6 @@ Metrics/LineLength:
 Metrics/MethodLength:
   Exclude:
     - 'db/migrate/113_initial_schema.publify_core_engine.rb'
-    - 'publify_core/db/migrate/113_initial_schema.rb'
-    - 'publify_amazon_sidebar/spec/dummy/db/migrate/20160712061341_initial_schema.publify_core_engine.rb'
-    - 'publify_textfilter_code/spec/dummy/db/migrate/20160716093725_initial_schema.publify_core_engine.rb'
   Max: 45
 
 # TODO: Lower Max and fix offenses
@@ -120,9 +112,6 @@ Rails/FilePath:
 Rails/ApplicationRecord:
   Exclude:
     - 'db/migrate/*'
-    - 'publify_core/db/migrate/*'
-    - 'publify_amazon_sidebar/spec/dummy/db/migrate/*'
-    - 'publify_textfilter_code/spec/dummy/db/migrate/*'
 
 # This cop has issues and is too database-specific
 Rails/BulkChangeTable:
@@ -139,9 +128,6 @@ Rails/RakeEnvironment:
 Rails/SkipsModelValidations:
   Exclude:
     - 'db/migrate/*'
-    - 'publify_core/db/migrate/*'
-    - 'publify_amazon_sidebar/spec/dummy/db/migrate/*'
-    - 'publify_textfilter_code/spec/dummy/db/migrate/*'
 
 # Allow the use of 'and' 'or' in control structures.
 Style/AndOr:
