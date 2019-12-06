@@ -81,10 +81,10 @@ class User < ApplicationRecord
       # Update old SHA1 password with new Devise ByCrypt password
       self.encrypted_password = password_digest(password)
       save
-      return true
+      true
     else
       # If not BCrypt password and not old SHA1 password deny access
-      return false
+      false
     end
   end
 
