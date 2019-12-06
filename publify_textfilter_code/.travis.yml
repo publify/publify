@@ -1,0 +1,15 @@
+language: ruby
+
+dist: xenial
+
+cache:
+  bundler: true
+
+rvm:
+  - 2.4
+  - 2.5
+  - 2.6
+
+branches:
+  only:
+    - master

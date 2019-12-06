@@ -27,7 +27,7 @@ class SpamProtection
 
     if reason
       logger.info("[SP] Hit: #{reason}")
-      return true
+      true
     end
   end
 

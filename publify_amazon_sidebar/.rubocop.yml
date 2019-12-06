@@ -1,0 +1,149 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-performance
+
+AllCops:
+  Exclude:
+  - 'bin/*'
+  - 'spec/dummy/bin/*'
+  - 'spec/dummy/db/schema.rb'
+  TargetRubyVersion: 2.4
+
+Rails:
+  Enabled: true
+
+# We have duplication due to extra logic in the Gemfile
+Bundler/DuplicatedGem:
+  Enabled: false
+
+# Place . on the previous line
+Layout/DotPosition:
+  EnforcedStyle: trailing
+
+Layout/MultilineMethodCallBraceLayout:
+  EnforcedStyle: same_line
+
+# Multi-line operations should be simply indented. Aligning them makes it even
+# harder to keep a sane line length.
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+# Multi-line operations should be simply indented. Aligning them makes it even
+# harder to keep a sane line length.
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
+# Uniform block layout
+Layout/SpaceBeforeBlockBraces:
+  EnforcedStyleForEmptyBraces: space
+
+# Assume the programmer knows how bracketed block syntax works
+Lint/AmbiguousBlockAssociation:
+  Enabled: false
+
+# Allow if (foo = get_foo) style
+Lint/AssignmentInCondition:
+  AllowSafeAssignment: true
+
+# Suppress BlockLength for some files:
+# - Spec describe blocks can be any length
+# - Routes blocks can be any length
+# - FactoryBot factory blocks can be any length
+# - Gem specification blocks can be any length
+Metrics/BlockLength:
+  Exclude:
+    - 'publify_core.gemspec'
+    - 'config/routes.rb'
+    - 'lib/publify_core/testing_support/factories.rb'
+    - 'spec/**/*'
+
+# Initial schema has a very large change method
+Metrics/MethodLength:
+  Exclude:
+    - 'spec/dummy/db/migrate/20160712061341_initial_schema.publify_core_engine.rb'
+
+# Migrations should not use ApplicationRecord
+Rails/ApplicationRecord:
+  Exclude:
+    - 'spec/dummy/db/migrate/*'
+
+# Manifest tasks do not need environment
+Rails/RakeEnvironment:
+  Exclude:
+    - 'lib/tasks/manifest.rake'
+
+# Migrations should not do validations in general?
+Rails/SkipsModelValidations:
+  Exclude:
+    - 'spec/dummy/db/migrate/*'
+
+# Allow the use of 'and' 'or' in control structures.
+Style/AndOr:
+  EnforcedStyle: conditionals
+
+# Allow multiple Hash parameters to look similar
+Style/BracesAroundHashParameters:
+  EnforcedStyle: context_dependent
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/CollectionMethods:
+  Enabled: true
+
+# Documenting all classes is not common in Rails projects.
+Style/Documentation:
+  Enabled: false
+
+# This cop doesn't detect use of break yet
+Style/EachWithObject:
+  Enabled: false
+
+# Allows format strings with: format, sprintf or percent.
+Style/FormatString:
+  Enabled: false
+
+# Not all objects that implement #size implement #empty?
+Style/ZeroLengthPredicate:
+  Enabled: false
+
+# Restore previous RuboCop defaults
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    '%W': ()
+    '%w': ()
+
+# Always use raise to raise exceptions
+Style/SignalException:
+  EnforcedStyle: only_raise
+
+# Allow meaningful names for single-line reduce etc.
+Style/SingleLineBlockParams:
+  Enabled: false
+
+# Prefer not to commit to need to interpolate
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+# Be consistent with non-interpolated strings
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: double_quotes
+
+# Prefer symbols to look like symbols
+Style/SymbolArray:
+  EnforcedStyle: brackets
+
+# Prefer consistent lines for multi-line arrays
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+
+# Prefer consistent lines for multi-line hashes
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
+
+# Allow small arrays of words with quotes
+Style/WordArray:
+  MinSize: 4
+
+inherit_from: .rubocop_todo.yml

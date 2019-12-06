@@ -51,7 +51,7 @@ class Admin::FeedbackController < Admin::BaseController
     @article = @comment.article
     unless @article.access_by? current_user
       redirect_to admin_feedback_index_url
-      return
+      nil
     end
   end
 

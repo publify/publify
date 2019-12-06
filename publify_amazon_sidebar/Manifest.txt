@@ -7,4 +7,5 @@ config/routes.rb
 lib/publify_amazon_sidebar.rb
 lib/publify_amazon_sidebar/engine.rb
 lib/publify_amazon_sidebar/version.rb
+lib/tasks/manifest.rake
 lib/tasks/publify_amazon_sidebar_tasks.rake

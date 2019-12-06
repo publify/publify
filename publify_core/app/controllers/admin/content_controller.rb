@@ -152,11 +152,11 @@ class Admin::ContentController < Admin::BaseController
   def access_granted?(article_id)
     article = Article.find(article_id)
     if article.access_by? current_user
-      return true
+      true
     else
       flash[:error] = I18n.t("admin.content.access_granted.error")
       redirect_to action: "index"
-      return false
+      false
     end
   end
 

@@ -238,7 +238,7 @@ class Feedback < ApplicationRecord
 
     client = Akismet::Client.new(blog.sp_akismet_key, blog.base_url)
     begin
-      return client.verify_key ? client : nil
+      client.verify_key ? client : nil
     rescue SocketError
       nil
     end
