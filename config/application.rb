@@ -24,5 +24,5 @@ module Publify
   require "publify_textfilters"
   require "publify_avatar_gravatar"
 
-  Theme.register_themes "#{Rails.root}/themes"
+  Theme.register_themes Rails.root.join("themes")
 end

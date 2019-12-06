@@ -72,10 +72,6 @@ Metrics/MethodLength:
   Exclude:
     - 'db/migrate/113_initial_schema.publify_core_engine.rb'
 
-# Do not require long paths to be split by comma's.
-Rails/FilePath:
-  Enabled: false
-
 # Migrations should not use ApplicationRecord
 Rails/ApplicationRecord:
   Exclude:
