@@ -57,10 +57,6 @@ Lint/AmbiguousBlockAssociation:
 Lint/AssignmentInCondition:
   AllowSafeAssignment: true
 
-# TODO: Lower Max and fix offenses
-Metrics/AbcSize:
-  Max: 155
-
 # Suppress BlockLength for some files:
 # - Spec describe blocks can be any length
 # - Routes blocks can be any length
@@ -70,71 +66,32 @@ Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
     - '**/*.gemspec'
-    - 'publify_core/config/routes.rb'
-    - 'publify_core/lib/publify_core/testing_support/factories.rb'
-    - 'publify_core/spec/**/*'
-    - 'publify_amazon_sidebar/spec/**/*'
-    - 'publify_textfilter_code/spec/**/*'
-
-# TODO: Lower Max and fix offenses
-Metrics/ClassLength:
-  Max: 225
-
-# TODO: Lower Max and fix offenses
-Metrics/CyclomaticComplexity:
-  Max: 17
-
-# TODO: Lower Max and fix offenses
-# Target is around 100
-Metrics/LineLength:
-  Max: 274
 
 # Initial schema has a very large change method
-# TODO: Lower Max and fix offenses
 Metrics/MethodLength:
   Exclude:
     - 'db/migrate/113_initial_schema.publify_core_engine.rb'
-    - 'publify_core/db/migrate/113_initial_schema.rb'
-    - 'publify_amazon_sidebar/spec/dummy/db/migrate/20160712061341_initial_schema.publify_core_engine.rb'
-    - 'publify_textfilter_code/spec/dummy/db/migrate/20160716093725_initial_schema.publify_core_engine.rb'
-  Max: 45
-
-# TODO: Lower Max and fix offenses
-Metrics/ModuleLength:
-  Max: 211
-
-# Offense count: 1
-# Configuration parameters: CountKeywordArgs.
-Metrics/ParameterLists:
-  Max: 6
-
-# Offense count: 8
-Metrics/PerceivedComplexity:
-  Max: 17
-
-# Do not require long paths to be split by comma's.
-Rails/FilePath:
-  Enabled: false
 
 # Migrations should not use ApplicationRecord
 Rails/ApplicationRecord:
   Exclude:
     - 'db/migrate/*'
-    - 'publify_core/db/migrate/*'
-    - 'publify_amazon_sidebar/spec/dummy/db/migrate/*'
-    - 'publify_textfilter_code/spec/dummy/db/migrate/*'
 
-# TODO: Re-enable once advice is more targeted
+# This cop has issues and is too database-specific
 Rails/BulkChangeTable:
   Enabled: false
+
+# The tasks to run subrepo tasks, and the i18n health check do not need environment
+Rails/RakeEnvironment:
+  Exclude:
+    - 'lib/tasks/rspec.rake'
+    - 'lib/tasks/manifests.rake'
+    - 'lib/tasks/i18n.rake'
 
 # Migrations should not do validations in general?
 Rails/SkipsModelValidations:
   Exclude:
     - 'db/migrate/*'
-    - 'publify_core/db/migrate/*'
-    - 'publify_amazon_sidebar/spec/dummy/db/migrate/*'
-    - 'publify_textfilter_code/spec/dummy/db/migrate/*'
 
 # Allow the use of 'and' 'or' in control structures.
 Style/AndOr:

@@ -69,6 +69,10 @@ Rails/ApplicationRecord:
   Exclude:
     - 'spec/dummy/db/migrate/*'
 
+# This cop has issues and is too database-specific
+Rails/BulkChangeTable:
+  Enabled: false
+
 # Manifest tasks do not need environment
 Rails/RakeEnvironment:
   Exclude:
