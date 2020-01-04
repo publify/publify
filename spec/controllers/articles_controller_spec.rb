@@ -47,19 +47,27 @@ RSpec.describe ArticlesController, type: :controller do
           end
 
           it "has good rss feed link" do
-            expect(response.body).to have_selector("head>link[href=\"#{article.permalink_url}.rss\"]", visible: false)
+            expect(response.body).
+              to have_selector("head>link[href=\"#{article.permalink_url}.rss\"]",
+                               visible: false)
           end
 
           it "has good atom feed link" do
-            expect(response.body).to have_selector("head>link[href=\"#{article.permalink_url}.atom\"]", visible: false)
+            expect(response.body).
+              to have_selector("head>link[href=\"#{article.permalink_url}.atom\"]",
+                               visible: false)
           end
 
           it "has a canonical url" do
-            expect(response.body).to have_selector("head>link[href='#{article.permalink_url}']", visible: false)
+            expect(response.body).
+              to have_selector("head>link[href='#{article.permalink_url}']",
+                               visible: false)
           end
 
           it "has a good title" do
-            expect(response.body).to have_selector("title", text: "A big article | test blog", visible: false)
+            expect(response.body).
+              to have_selector("title", text: "A big article | test blog",
+                                        visible: false)
           end
         end
 
@@ -112,19 +120,25 @@ RSpec.describe ArticlesController, type: :controller do
           end
 
           it "has good link feed rss" do
-            expect(response.body).to have_selector('head>link[href="http://test.host/articles.rss"]', visible: false)
+            expect(response.body).
+              to have_selector('head>link[href="http://test.host/articles.rss"]',
+                               visible: false)
           end
 
           it "has good link feed atom" do
-            expect(response.body).to have_selector('head>link[href="http://test.host/articles.atom"]', visible: false)
+            expect(response.body).
+              to have_selector('head>link[href="http://test.host/articles.atom"]',
+                               visible: false)
           end
 
           it "has a canonical url" do
-            expect(response.body).to have_selector("head>link[href='#{blog.base_url}/']", visible: false)
+            expect(response.body).
+              to have_selector("head>link[href='#{blog.base_url}/']", visible: false)
           end
 
           it "has good title" do
-            expect(response.body).to have_selector("title", text: "test blog | test subtitle", visible: false)
+            expect(response.body).
+              to have_selector("title", text: "test blog | test subtitle", visible: false)
           end
         end
 
@@ -150,11 +164,14 @@ RSpec.describe ArticlesController, type: :controller do
           end
 
           it "has a canonical url" do
-            expect(response.body).to have_selector("head>link[href='#{blog.base_url}/2004/4']", visible: false)
+            expect(response.body).
+              to have_selector("head>link[href='#{blog.base_url}/2004/4']",
+                               visible: false)
           end
 
           it "has a good title" do
-            expect(response.body).to have_selector("title", text: "Archives for test blog", visible: false)
+            expect(response.body).
+              to have_selector("title", text: "Archives for test blog", visible: false)
           end
         end
       end
@@ -177,24 +194,34 @@ RSpec.describe ArticlesController, type: :controller do
         end
 
         it "has good feed rss link" do
-          expect(response.body).to have_selector('head>link[href="http://test.host/search/a.rss"]', visible: false)
+          expect(response.body).
+            to have_selector('head>link[href="http://test.host/search/a.rss"]',
+                             visible: false)
         end
 
         it "has good feed atom link" do
-          expect(response.body).to have_selector('head>link[href="http://test.host/search/a.atom"]', visible: false)
+          expect(response.body).
+            to have_selector('head>link[href="http://test.host/search/a.atom"]',
+                             visible: false)
         end
 
         it "has a canonical url" do
-          expect(response.body).to have_selector("head>link[href='#{blog.base_url}/search/a']", visible: false)
+          expect(response.body).
+            to have_selector("head>link[href='#{blog.base_url}/search/a']",
+                             visible: false)
         end
 
         it "has a good title" do
-          expect(response.body).to have_selector("title", text: "Results for a | test blog", visible: false)
+          expect(response.body).
+            to have_selector("title", text: "Results for a | test blog",
+                                      visible: false)
         end
 
         it "has content markdown interpret and without html tag" do
           expect(response.body).to have_selector("div") do |div|
-            expect(div).to match(%{in markdown format * we * use [ok](http://blog.ok.com) to define a link})
+            expect(div).
+              to match("in markdown format * we * use [ok](http://blog.ok.com)" \
+                       " to define a link")
           end
         end
       end
@@ -222,14 +249,16 @@ RSpec.describe ArticlesController, type: :controller do
 
           it "has the correct self-link and title" do
             expect(response.body).
-              to have_selector("head>link[href='#{blog.base_url}/archives']", visible: false).
+              to have_selector("head>link[href='#{blog.base_url}/archives']",
+                               visible: false).
               and have_selector("title", text: "Archives for test blog", visible: false)
           end
 
           it "shows the current month only once" do
             expect(response.body).
               to have_css("h3", count: 1).
-              and have_text I18n.l(articles.first.published_at, format: :letters_month_with_year)
+              and have_text I18n.l(articles.first.published_at,
+                                   format: :letters_month_with_year)
           end
         end
 
@@ -279,12 +308,16 @@ RSpec.describe ArticlesController, type: :controller do
         let!(:article) { create(:article, password: "password") }
 
         it "shows article when given correct password" do
-          get :check_password, xhr: true, params: { article: { id: article.id, password: article.password } }
+          get :check_password, xhr: true,
+                               params: { article: { id: article.id,
+                                                    password: article.password } }
           expect(response.body).not_to have_selector('input[id="article_password"]')
         end
 
         it "shows password form when given incorrect password" do
-          get :check_password, xhr: true, params: { article: { id: article.id, password: "wrong password" } }
+          get :check_password, xhr: true,
+                               params: { article: { id: article.id,
+                                                    password: "wrong password" } }
           expect(response.body).to have_selector('input[id="article_password"]')
         end
       end

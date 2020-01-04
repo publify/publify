@@ -93,14 +93,16 @@ describe "With the list of available filters", type: :model do
     describe "specific publify tags" do
       describe "flickr" do
         it "shows with default settings" do
-          result = filter_text('<publify:flickr img="31366117" size="Square" style="float:left"/>',
-                               [:macropre, :macropost])
+          result =
+            filter_text('<publify:flickr img="31366117" size="Square" style="float:left"/>',
+                        [:macropre, :macropost])
           expect(result).to eq \
             '<div style="float:left" class="flickrplugin">' \
             '<a href="http://www.flickr.com/users/scottlaird/31366117">' \
             '<img src="//photos23.flickr.com/31366117_b1a791d68e_s.jpg"' \
             ' width="75" height="75" alt="Matz" title="Matz"/></a>' \
-            "<p class=\"caption\" style=\"width:75px\">This is Matz, Ruby's creator</p></div>"
+            "<p class=\"caption\" style=\"width:75px\">This is Matz, " \
+            "Ruby's creator</p></div>"
         end
 
         it "uses default image size" do
@@ -110,7 +112,8 @@ describe "With the list of available filters", type: :model do
             '<a href="http://www.flickr.com/users/scottlaird/31366117">' \
             '<img src="//photos23.flickr.com/31366117_b1a791d68e_s.jpg"' \
             ' width="75" height="75" alt="Matz" title="Matz"/></a>' \
-            "<p class=\"caption\" style=\"width:75px\">This is Matz, Ruby's creator</p></div>"
+            "<p class=\"caption\" style=\"width:75px\">This is Matz, " \
+            "Ruby's creator</p></div>"
         end
 
         it "uses caption" do
@@ -124,7 +127,8 @@ describe "With the list of available filters", type: :model do
         end
 
         it "broken_flickr_link" do
-          result = filter_text('<publify:flickr img="notaflickrid" />', [:macropre, :macropost])
+          result = filter_text('<publify:flickr img="notaflickrid" />',
+                               [:macropre, :macropost])
           expect(result).to eq \
             "<div class='broken_flickr_link'>" \
             "`notaflickrid' could not be displayed because: <br />" \
@@ -182,27 +186,31 @@ describe "With the list of available filters", type: :model do
     describe "combining a post-macro" do
       describe "with markdown" do
         it "correctly interprets the macro" do
-          result = filter_text('<publify:flickr img="31366117" size="Square" style="float:left"/>',
-                               [:macropre, :markdown, :macropost])
+          result =
+            filter_text('<publify:flickr img="31366117" size="Square" style="float:left"/>',
+                        [:macropre, :markdown, :macropost])
           expect(result).to eq \
             '<p><div style="float:left" class="flickrplugin">' \
             '<a href="http://www.flickr.com/users/scottlaird/31366117">' \
             '<img src="//photos23.flickr.com/31366117_b1a791d68e_s.jpg"' \
             ' width="75" height="75" alt="Matz" title="Matz"/></a>' \
-            "<p class=\"caption\" style=\"width:75px\">This is Matz, Ruby's creator</p></div></p>"
+            "<p class=\"caption\" style=\"width:75px\">This is Matz, " \
+            "Ruby's creator</p></div></p>"
         end
       end
 
       describe "with textile" do
         it "correctly interprets the macro" do
-          result = filter_text('<publify:flickr img="31366117" size="Square" style="float:left"/>',
-                               [:macropre, :textile, :macropost])
+          result =
+            filter_text('<publify:flickr img="31366117" size="Square" style="float:left"/>',
+                        [:macropre, :textile, :macropost])
           expect(result).to eq \
             '<div style="float:left" class="flickrplugin">' \
             '<a href="http://www.flickr.com/users/scottlaird/31366117">' \
             '<img src="//photos23.flickr.com/31366117_b1a791d68e_s.jpg"' \
             ' width="75" height="75" alt="Matz" title="Matz"/></a>' \
-            "<p class=\"caption\" style=\"width:75px\">This is Matz, Ruby's creator</p></div>"
+            "<p class=\"caption\" style=\"width:75px\">This is Matz, " \
+            "Ruby's creator</p></div>"
         end
       end
     end

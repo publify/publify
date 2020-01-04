@@ -30,7 +30,8 @@ module PublifyPlugins
         opts[:size] = options[:size] || 48
         klass = options[:class] || "avatar gravatar"
 
-        url = +"https://www.gravatar.com/avatar.php?" << opts.map { |key, value| "#{key}=#{value}" }.sort.join("&")
+        url = +"https://www.gravatar.com/avatar.php?"
+        url << opts.map { |key, value| "#{key}=#{value}" }.sort.join("&")
         tag "img", src: url, class: klass, alt: "Gravatar"
       end
     end

@@ -35,7 +35,9 @@ RSpec.configure do |config|
   config.include PublifyCore::TestingSupport::FeedAssertions, type: :controller
 
   config.after :each, type: :controller do
-    raise "Double escaped HTML in text (#{Regexp.last_match(1)})" if response.content_type == "text/html" && response.body =~ /(&lt;[a-z]+)/
+    if response.content_type == "text/html" && response.body =~ /(&lt;[a-z]+)/
+      raise "Double escaped HTML in text (#{Regexp.last_match(1)})"
+    end
   end
 end
 

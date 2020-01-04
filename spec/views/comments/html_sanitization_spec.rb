@@ -5,7 +5,10 @@ require "rails_helper"
 RSpec.describe "comments/_comment.html.erb", type: :view do
   shared_examples_for "CommentSanitization" do
     let(:blog) { build_stubbed(:blog) }
-    let(:article) { build_stubbed(:article, created_at: Time.zone.now, published_at: Time.zone.now, blog: blog) }
+    let(:article) do
+      build_stubbed(:article, created_at: Time.zone.now,
+                              published_at: Time.zone.now, blog: blog)
+    end
     let(:base_options) do
       {
         body: "test foo <script>do_evil();</script>",
@@ -94,7 +97,8 @@ RSpec.describe "comments/_comment.html.erb", type: :view do
     it_behaves_like "CommentSanitization"
 
     def comment_options
-      { body: %{Have you ever <script lang="javascript">alert("foo");</script> been hacked?} }
+      { body: %{Have you ever <script lang="javascript">alert("foo");</script>\
+                been hacked?} }
     end
   end
 
@@ -131,7 +135,9 @@ RSpec.describe "comments/_comment.html.erb", type: :view do
 
   shared_examples_for "CommentSanitizationWithDofollow" do
     let(:blog) { create(:blog) }
-    let(:article) { create(:article, created_at: Time.zone.now, published_at: Time.zone.now, blog: blog) }
+    let(:article) do
+      create(:article, created_at: Time.zone.now, published_at: Time.zone.now, blog: blog)
+    end
     let(:base_options) do
       {
         body: "test foo <script>do_evil();</script>",
@@ -222,7 +228,8 @@ RSpec.describe "comments/_comment.html.erb", type: :view do
     it_behaves_like "CommentSanitizationWithDofollow"
 
     def comment_options
-      { body: %{Have you ever <script lang="javascript">alert("foo");</script> been hacked?} }
+      { body: %{Have you ever <script lang="javascript">alert("foo");</script> \
+                been hacked?} }
     end
   end
 
