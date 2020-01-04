@@ -44,6 +44,7 @@ Gem::Specification.new do |s|
   s.add_dependency "RedCloth", "~> 4.3.2"
   s.add_dependency "rubypants", "~> 0.7.0"
   s.add_dependency "sassc-rails", "~> 2.0"
+  s.add_dependency "sprockets", "~> 3.0"
   s.add_dependency "twitter", "~> 6.2.0"
   s.add_dependency "uuidtools", "~> 2.1.1"
 
