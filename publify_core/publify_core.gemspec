@@ -30,6 +30,7 @@ Gem::Specification.new do |s|
   s.add_dependency "devise-i18n", "~> 1.2"
   s.add_dependency "dynamic_form", "~> 1.1.4"
   s.add_dependency "fog-aws", "~> 3.2"
+  s.add_dependency "fog-core", "~> 2.2"
   s.add_dependency "jquery-rails", "~> 4.3.1"
   s.add_dependency "jquery-ui-rails", "~> 6.0.1"
   s.add_dependency "kaminari", "~> 1.0"
@@ -38,6 +39,7 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", "~> 5.2.0"
   s.add_dependency "rails-timeago", "~> 2.0"
   s.add_dependency "rails_autolink", "~> 1.1.0"
+  s.add_dependency "rack", ">= 2.0.8"
   s.add_dependency "recaptcha", ["~> 5.0"]
   s.add_dependency "RedCloth", "~> 4.3.2"
   s.add_dependency "rubypants", "~> 0.7.0"
