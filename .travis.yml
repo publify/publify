@@ -1,18 +1,30 @@
-sudo: false
 language: ruby
-cache: bundler
+
+dist: xenial
+
+services:
+  - mysql
+  - postgresql
+
+before_script:
+  - cp config/database.yml.$DB config/database.yml
+  - bundle exec rake db:create db:migrate
+
+cache:
+  bundler: true
+
+bundler_args: --without development
 
 rvm:
   - 2.4
   - 2.5
   - 2.6
+  - 2.7
+
 env:
   - DB=sqlite
   - DB=mysql
   - DB=postgresql
-services:
-  - mysql
-  - postgresql
 
 jobs:
   include:
@@ -21,16 +33,6 @@ jobs:
       before_script: []
       script:
         - bundle exec rake lint
-
-bundler_args: --without development
-before_script:
-  - cp config/database.yml.$DB config/database.yml
-  - bundle exec rake db:create db:migrate
-script:
-  - bundle exec rake
-
-#after_success:
-#  - bundle exec codeclimate-test-reporter
 
 branches:
   only:
