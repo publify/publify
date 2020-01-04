@@ -25,7 +25,10 @@ describe Content, type: :model do
     end
 
     describe "#short_url" do
-      let(:redirect) { build_stubbed(:redirect, from_path: "foo", to_path: "bar", blog: blog) }
+      let(:redirect) do
+        build_stubbed(:redirect, from_path: "foo", to_path: "bar",
+                                 blog: blog)
+      end
       let(:content) do
         build_stubbed(:content,
                       blog: blog,
@@ -92,7 +95,10 @@ describe Content, type: :model do
         context "with an article published_at" do
           let(:params) { { published_at: "2012-02" } }
           let!(:article) { create(:article) }
-          let!(:match_article) { create(:article, published_at: DateTime.new(2012, 2, 13).in_time_zone) }
+          let!(:match_article) do
+            create(:article,
+                   published_at: DateTime.new(2012, 2, 13).in_time_zone)
+          end
 
           it { expect(subject).to eq([match_article]) }
         end

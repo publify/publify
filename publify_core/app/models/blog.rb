@@ -55,7 +55,8 @@ class Blog < ApplicationRecord
   setting :default_allow_pings, :boolean, false
   setting :default_allow_comments, :boolean, true
   setting :default_moderate_comments, :boolean, false
-  setting :show_extended_on_rss, :boolean, true # deprecated but still needed for backward compatibility
+  # deprecated but still needed for backward compatibility
+  setting :show_extended_on_rss, :boolean, true
   setting :hide_extended_on_rss, :boolean, false
   setting :theme, :string, "plain"
   setting :plugin_avatar, :string, ""
@@ -92,31 +93,37 @@ class Blog < ApplicationRecord
     /* SITE */
     Software: Publify [https://publify.github.io/] #{PublifyCore::VERSION}
   TEXT
-  setting :index_categories, :boolean, true # deprecated but still needed for backward compatibility
+  # deprecated but still needed for backward compatibility
+  setting :index_categories, :boolean, true
   setting :unindex_categories, :boolean, false
-  setting :index_tags, :boolean, true # deprecated but still needed for backward compatibility
+  # deprecated but still needed for backward compatibility
+  setting :index_tags, :boolean, true
   setting :unindex_tags, :boolean, false
   setting :admin_display_elements, :integer, 10
   setting :google_verification, :string, ""
-  setting :nofollowify, :boolean, true # deprecated but still needed for backward compatibility
+  # deprecated but still needed for backward compatibility
+  setting :nofollowify, :boolean, true
   setting :dofollowify, :boolean, false
   setting :use_meta_keyword, :boolean, true
-  setting :home_title_template, :string, "%blog_name% | %blog_subtitle%" # spec OK
-  setting :home_desc_template, :string, "%blog_name% | %blog_subtitle% | %meta_keywords%" # OK
+  setting :home_title_template, :string, "%blog_name% | %blog_subtitle%"
+  setting :home_desc_template, :string, "%blog_name% | %blog_subtitle% | %meta_keywords%"
   setting :article_title_template, :string, "%title% | %blog_name%"
   setting :article_desc_template, :string, "%excerpt%"
   setting :page_title_template, :string, "%title% | %blog_name%"
   setting :page_desc_template, :string, "%excerpt%"
   setting :paginated_title_template, :string, "%blog_name% | %blog_subtitle% %page%"
-  setting :paginated_desc_template, :string, "%blog_name% | %blog_subtitle% | %meta_keywords% %page%"
+  setting :paginated_desc_template, :string,
+          "%blog_name% | %blog_subtitle% | %meta_keywords% %page%"
   setting :tag_title_template, :string, "Tag: %name% | %blog_name% %page%"
   setting :tag_desc_template, :string, "%name% | %blog_name% | %blog_subtitle% %page%"
   setting :author_title_template, :string, "%author% | %blog_name%"
   setting :author_desc_template, :string, "%author% | %blog_name% | %blog_subtitle%"
   setting :archives_title_template, :string, "Archives for %blog_name% %date% %page%"
-  setting :archives_desc_template, :string, "Archives for %blog_name% %date% %page% %blog_subtitle%"
+  setting :archives_desc_template, :string,
+          "Archives for %blog_name% %date% %page% %blog_subtitle%"
   setting :search_title_template, :string, "Results for %search% | %blog_name% %page%"
-  setting :search_desc_template, :string, "Results for %search% | %blog_name% | %blog_subtitle% %page%"
+  setting :search_desc_template, :string,
+          "Results for %search% | %blog_name% | %blog_subtitle% %page%"
   setting :statuses_title_template, :string, "Notes | %blog_name% %page%"
   setting :statuses_desc_template, :string, "Notes | %blog_name% | %blog_subtitle% %page%"
   setting :status_title_template, :string, "%body% | %blog_name%"
@@ -171,7 +178,8 @@ class Blog < ApplicationRecord
                         else
                           base_url
                         end
-        url_generated += "/#{options}" # They asked for 'url_for "/some/path"', so return it unedited.
+        # They asked for 'url_for "/some/path"', so return it unedited.
+        url_generated += "/#{options}"
         url_generated += "##{extra_params[:anchor]}" if extra_params[:anchor]
         url_generated
       when Hash
@@ -180,7 +188,9 @@ class Blog < ApplicationRecord
                                              host: host_with_port,
                                              script_name: root_path)
         cache_key = merged_opts.values.prepend("blog-urlfor-withbaseurl").join("-")
-        Rails.cache.write(cache_key, super(merged_opts)) unless Rails.cache.exist?(cache_key)
+        unless Rails.cache.exist?(cache_key)
+          Rails.cache.write(cache_key, super(merged_opts))
+        end
         Rails.cache.read(cache_key)
       else
         raise "Invalid URL in url_for: #{options.inspect}"
@@ -219,9 +229,13 @@ class Blog < ApplicationRecord
   end
 
   def permalink_has_identifier
-    errors.add(:base, I18n.t("errors.permalink_need_a_title")) unless /(%title%)/.match?(permalink_format)
+    unless /(%title%)/.match?(permalink_format)
+      errors.add(:base, I18n.t("errors.permalink_need_a_title"))
+    end
 
-    errors.add(:permalink_format, I18n.t("errors.cant_end_with_rss_or_atom")) if /\.(atom|rss)$/.match?(permalink_format)
+    if /\.(atom|rss)$/.match?(permalink_format)
+      errors.add(:permalink_format, I18n.t("errors.cant_end_with_rss_or_atom"))
+    end
   end
 
   def root_path
@@ -257,7 +271,9 @@ class Blog < ApplicationRecord
     unless @split_base_url
       raise "Invalid base_url: #{base_url}" unless base_url =~ %r{(https?)://([^/]*)(.*)}
 
-      @split_base_url = { protocol: Regexp.last_match[1], host_with_port: Regexp.last_match[2], root_path: Regexp.last_match[3].gsub(%r{/$}, "") }
+      @split_base_url = { protocol: Regexp.last_match[1],
+                          host_with_port: Regexp.last_match[2],
+                          root_path: Regexp.last_match[3].gsub(%r{/$}, "") }
     end
     @split_base_url
   end

@@ -57,7 +57,8 @@ describe CommentsController, type: :controller do
   describe "#preview" do
     context "when using xhr post" do
       before do
-        post :preview, xhr: true, params: { comment: comment_params, article_id: article.id }
+        post :preview, xhr: true, params: { comment: comment_params,
+                                            article_id: article.id }
       end
 
       it "assigns a comment with the given parameters" do

@@ -9,14 +9,16 @@ describe Comment, type: :model do
   let(:published_article) { build_stubbed(:article, published_at: 1.hour.ago, blog: blog) }
 
   def valid_comment(options = {})
-    Comment.new({ author: "Bob", article: published_article, body: "nice post", ip: "1.2.3.4" }.merge(options))
+    Comment.new({ author: "Bob", article: published_article, body: "nice post",
+                  ip: "1.2.3.4" }.merge(options))
   end
 
   describe "#permalink_url" do
     let(:comment) { build_stubbed(:comment) }
 
     it "renders permalink to comment in public part" do
-      expect(comment.permalink_url).to eq("#{comment.article.permalink_url}#comment-#{comment.id}")
+      expect(comment.permalink_url).
+        to eq("#{comment.article.permalink_url}#comment-#{comment.id}")
     end
   end
 
@@ -36,7 +38,8 @@ describe Comment, type: :model do
     it "does not save when article comment window is closed" do
       article = build :article, published_at: 1.year.ago
       article.blog.sp_article_auto_close = 30
-      comment = build(:comment, author: "Old Spammer", body: "Old trackback body", article: article)
+      comment = build(:comment, author: "Old Spammer", body: "Old trackback body",
+                                article: article)
       expect(comment.save).to be_falsey
       expect(comment.errors[:article_id]).not_to be_empty
     end
@@ -102,14 +105,23 @@ describe Comment, type: :model do
     end
 
     it "does not define spam a comment rbl with lookup succeeds" do
-      comment = valid_comment(author: "Not a Spammer", body: "Useful commentary!", url: "http://www.bofh.org.uk")
+      comment = valid_comment(author: "Not a Spammer", body: "Useful commentary!",
+                              url: "http://www.bofh.org.uk")
       comment.classify_content
       expect(comment).not_to be_spammy
       expect(comment).not_to be_status_confirmed
     end
 
     it "rejects spam with uri limit" do
-      comment = valid_comment(author: "Yet Another Spammer", body: %( <a href="http://www.one.com/">one</a> <a href="http://www.two.com/">two</a> <a href="http://www.three.com/">three</a> <a href="http://www.four.com/">four</a> ), url: "http://www.uri-limit.com")
+      comment =
+        valid_comment(author: "Yet Another Spammer",
+                      body: <<~HTML,
+                        <a href="http://www.one.com/">one</a>
+                        <a href="http://www.two.com/">two</a>
+                        <a href="http://www.three.com/">three</a>
+                        <a href="http://www.four.com/">four</a>
+                      HTML
+                      url: "http://www.uri-limit.com")
       comment.classify_content
       expect(comment).to be_spammy
       expect(comment).not_to be_status_confirmed
@@ -242,7 +254,8 @@ describe Comment, type: :model do
     let!(:comment_5) { create(:comment, body: "5", created_at: date + 5.days) }
 
     it "respond only 5 last_published" do
-      expect(described_class.last_published).to eq([comment_6, comment_5, comment_4, comment_3, comment_2])
+      expect(described_class.last_published).to eq([comment_6, comment_5, comment_4,
+                                                    comment_3, comment_2])
     end
   end
 

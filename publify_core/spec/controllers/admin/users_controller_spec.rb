@@ -68,15 +68,17 @@ describe Admin::UsersController, type: :controller do
     end
 
     it "redirects to index" do
-      post :update, params: { id: contributor.id, user: { login: "errand",
-                                                          email: "corey@test.com", password: "testpass",
-                                                          password_confirmation: "testpass" } }
+      post :update, params: { id: contributor.id,
+                              user: { login: "errand",
+                                      email: "corey@test.com", password: "testpass",
+                                      password_confirmation: "testpass" } }
       expect(response).to redirect_to(action: "index")
     end
 
     it "skips blank passwords" do
-      post :update, params: { id: contributor.id, user: { login: "errand",
-                                                          password: "", password_confirmation: "" } }
+      post :update, params: { id: contributor.id,
+                              user: { login: "errand",
+                                      password: "", password_confirmation: "" } }
       contributor.reload
       aggregate_failures do
         expect(response).to redirect_to(action: "index")

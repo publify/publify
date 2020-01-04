@@ -34,7 +34,10 @@ describe "articles/feedback_atom_feed.atom.builder", type: :view do
   end
 
   describe "with a comment with problematic characters" do
-    let!(:comment) { create(:comment, article: article, body: "&eacute;coute! 4 < 2, non?") }
+    let!(:comment) do
+      create(:comment, article: article,
+                       body: "&eacute;coute! 4 < 2, non?")
+    end
 
     before do
       assign(:article, article)

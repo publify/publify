@@ -82,13 +82,13 @@ describe "articles/index_atom_feed.atom.builder", type: :view do
     describe "on a blog that hides extended content in feeds" do
       let(:blog) { create :blog, hide_extended_on_rss: true }
 
-      it "shows only the body content in the feed if there is no excerpt" do
+      it "shows the body content if there is no excerpt" do
         render
         expect(rendered_entry.content).to match(/public info/)
         expect(rendered_entry.content).not_to match(/public info.*and more/m)
       end
 
-      it "shows the excerpt instead of the body content in the feed, if there is an excerpt" do
+      it "shows the excerpt but no body content, if there is an excerpt" do
         @article.excerpt = "excerpt"
         render
         expect(rendered_entry.content).to match(/excerpt/)
@@ -135,8 +135,10 @@ describe "articles/index_atom_feed.atom.builder", type: :view do
       let(:blog) { create :blog, hide_extended_on_rss: false }
 
       it "shows only a link to the article" do
-        expect(rendered_entry.content).to eq(
-          "<p>This article is password protected. Please <a href='#{@article.permalink_url}'>fill in your password</a> to read it</p>")
+        expect(rendered_entry.content).
+          to eq "<p>This article is password protected. Please" \
+                 " <a href='#{@article.permalink_url}'>fill in your password</a>" \
+                 " to read it</p>"
       end
 
       it "does not have a summary element in addition to the content element" do
@@ -152,8 +154,9 @@ describe "articles/index_atom_feed.atom.builder", type: :view do
       let(:blog) { create :blog, hide_extended_on_rss: true }
 
       it "shows only a link to the article" do
-        expect(rendered_entry.content).to eq(
-          "<p>This article is password protected. Please <a href='#{@article.permalink_url}'>fill in your password</a> to read it</p>")
+        expect(rendered_entry.content).
+          to eq "<p>This article is password protected. Please" \
+          " <a href='#{@article.permalink_url}'>fill in your password</a> to read it</p>"
       end
 
       it "does not have a summary element in addition to the content element" do

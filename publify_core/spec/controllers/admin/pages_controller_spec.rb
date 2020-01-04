@@ -56,7 +56,8 @@ describe Admin::PagesController, type: :controller do
         before do
           post :create, params: {
             page: {
-              name: "new_page", title: "New Page Title", body: "Emphasis _mine_, arguments *strong*"
+              name: "new_page", title: "New Page Title", body: "Emphasis _mine_,
+              arguments *strong*"
             },
           }
         end
@@ -101,7 +102,11 @@ describe Admin::PagesController, type: :controller do
 
     context "should update a post" do
       before do
-        post :update, params: { id: page.id, page: { name: "markdown-page", title: "Markdown Page", body: "Adding a [link](https://publify.github.io/) here" } }
+        post :update,
+             params: { id: page.id,
+                       page: { name: "markdown-page",
+                               title: "Markdown Page",
+                               body: "Adding a [link](https://publify.github.io/) here" } }
       end
 
       it { expect(response).to redirect_to(action: :index) }

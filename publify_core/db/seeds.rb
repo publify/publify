@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+# This file should contain all the record creation needed to seed the database
+# with its default values.
+# The data can then be loaded with the rake db:seed (or created alongside the
+# db with db:setup).
 #
 # Examples:
 #
@@ -18,4 +20,6 @@ unless blog.sidebars.any?
   MetaSidebar.create!(active_position: 4, blog_id: blog.id)
 end
 
-Dir.mkdir("#{::Rails.root}/public/files") unless File.directory?("#{::Rails.root}/public/files")
+unless File.directory?("#{::Rails.root}/public/files")
+  Dir.mkdir("#{::Rails.root}/public/files")
+end

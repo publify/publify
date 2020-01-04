@@ -52,7 +52,8 @@ class SidebarField
 
   class TextAreaField < self
     def input_html(sidebar)
-      html_options = { "rows" => "10", "class" => "form-control" }.update(options.stringify_keys)
+      html_options = { "rows" => "10", "class" => "form-control" }.
+        update(options.stringify_keys)
       text_area_tag(input_name(sidebar), current_value(sidebar), html_options)
     end
   end
@@ -65,7 +66,8 @@ class SidebarField
                                         value,
                                         value == current_value(sidebar),
                                         options)
-        content_tag("div", content_tag("label", radio_button + label_for(choice)), class: "radio")
+        content_tag("div", content_tag("label", radio_button + label_for(choice)),
+                    class: "radio")
       end
       safe_join(choices)
     end
@@ -83,7 +85,8 @@ class SidebarField
     def line_html(sidebar)
       content = hidden_field_tag(input_name(sidebar), 0) +
         content_tag("label",
-                    check_box_tag(input_name(sidebar), 1, current_value(sidebar), options) + label)
+                    check_box_tag(input_name(sidebar), 1,
+                                  current_value(sidebar), options) + label)
       content_tag("div", content, class: "checkbox")
     end
 

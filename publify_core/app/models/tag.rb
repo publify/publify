@@ -49,7 +49,8 @@ class Tag < ApplicationRecord
   end
 
   def self.collection_to_string(tags)
-    tags.map(&:display_name).sort.map { |name| / /.match?(name) ? "\"#{name}\"" : name }.join ", "
+    tags.map(&:display_name).sort.
+      map { |name| / /.match?(name) ? "\"#{name}\"" : name }.join ", "
   end
 
   def published_contents

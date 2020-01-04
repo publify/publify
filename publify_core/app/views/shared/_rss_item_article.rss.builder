@@ -2,7 +2,8 @@
 
 xm.item do
   if item.is_a?(Note)
-    xm.title truncate(item.html(:body).strip_html, length: 80, separator: " ", omissions: "...")
+    xm.title truncate(item.html(:body).strip_html, length: 80, separator: " ",
+                                                   omissions: "...")
   else
     xm.title item.title
   end

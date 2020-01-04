@@ -49,6 +49,7 @@ class Admin::TagsController < Admin::BaseController
   end
 
   def fetch_tags
-    @tags = Tag.order("display_name").page(params[:page]).per(this_blog.admin_display_elements)
+    @tags = Tag.order("display_name").page(params[:page]).
+      per(this_blog.admin_display_elements)
   end
 end

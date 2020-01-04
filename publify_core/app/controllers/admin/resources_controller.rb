@@ -18,7 +18,8 @@ class Admin::ResourcesController < Admin::BaseController
 
   def index
     @r = Resource.new
-    @resources = Resource.order("created_at DESC").page(params[:page]).per(this_blog.admin_display_elements)
+    @resources = Resource.order("created_at DESC").page(params[:page]).
+      per(this_blog.admin_display_elements)
   end
 
   def destroy

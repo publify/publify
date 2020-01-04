@@ -9,11 +9,13 @@ describe ArticlesController, type: :routing do
     end
 
     it "recognizes and generates #index with rss format" do
-      expect(get: "/articles.rss").to route_to(controller: "articles", action: "index", format: "rss")
+      expect(get: "/articles.rss").
+        to route_to(controller: "articles", action: "index", format: "rss")
     end
 
     it "recognizes and generates #index with atom format" do
-      expect(get: "/articles.atom").to route_to(controller: "articles", action: "index", format: "atom")
+      expect(get: "/articles.atom").
+        to route_to(controller: "articles", action: "index", format: "atom")
     end
   end
 

@@ -21,7 +21,8 @@ describe Admin::FeedbackController, type: :controller do
 
     it "redirects to feedback from article" do
       delete "destroy", params: { id: feedback_from_own_article.id }
-      expect(response).to redirect_to(controller: "admin/feedback", action: "article", id: feedback_from_own_article.article.id)
+      expect(response).to redirect_to(controller: "admin/feedback", action: "article",
+                                      id: feedback_from_own_article.article.id)
     end
   end
 
@@ -45,7 +46,8 @@ describe Admin::FeedbackController, type: :controller do
         expect do
           Feedback.find(feedback_from_not_own_article.id)
         end.to raise_error(ActiveRecord::RecordNotFound)
-        expect(response).to redirect_to(controller: "admin/feedback", action: "article", id: feedback_from_not_own_article.article.id)
+        expect(response).to redirect_to(controller: "admin/feedback", action: "article",
+                                        id: feedback_from_not_own_article.article.id)
       end
     end
 
@@ -75,7 +77,10 @@ describe Admin::FeedbackController, type: :controller do
       context "unapproved" do
         let(:params) { { only: "unapproved" } }
 
-        it { expect(assigns(:feedback)).to match_array([unapproved, presumed_ham, presumed_spam]) }
+        it {
+          expect(assigns(:feedback)).to match_array([unapproved, presumed_ham,
+                                                     presumed_spam])
+        }
       end
 
       context "spam" do
@@ -143,7 +148,8 @@ describe Admin::FeedbackController, type: :controller do
 
     describe "create action" do
       def base_comment(options = {})
-        { "body" => "a new comment", "author" => "Me", "url" => "https://bar.com/", "email" => "foo@bar.com" }.merge(options)
+        { "body" => "a new comment", "author" => "Me", "url" => "https://bar.com/",
+          "email" => "foo@bar.com" }.merge(options)
       end
 
       describe "by get access" do
@@ -268,7 +274,8 @@ describe Admin::FeedbackController, type: :controller do
                                  comment: { author: "Bob Foo2",
                                             url: "http://fakeurl.com",
                                             body: "updated comment" } }
-        expect(response).to redirect_to(action: "article", id: feedback_from_own_article.article.id)
+        expect(response).to redirect_to(action: "article",
+                                        id: feedback_from_own_article.article.id)
         feedback_from_own_article.reload
         expect(feedback_from_own_article.body).to eq("updated comment")
       end
@@ -309,73 +316,85 @@ describe Admin::FeedbackController, type: :controller do
 
       it "mark presumed spam comments as spam" do
         comment = create(:comment, state: :presumed_spam)
-        post :bulkops, params: { bulkop_top: "Mark Checked Items as Spam", feedback_check: { comment.id.to_s => "on" } }
+        post :bulkops, params: { bulkop_top: "Mark Checked Items as Spam",
+                                 feedback_check: { comment.id.to_s => "on" } }
         expect(Feedback.find(comment.id)).to be_spam
       end
 
       it "mark confirmed spam comments as spam" do
         comment = create(:comment, state: :spam)
-        post :bulkops, params: { bulkop_top: "Mark Checked Items as Spam", feedback_check: { comment.id.to_s => "on" } }
+        post :bulkops, params: { bulkop_top: "Mark Checked Items as Spam",
+                                 feedback_check: { comment.id.to_s => "on" } }
         expect(Feedback.find(comment.id)).to be_spam
       end
 
       it "mark presumed ham comments as spam" do
         comment = create(:comment, state: :presumed_ham)
-        post :bulkops, params: { bulkop_top: "Mark Checked Items as Spam", feedback_check: { comment.id.to_s => "on" } }
+        post :bulkops, params: { bulkop_top: "Mark Checked Items as Spam",
+                                 feedback_check: { comment.id.to_s => "on" } }
         expect(Feedback.find(comment.id)).to be_spam
       end
 
       it "mark ham comments as spam" do
         comment = create(:comment, state: :ham)
-        post :bulkops, params: { bulkop_top: "Mark Checked Items as Spam", feedback_check: { comment.id.to_s => "on" } }
+        post :bulkops, params: { bulkop_top: "Mark Checked Items as Spam",
+                                 feedback_check: { comment.id.to_s => "on" } }
         expect(Feedback.find(comment.id)).to be_spam
       end
 
       it "mark presumed spam comments as ham" do
         comment = create(:comment, state: :presumed_spam)
-        post :bulkops, params: { bulkop_top: "Mark Checked Items as Ham", feedback_check: { comment.id.to_s => "on" } }
+        post :bulkops, params: { bulkop_top: "Mark Checked Items as Ham",
+                                 feedback_check: { comment.id.to_s => "on" } }
         expect(Feedback.find(comment.id)).to be_ham
       end
 
       it "mark confirmed spam comments as ham" do
         comment = create(:comment, state: :spam)
-        post :bulkops, params: { bulkop_top: "Mark Checked Items as Ham", feedback_check: { comment.id.to_s => "on" } }
+        post :bulkops, params: { bulkop_top: "Mark Checked Items as Ham",
+                                 feedback_check: { comment.id.to_s => "on" } }
         expect(Feedback.find(comment.id)).to be_ham
       end
 
       it "mark presumed ham comments as ham" do
         comment = create(:comment, state: :presumed_ham)
-        post :bulkops, params: { bulkop_top: "Mark Checked Items as Ham", feedback_check: { comment.id.to_s => "on" } }
+        post :bulkops, params: { bulkop_top: "Mark Checked Items as Ham",
+                                 feedback_check: { comment.id.to_s => "on" } }
         expect(Feedback.find(comment.id)).to be_ham
       end
 
       it "mark ham comments as ham" do
         comment = create(:comment, state: :ham)
-        post :bulkops, params: { bulkop_top: "Mark Checked Items as Ham", feedback_check: { comment.id.to_s => "on" } }
+        post :bulkops, params: { bulkop_top: "Mark Checked Items as Ham",
+                                 feedback_check: { comment.id.to_s => "on" } }
         expect(Feedback.find(comment.id)).to be_ham
       end
 
       it "confirms presumed spam comments as spam" do
         comment = create(:comment, state: :presumed_spam)
-        post :bulkops, params: { bulkop_top: "Confirm Classification of Checked Items", feedback_check: { comment.id.to_s => "on" } }
+        post :bulkops, params: { bulkop_top: "Confirm Classification of Checked Items",
+                                 feedback_check: { comment.id.to_s => "on" } }
         expect(Feedback.find(comment.id)).to be_spam
       end
 
       it "confirms confirmed spam comments as spam" do
         comment = create(:comment, state: :spam)
-        post :bulkops, params: { bulkop_top: "Confirm Classification of Checked Items", feedback_check: { comment.id.to_s => "on" } }
+        post :bulkops, params: { bulkop_top: "Confirm Classification of Checked Items",
+                                 feedback_check: { comment.id.to_s => "on" } }
         expect(Feedback.find(comment.id)).to be_spam
       end
 
       it "confirms presumed ham comments as ham" do
         comment = create(:comment, state: :presumed_ham)
-        post :bulkops, params: { bulkop_top: "Confirm Classification of Checked Items", feedback_check: { comment.id.to_s => "on" } }
+        post :bulkops, params: { bulkop_top: "Confirm Classification of Checked Items",
+                                 feedback_check: { comment.id.to_s => "on" } }
         expect(Feedback.find(comment.id)).to be_ham
       end
 
       it "confirms ham comments as ham" do
         comment = create(:comment, state: :ham)
-        post :bulkops, params: { bulkop_top: "Confirm Classification of Checked Items", feedback_check: { comment.id.to_s => "on" } }
+        post :bulkops, params: { bulkop_top: "Confirm Classification of Checked Items",
+                                 feedback_check: { comment.id.to_s => "on" } }
         expect(Feedback.find(comment.id)).to be_ham
       end
     end

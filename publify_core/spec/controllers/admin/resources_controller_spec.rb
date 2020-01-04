@@ -99,7 +99,8 @@ describe Admin::ResourcesController, type: :controller do
       it "does not attempt to process the image" do
         post :upload, params: { upload: upload }
         result = assigns(:up)
-        expect(result.errors[:upload]).to match_array ["has MIME type mismatch", "can't be blank"]
+        expect(result.errors[:upload]).
+          to match_array ["has MIME type mismatch", "can't be blank"]
       end
 
       it "sets the flash to failure" do
@@ -122,7 +123,8 @@ describe Admin::ResourcesController, type: :controller do
       it "does not attempt to process a new fake image Resource" do
         post :upload, params: { upload: upload }
         result = assigns(:up)
-        expect(result.errors[:upload]).to match_array ["has MIME type mismatch", "can't be blank"]
+        expect(result.errors[:upload]).
+          to match_array ["has MIME type mismatch", "can't be blank"]
       end
 
       it "sets the flash to failure" do
@@ -145,7 +147,8 @@ describe Admin::ResourcesController, type: :controller do
       it "does not attempt to process a new fake image Resource" do
         post :upload, params: { upload: upload }
         result = assigns(:up)
-        expect(result.errors[:upload]).to match_array ["has MIME type mismatch", "can't be blank"]
+        expect(result.errors[:upload]).
+          to match_array ["has MIME type mismatch", "can't be blank"]
       end
 
       it "sets the flash to failure" do

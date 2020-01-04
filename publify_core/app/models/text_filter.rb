@@ -59,7 +59,11 @@ class TextFilter
     filters.each { |f| help.push(filter_map[f.to_s]) }
 
     help_text = help.map do |f|
-      f.help_text.blank? ? "" : "<h3>#{f.display_name}</h3>\n#{BlueCloth.new(f.help_text).to_html}\n"
+      if f.help_text.blank?
+        ""
+      else
+        "<h3>#{f.display_name}</h3>\n#{BlueCloth.new(f.help_text).to_html}\n"
+      end
     end
 
     help_text.join("\n")

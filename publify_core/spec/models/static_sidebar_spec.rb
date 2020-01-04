@@ -14,6 +14,8 @@ describe "Given a new StaticSidebar", type: :model do
   end
 
   it "description should be set correctly" do
-    expect(@sb.description).to eq("Static content, like links to other sites, advertisements, or blog meta-information")
+    expect(@sb.description).
+      to eq "Static content, like links to other sites, advertisements," \
+            " or blog meta-information"
   end
 end

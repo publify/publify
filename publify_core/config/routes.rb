@@ -3,10 +3,13 @@
 Rails.application.routes.draw do
   devise_for :users
   # TODO: use only in archive sidebar. See how made other system
-  get ":year/:month", to: "articles#index", year: /\d{4}/, month: /\d{1,2}/, as: "articles_by_month", format: false
-  get ":year/:month/page/:page", to: "articles#index", year: /\d{4}/, month: /\d{1,2}/, as: "articles_by_month_page", format: false
+  get ":year/:month", to: "articles#index", year: /\d{4}/, month: /\d{1,2}/,
+                      as: "articles_by_month", format: false
+  get ":year/:month/page/:page", to: "articles#index", year: /\d{4}/, month: /\d{1,2}/,
+                                 as: "articles_by_month_page", format: false
   get ":year", to: "articles#index", year: /\d{4}/, as: "articles_by_year", format: false
-  get ":year/page/:page", to: "articles#index", year: /\d{4}/, as: "articles_by_year_page", format: false
+  get ":year/page/:page", to: "articles#index", year: /\d{4}/,
+                          as: "articles_by_year_page", format: false
 
   get "articles.:format", to: "articles#index", format: /rss|atom/, as: "articles_feed"
 
@@ -23,7 +26,8 @@ Rails.application.routes.draw do
 
   # ArticlesController
   get "/live_search/", to: "articles#live_search", as: :live_search_articles, format: false
-  get "/search/:q(.:format)/page/:page", to: "articles#search", as: "search", defaults: { page: 1 }
+  get "/search/:q(.:format)/page/:page", to: "articles#search",
+                                         as: "search", defaults: { page: 1 }
   get "/search(/:q(.:format))", to: "articles#search"
   get "/search/", to: "articles#search", as: "search_base", format: false
   get "/archives/", to: "articles#archives", format: false
@@ -75,7 +79,8 @@ Rails.application.routes.draw do
   namespace :admin do
     root "dashboard#index", as: "dashboard"
 
-    resources :content, only: [:index, :new, :edit, :create, :update, :destroy], format: false do
+    resources :content, only: [:index, :new, :edit, :create, :update, :destroy],
+                        format: false do
       collection do
         get "auto_complete_for_article_keywords"
         post "autosave"
@@ -93,11 +98,14 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :notes, only: [:index, :show, :edit, :create, :update, :destroy], format: false
+    resources :notes, only: [:index, :show, :edit, :create, :update, :destroy],
+                      format: false
 
-    resources :pages, only: [:index, :new, :edit, :create, :update, :destroy], format: false
+    resources :pages, only: [:index, :new, :edit, :create, :update, :destroy],
+                      format: false
 
-    resources :post_types, only: [:index, :edit, :create, :update, :destroy], format: false
+    resources :post_types, only: [:index, :edit, :create, :update, :destroy],
+                           format: false
 
     resources :profiles, only: [:index, :update], format: false
 

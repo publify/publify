@@ -5,7 +5,8 @@ require "rails_helper"
 describe String do
   describe "#to_permalink" do
     it "builds a nice permalink from an accentuated string" do
-      expect("L'été s'ra chaud, l'été s'ra chaud".to_permalink).to eq("l-ete-s-ra-chaud-l-ete-s-ra-chaud")
+      expect("L'été s'ra chaud, l'été s'ra chaud".to_permalink).
+        to eq("l-ete-s-ra-chaud-l-ete-s-ra-chaud")
     end
   end
 

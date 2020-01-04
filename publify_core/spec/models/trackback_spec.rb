@@ -3,7 +3,7 @@
 require "rails_helper"
 require "publify_core/testing_support/dns_mock"
 
-describe Trackback, "With the various trackback filters loaded and DNS mocked out appropriately", type: :model do
+describe Trackback, type: :model do
   let(:article) { create(:article) }
 
   before do
@@ -35,7 +35,8 @@ describe Trackback, "With the various trackback filters loaded and DNS mocked ou
   end
 
   it "Trackbacks with a spammy link in the excerpt should be rejected" do
-    tb = article.trackbacks.build(ham_params.merge(excerpt: '<a href="http://chinaaircatering.com">spam</a>'))
+    tb = article.trackbacks.
+      build(ham_params.merge(excerpt: '<a href="http://chinaaircatering.com">spam</a>'))
     tb.classify_content
     expect(tb).to be_spammy
   end

@@ -39,7 +39,9 @@ class ArticlesController < ContentController
   end
 
   def search
-    @articles = this_blog.articles_matching(params[:q], page: params[:page], per_page: this_blog.per_page(params[:format]))
+    @articles = this_blog.articles_matching(params[:q],
+                                            page: params[:page],
+                                            per_page: this_blog.per_page(params[:format]))
     return error! if @articles.empty?
 
     @page_title = this_blog.search_title_template.to_title(@articles, this_blog, params)
@@ -85,7 +87,10 @@ class ArticlesController < ContentController
     # because it's changed
     ["%year%/%month%/%day%/%title%", "articles/%year%/%month%/%day%/%title%"].each do |part|
       @article = factory.match_permalink_format(from, part)
-      return redirect_to URI.parse(@article.permalink_url).path, status: :moved_permanently if @article
+      if @article
+        return redirect_to URI.parse(@article.permalink_url).path,
+                           status: :moved_permanently
+      end
     end
 
     r = Redirect.find_by!(from_path: from)

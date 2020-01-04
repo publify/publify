@@ -45,7 +45,8 @@ class Admin::SidebarController < Admin::BaseController
         # IT'S OVER NINE THOUSAND! considering we'll never reach 9K Sidebar
         # instances or Sidebar specializations
         sidebar = if sidebar_id >= 9000
-                    SidebarRegistry.available_sidebars[sidebar_id - 9000].new(blog: this_blog)
+                    SidebarRegistry.available_sidebars[sidebar_id - 9000].
+                      new(blog: this_blog)
                   else
                     Sidebar.valid.find(sidebar_id)
                   end

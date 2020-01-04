@@ -13,49 +13,69 @@ describe Article, type: :model do
 
   describe "#permalink_url" do
     describe "with hostname" do
-      let(:article) { blog.articles.build(permalink: "article-3", published_at: Time.utc(2004, 6, 1)) }
+      let(:article) do
+        blog.articles.build(permalink: "article-3",
+                            published_at: Time.utc(2004, 6, 1))
+      end
 
       it "includes the full blog url" do
         article.publish
-        expect(article.permalink_url(nil, false)).to eq "#{blog.base_url}/2004/06/01/article-3"
+        expect(article.permalink_url(nil, false)).
+          to eq "#{blog.base_url}/2004/06/01/article-3"
       end
     end
 
     describe "without hostname" do
-      let(:article) { blog.articles.build(permalink: "article-3", published_at: Time.utc(2004, 6, 1)) }
+      let(:article) do
+        blog.articles.build(permalink: "article-3",
+                            published_at: Time.utc(2004, 6, 1))
+      end
 
       it "includes just the blog root path" do
         article.publish
-        expect(article.permalink_url(nil, true)).to eq "#{blog.root_path}/2004/06/01/article-3"
+        expect(article.permalink_url(nil, true)).
+          to eq "#{blog.root_path}/2004/06/01/article-3"
       end
     end
 
     # NOTE: URLs must not have any multibyte characters in them. The
     # browser may display them differently, though.
     describe "with a multibyte permalink" do
-      let(:article) { blog.articles.build(permalink: "ルビー", published_at: Time.utc(2004, 6, 1)) }
+      let(:article) do
+        blog.articles.build(permalink: "ルビー",
+                            published_at: Time.utc(2004, 6, 1))
+      end
 
       it "escapes the multibyte characters" do
         article.publish
-        expect(article.permalink_url(nil, true)).to eq("#{blog.root_path}/2004/06/01/%E3%83%AB%E3%83%93%E3%83%BC")
+        expect(article.permalink_url(nil, true)).
+          to eq("#{blog.root_path}/2004/06/01/%E3%83%AB%E3%83%93%E3%83%BC")
       end
     end
 
     describe "with a permalink containing a space" do
-      let(:article) { blog.articles.build(permalink: "hello there", published_at: Time.utc(2004, 6, 1)) }
+      let(:article) do
+        blog.articles.build(permalink: "hello there",
+                            published_at: Time.utc(2004, 6, 1))
+      end
 
       it "escapes the space as '%20', not as '+'" do
         article.publish
-        expect(article.permalink_url(nil, true)).to eq("#{blog.root_path}/2004/06/01/hello%20there")
+        expect(article.permalink_url(nil, true)).
+          to eq("#{blog.root_path}/2004/06/01/hello%20there")
       end
     end
 
     describe "with a permalink containing a plus" do
-      let(:article) { blog.articles.build(permalink: "one+two", published_at: Time.utc(2004, 6, 1)) }
+      let(:article) do
+        blog.articles.build(permalink: "one+two", published_at: Time.utc(2004,
+                                                                         6, 1))
+      end
 
       it "does not escape the plus" do
         article.publish
-        expect(article.permalink_url(nil, true)).to eq("#{blog.root_path}/2004/06/01/one+two")
+        expect(article.permalink_url(nil, true)).
+          to eq("#{blog.root_path}/2004/06/01/one+two")
       end
     end
 
@@ -73,7 +93,10 @@ describe Article, type: :model do
   end
 
   describe ".feed_url" do
-    let(:article) { build(:article, permalink: "article-3", published_at: Time.utc(2004, 6, 1)) }
+    let(:article) do
+      build(:article, permalink: "article-3", published_at: Time.utc(2004, 6,
+                                                                     1))
+    end
 
     it "returns url for atom feed for a Atom 1.0 asked" do
       expect(article.feed_url("atom10")).to eq "#{blog.base_url}/2004/06/01/article-3.atom"
@@ -100,8 +123,10 @@ describe Article, type: :model do
 
   it "test_permalink_with_title" do
     article = create(:article, permalink: "article-3", published_at: Time.utc(2004, 6, 1))
-    assert_equal(article, described_class.requested_article(year: 2004, month: 6, day: 1, title: "article-3"))
-    not_found = described_class.requested_article year: 2005, month: "06", day: "01", title: "article-5"
+    assert_equal(article, described_class.requested_article(year: 2004, month: 6, day: 1,
+                                                            title: "article-3"))
+    not_found = described_class.requested_article year: 2005, month: "06", day: "01",
+                                                  title: "article-5"
     expect(not_found).to be_nil
   end
 
@@ -110,7 +135,8 @@ describe Article, type: :model do
     assert_equal "article-3", "Article 3!?#".to_url
     assert_equal "there-is-sex-in-my-violence", "There is Sex in my Violence!".to_url
     assert_equal "article", "-article-".to_url
-    assert_equal "lorem-ipsum-dolor-sit-amet-consectetaur-adipisicing-elit", "Lorem ipsum dolor sit amet, consectetaur adipisicing elit".to_url
+    assert_equal "lorem-ipsum-dolor-sit-amet-consectetaur-adipisicing-elit",
+                 "Lorem ipsum dolor sit amet, consectetaur adipisicing elit".to_url
     assert_equal "my-cats-best-friend", "My Cat's Best Friend".to_url
   end
 
@@ -241,7 +267,8 @@ describe Article, type: :model do
   end
 
   it "test_triggers_are_dependent" do
-    # TODO: Needs a fix for Rails ticket #5105: has_many: Dependent deleting does not work with STI
+    # TODO: Needs a fix for Rails ticket #5105: has_many: Dependent deleting
+    # does not work with STI
     skip
     art = blog.articles.create!(title: "title", body: "body",
                                 published_at: 1.hour.from_now)
@@ -374,14 +401,16 @@ describe Article, type: :model do
   describe "#comment_url" do
     it "renders complete url of comment" do
       article = build_stubbed(:article, id: 123)
-      expect(article.comment_url).to eq("#{blog.root_path}/comments?article_id=#{article.id}")
+      expect(article.comment_url).
+        to eq("#{blog.root_path}/comments?article_id=#{article.id}")
     end
   end
 
   describe "#preview_comment_url" do
     it "renders complete url of comment" do
       article = build_stubbed(:article, id: 123)
-      expect(article.preview_comment_url).to eq("#{blog.root_path}/comments/preview?article_id=#{article.id}")
+      expect(article.preview_comment_url).
+        to eq("#{blog.root_path}/comments/preview?article_id=#{article.id}")
     end
   end
 
@@ -417,15 +446,21 @@ describe Article, type: :model do
     end
 
     it "returns all content for the year if only year sent" do
-      expect(described_class.published_at_like(2.years.ago.strftime("%Y")).map(&:id).sort).to eq([@article_two_year_ago.id, @article_2_two_year_ago.id].sort)
+      expect(described_class.published_at_like(2.years.ago.strftime("%Y")).map(&:id).sort).
+        to eq([@article_two_year_ago.id, @article_2_two_year_ago.id].sort)
     end
 
     it "returns all content for the month if year and month sent" do
-      expect(described_class.published_at_like(4.months.ago.strftime("%Y-%m")).map(&:id).sort).to eq([@article_four_months_ago.id, @article_2_four_months_ago.id].sort)
+      result = described_class.published_at_like(4.months.ago.strftime("%Y-%m")).
+        map(&:id).sort
+      expect(result).
+        to eq([@article_four_months_ago.id, @article_2_four_months_ago.id].sort)
     end
 
     it "returns all content on this date if date send" do
-      expect(described_class.published_at_like(2.months.ago.strftime("%Y-%m-%d")).map(&:id).sort).to eq([@article_two_month_ago.id].sort)
+      result = described_class.published_at_like(2.months.ago.strftime("%Y-%m-%d")).
+        map(&:id).sort
+      expect(result).to eq([@article_two_month_ago.id].sort)
     end
   end
 
@@ -477,7 +512,8 @@ describe Article, type: :model do
     describe "#requested_article" do
       it "uses UTC to determine correct day" do
         @a.save
-        a = described_class.requested_article year: 2011, month: 2, day: 21, permalink: "a-big-article"
+        a = described_class.requested_article year: 2011, month: 2, day: 21,
+                                              permalink: "a-big-article"
         expect(a).to eq(@a)
       end
     end
@@ -504,7 +540,8 @@ describe Article, type: :model do
     describe "#requested_article" do
       it "uses UTC to determine correct day" do
         @a.save
-        a = described_class.requested_article year: 2011, month: 2, day: 22, permalink: "a-big-article"
+        a = described_class.requested_article year: 2011, month: 2, day: 22,
+                                              permalink: "a-big-article"
         expect(a).to eq(@a)
       end
     end
@@ -531,7 +568,8 @@ describe Article, type: :model do
     describe "#requested_article" do
       it "uses JST to determine correct day" do
         @a.save
-        a = described_class.requested_article year: 2012, month: 12, day: 31, permalink: "a-big-article"
+        a = described_class.requested_article year: 2012, month: 12, day: 31,
+                                              permalink: "a-big-article"
         expect(a).to eq(@a)
       end
     end
@@ -558,7 +596,8 @@ describe Article, type: :model do
     describe "#requested_article" do
       it "uses JST to determine correct day" do
         @a.save
-        a = described_class.requested_article year: 2013, month: 1, day: 1, permalink: "a-big-article"
+        a = described_class.requested_article year: 2013, month: 1, day: 1,
+                                              permalink: "a-big-article"
         expect(a).to eq(@a)
       end
     end
@@ -697,7 +736,10 @@ describe Article, type: :model do
       let(:params) { nil }
       let(:now) { DateTime.new(2011, 3, 12).in_time_zone }
       let!(:article) { create(:article, state: "published", created_at: now) }
-      let!(:last_draft_article) { create(:article, state: "draft", created_at: now + 2.days) }
+      let!(:last_draft_article) do
+        create(:article, state: "draft",
+                         created_at: now + 2.days)
+      end
       let!(:draft_article) { create(:article, state: "draft", created_at: now + 20.days) }
 
       it { expect(subject).to eq([draft_article, last_draft_article, article]) }
@@ -753,21 +795,11 @@ describe Article, type: :model do
       expect(described_class.publication_months).to be_empty
     end
 
-    context "returns objects that respond to publication with YYYY-MM published_at date format" do
-      it "with article published_at date" do
-        create(:article, published_at: Date.new(2010, 11, 23))
-        result = described_class.publication_months
-        expect(result.count).to eq 1
-        expect(result.first).to eq ["2010-11"]
-      end
-
-      it "with 2 articles" do
-        create(:article, published_at: Date.new(2010, 11, 23))
-        create(:article, published_at: Date.new(2002, 4, 9))
-        result = described_class.publication_months
-        expect(result.count).to eq 2
-        expect(result.sort).to eq [["2010-11"], ["2002-04"]].sort
-      end
+    it "returns months of publication for published articles" do
+      create(:article, published_at: Date.new(2010, 11, 23))
+      create(:article, published_at: Date.new(2002, 4, 9))
+      result = described_class.publication_months
+      expect(result).to match_array [["2010-11"], ["2002-04"]]
     end
   end
 
@@ -907,7 +939,10 @@ describe Article, type: :model do
   end
 
   describe "#comments_closed?" do
-    let!(:blog) { create(:blog, sp_article_auto_close: auto_close_value, default_allow_comments: true) }
+    let!(:blog) do
+      create(:blog, sp_article_auto_close: auto_close_value,
+                    default_allow_comments: true)
+    end
 
     context "when auto_close setting is zero" do
       let(:auto_close_value) { 0 }
