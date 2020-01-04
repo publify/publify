@@ -41,9 +41,3 @@ Style/GuardClause:
 Style/RescueStandardError:
   Exclude:
     - 'spec/dummy/db/migrate/20160712061346_add_blog_ids.publify_core_engine.rb'
-
-# Cop supports --auto-correct.
-# Configuration parameters: AutoCorrect, AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
-# URISchemes: http, https
-Layout/LineLength:
-  Max: 142
