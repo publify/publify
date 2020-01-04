@@ -7,7 +7,8 @@ module Admin; end
 class Admin::ContentController < Admin::BaseController
   def index
     @search = params[:search] || {}
-    @articles = this_blog.articles.search_with(@search).page(params[:page]).per(this_blog.admin_display_elements)
+    @articles = this_blog.articles.search_with(@search).page(params[:page]).
+      per(this_blog.admin_display_elements)
 
     if request.xhr?
       respond_to do |format|
@@ -120,7 +121,10 @@ class Admin::ContentController < Admin::BaseController
 
     if @article.save
       flash[:success] = I18n.t("admin.content.autosave.success")
-      @must_update_calendar = (params[:article][:published_at] and params[:article][:published_at].to_time.to_i < Time.zone.now.to_time.to_i and @article.parent_id.nil?)
+      @must_update_calendar =
+        (params[:article][:published_at] and
+         params[:article][:published_at].to_time.to_i < Time.zone.now.to_time.to_i and
+         @article.parent_id.nil?)
       respond_to do |format|
         format.js
       end

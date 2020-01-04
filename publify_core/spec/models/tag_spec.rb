@@ -91,7 +91,8 @@ describe Tag, type: :model do
     end
 
     it "find_with_char('ba') should return tag bar and bazz" do
-      expect(described_class.find_with_char("ba").sort_by(&:id)).to eq([@bar, @bazz].sort_by(&:id))
+      expect(described_class.find_with_char("ba").sort_by(&:id)).
+        to eq([@bar, @bazz].sort_by(&:id))
     end
 
     describe "#create_from_article" do

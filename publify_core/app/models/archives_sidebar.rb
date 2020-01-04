@@ -13,7 +13,8 @@ class ArchivesSidebar < Sidebar
       if /SQLite3Adapter/.match?(Content.connection.class.name)
         ["strftime('%Y', published_at) as year", "strftime('%m', published_at) as month"]
       else
-        ["extract(year from published_at) as year", "extract(month from published_at) as month"]
+        ["extract(year from published_at) as year",
+         "extract(month from published_at) as month"]
       end
   end
 

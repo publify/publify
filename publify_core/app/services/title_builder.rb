@@ -30,15 +30,23 @@ class TitleBuilder
   def substitute_item(str, item)
     # Tags for item
     str = str.gsub("%title%", item.title) if str =~ /%title/ && item.respond_to?(:title)
-    str = str.gsub("%excerpt%", item.excerpt_text) if str =~ /%excerpt%/ && item.respond_to?(:excerpt_text)
-    str = str.gsub("%description%", item.description) if str =~ /%description%/ && item.respond_to?(:description)
+    if str =~ /%excerpt%/ && item.respond_to?(:excerpt_text)
+      str = str.gsub("%excerpt%", item.excerpt_text)
+    end
+    if str =~ /%description%/ && item.respond_to?(:description)
+      str = str.gsub("%description%", item.description)
+    end
     str = str.gsub("%name%", item.name) if str =~ /%name%/ && item.respond_to?(:name)
     str = str.gsub("%author%", item.name) if str =~ /%author%/ && item.respond_to?(:name)
     str = str.gsub("%body%", item.body) if str =~ /%body%/ && item.respond_to?(:body)
 
-    str = str.gsub("%categories%", item.categories.map(&:name).join(", ")) if str =~ /%categories%/ && item.respond_to?(:categories)
+    if str =~ /%categories%/ && item.respond_to?(:categories)
+      str = str.gsub("%categories%", item.categories.map(&:name).join(", "))
+    end
 
-    str = str.gsub("%tags%", item.tags.map(&:display_name).join(", ")) if str =~ /%tags%/ && item.respond_to?(:tags)
+    if str =~ /%tags%/ && item.respond_to?(:tags)
+      str = str.gsub("%tags%", item.tags.map(&:display_name).join(", "))
+    end
 
     str
   end
@@ -68,7 +76,8 @@ class TitleBuilder
     format << "%B " if params[:month]
     format << "%Y" if params[:year]
 
-    string.gsub("%date%", Time.zone.local(*params.values_at(:year, :month, :day)).strftime(format))
+    string.gsub("%date%", Time.zone.local(*params.values_at(:year, :month, :day)).
+      strftime(format))
   end
 
   def parse_page(_string, params)

@@ -32,7 +32,10 @@ describe AuthorsController, type: :controller do
       end
 
       describe "with pagination" do
-        let!(:article_page_2) { create(:article, user: no_profile_user, published_at: now - 1.day) }
+        let!(:article_page_2) do
+          create(:article, user: no_profile_user,
+                           published_at: now - 1.day)
+        end
 
         before { get "show", params: { id: no_profile_user.login, page: 2 } }
 

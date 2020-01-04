@@ -51,7 +51,9 @@ module Admin::BaseHelper
   end
 
   def button_to_edit(item)
-    link_to(content_tag(:span, "", class: "glyphicon glyphicon-pencil"), { action: "edit", id: item.id }, { class: "btn btn-primary btn-xs btn-action" })
+    link_to(content_tag(:span, "", class: "glyphicon glyphicon-pencil"),
+            { action: "edit", id: item.id },
+            { class: "btn btn-primary btn-xs btn-action" })
   end
 
   def button_to_delete(item)
@@ -67,7 +69,8 @@ module Admin::BaseHelper
   def button_to_short_url(item)
     return "" if item.short_url.nil?
 
-    link_to(content_tag(:span, "", class: "glyphicon glyphicon-link"), item.short_url, class: "btn btn-success btn-xs btn-action")
+    link_to(content_tag(:span, "", class: "glyphicon glyphicon-link"), item.short_url,
+            class: "btn btn-success btn-xs btn-action")
   end
 
   def twitter_available?(blog, user)

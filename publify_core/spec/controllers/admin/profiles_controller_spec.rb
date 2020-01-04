@@ -30,8 +30,9 @@ describe Admin::ProfilesController, type: :controller do
     end
 
     it "skips blank passwords" do
-      post :update, params: { id: alice.id, user: { login: "errand",
-                                                    password: "", password_confirmation: "" } }
+      post :update,
+           params: { id: alice.id, user: { login: "errand",
+                                           password: "", password_confirmation: "" } }
       alice.reload
       aggregate_failures do
         expect(response).to redirect_to(action: "index")

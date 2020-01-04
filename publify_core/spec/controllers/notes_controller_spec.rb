@@ -50,7 +50,10 @@ describe NotesController, type: :controller do
           },
         }
       end
-      let(:permalink) { "#{create(:note, in_reply_to_message: reply.to_json).id}-this-is-a-note" }
+      let(:permalink) do
+        "#{create(:note,
+                  in_reply_to_message: reply.to_json).id}-this-is-a-note"
+      end
 
       before { get :show, params: { permalink: permalink } }
 

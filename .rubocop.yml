@@ -19,6 +19,7 @@ AllCops:
   - 'db/converters/*.rb'
   - 'db/scripts/fix_permalinks.rb'
   - 'db/schema.rb'
+  - 'vendor/bundle/**/*'
   TargetRubyVersion: 2.4
 
 Rails:
@@ -31,6 +32,10 @@ Bundler/DuplicatedGem:
 # Place . on the previous line
 Layout/DotPosition:
   EnforcedStyle: trailing
+
+# Lenient line length that fits in pull requests
+Layout/LineLength:
+  Max: 92
 
 Layout/MultilineMethodCallBraceLayout:
   EnforcedStyle: same_line

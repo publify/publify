@@ -14,38 +14,52 @@ describe "With the list of available filters", type: :model do
       describe "code" do
         describe "single line" do
           it "mades nothin if no args" do
-            result = filter_text("<publify:code>foo-code</publify:code>", [:macropre, :macropost])
-            expect(result).to eq(%(<div class="CodeRay"><pre><notextile>foo-code</notextile></pre></div>))
+            result = filter_text("<publify:code>foo-code</publify:code>",
+                                 [:macropre, :macropost])
+            expect(result).
+              to eq '<div class="CodeRay"><pre><notextile>foo-code</notextile></pre></div>'
           end
 
           it "parses ruby lang" do
-            result = filter_text('<publify:code lang="ruby">foo-code</publify:code>', [:macropre, :macropost])
-            expect(result).to eq(%(<div class="CodeRay"><pre><notextile><span class="CodeRay">foo-code</span></notextile></pre></div>))
+            result = filter_text('<publify:code lang="ruby">foo-code</publify:code>',
+                                 [:macropre, :macropost])
+            expect(result).
+              to eq('<div class="CodeRay"><pre><notextile><span class="CodeRay">' \
+                    "foo-code</span></notextile></pre></div>")
           end
 
           it "parses ruby and xml in same sentence but not in same place" do
-            result = filter_text('<publify:code lang="ruby">foo-code</publify:code> blah blah <publify:code lang="xml">zzz</publify:code>', [:macropre, :macropost])
-            expect(result).to eq \
-              '<div class="CodeRay"><pre><notextile><span class="CodeRay">foo-code</span></notextile></pre></div>' \
-              ' blah blah <div class="CodeRay"><pre><notextile><span class="CodeRay">zzz</span></notextile></pre></div>'
+            result = filter_text('<publify:code lang="ruby">foo-code</publify:code> ' \
+                                   'blah blah <publify:code lang="xml">zzz</publify:code>',
+                                 [:macropre, :macropost])
+            expect(result).
+              to eq '<div class="CodeRay"><pre><notextile><span class="CodeRay">' \
+                    "foo-code</span></notextile></pre></div> blah blah" \
+                    ' <div class="CodeRay"><pre><notextile><span class="CodeRay">' \
+                    "zzz</span></notextile></pre></div>"
           end
         end
 
         describe "multiline" do
           it "renders ruby" do
-            expect(filter_text(%(
-<publify:code lang="ruby">
-class Foo
-  def bar
-    @a = "zzz"
-  end
-end
-</publify:code>), [:macropre, :macropost])).to eq(%(
-<div class=\"CodeRay\"><pre><notextile><span class=\"CodeRay\"><span class=\"keyword\">class</span> <span class=\"class\">Foo</span>
-  <span class=\"keyword\">def</span> <span class=\"function\">bar</span>
-    <span class=\"instance-variable\">@a</span> = <span class=\"string\"><span class=\"delimiter\">&quot;</span><span class=\"content\">zzz</span><span class=\"delimiter\">&quot;</span></span>
-  <span class=\"keyword\">end</span>
-<span class=\"keyword\">end</span></span></notextile></pre></div>))
+            original = <<~HTML
+              <publify:code lang="ruby">
+              class Foo
+                def bar
+                  @a = "zzz"
+                end
+              end
+              </publify:code>
+            HTML
+
+            expected_result = <<~HTML
+              <div class="CodeRay"><pre><notextile><span class="CodeRay"><span class="keyword">class</span> <span class="class">Foo</span>
+                <span class="keyword">def</span> <span class="function">bar</span>
+                  <span class="instance-variable">@a</span> = <span class="string"><span class="delimiter">&quot;</span><span class="content">zzz</span><span class="delimiter">&quot;</span></span>
+                <span class="keyword">end</span>
+              <span class="keyword">end</span></span></notextile></pre></div>
+            HTML
+            expect(filter_text(original, [:macropre, :macropost])).to eq(expected_result)
           end
         end
       end
@@ -90,8 +104,10 @@ end
         <p><em>footer text here</em></p>
       HTML
 
-      assert_equal expects_markdown.strip, filter_text(text, [:macropre, :markdown, :macropost])
-      assert_equal expects_textile.strip, filter_text(text, [:macropre, :textile, :macropost])
+      assert_equal expects_markdown.strip, filter_text(text,
+                                                       [:macropre, :markdown, :macropost])
+      assert_equal expects_textile.strip, filter_text(text,
+                                                      [:macropre, :textile, :macropost])
     end
   end
 end

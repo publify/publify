@@ -1,12 +1,15 @@
 # frozen_string_literal: true
 
-feed.entry item, id: "urn:uuid:#{item.guid}", published: item.published_at, url: item.permalink_url do |entry|
+feed.entry(item, id: "urn:uuid:#{item.guid}", published: item.published_at,
+                 url: item.permalink_url) do |entry|
   entry.author do
     entry.name item.author_name
   end
 
   if item.is_a?(Note)
-    entry.title truncate(item.html(:body).strip_html, length: 80, separator: " ", omissions: "..."), "type" => "html"
+    truncated_body = truncate(item.html(:body).strip_html,
+                              length: 80, separator: " ", omissions: "...")
+    entry.title truncated_body, "type" => "html"
   else
     entry.title item.title, "type" => "html"
   end

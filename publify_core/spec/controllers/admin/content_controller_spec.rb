@@ -42,7 +42,9 @@ describe Admin::ContentController, type: :controller do
 
     context "search for state" do
       let!(:draft_article) { create(:article, state: "draft") }
-      let!(:pending_article) { create(:article, state: "publication_pending", published_at: "2020-01-01") }
+      let!(:pending_article) do
+        create(:article, state: "publication_pending", published_at: "2020-01-01")
+      end
 
       before { get :index, params: { search: state } }
 
@@ -61,7 +63,10 @@ describe Admin::ContentController, type: :controller do
       context "with a bad state" do
         let(:state) { { state: "3vI1 1337 h4x0r" } }
 
-        it { expect(assigns(:articles).sort).to eq([article, pending_article, draft_article].sort) }
+        it "returns all states" do
+          expect(assigns(:articles).sort).
+            to eq([article, pending_article, draft_article].sort)
+        end
       end
     end
   end
@@ -80,7 +85,8 @@ describe Admin::ContentController, type: :controller do
 
       it "creates tags for the draft article if relevant" do
         expect do
-          post :autosave, xhr: true, params: { article: attributes_for(:article, :with_tags) }
+          post :autosave,
+               xhr: true, params: { article: attributes_for(:article, :with_tags) }
         end.to change(Tag, :count).by(2)
       end
     end
@@ -90,7 +96,9 @@ describe Admin::ContentController, type: :controller do
 
       it "does not create an extra draft" do
         expect do
-          post :autosave, xhr: true, params: { article: { id: draft.id, body_and_extended: "new body" } }
+          post :autosave,
+               xhr: true, params: { article: { id: draft.id,
+                                               body_and_extended: "new body" } }
         end.not_to change(Article, :count)
       end
     end
@@ -157,14 +165,16 @@ describe Admin::ContentController, type: :controller do
         expect(new_article.tags.map(&:name)).to include("lang-fr")
       end
 
-      it "correctlies interpret time zone in :published_at" do
-        post :create, params: { "article" => base_article(published_at: "February 17, 2011 08:47 PM GMT+0100 (CET)") }
+      it "interprets time zone in :published_at correctly" do
+        article = base_article(published_at: "February 17, 2011 08:47 PM GMT+0100 (CET)")
+        post :create, params: { article: article }
         new_article = Article.last
         assert_equal Time.utc(2011, 2, 17, 19, 47), new_article.published_at
       end
 
       it 'respects "GMT+0000 (UTC)" in :published_at' do
-        post :create, params: { "article" => base_article(published_at: "August 23, 2011 08:40 PM GMT+0000 (UTC)") }
+        article = base_article(published_at: "August 23, 2011 08:40 PM GMT+0000 (UTC)")
+        post :create, params: { article: article }
         new_article = Article.last
         assert_equal Time.utc(2011, 8, 23, 20, 40), new_article.published_at
       end
@@ -173,7 +183,8 @@ describe Admin::ContentController, type: :controller do
         Article.delete_all
         body = "body via *markdown*"
         extended = "*foo*"
-        post :create, params: { article: { title: "another test", body: body, extended: extended } }
+        post :create,
+             params: { article: { title: "another test", body: body, extended: extended } }
 
         assert_response :redirect, action: "index"
 
@@ -189,7 +200,8 @@ describe Admin::ContentController, type: :controller do
       context "with a previously autosaved draft" do
         before do
           @draft = create(:article, body: "draft", state: "draft")
-          post :create, params: { article: { id: @draft.id, body: "update", published: true } }
+          post :create,
+               params: { article: { id: @draft.id, body: "update", published: true } }
         end
 
         it "updates the draft" do
@@ -240,7 +252,9 @@ describe Admin::ContentController, type: :controller do
         it { expect(assigns(:article).user).to eq(publisher) }
 
         context "when doing a draft" do
-          let(:article_params) { { title: "posted via tests!", body: "a good boy", draft: "true" } }
+          let(:article_params) do
+            { title: "posted via tests!", body: "a good boy", draft: "true" }
+          end
 
           it { expect(assigns(:article)).not_to be_published }
         end
@@ -248,7 +262,8 @@ describe Admin::ContentController, type: :controller do
 
       context "writing for the future" do
         let(:article_params) do
-          { title: "posted via tests!", body: "a good boy", published_at: 1.hour.from_now.to_s }
+          { title: "posted via tests!", body: "a good boy",
+            published_at: 1.hour.from_now.to_s }
         end
 
         before do
@@ -303,7 +318,8 @@ describe Admin::ContentController, type: :controller do
       it "correctly converts multi-word tags" do
         a = create(:article, keywords: '"foo bar", baz')
         get :edit, params: { id: a.id }
-        expect(response.body).to have_selector("input[id=article_keywords][value='baz, \"foo bar\"']")
+        expect(response.body).
+          to have_selector("input[id=article_keywords][value='baz, \"foo bar\"']")
       end
     end
 
@@ -480,7 +496,8 @@ describe Admin::ContentController, type: :controller do
         let(:body) { "not the *same* text" }
 
         before do
-          put :update, params: { id: article.id, article: { body: body, text_filter: "textile" } }
+          put :update,
+              params: { id: article.id, article: { body: body, text_filter: "textile" } }
         end
 
         it { expect(response).to redirect_to(action: "index") }

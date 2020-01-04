@@ -52,7 +52,9 @@ class CommentsController < BaseController
   def remember_author_info_for(comment)
     add_to_cookies(:author, comment.author)
     add_to_cookies(:url, comment.url)
-    add_to_cookies(:gravatar_id, Digest::MD5.hexdigest(comment.email.strip)) if comment.email.present?
+    if comment.email.present?
+      add_to_cookies(:gravatar_id, Digest::MD5.hexdigest(comment.email.strip))
+    end
   end
 
   def set_article

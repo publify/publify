@@ -19,17 +19,22 @@ class Content < ApplicationRecord
 
   scope :user_id, ->(user_id) { where("user_id = ?", user_id) }
   scope :published, -> { where(state: "published"). order(default_order) }
-  scope :published_at, ->(time_params) { published.where(published_at: PublifyTime.delta(*time_params)) }
+  scope :published_at, lambda { |time_params|
+                         published.where(published_at: PublifyTime.delta(*time_params))
+                       }
   scope :not_published, -> { where.not(state: "published") }
   scope :drafts, -> { where(state: "draft").order("created_at DESC") }
   scope :no_draft, -> { where.not(state: "draft").order("published_at DESC") }
   scope :searchstring, lambda { |search_string|
     tokens = search_string.split(" ").map { |c| "%#{c.downcase}%" }
-    where("state = ? AND " + (["(LOWER(body) LIKE ? OR LOWER(extended) LIKE ? OR LOWER(title) LIKE ?)"] * tokens.size).join(" AND "),
-          "published", *tokens.map { |token| [token] * 3 }.flatten)
+    matcher = "(LOWER(body) LIKE ? OR LOWER(extended) LIKE ? OR LOWER(title) LIKE ?)"
+    template = "state = ? AND " + ([matcher] * tokens.size).join(" AND ")
+    where(template, "published", *tokens.map { |token| [token] * 3 }.flatten)
   }
 
-  scope :published_at_like, ->(date_at) { where(published_at: PublifyTime.delta_like(date_at)) }
+  scope :published_at_like, lambda { |date_at|
+                              where(published_at: PublifyTime.delta_like(date_at))
+                            }
 
   serialize :whiteboard
 
@@ -76,9 +81,13 @@ class Content < ApplicationRecord
     scoped = unscoped
     scoped = scoped.searchstring(params[:searchstring]) if params[:searchstring].present?
 
-    scoped = scoped.published_at_like(params[:published_at]) if params[:published_at].present? && /(\d\d\d\d)-(\d\d)/ =~ params[:published_at]
+    if params[:published_at].present? && /(\d\d\d\d)-(\d\d)/ =~ params[:published_at]
+      scoped = scoped.published_at_like(params[:published_at])
+    end
 
-    scoped = scoped.user_id(params[:user_id]) if params[:user_id].present? && params[:user_id].to_i > 0
+    if params[:user_id].present? && params[:user_id].to_i > 0
+      scoped = scoped.user_id(params[:user_id])
+    end
 
     if params[:published].present?
       scoped = scoped.published if params[:published].to_s == "1"

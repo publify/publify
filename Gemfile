@@ -40,6 +40,10 @@ group :development, :test do
   gem "pry", "~> 0.12.0"
   gem "pry-rails", "~> 0.3.4"
   gem "rspec-rails", "~> 3.4"
+  gem "rubocop", "~> 0.78.0", require: false
+  gem "rubocop-performance", "~> 1.5.2", require: false
+  gem "rubocop-rails", "~> 2.4.1", require: false
+  gem "rubocop-rspec", "~> 1.37.1", require: false
   gem "simplecov", "~> 0.17.0", require: false
 end
 
@@ -47,7 +51,8 @@ group :development do
   gem "better_errors", "~> 2.5.0"
   gem "binding_of_caller", "~> 0.8.0"
 
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  # Spring speeds up development by keeping your application running in the
+  # background. Read more: https://github.com/rails/spring
   gem "spring", "~> 2.1.0"
   gem "spring-commands-cucumber", "~> 1.0"
   gem "spring-commands-rspec", "~> 1.0"

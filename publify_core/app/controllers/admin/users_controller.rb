@@ -4,7 +4,8 @@ class Admin::UsersController < Admin::BaseController
   before_action :set_user, only: [:edit, :update, :destroy]
 
   def index
-    @users = User.order("login asc").page(params[:page]).per(this_blog.admin_display_elements)
+    @users = User.order("login asc").page(params[:page]).
+      per(this_blog.admin_display_elements)
   end
 
   def new

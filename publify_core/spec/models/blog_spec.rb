@@ -15,7 +15,8 @@ describe Blog, type: :model do
     end
 
     it "values boolify like Perl" do
-      { "0 but true" => true, "" => false, "false" => false, 1 => true, 0 => false, nil => false, "f" => false }.each do |value, expected|
+      { "0 but true" => true, "" => false, "false" => false, 1 => true, 0 => false,
+        nil => false, "f" => false }.each do |value, expected|
         @blog.sp_global = value
         expect(@blog.sp_global).to eq(expected)
       end
@@ -31,7 +32,10 @@ describe Blog, type: :model do
         [true, false].each do |only_path|
           describe "blog.url_for" do
             describe "with a hash argument and only_path = #{only_path}" do
-              subject { @blog.url_for(controller: "tags", action: "show", id: 1, only_path: only_path) }
+              subject do
+                @blog.url_for(controller: "tags", action: "show", id: 1,
+                              only_path: only_path)
+              end
 
               it { is_expected.to eq("#{only_path ? sub_url : @base_url}/tag/1") }
             end
@@ -83,15 +87,17 @@ describe Blog, type: :model do
       @blog = described_class.new(base_url: "foo")
     end
 
-    ["foo", "year", "day", "month", "title", "%title", "title%", "/year/month/day/title",
-     "%year%", "%day%", "%month%", "%title%.html.atom", "%title%.html.rss"].each do |permalink_type|
+    ["foo", "year", "day", "month", "title", "%title", "title%",
+     "/year/month/day/title", "%year%", "%day%", "%month%",
+     "%title%.html.atom", "%title%.html.rss"].each do |permalink_type|
       it "not valid with #{permalink_type}" do
         @blog.permalink_format = permalink_type
         expect(@blog).not_to be_valid
       end
     end
 
-    ["%title%", "%title%.html", "/hello/all/%year%/%title%", "atom/%title%.html", "ok/rss/%title%.html"].each do |permalink_type|
+    ["%title%", "%title%.html", "/hello/all/%year%/%title%",
+     "atom/%title%.html", "ok/rss/%title%.html"].each do |permalink_type|
       it "is valid with only #{permalink_type}" do
         @blog.permalink_format = permalink_type
         expect(@blog).to be_valid
@@ -128,43 +134,43 @@ describe Blog, type: :model do
     end
   end
 
-  describe "Blog Twitter configuration" do
-    it "A blog without :twitter_consumer_key or twitter_consumer_secret should not have Twitter configured" do
+  describe "#has_twitter_configured?" do
+    it "is false without :twitter_consumer_key or twitter_consumer_secret" do
       blog = build(:blog)
       expect(blog.has_twitter_configured?).to eq(false)
     end
 
-    it "A blog with an empty :twitter_consumer_key and no twitter_consumer_secret should not have Twitter configured" do
+    it "is false with an empty :twitter_consumer_key and no twitter_consumer_secret" do
       blog = build(:blog, twitter_consumer_key: "")
       expect(blog.has_twitter_configured?).to eq(false)
     end
 
-    it "A blog with an empty twitter_consumer_key and an empty twitter_consumer_secret should not have Twitter configured" do
+    it "is false with an empty twitter_consumer_key and an empty twitter_consumer_secret" do
       blog = build(:blog, twitter_consumer_key: "", twitter_consumer_secret: "")
       expect(blog.has_twitter_configured?).to eq(false)
     end
 
-    it "A blog with a twitter_consumer_key and no twitter_consumer_secret should not have Twitter configured" do
+    it "is false with a twitter_consumer_key and no twitter_consumer_secret" do
       blog = build(:blog, twitter_consumer_key: "12345")
       expect(blog.has_twitter_configured?).to eq(false)
     end
 
-    it "A blog with a twitter_consumer_key and an empty twitter_consumer_secret should not have Twitter configured" do
+    it "is false with a twitter_consumer_key and an empty twitter_consumer_secret" do
       blog = build(:blog, twitter_consumer_key: "12345", twitter_consumer_secret: "")
       expect(blog.has_twitter_configured?).to eq(false)
     end
 
-    it "A blog with a twitter_consumer_secret and no twitter_consumer_key should not have Twitter configured" do
+    it "is false with a twitter_consumer_secret and no twitter_consumer_key" do
       blog = build(:blog, twitter_consumer_secret: "67890")
       expect(blog.has_twitter_configured?).to eq(false)
     end
 
-    it "A blog with a twitter_consumer_secret and an empty twitter_consumer_key should not have Twitter configured" do
+    it "is false with a twitter_consumer_secret and an empty twitter_consumer_key" do
       blog = build(:blog, twitter_consumer_secret: "67890", twitter_consumer_key: "")
       expect(blog.has_twitter_configured?).to eq(false)
     end
 
-    it "A blog with a twitter_consumer_key and a twitter_consumer_secret should have Twitter configured" do
+    it "is true with a twitter_consumer_key and a twitter_consumer_secret" do
       blog = build(:blog, twitter_consumer_key: "12345", twitter_consumer_secret: "67890")
       expect(blog.has_twitter_configured?).to eq(true)
     end

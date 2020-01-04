@@ -75,7 +75,8 @@ describe Admin::RedirectsController, type: :controller do
   describe "#update an existing redirect" do
     it "updates and redirect to #index" do
       @test_id = create(:redirect).id
-      post :update, params: { id: @test_id, redirect: { from_path: "somewhere/over", to_path: "the/rainbow" } }
+      post :update, params: { id: @test_id, redirect: { from_path: "somewhere/over",
+                                                        to_path: "the/rainbow" } }
       assert_response :redirect, action: "index"
       expect(Redirect.count).to eq(1)
       expect(Redirect.first.from_path).to eq("somewhere/over")

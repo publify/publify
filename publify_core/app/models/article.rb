@@ -102,7 +102,9 @@ class Article < Content
   def self.search_with(params)
     params ||= {}
     scoped = super(params)
-    scoped = scoped.send(params[:state]) if %w(no_draft drafts published withdrawn pending).include?(params[:state])
+    if %w(no_draft drafts published withdrawn pending).include?(params[:state])
+      scoped = scoped.send(params[:state])
+    end
 
     scoped.order("created_at DESC")
   end
@@ -112,7 +114,8 @@ class Article < Content
     return unless published?
 
     @cached_permalink_url ||= {}
-    @cached_permalink_url["#{anchor}#{only_path}"] ||= blog.url_for(permalink_url_options, anchor: anchor, only_path: only_path)
+    @cached_permalink_url["#{anchor}#{only_path}"] ||=
+      blog.url_for(permalink_url_options, anchor: anchor, only_path: only_path)
   end
 
   def save_attachments!(files)
@@ -137,11 +140,13 @@ class Article < Content
   end
 
   def next
-    Article.where("published_at > ?", published_at).order("published_at asc").limit(1).first
+    Article.where("published_at > ?", published_at).order("published_at asc").
+      limit(1).first
   end
 
   def previous
-    Article.where("published_at < ?", published_at).order("published_at desc").limit(1).first
+    Article.where("published_at < ?", published_at).order("published_at desc").
+      limit(1).first
   end
 
   def publication_month
@@ -153,8 +158,8 @@ class Article < Content
     result.map { |it| [it.publication_month] }.uniq
   end
 
-  # Finds one article which was posted on a certain date and matches the supplied dashed-title
-  # params is a Hash
+  # Finds one article which was posted on a certain date and matches the
+  # supplied dashed-title params is a Hash
   def self.requested_article(params)
     date_range = PublifyTime.delta(params[:year], params[:month], params[:day])
 

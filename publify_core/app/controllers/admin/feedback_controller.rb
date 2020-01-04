@@ -38,7 +38,8 @@ class Admin::FeedbackController < Admin::BaseController
     @comment.user_id = current_user.id
 
     if request.post? && @comment.save
-      # We should probably wave a spam filter over this, but for now, just mark it as published.
+      # We should probably wave a spam filter over this, but for now, just mark
+      # it as published.
       @comment.mark_as_ham
       @comment.save!
       flash[:success] = I18n.t("admin.feedback.create.success")
@@ -102,7 +103,11 @@ class Admin::FeedbackController < Admin::BaseController
     items = Feedback.find(ids)
     @unexpired = true
 
-    bulkop = (params[:bulkop_top] || {}).empty? ? params[:bulkop_bottom] : params[:bulkop_top]
+    bulkop = if (params[:bulkop_top] || {}).empty?
+               params[:bulkop_bottom]
+             else
+               params[:bulkop_top]
+             end
 
     case bulkop
     when "Delete Checked Items"
@@ -113,13 +118,16 @@ class Admin::FeedbackController < Admin::BaseController
       flash[:success] = I18n.t("admin.feedback.bulkops.success_deleted", count: count)
     when "Mark Checked Items as Ham"
       update_feedback(items, :mark_as_ham!)
-      flash[:success] = I18n.t("admin.feedback.bulkops.success_mark_as_ham", count: ids.size)
+      flash[:success] = I18n.t("admin.feedback.bulkops.success_mark_as_ham",
+                               count: ids.size)
     when "Mark Checked Items as Spam"
       update_feedback(items, :mark_as_spam!)
-      flash[:success] = I18n.t("admin.feedback.bulkops.success_mark_as_spam", count: ids.size)
+      flash[:success] = I18n.t("admin.feedback.bulkops.success_mark_as_spam",
+                               count: ids.size)
     when "Confirm Classification of Checked Items"
       update_feedback(items, :confirm_classification!)
-      flash[:success] = I18n.t("admin.feedback.bulkops.success_classification", count: ids.size)
+      flash[:success] = I18n.t("admin.feedback.bulkops.success_classification",
+                               count: ids.size)
     when "Delete all spam"
       if request.post?
         Feedback.where("state = ?", "spam").delete_all
@@ -130,9 +138,11 @@ class Admin::FeedbackController < Admin::BaseController
     end
 
     if params[:article_id]
-      redirect_to action: "article", id: params[:article_id], confirmed: params[:confirmed], published: params[:published]
+      redirect_to action: "article", id: params[:article_id], confirmed: params[:confirmed],
+                  published: params[:published]
     else
-      redirect_to action: "index", page: params[:page], search: params[:search], confirmed: params[:confirmed], published: params[:published]
+      redirect_to action: "index", page: params[:page], search: params[:search],
+                  confirmed: params[:confirmed], published: params[:published]
     end
   end
 

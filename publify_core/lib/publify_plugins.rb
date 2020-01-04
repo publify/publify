@@ -22,7 +22,9 @@ module PublifyPlugins
     eval "def self.display_name; '#{name}'; end"
   end
 
-  unless defined?(Keeper) # Something in rails double require this module. Prevent that to keep @@registered integrity
+  # FIXME: Something in rails double require this module. Prevent that to keep
+  # @@registered integrity
+  unless defined?(Keeper)
     class Keeper
       KINDS = [:avatar, :textfilter].freeze
       @@registered = {}

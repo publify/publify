@@ -34,7 +34,8 @@ describe SetupController, type: :controller do
       context "when passing correct parameters" do
         before do
           ActionMailer::Base.deliveries.clear
-          post :create, params: { setting: { blog_name: "Foo", email: "foo@bar.net", password: "foo123bar" } }
+          post :create, params: { setting: { blog_name: "Foo", email: "foo@bar.net",
+                                             password: "foo123bar" } }
         end
 
         it "correctly initializes blog and users" do
@@ -62,17 +63,20 @@ describe SetupController, type: :controller do
 
       describe "when passing incorrect parameters" do
         it "empty blog name should raise an error" do
-          post :create, params: { setting: { blog_name: "", email: "foo@bar.net", password: "foobar123" } }
+          post :create, params: { setting: { blog_name: "", email: "foo@bar.net",
+                                             password: "foobar123" } }
           expect(response).to redirect_to(action: "index")
         end
 
         it "empty email should raise an error" do
-          post :create, params: { setting: { blog_name: "Foo", email: "", password: "foobar123" } }
+          post :create, params: { setting: { blog_name: "Foo", email: "",
+                                             password: "foobar123" } }
           expect(response).to redirect_to(action: "index")
         end
 
         it "empty password should raise an error" do
-          post :create, params: { setting: { blog_name: "Foo", email: "foo@bar.net", password: "" } }
+          post :create, params: { setting: { blog_name: "Foo", email: "foo@bar.net",
+                                             password: "" } }
           expect(response).to redirect_to(action: "index")
         end
       end

@@ -23,6 +23,8 @@ namespace :manifest do
 
   desc "Check manifest"
   task :check do
-    raise "Manifest check failed, try recreating the manifest" unless gemmable_files == manifest_files
+    unless gemmable_files == manifest_files
+      raise "Manifest check failed, try recreating the manifest"
+    end
   end
 end

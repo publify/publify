@@ -45,18 +45,22 @@ describe Trigger, type: :model do
       let!(:other_item) { create :content }
 
       let!(:trigger_item_foo) do
-        described_class.create due_at: 1.day.from_now, pending_item: item, trigger_method: "foo"
+        described_class.create due_at: 1.day.from_now, pending_item: item,
+                               trigger_method: "foo"
       end
       let!(:trigger_item_bar) do
-        described_class.create due_at: 1.day.from_now, pending_item: item, trigger_method: "bar"
+        described_class.create due_at: 1.day.from_now, pending_item: item,
+                               trigger_method: "bar"
       end
       let!(:trigger_other_item_foo) do
-        described_class.create due_at: 1.day.from_now, pending_item: other_item, trigger_method: "foo"
+        described_class.create due_at: 1.day.from_now, pending_item: other_item,
+                               trigger_method: "foo"
       end
 
       it "removes the trigger for the given item and condition" do
         described_class.remove item, trigger_method: "foo"
-        expect(described_class.all).to match_array([trigger_item_bar, trigger_other_item_foo])
+        expect(described_class.all).
+          to match_array([trigger_item_bar, trigger_other_item_foo])
       end
 
       it "removes the triggers for the given item" do

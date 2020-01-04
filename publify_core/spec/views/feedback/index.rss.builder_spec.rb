@@ -27,7 +27,8 @@ RSpec.describe "feedback/index.rss.builder", type: :view do
       let(:xml_entry) { Nokogiri::XML.parse(rendered).css("item").first }
 
       it "has all the required attributes" do
-        expect(rendered_entry.title).to eq "Comment on #{article.title} by #{comment.author}"
+        expect(rendered_entry.title).
+          to eq "Comment on #{article.title} by #{comment.author}"
         expect(rendered_entry.entry_id).to eq("urn:uuid:12313123123123123")
         expect(rendered_entry.summary).to eq("<p>Comment body</p>")
         expect(xml_entry.css("link").first.content).
@@ -41,7 +42,8 @@ RSpec.describe "feedback/index.rss.builder", type: :view do
 
       it "has all the required attributes" do
         expect(rendered_entry.title).
-          to eq "Trackback from #{trackback.blog_name}: #{trackback.title} on #{article.title}"
+          to eq "Trackback from #{trackback.blog_name}:" \
+          " #{trackback.title} on #{article.title}"
         expect(rendered_entry.entry_id).to eq("urn:uuid:dsafsadffsdsf")
         expect(rendered_entry.summary).to eq("This is an excerpt")
         expect(xml_entry.css("link").first.content).to eq(trackback.url)

@@ -304,7 +304,8 @@ RSpec.describe ArticlesController, type: :controller do
 
     it "gets good article with utf8 slug" do
       build_stubbed(:blog)
-      utf8article = create(:utf8article, permalink: "ルビー", published_at: Time.utc(2004, 6, 2))
+      utf8article = create(:utf8article, permalink: "ルビー",
+                                         published_at: Time.utc(2004, 6, 2))
       get :redirect, params: { from: "2004/06/02/ルビー" }
       expect(assigns(:article)).to eq(utf8article)
     end
@@ -312,7 +313,8 @@ RSpec.describe ArticlesController, type: :controller do
     # NOTE: This is needed because Rails over-unescapes glob parameters.
     it "gets good article with pre-escaped utf8 slug using unescaped slug" do
       build_stubbed(:blog)
-      utf8article = create(:utf8article, permalink: "%E3%83%AB%E3%83%93%E3%83%BC", published_at: Time.utc(2004, 6, 2))
+      utf8article = create(:utf8article, permalink: "%E3%83%AB%E3%83%93%E3%83%BC",
+                                         published_at: Time.utc(2004, 6, 2))
       get :redirect, params: { from: "2004/06/02/ルビー" }
       expect(assigns(:article)).to eq(utf8article)
     end
@@ -320,7 +322,8 @@ RSpec.describe ArticlesController, type: :controller do
     describe 'accessing old-style URL with "articles" as the first part' do
       it "redirects to article without url_root" do
         create(:blog, base_url: "http://test.host")
-        article = create(:article, permalink: "second-blog-article", published_at: Time.utc(2004, 4, 1))
+        article = create(:article, permalink: "second-blog-article",
+                                   published_at: Time.utc(2004, 4, 1))
         get :redirect, params: { from: "articles/2004/04/01/second-blog-article" }
         assert_response 301
         expect(response).to redirect_to article.permalink_url
@@ -328,18 +331,22 @@ RSpec.describe ArticlesController, type: :controller do
 
       it "redirects to article with url_root" do
         create(:blog, base_url: "http://test.host/blog")
-        create(:article, permalink: "second-blog-article", published_at: Time.utc(2004, 4, 1))
+        create(:article, permalink: "second-blog-article", published_at: Time.utc(2004, 4,
+                                                                                  1))
         get :redirect, params: { from: "articles/2004/04/01/second-blog-article" }
         assert_response 301
-        expect(response).to redirect_to("http://test.host/blog/2004/04/01/second-blog-article")
+        expect(response).
+          to redirect_to("http://test.host/blog/2004/04/01/second-blog-article")
       end
 
       it "redirects to article with articles in url_root" do
         create(:blog, base_url: "http://test.host/aaa/articles/bbb")
-        create(:article, permalink: "second-blog-article", published_at: Time.utc(2004, 4, 1))
+        create(:article, permalink: "second-blog-article", published_at: Time.utc(2004, 4,
+                                                                                  1))
         get :redirect, params: { from: "articles/2004/04/01/second-blog-article" }
         assert_response 301
-        expect(response).to redirect_to("http://test.host/aaa/articles/bbb/2004/04/01/second-blog-article")
+        expect(response).
+          to redirect_to("http://test.host/aaa/articles/bbb/2004/04/01/second-blog-article")
       end
 
       it "should not redirect to an article from another blog"
@@ -354,7 +361,10 @@ RSpec.describe ArticlesController, type: :controller do
       end
 
       context "with an article" do
-        let!(:article) { create(:article, permalink: "second-blog-article", published_at: Time.utc(2004, 4, 1)) }
+        let!(:article) do
+          create(:article, permalink: "second-blog-article", published_at: Time.utc(2004, 4,
+                                                                                    1))
+        end
 
         context "try redirect to an unknown location" do
           it "raises RecordNotFound" do
@@ -377,7 +387,10 @@ RSpec.describe ArticlesController, type: :controller do
       end
 
       describe "accessing an article" do
-        let!(:article) { create(:article, permalink: "second-blog-article", published_at: Time.utc(2004, 4, 1)) }
+        let!(:article) do
+          create(:article, permalink: "second-blog-article",
+                           published_at: Time.utc(2004, 4, 1))
+        end
 
         before do
           get :redirect, params: { from: "#{article.permalink}.html" }
@@ -399,7 +412,10 @@ RSpec.describe ArticlesController, type: :controller do
       end
 
       describe "rendering as atom feed" do
-        let!(:article) { create(:article, permalink: "second-blog-article", published_at: Time.utc(2004, 4, 1)) }
+        let!(:article) do
+          create(:article, permalink: "second-blog-article",
+                           published_at: Time.utc(2004, 4, 1))
+        end
         let!(:trackback1) { create(:trackback, article: article, created_at: 1.day.ago) }
 
         before do
@@ -413,7 +429,10 @@ RSpec.describe ArticlesController, type: :controller do
       end
 
       describe "rendering as rss feed" do
-        let!(:article) { create(:article, permalink: "second-blog-article", published_at: Time.utc(2004, 4, 1)) }
+        let!(:article) do
+          create(:article, permalink: "second-blog-article",
+                           published_at: Time.utc(2004, 4, 1))
+        end
         let!(:trackback1) { create(:trackback, article: article, created_at: 1.day.ago) }
 
         before do

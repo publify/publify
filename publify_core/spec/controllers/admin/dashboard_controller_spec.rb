@@ -23,31 +23,40 @@ describe Admin::DashboardController, type: :controller do
     end
 
     it "has a link to the theme" do
-      expect(response.body).to have_selector("a[href='/admin/themes']", text: "change your blog presentation")
+      expect(response.body).to have_selector("a[href='/admin/themes']",
+                                             text: "change your blog presentation")
     end
 
     it "has a link to the sidebar" do
-      expect(response.body).to have_selector("a[href='/admin/sidebar']", text: "enable plugins")
+      expect(response.body).to have_selector("a[href='/admin/sidebar']",
+                                             text: "enable plugins")
     end
 
     it "has a link to a new article" do
-      expect(response.body).to have_selector("a[href='/admin/content/new']", text: "write a post")
+      expect(response.body).to have_selector("a[href='/admin/content/new']",
+                                             text: "write a post")
     end
 
     it "has a link to a new page" do
-      expect(response.body).to have_selector("a[href='/admin/pages/new']", text: "write a page")
+      expect(response.body).to have_selector("a[href='/admin/pages/new']",
+                                             text: "write a page")
     end
 
     it "has a link to article listing" do
-      expect(response.body).to have_selector("a[href='/admin/content']", text: "no article")
+      expect(response.body).to have_selector("a[href='/admin/content']",
+                                             text: "no article")
     end
 
     it "has a link to user's article listing" do
-      expect(response.body).to have_selector("a[href='/admin/content?search%5Buser_id%5D=#{@henri.id}']", text: "no article written by you")
+      expect(response.body).
+        to have_selector("a[href='/admin/content?search%5Buser_id%5D=#{@henri.id}']",
+                         text: "no article written by you")
     end
 
     it "has a link to drafts" do
-      expect(response.body).to have_selector("a[href='/admin/content?search%5Bstate%5D=drafts']", text: "no draft")
+      expect(response.body).
+        to have_selector("a[href='/admin/content?search%5Bstate%5D=drafts']",
+                         text: "no draft")
     end
 
     it "has a link to pages" do
@@ -55,15 +64,18 @@ describe Admin::DashboardController, type: :controller do
     end
 
     it "has a link to total comments" do
-      expect(response.body).to have_selector("a[href='/admin/feedback']", text: "no comment")
+      expect(response.body).to have_selector("a[href='/admin/feedback']",
+                                             text: "no comment")
     end
 
     it "has a link to Spam" do
-      expect(response.body).to have_selector("a[href='/admin/feedback?only=spam']", text: "no spam")
+      expect(response.body).to have_selector("a[href='/admin/feedback?only=spam']",
+                                             text: "no spam")
     end
 
     it "has a link to Spam queue" do
-      expect(response.body).to have_selector("a[href='/admin/feedback?only=unapproved']", text: "no unconfirmed")
+      expect(response.body).to have_selector("a[href='/admin/feedback?only=unapproved']",
+                                             text: "no unconfirmed")
     end
   end
 
@@ -80,19 +92,23 @@ describe Admin::DashboardController, type: :controller do
     end
 
     it "does not have a link to the theme" do
-      expect(response.body).not_to have_selector("a[href='/admin/themes']", text: "change your blog presentation")
+      expect(response.body).not_to have_selector("a[href='/admin/themes']",
+                                                 text: "change your blog presentation")
     end
 
     it "does not have a link to the sidebar" do
-      expect(response.body).not_to have_selector("a[href='/admin/sidebar']", text: "enable plugins")
+      expect(response.body).not_to have_selector("a[href='/admin/sidebar']",
+                                                 text: "enable plugins")
     end
 
     it "has a link to a new article" do
-      expect(response.body).to have_selector("a[href='/admin/content/new']", text: "write a post")
+      expect(response.body).to have_selector("a[href='/admin/content/new']",
+                                             text: "write a post")
     end
 
     it "has a link to a new page" do
-      expect(response.body).to have_selector("a[href='/admin/pages/new']", text: "write a page")
+      expect(response.body).to have_selector("a[href='/admin/pages/new']",
+                                             text: "write a page")
     end
 
     it "has a link to article listing" do
@@ -100,19 +116,24 @@ describe Admin::DashboardController, type: :controller do
     end
 
     it "has a link to user's article listing" do
-      expect(response.body).to have_selector("a[href='/admin/content?search%5Buser_id%5D=#{@rene.id}']", text: "no article written by you")
+      expect(response.body).
+        to have_selector("a[href='/admin/content?search%5Buser_id%5D=#{@rene.id}']",
+                         text: "no article written by you")
     end
 
     it "has a link to total comments" do
-      expect(response.body).to have_selector("a[href='/admin/feedback']", text: "no comment")
+      expect(response.body).to have_selector("a[href='/admin/feedback']",
+                                             text: "no comment")
     end
 
     it "has a link to Spam" do
-      expect(response.body).to have_selector("a[href='/admin/feedback?only=spam']", text: "no spam")
+      expect(response.body).to have_selector("a[href='/admin/feedback?only=spam']",
+                                             text: "no spam")
     end
 
     it "has a link to Spam queue" do
-      expect(response.body).to have_selector("a[href='/admin/feedback?only=unapproved']", text: "no unconfirmed")
+      expect(response.body).to have_selector("a[href='/admin/feedback?only=unapproved']",
+                                             text: "no unconfirmed")
     end
   end
 
@@ -129,43 +150,55 @@ describe Admin::DashboardController, type: :controller do
     end
 
     it "does not have a link to the theme" do
-      expect(response.body).not_to have_selector("a[href='/admin/themes']", text: "change your blog presentation")
+      expect(response.body).not_to have_selector("a[href='/admin/themes']",
+                                                 text: "change your blog presentation")
     end
 
     it "does not have a link to the sidebar" do
-      expect(response.body).not_to have_selector("a[href='/admin/sidebar']", text: "enable plugins")
+      expect(response.body).not_to have_selector("a[href='/admin/sidebar']",
+                                                 text: "enable plugins")
     end
 
     it "does not have a link to a new article" do
-      expect(response.body).not_to have_selector("a[href='/admin/content/new']", text: "write a post")
+      expect(response.body).not_to have_selector("a[href='/admin/content/new']",
+                                                 text: "write a post")
     end
 
     it "does not have a link to a new article" do
-      expect(response.body).not_to have_selector("a[href='/admin/pages/new']", text: "write a page")
+      expect(response.body).not_to have_selector("a[href='/admin/pages/new']",
+                                                 text: "write a page")
     end
 
     it "does not have a link to article listing" do
-      expect(response.body).not_to have_selector("a[href='/admin/content']", text: "Total posts:")
+      expect(response.body).not_to have_selector("a[href='/admin/content']",
+                                                 text: "Total posts:")
     end
 
     it "does not have a link to user's article listing" do
-      expect(response.body).not_to have_selector("a[href='/admin/content?search%5Buser_id%5D=#{@gerard.id}']", text: "Your posts:")
+      expect(response.body).
+        not_to have_selector("a[href='/admin/content?search%5Buser_id%5D=#{@gerard.id}']",
+                             text: "Your posts:")
     end
 
     it "does not have a link to categories" do
-      expect(response.body).not_to have_selector("a[href='/admin/categories']", text: "Categories:")
+      expect(response.body).not_to have_selector("a[href='/admin/categories']",
+                                                 text: "Categories:")
     end
 
     it "does not have a link to total comments" do
-      expect(response.body).not_to have_selector("a[href='/admin/feedback']", text: "Total comments:")
+      expect(response.body).not_to have_selector("a[href='/admin/feedback']",
+                                                 text: "Total comments:")
     end
 
     it "does not have a link to Spam" do
-      expect(response.body).not_to have_selector("a[href='/admin/feedback?only=spam']", text: "no spam")
+      expect(response.body).not_to have_selector("a[href='/admin/feedback?only=spam']",
+                                                 text: "no spam")
     end
 
     it "does not have a link to Spam queue" do
-      expect(response.body).not_to have_selector("a[href='/admin/feedback?only=unapproved']", text: "no unconfirmed")
+      expect(response.body).
+        not_to have_selector("a[href='/admin/feedback?only=unapproved']",
+                             text: "no unconfirmed")
     end
   end
 end

@@ -14,7 +14,9 @@ class Redirect < ApplicationRecord
     return path if %r{^(https?)://([^/]*)(.*)}.match?(path)
 
     url_root = blog.root_path
-    path = File.join(url_root, path) unless url_root.nil? || path[0, url_root.length] == url_root
+    unless url_root.nil? || path[0, url_root.length] == url_root
+      path = File.join(url_root, path)
+    end
     path
   end
 

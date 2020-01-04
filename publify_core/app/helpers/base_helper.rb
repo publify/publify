@@ -23,7 +23,8 @@ module BaseHelper
   end
 
   def render_sidebar(sidebar)
-    render_to_string(partial: sidebar.content_partial, locals: sidebar.to_locals_hash, layout: false)
+    render_to_string(partial: sidebar.content_partial, locals: sidebar.to_locals_hash,
+                     layout: false)
   end
 
   def themeable_stylesheet_link_tag(name)
@@ -40,7 +41,8 @@ module BaseHelper
     controller.send(:render_to_string, *args, &block)
   end
 
-  def link_to_permalink(item, title, anchor = nil, style = nil, nofollow = nil, only_path = false)
+  def link_to_permalink(item, title, anchor = nil, style = nil, nofollow = nil,
+                        only_path = false)
     options = {}
     options[:class] = style if style
     options[:rel] = "nofollow" if nofollow
@@ -80,7 +82,8 @@ module BaseHelper
   def onhover_show_admin_tools(type, id = nil)
     admin_id = "#admin_#{[type, id].compact.join("_")}"
     tag = []
-    tag << %{ onmouseover="if (getCookie('publify_user_profile') == 'admin') { $('#{admin_id}').show(); }" }
+    tag << %{ onmouseover="if (getCookie('publify_user_profile') == 'admin')\
+             { $('#{admin_id}').show(); }" }
     tag << %{ onmouseout="$('#{admin_id}').hide();" }
     safe_join(tag, " ")
   end
@@ -125,7 +128,8 @@ module BaseHelper
   def author_picture(status)
     return if status.user.twitter_profile_image.blank?
 
-    image_tag(status.user.twitter_profile_image, class: "alignleft", alt: status.user.nickname)
+    image_tag(status.user.twitter_profile_image, class: "alignleft",
+                                                 alt: status.user.nickname)
   end
 
   def page_header_includes
@@ -135,7 +139,8 @@ module BaseHelper
         # trim the same number of spaces from the beginning of each line
         # this way plugins can indent nicely without making ugly source output
         spaces = /\A[ \t]*/.match(v)[0].gsub(/\t/, "  ")
-        v.gsub!(/^#{spaces}/, "  ") # add 2 spaces to line up with the assumed position of the surrounding tags
+        # add 2 spaces to line up with the assumed position of the surrounding tags
+        v.gsub!(/^#{spaces}/, "  ")
       end
     end.flatten.uniq.join("\n")
   end
@@ -192,7 +197,8 @@ module BaseHelper
   end
 
   def get_reply_context_url(reply)
-    link_to(reply["user"]["name"], reply["user"]["entities"]["url"]["urls"][0]["expanded_url"])
+    link_to(reply["user"]["name"],
+            reply["user"]["entities"]["url"]["urls"][0]["expanded_url"])
   rescue
     link_to(reply["user"]["name"], "https://twitter.com/#{reply["user"]["name"]}")
   end
@@ -220,7 +226,8 @@ module BaseHelper
   #   show the excerpt, or else we show the body
   def fetch_html_content_for_feeds(item, this_blog)
     if item.password_protected?
-      "<p>This article is password protected. Please <a href='#{item.permalink_url}'>fill in your password</a> to read it</p>"
+      "<p>This article is password protected. Please " \
+        "<a href='#{item.permalink_url}'>fill in your password</a> to read it</p>"
     elsif this_blog.hide_extended_on_rss
       if item.excerpt? && !item.excerpt.empty?
         item.excerpt

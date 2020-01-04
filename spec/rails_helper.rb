@@ -17,7 +17,7 @@ end
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
-Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
+Dir[Rails.root.join("spec/support/**/*.rb")].sort.each { |f| require f }
 
 RSpec.configure do |config|
   config.use_transactional_fixtures = true
@@ -35,7 +35,9 @@ RSpec.configure do |config|
   config.include PublifyCore::TestingSupport::FeedAssertions, type: :controller
 
   config.after :each, type: :controller do
-    raise "Double escaped HTML in text (#{Regexp.last_match(1)})" if response.content_type == "text/html" && response.body =~ /(&lt;[a-z]+)/
+    if response.content_type == "text/html" && response.body =~ /(&lt;[a-z]+)/
+      raise "Double escaped HTML in text (#{Regexp.last_match(1)})"
+    end
   end
 end
 

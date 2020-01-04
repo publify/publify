@@ -26,7 +26,10 @@ describe Admin::SidebarController, type: :controller do
     it "updates content" do
       sidebar = create(:sidebar)
 
-      post :update, params: { id: sidebar.to_param, configure: { sidebar.id.to_s => { "title" => "Links", "body" => "another html" } } }
+      post :update,
+           params: { id: sidebar.to_param,
+                     configure: { sidebar.id.to_s => { title: "Links",
+                                                       body: "another html" } } }
       sidebar.reload
 
       expect(sidebar.config["body"]).to eq("another html")

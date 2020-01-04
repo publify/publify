@@ -7,7 +7,8 @@ class AuthorsController < ContentController
     @author = User.find_by(login: params[:id])
     raise ActiveRecord::RecordNotFound unless @author
 
-    @articles = @author.articles.published.page(params[:page]).per(this_blog.per_page(params[:format]))
+    @articles = @author.articles.published.page(params[:page]).
+      per(this_blog.per_page(params[:format]))
     @page_title = this_blog.author_title_template.to_title(@author, this_blog, params)
     @keywords = this_blog.meta_keywords
     @description = this_blog.author_desc_template.to_title(@author, this_blog, params)

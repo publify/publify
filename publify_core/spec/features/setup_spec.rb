@@ -4,7 +4,8 @@ require "rails_helper"
 
 RSpec.feature "Blog setup", type: :feature do
   before do
-    stub_request(:get, "http://www.google.com/search?output=rss&q=link:www.example.com&tbm=blg").
+    stub_request(:get,
+                 "http://www.google.com/search?output=rss&q=link:www.example.com&tbm=blg").
       to_return(status: 200, body: "", headers: {})
     load Rails.root.join("db", "seeds.rb")
   end
@@ -39,7 +40,8 @@ RSpec.feature "Blog setup", type: :feature do
     fill_in :user_login, with: "admin"
     fill_in :user_password, with: "test1234"
     find("input[type=submit]").click
-    expect(page).to have_text I18n.t!("admin.dashboard.index.welcome_back", user_name: "admin")
+    expect(page).to have_text I18n.t!("admin.dashboard.index.welcome_back",
+                                      user_name: "admin")
 
     # Confirm proper setting fo user properties
     expect(User.first.email).to eq "foo@bar.com"

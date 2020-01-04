@@ -12,15 +12,24 @@ end
 describe BaseHelper, type: :helper do
   describe "#link_to_permalink" do
     describe "for a simple ascii-only permalink" do
-      let(:article) { build(:article, published_at: Date.new(2004, 6, 1).to_datetime, title: "An Article sample") }
+      let(:article) do
+        build(:article, published_at: Date.new(2004, 6, 1).to_datetime,
+                        title: "An Article sample")
+      end
 
-      it { expect(link_to_permalink(article, "title")).to eq("<a href=\"#{article.permalink_url}\">title</a>") }
+      it {
+        expect(link_to_permalink(article, "title")).
+          to eq("<a href=\"#{article.permalink_url}\">title</a>")
+      }
     end
 
     describe "for a multibyte permalink" do
       let(:article) { build(:article, permalink: "ルビー") }
 
-      it { expect(link_to_permalink(article, "title")).to include("%E3%83%AB%E3%83%93%E3%83%BC") }
+      it {
+        expect(link_to_permalink(article, "title")).
+          to include("%E3%83%AB%E3%83%93%E3%83%BC")
+      }
     end
   end
 
@@ -112,7 +121,8 @@ describe BaseHelper, type: :helper do
         Time.zone = "UTC"
 
         expect(get_reply_context_twitter_link(reply)).
-          to eq '<a href="https://twitter.com/a_screen_name/status/123456789">23/01/2014 at 13h47</a>'
+          to eq '<a href="https://twitter.com/a_screen_name/status/123456789">' \
+          "23/01/2014 at 13h47</a>"
       ensure
         Time.zone = timezone
       end
@@ -124,7 +134,8 @@ describe BaseHelper, type: :helper do
         Time.zone = "Tokyo"
 
         expect(get_reply_context_twitter_link(reply)).
-          to eq '<a href="https://twitter.com/a_screen_name/status/123456789">23/01/2014 at 22h47</a>'
+          to eq '<a href="https://twitter.com/a_screen_name/status/123456789">' \
+          "23/01/2014 at 22h47</a>"
       ensure
         Time.zone = timezone
       end
@@ -156,14 +167,16 @@ describe BaseHelper, type: :helper do
       @blog.dofollowify = false
       @blog.save
 
-      expect(nofollowify_links('<a href="http://myblog.net">my blog</a>')).to eq('<a href="http://myblog.net" rel="nofollow">my blog</a>')
+      expect(nofollowify_links('<a href="http://myblog.net">my blog</a>')).
+        to eq('<a href="http://myblog.net" rel="nofollow">my blog</a>')
     end
 
     it "with dofollowify enabled, links should be nofollowed" do
       @blog.dofollowify = true
       @blog.save
 
-      expect(nofollowify_links('<a href="http://myblog.net">my blog</a>')).to eq('<a href="http://myblog.net">my blog</a>')
+      expect(nofollowify_links('<a href="http://myblog.net">my blog</a>')).
+        to eq('<a href="http://myblog.net">my blog</a>')
     end
   end
 
@@ -202,11 +215,13 @@ describe BaseHelper, type: :helper do
   end
 
   describe "#display_date" do
-    ["%d/%m/%y", "%m/%m/%y", "%d %b %Y", "%b %d %Y", "%I:%M%p", "%H:%M", "%Hh%M"].each do |spec|
+    ["%d/%m/%y", "%m/%m/%y", "%d %b %Y", "%b %d %Y", "%I:%M%p", "%H:%M",
+     "%Hh%M"].each do |spec|
       it "use #{spec} format from blog to render date" do
         create(:blog, date_format: spec)
         article = build(:article)
-        expect(display_date(article.published_at)).to eq(article.published_at.strftime(spec))
+        expect(display_date(article.published_at)).
+          to eq(article.published_at.strftime(spec))
       end
     end
   end

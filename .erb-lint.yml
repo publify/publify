@@ -17,7 +17,7 @@ linters:
         Enabled: false
       Style/FrozenStringLiteralComment:
         Enabled: false
-      Metrics/LineLength:
+      Layout/LineLength:
         Enabled: true
       Lint/UselessAssignment:
         Enabled: false

@@ -54,10 +54,12 @@ class MoveTextFilterToName < ActiveRecord::Migration[5.2]
       create_with(description: "Markdown", markup: "markdown", filters: [], params: {}).
       find_or_create_by!(name: "markdown")
     TextFilter.
-      create_with(description: "SmartyPants", markup: "none", filters: [:smartypants], params: {}).
+      create_with(description: "SmartyPants", markup: "none", filters: [:smartypants],
+                  params: {}).
       find_or_create_by!(name: "smartypants")
     TextFilter.
-      create_with(description: "Markdown with SmartyPants", markup: "markdown", filters: [:smartypants], params: {}).
+      create_with(description: "Markdown with SmartyPants", markup: "markdown",
+                  filters: [:smartypants], params: {}).
       find_or_create_by!(name: "markdown smartypants")
     TextFilter.
       create_with(description: "Textile", markup: "textile", filters: [], params: {}).

@@ -36,10 +36,12 @@ RSpec.describe "feedback/index.atom.builder", type: :view do
       let(:rendered_entry) { parsed_feed.entries.first }
 
       it "has all the required attributes" do
-        expect(rendered_entry.title).to eq "Comment on #{article.title} by #{comment.author}"
+        expect(rendered_entry.title).
+          to eq "Comment on #{article.title} by #{comment.author}"
         expect(rendered_entry.entry_id).to eq "urn:uuid:12313123123123123"
         expect(rendered_entry.content).to eq "<p>Comment body</p>"
-        expect(rendered_entry.links.first).to eq "#{article.permalink_url}#comment-#{comment.id}"
+        expect(rendered_entry.links.first).
+          to eq "#{article.permalink_url}#comment-#{comment.id}"
       end
     end
 
@@ -48,7 +50,8 @@ RSpec.describe "feedback/index.atom.builder", type: :view do
 
       it "has all the required attributes" do
         expect(rendered_entry.title).
-          to eq "Trackback from #{trackback.blog_name}: #{trackback.title} on #{article.title}"
+          to eq "Trackback from #{trackback.blog_name}:" \
+          " #{trackback.title} on #{article.title}"
         expect(rendered_entry.entry_id).to eq("urn:uuid:dsafsadffsdsf")
         expect(rendered_entry.summary).to eq("This is an excerpt")
         expect(rendered_entry.links.first).

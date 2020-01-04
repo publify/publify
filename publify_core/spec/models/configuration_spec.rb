@@ -172,7 +172,8 @@ describe "Given a new blog", type: :model do
 
   it "paginated template is title | blog name | page with keywords in the description" do
     expect(blog.paginated_title_template).to eq("%blog_name% | %blog_subtitle% %page%")
-    expect(blog.paginated_desc_template).to eq("%blog_name% | %blog_subtitle% | %meta_keywords% %page%")
+    expect(blog.paginated_desc_template).
+      to eq("%blog_name% | %blog_subtitle% | %meta_keywords% %page%")
   end
 
   it "tags title template is Tag: name | blog_name | page" do
@@ -196,7 +197,8 @@ describe "Given a new blog", type: :model do
   end
 
   it "archives description template is Archives for blog name date page blog description" do
-    expect(blog.archives_desc_template).to eq("Archives for %blog_name% %date% %page% %blog_subtitle%")
+    expect(blog.archives_desc_template).
+      to eq("Archives for %blog_name% %date% %page% %blog_subtitle%")
   end
 
   it "search title template is Archives for blog name date page" do
@@ -204,7 +206,8 @@ describe "Given a new blog", type: :model do
   end
 
   it "search description template is Archives for blog name date page blog description" do
-    expect(blog.search_desc_template).to eq("Results for %search% | %blog_name% | %blog_subtitle% %page%")
+    expect(blog.search_desc_template).
+      to eq("Results for %search% | %blog_name% | %blog_subtitle% %page%")
   end
 
   it "status list title is Statuses | blog name page" do
@@ -212,7 +215,8 @@ describe "Given a new blog", type: :model do
   end
 
   it "status list description  is Notes | blog name | blog subtitle page" do
-    expect(blog.statuses_desc_template).to eq("Notes | %blog_name% | %blog_subtitle% %page%")
+    expect(blog.statuses_desc_template).
+      to eq("Notes | %blog_name% | %blog_subtitle% %page%")
   end
 
   it "a single status title is status content | blog name" do

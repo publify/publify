@@ -9,11 +9,13 @@ describe "Admin::ContentController routing", type: :routing do
   end
 
   it "routes #autosave" do
-    expect(post: "/admin/content/autosave").to route_to(controller: "admin/content", action: "autosave")
+    expect(post: "/admin/content/autosave").
+      to route_to(controller: "admin/content", action: "autosave")
   end
 
   it "routes #auto_complete_for_article_keywords" do
-    expect(get: "/admin/content/auto_complete_for_article_keywords").to route_to(controller: "admin/content",
-                                                                                 action: "auto_complete_for_article_keywords")
+    expect(get: "/admin/content/auto_complete_for_article_keywords").
+      to route_to(controller: "admin/content",
+                  action: "auto_complete_for_article_keywords")
   end
 end

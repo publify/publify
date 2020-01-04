@@ -67,7 +67,8 @@ class User < ApplicationRecord
   end
 
   def display_names
-    [:login, :nickname, :firstname, :lastname, :first_and_last_name].map { |f| send(f) }.delete_if(&:empty?)
+    [:login, :nickname, :firstname, :lastname, :first_and_last_name].
+      map { |f| send(f) }.delete_if(&:empty?)
   end
 
   # Authenticate users with old password hashes
