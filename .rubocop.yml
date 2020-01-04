@@ -19,6 +19,7 @@ AllCops:
   - 'db/converters/*.rb'
   - 'db/scripts/fix_permalinks.rb'
   - 'db/schema.rb'
+  - 'vendor/bundle/**/*'
   TargetRubyVersion: 2.4
 
 Rails:
