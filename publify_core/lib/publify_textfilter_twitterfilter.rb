@@ -18,16 +18,18 @@ class PublifyApp
         # hashtags
         text.split.grep(/^#\w+/) do |item|
           # strip_html because Ruby considers "#prouddad</p>" as a word
-          stripped = item.strip_html
-          uri =
-            URI.escape("https://twitter.com/search?q=#{stripped}&src=tren&mode=realtime")
-          text = text.gsub(item, "<a href='#{uri}'>#{stripped}</a>")
+          item = item.strip_html
+          search_item = URI.encode_www_form_component(item)
+
+          uri = "https://twitter.com/search?q=#{search_item}&src=tren&mode=realtime"
+          text = text.gsub(item, "<a href='#{uri}'>#{item}</a>")
         end
 
         # @mention
         text.to_s.split.grep(/@\w+/) do |item|
-          uri = URI.escape("https://twitter.com/#{item.strip_html.delete("@")}")
-          text = text.gsub(item, "<a href='#{uri}'>#{item.strip_html}</a>")
+          item = item.strip_html
+          uri = html_escape("https://twitter.com/#{item.delete("@")}")
+          text = text.gsub(item, "<a href='#{uri}'>#{item}</a>")
         end
 
         text
