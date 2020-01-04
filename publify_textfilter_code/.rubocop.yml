@@ -21,6 +21,10 @@ Bundler/DuplicatedGem:
 Layout/DotPosition:
   EnforcedStyle: trailing
 
+# Lenient line length that fits in pull requests
+Layout/LineLength:
+  Max: 92
+
 Layout/MultilineMethodCallBraceLayout:
   EnforcedStyle: same_line
 
