@@ -1,29 +1,29 @@
 ---
-- - :whitelist
+- - :permit
   - MIT
   - :who: 
     :why: 
     :versions: []
     :when: 2017-07-22 20:10:47.517185110 Z
-- - :whitelist
+- - :permit
   - New BSD
   - :who: 
     :why: 
     :versions: []
     :when: 2017-07-22 20:10:58.423002290 Z
-- - :whitelist
+- - :permit
   - ruby
   - :who: 
     :why: 
     :versions: []
     :when: 2017-07-28 12:17:13.166276946 Z
-- - :whitelist
+- - :permit
   - Apache 2.0
   - :who: 
     :why: 
     :versions: []
     :when: 2017-07-28 12:17:23.516443145 Z
-- - :whitelist
+- - :permit
   - Simplified BSD
   - :who: 
     :why: 
@@ -48,7 +48,7 @@
     :why: 
     :versions: []
     :when: 2018-08-31 11:04:56.051894107 Z
-- - :whitelist
+- - :permit
   - ISC
   - :who: 
     :why: 
