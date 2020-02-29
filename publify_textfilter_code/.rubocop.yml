@@ -91,10 +91,6 @@ Rails/SkipsModelValidations:
 Style/AndOr:
   EnforcedStyle: conditionals
 
-# Allow multiple Hash parameters to look similar
-Style/BracesAroundHashParameters:
-  EnforcedStyle: context_dependent
-
 Style/ClassAndModuleChildren:
   Enabled: false
 
