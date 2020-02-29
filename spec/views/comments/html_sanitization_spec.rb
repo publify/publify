@@ -93,7 +93,7 @@ RSpec.describe "comments/_comment.html.erb", type: :view do
     end
   end
 
-  describe "XSS1", type: :view do
+  describe "XSS with script tag", type: :view do
     it_behaves_like "CommentSanitization"
 
     def comment_options
@@ -102,14 +102,14 @@ RSpec.describe "comments/_comment.html.erb", type: :view do
     end
   end
 
-  describe "XSS2", type: :view do
+  describe "XSS with onclick attribute", type: :view do
     it_behaves_like "CommentSanitization"
     def comment_options
       { body: %(<a href="#" onclick="javascript">bad link</a>) }
     end
   end
 
-  describe "XSS2", type: :view do
+  describe "XSS with javascript url", type: :view do
     it_behaves_like "CommentSanitization"
 
     def comment_options
@@ -224,7 +224,7 @@ RSpec.describe "comments/_comment.html.erb", type: :view do
     end
   end
 
-  describe "XSS1 with dofollow", type: :view do
+  describe "XSS with script tag and dofollow", type: :view do
     it_behaves_like "CommentSanitizationWithDofollow"
 
     def comment_options
@@ -233,14 +233,14 @@ RSpec.describe "comments/_comment.html.erb", type: :view do
     end
   end
 
-  describe "XSS2 with dofollow", type: :view do
+  describe "XSS with onclick attribute and dofollow", type: :view do
     it_behaves_like "CommentSanitizationWithDofollow"
     def comment_options
       { body: %(<a href="#" onclick="javascript">bad link</a>) }
     end
   end
 
-  describe "XSS2 with dofollow", type: :view do
+  describe "XSS with javascript url and dofollow", type: :view do
     it_behaves_like "CommentSanitizationWithDofollow"
 
     def comment_options

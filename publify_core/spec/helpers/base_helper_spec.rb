@@ -31,6 +31,11 @@ describe BaseHelper, type: :helper do
           to include("%E3%83%AB%E3%83%93%E3%83%BC")
       }
     end
+
+    it "returns just the title for unpublished articles" do
+      article = build :unpublished_article
+      expect(link_to_permalink(article, "the-title")).to eq "the-title"
+    end
   end
 
   describe "#stop_index_robots?" do
@@ -57,13 +62,13 @@ describe BaseHelper, type: :helper do
     context "for the tags controller" do
       before { allow(helper).to receive(:controller_name).and_return("tags") }
 
-      context "with unindex_tags set in blog" do
+      context "with unindex_tags set to true in blog" do
         before { expect(blog).to receive(:unindex_tags).and_return(true) }
 
         it { expect(subject).to be_truthy }
       end
 
-      context "with unindex_tags set in blog" do
+      context "with unindex_tags set to false in blog" do
         before { expect(blog).to receive(:unindex_tags).and_return(false) }
 
         it { expect(subject).to be_falsey }
@@ -73,13 +78,13 @@ describe BaseHelper, type: :helper do
     context "for the categories controller" do
       before { allow(helper).to receive(:controller_name).and_return("categories") }
 
-      context "with unindex_tags set in blog" do
+      context "with unindex_tags to true set in blog" do
         before { expect(blog).to receive(:unindex_categories).and_return(true) }
 
         it { expect(subject).to be_truthy }
       end
 
-      context "with unindex_tags set in blog" do
+      context "with unindex_tags set to false in blog" do
         before { expect(blog).to receive(:unindex_categories).and_return(false) }
 
         it { expect(subject).to be_falsey }
@@ -223,13 +228,6 @@ describe BaseHelper, type: :helper do
         expect(display_date(article.published_at)).
           to eq(article.published_at.strftime(spec))
       end
-    end
-  end
-
-  describe "#link_to_permalink" do
-    it "returns just the title for unpublished articles" do
-      article = build :unpublished_article
-      expect(link_to_permalink(article, "the-title")).to eq "the-title"
     end
   end
 end

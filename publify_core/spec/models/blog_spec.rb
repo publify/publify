@@ -200,13 +200,13 @@ describe Blog, type: :model do
   end
 
   describe "#humans" do
-    context "default value with publify txt" do
+    context "default value" do
       let(:blog) { create :blog }
 
       it { expect(blog.humans).not_to be_nil }
     end
 
-    context "default value with publify txt" do
+    context "non-default value" do
       let(:blog) { create(:blog, humans: "something to say") }
 
       it { expect(blog.humans).to eq("something to say") }
