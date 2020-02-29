@@ -61,9 +61,7 @@ describe Comment, type: :model do
       expect(c.save).not_to be_truthy
       expect(c.errors).not_to be_empty
     end
-  end
 
-  describe "#save" do
     it "generates guid" do
       c = build :comment, guid: nil
       assert c.save
@@ -126,6 +124,42 @@ describe Comment, type: :model do
       expect(comment).to be_spammy
       expect(comment).not_to be_status_confirmed
     end
+
+    describe "with feedback moderation enabled" do
+      before do
+        allow(blog).to receive(:sp_global).and_return(false)
+        allow(blog).to receive(:default_moderate_comments).and_return(true)
+      end
+
+      it "marks comment as presumably spam" do
+        comment = described_class.new do |c|
+          c.body = "Test foo"
+          c.author = "Bob"
+          c.article = build_stubbed(:article, blog: blog)
+        end
+
+        comment.classify_content
+
+        assert !comment.published?
+        assert comment.presumed_spam?
+        assert !comment.status_confirmed?
+      end
+
+      it "marks comment from known user as confirmed ham" do
+        comment = described_class.new do |c|
+          c.body = "Test foo"
+          c.author = "Henri"
+          c.article = build_stubbed(:article, blog: blog)
+          c.user = build_stubbed(:user)
+        end
+
+        comment.classify_content
+
+        assert comment.published?
+        assert comment.ham?
+        assert comment.status_confirmed?
+      end
+    end
   end
 
   it "has good relation" do
@@ -175,44 +209,6 @@ describe Comment, type: :model do
     create :blog, text_filter: "textile", comment_text_filter: "markdown"
     a = create(:comment)
     assert_equal "markdown", a.default_text_filter.name
-  end
-
-  describe "#classify_content" do
-    describe "with feedback moderation enabled" do
-      before do
-        allow(blog).to receive(:sp_global).and_return(false)
-        allow(blog).to receive(:default_moderate_comments).and_return(true)
-      end
-
-      it "marks comment as presumably spam" do
-        comment = described_class.new do |c|
-          c.body = "Test foo"
-          c.author = "Bob"
-          c.article = build_stubbed(:article, blog: blog)
-        end
-
-        comment.classify_content
-
-        assert !comment.published?
-        assert comment.presumed_spam?
-        assert !comment.status_confirmed?
-      end
-
-      it "marks comment from known user as confirmed ham" do
-        comment = described_class.new do |c|
-          c.body = "Test foo"
-          c.author = "Henri"
-          c.article = build_stubbed(:article, blog: blog)
-          c.user = build_stubbed(:user)
-        end
-
-        comment.classify_content
-
-        assert comment.published?
-        assert comment.ham?
-        assert comment.status_confirmed?
-      end
-    end
   end
 
   describe "spam", integration: true do

@@ -25,7 +25,7 @@ gem "uglifier", ">= 1.3.0"
 gem "flickraw", "~> 0.9.8", require: false
 
 gem "non-digest-assets", "~> 1.0"
-gem "rake", "~> 12.0"
+gem "rake", "~> 13.0"
 
 # Force older sprockets
 gem "sprockets", "~> 3.0"
@@ -36,15 +36,15 @@ group :development, :test do
 
   gem "capybara", "~> 3.9"
   gem "factory_bot", "~> 5.0"
-  gem "i18n-tasks", "0.9.29", require: false
+  gem "i18n-tasks", "0.9.30", require: false
   gem "pry", "~> 0.12.0"
   gem "pry-rails", "~> 0.3.4"
   gem "rspec-rails", "~> 3.4"
-  gem "rubocop", "~> 0.78.0", require: false
+  gem "rubocop", "~> 0.80.0", require: false
   gem "rubocop-performance", "~> 1.5.2", require: false
   gem "rubocop-rails", "~> 2.4.1", require: false
-  gem "rubocop-rspec", "~> 1.37.1", require: false
-  gem "simplecov", "~> 0.17.0", require: false
+  gem "rubocop-rspec", "~> 1.38.1", require: false
+  gem "simplecov", "~> 0.18.4", require: false
 end
 
 group :development do
