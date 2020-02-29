@@ -25,7 +25,7 @@ gem "uglifier", ">= 1.3.0"
 gem "flickraw", "~> 0.9.8", require: false
 
 gem "non-digest-assets", "~> 1.0"
-gem "rake", "~> 12.0"
+gem "rake", "~> 13.0"
 
 # Force older sprockets
 gem "sprockets", "~> 3.0"
