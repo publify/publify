@@ -304,19 +304,35 @@ RSpec.describe ArticlesController, type: :controller do
 
     it "gets good article with utf8 slug" do
       build_stubbed(:blog)
-      utf8article = create(:utf8article, permalink: "ルビー",
-                                         published_at: Time.utc(2004, 6, 2))
+      article = create(:article, title: "ルビー",
+                                 published_at: Time.utc(2004, 6, 2))
       get :redirect, params: { from: "2004/06/02/ルビー" }
-      expect(assigns(:article)).to eq(utf8article)
+      expect(assigns(:article)).to eq(article)
+    end
+
+    it "gets good article with title with spaces" do
+      build_stubbed(:blog)
+      article = create(:article, title: "foo bar",
+                                 published_at: Time.utc(2004, 6, 2))
+      get :redirect, params: { from: "2004/06/02/foo-bar" }
+      expect(assigns(:article)).to eq(article)
+    end
+
+    it "gets good article with title with plus sign" do
+      build_stubbed(:blog)
+      article = create(:article, title: "foo+bar",
+                                 published_at: Time.utc(2004, 6, 2))
+      get :redirect, params: { from: "2004/06/02/foo-bar" }
+      expect(assigns(:article)).to eq(article)
     end
 
     # NOTE: This is needed because Rails over-unescapes glob parameters.
     it "gets good article with pre-escaped utf8 slug using unescaped slug" do
       build_stubbed(:blog)
-      utf8article = create(:utf8article, permalink: "%E3%83%AB%E3%83%93%E3%83%BC",
-                                         published_at: Time.utc(2004, 6, 2))
+      article = create(:article, permalink: "%E3%83%AB%E3%83%93%E3%83%BC",
+                                 published_at: Time.utc(2004, 6, 2))
       get :redirect, params: { from: "2004/06/02/ルビー" }
-      expect(assigns(:article)).to eq(utf8article)
+      expect(assigns(:article)).to eq(article)
     end
 
     describe 'accessing old-style URL with "articles" as the first part' do

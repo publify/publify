@@ -291,7 +291,7 @@ class Article < Content
     format_url.gsub!("%year%", published_at.year.to_s)
     format_url.gsub!("%month%", sprintf("%.2d", published_at.month))
     format_url.gsub!("%day%", sprintf("%.2d", published_at.day))
-    format_url.gsub!("%title%", URI.encode(permalink.to_s))
+    format_url.gsub!("%title%", URI::DEFAULT_PARSER.escape(permalink.to_s))
     if format_url[0, 1] == "/"
       format_url[1..-1]
     else
