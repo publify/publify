@@ -32,6 +32,18 @@ describe ArticlesController, type: :routing do
                                              from: "foo/bar/baz")
     end
 
+    it "handles permalinks with escaped spaces" do
+      expect(get: "foo%20bar").to route_to(controller: "articles",
+                                           action: "redirect",
+                                           from: "foo bar")
+    end
+
+    it "handles permalinks with plus sign" do
+      expect(get: "foo+bar").to route_to(controller: "articles",
+                                         action: "redirect",
+                                         from: "foo+bar")
+    end
+
     it "routes URLs under /articles" do
       expect(get: "/articles").to route_to(controller: "articles",
                                            action: "redirect",

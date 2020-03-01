@@ -58,7 +58,6 @@ FactoryBot.define do
     body { "A content with several data" }
     extended { "extended content for fun" }
     guid
-    permalink { "a-big-article" }
     published_at { Time.zone.now }
     user
     allow_comments { true }
