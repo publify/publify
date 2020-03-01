@@ -4,9 +4,9 @@
 ; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
 ;
 [subrepo]
-	remote = git@github.com:publify/publify_amazon_sidebar.git
+	remote = ../publify_amazon_sidebar
 	branch = master
-	commit = d06af07b97015104494cf5fcae534770e766f729
+	commit = 53c73b1f55c12cf95db586842bd9d628eae6a0ca
 	method = merge
 	cmdver = 0.4.0
-	parent = 9b9146832dea3505d696a3808e331dcbfd6e86a8
+	parent = e4038c66bec4e35218efe140a5802addb2207f66
