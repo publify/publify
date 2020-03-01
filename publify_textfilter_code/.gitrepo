@@ -4,9 +4,9 @@
 ; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
 ;
 [subrepo]
-	remote = git@github.com:publify/publify_textfilter_code.git
+	remote = ../publify_textfilter_code
 	branch = master
-	commit = c7f8a92af8235f18e6f6f1db4fc615be1a75928b
+	commit = 0ae9da9ce6d028031f55614e9be09f2b142ac884
 	method = merge
 	cmdver = 0.4.0
-	parent = 7773d17508511015984666b3b733dacc4b5b8ada
+	parent = b60fac45927631f426437ef31b6b1462edca98bd
