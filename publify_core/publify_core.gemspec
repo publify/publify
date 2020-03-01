@@ -52,6 +52,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "factory_bot", "~> 5.1"
   s.add_development_dependency "feedjira", "~> 3.1"
   s.add_development_dependency "i18n-tasks", "~> 0.9.1"
+  s.add_development_dependency "pry"
   s.add_development_dependency "rails-controller-testing", "~> 1.0.1"
   s.add_development_dependency "rspec-rails", "~> 3.5"
   s.add_development_dependency "simplecov", "~> 0.17.1"
