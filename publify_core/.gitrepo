@@ -4,9 +4,9 @@
 ; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
 ;
 [subrepo]
-	remote = git@github.com:publify/publify_core.git
+	remote = ../publify_core
 	branch = master
-	commit = 6ce7ca6f3fcf3f93fc1e4515b820908e6284bfb4
+	commit = 34085e4c153dfba4b883f28d725e1beb434f4c8f
 	method = merge
 	cmdver = 0.4.0
-	parent = e30457008ac043cef5b8174143748b7498a1c7d4
+	parent = 1abe86b3688a9e05df6268cf49350e6a342acfed
