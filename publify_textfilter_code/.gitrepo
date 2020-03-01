@@ -6,7 +6,7 @@
 [subrepo]
 	remote = git@github.com:publify/publify_textfilter_code.git
 	branch = master
-	commit = 5289ad380c77f2bed06cb0a6078fc346c30729f7
+	commit = c7f8a92af8235f18e6f6f1db4fc615be1a75928b
 	method = merge
 	cmdver = 0.4.0
-	parent = 5b1bbae2c9757c12e64cf49e3666567756cb7469
+	parent = 7773d17508511015984666b3b733dacc4b5b8ada
