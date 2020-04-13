@@ -106,8 +106,10 @@ describe "With the list of available filters", type: :model do
 
       assert_equal expects_markdown.strip, filter_text(text,
                                                        [:macropre, :markdown, :macropost])
-      assert_equal expects_textile.strip, filter_text(text,
-                                                      [:macropre, :textile, :macropost])
+      ActiveSupport::Deprecation.silence do
+        assert_equal expects_textile.strip, filter_text(text,
+                                                        [:macropre, :textile, :macropost])
+      end
     end
   end
 end
