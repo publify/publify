@@ -182,7 +182,9 @@ describe Comment, type: :model do
       it "rejects with filter '#{filter}'" do
         blog.comment_text_filter = filter
 
-        assert comment.html(:body) !~ /<script>/
+        ActiveSupport::Deprecation.silence do
+          assert comment.html(:body) !~ /<script>/
+        end
       end
     end
   end
