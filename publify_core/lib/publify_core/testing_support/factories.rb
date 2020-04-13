@@ -162,7 +162,6 @@ FactoryBot.define do
 
   factory :comment do
     article
-    text_filter_name { "textile" }
     author { "Bob Foo" }
     url { "http://fakeurl.com" }
     body { "Comment body" }
