@@ -16,6 +16,7 @@ See [_why's Textile reference](http://hobix.com/textile/).
       end
 
       def self.filtertext(text)
+        ActiveSupport::Deprecation.warn "Use of Textile is deprecated"
         RedCloth.new(text).to_html(:textile)
       end
     end
