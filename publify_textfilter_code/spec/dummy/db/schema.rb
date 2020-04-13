@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_10_121624) do
+ActiveRecord::Schema.define(version: 2020_04_13_141331) do
 
   create_table "blogs", force: :cascade do |t|
     t.text "settings"
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 2019_02_10_121624) do
     t.string "name"
     t.string "permalink"
     t.string "description"
+    t.index ["name"], name: "index_post_types_on_name", unique: true
   end
 
   create_table "redirects", force: :cascade do |t|
@@ -100,6 +101,7 @@ ActiveRecord::Schema.define(version: 2019_02_10_121624) do
     t.datetime "updated_at"
     t.integer "content_id"
     t.integer "blog_id"
+    t.index ["from_path"], name: "index_redirects_on_from_path", unique: true
   end
 
   create_table "resources", force: :cascade do |t|
@@ -146,6 +148,7 @@ ActiveRecord::Schema.define(version: 2019_02_10_121624) do
     t.datetime "updated_at"
     t.string "display_name"
     t.integer "blog_id"
+    t.index ["blog_id", "name"], name: "index_tags_on_blog_id_and_name", unique: true
   end
 
   create_table "triggers", force: :cascade do |t|
@@ -183,6 +186,7 @@ ActiveRecord::Schema.define(version: 2019_02_10_121624) do
     t.string "profile"
     t.string "text_filter_name"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["login"], name: "index_users_on_login", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["resource_id"], name: "index_users_on_resource_id"
   end
