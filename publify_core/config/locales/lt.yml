@@ -40,6 +40,7 @@ lt:
           disabled: disabled
           enabled: enabled
         allowed_comments_html: Comments are %{allow_comment}
+        article_filter: Straipsnių filtras
         article_type: Article type
         cancel: Baigti
         default: Default

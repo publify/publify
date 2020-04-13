@@ -40,6 +40,7 @@ he:
           disabled: disabled
           enabled: מאופשר
         allowed_comments_html: Comments are %{allow_comment}
+        article_filter: מסנן הכתבה
         article_type: Article type
         cancel: בטל
         default: Default

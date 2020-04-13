@@ -157,6 +157,22 @@
                 </p>
               </div>
             </div>
+            <div class="control-group">
+              <p>
+              <%= t('.article_filter') %>: <strong><%= @article.text_filter.description %></strong>
+              <%= toggle_element 'text_filter' %>
+              </p>
+              <div id="text_filter" class="collapse">
+                <select name="article[text_filter_name]" id="text_filter_name" class='form-control'>
+                  <%= options_for_select text_filter_options, @article.text_filter_name %>
+                </select>
+                <p>
+                <span class="btn btn-mini btn-default">
+                  <%= toggle_element 'text_filter', 'OK' %>
+                </span>
+                </p>
+              </div>
+            </div>
           </fieldset>
         </div>
       </div>

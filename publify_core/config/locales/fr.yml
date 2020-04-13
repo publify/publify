@@ -40,6 +40,7 @@ fr:
           disabled: désactivés
           enabled: activés
         allowed_comments_html: Les commentaires sont %{allow_comment}
+        article_filter: Mise en forme des billets
         article_type: Type d'article
         cancel: Annuler
         default: Défaut

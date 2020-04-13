@@ -40,6 +40,7 @@ it:
           disabled: disabled
           enabled: enabled
         allowed_comments_html: Comments are %{allow_comment}
+        article_filter: Filtra articolo
         article_type: Article type
         cancel: Annulla
         default: Default

@@ -40,6 +40,7 @@ pl:
           disabled: wyłączone
           enabled: włączone
         allowed_comments_html: Komentarze są %{allow_comment}
+        article_filter: Filtr artykułów
         article_type: Typ artykułu
         cancel: Anuluj
         default: Domyślny
