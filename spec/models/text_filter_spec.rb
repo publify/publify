@@ -201,9 +201,11 @@ describe "With the list of available filters", type: :model do
 
       describe "with textile" do
         it "correctly interprets the macro" do
-          result =
-            filter_text('<publify:flickr img="31366117" size="Square" style="float:left"/>',
-                        [:macropre, :textile, :macropost])
+          result = ActiveSupport::Deprecation.silence do
+            filter_text(
+              '<publify:flickr img="31366117" size="Square" style="float:left"/>',
+              [:macropre, :textile, :macropost])
+          end
           expect(result).to eq \
             '<div style="float:left" class="flickrplugin">' \
             '<a href="http://www.flickr.com/users/scottlaird/31366117">' \
