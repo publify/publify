@@ -6,7 +6,7 @@ require "RedCloth"
 class PublifyApp
   class Textfilter
     class Textile < TextFilterPlugin::Markup
-      plugin_display_name "Textile"
+      plugin_display_name "Textile (Deprecated)"
       plugin_description "Textile markup language"
 
       def self.help_text
