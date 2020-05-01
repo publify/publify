@@ -48,7 +48,7 @@ group :development, :test do
 end
 
 group :development do
-  gem "better_errors", "~> 2.6.0"
+  gem "better_errors", "~> 2.7.0"
   gem "binding_of_caller", "~> 0.8.0"
 
   # Spring speeds up development by keeping your application running in the
