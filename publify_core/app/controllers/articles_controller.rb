@@ -123,9 +123,14 @@ class ArticlesController < ContentController
     @keywords = this_blog.meta_keywords
   end
 
-  # TODO: Move to TextfilterController?
+  # TODO: Move to TextfilterController
   def markup_help
-    render html: TextFilter.make_filter(params[:id]).commenthelp
+    filter = TextFilter.make_filter(params[:id])
+    if filter
+      render html: filter.commenthelp
+    else
+      render plain: "Unknown filter"
+    end
   end
 
   private

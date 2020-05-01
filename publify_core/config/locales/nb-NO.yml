@@ -40,6 +40,7 @@ nb-NO:
           disabled: deaktivert
           enabled: aktivert
         allowed_comments_html: Kommentarer er %{allow_comment}
+        article_filter: artikkelfilter
         article_type: Artikkeltype
         cancel: Avbryt
         default: Standard

@@ -40,6 +40,7 @@ de:
           disabled: disabled
           enabled: enabled
         allowed_comments_html: Comments are %{allow_comment}
+        article_filter: Textfilter für Artikel
         article_type: Article type
         cancel: Abbrechen
         default: Default

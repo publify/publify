@@ -182,6 +182,7 @@ class Admin::ContentController < Admin::BaseController
              :extended,
              :permalink,
              :published_at,
+             :text_filter_name,
              :title,
              :keywords)
   end

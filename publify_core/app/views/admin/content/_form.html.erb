@@ -10,22 +10,25 @@
         <%= link_to(t('.preview'), { controller: '/articles', action: 'preview', id: @article.id }, { target: 'new', class: 'btn btn-default' }) if @article.id %>
       </span>
       <input id="save_draft" type="submit" value="<%= t('.save_as_draft') %>" name="article[draft]" class="btn btn-default" />
-      <span class="btn btn-success" data-toggle="modal" data-target="#publishOptions">
+      <!-- Button trigger modal -->
+      <button class="btn btn-success" data-toggle="modal" type="button" data-target="#publishOptions">
         <%= controller.action_name == 'new' ? t('.publish') : t('.save') %>
-      </span>
+      </button>
     </div>
   </div>
 </div>
+
 <div class="row">
   <div class="col-md-8 col-md-offset-2" id="error-message-article">
     <%= render 'shared/flash', flash: flash %>
     <%= error_messages_for 'article' %>
   </div>
 </div>
+
 <div class="row">
   <div class="col-md-2" id="quicktags-block">
     <div id="quicktags" class="pull-right">
-      <script type="text/javascript">edToolbar('article_body_and_extended', '<%= @article.text_filter.name %>');</script>
+      <script type="text/javascript">edToolbar('article_body_and_extended', '<%= @article.text_filter_name %>');</script>
     </div>
   </div>
   <div class="col-md-8">
@@ -35,12 +38,15 @@
     </div>
   </div>
 </div>
-<div class="modal fade" id="publishOptions" tabindex="-1" role="dialog" aria-labelledby="publishOptions" aria-hidden="true">
+
+<!-- Modal -->
+<div class="modal fade" id="publishOptions" tabindex="-1" role="dialog" aria-labelledby="publishTitle" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title" id="myModalLabel"><%= t('.publish') %>
-          <%= submit_tag(t('.publish'), class: 'btn btn-success pull-right') %>&nbsp;
+        <h2 class="modal-title" id="publishTitle">
+          <%= t('.publish') %>
+          <%= submit_tag(t('.publish'), class: 'btn btn-success pull-right') %>
         </h2>
       </div>
       <div class="modal-body">
@@ -51,6 +57,7 @@
           </div>
           <p class="alert alert-warning"><%= t('.tags_explanation_html') %></p>
         </div>
+
         <% post_types = @post_types || [] %>
         <% if post_types.size.zero? %>
           <%= hidden_field_tag 'article[post_type]', 'read' %>
@@ -60,29 +67,30 @@
             <%= select :article, :post_type, post_types.map { |pt| [pt.name, pt.permalink] }, include_blank: t('.default') %>
           </div>
         <% end %>
+
         <div class="well">
           <fieldset>
             <legend><%= t('.publish_settings') %></legend>
             <div class='control-group'>
               <p>
-                <%= t('.permalink') %>:
-                <%= toggle_element('permalink') %>
+              <%= t('.permalink') %>:
+              <%= toggle_element('permalink') %>
               </p>
               <div id="permalink" class="collapse">
                 <div class="form-group">
                   <%= text_field 'article', 'permalink', autocomplete: 'off', class: 'form-control' %>
                 </div>
                 <p>
-                  <span class="btn btn-mini btn-default">
-                    <%= toggle_element('permalink', t('.ok')) %>
-                  </span>
+                <span class="btn btn-mini btn-default">
+                  <%= toggle_element('permalink', t('.ok')) %>
+                </span>
                 </p>
               </div>
             </div>
             <div class="control-group">
               <p>
-                <%= t('.status') %>: <strong><%= @article.state.to_s.downcase %></strong>
-                <%= toggle_element('status') %>
+              <%= t('.status') %>: <strong><%= @article.state.to_s.downcase %></strong>
+              <%= toggle_element('status') %>
               </p>
               <div id="status" class="collapse">
                 <label for="article_published" class="checkbox">
@@ -90,16 +98,16 @@
                   <%= t('.published') %>
                 </label>
                 <p>
-                  <span class="btn btn-mini btn-default">
-                    <%= toggle_element('status', t('.ok')) %>
-                  </span>
+                <span class="btn btn-mini btn-default">
+                  <%= toggle_element 'status', t('.ok') %>
+                </span>
                 </p>
               </div>
             </div>
             <div class="control-group">
               <p>
-                <%= t('.allowed_comments_html', allow_comment: content_tag(:strong, @article.allow_comments? ? t('.allow_comments_status.enabled') : t('.allow_comments_status.disabled'))) %>
-                <%= toggle_element('conversation') %>
+              <%= t('.allowed_comments_html', allow_comment: content_tag(:strong, @article.allow_comments? ? t('.allow_comments_status.enabled') : t('.allow_comments_status.disabled'))) %>
+              <%= toggle_element('conversation') %>
               </p>
               <div id="conversation" class="collapse">
                 <label for="article_allow_comments" class="checkbox">
@@ -107,45 +115,61 @@
                   <%= t('.allow_comments') %>
                 </label>
                 <p>
-                  <span class="btn btn-mini btn-default">
-                    <%= toggle_element('conversation', t('.ok')) %>
-                  </span>
+                <span class="btn btn-mini btn-default">
+                  <%= toggle_element('conversation', t('.ok')) %>
+                </span>
                 </p>
               </div>
             </div>
             <div class="control-group">
               <p>
-                <%= t('.published') %>
-                <strong>
-                  <% if @article.published_at.present? %>
-                    <%= display_date_and_time(@article.published_at) %>
-                  <% else %>
-                    <%= t('.now') %>
-                  <% end %>
-                </strong>
-                <%= toggle_element('publish') %>
+              <%= t('.published') %>
+              <strong>
+                <% if @article.published_at.present? %>
+                  <%= display_date_and_time(@article.published_at) %>
+                <% else %>
+                  <%= t('.now') %>
+                <% end %>
+              </strong>
+              <%= toggle_element('publish') %>
               </p>
               <div id="publish" class="collapse">
                 <%= text_field 'article', 'published_at' %>
                 <p>
-                  <span class="btn btn-mini btn-default">
-                    <%= toggle_element('publish', t('.ok')) %>
-                  </span>
+                <span class="btn btn-mini btn-default">
+                  <%= toggle_element('publish', t('.ok')) %>
+                </span>
                 </p>
               </div>
             </div>
             <div class="control-group">
               <p>
-                <%= t('.visibility') %>: <strong><%= @article.password.blank? ? t('.public') : t('.protected') %></strong>
-                <%= toggle_element('visibility') %>
+              <%= t('.visibility') %>: <strong><%= @article.password.blank? ? t('.public') : t('.protected') %></strong>
+              <%= toggle_element('visibility') %>
               </p>
               <div id="visibility" class="collapse">
                 <label for="article_password"><%= t('.password') %></label>
                 <%= text_field 'article', 'password', class: 'form-control' %>
                 <p>
-                  <span class="btn btn-mini btn-default">
-                    <%= toggle_element('visibility', t('.ok')) %>
-                  </span>
+                <span class="btn btn-mini btn-default">
+                  <%= toggle_element('visibility', t('.ok')) %>
+                </span>
+                </p>
+              </div>
+            </div>
+            <div class="control-group">
+              <p>
+              <%= t('.article_filter') %>: <strong><%= @article.text_filter.description %></strong>
+              <%= toggle_element 'text_filter' %>
+              </p>
+              <div id="text_filter" class="collapse">
+                <select name="article[text_filter_name]" id="text_filter_name" class='form-control'>
+                  <%= options_for_select text_filter_options, @article.text_filter_name %>
+                </select>
+                <p>
+                <span class="btn btn-mini btn-default">
+                  <%= toggle_element 'text_filter', 'OK' %>
+                </span>
                 </p>
               </div>
             </div>

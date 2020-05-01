@@ -63,7 +63,7 @@ FactoryBot.define do
     allow_comments { true }
     state { :published }
     allow_pings { true }
-    text_filter_name { "textile" }
+    text_filter_name { "markdown" }
 
     after :build do |article|
       article.blog ||= Blog.first || create(:blog)
@@ -162,7 +162,6 @@ FactoryBot.define do
 
   factory :comment do
     article
-    text_filter_name { "textile" }
     author { "Bob Foo" }
     url { "http://fakeurl.com" }
     body { "Comment body" }

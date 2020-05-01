@@ -363,7 +363,8 @@ describe Admin::ContentController, type: :controller do
         art_id = article.id
 
         body = "another *textile* test"
-        put :update, params: { id: art_id, article: { body: body, text_filter: "textile" } }
+        put :update, params: { id: art_id,
+                               article: { body: body, text_filter_name: "textile" } }
         assert_response :redirect, action: "show", id: art_id
 
         article.reload
@@ -497,7 +498,8 @@ describe Admin::ContentController, type: :controller do
 
         before do
           put :update,
-              params: { id: article.id, article: { body: body, text_filter: "textile" } }
+              params: { id: article.id,
+                        article: { body: body, text_filter_name: "textile" } }
         end
 
         it { expect(response).to redirect_to(action: "index") }

@@ -146,11 +146,11 @@ describe Content, type: :model do
   end
 
   describe "#generate_html" do
-    context "with a blog with textile filter" do
-      let!(:blog) { create(:blog, comment_text_filter: "textile") }
+    context "with a blog with markdown filter" do
+      let!(:blog) { create(:blog, comment_text_filter: "markdown") }
 
       context "comment with italic and bold" do
-        let(:comment) { build(:comment, body: "Comment body _italic_ *bold*") }
+        let(:comment) { build(:comment, body: "Comment body _italic_ **bold**") }
 
         it "converts the comment markup to HTML" do
           expect(comment.generate_html(:body)).to match(%r{<em>italic</em>})
