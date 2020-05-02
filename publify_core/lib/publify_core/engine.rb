@@ -22,7 +22,6 @@ module PublifyCore
         publify_admin.css
         accounts.css
         user-styles.css
-        coderay.css
         spinner-blue.gif
         spinner.gif
       )
