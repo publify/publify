@@ -68,7 +68,7 @@ module Admin::BaseHelper
   def button_to_short_url(item)
     return "" if item.short_url.nil?
 
-    link_to(content_tag(:span, "", class: "glyphicon glyphicon-link"), item.short_url,
+    link_to(t(".short_url"), item.short_url,
             class: "btn btn-success btn-xs btn-action")
   end
 
