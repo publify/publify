@@ -213,7 +213,6 @@ app/views/admin/feedback/index.html.erb
 app/views/admin/feedback/spam.js
 app/views/admin/migrations/show.html.erb
 app/views/admin/notes/_form.html.erb
-app/views/admin/notes/_header.html.erb
 app/views/admin/notes/_list.html.erb
 app/views/admin/notes/_note.html.erb
 app/views/admin/notes/edit.html.erb
