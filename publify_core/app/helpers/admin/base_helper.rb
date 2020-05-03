@@ -58,7 +58,7 @@ module Admin::BaseHelper
 
   def button_to_delete(item)
     confirm_text = t("admin.shared.destroy.are_you_sure",
-                     element: item.class.name.downcase)
+                     element: item.class.model_name.human.downcase)
     link_to(
       content_tag(:span, "", class: "glyphicon glyphicon-trash"),
       { action: "destroy", id: item.id },
