@@ -1,11 +1,6 @@
 CHANGELOG.md
 MIT-LICENSE
 README.md
-app/assets/fonts/bootstrap/glyphicons-halflings-regular.eot
-app/assets/fonts/bootstrap/glyphicons-halflings-regular.svg
-app/assets/fonts/bootstrap/glyphicons-halflings-regular.ttf
-app/assets/fonts/bootstrap/glyphicons-halflings-regular.woff
-app/assets/fonts/bootstrap/glyphicons-halflings-regular.woff2
 app/assets/fonts/open-sans-bold.woff
 app/assets/fonts/open-sans.woff
 app/assets/images/admin/loading.gif
@@ -64,7 +59,6 @@ app/assets/stylesheets/bootstrap/_code.scss
 app/assets/stylesheets/bootstrap/_component-animations.scss
 app/assets/stylesheets/bootstrap/_dropdowns.scss
 app/assets/stylesheets/bootstrap/_forms.scss
-app/assets/stylesheets/bootstrap/_glyphicons.scss
 app/assets/stylesheets/bootstrap/_grid.scss
 app/assets/stylesheets/bootstrap/_labels.scss
 app/assets/stylesheets/bootstrap/_media.scss
