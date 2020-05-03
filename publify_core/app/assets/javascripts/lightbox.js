@@ -76,7 +76,7 @@ License: https://github.com/ashleydw/lightbox/blob/master/LICENSE
           this.gallery_index = this.gallery_items.index(this.$element);
           $(document).on('keydown.ekkoLightbox', this.navigate.bind(this));
           if (this.options.directional_arrows && this.gallery_items.length > 1) {
-            this.lightbox_container.prepend('<div class="ekko-lightbox-nav-overlay"><a href="#" class="' + this.strip_stops(this.options.left_arrow_class) + '"></a><a href="#" class="' + this.strip_stops(this.options.right_arrow_class) + '"></a></div>');
+            this.lightbox_container.prepend('<div class="ekko-lightbox-nav-overlay"><a href="#" class="' + this.strip_stops(this.options.left_arrow_class) + '">&#10094;</a><a href="#" class="' + this.strip_stops(this.options.right_arrow_class) + '">&#10095;</a></div>');
             this.modal_arrows = this.lightbox_container.find('div.ekko-lightbox-nav-overlay').first();
             this.lightbox_container.find('a' + this.strip_spaces(this.options.left_arrow_class)).on('click', function(event) {
               event.preventDefault();
@@ -336,8 +336,8 @@ License: https://github.com/ashleydw/lightbox/blob/master/LICENSE
 
   $.fn.ekkoLightbox.defaults = {
     gallery_parent_selector: '*:not(.row)',
-    left_arrow_class: '.glyphicon .glyphicon-chevron-left',
-    right_arrow_class: '.glyphicon .glyphicon-chevron-right',
+    left_arrow_class: '.chevron-left',
+    right_arrow_class: '.chevron-right',
     directional_arrows: true,
     type: null,
     always_show_close: true,
