@@ -29,6 +29,7 @@ he:
       access_granted:
         error: שגיאה, אינך רשאי לבצע פעולה זו
       article_list:
+        feedback: משוב
         no_articles: There are no articles yet. Why don't you start and create one?
       autosave:
         success: הכתבה נשמרה בהצלחה
@@ -227,6 +228,8 @@ he:
         update_database_now: עדכן את בסיס הנתונים
         you_are_up_to_date: בסיס הנתונים שלך מעודכן !
     notes:
+      edit:
+        notes: Notes
       form:
         cancel: בטל
         compose_new_note: Compose new note
@@ -240,7 +243,7 @@ he:
         publish_at: פורסם בתאריך
         publish_settings: Publish settings
         tweet_id_like: Tweet id like 123456
-      header:
+      index:
         notes: Notes
       show:
         action_or_other_html: "%{first_action} או %{second_action}"
@@ -306,7 +309,7 @@ he:
         are_you_sure: 'האם אתה בטוח? '
         content_type: סוג התוכן
         date: תאריך
-        delete: Delete
+        delete: מחק
         file_size: גודל הקובץ
         filename: שם הקובץ
         media_library: Media Library
@@ -493,6 +496,7 @@ he:
         feedback: Feedback
         general_settings: הגדרות כלליות
         global_seo_settings: Global SEO settings
+        home: בית
         in_page_plugins: In page plugins
         logged_in_as: Logged in as %{login}
         logout_html: Log out &raquo;
@@ -707,6 +711,8 @@ he:
     the_page_you_are_looking_for: The page you are looking for has moved or does not exist.
   generic:
     change: Change
+    delete: מחק
+    edit: Edit
     save: שמור
   helper:
     at: at

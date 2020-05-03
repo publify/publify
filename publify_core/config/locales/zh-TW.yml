@@ -29,6 +29,7 @@ zh-TW:
       access_granted:
         error: Error, you are not allowed to perform this action
       article_list:
+        feedback: 回應
         no_articles: There are no articles yet. Why don't you create one?
       autosave:
         success: Article was successfully saved
@@ -227,6 +228,8 @@ zh-TW:
         update_database_now: 現在更新資料庫
         you_are_up_to_date: 你現在是最新的狀態
     notes:
+      edit:
+        notes: Notes
       form:
         cancel: 取消
         compose_new_note: Compose new note
@@ -240,7 +243,7 @@ zh-TW:
         publish_at: 公開
         publish_settings: Publish settings
         tweet_id_like: Tweet id like 123456
-      header:
+      index:
         notes: Notes
       show:
         action_or_other_html: "%{first_action} 或 %{second_action}"
@@ -306,7 +309,7 @@ zh-TW:
         are_you_sure: Are you sure?
         content_type: 內容類型
         date: Date
-        delete: Delete
+        delete: 刪除
         file_size: 檔案大小
         filename: 檔案名稱
         media_library: Media Library
@@ -493,6 +496,7 @@ zh-TW:
         feedback: Feedback
         general_settings: General settings
         global_seo_settings: Global SEO settings
+        home: Home
         in_page_plugins: In page plugins
         logged_in_as: Logged in as %{login}
         logout_html: 登出 &raquo;
@@ -707,6 +711,8 @@ zh-TW:
     the_page_you_are_looking_for: The page you are looking for has moved or does not exist.
   generic:
     change: Change
+    delete: 刪除
+    edit: 修改
     save: 存檔
   helper:
     at: at

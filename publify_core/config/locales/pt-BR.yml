@@ -29,6 +29,7 @@ pt-BR:
       access_granted:
         error: Erro, você não tem permissão para executar essa tarefa
       article_list:
+        feedback: Feedback
         no_articles: Não existem artigos ainda. Por que você não inicia e cria um?
       autosave:
         success: Artigo salvo com sucesso
@@ -227,6 +228,8 @@ pt-BR:
         update_database_now: Atualizar base de dados agora
         you_are_up_to_date: Está em dia!
     notes:
+      edit:
+        notes: Notas
       form:
         cancel: Cancelar
         compose_new_note: Compor nova nota
@@ -240,7 +243,7 @@ pt-BR:
         publish_at: Publicado em
         publish_settings: Configurações de publicação
         tweet_id_like: Tweet ID como 123456
-      header:
+      index:
         notes: Notas
       show:
         action_or_other_html: "%{first_action} ou %{second_action}"
@@ -306,7 +309,7 @@ pt-BR:
         are_you_sure: Você tem certeza?
         content_type: Tipo de conteúdo
         date: Data
-        delete: Delete
+        delete: Remover
         file_size: Tamanho do arquivo
         filename: Nome do arquivo
         media_library: Biblioteca
@@ -493,6 +496,7 @@ pt-BR:
         feedback: Feedback
         general_settings: Configurações Gerais
         global_seo_settings: Global SEO settings
+        home: Início
         in_page_plugins: Plugins na Página (In Page)
         logged_in_as: Bem vindo(a), %{login}
         logout_html: Sair &raquo;
@@ -707,6 +711,8 @@ pt-BR:
     the_page_you_are_looking_for: A página que você está procurando foi movida ou não existe mais.
   generic:
     change: Alterar
+    delete: Remover
+    edit: Editar
     save: Salvar
   helper:
     at: em
