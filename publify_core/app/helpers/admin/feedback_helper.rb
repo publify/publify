@@ -35,7 +35,7 @@ module Admin::FeedbackHelper
   end
 
   def button_to_conversation(item)
-    link_to(content_tag(:span, "", class: "glyphicon glyphicon-share-alt"),
+    link_to(t(".conversation"),
             { controller: "admin/feedback", action: "article", id: item.article_id },
             { class: "btn btn-default btn-xs btn-action" })
   end
