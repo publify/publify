@@ -23,26 +23,26 @@ module Admin::FeedbackHelper
   end
 
   def button_to_edit_comment(item)
-    link_to(t(".edit"),
+    link_to(t("generic.edit"),
             { controller: "admin/feedback", action: "edit", id: item.id },
             { class: "btn btn-primary btn-xs btn-action" })
   end
 
   def button_to_delete_comment(item)
-    link_to(t(".delete"),
+    link_to(t("generic.delete"),
             { controller: "admin/feedback", action: "destroy", id: item.id },
             { class: "btn btn-danger btn-xs btn-action" })
   end
 
   def button_to_conversation(item)
-    link_to(t(".conversation"),
+    link_to(t("generic.conversation"),
             { controller: "admin/feedback", action: "article", id: item.article_id },
             { class: "btn btn-default btn-xs btn-action" })
   end
 
   def change_status(item, context = "listing")
     spammy = item.state.to_s.downcase =~ /spam/
-    link_text = spammy ? t(".mark_as_ham") : t(".mark_as_spam")
+    link_text = spammy ? t("generic.mark_as_ham") : t("generic.mark_as_spam")
     button_type = spammy ? "success" : "warning"
 
     link_to(link_text,

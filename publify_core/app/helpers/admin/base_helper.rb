@@ -51,7 +51,7 @@ module Admin::BaseHelper
   end
 
   def button_to_edit(item)
-    link_to(t(".edit"),
+    link_to(t("generic.edit"),
             { action: "edit", id: item.id },
             { class: "btn btn-primary btn-xs btn-action" })
   end
@@ -59,7 +59,7 @@ module Admin::BaseHelper
   def button_to_delete(item)
     confirm_text = t("admin.shared.destroy.are_you_sure",
                      element: item.class.model_name.human.downcase)
-    link_to(t(".delete"),
+    link_to(t("generic.delete"),
             { action: "destroy", id: item.id },
             { class: "btn btn-danger btn-xs btn-action", method: :delete,
               data: { confirm: confirm_text } })
@@ -68,7 +68,7 @@ module Admin::BaseHelper
   def button_to_short_url(item)
     return "" if item.short_url.nil?
 
-    link_to(t(".short_url"), item.short_url,
+    link_to(t("generic.short_url"), item.short_url,
             class: "btn btn-success btn-xs btn-action")
   end
 
