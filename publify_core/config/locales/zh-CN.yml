@@ -548,6 +548,7 @@ zh-CN:
         no_tags: 这儿并不存在Tags。让我们开始创建它。
         or: or
         save: 保存
+        view: View
     themes:
       index:
         active_theme: "%{name} - 執行中主題"
@@ -711,9 +712,13 @@ zh-CN:
     the_page_you_are_looking_for: The page you are looking for has moved or does not exist.
   generic:
     change: Change
+    conversation: Conversation
     delete: 删除
     edit: 修改
+    mark_as_ham: Mark as ham
+    mark_as_spam: Mark as spam
     save: 保存
+    short_url: Short url
   helper:
     at: at
   langs:

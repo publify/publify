@@ -548,6 +548,7 @@ ja:
         no_tags: There are no tags yet. Why don't you start and create one?
         or: or
         save: 保存
+        view: View
     themes:
       index:
         active_theme: "%{name} - 現在のテーマ"
@@ -711,9 +712,13 @@ ja:
     the_page_you_are_looking_for: The page you are looking for has moved or does not exist.
   generic:
     change: Change
+    conversation: Conversation
     delete: 削除
     edit: Edit
+    mark_as_ham: Mark as ham
+    mark_as_spam: Mark as spam
     save: 保存
+    short_url: Short url
   helper:
     at: at
   langs:

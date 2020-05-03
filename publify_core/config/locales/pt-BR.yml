@@ -548,6 +548,7 @@ pt-BR:
         no_tags: Não existem tags ainda. Por que você não inicia e cria um?
         or: ou
         save: Salvar
+        view: View
     themes:
       index:
         active_theme: "%{name} - Tema ativo"
@@ -711,9 +712,13 @@ pt-BR:
     the_page_you_are_looking_for: A página que você está procurando foi movida ou não existe mais.
   generic:
     change: Alterar
+    conversation: Conversation
     delete: Remover
     edit: Editar
+    mark_as_ham: Mark as ham
+    mark_as_spam: Mark as spam
     save: Salvar
+    short_url: Short url
   helper:
     at: em
   langs:

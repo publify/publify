@@ -548,6 +548,7 @@ fr:
         no_tags: 'Il n''y a pas encore de labels, pourquoi ne pas en créer un ? '
         or: ou
         save: Sauver
+        view: View
     themes:
       index:
         active_theme: "%{name} - Thème actif"
@@ -711,9 +712,13 @@ fr:
     the_page_you_are_looking_for: La page que vous cherchez a été déplacée ou n'existe pas
   generic:
     change: Modifier
+    conversation: Conversation
     delete: Supprimer
     edit: Éditer
+    mark_as_ham: Mark as ham
+    mark_as_spam: Mark as spam
     save: Sauver
+    short_url: Short url
   helper:
     at: à
   langs:

@@ -572,6 +572,7 @@ ru:
         no_tags: Ничего нет. Почему бы не начать и не добавить?
         or: или
         save: Сохранить
+        view: View
     themes:
       index:
         active_theme: "%{name} - Active theme"
@@ -739,9 +740,13 @@ ru:
     the_page_you_are_looking_for: Страница, которую вы запрашиваете, была перемещена или не существует
   generic:
     change: Изменить
+    conversation: Conversation
     delete: Удалить
     edit: Редактировать
+    mark_as_ham: Mark as ham
+    mark_as_spam: Mark as spam
     save: Сохранить
+    short_url: Short url
   helper:
     at: в
   langs:

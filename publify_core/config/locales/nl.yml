@@ -548,6 +548,7 @@ nl:
         no_tags: Er zijn nog geen trefwoorden. Waarom begin je er niet een te maken?
         or: or
         save: Opslaan
+        view: View
     themes:
       index:
         active_theme: "%{name} - Actieve thema's"
@@ -711,9 +712,13 @@ nl:
     the_page_you_are_looking_for: The page you are looking for has moved or does not exist.
   generic:
     change: Change
+    conversation: Conversation
     delete: Verwijderen
     edit: Bewerken
+    mark_as_ham: Mark as ham
+    mark_as_spam: Mark as spam
     save: Opslaan
+    short_url: Short url
   helper:
     at: at
   langs:

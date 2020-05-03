@@ -548,6 +548,7 @@ da:
         no_tags: There are no tags yet. Why don't you create one?
         or: or
         save: Gem
+        view: View
     themes:
       index:
         active_theme: "%{name} - Aktiv tema"
@@ -711,9 +712,13 @@ da:
     the_page_you_are_looking_for: The page you are looking for has moved or does not exist.
   generic:
     change: Change
+    conversation: Conversation
     delete: Slet
     edit: Rediger
+    mark_as_ham: Mark as ham
+    mark_as_spam: Mark as spam
     save: Gem
+    short_url: Short url
   helper:
     at: at
   langs:

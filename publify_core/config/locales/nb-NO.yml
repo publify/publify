@@ -548,6 +548,7 @@ nb-NO:
         no_tags: Det finnes ingen tagger enda. Hva med å opprette en?
         or: eller
         save: Lagre
+        view: View
     themes:
       index:
         active_theme: "%{name} - Aktivt tema"
@@ -711,9 +712,13 @@ nb-NO:
     the_page_you_are_looking_for: Siden du ser etter er flyttet eller finnes ikke.
   generic:
     change: Endre
+    conversation: Conversation
     delete: Slett
     edit: Rediger
+    mark_as_ham: Mark as ham
+    mark_as_spam: Mark as spam
     save: Lagre
+    short_url: Short url
   helper:
     at: kl.
   langs:
