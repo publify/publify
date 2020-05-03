@@ -23,13 +23,13 @@ module Admin::FeedbackHelper
   end
 
   def button_to_edit_comment(item)
-    link_to(content_tag(:span, "", class: "glyphicon glyphicon-pencil"),
+    link_to(t(".edit"),
             { controller: "admin/feedback", action: "edit", id: item.id },
             { class: "btn btn-primary btn-xs btn-action" })
   end
 
   def button_to_delete_comment(item)
-    link_to(content_tag(:span, "", class: "glyphicon glyphicon-trash"),
+    link_to(t(".delete"),
             { controller: "admin/feedback", action: "destroy", id: item.id },
             { class: "btn btn-danger btn-xs btn-action" })
   end

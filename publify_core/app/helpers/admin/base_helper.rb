@@ -51,7 +51,7 @@ module Admin::BaseHelper
   end
 
   def button_to_edit(item)
-    link_to(content_tag(:span, "", class: "glyphicon glyphicon-pencil"),
+    link_to(t(".edit"),
             { action: "edit", id: item.id },
             { class: "btn btn-primary btn-xs btn-action" })
   end
@@ -59,11 +59,10 @@ module Admin::BaseHelper
   def button_to_delete(item)
     confirm_text = t("admin.shared.destroy.are_you_sure",
                      element: item.class.model_name.human.downcase)
-    link_to(
-      content_tag(:span, "", class: "glyphicon glyphicon-trash"),
-      { action: "destroy", id: item.id },
-      { class: "btn btn-danger btn-xs btn-action", method: :delete,
-        data: { confirm: confirm_text } })
+    link_to(t(".delete"),
+            { action: "destroy", id: item.id },
+            { class: "btn btn-danger btn-xs btn-action", method: :delete,
+              data: { confirm: confirm_text } })
   end
 
   def button_to_short_url(item)
