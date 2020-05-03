@@ -47,7 +47,7 @@
             <%= link_to tag.display_name, edit_admin_tag_path(tag), class: 'edit' %>
             <%= button_to_edit tag %>
             <%= button_to_delete tag %>
-            <%= link_to_permalink(tag, "#{tag.contents.size} <span class='glyphicon glyphicon-link'></span>".html_safe, nil, 'btn btn-success btn-xs').html_safe %>
+            <%= link_to_permalink(tag, "#{tag.contents.size} #{t(".view")}".html_safe, nil, 'btn btn-success btn-xs') %>
           </td>
           <td><%= tag.name %></td>
         </tr>
