@@ -23,7 +23,6 @@
         <%= link_to user.login, author_path(id: user.login) %>
         <div class='action'>
           <%= button_to_edit user %>
-          <%= link_to(content_tag(:span, '', class: 'glyphicon glyphicon-link'), author_path(id: user.login), class: 'btn btn-success btn-xs btn-action') %>
         </div>
       </td>
       <td><%= user.nickname %></td>
