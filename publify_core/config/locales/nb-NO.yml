@@ -29,6 +29,7 @@ nb-NO:
       access_granted:
         error: Du har ikke tillatelse til å utføre denne handlingen
       article_list:
+        feedback: Diskusjon
         no_articles: Det finnes ingen artikler enda. Hva med å opprette en?
       autosave:
         success: Artikkel ble lagret
@@ -227,6 +228,8 @@ nb-NO:
         update_database_now: Oppdater database nå
         you_are_up_to_date: Du er oppdatert!
     notes:
+      edit:
+        notes: Notater
       form:
         cancel: Avbryt
         compose_new_note: Skriv nytt notat
@@ -240,7 +243,7 @@ nb-NO:
         publish_at: Publisert den
         publish_settings: Publiseringsinnstillinger
         tweet_id_like: Tweet-id av typen 123456
-      header:
+      index:
         notes: Notater
       show:
         action_or_other_html: "%{first_action} eller %{second_action}"
@@ -306,7 +309,7 @@ nb-NO:
         are_you_sure: Er du sikker?
         content_type: Innholdstype (MIME Content Type)
         date: Dato
-        delete: Delete
+        delete: Slett
         file_size: Filstørrelse
         filename: Filnavn
         media_library: Media-bibliotek
@@ -493,6 +496,7 @@ nb-NO:
         feedback: Feedback
         general_settings: General settings
         global_seo_settings: Global SEO settings
+        home: Hjem
         in_page_plugins: I side-plugins
         logged_in_as: Innlogget som %{login}
         logout_html: Logg ut &raquo;
@@ -544,6 +548,7 @@ nb-NO:
         no_tags: Det finnes ingen tagger enda. Hva med å opprette en?
         or: eller
         save: Lagre
+        view: View
     themes:
       index:
         active_theme: "%{name} - Aktivt tema"
@@ -707,7 +712,13 @@ nb-NO:
     the_page_you_are_looking_for: Siden du ser etter er flyttet eller finnes ikke.
   generic:
     change: Endre
+    conversation: Conversation
+    delete: Slett
+    edit: Rediger
+    mark_as_ham: Mark as ham
+    mark_as_spam: Mark as spam
     save: Lagre
+    short_url: Short url
   helper:
     at: kl.
   langs:

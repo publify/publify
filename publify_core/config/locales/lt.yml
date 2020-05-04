@@ -29,6 +29,7 @@ lt:
       access_granted:
         error: Error, you are not allowed to perform this action
       article_list:
+        feedback: Atsiliepimas
         no_articles: There are no articles yet. Why don't you create one?
       autosave:
         success: Article was successfully saved
@@ -239,6 +240,8 @@ lt:
         update_database_now: Update der Datenbank jetzt
         you_are_up_to_date: Sie sind auf dem aktuellsten Stand!
     notes:
+      edit:
+        notes: Notes
       form:
         cancel: Baigti
         compose_new_note: Compose new note
@@ -252,7 +255,7 @@ lt:
         publish_at: Publikuotas
         publish_settings: Publish settings
         tweet_id_like: Tweet id like 123456
-      header:
+      index:
         notes: Notes
       show:
         action_or_other_html: "%{first_action} arba %{second_action}"
@@ -318,7 +321,7 @@ lt:
         are_you_sure: Are you sure?
         content_type: Content Type
         date: Date
-        delete: Delete
+        delete: Trinti
         file_size: Dateigröße
         filename: Dateiname
         media_library: Media Library
@@ -505,6 +508,7 @@ lt:
         feedback: Feedback
         general_settings: Pagrindiniai nustatymai
         global_seo_settings: Global SEO settings
+        home: Home
         in_page_plugins: In page plugins
         logged_in_as: Sveiki, %{login}
         logout_html: Atsijungti &raquo;
@@ -556,6 +560,7 @@ lt:
         no_tags: There are no žymės yet. Why don't you start and create one?
         or: or
         save: Saugoti
+        view: View
     themes:
       index:
         active_theme: "%{name} - Aktives Motiv"
@@ -721,7 +726,13 @@ lt:
     the_page_you_are_looking_for: The page you are looking for has moved or does not exist.
   generic:
     change: Change
+    conversation: Conversation
+    delete: Trinti
+    edit: Redaguoti
+    mark_as_ham: Mark as ham
+    mark_as_spam: Mark as spam
     save: Saugoti
+    short_url: Short url
   helper:
     at: at
   langs:

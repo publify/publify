@@ -1,6 +1,5 @@
 <% content_for :page_heading do %>
   <h2>
-    <i class="glyphicon glyphicon-large glyphicon-pencil"></i>
     <%= t('.manage_articles') %>
     <%= link_to(t('.new_article'), { controller: 'content', action: 'new' }, { id: 'dialog-link', class: 'btn btn-info pull-right' }) %>
   </h2>

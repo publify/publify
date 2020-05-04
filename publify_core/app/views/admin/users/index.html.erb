@@ -1,6 +1,5 @@
 <% content_for :page_heading do %>
 <h2>
-  <i class="glyphicon glyphicon-large glyphicon-user"></i>
   <%= t('.users') %>
   <%= link_to(t('.new_user'), new_admin_user_path, id: 'dialog-link', class: 'btn btn-info pull-right') %>
 </h2>
@@ -23,8 +22,7 @@
       <td>
         <%= link_to user.login, author_path(id: user.login) %>
         <div class='action'>
-          <%= link_to(content_tag(:span, '', class: 'glyphicon glyphicon-pencil'), edit_admin_user_path(user), class: 'btn btn-primary btn-xs btn-action') %>
-          <%= link_to(content_tag(:span, '', class: 'glyphicon glyphicon-link'), author_path(id: user.login), class: 'btn btn-success btn-xs btn-action') %>
+          <%= button_to_edit user %>
         </div>
       </td>
       <td><%= user.nickname %></td>

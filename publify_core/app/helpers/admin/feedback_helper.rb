@@ -23,29 +23,29 @@ module Admin::FeedbackHelper
   end
 
   def button_to_edit_comment(item)
-    link_to(content_tag(:span, "", class: "glyphicon glyphicon-pencil"),
+    link_to(t("generic.edit"),
             { controller: "admin/feedback", action: "edit", id: item.id },
             { class: "btn btn-primary btn-xs btn-action" })
   end
 
   def button_to_delete_comment(item)
-    link_to(content_tag(:span, "", class: "glyphicon glyphicon-trash"),
+    link_to(t("generic.delete"),
             { controller: "admin/feedback", action: "destroy", id: item.id },
             { class: "btn btn-danger btn-xs btn-action" })
   end
 
   def button_to_conversation(item)
-    link_to(content_tag(:span, "", class: "glyphicon glyphicon-share-alt"),
+    link_to(t("generic.conversation"),
             { controller: "admin/feedback", action: "article", id: item.article_id },
             { class: "btn btn-default btn-xs btn-action" })
   end
 
   def change_status(item, context = "listing")
     spammy = item.state.to_s.downcase =~ /spam/
-    direction = spammy ? "up" : "down"
+    link_text = spammy ? t("generic.mark_as_ham") : t("generic.mark_as_spam")
     button_type = spammy ? "success" : "warning"
 
-    link_to(content_tag(:span, "", class: "glyphicon glyphicon-thumbs-#{direction}"),
+    link_to(link_text,
             { controller: "admin/feedback", action: "change_state",
               id: item.id, context: context },
             { class: "btn btn-#{button_type} btn-xs btn-action", remote: true })

@@ -29,6 +29,7 @@ fr:
       access_granted:
         error: Erreur, vous n'avez pas les droits requis pour effectuer cette action
       article_list:
+        feedback: Commentaires
         no_articles: Il n'y a pas encore de articles, pourquoi ne pas en créer un ?
       autosave:
         success: L'article a été sauvergardé avec succès
@@ -227,6 +228,8 @@ fr:
         update_database_now: Mettez votre base à jour
         you_are_up_to_date: Vous êtes à jour !
     notes:
+      edit:
+        notes: Notes
       form:
         cancel: Annuler
         compose_new_note: Écrire un nouveau billet
@@ -240,7 +243,7 @@ fr:
         publish_at: Publié le
         publish_settings: Paramètres de publication
         tweet_id_like: 'Identifiant du Tweet (ex: 123456)'
-      header:
+      index:
         notes: Notes
       show:
         action_or_other_html: "%{first_action} ou %{second_action}"
@@ -306,7 +309,7 @@ fr:
         are_you_sure: Êtes-vous sûr ?
         content_type: Type de contenu
         date: Date
-        delete: Delete
+        delete: Supprimer
         file_size: Taille du fichier
         filename: Fichier
         media_library: Bibliothèque de médias
@@ -493,6 +496,7 @@ fr:
         feedback: Feedback
         general_settings: Options générales
         global_seo_settings: Global SEO settings
+        home: Page d'accueil
         in_page_plugins: Plugins
         logged_in_as: Bonjour, %{login}
         logout_html: Déconnexion &raquo;
@@ -544,6 +548,7 @@ fr:
         no_tags: 'Il n''y a pas encore de labels, pourquoi ne pas en créer un ? '
         or: ou
         save: Sauver
+        view: View
     themes:
       index:
         active_theme: "%{name} - Thème actif"
@@ -707,7 +712,13 @@ fr:
     the_page_you_are_looking_for: La page que vous cherchez a été déplacée ou n'existe pas
   generic:
     change: Modifier
+    conversation: Conversation
+    delete: Supprimer
+    edit: Éditer
+    mark_as_ham: Mark as ham
+    mark_as_spam: Mark as spam
     save: Sauver
+    short_url: Short url
   helper:
     at: à
   langs:

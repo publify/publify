@@ -1,4 +1,9 @@
-<%= render 'header' %>
+<% content_for :page_heading do %>
+  <h2>
+    <%= t('.notes') %>
+  </h2>
+<% end %>
+
 
 <div class='row'>
   <div class='col-md-4'>

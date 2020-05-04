@@ -29,6 +29,7 @@ zh-CN:
       access_granted:
         error: 错误，不允许进行此操作
       article_list:
+        feedback: 回应
         no_articles: 这儿并不存在articles。让我们开始创建它。
       autosave:
         success: Article was successfully saved
@@ -227,6 +228,8 @@ zh-CN:
         update_database_now: 現在更新資料庫
         you_are_up_to_date: 你現在是最新的狀態
     notes:
+      edit:
+        notes: Notes
       form:
         cancel: 取消
         compose_new_note: Compose new note
@@ -240,7 +243,7 @@ zh-CN:
         publish_at: 公开
         publish_settings: 发布设定
         tweet_id_like: Tweet id like 123456
-      header:
+      index:
         notes: Notes
       show:
         action_or_other_html: "%{first_action} 或 %{second_action}"
@@ -306,7 +309,7 @@ zh-CN:
         are_you_sure: 你确认？
         content_type: 內容類型
         date: 日期
-        delete: Delete
+        delete: 删除
         file_size: 檔案大小
         filename: 檔案名稱
         media_library: Media Library
@@ -493,6 +496,7 @@ zh-CN:
         feedback: Feedback
         general_settings: General settings
         global_seo_settings: Global SEO settings
+        home: 首页
         in_page_plugins: In page plugins
         logged_in_as: Logged in as %{login}
         logout_html: 登出 &raquo;
@@ -544,6 +548,7 @@ zh-CN:
         no_tags: 这儿并不存在Tags。让我们开始创建它。
         or: or
         save: 保存
+        view: View
     themes:
       index:
         active_theme: "%{name} - 執行中主題"
@@ -707,7 +712,13 @@ zh-CN:
     the_page_you_are_looking_for: The page you are looking for has moved or does not exist.
   generic:
     change: Change
+    conversation: Conversation
+    delete: 删除
+    edit: 修改
+    mark_as_ham: Mark as ham
+    mark_as_spam: Mark as spam
     save: 保存
+    short_url: Short url
   helper:
     at: at
   langs:
