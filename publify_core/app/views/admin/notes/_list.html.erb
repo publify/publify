@@ -1,13 +1,24 @@
 <div class='col-md-8'>
   <table class="table table-striped">
-    <% if @notes.empty? %>
-      <tr>
-        <td colspan="2">
-          <%= t('admin.notes.form.no_notes') %>
-        </td>
+    <thead>
+      <tr class='noborder'>
+        <th><%= t('.title') %></th>
+        <th><%= t('.author') %></th>
+        <th><%= t(".created_at") %></th>
+        <th><%= t(".text_filter") %></th>
+        <th><%= t(".actions") %></th>
       </tr>
-    <% end %>
-    <%= render @notes %>
-    <%= display_pagination(@notes, 3, 'first', 'last') %>
+    </thead>
+    <tbody>
+      <% if @notes.empty? %>
+        <tr>
+          <td colspan="5">
+            <%= t('admin.notes.form.no_notes') %>
+          </td>
+        </tr>
+      <% end %>
+      <%= render @notes %>
+      <%= display_pagination(@notes, 5, 'first', 'last') %>
+    </tbody>
   </table>
 </div>

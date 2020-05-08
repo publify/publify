@@ -1,14 +1,19 @@
 <tr>
   <td>
     <%= h(note.body.strip_html.slice(0..140)) %>
-    <div class='action'>
-      <%= button_to_edit note %>
-      <%= button_to_delete note %>
-      <%= button_to_short_url note %>
-    </div>
   </td>
   <td>
     <%= author_link(note) %><br />
-    <small><%= l(note.published_at) %></small>
+  </td>
+  <td>
+    <%= l(note.published_at) %>
+  </td>
+  <td>
+    <%= note.text_filter_name %>
+  </td>
+  <td>
+    <%= button_to_edit note %>
+    <%= button_to_delete note %>
+    <%= button_to_short_url note %>
   </td>
 </tr>
