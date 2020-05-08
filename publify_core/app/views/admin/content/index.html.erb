@@ -40,6 +40,17 @@
     </div>
   </div>
   <table class="table table-hover">
+    <thead>
+      <tr>
+        <th><%= Article.human_attribute_name(:title) %></th>
+        <th><%= Article.human_attribute_name(:author) %></th>
+        <th><%= Article.human_attribute_name(:created_at) %></th>
+        <th><%= Article.human_attribute_name(:published_at) %></th>
+        <th><%= Article.human_attribute_name(:feedback) %></th>
+        <th><%= Article.human_attribute_name(:text_filter) %></th>
+        <th><%= t(".actions") %></th>
+      </tr>
+    </thead>
     <tbody id="articleList">
       <%= render 'article_list', articles: @articles %>
     </tbody>
