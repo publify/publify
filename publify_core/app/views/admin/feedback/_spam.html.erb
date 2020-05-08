@@ -29,12 +29,5 @@
   </p>
 </td>
 <td>
-  <p>
-    <small>
-      <%= t('.this_comment_by_was_flagged_as_spam_html',
-            author: comment.author,
-            cancel_link: link_to(t('.cancel'), url: { action: 'change_state', id: comment.id, remote: true })) %>
-      <%= toggle_element "feedback_#{comment.id}" %>
-    </small>
-  </p>
+  <%= change_status(comment) %>
 </td>

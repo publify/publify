@@ -48,6 +48,7 @@ module Admin::FeedbackHelper
     link_to(link_text,
             { controller: "admin/feedback", action: "change_state",
               id: item.id, context: context },
-            { class: "btn btn-#{button_type} btn-xs btn-action", remote: true })
+            { class: "btn btn-#{button_type} btn-xs btn-action",
+              method: :post, remote: true })
   end
 end
