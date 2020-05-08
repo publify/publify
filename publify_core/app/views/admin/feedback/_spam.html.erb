@@ -1,17 +1,34 @@
-<td></td>
-<td style='text-align: center'>
-  <%= avatar_tag(email: comment.email, url: comment.url, size: 48, class: 'img-circle') %>
-  <p class='action'><span class='label label-danger'><%= t("admin.feedback.state.#{comment.state}") %></span></p>
+<td>
 </td>
-<td colspan='4'>
-  <%= link_to comment.article.title, controller: 'feedback', action: 'article', id: comment.article_id %>
-  <p>
+<td>
+  <%= avatar_tag(email: comment.email, url: comment.url, size: 36, class: 'img-circle') %>
+  <% if comment.email.present? %>
+    <%= mail_to comment.email, comment.author %>
+  <% else %>
+    <%= comment.author %>
+  <% end %>
+  <% if comment.url.present? %>
     <small>
-      <%= t('.by') %> <%= mail_to h(comment.email), h(comment.author) %>
-      <%= link_to "(#{h(comment.url)})".html_safe, comment.url if comment.url.present? %>
-      <%= t('.created_on') %> <%= l(comment.created_at) %>
+      <%= link_to "(#{h(comment.url)})".html_safe, comment.url %>
     </small>
+  <% end %>
+</td>
+<td>
+  <%= l(comment.created_at) %>
+</td>
+<td>
+  <span class='label label-danger'>
+    <%= t("admin.feedback.state.#{comment.state}") %>
+  </span>
+</td>
+<td>
+  <p>
+  <%= link_to comment.article.title, controller: 'feedback', action: 'article', id: comment.article_id %>
   </p>
+  <p>
+  </p>
+</td>
+<td>
   <p>
     <small>
       <%= t('.this_comment_by_was_flagged_as_spam_html',
