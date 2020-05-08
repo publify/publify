@@ -64,15 +64,22 @@ nb-NO:
         type_your_post: Skriv teksten din
         visibility: Synlighet
       index:
+        actions: Actions
         all_articles: Alle artikler
+        author: Forfatter
+        created_at: Created at
         drafts: Utkast
+        feedback: Diskusjon
         manage_articles: Administrer artikler
         new_article: Ny artikkel
         publication_date: Publiseringsdato
         publication_pending: Venter på publisering
         published: Publisert
+        published_at: Publiseringsdato
         search: Søk
         select_an_author: Velg forfatter
+        text_filter: Text filter
+        title: Tittel
         withdrawn: Trukket tilbake
       update:
         success: Artikkel oppdatert
@@ -185,11 +192,12 @@ nb-NO:
         save: Lagre
         url: URL
         your_comment: Din kommentar
-      ham:
-        by: by
-        created_on: 'on'
       index:
+        actions: Actions
         all: Alle
+        author: Forfatter
+        content: Innhold
+        created_at: Created at
         feedback: Diskusjon
         ham: Ikke-spam
         no_feedback: Det finnes ingen diskusjon enda. Hva med å opprette en?
@@ -197,12 +205,8 @@ nb-NO:
         presumed_spam: Antall spam
         select_all: Velg alle
         spam: Spam
+        status: Status
         unapproved_comments: Kommentarer på vent
-      spam:
-        by: by
-        cancel: Avbryt
-        created_on: 'on'
-        this_comment_by_was_flagged_as_spam_html: Denne kommentaren av %{author} er flagget som spam, %{cancel_link}?
       state:
         ham: Ikke-spam
         just_marked_as_ham: Kun markert som ikke-spam
@@ -245,6 +249,12 @@ nb-NO:
         tweet_id_like: Tweet-id av typen 123456
       index:
         notes: Notater
+      list:
+        actions: Actions
+        author: Forfatter
+        created_at: Created at
+        text_filter: Text filter
+        title: Tittel
       show:
         action_or_other_html: "%{first_action} eller %{second_action}"
         are_you_sure: Er du sikker på at du vil slette dette notatet?
@@ -266,9 +276,12 @@ nb-NO:
         title: Tittel
         type_your_post: Skriv teksten din
       index:
+        actions: Actions
         author: Forfatter
+        created_at: Created at
         manage_pages: Administrer sider
         new_page: Ny side
+        text_filter: Text filter
         title: Tittel
       new:
         success: Side opprettet
@@ -493,7 +506,7 @@ nb-NO:
         design: Design
         display: Display
         documentation: Dokumentasjon
-        feedback: Feedback
+        feedback: Diskusjon
         general_settings: General settings
         global_seo_settings: Global SEO settings
         home: Hjem

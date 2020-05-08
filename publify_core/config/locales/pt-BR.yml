@@ -57,22 +57,29 @@ pt-BR:
         published: Publicado
         save: Salvar
         save_as_draft: Salvar como rascunho
-        status: Status
+        status: Estado
         tags: Tags
         tags_explanation_html: 'Separe as tags com vírgulas. Use aspas duplas (&quot;) em palavras compostas, ex: casa-da-opera.'
         title: Título
         type_your_post: Digite seu post
         visibility: Visibilidade
       index:
+        actions: Actions
         all_articles: Todos os Artigos
+        author: Autor
+        created_at: Created at
         drafts: Rascunhos
+        feedback: Feedback
         manage_articles: Administrar Artigos
         new_article: Novo Artigo
         publication_date: Data de Publicação
         publication_pending: Publicações Pendentes
         published: Publicado
+        published_at: Data de Publicação
         search: Buscar
         select_an_author: Selecione um Autor
+        text_filter: Text filter
+        title: Título
         withdrawn: Retirado
       update:
         success: Artigo atualizado com sucesso
@@ -185,11 +192,12 @@ pt-BR:
         save: Salvar
         url: Url
         your_comment: Seu comentário
-      ham:
-        by: by
-        created_on: 'on'
       index:
+        actions: Actions
         all: Todos
+        author: Autor
+        content: Conteúdo
+        created_at: Created at
         feedback: Feedback
         ham: Ham
         no_feedback: Não existem feedback ainda. Por que você não inicia e cria um?
@@ -197,12 +205,8 @@ pt-BR:
         presumed_spam: Possível spam
         select_all: Selecionar todos
         spam: Spam
+        status: Estado
         unapproved_comments: Comentários não aprovados
-      spam:
-        by: by
-        cancel: Cancelar
-        created_on: 'on'
-        this_comment_by_was_flagged_as_spam_html: O comentário de %{author} foi marcado como spam, %{cancel_link}?
       state:
         ham: Ham
         just_marked_as_ham: Apenas marcado como Ham
@@ -245,6 +249,12 @@ pt-BR:
         tweet_id_like: Tweet ID como 123456
       index:
         notes: Notas
+      list:
+        actions: Actions
+        author: Autor
+        created_at: Created at
+        text_filter: Text filter
+        title: Título
       show:
         action_or_other_html: "%{first_action} ou %{second_action}"
         are_you_sure: Você tem certeza que deseja remover esta nota
@@ -266,9 +276,12 @@ pt-BR:
         title: Título
         type_your_post: Digite seu post
       index:
+        actions: Actions
         author: Autor
+        created_at: Created at
         manage_pages: Administrar Páginas
         new_page: Nova Página
+        text_filter: Text filter
         title: Título
       new:
         success: Página criada com sucesso

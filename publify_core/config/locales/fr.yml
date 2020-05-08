@@ -64,15 +64,22 @@ fr:
         type_your_post: Tapez votre texte
         visibility: Visibilité
       index:
+        actions: Actions
         all_articles: Tous les articles
+        author: Auteur
+        created_at: Created at
         drafts: Brouillons
+        feedback: Commentaires
         manage_articles: Gestion des articles
         new_article: Nouvel article
         publication_date: Publié le
         publication_pending: À publier
         published: Publié
+        published_at: Publié le
         search: Chercher
         select_an_author: Auteur
+        text_filter: Text filter
+        title: Titre
         withdrawn: Supprimé
       update:
         success: Cet article a été mis à jour avec succès
@@ -177,7 +184,7 @@ fr:
         success: Supprimé
       edit:
         action_or_other_html: "%{first_action} ou %{second_action}"
-        author: Author
+        author: Auteur
         cancel: Cancel
         comments_for_html: Commentaires sur l'article %{article_link}
         edit_a_comment: Edit a comment
@@ -185,11 +192,12 @@ fr:
         save: Sauver
         url: Url
         your_comment: Your comment
-      ham:
-        by: by
-        created_on: 'on'
       index:
+        actions: Actions
         all: Tous
+        author: Auteur
+        content: Contenu
+        created_at: Created at
         feedback: Commentaires
         ham: Valide
         no_feedback: 'Il n''y a pas encore de commentaires, pourquoi ne pas en créer un ? '
@@ -197,12 +205,8 @@ fr:
         presumed_spam: Probablement du spam
         select_all: Tout sélectionner
         spam: Spam
+        status: État
         unapproved_comments: Commentaires non validés
-      spam:
-        by: by
-        cancel: Annuler
-        created_on: 'on'
-        this_comment_by_was_flagged_as_spam_html: Ce commentaire de %{author} a été marqué comme spam, %{cancel_link} ?
       state:
         ham: Valide
         just_marked_as_ham: Marqué comme valide
@@ -245,6 +249,12 @@ fr:
         tweet_id_like: 'Identifiant du Tweet (ex: 123456)'
       index:
         notes: Notes
+      list:
+        actions: Actions
+        author: Auteur
+        created_at: Created at
+        text_filter: Text filter
+        title: Titre
       show:
         action_or_other_html: "%{first_action} ou %{second_action}"
         are_you_sure: Êtes-vous certain de vouloir supprimer cette note ?
@@ -266,9 +276,12 @@ fr:
         title: Titre
         type_your_post: Tapez votre texte
       index:
+        actions: Actions
         author: Auteur
+        created_at: Created at
         manage_pages: Administrer les pages
         new_page: Nouvelle page
+        text_filter: Text filter
         title: Titre
       new:
         success: Cette page a été créée avec succès
@@ -493,7 +506,7 @@ fr:
         design: Design
         display: Display
         documentation: Documentation
-        feedback: Feedback
+        feedback: Commentaires
         general_settings: Options générales
         global_seo_settings: Global SEO settings
         home: Page d'accueil
