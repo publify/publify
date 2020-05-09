@@ -97,6 +97,9 @@ fr:
         no_drafts_yet: Pas de brouillons, pourquoi ne pas en écrire un ?
         your_drafts: Vos brouillons
       index:
+        textile_deprecated_html: The Textile text filter has been deprecated and will
+          be removed soon. Some of your content still uses this filter. Run the <code>publify:textile_to_markdown</code>
+          rake task to convert it to Markdown, or convert your content manually.
         welcome_back: Bienvenue, %{user_name} !
       overview:
         change_your_blog_presentation: changer l'apparence de votre blog

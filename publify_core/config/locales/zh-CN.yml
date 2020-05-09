@@ -95,6 +95,9 @@ zh-CN:
         no_drafts_yet: No drafts yet, why don't you start and write one
         your_drafts: Your drafts
       index:
+        textile_deprecated_html: The Textile text filter has been deprecated and will
+          be removed soon. Some of your content still uses this filter. Run the <code>publify:textile_to_markdown</code>
+          rake task to convert it to Markdown, or convert your content manually.
         welcome_back: 欢迎回來， %{user_name}！
       overview:
         change_your_blog_presentation: 修改你的博客外观
