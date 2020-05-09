@@ -13,10 +13,12 @@ ru:
       email_address: Электронная почта
       your_website: Веб-сайт
     meta:
-      published_on_html: Опубликовано %{publish_date_and_time} автором %{by} под тегами %{tags}
+      published_on_html: Опубликовано %{publish_date_and_time} автором %{by} под тегами
+        %{tags}
     read:
       add_me_to_twitter: отправить в Twitter
-      if_you_liked_this_article_you_can_html: Если Вам понравилась эта статья Вы можете %{add_twitter}
+      if_you_liked_this_article_you_can_html: Если Вам понравилась эта статья Вы можете
+        %{add_twitter}
       trackbacks_for: Обратные ссылки для
     search:
       search_results_for: Результаты поиска для '%{query}'

@@ -5,7 +5,8 @@ he:
     back_to_login: Back to login
     confirm:
       admin: admin
-      dont_lose_the_mail_sent: Don't lose the mail sent at %{email} or you won't be able to login anymore
+      dont_lose_the_mail_sent: Don't lose the mail sent at %{email} or you won't be
+        able to login anymore
       login: "%{login} התחבר"
       proceed_to: Proceed to %{link}
       success: You have successfully signed up.
@@ -59,7 +60,8 @@ he:
         save_as_draft: שמור טיוטה
         status: מצב
         tags: תוויות
-        tags_explanation_html: Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;.
+        tags_explanation_html: Separate tags with commas. Use double quotes (&quot;)
+          around multi-word tags, e.g. &quot;opera house&quot;.
         title: כותרת
         type_your_post: Type your post
         visibility: Visibility
@@ -97,11 +99,13 @@ he:
       overview:
         change_your_blog_presentation: change your blog presentation
         customization_explain_html: תוכל גם %{theme_link} או %{sidebar_link}
-        dashboard_explain_html: This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %{available_actions}
+        dashboard_explain_html: This place gives you a quick overview of what happens
+          on your Publify blog and what you can do. Maybe will you want to %{available_actions}
         enable_plugins: לאפשר תוספים
         help_explain_html: If you need help, %{doc_link}.
         read_our_documentation: read our documentation
-        update_your_profile_or_change_your_password: update your profile or change your password
+        update_your_profile_or_change_your_password: update your profile or change
+          your password
         write_a_page: לכתוב דף
         write_a_post: לכתוב כתבה
       welcome:
@@ -109,7 +113,8 @@ he:
           one: 1 approved
           other: "%{count} approved"
           zero: no approved
-        articles_and_comments_count_since: "%{articles_count} articles and %{comments_count} comments were posted since your last connexion"
+        articles_and_comments_count_since: "%{articles_count} articles and %{comments_count}
+          comments were posted since your last connexion"
         articles_count:
           one: כתבה 1
           other: "%{count} כתבות"
@@ -292,7 +297,9 @@ he:
         cancel: בטל
         default: Default
         description: תיאור
-        explain: The template name is the filename Publify will look for when calling an article of that type. It should be in your theme under views/articles/template name.html.erb
+        explain: The template name is the filename Publify will look for when calling
+          an article of that type. It should be in your theme under views/articles/template
+          name.html.erb
         name: שם
         or: or
         post_types: Post Types
@@ -341,33 +348,44 @@ he:
         custom_tracking_code: Custom tracking code
         do_not_index_tags: Do not index tags
         dofollow: Dofollow
-        explain: Here you can add anything you want to appear in your application header, such as analytics service tracking code.
-        explain_moderate_feedback: You may want to moderate feedback when turning this on
-        explain_rss_description: 'You can use the following tags: %author% (author name), %blog_url% (this blog URL), %blog_name% (this blog title) and %permalink_url% (a link to the article you want to protect)'
-        explain_tag_index_html: Checking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues
+        explain: Here you can add anything you want to appear in your application
+          header, such as analytics service tracking code.
+        explain_moderate_feedback: You may want to moderate feedback when turning
+          this on
+        explain_rss_description: 'You can use the following tags: %author% (author
+          name), %blog_url% (this blog URL), %blog_name% (this blog title) and %permalink_url%
+          (a link to the article you want to protect)'
+        explain_tag_index_html: Checking this box will add <code>noindex, follow</code>
+          meta tags in every tags page, removing them from search engines and preventing
+          duplicate content issues
         general_settings: הגדרות כלליות
         google: Google
         google_analytics: Google Analytics
-        google_webmaster_tools_validation_link: Google Webmaster Tools validation link
+        google_webmaster_tools_validation_link: Google Webmaster Tools validation
+          link
         indexing: Indexing
         meta_description: Meta description
         meta_keywords: Meta keywords
         robots_txt: Robots.txt
         rss_description_message: RSS description message
-        this_will_display: This will display at the bottom of each post in the RSS feed
+        this_will_display: This will display at the bottom of each post in the RSS
+          feed
         use_dofollow_in_comments: Use dofollow in comments
         use_meta_keywords: Use meta keywords
         use_rss_description: Use RSS description
       permalinks:
         custom: Custom
         date_and_title: Date and title
-        explain: Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.
+        explain: Publify offers you the ability to create a custom URL structure for
+          your permalinks and archives. This can improve the aesthetics, usability,
+          and forward-compatibility of your links.
         help_on_permalink_settings: Help on permalink settings
         month_and_title: Month and title
         permalink_format: Permalink format
         sample: Here are some examples to get you started.
         title_only: Title only
-        you_can_custom_your_url_structure: 'You can custom your URL structure using the following tags:'
+        you_can_custom_your_url_structure: 'You can custom your URL structure using
+          the following tags:'
         your_article_day: your article day of publication.
         your_article_month: your article month of publication.
         your_article_slug_html: your article slug. <strong>Using this slug is mandatory</strong>.
@@ -390,30 +408,35 @@ he:
         paginated_archives: Paginated archives
         replaced_by_the_archive_date: Replaced by the archive date
         replaced_by_the_content_body: Replaced by the content body
-        replaced_with_the_article_categories: Replaced with the article categories (comma separated)
+        replaced_with_the_article_categories: Replaced with the article categories
+          (comma separated)
         replaced_with_the_article_page_title: Replaced with the article/page title
         replaced_with_the_article_tags: Replaced with the article tags (comma separated)
         replaced_with_the_category_tag_name: Replaced with the category/tag name
         replaced_with_the_current_date: Replaced with the current date
         replaced_with_the_current_month: Replaced with the current month
         replaced_with_the_current_page_number: Replaced with the current page number
-        replaced_with_the_current_search_phrase: Replaced with the current search phrase
+        replaced_with_the_current_search_phrase: Replaced with the current search
+          phrase
         replaced_with_the_current_time: Replaced with the current time
         replaced_with_the_current_year: Replaced with the current year
         replaced_with_the_post_page_excerpt: Replaced with the post/page excerpt
-        replaced_with_the_title_of_the_article_page: Replaced with the title of the article/page
+        replaced_with_the_title_of_the_article_page: Replaced with the title of the
+          article/page
         search_results: Search results
         short_statuses: Short statuses
         short_statuses_lists: Short statuses lists
         the_blog_s_name: The blog's name
         the_blog_s_tagline_description: The blog's tagline / description
-        these_tags_can_be_included: These tags can be included in your templates and will be replaced when displaying the page.
+        these_tags_can_be_included: These tags can be included in your templates and
+          will be replaced when displaying the page.
         title_template: Title template
     settings:
       display:
         cancel: בטל
         custom_url: Custom URL shortener domain
-        custom_url_help: If you have a custom domain for URL shortening, enter it here.
+        custom_url_help: If you have a custom domain for URL shortening, enter it
+          here.
         date_format: Date format
         default_archives_show: articles on the archives page
         default_article_show: articles on the homepage
@@ -442,16 +465,23 @@ he:
         enable_feedback_moderation: אפשר ביקורת על המשוב
         enable_recaptcha: Enable reCaptcha
         enable_spam_protection: אפשר הגנת ספאם
-        explain_feedback_moderation: תוכל לאפשר ביקורת על המשוב בכל האתר. אם תבצע זאת, לא תוצג שום תגובה או עוקב-חזרה בבלוג שלך אלא אם תאשר אותה.
-        explain_reject_comments: Publify תדחה אוטומטית תגובות ועוקבים-חזרה המכילים את כמות הקישורים מסויימת
-        explain_spam_protection: אפשור הגנת ספאם תגרום ל-Publify להשוות כתובות ה-IP של השולחים ואת תוכן השליחה כנגד רשימות שחורות מקומיות או מרוחקות - הגנה טובה כנגד רובוטי ספאם.
-        explain_spamfiltering_html: תוכל להשתמש בשירות מסנן ספאם של <a href='http://akismet.com'>Akismet</a>. עליך להירשם Akisemt מפתח API לפני שתוכל להשתמש בשירות. אם כבר יש לך מפתח, רשום אותו כאן.
+        explain_feedback_moderation: תוכל לאפשר ביקורת על המשוב בכל האתר. אם תבצע
+          זאת, לא תוצג שום תגובה או עוקב-חזרה בבלוג שלך אלא אם תאשר אותה.
+        explain_reject_comments: Publify תדחה אוטומטית תגובות ועוקבים-חזרה המכילים
+          את כמות הקישורים מסויימת
+        explain_spam_protection: אפשור הגנת ספאם תגרום ל-Publify להשוות כתובות ה-IP
+          של השולחים ואת תוכן השליחה כנגד רשימות שחורות מקומיות או מרוחקות - הגנה
+          טובה כנגד רובוטי ספאם.
+        explain_spamfiltering_html: תוכל להשתמש בשירות מסנן ספאם של <a href='http://akismet.com'>Akismet</a>.
+          עליך להירשם Akisemt מפתח API לפני שתוכל להשתמש בשירות. אם כבר יש לך מפתח,
+          רשום אותו כאן.
         feedback: משוב
         feedback_settings: Feedback settings
         max_links: מקסימום קישורים
         none: none
         or: or
-        remember_to_set_your_recaptcha: Remember to set your reCaptcha keys inside config/initializers/recaptcha.rb
+        remember_to_set_your_recaptcha: Remember to set your reCaptcha keys inside
+          config/initializers/recaptcha.rb
         set_to_0_to_never_disable_comments: הגדר כ-0 כדי לא לבטל תגובות אף פעם
         set_to_0_to_never_reject_comments: הגדר כ-0 כדי לא לדחות תגובות לעולם
         spam: Spam
@@ -464,7 +494,10 @@ he:
         blog_url: כתובת הבלוג
         cancel: בטל
         email_address_used_to_notify: כתובת הדואל שתשמש את Publify לשלוח עדכונים
-        explain_allow_users_to_register_html: תוכל לאפשר למשתמשים להירשם לבלוג שלך. כברירת מחדל, הם יירשמו כתורמים - חשבון שאינו נותן הרשאות מיוחדות אלא רק את הזכות להחזיק  חשבון באתר. אם אינך רוצה שהמשתמשים יוכלו להירשם בעצמם, תוכל להוסיף אותם בעצמך כחללק מדף זה
+        explain_allow_users_to_register_html: תוכל לאפשר למשתמשים להירשם לבלוג שלך.
+          כברירת מחדל, הם יירשמו כתורמים - חשבון שאינו נותן הרשאות מיוחדות אלא רק
+          את הזכות להחזיק  חשבון באתר. אם אינך רוצה שהמשתמשים יוכלו להירשם בעצמם,
+          תוכל להוסיף אותם בעצמך כחללק מדף זה
         general_settings: General settings
         items_to_display_in_admin_lists: Items to display in admin lists
         language: שפה
@@ -534,7 +567,8 @@ he:
         write: Write
       twitter_alert:
         fill_the_twitter_credentials: fill in the OAuth credentials
-        how_to_setup_twitter_html: If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}.
+        how_to_setup_twitter_html: If you want to push short statuses on Twitter,
+          you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}.
         registered_your_application: registered your application
     sidebar:
       config:
@@ -543,8 +577,13 @@ he:
         you_have_no_plugins_installed: You have no plugins installed
       index:
         cancel: בטל
-        download_more_plugins_html: You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory.
-        explain_how_its_works: גרור והשלך כדי לשנות את פריטי תיבת הצד המוצגת בבלוג שלך. כדי להסיר פריטים מתיבת הצד, לחץ על הסר. השינויים נשמרים מיידית אבל לא מופעלים עד שתלחץ על הכפתור 'פרסם'.
+        download_more_plugins_html: You can download and install sidebar plugins from
+          our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin
+          repository</a>. All you have to do is upload the theme directory in your
+          vendor/plugins directory.
+        explain_how_its_works: גרור והשלך כדי לשנות את פריטי תיבת הצד המוצגת בבלוג
+          שלך. כדי להסיר פריטים מתיבת הצד, לחץ על הסר. השינויים נשמרים מיידית אבל
+          לא מופעלים עד שתלחץ על הכפתור 'פרסם'.
         or: or
         publish_changes: פרסם שינויים
         sidebar: תיבת צד
@@ -674,14 +713,16 @@ he:
       contact_information: Contact information
       jabber: 'Jabber:'
       msn: 'MSN:'
-      this_author_has_not_published_any_article_yet: This author has not published any article yet
+      this_author_has_not_published_any_article_yet: This author has not published
+        any article yet
       twitter: 'Twitter:'
       web_site: 'Web site:'
       yahoo: 'Yahoo:'
   comments:
     comment:
       said: said
-      this_comment_has_been_flagged_for_moderator_approval: תגובה זו הועברה לביקורת. היא לא תופיע בבלוג עד אשר הכותב יאשר אותה
+      this_comment_has_been_flagged_for_moderator_approval: תגובה זו הועברה לביקורת.
+        היא לא תופיע בבלוג עד אשר הכותב יאשר אותה
   date:
     abbr_month_names:
     - 
@@ -715,14 +756,17 @@ he:
     characters_minimum: Minimum %{min} characters
   errors:
     article_type_already_exist: This article type already exists
-    cant_end_with_rss_or_atom: Can't end in .rss or .atom. These are reserved to be used for feed URLs
+    cant_end_with_rss_or_atom: Can't end in .rss or .atom. These are reserved to be
+      used for feed URLs
     no_notes_found: No notes found...
     no_posts_found: No posts found...
     page_not_found: Page not found
     permalink_need_a_title: 'You need a permalink format with an identifier : %%title%%'
     problem_sending_to_twitter: Oooops something wrong happened
-    render_sidebar: It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually
-    the_page_you_are_looking_for: The page you are looking for has moved or does not exist.
+    render_sidebar: It seems something went wrong. Maybe some of your sidebars are
+      actually missing and you should either reinstall them or remove them manually
+    the_page_you_are_looking_for: The page you are looking for has moved or does not
+      exist.
   generic:
     change: Change
     conversation: Conversation
@@ -769,7 +813,8 @@ he:
     publisher: כותב
   setup:
     article:
-      body: Welcome to Publify. This is your first article. Edit or delete it, then start blogging!
+      body: Welcome to Publify. This is your first article. Edit or delete it, then
+        start blogging!
       title: Hello World!
     index:
       blog_name: Blog name
@@ -778,7 +823,9 @@ he:
       your_mail: Your email
     page:
       about: אודות
-      body: This is an example of a Publify page. You can edit this to write information about yourself or your site so readers know who you are. You can create as many pages as this one as you like and manage all of your content inside Publify.
+      body: This is an example of a Publify page. You can edit this to write information
+        about yourself or your site so readers know who you are. You can create as
+        many pages as this one as you like and manage all of your content inside Publify.
   tags:
     index:
       there_are_no_tags: There are no tags
