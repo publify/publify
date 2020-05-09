@@ -64,15 +64,22 @@ pl:
         type_your_post: Dodaj treść
         visibility: Widoczność
       index:
+        actions: Actions
         all_articles: Wszystkie artykuły
+        author: Autor
+        created_at: Created at
         drafts: Szkice
+        feedback: Komentarze
         manage_articles: Zarządzaj artykułami
         new_article: Nowy artykuł
         publication_date: Data publikacji
         publication_pending: Oczekuje na publikację
         published: Opublikowane
+        published_at: Data publikacji
         search: Szukaj
         select_an_author: Autor
+        text_filter: Text filter
+        title: Tytuł
         withdrawn: Withdrawn
       update:
         success: Artykuł został poprawnie zaktualizowany
@@ -207,11 +214,12 @@ pl:
         save: Zapisz
         url: Url
         your_comment: Twój komentarz
-      ham:
-        by: przez
-        created_on: ''
       index:
+        actions: Actions
         all: Wszystko
+        author: Autor
+        content: Treść
+        created_at: Created at
         feedback: Komentarze
         ham: Dopuszczone do publikacji
         no_feedback: Brak komentarzy.
@@ -219,12 +227,8 @@ pl:
         presumed_spam: Prawdopodobny spam
         select_all: Zaznacz wszystko
         spam: Spam
+        status: Stan
         unapproved_comments: Niezaakceptowane komentarze
-      spam:
-        by: przez
-        cancel: Anuluj
-        created_on: ''
-        this_comment_by_was_flagged_as_spam_html: Komentarz %{author} został oznaczony jako spam, %{cancel_link}?
       state:
         ham: Dopuszczony do publikacji
         just_marked_as_ham: Oznaczono jako dopuszczony do publikacji
@@ -269,6 +273,12 @@ pl:
         tweet_id_like: Tweet id, np. 123456
       index:
         notes: Notatki
+      list:
+        actions: Actions
+        author: Autor
+        created_at: Created at
+        text_filter: Text filter
+        title: Tytuł
       show:
         action_or_other_html: "%{first_action} lub %{second_action}"
         are_you_sure: Czy na pewno chcesz usunąć tę notatkę?
@@ -290,9 +300,12 @@ pl:
         title: Tytuł
         type_your_post: Wpisz treść postu
       index:
+        actions: Actions
         author: Autor
+        created_at: Created at
         manage_pages: Zarządzaj stronami
         new_page: Nowa strona
+        text_filter: Text filter
         title: Tytuł
       new:
         success: Nowa strona została utworzona
@@ -517,7 +530,7 @@ pl:
         design: Design
         display: Display
         documentation: Documentation
-        feedback: Feedback
+        feedback: Komentarze
         general_settings: Ustawienia ogólne
         global_seo_settings: Global SEO settings
         home: Strona główna

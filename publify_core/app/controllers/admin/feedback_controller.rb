@@ -78,19 +78,14 @@ class Admin::FeedbackController < Admin::BaseController
     @feedback = @feedback.spam if params[:spam] && params[:ham].blank?
   end
 
-  # TODO: Replace with actions that move to a specified state
   def change_state
     return unless request.xhr?
 
     @feedback = Feedback.find(params[:id])
-    template = @feedback.change_state!
+    new_state = @feedback.change_state!
 
     respond_to do |format|
-      # TODO: Make this special case not necessary
-      if params[:context] != "listing"
-        @comments = Comment.last_published
-        page.replace_html("commentList", partial: "admin/dashboard/comment")
-      elsif template == "ham"
+      if new_state == "ham"
         format.js { render "ham" }
       else
         format.js { render "spam" }

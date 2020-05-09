@@ -4,7 +4,6 @@
   </h2>
 <% end %>
 
-<%= render 'shared/flash', flash: flash %>
 <%= form_tag({ action: 'index' }, { method: :get, class: 'form-inline' }) do %>
   <p>
     <%= link_to(t('.all'), { controller: 'admin/feedback', action: :index }, { class: 'label label-default' }) %>
@@ -24,10 +23,14 @@
   <table class='table hover'>
     <thead>
       <tr class='noborder'>
-        <th colspan='5'>
+        <th>
           <input type="checkbox" name="checkall" id="checkall" onclick="check_all(this);" />
-          <%= t('.select_all') %>
         </th>
+        <th><%= t(".author") %></th>
+        <th><%= t(".created_at") %></th>
+        <th><%= t(".status") %></th>
+        <th><%= t(".content") %></th>
+        <th><%= t(".actions") %></th>
       </tr>
     </thead>
     <% if @feedback.empty? %>
@@ -40,10 +43,10 @@
     <% @feedback.each do |comment| %>
       <%= render 'feedback', comment: comment %>
     <% end %>
-    <%= display_pagination(@feedback, 5) %>
+    <%= display_pagination(@feedback, 7) %>
     <tr>
       <th><input type="checkbox" name="checkall" id="checkall" onclick="check_all(this);" /></th>
-      <th colspan='4'><%= t('.select_all') %></th>
+      <th colspan='6'><%= t('.select_all') %></th>
     </tr>
   </table>
   <%= render 'button', position: 'bottom' %>

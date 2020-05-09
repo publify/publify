@@ -1,6 +1,6 @@
 <% if @articles.empty? %>
   <tr>
-    <td colspan="7">
+    <td colspan="6">
       <%= t('.no_articles') %>
     </td>
   </tr>
@@ -13,11 +13,15 @@
       <% else %>
         <%= link_to(article.title, { controller: '/articles', action: 'preview', id: article.id }, { class: 'unpublished', target: '_new' }) %>
       <% end %>
-      <%= show_actions article %>
     </td>
     <td>
-      <%= author_link(article) %><br />
-      <small><%= l(article.published_at || article.created_at) %></small>
+      <%= author_link(article) %>
+    </td>
+    <td>
+      <%= l(article.created_at) %>
+    </td>
+    <td>
+      <%= l(article.published_at) if article.published_at %>
     </td>
     <td>
       <% if article.allow_comments? %>
@@ -25,6 +29,12 @@
       <% else %>
         -
       <% end %>
+    </td>
+    <td>
+      <%= article.text_filter&.name %>
+    </td>
+    <td>
+      <%= show_actions article %>
     </td>
   </tr>
 <% end %>

@@ -64,15 +64,22 @@ ja:
         type_your_post: Type your post
         visibility: Visibility
       index:
+        actions: Actions
         all_articles: All articles
+        author: 投稿者
+        created_at: Created at
         drafts: '下書き:'
+        feedback: フィードバック
         manage_articles: 記事の管理
         new_article: New article
         publication_date: Publication date
         publication_pending: Publication pending
         published: 公開済み
+        published_at: Publication date
         search: 検索
         select_an_author: Select an author
+        text_filter: Text filter
+        title: タイトル
         withdrawn: Withdrawn
       update:
         success: 記事が更新されました
@@ -177,7 +184,7 @@ ja:
         success: Deleted
       edit:
         action_or_other_html: "%{first_action} または %{second_action}"
-        author: Author
+        author: 投稿者
         cancel: Cancel
         comments_for_html: Comments for %{article_link}
         edit_a_comment: Edit a comment
@@ -185,11 +192,12 @@ ja:
         save: 保存
         url: Url
         your_comment: Your comment
-      ham:
-        by: by
-        created_on: 'on'
       index:
+        actions: Actions
         all: All
+        author: 投稿者
+        content: コンテンツ
+        created_at: Created at
         feedback: フィードバック
         ham: 承認
         no_feedback: There is no feedback yet. Why don't you create some?
@@ -197,12 +205,8 @@ ja:
         presumed_spam: Presumed spam
         select_all: Select all
         spam: スパム
+        status: ステータス
         unapproved_comments: 未承認コメント
-      spam:
-        by: by
-        cancel: キャンセル
-        created_on: 'on'
-        this_comment_by_was_flagged_as_spam_html: This comment by %{author} was flagged as spam, %{cancel_link}?
       state:
         ham: Ham
         just_marked_as_ham: 承認マーク
@@ -245,6 +249,12 @@ ja:
         tweet_id_like: Tweet id like 123456
       index:
         notes: Notes
+      list:
+        actions: Actions
+        author: 投稿者
+        created_at: Created at
+        text_filter: Text filter
+        title: タイトル
       show:
         action_or_other_html: "%{first_action} または %{second_action}"
         are_you_sure: Are you sure you want to delete this note?
@@ -266,9 +276,12 @@ ja:
         title: タイトル
         type_your_post: Type your post
       index:
+        actions: Actions
         author: 投稿者
+        created_at: Created at
         manage_pages: ページの管理
         new_page: New Page
+        text_filter: Text filter
         title: タイトル
       new:
         success: ページが作成されました
@@ -433,7 +446,7 @@ ja:
         explain_reject_comments: Publifyは指定された数のリンクが含まれているコメントやトラックバックを自動的に拒否します
         explain_spam_protection: スパムプロテクションを有効にすると、投稿者のIPアドレスおよびその投稿内容をローカル、リモート両方のブラックリストと比較します
         explain_spamfiltering_html: Publifyはオプションで<a href='http://akismet.com'>Akismet</a>スパムフィルタリングサービスを利用できます。これらのサービスを使用するにはAkismetに登録し、APIキーを取得する必要があります。すでにAkismetキーをお持ちであればここに入力してください
-        feedback: Feedback
+        feedback: フィードバック
         feedback_settings: Feedback settings
         max_links: 最大のリンク数
         none: none
@@ -493,7 +506,7 @@ ja:
         design: Design
         display: Display
         documentation: Documentation
-        feedback: Feedback
+        feedback: フィードバック
         general_settings: General settings
         global_seo_settings: Global SEO settings
         home: Home

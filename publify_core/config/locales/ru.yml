@@ -64,15 +64,22 @@ ru:
         type_your_post: Type your post
         visibility: Видимость
       index:
+        actions: Actions
         all_articles: Все посты
+        author: Автор
+        created_at: Created at
         drafts: Черновики
+        feedback: Комментарии
         manage_articles: Управление постами
         new_article: Новый пост
         publication_date: Дата публикации
         publication_pending: Ожидают публикации
         published: Опубликован
+        published_at: Дата публикации
         search: Найти
         select_an_author: Выбрать автора
+        text_filter: Text filter
+        title: Заголовок
         withdrawn: Отозванные
       update:
         success: Article was successfully updated
@@ -207,11 +214,12 @@ ru:
         save: Сохранить
         url: Url
         your_comment: Ваш комментарий
-      ham:
-        by: by
-        created_on: 'on'
       index:
+        actions: Actions
         all: Все
+        author: Автор
+        content: Content
+        created_at: Created at
         feedback: Комментарии
         ham: Хорошие
         no_feedback: Ничего нет. Почему бы не начать и не добавить?
@@ -219,12 +227,8 @@ ru:
         presumed_spam: Предположительно спам
         select_all: Выбрать все
         spam: Спам
+        status: Статус
         unapproved_comments: Unapproved comments
-      spam:
-        by: от автора
-        cancel: Отменить
-        created_on: 'on'
-        this_comment_by_was_flagged_as_spam_html: Этот комментарий от автора %{author} помечен как спам, %{cancel_link}?
       state:
         ham: Ham
         just_marked_as_ham: Just Marked As Ham
@@ -269,6 +273,12 @@ ru:
         tweet_id_like: Tweet id like 123456
       index:
         notes: Заметки
+      list:
+        actions: Actions
+        author: Автор
+        created_at: Created at
+        text_filter: Text filter
+        title: Заголовок
       show:
         action_or_other_html: "%{first_action} или %{second_action}"
         are_you_sure: Are you sure you want to delete this note
@@ -290,9 +300,12 @@ ru:
         title: Заголовок
         type_your_post: Type your post
       index:
+        actions: Actions
         author: Автор
+        created_at: Created at
         manage_pages: Manage pages
         new_page: Новая страница
+        text_filter: Text filter
         title: Заголовок
       new:
         success: Новая страница создана
