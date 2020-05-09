@@ -3,6 +3,13 @@
 <% end %>
 
 <%= render 'overview' %>
+<% if Content.where(text_filter_name: "textile").any? %>
+  <div class="alert alert-warning">
+    <p>
+    <%= t('.textile_deprecated_html') %>
+    </p>
+  </div>
+<% end %>
 
 <div class='row'>
   <div class='col-md-6'>

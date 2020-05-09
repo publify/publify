@@ -17,11 +17,6 @@ data:
     - ['*_sidebar.*', 'config/locales/sidebars.%{locale}.yml']
     - config/locales/%{locale}.yml
 
-  yaml:
-    write:
-      # do not wrap lines at 80 characters
-      line_width: -1
-
 # Find translate calls
 search:
   ## Paths or `File.find` patterns to search in:

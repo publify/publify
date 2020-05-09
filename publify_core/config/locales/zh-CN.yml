@@ -5,7 +5,8 @@ zh-CN:
     back_to_login: Back to login
     confirm:
       admin: admin
-      dont_lose_the_mail_sent: Don't lose the mail sent at %{email} or you won't be able to login anymore
+      dont_lose_the_mail_sent: Don't lose the mail sent at %{email} or you won't be
+        able to login anymore
       login: 'Login: %{login}'
       proceed_to: Proceed to %{link}
       success: You have successfully signed up.
@@ -59,7 +60,8 @@ zh-CN:
         save_as_draft: 保存为草稿
         status: 状态
         tags: 标签
-        tags_explanation_html: Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;.
+        tags_explanation_html: Separate tags with commas. Use double quotes (&quot;)
+          around multi-word tags, e.g. &quot;opera house&quot;.
         title: 标题
         type_your_post: Type your post
         visibility: Visibility
@@ -93,6 +95,9 @@ zh-CN:
         no_drafts_yet: No drafts yet, why don't you start and write one
         your_drafts: Your drafts
       index:
+        textile_deprecated_html: The Textile text filter has been deprecated and will
+          be removed soon. Some of your content still uses this filter. Run the <code>publify:textile_to_markdown</code>
+          rake task to convert it to Markdown, or convert your content manually.
         welcome_back: 欢迎回來， %{user_name}！
       overview:
         change_your_blog_presentation: 修改你的博客外观
@@ -292,7 +297,9 @@ zh-CN:
         cancel: 取消
         default: Default
         description: 说明
-        explain: The template name is the filename Publify will look for when calling an article of that type. It should be in your theme under views/articles/template name.html.erb
+        explain: The template name is the filename Publify will look for when calling
+          an article of that type. It should be in your theme under views/articles/template
+          name.html.erb
         name: 名字
         or: or
         post_types: Post Types
@@ -341,33 +348,44 @@ zh-CN:
         custom_tracking_code: Custom tracking code
         do_not_index_tags: Do not index tags
         dofollow: Dofollow
-        explain: Here you can add anything you want to appear in your application header, such as analytics service tracking code.
-        explain_moderate_feedback: You may want to moderate feedback when turning this on
-        explain_rss_description: 'You can use the following tags: %author% (author name), %blog_url% (this blog URL), %blog_name% (this blog title) and %permalink_url% (a link to the article you want to protect)'
-        explain_tag_index_html: Checking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues
+        explain: Here you can add anything you want to appear in your application
+          header, such as analytics service tracking code.
+        explain_moderate_feedback: You may want to moderate feedback when turning
+          this on
+        explain_rss_description: 'You can use the following tags: %author% (author
+          name), %blog_url% (this blog URL), %blog_name% (this blog title) and %permalink_url%
+          (a link to the article you want to protect)'
+        explain_tag_index_html: Checking this box will add <code>noindex, follow</code>
+          meta tags in every tags page, removing them from search engines and preventing
+          duplicate content issues
         general_settings: 一般設定
         google: Google
         google_analytics: Google Analytics
-        google_webmaster_tools_validation_link: Google Webmaster Tools validation link
+        google_webmaster_tools_validation_link: Google Webmaster Tools validation
+          link
         indexing: Indexing
         meta_description: Meta description
         meta_keywords: Meta keywords
         robots_txt: Robots.txt
         rss_description_message: RSS description message
-        this_will_display: This will display at the bottom of each post in the RSS feed
+        this_will_display: This will display at the bottom of each post in the RSS
+          feed
         use_dofollow_in_comments: Use dofollow in comments
         use_meta_keywords: Use meta keywords
         use_rss_description: Use RSS description
       permalinks:
         custom: Custom
         date_and_title: Date and title
-        explain: Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.
+        explain: Publify offers you the ability to create a custom URL structure for
+          your permalinks and archives. This can improve the aesthetics, usability,
+          and forward-compatibility of your links.
         help_on_permalink_settings: Help on permalink settings
         month_and_title: Month and title
         permalink_format: Permalink format
         sample: Here are some examples to get you started.
         title_only: Title only
-        you_can_custom_your_url_structure: 'You can custom your URL structure using the following tags:'
+        you_can_custom_your_url_structure: 'You can custom your URL structure using
+          the following tags:'
         your_article_day: your article day of publication.
         your_article_month: your article month of publication.
         your_article_slug_html: your article slug. <strong>Using this slug is mandatory</strong>.
@@ -390,30 +408,35 @@ zh-CN:
         paginated_archives: Paginated archives
         replaced_by_the_archive_date: Replaced by the archive date
         replaced_by_the_content_body: Replaced by the content body
-        replaced_with_the_article_categories: Replaced with the article categories (comma separated)
+        replaced_with_the_article_categories: Replaced with the article categories
+          (comma separated)
         replaced_with_the_article_page_title: Replaced with the article/page title
         replaced_with_the_article_tags: Replaced with the article tags (comma separated)
         replaced_with_the_category_tag_name: Replaced with the category/tag name
         replaced_with_the_current_date: Replaced with the current date
         replaced_with_the_current_month: Replaced with the current month
         replaced_with_the_current_page_number: Replaced with the current page number
-        replaced_with_the_current_search_phrase: Replaced with the current search phrase
+        replaced_with_the_current_search_phrase: Replaced with the current search
+          phrase
         replaced_with_the_current_time: Replaced with the current time
         replaced_with_the_current_year: Replaced with the current year
         replaced_with_the_post_page_excerpt: Replaced with the post/page excerpt
-        replaced_with_the_title_of_the_article_page: Replaced with the title of the article/page
+        replaced_with_the_title_of_the_article_page: Replaced with the title of the
+          article/page
         search_results: Search results
         short_statuses: Short statuses
         short_statuses_lists: Short statuses lists
         the_blog_s_name: The blog's name
         the_blog_s_tagline_description: The blog's tagline / description
-        these_tags_can_be_included: These tags can be included in your templates and will be replaced when displaying the page.
+        these_tags_can_be_included: These tags can be included in your templates and
+          will be replaced when displaying the page.
         title_template: Title template
     settings:
       display:
         cancel: 取消
         custom_url: Custom URL shortener domain
-        custom_url_help: If you have a custom domain for URL shortening, enter it here.
+        custom_url_help: If you have a custom domain for URL shortening, enter it
+          here.
         date_format: Date format
         default_archives_show: articles on the archives page
         default_article_show: articles on the homepage
@@ -445,13 +468,15 @@ zh-CN:
         explain_feedback_moderation: 你可以設定網點範圍有限度的反饋。這麼做將不會有任何评论引用出現在你的博客，除非你使之生效
         explain_reject_comments: Publify會自動回絕评论和引用，包含某些可靠的連結總數
         explain_spam_protection: publify會根據張貼者IP的位址內容還有黑名單來有效防止垃圾郵件。好的防禦可以抑制垃圾郵寄
-        explain_spamfiltering_html: Publify隨意的使用 <a href='http://akismet.com'>Akismet</a> 篩選垃圾郵件服務。
+        explain_spamfiltering_html: Publify隨意的使用 <a href='http://akismet.com'>Akismet</a>
+          篩選垃圾郵件服務。
         feedback: 回应
         feedback_settings: Feedback settings
         max_links: 最大的連結值
         none: none
         or: or
-        remember_to_set_your_recaptcha: Remember to set your reCaptcha keys inside config/initializers/recaptcha.rb
+        remember_to_set_your_recaptcha: Remember to set your reCaptcha keys inside
+          config/initializers/recaptcha.rb
         set_to_0_to_never_disable_comments: 設定0為絕不失效的评论
         set_to_0_to_never_reject_comments: 設定0回絕不回絕的评论
         spam: Spam
@@ -464,7 +489,10 @@ zh-CN:
         blog_url: 博客URL
         cancel: 取消
         email_address_used_to_notify: email位址使用publify發出通知
-        explain_allow_users_to_register_html: This will allow users to register themselves as contributors, an unprivileged account level which grants them no rights beyond owning a profile on the site. If you don't want users to register, you can add them via <em>Manage users</em> under <em>Settings</em>.
+        explain_allow_users_to_register_html: This will allow users to register themselves
+          as contributors, an unprivileged account level which grants them no rights
+          beyond owning a profile on the site. If you don't want users to register,
+          you can add them via <em>Manage users</em> under <em>Settings</em>.
         general_settings: 一般設定
         items_to_display_in_admin_lists: Items to display in admin lists
         language: 言語
@@ -534,7 +562,8 @@ zh-CN:
         write: Write
       twitter_alert:
         fill_the_twitter_credentials: fill in the OAuth credentials
-        how_to_setup_twitter_html: If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}.
+        how_to_setup_twitter_html: If you want to push short statuses on Twitter,
+          you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}.
         registered_your_application: registered your application
     sidebar:
       config:
@@ -543,7 +572,10 @@ zh-CN:
         you_have_no_plugins_installed: You have no plugins installed
       index:
         cancel: 取消
-        download_more_plugins_html: You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory.
+        download_more_plugins_html: You can download and install sidebar plugins from
+          our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin
+          repository</a>. All you have to do is upload the theme directory in your
+          vendor/plugins directory.
         explain_how_its_works: 在這個博客顯示拖曳改變的sidebar選項。從sidebar選項移除會立即存檔，但是不會執行直到你輸入<公開>鍵
         or: or
         publish_changes: 公開變更
@@ -674,7 +706,8 @@ zh-CN:
       contact_information: Contact information
       jabber: 'Jabber:'
       msn: 'MSN:'
-      this_author_has_not_published_any_article_yet: This author has not published any article yet
+      this_author_has_not_published_any_article_yet: This author has not published
+        any article yet
       twitter: 'Twitter:'
       web_site: 'Web site:'
       yahoo: 'Yahoo:'
@@ -715,14 +748,17 @@ zh-CN:
     characters_minimum: Minimum %{min} characters
   errors:
     article_type_already_exist: This article type already exists
-    cant_end_with_rss_or_atom: Can't end in .rss or .atom. These are reserved for feed URLs
+    cant_end_with_rss_or_atom: Can't end in .rss or .atom. These are reserved for
+      feed URLs
     no_notes_found: No notes found...
     no_posts_found: No posts found...
     page_not_found: Page not found
     permalink_need_a_title: 'You need a permalink format with an identifier : %%title%%'
     problem_sending_to_twitter: Oooops something went wrong!
-    render_sidebar: It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually
-    the_page_you_are_looking_for: The page you are looking for has moved or does not exist.
+    render_sidebar: It seems something went wrong. Maybe some of your sidebars are
+      actually missing and you should either reinstall them or remove them manually
+    the_page_you_are_looking_for: The page you are looking for has moved or does not
+      exist.
   generic:
     change: Change
     conversation: Conversation
@@ -769,7 +805,8 @@ zh-CN:
     publisher: Blog publisher
   setup:
     article:
-      body: Welcome to Publify. This is your first article. Edit or delete it, then start blogging!
+      body: Welcome to Publify. This is your first article. Edit or delete it, then
+        start blogging!
       title: Hello World!
     index:
       blog_name: Blog name
@@ -778,7 +815,9 @@ zh-CN:
       your_mail: Your email
     page:
       about: 关于
-      body: This is an example of a Publify page. You can edit this to write information about yourself or your site so readers know who you are. You can create as many pages as this one as you like and manage all of your content inside Publify.
+      body: This is an example of a Publify page. You can edit this to write information
+        about yourself or your site so readers know who you are. You can create as
+        many pages as this one as you like and manage all of your content inside Publify.
   tags:
     index:
       there_are_no_tags: There are no tags

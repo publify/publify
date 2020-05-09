@@ -5,7 +5,8 @@ pl:
     back_to_login: Wróć do strony logowania
     confirm:
       admin: admin
-      dont_lose_the_mail_sent: Zachowaj wiadomość wysłaną na %{email}. Jeżeli ją zgubisz, możesz stracić możliwość zalogowania się!
+      dont_lose_the_mail_sent: Zachowaj wiadomość wysłaną na %{email}. Jeżeli ją zgubisz,
+        możesz stracić możliwość zalogowania się!
       login: 'Login: %{login}'
       proceed_to: Przejdź do %{link}
       success: Rejestracja przebiegła pomyślnie.
@@ -59,7 +60,8 @@ pl:
         save_as_draft: Zapisz jako szkic
         status: Stan
         tags: Tagi
-        tags_explanation_html: Oddziel tagi przecinkami. Użyj znaku (&quot;) aby dodać tagi składające się z wielu znaków, np. &quot;opera house&quot;.
+        tags_explanation_html: Oddziel tagi przecinkami. Użyj znaku (&quot;) aby dodać
+          tagi składające się z wielu znaków, np. &quot;opera house&quot;.
         title: Tytuł
         type_your_post: Dodaj treść
         visibility: Widoczność
@@ -93,15 +95,21 @@ pl:
         no_drafts_yet: Brak szkiców.
         your_drafts: Twoje szkice
       index:
+        textile_deprecated_html: The Textile text filter has been deprecated and will
+          be removed soon. Some of your content still uses this filter. Run the <code>publify:textile_to_markdown</code>
+          rake task to convert it to Markdown, or convert your content manually.
         welcome_back: Witamy z powrotem, %{user_name}!
       overview:
         change_your_blog_presentation: zmienić wygląd swojego bloga
-        customization_explain_html: Możesz również trochę poprojektować wygląd, %{theme_link} lub %{sidebar_link}.
-        dashboard_explain_html: This place gives you a quick overview of what happens on your Publify blog and what you can do. Maybe will you want to %{available_actions}
+        customization_explain_html: Możesz również trochę poprojektować wygląd, %{theme_link}
+          lub %{sidebar_link}.
+        dashboard_explain_html: This place gives you a quick overview of what happens
+          on your Publify blog and what you can do. Maybe will you want to %{available_actions}
         enable_plugins: aktywować wtyczkę
         help_explain_html: Jeśli potrzebujesz pomocy, %{doc_link}.
         read_our_documentation: przeczytaj dokumentację
-        update_your_profile_or_change_your_password: zaktualizować profil lub zmienić hasło
+        update_your_profile_or_change_your_password: zaktualizować profil lub zmienić
+          hasło
         write_a_page: utworzyć stronę
         write_a_post: utworzyć wpis
       welcome:
@@ -111,7 +119,8 @@ pl:
           one: 1 zaakceptowany
           other: "%{count} zaakceptowane"
           zero: brak zaakceptowanych
-        articles_and_comments_count_since: "%{articles_count} artykułów i %{comments_count} komentarzy zostało opublikowanych od twojego ostaniego połączenia"
+        articles_and_comments_count_since: "%{articles_count} artykułów i %{comments_count}
+          komentarzy zostało opublikowanych od twojego ostaniego połączenia"
         articles_count:
           few: "%{count} artykuły"
           many: "%{count} artykuły"
@@ -316,7 +325,9 @@ pl:
         cancel: Anuluj
         default: Domyślne
         description: Opis
-        explain: Nazwa szablonu to nazwa pliku, którego Publify będzie starało się znaleźć podczas wyświetlania artykułu danego typu. Powinien on się znajdować w views/articles/nazwa_szablonu.html.erb
+        explain: Nazwa szablonu to nazwa pliku, którego Publify będzie starało się
+          znaleźć podczas wyświetlania artykułu danego typu. Powinien on się znajdować
+          w views/articles/nazwa_szablonu.html.erb
         name: Nazwa
         or: lub
         post_types: Typy postów
@@ -365,14 +376,21 @@ pl:
         custom_tracking_code: Niestandardowy kod śledzenia
         do_not_index_tags: Nie indeksuj tagów
         dofollow: Dofollow
-        explain: Tutaj możesz dodać dowolny kod, który ma się pojawić w nagłówku strony, np. kod do analizy ruchu na stronie.
-        explain_moderate_feedback: Jeżeli to włączysz, być może będziesz chcieć moderować komentarze
-        explain_rss_description: 'Możesz używać następujących tagów: %author% (autor), %blog_url% (adres tego bloga), %blog_name% (nazwa tego bloga) and %permalink_url% (link do artykułu, który chcesz chronić)'
-        explain_tag_index_html: Zaznaczenie tej opcji spowoduje dodanie <code>noindex, follow</code> do każdej strony tagu, co spowoduje usunięcie z wyników wyszukiwania i uniknięcie duplikacji treści
+        explain: Tutaj możesz dodać dowolny kod, który ma się pojawić w nagłówku strony,
+          np. kod do analizy ruchu na stronie.
+        explain_moderate_feedback: Jeżeli to włączysz, być może będziesz chcieć moderować
+          komentarze
+        explain_rss_description: 'Możesz używać następujących tagów: %author% (autor),
+          %blog_url% (adres tego bloga), %blog_name% (nazwa tego bloga) and %permalink_url%
+          (link do artykułu, który chcesz chronić)'
+        explain_tag_index_html: Zaznaczenie tej opcji spowoduje dodanie <code>noindex,
+          follow</code> do każdej strony tagu, co spowoduje usunięcie z wyników wyszukiwania
+          i uniknięcie duplikacji treści
         general_settings: Ustawienia ogólne
         google: Google
         google_analytics: Google Analytics
-        google_webmaster_tools_validation_link: Google Webmaster Tools validation link
+        google_webmaster_tools_validation_link: Google Webmaster Tools validation
+          link
         indexing: Indeksowanie
         meta_description: Opis
         meta_keywords: Słowa kluczowe
@@ -385,16 +403,21 @@ pl:
       permalinks:
         custom: Niestandardowe
         date_and_title: Data i tytuł
-        explain: Publify oferuje możliwośc tworzenie niestandardowej struktury adresu URL dla Twoich linków i archiwów. To pozwala poprawić estetykę, użuteczność i poprawność Twoich linków.
+        explain: Publify oferuje możliwośc tworzenie niestandardowej struktury adresu
+          URL dla Twoich linków i archiwów. To pozwala poprawić estetykę, użuteczność
+          i poprawność Twoich linków.
         help_on_permalink_settings: Pomoc
         month_and_title: Miesiąc i tytuł
         permalink_format: Format permalinku
-        sample: Na stronie zawarte są przykłady, które powinny pomóc Ci w ustawieniu odpowiedniego formatu.
+        sample: Na stronie zawarte są przykłady, które powinny pomóc Ci w ustawieniu
+          odpowiedniego formatu.
         title_only: Tylko tytuł
-        you_can_custom_your_url_structure: 'Możesz zmodyfikować strukturę adresów URL używając następujących tagów:'
+        you_can_custom_your_url_structure: 'Możesz zmodyfikować strukturę adresów
+          URL używając następujących tagów:'
         your_article_day: dzień publikacji artykułu.
         your_article_month: miesiąc publikacji artykułu.
-        your_article_slug_html: tytuł artykułu (przyjazny dla przeglądarki). <strong>Użycie tego tagu jest obowiązkowe</strong>.
+        your_article_slug_html: tytuł artykułu (przyjazny dla przeglądarki). <strong>Użycie
+          tego tagu jest obowiązkowe</strong>.
         your_article_year: rok publikacji artykułu.
       show:
         cancel: Anuluj
@@ -414,30 +437,35 @@ pl:
         paginated_archives: Archiwa (podzielone na strony)
         replaced_by_the_archive_date: Replaced by the archive date
         replaced_by_the_content_body: Replaced by the content body
-        replaced_with_the_article_categories: Replaced with the article categories (comma separated)
+        replaced_with_the_article_categories: Replaced with the article categories
+          (comma separated)
         replaced_with_the_article_page_title: Replaced with the article/page title
         replaced_with_the_article_tags: Replaced with the article tags (comma separated)
         replaced_with_the_category_tag_name: Replaced with the category/tag name
         replaced_with_the_current_date: Replaced with the current date
         replaced_with_the_current_month: Replaced with the current month
         replaced_with_the_current_page_number: Replaced with the current page number
-        replaced_with_the_current_search_phrase: Replaced with the current search phrase
+        replaced_with_the_current_search_phrase: Replaced with the current search
+          phrase
         replaced_with_the_current_time: Replaced with the current time
         replaced_with_the_current_year: Replaced with the current year
         replaced_with_the_post_page_excerpt: Replaced with the post/page excerpt
-        replaced_with_the_title_of_the_article_page: Replaced with the title of the article/page
+        replaced_with_the_title_of_the_article_page: Replaced with the title of the
+          article/page
         search_results: Search results
         short_statuses: Short statuses
         short_statuses_lists: Short statuses lists
         the_blog_s_name: The blog's name
         the_blog_s_tagline_description: The blog's tagline / description
-        these_tags_can_be_included: These tags can be included in your templates and will be replaced when displaying the page.
+        these_tags_can_be_included: These tags can be included in your templates and
+          will be replaced when displaying the page.
         title_template: Title template
     settings:
       display:
         cancel: Anuluj
         custom_url: Custom URL shortener domain
-        custom_url_help: If you have a custom domain for URL shortening, enter it here.
+        custom_url_help: If you have a custom domain for URL shortening, enter it
+          here.
         date_format: Date format
         default_archives_show: articles on the archives page
         default_article_show: articles on the homepage
@@ -466,16 +494,25 @@ pl:
         enable_feedback_moderation: Włącz moderację komentarzy
         enable_recaptcha: Enable reCaptcha
         enable_spam_protection: Włącz ochronę przed spamem
-        explain_feedback_moderation: Możesz włączyć globalną moderację komentarzy. W takim przypadku żaden komentarz nie ukaże się na blogu aż do momentu jego akceptacji.
-        explain_reject_comments: Publify automatycznie odrzuca komentarze, które zawierają większą, niż podana, liczbę łączy
-        explain_spam_protection: Włączenie ochrony przed spamem sprawi, iż Publify będzie porównywać adresy IP nadawców oraz treść ich postów z lokalnymi i zdalnymi czarnymi listami. To dobra obrona przed spam botami.
-        explain_spamfiltering_html: Publify może (opcjonalnie) stosować usługę <a href='http://akismet.com'>Akismet</a> do filtrowania spamu. Musisz zarejestrować się w serwisie Akismet by otrzymać klucz API nim będzie można używać tej usługi. Jeśli posiadasz klucz API Akismet, wprowadź go tutaj
+        explain_feedback_moderation: Możesz włączyć globalną moderację komentarzy.
+          W takim przypadku żaden komentarz nie ukaże się na blogu aż do momentu jego
+          akceptacji.
+        explain_reject_comments: Publify automatycznie odrzuca komentarze, które zawierają
+          większą, niż podana, liczbę łączy
+        explain_spam_protection: Włączenie ochrony przed spamem sprawi, iż Publify
+          będzie porównywać adresy IP nadawców oraz treść ich postów z lokalnymi i
+          zdalnymi czarnymi listami. To dobra obrona przed spam botami.
+        explain_spamfiltering_html: Publify może (opcjonalnie) stosować usługę <a
+          href='http://akismet.com'>Akismet</a> do filtrowania spamu. Musisz zarejestrować
+          się w serwisie Akismet by otrzymać klucz API nim będzie można używać tej
+          usługi. Jeśli posiadasz klucz API Akismet, wprowadź go tutaj
         feedback: Komentarze
         feedback_settings: Feedback settings
         max_links: Max. liczba łączy
         none: none
         or: or
-        remember_to_set_your_recaptcha: Remember to set your reCaptcha keys inside config/initializers/recaptcha.rb
+        remember_to_set_your_recaptcha: Remember to set your reCaptcha keys inside
+          config/initializers/recaptcha.rb
         set_to_0_to_never_disable_comments: Ustaw 0 by komentarze były zawsze włączone
         set_to_0_to_never_reject_comments: Ustaw 0 by komentarze były zawsze akceptowane
         spam: Spam
@@ -487,8 +524,12 @@ pl:
         blog_subtitle: Podtytuł bloga
         blog_url: Adres URL bloga
         cancel: Anuluj
-        email_address_used_to_notify: Adres email używany przez Publify do wysyłania powiadomień
-        explain_allow_users_to_register_html: This will allow users to register themselves as contributors, an unprivileged account level which grants them no rights beyond owning a profile on the site. If you don't want users to register, you can add them via <em>Manage users</em> under <em>Settings</em>.
+        email_address_used_to_notify: Adres email używany przez Publify do wysyłania
+          powiadomień
+        explain_allow_users_to_register_html: This will allow users to register themselves
+          as contributors, an unprivileged account level which grants them no rights
+          beyond owning a profile on the site. If you don't want users to register,
+          you can add them via <em>Manage users</em> under <em>Settings</em>.
         general_settings: Ustawienia ogólne
         items_to_display_in_admin_lists: Items to display in admin lists
         language: Język
@@ -558,7 +599,8 @@ pl:
         write: Write
       twitter_alert:
         fill_the_twitter_credentials: fill in the OAuth credentials
-        how_to_setup_twitter_html: If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}.
+        how_to_setup_twitter_html: If you want to push short statuses on Twitter,
+          you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}.
         registered_your_application: registered your application
     sidebar:
       config:
@@ -567,8 +609,13 @@ pl:
         you_have_no_plugins_installed: You have no plugins installed
       index:
         cancel: Anuluj
-        download_more_plugins_html: You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory.
-        explain_how_its_works: Przeciągnij i upuść pozycje, które mają być wyświetlone na blogu. By usunąć pozycję naciśnij *Usuń*. Zmiany są zapisywane od razu, lecz nie są aktywne do momentu kliknięcia 'Publikuj zmiany'
+        download_more_plugins_html: You can download and install sidebar plugins from
+          our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin
+          repository</a>. All you have to do is upload the theme directory in your
+          vendor/plugins directory.
+        explain_how_its_works: Przeciągnij i upuść pozycje, które mają być wyświetlone
+          na blogu. By usunąć pozycję naciśnij *Usuń*. Zmiany są zapisywane od razu,
+          lecz nie są aktywne do momentu kliknięcia 'Publikuj zmiany'
         or: or
         publish_changes: Publikuj zmiany
         sidebar: Sidebar
@@ -702,14 +749,16 @@ pl:
       contact_information: Contact information
       jabber: 'Jabber:'
       msn: 'MSN:'
-      this_author_has_not_published_any_article_yet: This author has not published any article yet
+      this_author_has_not_published_any_article_yet: This author has not published
+        any article yet
       twitter: 'Twitter:'
       web_site: 'Web site:'
       yahoo: 'Yahoo:'
   comments:
     comment:
       said: powiedział
-      this_comment_has_been_flagged_for_moderator_approval: Ten komentarz oczekuje na akceptację.  Nie ukaże się do czasu zaakceptowania przez autora.
+      this_comment_has_been_flagged_for_moderator_approval: Ten komentarz oczekuje
+        na akceptację.  Nie ukaże się do czasu zaakceptowania przez autora.
   date:
     abbr_month_names:
     - 
@@ -743,14 +792,17 @@ pl:
     characters_minimum: Minimum %{min} characters
   errors:
     article_type_already_exist: This article type already exists
-    cant_end_with_rss_or_atom: Can't end in .rss or .atom. These are reserved to be used for feed URLs
+    cant_end_with_rss_or_atom: Can't end in .rss or .atom. These are reserved to be
+      used for feed URLs
     no_notes_found: No notes found...
     no_posts_found: No posts found...
     page_not_found: Page not found
     permalink_need_a_title: 'You need a permalink format with an identifier : %%title%%'
     problem_sending_to_twitter: Oooops something wrong happened
-    render_sidebar: It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually
-    the_page_you_are_looking_for: The page you are looking for has moved or does not exist.
+    render_sidebar: It seems something went wrong. Maybe some of your sidebars are
+      actually missing and you should either reinstall them or remove them manually
+    the_page_you_are_looking_for: The page you are looking for has moved or does not
+      exist.
   generic:
     change: Change
     conversation: Conversation
@@ -797,7 +849,8 @@ pl:
     publisher: Blog publisher
   setup:
     article:
-      body: Welcome to Publify. This is your first article. Edit or delete it, then start blogging!
+      body: Welcome to Publify. This is your first article. Edit or delete it, then
+        start blogging!
       title: Hello World!
     index:
       blog_name: Blog name
@@ -806,7 +859,9 @@ pl:
       your_mail: Your email
     page:
       about: About
-      body: This is an example of a Publify page. You can edit this to write information about yourself or your site so readers know who you are. You can create as many pages as you like and manage all of your content inside Publify.
+      body: This is an example of a Publify page. You can edit this to write information
+        about yourself or your site so readers know who you are. You can create as
+        many pages as you like and manage all of your content inside Publify.
   tags:
     index:
       there_are_no_tags: There are no tags

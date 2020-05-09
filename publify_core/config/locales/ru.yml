@@ -5,7 +5,8 @@ ru:
     back_to_login: Назад к форме входа
     confirm:
       admin: admin
-      dont_lose_the_mail_sent: Не потеряйте письмо, высланное на %{email}, или вы больше не сможете зайти
+      dont_lose_the_mail_sent: Не потеряйте письмо, высланное на %{email}, или вы
+        больше не сможете зайти
       login: 'логин: %{login}'
       proceed_to: Proceed to %{link}
       success: You have successfully signed up.
@@ -59,7 +60,8 @@ ru:
         save_as_draft: Сохранить как черновик
         status: Статус
         tags: Теги
-        tags_explanation_html: Separate tags with commas. Use double quotes (&quot;) around multi-word tags, e.g. &quot;opera house&quot;.
+        tags_explanation_html: Separate tags with commas. Use double quotes (&quot;)
+          around multi-word tags, e.g. &quot;opera house&quot;.
         title: Заголовок
         type_your_post: Type your post
         visibility: Видимость
@@ -93,15 +95,21 @@ ru:
         no_drafts_yet: Пока нет черновиков. Почему бы не взять и не написать?
         your_drafts: Ваши черновики
       index:
+        textile_deprecated_html: The Textile text filter has been deprecated and will
+          be removed soon. Some of your content still uses this filter. Run the <code>publify:textile_to_markdown</code>
+          rake task to convert it to Markdown, or convert your content manually.
         welcome_back: Добро пожаловать снова, %{user_name}!
       overview:
         change_your_blog_presentation: изменив тему блога
-        customization_explain_html: Вы также можете изменить дизайн, %{theme_link} или %{sidebar_link}
-        dashboard_explain_html: Здесь можно посмотреть, что происходит в вашем Publify-блоге и что в нем можно сделать. Возможно, вы хотели бы %{available_actions}.
+        customization_explain_html: Вы также можете изменить дизайн, %{theme_link}
+          или %{sidebar_link}
+        dashboard_explain_html: Здесь можно посмотреть, что происходит в вашем Publify-блоге
+          и что в нем можно сделать. Возможно, вы хотели бы %{available_actions}.
         enable_plugins: включив плагины
         help_explain_html: Если вам нужна помощь, %{doc_link}.
         read_our_documentation: ознакомьтесь с документацией
-        update_your_profile_or_change_your_password: изменить свой профиль или поменять пароль
+        update_your_profile_or_change_your_password: изменить свой профиль или поменять
+          пароль
         write_a_page: создать страницу
         write_a_post: написать пост
       welcome:
@@ -111,7 +119,8 @@ ru:
           one: 1 approved
           other: "%{count} approved"
           zero: no approved
-        articles_and_comments_count_since: "%{articles_count} постов и %{comments_count} комментариев получено с вашего последнего посещения"
+        articles_and_comments_count_since: "%{articles_count} постов и %{comments_count}
+          комментариев получено с вашего последнего посещения"
         articles_count:
           few: 'постов: %{count}'
           many: 'постов: %{count}'
@@ -316,7 +325,9 @@ ru:
         cancel: Отменить
         default: Default
         description: Описание
-        explain: The template name is the filename Publify will look for when calling an article of that type. It should be in your theme under views/articles/template name.html.erb
+        explain: The template name is the filename Publify will look for when calling
+          an article of that type. It should be in your theme under views/articles/template
+          name.html.erb
         name: Имя
         or: или
         post_types: Post Types
@@ -365,33 +376,44 @@ ru:
         custom_tracking_code: Custom tracking code
         do_not_index_tags: Не индксировать теги
         dofollow: Dofollow
-        explain: Here you can add anything you want to appear in your application header, such as analytics service tracking code.
-        explain_moderate_feedback: You may want to moderate feedback when turning this on
-        explain_rss_description: 'You can use the following tags: %author% (author name), %blog_url% (this blog URL), %blog_name% (this blog title) and %permalink_url% (a link to the article you want to protect)'
-        explain_tag_index_html: Checking this box will add <code>noindex, follow</code> meta tags in every tags page, removing them from search engines and preventing duplicate content issues
+        explain: Here you can add anything you want to appear in your application
+          header, such as analytics service tracking code.
+        explain_moderate_feedback: You may want to moderate feedback when turning
+          this on
+        explain_rss_description: 'You can use the following tags: %author% (author
+          name), %blog_url% (this blog URL), %blog_name% (this blog title) and %permalink_url%
+          (a link to the article you want to protect)'
+        explain_tag_index_html: Checking this box will add <code>noindex, follow</code>
+          meta tags in every tags page, removing them from search engines and preventing
+          duplicate content issues
         general_settings: Основные настройки
         google: Google
         google_analytics: Google Analytics
-        google_webmaster_tools_validation_link: Google Webmaster Tools validation link
+        google_webmaster_tools_validation_link: Google Webmaster Tools validation
+          link
         indexing: Индексация
         meta_description: Meta description
         meta_keywords: Meta keywords
         robots_txt: Robots.txt
         rss_description_message: RSS description message
-        this_will_display: This will display at the bottom of each post in the RSS feed
+        this_will_display: This will display at the bottom of each post in the RSS
+          feed
         use_dofollow_in_comments: Use dofollow in comments
         use_meta_keywords: Использовать meta keywords
         use_rss_description: Use RSS description
       permalinks:
         custom: Собственный формат
         date_and_title: Дата и заголовок
-        explain: Publify offers you the ability to create a custom URL structure for your permalinks and archives. This can improve the aesthetics, usability, and forward-compatibility of your links.
+        explain: Publify offers you the ability to create a custom URL structure for
+          your permalinks and archives. This can improve the aesthetics, usability,
+          and forward-compatibility of your links.
         help_on_permalink_settings: Help on permalink settings
         month_and_title: Месяц и заголовок
         permalink_format: Формат постоянных ссылок
         sample: Вот некоторые примеры, от которых вы можете оттолкнуться.
         title_only: Только заголовок
-        you_can_custom_your_url_structure: 'В своем формате структуру URL’ов вы можете использовать следующие теги:'
+        you_can_custom_your_url_structure: 'В своем формате структуру URL’ов вы можете
+          использовать следующие теги:'
         your_article_day: день публикации вашего поста.
         your_article_month: месяц публикации вашего поста.
         your_article_slug_html: заголовок вашего поста. <strong>Используйте его обязательно</strong>.
@@ -414,30 +436,35 @@ ru:
         paginated_archives: Paginated archives
         replaced_by_the_archive_date: Replaced by the archive date
         replaced_by_the_content_body: Replaced by the content body
-        replaced_with_the_article_categories: Replaced with the article categories (comma separated)
+        replaced_with_the_article_categories: Replaced with the article categories
+          (comma separated)
         replaced_with_the_article_page_title: Replaced with the article/page title
         replaced_with_the_article_tags: Replaced with the article tags (comma separated)
         replaced_with_the_category_tag_name: Replaced with the category/tag name
         replaced_with_the_current_date: Replaced with the current date
         replaced_with_the_current_month: Replaced with the current month
         replaced_with_the_current_page_number: Replaced with the current page number
-        replaced_with_the_current_search_phrase: Replaced with the current search phrase
+        replaced_with_the_current_search_phrase: Replaced with the current search
+          phrase
         replaced_with_the_current_time: Replaced with the current time
         replaced_with_the_current_year: Replaced with the current year
         replaced_with_the_post_page_excerpt: Replaced with the post/page excerpt
-        replaced_with_the_title_of_the_article_page: Replaced with the title of the article/page
+        replaced_with_the_title_of_the_article_page: Replaced with the title of the
+          article/page
         search_results: Search results
         short_statuses: Short statuses
         short_statuses_lists: Short statuses lists
         the_blog_s_name: The blog's name
         the_blog_s_tagline_description: The blog's tagline / description
-        these_tags_can_be_included: These tags can be included in your templates and will be replaced when displaying the page.
+        these_tags_can_be_included: These tags can be included in your templates and
+          will be replaced when displaying the page.
         title_template: Шаблон заголовка
     settings:
       display:
         cancel: Отменить
         custom_url: Custom URL shortener domain
-        custom_url_help: If you have a custom domain for URL shortening, enter it here.
+        custom_url_help: If you have a custom domain for URL shortening, enter it
+          here.
         date_format: Date format
         default_archives_show: articles on the archives page
         default_article_show: articles on the homepage
@@ -466,16 +493,24 @@ ru:
         enable_feedback_moderation: Enable feedback moderation
         enable_recaptcha: Enable reCaptcha
         enable_spam_protection: Enable spam protection
-        explain_feedback_moderation: You can enable site wide feedback moderation. If you do so, no comment will appear on your blog unless you validate it.
-        explain_reject_comments: Publify will automatically reject comments which contain over a certain amount of links in them
-        explain_spam_protection: Enabling spam protection will make Publify compare the IP address of posters as well as the contents of their posts against local and remote blacklists. Good defense against spam bots
-        explain_spamfiltering_html: Publify can (optionally) use the <a href='http://akismet.com'>Akismet</a> spam-filtering service.  You need to register with Akismet and receive an API key before you can use their service.  If you have an Akismet key, enter it here
+        explain_feedback_moderation: You can enable site wide feedback moderation.
+          If you do so, no comment will appear on your blog unless you validate it.
+        explain_reject_comments: Publify will automatically reject comments which
+          contain over a certain amount of links in them
+        explain_spam_protection: Enabling spam protection will make Publify compare
+          the IP address of posters as well as the contents of their posts against
+          local and remote blacklists. Good defense against spam bots
+        explain_spamfiltering_html: Publify can (optionally) use the <a href='http://akismet.com'>Akismet</a>
+          spam-filtering service.  You need to register with Akismet and receive an
+          API key before you can use their service.  If you have an Akismet key, enter
+          it here
         feedback: Комментарии
         feedback_settings: Feedback settings
         max_links: Max Links
         none: Нет
         or: или
-        remember_to_set_your_recaptcha: Remember to set your reCaptcha keys inside config/initializers/recaptcha.rb
+        remember_to_set_your_recaptcha: Remember to set your reCaptcha keys inside
+          config/initializers/recaptcha.rb
         set_to_0_to_never_disable_comments: Set to 0 to never disable comments
         set_to_0_to_never_reject_comments: Set to 0 to never reject comments
         spam: Spam
@@ -488,9 +523,15 @@ ru:
         blog_url: URL блога
         cancel: Отменить
         email_address_used_to_notify: Email address used by Publify to send notifications
-        explain_allow_users_to_register_html: Вы можете разрешить пользователям регистрироваться в вашем блоге. По умолчанию они регистрируются как контрибьюторы, то есть получают непривелигированные учетные записи, которые не имеют никаких прав — только профиль на сайте. Если вы не хотите давать пользователям возможность регистрироваться, вы можете добавлять их вручную в разделе «пользователи» панели администратора
+        explain_allow_users_to_register_html: Вы можете разрешить пользователям регистрироваться
+          в вашем блоге. По умолчанию они регистрируются как контрибьюторы, то есть
+          получают непривелигированные учетные записи, которые не имеют никаких прав
+          — только профиль на сайте. Если вы не хотите давать пользователям возможность
+          регистрироваться, вы можете добавлять их вручную в разделе «пользователи»
+          панели администратора
         general_settings: Основные настройки
-        items_to_display_in_admin_lists: Количество элементов для отображения в администраторских списках
+        items_to_display_in_admin_lists: Количество элементов для отображения в администраторских
+          списках
         language: Язык
         or: или
         source_email: Source Email
@@ -558,7 +599,8 @@ ru:
         write: Публикация
       twitter_alert:
         fill_the_twitter_credentials: fill in the OAuth credentials
-        how_to_setup_twitter_html: If you want to push short statuses on Twitter, you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}.
+        how_to_setup_twitter_html: If you want to push short statuses on Twitter,
+          you need to %{twitter_settings_link} Twitter gave you after you %{twitter_registration_link}.
         registered_your_application: registered your application
     sidebar:
       config:
@@ -567,8 +609,14 @@ ru:
         you_have_no_plugins_installed: You have no plugins installed
       index:
         cancel: Отменить
-        download_more_plugins_html: You can download and install sidebar plugins from our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin repository</a>. All you have to do is upload the theme directory in your vendor/plugins directory.
-        explain_how_its_works: Drag and drop to change the sidebar items displayed on this blog. To remove items from the sidebar just click 'remove'. Changes are saved immediately, but not activated until you click the 'Publish changes' button
+        download_more_plugins_html: You can download and install sidebar plugins from
+          our official <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin
+          repository</a>. All you have to do is upload the theme directory in your
+          vendor/plugins directory.
+        explain_how_its_works: Drag and drop to change the sidebar items displayed
+          on this blog. To remove items from the sidebar just click 'remove'. Changes
+          are saved immediately, but not activated until you click the 'Publish changes'
+          button
         or: или
         publish_changes: Сохранить изменения
         sidebar: Боковая колонка
@@ -709,7 +757,9 @@ ru:
   comments:
     comment:
       said: said
-      this_comment_has_been_flagged_for_moderator_approval: This comment has been flagged for moderator approval.  It won't appear on this blog until the author approves it
+      this_comment_has_been_flagged_for_moderator_approval: This comment has been
+        flagged for moderator approval.  It won't appear on this blog until the author
+        approves it
   date:
     abbr_month_names:
     - 
@@ -743,14 +793,17 @@ ru:
     characters_minimum: Minimum %{min} characters
   errors:
     article_type_already_exist: This article type already exists
-    cant_end_with_rss_or_atom: Can't end in .rss or .atom. These are reserved for feed URLs
+    cant_end_with_rss_or_atom: Can't end in .rss or .atom. These are reserved for
+      feed URLs
     no_notes_found: No notes found...
     no_posts_found: No posts found...
     page_not_found: Страница не найдена
     permalink_need_a_title: 'You need a permalink format with an identifier : %%title%%'
     problem_sending_to_twitter: Oooops something went wrong!
-    render_sidebar: It seems something went wrong. Maybe some of your sidebars are actually missing and you should either reinstall them or remove them manually
-    the_page_you_are_looking_for: Страница, которую вы запрашиваете, была перемещена или не существует
+    render_sidebar: It seems something went wrong. Maybe some of your sidebars are
+      actually missing and you should either reinstall them or remove them manually
+    the_page_you_are_looking_for: Страница, которую вы запрашиваете, была перемещена
+      или не существует
   generic:
     change: Изменить
     conversation: Conversation
@@ -797,7 +850,8 @@ ru:
     publisher: Blog publisher
   setup:
     article:
-      body: Welcome to Publify. This is your first article. Edit or delete it, then start blogging!
+      body: Welcome to Publify. This is your first article. Edit or delete it, then
+        start blogging!
       title: Hello World!
     index:
       blog_name: Название блога
@@ -806,7 +860,9 @@ ru:
       your_mail: Ваш email
     page:
       about: About
-      body: This is an example of a Publify page. You can edit this to write information about yourself or your site so readers know who you are. You can create as many pages as this one as you like and manage all of your content inside Publify.
+      body: This is an example of a Publify page. You can edit this to write information
+        about yourself or your site so readers know who you are. You can create as
+        many pages as this one as you like and manage all of your content inside Publify.
   tags:
     index:
       there_are_no_tags: Тегов нет

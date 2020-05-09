@@ -5,7 +5,8 @@ nb-NO:
     back_to_login: Tilbake til innlogging
     confirm:
       admin: admin
-      dont_lose_the_mail_sent: Ikke mist eposten som ble sendt %{email}. Uten passordet vil du ikke kunne logge inn senere
+      dont_lose_the_mail_sent: Ikke mist eposten som ble sendt %{email}. Uten passordet
+        vil du ikke kunne logge inn senere
       login: 'Login: %{login}'
       proceed_to: Fortsett til %{link}
       success: You have successfully signed up.
@@ -59,7 +60,8 @@ nb-NO:
         save_as_draft: Lagre som utkast
         status: Status
         tags: Tagger
-        tags_explanation_html: Skill tagger med komma. Bruk anførselstegn (&quot;) rundt tagger med flere ord, f.eks. &quot;moderne teater&quot;.
+        tags_explanation_html: Skill tagger med komma. Bruk anførselstegn (&quot;)
+          rundt tagger med flere ord, f.eks. &quot;moderne teater&quot;.
         title: Tittel
         type_your_post: Skriv teksten din
         visibility: Synlighet
@@ -93,15 +95,21 @@ nb-NO:
         no_drafts_yet: Ingen utkast enda, hvorfor ikke begynne å skrive et?
         your_drafts: Dine utkast
       index:
+        textile_deprecated_html: The Textile text filter has been deprecated and will
+          be removed soon. Some of your content still uses this filter. Run the <code>publify:textile_to_markdown</code>
+          rake task to convert it to Markdown, or convert your content manually.
         welcome_back: Velkommen tilbake, %{user_name}!
       overview:
         change_your_blog_presentation: endre utseende på bloggen din
-        customization_explain_html: Du kan også tilpasse utseendet, %{theme_link} eller %{sidebar_link}.
-        dashboard_explain_html: Her får du en rask oversikt over hva som foregår på din Publify-blogg og hva du kan gjøre. Kanskje du ønsker å %{available_actions}.
+        customization_explain_html: Du kan også tilpasse utseendet, %{theme_link}
+          eller %{sidebar_link}.
+        dashboard_explain_html: Her får du en rask oversikt over hva som foregår på
+          din Publify-blogg og hva du kan gjøre. Kanskje du ønsker å %{available_actions}.
         enable_plugins: aktivere plugins
         help_explain_html: Hvis du trenger hjelp, %{doc_link}.
         read_our_documentation: les dokumentasjonen vår
-        update_your_profile_or_change_your_password: oppdatere profilen din eller endre passordet ditt
+        update_your_profile_or_change_your_password: oppdatere profilen din eller
+          endre passordet ditt
         write_a_page: skrive en side
         write_a_post: skrive en artikkel
       welcome:
@@ -109,7 +117,8 @@ nb-NO:
           one: 1 godkjent
           other: "%{count} godkjente"
           zero: ingen godkjente
-        articles_and_comments_count_since: "%{articles_count} artikler og %{comments_count} kommentarer siden forrige besøk"
+        articles_and_comments_count_since: "%{articles_count} artikler og %{comments_count}
+          kommentarer siden forrige besøk"
         articles_count:
           one: 1 artikkel
           other: "%{count} artikler"
@@ -292,7 +301,8 @@ nb-NO:
         cancel: Avbryt
         default: Standard
         description: Beskrivelse
-        explain: Malnavnet er det filnavnet Publify vil se etter når en artikkel av den typen skal vises. Det bør finnes i designtemaet ditt under views/articles/malnavn.html.erb
+        explain: Malnavnet er det filnavnet Publify vil se etter når en artikkel av
+          den typen skal vises. Det bør finnes i designtemaet ditt under views/articles/malnavn.html.erb
         name: Navn
         or: eller
         post_types: Artikkeltyper
@@ -341,10 +351,16 @@ nb-NO:
         custom_tracking_code: Tilpasset tracking-kode
         do_not_index_tags: Ikke indekser tagger
         dofollow: Dofollow
-        explain: Her kan du legge til det du vil skal inkluderes i din applikasjons-header, som for eksempel tracking-kode for en analyseservice.
-        explain_moderate_feedback: Det kan være en idé å moderere diskusjoner når du slår på denne
-        explain_rss_description: 'Du kan bruke følgende tagger: %author% (forfatternavn), %blog_url% (blogg-URL), %blog_name% (bloggtittel) og %permalink_url% (en lenke til den artikkelen du vil beskytte)'
-        explain_tag_index_html: Slår du på denne, vil metataggene <code>noindex, follow</code> bli lagt til på alle taggsider, og dermed fjerne dem fra søkemotorer og forhindre problemer med duplisert innhold
+        explain: Her kan du legge til det du vil skal inkluderes i din applikasjons-header,
+          som for eksempel tracking-kode for en analyseservice.
+        explain_moderate_feedback: Det kan være en idé å moderere diskusjoner når
+          du slår på denne
+        explain_rss_description: 'Du kan bruke følgende tagger: %author% (forfatternavn),
+          %blog_url% (blogg-URL), %blog_name% (bloggtittel) og %permalink_url% (en
+          lenke til den artikkelen du vil beskytte)'
+        explain_tag_index_html: Slår du på denne, vil metataggene <code>noindex, follow</code>
+          bli lagt til på alle taggsider, og dermed fjerne dem fra søkemotorer og
+          forhindre problemer med duplisert innhold
         general_settings: Generelle innstillinger
         google: Google
         google_analytics: Google Analytics
@@ -361,16 +377,20 @@ nb-NO:
       permalinks:
         custom: Tilpasset
         date_and_title: Dato og tittel
-        explain: Publify tilbyr deg muligheten til å opprette en tilpasset URL-struktur for dine permalenker og arkiver. Dette kan forbedre estetikken, brukervennligheten og foroverkompatibiliteten til dine lenker.
+        explain: Publify tilbyr deg muligheten til å opprette en tilpasset URL-struktur
+          for dine permalenker og arkiver. Dette kan forbedre estetikken, brukervennligheten
+          og foroverkompatibiliteten til dine lenker.
         help_on_permalink_settings: Hjelp om permalenke-innstillinger
         month_and_title: Måned og tittel
         permalink_format: Permalenkeformat
         sample: Her er noen eksempler for å hjelpe deg i gang.
         title_only: Bare tittel
-        you_can_custom_your_url_structure: 'Du kan tilbasse URL-strukturen din ved å bruke følgende tagger:'
+        you_can_custom_your_url_structure: 'Du kan tilbasse URL-strukturen din ved
+          å bruke følgende tagger:'
         your_article_day: Artikkelens publiseringsdag
         your_article_month: Artikkelens publiseringmåned
-        your_article_slug_html: Forenklet fra artikkeltittelen. <strong>Det er påkrevd å bruke denne taggen</strong>.
+        your_article_slug_html: Forenklet fra artikkeltittelen. <strong>Det er påkrevd
+          å bruke denne taggen</strong>.
         your_article_year: Artikkelens publiseringsår
       show:
         cancel: Avbryt
@@ -390,7 +410,8 @@ nb-NO:
         paginated_archives: Arkivliste over flere sider
         replaced_by_the_archive_date: Erstattet med arkivdato
         replaced_by_the_content_body: Erstattet med artikkelinnholdet
-        replaced_with_the_article_categories: Erstattet med artikkelens kategorier (kommaseparert)
+        replaced_with_the_article_categories: Erstattet med artikkelens kategorier
+          (kommaseparert)
         replaced_with_the_article_page_title: Erstattet med artikkelens/sidens tittel
         replaced_with_the_article_tags: Erstattet med artikkelens tagger (kommaseparert)
         replaced_with_the_category_tag_name: Erstattet med kategori-/taggnavn
@@ -407,7 +428,8 @@ nb-NO:
         short_statuses_lists: Lister over statusoppdateringer
         the_blog_s_name: Bloggens navn
         the_blog_s_tagline_description: Bloggens undertittel/beskrivelse
-        these_tags_can_be_included: Disse taggene kan brukes i malene, og vil bli erstattet når siden vises.
+        these_tags_can_be_included: Disse taggene kan brukes i malene, og vil bli
+          erstattet når siden vises.
         title_template: Mønster for tittel
     settings:
       display:
@@ -442,16 +464,25 @@ nb-NO:
         enable_feedback_moderation: Aktiver moderering av diskusjoner
         enable_recaptcha: Aktiver reCaptcha
         enable_spam_protection: Aktiver spam-beskyttelse
-        explain_feedback_moderation: Du kan aktivere moderering av diskusjoner for hele bloggen. Dersom du gjør det vil ingen kommentarer vises i bloggen din uten at du har godkjent dem
-        explain_reject_comments: Publify vil automatisk avvise kommentarer som inneholder flere enn et visst antall lenker
-        explain_spam_protection: Når du aktiverer spam-beskyttelse vil Publify sammenlikne IP-adressen til deltakere, samt innholdet i artiklene, mot lokale svartelister og svartelister på internett. Godt forsvar mot spam-roboter
-        explain_spamfiltering_html: Publify kan settes opp til å bruke spamfilter-servicen <a href='http://akismet.com'>Akismet</a>. Du må registrere deg hos Akismet og få en API-nøkkel før du kan bruke servicen deres. Hvis du har en Akismet-nøkkel, oppgi den her
+        explain_feedback_moderation: Du kan aktivere moderering av diskusjoner for
+          hele bloggen. Dersom du gjør det vil ingen kommentarer vises i bloggen din
+          uten at du har godkjent dem
+        explain_reject_comments: Publify vil automatisk avvise kommentarer som inneholder
+          flere enn et visst antall lenker
+        explain_spam_protection: Når du aktiverer spam-beskyttelse vil Publify sammenlikne
+          IP-adressen til deltakere, samt innholdet i artiklene, mot lokale svartelister
+          og svartelister på internett. Godt forsvar mot spam-roboter
+        explain_spamfiltering_html: Publify kan settes opp til å bruke spamfilter-servicen
+          <a href='http://akismet.com'>Akismet</a>. Du må registrere deg hos Akismet
+          og få en API-nøkkel før du kan bruke servicen deres. Hvis du har en Akismet-nøkkel,
+          oppgi den her
         feedback: Diskusjon
         feedback_settings: Diskusjonsinnstillinger
         max_links: Maks antall lenker
         none: ingen
         or: eller
-        remember_to_set_your_recaptcha: Husk å sette reCaptcha-nøklene dine i filen config/initializers/recaptcha.rb
+        remember_to_set_your_recaptcha: Husk å sette reCaptcha-nøklene dine i filen
+          config/initializers/recaptcha.rb
         set_to_0_to_never_disable_comments: Sett til 0 for å aldri deaktivere kommentarer
         set_to_0_to_never_reject_comments: Sett til 0 for å aldri forkaste kommentarer
         spam: Spam
@@ -463,8 +494,13 @@ nb-NO:
         blog_subtitle: Undertittel for blogg
         blog_url: Blogg-URL
         cancel: Avbryt
-        email_address_used_to_notify: Epost-adresse som brukes av Publify til å sende meldinger
-        explain_allow_users_to_register_html: Du kan tillate brukere å registrere seg på bloggen din. Som standard vil de registreres som bidragsytere, et upriviligert kontonivå som kun gir dem en egen profil på websiden. Dersom du ikke ønsker at brukere skal kunne registrere seg, så kan du legge dem til selv under brukerkontoer.
+        email_address_used_to_notify: Epost-adresse som brukes av Publify til å sende
+          meldinger
+        explain_allow_users_to_register_html: Du kan tillate brukere å registrere
+          seg på bloggen din. Som standard vil de registreres som bidragsytere, et
+          upriviligert kontonivå som kun gir dem en egen profil på websiden. Dersom
+          du ikke ønsker at brukere skal kunne registrere seg, så kan du legge dem
+          til selv under brukerkontoer.
         general_settings: Generelle innstillinger
         items_to_display_in_admin_lists: Antall elementer som skal vises i adminlisten
         language: Språk
@@ -534,7 +570,8 @@ nb-NO:
         write: Write
       twitter_alert:
         fill_the_twitter_credentials: skrive inn oauth-token
-        how_to_setup_twitter_html: Hvis du vil sende statusoppdateringer til Twitter, må du %{twitter_settings_link} som Twitter ga deg etter at du %{twitter_registration_link}.
+        how_to_setup_twitter_html: Hvis du vil sende statusoppdateringer til Twitter,
+          må du %{twitter_settings_link} som Twitter ga deg etter at du %{twitter_registration_link}.
         registered_your_application: registrerte appen din
     sidebar:
       config:
@@ -543,8 +580,13 @@ nb-NO:
         you_have_no_plugins_installed: You have no plugins installed
       index:
         cancel: Avbryt
-        download_more_plugins_html: Du kan laste ned og installere sidemarg-plugins fra vår offisielle <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin-samling</a>. Alt du trenger å gjøre er å plassere theme-mappen i din vendor/plugins-mappe.
-        explain_how_its_works: Dra og slipp for å endre hva som vises i sidemargen på denne bloggen. Du kan fjerne elementer fra oversikten ved å klikke 'fjern'. Endringer lagres med det samme, men aktiveres ikke før du klikker på 'Publiser endringer'.
+        download_more_plugins_html: Du kan laste ned og installere sidemarg-plugins
+          fra vår offisielle <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>plugin-samling</a>.
+          Alt du trenger å gjøre er å plassere theme-mappen i din vendor/plugins-mappe.
+        explain_how_its_works: Dra og slipp for å endre hva som vises i sidemargen
+          på denne bloggen. Du kan fjerne elementer fra oversikten ved å klikke 'fjern'.
+          Endringer lagres med det samme, men aktiveres ikke før du klikker på 'Publiser
+          endringer'.
         or: eller
         publish_changes: Publiser endringer
         sidebar: Sidemarg
@@ -674,14 +716,17 @@ nb-NO:
       contact_information: Kontaktinformasjon
       jabber: 'Jabber:'
       msn: 'MSN:'
-      this_author_has_not_published_any_article_yet: Forfatteren har ikke publisert noen artikler enda
+      this_author_has_not_published_any_article_yet: Forfatteren har ikke publisert
+        noen artikler enda
       twitter: 'Twitter:'
       web_site: 'Hjemmeside:'
       yahoo: 'Yahoo:'
   comments:
     comment:
       said: sa
-      this_comment_has_been_flagged_for_moderator_approval: Denne kommentaren har blitt flagget for godkjenning av moderator. Den vil ikke bli vist på bloggen før moderatoren godkjenner den.
+      this_comment_has_been_flagged_for_moderator_approval: Denne kommentaren har
+        blitt flagget for godkjenning av moderator. Den vil ikke bli vist på bloggen
+        før moderatoren godkjenner den.
   date:
     abbr_month_names:
     - 
@@ -715,13 +760,15 @@ nb-NO:
     characters_minimum: Minimum %{min} characters
   errors:
     article_type_already_exist: Denne artikkeltypen finnes allerede
-    cant_end_with_rss_or_atom: Kan ikke slutte på .rss eller .atom. Disse er forbeholdt feed-URL-er
+    cant_end_with_rss_or_atom: Kan ikke slutte på .rss eller .atom. Disse er forbeholdt
+      feed-URL-er
     no_notes_found: Ingen notater funnet...
     no_posts_found: Ingen poster funnet...
     page_not_found: Fant ikke side
     permalink_need_a_title: 'Permalink-formatet må ha en identifikator : %%title%%'
     problem_sending_to_twitter: Ojsann, noe gikk galt
-    render_sidebar: Det ser ut til at noe gikk galt. Kanskje noen av dine sidemarg-plugins faktisk mangler, og du bør enten reinstallere dem eller fjerne dem manuelt.
+    render_sidebar: Det ser ut til at noe gikk galt. Kanskje noen av dine sidemarg-plugins
+      faktisk mangler, og du bør enten reinstallere dem eller fjerne dem manuelt.
     the_page_you_are_looking_for: Siden du ser etter er flyttet eller finnes ikke.
   generic:
     change: Endre
@@ -769,7 +816,8 @@ nb-NO:
     publisher: Blogg-publisering
   setup:
     article:
-      body: Welcome to Publify. This is your first article. Edit or delete it, then start blogging!
+      body: Welcome to Publify. This is your first article. Edit or delete it, then
+        start blogging!
       title: Hello World!
     index:
       blog_name: Bloggnavn
@@ -778,7 +826,9 @@ nb-NO:
       your_mail: Din epost
     page:
       about: Om
-      body: Dette er et eksempel på en Publify-side. Du kan redigere den med informasjon om deg selv eller bloggen din, slik at leserne vet hvem du er. Du kan lage så mange du vil av slike sider, og håndtere alt innholdet med Publify.
+      body: Dette er et eksempel på en Publify-side. Du kan redigere den med informasjon
+        om deg selv eller bloggen din, slik at leserne vet hvem du er. Du kan lage
+        så mange du vil av slike sider, og håndtere alt innholdet med Publify.
   tags:
     index:
       there_are_no_tags: Det er ingen tagg
