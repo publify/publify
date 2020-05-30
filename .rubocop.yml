@@ -77,6 +77,12 @@ Metrics/MethodLength:
   Exclude:
     - 'db/migrate/113_initial_schema.publify_core_engine.rb'
 
+Performance/StartWith:
+  AutoCorrect: true
+
+Performance/EndWith:
+  AutoCorrect: true
+
 # Migrations should not use ApplicationRecord
 Rails/ApplicationRecord:
   Exclude:

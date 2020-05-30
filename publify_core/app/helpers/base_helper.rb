@@ -134,7 +134,7 @@ module BaseHelper
 
   def page_header_includes
     content_array.map(&:whiteboard).map do |w|
-      w.select { |k, _v| k =~ /^page_header_/ }.map do |_, v|
+      w.select { |k, _v| k.start_with?("page_header_") }.map do |_, v|
         v = v.chomp
         # trim the same number of spaces from the beginning of each line
         # this way plugins can indent nicely without making ugly source output

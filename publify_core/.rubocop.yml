@@ -67,6 +67,12 @@ Metrics/MethodLength:
   Exclude:
     - 'db/migrate/113_initial_schema.rb'
 
+Performance/StartWith:
+  AutoCorrect: true
+
+Performance/EndWith:
+  AutoCorrect: true
+
 # Do not require long paths to be split by comma's.
 Rails/FilePath:
   Enabled: false

@@ -64,6 +64,12 @@ Metrics/MethodLength:
   Exclude:
     - 'spec/dummy/db/migrate/20160716093725_initial_schema.publify_core_engine.rb'
 
+Performance/StartWith:
+  AutoCorrect: true
+
+Performance/EndWith:
+  AutoCorrect: true
+
 # Do not require long paths to be split by comma's.
 Rails/FilePath:
   Enabled: false

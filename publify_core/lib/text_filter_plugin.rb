@@ -11,7 +11,7 @@ class TextFilterPlugin
 
   @@filter_map = {}
   def self.inherited(sub)
-    if sub.to_s =~ /^Plugin/ || sub.to_s =~ /^PublifyApp::Textfilter/
+    if sub.to_s.start_with?("Plugin", "PublifyApp::Textfilter")
       name = sub.short_name
       @@filter_map[name] = sub
     end
