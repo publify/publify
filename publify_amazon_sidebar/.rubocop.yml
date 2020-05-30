@@ -57,9 +57,6 @@ Lint/AssignmentInCondition:
 # - Gem specification blocks can be any length
 Metrics/BlockLength:
   Exclude:
-    - 'publify_core.gemspec'
-    - 'config/routes.rb'
-    - 'lib/publify_core/testing_support/factories.rb'
     - 'spec/**/*'
 
 # Initial schema has a very large change method
