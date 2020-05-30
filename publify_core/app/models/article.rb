@@ -289,8 +289,8 @@ class Article < Content
   def permalink_url_options
     format_url = blog.permalink_format.dup
     format_url.gsub!("%year%", published_at.year.to_s)
-    format_url.gsub!("%month%", sprintf("%.2d", published_at.month))
-    format_url.gsub!("%day%", sprintf("%.2d", published_at.day))
+    format_url.gsub!("%month%", sprintf("%<month>.2d", month: published_at.month))
+    format_url.gsub!("%day%", sprintf("%<day>.2d", day: published_at.day))
     format_url.gsub!("%title%", URI::DEFAULT_PARSER.escape(permalink.to_s))
     if format_url[0, 1] == "/"
       format_url[1..-1]

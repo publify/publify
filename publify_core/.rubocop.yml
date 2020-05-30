@@ -119,11 +119,6 @@ Style/EachWithObject:
 Style/FormatString:
   Enabled: false
 
-# This cop has too many false positives
-# TODO: Re-enable once fixed
-Style/FormatStringToken:
-  Enabled: false
-
 # Require at least two dependent lines before suggesting a guard clause
 Style/GuardClause:
   MinBodyLength: 2
