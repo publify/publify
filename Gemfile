@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-gem "rails", ["~> 5.2.4", ">= 5.2.4.2"]
+gem "rails", ["~> 5.2.4", ">= 5.2.4.3"]
 
 gem "mysql2"
 gem "pg"
@@ -41,8 +41,8 @@ group :development, :test do
   gem "pry", "~> 0.13.1"
   gem "pry-rails", "~> 0.3.4"
   gem "rspec-rails", "~> 4.0"
-  gem "rubocop", "~> 0.82.0", require: false
-  gem "rubocop-performance", "~> 1.5.2", require: false
+  gem "rubocop", "~> 0.84.0", require: false
+  gem "rubocop-performance", "~> 1.6.0", require: false
   gem "rubocop-rails", "~> 2.5.2", require: false
   gem "rubocop-rspec", "~> 1.39.0", require: false
   gem "simplecov", "~> 0.18.4", require: false

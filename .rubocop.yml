@@ -77,6 +77,12 @@ Metrics/MethodLength:
   Exclude:
     - 'db/migrate/113_initial_schema.publify_core_engine.rb'
 
+Performance/StartWith:
+  AutoCorrect: true
+
+Performance/EndWith:
+  AutoCorrect: true
+
 # Migrations should not use ApplicationRecord
 Rails/ApplicationRecord:
   Exclude:
@@ -118,11 +124,6 @@ Style/EachWithObject:
 
 # Allows format strings with: format, sprintf or percent.
 Style/FormatString:
-  Enabled: false
-
-# This cop has too many false positives
-# TODO: Re-enable once fixed
-Style/FormatStringToken:
   Enabled: false
 
 # TODO: Re-enable?
@@ -171,12 +172,16 @@ Style/TrailingCommaInHashLiteral:
 Style/WordArray:
   MinSize: 4
 
-# Activate new cops from RuboCop 0.80 - 0.82
+# Activate new cops from RuboCop 0.80 - 0.84
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: true
 Lint/RaiseException:
   Enabled: true
 Lint/StructNewOverride:
-  Enabled: true
-Layout/SpaceAroundMethodCallOperator:
   Enabled: true
 Style/ExponentialNotation:
   Enabled: true
@@ -185,6 +190,8 @@ Style/HashEachMethods:
 Style/HashTransformKeys:
   Enabled: true
 Style/HashTransformValues:
+  Enabled: true
+Style/SlicingWithRange:
   Enabled: true
 
 inherit_from: .rubocop_todo.yml

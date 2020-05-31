@@ -57,9 +57,6 @@ Lint/AssignmentInCondition:
 # - Gem specification blocks can be any length
 Metrics/BlockLength:
   Exclude:
-    - 'publify_core.gemspec'
-    - 'config/routes.rb'
-    - 'lib/publify_core/testing_support/factories.rb'
     - 'spec/**/*'
 
 # Initial schema has a very large change method
@@ -150,12 +147,16 @@ Style/TrailingCommaInHashLiteral:
 Style/WordArray:
   MinSize: 4
 
-# Activate new cops from RuboCop 0.80 - 0.82
+# Activate new cops from RuboCop 0.80 - 0.84
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: true
 Lint/RaiseException:
   Enabled: true
 Lint/StructNewOverride:
-  Enabled: true
-Layout/SpaceAroundMethodCallOperator:
   Enabled: true
 Style/ExponentialNotation:
   Enabled: true
@@ -164,6 +165,8 @@ Style/HashEachMethods:
 Style/HashTransformKeys:
   Enabled: true
 Style/HashTransformValues:
+  Enabled: true
+Style/SlicingWithRange:
   Enabled: true
 
 inherit_from: .rubocop_todo.yml
