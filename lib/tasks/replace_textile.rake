@@ -13,5 +13,16 @@ namespace :publify do
       content.text_filter_name = "markdown"
       content.save!
     end
+
+    Feedback.find_each do |feedback|
+      feedback.text_filter_name == "textile" or next
+
+      body_html = feedback.html(:body)
+      feedback.body = ReverseMarkdown.convert body_html
+      extended_html = feedback.html(:extended)
+      feedback.extended = ReverseMarkdown.convert extended_html
+      feedback.text_filter_name = "markdown"
+      feedback.save!
+    end
   end
 end
