@@ -8,6 +8,7 @@ AllCops:
   - 'bin/*'
   - 'spec/dummy/bin/*'
   - 'spec/dummy/db/schema.rb'
+  NewCops: enable
   TargetRubyVersion: 2.4
 
 Rails:
@@ -156,27 +157,5 @@ Style/TrailingCommaInHashLiteral:
 # Allow small arrays of words with quotes
 Style/WordArray:
   MinSize: 4
-
-# Activate new cops from RuboCop 0.80 - 0.84
-Layout/EmptyLinesAroundAttributeAccessor:
-  Enabled: true
-Layout/SpaceAroundMethodCallOperator:
-  Enabled: true
-Lint/DeprecatedOpenSSLConstant:
-  Enabled: true
-Lint/RaiseException:
-  Enabled: true
-Lint/StructNewOverride:
-  Enabled: true
-Style/ExponentialNotation:
-  Enabled: true
-Style/HashEachMethods:
-  Enabled: true
-Style/HashTransformKeys:
-  Enabled: true
-Style/HashTransformValues:
-  Enabled: true
-Style/SlicingWithRange:
-  Enabled: true
 
 inherit_from: .rubocop_todo.yml
