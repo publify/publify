@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-gem "rails", ["~> 5.2.4", ">= 5.2.4.3"]
+gem "rails", ["~> 5.2.4", ">= 5.2.4.4"]
 
 gem "mysql2"
 gem "pg"
@@ -36,7 +36,7 @@ group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
 
   gem "capybara", "~> 3.9"
-  gem "factory_bot", "~> 5.0"
+  gem "factory_bot", [">= 5.0", "< 7.0"]
   gem "i18n-tasks", "0.9.31", require: false
   gem "pry", "~> 0.13.1"
   gem "pry-rails", "~> 0.3.4"
@@ -45,7 +45,7 @@ group :development, :test do
   gem "rubocop-performance", "~> 1.7.1", require: false
   gem "rubocop-rails", "~> 2.7.0", require: false
   gem "rubocop-rspec", "~> 1.43.2", require: false
-  gem "simplecov", "~> 0.18.4", require: false
+  gem "simplecov", [">= 0.18.0", "< 0.20.0"], require: false
 end
 
 group :development do
