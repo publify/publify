@@ -92,7 +92,7 @@ class Sidebar < ApplicationRecord
   end
 
   def html_id
-    short_name + "-" + id.to_s
+    "#{short_name}-#{id}"
   end
 
   def parse_request(_contents, _params); end

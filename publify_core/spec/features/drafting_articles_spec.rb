@@ -6,7 +6,7 @@ RSpec.feature "Drafting articles", type: :feature do
   let(:admin) { create :user, :as_admin }
 
   before do
-    load Rails.root.join("db", "seeds.rb")
+    load Rails.root.join("db/seeds.rb")
     Blog.first.update blog_name: "Awesome!", base_url: "http://www.example.com/"
   end
 

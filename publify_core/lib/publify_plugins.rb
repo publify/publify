@@ -65,8 +65,8 @@ module PublifyPlugins
 
   class Base
     class << self
-      attr_accessor :name
-      attr_accessor :description
+      attr_accessor :name, :description
+
       attr_reader :registered
 
       def kind

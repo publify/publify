@@ -7,7 +7,7 @@ module AuthorsHelper
     return if item.blank?
 
     item = link_to(item, item) if is_url?(item)
-    content_tag :li do
+    tag.li do
       safe_join([item_desc, item], " ")
     end
   end
@@ -21,7 +21,7 @@ module AuthorsHelper
   def author_description(user)
     return if user.description.blank?
 
-    content_tag(:div, user.description, id: "author-description")
+    tag.div(user.description, id: "author-description")
   end
 
   def author_link(article)

@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 class SidebarField
-  attr_accessor :key
-  attr_accessor :options
-  attr_accessor :default
+  attr_accessor :key, :options, :default
 
   include ActionView::Helpers::TagHelper
   include ActionView::Helpers::FormTagHelper
@@ -20,7 +18,7 @@ class SidebarField
   end
 
   def label_html(_sidebar)
-    content_tag("label", label)
+    tag.label(label)
   end
 
   def input_html(sidebar)
@@ -28,7 +26,7 @@ class SidebarField
   end
 
   def line_html(sidebar)
-    content_tag(:div, label_html(sidebar) + input_html(sidebar), class: "form-group")
+    tag.div(label_html(sidebar) + input_html(sidebar), class: "form-group")
   end
 
   def input_name(sidebar)
@@ -67,8 +65,7 @@ class SidebarField
                                         value,
                                         value == current_value(sidebar),
                                         options)
-        content_tag("div", content_tag("label", radio_button + label_for(choice)),
-                    class: "radio")
+        tag.div(tag.label(radio_button + label_for(choice)), class: "radio")
       end
       safe_join(choices)
     end
@@ -85,10 +82,9 @@ class SidebarField
   class CheckBoxField < self
     def line_html(sidebar)
       content = hidden_field_tag(input_name(sidebar), 0) +
-        content_tag("label",
-                    check_box_tag(input_name(sidebar), 1,
-                                  current_value(sidebar), options) + label)
-      content_tag("div", content, class: "checkbox")
+        tag.label(check_box_tag(input_name(sidebar), 1,
+                                current_value(sidebar), options) + label)
+      tag.div(content, class: "checkbox")
     end
 
     def canonicalize(value)

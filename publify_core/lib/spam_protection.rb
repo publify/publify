@@ -98,6 +98,6 @@ class SpamProtection
   end
 
   def logger
-    @logger ||= ::Rails.logger || Logger.new(STDOUT)
+    @logger ||= ::Rails.logger || Logger.new($stdout)
   end
 end

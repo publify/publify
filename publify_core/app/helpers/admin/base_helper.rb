@@ -35,7 +35,7 @@ module Admin::BaseHelper
   end
 
   def show_actions(item)
-    content_tag(:div, class: "action", style: "") do
+    tag.div(class: "action", style: "") do
       safe_join [button_to_edit(item),
                  button_to_delete(item),
                  button_to_short_url(item)], " "
@@ -45,8 +45,8 @@ module Admin::BaseHelper
   def display_pagination(collection, cols, _first = "", _last = "")
     return if collection.count == 0
 
-    content_tag(:tr) do
-      content_tag(:td, paginate(collection), class: "paginate", colspan: cols)
+    tag.tr do
+      tag.td(paginate(collection), class: "paginate", colspan: cols)
     end
   end
 
@@ -78,9 +78,9 @@ module Admin::BaseHelper
 
   def menu_item(name, url)
     if current_page? url
-      content_tag(:li, link_to(name, "#"), class: "active")
+      tag.li(link_to(name, "#"), class: "active")
     else
-      content_tag(:li, link_to(name, url))
+      tag.li(link_to(name, url))
     end
   end
 end

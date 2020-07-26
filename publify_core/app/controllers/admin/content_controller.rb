@@ -116,7 +116,7 @@ class Admin::ContentController < Admin::BaseController
 
     if @article.title.blank?
       lastid = Article.order("id desc").first.id
-      @article.title = "Draft article " + lastid.to_s
+      @article.title = "Draft article #{lastid}"
     end
 
     if @article.save

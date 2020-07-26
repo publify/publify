@@ -45,7 +45,7 @@ describe "articles/index_rss_feed.rss.builder", type: :view do
     it "has a link to the article's comment section" do
       render
       expect(xml_entry.css("comments").first.content).
-        to eq(@article.permalink_url + "#comments")
+        to eq("#{@article.permalink_url}#comments")
     end
 
     it "has a creator entry" do

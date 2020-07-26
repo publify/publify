@@ -5,15 +5,12 @@ require "rails_helper"
 describe Admin::ContentController, type: :controller do
   render_views
 
-  let(:admin) { create(:user, :as_admin) }
-  let(:publisher) { create(:user, :as_publisher) }
-  let(:contributor) { create(:user, :as_contributor) }
-
   before do
     create :blog
   end
 
   describe "index" do
+    let(:publisher) { create(:user, :as_publisher) }
     let!(:article) { create(:article) }
 
     before do
@@ -72,6 +69,8 @@ describe Admin::ContentController, type: :controller do
   end
 
   describe "#autosave" do
+    let(:publisher) { create(:user, :as_publisher) }
+
     before do
       sign_in publisher
     end
@@ -121,6 +120,8 @@ describe Admin::ContentController, type: :controller do
   end
 
   describe "#new" do
+    let(:publisher) { create(:user, :as_publisher) }
+
     before do
       sign_in publisher
       get :new
@@ -229,12 +230,13 @@ describe Admin::ContentController, type: :controller do
     end
 
     context "as a publisher" do
+      let(:publisher) { create(:user, :as_publisher) }
+      let(:article_params) { { title: "posted via tests!", body: "a good boy" } }
+
       before do
         sign_in publisher
         @user = publisher
       end
-
-      let(:article_params) { { title: "posted via tests!", body: "a good boy" } }
 
       it "creates an article" do
         expect do
@@ -289,6 +291,8 @@ describe Admin::ContentController, type: :controller do
     end
 
     context "as an admin" do
+      let(:admin) { create(:user, :as_admin) }
+
       before do
         sign_in admin
         @user = admin
@@ -300,6 +304,7 @@ describe Admin::ContentController, type: :controller do
 
   describe "#edit" do
     context "as an admin" do
+      let(:admin) { create(:user, :as_admin) }
       let(:article) { create(:article) }
 
       before do
@@ -324,6 +329,8 @@ describe Admin::ContentController, type: :controller do
     end
 
     context "as a publisher" do
+      let(:publisher) { create(:user, :as_publisher) }
+
       before do
         sign_in publisher
       end
@@ -350,6 +357,7 @@ describe Admin::ContentController, type: :controller do
 
   describe "#update" do
     context "as an admin" do
+      let(:admin) { create(:user, :as_admin) }
       let(:article) { create(:article) }
 
       before do
@@ -488,6 +496,8 @@ describe Admin::ContentController, type: :controller do
     end
 
     context "as a publisher" do
+      let(:publisher) { create(:user, :as_publisher) }
+
       before do
         sign_in publisher
       end
@@ -510,6 +520,8 @@ describe Admin::ContentController, type: :controller do
   end
 
   describe "#auto_complete_for_article_keywords" do
+    let(:publisher) { create(:user, :as_publisher) }
+
     before do
       sign_in publisher
     end
@@ -528,6 +540,8 @@ describe Admin::ContentController, type: :controller do
   end
 
   describe "#destroy" do
+    let(:publisher) { create(:user, :as_publisher) }
+
     before do
       sign_in publisher
     end

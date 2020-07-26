@@ -3,7 +3,7 @@
 # TODO: Use deliver_later to avoid slowness and errors
 class EmailNotify
   def self.logger
-    @@logger ||= ::Rails.logger || Logger.new(STDOUT)
+    @@logger ||= ::Rails.logger || Logger.new($stdout)
   end
 
   def self.send_comment(comment, user)

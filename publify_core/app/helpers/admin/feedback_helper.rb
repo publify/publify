@@ -39,7 +39,7 @@ module Admin::FeedbackHelper
   end
 
   def change_status(item, context = "listing")
-    spammy = item.state.to_s.downcase =~ /spam/
+    spammy = item.state.to_s.downcase.include? "spam"
     link_text = spammy ? t("generic.mark_as_ham") : t("generic.mark_as_spam")
     button_type = spammy ? "success" : "warning"
 

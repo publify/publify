@@ -21,8 +21,8 @@ class Article < Content
   has_many :triggers, as: :pending_item
   has_many :comments, dependent: :destroy
 
-  before_create :create_guid
   before_save :set_permalink
+  before_create :create_guid
   after_save :keywords_to_tags, :shorten_url
 
   scope :child_of, ->(article_id) { where(parent_id: article_id) }
@@ -236,7 +236,7 @@ class Article < Content
     if extended.blank?
       body
     else
-      body + "\n<!--more-->\n" + extended
+      "#{body}\n<!--more-->\n#{extended}"
     end
   end
 
