@@ -1,7 +1,7 @@
 require:
+  - rubocop-performance
   - rubocop-rails
   - rubocop-rspec
-  - rubocop-performance
 
 AllCops:
   Exclude:
@@ -65,6 +65,12 @@ Metrics/MethodLength:
   Exclude:
     - 'spec/dummy/db/migrate/20160712061341_initial_schema.publify_core_engine.rb'
 
+Performance/StartWith:
+  AutoCorrect: true
+
+Performance/EndWith:
+  AutoCorrect: true
+
 # Migrations should not use ApplicationRecord
 Rails/ApplicationRecord:
   Exclude:
@@ -104,6 +110,14 @@ Style/EachWithObject:
 
 # Allows format strings with: format, sprintf or percent.
 Style/FormatString:
+  Enabled: false
+
+# Require at least two dependent lines before suggesting a guard clause
+Style/GuardClause:
+  MinBodyLength: 2
+
+# TODO: Re-enable?
+Style/NumericPredicate:
   Enabled: false
 
 # Not all objects that implement #size implement #empty?

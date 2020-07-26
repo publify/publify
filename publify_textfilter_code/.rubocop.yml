@@ -1,7 +1,7 @@
 require:
+  - rubocop-performance
   - rubocop-rails
   - rubocop-rspec
-  - rubocop-performance
 
 AllCops:
   Exclude:
@@ -71,10 +71,6 @@ Performance/StartWith:
 Performance/EndWith:
   AutoCorrect: true
 
-# Do not require long paths to be split by comma's.
-Rails/FilePath:
-  Enabled: false
-
 # Migrations should not use ApplicationRecord
 Rails/ApplicationRecord:
   Exclude:
@@ -114,6 +110,14 @@ Style/EachWithObject:
 
 # Allows format strings with: format, sprintf or percent.
 Style/FormatString:
+  Enabled: false
+
+# Require at least two dependent lines before suggesting a guard clause
+Style/GuardClause:
+  MinBodyLength: 2
+
+# TODO: Re-enable?
+Style/NumericPredicate:
   Enabled: false
 
 # Not all objects that implement #size implement #empty?

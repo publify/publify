@@ -1,7 +1,7 @@
 require:
+  - rubocop-performance
   - rubocop-rails
   - rubocop-rspec
-  - rubocop-performance
 
 AllCops:
   Exclude:
@@ -73,10 +73,6 @@ Performance/StartWith:
 
 Performance/EndWith:
   AutoCorrect: true
-
-# Do not require long paths to be split by comma's.
-Rails/FilePath:
-  Enabled: false
 
 # Migrations should not use ApplicationRecord
 Rails/ApplicationRecord:
