@@ -11,6 +11,8 @@ class TextFilterPlugin
 
   @@filter_map = {}
   def self.inherited(sub)
+    super
+
     if sub.to_s.start_with?("Plugin", "PublifyApp::Textfilter")
       name = sub.short_name
       @@filter_map[name] = sub
@@ -91,7 +93,7 @@ class TextFilterPlugin
   end
 
   def self.logger
-    @logger ||= ::Rails.logger || Logger.new(STDOUT)
+    @logger ||= ::Rails.logger || Logger.new($stdout)
   end
 end
 
@@ -128,11 +130,9 @@ class TextFilterPlugin::Macro < TextFilterPlugin
       macrofilter(attributes_parse(match))
     end
 
-    new_text = new_text.gsub(regex2) do |_match|
+    new_text.gsub(regex2) do |_match|
       macrofilter(attributes_parse(Regexp.last_match[1].to_s), Regexp.last_match[2].to_s)
     end
-
-    new_text
   end
 end
 

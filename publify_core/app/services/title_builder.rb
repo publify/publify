@@ -11,9 +11,7 @@ class TitleBuilder
     str = substitute_parameters(str, parameters)
     str = substitute_settings(str, settings)
     str = substitute_item(str, item)
-    str = substitute_time(str, settings)
-
-    str
+    substitute_time(str, settings)
   end
 
   private
@@ -23,28 +21,31 @@ class TitleBuilder
     str = str.gsub("%currentdate%", Time.zone.now.strftime(settings.date_format))
     str = str.gsub("%currenttime%", Time.zone.now.strftime(settings.time_format))
     str = str.gsub("%currentmonth%", Time.zone.now.strftime("%B"))
-    str = str.gsub("%currentyear%", Time.zone.now.year.to_s)
-    str
+    str.gsub("%currentyear%", Time.zone.now.year.to_s)
   end
 
   def substitute_item(str, item)
     # Tags for item
-    str = str.gsub("%title%", item.title) if str =~ /%title/ && item.respond_to?(:title)
-    if str =~ /%excerpt%/ && item.respond_to?(:excerpt_text)
+    if str.include?("%title") && item.respond_to?(:title)
+      str = str.gsub("%title%", item.title)
+    end
+    if str.include?("%excerpt%") && item.respond_to?(:excerpt_text)
       str = str.gsub("%excerpt%", item.excerpt_text)
     end
-    if str =~ /%description%/ && item.respond_to?(:description)
+    if str.include?("%description%") && item.respond_to?(:description)
       str = str.gsub("%description%", item.description)
     end
-    str = str.gsub("%name%", item.name) if str =~ /%name%/ && item.respond_to?(:name)
-    str = str.gsub("%author%", item.name) if str =~ /%author%/ && item.respond_to?(:name)
-    str = str.gsub("%body%", item.body) if str =~ /%body%/ && item.respond_to?(:body)
+    str = str.gsub("%name%", item.name) if str.include?("%name%") && item.respond_to?(:name)
+    if str.include?("%author%") && item.respond_to?(:name)
+      str = str.gsub("%author%", item.name)
+    end
+    str = str.gsub("%body%", item.body) if str.include?("%body%") && item.respond_to?(:body)
 
-    if str =~ /%categories%/ && item.respond_to?(:categories)
+    if str.include?("%categories%") && item.respond_to?(:categories)
       str = str.gsub("%categories%", item.categories.map(&:name).join(", "))
     end
 
-    if str =~ /%tags%/ && item.respond_to?(:tags)
+    if str.include?("%tags%") && item.respond_to?(:tags)
       str = str.gsub("%tags%", item.tags.map(&:display_name).join(", "))
     end
 
@@ -55,9 +56,7 @@ class TitleBuilder
     # Tags for settings
     str = str.gsub("%blog_name%", settings.blog_name)
     str = str.gsub("%blog_subtitle%", settings.blog_subtitle)
-    str = str.gsub("%meta_keywords%", settings.meta_keywords)
-
-    str
+    str.gsub("%meta_keywords%", settings.meta_keywords)
   end
 
   def substitute_parameters(str, parameters)

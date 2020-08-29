@@ -7,7 +7,7 @@ RSpec.feature "Signing up", type: :feature do
     stub_request(:get,
                  "http://www.google.com/search?output=rss&q=link:www.example.com&tbm=blg").
       to_return(status: 200, body: "", headers: {})
-    load Rails.root.join("db", "seeds.rb")
+    load Rails.root.join("db/seeds.rb")
     Blog.first.update(blog_name: "Awesome!",
                       base_url: "http://www.example.com/",
                       allow_signup: 1)

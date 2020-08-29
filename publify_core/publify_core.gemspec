@@ -38,8 +38,8 @@ Gem::Specification.new do |s|
   s.add_dependency "mini_magick", ["~> 4.9", ">= 4.9.4"]
   s.add_dependency "rack", ">= 2.2.3"
   s.add_dependency "rails", ["~> 5.2.4", ">= 5.2.4.3"]
-  s.add_dependency "rails-timeago", "~> 2.0"
   s.add_dependency "rails_autolink", "~> 1.1.0"
+  s.add_dependency "rails-timeago", "~> 2.0"
   s.add_dependency "recaptcha", ["~> 5.0"]
   s.add_dependency "RedCloth", "~> 4.3.2"
   s.add_dependency "rubypants", "~> 0.7.0"

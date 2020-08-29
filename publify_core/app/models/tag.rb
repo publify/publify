@@ -17,7 +17,7 @@ class Tag < ApplicationRecord
 
     tags = []
     Tag.transaction do
-      tagwords = article.keywords.to_s.scan(/((['"]).*?\2|[\.:[[:alnum:]]]+)/).map do |x|
+      tagwords = article.keywords.to_s.scan(/((['"]).*?\2|[.:[[:alnum:]]]+)/).map do |x|
         x.first.tr("\"'", "")
       end
       tagwords.uniq.each do |tagword|

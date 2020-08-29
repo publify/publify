@@ -20,8 +20,8 @@ class Feedback < ApplicationRecord
   validate :feedback_not_closed, on: :create
   validates :article, presence: true
 
-  before_create :create_guid, :article_allows_this_feedback
   before_save :correct_url, :classify_content
+  before_create :create_guid, :article_allows_this_feedback
 
   # TODO: Rename so it doesn't sound like only approved ham
   scope :ham, -> { where(state: %w(presumed_ham ham)) }
@@ -97,7 +97,7 @@ class Feedback < ApplicationRecord
   def correct_url
     return if url.blank?
 
-    self.url = "http://" + url.to_s unless %r{^https?://}.match?(url)
+    self.url = "http://#{url}" unless %r{^https?://}.match?(url)
   end
 
   def article_allows_this_feedback

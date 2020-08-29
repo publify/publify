@@ -28,7 +28,7 @@ class Content < ApplicationRecord
   scope :searchstring, lambda { |search_string|
     tokens = search_string.split(" ").map { |c| "%#{c.downcase}%" }
     matcher = "(LOWER(body) LIKE ? OR LOWER(extended) LIKE ? OR LOWER(title) LIKE ?)"
-    template = "state = ? AND " + ([matcher] * tokens.size).join(" AND ")
+    template = "state = ? AND #{([matcher] * tokens.size).join(" AND ")}"
     where(template, "published", *tokens.map { |token| [token] * 3 }.flatten)
   }
 

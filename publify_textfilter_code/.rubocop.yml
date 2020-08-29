@@ -1,13 +1,14 @@
 require:
+  - rubocop-performance
   - rubocop-rails
   - rubocop-rspec
-  - rubocop-performance
 
 AllCops:
   Exclude:
   - 'bin/*'
   - 'spec/dummy/bin/*'
   - 'spec/dummy/db/schema.rb'
+  NewCops: enable
   TargetRubyVersion: 2.4
 
 Rails:
@@ -70,10 +71,6 @@ Performance/StartWith:
 Performance/EndWith:
   AutoCorrect: true
 
-# Do not require long paths to be split by comma's.
-Rails/FilePath:
-  Enabled: false
-
 # Migrations should not use ApplicationRecord
 Rails/ApplicationRecord:
   Exclude:
@@ -113,6 +110,14 @@ Style/EachWithObject:
 
 # Allows format strings with: format, sprintf or percent.
 Style/FormatString:
+  Enabled: false
+
+# Require at least two dependent lines before suggesting a guard clause
+Style/GuardClause:
+  MinBodyLength: 2
+
+# TODO: Re-enable?
+Style/NumericPredicate:
   Enabled: false
 
 # Not all objects that implement #size implement #empty?
@@ -156,27 +161,5 @@ Style/TrailingCommaInHashLiteral:
 # Allow small arrays of words with quotes
 Style/WordArray:
   MinSize: 4
-
-# Activate new cops from RuboCop 0.80 - 0.84
-Layout/EmptyLinesAroundAttributeAccessor:
-  Enabled: true
-Layout/SpaceAroundMethodCallOperator:
-  Enabled: true
-Lint/DeprecatedOpenSSLConstant:
-  Enabled: true
-Lint/RaiseException:
-  Enabled: true
-Lint/StructNewOverride:
-  Enabled: true
-Style/ExponentialNotation:
-  Enabled: true
-Style/HashEachMethods:
-  Enabled: true
-Style/HashTransformKeys:
-  Enabled: true
-Style/HashTransformValues:
-  Enabled: true
-Style/SlicingWithRange:
-  Enabled: true
 
 inherit_from: .rubocop_todo.yml

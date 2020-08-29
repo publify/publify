@@ -3,11 +3,7 @@
 require "net/http"
 
 class TextFilter
-  attr_accessor :description
-  attr_accessor :filters
-  attr_accessor :markup
-  attr_accessor :name
-  attr_accessor :params
+  attr_accessor :description, :filters, :markup, :name, :params
 
   def initialize(name: nil,
                  description: nil,
@@ -75,11 +71,9 @@ class TextFilter
     help = [filter_map[markup]]
     filters.each { |f| help.push(filter_map[f.to_s]) }
 
-    help_text = help.map do |f|
+    help.map do |f|
       f.help_text.blank? ? "" : "#{BlueCloth.new(f.help_text).to_html}\n"
     end.join("\n")
-
-    help_text
   end
 
   def self.all

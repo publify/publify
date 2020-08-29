@@ -18,6 +18,8 @@ Gem::Specification.new do |s|
 
   s.files       = File.open("Manifest.txt").readlines.map(&:chomp)
 
+  s.required_ruby_version = ">= 2.4.0"
+
   s.add_dependency "coderay", "~> 1.1.0"
   s.add_dependency "htmlentities", "~> 4.3"
   s.add_dependency "publify_core", "~> 9.1.0"

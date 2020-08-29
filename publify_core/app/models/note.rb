@@ -17,8 +17,8 @@ class Note < Content
   validates :body, presence: true
   validates :permalink, :guid, uniqueness: true
 
-  after_create :set_permalink, :shorten_url
   before_create :create_guid
+  after_create :set_permalink, :shorten_url
 
   scope :published, lambda {
     where(state: "published").where("published_at <= ?", Time.zone.now).order(default_order)

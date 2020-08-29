@@ -16,7 +16,9 @@ Gem::Specification.new do |s|
   s.description = "Amazon sidebar for the Publify blogging system."
   s.license     = "MIT"
 
-  s.files       = File.open("Manifest.txt").readlines.map(&:chomp)
+  s.required_ruby_version = ">= 2.4.0"
+
+  s.files = File.open("Manifest.txt").readlines.map(&:chomp)
 
   s.add_dependency "publify_core", "~> 9.1.0"
   s.add_dependency "rails", "~> 5.2.0"

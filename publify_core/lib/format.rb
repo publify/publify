@@ -5,5 +5,5 @@ module Format
   IP_ADDRESS = /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/.freeze
 
   # Laxly matches an HTTP(S) URI
-  HTTP_URI = %r{^https?:\/\/\S+$}.freeze
+  HTTP_URI = %r{^https?://\S+$}.freeze
 end
