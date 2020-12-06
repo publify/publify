@@ -1,0 +1,110 @@
+# This workflow will download a prebuilt Ruby version, install dependencies and
+# run tests with Rake
+# For more information see: https://github.com/marketplace/actions/setup-ruby-jruby-and-truffleruby
+
+name: Ruby
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  test-postgresql:
+    name: "Test on PostgreSQL"
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        ruby: [2.4, 2.5, 2.6, 2.7]
+
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_PASSWORD: postgres
+        ports: ['5432:5432']
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby }}
+        bundler-cache: true
+    - name: Database Configuration
+      run: cp config/database.yml.postgresql config/database.yml
+    - name: Migrate database
+      run: bundle exec rake db:create db:migrate
+    - name: Run tests
+      run: bundle exec rake
+
+  test-mysql:
+    name: "Test on MySQL"
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        ruby: [2.4, 2.5, 2.6, 2.7]
+
+    services:
+      mysql:
+        image: mysql:latest
+        env:
+          MYSQL_ROOT_PASSWORD: mysql
+        ports: ['3306:3306']
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby }}
+        bundler-cache: true
+    - name: Database Configuration
+      run: cp config/database.yml.mysql config/database.yml
+    - name: Migrate database
+      run: bundle exec rake db:create db:migrate
+    - name: Run tests
+      run: bundle exec rake
+
+  test-sqlite:
+    name: "Test on SQLite"
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        ruby: [2.4, 2.5, 2.6, 2.7]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby }}
+        bundler-cache: true
+    - name: Database Configuration
+      run: cp config/database.yml.sqlite config/database.yml
+    - name: Migrate database
+      run: bundle exec rake db:create db:migrate
+    - name: Run tests
+      run: bundle exec rake
+
+  lint:
+    name: "Linting"
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.7
+        bundler-cache: true
+    - name: Run lint task
+      run: bundle exec rake lint
