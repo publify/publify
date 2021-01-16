@@ -11,6 +11,9 @@ require "factory_bot"
 require "publify_core/testing_support/factories"
 require "publify_core/testing_support/feed_assertions"
 
+# Check for pending migration and apply them before tests are run.
+ActiveRecord::Migration.maintain_test_schema!
+
 class ActionView::TestCase::TestController
   include Rails.application.routes.url_helpers
 end
