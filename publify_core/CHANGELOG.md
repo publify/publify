@@ -9,6 +9,24 @@
 * Fix comment preview (mvz)
 * Drop support for humans.txt (mvz)
 
+* Remove unused ability to view macro help text (mvz)
+* Remove some editor effects (mvz)
+* Remove unused setting (mvz)
+* Remove TextFilter from database (mvz)
+* Support only Ruby 2.4 and up (mvz)
+* Remove inbound links from admin (mvz)
+* Always use canonical url (mvz)
+* Update dependencies
+* Use new way to render Devise error messages in view override (mvz)
+* Fix broken page creation (cfis)
+* Fixup canonical url (mvz)
+* Replace obsolete URI.escape and URI.encode (mvz)
+* Add support for Ruby 2.7 (mvz)
+* Deprecate use of Textile (mvz)
+* Replace icons in Admin with just text (mvz)
+* Add text filter to content lists and more Admin fixes (mvz)
+* Warn about need to run task to convert textile to markdown (mvz)
+
 ## 9.1.0 / 2018-04-19
 
 * Upgrade to Rails 5.1 (mvz)

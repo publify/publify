@@ -4,15 +4,26 @@ See the changelogs for the individual engines for more details for releases 9.0 
 
 ## Unreleased
 
-* Upgrade to Rails 5.2 (mvz)
+### Breaking changes
+
 * Drop support for custom mail.yml configuration. Mail settings should now be
   configured in config/environments/production.rb (mvz)
 * Drop support for custom timezone.yml configuration. If relevant, the timezone
   can be set in config/application.rb (mvz)
-* Fix logic for rendering excerpts or whole posts (mvz)
-* Drop support for Ruby 2.2 (mvz)
+* Drop support for Ruby 2.2 and 2.3 (mvz)
 * Fix comment preview (mvz)
 * Drop support for humans.txt (mvz)
+* Deprecate use of Textile. The admin will warn about any content that uses
+  Textile formatting. A task has been added to convert this content to
+  Markdown. The next release of Publify will drop Textile support entirely
+  (mvz)
+
+### Other changes
+
+* Upgrade to Rails 5.2 (mvz)
+* Fix gravatar request URL (mvz)
+* Add support for Ruby 2.7 (mvz)
+* Update dependencies (mvz)
 
 ## 9.1.0 / 2018-04-19
 
