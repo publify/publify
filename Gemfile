@@ -56,7 +56,7 @@ group :development do
   gem "spring-commands-rspec", "~> 1.0"
 
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem "web-console", "~> 3.7"
+  gem "web-console", "~> 4.1"
 
   gem "rack-mini-profiler"
 
