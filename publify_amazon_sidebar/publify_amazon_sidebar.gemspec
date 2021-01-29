@@ -16,12 +16,12 @@ Gem::Specification.new do |s|
   s.description = "Amazon sidebar for the Publify blogging system."
   s.license     = "MIT"
 
-  s.required_ruby_version = ">= 2.4.0"
+  s.required_ruby_version = ">= 2.5.0"
 
   s.files = File.open("Manifest.txt").readlines.map(&:chomp)
 
   s.add_dependency "publify_core", "~> 9.2.0"
-  s.add_dependency "rails", "~> 5.2.0"
+  s.add_dependency "rails", "~> 6.0.0"
 
   s.add_development_dependency "rspec-rails", "~> 4.0"
   s.add_development_dependency "simplecov", "~> 0.18.5"

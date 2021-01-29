@@ -9,7 +9,7 @@ AllCops:
   - 'spec/dummy/bin/*'
   - 'spec/dummy/db/schema.rb'
   NewCops: enable
-  TargetRubyVersion: 2.4
+  TargetRubyVersion: 2.5
 
 Rails:
   Enabled: true
