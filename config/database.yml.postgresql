@@ -16,7 +16,7 @@ development:
   <<: *connection
 
 test:
-  database: publify_tests
+  database: publify_test
   <<: *login
   <<: *connection
 

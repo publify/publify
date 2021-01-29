@@ -11,7 +11,7 @@ development:
   <<: *login
 
 test:
-  database: publify_tests
+  database: publify_test
   <<: *login
 
 production:
