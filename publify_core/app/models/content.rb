@@ -17,7 +17,7 @@ class Content < ApplicationRecord
   has_many :resources, inverse_of: :content, dependent: :nullify
   has_and_belongs_to_many :tags
 
-  scope :user_id, ->(user_id) { where("user_id = ?", user_id) }
+  scope :user_id, ->(user_id) { where(user_id: user_id) }
   scope :published, -> { where(state: "published").order(default_order) }
   scope :published_at, lambda { |time_params|
                          published.where(published_at: PublifyTime.delta(*time_params))

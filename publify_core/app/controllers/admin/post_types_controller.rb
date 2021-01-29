@@ -34,7 +34,7 @@ class Admin::PostTypesController < Admin::BaseController
     # Reset all Articles from the PostType we're destroying to the default PostType
     # Wrap it in a transaction for safety
     @post_type.transaction do
-      Article.where("post_type = ?", @post_type.permalink).each do |article|
+      Article.where(post_type: @post_type.permalink).each do |article|
         article.post_type = "read"
         article.save
       end
