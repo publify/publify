@@ -96,12 +96,13 @@ Rails/ApplicationRecord:
 Rails/BulkChangeTable:
   Enabled: false
 
-# The tasks to run subrepo tasks, and the i18n health check do not need environment
+# These tasks do not need environment
 Rails/RakeEnvironment:
   Exclude:
-    - 'lib/tasks/rspec.rake'
-    - 'lib/tasks/manifests.rake'
     - 'lib/tasks/i18n.rake'
+    - 'lib/tasks/manifests.rake'
+    - 'lib/tasks/rspec.rake'
+    - 'lib/tasks/rubocop.rake'
 
 # Migrations should not do validations in general?
 Rails/SkipsModelValidations:
