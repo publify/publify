@@ -26,7 +26,7 @@ class Admin::DashboardController < Admin::BaseController
     @unconfirmed = Comment.unconfirmed.where("created_at > ?", today).count
 
     @comments = Comment.last_published
-    @drafts = Article.drafts.where("user_id = ?", current_user.id).limit(5)
+    @drafts = Article.drafts.where(user_id: current_user.id).limit(5)
 
     @statspam = Comment.spam.count
   end

@@ -2,7 +2,9 @@
 
 class AddBlogIds < ActiveRecord::Migration[4.2]
   class Blog < ActiveRecord::Base; end
+
   class Content < ActiveRecord::Base; end
+
   class Sidebar < ActiveRecord::Base; end
 
   def up

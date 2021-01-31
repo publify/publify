@@ -154,7 +154,7 @@ class Article < Content
   end
 
   def self.publication_months
-    result = select("published_at").where("published_at is not NULL").where(type: "Article")
+    result = select("published_at").where.not(published_at: nil).where(type: "Article")
     result.map { |it| [it.publication_month] }.uniq
   end
 

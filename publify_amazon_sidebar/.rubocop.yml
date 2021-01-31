@@ -18,6 +18,9 @@ Rails:
 Bundler/DuplicatedGem:
   Enabled: false
 
+Layout/BeginEndAlignment:
+  EnforcedStyleAlignWith: begin
+
 # Place . on the previous line
 Layout/DotPosition:
   EnforcedStyle: trailing

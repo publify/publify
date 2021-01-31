@@ -2,6 +2,7 @@
 
 class SimplifyRedirectRelations < ActiveRecord::Migration[4.2]
   class Redirect < ActiveRecord::Base; end
+
   class Redirection < ActiveRecord::Base; end
 
   def up

@@ -430,7 +430,7 @@ describe Article, type: :model do
 
   describe "#published_at_like" do
     before do
-      # Note: these choices of times depend on no other articles within
+      # NOTE: these choices of times depend on no other articles within
       # these timeframes existing in test/fixtures/contents.yaml.
       # In particular, all articles there are from 2005 or earlier, which
       # is now more than two years ago, except for two, which are from
