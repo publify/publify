@@ -36,7 +36,7 @@ group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
 
   gem "capybara", "~> 3.9"
-  gem "factory_bot", [">= 5.0", "< 7.0"]
+  gem "factory_bot", "~> 6.1"
   gem "i18n-tasks", "~> 0.9.31", require: false
   gem "pry", "~> 0.13.1"
   gem "pry-rails", "~> 0.3.4"

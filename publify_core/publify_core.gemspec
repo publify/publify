@@ -49,7 +49,7 @@ Gem::Specification.new do |s|
   s.add_dependency "uuidtools", "~> 2.1.1"
 
   s.add_development_dependency "capybara", "~> 3.0"
-  s.add_development_dependency "factory_bot", "~> 5.1"
+  s.add_development_dependency "factory_bot", "~> 6.1"
   s.add_development_dependency "feedjira", "~> 3.1"
   s.add_development_dependency "i18n-tasks", "~> 0.9.1"
   s.add_development_dependency "pry"
