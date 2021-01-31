@@ -12,7 +12,7 @@ gem "sqlite3", "~> 1.4.0"
 gem "activerecord-session_store", "~> 1.1.0"
 
 # Use Puma as the app server
-gem "puma", "~> 4.3.3"
+gem "puma", "~> 5.2.0"
 
 gem "publify_amazon_sidebar", path: "publify_amazon_sidebar"
 gem "publify_core", path: "publify_core"
@@ -36,7 +36,7 @@ group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
 
   gem "capybara", "~> 3.9"
-  gem "factory_bot", [">= 5.0", "< 7.0"]
+  gem "factory_bot", "~> 6.1"
   gem "i18n-tasks", "~> 0.9.31", require: false
   gem "pry", "~> 0.13.1"
   gem "pry-rails", "~> 0.3.4"
@@ -45,7 +45,7 @@ group :development, :test do
   gem "rubocop-performance", "~> 1.9.2", require: false
   gem "rubocop-rails", "~> 2.9.1", require: false
   gem "rubocop-rspec", "~> 2.1.0", require: false
-  gem "simplecov", [">= 0.18.0", "< 0.20.0"], require: false
+  gem "simplecov", "~> 0.21.2", require: false
 end
 
 group :development do
@@ -56,7 +56,7 @@ group :development do
   gem "spring-commands-rspec", "~> 1.0"
 
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem "web-console", "~> 3.7"
+  gem "web-console", "~> 4.1"
 
   gem "rack-mini-profiler"
 
@@ -67,7 +67,7 @@ group :development do
 end
 
 group :test do
-  gem "feedjira", "~> 3.0", "!= 3.1.2"
+  gem "feedjira", "~> 3.1"
   gem "launchy", "~> 2.4"
   gem "rails-controller-testing", "~> 1.0.1"
   gem "timecop", "~> 0.9.0"
