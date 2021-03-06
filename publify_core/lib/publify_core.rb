@@ -8,7 +8,6 @@ require "publify_core/engine"
 require "publify_core/lang"
 
 require "carrierwave"
-require "dynamic_form"
 require "jquery-rails"
 require "jquery-ui-rails"
 require "kaminari"
