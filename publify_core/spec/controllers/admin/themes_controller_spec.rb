@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe Admin::ThemesController, type: :controller do
+RSpec.describe Admin::ThemesController, type: :controller do
   render_views
 
   before do

@@ -3,7 +3,7 @@
 require "rails_helper"
 require "publify_core/testing_support/dns_mock"
 
-describe Trackback, type: :model do
+RSpec.describe Trackback, type: :model do
   let(:article) { create(:article) }
 
   before do

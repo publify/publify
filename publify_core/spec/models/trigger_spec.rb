@@ -3,7 +3,7 @@
 require "rails_helper"
 require "timecop"
 
-describe Trigger, type: :model do
+RSpec.describe Trigger, type: :model do
   describe ".post_action" do
     before do
       create :blog

@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe Admin::DashboardController, type: :controller do
+RSpec.describe Admin::DashboardController, type: :controller do
   render_views
 
   before do

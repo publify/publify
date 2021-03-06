@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe Sidebar, type: :model do
+RSpec.describe Sidebar, type: :model do
   describe "#ordered_sidebars" do
     let(:blog) { create :blog }
 

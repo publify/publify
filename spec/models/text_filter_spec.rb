@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe "With the list of available filters", type: :model do
+RSpec.describe "With the list of available filters", type: :model do
   let(:blog) { build_stubbed(:blog) }
   let(:flickr_photos) { double "flickr_photos" }
   let(:flickr_photo_info_url) do

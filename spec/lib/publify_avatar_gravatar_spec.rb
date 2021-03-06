@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe PublifyPlugins::Gravatar do
+RSpec.describe PublifyPlugins::Gravatar do
   describe ".get_avatar" do
     let(:email) { "foo@bar.baz" }
     let(:digest) { Digest::MD5.hexdigest(email) }

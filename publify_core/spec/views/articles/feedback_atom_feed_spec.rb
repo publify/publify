@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe "articles/feedback_atom_feed.atom.builder", type: :view do
+RSpec.describe "articles/feedback_atom_feed.atom.builder", type: :view do
   let(:article) { create :article }
   let(:parsed_feed) { Feedjira.parse(rendered) }
 

@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe "authors/show_atom_feed.atom.builder", type: :view do
+RSpec.describe "authors/show_atom_feed.atom.builder", type: :view do
   let!(:blog) { create(:blog) }
   let(:author) { create :user }
   let(:parsed_feed) { Feedjira.parse(rendered) }

@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe Admin::NotesController, type: :controller do
+RSpec.describe Admin::NotesController, type: :controller do
   render_views
 
   let(:admin) { create(:user, :as_admin, twitter: "@getpublify") }

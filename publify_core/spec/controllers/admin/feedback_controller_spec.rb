@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe Admin::FeedbackController, type: :controller do
+RSpec.describe Admin::FeedbackController, type: :controller do
   render_views
 
   let(:feedback_from_own_article) { create(:comment, article: article) }

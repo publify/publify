@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe Admin::SidebarController, type: :controller do
+RSpec.describe Admin::SidebarController, type: :controller do
   let!(:blog) { create(:blog) }
 
   before do

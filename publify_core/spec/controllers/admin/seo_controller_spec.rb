@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe Admin::SeoController, type: :controller do
+RSpec.describe Admin::SeoController, type: :controller do
   let!(:blog) { create(:blog) }
   let(:admin) { create(:user, :as_admin) }
 

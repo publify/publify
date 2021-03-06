@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe ArticlesController, type: :routing do
+RSpec.describe ArticlesController, type: :routing do
   describe "routing" do
     it "recognizes and generates #index" do
       expect(get: "/").to route_to(controller: "articles", action: "index")

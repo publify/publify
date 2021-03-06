@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe TextFilterPlugin do
+RSpec.describe TextFilterPlugin do
   describe ".available_filters" do
     subject { described_class.available_filters }
 

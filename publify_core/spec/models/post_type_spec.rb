@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe PostType, type: :model do
+RSpec.describe PostType, type: :model do
   before do
     create(:blog)
   end

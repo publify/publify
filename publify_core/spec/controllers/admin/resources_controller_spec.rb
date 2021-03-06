@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe Admin::ResourcesController, type: :controller do
+RSpec.describe Admin::ResourcesController, type: :controller do
   render_views
 
   before do

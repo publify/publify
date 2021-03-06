@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe PublifyTime do
+RSpec.describe PublifyTime do
   describe "delta" do
     it "returns nil when nil year, nil month and nil day" do
       expect(described_class.delta).to be_nil
@@ -70,7 +70,7 @@ describe PublifyTime do
   end
 end
 
-describe "find Article date range " do
+RSpec.describe "find Article date range " do
   let!(:blog) { create(:blog) }
 
   before do

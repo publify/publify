@@ -4,7 +4,7 @@ require "rails_helper"
 # require 'text_filter_textile'
 require "publify_textfilter_markdown"
 
-describe "With the list of available filters", type: :model do
+RSpec.describe "With the list of available filters", type: :model do
   describe "#filter_text" do
     def filter_text(text, filters)
       TextFilter.filter_text(text, filters)

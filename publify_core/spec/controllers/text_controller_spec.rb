@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe TextController, type: :controller do
+RSpec.describe TextController, type: :controller do
   let!(:blog) { create(:blog) }
 
   describe "robots" do

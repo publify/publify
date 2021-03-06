@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe Admin::ContentController, type: :controller do
+RSpec.describe Admin::ContentController, type: :controller do
   render_views
 
   before do

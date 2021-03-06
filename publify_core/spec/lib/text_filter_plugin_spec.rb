@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe TextFilterPlugin::Macro do
+RSpec.describe TextFilterPlugin::Macro do
   describe "#self.attributes_parse" do
     it 'parses lang="ruby" to {"lang" => "ruby"}' do
       expect(described_class.attributes_parse('<publify:code lang="ruby">')).

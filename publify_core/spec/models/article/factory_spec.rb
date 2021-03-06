@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe Article::Builder, type: :model do
+RSpec.describe Article::Builder, type: :model do
   let(:blog) { create(:blog) }
   let(:user) { create(:user) }
   let(:factory) { Article::Factory.new(blog, user) }

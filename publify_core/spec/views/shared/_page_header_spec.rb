@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe "shared/_page_header.html.erb", type: :view do
+RSpec.describe "shared/_page_header.html.erb", type: :view do
   let!(:blog) { create :blog }
 
   context "when rendered as if from the articles controller" do

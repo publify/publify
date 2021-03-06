@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe NotesController, type: :controller do
+RSpec.describe NotesController, type: :controller do
   let!(:blog) { create(:blog) }
 
   describe "#index" do

@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe Feedback, type: :model do
+RSpec.describe Feedback, type: :model do
   before { create(:blog) }
 
   describe ".change_state!" do

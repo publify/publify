@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe CommentsController, type: :controller do
+RSpec.describe CommentsController, type: :controller do
   let!(:blog) { create(:blog) }
   let(:article) { create(:article) }
   let(:comment_params) do

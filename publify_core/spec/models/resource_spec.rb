@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe Resource, type: :model do
+RSpec.describe Resource, type: :model do
   describe "#upload" do
     let(:blog) { create :blog }
     let(:resource) { create :resource, blog: blog }

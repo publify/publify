@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe SidebarRegistry do
+RSpec.describe SidebarRegistry do
   describe "#available_sidebars" do
     it "finds at least the standard sidebars" do
       expect(described_class.available_sidebars).

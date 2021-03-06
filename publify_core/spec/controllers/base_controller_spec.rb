@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe BaseController, type: :controller do
+RSpec.describe BaseController, type: :controller do
   describe "#set_paths" do
     it "adds the theme's path to the view path" do
       theme = Theme.find "plain"

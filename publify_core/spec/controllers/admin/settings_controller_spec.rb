@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe Admin::SettingsController, type: :controller do
+RSpec.describe Admin::SettingsController, type: :controller do
   render_views
 
   let!(:blog) { create(:blog) }

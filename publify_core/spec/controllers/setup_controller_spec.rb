@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe SetupController, type: :controller do
+RSpec.describe SetupController, type: :controller do
   describe "#index" do
     describe "when no blog is configured" do
       before do
