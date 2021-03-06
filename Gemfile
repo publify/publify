@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-gem "rails", ["~> 5.2.4", ">= 5.2.4.4"]
+gem "rails", ["~> 5.2.4", ">= 5.2.4.5"]
 
 gem "mysql2"
 gem "pg"
