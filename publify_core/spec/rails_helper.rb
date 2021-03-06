@@ -95,7 +95,3 @@ RSpec.configure do |config|
     end
   end
 end
-
-def engine_root
-  PublifyCore::Engine.instance.root
-end
