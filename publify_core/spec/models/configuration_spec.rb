@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe "Given a new blog", type: :model do
+RSpec.describe "Given a new blog", type: :model do
   let!(:blog) { Blog.new }
 
   it "#blog_name should be My Shiny Weblog!" do
@@ -248,7 +248,7 @@ describe "Given a new blog", type: :model do
   end
 end
 
-describe "Given a new user", type: :model do
+RSpec.describe "Given a new user", type: :model do
   before do
     @user = User.new
   end
@@ -318,7 +318,7 @@ describe "Given a new user", type: :model do
   end
 end
 
-describe "Given a new article", type: :model do
+RSpec.describe "Given a new article", type: :model do
   before do
     @article = Article.new
   end
@@ -328,7 +328,7 @@ describe "Given a new article", type: :model do
   end
 end
 
-describe "Given a new page", type: :model do
+RSpec.describe "Given a new page", type: :model do
   before do
     @page = Page.new
   end
@@ -338,7 +338,7 @@ describe "Given a new page", type: :model do
   end
 end
 
-describe "Given a new status", type: :model do
+RSpec.describe "Given a new status", type: :model do
   before do
     @note = Note.new
   end

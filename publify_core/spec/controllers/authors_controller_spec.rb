@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe AuthorsController, type: :controller do
+RSpec.describe AuthorsController, type: :controller do
   let!(:blog) { create(:blog, limit_article_display: 1) }
   let(:now) { DateTime.new(2012, 12, 23, 3, 45).in_time_zone }
 

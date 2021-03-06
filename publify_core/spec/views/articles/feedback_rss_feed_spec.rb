@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe "articles/feedback_rss_feed.rss.builder", type: :view do
+RSpec.describe "articles/feedback_rss_feed.rss.builder", type: :view do
   let(:article) { create :article }
 
   describe "with feedback consisting of one trackback and one comment" do

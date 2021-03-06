@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe "Admin::ContentController routing", type: :routing do
+RSpec.describe "Admin::ContentController routing", type: :routing do
   it "routes #new" do
     expect(get: "/admin/content/new").to route_to(controller: "admin/content",
                                                   action: "new")

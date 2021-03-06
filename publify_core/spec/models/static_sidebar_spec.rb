@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe "Given a new StaticSidebar", type: :model do
+RSpec.describe "Given a new StaticSidebar", type: :model do
   before { @sb = StaticSidebar.new }
 
   it "title should be Links" do

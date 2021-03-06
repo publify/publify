@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe Page, type: :model do
+RSpec.describe Page, type: :model do
   let!(:blog) { create(:blog) }
 
   describe "before save" do

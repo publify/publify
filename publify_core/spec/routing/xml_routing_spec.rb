@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe XmlController, type: :routing do
+RSpec.describe XmlController, type: :routing do
   describe "routing" do
     it "recognizes and generates #feed with sitemap type" do
       expect(get: "/sitemap.xml").

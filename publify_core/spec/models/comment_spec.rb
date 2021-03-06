@@ -3,7 +3,7 @@
 require "rails_helper"
 require "publify_core/testing_support/dns_mock"
 
-describe Comment, type: :model do
+RSpec.describe Comment, type: :model do
   let(:blog) { build_stubbed :blog }
 
   let(:published_article) { build_stubbed(:article, published_at: 1.hour.ago, blog: blog) }

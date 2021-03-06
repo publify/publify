@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe AuthorsSidebar do
+RSpec.describe AuthorsSidebar do
   let(:sidebar) { described_class.new }
 
   it "is included in the list of available sidebars" do

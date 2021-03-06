@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe String do
+RSpec.describe String do
   describe "#to_permalink" do
     it "builds a nice permalink from an accentuated string" do
       expect("L'été s'ra chaud, l'été s'ra chaud".to_permalink).

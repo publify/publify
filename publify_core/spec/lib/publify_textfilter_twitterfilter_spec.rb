@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe PublifyApp::Textfilter::Twitterfilter do
+RSpec.describe PublifyApp::Textfilter::Twitterfilter do
   def filter_text(text, filters)
     TextFilter.filter_text(text, filters)
   end

@@ -9,7 +9,7 @@ class TestBrokenSidebar < Sidebar
   end
 end
 
-describe BaseHelper, type: :helper do
+RSpec.describe BaseHelper, type: :helper do
   describe "#link_to_permalink" do
     describe "for a simple ascii-only permalink" do
       let(:article) do

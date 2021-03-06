@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe User, type: :model do
+RSpec.describe User, type: :model do
   describe "FactoryBot Bot" do
     it "users factory valid" do
       expect(create(:user)).to be_valid

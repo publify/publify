@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe Theme, type: :model do
+RSpec.describe Theme, type: :model do
   let(:blog) { build_stubbed :blog }
   let(:default_theme) { blog.current_theme }
 
@@ -23,16 +23,15 @@ describe Theme, type: :model do
 
   describe "#description" do
     it "returns the contents of the corresponding markdown file" do
-      markdown_file = File.join(engine_root, "themes/plain/about.markdown")
+      markdown_file = PublifyCore::Engine.instance.root.join("themes/plain/about.markdown")
       expect(default_theme.description).to eq File.open(markdown_file, &:read)
     end
   end
 
   describe ".find_all" do
     let(:theme_directories) do
-      Dir.glob(File.join(engine_root, "themes/[a-zA-Z0-9]*")).select do |file|
-        File.readable? "#{file}/about.markdown"
-      end
+      Dir.glob(PublifyCore::Engine.instance.root.join("themes/[a-zA-Z0-9]*")).
+        select { |dir| File.readable? "#{dir}/about.markdown" }
     end
 
     it "finds all the installed themes" do

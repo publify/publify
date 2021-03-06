@@ -3,7 +3,7 @@
 require "rails_helper"
 require "timecop"
 
-describe Article, type: :model do
+RSpec.describe Article, type: :model do
   let(:blog) { create(:blog) }
 
   it "test_content_fields" do

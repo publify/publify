@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe "articles/index_rss_feed.rss.builder", type: :view do
+RSpec.describe "articles/index_rss_feed.rss.builder", type: :view do
   let(:rendered_entry) { Feedjira.parse(rendered).entries.first }
   let(:xml_entry) { Nokogiri::XML.parse(rendered).css("item").first }
 

@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe Content, type: :model do
+RSpec.describe Content, type: :model do
   context "with a simple blog" do
     describe "#author=" do
       let(:content) { described_class.new }

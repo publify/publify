@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe PublifyApp::Textfilter::Smartypants do
+RSpec.describe PublifyApp::Textfilter::Smartypants do
   describe "#filtertext" do
     it "applies smartypants processing to the supplied text" do
       text = described_class.filtertext('"foo"')

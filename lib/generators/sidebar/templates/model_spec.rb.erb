@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe <%= class_name %> do
+RSpec.describe <%= class_name %> do
   it 'is available' do
     expect(SidebarRegistry.available_sidebars).to include(<%= class_name %>)
   end

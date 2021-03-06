@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe Admin::RedirectsController, type: :controller do
+RSpec.describe Admin::RedirectsController, type: :controller do
   before do
     create(:blog)
     admin = create(:user, :as_admin)

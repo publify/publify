@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe TagSidebar do
+RSpec.describe TagSidebar do
   it "is available" do
     expect(SidebarRegistry.available_sidebars).to include(described_class)
   end

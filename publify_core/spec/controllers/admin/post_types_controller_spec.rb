@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe Admin::PostTypesController, type: :controller do
+RSpec.describe Admin::PostTypesController, type: :controller do
   render_views
 
   before do

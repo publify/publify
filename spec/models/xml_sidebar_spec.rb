@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe XmlSidebar do
+RSpec.describe XmlSidebar do
   it "is available" do
     expect(SidebarRegistry.available_sidebars).to include(described_class)
   end

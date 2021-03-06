@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe Admin::TagsController, type: :controller do
+RSpec.describe Admin::TagsController, type: :controller do
   render_views
 
   let!(:blog) { create(:blog) }
