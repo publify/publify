@@ -3,14 +3,22 @@
 # The "main" locale.
 base_locale: en
 
+<% publify_core_path = %x[bundle info --path publify_core].chomp %>
+<% rails_i18n_path = %x[bundle info --path rails-i18n].chomp %>
+
 # Read and write translations.
 data:
   # Locale files or `File.find` patterns where translations are read from:
   read:
     - config/locales/%{locale}.yml
     - config/locales/sidebars.%{locale}.yml
-    - "<%= %x[bundle show publify_core].chomp %>/config/locales/%{locale}.yml"
-    - "<%= %x[bundle show publify_core].chomp %>/config/locales/sidebars.%{locale}.yml"
+    - "<%= publify_core_path %>/config/locales/%{locale}.yml"
+    - "<%= publify_core_path %>/config/locales/sidebars.%{locale}.yml"
+
+  # External locale data (e.g. gems).
+  # This data is not considered unused and is never written to.
+  external:
+    - "<%= rails_i18n_path %>/rails/locale/%{locale}.yml"
 
   # Locale files to write new keys to, based on a list of key pattern => file
   # rules. Matched from top to bottom:

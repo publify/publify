@@ -6,7 +6,19 @@
 
 <%= form_tag action: 'update', id: @comment.id do %>
 
-  <%= error_messages_for 'comment' %>
+  <%= render 'shared/flash', flash: flash %>
+  <% if @comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= t("errors.template.header", model: 'comment', count: @comment.errors.count) %></h2>
+      <p><%= t("errors.template.body") %></p>
+      <ul>
+        <% @comment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <%= hidden_field_tag 'article_id', @article.id %>
 
   <fieldset>

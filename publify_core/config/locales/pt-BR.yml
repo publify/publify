@@ -19,9 +19,6 @@ pt-BR:
           attributes:
             title:
               blank: não pode ser vazio
-      template:
-        body: ''
-        header: ''
   admin:
     base:
       not_allowed: Erro, você não possui permissão para executar esta ação

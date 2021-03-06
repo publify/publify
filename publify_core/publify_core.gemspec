@@ -38,6 +38,7 @@ Gem::Specification.new do |s|
   s.add_dependency "rack", ">= 2.2.3"
   s.add_dependency "rails", "~> 6.0.0"
   s.add_dependency "rails_autolink", "~> 1.1.0"
+  s.add_dependency "rails-i18n", "~> 6.0.0"
   s.add_dependency "rails-timeago", "~> 2.0"
   s.add_dependency "recaptcha", ["~> 5.0"]
   s.add_dependency "RedCloth", "~> 4.3.2"

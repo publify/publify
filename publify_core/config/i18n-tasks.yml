@@ -3,12 +3,19 @@
 # The "main" locale.
 base_locale: en
 
+<% rails_i18n_path = %x[bundle info --path rails-i18n].chomp %>
+
 # Read and write translations.
 data:
   # Locale files or `File.find` patterns where translations are read from:
   read:
     - config/locales/%{locale}.yml
     - config/locales/**/*.%{locale}.yml
+
+  # External locale data (e.g. gems).
+  # This data is not considered unused and is never written to.
+  external:
+    - "<%= rails_i18n_path %>/rails/locale/%{locale}.yml"
 
   # Locale files to write new keys to, based on a list of key pattern => file
   # rules. Matched from top to bottom:
@@ -41,4 +48,4 @@ ignore_unused:
   - 'time.formats.*'
   - 'layouts.default.designed_by'
   - 'date.*'
-  - 'activerecord.{attributes,errors,models}.*'
+  - 'activerecord.errors.models.*'

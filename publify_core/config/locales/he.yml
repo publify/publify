@@ -19,9 +19,6 @@ he:
           attributes:
             title:
               blank: can't be blank
-      template:
-        body: ''
-        header: ''
   admin:
     base:
       not_allowed: Error, you are not allowed to perform this action

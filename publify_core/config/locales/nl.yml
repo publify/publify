@@ -19,9 +19,6 @@ nl:
           attributes:
             title:
               blank: mag niet leeg zijn
-      template:
-        body: ''
-        header: ''
   admin:
     base:
       not_allowed: Error, you are not allowed to perform this action

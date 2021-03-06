@@ -19,9 +19,6 @@ fr:
           attributes:
             title:
               blank: ne peut être laissé vide
-      template:
-        body: ''
-        header: ''
   admin:
     base:
       not_allowed: Erreur, vous n'êtes pas autorisé à réaliser cette action

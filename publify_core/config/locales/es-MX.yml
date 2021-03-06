@@ -19,9 +19,6 @@ es-MX:
           attributes:
             title:
               blank: no puede ser vac&iacute;o
-      template:
-        body: ''
-        header: ''
   admin:
     base:
       not_allowed: Error, you are not allowed to perform this action
