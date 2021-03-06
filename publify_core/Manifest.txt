@@ -354,7 +354,7 @@ config/locales/he.yml
 config/locales/it.yml
 config/locales/ja.yml
 config/locales/lt.yml
-config/locales/nb-NO.yml
+config/locales/nb.yml
 config/locales/nl.yml
 config/locales/pl.yml
 config/locales/pt-BR.yml
@@ -369,7 +369,7 @@ config/locales/sidebars.he.yml
 config/locales/sidebars.it.yml
 config/locales/sidebars.ja.yml
 config/locales/sidebars.lt.yml
-config/locales/sidebars.nb-NO.yml
+config/locales/sidebars.nb.yml
 config/locales/sidebars.nl.yml
 config/locales/sidebars.pl.yml
 config/locales/sidebars.pt-BR.yml

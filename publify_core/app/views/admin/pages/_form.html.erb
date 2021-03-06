@@ -1,15 +1,3 @@
-<% if @page.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@page.errors.count, 'error') %> prohibited this post from being saved:</h2>
-
-    <ul>
-      <% @page.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-
 <%= hidden_field_tag 'user_textfilter', current_user.text_filter_name %>
 
 <div class="row save-bar">
@@ -25,8 +13,19 @@
 </div>
 
 <div class="row">
-  <div class="col-md-8 col-md-offset-2" style="padding-top: 20px">
-    <%= error_messages_for 'page' %>
+  <div class="col-md-8 col-md-offset-2" id="error-message-page">
+    <%= render 'shared/flash', flash: flash %>
+    <% if @page.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= t("errors.template.header", model: 'page', count: @page.errors.count) %></h2>
+        <p><%= t("errors.template.body") %></p>
+        <ul>
+          <% @page.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
   </div>
 </div>
 

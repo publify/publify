@@ -6,13 +6,14 @@ ENV["RAILS_ENV"] ||= "test"
 require File.expand_path("dummy/config/environment", __dir__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
+# Require this before rspec/rails so controller specs work
+require "rails-controller-testing"
 require "rspec/rails"
 # Add additional requires below this line. Rails is not loaded until this point!
 require "factory_bot"
 require "publify_core/testing_support/factories"
 require "publify_core/testing_support/feed_assertions"
 require "publify_core/testing_support/upload_fixtures"
-require "rails-controller-testing"
 require "capybara/rspec"
 require "webmock/rspec"
 

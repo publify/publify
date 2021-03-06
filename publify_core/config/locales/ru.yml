@@ -19,9 +19,6 @@ ru:
           attributes:
             title:
               blank: не может быть пустым
-      template:
-        body: ''
-        header: ''
   admin:
     base:
       not_allowed: Error, you are not allowed to perform this action

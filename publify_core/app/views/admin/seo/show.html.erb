@@ -8,7 +8,18 @@
   </h2>
 <% end %>
 
-<%= error_messages_for 'blog' %>
+<%= render 'shared/flash', flash: flash %>
+<% if @setting.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= t("errors.template.header", model: 'blog', count: @setting.errors.count) %></h2>
+    <p><%= t("errors.template.body") %></p>
+    <ul>
+      <% @setting.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
 <%= form_tag admin_seo_path, method: :put do %>
   <%= case @section

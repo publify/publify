@@ -1,2 +1,12 @@
 <p><%= t('.message') %></p>
-<%= error_messages_for('comment') %>
+<% if @comment.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= t("errors.template.header", model: 'comment', count: @comment.errors.count) %></h2>
+    <p><%= t("errors.template.body") %></p>
+    <ul>
+      <% @comment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

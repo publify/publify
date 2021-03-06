@@ -19,9 +19,6 @@ pl:
           attributes:
             title:
               blank: nie może być puste
-      template:
-        body: ''
-        header: ''
   admin:
     base:
       not_allowed: Błąd, nie masz wystarczających uprawnień aby to zrobić

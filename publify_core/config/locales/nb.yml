@@ -1,5 +1,5 @@
 ---
-nb-NO:
+nb:
   accounts:
     back_to_html: "&larr; Tilbake til %{place}"
     back_to_login: Tilbake til innlogging
@@ -19,9 +19,6 @@ nb-NO:
           attributes:
             title:
               blank: kan ikke være blank
-      template:
-        body: ''
-        header: ''
   admin:
     base:
       not_allowed: Feil, du har ikke lov til å utføre denne handlingen

@@ -28,7 +28,6 @@ Gem::Specification.new do |s|
   s.add_dependency "carrierwave", "~> 2.0"
   s.add_dependency "devise", "~> 4.7.1"
   s.add_dependency "devise-i18n", "~> 1.2"
-  s.add_dependency "dynamic_form", "~> 1.1.4"
   s.add_dependency "fog-aws", "~> 3.2"
   s.add_dependency "fog-core", "~> 2.2"
   s.add_dependency "jquery-rails", "~> 4.4.0"
@@ -39,6 +38,7 @@ Gem::Specification.new do |s|
   s.add_dependency "rack", ">= 2.2.3"
   s.add_dependency "rails", "~> 6.0.0"
   s.add_dependency "rails_autolink", "~> 1.1.0"
+  s.add_dependency "rails-i18n", "~> 6.0.0"
   s.add_dependency "rails-timeago", "~> 2.0"
   s.add_dependency "recaptcha", ["~> 5.0"]
   s.add_dependency "RedCloth", "~> 4.3.2"

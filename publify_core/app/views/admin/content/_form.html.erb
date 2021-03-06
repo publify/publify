@@ -21,7 +21,17 @@
 <div class="row">
   <div class="col-md-8 col-md-offset-2" id="error-message-article">
     <%= render 'shared/flash', flash: flash %>
-    <%= error_messages_for 'article' %>
+    <% if @article.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= t("errors.template.header", model: 'article', count: @article.errors.count) %></h2>
+        <p><%= t("errors.template.body") %></p>
+        <ul>
+          <% @article.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
   </div>
 </div>
 
