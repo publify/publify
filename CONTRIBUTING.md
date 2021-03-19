@@ -1,3 +1,5 @@
+# Contributing to Publify
+
 We welcome your contributions to help improve Publify. Please follow the
 guidelines below.
 
