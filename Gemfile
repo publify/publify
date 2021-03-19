@@ -40,7 +40,7 @@ group :development, :test do
   gem "i18n-tasks", "~> 0.9.31", require: false
   gem "pry", "~> 0.14.0"
   gem "pry-rails", "~> 0.3.4"
-  gem "rspec-rails", "~> 4.0"
+  gem "rspec-rails", "~> 5.0"
   gem "rubocop", "~> 1.8.0", require: false
   gem "rubocop-performance", "~> 1.9.2", require: false
   gem "rubocop-rails", "~> 2.9.1", require: false
