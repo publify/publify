@@ -9,7 +9,7 @@ gem "pg"
 gem "sqlite3", "~> 1.4.0"
 
 # Store sessions in the database
-gem "activerecord-session_store", "~> 1.1.0"
+gem "activerecord-session_store", "~> 2.0.0"
 
 # Use Puma as the app server
 gem "puma", "~> 5.2.0"
@@ -38,13 +38,13 @@ group :development, :test do
   gem "capybara", "~> 3.9"
   gem "factory_bot", "~> 6.1"
   gem "i18n-tasks", "~> 0.9.31", require: false
-  gem "pry", "~> 0.13.1"
+  gem "pry", "~> 0.14.0"
   gem "pry-rails", "~> 0.3.4"
-  gem "rspec-rails", "~> 4.0"
-  gem "rubocop", "~> 1.8.0", require: false
-  gem "rubocop-performance", "~> 1.9.2", require: false
+  gem "rspec-rails", "~> 5.0"
+  gem "rubocop", "~> 1.11.0", require: false
+  gem "rubocop-performance", "~> 1.10.1", require: false
   gem "rubocop-rails", "~> 2.9.1", require: false
-  gem "rubocop-rspec", "~> 2.1.0", require: false
+  gem "rubocop-rspec", "~> 2.2.0", require: false
   gem "simplecov", "~> 0.21.2", require: false
 end
 

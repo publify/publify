@@ -62,7 +62,7 @@ class Sidebar < ApplicationRecord
   end
 
   def self.short_name
-    to_s.underscore.split(/_/).first
+    to_s.underscore.split("_").first
   end
 
   def self.path_name
