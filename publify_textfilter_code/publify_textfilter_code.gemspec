@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
-$LOAD_PATH.push File.expand_path("lib", __dir__)
-
 # Maintain your gem's version:
-require "publify_textfilter_code/version"
+require_relative "lib/publify_textfilter_code/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
