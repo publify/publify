@@ -58,7 +58,7 @@ be broken there at any time, so tread carefully!
 
 To install Publify you need the following:
 
-- CRuby (MRI) 2.3, 2.4 or 2.5
+- CRuby (MRI) 2.4, 2.5, 2.6 or 2.7
 - Ruby on Rails 5.2.x
 - A database engine, MySQL, PgSQL or SQLite3
 - A compatible JavaScript installation for asset compilation. See
