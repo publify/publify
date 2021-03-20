@@ -1,5 +1,9 @@
 # Changelog
 
+## 9.2.1 / 2021-03-20
+
+* No changes
+
 ## 9.2.0 / 2021-01-17
 
 * Upgrade to Rails 5.2 (mvz)
