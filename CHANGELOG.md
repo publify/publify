@@ -2,6 +2,13 @@
 
 See the changelogs for the individual engines for more details for releases 9.0 and up
 
+## 9.2.1 / 2021-03-20
+
+This release updates dependencies due to security issues.
+
+* Bump minimum Rails version to 5.2.4.5
+* Update `activerecord-session_store` dependency to 2.0.0
+
 ## 9.2.0 / 2021-01-17
 
 ### Breaking changes
