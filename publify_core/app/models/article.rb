@@ -225,10 +225,6 @@ class Article < Content
       published_at.to_i > blog.sp_article_auto_close.days.ago.to_i
   end
 
-  def content_fields
-    [:body, :extended]
-  end
-
   # The web interface no longer distinguishes between separate "body" and
   # "extended" fields, and instead edits everything in a single edit field,
   # separating the extended content using "\<!--more-->".

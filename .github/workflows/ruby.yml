@@ -6,9 +6,13 @@ name: Ruby
 
 on:
   push:
-    branches: [ master 9-2-stable ]
+    branches:
+      - master
+      - 9-2-stable
   pull_request:
-    branches: [ master 9-2-stable ]
+    branches:
+      - master
+      - 9-2-stable
 
 jobs:
   test-postgresql:
