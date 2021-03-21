@@ -3,7 +3,7 @@
 require "rails_helper"
 require "publify_textile_to_markdown"
 
-describe PublifyTextileToMarkdown do
+RSpec.describe PublifyTextileToMarkdown do
   describe ".convert" do
     it "converts articles" do
       article = create(:article, text_filter_name: "textile", body: "Be *bold*",
