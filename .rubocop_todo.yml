@@ -38,6 +38,7 @@ RSpec/ExampleLength:
     - 'spec/controllers/articles_controller_spec.rb'
     - 'spec/controllers/tags_controller_spec.rb'
     - 'spec/lib/publify_avatar_gravatar_spec.rb'
+    - 'spec/lib/publify_textile_to_markdown_spec.rb'
     - 'spec/models/sidebar_registry_spec.rb'
     - 'spec/models/text_filter_spec.rb'
     - 'spec/views/comments/html_sanitization_spec.rb'
