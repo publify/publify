@@ -50,8 +50,4 @@ class Comment < Feedback
   def originator
     author
   end
-
-  def content_fields
-    [:body]
-  end
 end
