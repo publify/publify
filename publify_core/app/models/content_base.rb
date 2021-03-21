@@ -26,7 +26,7 @@ module ContentBase
     elsif html_map(field)
       generate_html(field)
     else
-      raise "Unknown field: #{field.inspect} in content.html"
+      raise ArgumentError, "Field #{field.inspect} is not valid for #{self.class}"
     end
   end
 
