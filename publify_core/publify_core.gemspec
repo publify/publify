@@ -34,7 +34,6 @@ Gem::Specification.new do |s|
   s.add_dependency "jquery-rails", "~> 4.4.0"
   s.add_dependency "jquery-ui-rails", "~> 6.0.1"
   s.add_dependency "kaminari", ["~> 1.2", ">= 1.2.1"]
-  s.add_dependency "mimemagic", "~> 0.3.2"
   s.add_dependency "mini_magick", ["~> 4.9", ">= 4.9.4"]
   s.add_dependency "rack", ">= 2.2.3"
   s.add_dependency "rails", ["~> 5.2.4", ">= 5.2.4.3"]
