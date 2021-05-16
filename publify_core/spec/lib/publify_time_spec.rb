@@ -73,18 +73,12 @@ end
 RSpec.describe "find Article date range " do
   let!(:blog) { create(:blog) }
 
-  before do
-    @timezone = Time.zone
-  end
-
-  after do
-    Time.zone = @timezone
-  end
-
   describe "UTC" do
-    before do
-      Time.zone = "UTC"
+    around do |example|
+      Time.use_zone("UTC", &example)
+    end
 
+    before do
       @a = build(:article)
       @a.published_at = "1 Jan 2013 01:00 UTC"
       @a.save!
@@ -127,9 +121,11 @@ RSpec.describe "find Article date range " do
   end
 
   describe "JST(+0900) " do
-    before do
-      Time.zone = "Tokyo"
+    around do |example|
+      Time.use_zone("Tokyo", &example)
+    end
 
+    before do
       @a = build(:article)
       @a.published_at = "1 Jan 2013 01:00 +0900"
       @a.save!
