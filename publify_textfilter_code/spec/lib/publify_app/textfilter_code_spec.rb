@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "rails_helper"
-# require 'text_filter_textile'
 require "publify_textfilter_markdown"
 
 RSpec.describe "With the list of available filters", type: :model do
@@ -94,22 +93,8 @@ RSpec.describe "With the list of available filters", type: :model do
         <p><em>footer text here</em></p>
       HTML
 
-      expects_textile = <<-HTML.strip_heredoc
-        <p><strong>header text here</strong></p>
-        <div class=\"CodeRay\"><pre><span class=\"CodeRay\"><span class=\"keyword\">class</span> <span class=\"class\">test</span>
-          <span class=\"keyword\">def</span> <span class=\"function\">method</span>
-            <span class=\"string\"><span class=\"delimiter\">&quot;</span><span class=\"content\">foo</span><span class=\"delimiter\">&quot;</span></span>
-          <span class=\"keyword\">end</span>
-        <span class=\"keyword\">end</span></span></pre></div>
-        <p><em>footer text here</em></p>
-      HTML
-
       assert_equal expects_markdown.strip, filter_text(text,
                                                        [:macropre, :markdown, :macropost])
-      ActiveSupport::Deprecation.silence do
-        assert_equal expects_textile.strip, filter_text(text,
-                                                        [:macropre, :textile, :macropost])
-      end
     end
   end
 end

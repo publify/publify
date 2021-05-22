@@ -34,7 +34,7 @@ RSpec.describe "comments/_comment.html.erb", type: :view do
           blog.theme = theme
         end
 
-        ["", "markdown", "textile", "smartypants", "markdown smartypants"].each do |value|
+        ["", "markdown", "smartypants", "markdown smartypants"].each do |value|
           it "sanitizes content rendered with the #{value} textfilter" do
             blog.comment_text_filter = value
 
@@ -167,7 +167,7 @@ RSpec.describe "comments/_comment.html.erb", type: :view do
           blog.theme = theme
         end
 
-        ["", "markdown", "textile", "smartypants", "markdown smartypants"].each do |value|
+        ["", "markdown", "smartypants", "markdown smartypants"].each do |value|
           it "sanitizes content rendered with the #{value} textfilter" do
             blog.comment_text_filter = value
 
