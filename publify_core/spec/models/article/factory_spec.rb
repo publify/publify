@@ -19,7 +19,7 @@ RSpec.describe Article::Builder, type: :model do
     end
 
     context "with a user with text_filter_name set" do
-      let(:user) { create(:user, text_filter_name: "textile") }
+      let(:user) { create(:user, text_filter_name: "markdown") }
 
       it { expect(new_article.text_filter_name).to eq(user.text_filter_name) }
     end

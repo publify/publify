@@ -178,7 +178,7 @@ RSpec.describe Comment, type: :model do
       end
     end
 
-    ["", "textile", "markdown", "smartypants", "markdown smartypants"].each do |filter|
+    ["", "markdown", "smartypants", "markdown smartypants"].each do |filter|
       it "rejects with filter '#{filter}'" do
         blog.comment_text_filter = filter
 
@@ -208,7 +208,7 @@ RSpec.describe Comment, type: :model do
   end
 
   it "has good default filter" do
-    create :blog, text_filter: "textile", comment_text_filter: "markdown"
+    create :blog, text_filter: "markdown", comment_text_filter: "markdown"
     a = create(:comment)
     assert_equal "markdown", a.default_text_filter.name
   end
