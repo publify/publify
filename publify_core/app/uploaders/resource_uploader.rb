@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "mimemagic"
+require "marcel"
 
 class ResourceUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
@@ -50,14 +50,9 @@ class ResourceUploader < CarrierWave::Uploader::Base
     content_type = nil
 
     File.open(new_file.path) do |fd|
-      content_type = MimeMagic.by_magic(fd).try(:type)
+      content_type = Marcel::MimeType.for(fd)
     end
 
     content_type
-  end
-
-  # NOTE: This method was copied from MagicMimeBlacklist from CarrierWave 1.0.0.
-  def filemagic
-    @filemagic ||= FileMagic.new(FileMagic::MAGIC_MIME_TYPE)
   end
 end
