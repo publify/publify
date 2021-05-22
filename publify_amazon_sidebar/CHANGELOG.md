@@ -1,5 +1,9 @@
 # Changelog
 
+## 9.2.3 / 2021-05-22
+
+* Depend on `publify_core` gem to set Rails dependency
+
 ## 9.2.2 / 2021-03-21
 
 * No changes

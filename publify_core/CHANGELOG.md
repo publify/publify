@@ -1,5 +1,10 @@
 # Changelog
 
+## 9.2.3 / 2021-05-22
+
+* Bump Rails dependency to 5.2.6
+* Replace mimemagic with marcel
+
 ## 9.2.2 / 2021-03-21
 
 * No changes
