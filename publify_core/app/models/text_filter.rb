@@ -81,7 +81,6 @@ class TextFilter
       markdown,
       smartypants,
       markdown_smartypants,
-      textile,
       none,
     ]
   end
