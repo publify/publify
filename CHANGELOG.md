@@ -2,6 +2,10 @@
 
 See the changelogs for the individual engines for more details for releases 9.0 and up
 
+## 9.2.3 / 2021-05-22
+
+* Bump Rails dependency to 5.2.6
+
 ## 9.2.2 / 2021-03-21
 
 * Fix the `publify:textile_to_markdown` task. This task failed on feedback and
