@@ -25,6 +25,6 @@ module AuthorsHelper
   end
 
   def author_link(article)
-    h(article.author_name)
+    ERB::Util.html_escape(article.author_name)
   end
 end
