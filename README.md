@@ -112,7 +112,7 @@ ruby '2.4.3' # Or whichever version you're running
 gem 'pg'
 gem 'rails_12factor'
 
-gem 'rails', '~> 5.2.0'
+gem 'rails', '~> 5.2.6'
 ```
 
 Next, to regenerate the Gemfile.lock, run:

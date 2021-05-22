@@ -36,7 +36,7 @@ Gem::Specification.new do |s|
   s.add_dependency "kaminari", ["~> 1.2", ">= 1.2.1"]
   s.add_dependency "mini_magick", ["~> 4.9", ">= 4.9.4"]
   s.add_dependency "rack", ">= 2.2.3"
-  s.add_dependency "rails", ["~> 5.2.4", ">= 5.2.4.3"]
+  s.add_dependency "rails", "~> 5.2.6"
   s.add_dependency "rails_autolink", "~> 1.1.0"
   s.add_dependency "rails-timeago", "~> 2.0"
   s.add_dependency "recaptcha", ["~> 5.0"]
