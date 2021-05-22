@@ -2,7 +2,7 @@
 
 **The Ruby on Rails publishing software formerly known as Typo**
 
-[![Build Status](https://travis-ci.org/publify/publify.svg?branch=master)](https://travis-ci.org/publify/publify)
+[![Build status](https://github.com/publify/publify/actions/workflows/ruby.yml/badge.svg)](https://github.com/publify/publify/actions/workflows/ruby.yml)
 [![Code Climate](https://codeclimate.com/github/publify/publify.svg)](https://codeclimate.com/github/publify/publify)
 [![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com)
 
@@ -21,7 +21,7 @@ project alive.
 
 - A classic multi user blogging engine
 - Short messages with a Twitter connection
-- Text filters (Markdown, Textile, SmartyPants, @mention to link, #hashtag to link)
+- Text filters (Markdown, SmartyPants, @mention to link, #hashtag to link)
 - A widgets system and a plugin API
 - Custom themes
 - Advanced SEO capabilities
