@@ -93,8 +93,6 @@ class TextFilter
       smartypants
     when "markdown smartypants"
       markdown_smartypants
-    when "textile"
-      textile
     when "none"
       none
     end
@@ -118,12 +116,6 @@ class TextFilter
         description: "Markdown with SmartyPants",
         markup: "markdown",
         filters: [:smartypants])
-  end
-
-  def self.textile
-    new(name: "textile",
-        description: "Textile",
-        markup: "textile")
   end
 
   def self.none
