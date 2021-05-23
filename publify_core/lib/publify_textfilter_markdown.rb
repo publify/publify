@@ -49,7 +49,7 @@ class PublifyApp
         # FIXME: Workaround for BlueCloth not interpreting <publify:foo> as an
         # HTML tag. See <http://deveiate.org/projects/BlueCloth/ticket/70>.
         escaped_macros = text.gsub(%r{(</?publify):}, '\1X')
-        html = BlueCloth.new(escaped_macros).to_html.gsub(%r{</?notextile>}, "")
+        html = BlueCloth.new(escaped_macros).to_html
         html.gsub(%r{(</?publify)X}, '\1:')
       end
     end
