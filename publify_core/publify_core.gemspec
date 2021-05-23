@@ -39,7 +39,6 @@ Gem::Specification.new do |s|
   s.add_dependency "rails-i18n", "~> 6.0.0"
   s.add_dependency "rails-timeago", "~> 2.0"
   s.add_dependency "recaptcha", ["~> 5.0"]
-  s.add_dependency "RedCloth", "~> 4.3.2"
   s.add_dependency "rubypants", "~> 0.7.0"
   s.add_dependency "sassc-rails", "~> 2.0"
   s.add_dependency "sprockets", "~> 3.0"
