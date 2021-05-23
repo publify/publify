@@ -5,32 +5,28 @@ require "publify_textfilter_markdown"
 
 RSpec.describe "With the list of available filters", type: :model do
   describe "#filter_text" do
-    def filter_text(text, filters)
-      TextFilter.filter_text(text, filters)
-    end
+    let(:filter) { TextFilter.none }
 
     describe "specific publify tags" do
       describe "code" do
         describe "single line" do
           it "mades nothin if no args" do
-            result = filter_text("<publify:code>foo-code</publify:code>",
-                                 [:macropre, :macropost])
+            result = filter.filter_text("<publify:code>foo-code</publify:code>")
             expect(result).
               to eq '<div class="CodeRay"><pre>foo-code</pre></div>'
           end
 
           it "parses ruby lang" do
-            result = filter_text('<publify:code lang="ruby">foo-code</publify:code>',
-                                 [:macropre, :macropost])
+            result = filter.filter_text('<publify:code lang="ruby">foo-code</publify:code>')
             expect(result).
               to eq('<div class="CodeRay"><pre><span class="CodeRay">' \
                     "foo-code</span></pre></div>")
           end
 
           it "parses ruby and xml in same sentence but not in same place" do
-            result = filter_text('<publify:code lang="ruby">foo-code</publify:code> ' \
-                                   'blah blah <publify:code lang="xml">zzz</publify:code>',
-                                 [:macropre, :macropost])
+            result = filter.
+              filter_text('<publify:code lang="ruby">foo-code</publify:code> ' \
+                          'blah blah <publify:code lang="xml">zzz</publify:code>')
             expect(result).
               to eq '<div class="CodeRay"><pre><span class="CodeRay">' \
                     "foo-code</span></pre></div> blah blah" \
@@ -58,7 +54,7 @@ RSpec.describe "With the list of available filters", type: :model do
                 <span class="keyword">end</span>
               <span class="keyword">end</span></span></pre></div>
             HTML
-            expect(filter_text(original, [:macropre, :macropost])).to eq(expected_result)
+            expect(filter.filter_text(original)).to eq(expected_result)
           end
         end
       end
@@ -93,8 +89,9 @@ RSpec.describe "With the list of available filters", type: :model do
         <p><em>footer text here</em></p>
       HTML
 
-      assert_equal expects_markdown.strip, filter_text(text,
-                                                       [:macropre, :markdown, :macropost])
+      filter = TextFilter.markdown
+
+      assert_equal expects_markdown.strip, filter.filter_text(text)
     end
   end
 end
