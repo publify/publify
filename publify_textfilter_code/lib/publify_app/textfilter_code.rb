@@ -57,7 +57,6 @@ PHP (&#42;), Python (&#42;), RHTML, Ruby, Scheme, SQL (&#42;), XHTML, XML, YAML.
         rescue
           text = HTMLEntities.new("xhtml1").encode(text)
         end
-        text = "<notextile>#{text}</notextile>"
 
         titlecode = if title
                       "<div class=\"codetitle\">#{title}</div>"

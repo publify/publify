@@ -16,15 +16,15 @@ RSpec.describe "With the list of available filters", type: :model do
             result = filter_text("<publify:code>foo-code</publify:code>",
                                  [:macropre, :macropost])
             expect(result).
-              to eq '<div class="CodeRay"><pre><notextile>foo-code</notextile></pre></div>'
+              to eq '<div class="CodeRay"><pre>foo-code</pre></div>'
           end
 
           it "parses ruby lang" do
             result = filter_text('<publify:code lang="ruby">foo-code</publify:code>',
                                  [:macropre, :macropost])
             expect(result).
-              to eq('<div class="CodeRay"><pre><notextile><span class="CodeRay">' \
-                    "foo-code</span></notextile></pre></div>")
+              to eq('<div class="CodeRay"><pre><span class="CodeRay">' \
+                    "foo-code</span></pre></div>")
           end
 
           it "parses ruby and xml in same sentence but not in same place" do
@@ -32,10 +32,10 @@ RSpec.describe "With the list of available filters", type: :model do
                                    'blah blah <publify:code lang="xml">zzz</publify:code>',
                                  [:macropre, :macropost])
             expect(result).
-              to eq '<div class="CodeRay"><pre><notextile><span class="CodeRay">' \
-                    "foo-code</span></notextile></pre></div> blah blah" \
-                    ' <div class="CodeRay"><pre><notextile><span class="CodeRay">' \
-                    "zzz</span></notextile></pre></div>"
+              to eq '<div class="CodeRay"><pre><span class="CodeRay">' \
+                    "foo-code</span></pre></div> blah blah" \
+                    ' <div class="CodeRay"><pre><span class="CodeRay">' \
+                    "zzz</span></pre></div>"
           end
         end
 
@@ -52,11 +52,11 @@ RSpec.describe "With the list of available filters", type: :model do
             HTML
 
             expected_result = <<~HTML
-              <div class="CodeRay"><pre><notextile><span class="CodeRay"><span class="keyword">class</span> <span class="class">Foo</span>
+              <div class="CodeRay"><pre><span class="CodeRay"><span class="keyword">class</span> <span class="class">Foo</span>
                 <span class="keyword">def</span> <span class="function">bar</span>
                   <span class="instance-variable">@a</span> = <span class="string"><span class="delimiter">&quot;</span><span class="content">zzz</span><span class="delimiter">&quot;</span></span>
                 <span class="keyword">end</span>
-              <span class="keyword">end</span></span></notextile></pre></div>
+              <span class="keyword">end</span></span></pre></div>
             HTML
             expect(filter_text(original, [:macropre, :macropost])).to eq(expected_result)
           end
