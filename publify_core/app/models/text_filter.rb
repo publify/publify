@@ -25,10 +25,11 @@ class TextFilter
     make_filter(name) || none
   end
 
-  def self.filter_text(text, filters)
+  def filter_text(text)
+    all_filters = [:macropre, markup, :macropost, filters].flatten
     map = TextFilterPlugin.filter_map
 
-    filters.each do |filter|
+    all_filters.each do |filter|
       next if filter.nil?
 
       filter_class = map[filter.to_s]
@@ -38,10 +39,6 @@ class TextFilter
     end
 
     text
-  end
-
-  def filter_text(text)
-    self.class.filter_text(text, [:macropre, markup, :macropost, filters].flatten)
   end
 
   def help
