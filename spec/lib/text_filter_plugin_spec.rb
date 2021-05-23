@@ -9,7 +9,6 @@ RSpec.describe TextFilterPlugin do
     it { is_expected.to include(PublifyApp::Textfilter::Markdown) }
     it { is_expected.to include(PublifyApp::Textfilter::Smartypants) }
     it { is_expected.to include(PublifyApp::Textfilter::Htmlfilter) }
-    it { is_expected.to include(PublifyApp::Textfilter::Textile) }
     it { is_expected.to include(PublifyApp::Textfilter::Flickr) }
     it { is_expected.to include(PublifyApp::Textfilter::Code) }
     it { is_expected.to include(PublifyApp::Textfilter::Lightbox) }
@@ -24,7 +23,6 @@ RSpec.describe TextFilterPlugin do
     it { is_expected.not_to include(PublifyApp::Textfilter::Markdown) }
     it { is_expected.not_to include(PublifyApp::Textfilter::Smartypants) }
     it { is_expected.not_to include(PublifyApp::Textfilter::Htmlfilter) }
-    it { is_expected.not_to include(PublifyApp::Textfilter::Textile) }
     it { is_expected.to include(PublifyApp::Textfilter::Flickr) }
     it { is_expected.to include(PublifyApp::Textfilter::Code) }
     it { is_expected.to include(PublifyApp::Textfilter::Lightbox) }

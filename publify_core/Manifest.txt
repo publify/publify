@@ -426,7 +426,6 @@ lib/publify_plugins.rb
 lib/publify_textfilter_markdown.rb
 lib/publify_textfilter_none.rb
 lib/publify_textfilter_smartypants.rb
-lib/publify_textfilter_textile.rb
 lib/publify_textfilter_twitterfilter.rb
 lib/publify_time.rb
 lib/sidebar_field.rb

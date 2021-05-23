@@ -370,13 +370,13 @@ RSpec.describe Admin::ContentController, type: :controller do
 
         art_id = article.id
 
-        body = "another *textile* test"
+        body = "another *markdown* test"
         put :update, params: { id: art_id,
-                               article: { body: body, text_filter_name: "textile" } }
+                               article: { body: body, text_filter_name: "markdown" } }
         assert_response :redirect, action: "show", id: art_id
 
         article.reload
-        expect(article.text_filter.name).to eq("textile")
+        expect(article.text_filter.name).to eq("markdown")
         expect(body).to eq(article.body)
 
         expect(emails.size).to eq(0)
@@ -503,17 +503,17 @@ RSpec.describe Admin::ContentController, type: :controller do
       end
 
       context "with an article" do
-        let(:article) { create(:article, body: "another *textile* test", user: publisher) }
+        let(:article) { create(:article, body: "another *markdown* test", user: publisher) }
         let(:body) { "not the *same* text" }
 
         before do
           put :update,
               params: { id: article.id,
-                        article: { body: body, text_filter_name: "textile" } }
+                        article: { body: body, text_filter_name: "markdown" } }
         end
 
         it { expect(response).to redirect_to(action: "index") }
-        it { expect(article.reload.text_filter.name).to eq("textile") }
+        it { expect(article.reload.text_filter.name).to eq("markdown") }
         it { expect(article.reload.body).to eq(body) }
       end
     end

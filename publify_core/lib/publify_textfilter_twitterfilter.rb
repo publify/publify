@@ -28,7 +28,7 @@ class PublifyApp
         # @mention
         text.to_s.split.grep(/@\w+/) do |item|
           item = item.strip_html
-          uri = html_escape("https://twitter.com/#{item.delete("@")}")
+          uri = ERB::Util.html_escape("https://twitter.com/#{item.delete("@")}")
           text = text.gsub(item, "<a href='#{uri}'>#{item}</a>")
         end
 

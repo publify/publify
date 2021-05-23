@@ -198,23 +198,6 @@ RSpec.describe "With the list of available filters", type: :model do
             "Ruby's creator</p></div></p>"
         end
       end
-
-      describe "with textile" do
-        it "correctly interprets the macro" do
-          result = ActiveSupport::Deprecation.silence do
-            filter_text(
-              '<publify:flickr img="31366117" size="Square" style="float:left"/>',
-              [:macropre, :textile, :macropost])
-          end
-          expect(result).to eq \
-            '<div style="float:left" class="flickrplugin">' \
-            '<a href="http://www.flickr.com/users/scottlaird/31366117">' \
-            '<img src="//photos23.flickr.com/31366117_b1a791d68e_s.jpg"' \
-            ' width="75" height="75" alt="Matz" title="Matz"/></a>' \
-            "<p class=\"caption\" style=\"width:75px\">This is Matz, " \
-            "Ruby's creator</p></div>"
-        end
-      end
     end
   end
 end
