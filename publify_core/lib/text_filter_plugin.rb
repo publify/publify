@@ -174,31 +174,3 @@ class TextFilterPlugin::Markup < TextFilterPlugin
     "markup"
   end
 end
-
-class PublifyApp
-  class Textfilter
-    class MacroPost < TextFilterPlugin
-      plugin_display_name "MacroPost"
-      plugin_description "Macro expansion meta-filter (post-markup)"
-
-      def self.filtertext(text)
-        macros = TextFilterPlugin.available_filter_types["macropost"]
-        macros.reduce(text) do |new_text, macro|
-          macro.filtertext(new_text)
-        end
-      end
-    end
-
-    class MacroPre < TextFilterPlugin
-      plugin_display_name "MacroPre"
-      plugin_description "Macro expansion meta-filter (pre-markup)"
-
-      def self.filtertext(text)
-        macros = TextFilterPlugin.available_filter_types["macropre"]
-        macros.reduce(text) do |new_text, macro|
-          macro.filtertext(new_text)
-        end
-      end
-    end
-  end
-end
