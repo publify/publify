@@ -9,9 +9,9 @@ RSpec.describe TextFilter do
       expect(filter.filter_text('*"foo"*')).to eq "<p><em>&quot;foo&quot;</em></p>"
     end
 
-    xit "works for markdown with smart quotes" do
+    it "works for markdown with smart quotes" do
       filter = described_class.markdown_smartypants
-      expect(filter.filter_text('*"foo"*')).to eq "<p><em>&#8220;foo&#8221;</em></p>"
+      expect(filter.filter_text('*"foo"*')).to eq "<p><em>“foo”</em></p>"
     end
 
     it "works for smart quotes" do

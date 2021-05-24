@@ -97,9 +97,8 @@ class TextFilter
 
   def self.markdown_smartypants
     new(name: "markdown smartypants",
-        description: "Markdown with SmartyPants",
-        markup: "markdown",
-        filters: [:smartypants])
+        description: "Markdown with smart quotes",
+        markup: "markdownsmartquotes")
   end
 
   def self.none

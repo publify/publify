@@ -26,18 +26,18 @@ RSpec.describe TextFilterPlugin do
     it { is_expected.not_to include(TextFilterPlugin::MacroPre) }
     it { is_expected.not_to include(TextFilterPlugin::MacroPost) }
   end
-end
 
-RSpec.describe TextFilterPlugin::Macro do
-  describe "#self.attributes_parse" do
-    it 'parses lang="ruby" to {"lang" => "ruby"}' do
-      expect(described_class.attributes_parse('<publify:code lang="ruby">')).
-        to eq("lang" => "ruby")
-    end
+  describe described_class::Macro do
+    describe "#self.attributes_parse" do
+      it 'parses lang="ruby" to {"lang" => "ruby"}' do
+        expect(described_class.attributes_parse('<publify:code lang="ruby">')).
+          to eq("lang" => "ruby")
+      end
 
-    it "parses lang='ruby' to {'lang' => 'ruby'}" do
-      expect(described_class.attributes_parse("<publify:code lang='ruby'>")).
-        to eq("lang" => "ruby")
+      it "parses lang='ruby' to {'lang' => 'ruby'}" do
+        expect(described_class.attributes_parse("<publify:code lang='ruby'>")).
+          to eq("lang" => "ruby")
+      end
     end
   end
 end
