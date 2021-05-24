@@ -2,6 +2,18 @@
 
 See the changelogs for the individual engines for more details for releases 9.0 and up
 
+## Unreleased
+
+### Breaking changes
+
+* Upgrade to Rails 6.0
+* Remove support for Textile as a text format
+
+### Other changes
+
+* Depend on Ruby 2.5 or above
+* Update other dependencies
+
 ## 9.2.3 / 2021-05-22
 
 * Bump Rails dependency to 5.2.6

@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased
+
+* Upgrade to Rails 6.0
+* Drop support for Ruby 2.4
+* Update dependencies
+* Remove `dynamic_form` dependency
+* Remove support for Textile as a text format
+* Replace BlueCloth with CommonMarker for Markdown processing
+
 ## 9.2.3 / 2021-05-22
 
 * Bump Rails dependency to 5.2.6

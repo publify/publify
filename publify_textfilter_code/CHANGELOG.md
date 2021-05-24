@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+* Drop support for Ruby 2.4
+* Update dependencies
+
 ## 9.2.3 / 2021-05-22
 
 * Depend on `publify_core` gem to set Rails dependency
