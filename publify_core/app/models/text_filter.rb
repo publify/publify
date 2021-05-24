@@ -26,36 +26,25 @@ class TextFilter
   end
 
   def filter_text(text)
-    all_filters = [:macropre, markup, :macropost, filters].flatten
-    map = TextFilterPlugin.filter_map
+    all_filters = TextFilterPlugin.
+      expand_filter_list([:macropre, markup, :macropost, filters].flatten)
 
     all_filters.each do |filter|
-      next if filter.nil?
-
-      filter_class = map[filter.to_s]
-      next unless filter_class
-
-      text = filter_class.filtertext(text)
+      text = filter.filtertext(text)
     end
 
     text
   end
 
   def help
-    filter_map = TextFilterPlugin.filter_map
-    filter_types = TextFilterPlugin.available_filter_types
+    help_filters = TextFilterPlugin.
+      expand_filter_list([markup, :macropre, :macropost, filters].flatten)
 
-    help = []
-    help.push(filter_map[markup])
-    filter_types["macropre"].sort_by(&:short_name).each { |f| help.push f }
-    filter_types["macropost"].sort_by(&:short_name).each { |f| help.push f }
-    filters.each { |f| help.push(filter_map[f.to_s]) }
-
-    help_text = help.map do |f|
+    help_text = help_filters.map do |f|
       if f.help_text.blank?
         ""
       else
-        "<h3>#{f.display_name}</h3>\n#{BlueCloth.new(f.help_text).to_html}\n"
+        "<h3>#{f.display_name}</h3>\n#{CommonMarker.render_html(f.help_text, :DEFAULT)}"
       end
     end
 
@@ -63,13 +52,11 @@ class TextFilter
   end
 
   def commenthelp
-    filter_map = TextFilterPlugin.filter_map
+    help_filters = TextFilterPlugin.
+      expand_filter_list([markup, filters].flatten)
 
-    help = [filter_map[markup]]
-    filters.each { |f| help.push(filter_map[f.to_s]) }
-
-    help.map do |f|
-      f.help_text.blank? ? "" : "#{BlueCloth.new(f.help_text).to_html}\n"
+    help_filters.map do |f|
+      f.help_text.blank? ? "" : CommonMarker.render_html(f.help_text)
     end.join("\n")
   end
 
@@ -110,9 +97,8 @@ class TextFilter
 
   def self.markdown_smartypants
     new(name: "markdown smartypants",
-        description: "Markdown with SmartyPants",
-        markup: "markdown",
-        filters: [:smartypants])
+        description: "Markdown with smart quotes",
+        markup: "markdownsmartquotes")
   end
 
   def self.none

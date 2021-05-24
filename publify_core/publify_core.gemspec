@@ -21,9 +21,9 @@ Gem::Specification.new do |s|
 
   s.add_dependency "aasm", "~> 5.0"
   s.add_dependency "akismet", "~> 3.0"
-  s.add_dependency "bluecloth", "~> 2.1"
   s.add_dependency "cancancan", "~> 3.0"
   s.add_dependency "carrierwave", "~> 2.2.1"
+  s.add_dependency "commonmarker", "~> 0.21.2"
   s.add_dependency "devise", "~> 4.7.1"
   s.add_dependency "devise-i18n", "~> 1.2"
   s.add_dependency "fog-aws", "~> 3.2"

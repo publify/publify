@@ -13,7 +13,7 @@ class TextFilterPlugin
   def self.inherited(sub)
     super
 
-    if sub.to_s.start_with?("Plugin", "PublifyApp::Textfilter")
+    if sub.to_s.start_with?("Plugin", "PublifyTextfilter", "PublifyApp::Textfilter")
       name = sub.short_name
       @@filter_map[name] = sub
     end
@@ -43,7 +43,28 @@ class TextFilterPlugin
   end
 
   def self.macro_filters
-    available_filters.select { |filter| TextFilterPlugin::Macro > filter }
+    macro_pre_filters + macro_post_filters
+  end
+
+  def self.macro_pre_filters
+    available_filter_types["macropre"]
+  end
+
+  def self.macro_post_filters
+    available_filter_types["macropost"]
+  end
+
+  def self.expand_filter_list(filter_list)
+    filter_list.flat_map do |key|
+      case key
+      when :macropost
+        macro_post_filters
+      when :macropre
+        macro_pre_filters
+      else
+        filter_map[key.to_s]
+      end
+    end.compact
   end
 
   plugin_display_name "Unknown Text Filter"
@@ -151,33 +172,5 @@ end
 class TextFilterPlugin::Markup < TextFilterPlugin
   def self.filter_type
     "markup"
-  end
-end
-
-class PublifyApp
-  class Textfilter
-    class MacroPost < TextFilterPlugin
-      plugin_display_name "MacroPost"
-      plugin_description "Macro expansion meta-filter (post-markup)"
-
-      def self.filtertext(text)
-        macros = TextFilterPlugin.available_filter_types["macropost"]
-        macros.reduce(text) do |new_text, macro|
-          macro.filtertext(new_text)
-        end
-      end
-    end
-
-    class MacroPre < TextFilterPlugin
-      plugin_display_name "MacroPre"
-      plugin_description "Macro expansion meta-filter (pre-markup)"
-
-      def self.filtertext(text)
-        macros = TextFilterPlugin.available_filter_types["macropre"]
-        macros.reduce(text) do |new_text, macro|
-          macro.filtertext(new_text)
-        end
-      end
-    end
   end
 end

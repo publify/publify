@@ -15,6 +15,8 @@ RSpec.describe TextFilterPlugin do
     it { is_expected.to include(PublifyApp::Textfilter::Twitterfilter) }
     it { is_expected.not_to include(TextFilterPlugin::Markup) }
     it { is_expected.not_to include(TextFilterPlugin::Macro) }
+    it { is_expected.not_to include(TextFilterPlugin::MacroPre) }
+    it { is_expected.not_to include(TextFilterPlugin::MacroPost) }
   end
 
   describe ".macro_filters" do
@@ -29,5 +31,7 @@ RSpec.describe TextFilterPlugin do
     it { is_expected.not_to include(PublifyApp::Textfilter::Twitterfilter) }
     it { is_expected.not_to include(TextFilterPlugin::Markup) }
     it { is_expected.not_to include(TextFilterPlugin::Macro) }
+    it { is_expected.not_to include(TextFilterPlugin::MacroPre) }
+    it { is_expected.not_to include(TextFilterPlugin::MacroPost) }
   end
 end

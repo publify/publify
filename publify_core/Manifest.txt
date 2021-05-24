@@ -424,6 +424,7 @@ lib/publify_core/version.rb
 lib/publify_guid.rb
 lib/publify_plugins.rb
 lib/publify_textfilter_markdown.rb
+lib/publify_textfilter_markdown_smartquotes.rb
 lib/publify_textfilter_none.rb
 lib/publify_textfilter_smartypants.rb
 lib/publify_textfilter_twitterfilter.rb

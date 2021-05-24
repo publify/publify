@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "text_filter_plugin"
-require "bluecloth"
+require "commonmarker"
 
 # TODO: Move to a different namespace
 class PublifyApp
@@ -46,11 +46,10 @@ class PublifyApp
       end
 
       def self.filtertext(text)
-        # FIXME: Workaround for BlueCloth not interpreting <publify:foo> as an
-        # HTML tag. See <http://deveiate.org/projects/BlueCloth/ticket/70>.
+        # FIXME: Workaround for <publify:foo> not being interpreted as an HTML tag.
         escaped_macros = text.gsub(%r{(</?publify):}, '\1X')
-        html = BlueCloth.new(escaped_macros).to_html
-        html.gsub(%r{(</?publify)X}, '\1:')
+        html = CommonMarker.render_html(escaped_macros, :UNSAFE)
+        html.gsub(%r{(</?publify)X}, '\1:').strip
       end
     end
   end
