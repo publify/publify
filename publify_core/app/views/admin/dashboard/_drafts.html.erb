@@ -6,13 +6,13 @@
     <ul class='list-unstyled'>
       <% if @drafts.empty? %>
         <li class='alert alert-info'>
-        <%= link_to t('.no_drafts_yet'), controller: 'content', action: 'new' %> ?
+        <%= link_to t('.no_drafts_yet'), controller: 'articles', action: 'new' %> ?
         </li>
       <% else %>
         <% for post in @drafts %>
           <li>
           <h5>
-            <%= link_to(post.title, controller: 'admin/content', action: 'edit', id: post.id) %>
+            <%= link_to(post.title, controller: 'admin/articles', action: 'edit', id: post.id) %>
             <%= display_date_and_time(post.created_at) %>
           </h5>
           <p><%= post.body&.strip_html&.slice(0, 300) %></p>

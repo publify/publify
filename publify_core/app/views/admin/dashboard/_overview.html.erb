@@ -4,7 +4,7 @@
     <span class="sr-only">Close</span>
   </button>
   <% links = []
-     links << link_to(t('.write_a_post'), controller: 'content', action: 'new') if can? :new, 'admin/content'
+     links << link_to(t('.write_a_post'), controller: 'articles', action: 'new') if can? :new, 'admin/articles'
      links << link_to(t('.write_a_page'), controller: 'pages', action: 'new') if can? :new, 'admin/pages'
      links << link_to(t('.update_your_profile_or_change_your_password'), controller: 'profiles', action: 'index') %>
   <p>

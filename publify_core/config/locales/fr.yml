@@ -20,10 +20,7 @@ fr:
             title:
               blank: ne peut être laissé vide
   admin:
-    base:
-      not_allowed: Erreur, vous n'êtes pas autorisé à réaliser cette action
-      successfully_deleted: "%{name} a été supprimé avec succès"
-    content:
+    articles:
       access_granted:
         error: Erreur, vous n'avez pas les droits requis pour effectuer cette action
       article_list:
@@ -84,6 +81,9 @@ fr:
         withdrawn: Supprimé
       update:
         success: Cet article a été mis à jour avec succès
+    base:
+      not_allowed: Erreur, vous n'êtes pas autorisé à réaliser cette action
+      successfully_deleted: "%{name} a été supprimé avec succès"
     dashboard:
       comment:
         by: Par

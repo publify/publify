@@ -79,8 +79,8 @@ Rails.application.routes.draw do
   namespace :admin do
     root "dashboard#index", as: "dashboard"
 
-    resources :content, only: [:index, :new, :edit, :create, :update, :destroy],
-                        format: false do
+    resources :articles, only: [:index, :new, :edit, :create, :update, :destroy],
+                         format: false do
       collection do
         get "auto_complete_for_article_keywords"
         post "autosave"

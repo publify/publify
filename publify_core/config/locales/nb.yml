@@ -20,10 +20,7 @@ nb:
             title:
               blank: kan ikke være blank
   admin:
-    base:
-      not_allowed: Feil, du har ikke lov til å utføre denne handlingen
-      successfully_deleted: Slettet %{name}
-    content:
+    articles:
       access_granted:
         error: Du har ikke tillatelse til å utføre denne handlingen
       article_list:
@@ -82,6 +79,9 @@ nb:
         withdrawn: Trukket tilbake
       update:
         success: Artikkel oppdatert
+    base:
+      not_allowed: Feil, du har ikke lov til å utføre denne handlingen
+      successfully_deleted: Slettet %{name}
     dashboard:
       comment:
         by: Av

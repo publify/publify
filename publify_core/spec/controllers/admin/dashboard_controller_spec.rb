@@ -33,7 +33,7 @@ RSpec.describe Admin::DashboardController, type: :controller do
     end
 
     it "has a link to a new article" do
-      expect(response.body).to have_selector("a[href='/admin/content/new']",
+      expect(response.body).to have_selector("a[href='/admin/articles/new']",
                                              text: "write a post")
     end
 
@@ -43,19 +43,19 @@ RSpec.describe Admin::DashboardController, type: :controller do
     end
 
     it "has a link to article listing" do
-      expect(response.body).to have_selector("a[href='/admin/content']",
+      expect(response.body).to have_selector("a[href='/admin/articles']",
                                              text: "no article")
     end
 
     it "has a link to user's article listing" do
       expect(response.body).
-        to have_selector("a[href='/admin/content?search%5Buser_id%5D=#{@henri.id}']",
+        to have_selector("a[href='/admin/articles?search%5Buser_id%5D=#{@henri.id}']",
                          text: "no article written by you")
     end
 
     it "has a link to drafts" do
       expect(response.body).
-        to have_selector("a[href='/admin/content?search%5Bstate%5D=drafts']",
+        to have_selector("a[href='/admin/articles?search%5Bstate%5D=drafts']",
                          text: "no draft")
     end
 
@@ -102,7 +102,7 @@ RSpec.describe Admin::DashboardController, type: :controller do
     end
 
     it "has a link to a new article" do
-      expect(response.body).to have_selector("a[href='/admin/content/new']",
+      expect(response.body).to have_selector("a[href='/admin/articles/new']",
                                              text: "write a post")
     end
 
@@ -112,12 +112,13 @@ RSpec.describe Admin::DashboardController, type: :controller do
     end
 
     it "has a link to article listing" do
-      expect(response.body).to have_selector("a[href='/admin/content']", text: "no article")
+      expect(response.body).to have_selector("a[href='/admin/articles']",
+                                             text: "no article")
     end
 
     it "has a link to user's article listing" do
       expect(response.body).
-        to have_selector("a[href='/admin/content?search%5Buser_id%5D=#{@rene.id}']",
+        to have_selector("a[href='/admin/articles?search%5Buser_id%5D=#{@rene.id}']",
                          text: "no article written by you")
     end
 
@@ -160,7 +161,7 @@ RSpec.describe Admin::DashboardController, type: :controller do
     end
 
     it "does not have a link to a new article" do
-      expect(response.body).not_to have_selector("a[href='/admin/content/new']",
+      expect(response.body).not_to have_selector("a[href='/admin/articles/new']",
                                                  text: "write a post")
     end
 
@@ -170,13 +171,13 @@ RSpec.describe Admin::DashboardController, type: :controller do
     end
 
     it "does not have a link to article listing" do
-      expect(response.body).not_to have_selector("a[href='/admin/content']",
+      expect(response.body).not_to have_selector("a[href='/admin/articles']",
                                                  text: "Total posts:")
     end
 
     it "does not have a link to user's article listing" do
       expect(response.body).
-        not_to have_selector("a[href='/admin/content?search%5Buser_id%5D=#{@gerard.id}']",
+        not_to have_selector("a[href='/admin/articles?search%5Buser_id%5D=#{@gerard.id}']",
                              text: "Your posts:")
     end
 

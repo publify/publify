@@ -1,6 +1,6 @@
 <% content_for :page_heading do %>
   <h2 class="page-title">
-    <%= t('.comments_for_html', article_link: link_to(h(@comment.article.title), controller: '/admin/content', action: 'edit', id: @comment.article.id).html_safe) %>
+    <%= t('.comments_for_html', article_link: link_to(h(@comment.article.title), controller: '/admin/articles', action: 'edit', id: @comment.article.id).html_safe) %>
   </h2>
 <% end %>
 
