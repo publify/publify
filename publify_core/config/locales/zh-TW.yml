@@ -149,14 +149,17 @@ zh-TW:
     feedback:
       article:
         action_or_other_html: "%{first_action} 或 %{second_action}"
+        actions: Actions
         add_a_comment: Add a comment
         author: 作者
         cancel: 取消
         comments_for_html: 做出評論 %{title}
+        content: Content
+        created_at: Created at
         email: Email
         no_feedback: There is no feedback yet. Why don't you create some?
         save: 存檔
-        select_all: Select all
+        status: 身分
         url: Url
         your_comment: Your comment
       bulkops:
@@ -203,7 +206,6 @@ zh-TW:
         no_feedback: There is no feedback yet. Why don't you create some?
         presumed_ham: Presumed ham
         presumed_spam: Presumed spam
-        select_all: Select all
         spam: Spam
         status: 身分
         unapproved_comments: Unapproved comments

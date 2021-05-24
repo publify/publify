@@ -151,14 +151,17 @@ he:
     feedback:
       article:
         action_or_other_html: "%{first_action} או %{second_action}"
+        actions: Actions
         add_a_comment: Add a comment
         author: כותב
         cancel: בטל
         comments_for_html: תגובות עבור %{title}
+        content: תוכן
+        created_at: Created at
         email: דואל
         no_feedback: There is no feedback yet. Why don't you create some?
         save: שמור
-        select_all: Select all
+        status: מצב
         url: כתובת
         your_comment: Your comment
       bulkops:
@@ -205,7 +208,6 @@ he:
         no_feedback: There is no feedback yet. Why don't you create some?
         presumed_ham: Presumed ham
         presumed_spam: Presumed spam
-        select_all: Select all
         spam: ספאם
         status: מצב
         unapproved_comments: תגובות לא מאושרות

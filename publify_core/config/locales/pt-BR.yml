@@ -152,14 +152,17 @@ pt-BR:
     feedback:
       article:
         action_or_other_html: "%{first_action} ou %{second_action}"
+        actions: Actions
         add_a_comment: Adicionar um comentário
         author: Autor
         cancel: Cancelar
         comments_for_html: Comentários para %{title}
+        content: Conteúdo
+        created_at: Created at
         email: E-mail
         no_feedback: Não existem feedback ainda. Por que você não inicia e cria um?
         save: Salvar
-        select_all: Selecionar todos
+        status: Estado
         url: Url
         your_comment: Seu comentário
       bulkops:
@@ -206,7 +209,6 @@ pt-BR:
         no_feedback: Não existem feedback ainda. Por que você não inicia e cria um?
         presumed_ham: Possível ham
         presumed_spam: Possível spam
-        select_all: Selecionar todos
         spam: Spam
         status: Estado
         unapproved_comments: Comentários não aprovados

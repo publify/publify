@@ -170,14 +170,17 @@ pl:
     feedback:
       article:
         action_or_other_html: "%{first_action} lub %{second_action}"
+        actions: Actions
         add_a_comment: Dodaj komentarz
         author: Autor
         cancel: Anuluj
         comments_for_html: Komentarze do %{title}
+        content: Treść
+        created_at: Created at
         email: Email
         no_feedback: Brak komentarzy.
         save: Zapisz
-        select_all: Wybierz wszystko
+        status: Stan
         url: Url
         your_comment: Twój komentarz
       bulkops:
@@ -228,7 +231,6 @@ pl:
         no_feedback: Brak komentarzy.
         presumed_ham: Prawdopodobny nie-spam
         presumed_spam: Prawdopodobny spam
-        select_all: Zaznacz wszystko
         spam: Spam
         status: Stan
         unapproved_comments: Niezaakceptowane komentarze

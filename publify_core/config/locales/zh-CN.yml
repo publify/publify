@@ -148,14 +148,17 @@ zh-CN:
     feedback:
       article:
         action_or_other_html: "%{first_action} 或 %{second_action}"
+        actions: Actions
         add_a_comment: Add a comment
         author: 作者
         cancel: 取消
         comments_for_html: 做出评论 %{title}
+        content: Content
+        created_at: Created at
         email: Email
         no_feedback: 这儿并不存在Feedback。让我们开始创建它。
         save: 保存
-        select_all: Select all
+        status: 状态
         url: Url
         your_comment: Your comment
       bulkops:
@@ -202,7 +205,6 @@ zh-CN:
         no_feedback: 这儿并不存在Feedback。让我们开始创建它。
         presumed_ham: Presumed ham
         presumed_spam: Presumed spam
-        select_all: Select all
         spam: Spam
         status: 状态
         unapproved_comments: Unapproved comments

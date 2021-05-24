@@ -1,5 +1,5 @@
 <% content_for :page_heading do %>
-  <h2>
+  <h2 class="page-title">
     <%= t('.feedback') %>
   </h2>
 <% end %>
@@ -19,7 +19,10 @@
 
   <%= hidden_field_tag 'page', params[:page] %>
 
-  <%= render 'button', position: 'top' %>
+  <% if @feedback.any? %>
+    <%= render 'button', position: 'top' %>
+  <% end %>
+
   <table class='table hover'>
     <thead>
       <tr class='noborder'>
@@ -33,6 +36,7 @@
         <th><%= t(".actions") %></th>
       </tr>
     </thead>
+
     <% if @feedback.empty? %>
       <tr>
         <td colspan="5">
@@ -40,16 +44,12 @@
         </td>
       </tr>
     <% end %>
+
     <% @feedback.each do |comment| %>
       <%= render 'feedback', comment: comment %>
     <% end %>
     <%= display_pagination(@feedback, 7) %>
-    <tr>
-      <th><input type="checkbox" name="checkall" id="checkall" onclick="check_all(this);" /></th>
-      <th colspan='6'><%= t('.select_all') %></th>
-    </tr>
   </table>
-  <%= render 'button', position: 'bottom' %>
 <% end %>
 
 <br class='clear' />

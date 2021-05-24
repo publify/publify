@@ -154,15 +154,18 @@ fr:
     feedback:
       article:
         action_or_other_html: "%{first_action} ou %{second_action}"
+        actions: Actions
         add_a_comment: Ajouter un commentaire
         author: Auteur
         cancel: Annuler
         comments_for_html: Commentaire sur %{title}
+        content: Contenu
+        created_at: Created at
         email: Email
         no_feedback: 'Il n''y a pas encore de commentaires, pourquoi ne pas en créer
           un ? '
         save: Sauver
-        select_all: Tout sélectionner
+        status: État
         url: Site
         your_comment: Votre commentaire
       bulkops:
@@ -210,7 +213,6 @@ fr:
           un ? '
         presumed_ham: Probablement valide
         presumed_spam: Probablement du spam
-        select_all: Tout sélectionner
         spam: Spam
         status: État
         unapproved_comments: Commentaires non validés
