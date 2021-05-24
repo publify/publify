@@ -43,7 +43,15 @@ class TextFilterPlugin
   end
 
   def self.macro_filters
-    available_filters.select { |filter| TextFilterPlugin::Macro > filter }
+    macro_pre_filters + macro_post_filters
+  end
+
+  def self.macro_pre_filters
+    available_filter_types["macropre"]
+  end
+
+  def self.macro_post_filters
+    available_filter_types["macropost"]
   end
 
   plugin_display_name "Unknown Text Filter"
