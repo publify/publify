@@ -1,9 +1,16 @@
 # frozen_string_literal: true
 
 require "rails_helper"
-require "publify_textfilter_markdown"
 
-RSpec.describe "With the list of available filters", type: :model do
+RSpec.describe PublifyApp::Textfilter::Code, type: :model do
+  it "is registered in the list of textfilter plugins" do
+    expect(TextFilterPlugin.available_filters).to include described_class
+  end
+
+  it "is registered in the list of macro filters" do
+    expect(TextFilterPlugin.macro_filters).to include described_class
+  end
+
   describe "#filter_text" do
     let(:filter) { TextFilter.none }
 
