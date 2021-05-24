@@ -54,6 +54,19 @@ class TextFilterPlugin
     available_filter_types["macropost"]
   end
 
+  def self.expand_filter_list(filter_list)
+    filter_list.flat_map do |key|
+      case key
+      when :macropost
+        macro_post_filters
+      when :macropre
+        macro_pre_filters
+      else
+        filter_map[key.to_s]
+      end
+    end.compact
+  end
+
   plugin_display_name "Unknown Text Filter"
   plugin_description "Unknown Text Filter Description"
 
