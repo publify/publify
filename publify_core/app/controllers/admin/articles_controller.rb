@@ -4,7 +4,7 @@ require "base64"
 
 module Admin; end
 
-class Admin::ContentController < Admin::BaseController
+class Admin::ArticlesController < Admin::BaseController
   def index
     @search = params[:search] || {}
     @articles = this_blog.articles.search_with(@search).page(params[:page]).
@@ -48,7 +48,7 @@ class Admin::ContentController < Admin::BaseController
     end
 
     if @article.save
-      flash[:success] = I18n.t("admin.content.create.success")
+      flash[:success] = I18n.t("admin.articles.create.success")
       redirect_to action: "index"
     else
       @article.keywords = Tag.collection_to_string @article.tags
@@ -79,7 +79,7 @@ class Admin::ContentController < Admin::BaseController
 
     if @article.save
       Article.where(parent_id: @article.id).map(&:destroy) unless @article.draft
-      flash[:success] = I18n.t("admin.content.update.success")
+      flash[:success] = I18n.t("admin.articles.update.success")
       redirect_to action: "index"
     else
       @article.keywords = Tag.collection_to_string @article.tags
@@ -120,7 +120,7 @@ class Admin::ContentController < Admin::BaseController
     end
 
     if @article.save
-      flash[:success] = I18n.t("admin.content.autosave.success")
+      flash[:success] = I18n.t("admin.articles.autosave.success")
       @must_update_calendar =
         (params[:article][:published_at] and
          params[:article][:published_at].to_time.to_i < Time.zone.now.to_time.to_i and
@@ -158,7 +158,7 @@ class Admin::ContentController < Admin::BaseController
     if article.access_by? current_user
       true
     else
-      flash[:error] = I18n.t("admin.content.access_granted.error")
+      flash[:error] = I18n.t("admin.articles.access_granted.error")
       redirect_to action: "index"
       false
     end

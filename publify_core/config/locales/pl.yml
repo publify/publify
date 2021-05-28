@@ -20,10 +20,7 @@ pl:
             title:
               blank: nie może być puste
   admin:
-    base:
-      not_allowed: Błąd, nie masz wystarczających uprawnień aby to zrobić
-      successfully_deleted: "%{name} zostało pomyślnie usunięte"
-    content:
+    articles:
       access_granted:
         error: Wystąpił błąd. Nie masz wystarczających uprawnień.
       article_list:
@@ -82,6 +79,9 @@ pl:
         withdrawn: Withdrawn
       update:
         success: Artykuł został poprawnie zaktualizowany
+    base:
+      not_allowed: Błąd, nie masz wystarczających uprawnień aby to zrobić
+      successfully_deleted: "%{name} zostało pomyślnie usunięte"
     dashboard:
       comment:
         by: Przez

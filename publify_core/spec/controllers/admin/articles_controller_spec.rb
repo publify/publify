@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe Admin::ContentController, type: :controller do
+RSpec.describe Admin::ArticlesController, type: :controller do
   render_views
 
   before do
@@ -248,7 +248,7 @@ RSpec.describe Admin::ContentController, type: :controller do
         before { post :create, params: { article: article_params } }
 
         it { expect(response).to redirect_to(action: :index) }
-        it { expect(flash[:success]).to eq(I18n.t("admin.content.create.success")) }
+        it { expect(flash[:success]).to eq(I18n.t("admin.articles.create.success")) }
 
         it { expect(assigns(:article)).to be_published }
         it { expect(assigns(:article).user).to eq(publisher) }

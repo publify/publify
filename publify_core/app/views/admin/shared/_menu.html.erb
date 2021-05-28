@@ -10,15 +10,15 @@
   </div>
   <div class="collapse navbar-collapse" id="sidebar-top">
     <ul class='nav navbar-nav'>
-      <% if can? :index, 'admin/content' %>
+      <% if can? :index, 'admin/articles' %>
         <li class='dropdown'>
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">
             <%= t('.articles') %>
             <b class="caret"></b>
           </a>
           <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-            <%= menu_item(t('.all_articles'), admin_content_index_path) %>
-            <%= menu_item(t('.new_article'), new_admin_content_path) %>
+            <%= menu_item(t('.all_articles'), admin_articles_path) %>
+            <%= menu_item(t('.new_article'), new_admin_article_path) %>
             <%= menu_item(t('.feedback'), admin_feedback_index_path) %>
             <%= menu_item(t('.tags'), admin_tags_path) %>
             <%= menu_item(t('.article_types'), admin_post_types_path) %>
@@ -110,7 +110,7 @@
           <b class="caret"></b>
         </a>
         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-          <li><%= link_to(t('.new_article'), controller: 'content', action: 'new') %></li>
+          <li><%= link_to(t('.new_article'), controller: 'articles', action: 'new') %></li>
           <li><%= link_to(t('.new_page'), controller: 'pages', actions: 'new') %></li>
           <li><%= link_to(t('.new_media'), controller: 'resources', action: 'index') %></li>
           <li><%= link_to(t('.new_note'), controller: 'notes') %></li>

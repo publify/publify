@@ -20,10 +20,7 @@ nl:
             title:
               blank: mag niet leeg zijn
   admin:
-    base:
-      not_allowed: Error, you are not allowed to perform this action
-      successfully_deleted: This %{name} was deleted successfully
-    content:
+    articles:
       access_granted:
         error: Fout, je mag dit niet doen
       article_list:
@@ -82,6 +79,9 @@ nl:
         withdrawn: Withdrawn
       update:
         success: Artikel is succesvol bijgewerkt.
+    base:
+      not_allowed: Error, you are not allowed to perform this action
+      successfully_deleted: This %{name} was deleted successfully
     dashboard:
       comment:
         by: Door

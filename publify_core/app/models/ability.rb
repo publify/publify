@@ -34,7 +34,7 @@ class Ability
   end
 
   def add_publisher_abilities
-    can :manage, "admin/content"
+    can :manage, "admin/articles"
     can :manage, "admin/feedback"
     can :manage, "admin/notes"
     can :manage, "admin/pages"

@@ -20,10 +20,7 @@ zh-CN:
             title:
               blank: can't be blank
   admin:
-    base:
-      not_allowed: Error, you are not allowed to perform this action
-      successfully_deleted: This %{name} was deleted successfully
-    content:
+    articles:
       access_granted:
         error: 错误，不允许进行此操作
       article_list:
@@ -82,6 +79,9 @@ zh-CN:
         withdrawn: Withdrawn
       update:
         success: 文章更新成功
+    base:
+      not_allowed: Error, you are not allowed to perform this action
+      successfully_deleted: This %{name} was deleted successfully
     dashboard:
       comment:
         by: By

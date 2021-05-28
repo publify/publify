@@ -20,10 +20,7 @@ pt-BR:
             title:
               blank: não pode ser vazio
   admin:
-    base:
-      not_allowed: Erro, você não possui permissão para executar esta ação
-      successfully_deleted: Este %{name} foi removido com sucesso
-    content:
+    articles:
       access_granted:
         error: Erro, você não tem permissão para executar essa tarefa
       article_list:
@@ -82,6 +79,9 @@ pt-BR:
         withdrawn: Retirado
       update:
         success: Artigo atualizado com sucesso
+    base:
+      not_allowed: Erro, você não possui permissão para executar esta ação
+      successfully_deleted: Este %{name} foi removido com sucesso
     dashboard:
       comment:
         by: Por

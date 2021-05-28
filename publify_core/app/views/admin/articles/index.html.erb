@@ -1,7 +1,7 @@
 <% content_for :page_heading do %>
   <h2>
     <%= t('.manage_articles') %>
-    <%= link_to(t('.new_article'), { controller: 'content', action: 'new' }, { id: 'dialog-link', class: 'btn btn-info pull-right' }) %>
+    <%= link_to(t('.new_article'), { controller: 'articles', action: 'new' }, { id: 'dialog-link', class: 'btn btn-info pull-right' }) %>
   </h2>
 <% end %>
 
