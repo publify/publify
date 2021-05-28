@@ -43,7 +43,7 @@ class Note < Content
     []
   end
 
-  def html_preprocess(_field, html)
+  def html_postprocess(_field, html)
     PublifyApp::Textfilter::Twitterfilter.filtertext(html)
   end
 
