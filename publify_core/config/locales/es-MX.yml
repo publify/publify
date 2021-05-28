@@ -152,14 +152,17 @@ es-MX:
     feedback:
       article:
         action_or_other_html: "%{first_action} o %{second_action}"
+        actions: Actions
         add_a_comment: Add a comment
         author: Autor
         cancel: Cancelar
         comments_for_html: Comentarios para %{title}
+        content: Content
+        created_at: Created at
         email: Email
         no_feedback: There is no feedback yet. Why don't you create some?
         save: Guardar
-        select_all: Select all
+        status: Estado
         url: Url
         your_comment: Your comment
       bulkops:
@@ -206,7 +209,6 @@ es-MX:
         no_feedback: There is no feedback yet. Why don't you create some?
         presumed_ham: Presumed ham
         presumed_spam: Presumed spam
-        select_all: Select all
         spam: Spam
         status: Estado
         unapproved_comments: Unapproved comments

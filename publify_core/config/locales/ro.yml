@@ -161,14 +161,17 @@ ro:
     feedback:
       article:
         action_or_other_html: "%{first_action} sau %{second_action}"
+        actions: Actions
         add_a_comment: Add a comment
         author: Autor
         cancel: Anulare
         comments_for_html: Comentariile la %{title}
+        content: Content
+        created_at: Created at
         email: Email
         no_feedback: There is no feedback yet. Why don't you create some?
         save: Salvează
-        select_all: Select all
+        status: Status
         url: Adresa
         your_comment: Your comment
       bulkops:
@@ -217,7 +220,6 @@ ro:
         no_feedback: There is no feedback yet. Why don't you create some?
         presumed_ham: Presumed ham
         presumed_spam: Presumed spam
-        select_all: Select all
         spam: Spam
         status: Status
         unapproved_comments: Unapproved comments

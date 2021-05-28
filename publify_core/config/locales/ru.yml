@@ -170,14 +170,17 @@ ru:
     feedback:
       article:
         action_or_other_html: "%{first_action} или %{second_action}"
+        actions: Actions
         add_a_comment: Добавить комментарий
         author: Автор
         cancel: Отменить
         comments_for_html: Комментарии к %{title}
+        content: Content
+        created_at: Created at
         email: Email
-        no_feedback: Пока нет комментариев.
+        no_feedback: Ничего нет. Почему бы не начать и не добавить?
         save: Сохранить
-        select_all: Выбрать все
+        status: Статус
         url: Url
         your_comment: Ваш комментарий
       bulkops:
@@ -228,7 +231,6 @@ ru:
         no_feedback: Ничего нет. Почему бы не начать и не добавить?
         presumed_ham: Предположительно хорошие
         presumed_spam: Предположительно спам
-        select_all: Выбрать все
         spam: Спам
         status: Статус
         unapproved_comments: Unapproved comments

@@ -152,14 +152,17 @@ nb:
     feedback:
       article:
         action_or_other_html: "%{first_action} eller %{second_action}"
+        actions: Actions
         add_a_comment: Legg til kommentar
         author: Forfatter
         cancel: Avbryt
         comments_for_html: Kommentarer for %{title}
+        content: Innhold
+        created_at: Created at
         email: Epost
         no_feedback: Det finnes ingen diskusjon enda. Hva med å opprette en?
         save: Lagre
-        select_all: Velg alle
+        status: Status
         url: URL
         your_comment: Din kommentar
       bulkops:
@@ -206,7 +209,6 @@ nb:
         no_feedback: Det finnes ingen diskusjon enda. Hva med å opprette en?
         presumed_ham: Antatt ikke-spam
         presumed_spam: Antall spam
-        select_all: Velg alle
         spam: Spam
         status: Status
         unapproved_comments: Kommentarer på vent

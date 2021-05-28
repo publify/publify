@@ -152,14 +152,17 @@ it:
     feedback:
       article:
         action_or_other_html: "%{first_action} o %{second_action}"
+        actions: Actions
         add_a_comment: Add a comment
         author: Autore
         cancel: Annulla
         comments_for_html: Commenti per %{title}
+        content: Content
+        created_at: Created at
         email: Email
         no_feedback: There is no feedback yet. Why don't you create some?
         save: Salva
-        select_all: Select all
+        status: Stato
         url: Sito
         your_comment: Your comment
       bulkops:
@@ -206,7 +209,6 @@ it:
         no_feedback: There is no feedback yet. Why don't you create some?
         presumed_ham: Presumed ham
         presumed_spam: Presumed spam
-        select_all: Select all
         spam: Spam
         status: Stato
         unapproved_comments: Unapproved comments

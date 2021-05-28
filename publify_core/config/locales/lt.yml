@@ -161,14 +161,17 @@ lt:
     feedback:
       article:
         action_or_other_html: "%{first_action} arba %{second_action}"
+        actions: Actions
         add_a_comment: Add a comment
         author: Autorius
         cancel: Baigti
         comments_for_html: Komentarai %{title}
+        content: Content
+        created_at: Created at
         email: El. pašto adresas
         no_feedback: There is no feedback yet. Why don't you create some?
         save: Saugoti
-        select_all: Select all
+        status: Statusas
         url: Url adresas
         your_comment: Your comment
       bulkops:
@@ -217,7 +220,6 @@ lt:
         no_feedback: There is no feedback yet. Why don't you create some?
         presumed_ham: Presumed ham
         presumed_spam: Presumed spam
-        select_all: Select all
         spam: Spam
         status: Statusas
         unapproved_comments: Unapproved comments
