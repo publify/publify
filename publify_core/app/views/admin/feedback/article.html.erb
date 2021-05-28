@@ -1,6 +1,6 @@
 <% content_for :page_heading do %>
   <h2 class="page-title">
-    <%= t('.comments_for_html', title: @article.title) %>
+    <%= t('.comments_for_html', title: link_to_permalink(@article, @article.title)) %>
   </h2>
 <% end %>
 
