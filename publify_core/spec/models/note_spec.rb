@@ -277,14 +277,20 @@ RSpec.describe Note, type: :model do
 
       it "replaces a http URL by a proper link" do
         note = create(:note, body: "A test tweet with a http://link.com")
-        expected = "<p>A test tweet with a <a href='http://link.com'>http://link.com</a></p>"
+        expected = "<p>A test tweet with a <a href=\"http://link.com\">http://link.com</a></p>"
         expect(note.html).to eq(expected)
       end
 
       it "replaces a https URL with a proper link" do
         note = create(:note, body: "A test tweet with a https://link.com")
-        expected = "<p>A test tweet with a <a href='https://link.com'>https://link.com</a></p>"
+        expected = "<p>A test tweet with a <a href=\"https://link.com\">https://link.com</a></p>"
         expect(note.html).to eq(expected)
+      end
+
+      it "links markdown links only once" do
+        note = create(:note, body: "A test tweet with [a markdown link](https://link.com)")
+        expect(note.html).
+          to eq "<p>A test tweet with <a href=\"https://link.com\">a markdown link</a></p>"
       end
     end
   end

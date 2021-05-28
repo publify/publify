@@ -10,10 +10,8 @@ class PublifyApp
 
       def self.filtertext(text)
         # First, autolink
-        text = text.to_s
-        URI.extract(text, %w(http https mailto gopher)) do |item|
-          text = text.gsub(item, "<a href='#{item}'>#{item}</a>")
-        end
+        helper = Feedback::ContentTextHelpers.new
+        text = helper.auto_link(text)
 
         # hashtags
         text.split.grep(/^#\w+/) do |item|
