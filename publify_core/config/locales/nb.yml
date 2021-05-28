@@ -563,6 +563,7 @@ nb:
         sidebar_plugins: Sidemarg-plugins
         tags: Tags
         titles: Titles
+        view_blog: View blog
         write: Write
       twitter_alert:
         fill_the_twitter_credentials: skrive inn oauth-token

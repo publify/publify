@@ -569,6 +569,7 @@ nl:
         sidebar_plugins: Sidebar plugins
         tags: Trefwoorden
         titles: Titles
+        view_blog: Blog bekijken
         write: Write
       twitter_alert:
         fill_the_twitter_credentials: fill in the OAuth credentials

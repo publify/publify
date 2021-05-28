@@ -581,6 +581,7 @@ ro:
         sidebar_plugins: Sidebar plugins
         tags: Tags
         titles: Titles
+        view_blog: View blog
         write: Publicare
       twitter_alert:
         fill_the_twitter_credentials: fill in the OAuth credentials
