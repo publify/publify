@@ -22,7 +22,11 @@ RSpec.describe TextFilter do
 
   describe "#help" do
     it "works for the 'none' filter" do
-      expect(described_class.none.help).to start_with "\n"
+      if TextFilterPlugin.macro_filters.any?
+        expect(described_class.none.help).to start_with "\n"
+      else
+        expect(described_class.none.help).to eq ""
+      end
     end
 
     it "works for the 'markdown' filter" do
