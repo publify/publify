@@ -581,6 +581,7 @@ fr:
         sidebar_plugins: Widgets
         tags: Tags
         titles: Titles
+        view_blog: Voir le blog
         write: Write
       twitter_alert:
         fill_the_twitter_credentials: fill in the oauth credentials
