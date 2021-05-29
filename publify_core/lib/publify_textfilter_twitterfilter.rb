@@ -2,12 +2,21 @@
 
 require "text_filter_plugin"
 require "html/pipeline"
+require "html/pipeline/hashtag/hashtag_filter"
 
 class PublifyApp
   class Textfilter
     class Twitterfilter < TextFilterPlugin::PostProcess
       plugin_display_name "HTML Filter"
       plugin_description "Strip HTML tags"
+
+      class TwitterHashtagFilter < HTML::Pipeline::HashtagFilter
+        def initialize(text)
+          super(text,
+                tag_url: "https://twitter.com/search?q=%%23%<tag>s&src=tren&mode=realtime",
+                tag_link_attr: "")
+        end
+      end
 
       class TwitterMentionFilter < HTML::Pipeline::MentionFilter
         def initialize(text)
@@ -40,16 +49,7 @@ class PublifyApp
         helper = Feedback::ContentTextHelpers.new
         text = helper.auto_link(text)
 
-        # hashtags
-        text.split.grep(/^#\w+/) do |item|
-          # strip_html because Ruby considers "#prouddad</p>" as a word
-          item = item.strip_html
-          search_item = URI.encode_www_form_component(item)
-
-          uri = "https://twitter.com/search?q=#{search_item}&src=tren&mode=realtime"
-          text = text.gsub(item, "<a href='#{uri}'>#{item}</a>")
-        end
-
+        text = TwitterHashtagFilter.new(text).call
         TwitterMentionFilter.new(text).call.to_s
       end
     end

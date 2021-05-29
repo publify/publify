@@ -298,6 +298,18 @@ RSpec.describe Note, type: :model do
         expect(note.html).
           to eq '<p>A test tweet with <a href="https://link.com">a @mention inside</a></p>'
       end
+
+      it "does not link hashtags inside markdown links" do
+        note = create(:note, body: "A test tweet with [a #markdown link](https://link.com)")
+        expect(note.html).
+          to eq '<p>A test tweet with <a href="https://link.com">a #markdown link</a></p>'
+      end
+
+      it "does not re-link URL anchors" do
+        note = create(:note, body: "A https://link.com#foo")
+        expect(note.html).
+          to eq "<p>A <a href=\"https://link.com#foo\">https://link.com#foo</a></p>"
+      end
     end
   end
 end
