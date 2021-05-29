@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
   s.add_dependency "devise-i18n", "~> 1.2"
   s.add_dependency "fog-aws", "~> 3.2"
   s.add_dependency "fog-core", "~> 2.2"
+  s.add_dependency "html-pipeline", "~> 2.14"
   s.add_dependency "jquery-rails", "~> 4.4.0"
   s.add_dependency "jquery-ui-rails", "~> 6.0.1"
   s.add_dependency "kaminari", ["~> 1.2", ">= 1.2.1"]
