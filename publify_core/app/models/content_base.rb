@@ -34,18 +34,13 @@ module ContentBase
   # object.
   def generate_html(field, text = nil)
     text ||= self[field].to_s
-    prehtml = html_preprocess(field, text).to_s
-    html = (text_filter || default_text_filter).filter_text(prehtml) || prehtml
+    html = (text_filter || default_text_filter).filter_text(text) || text
     html_postprocess(field, html).to_s
   end
 
   # Post-process the HTML.  This is a noop by default, but Comment overrides it
   # to enforce HTML sanity.
   def html_postprocess(_field, html)
-    html
-  end
-
-  def html_preprocess(_field, html)
     html
   end
 

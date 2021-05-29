@@ -19,13 +19,13 @@ RSpec.describe PublifyApp::Textfilter::Twitterfilter do
 
     it "replaces a http URL by a proper link" do
       text = described_class.filtertext("A test tweet with a http://link.com")
-      expect(text).to eq("A test tweet with a <a href='http://link.com'>http://link.com</a>")
+      expect(text).to eq("A test tweet with a <a href=\"http://link.com\">http://link.com</a>")
     end
 
     it "replaces a https URL with a proper link" do
       text = described_class.filtertext("A test tweet with a https://link.com")
       expect(text).
-        to eq("A test tweet with a <a href='https://link.com'>https://link.com</a>")
+        to eq("A test tweet with a <a href=\"https://link.com\">https://link.com</a>")
     end
 
     it "works with a hashtag and a mention" do
