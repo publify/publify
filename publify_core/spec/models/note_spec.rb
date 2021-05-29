@@ -264,14 +264,14 @@ RSpec.describe Note, type: :model do
       it "replaces a hashtag with a proper URL to Twitter search" do
         note = build(:note, body: "A test tweet with a #hashtag")
         expected =
-          "<p>A test tweet with a <a href='https://twitter.com/search?q=%23hashtag&" \
-          "src=tren&mode=realtime'>#hashtag</a></p>"
+          "<p>A test tweet with a <a href=\"https://twitter.com/search?q=%23hashtag&amp;" \
+          "src=tren&amp;mode=realtime\">#hashtag</a></p>"
         expect(note.html).to eq(expected)
       end
 
       it "replaces a @mention by a proper URL to the twitter account" do
         note = create(:note, body: "A test tweet with a @mention")
-        expected = "<p>A test tweet with a <a href='https://twitter.com/mention'>@mention</a></p>"
+        expected = "<p>A test tweet with a <a href=\"https://twitter.com/mention\">@mention</a></p>"
         expect(note.html).to eq(expected)
       end
 
@@ -291,6 +291,24 @@ RSpec.describe Note, type: :model do
         note = create(:note, body: "A test tweet with [a markdown link](https://link.com)")
         expect(note.html).
           to eq "<p>A test tweet with <a href=\"https://link.com\">a markdown link</a></p>"
+      end
+
+      it "does not link a @mention inside a markdown link" do
+        note = create(:note, body: "A test tweet with [a @mention inside](https://link.com)")
+        expect(note.html).
+          to eq '<p>A test tweet with <a href="https://link.com">a @mention inside</a></p>'
+      end
+
+      it "does not link hashtags inside markdown links" do
+        note = create(:note, body: "A test tweet with [a #markdown link](https://link.com)")
+        expect(note.html).
+          to eq '<p>A test tweet with <a href="https://link.com">a #markdown link</a></p>'
+      end
+
+      it "does not re-link URL anchors" do
+        note = create(:note, body: "A https://link.com#foo")
+        expect(note.html).
+          to eq "<p>A <a href=\"https://link.com#foo\">https://link.com#foo</a></p>"
       end
     end
   end
