@@ -29,7 +29,7 @@ class Admin::ArticlesController < Admin::BaseController
     return unless access_granted?(params[:id])
 
     @article = Article.find(params[:id])
-    @article.text_filter ||= default_text_filter
+    @article.text_filter_name ||= default_text_filter
     @article.keywords = Tag.collection_to_string @article.tags
     load_resources
     render layout: "editor"
@@ -112,7 +112,7 @@ class Admin::ArticlesController < Admin::BaseController
     @article.author = current_user
     @article.save_attachments!(params[:attachments])
     @article.state = "draft" unless @article.withdrawn?
-    @article.text_filter ||= current_user.default_text_filter
+    @article.text_filter_name ||= default_text_filter
 
     if @article.title.blank?
       lastid = Article.order("id desc").first.id
@@ -188,6 +188,6 @@ class Admin::ArticlesController < Admin::BaseController
   end
 
   def default_text_filter
-    current_user.text_filter || this_blog.text_filter
+    current_user.text_filter_name || this_blog.text_filter
   end
 end

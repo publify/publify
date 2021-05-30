@@ -1,6 +1,6 @@
 <% if @articles.empty? %>
   <tr>
-    <td colspan="6">
+    <td colspan="7">
       <%= t('.no_articles') %>
     </td>
   </tr>
@@ -38,4 +38,4 @@
     </td>
   </tr>
 <% end %>
-<%= display_pagination(@articles, 5, 'first', 'last') %>
+<%= display_pagination(@articles, 7, 'first', 'last') %>
