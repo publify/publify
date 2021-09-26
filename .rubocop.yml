@@ -21,7 +21,7 @@ AllCops:
   - 'db/schema.rb'
   - 'vendor/bundle/**/*'
   NewCops: enable
-  TargetRubyVersion: 2.5
+  TargetRubyVersion: 2.6
 
 Rails:
   Enabled: true

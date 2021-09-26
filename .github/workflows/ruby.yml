@@ -22,7 +22,7 @@ jobs:
 
     strategy:
       matrix:
-        ruby: [2.5, 2.6, 2.7]
+        ruby: [2.6, 2.7, "3.0"]
 
     services:
       postgres:
@@ -52,7 +52,7 @@ jobs:
 
     strategy:
       matrix:
-        ruby: [2.5, 2.6, 2.7]
+        ruby: [2.6, 2.7, "3.0"]
 
     services:
       mysql:
@@ -82,7 +82,7 @@ jobs:
 
     strategy:
       matrix:
-        ruby: [2.5, 2.6, 2.7]
+        ruby: [2.6, 2.7, "3.0"]
 
     steps:
     - uses: actions/checkout@v2
