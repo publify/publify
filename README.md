@@ -58,7 +58,7 @@ be broken there at any time, so tread carefully!
 
 To install Publify you need the following:
 
-- CRuby (MRI) 2.4, 2.5, 2.6 or 2.7
+- CRuby (MRI) 2.5, 2.6 or 2.7
 - Ruby on Rails 5.2.x
 - A database engine, MySQL, PgSQL or SQLite3
 - A compatible JavaScript installation for asset compilation. See
@@ -108,7 +108,7 @@ Next, you need to update `Gemfile`. You should remove the `mysql2` and
 ```ruby
 source 'https://rubygems.org'
 
-ruby '2.4.3' # Or whichever version you're running
+ruby '2.7.4' # Or whichever version you're running
 gem 'pg'
 gem 'rails_12factor'
 
