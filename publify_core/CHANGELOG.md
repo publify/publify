@@ -9,6 +9,11 @@
 * Remove support for Textile as a text format
 * Replace BlueCloth with CommonMarker for Markdown processing
 
+## 9.2.4 / 2021-10-02
+
+* Explicitly require at least version 1.12.5 of nokogiri to avoid a security issue
+* Drop support for Ruby 2.4 since it is incompatible with nokogiri 1.12.5
+
 ## 9.2.3 / 2021-05-22
 
 * Bump Rails dependency to 5.2.6

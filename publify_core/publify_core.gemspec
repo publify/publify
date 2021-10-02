@@ -35,6 +35,8 @@ Gem::Specification.new do |s|
   s.add_dependency "kaminari", ["~> 1.2", ">= 1.2.1"]
   s.add_dependency "marcel", "~> 1.0.0"
   s.add_dependency "mini_magick", ["~> 4.9", ">= 4.9.4"]
+  # Force minimum nokogiri version to avoid security issues
+  s.add_dependency "nokogiri", ">= 1.12.5"
   s.add_dependency "rack", ">= 2.2.3"
   s.add_dependency "rails", "~> 6.0.0"
   s.add_dependency "rails_autolink", "~> 1.1.0"
