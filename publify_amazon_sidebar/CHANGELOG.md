@@ -1,5 +1,9 @@
 # Changelog
 
+## 9.2.4 / 2021-10-02
+
+* Drop support for Ruby 2.4 since it is incompatible with nokogiri 1.12.5
+
 ## 9.2.3 / 2021-05-22
 
 * Depend on `publify_core` gem to set Rails dependency
