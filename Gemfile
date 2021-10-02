@@ -28,9 +28,6 @@ gem "non-digest-assets", "~> 1.0"
 gem "rake", "~> 13.0"
 gem "reverse_markdown", "~> 2.0"
 
-# Force minimum nokogiri version to avoid security issues
-gem "nokogiri", ">= 1.12.5"
-
 # Force older sprockets
 gem "sprockets", "~> 3.0"
 
