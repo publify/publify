@@ -82,16 +82,14 @@ class SpamProtection
   def query_rbls(rbls, *subdomains)
     rbls.each do |rbl|
       subdomains.uniq.each do |d|
-        begin
-          response = IPSocket.getaddress([d, rbl].join("."))
-          if response.start_with?("127.0.0.")
-            throw :hit,
-                  "#{rbl} positively resolved subdomain #{d} => #{response}"
-          end
-        rescue SocketError
-          # NXDOMAIN response => negative:  d is not in RBL
-          next
+        response = IPSocket.getaddress([d, rbl].join("."))
+        if response.start_with?("127.0.0.")
+          throw :hit,
+                "#{rbl} positively resolved subdomain #{d} => #{response}"
         end
+      rescue SocketError
+        # NXDOMAIN response => negative:  d is not in RBL
+        next
       end
     end
     false

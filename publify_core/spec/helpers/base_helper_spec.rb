@@ -121,29 +121,25 @@ describe BaseHelper, type: :helper do
     end
 
     it "returns a link with the creation date and time" do
-      begin
-        timezone = Time.zone
-        Time.zone = "UTC"
+      timezone = Time.zone
+      Time.zone = "UTC"
 
-        expect(get_reply_context_twitter_link(reply)).
-          to eq '<a href="https://twitter.com/a_screen_name/status/123456789">' \
-          "23/01/2014 at 13h47</a>"
-      ensure
-        Time.zone = timezone
-      end
+      expect(get_reply_context_twitter_link(reply)).
+        to eq '<a href="https://twitter.com/a_screen_name/status/123456789">' \
+        "23/01/2014 at 13h47</a>"
+    ensure
+      Time.zone = timezone
     end
 
     it "displays creation date and time in the current time zone" do
-      begin
-        timezone = Time.zone
-        Time.zone = "Tokyo"
+      timezone = Time.zone
+      Time.zone = "Tokyo"
 
-        expect(get_reply_context_twitter_link(reply)).
-          to eq '<a href="https://twitter.com/a_screen_name/status/123456789">' \
-          "23/01/2014 at 22h47</a>"
-      ensure
-        Time.zone = timezone
-      end
+      expect(get_reply_context_twitter_link(reply)).
+        to eq '<a href="https://twitter.com/a_screen_name/status/123456789">' \
+        "23/01/2014 at 22h47</a>"
+    ensure
+      Time.zone = timezone
     end
   end
 
