@@ -11,16 +11,21 @@ class PublifyApp
       plugin_description "Strip HTML tags"
 
       class TwitterHashtagFilter < HTML::Pipeline::HashtagFilter
-        def initialize(text)
+        def initialize(text, context = nil, result = nil)
           super(text,
-                tag_url: "https://twitter.com/search?q=%%23%<tag>s&src=tren&mode=realtime",
-                tag_link_attr: "")
+                context.reverse_merge(
+                  tag_url: "https://twitter.com/search?q=%%23%<tag>s&src=tren&mode=realtime",
+                  tag_link_attr: ""
+                ),
+                result)
         end
       end
 
       class TwitterMentionFilter < HTML::Pipeline::MentionFilter
-        def initialize(text)
-          super(text, base_url: "https://twitter.com")
+        def initialize(text, context = nil, result = nil)
+          super(text,
+                context.reverse_merge(base_url: "https://twitter.com"),
+                result)
         end
 
         # Override base mentions finder, treating @mention just like any other @foo.
@@ -45,12 +50,13 @@ class PublifyApp
       end
 
       def self.filtertext(text)
-        # First, autolink
-        helper = Feedback::ContentTextHelpers.new
-        text = helper.auto_link(text)
+        pipeline = HTML::Pipeline.new [
+          HTML::Pipeline::AutolinkFilter,
+          TwitterHashtagFilter,
+          TwitterMentionFilter
+        ], { link_mode: :all }
 
-        text = TwitterHashtagFilter.new(text).call
-        TwitterMentionFilter.new(text).call.to_s
+        pipeline.call(text)[:output].to_s
       end
     end
   end
