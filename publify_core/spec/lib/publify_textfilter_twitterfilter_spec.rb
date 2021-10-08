@@ -28,6 +28,11 @@ RSpec.describe PublifyApp::Textfilter::Twitterfilter do
         to eq("A test tweet with a <a href=\"https://link.com\">https://link.com</a>")
     end
 
+    it "replaces an email address with a proper link" do
+      text = described_class.filtertext("Mail me at foo@bar.com")
+      expect(text).to eq("Mail me at <a href=\"mailto:foo@bar.com\">foo@bar.com</a>")
+    end
+
     it "works with a hashtag and a mention" do
       text = described_class.filtertext("A test tweet with a #hashtag and a @mention")
       expect(text).

@@ -39,9 +39,10 @@ Gem::Specification.new do |s|
   s.add_dependency "nokogiri", ">= 1.12.5"
   s.add_dependency "rack", ">= 2.2.3"
   s.add_dependency "rails", "~> 6.0.0"
-  s.add_dependency "rails_autolink", "~> 1.1.0"
   s.add_dependency "rails-i18n", "~> 6.0.0"
   s.add_dependency "rails-timeago", "~> 2.0"
+  s.add_dependency "rinku", "~> 2.0"
+  s.add_dependency "sanitize", "~> 6.0"
   s.add_dependency "recaptcha", ["~> 5.0"]
   s.add_dependency "rubypants", "~> 0.7.0"
   s.add_dependency "sassc-rails", "~> 2.0"

@@ -258,9 +258,15 @@ RSpec.describe Comment, type: :model do
   end
 
   describe "#generate_html" do
-    it "renders email addresses in the body" do
+    it "autolinks email addresses in the body" do
       comment = build_stubbed(:comment, body: "foo@example.com")
       expect(comment.generate_html(:body)).to match(/mailto:/)
+    end
+
+    it "autolinks https urls in the body" do
+      comment = build_stubbed(:comment, body: "https://foo.example.com/")
+      expect(comment.generate_html(:body))
+        .to eq "<p><a href=\"https://foo.example.com/\">https://foo.example.com/</a></p>"
     end
   end
 end

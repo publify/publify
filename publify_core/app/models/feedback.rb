@@ -90,8 +90,12 @@ class Feedback < ApplicationRecord
   end
 
   def html_postprocess(_field, html)
-    helper = ContentTextHelpers.new
-    helper.sanitize(helper.auto_link(html))
+    pipeline = HTML::Pipeline.new [
+      HTML::Pipeline::AutolinkFilter,
+      HTML::Pipeline::SanitizationFilter
+    ], { link_mode: :all }
+
+    pipeline.call(html)[:output].to_s
   end
 
   def correct_url
