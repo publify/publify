@@ -1,3 +1,3 @@
 # frozen_string_literal: true
 
-NonDigestAssets.whitelist = [/\.(?:svg|eot|woff|ttf)$/]
+NonDigestAssets.asset_selectors = [/\.(?:svg|eot|woff|ttf)$/]
