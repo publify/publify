@@ -89,4 +89,11 @@ describe Page, type: :model do
       it { expect(page.redirect).to be_blank }
     end
   end
+
+  describe "#html" do
+    it "returns an html_safe string" do
+      page = build(:page)
+      expect(page.html).to be_html_safe
+    end
+  end
 end

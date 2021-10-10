@@ -144,19 +144,4 @@ describe Content, type: :model do
       it { expect(content.author_name).to eq(author.login) }
     end
   end
-
-  describe "#generate_html" do
-    context "with a blog with markdown filter" do
-      let!(:blog) { create(:blog, comment_text_filter: "markdown") }
-
-      context "comment with italic and bold" do
-        let(:comment) { build(:comment, body: "Comment body _italic_ **bold**") }
-
-        it "converts the comment markup to HTML" do
-          expect(comment.generate_html(:body)).to match(%r{<em>italic</em>})
-          expect(comment.generate_html(:body)).to match(%r{<strong>bold</strong>})
-        end
-      end
-    end
-  end
 end

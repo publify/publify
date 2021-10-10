@@ -257,10 +257,45 @@ describe Comment, type: :model do
     end
   end
 
-  describe "#generate_html" do
+  describe "#html" do
     it "renders email addresses in the body" do
       comment = build_stubbed(:comment, body: "foo@example.com")
-      expect(comment.generate_html(:body)).to match(/mailto:/)
+      expect(comment.html).to match(/mailto:/)
+    end
+
+    it "returns an html_safe string" do
+      comment = build_stubbed(:comment, body: "Just a comment")
+      expect(comment.html).to be_html_safe
+    end
+
+    context "with an evil comment" do
+      let(:comment) { build_stubbed :comment, body: "Test foo <script>do_evil();</script>" }
+      let(:blog) { comment.article.blog }
+
+      ["", "textile", "markdown", "smartypants", "markdown smartypants"].each do |filter|
+        it "rejects xss attempt with filter '#{filter}'" do
+          blog.comment_text_filter = filter
+
+          ActiveSupport::Deprecation.silence do
+            assert comment.html(:body) !~ /<script>/
+          end
+        end
+      end
+    end
+
+    context "with a markdown comment with italic and bold" do
+      let(:comment) { build(:comment, body: "Comment body _italic_ **bold**") }
+      let(:blog) { comment.article.blog }
+
+      it "converts the comment markup to html" do
+        blog.comment_text_filter = "markdown"
+        result = comment.html
+
+        aggregate_failures do
+          expect(result).to match(%r{<em>italic</em>})
+          expect(result).to match(%r{<strong>bold</strong>})
+        end
+      end
     end
   end
 end

@@ -160,6 +160,8 @@ describe BaseHelper, type: :helper do
   end
 
   describe "#nofollowify_links" do
+    let(:original_html) { '<a href="http://myblog.net">my blog</a>'.html_safe }
+
     before do
       @blog = create :blog
     end
@@ -168,16 +170,28 @@ describe BaseHelper, type: :helper do
       @blog.dofollowify = false
       @blog.save
 
-      expect(nofollowify_links('<a href="http://myblog.net">my blog</a>')).
-        to eq('<a href="http://myblog.net" rel="nofollow">my blog</a>')
+      result = nofollowify_links(original_html)
+
+      aggregate_failures do
+        expect(result).to eq('<a href="http://myblog.net" rel="nofollow">my blog</a>')
+        expect(result).to be_html_safe
+      end
     end
 
-    it "with dofollowify enabled, links should be nofollowed" do
+    it "with dofollowify enabled, links should be not nofollowed" do
       @blog.dofollowify = true
       @blog.save
 
-      expect(nofollowify_links('<a href="http://myblog.net">my blog</a>')).
-        to eq('<a href="http://myblog.net">my blog</a>')
+      result = nofollowify_links(original_html)
+
+      aggregate_failures do
+        expect(result).to eq('<a href="http://myblog.net">my blog</a>')
+        expect(result).to be_html_safe
+      end
+    end
+
+    it "does not accept unsafe html" do
+      expect { nofollowify_links("just an unsafe string") }.to raise_error ArgumentError
     end
   end
 
