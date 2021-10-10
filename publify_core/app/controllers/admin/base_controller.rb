@@ -10,6 +10,7 @@ class Admin::BaseController < BaseController
   layout "administration"
 
   before_action :login_required, except: [:login, :signup]
+  before_action :no_caching
 
   private
 
@@ -23,5 +24,10 @@ class Admin::BaseController < BaseController
     flash[:notice] = I18n.t("admin.base.successfully_deleted",
                             name: controller_name.humanize)
     redirect_to action: "index"
+  end
+
+  def no_caching
+    response.cache_control[:extras] =
+      ["no-cache", "max-age=0", "must-revalidate", "no-store"]
   end
 end
