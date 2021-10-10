@@ -16,10 +16,10 @@
       </div>
     <% else %>
       <div>
-        <h3><%= link_to(theme.name, switch_url, title: t('.use_this_theme')) %></h3>
-        <%= link_to(image_tag(preview_url, class: 'img-thumbnail'), switch_url, title: t('.use_this_theme')) %>
+        <h3><%= theme.name %></h3>
+        <%= image_tag(preview_url, class: 'img-thumbnail') %>
         <%= raw theme.description_html %>
-        <p><%= link_to(t('.use_this_theme'), switch_url, class: 'btn btn-info') %></p>
+        <p><%= button_to(t('.use_this_theme'), switch_url, class: 'btn btn-info') %></p>
       </div>
     <% end %>
   </div>
