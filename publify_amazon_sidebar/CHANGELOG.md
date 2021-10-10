@@ -1,5 +1,9 @@
 # Changelog
 
+## 9.2.5 / 2021-10-11
+
+* No changes
+
 ## 9.2.4 / 2021-10-02
 
 * Drop support for Ruby 2.4 since it is incompatible with nokogiri 1.12.5
