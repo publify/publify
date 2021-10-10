@@ -59,11 +59,7 @@
     <td>
       <%= resource.mime %>
     </td>
-    <td><%= begin
-              h resource.size
-            rescue StandardError
-              0
-            end %> bytes</td>
+    <td><%= resource.upload.size %> bytes</td>
     <td><%= l(resource.created_at, format: :short) %></td>
   </tr>
   <% end %>
