@@ -142,6 +142,7 @@ app/controllers/tags_controller.rb
 app/controllers/text_controller.rb
 app/controllers/textfilter_controller.rb
 app/controllers/theme_controller.rb
+app/controllers/users/registrations_controller.rb
 app/controllers/xml_controller.rb
 app/helpers/admin/base_helper.rb
 app/helpers/admin/feedback_helper.rb
