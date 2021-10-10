@@ -144,7 +144,7 @@ Rails.application.routes.draw do
     resources :themes, only: [:index], format: false do
       collection do
         get "preview"
-        get "switchto"
+        post "switchto"
       end
     end
 

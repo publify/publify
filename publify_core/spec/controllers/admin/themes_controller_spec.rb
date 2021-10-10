@@ -23,7 +23,7 @@ describe Admin::ThemesController, type: :controller do
   end
 
   it "redirects to :index after the :switchto action" do
-    get :switchto, params: { theme: "typographic" }
+    post :switchto, params: { theme: "typographic" }
     assert_response :redirect, action: "index"
   end
 
