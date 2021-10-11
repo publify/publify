@@ -6,6 +6,10 @@ class ResourceUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   before :cache, :check_image_content_type!
 
+  def content_type_allowlist
+    [%r{image/}, %r{audio/}, %r{video/}, "text/plain"]
+  end
+
   def store_dir
     "files/#{model.class.to_s.underscore}/#{model.id}"
   end

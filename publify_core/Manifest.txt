@@ -417,6 +417,7 @@ lib/publify_core/testing_support/factories.rb
 lib/publify_core/testing_support/feed_assertions.rb
 lib/publify_core/testing_support/fixtures/exploit.svg
 lib/publify_core/testing_support/fixtures/fakepng.png
+lib/publify_core/testing_support/fixtures/just_some.html
 lib/publify_core/testing_support/fixtures/otherfile.txt
 lib/publify_core/testing_support/fixtures/testfile.png
 lib/publify_core/testing_support/fixtures/testfile.txt
