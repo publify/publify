@@ -36,7 +36,7 @@ Metrics/MethodLength:
 
 # Configuration parameters: CountComments, CountAsOne.
 Metrics/ModuleLength:
-  Max: 205
+  Max: 209
 
 # Configuration parameters: CountKeywordArgs, MaxOptionalParameters.
 Metrics/ParameterLists:
@@ -101,7 +101,6 @@ RSpec/ContextWording:
     - 'spec/helpers/base_helper_spec.rb'
     - 'spec/models/article_spec.rb'
     - 'spec/models/blog_spec.rb'
-    - 'spec/models/content_spec.rb'
     - 'spec/models/feedback_spec.rb'
     - 'spec/models/note_spec.rb'
     - 'spec/models/user_spec.rb'

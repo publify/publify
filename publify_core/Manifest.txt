@@ -142,6 +142,7 @@ app/controllers/tags_controller.rb
 app/controllers/text_controller.rb
 app/controllers/textfilter_controller.rb
 app/controllers/theme_controller.rb
+app/controllers/users/registrations_controller.rb
 app/controllers/xml_controller.rb
 app/helpers/admin/base_helper.rb
 app/helpers/admin/feedback_helper.rb
@@ -429,6 +430,7 @@ lib/publify_core/testing_support/factories/users.rb
 lib/publify_core/testing_support/feed_assertions.rb
 lib/publify_core/testing_support/fixtures/exploit.svg
 lib/publify_core/testing_support/fixtures/fakepng.png
+lib/publify_core/testing_support/fixtures/just_some.html
 lib/publify_core/testing_support/fixtures/otherfile.txt
 lib/publify_core/testing_support/fixtures/testfile.png
 lib/publify_core/testing_support/fixtures/testfile.txt

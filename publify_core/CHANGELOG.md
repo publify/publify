@@ -9,6 +9,22 @@
 * Remove support for Textile as a text format
 * Replace BlueCloth with CommonMarker for Markdown processing
 
+## 9.2.5 / 2021-10-11
+
+This release fixes several security issues:
+
+* Block ability to switch themes using a GET request; use a POST instead
+* Disallow user self-registration rather than hiding it
+* Let the browser not cache admin pages
+* Limit the set of allowed mime types for uploaded media
+* Limit allowed HTML in articles, pages and notes
+
+Additionally, it includes the following changes:
+
+* Fix resource size display in admin resource list
+* Trigger download of media in the Media Library in admin instead of displaying
+  them directly
+
 ## 9.2.4 / 2021-10-02
 
 * Explicitly require at least version 1.12.5 of nokogiri to avoid a security issue

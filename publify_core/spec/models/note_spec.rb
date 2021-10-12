@@ -255,6 +255,13 @@ RSpec.describe Note, type: :model do
         it { expect(note.twitter_message.length).to eq(140) }
       end
     end
+
+    describe "#html" do
+      it "returns an html_safe string" do
+        note = build(:note, body: "A test tweet with a #hashtag")
+        expect(note.html).to be_html_safe
+      end
+    end
   end
 
   context "with a dofollowify blog" do

@@ -4,9 +4,6 @@ require "rails_helper"
 
 RSpec.feature "Signing up", type: :feature do
   before do
-    stub_request(:get,
-                 "http://www.google.com/search?output=rss&q=link:www.example.com&tbm=blg").
-      to_return(status: 200, body: "", headers: {})
     load Rails.root.join("db/seeds.rb")
     Blog.first.update(blog_name: "Awesome!",
                       base_url: "http://www.example.com/",
@@ -40,6 +37,18 @@ RSpec.feature "Signing up", type: :feature do
     expect(page).to have_text I18n.t!("devise.sessions.signed_in")
 
     # Confirm proper setting fo user properties
-    expect(User.last.email).to eq "hello@hello.com"
+    u = User.last
+    expect(u.email).to eq "hello@hello.com"
+    expect(u.profile).to eq "contributor"
+  end
+
+  scenario "Disallow account sign-up link with a blog setting" do
+    Blog.first.update(allow_signup: 0)
+    visit admin_dashboard_path
+    expect(page).not_to have_link I18n.t("accounts.create_account")
+
+    visit new_user_registration_path
+
+    expect(page.status_code).to eq 404
   end
 end

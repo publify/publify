@@ -11,12 +11,6 @@ class Feedback < ApplicationRecord
   include PublifyGuid
   include ContentBase
 
-  class ContentTextHelpers
-    include ActionView::Helpers::UrlHelper
-    include ActionView::Helpers::TextHelper
-    include ActionView::Helpers::SanitizeHelper
-  end
-
   validate :feedback_not_closed, on: :create
   validates :article, presence: true
 

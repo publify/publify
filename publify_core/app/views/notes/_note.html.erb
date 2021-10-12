@@ -1,7 +1,7 @@
 <% cache [note, note.user] do %>
   <article class='status'>
     <%= author_picture note %>
-    <div class='p-name entry-title e-content entry-content article'><%= raw note.html(:body) %></div>
+    <div class='p-name entry-title e-content entry-content article'><%= note.html(:body) %></div>
     <footer>
       <small>
         <%= link_to_permalink(note, display_date_and_time(note.published_at)) %> |

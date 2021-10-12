@@ -240,10 +240,15 @@ module BaseHelper
   end
 
   def nofollowify_links(string)
+    raise ArgumentError, "string", "must be html_safe" unless string.html_safe?
+
     if this_blog.dofollowify
       string
     else
-      string.gsub(/<a(.*?)>/i, '<a\1 rel="nofollow">')
+      followify_scrubber = Loofah::Scrubber.new do |node|
+        node.set_attribute "rel", "nofollow" if node.name == "a"
+      end
+      sanitize h(string), scrubber: followify_scrubber
     end
   end
 

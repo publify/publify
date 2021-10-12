@@ -6,7 +6,7 @@
     <%= t('.said') %> <%= display_date_and_time comment.created_at %>:
     </p>
     <div class="content">
-      <%= raw nofollowify_links comment.generate_html(:body) %>
+      <%= nofollowify_links comment.generate_html(:body) %>
       <% unless comment.published? %>
         <div class="spamwarning">
           <%= t('.this_comment_has_been_flagged_for_moderator_approval') %>
