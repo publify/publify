@@ -35,4 +35,19 @@ FactoryBot.define do
       article.tags << create(:tag)
     end
   end
+
+  factory :utf8article, parent: :article do
+    title { "ルビー" }
+    permalink { "ルビー" }
+  end
+
+  factory :second_article, parent: :article do
+    title { "Another big article" }
+  end
+
+  factory :article_with_accent_in_html, parent: :article do
+    title { "article with accent" }
+    body { "&eacute;coute The future is cool!" }
+    permalink { "article-with-accent" }
+  end
 end

@@ -4,21 +4,6 @@ require "publify_core/testing_support/upload_fixtures"
 
 # Factory definitions
 FactoryBot.define do
-  factory :utf8article, parent: :article do
-    title { "ルビー" }
-    permalink { "ルビー" }
-  end
-
-  factory :second_article, parent: :article do
-    title { "Another big article" }
-  end
-
-  factory :article_with_accent_in_html, parent: :article do
-    title { "article with accent" }
-    body { "&eacute;coute The future is cool!" }
-    permalink { "article-with-accent" }
-  end
-
   factory :blog do
     base_url { "http://test.host/blog" }
     hide_extended_on_rss { true }
