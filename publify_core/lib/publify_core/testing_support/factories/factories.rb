@@ -4,16 +4,6 @@ require "publify_core/testing_support/upload_fixtures"
 
 # Factory definitions
 FactoryBot.define do
-  factory :page do
-    name { FactoryBot.generate(:name) }
-    title { "Page One Title" }
-    body { FactoryBot.generate(:body) }
-    published_at { Time.zone.now }
-    user
-    blog { Blog.first || create(:blog) }
-    state { "published" }
-  end
-
   factory :note do
     body { "this is a note" }
     published_at { Time.zone.now }
