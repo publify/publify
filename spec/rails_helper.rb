@@ -12,7 +12,6 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require "rspec/rails"
 # Add additional requires below this line. Rails is not loaded until this point!
 require "factory_bot"
-require "publify_core/testing_support/factories"
 require "publify_core/testing_support/feed_assertions"
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -88,6 +87,13 @@ RSpec.configure do |config|
     if response.media_type == "text/html" && response.body =~ /(&lt;[a-z]+)/
       raise "Double escaped HTML in text (#{Regexp.last_match(1)})"
     end
+  end
+
+  FactoryBot.
+    definition_file_paths << "publify_core/lib/publify_core/testing_support/factories"
+  config.include FactoryBot::Syntax::Methods
+  config.before(:suite) do
+    FactoryBot.find_definitions
   end
 end
 

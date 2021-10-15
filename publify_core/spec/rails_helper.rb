@@ -11,7 +11,6 @@ require "rails-controller-testing"
 require "rspec/rails"
 # Add additional requires below this line. Rails is not loaded until this point!
 require "factory_bot"
-require "publify_core/testing_support/factories"
 require "publify_core/testing_support/feed_assertions"
 require "publify_core/testing_support/upload_fixtures"
 require "capybara/rspec"
@@ -74,6 +73,7 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 
   # shortcuts for factory_bot to use: create / build / build_stubbed
+  FactoryBot.definition_file_paths << "lib/publify_core/testing_support/factories"
   config.include FactoryBot::Syntax::Methods
   config.before(:suite) do
     FactoryBot.find_definitions
