@@ -4,10 +4,6 @@ require "publify_core/testing_support/upload_fixtures"
 
 # Factory definitions
 FactoryBot.define do
-  factory :unpublished_note, parent: :note do
-    state { "draft" }
-  end
-
   factory :trackback do
     state { "ham" }
     article

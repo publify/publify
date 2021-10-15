@@ -8,4 +8,8 @@ FactoryBot.define do
     guid
     blog { Blog.first || create(:blog) }
   end
+
+  factory :unpublished_note, parent: :note do
+    state { "draft" }
+  end
 end
