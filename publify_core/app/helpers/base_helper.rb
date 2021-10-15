@@ -248,7 +248,7 @@ module BaseHelper
       followify_scrubber = Loofah::Scrubber.new do |node|
         node.set_attribute "rel", "nofollow" if node.name == "a"
       end
-      sanitize h(string), scrubber: followify_scrubber
+      sanitize string, scrubber: followify_scrubber
     end
   end
 
