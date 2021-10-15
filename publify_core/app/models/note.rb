@@ -43,8 +43,8 @@ class Note < Content
     []
   end
 
-  def html_postprocess(_field, html)
-    PublifyApp::Textfilter::Twitterfilter.filtertext(html)
+  def html_postprocess(field, html)
+    super(field, PublifyApp::Textfilter::Twitterfilter.filtertext(html))
   end
 
   def truncate(message, length)

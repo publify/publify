@@ -82,6 +82,7 @@ RSpec.configure do |config|
   # Test helpers needed for Devise
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::IntegrationHelpers, type: :feature
+  config.include Devise::Test::IntegrationHelpers, type: :request
 
   # Test helpers to check feed contents
   config.include PublifyCore::TestingSupport::FeedAssertions, type: :view

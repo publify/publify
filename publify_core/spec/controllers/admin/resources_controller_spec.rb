@@ -160,6 +160,33 @@ RSpec.describe Admin::ResourcesController, type: :controller do
       end
     end
 
+    context "when attempting to upload an html file" do
+      let(:upload) { file_upload("just_some.html", "text/html") }
+
+      it "does not create a new Resource" do
+        expect { post :upload, params: { upload: upload } }.
+          not_to change(Resource, :count)
+      end
+
+      it "warns the user they can't upload this type of file" do
+        post :upload, params: { upload: upload }
+        result = assigns(:up)
+        expect(result.errors[:upload]).
+          to match_array [
+            %r{You are not allowed to upload text/html files},
+            "can't be blank",
+          ]
+      end
+
+      it "sets the flash to failure" do
+        post :upload, params: { upload: upload }
+        aggregate_failures do
+          expect(flash[:success]).to be_nil
+          expect(flash[:warning]).not_to be_nil
+        end
+      end
+    end
+
     context "when uploading nothing" do
       it "does not create a new Resource" do
         expect { post :upload }.

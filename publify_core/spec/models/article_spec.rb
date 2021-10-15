@@ -398,6 +398,14 @@ RSpec.describe Article, type: :model do
     end
   end
 
+  describe "#html" do
+    let(:article) { build_stubbed :article }
+
+    it "returns an html_safe string" do
+      expect(article.html).to be_html_safe
+    end
+  end
+
   describe "#comment_url" do
     it "renders complete url of comment" do
       article = build_stubbed(:article, id: 123)
