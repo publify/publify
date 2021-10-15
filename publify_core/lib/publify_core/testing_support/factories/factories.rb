@@ -4,11 +4,6 @@ require "publify_core/testing_support/upload_fixtures"
 
 # Factory definitions
 FactoryBot.define do
-  factory :post_type do
-    name { "foobar" }
-    description { "Some description" }
-  end
-
   factory :utf8article, parent: :article do
     title { "ルビー" }
     permalink { "ルビー" }
