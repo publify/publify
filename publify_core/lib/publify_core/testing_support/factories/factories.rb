@@ -4,12 +4,6 @@ require "publify_core/testing_support/upload_fixtures"
 
 # Factory definitions
 FactoryBot.define do
-  factory :redirect do
-    from_path { "foo/bar" }
-    to_path { "/someplace/else" }
-    blog { Blog.first || create(:blog) }
-  end
-
   factory :comment do
     article
     author { "Bob Foo" }
