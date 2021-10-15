@@ -4,10 +4,6 @@ require "publify_core/testing_support/upload_fixtures"
 
 # Factory definitions
 FactoryBot.define do
-  factory :content do
-    blog { Blog.first || create(:blog) }
-  end
-
   factory :post_type do
     name { "foobar" }
     description { "Some description" }
