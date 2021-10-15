@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :resource do
     upload { PublifyCore::TestingSupport::UploadFixtures.file_upload }

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   sequence(:name) { |n| "name_#{n}" }
   sequence(:body) { |n| "body #{n}" * (n + 3 % 5) }

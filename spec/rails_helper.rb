@@ -89,7 +89,8 @@ RSpec.configure do |config|
     end
   end
 
-  FactoryBot.definition_file_paths << "publify_core/lib/publify_core/testing_support/factories"
+  FactoryBot.
+    definition_file_paths << "publify_core/lib/publify_core/testing_support/factories"
   config.include FactoryBot::Syntax::Methods
   config.before(:suite) do
     FactoryBot.find_definitions

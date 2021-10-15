@@ -63,7 +63,7 @@ Metrics/BlockLength:
   Exclude:
     - 'publify_core.gemspec'
     - 'config/routes.rb'
-    - 'lib/publify_core/testing_support/factories.rb'
+    - 'lib/publify_core/testing_support/factories/*'
     - 'spec/**/*'
 
 # Initial schema has a very large change method
