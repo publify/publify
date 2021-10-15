@@ -4,18 +4,6 @@ require "publify_core/testing_support/upload_fixtures"
 
 # Factory definitions
 FactoryBot.define do
-  factory :unpublished_article, parent: :article do
-    published_at { nil }
-    state { :draft }
-  end
-
-  factory :full_article, parent: :article do
-    after :create do |article|
-      article.resources << create(:resource)
-      article.tags << create(:tag)
-    end
-  end
-
   factory :content do
     blog { Blog.first || create(:blog) }
   end

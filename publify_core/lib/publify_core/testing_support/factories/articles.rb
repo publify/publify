@@ -23,4 +23,16 @@ FactoryBot.define do
       keywords { "a tag" }
     end
   end
+
+  factory :unpublished_article, parent: :article do
+    published_at { nil }
+    state { :draft }
+  end
+
+  factory :full_article, parent: :article do
+    after :create do |article|
+      article.resources << create(:resource)
+      article.tags << create(:tag)
+    end
+  end
 end
