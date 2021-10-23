@@ -334,9 +334,13 @@ nl:
         content_type: Content Type
         date: Datum
         delete: Verwijderen
+        explain_media_library_html: Upload hier plaatjes, video en audio om te gebruiken
+          in blog posts en pagina's. Let op dat <strong>alle geüploade bestanden openbaar
+          toegankelijk zijn, zelfs als ze niet gebruikt worden in een blog post of
+          pagina.</strong>.
         file_size: Bestandsgrootte
         filename: Bestandsnaam
-        media_library: Media Library
+        media_library: Mediabibliotheek
         medium_size: Medium size
         no_resources: Er zijn nog geen media. Waarom begin je er niet een te maken?
         original_size: Original size
@@ -556,7 +560,7 @@ nl:
         logged_in_as: Logged in as %{login}
         logout_html: Log out &raquo;
         manage_users: Manage Users
-        media_library: Media Library
+        media_library: Mediabibliotheek
         new: Nieuw
         new_article: Nieuw artikel
         new_media: New Media

@@ -2,6 +2,9 @@
   <h2>
     <%= t('.media_library') %>
   </h2>
+  <p>
+    <%= t('.explain_media_library_html') %>
+  </p>
 <% end %>
 
 <%= form_tag({ action: 'upload' }, { enctype: 'multipart/form-data', class: 'form-inline' }) do %>
