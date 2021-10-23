@@ -333,6 +333,9 @@ he:
         content_type: סוג התוכן
         date: תאריך
         delete: מחק
+        explain_media_library_html: Upload images, video and audio here for use in
+          your blog posts and pages. Please note that <strong>all uploaded files will
+          be publicly accessible even if they're not used in blog posts or pages</strong>.
         file_size: גודל הקובץ
         filename: שם הקובץ
         media_library: Media Library

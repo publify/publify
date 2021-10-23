@@ -330,6 +330,9 @@ zh-CN:
         content_type: 內容類型
         date: 日期
         delete: 删除
+        explain_media_library_html: Upload images, video and audio here for use in
+          your blog posts and pages. Please note that <strong>all uploaded files will
+          be publicly accessible even if they're not used in blog posts or pages</strong>.
         file_size: 檔案大小
         filename: 檔案名稱
         media_library: Media Library

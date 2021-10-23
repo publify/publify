@@ -334,6 +334,9 @@ es-MX:
         content_type: Content Type
         date: Date
         delete: Eliminar
+        explain_media_library_html: Upload images, video and audio here for use in
+          your blog posts and pages. Please note that <strong>all uploaded files will
+          be publicly accessible even if they're not used in blog posts or pages</strong>.
         file_size: Tama&ntilde;o del Archivo
         filename: Nombre del archivo
         media_library: Media Library
