@@ -13,6 +13,8 @@ on:
     branches:
       - master
       - 9-2-stable
+  schedule:
+    - cron: '16 4 12 * *'
 
 jobs:
   test-postgresql:
@@ -32,18 +34,18 @@ jobs:
         ports: ['5432:5432']
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: ${{ matrix.ruby }}
-        bundler-cache: true
-    - name: Database Configuration
-      run: cp config/database.yml.postgresql config/database.yml
-    - name: Migrate database
-      run: bundle exec rake db:create db:migrate
-    - name: Run tests
-      run: bundle exec rake
+      - uses: actions/checkout@v2
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+      - name: Database Configuration
+        run: cp config/database.yml.postgresql config/database.yml
+      - name: Migrate database
+        run: bundle exec rake db:create db:migrate
+      - name: Run tests
+        run: bundle exec rake
 
   test-mysql:
     name: "Test on MySQL"
@@ -62,18 +64,18 @@ jobs:
         ports: ['3306:3306']
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: ${{ matrix.ruby }}
-        bundler-cache: true
-    - name: Database Configuration
-      run: cp config/database.yml.mysql config/database.yml
-    - name: Migrate database
-      run: bundle exec rake db:create db:migrate
-    - name: Run tests
-      run: bundle exec rake
+      - uses: actions/checkout@v2
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+      - name: Database Configuration
+        run: cp config/database.yml.mysql config/database.yml
+      - name: Migrate database
+        run: bundle exec rake db:create db:migrate
+      - name: Run tests
+        run: bundle exec rake
 
   test-sqlite:
     name: "Test on SQLite"
@@ -85,18 +87,18 @@ jobs:
         ruby: [2.6, 2.7, "3.0"]
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: ${{ matrix.ruby }}
-        bundler-cache: true
-    - name: Database Configuration
-      run: cp config/database.yml.sqlite config/database.yml
-    - name: Migrate database
-      run: bundle exec rake db:create db:migrate
-    - name: Run tests
-      run: bundle exec rake
+      - uses: actions/checkout@v2
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+      - name: Database Configuration
+        run: cp config/database.yml.sqlite config/database.yml
+      - name: Migrate database
+        run: bundle exec rake db:create db:migrate
+      - name: Run tests
+        run: bundle exec rake
 
   lint:
     name: "Linting"
@@ -104,11 +106,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: 2.7
-        bundler-cache: true
-    - name: Run lint task
-      run: bundle exec rake lint
+      - uses: actions/checkout@v2
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7
+          bundler-cache: true
+      - name: Run lint task
+        run: bundle exec rake lint
