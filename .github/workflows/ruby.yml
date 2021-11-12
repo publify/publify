@@ -13,6 +13,8 @@ on:
     branches:
       - master
       - 9-2-stable
+  schedule:
+    - cron: '16 4 12 * *'
 
 jobs:
   test-postgresql:
