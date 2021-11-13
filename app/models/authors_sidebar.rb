@@ -3,7 +3,7 @@
 class AuthorsSidebar < Sidebar
   display_name "Authors"
   description "Displays a list of authors ordered by name with links to their" \
-    " articles and profile"
+              " articles and profile"
 
   setting :count, true, label: "Show articles number", input_type: :checkbox
 

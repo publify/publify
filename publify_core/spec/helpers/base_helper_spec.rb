@@ -124,7 +124,7 @@ RSpec.describe BaseHelper, type: :helper do
       Time.use_zone "UTC" do
         expect(get_reply_context_twitter_link(reply)).
           to eq '<a href="https://twitter.com/a_screen_name/status/123456789">' \
-          "23/01/2014 at 13h47</a>"
+                "23/01/2014 at 13h47</a>"
       end
     end
 
@@ -132,7 +132,7 @@ RSpec.describe BaseHelper, type: :helper do
       Time.use_zone "Tokyo" do
         expect(get_reply_context_twitter_link(reply)).
           to eq '<a href="https://twitter.com/a_screen_name/status/123456789">' \
-          "23/01/2014 at 22h47</a>"
+                "23/01/2014 at 22h47</a>"
       end
     end
   end

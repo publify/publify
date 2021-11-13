@@ -43,7 +43,7 @@ RSpec.describe "feedback/index.rss.builder", type: :view do
       it "has all the required attributes" do
         expect(rendered_entry.title).
           to eq "Trackback from #{trackback.blog_name}:" \
-          " #{trackback.title} on #{article.title}"
+                " #{trackback.title} on #{article.title}"
         expect(rendered_entry.entry_id).to eq("urn:uuid:dsafsadffsdsf")
         expect(rendered_entry.summary).to eq("This is an excerpt")
         expect(xml_entry.css("link").first.content).to eq(trackback.url)
