@@ -28,8 +28,8 @@ gem "non-digest-assets", "~> 1.2"
 gem "rake", "~> 13.0"
 gem "reverse_markdown", "~> 2.0"
 
-# Force older sprockets
-gem "sprockets", "~> 3.0"
+# Force newer sprockets
+gem "sprockets", "~> 4.0"
 
 # Allow throttling requests
 gem "rack-attack", "~> 6.5"
