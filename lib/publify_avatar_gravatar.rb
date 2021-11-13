@@ -32,7 +32,7 @@ module PublifyPlugins
 
         url = +"https://www.gravatar.com/avatar.php?"
         url << opts.map { |key, value| "#{key}=#{value}" }.sort.join("&")
-        tag "img", src: url, class: klass, alt: "Gravatar"
+        tag.img(src: url, class: klass, alt: "Gravatar")
       end
     end
   end
