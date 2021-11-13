@@ -7,7 +7,7 @@ class ArticlesController < ContentController
 
   layout :theme_layout, except: [:trackback]
 
-  helper :'admin/base'
+  helper :"admin/base"
 
   def index
     wanted_types = this_blog.statuses_in_timeline ? ["Article", "Note"] : ["Article"]
