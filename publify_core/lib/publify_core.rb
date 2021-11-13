@@ -6,6 +6,7 @@ require "devise-i18n"
 require "publify_core/version"
 require "publify_core/engine"
 require "publify_core/lang"
+require "publify_core/content_text_helpers"
 
 require "carrierwave"
 require "jquery-rails"
