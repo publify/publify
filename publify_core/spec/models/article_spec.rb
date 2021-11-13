@@ -580,7 +580,7 @@ RSpec.describe Article, type: :model do
     end
   end
 
-  describe "an article published just after midnight  JST (+0900)" do
+  describe "an article published just after midnight JST (+0900)" do
     around do |example|
       Time.use_zone("Tokyo", &example)
     end

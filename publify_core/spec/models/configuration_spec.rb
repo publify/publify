@@ -128,7 +128,7 @@ RSpec.describe "Given a new blog", type: :model do
   end
 
   it "Robots.txt should be empty" do
-    expect(blog.robots).to eq('User-agent: *\\nAllow: /\\nDisallow: /admin\\n')
+    expect(blog.robots).to eq("User-agent: *\\nAllow: /\\nDisallow: /admin\\n")
   end
 
   it "Tags should be indexed" do
@@ -214,7 +214,7 @@ RSpec.describe "Given a new blog", type: :model do
     expect(blog.statuses_title_template).to eq("Notes | %blog_name% %page%")
   end
 
-  it "status list description  is Notes | blog name | blog subtitle page" do
+  it "status list description is Notes | blog name | blog subtitle page" do
     expect(blog.statuses_desc_template).
       to eq("Notes | %blog_name% | %blog_subtitle% %page%")
   end
@@ -223,7 +223,7 @@ RSpec.describe "Given a new blog", type: :model do
     expect(blog.status_title_template).to eq("%body% | %blog_name%")
   end
 
-  it "status list description  is status content" do
+  it "status list description is status content" do
     expect(blog.status_desc_template).to eq("%excerpt%")
   end
 

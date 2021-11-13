@@ -13,7 +13,7 @@ class StaticSidebar < Sidebar
   TEXT
 
   description "Static content, like links to other sites, advertisements," \
-    " or blog meta-information"
+              " or blog meta-information"
 
   setting :title, "Links"
   setting :body, DEFAULT_TEXT, input_type: :text_area

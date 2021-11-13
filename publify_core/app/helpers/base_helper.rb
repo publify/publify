@@ -66,7 +66,7 @@ module BaseHelper
   end
 
   def meta_tag(name, value)
-    tag :meta, name: name, content: value if value.present?
+    tag.meta(name: name, content: value) if value.present?
   end
 
   def markup_help_popup(markup, text)

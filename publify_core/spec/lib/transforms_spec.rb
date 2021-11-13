@@ -11,7 +11,7 @@ RSpec.describe String do
   end
 
   describe "to_url" do
-    it "' this is  a sentence ' should give a proper space-less, trimmed URL" do
+    it "gives a proper space-less, trimmed URL" do
       expect(" this is  a sentence ".to_url).to eq("this-is-a-sentence")
     end
   end

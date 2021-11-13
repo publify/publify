@@ -218,7 +218,7 @@ RSpec.describe Admin::FeedbackController, type: :controller do
         expect(comment.body).to eq("updated comment")
       end
 
-      it "does not  update comment if get request" do
+      it "does not update comment if get request" do
         comment = create(:comment)
         get "update", params: { id: comment.id,
                                 comment: { author: "Bob Foo2",

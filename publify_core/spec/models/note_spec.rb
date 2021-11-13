@@ -184,11 +184,11 @@ RSpec.describe Note, type: :model do
       context "with a short message much more than 114 char" do
         let(:tweet) do
           "A very big(10) message with lot of text (40)inside just to try the" \
-          " shortener and (80)the new link that publify must create and add at the end"
+            " shortener and (80)the new link that publify must create and add at the end"
         end
         let(:expected_tweet) do
           "A very big(10) message with lot of text (40)inside just to try the" \
-          " shortener and (80)the new link that publify... (#{note.redirect.from_url})"
+            " shortener and (80)the new link that publify... (#{note.redirect.from_url})"
         end
 
         it { expect(note.twitter_message).to eq(expected_tweet) }
@@ -205,7 +205,7 @@ RSpec.describe Note, type: :model do
         end
         let(:expected_tweet) do
           "Le dojo de nantes, c'est comme au McDo, sans les odeurs, et en plus rigolo:" \
-          " RT @abailly Ce midi c'est coding... (#{note.redirect.from_url})"
+            " RT @abailly Ce midi c'est coding... (#{note.redirect.from_url})"
         end
 
         it { expect(note.twitter_message).to eq(expected_tweet) }
@@ -215,12 +215,12 @@ RSpec.describe Note, type: :model do
       context "with a bug message" do
         let(:tweet) do
           '"JSFuck is an esoteric and educational programming style based on the' \
-          " atomic parts of JavaScript. It uses only six different characters to" \
-          ' write and execute code." http://www.jsfuck.com/ '
+            " atomic parts of JavaScript. It uses only six different characters to" \
+            ' write and execute code." http://www.jsfuck.com/ '
         end
         let(:expected_tweet) do
           "\"JSFuck is an esoteric and educational programming style based on the" \
-          " atomic parts of JavaScript. It uses only... (#{note.redirect.from_url})"
+            " atomic parts of JavaScript. It uses only... (#{note.redirect.from_url})"
         end
 
         it { expect(note.twitter_message).to eq(expected_tweet) }
@@ -230,11 +230,11 @@ RSpec.describe Note, type: :model do
       context "don't cut word" do
         let(:tweet) do
           "Le #mobprogramming c'est un peu comme faire un dojo sur une journée entière" \
-          " (ça permet sûrement de faire des petites journées ;-))"
+            " (ça permet sûrement de faire des petites journées ;-))"
         end
         let(:expected_tweet) do
           "Le #mobprogramming c'est un peu comme faire un dojo sur une journée entière" \
-          " (ça permet sûrement de faire des... (#{note.redirect.from_url})"
+            " (ça permet sûrement de faire des... (#{note.redirect.from_url})"
         end
 
         it { expect(note.twitter_message).to eq(expected_tweet) }
@@ -244,11 +244,11 @@ RSpec.describe Note, type: :model do
       context "shortener host name is counted as an url by twitter" do
         let(:tweet) do
           "RT @stephaneducasse http://pharocloud.com is so cool. I love love such idea" \
-          " and I wish them success. Excellent work."
+            " and I wish them success. Excellent work."
         end
         let(:expected_tweet) do
           "RT @stephaneducasse http://pharocloud.com is so cool. I love love such idea" \
-          " and I wish them success. Excellent... (#{note.redirect.from_url})"
+            " and I wish them success. Excellent... (#{note.redirect.from_url})"
         end
 
         it { expect(note.twitter_message).to eq(expected_tweet) }

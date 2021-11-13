@@ -109,7 +109,7 @@ Rails/SkipsModelValidations:
   Exclude:
     - 'db/migrate/*'
 
-Capybara/FeatureMethods:
+RSpec/Capybara/FeatureMethods:
   Exclude:
     - 'spec/features/**_spec.rb'
 

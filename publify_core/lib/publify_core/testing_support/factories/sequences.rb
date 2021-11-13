@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   sequence(:name) { |n| "name_#{n}" }
-  sequence(:body) { |n| "body #{n}" * (n + 3 % 5) }
+  sequence(:body) { |n| "body #{n}" * ((n % 5) + 3) }
   sequence(:user) { |n| "user#{n}" }
   sequence(:email) { |n| "user#{n}@example.com" }
   sequence(:guid) { |n| "deadbeef#{n}" }

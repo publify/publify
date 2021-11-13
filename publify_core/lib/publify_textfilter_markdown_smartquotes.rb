@@ -7,8 +7,8 @@ module PublifyTextfilter
   class MarkdownSmartquotes < PublifyApp::Textfilter::Markdown
     plugin_display_name "Markdown with smart quotes"
     plugin_description "Markdown markup language from" \
-      ' <a href="http://daringfireball.com/">Daring Fireball</a>' \
-      " with automatic use of typographically correct quotes and dashes"
+                       ' <a href="http://daringfireball.com/">Daring Fireball</a>' \
+                       " with automatic use of typographically correct quotes and dashes"
 
     def self.filtertext(text)
       # FIXME: Workaround for <publify:foo> not being interpreted as an HTML tag.
