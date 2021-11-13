@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "rails_autolink/helpers"
+
 module ContentBase
   def self.included(base)
     base.extend ClassMethods
