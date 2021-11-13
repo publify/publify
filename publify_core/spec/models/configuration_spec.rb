@@ -128,7 +128,7 @@ RSpec.describe "Given a new blog", type: :model do
   end
 
   it "Robots.txt should be empty" do
-    expect(blog.robots).to eq('User-agent: *\\nAllow: /\\nDisallow: /admin\\n')
+    expect(blog.robots).to eq("User-agent: *\\nAllow: /\\nDisallow: /admin\\n")
   end
 
   it "Tags should be indexed" do
