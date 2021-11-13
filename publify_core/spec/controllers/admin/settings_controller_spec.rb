@@ -48,15 +48,11 @@ RSpec.describe Admin::SettingsController, type: :controller do
     end
 
     context "when updating the language" do
-      after do
-        I18n.locale = :en
-      end
-
       it "sets the flash in the new language" do
-        expect(I18n.locale).to eq :en
-        post :update, params: { setting: { lang: "nl" } }
-        expect(I18n.locale).to eq :nl
-        expect(flash[:success]).to eq I18n.t("admin.settings.update.success")
+        I18n.with_locale :en do
+          post :update, params: { setting: { lang: "nl" } }
+          expect(flash[:success]).to eq I18n.t("admin.settings.update.success", locale: :nl)
+        end
       end
     end
   end
