@@ -188,10 +188,7 @@ class Blog < ApplicationRecord
                                              host: host_with_port,
                                              script_name: root_path)
         cache_key = merged_opts.values.prepend("blog-urlfor-withbaseurl").join("-")
-        unless Rails.cache.exist?(cache_key)
-          Rails.cache.write(cache_key, super(merged_opts))
-        end
-        Rails.cache.read(cache_key)
+        Rails.cache.fetch(cache_key) { super(merged_opts) }
       else
         raise "Invalid URL in url_for: #{options.inspect}"
       end
