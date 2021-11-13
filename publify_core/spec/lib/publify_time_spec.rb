@@ -70,7 +70,7 @@ RSpec.describe PublifyTime do
   end
 end
 
-RSpec.describe "find Article date range " do
+RSpec.describe "find Article date range" do
   let!(:blog) { create(:blog) }
 
   describe "UTC" do
@@ -120,7 +120,7 @@ RSpec.describe "find Article date range " do
     end
   end
 
-  describe "JST(+0900) " do
+  describe "JST(+0900)" do
     around do |example|
       Time.use_zone("Tokyo", &example)
     end
