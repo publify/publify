@@ -24,12 +24,12 @@ gem "uglifier", ">= 1.3.0"
 # Needed for the lightbox and flickr text filters
 gem "flickraw", "~> 0.9.8", require: false
 
-gem "non-digest-assets", "~> 1.2"
+gem "non-digest-assets", "~> 2.0"
 gem "rake", "~> 13.0"
 gem "reverse_markdown", "~> 2.0"
 
-# Force older sprockets
-gem "sprockets", "~> 3.0"
+# Force newer sprockets
+gem "sprockets", "~> 4.0"
 
 # Allow throttling requests
 gem "rack-attack", "~> 6.5"
@@ -63,7 +63,7 @@ group :development do
   gem "rack-mini-profiler", "~> 2.0"
   # Spring speeds up development by keeping your application running in the
   # background. Read more: https://github.com/rails/spring
-  gem "spring", "~> 2.1.0"
+  gem "spring", "~> 3.0.0"
   gem "spring-commands-cucumber", "~> 1.0"
   gem "spring-commands-rspec", "~> 1.0"
 
