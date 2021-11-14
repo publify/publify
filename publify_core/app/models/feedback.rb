@@ -84,7 +84,7 @@ class Feedback < ApplicationRecord
   end
 
   def html_postprocess(_field, html)
-    helper = ContentTextHelpers.new
+    helper = PublifyCore::ContentTextHelpers.new
     helper.sanitize(helper.auto_link(html))
   end
 

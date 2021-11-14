@@ -46,7 +46,7 @@ class PublifyApp
 
       def self.filtertext(text)
         # First, autolink
-        helper = Feedback::ContentTextHelpers.new
+        helper = PublifyCore::ContentTextHelpers.new
         text = helper.auto_link(text)
 
         text = TwitterHashtagFilter.new(text).call

@@ -410,6 +410,7 @@ db/seeds.rb
 lib/email_notify.rb
 lib/format.rb
 lib/publify_core.rb
+lib/publify_core/content_text_helpers.rb
 lib/publify_core/engine.rb
 lib/publify_core/lang.rb
 lib/publify_core/testing_support/dns_mock.rb

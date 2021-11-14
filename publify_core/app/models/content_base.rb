@@ -5,12 +5,6 @@ module ContentBase
     base.extend ClassMethods
   end
 
-  class ContentTextHelpers
-    include ActionView::Helpers::UrlHelper
-    include ActionView::Helpers::TextHelper
-    include ActionView::Helpers::SanitizeHelper
-  end
-
   attr_accessor :just_changed_published_status
   alias just_changed_published_status? just_changed_published_status
 
@@ -46,7 +40,7 @@ module ContentBase
 
   # Post-process the HTML
   def html_postprocess(_field, html)
-    helper = ContentTextHelpers.new
+    helper = PublifyCore::ContentTextHelpers.new
     helper.sanitize html
   end
 
