@@ -1,3 +1,9 @@
+inherit_from: .rubocop_todo.yml
+
+inherit_mode:
+  merge:
+    - Exclude
+
 require:
   - rubocop-performance
   - rubocop-rails
@@ -6,7 +12,6 @@ require:
 AllCops:
   Exclude:
   - 'bin/*'
-  - 'tmp/**/*'
   - 'publify_core/bin/*'
   - 'publify_core/spec/dummy/bin/*'
   - 'publify_core/spec/dummy/db/schema.rb'
@@ -19,7 +24,6 @@ AllCops:
   - 'db/converters/*.rb'
   - 'db/scripts/fix_permalinks.rb'
   - 'db/schema.rb'
-  - 'vendor/bundle/**/*'
   NewCops: enable
   TargetRubyVersion: 2.6
 
@@ -184,5 +188,3 @@ Style/TrailingCommaInHashLiteral:
 # Allow small arrays of words with quotes
 Style/WordArray:
   MinSize: 4
-
-inherit_from: .rubocop_todo.yml
