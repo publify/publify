@@ -9,6 +9,10 @@
 * Remove support for Textile as a text format
 * Replace BlueCloth with CommonMarker for Markdown processing
 
+## 9.2.6 / 2022-01-07
+
+* Add documentation about use of the media library
+
 ## 9.2.5 / 2021-10-11
 
 This release fixes several security issues:
