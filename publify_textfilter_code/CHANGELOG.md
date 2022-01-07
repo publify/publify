@@ -1,5 +1,9 @@
 # Changelog
 
+## 9.2.6 / 2022-01-07
+
+* No changes
+
 ## 9.2.5 / 2021-10-11
 
 * No changes

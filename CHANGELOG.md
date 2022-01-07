@@ -2,6 +2,16 @@
 
 See the changelogs for the individual engines for more details for releases 9.0 and up
 
+## 9.2.6 / 2022-01-07
+
+This release fixes a minor security issue:
+
+* Rate-limit Devise logins and password resets
+
+Additionally, it includes the following change:
+
+* Add documentation about use of the media library
+
 ## 9.2.5 / 2021-10-11
 
 This release fixes several security issues:
