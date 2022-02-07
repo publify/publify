@@ -1,8 +1,12 @@
 # Changelog
 
+## 9.2.7 / 2022-02-07
+
+* Depend on `publify_core` 9.2.7
+
 ## 9.2.6 / 2022-01-07
 
-* No changes
+* Depend on `publify_core` 9.2.6
 
 ## 9.2.5 / 2021-10-11
 
@@ -11,6 +15,7 @@
 ## 9.2.4 / 2021-10-02
 
 * Drop support for Ruby 2.4 since it is incompatible with nokogiri 1.12.5
+* Depend on `publify_core` 9.2.5
 
 ## 9.2.3 / 2021-05-22
 
