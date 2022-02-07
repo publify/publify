@@ -180,6 +180,7 @@ class Admin::ContentController < Admin::BaseController
              :body_and_extended,
              :draft,
              :extended,
+             :password,
              :permalink,
              :published_at,
              :text_filter_name,
