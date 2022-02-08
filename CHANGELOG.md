@@ -14,6 +14,12 @@ See the changelogs for the individual engines for more details for releases 9.0 
 * Depend on Ruby 2.5 or above
 * Update other dependencies
 
+## 9.2.7 / 2022-02-07
+
+This release fixes a security issue:
+
+* Fix setting the article password from the Admin [#1044](https://github.com/publify/publify/pull/1044)
+
 ## 9.2.6 / 2022-01-07
 
 This release fixes a minor security issue:
