@@ -160,6 +160,12 @@ RSpec.describe Admin::ArticlesController, type: :controller do
         assert_equal 2, new_article.tags.size
       end
 
+      it "creates an article with a password" do
+        post :create, params: { "article" => base_article(password: "foobar") }
+        new_article = Article.last
+        expect(new_article.password).to eq("foobar")
+      end
+
       it "creates an article with a unique Tag instance named lang:FR" do
         post :create, params: { "article" => base_article(keywords: "lang:FR") }
         new_article = Article.last
@@ -390,6 +396,15 @@ RSpec.describe Admin::ArticlesController, type: :controller do
         article.reload
         expect(article.body).to eq("foo")
         expect(article.extended).to eq("bar<!--more-->baz")
+      end
+
+      it "allows updating password" do
+        put :update, params: { "id" => article.id, "article" => {
+          "password" => "foobar",
+        } }
+        assert_response :redirect
+        article.reload
+        expect(article.password).to eq("foobar")
       end
 
       context "when a published article has drafts" do

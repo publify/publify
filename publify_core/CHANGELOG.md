@@ -9,6 +9,10 @@
 * Remove support for Textile as a text format
 * Replace BlueCloth with CommonMarker for Markdown processing
 
+## 9.2.7 / 2022-02-07
+
+* Fix setting the article password from the Admin [#1044](https://github.com/publify/publify/pull/1044)
+
 ## 9.2.6 / 2022-01-07
 
 * Add documentation about use of the media library
