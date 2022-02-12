@@ -2,20 +2,18 @@
 
 require "rails_helper"
 
-describe CommentsController, type: :controller do
+RSpec.describe CommentsController, type: :controller do
   let!(:blog) { create(:blog) }
   let(:article) { create(:article) }
+  let(:user) { create(:user) }
   let(:comment_params) do
     { body: "content", author: "bob", email: "bob@home", url: "http://bobs.home/" }
   end
 
   describe "#create" do
     context "when using regular post" do
-      before do
-        post :create, params: { comment: comment_params, article_id: article.id }
-      end
-
       it "creates a comment on the specified article" do
+        post :create, params: { comment: comment_params, article_id: article.id }
         aggregate_failures do
           expect(article.comments.size).to eq(1)
           comment = article.comments.last
@@ -27,6 +25,7 @@ describe CommentsController, type: :controller do
       end
 
       it "remembers author info in cookies" do
+        post :create, params: { comment: comment_params, article_id: article.id }
         aggregate_failures do
           expect(cookies["author"]).to eq("bob")
           expect(cookies["gravatar_id"]).to eq(Digest::MD5.hexdigest("bob@home"))
@@ -35,7 +34,15 @@ describe CommentsController, type: :controller do
       end
 
       it "redirects to the article" do
+        post :create, params: { comment: comment_params, article_id: article.id }
         expect(response).to redirect_to article.permalink_url
+      end
+
+      it "sets the user if logged in" do
+        sign_in user
+        post :create, params: { comment: comment_params, article_id: article.id }
+        comment = article.comments.last
+        expect(comment.user).to eq user
       end
     end
 
