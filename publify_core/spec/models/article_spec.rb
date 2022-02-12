@@ -422,18 +422,25 @@ describe Article, type: :model do
     end
   end
 
-  it "test_can_ping_fresh_article_iff_it_allows_pings" do
-    a = create(:article, allow_pings: true)
-    assert_equal(false, a.pings_closed?)
-    a.allow_pings = false
-    assert_equal(true, a.pings_closed?)
-  end
+  describe "#pings_closed?" do
+    let!(:blog) do
+      create(:blog, sp_article_auto_close: 30)
+    end
 
-  it "test_cannot_ping_old_article" do
-    a = create(:article, allow_pings: false)
-    assert_equal(true, a.pings_closed?)
-    a.allow_pings = false
-    assert_equal(true, a.pings_closed?)
+    it "returns false for a fresh article if it allows pings" do
+      a = create(:article, allow_pings: true)
+      assert_equal(false, a.pings_closed?)
+    end
+
+    it "returns true for a fresh article if it does not allow pings" do
+      a = create(:article, allow_pings: false)
+      assert_equal(true, a.pings_closed?)
+    end
+
+    it "returns true for an old article even if it allows pings" do
+      a = create(:article, published_at: 31.days.ago, allow_pings: true)
+      assert_equal(true, a.pings_closed?)
+    end
   end
 
   describe "#published_at_like" do
