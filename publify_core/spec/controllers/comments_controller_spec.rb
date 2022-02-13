@@ -11,52 +11,51 @@ RSpec.describe CommentsController, type: :controller do
   end
 
   describe "#create" do
-    context "when using regular post" do
-      it "creates a comment on the specified article" do
-        post :create, params: { comment: comment_params, article_id: article.id }
-        aggregate_failures do
-          expect(article.comments.size).to eq(1)
-          comment = article.comments.last
-          expect(comment.author).to eq("bob")
-          expect(comment.body).to eq("content")
-          expect(comment.email).to eq("bob@home")
-          expect(comment.url).to eq("http://bobs.home/")
-        end
-      end
+    render_views
 
-      it "remembers author info in cookies" do
-        post :create, params: { comment: comment_params, article_id: article.id }
-        aggregate_failures do
-          expect(cookies["author"]).to eq("bob")
-          expect(cookies["gravatar_id"]).to eq(Digest::MD5.hexdigest("bob@home"))
-          expect(cookies["url"]).to eq("http://bobs.home/")
-        end
-      end
-
-      it "redirects to the article" do
-        post :create, params: { comment: comment_params, article_id: article.id }
-        expect(response).to redirect_to article.permalink_url
-      end
-
-      it "sets the user if logged in" do
-        sign_in user
-        post :create, params: { comment: comment_params, article_id: article.id }
+    it "creates a comment on the specified article" do
+      post :create, params: { comment: comment_params, article_id: article.id }
+      aggregate_failures do
+        expect(article.comments.size).to eq(1)
         comment = article.comments.last
-        expect(comment.user).to eq user
+        expect(comment.author).to eq("bob")
+        expect(comment.body).to eq("content")
+        expect(comment.email).to eq("bob@home")
+        expect(comment.url).to eq("http://bobs.home/")
       end
     end
 
-    context "when using xhr post" do
-      before do
-        post :create, xhr: true, params: { comment: comment_params, article_id: article.id }
+    it "remembers author info in cookies" do
+      post :create, params: { comment: comment_params, article_id: article.id }
+      aggregate_failures do
+        expect(cookies["author"]).to eq("bob")
+        expect(cookies["gravatar_id"]).to eq(Digest::MD5.hexdigest("bob@home"))
+        expect(cookies["url"]).to eq("http://bobs.home/")
       end
+    end
 
-      it "assigns the created comment for rendering" do
-        expect(assigns[:comment]).to eq article.comments.last
-      end
+    it "sets the user if logged in" do
+      sign_in user
+      post :create, params: { comment: comment_params, article_id: article.id }
+      comment = article.comments.last
+      expect(comment.user).to eq user
+    end
 
-      it "renders the comment partial" do
+    it "assigns the created comment" do
+      post :create, params: { comment: comment_params, article_id: article.id }
+      expect(assigns[:comment]).to eq article.comments.last
+    end
+
+    it "redirects to the article when using regular post" do
+      post :create, params: { comment: comment_params, article_id: article.id }
+      expect(response).to redirect_to article.permalink_url
+    end
+
+    it "renders the comment when using xhr post" do
+      post :create, xhr: true, params: { comment: comment_params, article_id: article.id }
+      aggregate_failures do
         expect(response).to render_template("articles/comment")
+        expect(response.body).to have_text "content"
       end
     end
   end
