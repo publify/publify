@@ -11,11 +11,12 @@ class Feedback < ApplicationRecord
   include PublifyGuid
   include ContentBase
 
+  validate :article_allows_this_feedback, on: :create
   validate :feedback_not_closed, on: :create
   validates :article, presence: true
 
   before_save :correct_url, :classify_content
-  before_create :create_guid, :article_allows_this_feedback
+  before_create :create_guid
 
   # TODO: Rename so it doesn't sound like only approved ham
   scope :ham, -> { where(state: %w(presumed_ham ham)) }
@@ -96,10 +97,6 @@ class Feedback < ApplicationRecord
 
   def article_allows_this_feedback
     article && blog_allows_feedback? && article_allows_feedback?
-  end
-
-  def blog_allows_feedback?
-    true
   end
 
   def akismet_options
@@ -200,7 +197,7 @@ class Feedback < ApplicationRecord
   end
 
   def feedback_not_closed
-    errors.add(:article_id, "Comment are closed") if article.comments_closed?
+    check_article_closed_for_feedback
   end
 
   def send_notifications

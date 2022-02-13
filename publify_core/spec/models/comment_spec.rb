@@ -41,7 +41,7 @@ describe Comment, type: :model do
       comment = build(:comment, author: "Old Spammer", body: "Old trackback body",
                                 article: article)
       expect(comment.save).to be_falsey
-      expect(comment.errors[:article_id]).not_to be_empty
+      expect(comment.errors[:article]).not_to be_empty
     end
 
     it "changes old comment" do
