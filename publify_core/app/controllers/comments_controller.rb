@@ -28,7 +28,7 @@ class CommentsController < BaseController
     @comment = @article.comments.build(comment_params)
   end
 
-  protected
+  private
 
   def recaptcha_ok_for?(comment)
     use_recaptcha = comment.blog.use_recaptcha

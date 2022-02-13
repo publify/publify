@@ -131,7 +131,7 @@ class Admin::ContentController < Admin::BaseController
     end
   end
 
-  protected
+  private
 
   def fetch_fresh_or_existing_draft_for_article
     return unless @article.published? && @article.id
@@ -145,8 +145,6 @@ class Admin::ContentController < Admin::BaseController
   end
 
   attr_accessor :resources, :resource
-
-  private
 
   def load_resources
     @post_types = PostType.all

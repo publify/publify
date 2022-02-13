@@ -38,7 +38,7 @@ class Comment < Feedback
     really_send_notifications
   end
 
-  protected
+  private
 
   def article_allows_feedback?
     return true if article.allow_comments?
