@@ -441,6 +441,17 @@ describe Article, type: :model do
       a = create(:article, published_at: 31.days.ago, allow_pings: true)
       assert_equal(true, a.pings_closed?)
     end
+
+    it "returns true for a draft article even if it allows pings" do
+      a = create(:article, state: "draft", allow_pings: true)
+      assert_equal(true, a.pings_closed?)
+    end
+
+    it "returns true for a pending article even if it allows pings" do
+      a = create(:article, state: "publication_pending", published_at: 1.day.from_now,
+                           allow_pings: true)
+      assert_equal(true, a.pings_closed?)
+    end
   end
 
   describe "#published_at_like" do
