@@ -47,6 +47,14 @@ class Comment < Feedback
     false
   end
 
+  def blog_allows_feedback?
+    true
+  end
+
+  def check_article_closed_for_feedback
+    errors.add(:article, "Comment are closed") if article.comments_closed?
+  end
+
   def originator
     author
   end
