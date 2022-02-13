@@ -204,7 +204,7 @@ class Article < Content
   end
 
   def comments_closed?
-    !(allow_comments? && in_feedback_window?)
+    !(allow_comments? && published? && in_feedback_window?)
   end
 
   def html_urls
@@ -216,7 +216,7 @@ class Article < Content
   end
 
   def pings_closed?
-    !(allow_pings? && in_feedback_window?)
+    !(allow_pings? && published? && in_feedback_window?)
   end
 
   # check if time to comment is open or not

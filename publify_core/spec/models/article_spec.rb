@@ -422,18 +422,36 @@ describe Article, type: :model do
     end
   end
 
-  it "test_can_ping_fresh_article_iff_it_allows_pings" do
-    a = create(:article, allow_pings: true)
-    assert_equal(false, a.pings_closed?)
-    a.allow_pings = false
-    assert_equal(true, a.pings_closed?)
-  end
+  describe "#pings_closed?" do
+    let!(:blog) do
+      create(:blog, sp_article_auto_close: 30)
+    end
 
-  it "test_cannot_ping_old_article" do
-    a = create(:article, allow_pings: false)
-    assert_equal(true, a.pings_closed?)
-    a.allow_pings = false
-    assert_equal(true, a.pings_closed?)
+    it "returns false for a fresh article if it allows pings" do
+      a = create(:article, allow_pings: true)
+      assert_equal(false, a.pings_closed?)
+    end
+
+    it "returns true for a fresh article if it does not allow pings" do
+      a = create(:article, allow_pings: false)
+      assert_equal(true, a.pings_closed?)
+    end
+
+    it "returns true for an old article even if it allows pings" do
+      a = create(:article, published_at: 31.days.ago, allow_pings: true)
+      assert_equal(true, a.pings_closed?)
+    end
+
+    it "returns true for a draft article even if it allows pings" do
+      a = create(:article, state: "draft", allow_pings: true)
+      assert_equal(true, a.pings_closed?)
+    end
+
+    it "returns true for a pending article even if it allows pings" do
+      a = create(:article, state: "publication_pending", published_at: 1.day.from_now,
+                           allow_pings: true)
+      assert_equal(true, a.pings_closed?)
+    end
   end
 
   describe "#published_at_like" do
@@ -500,16 +518,13 @@ describe Article, type: :model do
   end
 
   describe "an article published just before midnight UTC" do
-    before do
-      @timezone = Time.zone
-      Time.zone = "UTC"
-      @a = build(:article)
-      @a.set_permalink
-      @a.published_at = "21 Feb 2011 23:30 UTC"
-    end
-
-    after do
-      Time.zone = @timezone
+    around do |example|
+      Time.use_zone "UTC" do
+        @a = build(:article)
+        @a.set_permalink
+        @a.published_at = "21 Feb 2011 23:30 UTC"
+        example.call
+      end
     end
 
     describe "#permalink_url" do
@@ -529,16 +544,13 @@ describe Article, type: :model do
   end
 
   describe "an article published just after midnight UTC" do
-    before do
-      @timezone = Time.zone
-      Time.zone = "UTC"
-      @a = build(:article)
-      @a.set_permalink
-      @a.published_at = "22 Feb 2011 00:30 UTC"
-    end
-
-    after do
-      Time.zone = @timezone
+    around do |example|
+      Time.use_zone "UTC" do
+        @a = build(:article)
+        @a.set_permalink
+        @a.published_at = "22 Feb 2011 00:30 UTC"
+        example.call
+      end
     end
 
     describe "#permalink_url" do
@@ -558,16 +570,13 @@ describe Article, type: :model do
   end
 
   describe "an article published just before midnight JST (+0900)" do
-    before do
-      @time_zone = Time.zone
-      Time.zone = "Tokyo"
-      @a = build(:article)
-      @a.set_permalink
-      @a.published_at = "31 Dec 2012 23:30 +0900"
-    end
-
-    after do
-      Time.zone = @time_zone
+    around do |example|
+      Time.use_zone "Tokyo" do
+        @a = build(:article)
+        @a.set_permalink
+        @a.published_at = "31 Dec 2012 23:30 +0900"
+        example.call
+      end
     end
 
     describe "#permalink_url" do
@@ -586,17 +595,15 @@ describe Article, type: :model do
     end
   end
 
-  describe "an article published just after midnight  JST (+0900)" do
-    before do
+  describe "an article published just after midnight JST (+0900)" do
+    around do |example|
       @time_zone = Time.zone
-      Time.zone = "Tokyo"
-      @a = build(:article)
-      @a.set_permalink
-      @a.published_at = "1 Jan 2013 00:30 +0900"
-    end
-
-    after do
-      Time.zone = @time_zone
+      Time.use_zone "Tokyo" do
+        @a = build(:article)
+        @a.set_permalink
+        @a.published_at = "1 Jan 2013 00:30 +0900"
+        example.call
+      end
     end
 
     describe "#permalink_url" do
@@ -860,8 +867,9 @@ describe Article, type: :model do
     it "returns only published articles" do
       article = create(:article)
       create(:comment, article: article)
-      unpublished_article = create(:article, state: "draft")
+      unpublished_article = create(:article)
       create(:comment, article: unpublished_article)
+      unpublished_article.update!(state: "draft")
       expect(described_class.published).to eq([article])
       expect(described_class.bestof).to eq([article])
     end
@@ -958,6 +966,17 @@ describe Article, type: :model do
 
     context "when auto_close setting is zero" do
       let(:auto_close_value) { 0 }
+
+      it "does not allow comments for a draft article" do
+        art = build :article, state: "draft", blog: blog
+        assert art.comments_closed?
+      end
+
+      it "does not allow comments for an article that will be published in the future" do
+        art = build :article, state: "publication_pending",
+                              published_at: 1.day.from_now, blog: blog
+        assert art.comments_closed?
+      end
 
       it "allows comments for a newly published article" do
         art = build :article, published_at: 1.second.ago, blog: blog

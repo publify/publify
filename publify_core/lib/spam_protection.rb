@@ -31,7 +31,7 @@ class SpamProtection
     end
   end
 
-  protected
+  private
 
   def scan_ip(ip_address)
     logger.info("[SP] Scanning IP #{ip_address}")

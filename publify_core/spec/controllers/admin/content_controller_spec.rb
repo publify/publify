@@ -43,27 +43,23 @@ describe Admin::ContentController, type: :controller do
         create(:article, state: "publication_pending", published_at: "2020-01-01")
       end
 
-      before { get :index, params: { search: state } }
+      it "returns draft articles when drafts is specified" do
+        get :index, params: { search: { state: "drafts" } }
 
-      context "draft only" do
-        let(:state) { { state: "drafts" } }
-
-        it { expect(assigns(:articles)).to eq([draft_article]) }
+        expect(assigns(:articles)).to eq([draft_article])
       end
 
-      context "publication_pending only" do
-        let(:state) { { state: "pending" } }
+      it "returns pending articles when pending is specified" do
+        get :index, params: { search: { state: "pending" } }
 
-        it { expect(assigns(:articles)).to eq([pending_article]) }
+        expect(assigns(:articles)).to eq([pending_article])
       end
 
-      context "with a bad state" do
-        let(:state) { { state: "3vI1 1337 h4x0r" } }
+      it "returns all states when called with a bad state" do
+        get :index, params: { search: { state: "3vI1 1337 h4x0r" } }
 
-        it "returns all states" do
-          expect(assigns(:articles).sort).
-            to eq([article, pending_article, draft_article].sort)
-        end
+        expect(assigns(:articles).sort).
+          to eq([article, pending_article, draft_article].sort)
       end
     end
   end
