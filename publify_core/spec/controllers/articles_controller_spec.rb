@@ -477,4 +477,23 @@ RSpec.describe ArticlesController, type: :controller do
       end
     end
   end
+
+  describe "#check_password" do
+    render_views
+    let!(:article) { create(:article, password: "password") }
+
+    it "shows article when given correct password" do
+      post :check_password, xhr: true,
+                            params: { article: { id: article.id,
+                                                 password: article.password } }
+      expect(response.body).not_to have_selector('input[id="article_password"]')
+    end
+
+    it "shows password form when given incorrect password" do
+      post :check_password, xhr: true,
+                            params: { article: { id: article.id,
+                                                 password: "wrong password" } }
+      expect(response.body).to have_selector('input[id="article_password"]')
+    end
+  end
 end

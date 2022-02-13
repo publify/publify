@@ -36,9 +36,10 @@ Rails.application.routes.draw do
   get "/pages/*name", to: "articles#view_page", format: false
   get "previews(/:id)", to: "articles#preview", format: false
   get "previews_pages(/:id)", to: "articles#preview_page", format: false
-  get "check_password", to: "articles#check_password", format: false
   get "articles/markup_help/:id", to: "articles#markup_help", format: false
   get "articles/tag", to: "articles#tag", format: false
+
+  post "check_password", to: "articles#check_password", format: false
 
   # SetupController
   get "/setup", to: "setup#index", format: false
