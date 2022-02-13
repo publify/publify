@@ -507,16 +507,13 @@ describe Article, type: :model do
   end
 
   describe "an article published just before midnight UTC" do
-    before do
-      @timezone = Time.zone
-      Time.zone = "UTC"
-      @a = build(:article)
-      @a.set_permalink
-      @a.published_at = "21 Feb 2011 23:30 UTC"
-    end
-
-    after do
-      Time.zone = @timezone
+    around do |example|
+      Time.use_zone "UTC" do
+        @a = build(:article)
+        @a.set_permalink
+        @a.published_at = "21 Feb 2011 23:30 UTC"
+        example.call
+      end
     end
 
     describe "#permalink_url" do
@@ -536,16 +533,13 @@ describe Article, type: :model do
   end
 
   describe "an article published just after midnight UTC" do
-    before do
-      @timezone = Time.zone
-      Time.zone = "UTC"
-      @a = build(:article)
-      @a.set_permalink
-      @a.published_at = "22 Feb 2011 00:30 UTC"
-    end
-
-    after do
-      Time.zone = @timezone
+    around do |example|
+      Time.use_zone "UTC" do
+        @a = build(:article)
+        @a.set_permalink
+        @a.published_at = "22 Feb 2011 00:30 UTC"
+        example.call
+      end
     end
 
     describe "#permalink_url" do
@@ -565,16 +559,13 @@ describe Article, type: :model do
   end
 
   describe "an article published just before midnight JST (+0900)" do
-    before do
-      @time_zone = Time.zone
-      Time.zone = "Tokyo"
-      @a = build(:article)
-      @a.set_permalink
-      @a.published_at = "31 Dec 2012 23:30 +0900"
-    end
-
-    after do
-      Time.zone = @time_zone
+    around do |example|
+      Time.use_zone "Tokyo" do
+        @a = build(:article)
+        @a.set_permalink
+        @a.published_at = "31 Dec 2012 23:30 +0900"
+        example.call
+      end
     end
 
     describe "#permalink_url" do
@@ -593,17 +584,15 @@ describe Article, type: :model do
     end
   end
 
-  describe "an article published just after midnight  JST (+0900)" do
-    before do
+  describe "an article published just after midnight JST (+0900)" do
+    around do |example|
       @time_zone = Time.zone
-      Time.zone = "Tokyo"
-      @a = build(:article)
-      @a.set_permalink
-      @a.published_at = "1 Jan 2013 00:30 +0900"
-    end
-
-    after do
-      Time.zone = @time_zone
+      Time.use_zone "Tokyo" do
+        @a = build(:article)
+        @a.set_permalink
+        @a.published_at = "1 Jan 2013 00:30 +0900"
+        example.call
+      end
     end
 
     describe "#permalink_url" do
