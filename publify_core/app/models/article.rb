@@ -204,7 +204,7 @@ class Article < Content
   end
 
   def comments_closed?
-    !(allow_comments? && in_feedback_window?)
+    !(allow_comments? && published? && in_feedback_window?)
   end
 
   def html_urls

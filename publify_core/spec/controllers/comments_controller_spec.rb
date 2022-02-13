@@ -58,6 +58,21 @@ RSpec.describe CommentsController, type: :controller do
         expect(response.body).to have_text "content"
       end
     end
+
+    it "does not allow commenting if article does not allow comments" do
+      no_comments = create(:article, allow_comments: false)
+      expect do
+        post :create, xhr: true, params: { comment: comment_params,
+                                           article_id: no_comments.id }
+      end.not_to change(no_comments.comments, :count)
+    end
+
+    it "does not allow commenting if article is draft" do
+      draft = create(:article, state: "draft")
+      expect do
+        post :create, xhr: true, params: { comment: comment_params, article_id: draft.id }
+      end.not_to change(draft.comments, :count)
+    end
   end
 
   describe "#preview" do

@@ -856,8 +856,9 @@ describe Article, type: :model do
     it "returns only published articles" do
       article = create(:article)
       create(:comment, article: article)
-      unpublished_article = create(:article, state: "draft")
+      unpublished_article = create(:article)
       create(:comment, article: unpublished_article)
+      unpublished_article.update!(state: "draft")
       expect(described_class.published).to eq([article])
       expect(described_class.bestof).to eq([article])
     end
@@ -954,6 +955,17 @@ describe Article, type: :model do
 
     context "when auto_close setting is zero" do
       let(:auto_close_value) { 0 }
+
+      it "does not allow comments for a draft article" do
+        art = build :article, state: "draft", blog: blog
+        assert art.comments_closed?
+      end
+
+      it "does not allow comments for an article that will be published in the future" do
+        art = build :article, state: "publication_pending",
+                              published_at: 1.day.from_now, blog: blog
+        assert art.comments_closed?
+      end
 
       it "allows comments for a newly published article" do
         art = build :article, published_at: 1.second.ago, blog: blog
