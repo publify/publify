@@ -268,6 +268,29 @@ describe Comment, type: :model do
       end
     end
 
+    context "with a comment containing some html" do
+      let(:comment) do
+        described_class.new do |c|
+          c.body = "Test <b>foo</b> <img src=\"https://eviloverlord.com/getmyip.jpg\">"
+          c.author = "Bob"
+          c.article = build_stubbed(:article, blog: blog)
+        end
+      end
+
+      ["", "textile", "markdown", "smartypants", "markdown smartypants"].each do |filter|
+        it "rejects images but not formatting with filter '#{filter}'" do
+          blog.comment_text_filter = filter
+
+          html = comment.html(:body)
+
+          ActiveSupport::Deprecation.silence do
+            expect(html).not_to match(/<img/)
+            expect(html).to match(%r{<b>foo</b>})
+          end
+        end
+      end
+    end
+
     context "with a markdown comment with italic and bold" do
       let(:comment) { build(:comment, body: "Comment body _italic_ **bold**") }
       let(:blog) { comment.article.blog }
