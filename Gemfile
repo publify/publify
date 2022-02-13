@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-gem "rails", ["~> 5.2.6"]
+gem "rails", "~> 5.2.6.2"
 
 gem "mysql2"
 gem "pg"
@@ -12,7 +12,7 @@ gem "sqlite3", "~> 1.4.0"
 gem "activerecord-session_store", "~> 2.0.0"
 
 # Use Puma as the app server
-gem "puma", "~> 4.3.3"
+gem "puma", "~> 4.3.11"
 
 gem "publify_amazon_sidebar", path: "publify_amazon_sidebar"
 gem "publify_core", path: "publify_core"
