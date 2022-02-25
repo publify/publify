@@ -94,6 +94,10 @@ Rails/SkipsModelValidations:
   Exclude:
     - 'db/migrate/*'
 
+Capybara/FeatureMethods:
+  Exclude:
+    - 'spec/features/**_spec.rb'
+
 # Allow the use of 'and' 'or' in control structures.
 Style/AndOr:
   EnforcedStyle: conditionals

@@ -6,15 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Cop supports --auto-correct.
-# Configuration parameters: EnabledMethods.
-Capybara/FeatureMethods:
-  Exclude:
-    - 'spec/features/drafting_articles_spec.rb'
-    - 'spec/features/login_spec.rb'
-    - 'spec/features/setup_spec.rb'
-    - 'spec/features/signup_spec.rb'
-
 # Configuration parameters: IgnoredMethods.
 Metrics/AbcSize:
   Max: 157
