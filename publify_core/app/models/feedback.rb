@@ -67,6 +67,10 @@ class Feedback < ApplicationRecord
     page(page).per(per_page)
   end
 
+  def self.allowed_tags
+    @allowed_tags ||= Rails::Html::SafeListSanitizer.allowed_tags - ["img"]
+  end
+
   def parent
     article
   end
@@ -86,7 +90,7 @@ class Feedback < ApplicationRecord
 
   def html_postprocess(_field, html)
     helper = ContentTextHelpers.new
-    helper.sanitize(helper.auto_link(html))
+    helper.sanitize(helper.auto_link(html), tags: self.class.allowed_tags)
   end
 
   def correct_url

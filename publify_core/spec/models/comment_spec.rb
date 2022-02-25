@@ -169,26 +169,6 @@ describe Comment, type: :model do
     assert_equal article, comment.article
   end
 
-  describe "reject xss" do
-    let(:comment) do
-      described_class.new do |c|
-        c.body = "Test foo <script>do_evil();</script>"
-        c.author = "Bob"
-        c.article = build_stubbed(:article, blog: blog)
-      end
-    end
-
-    ["", "textile", "markdown", "smartypants", "markdown smartypants"].each do |filter|
-      it "rejects with filter '#{filter}'" do
-        blog.comment_text_filter = filter
-
-        ActiveSupport::Deprecation.silence do
-          assert comment.html(:body) !~ /<script>/
-        end
-      end
-    end
-  end
-
   describe "change state" do
     it "becomes unpublished if withdrawn" do
       c = build :comment
@@ -268,16 +248,44 @@ describe Comment, type: :model do
       expect(comment.html).to be_html_safe
     end
 
-    context "with an evil comment" do
-      let(:comment) { build_stubbed :comment, body: "Test foo <script>do_evil();</script>" }
-      let(:blog) { comment.article.blog }
+    context "with an attempted xss body" do
+      let(:comment) do
+        described_class.new do |c|
+          c.body = "Test foo <script>do_evil();</script>"
+          c.author = "Bob"
+          c.article = build_stubbed(:article, blog: blog)
+        end
+      end
 
       ["", "textile", "markdown", "smartypants", "markdown smartypants"].each do |filter|
-        it "rejects xss attempt with filter '#{filter}'" do
+        it "rejects with filter '#{filter}'" do
           blog.comment_text_filter = filter
 
           ActiveSupport::Deprecation.silence do
             assert comment.html(:body) !~ /<script>/
+          end
+        end
+      end
+    end
+
+    context "with a comment containing some html" do
+      let(:comment) do
+        described_class.new do |c|
+          c.body = "Test <b>foo</b> <img src=\"https://eviloverlord.com/getmyip.jpg\">"
+          c.author = "Bob"
+          c.article = build_stubbed(:article, blog: blog)
+        end
+      end
+
+      ["", "textile", "markdown", "smartypants", "markdown smartypants"].each do |filter|
+        it "rejects images but not formatting with filter '#{filter}'" do
+          blog.comment_text_filter = filter
+
+          html = comment.html(:body)
+
+          ActiveSupport::Deprecation.silence do
+            expect(html).not_to match(/<img/)
+            expect(html).to match(%r{<b>foo</b>})
           end
         end
       end
