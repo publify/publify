@@ -1,12 +1,13 @@
 <% content_for :page_heading do %>
-<h2 class="page-title">
-  <%= t('.comments_for_html', title: @article.title) %>
-</h2>
+  <h2 class="page-title">
+    <%= t('.comments_for_html', title: @article.title) %>
+  </h2>
 <% end %>
 
 <%= form_tag({ action: 'bulkops' }, { class: 'form-inline' }) do %>
 
-  <%= hidden_field 'article_id', @article.id %>
+  <%= hidden_field_tag 'article_id', @article.id %>
+
   <%= render 'button', position: 'top' %>
 
   <br class='clear' />
