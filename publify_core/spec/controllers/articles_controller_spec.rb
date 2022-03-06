@@ -126,44 +126,51 @@ RSpec.describe ArticlesController, type: :controller do
   end
 
   describe "#search" do
+    render_views
+
     let!(:blog) { create(:blog) }
     let!(:user) { create :user }
-
-    before do
-      create(:article,
-             body: <<~MARKDOWN,
-               in markdown format
-
-                * we
-                * use
-               [ok](http://blog.ok.com) to define a link
-             MARKDOWN
-             text_filter_name: "markdown")
-      create(:article, body: "xyz")
+    let!(:matching_article) { create(:article, body: "public foobar") }
+    let!(:not_matching_article) { create(:article, body: "barbaz") }
+    let!(:protected_article) do
+      create(:article, body: "protected foobar", password: "secret!")
     end
 
-    describe "a valid search" do
-      before { get :search, params: { q: "a" } }
+    it "renders result with only matching articles" do
+      get :search, params: { q: "oba" }
 
-      it { expect(response).to render_template(:search) }
-      it { expect(assigns[:articles]).not_to be_nil }
+      aggregate_failures do
+        expect(response).to render_template(:search)
+        expect(assigns[:articles]).to match_array [matching_article, protected_article]
+        expect(response.body).to have_text "public foobar"
+        expect(response.body).not_to have_text "protected foobar"
+      end
     end
 
     it "renders feed rss by search" do
-      get "search", params: { q: "a", format: "rss" }
-      expect(response).to be_successful
-      expect(response).to render_template("index_rss_feed", layout: false)
+      get "search", params: { q: "oba", format: "rss" }
+      aggregate_failures do
+        expect(response).to be_successful
+        expect(response).to render_template("index_rss_feed", layout: false)
+        expect(response.body).to have_text "public foobar"
+        expect(response.body).not_to have_text "protected foobar"
+      end
     end
 
     it "renders feed atom by search" do
-      get "search", params: { q: "a", format: "atom" }
-      expect(response).to be_successful
-      expect(response).to render_template("index_atom_feed", layout: false)
+      get "search", params: { q: "oba", format: "atom" }
+      aggregate_failures do
+        expect(response).to be_successful
+        expect(response).to render_template("index_atom_feed", layout: false)
+        expect(response.body).to have_text "public foobar"
+        expect(response.body).not_to have_text "protected foobar"
+      end
     end
 
     it "search with empty result" do
       get "search", params: { q: "abcdefghijklmnopqrstuvwxyz" }
       expect(response).to render_template("articles/error", layout: false)
+      expect(assigns[:articles]).to eq []
     end
   end
 
