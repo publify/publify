@@ -1,7 +1,9 @@
 <% for article in @articles %>
  <div class="post">
    <h2><%= link_to_permalink article, article.title %></h2>
-   <%= article.html(:body).gsub(%r{</?[^>]*>}, '').slice(0..300) %>...
+   <% if article.password.blank? %>
+     <%= article.html(:body).gsub(%r{</?[^>]*>}, '').slice(0..300) %>...
+   <% end %>
   </div>
 <% end %>
 
