@@ -58,7 +58,7 @@ describe Admin::FeedbackController, type: :controller do
       end
     end
 
-    describe "index" do
+    describe "#index" do
       let!(:spam) { create(:spam_comment) }
       let!(:unapproved) { create(:unconfirmed_comment) }
       let!(:presumed_ham) { create(:presumed_ham_comment) }
@@ -108,45 +108,57 @@ describe Admin::FeedbackController, type: :controller do
       end
     end
 
-    describe "article action" do
+    describe "#article" do
+      # render_template
       let(:article) { create(:article) }
       let!(:ham) { create(:comment, article: article) }
       let!(:spam) { create(:comment, article: article, state: "spam") }
 
-      def should_success_with_article_view(response)
-        expect(response).to be_successful
-        expect(response).to render_template("article")
-      end
-
       it "sees all feedback on one article" do
         get :article, params: { id: article.id }
-        should_success_with_article_view(response)
-        expect(assigns(:article)).to eq(article)
-        expect(assigns(:feedback)).to match_array [ham, spam]
+        aggregate_failures do
+          expect(response).to be_successful
+          expect(response).to render_template("article")
+          expect(assigns(:article)).to eq(article)
+          expect(assigns(:feedback)).to match_array [ham, spam]
+        end
+      end
+
+      it "includes hidden article id field in bulkops form" do
+        get :article, params: { id: article.id }
+        expect(response.body).
+          to have_css("form[action='/admin/feedback/bulkops'] input[name=article_id]",
+                      visible: :hidden)
       end
 
       it "sees only spam feedback on one article" do
         get :article, params: { id: article.id, spam: "y" }
-        should_success_with_article_view(response)
-        expect(assigns(:article)).to eq(article)
-        expect(assigns(:feedback)).to match_array [spam]
+        aggregate_failures do
+          expect(response).to be_successful
+          expect(response).to render_template("article")
+          expect(assigns(:article)).to eq(article)
+          expect(assigns(:feedback)).to match_array [spam]
+        end
       end
 
       it "sees only ham feedback on one article" do
         get :article, params: { id: article.id, ham: "y" }
-        should_success_with_article_view(response)
-        expect(assigns(:article)).to eq(article)
-        expect(assigns(:feedback)).to match_array [ham]
+        aggregate_failures do
+          expect(response).to be_successful
+          expect(response).to render_template("article")
+          expect(assigns(:article)).to eq(article)
+          expect(assigns(:feedback)).to match_array [ham]
+        end
       end
 
-      it "redirect_toes index if bad article id" do
+      it "renders error if bad article id" do
         expect do
           get :article, params: { id: 102_302 }
         end.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
 
-    describe "create action" do
+    describe "#create" do
       def base_comment(options = {})
         { "body" => "a new comment", "author" => "Me", "url" => "https://bar.com/",
           "email" => "foo@bar.com" }.merge(options)
@@ -193,7 +205,7 @@ describe Admin::FeedbackController, type: :controller do
       end
     end
 
-    describe "edit action" do
+    describe "#edit" do
       it "renders edit form" do
         article = create(:article)
         comment = create(:comment, article: article)
@@ -205,7 +217,7 @@ describe Admin::FeedbackController, type: :controller do
       end
     end
 
-    describe "update action" do
+    describe "#update" do
       it "updates comment if post request" do
         article = create(:article)
         comment = create(:comment, article: article)
@@ -218,7 +230,7 @@ describe Admin::FeedbackController, type: :controller do
         expect(comment.body).to eq("updated comment")
       end
 
-      it "does not  update comment if get request" do
+      it "does not update comment if get request" do
         comment = create(:comment)
         get "update", params: { id: comment.id,
                                 comment: { author: "Bob Foo2",
@@ -240,7 +252,7 @@ describe Admin::FeedbackController, type: :controller do
       sign_in publisher
     end
 
-    describe "destroy action" do
+    describe "#destroy" do
       it_behaves_like "destroy feedback with feedback from own article"
 
       it "does not destroy feedback doesn't own" do
@@ -253,7 +265,7 @@ describe Admin::FeedbackController, type: :controller do
       end
     end
 
-    describe "edit action" do
+    describe "#edit" do
       it "does not edit comment no own article" do
         get "edit", params: { id: feedback_from_not_own_article.id }
         expect(response).to redirect_to(action: "index")
@@ -268,7 +280,7 @@ describe Admin::FeedbackController, type: :controller do
       end
     end
 
-    describe "update action" do
+    describe "#update" do
       it "updates comment if own article" do
         post "update", params: { id: feedback_from_own_article.id,
                                  comment: { author: "Bob Foo2",
@@ -292,9 +304,14 @@ describe Admin::FeedbackController, type: :controller do
     end
 
     describe "#bulkops action" do
-      it "redirect to index" do
+      it "redirects to index" do
         post :bulkops, params: { bulkop_top: "destroy all spam" }
         expect(@response).to redirect_to(action: "index")
+      end
+
+      it "redirects to article when id is given" do
+        post :bulkops, params: { article_id: article.id, bulkop_top: "destroy all spam" }
+        expect(@response).to redirect_to article_admin_feedback_url(article)
       end
 
       it "delete all spam" do
