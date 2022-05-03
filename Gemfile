@@ -43,7 +43,7 @@ group :development, :test do
 
   gem "capybara", "~> 3.9"
   gem "factory_bot", "~> 6.2"
-  gem "i18n-tasks", "~> 0.9.31", require: false
+  gem "i18n-tasks", "~> 1.0.9", require: false
   gem "pry", "~> 0.14.0"
   gem "pry-rails", "~> 0.3.4"
   gem "rspec-rails", "~> 5.0"
