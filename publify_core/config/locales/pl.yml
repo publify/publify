@@ -832,6 +832,7 @@ pl:
     ru_RU: Russian
     zh_CN: Simple Chinese
     zh_TW: Chinese
+    ar_AR: Arabic
   layouts:
     administration:
       powered_by: dumnie działa na

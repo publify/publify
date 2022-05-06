@@ -1,0 +1,20 @@
+---
+ar:
+  admin:
+    sidebar:
+      target_sidebar:
+        update: تحديث
+  meta_sidebar:
+    content:
+      admin: مشرف
+      powered_by_publify: مشغل بواسطة Publify
+      rss_feed: RSS خدمة
+  page_sidebar:
+    content:
+      pages: صفحات
+  search_sidebar:
+    content:
+      search: بحث
+  tag_sidebar:
+    content:
+      tags: علامات

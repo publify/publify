@@ -29,6 +29,7 @@ app/assets/javascripts/bootstrap/tab.js
 app/assets/javascripts/bootstrap/transition.js
 app/assets/javascripts/cookies.js
 app/assets/javascripts/datetimepicker.js
+app/assets/javascripts/lang/ar_AR.js
 app/assets/javascripts/lang/da_DK.js
 app/assets/javascripts/lang/default.js
 app/assets/javascripts/lang/en_US.js
