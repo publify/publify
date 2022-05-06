@@ -134,9 +134,9 @@ ar:
           zero: لا توجد صفحات
         running_publify: أنت تعمل على Publify %{version}
         spam_count:
-          one: 1 spam
-          other: "%{count} spam"
-          zero: no spam
+          one: 1 رسالة غير مرغوبة
+          other: "%{count} رسائل غير مرغوبة"
+          zero: لا توجد رسائل غير مرغوبة
         today: اليوم
         unconfirmed_count:
           one: 1 غير مؤكد
@@ -608,7 +608,7 @@ ar:
       form:
         about: سيرة شخصية
         account_settings: إعدادات الحساب
-        aim: AIM screen name
+        aim: AIM اسم الشاشة
         article_filter: تصفيت المقال
         author_page: صفحة الكاتب
         avatar: إعدادات الصورة
