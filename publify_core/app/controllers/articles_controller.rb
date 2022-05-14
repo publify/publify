@@ -166,7 +166,10 @@ class ArticlesController < ContentController
       format.html do
         @comment = Comment.new
         @page_title = this_blog.article_title_template.to_title(@article, this_blog, params)
-        @description = this_blog.article_desc_template.to_title(@article, this_blog, params)
+        if @article.password.blank?
+          @description = this_blog.article_desc_template.
+            to_title(@article, this_blog, params)
+        end
 
         @keywords = @article.tags.map(&:name).join(", ")
         render "articles/#{@article.post_type}"
