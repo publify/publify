@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-gem "rails", "~> 5.2.6.2"
+gem "rails", "~> 5.2.8"
 
 gem "mysql2"
 gem "pg"
