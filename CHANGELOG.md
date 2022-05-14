@@ -2,6 +2,24 @@
 
 See the changelogs for the individual engines for more details for releases 9.0 and up
 
+## 9.2.8 / 2022-05-14
+
+This release fixes several security issues:
+
+* Disallow comments on draft articles [#1048](https://github.com/publify/publify/pull/1048)
+* Disallow images in comments [#1054](https://github.com/publify/publify/pull/1054)
+* Hide bodies of password-protected articles in search results [#1057](https://github.com/publify/publify/pull/1057)
+* Do not create article meta description for password-protected articles [#1061](https://github.com/publify/publify/pull/1061)
+
+Additionally, it includes the following changes:
+
+* Clean up Feedback validation [#1051](https://github.com/publify/publify/pull/1051)
+* Bump mimimum puma and Rails versions [#1050](https://github.com/publify/publify/pull/1050)
+* Fix password reset process [#1055](https://github.com/publify/publify/pull/1055)
+* Fix password protected article reveal [#1049](https://github.com/publify/publify/pull/1049)
+* Provide correct `article_id` input in bulkops form [#1058](https://github.com/publify/publify/pull/1058)
+* Bump minimum required Rails version [#1062](https://github.com/publify/publify/pull/1062)
+
 ## 9.2.7 / 2022-02-07
 
 This release fixes a security issue:
