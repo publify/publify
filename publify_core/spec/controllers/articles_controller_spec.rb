@@ -483,6 +483,25 @@ RSpec.describe ArticlesController, type: :controller do
           to raise_error ActiveRecord::RecordNotFound
       end
     end
+
+    context "when the article is password protected" do
+      render_views
+
+      let!(:blog) { create(:blog, permalink_format: "/%title%.html") }
+      let!(:article) do
+        create(:article, title: "Secretive", body: "protected foobar", password: "password")
+      end
+
+      it "shows a password form for the article" do
+        get :redirect, params: { from: "secretive.html" }
+        expect(response.body).to have_selector('input[id="article_password"]', count: 1)
+      end
+
+      it "does not include the article body anywhere" do
+        get :redirect, params: { from: "secretive.html" }
+        expect(response.body).not_to include article.body
+      end
+    end
   end
 
   describe "#check_password" do
