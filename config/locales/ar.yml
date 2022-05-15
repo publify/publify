@@ -3,8 +3,11 @@ ar:
   articles:
     comment_counter:
       comments:
+        few: بعض التعليقات
+        many: أكثر من تعليق
         one: 1 تعليق
         other: "%{count} تعليقات"
+        two: تعليقان
         zero: لا توجد تعليقات
     comment_form:
       comment: تعليق

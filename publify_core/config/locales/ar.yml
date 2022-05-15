@@ -108,46 +108,73 @@ ar:
         write_a_post: كتبت منشور
       welcome:
         approved_count:
+          few: قليل
+          many: كثير
           one: موافق
           other: "%{count} موافقين"
+          two: اثنين
           zero: لا توجد موافقة
         articles_and_comments_count_since: "%{articles_count} مقالات و %{comments_count}
           تعليقات تم نشرها من أخر تسجيل دخول لك"
         articles_count:
+          few: قليل
+          many: كثير
           one: مقال
           other: "%{count} مقالات"
+          two: اثنين
           zero: لا توجد مقالات
         comments_count:
+          few: قليل
+          many: كثير
           one: تعليق
           other: "%{count} تعليقات"
+          two: اثنين
           zero: لا توجد تعليقات
         content: محتوى
         drafts_count:
+          few: قليل
+          many: كثير
           one: مسودة
           other: "%{count} مسودات"
+          two: اثنين
           zero: لا توجد مسودات
         feedback: ردود الفعل
         notes_count:
+          few: قليل
+          many: كثير
           one: ملاحظة
           other: "%{count} ملاحظات"
+          two: اثنين
           zero: لا توجد ملاحظات
         pages_count:
+          few: قليل
+          many: كثير
           one: صفحة
           other: "%{count} صفحات"
+          two: اثنين
           zero: لا توجد صفحات
         running_publify: أنت تعمل على Publify %{version}
         spam_count:
+          few: بعض الرسائل الغير مرغوب فيها
+          many: أكثر من رسالة غير مرغوب فيها
           one: 1 رسالة غير مرغوبة
           other: "%{count} رسائل غير مرغوبة"
+          two: رسالتين غير مرغوب فيهم
           zero: لا توجد رسائل غير مرغوبة
         today: اليوم
         unconfirmed_count:
+          few: قليل
+          many: كثير
           one: 1 غير مؤكد
           other: "%{count} غير مؤكد"
+          two: اثنين
           zero: لا توجد غير مؤكد
         your_articles_count:
+          few: قليل
+          many: كثير
           one: تم كتابة مقال واحد
           other: "%{count} مقال تم كتابتهم بواسطتك"
+          two: اثنين
           zero: لم يتم كتابة أي مقال لك
     feedback:
       article:
@@ -171,12 +198,18 @@ ar:
         success_deleted: العناصر %{count} المحذوفة
         success_deleted_spam: تم حذف كل البريد المزعج
         success_mark_as_ham:
+          few: تم وضع علامة على بعض العناصر بأنهم هامين
+          many: تم وضع علامة على أكثر من عنصر بأنهم هامين
           one: تم وضع علامة على عنصر واحد بأنه هام
           other: تم وضع علامة %{count} عناصر بأنها هامه
+          two: تم وضع علامة على عنصرين بأنهما هامين
           zero: لم يتم تحديد عنصر لوضع علامة هام
         success_mark_as_spam:
+          few: تم وضع علامة على بعض العناصر بأنهم رسائل غير مرغوبة
+          many: تم وضع علامة على أكثر من عنصر بأنهم رسائل غير مرغوبة
           one: تم وضع علامة على عنصر واحد على أنها رسالة غير مرغوبة
           other: تم وضع علامة علي %{count} عنصر على أنها رسائل غير مرغوبة
+          two: تم وضع علامة على عنصرين بأنهما رسالتين غير مرغوبة
           zero: لم يتم تحديد أي عنصر لوضع علامة عليه كرسالة غير مرغوب فيها
       button:
         delete_all_spam: احذف جميع الرسائل غير المرغوب فيها
@@ -231,8 +264,12 @@ ar:
         information: معلومات
         may_take_a_moment: قد يستغرق بعض الوقت
         migration_pending:
+          few: بعض الترحيلات معلقة
+          many: هناك أكثر من ترحيل معلق
           one: هناك ترحيل واحد معلق.
           other: هناك %{count} ترحيلات معلقة.
+          two: هناك ترحيلين معلقان
+          zero: لا يوجد أي ترحيل معلق
         migrations: ترحيلات
         needed_migrations: تحتاج الترحيل
         update_database_now: تحديث قاعدة البيانات الآن
@@ -674,13 +711,19 @@ ar:
       continue_reading: استكمال القراءة
     article_links:
       comments:
+        few: بعض التعليقات
+        many: أكثر من تعليق
         one: تعليق
         other: "%{count} تعليقات"
+        two: تعليقان
         zero: لا توجد تعليقات
       tags: Tags
       trackbacks:
+        few: بعض المتتبعين
+        many: أكثر من متتبع
         one: 1 متتبع
         other: "%{count} متتبعين"
+        two: متتبعان
         zero: لا يوجد متتبع
     comment_errors:
       message: حدث خطأ ما، ولا يمكن حفظ التعليق.

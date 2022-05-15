@@ -782,6 +782,7 @@ nb:
   helper:
     at: kl.
   langs:
+    ar_AR: Arabic
     da_DK: Dansk
     de_DE: Tysk
     en_US: Engelsk (amerikansk)
