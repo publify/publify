@@ -27,6 +27,7 @@ app/assets/javascripts/bootstrap/dropdown.js
 app/assets/javascripts/bootstrap/modal.js
 app/assets/javascripts/bootstrap/tab.js
 app/assets/javascripts/bootstrap/transition.js
+app/assets/javascripts/check_password.js
 app/assets/javascripts/cookies.js
 app/assets/javascripts/datetimepicker.js
 app/assets/javascripts/lang/da_DK.js
