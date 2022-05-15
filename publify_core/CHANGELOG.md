@@ -9,6 +9,17 @@
 * Remove support for Textile as a text format
 * Replace BlueCloth with CommonMarker for Markdown processing
 
+## 9.2.8 / 2022-05-14
+
+* Fix password protected article reveal [#1049](https://github.com/publify/publify/pull/1049)
+* Disallow comments on draft articles [#1048](https://github.com/publify/publify/pull/1048)
+* Clean up Feedback validation [#1051](https://github.com/publify/publify/pull/1051)
+* Disallow images in comments [#1054](https://github.com/publify/publify/pull/1054)
+* Fix password reset process [#1055](https://github.com/publify/publify/pull/1055)
+* Hide bodies of password-protected articles in search results [#1057](https://github.com/publify/publify/pull/1057)
+* Provide correct `article_id` input in bulkops form [#1058](https://github.com/publify/publify/pull/1058)
+* Do not create article meta description for password-protected articles [#1061](https://github.com/publify/publify/pull/1061)
+
 ## 9.2.7 / 2022-02-07
 
 * Fix setting the article password from the Admin [#1044](https://github.com/publify/publify/pull/1044)

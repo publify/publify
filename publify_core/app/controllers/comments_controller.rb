@@ -7,11 +7,6 @@ class CommentsController < BaseController
     options = new_comment_defaults.merge comment_params.to_h
     @comment = @article.add_comment(options)
 
-    unless current_user.nil? || session[:user_id].nil?
-      # maybe useless, but who knows ?
-      @comment.user_id = current_user.id if current_user.id == session[:user_id]
-    end
-
     remember_author_info_for @comment
 
     partial = "/articles/comment_failed"
@@ -33,7 +28,7 @@ class CommentsController < BaseController
     @comment = @article.comments.build(comment_params)
   end
 
-  protected
+  private
 
   def recaptcha_ok_for?(comment)
     use_recaptcha = comment.blog.use_recaptcha
@@ -43,7 +38,7 @@ class CommentsController < BaseController
   def new_comment_defaults
     { ip: request.remote_ip,
       author: "Anonymous",
-      user: @current_user,
+      user: current_user,
       user_agent: request.env["HTTP_USER_AGENT"],
       referrer: request.env["HTTP_REFERER"],
       permalink: @article.permalink_url }.stringify_keys

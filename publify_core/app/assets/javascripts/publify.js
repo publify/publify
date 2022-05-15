@@ -7,5 +7,6 @@
 //= require jquery_ujs
 //= require lightbox
 //= require observe
+//= require check_password
 //
 //= require_self

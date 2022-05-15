@@ -99,11 +99,19 @@ RSpec.describe ArticlesController, type: :controller do
         end
 
         context "when the article is password protected" do
-          let(:article) { create(:article, password: "password") }
+          let(:article) do
+            create(:article, title: "Secretive", body: "protected foobar",
+                             password: "password")
+          end
 
-          it "article alone should be password protected" do
+          it "shows a password form for the article" do
             get :redirect, params: { from: from_param }
             expect(response.body).to have_selector('input[id="article_password"]', count: 1)
+          end
+
+          it "does not include the article body anywhere" do
+            get :redirect, params: { from: from_param }
+            expect(response.body).not_to include article.body
           end
         end
       end
@@ -308,16 +316,16 @@ RSpec.describe ArticlesController, type: :controller do
         let!(:article) { create(:article, password: "password") }
 
         it "shows article when given correct password" do
-          get :check_password, xhr: true,
-                               params: { article: { id: article.id,
-                                                    password: article.password } }
+          post :check_password, xhr: true,
+                                params: { article: { id: article.id,
+                                                     password: article.password } }
           expect(response.body).not_to have_selector('input[id="article_password"]')
         end
 
         it "shows password form when given incorrect password" do
-          get :check_password, xhr: true,
-                               params: { article: { id: article.id,
-                                                    password: "wrong password" } }
+          post :check_password, xhr: true,
+                                params: { article: { id: article.id,
+                                                     password: "wrong password" } }
           expect(response.body).to have_selector('input[id="article_password"]')
         end
       end

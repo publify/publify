@@ -24,8 +24,12 @@ class Trackback < Feedback
   def blog_allows_feedback?
     return true unless blog.global_pings_disable
 
-    errors.add(:article, "Pings are disabled")
+    errors.add(:base, "Pings are disabled")
     false
+  end
+
+  def check_article_closed_for_feedback
+    errors.add(:article, "Pings are closed") if article.pings_closed?
   end
 
   def originator

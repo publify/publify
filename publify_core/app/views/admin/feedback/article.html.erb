@@ -6,7 +6,7 @@
 
 <%= form_tag({ action: 'bulkops' }, { class: 'form-inline' }) do %>
 
-  <%= hidden_field 'article_id', @article.id %>
+  <%= hidden_field_tag 'article_id', @article.id %>
 
   <% if @feedback.any? %>
     <%= render 'button', position: 'top' %>
