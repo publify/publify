@@ -770,6 +770,7 @@ ja:
   helper:
     at: at
   langs:
+    ar_AR: Arabic
     da_DK: Danish
     de_DE: German
     en_US: English (US)
@@ -787,7 +788,6 @@ ja:
     ru_RU: Russian
     zh_CN: Simple Chinese
     zh_TW: Chinese
-    ar_AR: Arabic
   layouts:
     administration:
       powered_by: is proudly powered by

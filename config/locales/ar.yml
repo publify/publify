@@ -11,7 +11,8 @@ ar:
       email_address: عنوان البريد الإلكتروني
       your_website: موقعك
     meta:
-      published_on_html: تم النشر في %{publish_date_and_time} بواسطة %{by}, علامات %{tags}
+      published_on_html: تم النشر في %{publish_date_and_time} بواسطة %{by}, علامات
+        %{tags}
     read:
       add_me_to_twitter: تابعني على تويتر
       if_you_liked_this_article_you_can_html: لو أعجبتك هذه المقالة يمكنك %{add_twitter}

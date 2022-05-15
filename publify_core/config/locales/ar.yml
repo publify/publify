@@ -5,7 +5,8 @@ ar:
     back_to_login: الرجوع لتسجيل الدخول
     confirm:
       admin: مشرف
-      dont_lose_the_mail_sent: لا تفقد الميل الذي تم إرساله لـ %{email} وإلا ستفقد الدخول
+      dont_lose_the_mail_sent: لا تفقد الميل الذي تم إرساله لـ %{email} وإلا ستفقد
+        الدخول
       login: 'تسجيل الدخول: %{login}'
       proceed_to: الشروع في %{link}
       success: تم الاشتراك بنجاح.
@@ -53,8 +54,8 @@ ar:
         save_as_draft: حفظ كمسودة
         status: حالة
         tags: علامات
-        tags_explanation_html: أفصل التعليقات بفواصل. استخدم علامات الاقتباس المزدوجة (&quot;)
-          حول العلامات متعددة الكلمات ، على سبيل المثال &quot;دار الأوبرا&quot;.
+        tags_explanation_html: أفصل التعليقات بفواصل. استخدم علامات الاقتباس المزدوجة
+          (&quot;) حول العلامات متعددة الكلمات ، على سبيل المثال &quot;دار الأوبرا&quot;.
         title: عنوان
         type_your_post: نوع منشورك
         visibility: الرؤية
@@ -96,11 +97,13 @@ ar:
         change_your_blog_presentation: تغير شكل العرض للمدونة
         customization_explain_html: متاح لك التغيير في التصميم أيضا, %{theme_link}
           أو %{sidebar_link}.
-        dashboard_explain_html: يمنحك هذا المكان نظرة عامة سريعة على ما يحدث في مدونة Publify وما يمكنك القيام به. ربما تريد ذلك %{available_actions}
+        dashboard_explain_html: يمنحك هذا المكان نظرة عامة سريعة على ما يحدث في مدونة
+          Publify وما يمكنك القيام به. ربما تريد ذلك %{available_actions}
         enable_plugins: تفعيل الملحقات
         help_explain_html: إذ أردت بعض المساعدة, %{doc_link}.
         read_our_documentation: اقرأ توثيقاتنا
-        update_your_profile_or_change_your_password: تحديث الصفحة الشخصية أو تغيير الرقم السري
+        update_your_profile_or_change_your_password: تحديث الصفحة الشخصية أو تغيير
+          الرقم السري
         write_a_page: كتبت صفحة
         write_a_post: كتبت منشور
       welcome:
@@ -179,7 +182,8 @@ ar:
         delete_all_spam: احذف جميع الرسائل غير المرغوب فيها
         delete_checked_items: حذف العناصر المحددة
         mark_checked_items_as_ham: وضع علامة على العناصر المحددة كهام
-        mark_checked_items_as_spam: وضع علامة على العناصر المحددة كرسائل غير المرغوب فيها
+        mark_checked_items_as_spam: وضع علامة على العناصر المحددة كرسائل غير المرغوب
+          فيها
       create:
         success: تم إنشاء التعليق بنجاح.
       destroy:
@@ -211,7 +215,7 @@ ar:
         unapproved_comments: التعليقات غير المعتمدة
       state:
         ham: هام
-        just_marked_as_ham: تم تمييزها للتو على أنها هام 
+        just_marked_as_ham: تم تمييزها للتو على أنها هام
         just_marked_as_spam: تم تمييزها للتو على أنها رسالة غير مرغوب فيها
         just_presumed_ham: افترضت كهام للتو
         presumed_ham: هام?
@@ -294,9 +298,8 @@ ar:
         cancel: إلغاء
         default: افتراضي
         description: وصف
-        explain: اسم النموذج هو اسم الملف الذي سيبحث عنه Publify عند استدعاء مقال من هذا النوع.
-          يجب أن يكون في موضوعك تحت views/articles/template
-          name.html.erb
+        explain: اسم النموذج هو اسم الملف الذي سيبحث عنه Publify عند استدعاء مقال
+          من هذا النوع. يجب أن يكون في موضوعك تحت views/articles/template name.html.erb
         name: اسم
         or: أو
         post_types: أنواع المنشور
@@ -327,7 +330,9 @@ ar:
         content_type: نوع المحتوى
         date: تاريخ
         delete: حذف
-        explain_media_library_html: رفع صورة, فيديو و صوت هٌنا لاستخدامه في منشورات المدونة والصفحات. الرجاء ملاحظة أن <strong>كل الملفات المرفوعة سيكون متاح الوصول لها بشكل عام حتى لو لم يتم استخدمها في منشورات المدونة أو الصفحات</strong>.
+        explain_media_library_html: رفع صورة, فيديو و صوت هٌنا لاستخدامه في منشورات
+          المدونة والصفحات. الرجاء ملاحظة أن <strong>كل الملفات المرفوعة سيكون متاح
+          الوصول لها بشكل عام حتى لو لم يتم استخدمها في منشورات المدونة أو الصفحات</strong>.
         file_size: حجم الملف
         filename: اسم الملف
         media_library: مكتبة الإعلام
@@ -346,15 +351,15 @@ ar:
         custom_tracking_code: رمز التتبع المخصص
         do_not_index_tags: لا تُفهرس العلامات
         dofollow: Dofollow
-        explain: هنا يمكنك إضافة أي شيء تريده أن يظهر في التطبيق الخاص بك
-          رأس ، مثل رمز تتبع خدمة التحليلات.
+        explain: هنا يمكنك إضافة أي شيء تريده أن يظهر في التطبيق الخاص بك رأس ، مثل
+          رمز تتبع خدمة التحليلات.
         explain_moderate_feedback: قد ترغب في تعديل التعليقات عند تشغيل هذا
         explain_rss_description: 'يمكنك استخدام العلامات التالية: %author% (author
-          name), %blog_url% (رابط هذه المدونة), %blog_name% (عنوان هذه المدونة) و %permalink_url%
-          (رابط للمقال الذي تريد حمايته)'
+          name), %blog_url% (رابط هذه المدونة), %blog_name% (عنوان هذه المدونة) و
+          %permalink_url% (رابط للمقال الذي تريد حمايته)'
         explain_tag_index_html: تحديد هذا المربع سيضيف <code>غير مفهرس, تابع</code>
-          العلامات الوصفية في كل صفحة العلامات, إزالتها من محركات البحث ومنعها
-          قضايا المحتوى المكررة
+          العلامات الوصفية في كل صفحة العلامات, إزالتها من محركات البحث ومنعها قضايا
+          المحتوى المكررة
         general_settings: الإعدادات العامة
         google: جوجل
         google_analytics: تحليلات جوجل
@@ -372,16 +377,16 @@ ar:
       permalinks:
         custom: مخصص
         date_and_title: التاريخ والعنوان
-        explain: قدم لك Publify القدرة على إنشاء بنية عنوان رابط مخصصة لـ
-          الروابط الثابتة والمحفوظات الخاصة بك. هذا يمكن أن يحسن الجماليات ، وسهولة الاستخدام ،
-          والتوافق مع الروابط الخاصة بك إلى الأمام.
+        explain: قدم لك Publify القدرة على إنشاء بنية عنوان رابط مخصصة لـ الروابط
+          الثابتة والمحفوظات الخاصة بك. هذا يمكن أن يحسن الجماليات ، وسهولة الاستخدام
+          ، والتوافق مع الروابط الخاصة بك إلى الأمام.
         help_on_permalink_settings: ساعد في إعدادات الروابط الثابتة
         month_and_title: الشهر والعنوان
         permalink_format: نسق الروابط الثابتة
         sample: هنا بعض الأمثلة للبدأ بها.
         title_only: العنوان فقط
-        you_can_custom_your_url_structure: 'يمكنك تخصيص بنية عنوان الرابط الخاص بك باستخدام
-          العلامات التالية:'
+        you_can_custom_your_url_structure: 'يمكنك تخصيص بنية عنوان الرابط الخاص بك
+          باستخدام العلامات التالية:'
         your_article_day: يوم نشر مقالتك.
         your_article_month: شهر نشر مقالتك.
         your_article_slug_html: قالب منشورك. <strong>استخدام هذا القالب إلزامي</strong>.
@@ -428,8 +433,7 @@ ar:
       display:
         cancel: إلغاء
         custom_url: مجال تقصير عناوين الرابط المخصص
-        custom_url_help: إذا كان لديك مجال مخصص لاختصار عناوين الرابط ، أدخله
-          هنا.
+        custom_url_help: إذا كان لديك مجال مخصص لاختصار عناوين الرابط ، أدخله هنا.
         date_format: نسق التاريخ
         default_archives_show: مقالات في صفحة المحفوظات
         default_article_show: مقالات على الصفحة الرئيسية
@@ -441,7 +445,7 @@ ar:
         feed_settings: إعدادات خدمة RSS
         or: أو
         publishing_options: خيارات النشر
-        status_main_feed: عرض الحالات في الخلاصة الرئيسية 
+        status_main_feed: عرض الحالات في الخلاصة الرئيسية
         statuses: حالات
         time_format: نسق الوقت
         update_settings: تحديث الإعدادات
@@ -460,22 +464,21 @@ ar:
         enable_spam_protection: تفعيل الحماية من الرسائل الغير مرغوب فيها
         explain_feedback_moderation: يمكنك تمكين الإشراف على التعليقات على مستوى الموقع.
           إذا قمت بذلك ، فلن يظهر أي تعليق على مدونتك ما لم تتحقق من صحته.
-        explain_reject_comments: سترفض Publify تلقائيًا التعليقات التي
-          تحتوي على عدد معين من الروابط بداخلها
-        explain_spam_protection: سيؤدي تمكين الحماية من الرسائل الغير مرغوب فيها إلى مقارنة Publify
-          عنوان IP للملصقات وكذلك محتويات مشاركاتهم ضد
-          القوائم السوداء المحلية والبعيدة. دفاع جيد ضد روبوتات الرسائل الغير مرغوب فيها
+        explain_reject_comments: سترفض Publify تلقائيًا التعليقات التي تحتوي على عدد
+          معين من الروابط بداخلها
+        explain_spam_protection: سيؤدي تمكين الحماية من الرسائل الغير مرغوب فيها إلى
+          مقارنة Publify عنوان IP للملصقات وكذلك محتويات مشاركاتهم ضد القوائم السوداء
+          المحلية والبعيدة. دفاع جيد ضد روبوتات الرسائل الغير مرغوب فيها
         explain_spamfiltering_html: Publify يمكن (اختياريا) استخدام <a href='http://akismet.com'>Akismet</a>
-          خدمة تصفية الرسائل الغير مرغوب فيها. أنت بحاجة للتسجيل في Akismet والحصول على
-          مفتاح API قبل أن تتمكن من استخدام خدمتهم. إذا كان لديك مفتاح Akismet ، أدخل
-          هنا
+          خدمة تصفية الرسائل الغير مرغوب فيها. أنت بحاجة للتسجيل في Akismet والحصول
+          على مفتاح API قبل أن تتمكن من استخدام خدمتهم. إذا كان لديك مفتاح Akismet
+          ، أدخل هنا
         feedback: ردود الفعل
         feedback_settings: إعدادات ردود الفعل
         max_links: الروابط الأكثر
         none: لا شئ
         or: أو
-        remember_to_set_your_recaptcha: تذكر أن تضبط مفاتيح إعادة التحقق بالداخل
-          config/initializers/recaptcha.rb
+        remember_to_set_your_recaptcha: تذكر أن تضبط مفاتيح إعادة التحقق بالداخل config/initializers/recaptcha.rb
         set_to_0_to_never_disable_comments: اضبط على 0 لعدم تعطيل التعليقات أبدًا
         set_to_0_to_never_reject_comments: اضبط على 0 لعدم رفض التعليقات أبدًا
         spam: رسائل مزعجة
@@ -487,11 +490,12 @@ ar:
         blog_subtitle: عنوان فرعي للمدونة
         blog_url: رابط المدونة
         cancel: إلغاء
-        email_address_used_to_notify: البريد الإلكتروني المستخدم بواسطة Publify لإرسال الإشعارات
-        explain_allow_users_to_register_html: سيسمح هذا للمستخدمين بتسجيل أنفسهم
-          كمساهمين ، مستوى حساب غير مميز لا يمنحهم أي حقوق
-          بخلاف امتلاك ملف تعريف على الموقع. إذا كنت لا تريد أن يقوم المستخدمون بالتسجيل ،
-          يمكنك إضافتها عبر <em> إدارة المستخدمين </ em> ضمن <em> الإعدادات </ em>.
+        email_address_used_to_notify: البريد الإلكتروني المستخدم بواسطة Publify لإرسال
+          الإشعارات
+        explain_allow_users_to_register_html: سيسمح هذا للمستخدمين بتسجيل أنفسهم كمساهمين
+          ، مستوى حساب غير مميز لا يمنحهم أي حقوق بخلاف امتلاك ملف تعريف على الموقع.
+          إذا كنت لا تريد أن يقوم المستخدمون بالتسجيل ، يمكنك إضافتها عبر <em> إدارة
+          المستخدمين </ em> ضمن <em> الإعدادات </ em>.
         general_settings: الإعدادات العامة
         items_to_display_in_admin_lists: العناصر المراد عرضها في قوائم المشرف
         language: اللغة
@@ -572,17 +576,19 @@ ar:
         you_have_no_plugins_installed: ليس لديك ملحقات مثبتة
       index:
         cancel: إلغاء
-        download_more_plugins_html: يمكنك تنزيل وتثبيت ملحقات الشريط الجانبي من
-          مسؤولنا <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>موقع الملحق</a>. كل ما عليك فعله هو تحميل دليل السمة في دليل البائع / الإضافات.
+        download_more_plugins_html: يمكنك تنزيل وتثبيت ملحقات الشريط الجانبي من مسؤولنا
+          <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>موقع الملحق</a>.
+          كل ما عليك فعله هو تحميل دليل السمة في دليل البائع / الإضافات.
         explain_how_its_works: قم بالسحب / الالصاق والإفلات لتغيير عناصر الشريط الجانبي
-           المعروضة في هذه المدونة. لإزالة عناصر من الشريط الجانبي ،
-           ما عليك سوى النقر فوق "إزالة". يتم حفظ التغييرات على الفور ،
-           ولكن لا يتم تنشيطها حتى تنقر على الزر "نشر التغييرات"
+          المعروضة في هذه المدونة. لإزالة عناصر من الشريط الجانبي ، ما عليك سوى النقر
+          فوق "إزالة". يتم حفظ التغييرات على الفور ، ولكن لا يتم تنشيطها حتى تنقر
+          على الزر "نشر التغييرات"
         or: أو
         publish_changes: نشر التغييرات
         sidebar: الشريط الجانبي
       target:
-        drag_some_plugins_here: اسحب / ألصق بعض الملحقات هنا لملء الشريط الجانبي الخاص بك
+        drag_some_plugins_here: اسحب / ألصق بعض الملحقات هنا لملء الشريط الجانبي الخاص
+          بك
     tags:
       edit:
         success: تم تحديث العلامة بنجاح
@@ -715,8 +721,7 @@ ar:
     comment:
       said: قَال
       this_comment_has_been_flagged_for_moderator_approval: تم وضع علامة على هذا التعليق
-       لموافقة الوسيط. لن تظهر في هذه المدونة حتى يوافق عليها المؤلف
-
+        لموافقة الوسيط. لن تظهر في هذه المدونة حتى يوافق عليها المؤلف
   date:
     abbr_month_names:
     - 
@@ -750,7 +755,8 @@ ar:
     characters_minimum: أقل %{min} حرف
   errors:
     article_type_already_exist: هذه النوع للمقال بالفعل موجود
-    cant_end_with_rss_or_atom: لا يمكن أن ينتهي بـ .rss أو .atom. هذه محجوزة لعناوين رابط للخلاصة
+    cant_end_with_rss_or_atom: لا يمكن أن ينتهي بـ .rss أو .atom. هذه محجوزة لعناوين
+      رابط للخلاصة
     no_notes_found: لا توجد ملاحظات...
     no_posts_found: لا توجد منشورات...
     page_not_found: لا توجد صفحات
@@ -771,6 +777,7 @@ ar:
   helper:
     at: في
   langs:
+    ar_AR: Arabic
     da_DK: Danish
     de_DE: German
     en_US: English (US)
@@ -788,10 +795,9 @@ ar:
     ru_RU: Russian
     zh_CN: Simple Chinese
     zh_TW: Chinese
-    ar_AR: Arabic
   layouts:
     administration:
-      powered_by:  بفخر تُشغل بواسطة
+      powered_by: بفخر تُشغل بواسطة
     default:
       designed_by: صُممت بواسطة %{designed_by}
       powered_by_html: مشغل بواسطة %{powered_by}
@@ -806,7 +812,8 @@ ar:
     publisher: ناشر المدونة
   setup:
     article:
-      body: مرحبًا في Publify. ذا هو المقال الأول لك. ويمكنك تعديله أو حذفه, ثم ابدأ التدوين!
+      body: مرحبًا في Publify. ذا هو المقال الأول لك. ويمكنك تعديله أو حذفه, ثم ابدأ
+        التدوين!
       title: مرحبًا بالعالم!
     index:
       blog_name: اسم المدونة
@@ -815,9 +822,9 @@ ar:
       your_mail: بريدك الإلكترونتي
     page:
       about: عن
-      body: هذا مثال لصفحة Publify. يمكنك تعديل هذا لكتابة المعلومات
-        عن نفسك أو عن موقعك حتى يعرف القراء من أنت. يمكنك إنشاء ملفات
-        العديد من الصفحات كما تريد وقم بإدارة كل المحتوى الخاص بك داخل Publify.
+      body: هذا مثال لصفحة Publify. يمكنك تعديل هذا لكتابة المعلومات عن نفسك أو عن
+        موقعك حتى يعرف القراء من أنت. يمكنك إنشاء ملفات العديد من الصفحات كما تريد
+        وقم بإدارة كل المحتوى الخاص بك داخل Publify.
   tags:
     index:
       there_are_no_tags: لا توجد علامات
