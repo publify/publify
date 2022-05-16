@@ -1,0 +1,34 @@
+---
+ar:
+  articles:
+    comment_counter:
+      comments:
+        few: بعض التعليقات
+        many: أكثر من تعليق
+        one: 1 تعليق
+        other: "%{count} تعليقات"
+        two: تعليقان
+        zero: لا توجد تعليقات
+    comment_form:
+      comment: تعليق
+      email_address: عنوان البريد الإلكتروني
+      your_website: موقعك
+    meta:
+      published_on_html: تم النشر في %{publish_date_and_time} بواسطة %{by}, علامات
+        %{tags}
+    read:
+      add_me_to_twitter: تابعني على تويتر
+      if_you_liked_this_article_you_can_html: لو أعجبتك هذه المقالة يمكنك %{add_twitter}
+      trackbacks_for: التتبع لـ
+    search:
+      search_results_for: نتائج البحث لـ '%{query}'
+  comments:
+    comment:
+      by: بواسطة
+  layouts:
+    default:
+      archives: أرشيفات
+      statuses: حالات
+  pagination:
+    next: القادم
+    previous: السابق

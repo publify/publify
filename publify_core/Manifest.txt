@@ -30,6 +30,7 @@ app/assets/javascripts/bootstrap/transition.js
 app/assets/javascripts/check_password.js
 app/assets/javascripts/cookies.js
 app/assets/javascripts/datetimepicker.js
+app/assets/javascripts/lang/ar_AR.js
 app/assets/javascripts/lang/da_DK.js
 app/assets/javascripts/lang/default.js
 app/assets/javascripts/lang/en_US.js
@@ -347,6 +348,7 @@ app/views/xml/sitemap.googlesitemap.builder
 config/i18n-tasks.yml
 config/initializers/devise.rb
 config/initializers/mime_types.rb
+config/locales/ar.yml
 config/locales/da.yml
 config/locales/de.yml
 config/locales/en.yml
@@ -362,6 +364,7 @@ config/locales/pl.yml
 config/locales/pt-BR.yml
 config/locales/ro.yml
 config/locales/ru.yml
+config/locales/sidebars.ar.yml
 config/locales/sidebars.da.yml
 config/locales/sidebars.de.yml
 config/locales/sidebars.en.yml

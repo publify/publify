@@ -1,0 +1,883 @@
+---
+ar:
+  accounts:
+    back_to_html: "&larr; الرجوع إلى %{place}"
+    back_to_login: الرجوع لتسجيل الدخول
+    confirm:
+      admin: مشرف
+      dont_lose_the_mail_sent: لا تفقد الميل الذي تم إرساله لـ %{email} وإلا ستفقد
+        الدخول
+      login: 'تسجيل الدخول: %{login}'
+      proceed_to: الشروع في %{link}
+      success: تم الاشتراك بنجاح.
+    create_account: إنشاء حساب
+    lost_my_password: نسيت الرقم السري
+  activerecord:
+    errors:
+      models:
+        article:
+          attributes:
+            title:
+              blank: لا يمكن تركها فارغة
+  admin:
+    articles:
+      access_granted:
+        error: خطأ، غير مسموح لك بهذا الإجراء
+      article_list:
+        feedback: ردود الفعل
+        no_articles: لا توجد مقالات بعد. لماذا لا تنشئ واحد؟
+      autosave:
+        success: تم حفظ المقال بنجاح
+      create:
+        success: تم إنشاء المقال بنجاح
+      form:
+        allow_comments: السماح بالتعليقات
+        allow_comments_status:
+          disabled: غير فعال
+          enabled: تفعيل
+        allowed_comments_html: التعليقات تكون %{allow_comment}
+        article_filter: تصفيت المقال
+        article_type: نوع المقال
+        cancel: إلغاء
+        default: الغالب
+        now: الآن
+        ok: تم
+        password: الرقم السري
+        permalink: الرابط الثابت
+        preview: السابق
+        protected: محمي
+        public: عام
+        publish: نشر
+        publish_settings: إعدادات النشر
+        published: تم النشر
+        save: حفظ
+        save_as_draft: حفظ كمسودة
+        status: حالة
+        tags: علامات
+        tags_explanation_html: أفصل التعليقات بفواصل. استخدم علامات الاقتباس المزدوجة
+          (&quot;) حول العلامات متعددة الكلمات ، على سبيل المثال &quot;دار الأوبرا&quot;.
+        title: عنوان
+        type_your_post: نوع منشورك
+        visibility: الرؤية
+      index:
+        actions: أجراءات
+        all_articles: كل المقالات
+        author: الكاتب
+        created_at: أنشئت في
+        drafts: مسودات
+        feedback: ردود الفعل
+        manage_articles: إدارة المقالات
+        new_article: مقال جديد
+        publication_date: تاريخ النشر
+        publication_pending: النشر معلق
+        published: تم النشر
+        published_at: تاريخ النشر
+        search: بحث
+        select_an_author: اختار كاتب
+        text_filter: تصفيت النص
+        title: عنوان
+        withdrawn: منكوص
+      update:
+        success: تم تحديث المقال بنجاح
+    base:
+      not_allowed: خطأ، غير مسموح لك بهذا الإجراء
+      successfully_deleted: "%{name} حُذفت بنجاح"
+    dashboard:
+      comment:
+        by: بواسطة
+        no_comments_yet: لا يوجد تعليقات بعد
+      comments:
+        latest_comments: أحدث التعليقات
+      drafts:
+        no_drafts_yet: لا توجد مسودات، لماذا لا تنشئ واحدة؟
+        your_drafts: المسودة الشخصية
+      index:
+        welcome_back: مرحبًا مرة أٌخرى, %{user_name}!
+      overview:
+        change_your_blog_presentation: تغير شكل العرض للمدونة
+        customization_explain_html: متاح لك التغيير في التصميم أيضا, %{theme_link}
+          أو %{sidebar_link}.
+        dashboard_explain_html: يمنحك هذا المكان نظرة عامة سريعة على ما يحدث في مدونة
+          Publify وما يمكنك القيام به. ربما تريد ذلك %{available_actions}
+        enable_plugins: تفعيل الملحقات
+        help_explain_html: إذ أردت بعض المساعدة, %{doc_link}.
+        read_our_documentation: اقرأ توثيقاتنا
+        update_your_profile_or_change_your_password: تحديث الصفحة الشخصية أو تغيير
+          الرقم السري
+        write_a_page: كتبت صفحة
+        write_a_post: كتبت منشور
+      welcome:
+        approved_count:
+          few: قليل
+          many: كثير
+          one: موافق
+          other: "%{count} موافقين"
+          two: اثنين
+          zero: لا توجد موافقة
+        articles_and_comments_count_since: "%{articles_count} مقالات و %{comments_count}
+          تعليقات تم نشرها من أخر تسجيل دخول لك"
+        articles_count:
+          few: قليل
+          many: كثير
+          one: مقال
+          other: "%{count} مقالات"
+          two: اثنين
+          zero: لا توجد مقالات
+        comments_count:
+          few: قليل
+          many: كثير
+          one: تعليق
+          other: "%{count} تعليقات"
+          two: اثنين
+          zero: لا توجد تعليقات
+        content: محتوى
+        drafts_count:
+          few: قليل
+          many: كثير
+          one: مسودة
+          other: "%{count} مسودات"
+          two: اثنين
+          zero: لا توجد مسودات
+        feedback: ردود الفعل
+        notes_count:
+          few: قليل
+          many: كثير
+          one: ملاحظة
+          other: "%{count} ملاحظات"
+          two: اثنين
+          zero: لا توجد ملاحظات
+        pages_count:
+          few: قليل
+          many: كثير
+          one: صفحة
+          other: "%{count} صفحات"
+          two: اثنين
+          zero: لا توجد صفحات
+        running_publify: أنت تعمل على Publify %{version}
+        spam_count:
+          few: بعض الرسائل الغير مرغوب فيها
+          many: أكثر من رسالة غير مرغوب فيها
+          one: 1 رسالة غير مرغوبة
+          other: "%{count} رسائل غير مرغوبة"
+          two: رسالتين غير مرغوب فيهم
+          zero: لا توجد رسائل غير مرغوبة
+        today: اليوم
+        unconfirmed_count:
+          few: قليل
+          many: كثير
+          one: 1 غير مؤكد
+          other: "%{count} غير مؤكد"
+          two: اثنين
+          zero: لا توجد غير مؤكد
+        your_articles_count:
+          few: قليل
+          many: كثير
+          one: تم كتابة مقال واحد
+          other: "%{count} مقال تم كتابتهم بواسطتك"
+          two: اثنين
+          zero: لم يتم كتابة أي مقال لك
+    feedback:
+      article:
+        action_or_other_html: "%{first_action} أو %{second_action}"
+        actions: أجراءات
+        add_a_comment: إضافة تعليق
+        author: كاتب
+        cancel: إلغاء
+        comments_for_html: التعليقات %{title}
+        content: محتوى
+        created_at: أنشئت في
+        email: بريد إلكتروني
+        no_feedback: لا توجد ردود فعل بعد. هل تريد إنشاء أخرى?
+        save: حفظ
+        status: حالة
+        url: رابط
+        your_comment: تعليقك
+      bulkops:
+        error: لم تنفذ
+        success_classification: التصنيف المؤكد لـ %{count} item(s)
+        success_deleted: العناصر %{count} المحذوفة
+        success_deleted_spam: تم حذف كل البريد المزعج
+        success_mark_as_ham:
+          few: تم وضع علامة على بعض العناصر بأنهم هامين
+          many: تم وضع علامة على أكثر من عنصر بأنهم هامين
+          one: تم وضع علامة على عنصر واحد بأنه هام
+          other: تم وضع علامة %{count} عناصر بأنها هامه
+          two: تم وضع علامة على عنصرين بأنهما هامين
+          zero: لم يتم تحديد عنصر لوضع علامة هام
+        success_mark_as_spam:
+          few: تم وضع علامة على بعض العناصر بأنهم رسائل غير مرغوبة
+          many: تم وضع علامة على أكثر من عنصر بأنهم رسائل غير مرغوبة
+          one: تم وضع علامة على عنصر واحد على أنها رسالة غير مرغوبة
+          other: تم وضع علامة علي %{count} عنصر على أنها رسائل غير مرغوبة
+          two: تم وضع علامة على عنصرين بأنهما رسالتين غير مرغوبة
+          zero: لم يتم تحديد أي عنصر لوضع علامة عليه كرسالة غير مرغوب فيها
+      button:
+        delete_all_spam: احذف جميع الرسائل غير المرغوب فيها
+        delete_checked_items: حذف العناصر المحددة
+        mark_checked_items_as_ham: وضع علامة على العناصر المحددة كهام
+        mark_checked_items_as_spam: وضع علامة على العناصر المحددة كرسائل غير المرغوب
+          فيها
+      create:
+        success: تم إنشاء التعليق بنجاح.
+      destroy:
+        error: لا توجد
+        success: حُذفت
+      edit:
+        action_or_other_html: "%{first_action} أو %{second_action}"
+        author: كاتب
+        cancel: إلغاء
+        comments_for_html: التعليقات لـ %{article_link}
+        edit_a_comment: تعديل التعليق
+        email: بريد إلكتروني
+        save: حفظ
+        url: رابط
+        your_comment: تعليقك
+      index:
+        actions: أجراءات
+        all: الكل
+        author: كاتب
+        content: محتوى
+        created_at: أنشئت في
+        feedback: ردود الفعل
+        ham: Ham
+        no_feedback: لا توجد ردود فعل بعد. هل تريد إنشئ واحد?
+        presumed_ham: يعتبر هام
+        presumed_spam: تعتبر رسالة غير مرغوبة
+        spam: رسالة غير مرغوبة
+        status: حالة
+        unapproved_comments: التعليقات غير المعتمدة
+      state:
+        ham: هام
+        just_marked_as_ham: تم تمييزها للتو على أنها هام
+        just_marked_as_spam: تم تمييزها للتو على أنها رسالة غير مرغوب فيها
+        just_presumed_ham: افترضت كهام للتو
+        presumed_ham: هام?
+        presumed_spam: رسالة غير مرغوبة?
+        spam: رسالة غير مرغوبة
+        unclassified: غير مصنف
+      update:
+        success: التعليق تم تحديثه بنجاح.
+    migrations:
+      show:
+        current_database_version: إصدار قاعدة البيانات الحالية
+        database_migration: ترحيل قاعدة البيانات
+        information: معلومات
+        may_take_a_moment: قد يستغرق بعض الوقت
+        migration_pending:
+          few: بعض الترحيلات معلقة
+          many: هناك أكثر من ترحيل معلق
+          one: هناك ترحيل واحد معلق.
+          other: هناك %{count} ترحيلات معلقة.
+          two: هناك ترحيلين معلقان
+          zero: لا يوجد أي ترحيل معلق
+        migrations: ترحيلات
+        needed_migrations: تحتاج الترحيل
+        update_database_now: تحديث قاعدة البيانات الآن
+        you_are_up_to_date: أنت على أحدث نسخة!
+    notes:
+      edit:
+        notes: ملاحظات
+      form:
+        cancel: إلغاء
+        compose_new_note: قم بتكوين ملاحظة جديدة
+        in_reply_to: في الرد على
+        no_notes: لا توجد ملاحظات بعد. هل تريد إنشاء واحد؟
+        now: الآن
+        or: أو
+        permanent_link: رابط ثابت
+        posse_to_twitter: POSSE to Twitter
+        publish: نشر
+        publish_at: نشر في
+        publish_settings: إعدادات النشر
+        tweet_id_like: Tweet id like 123456
+      index:
+        notes: ملاحظات
+      list:
+        actions: أجراءات
+        author: كاتب
+        created_at: أنشئت في
+        text_filter: تصفيت النص
+        title: عنوان
+      show:
+        action_or_other_html: "%{first_action} أو %{second_action}"
+        are_you_sure: هل أنت متأكد من حذف هذه الملاحظة?
+        cancel: إلغاء
+        delete: حذف
+        destroy_confirmation: تأكيد الحذف
+    pages:
+      edit:
+        success: تم تحديث الصفحة
+      form:
+        article_filter: تصفيت المقال
+        cancel: إلغاء
+        online: متصل
+        permanent_link: رابط ثابت
+        publish: نشر
+        publish_settings: إعدادات النشر
+        save: حفظ
+        status: حالة
+        title: عنوان
+        type_your_post: اكتب منشورك
+      index:
+        actions: أجراءات
+        author: كاتب
+        created_at: أنشئت في
+        manage_pages: أدارة الصفحات
+        new_page: صفحة جديدة
+        text_filter: تصفيت النص
+        title: عنوان
+      new:
+        success: تم إنشاء صفحة جديدو
+      pages:
+        no_pages: لا توجد صفحات جديدة بعد. لماذ لا تنشئ واحدة?
+    post_types:
+      index_and_form:
+        cancel: إلغاء
+        default: افتراضي
+        description: وصف
+        explain: اسم النموذج هو اسم الملف الذي سيبحث عنه Publify عند استدعاء مقال
+          من هذا النوع. يجب أن يكون في موضوعك تحت views/articles/template name.html.erb
+        name: اسم
+        or: أو
+        post_types: أنواع المنشور
+        publify_default_post_type: Publify نوع المنشور الافتراضي
+        save: حفظ
+        template_name: اسم النموذج
+    profiles:
+      index:
+        success: تم تحديث التفاصيل الشخصية
+        your_profile: صفحتك الشخصية
+    redirects:
+      destroy:
+        success: عملية إعادة التوجيه تم حذفها بنجاح.
+      index_and_form:
+        cancel: إلغاء
+        from: من
+        leave_empty_to_shorten_a_link: تركه فارغ لتقصير الرابط
+        no_redirects: لا توجد عمليات إعادة توجيه بعد. لماذا لا تنشئ أخرى؟
+        or: أو
+        redirects: عمليات إعادة التوجيه
+        save: حفظ
+        to: إلى
+    resources:
+      destroy:
+        notice: تم حذف الملف
+      index:
+        are_you_sure: هل أنت متأكد?
+        content_type: نوع المحتوى
+        date: تاريخ
+        delete: حذف
+        explain_media_library_html: رفع صورة, فيديو و صوت هٌنا لاستخدامه في منشورات
+          المدونة والصفحات. الرجاء ملاحظة أن <strong>كل الملفات المرفوعة سيكون متاح
+          الوصول لها بشكل عام حتى لو لم يتم استخدمها في منشورات المدونة أو الصفحات</strong>.
+        file_size: حجم الملف
+        filename: اسم الملف
+        media_library: مكتبة الإعلام
+        medium_size: متوسط الحجم
+        no_resources: لا توجد مصادر. لماذا لا تنشئ واحد?
+        original_size: الحجم الأصلي
+        right_click_for_link: النقر يمينًا للرابط
+        thumbnail: مصغرة
+        upload: رفع
+        upload_a_file_to_your_site: رفع ملف لموقعك
+      upload:
+        success: تم رفع الملف
+        warning: لم يتم اختيار أي ملف
+    seo:
+      general:
+        custom_tracking_code: رمز التتبع المخصص
+        do_not_index_tags: لا تُفهرس العلامات
+        dofollow: Dofollow
+        explain: هنا يمكنك إضافة أي شيء تريده أن يظهر في التطبيق الخاص بك رأس ، مثل
+          رمز تتبع خدمة التحليلات.
+        explain_moderate_feedback: قد ترغب في تعديل التعليقات عند تشغيل هذا
+        explain_rss_description: 'يمكنك استخدام العلامات التالية: %author% (author
+          name), %blog_url% (رابط هذه المدونة), %blog_name% (عنوان هذه المدونة) و
+          %permalink_url% (رابط للمقال الذي تريد حمايته)'
+        explain_tag_index_html: تحديد هذا المربع سيضيف <code>غير مفهرس, تابع</code>
+          العلامات الوصفية في كل صفحة العلامات, إزالتها من محركات البحث ومنعها قضايا
+          المحتوى المكررة
+        general_settings: الإعدادات العامة
+        google: جوجل
+        google_analytics: تحليلات جوجل
+        google_webmaster_tools_validation_link: التحقق من أدوات مشرفي المواقع من جوجل
+          حلقة الوصل
+        indexing: الفهرسة
+        meta_description: وصف الوصف
+        meta_keywords: وصف الكلمات الدالة
+        robots_txt: Robots.txt
+        rss_description_message: رسالة وصف RSS
+        this_will_display: سيظهر هذا في أسفل كل منشور في موجز RSS
+        use_dofollow_in_comments: استخدم dofollow في التعليقات
+        use_meta_keywords: استخدام وصف الكلمات الدالة
+        use_rss_description: استخدام RSS الوصف
+      permalinks:
+        custom: مخصص
+        date_and_title: التاريخ والعنوان
+        explain: قدم لك Publify القدرة على إنشاء بنية عنوان رابط مخصصة لـ الروابط
+          الثابتة والمحفوظات الخاصة بك. هذا يمكن أن يحسن الجماليات ، وسهولة الاستخدام
+          ، والتوافق مع الروابط الخاصة بك إلى الأمام.
+        help_on_permalink_settings: ساعد في إعدادات الروابط الثابتة
+        month_and_title: الشهر والعنوان
+        permalink_format: نسق الروابط الثابتة
+        sample: هنا بعض الأمثلة للبدأ بها.
+        title_only: العنوان فقط
+        you_can_custom_your_url_structure: 'يمكنك تخصيص بنية عنوان الرابط الخاص بك
+          باستخدام العلامات التالية:'
+        your_article_day: يوم نشر مقالتك.
+        your_article_month: شهر نشر مقالتك.
+        your_article_slug_html: قالب منشورك. <strong>استخدام هذا القالب إلزامي</strong>.
+        your_article_year: سنة نشر مقالتك.
+      show:
+        cancel: إلغاء
+        global_settings: الإعدادات العامة
+        or: أو
+        permalinks: الروابط الثابتة
+        title_settings: إعدادات العنوان
+        update_settings: تحديث الإعدادات
+      titles:
+        articles: مقالات
+        author_page: كاتب الصفحة
+        dated_archives: المحفوظات المؤرخة
+        description_template: نموذج الوصف
+        help_on_title_settings: ساعد في أعدادت العنوان
+        home: الرئيسية
+        pages: صفحات
+        paginated_archives: المحفوظات المرقمة
+        replaced_by_the_archive_date: تم استبداله بتاريخ الأرشيف
+        replaced_by_the_content_body: تم استبداله بنص المحتوى
+        replaced_with_the_article_categories: تم استبدالها بفئات المقال (مفصولة بفواصل)
+        replaced_with_the_article_page_title: تم استبداله بعنوان المقالة / الصفحة
+        replaced_with_the_article_tags: تم استبداله بعلامات المقالة (مفصولة بفواصل)
+        replaced_with_the_category_tag_name: تم استبدال اسم الفئة / العلامة
+        replaced_with_the_current_date: تم استبداله بالتاريخ الحالي
+        replaced_with_the_current_month: تم استبداله بالشهر الحالي
+        replaced_with_the_current_page_number: تم استبداله برقم الصفحة الحالية
+        replaced_with_the_current_search_phrase: تم استبدالها بعبارة البحث الحالية
+        replaced_with_the_current_time: تم استبداله بالوقت الحالي
+        replaced_with_the_current_year: تم استبداله بالسنة الحالية
+        replaced_with_the_post_page_excerpt: تم استبداله بمقتطف المنشور / الصفحة
+        replaced_with_the_title_of_the_article_page: استبدل بعنوان المقال / الصفحة
+        search_results: نتائج البحث
+        short_statuses: حالات موجزة
+        short_statuses_lists: قائمة الحالات الموجزة
+        the_blog_s_name: اسم المدونة
+        the_blog_s_tagline_description: سطر الوصف / الوصف للمدونة
+        these_tags_can_be_included: يمكن تضمين هذه العلامات في القوالب الخاصة بك و
+          سيتم استبداله عند عرض الصفحة.
+        title_template: نموذج العنوان
+    settings:
+      display:
+        cancel: إلغاء
+        custom_url: مجال تقصير عناوين الرابط المخصص
+        custom_url_help: إذا كان لديك مجال مخصص لاختصار عناوين الرابط ، أدخله هنا.
+        date_format: نسق التاريخ
+        default_archives_show: مقالات في صفحة المحفوظات
+        default_article_show: مقالات على الصفحة الرئيسية
+        default_feed_show: أحدث المقالات في الخلاصة
+        display: عرض
+        display_settings: إعدادات العرض
+        feed_articles: مقتطفات من المقال
+        feed_excerpts_only: إظهار مقتطفات المقال فقط في الخلاصة
+        feed_settings: إعدادات خدمة RSS
+        or: أو
+        publishing_options: خيارات النشر
+        status_main_feed: عرض الحالات في الخلاصة الرئيسية
+        statuses: حالات
+        time_format: نسق الوقت
+        update_settings: تحديث الإعدادات
+      feedback:
+        askimet_key: Akismet Key
+        avatars_provider: مزود الصور
+        cancel: إلغاء
+        captcha: التحقق
+        comments: التعليقات
+        comments_filter: تصفيت التعليقات
+        days: أيام
+        disable_comments_after: إلغاء تفعيل التعليقات بعد
+        enable_comments_by_default: تمكين التعليقات بشكل افتراضي
+        enable_feedback_moderation: تفعيل الإشراف على ردود الفعل
+        enable_recaptcha: تفعيل التحقق
+        enable_spam_protection: تفعيل الحماية من الرسائل الغير مرغوب فيها
+        explain_feedback_moderation: يمكنك تمكين الإشراف على التعليقات على مستوى الموقع.
+          إذا قمت بذلك ، فلن يظهر أي تعليق على مدونتك ما لم تتحقق من صحته.
+        explain_reject_comments: سترفض Publify تلقائيًا التعليقات التي تحتوي على عدد
+          معين من الروابط بداخلها
+        explain_spam_protection: سيؤدي تمكين الحماية من الرسائل الغير مرغوب فيها إلى
+          مقارنة Publify عنوان IP للملصقات وكذلك محتويات مشاركاتهم ضد القوائم السوداء
+          المحلية والبعيدة. دفاع جيد ضد روبوتات الرسائل الغير مرغوب فيها
+        explain_spamfiltering_html: Publify يمكن (اختياريا) استخدام <a href='http://akismet.com'>Akismet</a>
+          خدمة تصفية الرسائل الغير مرغوب فيها. أنت بحاجة للتسجيل في Akismet والحصول
+          على مفتاح API قبل أن تتمكن من استخدام خدمتهم. إذا كان لديك مفتاح Akismet
+          ، أدخل هنا
+        feedback: ردود الفعل
+        feedback_settings: إعدادات ردود الفعل
+        max_links: الروابط الأكثر
+        none: لا شئ
+        or: أو
+        remember_to_set_your_recaptcha: تذكر أن تضبط مفاتيح إعادة التحقق بالداخل config/initializers/recaptcha.rb
+        set_to_0_to_never_disable_comments: اضبط على 0 لعدم تعطيل التعليقات أبدًا
+        set_to_0_to_never_reject_comments: اضبط على 0 لعدم رفض التعليقات أبدًا
+        spam: رسائل مزعجة
+        spam_protection: حماية من الرسائل مزعجة
+        update_settings: تحديث الإعدادات
+      index:
+        allow_users_to_register: السماح للمستخدمين بالدخول
+        blog_name: اسم المدونة
+        blog_subtitle: عنوان فرعي للمدونة
+        blog_url: رابط المدونة
+        cancel: إلغاء
+        email_address_used_to_notify: البريد الإلكتروني المستخدم بواسطة Publify لإرسال
+          الإشعارات
+        explain_allow_users_to_register_html: سيسمح هذا للمستخدمين بتسجيل أنفسهم كمساهمين
+          ، مستوى حساب غير مميز لا يمنحهم أي حقوق بخلاف امتلاك ملف تعريف على الموقع.
+          إذا كنت لا تريد أن يقوم المستخدمون بالتسجيل ، يمكنك إضافتها عبر <em> إدارة
+          المستخدمين </ em> ضمن <em> الإعدادات </ em>.
+        general_settings: الإعدادات العامة
+        items_to_display_in_admin_lists: العناصر المراد عرضها في قوائم المشرف
+        language: اللغة
+        or: أو
+        source_email: مصدر البريد الإلكتروني
+        update_settings: تحديث الإعدادات
+        users: مسخدمون
+        your_blog: مدونتك
+      update:
+        error: 'خطأ: %{messages}'
+        success: تم تحديث الإعدادات.
+      write:
+        avatar_size: حجم الصورة
+        cancel: إلغاء
+        display: عرض
+        example: مثال
+        image_medium_size: صورة بحجم متوسط
+        image_thumbnail_size: صورة بحجم صغير
+        latitude_longitude: خط العرض, خط الطول
+        media: وسائل الإعلام
+        or: أو
+        publish: نشر
+        publish_on_twitter: نشر على تويتر
+        twitter_consumer_key: مفتاح المستخدم للتويتر
+        twitter_consumer_secret: رقم المستخدم السري للتويتر
+        update_settings: تحديث الإعدادات
+        write: كتابة
+        your_geoloc: خط العرض والطول الخاص بك
+    shared:
+      destroy:
+        are_you_sure: هل أنت متأكد من حذف هذا %{element}?
+      menu:
+        all_articles: كل المقالات
+        all_pages: كل الصفحات
+        article_types: أنواع المقالات
+        articles: مقالات
+        choose_theme: اختار سمة
+        customize_sidebar: تعديل الشريط الجانبي
+        design: تصميم
+        display: عرض
+        documentation: الوثائق
+        feedback: ردود الفعل
+        general_settings: إعدادات عامة
+        global_seo_settings: إعدادات SEO السائدة
+        home: الرئيسية
+        in_page_plugins: في صفحة الملحقات
+        logged_in_as: مسجّل كـ %{login}
+        logout_html: خروج &raquo;
+        manage_users: إدارة المستخدمين
+        media_library: مكتبة الإعلام
+        new: جديد
+        new_article: مقال جديد
+        new_media: وسائل الإعلام جديدة
+        new_note: ملحوظة جديدة
+        new_page: صفحة جديد
+        notes: ملاحظات
+        pages: صفحات
+        permalinks: الروابط الثابتة
+        profile: الصفحة الشخصية
+        redirects: إعادة التوجيه
+        report_a_bug: الإبلاغ عن خلل برمجي
+        seo: SEO
+        settings: إعدادات
+        sidebar_plugins: الملحقات للشريط الجانبي
+        tags: علامات
+        titles: عناوين
+        view_blog: المدونة
+        write: كتابة
+      twitter_alert:
+        fill_the_twitter_credentials: ملئ بيانات اعتماد OAuth
+        how_to_setup_twitter_html: إذا كنت ترغب في دفع الحالات القصيرة على تويتر,
+          تحتاج إلى %{twitter_settings_link} أعطاك تويتر بعدك %{twitter_registration_link}.
+        registered_your_application: سجل طلبك
+    sidebar:
+      config:
+        active_sidebar_items: عناصر الشريط الجانبي النشطة
+        available_items: العناصر المتاحة
+        you_have_no_plugins_installed: ليس لديك ملحقات مثبتة
+      index:
+        cancel: إلغاء
+        download_more_plugins_html: يمكنك تنزيل وتثبيت ملحقات الشريط الجانبي من مسؤولنا
+          <a href='https://github.com/fdv/publify/wiki/Sidebar-plugins'>موقع الملحق</a>.
+          كل ما عليك فعله هو تحميل دليل السمة في دليل البائع / الإضافات.
+        explain_how_its_works: قم بالسحب / الالصاق والإفلات لتغيير عناصر الشريط الجانبي
+          المعروضة في هذه المدونة. لإزالة عناصر من الشريط الجانبي ، ما عليك سوى النقر
+          فوق "إزالة". يتم حفظ التغييرات على الفور ، ولكن لا يتم تنشيطها حتى تنقر
+          على الزر "نشر التغييرات"
+        or: أو
+        publish_changes: نشر التغييرات
+        sidebar: الشريط الجانبي
+      target:
+        drag_some_plugins_here: اسحب / ألصق بعض الملحقات هنا لملء الشريط الجانبي الخاص
+          بك
+    tags:
+      edit:
+        success: تم تحديث العلامة بنجاح
+      index_and_form:
+        cancel: إلغاء
+        display_name: الاسم المعروض
+        manage_tags: إدارة العلامات
+        name: اسم
+        no_tags: لا توجد علامات بعد. لماذا لا تنشئ واحدة?
+        or: أو
+        save: حفظ
+        view: عرض
+    themes:
+      index:
+        active_theme: "%{name} - السمة الفعالة"
+        choose_a_theme: اختار سمة
+        use_this_theme: استخدام هذه السمة
+      switchto:
+        success: السمة المختارة حُدثت بنجاح
+    users:
+      edit:
+        edit_user: تعديل المستخدم
+      form:
+        about: سيرة شخصية
+        account_settings: إعدادات الحساب
+        aim: AIM اسم الشاشة
+        article_filter: تصفيت المقال
+        author_page: صفحة الكاتب
+        avatar: إعدادات الصورة
+        avatar_current: الصورة الحالية
+        cancel: إلغاء
+        contact_explain_html: هذه المعلومات سيتم نشر علي %{link}
+        contact_settings: إعدادات الإتصال
+        display_name: الاسم المعروض
+        email: بريد إلكتروني
+        firstname: الاسم اﻷول
+        jabber: Jabber ID
+        lastname: الاسم الأخير
+        login: تسجيل الدخول
+        msn: MSN Messenger ID
+        nickname: اسم الشهرة
+        notification_article: عند نشر مقال جديد
+        notification_comment: عند نشر تعليق جديد
+        notification_email: بواسطة البريد الإلكتروني
+        notification_settings: إشعارات
+        notifications: إرسال رسالة بالإشعار
+        or: أو
+        password: الرقم السري
+        password_confirmation: تأكيد الرقم السري
+        profile: الصفحة الشخصية
+        profile_settings: إعدادات الصفحة الشخصية
+        save: حفظ
+        twitter: مستخدم تويتر
+        twitter_account: مستخدم تويتر
+        twitter_oauth: تويتر OAuth token
+        twitter_oauth_secret: تويتر OAuth secret
+        upload: رفع صورة للصفحة الشخصية
+        upload_file: رفع .jpg, .png أو .gif ملف
+        user_status: حالة المستخدم
+        website: موقع إلكتروني
+        yahoo: ياهو! الرقم التعريفي للرسالة (ID)
+      index:
+        articles: مقالات
+        comments: تعليقات
+        email: بريد إلكتروني
+        login: تسجيل الدخول
+        name: اسم
+        new_user: اسم المستخدم
+        profile: الصفحة الشخصية
+        state: حالة
+        users: مستخدمون
+      new:
+        add_user: أضافة مستخدم
+        success: تم إنشاء المستخدم بنجاح
+  articles:
+    archives:
+      no_articles_found: لا توجد مقالات
+    archives_article:
+      posted_in: تم النشر في
+    article_author:
+      posted_by: تم النشر بواسطة
+    article_excerpt:
+      continue_reading: استكمال القراءة
+    article_links:
+      comments:
+        few: بعض التعليقات
+        many: أكثر من تعليق
+        one: تعليق
+        other: "%{count} تعليقات"
+        two: تعليقان
+        zero: لا توجد تعليقات
+      tags: Tags
+      trackbacks:
+        few: بعض المتتبعين
+        many: أكثر من متتبع
+        one: 1 متتبع
+        other: "%{count} متتبعين"
+        two: متتبعان
+        zero: لا يوجد متتبع
+    comment_errors:
+      message: حدث خطأ ما، ولا يمكن حفظ التعليق.
+    comment_form:
+      comment_markup_help: المساعدة لوضع علامة لتعليق
+      leave_url_email: اترك رابط / بريد إلالكتروني
+      preview_comment: عرض التعليق
+      your_blog: المدونة الشخصية
+      your_email: البريد الإلكتروني الشخصي
+      your_message: الرسائل الشصخية
+      your_name: الاسم الشخصي
+    comment_preview:
+      is_about_to_say: يتحدث عن
+    index:
+      page: صفحة
+    password_form:
+      submit: إرسال
+    read:
+      comments: تعليقات
+      comments_are_disabled: التعليقات غير مُفعلة
+      edit: تعديل
+      leave_a_response: ترك رد
+      rss_feed: RSS خدمة
+      trackbacks: التتبعات
+    trackback:
+      from: من
+  authors:
+    show:
+      aim: 'AIM:'
+      contact_information: معلومات الإتصال
+      jabber: 'Jabber:'
+      msn: 'MSN:'
+      this_author_has_not_published_any_article_yet: هذا الكاتب لم ينشر أي مقال بعد
+      twitter: 'تويتر:'
+      web_site: 'موقع:'
+      yahoo: 'ياهو:'
+  comments:
+    comment:
+      said: قَال
+      this_comment_has_been_flagged_for_moderator_approval: تم وضع علامة على هذا التعليق
+        لموافقة الوسيط. لن تظهر في هذه المدونة حتى يوافق عليها المؤلف
+  date:
+    abbr_month_names:
+    - 
+    - يناير
+    - فبرابر
+    - مارس
+    - ابريل
+    - مايو
+    - يونيو
+    - يوليو
+    - اوغسطيس
+    - سبتمبر
+    - اكتوبر
+    - نوفمبر
+    - ديسمبر
+    month_names:
+    - 
+    - يناير
+    - فبراير
+    - مارس
+    - ابريل
+    - مايو
+    - يونيو
+    - يوليو
+    - اوغسطيس
+    - سبتمبر
+    - اكتوبر
+    - نوفمبر
+    - ديسمبر
+  devise_custom:
+    characters_minimum: أقل %{min} حرف
+  errors:
+    article_type_already_exist: هذه النوع للمقال بالفعل موجود
+    cant_end_with_rss_or_atom: لا يمكن أن ينتهي بـ .rss أو .atom. هذه محجوزة لعناوين
+      رابط للخلاصة
+    no_notes_found: لا توجد ملاحظات...
+    no_posts_found: لا توجد منشورات...
+    page_not_found: لا توجد صفحات
+    permalink_need_a_title: 'تحتاج لنسق ثابت لرابط الثابت مع مُعرف : %%title%%'
+    problem_sending_to_twitter: حدث خطأ ما!
+    render_sidebar: يبدو أن هناك خطأ ما. ربما تكون بعض الأشرطة الجانبية الخاصة بك
+      في الواقع مفقودة ويجب عليك إما إعادة تثبيتها أو إزالتها يدويًا
+    the_page_you_are_looking_for: الصفحة التي تنظر لها تم تغيرها، أو لم تعد توجد.
+  generic:
+    change: تغيير
+    conversation: مناقشة
+    delete: حذف
+    edit: تعديل
+    mark_as_ham: Mark as ham
+    mark_as_spam: Mark as spam
+    save: حفظ
+    short_url: عرض
+  helper:
+    at: في
+  langs:
+    ar_AR: Arabic
+    da_DK: Danish
+    de_DE: German
+    en_US: English (US)
+    es_MX: Spanish (Mexican)
+    fr_FR: French
+    he_IL: Hebrew
+    it_IT: Italian
+    ja_JP: Japanese
+    lt_LT: Lithuanian
+    nb_NO: Norwegian
+    nl_NL: Nederland
+    pl_PL: Polish
+    pt_BR: Portuguese (Brazilian)
+    ro_RO: Romanian
+    ru_RU: Russian
+    zh_CN: Simple Chinese
+    zh_TW: Chinese
+  layouts:
+    administration:
+      powered_by: بفخر تُشغل بواسطة
+    default:
+      designed_by: صُممت بواسطة %{designed_by}
+      powered_by_html: مشغل بواسطة %{powered_by}
+  notes:
+    note:
+      view_on_twitter: العرض على تويتر
+  notice:
+    note_successfully_created: تم إنشاء الملاحظة بنجاح
+  profile:
+    admin: Publify مدير
+    contributor: مساهم
+    publisher: ناشر المدونة
+  setup:
+    article:
+      body: مرحبًا في Publify. ذا هو المقال الأول لك. ويمكنك تعديله أو حذفه, ثم ابدأ
+        التدوين!
+      title: مرحبًا بالعالم!
+    index:
+      blog_name: اسم المدونة
+      password: الرقم السري
+      welcome_to_your_blog_setup: مرجبًا بك في تنصيب مدونتك الشخصية
+      your_mail: بريدك الإلكترونتي
+    page:
+      about: عن
+      body: هذا مثال لصفحة Publify. يمكنك تعديل هذا لكتابة المعلومات عن نفسك أو عن
+        موقعك حتى يعرف القراء من أنت. يمكنك إنشاء ملفات العديد من الصفحات كما تريد
+        وقم بإدارة كل المحتوى الخاص بك داخل Publify.
+  tags:
+    index:
+      there_are_no_tags: لا توجد علامات
+  time:
+    formats:
+      default: "%m/%d/%Y %H:%M"
+      letters_month_with_year: "%m %Y"
+      short: "%m/%d/%y"
+      with_spaces: "%d %B %y"
+  user:
+    status:
+      active: فعال
+      inactive: غير فعال

@@ -1,0 +1,18 @@
+---
+ar:
+  authors_sidebar:
+    content:
+      authors: مؤلفين
+  notes_sidebar:
+    content:
+      view_on_twitter: شاهد على تويتر
+  popular_sidebar:
+    content:
+      comments: تعليقات
+      nothing_to_show_yet: لا يوجد شئ لعرضه
+  xml_sidebar:
+    content:
+      articles: مقالات
+      feedback: ردود الفعل
+      syndicate: نقابة
+      tag: علامة
