@@ -58,9 +58,9 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def update
-    return unless access_granted?(params[:id])
+    id = params[:id]
+    return unless access_granted?(id)
 
-    id = params[:article][:id] || params[:id]
     @article = Article.find(id)
 
     if params[:article][:draft]
@@ -101,6 +101,7 @@ class Admin::ContentController < Admin::BaseController
     return false unless request.xhr?
 
     id = params[:article][:id] || params[:id]
+    return if id && !access_granted?(id)
 
     article_factory = Article::Factory.new(this_blog, current_user)
     @article = article_factory.get_or_build_from(id)
