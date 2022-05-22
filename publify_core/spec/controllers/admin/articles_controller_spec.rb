@@ -71,7 +71,7 @@ RSpec.describe Admin::ArticlesController, type: :controller do
       sign_in publisher
     end
 
-    context "first time save" do
+    context "when saving a draft article for the first time" do
       it "creates a new draft Article" do
         expect do
           post :autosave, xhr: true, params: { article: attributes_for(:article) }
@@ -86,8 +86,8 @@ RSpec.describe Admin::ArticlesController, type: :controller do
       end
     end
 
-    context "second call to save" do
-      let!(:draft) { create(:article, state: "draft") }
+    context "when updating your own existing draft article" do
+      let!(:draft) { create(:article, state: "draft", user: publisher) }
 
       it "does not create an extra draft" do
         expect do
@@ -96,9 +96,27 @@ RSpec.describe Admin::ArticlesController, type: :controller do
                                                body_and_extended: "new body" } }
         end.not_to change(Article, :count)
       end
+
+      it "updates the existing draft" do
+        post :autosave,
+             xhr: true, params: { article: { id: draft.id,
+                                             body_and_extended: "new body" } }
+        expect(draft.reload.body).to eq "new body"
+      end
     end
 
-    context "with an other existing draft" do
+    context "when updating another user's existing draft article" do
+      let!(:draft) { create(:article, state: "draft") }
+
+      it "does not update the existing draft" do
+        post :autosave,
+             xhr: true, params: { article: { id: draft.id,
+                                             body_and_extended: "new body" } }
+        expect(draft.reload.body).not_to eq "new body"
+      end
+    end
+
+    context "with saving a new draft article and an existing other existing draft" do
       let!(:draft) { create(:article, state: "draft", body: "existing body") }
 
       it "creates a new draft Article" do
@@ -526,6 +544,26 @@ RSpec.describe Admin::ArticlesController, type: :controller do
         it { expect(response).to redirect_to(action: "index") }
         it { expect(article.reload.text_filter.name).to eq("markdown") }
         it { expect(article.reload.body).to eq(body) }
+      end
+
+      context "with an owned article and another user's article" do
+        let(:article) { create(:article, body: "another *textile* test", user: publisher) }
+        let(:other_article) { create(:article, body: "other article") }
+        let(:body) { "not the *same* text" }
+
+        before do
+          put :update,
+              params: { id: article.id,
+                        article: { id: other_article.id, body: body } }
+        end
+
+        it "ignores the extra id passed in the article parameters" do
+          aggregate_failures do
+            expect(response).to redirect_to(action: "index")
+            expect(article.reload.body).to eq(body)
+            expect(other_article.reload.body).not_to eq(body)
+          end
+        end
       end
     end
   end

@@ -9,6 +9,11 @@
 * Remove support for Textile as a text format
 * Replace BlueCloth with CommonMarker for Markdown processing
 
+## 9.2.9 / 2022-05-22
+
+* Fix admin article access control [#1065](https://github.com/publify/publify/pull/1065)
+* Refuse html files as resources even if declared to be plain text [#1066](https://github.com/publify/publify/pull/1066)
+
 ## 9.2.8 / 2022-05-14
 
 * Fix password protected article reveal [#1049](https://github.com/publify/publify/pull/1049)

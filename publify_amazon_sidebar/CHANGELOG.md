@@ -5,9 +5,13 @@
 * Drop support for Ruby 2.4
 * Update dependencies
 
+## 9.2.9 / 2022-05-22
+
+* Depend on `publify_core` 9.2.9
+
 ## 9.2.8 / 2022-05-14
 
-* Depend on `publify_core` 9.2.7
+* Depend on `publify_core` 9.2.8
 
 ## 9.2.7 / 2022-02-07
 
