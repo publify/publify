@@ -2,6 +2,13 @@
 
 See the changelogs for the individual engines for more details for releases 9.0 and up
 
+## 9.2.9 / 2022-05-22
+
+This release fixes two security issues:
+
+* Fix admin article access control [#1065](https://github.com/publify/publify/pull/1065)
+* Refuse html files as resources even if declared to be plain text [#1066](https://github.com/publify/publify/pull/1066)
+
 ## 9.2.8 / 2022-05-14
 
 This release fixes several security issues:
