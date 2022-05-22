@@ -527,6 +527,26 @@ describe Admin::ContentController, type: :controller do
         it { expect(article.reload.text_filter.name).to eq("textile") }
         it { expect(article.reload.body).to eq(body) }
       end
+
+      context "with an owned article and another user's article" do
+        let(:article) { create(:article, body: "another *textile* test", user: publisher) }
+        let(:other_article) { create(:article, body: "other article") }
+        let(:body) { "not the *same* text" }
+
+        before do
+          put :update,
+              params: { id: article.id,
+                        article: { id: other_article.id, body: body } }
+        end
+
+        it "ignores the extra id passed in the article parameters" do
+          aggregate_failures do
+            expect(response).to redirect_to(action: "index")
+            expect(article.reload.body).to eq(body)
+            expect(other_article.reload.body).not_to eq(body)
+          end
+        end
+      end
     end
   end
 

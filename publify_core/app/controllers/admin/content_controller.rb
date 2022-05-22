@@ -58,9 +58,9 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def update
-    return unless access_granted?(params[:id])
+    id = params[:id]
+    return unless access_granted?(id)
 
-    id = params[:article][:id] || params[:id]
     @article = Article.find(id)
 
     if params[:article][:draft]
