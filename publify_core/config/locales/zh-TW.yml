@@ -721,7 +721,7 @@ zh-TW:
       this_comment_has_been_flagged_for_moderator_approval: 這篇評論被標示為版主所允許的。他不會在部落格顯示直到版主承認他。
   date:
     abbr_month_names:
-    - 
+    -
     - Jan
     - Feb
     - Mar
@@ -735,7 +735,7 @@ zh-TW:
     - Nov
     - Dec
     month_names:
-    - 
+    -
     - January
     - February
     - March

@@ -751,7 +751,7 @@ ro:
         marcat pentru moderare. El nu va apărea în blog înainte de a fi aprobat.
   date:
     abbr_month_names:
-    - 
+    -
     - Jan
     - Feb
     - Mar
@@ -765,7 +765,7 @@ ro:
     - Nov
     - Dec
     month_names:
-    - 
+    -
     - January
     - February
     - March
