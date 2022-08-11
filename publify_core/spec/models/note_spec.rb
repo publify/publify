@@ -150,7 +150,7 @@ describe Note, type: :model do
 
     describe "twitter_url" do
       let(:user) { build(:user, twitter: "@hello") }
-      let(:note) { build(:note, user: user, settings: { twitter_id: "12345678901234" }) }
+      let(:note) { build(:note, user: user, twitter_id: "12345678901234") }
 
       it {
         expect(note.twitter_url).

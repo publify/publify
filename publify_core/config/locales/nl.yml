@@ -739,7 +739,7 @@ nl:
         voor goedkeuring. Het zal niet getoond worden totdat de auteur het goedkeurt.
   date:
     abbr_month_names:
-    - 
+    -
     - Jan
     - Feb
     - Mrt
@@ -753,7 +753,7 @@ nl:
     - Nov
     - Dec
     month_names:
-    - 
+    -
     - Januari
     - Februari
     - Maart
