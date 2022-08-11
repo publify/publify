@@ -34,3 +34,4 @@ Gemfile.lock
 !/themes/bootstrap-2
 !/themes/plain
 gems/
+spec/examples.txt
