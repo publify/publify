@@ -34,7 +34,7 @@ gem "sprockets", "~> 3.0"
 # Allow throttling requests
 gem "rack-attack", "~> 6.5"
 
-gem "psych", ">= 3.2.0"
+gem "psych", "~> 3.2.0"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

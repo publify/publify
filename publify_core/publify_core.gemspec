@@ -37,6 +37,7 @@ Gem::Specification.new do |s|
   s.add_dependency "mini_magick", ["~> 4.9", ">= 4.9.4"]
   # Force minimum nokogiri version to avoid security issues
   s.add_dependency "nokogiri", ">= 1.12.5"
+  s.add_dependency "psych", "~> 3.2.0"
   s.add_dependency "rack", ">= 2.2.3"
   s.add_dependency "rails", "~> 5.2.6"
   s.add_dependency "rails_autolink", "~> 1.1.0"
