@@ -12,6 +12,8 @@ module ConfigManager
     end
 
     def setting(name, type = :object, default = nil)
+      raise "Invalid type: #{type}" unless Item::VALID_TYPES.include? type
+
       item = Item.new
       item.name = name.to_s
       item.ruby_type = type
@@ -58,6 +60,8 @@ module ConfigManager
   end
 
   class Item
+    VALID_TYPES = [:boolean, :integer, :string].freeze
+
     attr_accessor :name, :ruby_type, :default
 
     def canonicalize(value)
@@ -73,10 +77,6 @@ module ConfigManager
         value.to_i
       when :string
         value.to_s
-      when :yaml
-        value.to_yaml
-      else
-        value
       end
     end
   end
