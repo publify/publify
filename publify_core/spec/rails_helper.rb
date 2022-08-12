@@ -91,10 +91,6 @@ RSpec.configure do |config|
   end
 end
 
-def engine_root
-  PublifyCore::Engine.instance.root
-end
-
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
     with.test_framework :rspec
