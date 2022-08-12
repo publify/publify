@@ -42,69 +42,6 @@ describe User, type: :model do
     end
   end
 
-  describe "With a new user" do
-    before do
-      @user = build :user, login: "not_bob", email: "publify@publify.com"
-    end
-
-    describe "the login" do
-      it "can be just right" do
-        @user.login = "okbob"
-        expect(@user).to be_valid
-      end
-
-      { "too short" => "x",
-        "too long" => "repetitivepass" * 10,
-        "empty" => "" }.each do |problematic, login|
-        it "cannot be #{problematic}" do
-          @user.login = login
-          expect(@user).not_to be_valid
-          expect(@user.errors["login"]).to be_any
-        end
-      end
-    end
-
-    it "email cannot be blank" do
-      @user.email = ""
-      expect(@user).not_to be_valid
-    end
-
-    describe "#display_name" do
-      it "is not blank" do
-        expect(@user.display_name).not_to be_empty
-      end
-    end
-  end
-
-  describe "With a user in the database" do
-    before do
-      @olduser = create(:user)
-    end
-
-    it "is not able to create another user with the same login" do
-      login = @olduser.login
-      new_user = described_class.new(login: login) do |u|
-        u.password = u.password_confirmation = "secure password"
-      end
-
-      expect(new_user).not_to be_valid
-      expect(new_user.errors["login"]).not_to be_empty
-    end
-  end
-
-  describe "Updating an existing user" do
-    before do
-      @user = create(:user)
-    end
-
-    describe "the login" do
-      it "must not change" do
-        @user.email = "not_bob"
-        expect(@user).not_to be_valid
-      end
-    end
-  end
-
   describe "validations" do
     let(:user) { described_class.new }
 
@@ -114,6 +51,26 @@ describe User, type: :model do
 
     it "requires last name to not be too long" do
       expect(user).to validate_length_of(:lastname).is_at_most(256)
+    end
+
+    it "requires the email field to be present" do
+      expect(user).to validate_presence_of(:email)
+    end
+
+    it "requires the email field to always be unique" do
+      expect(user).to validate_uniqueness_of(:email)
+    end
+
+    it "requires the login field to always be unique" do
+      expect(user).to validate_uniqueness_of(:login).case_insensitive
+    end
+
+    it "requires the login field to be of reasonable length" do
+      expect(user).to validate_length_of(:login).is_at_least(3).is_at_most(40)
+    end
+
+    it "requires the login field to be present" do
+      expect(user).to validate_presence_of(:login)
     end
   end
 
