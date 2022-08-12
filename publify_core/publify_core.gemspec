@@ -37,6 +37,7 @@ Gem::Specification.new do |s|
   s.add_dependency "mini_magick", ["~> 4.9", ">= 4.9.4"]
   # Force minimum nokogiri version to avoid security issues
   s.add_dependency "nokogiri", ">= 1.12.5"
+  s.add_dependency "psych", "~> 3.2.0"
   s.add_dependency "rack", ">= 2.2.3"
   s.add_dependency "rails", "~> 6.1.4"
   s.add_dependency "rails_autolink", "~> 1.1.0"
@@ -49,8 +50,8 @@ Gem::Specification.new do |s|
   s.add_dependency "uuidtools", "~> 2.2.0"
 
   s.add_development_dependency "capybara", "~> 3.0"
-  s.add_development_dependency "factory_bot", "~> 6.1"
-  s.add_development_dependency "feedjira", "~> 3.1"
+  s.add_development_dependency "factory_bot", "~> 6.2"
+  s.add_development_dependency "feedjira", "~> 3.2"
   s.add_development_dependency "i18n-tasks", "~> 0.9.1"
   s.add_development_dependency "pry"
   s.add_development_dependency "rails-controller-testing", "~> 1.0.1"

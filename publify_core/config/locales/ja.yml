@@ -716,7 +716,7 @@ ja:
       this_comment_has_been_flagged_for_moderator_approval: このコメントはモデレーターの確認が必要です。モデレーターが確認後にコメントが表示されます。
   date:
     abbr_month_names:
-    - 
+    -
     - 1月
     - 2月
     - 3月
@@ -730,7 +730,7 @@ ja:
     - 11月
     - 12月
     month_names:
-    - 
+    -
     - 1月
     - 2月
     - 3月

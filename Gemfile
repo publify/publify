@@ -34,12 +34,14 @@ gem "sprockets", "~> 4.0"
 # Allow throttling requests
 gem "rack-attack", "~> 6.5"
 
+gem "psych", "~> 3.2.0"
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
 
   gem "capybara", "~> 3.9"
-  gem "factory_bot", "~> 6.1"
+  gem "factory_bot", "~> 6.2"
   gem "i18n-tasks", "~> 0.9.31", require: false
   gem "pry", "~> 0.14.0"
   gem "pry-rails", "~> 0.3.4"
@@ -74,10 +76,10 @@ group :development do
 end
 
 group :test do
-  gem "feedjira", "~> 3.1"
+  gem "feedjira", "~> 3.2"
   gem "launchy", "~> 2.4"
   gem "rails-controller-testing", "~> 1.0.1"
-  gem "timecop", "~> 0.9.0"
+  gem "timecop", "~> 0.9.1"
   gem "webmock", "~> 3.3"
 end
 

@@ -761,7 +761,7 @@ pl:
         na akceptację.  Nie ukaże się do czasu zaakceptowania przez autora.
   date:
     abbr_month_names:
-    - 
+    -
     - Jan
     - Feb
     - Mar
@@ -775,7 +775,7 @@ pl:
     - Nov
     - Dec
     month_names:
-    - 
+    -
     - January
     - February
     - March
