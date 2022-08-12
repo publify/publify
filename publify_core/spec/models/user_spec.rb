@@ -79,6 +79,13 @@ describe User, type: :model do
 
       expect(bar).not_to allow_value("foo").for(:login)
     end
+
+    it "does not allow duplicate emails when updating a user" do
+      create :user, email: "foo@foo.com"
+      bar = create :user, email: "bar@bar.com"
+
+      expect(bar).not_to allow_value("foo@foo.com").for(:email)
+    end
   end
 
   describe "#initialize" do
