@@ -72,6 +72,13 @@ describe User, type: :model do
     it "requires the login field to be present" do
       expect(user).to validate_presence_of(:login)
     end
+
+    it "does not allow duplicate logins when updating a user" do
+      create :user, login: "foo"
+      bar = create :user, login: "bar"
+
+      expect(bar).not_to allow_value("foo").for(:login)
+    end
   end
 
   describe "#initialize" do

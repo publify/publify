@@ -17,7 +17,7 @@ class User < ApplicationRecord
 
   before_validation :set_default_profile
 
-  validates :login, uniqueness: true, on: :create
+  validates :login, uniqueness: true
   validates :email, uniqueness: true, on: :create
   validates :email, :login, presence: true
   validates :login, length: { in: 3..40 }
