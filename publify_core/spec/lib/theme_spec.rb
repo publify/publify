@@ -5,6 +5,7 @@ require "rails_helper"
 describe Theme, type: :model do
   let(:blog) { build_stubbed :blog }
   let(:default_theme) { blog.current_theme }
+  let(:engine_root) { PublifyCore::Engine.instance.root }
 
   describe "#layout" do
     it 'returns "layouts/default" by default' do

@@ -15,6 +15,7 @@ require "publify_core/testing_support/feed_assertions"
 require "publify_core/testing_support/upload_fixtures"
 require "capybara/rspec"
 require "webmock/rspec"
+require "shoulda-matchers"
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -90,6 +91,9 @@ RSpec.configure do |config|
   end
 end
 
-def engine_root
-  PublifyCore::Engine.instance.root
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
 end

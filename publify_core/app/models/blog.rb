@@ -71,11 +71,11 @@ class Blog < ApplicationRecord
   setting :image_medium_size, :integer, 600
 
   # SEO
-  setting :meta_description, :string, ""
+  setting :meta_description, :text, ""
   setting :meta_keywords, :string, ""
   setting :google_analytics, :string, ""
   setting :rss_description, :boolean, false
-  setting :rss_description_text, :string, <<-HTML.strip_heredoc
+  setting :rss_description_text, :text, <<-HTML.strip_heredoc
     <hr />
     <p><small>Original article written by %author% and published on <a href='%blog_url%'>%blog_name%</a>
     | <a href='%permalink_url%'>direct link to this article</a>
@@ -83,8 +83,8 @@ class Blog < ApplicationRecord
       it has been illegally reproduced and without proper authorization.</small></p>
   HTML
   setting :permalink_format, :string, "/%year%/%month%/%day%/%title%"
-  setting :robots, :string, 'User-agent: *\nAllow: /\nDisallow: /admin\n'
-  setting :humans, :string, <<-TEXT.strip_heredoc
+  setting :robots, :text, 'User-agent: *\nAllow: /\nDisallow: /admin\n'
+  setting :humans, :text, <<-TEXT.strip_heredoc
     /* TEAM */
     Your title: Your name.
     Site: email, link to a contact form, etc.

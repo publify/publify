@@ -105,6 +105,18 @@ describe User, type: :model do
     end
   end
 
+  describe "validations" do
+    let(:user) { described_class.new }
+
+    it "requires first name to not be too long" do
+      expect(user).to validate_length_of(:firstname).is_at_most(256)
+    end
+
+    it "requires last name to not be too long" do
+      expect(user).to validate_length_of(:lastname).is_at_most(256)
+    end
+  end
+
   describe "#initialize" do
     it "accepts a settings field in its parameter hash" do
       described_class.new("firstname" => "foo")
