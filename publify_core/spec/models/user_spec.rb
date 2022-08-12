@@ -66,7 +66,7 @@ RSpec.describe User, type: :model do
     end
 
     it "requires the email field to always be unique" do
-      expect(user).to validate_uniqueness_of(:email)
+      expect(user).to validate_uniqueness_of(:email).case_insensitive
     end
 
     it "requires the login field to always be unique" do
