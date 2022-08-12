@@ -40,6 +40,7 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
+          rubygems: latest
       - name: Database Configuration
         run: cp config/database.yml.postgresql config/database.yml
       - name: Migrate database
@@ -70,6 +71,7 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
+          rubygems: latest
       - name: Database Configuration
         run: cp config/database.yml.mysql config/database.yml
       - name: Migrate database
@@ -93,6 +95,7 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
+          rubygems: latest
       - name: Database Configuration
         run: cp config/database.yml.sqlite config/database.yml
       - name: Migrate database
@@ -112,5 +115,6 @@ jobs:
         with:
           ruby-version: 2.7
           bundler-cache: true
+          rubygems: latest
       - name: Run lint task
         run: bundle exec rake lint

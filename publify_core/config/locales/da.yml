@@ -733,7 +733,7 @@ da:
         godkender den.
   date:
     abbr_month_names:
-    - 
+    -
     - Jan
     - Feb
     - Mar
@@ -747,7 +747,7 @@ da:
     - Nov
     - Dec
     month_names:
-    - 
+    -
     - January
     - February
     - March

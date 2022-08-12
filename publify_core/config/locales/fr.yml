@@ -749,7 +749,7 @@ fr:
         pour modération. Il ne sera affiché qu'une fois approuvé par un modérateur
   date:
     abbr_month_names:
-    - 
+    -
     - jan
     - fév
     - mars
@@ -763,7 +763,7 @@ fr:
     - nov
     - déc
     month_names:
-    - 
+    -
     - Janvier
     - Février
     - Mars

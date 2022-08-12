@@ -749,7 +749,7 @@ lt:
         patvirtinimo
   date:
     abbr_month_names:
-    - 
+    -
     - Jan
     - Feb
     - Mar
@@ -763,7 +763,7 @@ lt:
     - Nov
     - Dec
     month_names:
-    - 
+    -
     - January
     - February
     - March
