@@ -1,12 +1,16 @@
 # frozen_string_literal: true
 
 class Redirect < ApplicationRecord
+  include StringLengthLimit
+
   belongs_to :content, optional: true, touch: true
   belongs_to :blog
 
   validates :from_path, uniqueness: true
   validates :to_path, presence: true
   validates :blog, presence: true
+
+  validates_default_string_length :from_path, :to_path
 
   def full_to_path
     path = to_path

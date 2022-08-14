@@ -10,9 +10,15 @@ class Feedback < ApplicationRecord
 
   include PublifyGuid
   include ContentBase
+  include StringLengthLimit
 
   validate :feedback_allowed, on: :create
   validates :article, presence: true
+
+  validates_default_string_length :title, :author, :email, :url, :blog_name,
+                                  :user_agent, :text_filter_name
+
+  validates :ip, length: { maximum: 40 }
 
   before_save :correct_url, :classify_content
   before_create :create_guid

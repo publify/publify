@@ -20,4 +20,16 @@ describe Redirect, type: :model do
       expect(redirect.from_url).to eq "#{blog.base_url}/right/here"
     end
   end
+
+  describe "validations" do
+    let(:redirect) { described_class.new }
+
+    it "requires from_path to not be too long" do
+      expect(redirect).to validate_length_of(:from_path).is_at_most(255)
+    end
+
+    it "requires to_path to not be too long" do
+      expect(redirect).to validate_length_of(:to_path).is_at_most(255)
+    end
+  end
 end

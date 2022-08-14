@@ -144,4 +144,32 @@ describe Content, type: :model do
       it { expect(content.author_name).to eq(author.login) }
     end
   end
+
+  describe "validations" do
+    let(:content) { described_class.new }
+
+    it "requires title to not be too long" do
+      expect(content).to validate_length_of(:title).is_at_most(255)
+    end
+
+    it "requires author to not be too long" do
+      expect(content).to validate_length_of(:author).is_at_most(255)
+    end
+
+    it "requires permalink to not be too long" do
+      expect(content).to validate_length_of(:permalink).is_at_most(255)
+    end
+
+    it "requires name to not be too long" do
+      expect(content).to validate_length_of(:name).is_at_most(255)
+    end
+
+    it "requires post_type to not be too long" do
+      expect(content).to validate_length_of(:post_type).is_at_most(255)
+    end
+
+    it "requires text_filter_name to not be too long" do
+      expect(content).to validate_length_of(:text_filter_name).is_at_most(255)
+    end
+  end
 end

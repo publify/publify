@@ -14,12 +14,14 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   include ConfigManager
+  include StringLengthLimit
 
   before_validation :set_default_profile
 
   validates :login, uniqueness: true
   validates :email, :login, presence: true
   validates :login, length: { in: 3..40 }
+  validates_default_string_length :email, :text_filter_name
 
   belongs_to :resource, optional: true
   has_many :notifications, foreign_key: "notify_user_id"
