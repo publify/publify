@@ -14,24 +14,6 @@ class Trackback < Feedback
     end
   end
 
-  def article_allows_feedback?
-    return true if article.allow_pings?
-
-    errors.add(:article, "Article is not pingable")
-    false
-  end
-
-  def blog_allows_feedback?
-    return true unless blog.global_pings_disable
-
-    errors.add(:base, "Pings are disabled")
-    false
-  end
-
-  def check_article_closed_for_feedback
-    errors.add(:article, "Pings are closed") if article.pings_closed?
-  end
-
   def originator
     blog_name
   end
@@ -46,5 +28,19 @@ class Trackback < Feedback
 
   def feed_title
     "Trackback from #{blog_name}: #{title} on #{article.title}"
+  end
+
+  private
+
+  def article_allows_feedback?
+    article.allow_pings?
+  end
+
+  def blog_allows_feedback?
+    !blog.global_pings_disable
+  end
+
+  def article_closed_for_feedback?
+    article.pings_closed?
   end
 end

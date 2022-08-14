@@ -178,4 +178,40 @@ describe Feedback, type: :model do
       assert !@comment.published?
     end
   end
+
+  describe "validations" do
+    let(:feedback) { described_class.new }
+
+    it "requires title to not be too long" do
+      expect(feedback).to validate_length_of(:title).is_at_most(255)
+    end
+
+    it "requires author to not be too long" do
+      expect(feedback).to validate_length_of(:author).is_at_most(255)
+    end
+
+    it "requires email to not be too long" do
+      expect(feedback).to validate_length_of(:email).is_at_most(255)
+    end
+
+    it "requires url to not be too long" do
+      expect(feedback).to validate_length_of(:url).is_at_most(255)
+    end
+
+    it "requires ip to not be too long" do
+      expect(feedback).to validate_length_of(:ip).is_at_most(40)
+    end
+
+    it "requires blog_name to not be too long" do
+      expect(feedback).to validate_length_of(:blog_name).is_at_most(255)
+    end
+
+    it "requires user_agent to not be too long" do
+      expect(feedback).to validate_length_of(:user_agent).is_at_most(255)
+    end
+
+    it "requires text_filter_name to not be too long" do
+      expect(feedback).to validate_length_of(:text_filter_name).is_at_most(255)
+    end
+  end
 end

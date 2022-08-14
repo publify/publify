@@ -113,6 +113,10 @@ describe Blog, type: :model do
   describe "validations" do
     let(:blog) { described_class.new }
 
+    it "requires base url to not be too long" do
+      expect(blog).to validate_length_of(:base_url).is_at_most(255)
+    end
+
     it "requires blog name to not be too long" do
       expect(blog).to validate_length_of(:blog_name).is_at_most(256)
     end

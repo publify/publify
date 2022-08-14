@@ -1,9 +1,13 @@
 # frozen_string_literal: true
 
 class PostType < ApplicationRecord
+  include StringLengthLimit
+
   validates :name, uniqueness: true
   validates :name, presence: true
   validate :name_is_not_read
+  validates_default_string_length :name, :permalink, :description
+
   before_save :sanitize_title
 
   def name_is_not_read

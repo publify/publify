@@ -9,6 +9,8 @@
 #
 class Blog < ApplicationRecord
   include ConfigManager
+  include StringLengthLimit
+
   include Rails.application.routes.url_helpers
 
   has_many :contents
@@ -139,6 +141,7 @@ class Blog < ApplicationRecord
 
   validate :permalink_has_identifier
   # validates :base_url, presence: true
+  validates_default_string_length :base_url
 
   # Find the Blog that matches a specific base URL. If no Blog object is found
   # that matches, then grab the first blog. If *that* fails, then create a new

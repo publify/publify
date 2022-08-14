@@ -45,6 +45,14 @@ describe User, type: :model do
   describe "validations" do
     let(:user) { described_class.new }
 
+    it "requires email to not be too long" do
+      expect(user).to validate_length_of(:email).is_at_most(255)
+    end
+
+    it "requires name to not be too long" do
+      expect(user).to validate_length_of(:name).is_at_most(2048)
+    end
+
     it "requires first name to not be too long" do
       expect(user).to validate_length_of(:firstname).is_at_most(256)
     end
@@ -71,6 +79,10 @@ describe User, type: :model do
 
     it "requires the login field to be present" do
       expect(user).to validate_presence_of(:login)
+    end
+
+    it "requires text_filter_name to not be too long" do
+      expect(user).to validate_length_of(:text_filter_name).is_at_most(255)
     end
 
     it "does not allow duplicate logins when updating a user" do

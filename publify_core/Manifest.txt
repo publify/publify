@@ -160,6 +160,7 @@ app/models/article.rb
 app/models/article/factory.rb
 app/models/blog.rb
 app/models/comment.rb
+app/models/concerns/string_length_limit.rb
 app/models/config_manager.rb
 app/models/content.rb
 app/models/content_base.rb

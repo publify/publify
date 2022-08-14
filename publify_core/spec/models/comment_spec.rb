@@ -8,9 +8,29 @@ describe Comment, type: :model do
 
   let(:published_article) { build_stubbed(:article, published_at: 1.hour.ago, blog: blog) }
 
-  def valid_comment(options = {})
-    Comment.new({ author: "Bob", article: published_article, body: "nice post",
-                  ip: "1.2.3.4" }.merge(options))
+  describe "validations" do
+    let(:comment) { described_class.new }
+
+    it "allows an article with open comment window" do
+      article = Article.new(blog: blog, allow_comments: true, state: "published",
+                            published_at: 1.day.ago)
+
+      expect(comment).to allow_value(article).for(:article)
+    end
+
+    it "requires article comment window to be open" do
+      article = Article.new(blog: blog, allow_comments: true)
+
+      expect(comment).not_to allow_value(article).for(:article).
+        with_message("Comments are closed")
+    end
+
+    it "requires article to be open to comments" do
+      article = Article.new(blog: blog, allow_comments: false)
+
+      expect(comment).not_to allow_value(article).for(:article).
+        with_message("Article is not open for comments")
+    end
   end
 
   describe "#permalink_url" do
@@ -88,6 +108,11 @@ describe Comment, type: :model do
   end
 
   describe "#classify_content" do
+    def valid_comment(options = {})
+      Comment.new({ author: "Bob", article: published_article, body: "nice post",
+                    ip: "1.2.3.4" }.merge(options))
+    end
+
     it "rejects spam rbl" do
       comment = valid_comment(
         author: "Spammer",
