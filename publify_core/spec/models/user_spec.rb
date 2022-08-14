@@ -49,6 +49,10 @@ describe User, type: :model do
       expect(user).to validate_length_of(:email).is_at_most(255)
     end
 
+    it "requires name to not be too long" do
+      expect(user).to validate_length_of(:name).is_at_most(2048)
+    end
+
     it "requires first name to not be too long" do
       expect(user).to validate_length_of(:firstname).is_at_most(256)
     end

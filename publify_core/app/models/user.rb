@@ -22,6 +22,7 @@ class User < ApplicationRecord
   validates :email, :login, presence: true
   validates :login, length: { in: 3..40 }
   validates_default_string_length :email, :text_filter_name
+  validates :name, length: { maximum: 2048 }
 
   belongs_to :resource, optional: true
   has_many :notifications, foreign_key: "notify_user_id"
