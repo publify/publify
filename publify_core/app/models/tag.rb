@@ -1,12 +1,15 @@
 # frozen_string_literal: true
 
 class Tag < ApplicationRecord
+  include StringLengthLimit
+
   belongs_to :blog
   has_and_belongs_to_many :contents, order: "created_at DESC"
 
   validates :name, uniqueness: { scope: :blog_id }
   validates :blog, presence: true
   validates :name, presence: true
+  validates_default_string_length :display_name
 
   before_validation :ensure_naming_conventions
 

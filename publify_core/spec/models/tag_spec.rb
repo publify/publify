@@ -12,9 +12,15 @@ RSpec.describe Tag, type: :model do
     expect(test_tag.errors[:name]).to eq(["has already been taken"])
   end
 
-  describe "validation" do
+  describe "validations" do
+    let(:tag) { described_class.new }
+
     it "requires name to be present" do
-      expect(blog.tags.build(name: "")).not_to be_valid
+      expect(tag).to validate_presence_of(:name)
+    end
+
+    it "requires display_name to not be too long" do
+      expect(tag).to validate_length_of(:display_name).is_at_most(255)
     end
   end
 

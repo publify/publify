@@ -29,4 +29,20 @@ RSpec.describe PostType, type: :model do
     expect(test_type).not_to be_valid
     expect(test_type.errors[:name]).to eq(["has already been taken"])
   end
+
+  describe "validations" do
+    let(:post_type) { described_class.new }
+
+    it "requires name to not be too long" do
+      expect(post_type).to validate_length_of(:name).is_at_most(255)
+    end
+
+    it "requires permalink to not be too long" do
+      expect(post_type).to validate_length_of(:permalink).is_at_most(255)
+    end
+
+    it "requires description to not be too long" do
+      expect(post_type).to validate_length_of(:description).is_at_most(255)
+    end
+  end
 end

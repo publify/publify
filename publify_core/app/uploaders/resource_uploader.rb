@@ -4,7 +4,10 @@ require "marcel"
 
 class ResourceUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
-  before :cache, :check_content_type!
+  before :process, :check_content_type!
+
+  process :fix_exif_rotation, if: :image?
+  process :strip, if: :image?
 
   def content_type_allowlist
     [%r{image/}, %r{audio/}, %r{video/}, "text/plain"]
@@ -30,6 +33,22 @@ class ResourceUploader < CarrierWave::Uploader::Base
     resize_setting = model.blog.send("image_#{size}_size").to_i
 
     resize_to_fit(resize_setting, resize_setting)
+  end
+
+  def strip
+    manipulate! do |img|
+      img.strip
+      img = yield(img) if block_given?
+      img
+    end
+  end
+
+  def fix_exif_rotation
+    manipulate! do |img|
+      img.auto_orient
+      img = yield(img) if block_given?
+      img
+    end
   end
 
   def image?(new_file)

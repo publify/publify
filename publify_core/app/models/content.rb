@@ -5,6 +5,7 @@ require "uri"
 
 class Content < ApplicationRecord
   include ContentBase
+  include StringLengthLimit
 
   belongs_to :user, optional: true, touch: true
   belongs_to :blog
@@ -37,6 +38,9 @@ class Content < ApplicationRecord
                             }
 
   serialize :whiteboard
+
+  validates_default_string_length :title, :author, :permalink, :name,
+                                  :post_type, :text_filter_name
 
   def author=(user)
     if user.respond_to?(:login)
