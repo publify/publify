@@ -61,4 +61,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "timecop", "~> 0.9.1"
   s.add_development_dependency "webmock", "~> 3.3"
+  s.metadata["rubygems_mfa_required"] = "true"
 end
