@@ -171,42 +171,42 @@ RSpec.describe User, type: :model do
   describe "#has_twitter_configured?" do
     it "is false without twitter_oauth_token or twitter_oauth_token_secret" do
       user = build(:user, twitter_oauth_token: nil, twitter_oauth_token_secret: nil)
-      expect(user.has_twitter_configured?).to eq(false)
+      expect(user.has_twitter_configured?).to be(false)
     end
 
     it "is false with an empty twitter_oauth_token and no twitter_oauth_token_secret" do
       user = build(:user, twitter_oauth_token: "", twitter_oauth_token_secret: nil)
-      expect(user.has_twitter_configured?).to eq(false)
+      expect(user.has_twitter_configured?).to be(false)
     end
 
     it "is false with empty twitter_oauth_token and twitter_oauth_token_secret" do
       user = build(:user, twitter_oauth_token: "", twitter_oauth_token_secret: "")
-      expect(user.has_twitter_configured?).to eq(false)
+      expect(user.has_twitter_configured?).to be(false)
     end
 
     it "is false with a twitter_oauth_token and no twitter_oauth_token_secret" do
       user = build(:user, twitter_oauth_token: "12345", twitter_oauth_token_secret: nil)
-      expect(user.has_twitter_configured?).to eq(false)
+      expect(user.has_twitter_configured?).to be(false)
     end
 
     it "is false with a twitter_oauth_token and an empty twitter_oauth_token_secret" do
       user = build(:user, twitter_oauth_token: "12345", twitter_oauth_token_secret: "")
-      expect(user.has_twitter_configured?).to eq(false)
+      expect(user.has_twitter_configured?).to be(false)
     end
 
     it "is false with a twitter_oauth_token_secret and no twitter_oauth_token" do
       user = build(:user, twitter_oauth_token: "", twitter_oauth_token_secret: "67890")
-      expect(user.has_twitter_configured?).to eq(false)
+      expect(user.has_twitter_configured?).to be(false)
     end
 
     it "is false with a twitter_oauth_token_secret and an empty twitter_oauth_token" do
       user = build(:user, twitter_oauth_token_secret: "67890", twitter_oauth_token: "")
-      expect(user.has_twitter_configured?).to eq(false)
+      expect(user.has_twitter_configured?).to be(false)
     end
 
     it "is true with a twitter_oauth_token and a twitter_oauth_token_secret" do
       user = build(:user, twitter_oauth_token: "12345", twitter_oauth_token_secret: "67890")
-      expect(user.has_twitter_configured?).to eq(true)
+      expect(user.has_twitter_configured?).to be(true)
     end
   end
 end

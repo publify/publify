@@ -165,42 +165,42 @@ RSpec.describe Blog, type: :model do
   describe "#has_twitter_configured?" do
     it "is false without :twitter_consumer_key or twitter_consumer_secret" do
       blog = build(:blog)
-      expect(blog.has_twitter_configured?).to eq(false)
+      expect(blog.has_twitter_configured?).to be(false)
     end
 
     it "is false with an empty :twitter_consumer_key and no twitter_consumer_secret" do
       blog = build(:blog, twitter_consumer_key: "")
-      expect(blog.has_twitter_configured?).to eq(false)
+      expect(blog.has_twitter_configured?).to be(false)
     end
 
     it "is false with an empty twitter_consumer_key and an empty twitter_consumer_secret" do
       blog = build(:blog, twitter_consumer_key: "", twitter_consumer_secret: "")
-      expect(blog.has_twitter_configured?).to eq(false)
+      expect(blog.has_twitter_configured?).to be(false)
     end
 
     it "is false with a twitter_consumer_key and no twitter_consumer_secret" do
       blog = build(:blog, twitter_consumer_key: "12345")
-      expect(blog.has_twitter_configured?).to eq(false)
+      expect(blog.has_twitter_configured?).to be(false)
     end
 
     it "is false with a twitter_consumer_key and an empty twitter_consumer_secret" do
       blog = build(:blog, twitter_consumer_key: "12345", twitter_consumer_secret: "")
-      expect(blog.has_twitter_configured?).to eq(false)
+      expect(blog.has_twitter_configured?).to be(false)
     end
 
     it "is false with a twitter_consumer_secret and no twitter_consumer_key" do
       blog = build(:blog, twitter_consumer_secret: "67890")
-      expect(blog.has_twitter_configured?).to eq(false)
+      expect(blog.has_twitter_configured?).to be(false)
     end
 
     it "is false with a twitter_consumer_secret and an empty twitter_consumer_key" do
       blog = build(:blog, twitter_consumer_secret: "67890", twitter_consumer_key: "")
-      expect(blog.has_twitter_configured?).to eq(false)
+      expect(blog.has_twitter_configured?).to be(false)
     end
 
     it "is true with a twitter_consumer_key and a twitter_consumer_secret" do
       blog = build(:blog, twitter_consumer_key: "12345", twitter_consumer_secret: "67890")
-      expect(blog.has_twitter_configured?).to eq(true)
+      expect(blog.has_twitter_configured?).to be(true)
     end
   end
 

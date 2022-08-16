@@ -79,7 +79,7 @@ RSpec.describe "Given a new blog", type: :model do
 
   # Another clumsy setting name
   it "#global_pings_disable should be false" do
-    expect(blog.global_pings_disable).to eq(false)
+    expect(blog.global_pings_disable).to be(false)
     expect(blog).not_to be_global_pings_disable
   end
 
@@ -244,7 +244,7 @@ RSpec.describe "Given a new blog", type: :model do
   end
 
   it "a new blog should display statuses in the main feed" do
-    expect(blog.statuses_in_timeline).to eq(true)
+    expect(blog.statuses_in_timeline).to be(true)
   end
 end
 
@@ -356,6 +356,6 @@ RSpec.describe "Given a new status", type: :model do
   end
 
   it "does not have a reply context protected" do
-    expect(@note.in_reply_to_protected).to eq(false)
+    expect(@note.in_reply_to_protected).to be(false)
   end
 end
