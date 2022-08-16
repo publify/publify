@@ -110,6 +110,34 @@ RSpec.describe Blog, type: :model do
     end
   end
 
+  describe "validations" do
+    let(:blog) { described_class.new }
+
+    it "requires base url to not be too long" do
+      expect(blog).to validate_length_of(:base_url).is_at_most(255)
+    end
+
+    it "requires blog name to not be too long" do
+      expect(blog).to validate_length_of(:blog_name).is_at_most(256)
+    end
+
+    it "allows up to 2048 characters for the rss_description_text setting" do
+      expect(blog).to validate_length_of(:rss_description_text).is_at_most(2048)
+    end
+
+    it "allows up to 2048 characters for the robots setting" do
+      expect(blog).to validate_length_of(:robots).is_at_most(2048)
+    end
+
+    it "allows up to 2048 characters for the humans setting" do
+      expect(blog).to validate_length_of(:humans).is_at_most(2048)
+    end
+
+    it "allows up to 2048 characters for the meta_description setting" do
+      expect(blog).to validate_length_of(:meta_description).is_at_most(2048)
+    end
+  end
+
   describe ".meta_keywords" do
     it "return empty string when nothing" do
       blog = described_class.new

@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 module ConfigManager
-  def self.append_features(base)
-    super
+  def self.included(base)
     base.extend(ClassMethods)
   end
 
@@ -12,12 +11,17 @@ module ConfigManager
     end
 
     def setting(name, type = :object, default = nil)
+      raise "Invalid type: #{type}" unless Item::VALID_TYPES.include? type
+
       item = Item.new
       item.name = name.to_s
       item.ruby_type = type
       item.default = default
       fields[name.to_s] = item
-      add_setting_accessor(item)
+
+      add_setting_reader(item)
+      add_setting_writer(item)
+      add_setting_validation(item)
     end
 
     def default_for(key)
@@ -25,11 +29,6 @@ module ConfigManager
     end
 
     private
-
-    def add_setting_accessor(item)
-      add_setting_reader(item)
-      add_setting_writer(item)
-    end
 
     def add_setting_reader(item)
       send(:define_method, item.name) do
@@ -51,6 +50,15 @@ module ConfigManager
         retval
       end
     end
+
+    def add_setting_validation(item)
+      case item.ruby_type
+      when :string
+        validates item.name, length: { maximum: 256 }
+      when :text
+        validates item.name, length: { maximum: 2048 }
+      end
+    end
   end
 
   def canonicalize(key, value)
@@ -58,6 +66,8 @@ module ConfigManager
   end
 
   class Item
+    VALID_TYPES = [:boolean, :integer, :string, :text].freeze
+
     attr_accessor :name, :ruby_type, :default
 
     def canonicalize(value)
@@ -71,12 +81,8 @@ module ConfigManager
         end
       when :integer
         value.to_i
-      when :string
+      when :string, :text
         value.to_s
-      when :yaml
-        value.to_yaml
-      else
-        value
       end
     end
   end

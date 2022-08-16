@@ -10,10 +10,15 @@ class Feedback < ApplicationRecord
 
   include PublifyGuid
   include ContentBase
+  include StringLengthLimit
 
-  validate :article_allows_this_feedback, on: :create
-  validate :feedback_not_closed, on: :create
+  validate :feedback_allowed, on: :create
   validates :article, presence: true
+
+  validates_default_string_length :title, :author, :email, :url, :blog_name,
+                                  :user_agent, :text_filter_name
+
+  validates :ip, length: { maximum: 40 }
 
   before_save :correct_url, :classify_content
   before_create :create_guid
@@ -99,8 +104,20 @@ class Feedback < ApplicationRecord
     self.url = "http://#{url}" unless %r{^https?://}.match?(url)
   end
 
-  def article_allows_this_feedback
-    article && blog_allows_feedback? && article_allows_feedback?
+  def feedback_allowed
+    return unless article
+
+    unless blog_allows_feedback?
+      errors.add(:base, "#{plural_model_name} are disabled")
+      return
+    end
+
+    unless article_allows_feedback?
+      errors.add(:article, "Article is not open for #{plural_model_name.downcase}")
+      return
+    end
+
+    errors.add(:article, "#{plural_model_name} are closed") if article_closed_for_feedback?
   end
 
   def akismet_options
@@ -200,10 +217,6 @@ class Feedback < ApplicationRecord
     end
   end
 
-  def feedback_not_closed
-    check_article_closed_for_feedback
-  end
-
   def send_notifications
     nil
   end
@@ -241,5 +254,9 @@ class Feedback < ApplicationRecord
 
   def blog_id
     article.blog_id if article.present?
+  end
+
+  def plural_model_name
+    self.class.model_name.human.pluralize
   end
 end

@@ -41,18 +41,15 @@ class Comment < Feedback
   private
 
   def article_allows_feedback?
-    return true if article.allow_comments?
-
-    errors.add(:article, "Article is not open to comments")
-    false
+    article.allow_comments?
   end
 
   def blog_allows_feedback?
     true
   end
 
-  def check_article_closed_for_feedback
-    errors.add(:article, "Comment are closed") if article.comments_closed?
+  def article_closed_for_feedback?
+    article.comments_closed?
   end
 
   def originator

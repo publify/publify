@@ -88,6 +88,35 @@ RSpec.describe Admin::ResourcesController, type: :controller do
       end
     end
 
+    context "when uploading an image file with exif data" do
+      let(:upload) { file_upload("testfile.jpg", "image/jpeg") }
+
+      it "creates a new Resource" do
+        expect { post :upload, params: { upload: upload } }.
+          to change(Resource, :count).by(1)
+      end
+
+      it "strips EXIF data" do
+        post :upload, params: { upload: upload }
+        resource = Resource.last
+        img = MiniMagick::Image.open resource.upload.file.file
+        expect(img.exif).to be_empty
+      end
+
+      it "sets the content type correctly" do
+        post :upload, params: { upload: upload }
+        expect(Resource.last.mime).to eq "image/jpeg"
+      end
+
+      it "sets the flash to success" do
+        post :upload, params: { upload: upload }
+        aggregate_failures do
+          expect(flash[:success]).not_to be_nil
+          expect(flash[:warning]).to be_nil
+        end
+      end
+    end
+
     context "when attempting to upload a dangerous svg" do
       let(:upload) { file_upload("exploit.svg", "image/svg") }
 

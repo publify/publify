@@ -33,4 +33,12 @@ RSpec.describe Resource, type: :model do
       expect(img_resource.upload_url(:thumb)).to eq "/files/resource/1/thumb_testfile.png"
     end
   end
+
+  describe "validations" do
+    let(:resource) { described_class.new }
+
+    it "requires mime to not be too long" do
+      expect(resource).to validate_length_of(:mime).is_at_most(255)
+    end
+  end
 end
