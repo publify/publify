@@ -35,7 +35,7 @@ gem "sprockets", "~> 4.0"
 gem "rack-attack", "~> 6.5"
 
 gem "net-smtp", "~> 0.3.1"
-gem "psych", "~> 3.2.0"
+gem "psych", "~> 4.0"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -43,12 +43,12 @@ group :development, :test do
 
   gem "capybara", "~> 3.9"
   gem "factory_bot", "~> 6.2"
-  gem "i18n-tasks", "~> 0.9.31", require: false
+  gem "i18n-tasks", "~> 1.0.9", require: false
   gem "pry", "~> 0.14.0"
   gem "pry-rails", "~> 0.3.4"
   gem "rspec-rails", "~> 5.0"
   gem "rubocop", "~> 1.35.0", require: false
-  gem "rubocop-performance", "~> 1.12.0", require: false
+  gem "rubocop-performance", "~> 1.14.3", require: false
   gem "rubocop-rails", "~> 2.15.2", require: false
   gem "rubocop-rspec", "~> 2.12.1", require: false
   gem "simplecov", "~> 0.21.2", require: false
@@ -63,7 +63,7 @@ group :development do
   # Display performance information such as SQL time and flame graphs for each
   # request in your browser.
   # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
-  gem "rack-mini-profiler", "~> 2.0"
+  gem "rack-mini-profiler", "~> 3.0"
   # Spring speeds up development by keeping your application running in the
   # background. Read more: https://github.com/rails/spring
   gem "spring", "~> 3.0.0"
@@ -80,7 +80,7 @@ group :test do
   gem "feedjira", "~> 3.2"
   gem "launchy", "~> 2.4"
   gem "rails-controller-testing", "~> 1.0.1"
-  gem "shoulda-matchers", "~> 4.5"
+  gem "shoulda-matchers", "~> 5.1"
   gem "timecop", "~> 0.9.1"
   gem "webmock", "~> 3.3"
 end
