@@ -17,7 +17,7 @@ RSpec.describe AuthorsHelper, type: :helper do
     it "displays a link if the item is an url" do
       item = display_profile_item("http://twitter.com/mytwitter", "Twitter:")
       expect(item).to have_selector("li") do
-        have_selector("a", text: "http://twitter.com/mytwitter")
+        have_link("http://twitter.com/mytwitter")
       end
     end
   end
