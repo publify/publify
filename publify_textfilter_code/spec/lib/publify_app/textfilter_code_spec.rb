@@ -32,8 +32,8 @@ RSpec.describe PublifyApp::Textfilter::Code, type: :model do
 
           it "parses ruby and xml in same sentence but not in same place" do
             result = filter.
-              filter_text('<publify:code lang="ruby">foo-code</publify:code> ' \
-                          'blah blah <publify:code lang="xml">zzz</publify:code>')
+              filter_text('<publify:code lang="ruby">foo-code</publify:code>' \
+                          ' blah blah <publify:code lang="xml">zzz</publify:code>')
             expect(result).
               to eq '<div class="CodeRay"><pre><span class="CodeRay">' \
                     "foo-code</span></pre></div> blah blah" \

@@ -689,8 +689,8 @@ RSpec.describe Article, type: :model do
 
   describe "save_attachments!" do
     it "calls save_attachment for each file given" do
-      first_file = OpenStruct.new
-      second_file = OpenStruct.new
+      first_file = Object.new
+      second_file = Object.new
       hash = { a_key: first_file, a_second_key: second_file }
       article = build(:article)
       expect(article).to receive(:save_attachment!).with(first_file)

@@ -25,4 +25,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rspec-rails", "~> 4.0"
   s.add_development_dependency "simplecov", "~> 0.21.2"
   s.add_development_dependency "sqlite3"
+  s.metadata["rubygems_mfa_required"] = "true"
 end

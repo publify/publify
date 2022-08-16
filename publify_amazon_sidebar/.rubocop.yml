@@ -25,6 +25,10 @@ Layout/BeginEndAlignment:
 Layout/DotPosition:
   EnforcedStyle: trailing
 
+# Spaces in strings with line continuations go at the beginning of the line.
+Layout/LineContinuationLeadingSpace:
+  EnforcedStyle: leading
+
 # Lenient line length that fits in pull requests
 Layout/LineLength:
   Max: 92

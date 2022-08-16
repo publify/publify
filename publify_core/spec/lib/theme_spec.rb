@@ -24,7 +24,7 @@ RSpec.describe Theme, type: :model do
   describe "#description" do
     it "returns the contents of the corresponding markdown file" do
       markdown_file = PublifyCore::Engine.instance.root.join("themes/plain/about.markdown")
-      expect(default_theme.description).to eq File.open(markdown_file, &:read)
+      expect(default_theme.description).to eq File.read(markdown_file)
     end
   end
 

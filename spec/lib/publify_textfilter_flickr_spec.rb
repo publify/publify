@@ -80,8 +80,8 @@ RSpec.describe "the Flickr text filter plugin", type: :model do
         '<a href="http://www.flickr.com/users/scottlaird/31366117">' \
         '<img src="//photos23.flickr.com/31366117_b1a791d68e_s.jpg"' \
         ' width="75" height="75" alt="Matz" title="Matz"/></a>' \
-        "<p class=\"caption\" style=\"width:75px\">This is Matz, " \
-        "Ruby's creator</p></div>"
+        "<p class=\"caption\" style=\"width:75px\">This is Matz," \
+        " Ruby's creator</p></div>"
     end
 
     it "uses default image size" do
@@ -91,8 +91,8 @@ RSpec.describe "the Flickr text filter plugin", type: :model do
         '<a href="http://www.flickr.com/users/scottlaird/31366117">' \
         '<img src="//photos23.flickr.com/31366117_b1a791d68e_s.jpg"' \
         ' width="75" height="75" alt="Matz" title="Matz"/></a>' \
-        "<p class=\"caption\" style=\"width:75px\">This is Matz, " \
-        "Ruby's creator</p></div>"
+        "<p class=\"caption\" style=\"width:75px\">This is Matz," \
+        " Ruby's creator</p></div>"
     end
 
     it "uses caption" do
@@ -124,8 +124,8 @@ RSpec.describe "the Flickr text filter plugin", type: :model do
         '<a href="http://www.flickr.com/users/scottlaird/31366117">' \
         '<img src="//photos23.flickr.com/31366117_b1a791d68e_s.jpg"' \
         ' width="75" height="75" alt="Matz" title="Matz"/></a>' \
-        "<p class=\"caption\" style=\"width:75px\">This is Matz, " \
-        "Ruby's creator</p></div>"
+        "<p class=\"caption\" style=\"width:75px\">This is Matz," \
+        " Ruby's creator</p></div>"
     end
   end
 end
