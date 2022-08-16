@@ -81,7 +81,9 @@ nb:
         success: Artikkel oppdatert
     base:
       not_allowed: Feil, du har ikke lov til å utføre denne handlingen
+      successfully_created: "%{name} was successfully created."
       successfully_deleted: Slettet %{name}
+      successfully_updated: "%{name} was successfully updated."
     dashboard:
       comment:
         by: Av

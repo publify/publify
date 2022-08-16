@@ -81,7 +81,9 @@ da:
         success: Article was successfully updated
     base:
       not_allowed: Error, you are not allowed to perform this action
+      successfully_created: "%{name} was successfully created."
       successfully_deleted: This %{name} was deleted successfully
+      successfully_updated: "%{name} was successfully updated."
     dashboard:
       comment:
         by: By

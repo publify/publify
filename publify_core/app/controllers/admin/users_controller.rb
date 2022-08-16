@@ -29,7 +29,9 @@ class Admin::UsersController < Admin::BaseController
 
   def update
     if @user.update(update_params)
-      redirect_to admin_users_url, notice: "User was successfully updated."
+      flash[:notice] = I18n.t("admin.base.successfully_updated",
+                              name: User.model_name.human)
+      redirect_to admin_users_url
     else
       render :edit
     end
