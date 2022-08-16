@@ -68,7 +68,7 @@ RSpec.describe PublifyApp::Textfilter::Code, type: :model do
     end
 
     it "test_code_plus_markup_chain" do
-      text = <<-MARKUP.strip_heredoc
+      text = <<~MARKUP
         *header text here*
 
         <publify:code lang="ruby">
@@ -83,7 +83,7 @@ RSpec.describe PublifyApp::Textfilter::Code, type: :model do
 
       MARKUP
 
-      expects_markdown = <<-HTML.strip_heredoc.strip
+      expects_markdown = <<~HTML.strip
         <p><em>header text here</em></p>
         <div class=\"CodeRay\"><pre><span class=\"CodeRay\"><span class=\"keyword\">class</span> <span class=\"class\">test</span>
           <span class=\"keyword\">def</span> <span class=\"function\">method</span>

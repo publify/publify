@@ -10,8 +10,6 @@ class Content < ApplicationRecord
   belongs_to :user, optional: true, touch: true
   belongs_to :blog
 
-  validates :blog, presence: true
-
   has_one :redirect, dependent: :destroy, inverse_of: :content
 
   has_many :triggers, as: :pending_item, dependent: :delete_all

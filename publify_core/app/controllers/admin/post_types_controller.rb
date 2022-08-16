@@ -16,7 +16,9 @@ class Admin::PostTypesController < Admin::BaseController
     @post_type = PostType.new(post_type_params)
 
     if @post_type.save
-      redirect_to admin_post_types_url, notice: "Post type was successfully created."
+      flash[:notice] = I18n.t("admin.base.successfully_created",
+                              name: PostType.model_name.human)
+      redirect_to admin_post_types_url
     else
       render :index
     end
@@ -24,7 +26,9 @@ class Admin::PostTypesController < Admin::BaseController
 
   def update
     if @post_type.update(post_type_params)
-      redirect_to admin_post_types_url, notice: "Post type was successfully updated."
+      flash[:notice] = I18n.t("admin.base.successfully_updated",
+                              name: PostType.model_name.human)
+      redirect_to admin_post_types_url
     else
       render :edit
     end
@@ -40,7 +44,9 @@ class Admin::PostTypesController < Admin::BaseController
       end
       @post_type.destroy
     end
-    redirect_to admin_post_types_url, notice: "Post was successfully destroyed."
+    flash[:notice] = I18n.t("admin.base.successfully_deleted",
+                            name: PostType.model_name.human)
+    redirect_to admin_post_types_url
   end
 
   private

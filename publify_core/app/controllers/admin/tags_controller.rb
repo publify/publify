@@ -14,7 +14,9 @@ class Admin::TagsController < Admin::BaseController
     @tag = this_blog.tags.new(tag_params)
 
     if @tag.save
-      redirect_to admin_tags_url, notice: "Tag was successfully created."
+      flash[:notice] = I18n.t("admin.base.successfully_created",
+                              name: PostType.model_name.human)
+      redirect_to admin_tags_url
     else
       fetch_tags
       render :index

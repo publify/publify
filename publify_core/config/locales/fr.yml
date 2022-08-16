@@ -83,7 +83,9 @@ fr:
         success: Cet article a été mis à jour avec succès
     base:
       not_allowed: Erreur, vous n'êtes pas autorisé à réaliser cette action
+      successfully_created: "%{name} a été créé avec succès"
       successfully_deleted: "%{name} a été supprimé avec succès"
+      successfully_updated: "%{name} a été mis à jour avec succès"
     dashboard:
       comment:
         by: Par

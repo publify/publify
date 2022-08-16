@@ -81,7 +81,9 @@ nl:
         success: Artikel is succesvol bijgewerkt.
     base:
       not_allowed: Error, you are not allowed to perform this action
+      successfully_created: "%{name} is met succes aangemaakt."
       successfully_deleted: This %{name} was deleted successfully
+      successfully_updated: "%{name} is met succes bijgewerkt."
     dashboard:
       comment:
         by: Door

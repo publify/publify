@@ -13,7 +13,6 @@ class Feedback < ApplicationRecord
   include StringLengthLimit
 
   validate :feedback_allowed, on: :create
-  validates :article, presence: true
 
   validates_default_string_length :title, :author, :email, :url, :blog_name,
                                   :user_agent, :text_filter_name

@@ -8,7 +8,6 @@ class Redirect < ApplicationRecord
 
   validates :from_path, uniqueness: true
   validates :to_path, presence: true
-  validates :blog, presence: true
 
   validates_default_string_length :from_path, :to_path
 

@@ -18,7 +18,9 @@ class Admin::RedirectsController < Admin::BaseController
     @redirect = this_blog.redirects.build(redirect_params)
 
     if @redirect.save
-      redirect_to admin_redirects_url, notice: "Redirect was successfully created."
+      flash[:notice] = I18n.t("admin.base.successfully_created",
+                              name: Redirect.model_name.human)
+      redirect_to admin_redirects_url
     else
       render :index
     end
@@ -26,7 +28,9 @@ class Admin::RedirectsController < Admin::BaseController
 
   def update
     if @redirect.update(redirect_params)
-      redirect_to admin_redirects_url, notice: "Redirect was successfully updated."
+      flash[:notice] = I18n.t("admin.base.successfully_updated",
+                              name: Redirect.model_name.human)
+      redirect_to admin_redirects_url
     else
       render :edit
     end

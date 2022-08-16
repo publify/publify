@@ -81,7 +81,9 @@ ar:
         success: تم تحديث المقال بنجاح
     base:
       not_allowed: خطأ، غير مسموح لك بهذا الإجراء
+      successfully_created: "%{name} was successfully created."
       successfully_deleted: "%{name} حُذفت بنجاح"
+      successfully_updated: "%{name} was successfully updated."
     dashboard:
       comment:
         by: بواسطة
