@@ -98,6 +98,11 @@ describe User, type: :model do
 
       expect(bar).not_to allow_value("foo@foo.com").for(:email)
     end
+
+    it "requires a strong password" do
+      nearly_valid_user = build(:user)
+      expect(nearly_valid_user).not_to allow_value("password01").for(:password)
+    end
   end
 
   describe "#initialize" do

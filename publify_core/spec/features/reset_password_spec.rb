@@ -6,7 +6,7 @@ RSpec.feature "Logging in", type: :feature do
   before do
     load Rails.root.join("db/seeds.rb")
     Blog.first.update blog_name: "Awesome!", base_url: "http://www.example.com/"
-    create :user, :as_admin, login: "admin", password: "forget-me"
+    create :user, :as_admin, login: "admin", password: "Fo_rgEt-1m5e2"
   end
 
   scenario "Admin resets password" do
@@ -23,8 +23,8 @@ RSpec.feature "Logging in", type: :feature do
 
     visit url
 
-    fill_in :user_password, with: "a-secret"
-    fill_in :user_password_confirmation, with: "a-secret"
+    fill_in :user_password, with: "a5-SeCre1T4"
+    fill_in :user_password_confirmation, with: "a5-SeCre1T4"
 
     click_button I18n.t("devise.passwords.edit.change_my_password")
     expect(page).to have_text I18n.t("devise.passwords.updated")

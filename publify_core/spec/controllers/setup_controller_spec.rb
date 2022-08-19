@@ -3,6 +3,8 @@
 require "rails_helper"
 
 describe SetupController, type: :controller do
+  let(:strong_password) { "fhnehnhfiiuh" }
+
   describe "#index" do
     describe "when no blog is configured" do
       before do
@@ -35,7 +37,7 @@ describe SetupController, type: :controller do
         before do
           ActionMailer::Base.deliveries.clear
           post :create, params: { setting: { blog_name: "Foo", email: "foo@bar.net",
-                                             password: "foo123bar" } }
+                                             password: strong_password } }
         end
 
         it "correctly initializes blog and users" do
@@ -64,19 +66,25 @@ describe SetupController, type: :controller do
       describe "when passing incorrect parameters" do
         it "empty blog name should raise an error" do
           post :create, params: { setting: { blog_name: "", email: "foo@bar.net",
-                                             password: "foobar123" } }
+                                             password: strong_password } }
           expect(response).to redirect_to(action: "index")
         end
 
         it "empty email should raise an error" do
           post :create, params: { setting: { blog_name: "Foo", email: "",
-                                             password: "foobar123" } }
+                                             password: strong_password } }
           expect(response).to redirect_to(action: "index")
         end
 
         it "empty password should raise an error" do
           post :create, params: { setting: { blog_name: "Foo", email: "foo@bar.net",
                                              password: "" } }
+          expect(response).to redirect_to(action: "index")
+        end
+
+        it "weak password should raise an error" do
+          post :create, params: { setting: { blog_name: "Foo", email: "foo@bar.net",
+                                             password: "foo123bar" } }
           expect(response).to redirect_to(action: "index")
         end
       end
