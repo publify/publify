@@ -3,6 +3,8 @@
 require "rails_helper"
 
 RSpec.feature "Blog setup", type: :feature do
+  let(:strong_password) { "fhnehnhfiiuh" }
+
   before do
     stub_request(:get,
                  "http://www.google.com/search?output=rss&q=link:www.example.com&tbm=blg").
@@ -18,7 +20,7 @@ RSpec.feature "Blog setup", type: :feature do
     # Set up the blog
     fill_in :setting_blog_name, with: "Awesome blog"
     fill_in :setting_email, with: "foo@bar.com"
-    fill_in :setting_password, with: "test1234"
+    fill_in :setting_password, with: strong_password
     click_button I18n.t!("generic.save")
 
     # Confirm set up success
@@ -38,7 +40,7 @@ RSpec.feature "Blog setup", type: :feature do
 
     visit admin_dashboard_path
     fill_in :user_login, with: "admin"
-    fill_in :user_password, with: "test1234"
+    fill_in :user_password, with: strong_password
     find("input[type=submit]").click
     expect(page).to have_text I18n.t!("admin.dashboard.index.welcome_back",
                                       user_name: "admin")

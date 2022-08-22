@@ -3,12 +3,14 @@
 require "rails_helper"
 
 RSpec.feature "Signing up", type: :feature do
+  let(:strong_password) { "whhefwhfwefhiu" }
+
   before do
     load Rails.root.join("db/seeds.rb")
     Blog.first.update(blog_name: "Awesome!",
                       base_url: "http://www.example.com/",
                       allow_signup: 1)
-    create :user, :as_admin, login: "admin", password: "a-secret"
+    create :user, :as_admin, login: "admin"
   end
 
   scenario "User signs up for an account" do
@@ -18,8 +20,8 @@ RSpec.feature "Signing up", type: :feature do
     # Create account
     fill_in :user_login, with: "hello"
     fill_in :user_email, with: "hello@hello.com"
-    fill_in :user_password, with: "hush-hush"
-    fill_in :user_password_confirmation, with: "hush-hush"
+    fill_in :user_password, with: strong_password
+    fill_in :user_password_confirmation, with: strong_password
     click_button I18n.t!("devise.registrations.new.sign_up")
 
     # Confirm creation success
@@ -32,7 +34,7 @@ RSpec.feature "Signing up", type: :feature do
     # Confirm ability to sign in
     visit admin_dashboard_path
     fill_in :user_login, with: "hello"
-    fill_in :user_password, with: "hush-hush"
+    fill_in :user_password, with: strong_password
     find("input[type=submit]").click
     expect(page).to have_text I18n.t!("devise.sessions.signed_in")
 
