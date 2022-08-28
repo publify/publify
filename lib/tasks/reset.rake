@@ -55,5 +55,22 @@ namespace :demo do
     # Use simple but bad password for the demo
     publisher.password = publisher_password
     publisher.save(validate: false)
+
+    demo_explanation = <<~MD
+      This is the [Publify](https://publify.github.io/) demo site.
+
+      Use the following credentials to access [the admin](https://demo-publify.herokuapp.com/admin):
+
+      - Administrator: admin / #{admin_password}
+      - Publisher: demo / #{publisher_password}
+
+      The demo is reset every hour.
+    MD
+    blog.articles.build(title: "Publify demo",
+                        author: user.login,
+                        body: demo_explanation,
+                        allow_comments: 1,
+                        allow_pings: 1,
+                        user: user).publish!
   end
 end
