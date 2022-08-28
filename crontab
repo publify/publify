@@ -1,0 +1,2 @@
+# Reset the demo environment every hour
+42 * * * * /app/bin/rake -C /app demo:reset
