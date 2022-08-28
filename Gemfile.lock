@@ -136,6 +136,8 @@ GEM
       devise (>= 5.0.0)
       rails-i18n
     diff-lcs (1.6.2)
+    dockerfile-rails (1.7.10)
+      rails (>= 3.0.0)
     domain_name (0.6.20260921)
     drb (2.2.3)
     equalizer (1.0.0)
@@ -556,6 +558,7 @@ DEPENDENCIES
   activerecord-session_store (~> 2.3.0)
   byebug
   capybara (~> 3.9)
+  dockerfile-rails (>= 1.5)
   drb (~> 2.2.3)
   factory_bot (~> 6.2)
   fast_stack
