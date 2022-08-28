@@ -31,13 +31,7 @@ project alive.
 
 ## Demo site
 
-You can [give Publify a try](https://demo-publify.herokuapp.com/)
-
-The login / password [to the admin](https://demo-publify.herokuapp.com/admin)
-are:
-
-- Administrator: admin / admin123
-- Publisher: demo / demo1234
+You can give Publify a try at [the demo site](https://demo-publify.herokuapp.com/).
 
 The demo is reset every hour.
 
