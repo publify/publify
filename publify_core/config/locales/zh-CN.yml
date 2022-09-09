@@ -69,21 +69,21 @@ zh-CN:
         manage_articles: 文章管理
         new_article: 新文章
         publication_date: 发布日期
-        publication_pending: Publication pending
+        publication_pending: 未发布
         published: 已发表
-        published_at: Publication date
+        published_at: 发布于
         search: 搜索
-        select_an_author: Select an author
-        text_filter: Text filter
+        select_an_author: 选择一位作者
+        text_filter: 文本过滤器
         title: 标题
-        withdrawn: Withdrawn
+        withdrawn: 撤销
       update:
         success: 文章更新成功
     base:
-      not_allowed: Error, you are not allowed to perform this action
-      successfully_created: "%{name} was successfully created."
-      successfully_deleted: This %{name} was deleted successfully
-      successfully_updated: "%{name} was successfully updated."
+      not_allowed: 发生错误, 你不被允许执行此动作。
+      successfully_created: "已成功创建 %{name}。"
+      successfully_deleted: 已成功删除 %{name}
+      successfully_updated: "已成功更新 %{name}。"
     dashboard:
       comment:
         by: By
@@ -91,16 +91,16 @@ zh-CN:
       comments:
         latest_comments: 最近评论
       drafts:
-        no_drafts_yet: No drafts yet, why don't you start and write one
-        your_drafts: Your drafts
+        no_drafts_yet: 目前没有草稿, 但你可以创建一个。
+        your_drafts: 你的草稿
       index:
         welcome_back: 欢迎回來， %{user_name}！
       overview:
         change_your_blog_presentation: 修改你的博客外观
         customization_explain_html: 你也可以做一些设计, %{theme_link}或%{sidebar_link}.
-        dashboard_explain_html: 这里給你一個快速的概览，让你知道你的博客发生什么事情了。也许你想要%{available_actions}
+        dashboard_explain_html: 这里给你一个快速的概览，让你知道你的博客发生什么事情了。也许你想要%{available_actions}
         enable_plugins: 启动插件
-        help_explain_html: 如果需要帮助，%{doc_link}.
+        help_explain_html: 如果需要帮助，请访问 %{doc_link}.
         read_our_documentation: 阅读我们的文档
         update_your_profile_or_change_your_password: 更新资料或者修改密码
         write_a_page: 写一个页面
@@ -110,7 +110,7 @@ zh-CN:
           one: 1 approved
           other: "%{count} approved"
           zero: no approved
-        articles_and_comments_count_since: 在你上次离开后，新增%{articles_count}篇文章和%{comments_count}个评价
+        articles_and_comments_count_since: 在你上次离开后，已新增%{articles_count}篇文章和%{comments_count}个评论
         articles_count:
           one: 一篇文章
           other: "%{count}篇文章"
@@ -121,48 +121,48 @@ zh-CN:
           zero: 没有评论
         content: Content
         drafts_count:
-          one: 1 draft
-          other: "%{count} drafts"
-          zero: no draft
-        feedback: 回应
+          one: 1 篇草稿
+          other: "%{count} 篇草稿"
+          zero: 没有草稿
+        feedback: 反馈
         notes_count:
-          one: 1 note
-          other: "%{count} notes"
-          zero: no note
+          one: 1 篇笔记
+          other: "%{count} 篇笔记"
+          zero: 没有笔记
         pages_count:
           one: 1 page
           other: "%{count} pages"
           zero: no page
         running_publify: 你正在使用的是Publify %{version}
         spam_count:
-          one: 1 spam
-          other: "%{count} spam"
-          zero: no spam
+          one: 1 篇垃圾信息
+          other: "%{count} 篇垃圾信息"
+          zero: 没有垃圾信息
         today: Today
         unconfirmed_count:
           one: 1 unconfirmed
           other: "%{count} unconfirmed"
           zero: no unconfirmed
         your_articles_count:
-          one: 1 article writen by you
-          other: "%{count} articles writen by you"
-          zero: no article writen by you
+          one: 你已经写了 1 篇文章
+          other: "你已经写了 %{count} 篇文章"
+          zero: 你没有文章
     feedback:
       article:
         action_or_other_html: "%{first_action} 或 %{second_action}"
         actions: Actions
-        add_a_comment: Add a comment
+        add_a_comment: 添加评论
         author: 作者
         cancel: 取消
-        comments_for_html: 做出评论 %{title}
+        comments_for_html: 对 %{title} 评论
         content: Content
-        created_at: Created at
+        created_at: 创建于
         email: Email
         no_feedback: 这儿并不存在Feedback。让我们开始创建它。
         save: 保存
         status: 状态
         url: Url
-        your_comment: Your comment
+        your_comment: 你的评论
       bulkops:
         error: 未实现
         success_classification: Confirmed classification of %{count} item(s)
@@ -173,11 +173,11 @@ zh-CN:
           other: Marked %{count} items as Ham
           zero: No item selected to mark as Ham
         success_mark_as_spam:
-          one: Marked 1 item as Spam
-          other: 标记%{count}项为垃圾信息
-          zero: No item selected to mark as Spam
+          one: 已标记 1 项垃圾信息
+          other: 已标记 %{count} 项垃圾信息
+          zero: 没有被标记的垃圾信息
       button:
-        delete_all_spam: Delete all spam
+        delete_all_spam: 删除所有垃圾信息
         delete_checked_items: Delete Checked Items
         mark_checked_items_as_ham: Mark Checked Items as Ham
         mark_checked_items_as_spam: Mark Checked Items as Spam
