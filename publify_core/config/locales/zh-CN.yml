@@ -107,9 +107,9 @@ zh-CN:
         write_a_post: 写一篇文章
       welcome:
         approved_count:
-          one: 1 approved
-          other: "%{count} approved"
-          zero: no approved
+          one: 已通过 1 篇
+          other: "已通过 %{count} 篇"
+          zero: 没有已通过的内容
         articles_and_comments_count_since: 在你上次离开后，已新增%{articles_count}篇文章和%{comments_count}个评论
         articles_count:
           one: 一篇文章
@@ -130,9 +130,9 @@ zh-CN:
           other: "%{count} 篇笔记"
           zero: 没有笔记
         pages_count:
-          one: 1 page
-          other: "%{count} pages"
-          zero: no page
+          one: 1 个页面
+          other: "%{count} 个页面"
+          zero: 没有页面
         running_publify: 你正在使用的是Publify %{version}
         spam_count:
           one: 1 篇垃圾信息
@@ -140,9 +140,9 @@ zh-CN:
           zero: 没有垃圾信息
         today: Today
         unconfirmed_count:
-          one: 1 unconfirmed
-          other: "%{count} unconfirmed"
-          zero: no unconfirmed
+          one: 1 篇未被确认
+          other: "%{count} 篇未被确认"
+          zero: 没有未被确认的内容
         your_articles_count:
           one: 你已经写了 1 篇文章
           other: "你已经写了 %{count} 篇文章"
@@ -158,7 +158,7 @@ zh-CN:
         content: Content
         created_at: 创建于
         email: Email
-        no_feedback: 这儿并不存在Feedback。让我们开始创建它。
+        no_feedback: 这里没有反馈。让我们开始创建吧。
         save: 保存
         status: 状态
         url: Url
@@ -190,24 +190,24 @@ zh-CN:
         action_or_other_html: "%{first_action} 或 %{second_action}"
         author: 作者
         cancel: Cancel
-        comments_for_html: Comments for %{article_link}
-        edit_a_comment: Edit a comment
+        comments_for_html: %{article_link} 的评论
+        edit_a_comment: 编辑一条评论
         email: Email
         save: 保存
         url: Url
         your_comment: Your comment
       index:
         actions: Actions
-        all: All
+        all: 所有的
         author: 作者
-        content: Content
-        created_at: Created at
+        content: 内容
+        created_at: 创建于
         feedback: 回应
         ham: Ham
-        no_feedback: 这儿并不存在Feedback。让我们开始创建它。
+        no_feedback: 这里不存在反馈。让我们开始创建吧。
         presumed_ham: Presumed ham
         presumed_spam: Presumed spam
-        spam: Spam
+        spam: 垃圾信息
         status: 状态
         unapproved_comments: Unapproved comments
       state:
@@ -228,8 +228,8 @@ zh-CN:
         information: 資訊
         may_take_a_moment: 需要稍等一下
         migration_pending:
-          one: There is one migration pending.
-          other: There are %{count} migrations pending.
+          one: 该项正在等待迁移
+          other: 前面还有 %{count} 个迁移等待.
         migrations: Migrations
         needed_migrations: 必要的移動
         update_database_now: 現在更新資料庫
@@ -310,7 +310,7 @@ zh-CN:
         your_profile: Your profile
     redirects:
       destroy:
-        success: Redirection was successfully deleted.
+        success: 重定向创建完成
       index_and_form:
         cancel: 取消
         from: From
