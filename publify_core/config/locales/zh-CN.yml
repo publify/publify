@@ -178,24 +178,24 @@ zh-CN:
           zero: 没有被标记的垃圾信息
       button:
         delete_all_spam: 删除所有垃圾信息
-        delete_checked_items: Delete Checked Items
-        mark_checked_items_as_ham: Mark Checked Items as Ham
-        mark_checked_items_as_spam: Mark Checked Items as Spam
+        delete_checked_items: 删除勾选的项目
+        mark_checked_items_as_ham: 将勾选的项目标记为 Ham
+        mark_checked_items_as_spam: 将勾选的项目标记为垃圾信息
       create:
         success: 评论创建成功
       destroy:
-        error: 不存在
+        error: 未找到该项
         success: 删除
       edit:
         action_or_other_html: "%{first_action} 或 %{second_action}"
         author: 作者
-        cancel: Cancel
+        cancel: 取消
         comments_for_html: %{article_link} 的评论
         edit_a_comment: 编辑一条评论
         email: Email
         save: 保存
         url: Url
-        your_comment: Your comment
+        your_comment: 你的评论
       index:
         actions: Actions
         all: 所有的
@@ -255,36 +255,36 @@ zh-CN:
       list:
         actions: Actions
         author: 作者
-        created_at: Created at
-        text_filter: Text filter
+        created_at: 创建于
+        text_filter: 文本过滤器
         title: 标题
       show:
         action_or_other_html: "%{first_action} 或 %{second_action}"
-        are_you_sure: Are you sure you want to delete this note
+        are_you_sure: 你确定要删除这篇笔记吗
         cancel: 取消
         delete: 删除
-        destroy_confirmation: Destroy confirmation
+        destroy_confirmation: 确认删除
     pages:
       edit:
         success: 页面更新成功
       form:
-        article_filter: Article filter
+        article_filter: 文章过滤器
         cancel: 取消
-        online: 上線
-        permanent_link: Permanent link
+        online: 在线
+        permanent_link: 固定链接
         publish: 发布
         publish_settings: 发布设定
         save: 保存
         status: 状态
         title: 标题
-        type_your_post: Type your post
+        type_your_post: 请输入内容
       index:
         actions: Actions
         author: 作者
-        created_at: Created at
+        created_at: 创建于
         manage_pages: 管理页面
         new_page: 新页面
-        text_filter: Text filter
+        text_filter: 文本过滤器
         title: 标题
       new:
         success: 页面创建成功
@@ -303,11 +303,11 @@ zh-CN:
         post_types: Post Types
         publify_default_post_type: Publify default post type
         save: 保存
-        template_name: Template name
+        template_name: 模板名称
     profiles:
       index:
         success: 用户创建成功
-        your_profile: Your profile
+        your_profile: 你的简介
     redirects:
       destroy:
         success: 重定向创建完成
@@ -328,29 +328,29 @@ zh-CN:
         content_type: 內容類型
         date: 日期
         delete: 删除
-        explain_media_library_html: Upload images, video and audio here for use in
-          your blog posts and pages. Please note that <strong>all uploaded files will
-          be publicly accessible even if they're not used in blog posts or pages</strong>.
-        file_size: 檔案大小
-        filename: 檔案名稱
-        media_library: Media Library
+        explain_media_library_html: 在这里上传的图片、视频或音频可以在
+          文章和pages中使用。请注意： <strong>所有已上传的内容都
+          可以公共访问，即使它们未被文章或pages所使用</strong>.
+        file_size: 档案大小
+        filename: 档案名称
+        media_library: 媒体库
         medium_size: Medium size
         no_resources: 这儿并不存在Media。让我们开始创建它。
-        original_size: Original size
-        right_click_for_link: 右鍵連結
+        original_size: 原始大小
+        right_click_for_link: 右键链接
         thumbnail: Thumbnail
-        upload: 上傳
-        upload_a_file_to_your_site: 上傳一個檔案到你的網點
+        upload: 上传
+        upload_a_file_to_your_site: 上传文件到你的网站
       upload:
         success: 文件上传
-        warning: No file selected
+        warning: 未选择文件
     seo:
       general:
-        custom_tracking_code: Custom tracking code
+        custom_tracking_code: 自定义跟踪码
         do_not_index_tags: Do not index tags
         dofollow: Dofollow
-        explain: Here you can add anything you want to appear in your application
-          header, such as analytics service tracking code.
+        explain: 你可以在应用头里添加任何你想添加的东西，
+          例如分析服务所用到的追踪码。
         explain_moderate_feedback: You may want to moderate feedback when turning
           this on
         explain_rss_description: 'You can use the following tags: %author% (author
