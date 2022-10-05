@@ -26,7 +26,7 @@ RSpec.describe ArchivesSidebar do
     describe "Other connection" do
       let(:klass) do
         class SQLAdapter; end
-        SQLAdapter.new§
+        SQLAdapter.new
       end
 
       it { is_expected.to eq ["extract(year from published_at) as year", "extract(month from published_at) as month"] }
