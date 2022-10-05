@@ -9,6 +9,30 @@ RSpec.describe ArchivesSidebar do
     expect(SidebarRegistry.available_sidebars).to include(described_class)
   end
 
+  describe ".date_funcs" do
+    before { allow(Content).to receive(:connection).and_return(klass) }
+
+    subject(:date_funcs) { described_class.date_funcs }
+
+    describe "SQLite connection" do
+      let(:klass) do
+        class SQLite3Adapter; end
+        SQLite3Adapter.new
+      end
+
+      it { is_expected.to eq ["strftime('%Y', published_at) as year", "strftime('%m', published_at) as month"] }
+    end
+
+    describe "Other connection" do
+      let(:klass) do
+        class SQLAdapter; end
+        SQLAdapter.new§
+      end
+
+      it { is_expected.to eq ["extract(year from published_at) as year", "extract(month from published_at) as month"] }
+    end
+  end
+
   describe "#parse_request" do
     before { build_stubbed :blog }
 
