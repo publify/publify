@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_13_141331) do
+ActiveRecord::Schema.define(version: 2022_10_07_091208) do
 
   create_table "blogs", force: :cascade do |t|
     t.text "settings"
@@ -130,16 +130,6 @@ ActiveRecord::Schema.define(version: 2020_04_13_141331) do
     t.string "type"
     t.integer "blog_id", null: false
     t.index ["id", "type"], name: "index_sidebars_on_id_and_type"
-  end
-
-  create_table "sitealizer", force: :cascade do |t|
-    t.string "path"
-    t.string "ip"
-    t.string "referer"
-    t.string "language"
-    t.string "user_agent"
-    t.datetime "created_at"
-    t.date "created_on"
   end
 
   create_table "tags", force: :cascade do |t|
