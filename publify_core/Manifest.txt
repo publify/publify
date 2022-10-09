@@ -411,6 +411,7 @@ db/migrate/20190208152646_move_text_filter_to_name.rb
 db/migrate/20190209155717_remove_text_filter_ids.rb
 db/migrate/20190209160610_remove_text_filters.rb
 db/migrate/20200413140440_add_unique_indexes.rb
+db/migrate/20221007091049_remove_table_sitealizer.rb
 db/seeds.rb
 lib/email_notify.rb
 lib/format.rb
