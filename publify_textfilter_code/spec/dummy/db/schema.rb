@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_12_164128) do
+ActiveRecord::Schema.define(version: 2022_10_10_170831) do
 
   create_table "blogs", force: :cascade do |t|
     t.text "settings"
@@ -73,11 +73,6 @@ ActiveRecord::Schema.define(version: 2022_10_12_164128) do
     t.index ["article_id"], name: "index_feedback_on_article_id"
     t.index ["id", "type"], name: "index_feedback_on_id_and_type"
     t.index ["user_id"], name: "index_feedback_on_user_id"
-  end
-
-  create_table "page_caches", force: :cascade do |t|
-    t.string "name"
-    t.index ["name"], name: "index_page_caches_on_name"
   end
 
   create_table "pings", force: :cascade do |t|

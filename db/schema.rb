@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_12_164027) do
+ActiveRecord::Schema.define(version: 2022_10_10_170801) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,11 +76,6 @@ ActiveRecord::Schema.define(version: 2022_10_12_164027) do
     t.index ["article_id"], name: "index_feedback_on_article_id"
     t.index ["id", "type"], name: "index_feedback_on_id_and_type"
     t.index ["user_id"], name: "index_feedback_on_user_id"
-  end
-
-  create_table "page_caches", id: :serial, force: :cascade do |t|
-    t.string "name"
-    t.index ["name"], name: "index_page_caches_on_name"
   end
 
   create_table "pings", id: :serial, force: :cascade do |t|
