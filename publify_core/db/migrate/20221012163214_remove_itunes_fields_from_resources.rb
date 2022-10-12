@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RemoveItunesFieldsFromResources < ActiveRecord::Migration[6.1]
   def change
     remove_column :resources, :itunes_metadata, :boolean

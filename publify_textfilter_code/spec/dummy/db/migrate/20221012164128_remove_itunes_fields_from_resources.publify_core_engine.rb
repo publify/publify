@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from publify_core_engine (originally 20221012163214)
 class RemoveItunesFieldsFromResources < ActiveRecord::Migration[6.1]
   def change
