@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_07_091118) do
+ActiveRecord::Schema.define(version: 2022_10_12_164027) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -114,14 +114,6 @@ ActiveRecord::Schema.define(version: 2022_10_07_091118) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "content_id"
-    t.boolean "itunes_metadata"
-    t.string "itunes_author"
-    t.string "itunes_subtitle"
-    t.integer "itunes_duration"
-    t.text "itunes_summary"
-    t.string "itunes_keywords"
-    t.string "itunes_category"
-    t.boolean "itunes_explicit"
     t.integer "blog_id", null: false
     t.index ["content_id"], name: "index_resources_on_content_id"
   end
