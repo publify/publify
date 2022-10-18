@@ -75,11 +75,6 @@ ActiveRecord::Schema.define(version: 2022_10_12_164128) do
     t.index ["user_id"], name: "index_feedback_on_user_id"
   end
 
-  create_table "page_caches", force: :cascade do |t|
-    t.string "name"
-    t.index ["name"], name: "index_page_caches_on_name"
-  end
-
   create_table "pings", force: :cascade do |t|
     t.integer "article_id"
     t.string "url"
