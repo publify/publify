@@ -2,6 +2,17 @@
 
 See the changelogs for the individual engines for more details for releases 9.0 and up
 
+## 9.2.10 / 2023-01-08
+
+This release fixes several security issues:
+
+* Bump Rails version to 5.2.8.1 [#1070](https://github.com/publify/publify/pull/1070)
+* Limit length of settings values [#1072](https://github.com/publify/publify/pull/1072)
+* Require login to stay unique when updating a User [#1073](https://github.com/publify/publify/pull/1073)
+* Validate lengths of string attributes [#1077](https://github.com/publify/publify/pull/1077)
+* Strip EXIF data from resource uploads [#1078](https://github.com/publify/publify/pull/1078)
+* Require user passwords to be strong [#1086](https://github.com/publify/publify/pull/1086)
+
 ## 9.2.9 / 2022-05-22
 
 This release fixes two security issues:

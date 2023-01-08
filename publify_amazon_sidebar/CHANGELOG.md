@@ -1,5 +1,9 @@
 # Changelog
 
+## 9.2.10 / 2023-01-08
+
+* Depend on `publify_core` 9.2.10
+
 ## 9.2.9 / 2022-05-22
 
 * Depend on `publify_core` 9.2.9
