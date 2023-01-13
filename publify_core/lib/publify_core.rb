@@ -2,6 +2,7 @@
 
 require "devise"
 require "devise-i18n"
+require "devise_zxcvbn"
 
 require "publify_core/version"
 require "publify_core/engine"
