@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
   s.add_dependency "commonmarker", "~> 0.23.2"
   s.add_dependency "devise", "~> 4.8.0"
   s.add_dependency "devise-i18n", "~> 1.2"
+  s.add_dependency "devise_zxcvbn", "~> 6.0"
   s.add_dependency "fog-aws", "~> 3.2"
   s.add_dependency "fog-core", "~> 2.2"
   s.add_dependency "html-pipeline", "~> 2.14"

@@ -9,7 +9,7 @@ FactoryBot.define do
     notify_via_email { false }
     notify_on_new_articles { false }
     notify_on_comments { false }
-    password { "top-secret" }
+    password { "top-Secret12!$#" }
     state { "active" }
     profile { User::CONTRIBUTOR }
 

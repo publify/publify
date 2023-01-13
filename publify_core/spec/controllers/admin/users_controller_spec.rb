@@ -7,6 +7,7 @@ RSpec.describe Admin::UsersController, type: :controller do
   let(:admin) { create(:user, :as_admin) }
   let(:publisher) { create(:user, :as_publisher) }
   let(:contributor) { create(:user, :as_contributor) }
+  let(:strong_password) { "fhnehnhfiiuh" }
 
   render_views
 
@@ -48,8 +49,8 @@ RSpec.describe Admin::UsersController, type: :controller do
     before do
       sign_in admin
       post :create, params: { user: { login: "errand", email: "corey@test.com",
-                                      password: "testpass",
-                                      password_confirmation: "testpass",
+                                      password: strong_password,
+                                      password_confirmation: strong_password,
                                       profile: User::CONTRIBUTOR,
                                       text_filter_name: "markdown",
                                       nickname: "fooo", firstname: "bar" } }
@@ -70,8 +71,9 @@ RSpec.describe Admin::UsersController, type: :controller do
     it "redirects to index" do
       post :update, params: { id: contributor.id,
                               user: { login: "errand",
-                                      email: "corey@test.com", password: "testpass",
-                                      password_confirmation: "testpass" } }
+                                      email: "corey@test.com",
+                                      password: strong_password,
+                                      password_confirmation: strong_password } }
       expect(response).to redirect_to(action: "index")
     end
 
