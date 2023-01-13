@@ -31,7 +31,7 @@ project alive.
 
 ## Demo site
 
-You can give Publify a try at [the demo site](https://demo-publify.herokuapp.com/).
+You can give Publify a try at [the demo site](https://publify-demo.fly.dev/).
 
 The demo is reset every hour.
 
