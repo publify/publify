@@ -2,14 +2,14 @@
 zh-CN:
   accounts:
     back_to_html: "&larr; 返回 %{place}"
-    back_to_login: Back to login
+    back_to_login: 返回登陆界面
     confirm:
-      admin: admin
-      dont_lose_the_mail_sent: Don't lose the mail sent at %{email} or you won't be
-        able to login anymore
-      login: 'Login: %{login}'
-      proceed_to: Proceed to %{link}
-      success: You have successfully signed up.
+      admin: 管理员
+      dont_lose_the_mail_sent: 请查收发往 %{email} 的邮件否则您将无法
+        进行登录
+      login: '登录: %{login}'
+      proceed_to: 继续前往 %{link}
+      success: 您已经成功注册。
     create_account: 创建帐号
     lost_my_password: 忘记密码
   activerecord:
@@ -18,7 +18,7 @@ zh-CN:
         article:
           attributes:
             title:
-              blank: can't be blank
+              blank: 不能为空
   admin:
     articles:
       access_granted:
@@ -27,26 +27,26 @@ zh-CN:
         feedback: 回应
         no_articles: 这儿并不存在articles。让我们开始创建它。
       autosave:
-        success: Article was successfully saved
+        success: 文章已成功保存
       create:
         success: 文章创建成功
       form:
         allow_comments: 允许评论
         allow_comments_status:
-          disabled: disabled
-          enabled: enabled
-        allowed_comments_html: Comments are %{allow_comment}
-        article_filter: Article filter
-        article_type: Article type
+          disabled: 已禁用
+          enabled: 已启用
+        allowed_comments_html: 评论功能 %{allow_comment}
+        article_filter: 文章过滤器
+        article_type: 文章类型
         cancel: 取消
-        default: Default
-        now: now
+        default: 默认
+        now: 现在
         ok: OK
         password: 密码
         permalink: 固定链接
-        preview: Preview
-        protected: Protected
-        public: Public
+        preview: 预览
+        protected: 受保护
+        public: 公开
         publish: 发布
         publish_settings: 发布设定
         published: 已发表
@@ -54,36 +54,36 @@ zh-CN:
         save_as_draft: 保存为草稿
         status: 状态
         tags: 标签
-        tags_explanation_html: Separate tags with commas. Use double quotes (&quot;)
-          around multi-word tags, e.g. &quot;opera house&quot;.
+        tags_explanation_html: 用逗号分隔标签，用双引号 (&quot;)
+          括住包含空格的标签, 例如 &quot;大 势 所 趋&quot;.
         title: 标题
-        type_your_post: Type your post
-        visibility: Visibility
+        type_your_post: 请输入内容
+        visibility: 可见性
       index:
         actions: Actions
         all_articles: 所有文章
         author: 作者
-        created_at: Created at
+        created_at: 创建于
         drafts: 草稿
         feedback: 回应
         manage_articles: 文章管理
         new_article: 新文章
-        publication_date: Publication date
-        publication_pending: Publication pending
+        publication_date: 发布日期
+        publication_pending: 未发布
         published: 已发表
-        published_at: Publication date
+        published_at: 发布于
         search: 搜索
-        select_an_author: Select an author
-        text_filter: Text filter
+        select_an_author: 选择一位作者
+        text_filter: 文本过滤器
         title: 标题
-        withdrawn: Withdrawn
+        withdrawn: 撤销
       update:
         success: 文章更新成功
     base:
-      not_allowed: Error, you are not allowed to perform this action
-      successfully_created: "%{name} was successfully created."
-      successfully_deleted: This %{name} was deleted successfully
-      successfully_updated: "%{name} was successfully updated."
+      not_allowed: 发生错误, 你不被允许执行此动作。
+      successfully_created: "已成功创建 %{name}。"
+      successfully_deleted: 已成功删除 %{name}
+      successfully_updated: "已成功更新 %{name}。"
     dashboard:
       comment:
         by: By
@@ -91,26 +91,26 @@ zh-CN:
       comments:
         latest_comments: 最近评论
       drafts:
-        no_drafts_yet: No drafts yet, why don't you start and write one
-        your_drafts: Your drafts
+        no_drafts_yet: 目前没有草稿, 但你可以创建一个。
+        your_drafts: 你的草稿
       index:
         welcome_back: 欢迎回來， %{user_name}！
       overview:
         change_your_blog_presentation: 修改你的博客外观
         customization_explain_html: 你也可以做一些设计, %{theme_link}或%{sidebar_link}.
-        dashboard_explain_html: 这里給你一個快速的概览，让你知道你的博客发生什么事情了。也许你想要%{available_actions}
+        dashboard_explain_html: 这里给你一个快速的概览，让你知道你的博客发生什么事情了。也许你想要%{available_actions}
         enable_plugins: 启动插件
-        help_explain_html: 如果需要帮助，%{doc_link}.
+        help_explain_html: 如果需要帮助，请访问 %{doc_link}.
         read_our_documentation: 阅读我们的文档
         update_your_profile_or_change_your_password: 更新资料或者修改密码
         write_a_page: 写一个页面
         write_a_post: 写一篇文章
       welcome:
         approved_count:
-          one: 1 approved
-          other: "%{count} approved"
-          zero: no approved
-        articles_and_comments_count_since: 在你上次离开后，新增%{articles_count}篇文章和%{comments_count}个评价
+          one: 已通过 1 篇
+          other: "已通过 %{count} 篇"
+          zero: 没有已通过的内容
+        articles_and_comments_count_since: 在你上次离开后，已新增%{articles_count}篇文章和%{comments_count}个评论
         articles_count:
           one: 一篇文章
           other: "%{count}篇文章"
@@ -121,48 +121,48 @@ zh-CN:
           zero: 没有评论
         content: Content
         drafts_count:
-          one: 1 draft
-          other: "%{count} drafts"
-          zero: no draft
-        feedback: 回应
+          one: 1 篇草稿
+          other: "%{count} 篇草稿"
+          zero: 没有草稿
+        feedback: 反馈
         notes_count:
-          one: 1 note
-          other: "%{count} notes"
-          zero: no note
+          one: 1 篇笔记
+          other: "%{count} 篇笔记"
+          zero: 没有笔记
         pages_count:
-          one: 1 page
-          other: "%{count} pages"
-          zero: no page
+          one: 1 个页面
+          other: "%{count} 个页面"
+          zero: 没有页面
         running_publify: 你正在使用的是Publify %{version}
         spam_count:
-          one: 1 spam
-          other: "%{count} spam"
-          zero: no spam
+          one: 1 篇垃圾信息
+          other: "%{count} 篇垃圾信息"
+          zero: 没有垃圾信息
         today: Today
         unconfirmed_count:
-          one: 1 unconfirmed
-          other: "%{count} unconfirmed"
-          zero: no unconfirmed
+          one: 1 篇未被确认
+          other: "%{count} 篇未被确认"
+          zero: 没有未被确认的内容
         your_articles_count:
-          one: 1 article writen by you
-          other: "%{count} articles writen by you"
-          zero: no article writen by you
+          one: 你已经写了 1 篇文章
+          other: "你已经写了 %{count} 篇文章"
+          zero: 你没有文章
     feedback:
       article:
         action_or_other_html: "%{first_action} 或 %{second_action}"
         actions: Actions
-        add_a_comment: Add a comment
+        add_a_comment: 添加评论
         author: 作者
         cancel: 取消
-        comments_for_html: 做出评论 %{title}
+        comments_for_html: 对 %{title} 评论
         content: Content
-        created_at: Created at
+        created_at: 创建于
         email: Email
-        no_feedback: 这儿并不存在Feedback。让我们开始创建它。
+        no_feedback: 这里没有反馈。让我们开始创建吧。
         save: 保存
         status: 状态
         url: Url
-        your_comment: Your comment
+        your_comment: 你的评论
       bulkops:
         error: 未实现
         success_classification: Confirmed classification of %{count} item(s)
@@ -173,41 +173,41 @@ zh-CN:
           other: Marked %{count} items as Ham
           zero: No item selected to mark as Ham
         success_mark_as_spam:
-          one: Marked 1 item as Spam
-          other: 标记%{count}项为垃圾信息
-          zero: No item selected to mark as Spam
+          one: 已标记 1 项垃圾信息
+          other: 已标记 %{count} 项垃圾信息
+          zero: 没有被标记的垃圾信息
       button:
-        delete_all_spam: Delete all spam
-        delete_checked_items: Delete Checked Items
-        mark_checked_items_as_ham: Mark Checked Items as Ham
-        mark_checked_items_as_spam: Mark Checked Items as Spam
+        delete_all_spam: 删除所有垃圾信息
+        delete_checked_items: 删除勾选的项目
+        mark_checked_items_as_ham: 将勾选的项目标记为 Ham
+        mark_checked_items_as_spam: 将勾选的项目标记为垃圾信息
       create:
         success: 评论创建成功
       destroy:
-        error: 不存在
+        error: 未找到该项
         success: 删除
       edit:
         action_or_other_html: "%{first_action} 或 %{second_action}"
         author: 作者
-        cancel: Cancel
-        comments_for_html: Comments for %{article_link}
-        edit_a_comment: Edit a comment
+        cancel: 取消
+        comments_for_html: %{article_link} 的评论
+        edit_a_comment: 编辑一条评论
         email: Email
         save: 保存
         url: Url
-        your_comment: Your comment
+        your_comment: 你的评论
       index:
         actions: Actions
-        all: All
+        all: 所有的
         author: 作者
-        content: Content
-        created_at: Created at
+        content: 内容
+        created_at: 创建于
         feedback: 回应
         ham: Ham
-        no_feedback: 这儿并不存在Feedback。让我们开始创建它。
+        no_feedback: 这里不存在反馈。让我们开始创建吧。
         presumed_ham: Presumed ham
         presumed_spam: Presumed spam
-        spam: Spam
+        spam: 垃圾信息
         status: 状态
         unapproved_comments: Unapproved comments
       state:
@@ -228,8 +228,8 @@ zh-CN:
         information: 資訊
         may_take_a_moment: 需要稍等一下
         migration_pending:
-          one: There is one migration pending.
-          other: There are %{count} migrations pending.
+          one: 该项正在等待迁移
+          other: 前面还有 %{count} 个迁移等待.
         migrations: Migrations
         needed_migrations: 必要的移動
         update_database_now: 現在更新資料庫
@@ -255,36 +255,36 @@ zh-CN:
       list:
         actions: Actions
         author: 作者
-        created_at: Created at
-        text_filter: Text filter
+        created_at: 创建于
+        text_filter: 文本过滤器
         title: 标题
       show:
         action_or_other_html: "%{first_action} 或 %{second_action}"
-        are_you_sure: Are you sure you want to delete this note
+        are_you_sure: 你确定要删除这篇笔记吗
         cancel: 取消
         delete: 删除
-        destroy_confirmation: Destroy confirmation
+        destroy_confirmation: 确认删除
     pages:
       edit:
         success: 页面更新成功
       form:
-        article_filter: Article filter
+        article_filter: 文章过滤器
         cancel: 取消
-        online: 上線
-        permanent_link: Permanent link
+        online: 在线
+        permanent_link: 固定链接
         publish: 发布
         publish_settings: 发布设定
         save: 保存
         status: 状态
         title: 标题
-        type_your_post: Type your post
+        type_your_post: 请输入内容
       index:
         actions: Actions
         author: 作者
-        created_at: Created at
+        created_at: 创建于
         manage_pages: 管理页面
         new_page: 新页面
-        text_filter: Text filter
+        text_filter: 文本过滤器
         title: 标题
       new:
         success: 页面创建成功
@@ -303,14 +303,14 @@ zh-CN:
         post_types: Post Types
         publify_default_post_type: Publify default post type
         save: 保存
-        template_name: Template name
+        template_name: 模板名称
     profiles:
       index:
         success: 用户创建成功
-        your_profile: Your profile
+        your_profile: 你的简介
     redirects:
       destroy:
-        success: Redirection was successfully deleted.
+        success: 重定向创建完成
       index_and_form:
         cancel: 取消
         from: From
@@ -328,29 +328,29 @@ zh-CN:
         content_type: 內容類型
         date: 日期
         delete: 删除
-        explain_media_library_html: Upload images, video and audio here for use in
-          your blog posts and pages. Please note that <strong>all uploaded files will
-          be publicly accessible even if they're not used in blog posts or pages</strong>.
-        file_size: 檔案大小
-        filename: 檔案名稱
-        media_library: Media Library
+        explain_media_library_html: 在这里上传的图片、视频或音频可以在
+          文章和pages中使用。请注意： <strong>所有已上传的内容都
+          可以公共访问，即使它们未被文章或pages所使用</strong>.
+        file_size: 档案大小
+        filename: 档案名称
+        media_library: 媒体库
         medium_size: Medium size
         no_resources: 这儿并不存在Media。让我们开始创建它。
-        original_size: Original size
-        right_click_for_link: 右鍵連結
+        original_size: 原始大小
+        right_click_for_link: 右键链接
         thumbnail: Thumbnail
-        upload: 上傳
-        upload_a_file_to_your_site: 上傳一個檔案到你的網點
+        upload: 上传
+        upload_a_file_to_your_site: 上传文件到你的网站
       upload:
         success: 文件上传
-        warning: No file selected
+        warning: 未选择文件
     seo:
       general:
-        custom_tracking_code: Custom tracking code
+        custom_tracking_code: 自定义跟踪码
         do_not_index_tags: Do not index tags
         dofollow: Dofollow
-        explain: Here you can add anything you want to appear in your application
-          header, such as analytics service tracking code.
+        explain: 你可以在应用头里添加任何你想添加的东西，
+          例如分析服务所用到的追踪码。
         explain_moderate_feedback: You may want to moderate feedback when turning
           this on
         explain_rss_description: 'You can use the following tags: %author% (author
