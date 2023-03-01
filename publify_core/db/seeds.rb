@@ -13,11 +13,11 @@
 blog = Blog.first || Blog.create!
 
 unless blog.sidebars.any?
-  PageSidebar.create!(active_position: 0, staged_position: 0, blog_id: blog.id)
-  TagSidebar.create!(active_position: 1, blog_id: blog.id)
-  ArchivesSidebar.create!(active_position: 2, blog_id: blog.id)
-  StaticSidebar.create!(active_position: 3, blog_id: blog.id)
-  MetaSidebar.create!(active_position: 4, blog_id: blog.id)
+  Sidebar.create!(type: "PageSidebar", active_position: 0, staged_position: 0, blog_id: blog.id)
+  Sidebar.create!(type: "TagSidebar", active_position: 1, blog_id: blog.id)
+  Sidebar.create!(type: "ArchivesSidebar", active_position: 2, blog_id: blog.id)
+  Sidebar.create!(type: "StaticSidebar", active_position: 3, blog_id: blog.id)
+  Sidebar.create!(type: "MetaSidebar", active_position: 4, blog_id: blog.id)
 end
 
 unless File.directory?("#{::Rails.root}/public/files")

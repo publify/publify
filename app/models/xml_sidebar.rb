@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class XmlSidebar < Sidebar
+class XmlSidebar < SidebarConfiguration
   display_name "XML Syndication"
   description "RSS and Atom feeds"
 

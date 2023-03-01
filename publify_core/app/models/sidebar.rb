@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
-require "sidebar_field"
-
-# This class cannot be autoloaded since other sidebar classes depend on it.
 class Sidebar < ApplicationRecord
+  self.inheritance_column = :bogus
   serialize :config, Hash
 
   belongs_to :blog
@@ -29,55 +27,6 @@ class Sidebar < ApplicationRecord
     delete_all("active_position is null and staged_position is null")
   end
 
-  def self.setting(key, default = nil, options = {})
-    key = key.to_s
-
-    return if instance_methods.include?(key)
-
-    fields << SidebarField.build(key, default, options)
-
-    send(:define_method, key) do
-      if config.key? key
-        config[key]
-      else
-        default
-      end
-    end
-
-    send(:define_method, "#{key}=") do |newval|
-      config[key] = newval
-    end
-  end
-
-  def self.fields
-    @fields ||= []
-  end
-
-  def self.description(desc = nil)
-    if desc
-      @description = desc
-    else
-      @description || ""
-    end
-  end
-
-  def self.short_name
-    to_s.underscore.split("_").first
-  end
-
-  def self.path_name
-    to_s.underscore
-  end
-
-  def self.display_name(new_dn = nil)
-    @display_name = new_dn if new_dn
-    @display_name || short_name.humanize
-  end
-
-  class << self
-    attr_writer :fields
-  end
-
   def self.apply_staging_on_active!
     Sidebar.transaction do
       Sidebar.find_each do |s|
@@ -87,6 +36,24 @@ class Sidebar < ApplicationRecord
     end
   end
 
+  def configuration_class
+    type.constantize
+  end
+
+  def configuration
+    @configuration ||= configuration_class.new(config)
+  end
+
+  delegate :content_partial, to: :configuration
+
+  delegate :display_name, to: :configuration
+
+  delegate :description, to: :configuration
+
+  delegate :fields, to: :configuration
+
+  delegate :to_locals_hash, to: :configuration
+
   def publish
     self.active_position = staged_position
   end
@@ -95,41 +62,7 @@ class Sidebar < ApplicationRecord
     "#{short_name}-#{id}"
   end
 
-  def parse_request(_contents, _params); end
-
-  def fields
-    self.class.fields
-  end
-
-  def fieldmap(field = nil)
-    if field
-      self.class.fieldmap[field.to_s]
-    else
-      self.class.fieldmap
-    end
-  end
-
-  def description
-    self.class.description
-  end
-
-  def short_name
-    self.class.short_name
-  end
-
-  def display_name
-    self.class.display_name
-  end
-
-  def content_partial
-    "/#{self.class.path_name}/content"
-  end
-
-  def to_locals_hash
-    fields.reduce(sidebar: self) do |hash, field|
-      hash.merge(field.key => field.current_value(self))
-    end
-  end
+  delegate :parse_request, to: :configuration
 
   def admin_state
     if active_position && (staged_position == active_position || staged_position.nil?)

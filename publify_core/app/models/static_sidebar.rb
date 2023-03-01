@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class StaticSidebar < Sidebar
+class StaticSidebar < SidebarConfiguration
   DEFAULT_TEXT = <<~TEXT
     <ul>
       <li><a href="https://publify.github.io/" title="Publify">Publify</a></li>

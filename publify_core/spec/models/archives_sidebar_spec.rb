@@ -3,7 +3,7 @@
 require "rails_helper"
 
 RSpec.describe ArchivesSidebar do
-  let(:sidebar) { described_class.new }
+  let(:sidebar) { Sidebar.new type: "ArchivesSidebar" }
 
   it "is included in the list of available sidebars" do
     expect(SidebarRegistry.available_sidebars).to include(described_class)
@@ -24,7 +24,7 @@ RSpec.describe ArchivesSidebar do
         { name: "March 2014", month: 3, year: 2014, article_count: 1 },
       ]
 
-      expect(sidebar.archives).to eq expected_structure
+      expect(sidebar.configuration.archives).to eq expected_structure
     end
   end
 end

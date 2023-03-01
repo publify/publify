@@ -10,7 +10,7 @@ class Admin::SidebarController < Admin::BaseController
   def update
     @sidebar = Sidebar.where(id: params[:id]).first
     @old_s_index = @sidebar.staged_position || @sidebar.active_position
-    @sidebar.update params[:configure][@sidebar.id.to_s].permit!
+    @sidebar.update config: params[:configure][@sidebar.id.to_s].permit!.to_hash
     respond_to do |format|
       format.js
       format.html do
@@ -45,8 +45,8 @@ class Admin::SidebarController < Admin::BaseController
         # IT'S OVER NINE THOUSAND! considering we'll never reach 9K Sidebar
         # instances or Sidebar specializations
         sidebar = if sidebar_id >= 9000
-                    SidebarRegistry.available_sidebars[sidebar_id - 9000].
-                      new(blog: this_blog)
+                    Sidebar.new(type: SidebarRegistry.available_sidebars[sidebar_id - 9000],
+                                blog: this_blog)
                   else
                     Sidebar.valid.find(sidebar_id)
                   end

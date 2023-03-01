@@ -7,8 +7,8 @@ RSpec.describe Sidebar, type: :model do
     let(:blog) { create :blog }
 
     context "with several sidebars with different positions" do
-      let(:search_sidebar) { SearchSidebar.new(staged_position: 2, blog: blog) }
-      let(:static_sidebar) { StaticSidebar.new(active_position: 1, blog: blog) }
+      let(:search_sidebar) { Sidebar.new(staged_position: 2, blog: blog, type: "SearchSidebar") }
+      let(:static_sidebar) { Sidebar.new(active_position: 1, blog: blog, type: "StaticSidebar") }
 
       before do
         search_sidebar.save
@@ -23,53 +23,29 @@ RSpec.describe Sidebar, type: :model do
 
     context "with an invalid sidebar in the database" do
       before do
-        described_class.class_eval { self.inheritance_column = :bogus }
         described_class.new(type: "SearchSidebar", staged_position: 1, blog: blog).save
         described_class.new(type: "FooBarSidebar", staged_position: 2, blog: blog).save
-        described_class.class_eval { self.inheritance_column = :type }
       end
 
       it "skips the invalid active sidebar" do
         sidebars = described_class.ordered_sidebars
         expect(sidebars.size).to eq(1)
-        expect(sidebars.first.class).to eq(SearchSidebar)
+        expect(sidebars.first.configuration_class).to eq(SearchSidebar)
       end
     end
   end
 
   describe "#content_partial" do
     it "bases the partial name on the class name" do
-      expect(SearchSidebar.new.content_partial).to eq("/search_sidebar/content")
+      expect(Sidebar.new(type: "SearchSidebar").content_partial).to eq("/search_sidebar/content")
     end
   end
 
-  describe "::setting" do
-    let(:dummy_sidebar) do
-      Class.new(Sidebar) do
-        setting :foo, "default-foo"
-      end
-    end
+  describe "#configuration_class" do
+    let(:sidebar) { Sidebar.new(type: "ArchivesSidebar") }
 
-    it "creates a reader method with default value on instances" do
-      dummy = dummy_sidebar.new
-      expect(dummy.foo).to eq "default-foo"
-    end
-
-    it "creates a writer method on instances" do
-      dummy = dummy_sidebar.new
-      dummy.foo = "adjusted-foo"
-      expect(dummy.foo).to eq "adjusted-foo"
-    end
-
-    it "provides the default value to instances created earlier" do
-      dummy = dummy_sidebar.new
-
-      dummy_sidebar.instance_eval do
-        setting :bar, "default-bar"
-      end
-
-      expect(dummy.config).not_to have_key("bar")
-      expect(dummy.bar).to eq "default-bar"
+    it "returns the type, classified" do
+      expect(sidebar.configuration_class).to eq ArchivesSidebar
     end
   end
 end

@@ -3,18 +3,21 @@
 require "rails_helper"
 
 RSpec.describe "Given a new StaticSidebar", type: :model do
-  before { @sb = StaticSidebar.new }
+  before do
+    @sidebar = Sidebar.new(type: "StaticSidebar")
+    @config = @sidebar.configuration
+  end
 
   it "title should be Links" do
-    expect(@sb.title).to eq("Links")
+    expect(@config.title).to eq("Links")
   end
 
   it "body should be our default" do
-    expect(@sb.body).to eq(StaticSidebar::DEFAULT_TEXT)
+    expect(@config.body).to eq(StaticSidebar::DEFAULT_TEXT)
   end
 
   it "description should be set correctly" do
-    expect(@sb.description).
+    expect(@config.description).
       to eq "Static content, like links to other sites, advertisements," \
             " or blog meta-information"
   end
