@@ -11,6 +11,21 @@ require "rspec/rails"
 require "factory_bot"
 require "publify_core/testing_support/feed_assertions"
 
+require "publify_core/testing_support/factories/articles"
+require "publify_core/testing_support/factories/blogs"
+require "publify_core/testing_support/factories/comments"
+require "publify_core/testing_support/factories/contents"
+require "publify_core/testing_support/factories/notes"
+require "publify_core/testing_support/factories/pages"
+require "publify_core/testing_support/factories/post_types"
+require "publify_core/testing_support/factories/redirects"
+require "publify_core/testing_support/factories/resources"
+require "publify_core/testing_support/factories/sequences"
+require "publify_core/testing_support/factories/sidebars"
+require "publify_core/testing_support/factories/tags"
+require "publify_core/testing_support/factories/trackbacks"
+require "publify_core/testing_support/factories/users"
+
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -87,12 +102,7 @@ RSpec.configure do |config|
     end
   end
 
-  FactoryBot.
-    definition_file_paths << "publify_core/lib/publify_core/testing_support/factories"
   config.include FactoryBot::Syntax::Methods
-  config.before(:suite) do
-    FactoryBot.find_definitions
-  end
 end
 
 # Test installed themes

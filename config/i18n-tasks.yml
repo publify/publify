@@ -3,8 +3,8 @@
 # The "main" locale.
 base_locale: en
 
-<% publify_core_path = %x[bundle info --path publify_core].chomp %>
-<% rails_i18n_path = %x[bundle info --path rails-i18n].chomp %>
+# <% publify_core_path = %x[bundle info --path publify_core].chomp %>
+# <% rails_i18n_path = %x[bundle info --path rails-i18n].chomp %>
 
 # Read and write translations.
 data:
@@ -12,13 +12,13 @@ data:
   read:
     - config/locales/%{locale}.yml
     - config/locales/sidebars.%{locale}.yml
-    - "<%= publify_core_path %>/config/locales/%{locale}.yml"
-    - "<%= publify_core_path %>/config/locales/sidebars.%{locale}.yml"
 
   # External locale data (e.g. gems).
   # This data is not considered unused and is never written to.
   external:
     - "<%= rails_i18n_path %>/rails/locale/%{locale}.yml"
+    - "<%= publify_core_path %>/config/locales/%{locale}.yml"
+    - "<%= publify_core_path %>/config/locales/sidebars.%{locale}.yml"
 
   # Locale files to write new keys to, based on a list of key pattern => file
   # rules. Matched from top to bottom:
@@ -31,10 +31,10 @@ data:
 search:
   ## Paths or `File.find` patterns to search in:
   paths:
-   - app/
-   - lib/
-   - themes/bootstrap-2/
-   - publify_core/app/
+    - app/
+    - lib/
+    - themes/bootstrap-2/
+    - <%= publify_core_path %>/app/
 
   ## Root directories for relative keys resolution.
   relative_roots:
@@ -43,13 +43,8 @@ search:
     - app/mailers
     - app/presenters
     - app/views
-    - lib/authors_sidebar/app/views
-    - lib/livesearch_sidebar/app/views
-    - lib/notes_sidebar/app/views
-    - lib/popular_sidebar/app/views
-    - lib/xml_sidebar/app/views
     - themes/bootstrap-2/views
-    - publify_core/app/views/
+    - <%= publify_core_path %>/app/views/
 
 ## Do not consider these keys missing:
 ignore_missing:

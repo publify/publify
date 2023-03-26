@@ -9,11 +9,8 @@ begin
 
   task lint: :rubocop
 
-  desc "Regenerate RuboCop to-do files"
+  desc "Regenerate RuboCop to-do file"
   task "rubocop:regenerate_todos" do
-    sh "cd publify_core && rubocop --regenerate-todo"
-    sh "cd publify_amazon_sidebar && rubocop --regenerate-todo"
-    sh "cd publify_textfilter_code && rubocop --regenerate-todo"
     sh "rubocop --regenerate-todo"
   end
 rescue LoadError
