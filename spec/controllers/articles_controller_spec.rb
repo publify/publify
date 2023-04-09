@@ -225,12 +225,10 @@ RSpec.describe ArticlesController, type: :controller do
                                       visible: :all)
         end
 
-        it "has content markdown interpret and without html tag" do
-          expect(response.body).to have_selector("div") do |div|
-            expect(div).
-              to match("in markdown format * we * use [ok](http://blog.ok.com)" \
-                       " to define a link")
-          end
+        it "renders content with markdown interpreted and html tags removed" do
+          expect(response.body).
+            to have_selector(
+              "div", text: /in markdown format\s+we\s+use\s+ok to define a link/)
         end
       end
 

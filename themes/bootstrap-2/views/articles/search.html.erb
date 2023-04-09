@@ -3,7 +3,7 @@
 <% @articles.each do |article| %>
 <div id="article-<%= article.id %>">
   <h2><%= link_to_permalink(article, article.title) %></h2>
-  <p><%= article.body.strip_html.slice(0, 300) %> [...]</p>
+  <p><%= article.html(:body).strip_html.slice(0, 300) %> [...]</p>
   <div class='author'>
     Le <%= l(article.published_at, format: :with_spaces) %>
   </div>
