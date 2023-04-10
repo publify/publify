@@ -6,14 +6,9 @@ require "rails_helper"
 RSpec.describe ArticlesController, type: :controller do
   render_views
 
-  let(:blog) { create :blog }
-
   with_each_theme do |theme, _view_path|
     context "with theme #{theme}" do
-      before do
-        blog.theme = theme
-        blog.save!
-      end
+      let!(:blog) { create :blog, theme: theme }
 
       describe "#redirect" do
         let(:article) { create :article }
