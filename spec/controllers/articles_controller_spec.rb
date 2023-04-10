@@ -184,7 +184,7 @@ RSpec.describe ArticlesController, type: :controller do
         end
       end
 
-      describe "#search" do
+      describe "#search", "with a markdown formatted article" do
         let!(:user) { create :user }
 
         before do
@@ -201,34 +201,91 @@ RSpec.describe ArticlesController, type: :controller do
           get :search, params: { q: "a" }
         end
 
-        it "has good feed rss link" do
-          expect(response.body).
-            to have_selector('head>link[href="http://test.host/search/a.rss"]',
-                             visible: :all)
-        end
-
-        it "has good feed atom link" do
-          expect(response.body).
-            to have_selector('head>link[href="http://test.host/search/a.atom"]',
-                             visible: :all)
-        end
-
-        it "has a canonical url" do
-          expect(response.body).
-            to have_selector("head>link[href='#{blog.base_url}/search/a']",
-                             visible: :all)
-        end
-
-        it "has a good title" do
-          expect(response.body).
-            to have_selector("title", text: "Results for a | test blog",
-                                      visible: :all)
-        end
-
         it "renders content with markdown interpreted and html tags removed" do
           expect(response.body).
             to have_selector(
               "div", text: /in markdown format\s+we\s+use\s+ok to define a link/)
+        end
+      end
+
+      describe "#search" do
+        render_views
+
+        let!(:blog) { create(:blog) }
+        let!(:user) { create :user }
+        let!(:matching_article) { create(:article, body: "public foobar") }
+        let!(:not_matching_article) { create(:article, body: "barbaz") }
+        let!(:protected_article) do
+          create(:article, body: "protected foobar", password: "secret!")
+        end
+
+        it "renders result with only matching articles" do
+          get :search, params: { q: "oba" }
+
+          aggregate_failures do
+            expect(response).to render_template(:search)
+            expect(assigns[:articles]).to match_array [matching_article, protected_article]
+            expect(response.body).to have_text "public foobar"
+            expect(response.body).not_to have_text "protected foobar"
+          end
+        end
+
+        it "has good rss feed link" do
+          get :search, params: { q: "oba" }
+
+          expect(response.body).
+            to have_selector('head>link[href="http://test.host/search/oba.rss"]',
+                             visible: :all)
+        end
+
+        it "has good atom feed link" do
+          get :search, params: { q: "oba" }
+
+          expect(response.body).
+            to have_selector('head>link[href="http://test.host/search/oba.atom"]',
+                             visible: :all)
+        end
+
+        it "has a canonical url" do
+          get :search, params: { q: "oba" }
+
+          expect(response.body).
+            to have_selector("head>link[href='#{blog.base_url}/search/oba']",
+                             visible: :all)
+        end
+
+        it "has a good title" do
+          get :search, params: { q: "oba" }
+
+          expect(response.body).
+            to have_selector("title", text: "Results for oba | test blog",
+                                      visible: :all)
+        end
+
+        it "renders feed rss by search" do
+          get "search", params: { q: "oba", format: "rss" }
+          aggregate_failures do
+            expect(response).to be_successful
+            expect(response).to render_template("index_rss_feed", layout: false)
+            expect(response.body).to have_text "public foobar"
+            expect(response.body).not_to have_text "protected foobar"
+          end
+        end
+
+        it "renders feed atom by search" do
+          get "search", params: { q: "oba", format: "atom" }
+          aggregate_failures do
+            expect(response).to be_successful
+            expect(response).to render_template("index_atom_feed", layout: false)
+            expect(response.body).to have_text "public foobar"
+            expect(response.body).not_to have_text "protected foobar"
+          end
+        end
+
+        it "search with empty result" do
+          get "search", params: { q: "abcdefghijklmnopqrstuvwxyz" }
+          expect(response).to render_template("articles/error", layout: false)
+          expect(assigns[:articles]).to eq []
         end
       end
 
