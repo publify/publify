@@ -10,7 +10,7 @@ RSpec.describe AuthorsSidebar do
   end
 
   describe "#authors" do
-    let!(:authors) { create_list :user, 2 }
+    let!(:authors) { create_list(:user, 2) }
 
     it "returns a list of users" do
       expect(sidebar.authors).to match_array authors

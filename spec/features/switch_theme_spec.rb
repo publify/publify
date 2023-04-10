@@ -3,7 +3,7 @@
 require "rails_helper"
 
 RSpec.feature "Changing themes", type: :feature do
-  let(:admin) { create :user, :as_admin }
+  let(:admin) { create(:user, :as_admin) }
   let(:blog) { Blog.first }
 
   before do
