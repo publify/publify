@@ -101,7 +101,7 @@ RSpec.describe ArticlesController, type: :controller do
 
           it "shows a password form for the article" do
             get :redirect, params: { from: from_param }
-            expect(response.body).to have_selector('input[id="article_password"]', count: 1)
+            expect(response.body).to have_field "article_password"
           end
 
           it "does not include the article body anywhere" do
@@ -370,14 +370,14 @@ RSpec.describe ArticlesController, type: :controller do
           post :check_password, xhr: true,
                                 params: { article: { id: article.id,
                                                      password: article.password } }
-          expect(response.body).not_to have_selector('input[id="article_password"]')
+          expect(response.body).not_to have_field "article_password"
         end
 
         it "shows password form when given incorrect password" do
           post :check_password, xhr: true,
                                 params: { article: { id: article.id,
                                                      password: "wrong password" } }
-          expect(response.body).to have_selector('input[id="article_password"]')
+          expect(response.body).to have_field "article_password"
         end
       end
     end
