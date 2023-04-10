@@ -219,7 +219,8 @@ RSpec.describe ArticlesController, type: :controller do
 
           aggregate_failures do
             expect(response).to render_template(:search)
-            expect(assigns[:articles]).to match_array [matching_article, protected_article]
+            expect(assigns[:articles]).
+              to contain_exactly matching_article, protected_article
             expect(response.body).to have_text "public foobar"
             expect(response.body).not_to have_text "protected foobar"
           end
