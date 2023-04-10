@@ -20,8 +20,9 @@ RSpec.describe TagsController, type: :controller do
           @tag.contents << create(:article)
         end
 
-        it "works" do
+        it "lists tags" do
           get "index"
+          expect(response.body).to have_content @tag.name
         end
       end
 
