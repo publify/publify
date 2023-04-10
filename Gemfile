@@ -13,7 +13,7 @@ gem "sqlite3", "~> 1.4.0"
 gem "activerecord-session_store", "~> 2.0.0"
 
 # Use Puma as the app server
-gem "puma", ["~> 5.6", ">= 5.6.4"]
+gem "puma", "~> 6.2"
 
 gem "publify_amazon_sidebar", github: "publify/publify_amazon_sidebar"
 gem "publify_core", github: "publify/publify_core"
