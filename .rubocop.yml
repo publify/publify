@@ -11,19 +11,9 @@ require:
 
 AllCops:
   Exclude:
-  - 'bin/*'
-  - 'publify_core/bin/*'
-  - 'publify_core/spec/dummy/bin/*'
-  - 'publify_core/spec/dummy/db/schema.rb'
-  - 'publify_amazon_sidebar/bin/*'
-  - 'publify_amazon_sidebar/spec/dummy/bin/*'
-  - 'publify_amazon_sidebar/spec/dummy/db/schema.rb'
-  - 'publify_textfilter_code/bin/*'
-  - 'publify_textfilter_code/spec/dummy/bin/*'
-  - 'publify_textfilter_code/spec/dummy/db/schema.rb'
-  - 'db/converters/*.rb'
-  - 'db/scripts/fix_permalinks.rb'
-  - 'db/schema.rb'
+    - 'bin/*'
+    - 'db/converters/*.rb'
+    - 'db/schema.rb'
   NewCops: enable
   TargetRubyVersion: 2.6
 
@@ -120,6 +110,10 @@ Rails/SkipsModelValidations:
 RSpec/Capybara/FeatureMethods:
   Exclude:
     - 'spec/features/**_spec.rb'
+
+# Spec type inference is disabled, so this cop must be disabled too.
+RSpec/Rails/InferredSpecType:
+  Enabled: false
 
 # Allow the use of 'and' 'or' in control structures.
 Style/AndOr:

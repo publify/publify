@@ -23,7 +23,7 @@ RSpec.describe "xml_sidebar/_content.html.erb", type: :view do
     before do
       allow(controller).to receive(:controller_name).and_return "articles"
       allow(controller).to receive(:action_name).and_return "redirect"
-      @article = create :article
+      @article = create(:article)
       render partial: sidebar.content_partial, locals: sidebar.to_locals_hash
     end
 
@@ -37,7 +37,7 @@ RSpec.describe "xml_sidebar/_content.html.erb", type: :view do
       sidebar.tag_feeds = true
       allow(controller).to receive(:controller_name).and_return "tags"
       allow(controller).to receive(:action_name).and_return "show"
-      @tag = create :tag
+      @tag = create(:tag)
       @auto_discovery_url_atom = "foofoo"
       render partial: sidebar.content_partial, locals: sidebar.to_locals_hash
     end

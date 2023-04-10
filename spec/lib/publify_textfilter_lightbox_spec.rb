@@ -72,7 +72,7 @@ RSpec.describe "the Lightbox text filter plugin", type: :model do
   context "when combined the plain text filter" do
     let(:filter) { TextFilter.none }
 
-    it "works" do
+    it "uses the given thumb image size" do
       result = filter.
         filter_text('<publify:lightbox img="31366117" thumbsize="Thumbnail"' \
                     ' displaysize="Large" style="float:left"/>')
@@ -84,7 +84,7 @@ RSpec.describe "the Lightbox text filter plugin", type: :model do
               "<p class=\"caption\" style=\"width:67px\">This is Matz, Ruby's creator</p>"
     end
 
-    it "uses default thumb image size" do
+    it "uses default thumb image size if none is given" do
       result = filter.
         filter_text('<publify:lightbox img="31366117" displaysize="Large"/>')
       expect(result).
@@ -95,7 +95,7 @@ RSpec.describe "the Lightbox text filter plugin", type: :model do
               "<p class=\"caption\" style=\"width:75px\">This is Matz, Ruby's creator</p>"
     end
 
-    it "uses default display image size" do
+    it "uses default display image size if none is given" do
       result = filter.filter_text('<publify:lightbox img="31366117"/>')
       expect(result).
         to eq '<a href="//photos23.flickr.com/31366117_b1a791d68e_o.jpg"' \

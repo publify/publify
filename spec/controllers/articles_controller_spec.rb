@@ -8,10 +8,10 @@ RSpec.describe ArticlesController, type: :controller do
 
   with_each_theme do |theme, _view_path|
     context "with theme #{theme}" do
-      let!(:blog) { create :blog, theme: theme }
+      let!(:blog) { create(:blog, theme: theme) }
 
       describe "#redirect" do
-        let(:article) { create :article }
+        let(:article) { create(:article) }
         let(:from_param) { article.permalink_url.sub(%r{#{blog.base_url}/}, "") }
 
         it "successfully renders an article" do
@@ -20,7 +20,7 @@ RSpec.describe ArticlesController, type: :controller do
         end
 
         context "when the article has an excerpt" do
-          let(:article) { create :article, excerpt: "foo", body: "bar" }
+          let(:article) { create(:article, excerpt: "foo", body: "bar") }
 
           it "does not render a continue reading link" do
             get :redirect, params: { from: from_param }
@@ -86,8 +86,8 @@ RSpec.describe ArticlesController, type: :controller do
           end
 
           it "renders without errors when comments and trackbacks are present" do
-            create :trackback, article: article
-            create :comment, article: article
+            create(:trackback, article: article)
+            create(:comment, article: article)
             get :redirect, params: { from: from_param }
             expect(response).to be_successful
           end
@@ -101,7 +101,7 @@ RSpec.describe ArticlesController, type: :controller do
 
           it "shows a password form for the article" do
             get :redirect, params: { from: from_param }
-            expect(response.body).to have_selector('input[id="article_password"]', count: 1)
+            expect(response.body).to have_field "article_password"
           end
 
           it "does not include the article body anywhere" do
@@ -112,7 +112,7 @@ RSpec.describe ArticlesController, type: :controller do
       end
 
       describe "#index" do
-        let!(:user) { create :user }
+        let!(:user) { create(:user) }
 
         context "without any parameters" do
           let!(:article) { create(:article) }
@@ -146,7 +146,7 @@ RSpec.describe ArticlesController, type: :controller do
         end
 
         context "when an article has an excerpt" do
-          let!(:article) { create :article, excerpt: "foo", body: "bar" }
+          let!(:article) { create(:article, excerpt: "foo", body: "bar") }
 
           it "renders a continue reading link" do
             get :index
@@ -180,7 +180,7 @@ RSpec.describe ArticlesController, type: :controller do
       end
 
       describe "#search", "with a markdown formatted article" do
-        let!(:user) { create :user }
+        let!(:user) { create(:user) }
 
         before do
           create(:article,
@@ -207,7 +207,7 @@ RSpec.describe ArticlesController, type: :controller do
         render_views
 
         let!(:blog) { create(:blog) }
-        let!(:user) { create :user }
+        let!(:user) { create(:user) }
         let!(:matching_article) { create(:article, body: "public foobar") }
         let!(:not_matching_article) { create(:article, body: "barbaz") }
         let!(:protected_article) do
@@ -219,7 +219,8 @@ RSpec.describe ArticlesController, type: :controller do
 
           aggregate_failures do
             expect(response).to render_template(:search)
-            expect(assigns[:articles]).to match_array [matching_article, protected_article]
+            expect(assigns[:articles]).
+              to contain_exactly matching_article, protected_article
             expect(response.body).to have_text "public foobar"
             expect(response.body).not_to have_text "protected foobar"
           end
@@ -299,7 +300,7 @@ RSpec.describe ArticlesController, type: :controller do
 
       describe "#archives" do
         context "with several articles" do
-          let!(:articles) { create_list :article, 3 }
+          let!(:articles) { create_list(:article, 3) }
 
           before do
             get "archives"
@@ -322,7 +323,7 @@ RSpec.describe ArticlesController, type: :controller do
 
         context "with an article with tags" do
           it "renders correctly" do
-            create :article, keywords: "foo, bar"
+            create(:article, keywords: "foo, bar")
             get "archives"
 
             expect(response.body).to have_text "foo"
@@ -346,7 +347,7 @@ RSpec.describe ArticlesController, type: :controller do
           end
 
           context "when the article has an excerpt" do
-            let(:article) { create :article, excerpt: "foo", body: "bar", user: admin }
+            let(:article) { create(:article, excerpt: "foo", body: "bar", user: admin) }
 
             it "does not render a continue reading link" do
               get :preview, params: { id: article.id }
@@ -369,14 +370,14 @@ RSpec.describe ArticlesController, type: :controller do
           post :check_password, xhr: true,
                                 params: { article: { id: article.id,
                                                      password: article.password } }
-          expect(response.body).not_to have_selector('input[id="article_password"]')
+          expect(response.body).not_to have_field "article_password"
         end
 
         it "shows password form when given incorrect password" do
           post :check_password, xhr: true,
                                 params: { article: { id: article.id,
                                                      password: "wrong password" } }
-          expect(response.body).to have_selector('input[id="article_password"]')
+          expect(response.body).to have_field "article_password"
         end
       end
     end

@@ -12,7 +12,7 @@ RSpec.describe XmlController, type: :controller do
   describe "#sitemap" do
     before do
       tag = create(:tag)
-      article = create :article
+      article = create(:article)
       article.tags = [tag]
     end
 
