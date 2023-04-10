@@ -99,8 +99,8 @@ RSpec.describe "comments/_comment.html.erb", type: :view do
     it_behaves_like "CommentSanitization"
 
     def comment_options
-      { body: %{Have you ever <script lang="javascript">alert("foo");</script>\
-                been hacked?} }
+      { body: 'Have you ever <script lang="javascript">alert("foo");</script>' \
+              " been hacked?" }
     end
   end
 
@@ -232,8 +232,8 @@ RSpec.describe "comments/_comment.html.erb", type: :view do
     it_behaves_like "CommentSanitizationWithDofollow"
 
     def comment_options
-      { body: %{Have you ever <script lang="javascript">alert("foo");</script> \
-                been hacked?} }
+      { body: 'Have you ever <script lang="javascript">alert("foo");</script>' \
+              " been hacked?" }
     end
   end
 

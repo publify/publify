@@ -76,42 +76,42 @@ RSpec.describe "the Lightbox text filter plugin", type: :model do
       result = filter.
         filter_text('<publify:lightbox img="31366117" thumbsize="Thumbnail"' \
                     ' displaysize="Large" style="float:left"/>')
-      expect(result).to eq \
-        '<a href="//photos23.flickr.com/31366117_b1a791d68e_b.jpg"' \
-        ' data-toggle="lightbox" title="Matz">' \
-        '<img src="//photos23.flickr.com/31366117_b1a791d68e_t.jpg"' \
-        ' width="67" height="100" alt="Matz" title="Matz"/></a>' \
-        "<p class=\"caption\" style=\"width:67px\">This is Matz, Ruby's creator</p>"
+      expect(result).
+        to eq '<a href="//photos23.flickr.com/31366117_b1a791d68e_b.jpg"' \
+              ' data-toggle="lightbox" title="Matz">' \
+              '<img src="//photos23.flickr.com/31366117_b1a791d68e_t.jpg"' \
+              ' width="67" height="100" alt="Matz" title="Matz"/></a>' \
+              "<p class=\"caption\" style=\"width:67px\">This is Matz, Ruby's creator</p>"
     end
 
     it "uses default thumb image size" do
       result = filter.
         filter_text('<publify:lightbox img="31366117" displaysize="Large"/>')
-      expect(result).to eq \
-        '<a href="//photos23.flickr.com/31366117_b1a791d68e_b.jpg"' \
-        ' data-toggle="lightbox" title="Matz">' \
-        '<img src="//photos23.flickr.com/31366117_b1a791d68e_s.jpg"' \
-        ' width="75" height="75" alt="Matz" title="Matz"/></a>' \
-        "<p class=\"caption\" style=\"width:75px\">This is Matz, Ruby's creator</p>"
+      expect(result).
+        to eq '<a href="//photos23.flickr.com/31366117_b1a791d68e_b.jpg"' \
+              ' data-toggle="lightbox" title="Matz">' \
+              '<img src="//photos23.flickr.com/31366117_b1a791d68e_s.jpg"' \
+              ' width="75" height="75" alt="Matz" title="Matz"/></a>' \
+              "<p class=\"caption\" style=\"width:75px\">This is Matz, Ruby's creator</p>"
     end
 
     it "uses default display image size" do
       result = filter.filter_text('<publify:lightbox img="31366117"/>')
-      expect(result).to eq \
-        '<a href="//photos23.flickr.com/31366117_b1a791d68e_o.jpg"' \
-        ' data-toggle="lightbox" title="Matz">' \
-        '<img src="//photos23.flickr.com/31366117_b1a791d68e_s.jpg"' \
-        ' width="75" height="75" alt="Matz" title="Matz"/></a>' \
-        "<p class=\"caption\" style=\"width:75px\">This is Matz, Ruby's creator</p>"
+      expect(result).
+        to eq '<a href="//photos23.flickr.com/31366117_b1a791d68e_o.jpg"' \
+              ' data-toggle="lightbox" title="Matz">' \
+              '<img src="//photos23.flickr.com/31366117_b1a791d68e_s.jpg"' \
+              ' width="75" height="75" alt="Matz" title="Matz"/></a>' \
+              "<p class=\"caption\" style=\"width:75px\">This is Matz, Ruby's creator</p>"
     end
 
     it "works with caption" do
       result = filter.filter_text('<publify:lightbox img="31366117" caption=""/>')
-      expect(result).to eq \
-        '<a href="//photos23.flickr.com/31366117_b1a791d68e_o.jpg"' \
-        ' data-toggle="lightbox" title="Matz">' \
-        '<img src="//photos23.flickr.com/31366117_b1a791d68e_s.jpg"' \
-        ' width="75" height="75" alt="Matz" title="Matz"/></a>'
+      expect(result).
+        to eq '<a href="//photos23.flickr.com/31366117_b1a791d68e_o.jpg"' \
+              ' data-toggle="lightbox" title="Matz">' \
+              '<img src="//photos23.flickr.com/31366117_b1a791d68e_s.jpg"' \
+              ' width="75" height="75" alt="Matz" title="Matz"/></a>'
     end
   end
 end
