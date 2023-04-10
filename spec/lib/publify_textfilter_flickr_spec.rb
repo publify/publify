@@ -75,41 +75,37 @@ RSpec.describe "the Flickr text filter plugin", type: :model do
     it "shows with default settings" do
       result = filter.
         filter_text('<publify:flickr img="31366117" size="Square" style="float:left"/>')
-      expect(result).to eq \
-        '<div style="float:left" class="flickrplugin">' \
-        '<a href="http://www.flickr.com/users/scottlaird/31366117">' \
-        '<img src="//photos23.flickr.com/31366117_b1a791d68e_s.jpg"' \
-        ' width="75" height="75" alt="Matz" title="Matz"/></a>' \
-        "<p class=\"caption\" style=\"width:75px\">This is Matz," \
-        " Ruby's creator</p></div>"
+      expect(result).to eq '<div style="float:left" class="flickrplugin">' \
+                           '<a href="http://www.flickr.com/users/scottlaird/31366117">' \
+                           '<img src="//photos23.flickr.com/31366117_b1a791d68e_s.jpg"' \
+                           ' width="75" height="75" alt="Matz" title="Matz"/></a>' \
+                           "<p class=\"caption\" style=\"width:75px\">This is Matz," \
+                           " Ruby's creator</p></div>"
     end
 
     it "uses default image size" do
       result = filter.filter_text('<publify:flickr img="31366117"/>')
-      expect(result).to eq \
-        '<div style="" class="flickrplugin">' \
-        '<a href="http://www.flickr.com/users/scottlaird/31366117">' \
-        '<img src="//photos23.flickr.com/31366117_b1a791d68e_s.jpg"' \
-        ' width="75" height="75" alt="Matz" title="Matz"/></a>' \
-        "<p class=\"caption\" style=\"width:75px\">This is Matz," \
-        " Ruby's creator</p></div>"
+      expect(result).to eq '<div style="" class="flickrplugin">' \
+                           '<a href="http://www.flickr.com/users/scottlaird/31366117">' \
+                           '<img src="//photos23.flickr.com/31366117_b1a791d68e_s.jpg"' \
+                           ' width="75" height="75" alt="Matz" title="Matz"/></a>' \
+                           "<p class=\"caption\" style=\"width:75px\">This is Matz," \
+                           " Ruby's creator</p></div>"
     end
 
     it "uses caption" do
       result = filter.filter_text('<publify:flickr img="31366117" caption=""/>')
-      expect(result).to eq \
-        '<div style="" class="flickrplugin">' \
-        '<a href="http://www.flickr.com/users/scottlaird/31366117">' \
-        '<img src="//photos23.flickr.com/31366117_b1a791d68e_s.jpg"' \
-        ' width="75" height="75" alt="Matz" title="Matz"/></a></div>'
+      expect(result).to eq '<div style="" class="flickrplugin">' \
+                           '<a href="http://www.flickr.com/users/scottlaird/31366117">' \
+                           '<img src="//photos23.flickr.com/31366117_b1a791d68e_s.jpg"' \
+                           ' width="75" height="75" alt="Matz" title="Matz"/></a></div>'
     end
 
     it "broken_flickr_link" do
       result = filter.filter_text('<publify:flickr img="notaflickrid" />')
-      expect(result).to eq \
-        "<div class='broken_flickr_link'>" \
-        "`notaflickrid' could not be displayed because: <br />" \
-        "Photo not found</div>"
+      expect(result).to eq "<div class='broken_flickr_link'>" \
+                           "`notaflickrid' could not be displayed because: <br />" \
+                           "Photo not found</div>"
     end
   end
 
@@ -119,13 +115,12 @@ RSpec.describe "the Flickr text filter plugin", type: :model do
     it "correctly interprets the macro" do
       result = filter.
         filter_text('<publify:flickr img="31366117" size="Square" style="float:left"/>')
-      expect(result).to eq \
-        '<div style="float:left" class="flickrplugin">' \
-        '<a href="http://www.flickr.com/users/scottlaird/31366117">' \
-        '<img src="//photos23.flickr.com/31366117_b1a791d68e_s.jpg"' \
-        ' width="75" height="75" alt="Matz" title="Matz"/></a>' \
-        "<p class=\"caption\" style=\"width:75px\">This is Matz," \
-        " Ruby's creator</p></div>"
+      expect(result).to eq '<div style="float:left" class="flickrplugin">' \
+                           '<a href="http://www.flickr.com/users/scottlaird/31366117">' \
+                           '<img src="//photos23.flickr.com/31366117_b1a791d68e_s.jpg"' \
+                           ' width="75" height="75" alt="Matz" title="Matz"/></a>' \
+                           "<p class=\"caption\" style=\"width:75px\">This is Matz," \
+                           " Ruby's creator</p></div>"
     end
   end
 end
