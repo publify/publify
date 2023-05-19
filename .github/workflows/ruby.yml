@@ -24,7 +24,7 @@ jobs:
 
     strategy:
       matrix:
-        ruby: [2.6, 2.7, "3.0", "3.1", "3.2"]
+        ruby: ["2.7", "3.0", "3.1", "3.2"]
 
     services:
       postgres:
@@ -55,7 +55,7 @@ jobs:
 
     strategy:
       matrix:
-        ruby: [2.6, 2.7, "3.0", "3.1", "3.2"]
+        ruby: ["2.7", "3.0", "3.1", "3.2"]
 
     services:
       mysql:
@@ -86,7 +86,7 @@ jobs:
 
     strategy:
       matrix:
-        ruby: [2.6, 2.7, "3.0", "3.1", "3.2"]
+        ruby: ["2.7", "3.0", "3.1", "3.2"]
 
     steps:
       - uses: actions/checkout@v3
@@ -113,7 +113,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7
+          ruby-version: 3.2
           bundler-cache: true
           rubygems: latest
       - name: Run lint task
