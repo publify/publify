@@ -2,17 +2,57 @@
 
 See the changelogs for the individual engines for more details for releases 9.0 and up
 
-## Unreleased
+## 10.0.0 / 2023-06-25
+
+This major release updates Publify to Rails 6.1 in preparation of the upgrade
+to Rails 7.0. It also updates the set of supported Rubies to 2.7 through 3.2.
+
+### Security-related changes
+
+* Require at least Rails 6.1.6.1 [#1068](https://github.com/publify/publify/pull/1068)
+* Update puma dependency to require at least version 5.6.4 [#1064](https://github.com/publify/publify/pull/1064)
+
+### Updated dependencies
+
+* Upgrade to Rails 6.1
+  [#987](https://github.com/publify/publify/pull/987),
+  [#1014](https://github.com/publify/publify/pull/1014),
+* Support only Ruby 2.7 through 3.2
+  [#1013](https://github.com/publify/publify/pull/1013)
+  [#1041](https://github.com/publify/publify/pull/1041)
+  [#1115](https://github.com/publify/publify/pull/1115)
+  [#1120](https://github.com/publify/publify/pull/1120)
+* Update various other dependencies (various pull requests)
 
 ### Breaking changes
 
-* Upgrade to Rails 6.0
-* Remove support for Textile as a text format
+* Remove support for Textile as a text format [#1001](https://github.com/publify/publify/pull/1001)
+* Require email uniqueness to be case-insensitive [#1080](https://github.com/publify/publify/pull/1080)
 
 ### Other changes
 
-* Depend on Ruby 2.5 or above
-* Update other dependencies
+* Add arabic language to the project [#1060](https://github.com/publify/publify/pull/1060)
+  by [ahmedhamid13](https://github.com/ahmedhamid13)
+* Fix article search rendering in bootstrap theme [#1101](https://github.com/publify/publify/pull/1101)
+* Remove local copies of engines and use external ones instead [#1099](https://github.com/publify/publify/pull/1099)
+* Require AWS configuration to be present when choosing AWS storage [#1082](https://github.com/publify/publify/pull/1082)
+* Replace deprecated non-digest-assets configuration [#1019](https://github.com/publify/publify/pull/1019)
+
+### Internal changes
+
+* Remove `sitealizer` table [#1089](https://github.com/publify/publify/pull/1089)
+  by [SupriyaMedankar](https://github.com/SupriyaMedankar)
+* Remove itunes fields from resources [#1092](https://github.com/publify/publify/pull/1092)
+  by [SupriyaMedankar](https://github.com/SupriyaMedankar)
+* Remove `page_caches` table [#1090](https://github.com/publify/publify/pull/1090)
+  by [SupriyaMedankar](https://github.com/SupriyaMedankar)
+* Remove `dynamic_form` dependency [#991](https://github.com/publify/publify/pull/991)
+
+See also the changelogs for
+[publify_core](https://github.com/publify/publify_core/blob/v10.0.0/CHANGELOG.md#1000--2023-06-25),
+[publify_textfilter_code](https://github.com/publify/publify_textfilter_code/blob/v10.0.0/CHANGELOG.md#1000--2023-06-25)
+and
+[publify_amazon_sidebar](https://github.com/publify/publify_amazon_sidebar/blob/v10.0.0/CHANGELOG.md#1000--2023-06-25).
 
 ## 9.2.10 / 2023-01-08
 
@@ -91,6 +131,7 @@ Additionally, it includes the following changes:
 ## 9.2.3 / 2021-05-22
 
 * Bump Rails dependency to 5.2.6
+* Replace mimemagic with marcel [#996](https://github.com/publify/publify/pull/996)
 
 ## 9.2.2 / 2021-03-21
 
