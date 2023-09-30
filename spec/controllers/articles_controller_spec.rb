@@ -61,8 +61,8 @@ RSpec.describe ArticlesController, type: :controller do
 
           it "has a good title" do
             expect(response.body).
-              to have_selector("title", text: "A big article | test blog",
-                                        visible: :all)
+              to have_css("title", text: "A big article | test blog",
+                                   visible: :all)
           end
         end
 
@@ -124,14 +124,14 @@ RSpec.describe ArticlesController, type: :controller do
 
           it "has good link feed rss" do
             expect(response.body).
-              to have_selector('head>link[href="http://test.host/articles.rss"]',
-                               visible: :all)
+              to have_css('head>link[href="http://test.host/articles.rss"]',
+                          visible: :all)
           end
 
           it "has good link feed atom" do
             expect(response.body).
-              to have_selector('head>link[href="http://test.host/articles.atom"]',
-                               visible: :all)
+              to have_css('head>link[href="http://test.host/articles.atom"]',
+                          visible: :all)
           end
 
           it "has a canonical url" do
@@ -141,7 +141,7 @@ RSpec.describe ArticlesController, type: :controller do
 
           it "has good title" do
             expect(response.body).
-              to have_selector("title", text: "test blog | test subtitle", visible: :all)
+              to have_css("title", text: "test blog | test subtitle", visible: :all)
           end
         end
 
@@ -174,7 +174,7 @@ RSpec.describe ArticlesController, type: :controller do
 
           it "has a good title" do
             expect(response.body).
-              to have_selector("title", text: "Archives for test blog", visible: :all)
+              to have_css("title", text: "Archives for test blog", visible: :all)
           end
         end
       end
@@ -198,7 +198,7 @@ RSpec.describe ArticlesController, type: :controller do
 
         it "renders content with markdown interpreted and html tags removed" do
           expect(response.body).
-            to have_selector(
+            to have_css(
               "div", text: /in markdown format\s+we\s+use\s+ok to define a link/)
         end
       end
@@ -230,16 +230,16 @@ RSpec.describe ArticlesController, type: :controller do
           get :search, params: { q: "oba" }
 
           expect(response.body).
-            to have_selector('head>link[href="http://test.host/search/oba.rss"]',
-                             visible: :all)
+            to have_css('head>link[href="http://test.host/search/oba.rss"]',
+                        visible: :all)
         end
 
         it "has good atom feed link" do
           get :search, params: { q: "oba" }
 
           expect(response.body).
-            to have_selector('head>link[href="http://test.host/search/oba.atom"]',
-                             visible: :all)
+            to have_css('head>link[href="http://test.host/search/oba.atom"]',
+                        visible: :all)
         end
 
         it "has a canonical url" do
@@ -254,8 +254,8 @@ RSpec.describe ArticlesController, type: :controller do
           get :search, params: { q: "oba" }
 
           expect(response.body).
-            to have_selector("title", text: "Results for oba | test blog",
-                                      visible: :all)
+            to have_css("title", text: "Results for oba | test blog",
+                                 visible: :all)
         end
 
         it "renders feed rss by search" do
@@ -294,7 +294,7 @@ RSpec.describe ArticlesController, type: :controller do
         end
 
         it "does not have h3 tag" do
-          expect(response.body).to have_selector("h3")
+          expect(response.body).to have_css("h3")
         end
       end
 
@@ -310,7 +310,7 @@ RSpec.describe ArticlesController, type: :controller do
             expect(response.body).
               to have_selector("head>link[href='#{blog.base_url}/archives']",
                                visible: :all).
-              and have_selector("title", text: "Archives for test blog", visible: :all)
+              and have_css("title", text: "Archives for test blog", visible: :all)
           end
 
           it "shows the current month only once" do

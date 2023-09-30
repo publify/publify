@@ -5,6 +5,7 @@ inherit_mode:
     - Exclude
 
 require:
+  - rubocop-capybara
   - rubocop-performance
   - rubocop-rails
   - rubocop-rspec
@@ -22,6 +23,10 @@ Rails:
 
 # We have duplication due to extra logic in the Gemfile
 Bundler/DuplicatedGem:
+  Enabled: false
+
+# Doesn't work well yet
+Capybara/ClickLinkOrButtonStyle:
   Enabled: false
 
 Layout/BeginEndAlignment:
