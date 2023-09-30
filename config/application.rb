@@ -22,7 +22,7 @@ module Publify
   # Load included libraries.
   require "publify_sidebar"
   require "publify_textfilters"
-  require "publify_avatar_gravatar"
+  require "publify_plugins/gravatar"
 
   Theme.register_themes Rails.root.join("themes")
 end
