@@ -41,20 +41,20 @@ RSpec.describe "comments/_comment.html.erb", type: :view do
             ActiveSupport::Deprecation.silence do
               render partial: "comments/comment", locals: { comment: @comment }
             end
-            expect(rendered).to have_selector(".content")
-            expect(rendered).to have_selector(".author")
+            expect(rendered).to have_css(".content")
+            expect(rendered).to have_css(".author")
 
-            expect(rendered).not_to have_selector(".content script")
-            expect(rendered).not_to have_selector(".content a:not([rel=nofollow])")
+            expect(rendered).not_to have_css(".content script")
+            expect(rendered).not_to have_css(".content a:not([rel=nofollow])")
             # No links with javascript
-            expect(rendered).not_to have_selector(".content a[onclick]")
-            expect(rendered).not_to have_selector('.content a[href^="javascript:"]')
+            expect(rendered).not_to have_css(".content a[onclick]")
+            expect(rendered).not_to have_css('.content a[href^="javascript:"]')
 
-            expect(rendered).not_to have_selector(".author script")
-            expect(rendered).not_to have_selector(".author a:not([rel=nofollow])")
+            expect(rendered).not_to have_css(".author script")
+            expect(rendered).not_to have_css(".author a:not([rel=nofollow])")
             # No links with javascript
-            expect(rendered).not_to have_selector(".author a[onclick]")
-            expect(rendered).not_to have_selector('.author a[href^="javascript:"]')
+            expect(rendered).not_to have_css(".author a[onclick]")
+            expect(rendered).not_to have_css('.author a[href^="javascript:"]')
           end
         end
       end
@@ -174,20 +174,20 @@ RSpec.describe "comments/_comment.html.erb", type: :view do
             ActiveSupport::Deprecation.silence do
               render partial: "comments/comment", locals: { comment: @comment }
             end
-            expect(rendered).to have_selector(".content")
-            expect(rendered).to have_selector(".author")
+            expect(rendered).to have_css(".content")
+            expect(rendered).to have_css(".author")
 
-            expect(rendered).not_to have_selector(".content script")
-            expect(rendered).not_to have_selector(".content a[rel=nofollow]")
+            expect(rendered).not_to have_css(".content script")
+            expect(rendered).not_to have_css(".content a[rel=nofollow]")
             # No links with javascript
-            expect(rendered).not_to have_selector(".content a[onclick]")
-            expect(rendered).not_to have_selector('.content a[href^="javascript:"]')
+            expect(rendered).not_to have_css(".content a[onclick]")
+            expect(rendered).not_to have_css('.content a[href^="javascript:"]')
 
-            expect(rendered).not_to have_selector(".author script")
-            expect(rendered).not_to have_selector(".author a[rel=nofollow]")
+            expect(rendered).not_to have_css(".author script")
+            expect(rendered).not_to have_css(".author a[rel=nofollow]")
             # No links with javascript
-            expect(rendered).not_to have_selector(".author a[onclick]")
-            expect(rendered).not_to have_selector('.author a[href^="javascript:"]')
+            expect(rendered).not_to have_css(".author a[onclick]")
+            expect(rendered).not_to have_css('.author a[href^="javascript:"]')
           end
         end
       end
