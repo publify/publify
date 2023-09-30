@@ -25,6 +25,10 @@ Rails:
 Bundler/DuplicatedGem:
   Enabled: false
 
+# Doesn't work well yet
+Capybara/ClickLinkOrButtonStyle:
+  Enabled: false
+
 Layout/BeginEndAlignment:
   EnforcedStyleAlignWith: begin
 
