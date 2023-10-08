@@ -35,7 +35,7 @@ gem "sprockets", "~> 4.0"
 # Allow throttling requests
 gem "rack-attack", "~> 6.5"
 
-gem "net-smtp", "~> 0.3.1"
+gem "net-smtp", "~> 0.4.0"
 gem "psych", "~> 5.1"
 
 group :development, :test do
