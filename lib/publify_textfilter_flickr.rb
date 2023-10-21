@@ -2,9 +2,7 @@
 
 class PublifyApp
   class Textfilter
-    class Flickr < TextFilterPlugin
-      include TextFilterPlugin::MacroPost
-
+    class Flickr < TextFilterPlugin::MacroPost
       plugin_display_name "Flickr"
       plugin_description "Automatically generate image tags for Flickr images"
 

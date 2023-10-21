@@ -2,9 +2,7 @@
 
 class PublifyApp
   class Textfilter
-    class Lightbox < TextFilterPlugin
-      include TextFilterPlugin::MacroPost
-
+    class Lightbox < TextFilterPlugin::MacroPost
       plugin_display_name "Lightbox"
       plugin_description "Automatically generate tags for images displayed in a lightbox"
 
