@@ -173,6 +173,8 @@ GEM
       zxcvbn (~> 0.1.7)
     diff-lcs (1.5.0)
     docile (1.4.0)
+    dockerfile-rails (1.5.12)
+      rails (>= 3.0.0)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     equalizer (0.0.11)
@@ -288,7 +290,6 @@ GEM
     mime-types-data (3.2023.1003)
     mini_magick (4.12.0)
     mini_mime (1.1.5)
-    mini_portile2 (2.8.5)
     minitest (5.20.0)
     multi_json (1.15.0)
     multipart-post (2.3.0)
@@ -303,8 +304,7 @@ GEM
     net-smtp (0.4.0)
       net-protocol
     nio4r (2.5.9)
-    nokogiri (1.15.4)
-      mini_portile2 (~> 2.8.2)
+    nokogiri (1.15.4-x86_64-linux)
       racc (~> 1.4)
     non-digest-assets (2.3.0)
       activesupport (>= 6.0, < 7.2)
@@ -523,12 +523,13 @@ GEM
     zxcvbn (0.1.10)
 
 PLATFORMS
-  ruby
+  x86_64-linux
 
 DEPENDENCIES
   activerecord-session_store (~> 2.1.0)
   byebug
   capybara (~> 3.9)
+  dockerfile-rails (>= 1.5)
   factory_bot (~> 6.2)
   fast_stack
   feedjira (~> 3.2)

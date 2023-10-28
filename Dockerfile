@@ -1,134 +1,82 @@
-# syntax = docker/dockerfile:experimental
+# syntax = docker/dockerfile:1
 
-# Dockerfile used to build a deployable image for a Rails application.
-# Adjust as required.
-#
-# Common adjustments you may need to make over time:
-#  * Modify version numbers for Ruby, Bundler, and other products.
-#  * Add library packages needed at build time for your gems, node modules.
-#  * Add deployment packages needed by your application
-#  * Add (often fake) secrets needed to compile your assets
+# Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
+ARG RUBY_VERSION=3.1.4
+FROM ruby:$RUBY_VERSION-slim as base
 
-#######################################################################
-
-# Learn more about the chosen Ruby stack, Fullstaq Ruby, here:
-#   https://github.com/evilmartians/fullstaq-ruby-docker.
-#
-# We recommend using the highest patch level for better security and
-# performance.
-
-ARG RUBY_VERSION=2.7.8
-ARG VARIANT=jemalloc-slim
-FROM quay.io/evl.ms/fullstaq-ruby:${RUBY_VERSION}-${VARIANT} as base
-
-ARG NODE_VERSION=16
 LABEL fly_launch_runtime="rails"
 
-ARG BUNDLER_VERSION=2.4.15
+# Rails app lives here
+WORKDIR /rails
 
-ARG RAILS_ENV=production
-ENV RAILS_ENV=${RAILS_ENV}
+# Set production environment
+ENV RAILS_ENV="production" \
+    BUNDLE_WITHOUT="development:test" \
+    BUNDLE_DEPLOYMENT="1"
 
-ENV RAILS_SERVE_STATIC_FILES true
-ENV RAILS_LOG_TO_STDOUT true
-
-ARG BUNDLE_WITHOUT=development:test
-ARG BUNDLE_PATH=vendor/bundle
-ENV BUNDLE_PATH ${BUNDLE_PATH}
-ENV BUNDLE_WITHOUT ${BUNDLE_WITHOUT}
-
-RUN mkdir /app
-WORKDIR /app
-RUN mkdir -p tmp/pids
-
-SHELL ["/bin/bash", "-c"]
-
-RUN curl https://get.volta.sh | bash
-
-ENV BASH_ENV ~/.bashrc
-ENV VOLTA_HOME /root/.volta
-ENV PATH $VOLTA_HOME/bin:/usr/local/bin:$PATH
-
-RUN volta install node@${NODE_VERSION} && volta install yarn
-
+# Update gems and bundler
 RUN gem update --system --no-document && \
-    gem install -N bundler -v ${BUNDLER_VERSION}
+    gem install -N bundler
 
-#######################################################################
+# Install packages needed to install nodejs
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y curl && \
+    rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
-# install packages only needed at build time
+# Install Node.js
+ARG NODE_VERSION=18.13.0
+ENV PATH=/usr/local/node/bin:$PATH
+RUN curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz -C /tmp/ && \
+    /tmp/node-build-master/bin/node-build "${NODE_VERSION}" /usr/local/node && \
+    rm -rf /tmp/node-build-master
 
-FROM base as build_deps
 
-ARG BUILD_PACKAGES="git build-essential libpq-dev wget vim curl gzip xz-utils libsqlite3-dev libyaml-dev"
-ENV BUILD_PACKAGES ${BUILD_PACKAGES}
+# Throw-away build stage to reduce size of final image
+FROM base as build
 
-RUN --mount=type=cache,id=dev-apt-cache,sharing=locked,target=/var/cache/apt \
-    --mount=type=cache,id=dev-apt-lib,sharing=locked,target=/var/lib/apt \
-    apt-get update -qq && \
-    apt-get install --no-install-recommends -y ${BUILD_PACKAGES} \
-    && rm -rf /var/lib/apt/lists /var/cache/apt/archives
+# Install packages needed to build gems
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y build-essential git libpq-dev libvips
 
-#######################################################################
+# Build options
+ENV PATH="/usr/local/node/bin:$PATH"
 
-# install gems
+# Install application gems
+COPY --link Gemfile Gemfile.lock ./
+RUN bundle install && \
+    rm -rf ~/.bundle/ $BUNDLE_PATH/ruby/*/cache $BUNDLE_PATH/ruby/*/bundler/gems/*/.git
 
-FROM build_deps as gems
+# Copy application code
+COPY --link . .
 
-COPY Gemfile* ./
+# Precompiling assets for production without requiring secret RAILS_MASTER_KEY
+RUN SECRET_KEY_BASE=DUMMY ./bin/rails assets:precompile
 
-RUN bundle install && rm -rf vendor/bundle/ruby/*/cache
 
-#######################################################################
-
-# install deployment packages
-
+# Final stage for app image
 FROM base
 
-ARG DEPLOY_PACKAGES="postgresql-client file vim curl gzip libsqlite3-0"
-ENV DEPLOY_PACKAGES=${DEPLOY_PACKAGES}
+# Install packages needed for deployment
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y curl imagemagick libvips postgresql-client && \
+    rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
-RUN --mount=type=cache,id=prod-apt-cache,sharing=locked,target=/var/cache/apt \
-    --mount=type=cache,id=prod-apt-lib,sharing=locked,target=/var/lib/apt \
-    apt-get update -qq && \
-    apt-get install --no-install-recommends -y \
-    ${DEPLOY_PACKAGES} \
-    && rm -rf /var/lib/apt/lists /var/cache/apt/archives
+# Copy built artifacts: gems, application
+COPY --from=build /usr/local/bundle /usr/local/bundle
+COPY --from=build /rails /rails
 
-# Install supercronic to run the demo reset every hour
-#
-# Based on https://fly.io/docs/app-guides/supercronic/
-#
-# Latest releases available at https://github.com/aptible/supercronic/releases
-ENV SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/download/v0.2.1/supercronic-linux-amd64 \
-    SUPERCRONIC=supercronic-linux-amd64 \
-    SUPERCRONIC_SHA1SUM=d7f4c0886eb85249ad05ed592902fa6865bb9d70
+# Run and own only the runtime files as a non-root user for security
+RUN useradd rails --create-home --shell /bin/bash && \
+    chown -R rails:rails db log tmp
+USER rails:rails
 
-RUN curl -fsSLO "$SUPERCRONIC_URL" \
- && echo "${SUPERCRONIC_SHA1SUM}  ${SUPERCRONIC}" | sha1sum -c - \
- && chmod +x "$SUPERCRONIC" \
- && mv "$SUPERCRONIC" "/usr/local/bin/${SUPERCRONIC}" \
- && ln -s "/usr/local/bin/${SUPERCRONIC}" /usr/local/bin/supercronic
+# Deployment options
+ENV RAILS_LOG_TO_STDOUT="1" \
+    RAILS_SERVE_STATIC_FILES="true"
 
-# copy installed gems
-COPY --from=gems /app /app
-COPY --from=gems /usr/lib/fullstaq-ruby/versions /usr/lib/fullstaq-ruby/versions
-COPY --from=gems /usr/local/bundle /usr/local/bundle
+# Entrypoint sets up the container.
+ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
-#######################################################################
-
-# Deploy your application
-COPY . .
-
-# Enable assets to precompile on the build server.
-ENV SECRET_KEY_BASE 1
-
-# Run build task defined in lib/tasks/fly.rake
-ARG BUILD_COMMAND="bin/rails fly:build"
-RUN ${BUILD_COMMAND}
-
-# Default server start instructions.  Generally Overridden by fly.toml.
-ENV PORT 8080
-ARG SERVER_COMMAND="bin/rails fly:server"
-ENV SERVER_COMMAND ${SERVER_COMMAND}
-CMD ${SERVER_COMMAND}
+# Start the server by default, this can be overwritten at runtime
+EXPOSE 3000
+CMD ["./bin/rails", "server"]

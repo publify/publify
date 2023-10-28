@@ -92,3 +92,5 @@ end
 Dir.glob(File.join(File.dirname(__FILE__), "themes", "**", "Gemfile")) do |gemfile|
   eval(File.read(gemfile), binding)
 end
+
+gem "dockerfile-rails", ">= 1.5", group: :development
