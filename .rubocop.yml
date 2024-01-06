@@ -29,6 +29,10 @@ Bundler/DuplicatedGem:
 Capybara/ClickLinkOrButtonStyle:
   Enabled: false
 
+# Restore old default
+Capybara/NegationMatcher:
+  EnforcedStyle: not_to
+
 Layout/BeginEndAlignment:
   EnforcedStyleAlignWith: begin
 

@@ -43,20 +43,20 @@ RSpec.describe ArticlesController, type: :controller do
 
           it "has good rss feed link" do
             expect(response.body).
-              to have_selector("head>link[href=\"#{article.permalink_url}.rss\"]",
-                               visible: :all)
+              to have_css("head>link[href=\"#{article.permalink_url}.rss\"]",
+                          visible: :all)
           end
 
           it "has good atom feed link" do
             expect(response.body).
-              to have_selector("head>link[href=\"#{article.permalink_url}.atom\"]",
-                               visible: :all)
+              to have_css("head>link[href=\"#{article.permalink_url}.atom\"]",
+                          visible: :all)
           end
 
           it "has a canonical url" do
             expect(response.body).
-              to have_selector("head>link[href='#{article.permalink_url}']",
-                               visible: :all)
+              to have_css("head>link[href='#{article.permalink_url}']",
+                          visible: :all)
           end
 
           it "has a good title" do
@@ -136,7 +136,7 @@ RSpec.describe ArticlesController, type: :controller do
 
           it "has a canonical url" do
             expect(response.body).
-              to have_selector("head>link[href='#{blog.base_url}/']", visible: :all)
+              to have_css("head>link[href='#{blog.base_url}/']", visible: :all)
           end
 
           it "has good title" do
@@ -168,8 +168,8 @@ RSpec.describe ArticlesController, type: :controller do
 
           it "has a canonical url" do
             expect(response.body).
-              to have_selector("head>link[href='#{blog.base_url}/2004/4']",
-                               visible: :all)
+              to have_css("head>link[href='#{blog.base_url}/2004/4']",
+                          visible: :all)
           end
 
           it "has a good title" do
@@ -246,8 +246,8 @@ RSpec.describe ArticlesController, type: :controller do
           get :search, params: { q: "oba" }
 
           expect(response.body).
-            to have_selector("head>link[href='#{blog.base_url}/search/oba']",
-                             visible: :all)
+            to have_css("head>link[href='#{blog.base_url}/search/oba']",
+                        visible: :all)
         end
 
         it "has a good title" do
@@ -308,8 +308,8 @@ RSpec.describe ArticlesController, type: :controller do
 
           it "has the correct self-link and title" do
             expect(response.body).
-              to have_selector("head>link[href='#{blog.base_url}/archives']",
-                               visible: :all).
+              to have_css("head>link[href='#{blog.base_url}/archives']",
+                          visible: :all).
               and have_css("title", text: "Archives for test blog", visible: :all)
           end
 

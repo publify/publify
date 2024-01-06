@@ -57,7 +57,7 @@ RSpec.describe TagsController, type: :controller do
 
         it "has a canonical URL" do
           expect(response.body).
-            to have_selector("head>link[href='#{blog.base_url}/tag/foo']", visible: :all)
+            to have_css("head>link[href='#{blog.base_url}/tag/foo']", visible: :all)
         end
 
         context "with a password protected article" do
