@@ -47,7 +47,7 @@ group :development, :test do
   gem "pry", "~> 0.14.0"
   gem "pry-rails", "~> 0.3.4"
   gem "rspec-rails", "~> 6.0"
-  gem "rubocop", "~> 1.61.0", require: false
+  gem "rubocop", "~> 1.62.0", require: false
   gem "rubocop-capybara", "~> 2.20.0", require: false
   gem "rubocop-performance", "~> 1.20.1", require: false
   gem "rubocop-rails", "~> 2.24.0", require: false
