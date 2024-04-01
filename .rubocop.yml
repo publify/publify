@@ -121,7 +121,7 @@ RSpec/Capybara/FeatureMethods:
     - 'spec/features/**_spec.rb'
 
 # Spec type inference is disabled, so this cop must be disabled too.
-RSpec/Rails/InferredSpecType:
+RSpecRails/InferredSpecType:
   Enabled: false
 
 # Allow the use of 'and' 'or' in control structures.
