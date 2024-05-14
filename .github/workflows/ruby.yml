@@ -15,6 +15,7 @@ name: CI
       - 9-2-stable
   schedule:
     - cron: '16 4 12 * *'
+  workflow_dispatch:
 
 jobs:
   test-postgresql:
