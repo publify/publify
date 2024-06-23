@@ -53,7 +53,7 @@ be broken there at any time, so tread carefully!
 To install Publify you need the following:
 
 - CRuby (MRI) 2.7 to 3.2
-- Ruby on Rails 6.1.6.1
+- Ruby on Rails at least 6.1.6.1
 - A database engine, MySQL, PgSQL or SQLite3
 - A compatible JavaScript installation for asset compilation. See
   [the execjs readme](https://github.com/sstephenson/execjs#readme) for details.
