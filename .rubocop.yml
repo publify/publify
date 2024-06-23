@@ -6,9 +6,11 @@ inherit_mode:
 
 require:
   - rubocop-capybara
+  - rubocop-factory_bot
   - rubocop-performance
   - rubocop-rails
   - rubocop-rspec
+  - rubocop-rspec_rails
 
 AllCops:
   Exclude:
@@ -115,10 +117,6 @@ Rails/RakeEnvironment:
 Rails/SkipsModelValidations:
   Exclude:
     - 'db/migrate/*'
-
-RSpec/Capybara/FeatureMethods:
-  Exclude:
-    - 'spec/features/**_spec.rb'
 
 # Spec type inference is disabled, so this cop must be disabled too.
 RSpecRails/InferredSpecType:
