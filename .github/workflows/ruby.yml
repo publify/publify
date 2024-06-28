@@ -8,10 +8,12 @@ name: CI
   push:
     branches:
       - master
+      - 10-0-stable
       - 9-2-stable
   pull_request:
     branches:
       - master
+      - 10-0-stable
       - 9-2-stable
   schedule:
     - cron: '16 4 12 * *'
