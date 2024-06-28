@@ -15,9 +15,11 @@ gem "activerecord-session_store", "~> 2.1.0"
 # Use Puma as the app server
 gem "puma", "~> 6.2"
 
-gem "publify_amazon_sidebar", github: "publify/publify_amazon_sidebar"
-gem "publify_core", github: "publify/publify_core"
-gem "publify_textfilter_code", github: "publify/publify_textfilter_code"
+gem "publify_amazon_sidebar", github: "publify/publify_amazon_sidebar",
+                              branch: "10-0-stable"
+gem "publify_core", github: "publify/publify_core", branch: "10-0-stable"
+gem "publify_textfilter_code", github: "publify/publify_textfilter_code",
+                               branch: "10-0-stable"
 
 # Use Uglifier as compressor for JavaScript assets
 gem "uglifier", ">= 1.3.0"
