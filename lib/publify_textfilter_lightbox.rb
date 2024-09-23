@@ -136,7 +136,7 @@ class PublifyApp
                         "<p class=\"caption\" style=\"width:#{width}px\">#{caption}</p>"
                       end
 
-        img_attrs = +%(src="#{thumburl}")
+        img_attrs = %(src="#{thumburl}")
         img_attrs << %( class="#{theclass}") if theclass
         img_attrs << %( width="#{width}") if width
         img_attrs << %( height="#{height}") if height
