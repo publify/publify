@@ -52,7 +52,7 @@ group :development, :test do
   gem "rubocop-factory_bot", "~> 2.26.1", require: false
   gem "rubocop-performance", "~> 1.22.0", require: false
   gem "rubocop-rails", "~> 2.26.2", require: false
-  gem "rubocop-rspec", "~> 3.0.1", require: false
+  gem "rubocop-rspec", "~> 3.1.0", require: false
   gem "rubocop-rspec_rails", "~> 2.30.0", require: false
   gem "simplecov", "~> 0.22.0", require: false
 end
