@@ -27,7 +27,7 @@ gem "flickraw", "~> 0.9.8", require: false
 
 gem "non-digest-assets", "~> 2.0"
 gem "rake", "~> 13.0"
-gem "reverse_markdown", "~> 2.0"
+gem "reverse_markdown", "~> 3.0"
 
 # Force newer sprockets
 gem "sprockets", "~> 4.0"
