@@ -45,6 +45,8 @@ jobs:
         run: cp config/database.yml.postgresql config/database.yml
       - name: Migrate database
         run: bundle exec rake db:create db:migrate
+        env:
+          RAILS_ENV: test
       - name: Run tests
         run: bundle exec rake
 
@@ -75,6 +77,8 @@ jobs:
         run: cp config/database.yml.mysql config/database.yml
       - name: Migrate database
         run: bundle exec rake db:create db:migrate
+        env:
+          RAILS_ENV: test
       - name: Run tests
         run: bundle exec rake
 
@@ -98,6 +102,8 @@ jobs:
         run: cp config/database.yml.sqlite config/database.yml
       - name: Migrate database
         run: bundle exec rake db:create db:migrate
+        env:
+          RAILS_ENV: test
       - name: Run tests
         run: bundle exec rake
 
