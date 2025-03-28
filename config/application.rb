@@ -2,6 +2,8 @@
 
 require_relative "boot"
 
+# FIXME: remove when upgrading to Rails 7.1
+require "logger"
 require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
