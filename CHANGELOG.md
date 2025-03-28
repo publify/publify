@@ -1,6 +1,25 @@
 # Changelog
 
-See the changelogs for the individual engines for more details for releases 9.0 and up
+See the changelogs for the individual engines for more details for releases 9.0
+and up.
+
+## 10.0.1 / 2024-06-28
+
+This is a bug fix and security release.
+
+* Update the dependency on `publify_core` from `~> 10.0.0` to `~> 10.0.2`. This
+  includes the following two security updates:
+
+   * Safely link target URLs for Redirects in admin ([publify_core#148] by [mvz])
+   * Upgrade jquery-ui-rails to version 7.0 ([publify_core#149] by [mvz])
+
+  See the `publify_core` changelog for further details.
+
+* Update various other dependencies (various pull requests)
+
+[publify_core#148]: https://github.com/publify/publify_core/pull/148
+[publify_core#149]: https://github.com/publify/publify_core/pull/149
+[mvz]: https://github.com/mvz
 
 ## 10.0.0 / 2023-06-25
 
@@ -284,6 +303,7 @@ This release updates dependencies due to security issues.
 ## 8.2.0
 
 ### Breaking/large changes
+
 * Update rails, jquery-rails and web-console to avoid security vulnerabilities (mvz)
 * Update dependencies (mvz, fdv)
 * Update to Rails 4.2 (mvz)
@@ -296,6 +316,7 @@ This release updates dependencies due to security issues.
 * Use HTML instead of XHTML in views (fdv)
 
 ### Other changes
+
 * Restore hiding of automatic redirects from admin interface (mvz)
 * Fix broken stylesheet link in bootstrap2 theme (hmallett)
 * Create a fonts folder for themes, to replicate the Rails default (hmallet)
@@ -337,6 +358,7 @@ This release updates dependencies due to security issues.
 ## 8.1.1
 
 Frédéric de Villamil (4):
+
 * Fixes broken autosave.
 * Fixes editor size for pages and articles.
 * Fixes publishing. Need to investigate why the specs did not break on that one.
@@ -345,10 +367,12 @@ Frédéric de Villamil (4):
 ## 8.1.0
 
 Frédéric de Villamil (2):
+
 * Adds missing users-style.css in assets precompile.
 * Updates Rails version
 
 Matijs van Zuijlen (47):
+
 * Fix spec for sending pings on Article save
 * Enforce correct join table name
 * Fix finders
@@ -398,6 +422,7 @@ Matijs van Zuijlen (47):
 * Make rendering notes in article list work
 
 Thomas Lecavelier (16):
+
 * Upgrade rails stack to 4.1.1
 * `eager_loading` mandatory in conf
 * Page caching removed from Rails4.0, return it as a Gem
@@ -405,7 +430,8 @@ Thomas Lecavelier (16):
 * WIP deprecated stuff conversion
 * Can't merge proc, you know…
 * `default_scope` explicitly require a block, now
-* `attr_accessible` no longer exist. User `params.require`/`permits` in controller instead.
+* `attr_accessible` no longer exist. User `params.require`/`permits` in
+  controller instead.
 * `default_scope` for Note
 * I hate you all… T_T match must specify HTTP method(s)
 * Can't use same alias for 2 differents routes…
@@ -416,6 +442,7 @@ Thomas Lecavelier (16):
 * Fix Blog.default
 
 regonn (3):
+
 * fix heroku config:set
 * delete unnecessary command
 * add heroku server restart command
@@ -423,21 +450,27 @@ regonn (3):
 ## 8.0.2
 
 Alexander Markov (1):
+
 * `.published_on` changed; see below
 
 Benoit C. Sirois (2):
+
 * Added some translations
 * Fixes link caching issue (All cached links are the same basically)
 
 Frédéric de Villamil (21):
-* Replaces the old Prototype based Lightbox with a more modern based on Bootstrap and Jquery.
+
+* Replaces the old Prototype based Lightbox with a more modern based on
+  Bootstrap and Jquery.
 * Fixes bootstrap use in the image gallery.
 * Porting the lightbox plugin to the new version.
 * Removing useless Javascript.
 * Fixes the specs
 * Fixes that very annoying bug in the editor save bar.
 * Fixing a bug where the article content is displayed twice when using the more tag.
-* Encloses the sidebar admin help text in a blue block (like every help text). Also fixes the style on the per widget submit button + removes button class on the cancel link (this should be the default)
+* Encloses the sidebar admin help text in a blue block (like every help text).
+  Also fixes the style on the per widget submit button + removes button class
+  on the cancel link (this should be the default)
 * Removes the btn class on cancel
 * Enables the close icon on the help messages
 * Fixes layout differences betwen the page form and the post form
@@ -445,7 +478,8 @@ Frédéric de Villamil (21):
 * Fixes articles search.
 * Fixes an encoding issue in the inbound link plugin.
 * Fixes the tag manager display issue.
-* Apparently, rendering an empty js.erb file on destroy makes the effective destroy work. Not sure why.
+* Apparently, rendering an empty js.erb file on destroy makes the effective
+  destroy work. Not sure why.
 * Fixes file upload.
 * Fixes dynamic comment state change.
 * Removes forgoten debug trace
@@ -453,9 +487,11 @@ Frédéric de Villamil (21):
 * Updating README and Publify version for 8.0.2 release
 
 Hans de Graaff (1):
+
 * Use a relative image path
 
 Matijs van Zuijlen (13):
+
 * Limit set of allowed comment parameters
 * Run db setup inside bundle on Travis CI
 * Upgrade to Rails 3.2.18
@@ -471,18 +507,23 @@ Matijs van Zuijlen (13):
 * Fix Twitter gem deprecations
 
 Soon Van (1):
+
 * Typos and capitals in README [ci skip]
 
 Thomas Lecavelier (2):
-* Fix #423: stutter article content
-* Excerpt is not editable anymore. Drop it even for `full_article_content` partial. Close #423
+
+* Fix [#423]: stutter article content
+* Excerpt is not editable anymore. Drop it even for `full_article_content`
+  partial. Close [#423]
 * Upgrade to Rails 3.2.17
 
 Tor Helland (2):
+
 * Synchronised Norwegian translation with the English en.yml.
 * Revised all of Norwegian translation.
 
 Yannick Francois (11):
+
 * Just a little cleanup of a spec
 * Add humans txt settingso
 * Really write to humans txt file
@@ -496,16 +537,26 @@ Yannick Francois (11):
 * Fix note helper. Back in application helper.
 
 slainer68 (1):
+
 * Travis build on 2.0 and 2.1
+
+[#423]: https://github.com/publify/publify/issues/423
 
 ## 8.0.1
 
-* #398: the user-style.css stylesheet is not loaded in the Bootstrap theme
-* #399: the note style is not applied.
-* #402, #410, #411: deployment crashes on Heroku (thank you @slainer68 for
+* [#398]: the user-style.css stylesheet is not loaded in the Bootstrap theme
+* [#399]: the note style is not applied.
+* [#402], [#410], [#411]: deployment crashes on Heroku (thank you @slainer68 for
   fixing that).
-* #412: the editor locally saves the content of the edited note, which means it
+* [#412]: the editor locally saves the content of the edited note, which means it
   reloads it when you edit another note, overwriting the legit content.
+
+[#398]: https://github.com/publify/publify/issues/398
+[#399]: https://github.com/publify/publify/issues/399
+[#402]: https://github.com/publify/publify/issues/402
+[#410]: https://github.com/publify/publify/issues/410
+[#411]: https://github.com/publify/publify/issues/411
+[#412]: https://github.com/publify/publify/issues/412
 
 ## Publify 8.0
 
@@ -595,4 +646,3 @@ platform][4].
 [2]: http://t37.net/is-coding-a-blogging-engine-still-worth-the-effort-in-2013-and-other-thoughts-about-content-publishing-tools.html
 [3]: https://github.com/publify/typographic
 [4]: https://demo-publify.herokuapp.com/
-
