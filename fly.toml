@@ -8,7 +8,6 @@
 app = "publify-demo"
 kill_signal = "SIGINT"
 kill_timeout = 5
-processes = []
 primary_region = "ams"
 console_command = "/rails/bin/rails console"
 
