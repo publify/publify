@@ -67,7 +67,7 @@ group :development do
   gem "rack-mini-profiler", "~> 3.0"
   # Spring speeds up development by keeping your application running in the
   # background. Read more: https://github.com/rails/spring
-  gem "spring", "~> 4.3.0"
+  gem "spring", "~> 4.4.0"
   gem "spring-commands-rspec", "~> 1.0"
 
   gem "fast_stack"
