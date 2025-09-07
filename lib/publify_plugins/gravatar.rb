@@ -7,6 +7,7 @@ require "avatar_plugin"
 module PublifyPlugins
   class Gravatar < AvatarPlugin
     extend ActionView::Helpers::TagHelper
+
     @description = "Provide user avatar image throught the http://gravatar.com service."
 
     class << self
