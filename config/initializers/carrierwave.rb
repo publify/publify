@@ -13,7 +13,7 @@ else
       config.fog_credentials = {
         provider: "AWS",
         aws_access_key_id: ENV.fetch("aws_access_key_id"),
-        aws_secret_access_key: ENV.fetch("aws_secret_access_key"),
+        aws_secret_access_key: ENV.fetch("aws_secret_access_key")
       }
 
       config.fog_directory  = ENV.fetch("aws_bucket")
