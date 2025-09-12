@@ -31,7 +31,7 @@ Bundler/DuplicatedGem:
 Capybara/ClickLinkOrButtonStyle:
   Enabled: false
 
-# Restore old default
+# Match style of regular expectations
 Capybara/NegationMatcher:
   EnforcedStyle: not_to
 
@@ -181,14 +181,6 @@ Style/StringLiteralsInInterpolation:
 # Prefer symbols to look like symbols
 Style/SymbolArray:
   EnforcedStyle: brackets
-
-# Prefer consistent lines for multi-line arrays
-Style/TrailingCommaInArrayLiteral:
-  EnforcedStyleForMultiline: comma
-
-# Prefer consistent lines for multi-line hashes
-Style/TrailingCommaInHashLiteral:
-  EnforcedStyleForMultiline: comma
 
 # Allow small arrays of words with quotes
 Style/WordArray:

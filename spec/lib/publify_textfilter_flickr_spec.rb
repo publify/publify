@@ -22,7 +22,7 @@ RSpec.describe "the Flickr text filter plugin", type: :model do
         "height" => "75",
         "source" => "http://photos23.flickr.com/31366117_b1a791d68e_s.jpg",
         "label" => "Square",
-        "width" => "75",
+        "width" => "75"
       },
       {
         "url" => "http://www.flickr.com/photo_zoom.gne?id=31366117&size=t",
@@ -35,29 +35,29 @@ RSpec.describe "the Flickr text filter plugin", type: :model do
         "height" => "240",
         "source" => "http://photos23.flickr.com/31366117_b1a791d68e_m.jpg",
         "label" => "Small",
-        "width" => "160",
+        "width" => "160"
       },
       {
         "url" => "http://www.flickr.com/photo_zoom.gne?id=31366117&size=m",
         "height" => "500",
         "source" => "http://photos23.flickr.com/31366117_b1a791d68e.jpg",
         "label" => "Medium",
-        "width" => "333",
+        "width" => "333"
       },
       {
         "url" => "http://www.flickr.com/photo_zoom.gne?id=31366117&size=l",
         "height" => "1024",
         "source" => "http://photos23.flickr.com/31366117_b1a791d68e_b.jpg",
         "label" => "Large",
-        "width" => "683",
+        "width" => "683"
       },
       {
         "url" => "http://www.flickr.com/photo_zoom.gne?id=31366117&size=o",
         "height" => "1536",
         "source" => "http://photos23.flickr.com/31366117_b1a791d68e_o.jpg",
         "label" => "Original",
-        "width" => "1024",
-      },
+        "width" => "1024"
+      }
     ]
   end
 
