@@ -36,8 +36,8 @@ RSpec.describe TagsController, type: :controller do
         end
 
         it "has good rss feed link in head" do
-          rss_link = parsed_body.
-            find "head>link[href='http://test.host/tag/foo.rss']", visible: false
+          rss_link = parsed_body
+            .find "head>link[href='http://test.host/tag/foo.rss']", visible: false
           aggregate_failures do
             expect(rss_link["rel"]).to eq "alternate"
             expect(rss_link["type"]).to eq "application/rss+xml"
@@ -46,8 +46,8 @@ RSpec.describe TagsController, type: :controller do
         end
 
         it "has good atom feed link in head" do
-          atom_link = parsed_body.
-            find "head>link[href='http://test.host/tag/foo.atom']", visible: false
+          atom_link = parsed_body
+            .find "head>link[href='http://test.host/tag/foo.atom']", visible: false
           aggregate_failures do
             expect(atom_link["rel"]).to eq "alternate"
             expect(atom_link["type"]).to eq "application/atom+xml"
@@ -56,8 +56,8 @@ RSpec.describe TagsController, type: :controller do
         end
 
         it "has a canonical URL" do
-          expect(response.body).
-            to have_css("head>link[href='#{blog.base_url}/tag/foo']", visible: :all)
+          expect(response.body)
+            .to have_css("head>link[href='#{blog.base_url}/tag/foo']", visible: :all)
         end
 
         context "with a password protected article" do

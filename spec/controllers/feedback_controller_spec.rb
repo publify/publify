@@ -30,9 +30,9 @@ RSpec.describe FeedbackController, type: :controller do
       end
 
       it "renders each item with the correct template" do
-        expect(response).
-          to render_template(partial: "shared/_atom_item_comment", count: 2).
-          and render_template(partial: "shared/_atom_item_trackback", count: 2)
+        expect(response)
+          .to render_template(partial: "shared/_atom_item_comment", count: 2)
+          .and render_template(partial: "shared/_atom_item_trackback", count: 2)
       end
     end
 
@@ -44,9 +44,9 @@ RSpec.describe FeedbackController, type: :controller do
       end
 
       it "renders each item with the correct template" do
-        expect(response).
-          to render_template(partial: "shared/_rss_item_comment", count: 2).
-          and render_template(partial: "shared/_rss_item_trackback", count: 2)
+        expect(response)
+          .to render_template(partial: "shared/_rss_item_comment", count: 2)
+          .and render_template(partial: "shared/_rss_item_trackback", count: 2)
       end
     end
   end

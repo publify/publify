@@ -64,8 +64,8 @@ RSpec.describe "the Lightbox text filter plugin", type: :model do
   before do
     allow(flickr).to receive(:photos).and_return flickr_photos
     allow(flickr_photos).to receive(:getInfo).and_raise "Photo not found"
-    allow(flickr_photos).to receive(:getInfo).with(photo_id: "31366117").
-      and_return flickr_photo_info
+    allow(flickr_photos).to receive(:getInfo).with(photo_id: "31366117")
+      .and_return flickr_photo_info
     allow(flickr_photos).to receive(:getSizes).and_return flickr_photo_sizes
   end
 
@@ -73,45 +73,45 @@ RSpec.describe "the Lightbox text filter plugin", type: :model do
     let(:filter) { TextFilter.none }
 
     it "uses the given thumb image size" do
-      result = filter.
-        filter_text('<publify:lightbox img="31366117" thumbsize="Thumbnail"' \
-                    ' displaysize="Large" style="float:left"/>')
-      expect(result).
-        to eq '<a href="//photos23.flickr.com/31366117_b1a791d68e_b.jpg"' \
-              ' data-toggle="lightbox" title="Matz">' \
-              '<img src="//photos23.flickr.com/31366117_b1a791d68e_t.jpg"' \
-              ' width="67" height="100" alt="Matz" title="Matz"/></a>' \
-              "<p class=\"caption\" style=\"width:67px\">This is Matz, Ruby's creator</p>"
+      result = filter
+        .filter_text('<publify:lightbox img="31366117" thumbsize="Thumbnail"' \
+                     ' displaysize="Large" style="float:left"/>')
+      expect(result)
+        .to eq '<a href="//photos23.flickr.com/31366117_b1a791d68e_b.jpg"' \
+               ' data-toggle="lightbox" title="Matz">' \
+               '<img src="//photos23.flickr.com/31366117_b1a791d68e_t.jpg"' \
+               ' width="67" height="100" alt="Matz" title="Matz"/></a>' \
+               "<p class=\"caption\" style=\"width:67px\">This is Matz, Ruby's creator</p>"
     end
 
     it "uses default thumb image size if none is given" do
-      result = filter.
-        filter_text('<publify:lightbox img="31366117" displaysize="Large"/>')
-      expect(result).
-        to eq '<a href="//photos23.flickr.com/31366117_b1a791d68e_b.jpg"' \
-              ' data-toggle="lightbox" title="Matz">' \
-              '<img src="//photos23.flickr.com/31366117_b1a791d68e_s.jpg"' \
-              ' width="75" height="75" alt="Matz" title="Matz"/></a>' \
-              "<p class=\"caption\" style=\"width:75px\">This is Matz, Ruby's creator</p>"
+      result = filter
+        .filter_text('<publify:lightbox img="31366117" displaysize="Large"/>')
+      expect(result)
+        .to eq '<a href="//photos23.flickr.com/31366117_b1a791d68e_b.jpg"' \
+               ' data-toggle="lightbox" title="Matz">' \
+               '<img src="//photos23.flickr.com/31366117_b1a791d68e_s.jpg"' \
+               ' width="75" height="75" alt="Matz" title="Matz"/></a>' \
+               "<p class=\"caption\" style=\"width:75px\">This is Matz, Ruby's creator</p>"
     end
 
     it "uses default display image size if none is given" do
       result = filter.filter_text('<publify:lightbox img="31366117"/>')
-      expect(result).
-        to eq '<a href="//photos23.flickr.com/31366117_b1a791d68e_o.jpg"' \
-              ' data-toggle="lightbox" title="Matz">' \
-              '<img src="//photos23.flickr.com/31366117_b1a791d68e_s.jpg"' \
-              ' width="75" height="75" alt="Matz" title="Matz"/></a>' \
-              "<p class=\"caption\" style=\"width:75px\">This is Matz, Ruby's creator</p>"
+      expect(result)
+        .to eq '<a href="//photos23.flickr.com/31366117_b1a791d68e_o.jpg"' \
+               ' data-toggle="lightbox" title="Matz">' \
+               '<img src="//photos23.flickr.com/31366117_b1a791d68e_s.jpg"' \
+               ' width="75" height="75" alt="Matz" title="Matz"/></a>' \
+               "<p class=\"caption\" style=\"width:75px\">This is Matz, Ruby's creator</p>"
     end
 
     it "works with caption" do
       result = filter.filter_text('<publify:lightbox img="31366117" caption=""/>')
-      expect(result).
-        to eq '<a href="//photos23.flickr.com/31366117_b1a791d68e_o.jpg"' \
-              ' data-toggle="lightbox" title="Matz">' \
-              '<img src="//photos23.flickr.com/31366117_b1a791d68e_s.jpg"' \
-              ' width="75" height="75" alt="Matz" title="Matz"/></a>'
+      expect(result)
+        .to eq '<a href="//photos23.flickr.com/31366117_b1a791d68e_o.jpg"' \
+               ' data-toggle="lightbox" title="Matz">' \
+               '<img src="//photos23.flickr.com/31366117_b1a791d68e_s.jpg"' \
+               ' width="75" height="75" alt="Matz" title="Matz"/></a>'
     end
   end
 end

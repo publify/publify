@@ -64,8 +64,8 @@ RSpec.describe "the Flickr text filter plugin", type: :model do
   before do
     allow(flickr).to receive(:photos).and_return flickr_photos
     allow(flickr_photos).to receive(:getInfo).and_raise "Photo not found"
-    allow(flickr_photos).to receive(:getInfo).with(photo_id: "31366117").
-      and_return flickr_photo_info
+    allow(flickr_photos).to receive(:getInfo).with(photo_id: "31366117")
+      .and_return flickr_photo_info
     allow(flickr_photos).to receive(:getSizes).and_return flickr_photo_sizes
   end
 
@@ -73,8 +73,8 @@ RSpec.describe "the Flickr text filter plugin", type: :model do
     let(:filter) { TextFilter.none }
 
     it "shows with default settings" do
-      result = filter.
-        filter_text('<publify:flickr img="31366117" size="Square" style="float:left"/>')
+      result = filter
+        .filter_text('<publify:flickr img="31366117" size="Square" style="float:left"/>')
       expect(result).to eq '<div style="float:left" class="flickrplugin">' \
                            '<a href="http://www.flickr.com/users/scottlaird/31366117">' \
                            '<img src="//photos23.flickr.com/31366117_b1a791d68e_s.jpg"' \
@@ -113,8 +113,8 @@ RSpec.describe "the Flickr text filter plugin", type: :model do
     let(:filter) { TextFilter.markdown }
 
     it "correctly interprets the macro" do
-      result = filter.
-        filter_text('<publify:flickr img="31366117" size="Square" style="float:left"/>')
+      result = filter
+        .filter_text('<publify:flickr img="31366117" size="Square" style="float:left"/>')
       expect(result).to eq '<div style="float:left" class="flickrplugin">' \
                            '<a href="http://www.flickr.com/users/scottlaird/31366117">' \
                            '<img src="//photos23.flickr.com/31366117_b1a791d68e_s.jpg"' \
