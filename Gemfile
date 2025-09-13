@@ -81,7 +81,7 @@ group :test do
   gem "drb", "~> 2.2.3"
   gem "mutex_m", "~> 0.3.0"
 
-  gem "feedjira", "~> 3.2"
+  gem "feedjira", "~> 4.0"
   gem "launchy", "~> 3.0"
   gem "rails-controller-testing", "~> 1.0.1"
   gem "shoulda-matchers", "~> 6.0"
