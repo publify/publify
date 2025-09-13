@@ -17,8 +17,8 @@ RSpec.describe PublifyPlugins::Gravatar do
       element = doc.root
       aggregate_failures do
         expect(element.name).to eq "img"
-        expect(element.attr("src")).
-          to eq "https://www.gravatar.com/avatar.php?gravatar_id=#{digest}&size=48"
+        expect(element.attr("src"))
+          .to eq "https://www.gravatar.com/avatar.php?gravatar_id=#{digest}&size=48"
       end
     end
   end

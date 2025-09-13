@@ -27,20 +27,17 @@ Rails:
 Bundler/DuplicatedGem:
   Enabled: false
 
-# Doesn't work well yet
+# Require tests to specify whether an element is a link or a button
 Capybara/ClickLinkOrButtonStyle:
-  Enabled: false
+  EnforcedStyle: strict
 
 # Match style of regular expectations
 Capybara/NegationMatcher:
   EnforcedStyle: not_to
 
+# Make BeginEndAlignment behavior match EndAlignment
 Layout/BeginEndAlignment:
   EnforcedStyleAlignWith: begin
-
-# Place . on the previous line
-Layout/DotPosition:
-  EnforcedStyle: trailing
 
 # Spaces in strings with line continuations go at the beginning of the line.
 Layout/LineContinuationLeadingSpace:
@@ -83,7 +80,6 @@ Lint/AssignmentInCondition:
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
-    - '**/*.gemspec'
 
 # Initial schema has a very large change method
 Metrics/MethodLength:
@@ -109,7 +105,6 @@ Rails/BulkChangeTable:
 Rails/RakeEnvironment:
   Exclude:
     - 'lib/tasks/i18n.rake'
-    - 'lib/tasks/manifests.rake'
     - 'lib/tasks/rspec.rake'
     - 'lib/tasks/rubocop.rake'
 

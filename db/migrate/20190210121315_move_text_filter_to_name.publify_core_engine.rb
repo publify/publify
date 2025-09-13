@@ -47,23 +47,23 @@ class MoveTextFilterToName < ActiveRecord::Migration[5.2]
   end
 
   def down
-    TextFilter.
-      create_with(description: "None", markup: "none", filters: [], params: {}).
-      find_or_create_by!(name: "none")
-    TextFilter.
-      create_with(description: "Markdown", markup: "markdown", filters: [], params: {}).
-      find_or_create_by!(name: "markdown")
-    TextFilter.
-      create_with(description: "SmartyPants", markup: "none",
-                  filters: [:smartypants], params: {}).
-      find_or_create_by!(name: "smartypants")
-    TextFilter.
-      create_with(description: "Markdown with SmartyPants", markup: "markdown",
-                  filters: [:smartypants], params: {}).
-      find_or_create_by!(name: "markdown smartypants")
-    TextFilter.
-      create_with(description: "Textile", markup: "textile", filters: [], params: {}).
-      find_or_create_by!(name: "textile")
+    TextFilter
+      .create_with(description: "None", markup: "none", filters: [], params: {})
+      .find_or_create_by!(name: "none")
+    TextFilter
+      .create_with(description: "Markdown", markup: "markdown", filters: [], params: {})
+      .find_or_create_by!(name: "markdown")
+    TextFilter
+      .create_with(description: "SmartyPants", markup: "none",
+                   filters: [:smartypants], params: {})
+      .find_or_create_by!(name: "smartypants")
+    TextFilter
+      .create_with(description: "Markdown with SmartyPants", markup: "markdown",
+                   filters: [:smartypants], params: {})
+      .find_or_create_by!(name: "markdown smartypants")
+    TextFilter
+      .create_with(description: "Textile", markup: "textile", filters: [], params: {})
+      .find_or_create_by!(name: "textile")
 
     Content.find_each do |content|
       filter_name = content.text_filter_name

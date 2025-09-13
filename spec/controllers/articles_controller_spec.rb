@@ -28,8 +28,8 @@ RSpec.describe ArticlesController, type: :controller do
             aggregate_failures do
               expect(response.body).to have_text "bar"
               expect(response.body).not_to have_text "foo"
-              expect(response.body).
-                not_to have_text I18n.t!("articles.article_excerpt.continue_reading")
+              expect(response.body)
+                .not_to have_text I18n.t!("articles.article_excerpt.continue_reading")
             end
           end
         end
@@ -42,27 +42,27 @@ RSpec.describe ArticlesController, type: :controller do
           end
 
           it "has good rss feed link" do
-            expect(response.body).
-              to have_css("head>link[href=\"#{article.permalink_url}.rss\"]",
-                          visible: :all)
+            expect(response.body)
+              .to have_css("head>link[href=\"#{article.permalink_url}.rss\"]",
+                           visible: :all)
           end
 
           it "has good atom feed link" do
-            expect(response.body).
-              to have_css("head>link[href=\"#{article.permalink_url}.atom\"]",
-                          visible: :all)
+            expect(response.body)
+              .to have_css("head>link[href=\"#{article.permalink_url}.atom\"]",
+                           visible: :all)
           end
 
           it "has a canonical url" do
-            expect(response.body).
-              to have_css("head>link[href='#{article.permalink_url}']",
-                          visible: :all)
+            expect(response.body)
+              .to have_css("head>link[href='#{article.permalink_url}']",
+                           visible: :all)
           end
 
           it "has a good title" do
-            expect(response.body).
-              to have_css("title", text: "A big article | test blog",
-                                   visible: :all)
+            expect(response.body)
+              .to have_css("title", text: "A big article | test blog",
+                                    visible: :all)
           end
         end
 
@@ -123,25 +123,25 @@ RSpec.describe ArticlesController, type: :controller do
           end
 
           it "has good link feed rss" do
-            expect(response.body).
-              to have_css('head>link[href="http://test.host/articles.rss"]',
-                          visible: :all)
+            expect(response.body)
+              .to have_css('head>link[href="http://test.host/articles.rss"]',
+                           visible: :all)
           end
 
           it "has good link feed atom" do
-            expect(response.body).
-              to have_css('head>link[href="http://test.host/articles.atom"]',
-                          visible: :all)
+            expect(response.body)
+              .to have_css('head>link[href="http://test.host/articles.atom"]',
+                           visible: :all)
           end
 
           it "has a canonical url" do
-            expect(response.body).
-              to have_css("head>link[href='#{blog.base_url}/']", visible: :all)
+            expect(response.body)
+              .to have_css("head>link[href='#{blog.base_url}/']", visible: :all)
           end
 
           it "has good title" do
-            expect(response.body).
-              to have_css("title", text: "test blog | test subtitle", visible: :all)
+            expect(response.body)
+              .to have_css("title", text: "test blog | test subtitle", visible: :all)
           end
         end
 
@@ -154,8 +154,8 @@ RSpec.describe ArticlesController, type: :controller do
             aggregate_failures do
               expect(response.body).not_to have_text "bar"
               expect(response.body).to have_text "foo"
-              expect(response.body).
-                to have_text I18n.t!("articles.article_excerpt.continue_reading")
+              expect(response.body)
+                .to have_text I18n.t!("articles.article_excerpt.continue_reading")
             end
           end
         end
@@ -167,14 +167,14 @@ RSpec.describe ArticlesController, type: :controller do
           end
 
           it "has a canonical url" do
-            expect(response.body).
-              to have_css("head>link[href='#{blog.base_url}/2004/4']",
-                          visible: :all)
+            expect(response.body)
+              .to have_css("head>link[href='#{blog.base_url}/2004/4']",
+                           visible: :all)
           end
 
           it "has a good title" do
-            expect(response.body).
-              to have_css("title", text: "Archives for test blog", visible: :all)
+            expect(response.body)
+              .to have_css("title", text: "Archives for test blog", visible: :all)
           end
         end
       end
@@ -197,8 +197,8 @@ RSpec.describe ArticlesController, type: :controller do
         end
 
         it "renders content with markdown interpreted and html tags removed" do
-          expect(response.body).
-            to have_css(
+          expect(response.body)
+            .to have_css(
               "div", text: /in markdown format\s+we\s+use\s+ok to define a link/)
         end
       end
@@ -219,8 +219,8 @@ RSpec.describe ArticlesController, type: :controller do
 
           aggregate_failures do
             expect(response).to render_template(:search)
-            expect(assigns[:articles]).
-              to contain_exactly matching_article, protected_article
+            expect(assigns[:articles])
+              .to contain_exactly matching_article, protected_article
             expect(response.body).to have_text "public foobar"
             expect(response.body).not_to have_text "protected foobar"
           end
@@ -229,33 +229,33 @@ RSpec.describe ArticlesController, type: :controller do
         it "has good rss feed link" do
           get :search, params: { q: "oba" }
 
-          expect(response.body).
-            to have_css('head>link[href="http://test.host/search/oba.rss"]',
-                        visible: :all)
+          expect(response.body)
+            .to have_css('head>link[href="http://test.host/search/oba.rss"]',
+                         visible: :all)
         end
 
         it "has good atom feed link" do
           get :search, params: { q: "oba" }
 
-          expect(response.body).
-            to have_css('head>link[href="http://test.host/search/oba.atom"]',
-                        visible: :all)
+          expect(response.body)
+            .to have_css('head>link[href="http://test.host/search/oba.atom"]',
+                         visible: :all)
         end
 
         it "has a canonical url" do
           get :search, params: { q: "oba" }
 
-          expect(response.body).
-            to have_css("head>link[href='#{blog.base_url}/search/oba']",
-                        visible: :all)
+          expect(response.body)
+            .to have_css("head>link[href='#{blog.base_url}/search/oba']",
+                         visible: :all)
         end
 
         it "has a good title" do
           get :search, params: { q: "oba" }
 
-          expect(response.body).
-            to have_css("title", text: "Results for oba | test blog",
-                                 visible: :all)
+          expect(response.body)
+            .to have_css("title", text: "Results for oba | test blog",
+                                  visible: :all)
         end
 
         it "renders feed rss by search" do
@@ -307,17 +307,17 @@ RSpec.describe ArticlesController, type: :controller do
           end
 
           it "has the correct self-link and title" do
-            expect(response.body).
-              to have_css("head>link[href='#{blog.base_url}/archives']",
-                          visible: :all).
-              and have_css("title", text: "Archives for test blog", visible: :all)
+            expect(response.body)
+              .to have_css("head>link[href='#{blog.base_url}/archives']",
+                           visible: :all)
+              .and have_css("title", text: "Archives for test blog", visible: :all)
           end
 
           it "shows the current month only once" do
-            expect(response.body).
-              to have_css("h3", count: 1).
-              and have_text I18n.l(articles.first.published_at,
-                                   format: :letters_month_with_year)
+            expect(response.body)
+              .to have_css("h3", count: 1)
+              .and have_text I18n.l(articles.first.published_at,
+                                    format: :letters_month_with_year)
           end
         end
 
@@ -355,8 +355,8 @@ RSpec.describe ArticlesController, type: :controller do
               aggregate_failures do
                 expect(response.body).to have_text "bar"
                 expect(response.body).not_to have_text "foo"
-                expect(response.body).
-                  not_to have_text I18n.t!("articles.article_excerpt.continue_reading")
+                expect(response.body)
+                  .not_to have_text I18n.t!("articles.article_excerpt.continue_reading")
               end
             end
           end

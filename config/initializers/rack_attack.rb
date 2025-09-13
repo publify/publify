@@ -10,7 +10,7 @@ Rack::Attack.throttle("password-reset-requests/ip", limit: 20, period: 1.hour) d
   req.ip if req.post? && req.path.start_with?("/users/password")
 end
 
-ActiveSupport::Notifications.
-  subscribe("rack.attack") do |_name, _start, _finish, _request_id, req|
+ActiveSupport::Notifications
+  .subscribe("rack.attack") do |_name, _start, _finish, _request_id, req|
   Rails.logger.info "Throttled #{req.env["rack.attack.match_discriminator"]}"
 end
