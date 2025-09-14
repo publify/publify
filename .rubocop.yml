@@ -19,6 +19,7 @@ AllCops:
     - 'db/schema.rb'
   NewCops: enable
   TargetRubyVersion: 3.2
+  TargetRailsVersion: 7.0
 
 Rails:
   Enabled: true
