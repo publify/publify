@@ -16,7 +16,7 @@ module Publify
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
-    config.autoload_lib(ignore: %w(assets tasks))
+    config.autoload_lib(ignore: %w(assets tasks generators))
 
     # Configuration for the application, engines, and railties goes here.
     #
@@ -27,11 +27,6 @@ module Publify
     # config.eager_load_paths << Rails.root.join("extras")
     config.action_dispatch.cookies_serializer = :hybrid
   end
-
-  # Load included libraries.
-  require "publify_sidebar"
-  require "publify_textfilters"
-  require "publify_plugins/gravatar"
 
   Theme.register_themes Rails.root.join("themes")
 end

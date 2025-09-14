@@ -79,7 +79,7 @@ class PublifyApp
           "<div style=\"#{style}\" class=\"flickrplugin\"><a href=\"#{imagelink}\">" \
             "<img src=\"#{imageurl}\" width=\"#{width}\" height=\"#{height}\"" \
             " alt=\"#{alt}\" title=\"#{title}\"/></a>#{captioncode}</div>"
-        rescue => e
+        rescue StandardError => e
           logger.info e.message
           "<div class='broken_flickr_link'>`#{img}' could not be displayed because:" \
             " <br />#{CGI.escapeHTML(e.message)}</div>"
