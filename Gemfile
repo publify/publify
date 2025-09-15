@@ -44,7 +44,7 @@ group :development, :test do
   gem "capybara", "~> 3.9"
   gem "factory_bot", "~> 6.2"
   gem "i18n-tasks", "~> 1.0.9", require: false
-  gem "rspec-rails", "~> 6.0"
+  gem "rspec-rails", "~> 7.1"
   gem "rubocop", "~> 1.80.2", require: false
   gem "rubocop-capybara", "~> 2.22.1", require: false
   gem "rubocop-factory_bot", "~> 2.27.1", require: false
