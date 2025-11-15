@@ -15,8 +15,6 @@ name: CI
       - master
       - 10-0-stable
       - 9-2-stable
-  schedule:
-    - cron: '16 4 12 * *'
   workflow_dispatch:
 
 jobs:
