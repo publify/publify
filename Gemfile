@@ -7,7 +7,7 @@ gem "rails", ["~> 7.0.8", ">= 7.0.8.7"]
 
 gem "mysql2"
 gem "pg"
-gem "sqlite3", "~> 1.7.0"
+gem "sqlite3", "~> 2.8.1"
 
 # Store sessions in the database
 gem "activerecord-session_store", "~> 2.2.0"
