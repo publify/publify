@@ -84,7 +84,7 @@ group :test do
   gem "feedjira", "~> 4.0"
   gem "launchy", "~> 3.0"
   gem "rails-controller-testing", "~> 1.0.1"
-  gem "shoulda-matchers", "~> 6.0"
+  gem "shoulda-matchers", "~> 7.0"
   gem "timecop", "~> 0.9.1"
   gem "webmock", "~> 3.3"
 end
