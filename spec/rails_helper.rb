@@ -42,13 +42,8 @@ require "publify_core/testing_support/factories/users"
 Rails.root.glob("spec/support/**/*.rb").each { |f| require f }
 
 # Checks for pending migrations and applies them before tests are run.
-# If you are not using ActiveRecord, you can remove these lines.
-begin
-  ActiveRecord::Migration.maintain_test_schema!
-rescue ActiveRecord::PendingMigrationError => e
-  puts e.to_s.strip
-  exit 1
-end
+# If you are not using ActiveRecord, you can remove this line.
+ActiveRecord::Migration.maintain_test_schema!
 
 class ActionView::TestCase::TestController
   include Rails.application.routes.url_helpers
