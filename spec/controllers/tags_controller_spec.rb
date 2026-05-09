@@ -22,7 +22,7 @@ RSpec.describe TagsController, type: :controller do
 
         it "lists tags" do
           get "index"
-          expect(response.body).to have_content @tag.name
+          expect(response.body).to have_text @tag.name
         end
       end
 
