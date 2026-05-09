@@ -12,5 +12,5 @@ end
 
 ActiveSupport::Notifications
   .subscribe("rack.attack") do |_name, _start, _finish, _request_id, req|
-    Rails.logger.info "Throttled #{req.env["rack.attack.match_discriminator"]}"
+  Rails.logger.info "Throttled #{req.env["rack.attack.match_discriminator"]}"
 end
