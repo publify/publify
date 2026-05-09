@@ -33,7 +33,7 @@ Capybara/ClickLinkOrButtonStyle:
   EnforcedStyle: strict
 
 # Match style of regular expectations
-Capybara/NegationMatcher:
+Capybara/RSpec/NegationMatcher:
   EnforcedStyle: not_to
 
 # Make BeginEndAlignment behavior match EndAlignment
