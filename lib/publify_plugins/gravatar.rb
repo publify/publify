@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "publify_plugins"
-require "avatar_plugin"
+require "publify_plugins/avatar_plugin"
 
 # PublifyAvatarGravatar
 module PublifyPlugins

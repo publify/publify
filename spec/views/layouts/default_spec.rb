@@ -9,7 +9,7 @@ RSpec.describe "layouts/default.html.erb", type: :view do
         assign(:keywords, %w(foo bar))
         assign(:auto_discovery_url_atom, "")
         assign(:auto_discovery_url_rss, "")
-        @controller.view_paths.unshift(view_path) if theme
+        controller.prepend_view_path view_path if theme
       end
 
       it "has keyword meta tag when use_meta_keyword set to true" do

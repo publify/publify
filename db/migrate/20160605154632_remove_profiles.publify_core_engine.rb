@@ -2,7 +2,7 @@
 
 class RemoveProfiles < ActiveRecord::Migration[4.2]
   class Profile < ActiveRecord::Base
-    serialize :modules
+    serialize :modules, coder: YAML
   end
 
   def up

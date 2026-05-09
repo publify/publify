@@ -20,8 +20,8 @@ class MoveTextFilterToName < ActiveRecord::Migration[5.2]
   end
 
   class TextFilter < ActiveRecord::Base
-    serialize :filters, Array
-    serialize :params, Hash
+    serialize :filters, Array, coder: YAML
+    serialize :params, Hash, coder: YAML
   end
 
   def up
