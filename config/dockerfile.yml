@@ -6,3 +6,5 @@ options:
     fly_launch_runtime: rails
   postgresql: true
   prepare: false
+  instructions:
+    deploy: config/docker-supercronic
