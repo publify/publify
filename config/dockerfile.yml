@@ -7,4 +7,4 @@ options:
   postgresql: true
   prepare: false
   instructions:
-    deploy: config/docker-supercronic
+    build: config/docker-supercronic
