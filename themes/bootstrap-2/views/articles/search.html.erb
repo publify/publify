@@ -4,7 +4,7 @@
 <div id="article-<%= article.id %>">
   <h2><%= link_to_permalink(article, article.title) %></h2>
   <% if article.password.blank? %>
-    <p><%= article.html(:body).strip_html.slice(0, 300) %> [...]</p>
+    <p><%= article.excerpt_text(300) %></p>
   <% end %>
   <div class='author'>
     Le <%= l(article.published_at, format: :with_spaces) %>
