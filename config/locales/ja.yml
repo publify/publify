@@ -22,7 +22,7 @@ ja:
     comment:
       by: by
   layouts:
-    default:
+    application:
       archives: Archives
       statuses: Statuses
   pagination:

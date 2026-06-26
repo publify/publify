@@ -23,7 +23,7 @@ fr:
     comment:
       by: par
   layouts:
-    default:
+    application:
       archives: Archives
       statuses: Statuts
   pagination:

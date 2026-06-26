@@ -22,7 +22,7 @@ da:
     comment:
       by: af
   layouts:
-    default:
+    application:
       archives: Arkiver
       statuses: Statuser
   pagination:

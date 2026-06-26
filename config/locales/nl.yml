@@ -22,7 +22,7 @@ nl:
     comment:
       by: by
   layouts:
-    default:
+    application:
       archives: Archieven
       statuses: Statuses
   pagination:

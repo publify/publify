@@ -22,7 +22,7 @@ it:
     comment:
       by: da
   layouts:
-    default:
+    application:
       archives: Archives
       statuses: Statuses
   pagination:
