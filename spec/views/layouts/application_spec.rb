@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe "layouts/default.html.erb", type: :view do
+RSpec.describe "layouts/application.html.erb", type: :view do
   with_each_theme do |theme, view_path|
     describe "with theme #{theme}" do
       before do

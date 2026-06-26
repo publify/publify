@@ -23,7 +23,7 @@ es-MX:
     comment:
       by: por
   layouts:
-    default:
+    application:
       archives: Archives
       statuses: Statuses
   pagination:

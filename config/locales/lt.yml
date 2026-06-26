@@ -23,7 +23,7 @@ lt:
     comment:
       by: bei
   layouts:
-    default:
+    application:
       archives: Archives
       statuses: Statuses
   pagination:

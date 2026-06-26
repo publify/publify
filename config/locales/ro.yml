@@ -23,7 +23,7 @@ ro:
     comment:
       by: de
   layouts:
-    default:
+    application:
       archives: Archives
       statuses: Statuses
   pagination:

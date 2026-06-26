@@ -23,7 +23,7 @@ pt-BR:
     comment:
       by: por
   layouts:
-    default:
+    application:
       archives: Arquivos
       statuses: Status
   pagination:

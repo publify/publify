@@ -23,7 +23,7 @@ nb:
     comment:
       by: av
   layouts:
-    default:
+    application:
       archives: Archives
       statuses: Statusoppdateringer
   pagination:
