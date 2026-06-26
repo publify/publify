@@ -38,9 +38,8 @@ RSpec.describe "comments/_comment.html.erb", type: :view do
           it "sanitizes content rendered with the #{value} textfilter" do
             blog.comment_text_filter = value
 
-            ActiveSupport::Deprecation.silence do
-              render partial: "comments/comment", locals: { comment: @comment }
-            end
+            render partial: "comments/comment", locals: { comment: @comment }
+
             expect(rendered).to have_css(".content")
             expect(rendered).to have_css(".author")
 
@@ -171,9 +170,8 @@ RSpec.describe "comments/_comment.html.erb", type: :view do
           it "sanitizes content rendered with the #{value} textfilter" do
             blog.comment_text_filter = value
 
-            ActiveSupport::Deprecation.silence do
-              render partial: "comments/comment", locals: { comment: @comment }
-            end
+            render partial: "comments/comment", locals: { comment: @comment }
+
             expect(rendered).to have_css(".content")
             expect(rendered).to have_css(".author")
 
