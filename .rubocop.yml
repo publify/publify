@@ -29,8 +29,8 @@ Bundler/DuplicatedGem:
   Enabled: false
 
 # Require tests to specify whether an element is a link or a button
-Capybara/ClickLinkOrButtonStyle:
-  EnforcedStyle: strict
+Capybara/AmbiguousClick:
+  Enabled: true
 
 # Match style of regular expectations
 Capybara/RSpec/NegationMatcher:
