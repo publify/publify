@@ -17,7 +17,7 @@ RSpec.feature "Changing themes", type: :feature do
 
     expect(page).to have_text "plain - Active theme"
 
-    click_link_or_button "Use this theme"
+    click_button "Use this theme"
 
     expect(page).to have_text "bootstrap-2 - Active theme"
   end
