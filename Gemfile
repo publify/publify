@@ -10,7 +10,7 @@ gem "pg"
 gem "sqlite3", "~> 2.9.4"
 
 # Store sessions in the database
-gem "activerecord-session_store", "~> 2.2.0"
+gem "activerecord-session_store", "~> 2.3.0"
 
 # Use Puma as the app server
 gem "puma", "~> 8.0"
