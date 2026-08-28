@@ -17,7 +17,9 @@ RSpec.feature "Changing themes", type: :feature do
 
     expect(page).to have_text "plain - Active theme"
 
-    click_button "Use this theme"
+    within("form[action='#{switchto_admin_themes_path(theme: "bootstrap-2")}']") do
+      click_button "Use this theme"
+    end
 
     expect(page).to have_text "bootstrap-2 - Active theme"
   end
