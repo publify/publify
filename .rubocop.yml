@@ -47,6 +47,8 @@ Layout/LineContinuationLeadingSpace:
 # Lenient line length that fits in pull requests
 Layout/LineLength:
   Max: 92
+  Exclude:
+    - 'config/initializers/new_framework_defaults_*.rb'
 
 Layout/MultilineMethodCallBraceLayout:
   EnforcedStyle: same_line

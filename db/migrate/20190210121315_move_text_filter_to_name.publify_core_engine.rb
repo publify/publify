@@ -20,8 +20,8 @@ class MoveTextFilterToName < ActiveRecord::Migration[5.2]
   end
 
   class TextFilter < ActiveRecord::Base
-    serialize :filters, Array, coder: YAML
-    serialize :params, Hash, coder: YAML
+    serialize :filters, type: Array, coder: YAML
+    serialize :params, type: Hash, coder: YAML
   end
 
   def up
@@ -54,8 +54,8 @@ class MoveTextFilterToName < ActiveRecord::Migration[5.2]
       .create_with(description: "Markdown", markup: "markdown", filters: [], params: {})
       .find_or_create_by!(name: "markdown")
     TextFilter
-      .create_with(description: "SmartyPants", markup: "none",
-                   filters: [:smartypants], params: {})
+      .create_with(description: "SmartyPants", markup: "none", filters: [:smartypants],
+                   params: {})
       .find_or_create_by!(name: "smartypants")
     TextFilter
       .create_with(description: "Markdown with SmartyPants", markup: "markdown",
