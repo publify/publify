@@ -34,14 +34,14 @@ class FixesBuggyArticlesAndNotes < ActiveRecord::Migration[4.2]
   def self.up
     say "Fixing contents permalinks, this may take some time"
 
-    contents = Content.where("permalink is ? or permalink = ?", nil, "")
+    contents = Content.where(permalink: nil).or Content.where(permalink: "")
     contents.each do |c|
       c.set_permalink
       c.save
     end
 
     say "Fixes empty notes GUID"
-    notes = Note.where("guid is ? or guid = ?", nil, "")
+    notes = Note.where(guid: nil).or Note.where(guid: "")
     notes.each do |n|
       n.create_guid
       n.save
