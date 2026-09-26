@@ -45,14 +45,14 @@ group :development, :test do
   gem "factory_bot", "~> 6.2"
   gem "i18n-tasks", "~> 1.1.0", require: false
   gem "rspec-rails", "~> 7.1"
-  gem "rubocop", "~> 1.91.0", require: false
-  gem "rubocop-capybara", "~> 3.0.0", require: false
-  gem "rubocop-factory_bot", "~> 2.28.0", require: false
-  gem "rubocop-performance", "~> 1.27.0", require: false
-  gem "rubocop-rails", "~> 2.37.0", require: false
-  gem "rubocop-rspec", "~> 3.10.2", require: false
-  gem "rubocop-rspec_rails", "~> 2.32.0", require: false
-  gem "simplecov", "~> 1.2.0", require: false
+  gem "rubocop", "~> 1.91", require: false
+  gem "rubocop-capybara", "~> 3.0", require: false
+  gem "rubocop-factory_bot", "~> 2.28", require: false
+  gem "rubocop-performance", "~> 1.27", require: false
+  gem "rubocop-rails", "~> 2.37", require: false
+  gem "rubocop-rspec", "~> 3.10", require: false
+  gem "rubocop-rspec_rails", "~> 2.32", require: false
+  gem "simplecov", "~> 1.2", require: false
 end
 
 group :development do
