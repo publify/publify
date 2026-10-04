@@ -96,3 +96,4 @@ Dir.glob(File.join(File.dirname(__FILE__), "themes", "**", "Gemfile")) do |gemfi
 end
 
 gem "dockerfile-rails", ">= 1.5", group: :development
+gem "selma", "0.5.2"
