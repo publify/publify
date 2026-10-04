@@ -8,7 +8,6 @@ ruby "~> 4.0.7"
 gem "rails", "~> 7.2.4"
 
 gem "pg"
-gem "rails_12factor"
 
 # Store sessions in the database
 gem "activerecord-session_store", "~> 2.3.0"
