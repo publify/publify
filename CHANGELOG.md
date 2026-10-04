@@ -3,6 +3,70 @@
 See the changelogs for the individual engines for more details for releases 9.0
 and up.
 
+## 11.0.0 / 2026-10-04
+
+* Depend on version 11.0.0 of `publify_core`, `publify_amazon_sidebar` and
+  `publify_textfilter_code`
+
+* Support Ruby 3.2 through 4.0, dropping support for older versions
+   * Support Ruby 3.0 and up ([#1156] by [mvz])
+   * Update supported Ruby versions ([#1220] by [mvz])
+   * Test with Ruby 4.0 ([#1318] by [mvz])
+
+* Use Rails version 7.2
+   * Switch to Rails 6.1 defaults ([#1238] by [mvz])
+   * Upgrade to Rails 7.0 ([#1275] by [mvz])
+   * Upgrade to Rails 7.1 ([#1276] by [mvz])
+   * Bump minimum rails micro version ([#1333] by [mvz])
+   * Upgrade to Rails 7.2 ([#1334] by [mvz])
+
+* Documentation
+   * Update contribution guidlines ([#1179] by [mvz])
+
+* Internal changes
+   * Allow starting the GitHub Actions workflow manually ([#1175] by [mvz])
+   * Remove dependency on pry ([#1208] by [mvz])
+   * Fix build failure by requiring logger explictly ([#1235] by [mvz])
+   * Remove unneeded env var from GitHub Actions ([#1236] by [mvz])
+   * Switch to weekly dependabot updates ([#1263] by [mvz])
+   * Switch back to the development versions of the publify gems ([#1267] by [mvz])
+   * Update RuboCop configuration and autocorrect new offenses ([#1268] by [mvz])
+   * Update RuboCop configuration and fix new offenses ([#1274] by [mvz])
+   * Remove scheduled CI runs ([#1283] by [mvz])
+   * Replace use of removed `strip_html` string extension ([#1311] by [mvz])
+   * Remove obsolete filemanager configuration ([#1310] by [mvz])
+   * Make Rails always preload all sidebars and text filters ([#1312] by [mvz])
+   * Update theme for core theme system changes ([#1314] by [mvz])
+   * Specify which theme to switch to in theme switching feature ([#1327] by [mvz])
+   * Loosen development dependencies ([#1332] by [mvz])
+   * Remove permissions from `GITHUB_TOKEN` in CI ([#1335] by [mvz])
+
+[#1156]: https://github.com/publify/publify/pull/1156
+[#1175]: https://github.com/publify/publify/pull/1175
+[#1179]: https://github.com/publify/publify/pull/1179
+[#1208]: https://github.com/publify/publify/pull/1208
+[#1220]: https://github.com/publify/publify/pull/1220
+[#1235]: https://github.com/publify/publify/pull/1235
+[#1236]: https://github.com/publify/publify/pull/1236
+[#1238]: https://github.com/publify/publify/pull/1238
+[#1263]: https://github.com/publify/publify/pull/1263
+[#1267]: https://github.com/publify/publify/pull/1267
+[#1268]: https://github.com/publify/publify/pull/1268
+[#1274]: https://github.com/publify/publify/pull/1274
+[#1275]: https://github.com/publify/publify/pull/1275
+[#1276]: https://github.com/publify/publify/pull/1276
+[#1283]: https://github.com/publify/publify/pull/1283
+[#1310]: https://github.com/publify/publify/pull/1310
+[#1311]: https://github.com/publify/publify/pull/1311
+[#1312]: https://github.com/publify/publify/pull/1312
+[#1314]: https://github.com/publify/publify/pull/1314
+[#1318]: https://github.com/publify/publify/pull/1318
+[#1327]: https://github.com/publify/publify/pull/1327
+[#1332]: https://github.com/publify/publify/pull/1332
+[#1333]: https://github.com/publify/publify/pull/1333
+[#1334]: https://github.com/publify/publify/pull/1334
+[#1335]: https://github.com/publify/publify/pull/1335
+
 ## 10.0.1 / 2024-06-28
 
 This is a bug fix and security release.
