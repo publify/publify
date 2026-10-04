@@ -371,10 +371,15 @@ GEM
     rails-timeago (2.20.0)
       actionpack (>= 5.2)
       activesupport (>= 5.2)
+    rails_12factor (0.0.3)
+      rails_serve_static_assets
+      rails_stdout_logging
     rails_autolink (1.1.8)
       actionview (> 3.1)
       activesupport (> 3.1)
       railties (> 3.1)
+    rails_serve_static_assets (0.0.5)
+    rails_stdout_logging (0.0.5)
     railties (7.2.4)
       actionpack (= 7.2.4)
       activesupport (= 7.2.4)
@@ -573,6 +578,7 @@ DEPENDENCIES
   rack-mini-profiler (~> 5.0)
   rails (~> 7.2.4)
   rails-controller-testing (~> 1.0.1)
+  rails_12factor
   rake (~> 13.0)
   reverse_markdown (~> 3.0)
   rspec-rails (~> 8.0)
