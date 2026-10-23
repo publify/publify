@@ -3,6 +3,14 @@
 See the changelogs for the individual engines for more details for releases 9.0
 and up.
 
+## 11.0.1 / 2026-10-23
+
+This security release bumps a couple of dependencies to prevent
+vulnerabilities:
+
+* Depend on version 11.0.1 of `publify_core`
+* Depend on version 1.0.8 of `crass`
+
 ## 11.0.0 / 2026-10-04
 
 * Depend on version 11.0.0 of `publify_core`, `publify_amazon_sidebar` and
