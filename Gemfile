@@ -16,7 +16,7 @@ gem "activerecord-session_store", "~> 2.3.0"
 gem "puma", "~> 8.0"
 
 gem "publify_amazon_sidebar", "~> 11.0.0"
-gem "publify_core", "~> 11.0.0"
+gem "publify_core", "~> 11.0.1"
 gem "publify_textfilter_code", "~> 11.0.0"
 
 # Use Uglifier as compressor for JavaScript assets
@@ -36,6 +36,8 @@ gem "sprockets", "~> 4.0"
 gem "rack-attack", "~> 6.5"
 
 gem "net-smtp", "~> 0.5.0"
+
+gem "crass", "~> 1.0.8"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
